@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.llm.fake import FakeLLM
+from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -25,17 +26,34 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
     registry = YamlCharacteristicRegistry.from_directory(settings.characteristics_dir)
     return Providers(
         registry=registry,
-        llm=build_llm(settings, registry),
+        llm=build_llm(settings, registry, logger),
         clock=SystemClock(),
         logger=logger,
     )
 
 
-def build_llm(settings: Settings, registry: CharacteristicRegistryPort) -> LLMPort:
+def build_llm(
+    settings: Settings, registry: CharacteristicRegistryPort, logger: LoggerPort
+) -> LLMPort:
     match settings.llm_provider:
         case LLMProvider.FAKE:
             return FakeLLM(registry)
-        case LLMProvider.ANTHROPIC | LLMProvider.OPENAI_COMPAT:
-            raise ConfigError(
-                f"LLM_PROVIDER={settings.llm_provider.value} is not implemented yet; use fake"
+        case LLMProvider.OPENAI_COMPAT:
+            return OpenAICompatLLM(
+                registry=registry,
+                logger=logger,
+                base_url=_required(settings.llm_base_url, "LLM_BASE_URL"),
+                api_key=_required(settings.llm_api_key, "LLM_API_KEY"),
+                model=_required(settings.llm_model, "LLM_MODEL"),
+                timeout_s=settings.llm_timeout_s,
             )
+        case LLMProvider.ANTHROPIC:
+            raise ConfigError(
+                "LLM_PROVIDER=anthropic is not implemented yet; use fake or openai_compat"
+            )
+
+
+def _required(value: str | None, name: str) -> str:
+    if not value:
+        raise ConfigError(f"LLM_PROVIDER=openai_compat needs {name}")
+    return value

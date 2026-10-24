@@ -23,8 +23,9 @@ P0 scenario: пользователь вводит «тихий номер с в
 | Правило зависимостей | verified | `domain → adapters` ловится и import-linter, и тестом архитектуры | временный импорт в `domain/query.py`: обе проверки упали, 2026-10-24 |
 | Домен фактов | verified | `Fact` с провенансом, TTL и статусами; затухание уверенности до 0,5 базовой на границе TTL; конфликты по правилу `hotelier > fresh_computed > osm_tag > stale_computed`; скоринг с `partial` для квалифицированных фактов | `tests/unit/domain/`, 73 теста, 2026-10-24 |
 | Реестр характеристик | implemented | 7 YAML в `characteristics/`, новая характеристика добавляется файлом без правки кода | `tests/unit/adapters/registry/test_yaml_loader.py`, 2026-10-24 |
-| LLM | implemented | Порт `LLMPort`, детерминированный адаптер `fake` на синонимах реестра; `anthropic` и `openai_compat` падают с явной ошибкой | `tests/unit/adapters/llm/test_fake.py`, 2026-10-24 |
-| Демо-данные | open | `data/seed/sochi/` пуст; тянем разовой командой `make fetch-seed`, она ещё не написана. Точность по максимуму: реальный OSM-экстракт и Copernicus GLO-30, без грубых сеток | решение пользователя, 2026-10-24 |
+| LLM | verified | `fake` по умолчанию; `openai_compat` работает вживую: Yandex Cloud AI Studio, `yandexgpt-5.1`, structured output по JSON Schema. Ответ модели проверяется против реестра и против текста ответа отельера | `make llm-check`, 2026-10-25; [ADR 0003](../docs/adr/0003-yandex-openai-compatible-endpoint.md) |
+| Исходные данные | verified | `make fetch-seed` скачал в `data/raw/`: Geofabrik «Южный ФО» 302 МБ (от 2026-10-24) и два тайла Copernicus GLO-30 (11 и 35 МБ). `data/raw/` в `.gitignore`, коммитится только срез в `data/seed/` | `make fetch-seed`, 2026-10-25 |
+| Демо-данные | open | `data/seed/sochi/` ещё пуст: срез из сырых данных не построен | — |
 
 ## Pointers
 

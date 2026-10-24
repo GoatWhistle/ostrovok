@@ -20,6 +20,10 @@ docker compose up -d --wait
 `make build` собирает образы, `make api` запускает API локально с перезагрузкой,
 `make check` прогоняет линтеры и тесты. `make help` перечисляет цели.
 
+Две команды ходят в сеть и запускаются вручную, их не вызывают ни `make seed`, ни тесты:
+`make fetch-seed` скачивает исходный экстракт OSM и тайлы DEM в `data/raw/`,
+`make llm-check` делает настоящий вызов к провайдеру из `.env` и тратит квоту.
+
 Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
 Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
 `<COMPOSE_PROJECT_NAME>-backend:<TAG>` и `<COMPOSE_PROJECT_NAME>-frontend:<TAG>` и не скачивает их
@@ -58,10 +62,10 @@ uv run uvicorn hotel_agent.main:create_app --factory --reload
 
 | Переменная | По умолчанию | Что задаёт |
 |---|---|---|
-| `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `anthropic` и `openai_compat` пока останавливают запуск с явной ошибкой |
-| `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет |
-| `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint |
-| `LLM_MODEL` | пусто | Имя модели у провайдера |
+| `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `openai_compat` — живой OpenAI-совместимый endpoint; `anthropic` пока останавливает запуск с явной ошибкой |
+| `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет. Обязателен для `openai_compat` |
+| `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
+| `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/yandexgpt-5.1/latest`. Обязателен для `openai_compat` |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |
 | `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик |
 | `SEED_DIR` | `data/seed` | Каталог демо-данных |
@@ -113,7 +117,9 @@ uv run pytest tests/integration
 | Порт 8000 занят | Задайте свободный `BACKEND_PORT` в `.env` |
 | Ошибка состояния API | `docker compose ps backend` и `docker compose logs backend`; затем `API_UPSTREAM` |
 | `ConfigError` при старте бэкенда | Значение переменной из сообщения; допустимые перечислены там же |
-| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптер ещё не написан: оставьте `LLM_PROVIDER=fake` |
+| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптер ещё не написан: оставьте `fake` или `openai_compat` |
+| `LLM_PROVIDER=openai_compat needs LLM_*` | Для живого провайдера нужны все три: адрес, ключ и модель |
+| `Language model returned HTTP 401` | Ключ недействителен или у сервисного аккаунта нет роли `ai.languageModels.user` |
 | `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
 | `Cannot connect to the Docker daemon` | Docker не запущен |
 | `No such image` при `docker compose up` | Образы не собраны: `docker buildx bake` с теми же `COMPOSE_PROJECT_NAME` и `TAG` |

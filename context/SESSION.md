@@ -13,21 +13,25 @@ Updated: 2026-10-24, MSK
   демо-данные Сочи тянуть отдельной командой `make fetch-seed`, не в `make seed` и не в тестах.
 - 2026-10-24: «думаю точность делать как можно лучше» — реальный Copernicus GLO-30 и реальный
   OSM-экстракт, без грубых сеток высот и упрощённых графов.
+- 2026-10-25: выдан API-ключ Yandex Cloud, использовать его для LLM, и качать данные. Ключ лежит
+  только в `.env` (в `.gitignore`); folder ID `b1g8s6hsnfapn48225d1` получен из ответа API.
+  Ключ засвечен в переписке — после хакатона отозвать.
 - Из промпта, действует постоянно: LLM не угадывает значения фактов; значение даёт тулз или
   отельер. Без сети в `make seed` и в тестах. Ключи только в `.env`.
 
 ## Current state
 
-- Task: этапы 1 «Скелет» и 2 «Домен и реестр» закрыты. Следующий — этап 3 «Данные Сочи».
+- Task: этапы 1 и 2 закрыты, живой LLM-провайдер сделан вне очереди. Идёт этап 3 «Данные Сочи»:
+  сырые данные скачаны, срез ещё не построен.
 - Branch and revision: `feat/hotel-agent-mvp`, см. `git log -1`.
 - Stand: Compose поднимает `db` (imresamu/postgis:16-3.4) и `backend`; отвечают
   `GET /api/v1/health` и `GET /api/v1/characteristics`. Таблиц и миграций ещё нет.
 
 ## How to continue
 
-Этап 3 «Данные Сочи». Сначала `make fetch-seed` (разово, с сетью, вне `make seed` и тестов):
-Geofabrik «Южный ФО» → обрезка по bbox Сочи, Copernicus GLO-30 → crop по тому же bbox, результат
-в `data/seed/sochi/`. Затем миграции dbmate (первая включает PostGIS и создаёт GiST-индексы),
+Этап 3 «Данные Сочи». `make fetch-seed` уже отработал, в `data/raw/` лежат pbf и два тайла DEM.
+Дальше: построить срез в `data/seed/sochi/` (pyosmium стримит pbf по bbox Сочи
+39.55–40.00 E / 43.35–43.75 N, rasterio режет и склеивает DEM), затем миграции dbmate (первая включает PostGIS и создаёт GiST-индексы),
 репозитории в `adapters/db/`, CLI `ingest --region sochi --from data/seed/sochi` в
 `interfaces/cli/main.py`. Критерий: `make seed` укладывается в 60 с, в БД 100+ отелей с footprint.
 
@@ -42,6 +46,10 @@ Geofabrik «Южный ФО» → обрезка по bbox Сочи, Copernicus 
   Заменён на `imresamu/postgis:16-3.4`.
 - Два `conftest.py` ломали mypy («Duplicate module named conftest»). Лечится
   `explicit_package_bases` и `mypy_path = "src:."`.
+- `make fmt` переписывает файл, и подготовленная текстовая замена перестаёт совпадать: правь файл
+  после форматирования, а не до.
+- Промпт без эталонов из реестра даёт плохой разбор: `yandexgpt-5.1` выдавал «тихий» как `eq 1` и
+  ставил `required=true` всему подряд. Лечится примерами из `matchers` прямо в системном промпте.
 - Импорт хелпера из `conftest.py` требует, чтобы `tests/` был пакетом: во всех каталогах под
   `tests/` лежит `__init__.py`, импорт пишется полным путём `tests.unit.domain.conftest`.
 
@@ -56,5 +64,5 @@ Geofabrik «Южный ФО» → обрезка по bbox Сочи, Copernicus 
 
 ## Red checks
 
-Нет. `make lint` и `make test` зелёные: 142 unit + 5 contract, ruff, ruff format, mypy strict,
+Нет. `make lint` и `make test` зелёные: 159 unit + 5 contract, ruff, ruff format, mypy strict,
 3 контракта import-linter. `make test-integration` пуст (exit 5) — интеграционных тестов ещё нет.

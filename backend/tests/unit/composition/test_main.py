@@ -5,6 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from hotel_agent.adapters.llm.fake import FakeLLM
+from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.composition import Providers, build_providers
 from hotel_agent.domain.errors import InvalidRegistry
@@ -28,10 +29,40 @@ def test_default_settings_select_offline_implementations(settings: Settings) -> 
     assert providers.llm.provider == "fake"
 
 
-@pytest.mark.parametrize("provider", [LLMProvider.ANTHROPIC, LLMProvider.OPENAI_COMPAT])
-def test_unimplemented_provider_fails_loudly(settings: Settings, provider: LLMProvider) -> None:
-    with pytest.raises(ConfigError, match=f"LLM_PROVIDER={provider.value}"):
-        build_providers(replace(settings, llm_provider=provider), SilentLogger())
+ENDPOINT: dict[str, str | None] = {
+    "llm_base_url": "https://llm.api.cloud.yandex.net/v1",
+    "llm_api_key": "secret",
+    "llm_model": "gpt://folder/yandexgpt-5.1/latest",
+}
+
+
+def configured(settings: Settings, without: str | None = None) -> Settings:
+    values = {**ENDPOINT, without: None} if without else ENDPOINT
+    return replace(
+        settings,
+        llm_provider=LLMProvider.OPENAI_COMPAT,
+        llm_base_url=values["llm_base_url"],
+        llm_api_key=values["llm_api_key"],
+        llm_model=values["llm_model"],
+    )
+
+
+def test_a_configured_endpoint_selects_the_http_adapter(settings: Settings) -> None:
+    providers = build_providers(configured(settings), SilentLogger())
+
+    assert isinstance(providers.llm, OpenAICompatLLM)
+    assert providers.llm.provider == "openai_compat"
+
+
+@pytest.mark.parametrize("missing", ["llm_base_url", "llm_api_key", "llm_model"])
+def test_an_endpoint_without_its_settings_fails_loudly(settings: Settings, missing: str) -> None:
+    with pytest.raises(ConfigError, match=missing.upper()):
+        build_providers(configured(settings, without=missing), SilentLogger())
+
+
+def test_anthropic_is_still_unimplemented(settings: Settings) -> None:
+    with pytest.raises(ConfigError, match="LLM_PROVIDER=anthropic"):
+        build_providers(replace(settings, llm_provider=LLMProvider.ANTHROPIC), SilentLogger())
 
 
 def test_missing_registry_fails_at_startup() -> None:

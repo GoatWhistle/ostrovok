@@ -1,0 +1,236 @@
+import json
+from collections.abc import Callable
+from pathlib import Path
+from typing import Any
+
+import httpx
+import pytest
+
+from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
+from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
+from hotel_agent.application.ports.log import LogValue
+from hotel_agent.domain.characteristics import Op
+from hotel_agent.domain.errors import ModelFailure
+from hotel_agent.domain.query import ParsedQuery
+
+type Build = Callable[..., OpenAICompatLLM]
+
+
+class RecordingLogger:
+    def __init__(self) -> None:
+        self.events: list[str] = []
+
+    def info(self, event: str, **fields: LogValue) -> None:
+        self.events.append(event)
+
+    def warning(self, event: str, **fields: LogValue) -> None:
+        self.events.append(event)
+
+    def error(self, event: str, *, exc: BaseException | None = None, **fields: LogValue) -> None:
+        self.events.append(event)
+
+
+@pytest.fixture
+def logger() -> RecordingLogger:
+    return RecordingLogger()
+
+
+@pytest.fixture
+def build(characteristics_dir: Path, logger: RecordingLogger) -> Build:
+    registry = YamlCharacteristicRegistry.from_directory(characteristics_dir)
+    sent: list[dict[str, Any]] = []
+
+    def make(
+        answer: object = "",
+        *,
+        status: int = 200,
+        error: Exception | None = None,
+    ) -> OpenAICompatLLM:
+        def handle(request: httpx.Request) -> httpx.Response:
+            if error is not None:
+                raise error
+            sent.append(json.loads(request.content))
+            content = answer if isinstance(answer, str) else json.dumps(answer)
+            body = {"choices": [{"message": {"role": "assistant", "content": content}}]}
+            return httpx.Response(status, json=body)
+
+        llm = OpenAICompatLLM(
+            registry=registry,
+            logger=logger,
+            base_url="https://llm.api.cloud.yandex.net/v1",
+            api_key="secret",
+            model="gpt://folder/yandexgpt-5.1/latest",
+            timeout_s=5.0,
+            transport=httpx.MockTransport(handle),
+        )
+        llm.sent = sent  # type: ignore[attr-defined]
+        return llm
+
+    return make
+
+
+def intent(key: str, op: str, value: object, source: str) -> dict[str, object]:
+    return {
+        "characteristic_key": key,
+        "op": op,
+        "value": value,
+        "weight": 1.0,
+        "required": False,
+        "source_text": source,
+    }
+
+
+async def test_a_structured_answer_becomes_intents(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [
+                intent("noise_level", "lte", 3, "тихий номер"),
+                intent("sunset_view", "eq", True, "с видом на закат"),
+            ],
+            "unmatched_terms": ["балкон"],
+            "location_hint": "Сочи",
+        }
+    )
+
+    parsed = await llm.parse_query("тихий номер с видом на закат и балконом")
+
+    assert [(item.characteristic_key, item.op, item.value) for item in parsed.intents] == [
+        ("noise_level", Op.LTE, 3.0),
+        ("sunset_view", Op.EQ, True),
+    ]
+    assert parsed.unmatched_terms == ("балкон",)
+    assert parsed.location_hint == "Сочи"
+
+
+async def test_the_request_carries_the_model_and_a_strict_schema(build: Build) -> None:
+    llm = build({"intents": [], "unmatched_terms": []})
+
+    await llm.parse_query("тихий номер")
+
+    [request] = llm.sent  # type: ignore[attr-defined]
+    assert request["model"] == "gpt://folder/yandexgpt-5.1/latest"
+    assert request["temperature"] == 0
+    schema = request["response_format"]["json_schema"]
+    assert schema["strict"] is True
+    keys = schema["schema"]["properties"]["intents"]["items"]["properties"]
+    assert "distance_to_sea" in keys["characteristic_key"]["enum"]
+
+
+async def test_an_invented_characteristic_is_dropped(build: Build, logger: RecordingLogger) -> None:
+    llm = build(
+        {
+            "intents": [
+                intent("has_helipad", "eq", True, "вертолётная площадка"),
+                intent("noise_level", "lte", 3, "тихий"),
+            ],
+            "unmatched_terms": [],
+        }
+    )
+
+    parsed = await llm.parse_query("тихий номер с вертолётной площадкой")
+
+    assert [item.characteristic_key for item in parsed.intents] == ["noise_level"]
+    assert "llm_unknown_characteristic" in logger.events
+
+
+async def test_a_tool_call_for_a_known_fact_is_dropped(
+    build: Build, logger: RecordingLogger
+) -> None:
+    llm = build(
+        {
+            "calls": [
+                {"characteristic_key": "sunset_view", "subject": "hotel:h_1"},
+                {"characteristic_key": "sunset_view", "subject": "hotel:h_2"},
+                {"characteristic_key": "sunset_view", "subject": "hotel:h_404"},
+            ]
+        }
+    )
+    query = ParsedQuery(intents=(), unmatched_terms=(), location_hint=None)
+
+    calls = await llm.plan_tools(query, ["hotel:h_1", "hotel:h_2"], {"hotel:h_1": ["sunset_view"]})
+
+    assert [call.subject for call in calls] == ["hotel:h_2"]
+    assert logger.events.count("llm_tool_call_outside_plan") == 2
+
+
+async def test_fields_are_kept_only_when_the_quote_is_really_there(
+    build: Build, logger: RecordingLogger
+) -> None:
+    llm = build(
+        {
+            "fields": [
+                {"name": "allowed", "value": True, "quote": "с собаками до 10 кг можно"},
+                {"name": "fee_rub", "value": 1500, "quote": "1500 ₽ в сутки"},
+                {"name": "max_weight_kg", "value": 25, "quote": "до 25 кг без доплаты"},
+            ]
+        }
+    )
+
+    extraction = await llm.extract_fields(
+        "pets_policy", "С собаками до 10 кг можно, 1500 ₽ в сутки"
+    )
+
+    assert {field.name: field.value for field in extraction.fields} == {
+        "allowed": True,
+        "fee_rub": 1500.0,
+    }
+    assert "llm_quote_not_in_answer" in logger.events
+
+
+async def test_a_field_outside_the_registry_is_dropped(
+    build: Build, logger: RecordingLogger
+) -> None:
+    llm = build({"fields": [{"name": "none", "value": True, "quote": "можно"}]})
+
+    extraction = await llm.extract_fields("pets_policy", "можно")
+
+    assert extraction.fields == ()
+    assert "llm_field_outside_registry" in logger.events
+
+
+async def test_a_question_comes_back_trimmed(build: Build) -> None:
+    llm = build("  Можно ли заселяться с питомцами?  ")
+
+    draft = await llm.formulate_question("pets_policy", "missing", "Приморская")
+
+    assert draft == draft.__class__(
+        characteristic_key="pets_policy", text="Можно ли заселяться с питомцами?"
+    )
+
+
+async def test_an_empty_question_is_a_failure(build: Build) -> None:
+    llm = build("   ")
+
+    with pytest.raises(ModelFailure, match="empty answer"):
+        await llm.formulate_question("pets_policy", "missing", "Приморская")
+
+
+@pytest.mark.parametrize("status", [401, 429, 500])
+async def test_an_http_error_becomes_a_model_failure(build: Build, status: int) -> None:
+    llm = build({"intents": [], "unmatched_terms": []}, status=status)
+
+    with pytest.raises(ModelFailure, match=f"HTTP {status}"):
+        await llm.parse_query("тихий номер")
+
+
+async def test_an_unreachable_endpoint_becomes_a_model_failure(build: Build) -> None:
+    llm = build(error=httpx.ConnectError("no route"))
+
+    with pytest.raises(ModelFailure, match="unreachable"):
+        await llm.parse_query("тихий номер")
+
+
+async def test_prose_instead_of_json_becomes_a_model_failure(build: Build) -> None:
+    llm = build("Конечно! Вот что я нашёл:")
+
+    with pytest.raises(ModelFailure):
+        await llm.parse_query("тихий номер")
+
+
+async def test_the_key_never_appears_in_a_failure_message(build: Build) -> None:
+    llm = build({"intents": []}, status=401)
+
+    with pytest.raises(ModelFailure) as failure:
+        await llm.parse_query("тихий номер")
+
+    assert "secret" not in str(failure.value)

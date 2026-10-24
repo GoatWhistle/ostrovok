@@ -45,3 +45,6 @@ models/
 *.pt
 *.gguf
 var/
+
+# raw downloads for seed building; only the derived slice in data/seed/ is committed
+data/raw/

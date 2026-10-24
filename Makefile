@@ -1,9 +1,11 @@
 SHELL := /bin/bash
 COMPOSE := docker compose
 BACKEND := uv run --directory backend
+# the backend runs with cwd=backend/, so repository data paths are made absolute
+LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -21,7 +23,13 @@ build: ## Build the service images
 	docker buildx bake
 
 api: ## Run the API locally with reload against the compose database
-	$(BACKEND) uvicorn hotel_agent.main:create_app --factory --reload --port 8000
+	$(LOCAL_DATA) $(BACKEND) uvicorn hotel_agent.main:create_app --factory --reload --port 8000
+
+fetch-seed: ## Download the raw OSM extract and DEM tiles (manual, needs network)
+	bash scripts/fetch-seed.sh
+
+llm-check: ## Call the configured LLM provider for real (manual, spends quota)
+	set -a; . ./.env; set +a; LLM_PROVIDER=openai_compat $(LOCAL_DATA) $(BACKEND) python scripts/llm_check.py
 
 test: test-unit test-contract ## Run every test that needs nothing started
 
