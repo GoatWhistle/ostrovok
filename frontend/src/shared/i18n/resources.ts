@@ -1,20 +1,23 @@
 import type { Locale } from "./locale"
 import enCommon from "./locales/en/common.json"
 import enErrors from "./locales/en/errors.json"
+import enExplore from "./locales/en/explore.json"
 import enHealth from "./locales/en/health.json"
 import enHome from "./locales/en/home.json"
 import ruCommon from "./locales/ru/common.json"
 import ruErrors from "./locales/ru/errors.json"
+import ruExplore from "./locales/ru/explore.json"
 import ruHealth from "./locales/ru/health.json"
 import ruHome from "./locales/ru/home.json"
 
-export const NAMESPACES = ["common", "errors", "health", "home"] as const
+export const NAMESPACES = ["common", "errors", "health", "home", "explore"] as const
 
 export type Namespace = (typeof NAMESPACES)[number]
 
 export const DEFAULT_NAMESPACE: Namespace = "common"
 
 const en = {
+  explore: enExplore,
   common: enCommon,
   errors: enErrors,
   health: enHealth,
@@ -22,6 +25,7 @@ const en = {
 }
 
 const ru = {
+  explore: ruExplore,
   common: ruCommon,
   errors: ruErrors,
   health: ruHealth,

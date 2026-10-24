@@ -52,7 +52,7 @@ function unavailable(): Response {
   })
 }
 
-export const api = createClient<paths>({ credentials: "same-origin" })
+export const api = createClient<paths>({ baseUrl: "/api/v1", credentials: "same-origin" })
 
 api.use({
   onResponse({ response }) {

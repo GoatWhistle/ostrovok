@@ -6,47 +6,40 @@ product
 
 ## Users
 
-{{Who uses {{PRODUCT}}: role, organisation, where they sit and on what device, how often. Name the
-job to be done in their words and the moment they open the product. Two to four concrete
-sentences, no personas with invented names.}}
+Путешественник выбирает отель по условиям, которые редко доступны в стандартных фильтрах:
+тишина, окружение, доступность моря и особенности номера. Он сравнивает варианты на компьютере
+или телефоне и должен понимать, откуда получен каждый показанный факт.
+Отельер отвечает на вопросы и уточняет сведения о гостинице.
 
 ## Product Purpose
 
-{{What {{PRODUCT}} does in one sentence, why it exists for these users, and what success looks
-like as an observable outcome: "the user does X in under Y minutes and can explain Z". Mention what
-the product deliberately leaves to the human.}}
+Связать запрос путешественника с проверяемыми характеристиками отеля, их географическим
+контекстом и источниками. Успешный сценарий: пользователь выбирает отель, исследует свойство
+на карте и открывает его доказательство. Отельер может подтвердить или исправить сведения.
 
 ## Brand Personality
 
-{{Three words for the character, then one sentence each on voice and tone. Example shape: "Quiet,
-exact, helpful. Copy is plain and short, names things the way users do and never shouts." State
-which colour carries action and which carries attention once the palette is chosen.}}
+Спокойный, точный, исследовательский. Интерфейс использует выбранную пользователем визуальную
+систему Mapbox: слои тёмных поверхностей, синие действия и географические данные в центре работы.
+Формулировки короткие; неизвестное и недоступность отличаются от отрицательного результата.
 
 ## Anti-references
 
-- Generic AI SaaS: gradients and glows for decoration, glassmorphism, sparkle icons, purple-blue
-  hero washes, gradient text.
-- Grids of identical cards with an icon, a title and a sentence.
-- KPI tiles for the sake of tiles: a big number, a caption and a gradient with no conclusion.
-- Centred narrow column with empty fields on the sides of a wide screen.
-- Caps-lock eyebrows above every section, fake step numbers 01, 02, 03.
-- Dashes and middle dots as separators, emoji instead of icons.
-- {{Domain-specific anti-reference: the legacy system or competitor screen users already dislike,
-  and what exactly is wrong with it.}}
+- Рекламная посадочная страница вместо рабочего пространства поиска.
+- Декоративные карты, вымышленные гостиницы и произвольные значения характеристик.
+- Яркие фоновые эффекты, градиенты, стекло и карусели, мешающие сравнению.
+- Технические журналы и рассуждения модели в пользовательском сценарии.
 
-## Design Principles
+## Product principles
 
-1. **{{Principle name}}.** {{One sentence on what it means for a screen and what it rules out.}}
-2. **{{Principle name}}.** {{Same shape. Strategic, not visual: "show the evidence next to the
-   claim", not "use blue".}}
-3. **No dead ends.** Every empty, error and long-running state explains itself and offers the next
-   step.
-4. **Data is the main visual.** A dedicated data component beats a paragraph of explanation.
+1. Каждое свойство связано с конкретным источником и областью действия.
+2. Результаты, сцена и факты поступают из API; пустые и ошибочные состояния остаются видимыми.
+3. Карта помогает изучать данные; список и сведения доступны без WebGL.
+4. Наведение, фокус и нажатие дают доступ к одному географическому контексту.
 
 ## Accessibility & Inclusion
 
-WCAG 2.2 AA: text contrast at least 4.5:1 and UI parts 3:1 in both themes, full keyboard control,
-always visible focus, touch targets of 44px. State is never conveyed by colour alone: an icon, text
-or shape goes with it. `prefers-reduced-motion` softens motion instead of removing feedback. The
-interface is Russian by default and fully English on switch; numbers, dates and money follow the
-locale. {{Known needs of this audience: field use, low vision, slow networks, shared devices.}}
+Два языка интерфейса: RU по умолчанию и EN. Серверный контент сохраняет исходный язык.
+Обе темы, клавиатурная навигация, видимый фокус, контраст и цели касания проверяются отдельно.
+Пользователь может включить reduced motion. Мобильная компоновка разделяет список и карту.
+Доступ к данным отеля и права изменения определяются бэкендом.

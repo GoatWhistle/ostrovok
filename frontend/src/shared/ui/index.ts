@@ -4,8 +4,10 @@ export {
   type SegmentedOption,
   type SegmentedProps,
 } from "./forms/segmented/segmented"
+export { TextArea, TextField } from "./forms/text-field/text-field"
 export { Card, type CardProps } from "./layout/card/card"
 export { PageHeader, type PageHeaderProps } from "./layout/page-header/page-header"
+export { ScrollArea } from "./layout/scroll-area/scroll-area"
 export {
   Button,
   type ButtonProps,

@@ -10,6 +10,14 @@ export const router = createBrowserRouter([
     errorElement: <RootError />,
     hydrateFallbackElement: <RouteFallback />,
     children: [
+      {
+        path: "hotelier/:hotelId?",
+        lazy: lazyPage(() => import("@/pages/hotelier/hotelier-page"), "HotelierPage"),
+      },
+      {
+        path: "compare",
+        lazy: lazyPage(() => import("@/pages/compare/compare-page"), "ComparePage"),
+      },
       { index: true, lazy: lazyPage(() => import("@/pages/home/home-page"), "HomePage") },
       {
         path: "*",

@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, type Page, test } from "@playwright/test"
 
-const ROUTES = ["/", "/missing-page"]
+const ROUTES = ["/", "/hotelier", "/compare", "/missing-page"]
 const THEMES = ["light", "dark"] as const
 const LOCALES = ["ru", "en"] as const
 const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]

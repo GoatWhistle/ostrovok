@@ -29,6 +29,18 @@ describe("hover-gate", () => {
 })
 
 describe("remote-assets", () => {
+  it("permits external evidence links without permitting remote images", () => {
+    const citation = file(
+      "src/citation.tsx",
+      'export const Citation = () => <a href="https://www.openstreetmap.org/copyright">source</a>',
+    )
+    expect(remoteAssets.run([citation])).toEqual([])
+    const resource = file(
+      "src/resource.tsx",
+      'export const Resource = () => <img src="https://cdn.example.com/photo.png" alt="" />',
+    )
+    expect(remoteAssets.run([resource])).toHaveLength(1)
+  })
   it("passes local fonts, assets and SVG namespaces", () => {
     const css = '@font-face { src: url("/fonts/Inter-Regular.woff2"); }'
     const tsx = file(

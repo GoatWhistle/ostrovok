@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { api, unwrap } from "@/shared/api"
 
-export const HEALTH_PATH = "/api/v1/health"
+export const HEALTH_PATH = "/health"
 
 export const healthKeys = {
   all: ["health"] as const,

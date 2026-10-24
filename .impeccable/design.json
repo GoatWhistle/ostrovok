@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T21:51:02.948511+00:00",
+  "title": "Design System: О!дин шаг до идеального отеля",
+  "extensions": {
+    "colorMeta": {
+      "deep-signal": {
+        "role": "primary",
+        "displayName": "Deep Signal",
+        "tonalRamp": [
+          "oklch(15% 0.1793 256.67)",
+          "oklch(26% 0.1793 256.67)",
+          "oklch(38% 0.1793 256.67)",
+          "oklch(49% 0.1793 256.67)",
+          "oklch(61% 0.1793 256.67)",
+          "oklch(72% 0.1793 256.67)",
+          "oklch(84% 0.1793 256.67)",
+          "oklch(95% 0.1793 256.67)"
+        ]
+      },
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "tonalRamp": [
+          "oklch(15% 0.2140 257.10)",
+          "oklch(26% 0.2140 257.10)",
+          "oklch(38% 0.2140 257.10)",
+          "oklch(49% 0.2140 257.10)",
+          "oklch(61% 0.2140 257.10)",
+          "oklch(72% 0.2140 257.10)",
+          "oklch(84% 0.2140 257.10)",
+          "oklch(95% 0.2140 257.10)"
+        ]
+      },
+      "void-black": {
+        "role": "neutral",
+        "displayName": "Void Black",
+        "tonalRamp": [
+          "oklch(15% 0.0053 248.14)",
+          "oklch(26% 0.0053 248.14)",
+          "oklch(38% 0.0053 248.14)",
+          "oklch(49% 0.0053 248.14)",
+          "oklch(61% 0.0053 248.14)",
+          "oklch(72% 0.0053 248.14)",
+          "oklch(84% 0.0053 248.14)",
+          "oklch(95% 0.0053 248.14)"
+        ]
+      },
+      "deep-charcoal": {
+        "role": "neutral",
+        "displayName": "Deep Charcoal",
+        "tonalRamp": [
+          "oklch(15% 0.0086 264.37)",
+          "oklch(26% 0.0086 264.37)",
+          "oklch(38% 0.0086 264.37)",
+          "oklch(49% 0.0086 264.37)",
+          "oklch(61% 0.0086 264.37)",
+          "oklch(72% 0.0086 264.37)",
+          "oklch(84% 0.0086 264.37)",
+          "oklch(95% 0.0086 264.37)"
+        ]
+      },
+      "gunmetal": {
+        "role": "neutral",
+        "displayName": "Gunmetal",
+        "tonalRamp": [
+          "oklch(15% 0.0106 260.69)",
+          "oklch(26% 0.0106 260.69)",
+          "oklch(38% 0.0106 260.69)",
+          "oklch(49% 0.0106 260.69)",
+          "oklch(61% 0.0106 260.69)",
+          "oklch(72% 0.0106 260.69)",
+          "oklch(84% 0.0106 260.69)",
+          "oklch(95% 0.0106 260.69)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "tonalRamp": [
+          "oklch(15% 0.0137 267.05)",
+          "oklch(26% 0.0137 267.05)",
+          "oklch(38% 0.0137 267.05)",
+          "oklch(49% 0.0137 267.05)",
+          "oklch(61% 0.0137 267.05)",
+          "oklch(72% 0.0137 267.05)",
+          "oklch(84% 0.0137 267.05)",
+          "oklch(95% 0.0137 267.05)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(26% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(72% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "silver": {
+        "role": "neutral",
+        "displayName": "Silver",
+        "tonalRamp": [
+          "oklch(15% 0.0186 261.33)",
+          "oklch(26% 0.0186 261.33)",
+          "oklch(38% 0.0186 261.33)",
+          "oklch(49% 0.0186 261.33)",
+          "oklch(61% 0.0186 261.33)",
+          "oklch(72% 0.0186 261.33)",
+          "oklch(84% 0.0186 261.33)",
+          "oklch(95% 0.0186 261.33)"
+        ]
+      },
+      "fog": {
+        "role": "neutral",
+        "displayName": "Fog",
+        "tonalRamp": [
+          "oklch(15% 0.0257 259.82)",
+          "oklch(26% 0.0257 259.82)",
+          "oklch(38% 0.0257 259.82)",
+          "oklch(49% 0.0257 259.82)",
+          "oklch(61% 0.0257 259.82)",
+          "oklch(72% 0.0257 259.82)",
+          "oklch(84% 0.0257 259.82)",
+          "oklch(95% 0.0257 259.82)"
+        ]
+      },
+      "light-base": {
+        "role": "neutral",
+        "displayName": "Light Base",
+        "tonalRamp": [
+          "oklch(15% 0.0013 286.38)",
+          "oklch(26% 0.0013 286.38)",
+          "oklch(38% 0.0013 286.38)",
+          "oklch(49% 0.0013 286.38)",
+          "oklch(61% 0.0013 286.38)",
+          "oklch(72% 0.0013 286.38)",
+          "oklch(84% 0.0013 286.38)",
+          "oklch(95% 0.0013 286.38)"
+        ]
+      },
+      "light-sunken": {
+        "role": "neutral",
+        "displayName": "Light Sunken",
+        "tonalRamp": [
+          "oklch(15% 0.0027 286.35)",
+          "oklch(26% 0.0027 286.35)",
+          "oklch(38% 0.0027 286.35)",
+          "oklch(49% 0.0027 286.35)",
+          "oklch(61% 0.0027 286.35)",
+          "oklch(72% 0.0027 286.35)",
+          "oklch(84% 0.0027 286.35)",
+          "oklch(95% 0.0027 286.35)"
+        ]
+      },
+      "light-ink": {
+        "role": "neutral",
+        "displayName": "Light Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0077 285.74)",
+          "oklch(26% 0.0077 285.74)",
+          "oklch(38% 0.0077 285.74)",
+          "oklch(49% 0.0077 285.74)",
+          "oklch(61% 0.0077 285.74)",
+          "oklch(72% 0.0077 285.74)",
+          "oklch(84% 0.0077 285.74)",
+          "oklch(95% 0.0077 285.74)"
+        ]
+      },
+      "light-secondary": {
+        "role": "neutral",
+        "displayName": "Light Secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0129 285.87)",
+          "oklch(26% 0.0129 285.87)",
+          "oklch(38% 0.0129 285.87)",
+          "oklch(49% 0.0129 285.87)",
+          "oklch(61% 0.0129 285.87)",
+          "oklch(72% 0.0129 285.87)",
+          "oklch(84% 0.0129 285.87)",
+          "oklch(95% 0.0129 285.87)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0156 285.85)",
+          "oklch(26% 0.0156 285.85)",
+          "oklch(38% 0.0156 285.85)",
+          "oklch(49% 0.0156 285.85)",
+          "oklch(61% 0.0156 285.85)",
+          "oklch(72% 0.0156 285.85)",
+          "oklch(84% 0.0156 285.85)",
+          "oklch(95% 0.0156 285.85)"
+        ]
+      },
+      "danger-light": {
+        "role": "secondary",
+        "displayName": "Danger Light",
+        "tonalRamp": [
+          "oklch(15% 0.1834 26.68)",
+          "oklch(26% 0.1834 26.68)",
+          "oklch(38% 0.1834 26.68)",
+          "oklch(49% 0.1834 26.68)",
+          "oklch(61% 0.1834 26.68)",
+          "oklch(72% 0.1834 26.68)",
+          "oklch(84% 0.1834 26.68)",
+          "oklch(95% 0.1834 26.68)"
+        ]
+      },
+      "danger-dark": {
+        "role": "secondary",
+        "displayName": "Danger Dark",
+        "tonalRamp": [
+          "oklch(15% 0.1095 19.85)",
+          "oklch(26% 0.1095 19.85)",
+          "oklch(38% 0.1095 19.85)",
+          "oklch(49% 0.1095 19.85)",
+          "oklch(61% 0.1095 19.85)",
+          "oklch(72% 0.1095 19.85)",
+          "oklch(84% 0.1095 19.85)",
+          "oklch(95% 0.1095 19.85)"
+        ]
+      },
+      "success-light": {
+        "role": "secondary",
+        "displayName": "Success Light",
+        "tonalRamp": [
+          "oklch(15% 0.1188 153.26)",
+          "oklch(26% 0.1188 153.26)",
+          "oklch(38% 0.1188 153.26)",
+          "oklch(49% 0.1188 153.26)",
+          "oklch(61% 0.1188 153.26)",
+          "oklch(72% 0.1188 153.26)",
+          "oklch(84% 0.1188 153.26)",
+          "oklch(95% 0.1188 153.26)"
+        ]
+      },
+      "success-dark": {
+        "role": "secondary",
+        "displayName": "Success Dark",
+        "tonalRamp": [
+          "oklch(15% 0.1072 156.69)",
+          "oklch(26% 0.1072 156.69)",
+          "oklch(38% 0.1072 156.69)",
+          "oklch(49% 0.1072 156.69)",
+          "oklch(61% 0.1072 156.69)",
+          "oklch(72% 0.1072 156.69)",
+          "oklch(84% 0.1072 156.69)",
+          "oklch(95% 0.1072 156.69)"
+        ]
+      },
+      "warning-light": {
+        "role": "secondary",
+        "displayName": "Warning Light",
+        "tonalRamp": [
+          "oklch(15% 0.1113 70.25)",
+          "oklch(26% 0.1113 70.25)",
+          "oklch(38% 0.1113 70.25)",
+          "oklch(49% 0.1113 70.25)",
+          "oklch(61% 0.1113 70.25)",
+          "oklch(72% 0.1113 70.25)",
+          "oklch(84% 0.1113 70.25)",
+          "oklch(95% 0.1113 70.25)"
+        ]
+      },
+      "warning-dark": {
+        "role": "secondary",
+        "displayName": "Warning Dark",
+        "tonalRamp": [
+          "oklch(15% 0.1178 81.94)",
+          "oklch(26% 0.1178 81.94)",
+          "oklch(38% 0.1178 81.94)",
+          "oklch(49% 0.1178 81.94)",
+          "oklch(61% 0.1178 81.94)",
+          "oklch(72% 0.1178 81.94)",
+          "oklch(84% 0.1178 81.94)",
+          "oklch(95% 0.1178 81.94)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "heading-lg": {
+        "displayName": "Heading Lg",
+        "purpose": "Search heading."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "Page headings."
+      },
+      "subheading": {
+        "displayName": "Subheading",
+        "purpose": "Card and result titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Main prose and query text."
+      },
+      "body-sm": {
+        "displayName": "Body Sm",
+        "purpose": "Supporting text and navigation."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Action controls."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Quiet service and evidence notes."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ring",
+        "value": "inset 0 0 0 var(--hairline) var(--border-strong)",
+        "purpose": "Secondary button outline."
+      },
+      {
+        "name": "raised",
+        "value": "0 1px 2px var(--shadow-color)",
+        "purpose": "Selected segmented option."
+      },
+      {
+        "name": "float",
+        "value": "0 1px 2px var(--shadow-color), 0 8px 24px var(--shadow-color)",
+        "purpose": "Floating overlays."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Shared UI easing."
+      },
+      {
+        "name": "dur-fast",
+        "value": "160ms",
+        "purpose": "Control and content swap entry."
+      },
+      {
+        "name": "dur-base",
+        "value": "200ms",
+        "purpose": "Shared fade and scale entry."
+      },
+      {
+        "name": "dur-exit",
+        "value": "140ms",
+        "purpose": "Shared fade and scale exit."
+      },
+      {
+        "name": "press-scale",
+        "value": "0.97",
+        "purpose": "Pointer press response; neutralized for reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "1ms",
+        "purpose": "Compressed shared durations; explicitly marked fades use 160ms entry and 110ms exit."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "small",
+        "value": "30rem"
+      },
+      {
+        "name": "tablet",
+        "value": "48rem"
+      },
+      {
+        "name": "desktop",
+        "value": "64rem"
+      },
+      {
+        "name": "wide-gutters",
+        "value": "75rem"
+      },
+      {
+        "name": "side-by-side-details",
+        "value": "90rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Implemented shared primary action variant.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>Найти отель</button>",
+      "css": ".ds-button-primary{font-family:var(--font-sans);font-size:var(--font-size-label);font-weight:var(--weight-medium);min-height:var(--control-height);padding:0 var(--space-20);border:0;border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-8);cursor:pointer;transition:var(--transition-control);background:var(--action-primary);color:var(--action-primary-text);}@media(hover:hover) and (pointer:fine){.ds-button-primary:hover{background:var(--action-primary-hover);}}.ds-button-primary:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}.ds-button-primary:active{scale:var(--press-scale);background:var(--action-primary-press);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Implemented shared secondary action variant.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>Показать источник</button>",
+      "css": ".ds-button-secondary{font-family:var(--font-sans);font-size:var(--font-size-label);font-weight:var(--weight-medium);min-height:var(--control-height);padding:0 var(--space-20);border:0;border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-8);cursor:pointer;transition:var(--transition-control);background:transparent;color:var(--text-primary);box-shadow:var(--shadow-ring);}@media(hover:hover) and (pointer:fine){.ds-button-secondary:hover{background:var(--action-ghost-hover);}}.ds-button-secondary:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}.ds-button-secondary:active{scale:var(--press-scale);background:var(--action-ghost-press);}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Implemented shared ghost action variant.",
+      "html": "<button class=\"ds-button-ghost\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>Подробнее</button>",
+      "css": ".ds-button-ghost{font-family:var(--font-sans);font-size:var(--font-size-label);font-weight:var(--weight-medium);min-height:var(--control-height);padding:0 var(--space-20);border:0;border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-8);cursor:pointer;transition:var(--transition-control);background:transparent;color:var(--text-primary);padding-inline:var(--space-12);}@media(hover:hover) and (pointer:fine){.ds-button-ghost:hover{background:var(--action-ghost-hover);}}.ds-button-ghost:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}.ds-button-ghost:active{scale:var(--press-scale);background:var(--action-ghost-press);}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Labeled multiline query field.",
+      "html": "<label class=\"ds-field\">Что важно в отеле?<textarea class=\"ds-field-input\" placeholder=\"Тихий номер рядом с морем\"></textarea></label>",
+      "css": ".ds-field{display:grid;gap:var(--space-8);font-family:var(--font-sans);font-size:var(--font-size-body-sm);color:var(--text-secondary)}.ds-field-input{min-height:var(--state-min-height);padding:var(--space-12) var(--space-16);border:var(--hairline) solid var(--border-strong);border-radius:var(--radius-md);background:var(--surface-sunken);color:var(--text-primary);font-family:var(--font-sans);font-size:var(--font-size-body);resize:vertical}.ds-field-input::placeholder{color:var(--text-muted)}.ds-field-input:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Raised rounded container for facts and details.",
+      "html": "<article class=\"ds-card\"><h2 class=\"ds-card-title\">Источник факта</h2><p class=\"ds-card-text\">Откройте свойство отеля, чтобы изучить сведения.</p></article>",
+      "css": ".ds-card{display:grid;gap:var(--space-16);padding:var(--space-card);border:var(--hairline) solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-raised);color:var(--text-primary);font-family:var(--font-sans)}.ds-card-title{margin:0;font-size:var(--font-size-subheading);font-weight:var(--weight-semibold);line-height:var(--line-height-subheading)}.ds-card-text{margin:0;color:var(--text-secondary);font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm)}"
+    },
+    {
+      "name": "Characteristic Suggestion",
+      "kind": "chip",
+      "refersTo": "characteristic-chip",
+      "description": "Outlined characteristic suggestion using the standard secondary button.",
+      "html": "<button type=\"button\" class=\"ds-property\">Тихий номер</button>",
+      "css": ".ds-property{font-family:var(--font-sans);font-size:var(--font-size-label);font-weight:var(--weight-medium);min-height:var(--control-height);padding:0 var(--space-20);border:0;border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-8);cursor:pointer;transition:var(--transition-control);background:transparent;color:var(--text-primary);box-shadow:var(--shadow-ring)}@media(hover:hover) and (pointer:fine){.ds-property:hover{background:var(--action-ghost-hover)}}.ds-property:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}.ds-property:active{scale:var(--press-scale);background:var(--action-ghost-press)}"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Wrapping icon-and-text navigation with current-page emphasis.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Навигация\"><a class=\"ds-nav-link\" href=\"#search\" aria-current=\"page\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>Поиск</a><a class=\"ds-nav-link\" href=\"#hotelier\">Отельеру</a></nav>",
+      "css": ".ds-navigation{display:flex;flex-wrap:wrap;gap:var(--space-24);font-family:var(--font-sans)}.ds-nav-link{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--target-min);color:var(--text-secondary);font-size:var(--font-size-body-sm);text-decoration:none}.ds-nav-link[aria-current=\"page\"]{color:var(--text-primary);font-weight:var(--weight-medium)}.ds-nav-link:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset);}"
+    },
+    {
+      "name": "Map Stage",
+      "kind": "custom",
+      "refersTo": "map-stage",
+      "description": "The local geographic surface before API geometry is available.",
+      "html": "<section class=\"ds-map-stage\" aria-label=\"Карта\"><span class=\"ds-map-caption\">Географический контекст</span><p class=\"ds-map-empty\">Выберите отель, чтобы открыть сцену</p></section>",
+      "css": ".ds-map-stage{position:relative;display:grid;place-items:center;min-height:var(--workspace-map-mobile);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface-sunken);color:var(--text-secondary);font-family:var(--font-sans)}.ds-map-caption{position:absolute;top:var(--space-20);left:var(--space-20);padding:var(--space-8) var(--space-12);border-radius:var(--radius-pill);background:var(--surface-raised);font-size:var(--font-size-body-sm)}.ds-map-empty{padding:var(--space-24);text-align:center;font-size:var(--font-size-body-sm)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Mapbox",
+    "overview": "The user-selected Mapbox world gives this workspace its dark layered surfaces, blue actions, pill controls and quiet geometric type character. The light theme keeps the same hierarchy and control language. Color makes selection legible while hotel facts and their sources carry the content.\n\nThe implemented interface is a full-width working surface with rounded panels, a results rail and a geographic scene. Its depth comes from solid surface tones and fine borders. Empty, unavailable and unknown information remain visibly different states; the map never supplies decorative replacement data.",
+    "keyCharacteristics": [
+      "Layered neutral surfaces with blue actions and geographic selection.",
+      "Rounded content panels and pill-shaped actions.",
+      "Compact readable typography in RU and EN.",
+      "API-backed facts, geometry and explicit unavailable states."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Roles Rule",
+        "body": "Components read semantic tokens; the light and dark themes assign their values. Blue identifies actions, focus and geographic selection. Status always includes text or an icon.",
+        "section": "colors"
+      },
+      {
+        "name": "The Available Font Rule",
+        "body": "Cera Pro names the intended family, but no licensed Cera Pro files are supplied or downloaded. The sans stack falls back to the local system; preserve this fallback rather than assuming the font is installed.",
+        "section": "typography"
+      },
+      {
+        "name": "The Full Workspace Rule",
+        "body": "Fill the available width with useful panels. Constrain prose and individual fields, not the application canvas.",
+        "section": "layout"
+      },
+      {
+        "name": "The Surface Before Shadow Rule",
+        "body": "Use solid raised and sunken surfaces with subtle borders first. Reserve floating shadows for overlays and the small raised shadow for selection.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Real Geometry Rule",
+        "body": "Render only validated GeoJSON supplied by the API. Extrude using supplied height_m and min_height_m; missing height produces a flat outline and a warning. Do not fabricate a building height.",
+        "section": "components"
+      },
+      {
+        "name": "The Honest State Rule",
+        "body": "Unavailable API methods show an error or unavailable state with retry where provided. An error is never presented as an empty successful search or replaced with sample hotel data.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use the shared semantic tokens in both themes.",
+      "Do preserve pill actions, rounded panels and visible keyboard focus.",
+      "Do supply RU and EN interface copy through dictionaries; preserve the language of server content.",
+      "Do keep the hotel list and facts usable when WebGL fails.",
+      "Do distinguish loading, empty, unknown and failed states with text and appropriate icons.",
+      "Do interrupt a map camera move when a newer selection arrives and use an immediate camera jump for reduced motion."
+    ],
+    "donts": [
+      "Don't load an external basemap or terrain in the current scene.",
+      "Don't invent hotels, geographic features, building heights or evidence to fill an empty view.",
+      "Don't download commercial Cera Pro font files or rely on remote font services.",
+      "Don't use gradients, glass or decorative effects that compete with geographic evidence.",
+      "Don't communicate status through color alone.",
+      "Don't turn the working surface into a narrow marketing column."
+    ]
+  }
+}

@@ -1,4 +1,10 @@
 :root {
+  --workspace-sidebar: 360px;
+  --workspace-map-min: 420px;
+  --workspace-map-height: 560px;
+  --workspace-map-mobile: 420px;
+  --space-60: 60px;
+  --space-96: 96px;
   --space-2: 2px;
   --space-4: 4px;
   --space-8: 8px;
@@ -14,7 +20,7 @@
   --space-page: var(--space-24);
   --space-page-wide: var(--space-32);
   --space-section: var(--space-32);
-  --space-card: var(--space-20);
+  --space-card: var(--space-24);
   --space-element: var(--space-12);
 
   --hairline: 1px;

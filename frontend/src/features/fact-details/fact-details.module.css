@@ -1,0 +1,52 @@
+.detail {
+  display: grid;
+  gap: var(--space-12);
+  min-inline-size: 0;
+}
+.status {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+.provenance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-12);
+  margin-block: var(--space-20);
+  font-size: var(--font-size-body-sm);
+}
+.provenance dt {
+  color: var(--text-muted);
+}
+.provenance dd {
+  overflow-wrap: anywhere;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-min);
+  color: var(--text-accent);
+}
+.evidence {
+  margin-block: var(--space-12);
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.history {
+  display: grid;
+  gap: var(--space-8);
+  margin-block: var(--space-16);
+}
+.review {
+  display: grid;
+  gap: var(--space-12);
+  margin-block-start: var(--space-20);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+.edit {
+  display: grid;
+  gap: var(--space-12);
+}

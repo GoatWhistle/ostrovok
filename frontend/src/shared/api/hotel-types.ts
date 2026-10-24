@@ -1,0 +1,12 @@
+import type { components } from "./schema.gen"
+export type HotelSummary = components["schemas"]["HotelSummary"]
+export type HotelScene = components["schemas"]["HotelScene"]
+export type Camera = components["schemas"]["Camera"]
+export type FactBrief = components["schemas"]["FactBrief"]
+export type Fact = components["schemas"]["Fact"]
+export type MatchedProperty = components["schemas"]["MatchedProperty"]
+export type SearchResult = components["schemas"]["SearchResult"]
+export type SearchRequest = components["schemas"]["SearchRequest"]
+export type Region = components["schemas"]["Region"]
+export type Characteristic = components["schemas"]["Characteristic"]
+export type GeoFeatureCollection = components["schemas"]["GeoFeatureCollection"]
