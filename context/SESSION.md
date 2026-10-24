@@ -22,19 +22,19 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Frontend implementation and review complete on feat/hotel-frontend. Code commit 52c34d3, based on origin/feat/hotel-agent-mvp at adb6014d1c0e19d7e5d69d072a0dcc21e894377d. Publication authorized; finish by pushing this branch.
+- Frontend implementation and review complete on feat/hotel-frontend. Code commit 52c34d3, based on origin/feat/hotel-agent-mvp at adb6014d1c0e19d7e5d69d072a0dcc21e894377d. Branch published to origin/feat/hotel-frontend; final archive-byte correction follows in the same branch.
 - Plan and pre-code review: work/frontend/plan.md. User-picked Mapbox dark reference, React/CSS Modules, RU/EN, both themes, real API only.
 - Backend verification: 147 unit/contract tests passed. Only /health and /characteristics served; search/scene/hotelier routes remain pending. Backend code is not owned by this frontend task.
 - Implemented search/results, MapLibre geometry/highlights, fact evidence, hotelier mutations and comparison. Types generated from local OpenAPI. No runtime fixtures.
 - Verify passed: 36 rules, typecheck/lint, 309 tests/build; 10 e2e on the production build incl axe and long-text mobile case. Independent finish verdict: ship. See work/frontend/validation.md and work/audits/frontend-1.md.
 - DESIGN.md and .impeccable/design.json document the actual supplied world. No terrain/basemap/Cera Pro assets.
 - Node 22 shim /tmp/o-hack-node22/bin. Backend env /tmp/o-hack-frontend-backend-env. Preview http://127.0.0.1:15173, backend :18000; task-owned servers may be stopped after checks.
-- Publish only feat/hotel-frontend; do not push MVP/main. Implementation HEAD at session update: 52c34d3; following docs commit records these results.
+- Publish only feat/hotel-frontend; do not push MVP/main. Implementation commit: 52c34d3. Git HEAD at final session update: bcf0e31; the final correction preserves source attachment bytes.
 - Impeccable context failed (cache permission/engine unavailable); permitted fallback reads PRODUCT/DESIGN. UI UX generator consulted for UX only; source reference owns palette/type.
 
 ## How to continue
 
-Frontend implementation is complete; review/validation are in work/frontend/. Publish the implementation and documentation commits, then backend integration can proceed when pending methods exist. Do not resume backend stages below in this branch.
+Frontend implementation is complete; review/validation are in work/frontend/. Implementation and documentation are published. Backend integration can proceed when pending methods exist. Do not resume backend stages below in this branch.
 
 Этап 3 «Данные Сочи». Сначала `make fetch-seed` (разово, с сетью, вне `make seed` и тестов):
 Geofabrik «Южный ФО» → обрезка по bbox Сочи, Copernicus GLO-30 → crop по тому же bbox, результат
