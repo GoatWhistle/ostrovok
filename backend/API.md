@@ -10,7 +10,7 @@ maps input into a use case command and calls the use case. It maps the result or
 failure into an explicit HTTP response. Business rules and access decisions execute in the use case
 and domain even when the same action arrives through a worker or script.
 
-- Keep Pydantic request/response schemas in `controller/`; use explicit response fields.
+- Keep Pydantic request/response schemas in `interfaces/http/`, matching `docs/api/openapi.yaml`; use explicit response fields.
 - Treat actor identity and permissions as server-owned. A submitted user ID or claimed role does
   not grant access.
 - Check visibility before returning protected records; filter list and detail queries consistently.
@@ -32,7 +32,7 @@ Use one error envelope, including validation errors:
 ```
 
 `code` is a stable machine-readable `snake_case` identifier. `message` is safe English diagnostic
-text; the frontend displays its own localized dictionary entry for the code. Domain/usecase
+text; the frontend displays its own localized dictionary entry for the code. Domain/application
 failures know no HTTP status; controller error mapping assigns it.
 
 - Define statuses and error codes for each scenario in the generated contract and product docs.

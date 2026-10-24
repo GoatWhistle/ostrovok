@@ -18,13 +18,13 @@ implemented system; product files must not link to these internal instructions.
 
 ## Architecture contract
 
-- Use `src/app/{domain,usecase,repository,adapter,controller}` and a `main.py` composition root.
-  `app` is the template's default package name. If renamed during kickoff, update paths, imports,
-  startup commands and package configuration together.
-- `domain` owns business rules; `usecase` owns use cases and ports. Neither imports framework,
-  persistence or provider code. `repository` implements storage ports (`repository/<storage>/`),
-  `adapter` implements external providers, `controller` owns HTTP. These three never import each
-  other.
+- Use `src/hotel_agent/{domain,application,adapters,interfaces}` with `main.py` as the entry point
+  and `composition.py` as the composition root. See [ADR 0002](../docs/adr/0002-layers-inside-backend.md).
+- `domain` owns business rules; `application` owns use cases (`application/use_cases/`), ports
+  (`application/ports/`) and the agent loop (`application/agent/`). Neither imports framework,
+  persistence or provider code. `adapters` implements storage (`adapters/db/`) and external
+  providers; `interfaces` owns HTTP (`interfaces/http/`) and the CLI (`interfaces/cli/`). These two
+  never import each other.
 - Supply dependencies through use case constructors. Concrete implementations are selected at
   startup in `main.py`; controllers call use cases rather than storage or provider SDKs.
 - Type hints are required. Explain any necessary `Any` in `docs/design-decisions.md`.
@@ -35,40 +35,38 @@ implemented system; product files must not link to these internal instructions.
 
 ## Default stack
 
-Unless the task or an explicit project decision chooses otherwise: Python 3.12+, FastAPI,
-Pydantic only for HTTP schemas in `controller/`, standard `dataclasses` everywhere else, uv, Ruff
-with line length 100, mypy strict and pytest.
+Python 3.12 (pinned by `.python-version`, matching the image), FastAPI, Pydantic only for HTTP
+schemas in `interfaces/http/`, standard `dataclasses` everywhere else, uv, Ruff with line length
+100, mypy strict, pytest and import-linter. Geo work uses PostGIS, shapely, pyproj, rasterio and
+pyosmium; add them with `uv add` when the stage that needs them starts.
 
-Persistence has fixed rules, detailed in [DATABASE.md](DATABASE.md): ask the user whether storage is
-in-memory only or a database (SQLite or PostgreSQL 16) before the first repository; no ORM, only
-SQL through the driver; SQL migrations applied by dbmate in a one-shot Compose service; dataclass DTOs
-at repository ports; Unit of Work for transactions.
+Persistence is decided: PostgreSQL 16 with PostGIS 3.4, raw SQL through psycopg 3, dbmate
+migrations ([ADR 0001](../docs/adr/0001-postgis-raw-sql.md)). SQLAlchemy and Alembic are not used
+even though the task prompt names them. The rest of the rules are in [DATABASE.md](DATABASE.md):
+no ORM, dataclass DTOs at repository ports, Unit of Work for transactions.
 
-The template contains backend instructions, `pyproject.toml` with `uv.lock`, the `LanguageModel`
-and `Embeddings` ports in `usecase/interface.py` with their types in `domain/inference.py`, and
-`adapter/llm/claude_agent.py` and `adapter/llm/codex_agent.py` implementing `LanguageModel` through
-`claude-agent-sdk` and `openai-codex`. The `DecisionModel` port (types in `domain/decision.py`)
-covers typed-decision models: `adapter/decision/system_one.py` speaks the `/v1/systemone` contract
-of TypeSafe Jev, `laya-serve` and the OpenJev decider; `adapter/decision/lexical.py` is the offline
-fallback. The `Logger` port takes an event name and `LogValue` fields; `adapter/log/stdlib.py`
-implements it over `logging`. Modules outside `adapter/log/`, `main.py` included, do not import
-`logging`; the import check enforces it.
-Other implementations go to `adapter/llm/`, `adapter/embeddings/`, `adapter/decision/` and
-`adapter/log/`; empty layer folders keep `.gitkeep`.
+Ports live in `application/ports/`: `LLMPort` (`llm.py`), `CharacteristicRegistryPort`
+(`registry.py`), `LoggerPort` (`log.py`) and `ClockPort` (`clock.py`). `LLMPort` never returns a
+characteristic value: a value comes from a tool or the hotelier, and the model only parses the
+query, plans tool calls, writes the hotelier question and splits a free answer into fields with a
+quote. `adapters/llm/fake.py` is the deterministic implementation used by every test and the demo;
+it reads phrases from the YAML registry, so a new characteristic needs no code change.
+`adapters/registry/yaml_loader.py` loads `characteristics/*.yaml` from `CHARACTERISTICS_DIR`.
+`adapters/log/stdlib.py` implements `LoggerPort` over `logging`; modules outside `adapters/log/`,
+`main.py` included, do not import `logging`, and the import check enforces it.
+Empty layer folders keep `.gitkeep`.
 
-`main.py` exposes `create_app()` (run as `uvicorn app.main:create_app --factory`). It reads
-`Settings` from `settings.py` (`DECISION_MODEL`, `LANGUAGE_MODEL`, `DECISION_MODEL_*`), builds
-a `StdlibLogger` passed to `ErrorHandlers` and `Providers` in the lifespan, keeps them on
-`app.state.providers` and closes them at shutdown. Wire a
-new use case there from `Providers` and pass it to its router; extend `build_providers` when adding
-a port implementation. `controller/errors.py` owns the error envelope and `STATUS_BY_ERROR`;
-`controller/router.py` holds `api_router_v1` with the `/api/v1` prefix; feature routers carry no
-prefix and are included there, and `main.py` mounts only `api_router_v1`. `controller/health/` is the
-Compose healthcheck. `docker-bake.hcl` builds `backend/Dockerfile`; the `backend` Compose service
-only runs the built image. `claude-agent-sdk` and `openai-codex` form the `llm` dependency group: installed by
-default locally, in the image only with `LLM=true` (`LLM=true docker buildx bake`), so
-`main.py` imports the LLM adapters inside `build_language_model`. Add new dependencies with
-`uv add`; the Dockerfile installs strictly from `uv.lock`. When bootstrapping a project, add migrations, the storage service and the real first
-scenario together. Remove a folder's `.gitkeep` when it gains source files. Follow
-the dependency rules from the first implementation; validation commands apply once those tools
-and files exist.
+`main.py` exposes `create_app()` (run as `uvicorn hotel_agent.main:create_app --factory`). It reads
+`Settings` from `settings.py` (`LLM_PROVIDER`, `LLM_*`, `CHARACTERISTICS_DIR`, `SEED_DIR`,
+`DATABASE_URL`), builds a `StdlibLogger`, calls `build_providers` from `composition.py`, keeps the
+result on `app.state.providers` and closes it at shutdown. Wire a new use case in `main.py` from
+`Providers` and pass it to its router; extend `build_providers` when adding a port implementation.
+`interfaces/http/errors.py` owns the error envelope and `STATUS_BY_ERROR`; `interfaces/http/app.py`
+holds `api_router_v1` with the `/api/v1` prefix; feature routers in `interfaces/http/routers/` are
+built by a `build_router(...)` factory, carry no prefix and are included there.
+`docs/api/openapi.yaml` is the source of truth for response shapes; change it before changing a
+response, and `tests/contract/` checks the two against each other.
+`docker-bake.hcl` builds `backend/Dockerfile`; the `backend` Compose service only runs the built
+image and bind-mounts `characteristics/` and `data/` read-only. Add new dependencies with `uv add`;
+the Dockerfile installs strictly from `uv.lock`. Remove a folder's `.gitkeep` when it gains source
+files.

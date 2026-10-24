@@ -1,7 +1,8 @@
 # Запуск и проверки
 
-Сейчас Compose запускает фронтенд и бэкенд. У бэкенда один метод — `GET /api/v1/health`; сценарии,
-база данных и миграции будут добавлены при реализации проекта.
+Compose запускает PostGIS, бэкенд и фронтенд. У бэкенда сейчас два метода —
+`GET /api/v1/health` и `GET /api/v1/characteristics`; поиск, карточка, сцена, геообъекты,
+миграции и демо-данные добавляются следующими этапами.
 
 **Читайте, если** вы запускаете шаблон · **Связано:** [архитектура](architecture.md) · [зависимости](dependencies.md)
 
@@ -12,8 +13,12 @@
 ```bash
 cp .env.example .env
 docker buildx bake
-docker compose up
+docker compose up -d --wait
 ```
+
+Короткий путь через `make` из корня: `make up` поднимает только базу и ждёт её готовности,
+`make build` собирает образы, `make api` запускает API локально с перезагрузкой,
+`make check` прогоняет линтеры и тесты. `make help` перечисляет цели.
 
 Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
 Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
@@ -22,16 +27,12 @@ docker compose up
 Переменные контейнеров приходят из `.env` через `env_file`; без `.env` действуют значения по
 умолчанию. Первичная сборка требует сети для загрузки зависимостей и образов.
 
-Образ бэкенда по умолчанию собирается без SDK Claude и Codex. Чтобы включить `LANGUAGE_MODEL`,
-соберите образ с флагом `LLM`:
+Реестр характеристик (`characteristics/`) и демо-данные (`data/`) не попадают в образ: Compose
+монтирует их в контейнер только для чтения по путям `/srv/characteristics` и `/srv/data`.
+Поэтому образ бэкенда сам по себе не запускается без этих каталогов рядом.
 
-```bash
-LLM=true docker buildx bake
-docker compose up
-```
-
-Переменные сборки (`LLM`, `TAG`, `SITE_URL`, `COMPOSE_PROJECT_NAME`) bake берёт из окружения, а не
-из `.env`.
+Переменные сборки (`TAG`, `SITE_URL`, `COMPOSE_PROJECT_NAME`) bake берёт из окружения, а не из
+`.env`.
 
 ## Как разрабатывать без Docker?
 
@@ -47,8 +48,8 @@ npm run dev
 
 ```bash
 cd backend
-uv sync                      # группы dev и llm; без SDK LLM: uv sync --no-group llm
-uv run uvicorn app.main:create_app --factory --reload
+uv sync
+uv run uvicorn hotel_agent.main:create_app --factory --reload
 ```
 
 ## Какие переменные читает бэкенд?
@@ -57,13 +58,17 @@ uv run uvicorn app.main:create_app --factory --reload
 
 | Переменная | По умолчанию | Что задаёт |
 |---|---|---|
-| `DECISION_MODEL` | `lexical` | `lexical` — офлайн-замена; `system_one` — HTTP-модель по контракту `/v1/systemone` |
-| `DECISION_MODEL_URL` | `https://api.typesafe.ai` | Адрес модели для `system_one`, например локальный `laya-serve` |
-| `DECISION_MODEL_API_KEY` | пусто | Ключ для `system_one`; без него заголовок `Authorization` не отправляется |
-| `DECISION_MODEL_TIMEOUT_S` | `10` | Таймаут запроса к модели, секунды |
-| `LANGUAGE_MODEL` | `none` | `none`, `claude` или `codex` |
+| `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `anthropic` и `openai_compat` пока останавливают запуск с явной ошибкой |
+| `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет |
+| `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint |
+| `LLM_MODEL` | пусто | Имя модели у провайдера |
+| `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |
+| `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик |
+| `SEED_DIR` | `data/seed` | Каталог демо-данных |
+| `DATABASE_URL` | `postgresql://hotel:hotel@localhost:5432/hotel` | Адрес PostgreSQL с PostGIS |
+| `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` | `hotel` | Учётные данные контейнера базы |
+| `POSTGRES_PORT` | `5432` | Порт базы на хосте |
 | `BACKEND_PORT` | `8000` | Порт бэкенда на хосте в Compose |
-| `LLM` | `false` | Сборка: `true` ставит в образ SDK Claude и Codex |
 | `TAG` | `latest` | Тег образов Compose и bake |
 
 Неизвестное значение останавливает запуск с ошибкой, где названа переменная и допустимые значения.
@@ -87,16 +92,18 @@ uv sync
 uv run ruff check .
 uv run ruff format --check .
 uv run mypy .
+uv run lint-imports
 uv run pytest tests/unit
+uv run pytest tests/contract
 uv run pytest tests/integration
 ```
 
-`tests/unit` работает без базы и сети; `tests/integration` требует локальную инфраструктуру
-(PostgreSQL, запущенный стенд). `uv run pytest` запускает обе группы. Число процессов pytest-xdist
-зависит от размера набора: маленький идёт в один процесс.
-
-Тесты адаптера Claude подменяют вызов SDK и не ходят в сеть. Реальный вызов требует
-`ANTHROPIC_API_KEY` или вход в Claude Code и расходует оплату.
+`tests/unit` и `tests/contract` работают без базы и сети; `tests/integration` требует локальную
+инфраструктуру (PostgreSQL с PostGIS, `dbmate`, запущенный стенд) и сейчас пуст — пустая группа
+выходит с кодом 5. `uv run lint-imports` проверяет правило зависимостей слоёв по контрактам из
+`pyproject.toml`; то же правило независимо проверяет `tests/unit/architecture/`.
+`tests/contract` валидирует ответы API против `docs/api/openapi.yaml`.
+Число процессов pytest-xdist зависит от размера набора: маленький идёт в один процесс.
 
 ## Что делать, если не запускается?
 
@@ -106,7 +113,9 @@ uv run pytest tests/integration
 | Порт 8000 занят | Задайте свободный `BACKEND_PORT` в `.env` |
 | Ошибка состояния API | `docker compose ps backend` и `docker compose logs backend`; затем `API_UPSTREAM` |
 | `ConfigError` при старте бэкенда | Значение переменной из сообщения; допустимые перечислены там же |
-| `LANGUAGE_MODEL=claude needs package` | Образ собран без SDK: пересоберите с `LLM=true` |
+| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптер ещё не написан: оставьте `LLM_PROVIDER=fake` |
+| `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
+| `Cannot connect to the Docker daemon` | Docker не запущен |
 | `No such image` при `docker compose up` | Образы не собраны: `docker buildx bake` с теми же `COMPOSE_PROJECT_NAME` и `TAG` |
 | Зависимости не скачиваются | Доступ к реестрам npm и Docker во время сборки |
 

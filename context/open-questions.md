@@ -2,10 +2,19 @@
 
 | ID | Question | Decision affected | Source to consult | Status |
 |---|---|---|---|---|
-| Q1 | {{question}} | {{scope or decision}} | {{source}} | {{open / asked / answered}} |
+| Q1 | Какой хакатон, трек, критерии и дедлайн? `brief/` пуст, все файлы — шаблонные заглушки | Приоритеты P0/P1/P2, порядок этапов, что показывать жюри | Материалы организаторов → `brief/`, затем `hack-kickoff` | open |
+| Q2 | Откуда берём срез Сочи: Geofabrik «Южный ФО» или готовый экстракт? Какой bbox считаем Сочи? | Содержимое `data/seed/sochi/`, время `make fetch-seed`, число отелей | Пользователь; geofabrik.de | open |
+| Q3 | Нужен ли реальный DEM Copernicus GLO-30 для демо или хватает грубой сетки высот? | Вес `data/seed/`, точность `sunset_view` и перепада высот в `distance_to_sea` | Пользователь; Copernicus DEM | open |
+| Q4 | Влить `docs/api/openapi.yaml` в `main` или фронт тянет из ветки `feat/hotel-agent-mvp`? | Как фронт получает контракт | Пользователь | asked |
+| Q5 | Чинить ли `SearchResult.footprint`, где `description` стоит рядом с `$ref` (OpenAPI 3.0 его игнорирует)? | Текст контракта, кодогенерация у фронта | Пользователь, фронт-команда | asked |
+| Q6 | Какой OpenAI-совместимый endpoint реально доступен (GigaChat, YandexGPT, vLLM) и есть ли ключ? | Реализация `adapters/llm/openai_compat.py`, что показываем кроме `fake` | Пользователь | open |
 
 ## Assumptions pending answers
 
 | ID | Assumption | Revisit when |
 |---|---|---|
-| Q1 | {{current interpretation}} | {{answer that changes it}} |
+| Q1 | Работаем строго по этапам 1–8 из промпта, P0 — сценарий поиска из раздела 6 | Появится брифинг организаторов с другими критериями |
+| Q2 | bbox Сочи ≈ 39.55..40.00 E, 43.35..43.75 N, источник Geofabrik «Южный федеральный округ» | Пользователь назовёт другой источник или границы |
+| Q3 | Для демо берём DEM, обрезанный по bbox Сочи, в пределах общего бюджета 50 МБ на `data/seed/` | Окажется, что файл не влезает или точности не хватает |
+| Q4 | Фронт пока читает контракт из ветки `feat/hotel-agent-mvp` | Пользователь скажет влить в `main` |
+| Q6 | До ответа работает только `LLM_PROVIDER=fake`; `anthropic` и `openai_compat` падают явной ошибкой | Появится ключ и адрес endpoint |

@@ -6,13 +6,16 @@ in [ARCHITECTURE.md](ARCHITECTURE.md); test doubles and fixtures live only in `b
 Tests are split by what they need to run:
 
 - `tests/unit/` runs in-process with no database server, container, network or running stand. It
-  holds `domain/`, `usecase/`, `adapter/`, `controller/`, `repository/memory/` and the import-contract
-  checks in `architecture/`. Adapter tests here replace the provider client or SDK call. Add
-  provider-specific `adapter/<provider>/` folders when implemented.
+  holds `domain/`, `application/`, `adapters/`, `interfaces/`, `composition/` and the
+  import-contract checks in `architecture/`. Adapter tests here replace the provider client or SDK
+  call.
+- `tests/contract/` also needs nothing started. It validates HTTP responses against
+  `docs/api/openapi.yaml`, which is the source of truth for the frontend. Add a case there for
+  every endpoint as it lands, and change the contract file before changing a response shape.
 - `tests/integration/` needs real local infrastructure and the `dbmate` binary:
-  `repository/sqlite/` uses a temporary database file, `repository/postgres/` uses disposable
-  PostgreSQL, `e2e/` uses the seeded running stand. An adapter test against a local container or
-  server goes to `integration/adapter/<provider>/`.
+  `repository/postgres/` uses disposable PostgreSQL with PostGIS, `e2e/` uses the seeded running
+  stand. An adapter test against a local container or server goes to
+  `integration/adapters/<provider>/`.
 
 Inside each group, folders mirror layer responsibilities. Put a test in `unit/` only if it passes
 on a clean checkout after `uv sync`, with nothing else started. The pre-commit hook runs
@@ -24,9 +27,8 @@ on a clean checkout after `uv sync`, with nothing else started. The pre-commit h
 | --- | --- | --- |
 | Domain | Pure rules and state transitions on ordinary Python values | Valid cases, boundary values and rejection without mutation |
 | Use case | Use cases through their public interface, supplying test implementations of ports | Access decisions, orchestration, expected failures and transaction behavior |
-| Repository contract | The same tests over every kept implementation through its UoW factory | Memory, SQLite and PostgreSQL return equal DTOs and failures |
-| SQLite repository | Temporary database file migrated by dbmate | Queries, constraints and rollback |
-| PostgreSQL repository | Real disposable PostgreSQL with the actual migrations | Queries, constraints, rollback and concurrent operations |
+| PostgreSQL repository | Real disposable PostgreSQL with PostGIS and the actual migrations | Queries, geometry round-trip, constraints, rollback and concurrent operations |
+| Contract | Every implemented endpoint against `docs/api/openapi.yaml` | Response bodies validate, and no served route is missing from the contract |
 | Provider adapter | Local deterministic responses or a local test server | Mapping, timeout/error handling and malformed provider responses |
 | HTTP | Requests through the configured app and real use cases | Schemas, statuses, error envelope and visibility |
 | End to end | The seeded running stand on the jury route | The actual user scenario across HTTP and storage |
@@ -57,15 +59,18 @@ or a completed end-to-end scenario. Database-dependent acceptance paths use real
 When the runtime package is introduced, add an automated check for its allowed imports:
 
 - `domain` depends on domain code and permitted pure libraries.
-- `usecase` depends on usecase/domain code, never on frameworks, repositories or adapters.
-- `controller`, `repository` and `adapter` do not import each other.
-- Inner modules do not import `main.py`, composition code or settings bound to the environment.
+- `application` depends on application/domain code, never on frameworks, drivers or adapters.
+- `interfaces` and `adapters` do not import each other.
+- Inner modules do not import `main.py`, `composition.py` or `settings.py`.
 - Imports and re-exports remain acyclic. Cover annotation imports and package `__init__.py` files.
 - A library listed in `OWNED_LIBRARIES` is imported only by its owner module (`logging` by
   `adapter.log`).
 
-The check must inspect the package rather than a hand-maintained list of selected files. Confirm
-that a forbidden dependency is detected before treating the guard as evidence.
+Two checks cover this: `uv run lint-imports` reads the contracts in `pyproject.toml`, and
+`tests/unit/architecture/test_dependency_rule.py` parses every module with `ast` so that imports in
+annotations, inside functions and in `__init__.py` are caught too. Both must inspect the package
+rather than a hand-maintained list of files. Confirm that a forbidden dependency is detected before
+treating either guard as evidence.
 
 ## Checks before reporting completion
 
@@ -75,25 +80,27 @@ Once `pyproject.toml` declares the tools and the runtime exists, run from `backe
 uv run ruff check .
 uv run ruff format --check .
 uv run mypy .
+uv run lint-imports
 uv run pytest tests/unit
+uv run pytest tests/contract
 uv run pytest tests/integration
 ```
 
-`uv run pytest` runs both groups. An empty integration group exits with code 5 ("no tests ran");
+From the repository root, `make lint` and `make test` run the same commands.
+
+`uv run pytest` runs every group. An empty integration group exits with code 5 ("no tests ran");
 that is not evidence of integration coverage.
 
-Configure the commands to include `src/app/`, the applicable scripts and tests. Declare the
-architecture check and integration command alongside them in the implemented project and product
-`docs/running.md`. Report which suites ran and what each demonstrates.
+The commands cover `src/hotel_agent/`, the applicable scripts and tests. Declare the architecture
+check and integration command alongside them in product `docs/running.md`. Report which suites ran
+and what each demonstrates.
 
 For behavior changes, validate the affected use case and applicable HTTP/database behavior. For
 concurrency rules, exercise overlapping operations. For documentation-only changes, check affected
 links and cleanup paths; a runtime suite does not demonstrate that the instructions are coherent.
 
-The template has `pyproject.toml`, the inference ports and the Claude Agent SDK and Codex SDK adapters,
-the import-contract check `tests/unit/architecture/test_dependency_rule.py` and a `main.py` with only
-`GET /api/v1/health`; no use cases or database. Composition tests live in `tests/unit/composition/`,
-HTTP mapping tests in `tests/unit/controller/`. The check parses every module under `src/app` with `ast`; allowed layers live
-in `ALLOWED_LAYERS`, extra pure libraries for `domain`/`usecase` in `PURE_LIBRARIES`. Adapter tests replace the SDK `query`
-function or `AsyncCodex` client, and the System One adapter receives an `httpx.MockTransport`; they
-make no network calls and do not prove that a real model call works.
+Composition tests live in `tests/unit/composition/`, HTTP mapping tests in
+`tests/unit/interfaces/`. The architecture check parses every module under `src/hotel_agent` with
+`ast`; allowed layers live in `ALLOWED_LAYERS`, extra pure libraries for `domain`/`application` in
+`PURE_LIBRARIES`. The fake LLM adapter is deterministic and makes no network calls; passing its
+tests says nothing about a real provider call.
