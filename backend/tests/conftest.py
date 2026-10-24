@@ -3,7 +3,20 @@ from pathlib import Path
 
 import pytest
 
+from hotel_agent.settings import Settings
+
 FILES_PER_WORKER = 16
+CHARACTERISTICS_DIR = Path(__file__).resolve().parents[2] / "characteristics"
+
+
+@pytest.fixture
+def characteristics_dir() -> Path:
+    return CHARACTERISTICS_DIR
+
+
+@pytest.fixture
+def settings() -> Settings:
+    return Settings(characteristics_dir=CHARACTERISTICS_DIR)
 
 
 def count_test_files(config: pytest.Config) -> int:

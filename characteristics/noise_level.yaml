@@ -1,0 +1,49 @@
+key: noise_level
+title_ru: Шум со стороны фасада
+description: "Балл 0-10 по расстоянию до магистралей, железной дороги и баров, отдельно для каждой стороны здания."
+value_type: number
+unit: score
+scope: facade
+tool: noise_level
+ttl_days: 180
+precompute: true
+ask_hotelier_if_missing: false
+question_template: null
+source_kinds: [osm, computed]
+display:
+  icon: volume-off
+  color: "#7E57C2"
+  geo_style: facade
+synonyms:
+  - тихий
+  - тихо
+  - шумно
+  - окна во двор
+  - quiet
+matchers:
+  - phrase: окна во двор
+    op: lte
+    value: 2
+    weight: 1.0
+    required: false
+  - phrase: очень тихий
+    op: lte
+    value: 2
+    weight: 1.0
+    required: false
+  - phrase: тихий
+    op: lte
+    value: 3
+    weight: 1.0
+    required: false
+  - phrase: тихо
+    op: lte
+    value: 3
+    weight: 1.0
+    required: false
+  - phrase: без шума
+    op: lte
+    value: 3
+    weight: 1.0
+    required: false
+fields: []

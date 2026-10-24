@@ -1,0 +1,53 @@
+key: pets_policy
+title_ru: Размещение с животными
+description: "Правила размещения с питомцами со слов отельера: допуск, предельный вес, плата и ограничения."
+value_type: object
+unit: null
+scope: hotel
+tool: null
+ttl_days: 180
+precompute: false
+ask_hotelier_if_missing: true
+question_template: "Можно ли заселяться с питомцами в {hotel}? Есть ли ограничения по весу и плата за ночь?"
+source_kinds: [hotelier, llm_extraction, osm]
+display:
+  icon: paw
+  color: "#43A047"
+  geo_style: polygon
+synonyms:
+  - с собакой
+  - с животными
+  - можно с питомцем
+  - pet friendly
+matchers:
+  - phrase: с собакой
+    op: eq
+    value: true
+    weight: 1.0
+    required: true
+  - phrase: с животными
+    op: eq
+    value: true
+    weight: 1.0
+    required: true
+  - phrase: с питомцем
+    op: eq
+    value: true
+    weight: 1.0
+    required: true
+fields:
+  - name: allowed
+    kind: bool
+    units: []
+    positive: [можно, разрешено, разрешаем, берем, пускаем, пускают]
+    negative: [нельзя, не разрешаем, запрещено, не пускаем]
+  - name: max_weight_kg
+    kind: number
+    units: [кг]
+    positive: []
+    negative: []
+  - name: fee_rub
+    kind: number
+    units: ["₽", руб, рублей, рубля]
+    positive: []
+    negative: []

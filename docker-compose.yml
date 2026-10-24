@@ -1,12 +1,39 @@
-name: ${COMPOSE_PROJECT_NAME:-app}
+name: ${COMPOSE_PROJECT_NAME:-hotel-agent}
 
 services:
+  db:
+    image: imresamu/postgis:16-3.4
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-hotel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hotel}
+      POSTGRES_DB: ${POSTGRES_DB:-hotel}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hotel} -d ${POSTGRES_DB:-hotel}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
   backend:
-    image: ${COMPOSE_PROJECT_NAME:-app}-backend:${TAG:-latest}
+    image: ${COMPOSE_PROJECT_NAME:-hotel-agent}-backend:${TAG:-latest}
     pull_policy: never
     env_file:
       - path: .env
         required: false
+    environment:
+      CHARACTERISTICS_DIR: /srv/characteristics
+      SEED_DIR: /srv/data/seed
+      DATABASE_URL: postgresql://${POSTGRES_USER:-hotel}:${POSTGRES_PASSWORD:-hotel}@db:5432/${POSTGRES_DB:-hotel}
+    volumes:
+      - ./characteristics:/srv/characteristics:ro
+      - ./data:/srv/data:ro
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
     healthcheck:
@@ -21,7 +48,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ${COMPOSE_PROJECT_NAME:-app}-frontend:${TAG:-latest}
+    image: ${COMPOSE_PROJECT_NAME:-hotel-agent}-frontend:${TAG:-latest}
     pull_policy: never
     env_file:
       - path: .env
@@ -34,3 +61,6 @@ services:
       timeout: 3s
       retries: 5
     restart: unless-stopped
+
+volumes:
+  db-data:

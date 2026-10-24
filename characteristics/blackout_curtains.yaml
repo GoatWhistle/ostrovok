@@ -1,0 +1,43 @@
+key: blackout_curtains
+title_ru: Плотные шторы блэкаут
+description: "Наличие светонепроницаемых штор в номере со слов отельера."
+value_type: bool
+unit: null
+scope: room
+tool: null
+ttl_days: 365
+precompute: false
+ask_hotelier_if_missing: true
+question_template: "Есть ли в номерах {hotel} плотные шторы блэкаут?"
+source_kinds: [hotelier, llm_extraction]
+display:
+  icon: moon
+  color: "#3949AB"
+  geo_style: polygon
+synonyms:
+  - блэкаут
+  - плотные шторы
+  - затемнение
+  - blackout
+matchers:
+  - phrase: плотные шторы
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: блэкаут
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: затемнение
+    op: eq
+    value: true
+    weight: 0.8
+    required: false
+fields:
+  - name: present
+    kind: bool
+    units: []
+    positive: [есть, имеются, стоят, установлены]
+    negative: [нет, отсутствуют, не установлены]

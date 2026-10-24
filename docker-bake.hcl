@@ -1,13 +1,9 @@
 variable "COMPOSE_PROJECT_NAME" {
-  default = "app"
+  default = "hotel-agent"
 }
 
 variable "TAG" {
   default = "latest"
-}
-
-variable "LLM" {
-  default = "false"
 }
 
 variable "SITE_URL" {
@@ -20,9 +16,6 @@ group "default" {
 
 target "backend" {
   context = "backend"
-  args = {
-    LLM = LLM
-  }
   tags = ["${COMPOSE_PROJECT_NAME}-backend:${TAG}"]
   output = ["type=docker"]
 }

@@ -1,0 +1,32 @@
+key: building_height
+title_ru: Высота здания
+description: "Высота по тегу OSM height, иначе по building:levels, иначе по умолчанию для типа здания."
+value_type: number
+unit: m
+scope: hotel
+tool: building_height
+ttl_days: 730
+precompute: true
+ask_hotelier_if_missing: false
+question_template: null
+source_kinds: [osm, computed]
+display:
+  icon: building
+  color: "#546E7A"
+  geo_style: polygon
+synonyms:
+  - высота здания
+  - этажность
+  - высокий этаж
+matchers:
+  - phrase: высокий этаж
+    op: gte
+    value: 20
+    weight: 0.6
+    required: false
+  - phrase: малоэтажный
+    op: lte
+    value: 12
+    weight: 0.8
+    required: false
+fields: []

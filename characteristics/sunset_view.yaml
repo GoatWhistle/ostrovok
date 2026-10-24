@@ -1,0 +1,43 @@
+key: sunset_view
+title_ru: Вид на закат
+description: "Азимут заката по месяцам и профиль горизонта по DEM и высотам зданий, с какого этажа закат виден с этого фасада."
+value_type: bool
+unit: null
+scope: facade
+tool: sunset_view
+ttl_days: 365
+precompute: false
+ask_hotelier_if_missing: false
+question_template: null
+source_kinds: [dem, osm, computed]
+display:
+  icon: sunset
+  color: "#FB8C00"
+  geo_style: viewshed
+synonyms:
+  - закат
+  - вид на закат
+  - западная сторона
+  - sunset
+matchers:
+  - phrase: видом на закат
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: вид на закат
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: закат
+    op: eq
+    value: true
+    weight: 0.9
+    required: false
+  - phrase: на запад
+    op: eq
+    value: true
+    weight: 0.7
+    required: false
+fields: []

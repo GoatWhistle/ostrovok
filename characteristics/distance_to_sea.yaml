@@ -1,0 +1,59 @@
+key: distance_to_sea
+title_ru: Пешком до моря
+description: "Кратчайший пеший маршрут по графу OSM до ближайшей точки пляжа или береговой линии."
+value_type: number
+unit: min
+scope: hotel
+tool: distance_to_sea
+ttl_days: 365
+precompute: true
+ask_hotelier_if_missing: false
+question_template: null
+source_kinds: [osm, dem, computed]
+display:
+  icon: waves
+  color: "#1E88E5"
+  geo_style: line
+synonyms:
+  - до моря
+  - до пляжа
+  - рядом с морем
+  - первая линия
+  - near the sea
+matchers:
+  - phrase: первая линия
+    op: lte
+    value: 3
+    weight: 1.0
+    required: false
+  - phrase: у самого моря
+    op: lte
+    value: 5
+    weight: 1.0
+    required: false
+  - phrase: недалеко от моря
+    op: lte
+    value: 10
+    weight: 1.0
+    required: false
+  - phrase: рядом с морем
+    op: lte
+    value: 10
+    weight: 1.0
+    required: false
+  - phrase: рядом с пляжем
+    op: lte
+    value: 10
+    weight: 1.0
+    required: false
+  - phrase: до моря
+    op: lte
+    value: 15
+    weight: 0.8
+    required: false
+  - phrase: до пляжа
+    op: lte
+    value: 15
+    weight: 0.8
+    required: false
+fields: []

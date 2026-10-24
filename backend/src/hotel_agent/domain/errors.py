@@ -1,0 +1,49 @@
+class DomainError(Exception):
+    code = "domain_error"
+    message = "Request failed"
+
+    def __init__(self, message: str | None = None) -> None:
+        if message is not None:
+            self.message = message
+        super().__init__(self.message)
+
+
+class NotFound(DomainError):
+    code = "not_found"
+    message = "Not found"
+
+
+class HotelNotFound(NotFound):
+    message = "Hotel not found"
+
+
+class FactNotFound(NotFound):
+    message = "Fact not found"
+
+
+class QuestionNotFound(NotFound):
+    message = "Question not found"
+
+
+class RegionNotFound(NotFound):
+    message = "Region not found"
+
+
+class UnknownCharacteristic(DomainError):
+    code = "unknown_characteristic"
+    message = "Characteristic is not registered"
+
+
+class InvalidRegistry(DomainError):
+    code = "invalid_registry"
+    message = "Characteristic registry is invalid"
+
+
+class InvalidQuery(DomainError):
+    code = "invalid_query"
+    message = "Search query is invalid"
+
+
+class ModelFailure(DomainError):
+    code = "model_failure"
+    message = "Language model failed"

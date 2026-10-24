@@ -6,18 +6,17 @@ from pathlib import Path
 
 import pytest
 
-PACKAGE = "app"
+PACKAGE = "hotel_agent"
 SOURCE_ROOT = Path(__file__).resolve().parents[3] / "src"
 ALLOWED_LAYERS = {
     "domain": {"domain"},
-    "usecase": {"usecase", "domain"},
-    "repository": {"repository", "usecase", "domain"},
-    "adapter": {"adapter", "usecase", "domain"},
-    "controller": {"controller", "usecase", "domain"},
+    "application": {"application", "domain"},
+    "adapters": {"adapters", "application", "domain"},
+    "interfaces": {"interfaces", "application", "domain"},
 }
-INNER_LAYERS = {"domain", "usecase"}
+INNER_LAYERS = {"domain", "application"}
 PURE_LIBRARIES: frozenset[str] = frozenset()
-OWNED_LIBRARIES = {"logging": "adapter.log"}
+OWNED_LIBRARIES = {"logging": "adapters.log"}
 
 
 @dataclass(frozen=True)
@@ -145,11 +144,11 @@ def test_package_imports_are_acyclic() -> None:
 
 CLEAN_PACKAGE = {
     "pkg/domain/entity.py": "from dataclasses import dataclass\n",
-    "pkg/usecase/interface.py": "from pkg.domain.entity import dataclass\n",
-    "pkg/adapter/client.py": "import httpx\nfrom ..usecase import interface\n",
-    "pkg/main.py": "from pkg.adapter import client\nfrom pkg.controller import routes\n",
-    "pkg/controller/routes.py": "import fastapi\nfrom pkg.domain.entity import dataclass\n",
-    "pkg/adapter/log/stdlib.py": "import logging\n",
+    "pkg/application/ports/llm.py": "from pkg.domain.entity import dataclass\n",
+    "pkg/adapters/client.py": "import httpx\nfrom ..application.ports import llm\n",
+    "pkg/main.py": "from pkg.adapters import client\nfrom pkg.interfaces.http import routes\n",
+    "pkg/interfaces/http/routes.py": "import fastapi\nfrom pkg.domain.entity import dataclass\n",
+    "pkg/adapters/log/stdlib.py": "import logging\n",
 }
 
 
@@ -164,59 +163,65 @@ def test_clean_package_passes(tmp_path: Path) -> None:
     ("files", "expected"),
     [
         (
-            {"pkg/domain/entity.py": "def load() -> None:\n    from pkg.usecase import port\n"},
-            "pkg.domain.entity:2 imports pkg.usecase",
+            {"pkg/domain/entity.py": "def load() -> None:\n    from pkg.adapters import client\n"},
+            "pkg.domain.entity:2 imports pkg.adapters",
         ),
         (
             {
-                "pkg/usecase/port.py": (
-                    "from typing import TYPE_CHECKING\n"
-                    "if TYPE_CHECKING:\n"
-                    "    from pkg.repository.memory import store\n"
-                ),
-                "pkg/repository/memory/store.py": "",
+                "pkg/domain/entity.py": "def load() -> None:\n    from pkg.application import ports\n"
             },
-            "pkg.usecase.port:3 imports pkg.repository.memory.store",
+            "pkg.domain.entity:2 imports pkg.application",
         ),
         (
-            {"pkg/usecase/port.py": "import httpx\n"},
-            "pkg.usecase.port:1 imports httpx",
+            {
+                "pkg/application/ports/llm.py": (
+                    "from typing import TYPE_CHECKING\n"
+                    "if TYPE_CHECKING:\n"
+                    "    from pkg.adapters.db import store\n"
+                ),
+                "pkg/adapters/db/store.py": "",
+            },
+            "pkg.application.ports.llm:3 imports pkg.adapters.db.store",
+        ),
+        (
+            {"pkg/application/ports/llm.py": "import httpx\n"},
+            "pkg.application.ports.llm:1 imports httpx",
         ),
         (
             {"pkg/domain/__init__.py": "from pydantic import BaseModel\n"},
             "pkg.domain:1 imports pydantic",
         ),
         (
-            {"pkg/adapter/client.py": "from ..controller import routes\n"},
-            "pkg.adapter.client:1 imports pkg.controller.routes",
+            {"pkg/adapters/client.py": "from ..interfaces.http import routes\n"},
+            "pkg.adapters.client:1 imports pkg.interfaces.http.routes",
         ),
         (
-            {"pkg/repository/sql.py": "from pkg.adapter.client import Client\n"},
-            "pkg.repository.sql:1 imports pkg.adapter.client",
+            {"pkg/interfaces/http/routes.py": "from pkg.adapters.client import Client\n"},
+            "pkg.interfaces.http.routes:1 imports pkg.adapters.client",
         ),
         (
-            {"pkg/controller/routes.py": "from pkg.main import settings\n", "pkg/main.py": ""},
-            "pkg.controller.routes:1 imports pkg.main",
+            {"pkg/interfaces/http/routes.py": "from pkg.main import settings\n", "pkg/main.py": ""},
+            "pkg.interfaces.http.routes:1 imports pkg.main",
         ),
         (
-            {"pkg/usecase/port.py": "import pkg\n"},
-            "pkg.usecase.port:1 imports pkg",
+            {"pkg/application/ports/llm.py": "import pkg\n"},
+            "pkg.application.ports.llm:1 imports pkg",
         ),
         (
-            {"pkg/controller/routes.py": "import logging\n"},
-            "pkg.controller.routes:1 imports logging",
+            {"pkg/interfaces/http/routes.py": "import logging\n"},
+            "pkg.interfaces.http.routes:1 imports logging",
         ),
         (
-            {"pkg/adapter/client.py": "from logging import getLogger\n"},
-            "pkg.adapter.client:1 imports logging",
+            {"pkg/adapters/client.py": "from logging import getLogger\n"},
+            "pkg.adapters.client:1 imports logging",
         ),
         (
             {"pkg/main.py": "import logging.handlers\n"},
             "pkg.main:1 imports logging.handlers",
         ),
         (
-            {"pkg/adapter/logbook.py": "import logging\n"},
-            "pkg.adapter.logbook:1 imports logging",
+            {"pkg/adapters/logbook.py": "import logging\n"},
+            "pkg.adapters.logbook:1 imports logging",
         ),
     ],
 )

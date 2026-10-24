@@ -1,74 +1,58 @@
-import sys
+from dataclasses import replace
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
 
-from app.adapter.decision.lexical import LexicalDecisionModel
-from app.adapter.decision.system_one import SystemOneModel
-from app.adapter.llm.claude_agent import ClaudeAgentModel
-from app.adapter.llm.codex_agent import CodexAgentModel
-from app.main import Providers, build_decision_model, build_language_model, create_app
-from app.settings import ConfigError, DecisionProvider, LanguageProvider, Settings
+from hotel_agent.adapters.llm.fake import FakeLLM
+from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
+from hotel_agent.composition import Providers, build_providers
+from hotel_agent.domain.errors import InvalidRegistry
+from hotel_agent.main import create_app
+from hotel_agent.settings import ConfigError, LLMProvider, Settings
 
 
-@pytest.fixture
-def anyio_backend() -> str:
-    return "asyncio"
+class SilentLogger:
+    def info(self, event: str, **fields: object) -> None: ...
+
+    def warning(self, event: str, **fields: object) -> None: ...
+
+    def error(self, event: str, *, exc: BaseException | None = None, **fields: object) -> None: ...
 
 
-@pytest.mark.anyio
-@pytest.mark.parametrize(
-    ("settings", "decision", "language"),
-    [
-        (Settings(), LexicalDecisionModel, type(None)),
-        (
-            Settings(
-                decision_provider=DecisionProvider.SYSTEM_ONE,
-                language_provider=LanguageProvider.CLAUDE,
-            ),
-            SystemOneModel,
-            ClaudeAgentModel,
-        ),
-        (Settings(language_provider=LanguageProvider.CODEX), LexicalDecisionModel, CodexAgentModel),
-    ],
-)
-async def test_settings_select_implementations(
-    settings: Settings, decision: type, language: type
-) -> None:
-    decision_model = build_decision_model(settings)
+def test_default_settings_select_offline_implementations(settings: Settings) -> None:
+    providers = build_providers(settings, SilentLogger())
 
-    assert isinstance(decision_model, decision)
-    assert isinstance(build_language_model(settings), language)
-    await decision_model.aclose()
+    assert isinstance(providers.llm, FakeLLM)
+    assert isinstance(providers.registry, YamlCharacteristicRegistry)
+    assert providers.llm.provider == "fake"
 
 
-def test_lifespan_exposes_and_closes_providers() -> None:
-    app = create_app(Settings(decision_provider=DecisionProvider.SYSTEM_ONE))
+@pytest.mark.parametrize("provider", [LLMProvider.ANTHROPIC, LLMProvider.OPENAI_COMPAT])
+def test_unimplemented_provider_fails_loudly(settings: Settings, provider: LLMProvider) -> None:
+    with pytest.raises(ConfigError, match=f"LLM_PROVIDER={provider.value}"):
+        build_providers(replace(settings, llm_provider=provider), SilentLogger())
+
+
+def test_missing_registry_fails_at_startup() -> None:
+    with pytest.raises(InvalidRegistry, match="is not a directory"):
+        create_app(Settings(characteristics_dir=Path("/nowhere/characteristics")))
+
+
+def test_lifespan_exposes_and_closes_providers(settings: Settings) -> None:
+    app = create_app(settings)
 
     with TestClient(app):
         providers = app.state.providers
         assert isinstance(providers, Providers)
-        assert isinstance(providers.decision, SystemOneModel)
-        assert not providers.decision._client.is_closed
 
-    assert providers.decision._client.is_closed
+    assert app.state.providers is providers
 
 
-def test_invalid_environment_fails_at_startup(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setenv("DECISION_MODEL", "jev")
-
-    with pytest.raises(ConfigError, match="DECISION_MODEL"):
-        create_app()
-
-
-@pytest.mark.parametrize("provider", [LanguageProvider.CLAUDE, LanguageProvider.CODEX])
-def test_missing_llm_group_fails_at_startup(
-    monkeypatch: pytest.MonkeyPatch, provider: LanguageProvider
+def test_characteristics_directory_comes_from_the_environment(
+    monkeypatch: pytest.MonkeyPatch, characteristics_dir: Path
 ) -> None:
-    for module in ("claude_agent_sdk", "openai_codex"):
-        monkeypatch.setitem(sys.modules, module, None)
-    for module in ("app.adapter.llm.claude_agent", "app.adapter.llm.codex_agent"):
-        monkeypatch.delitem(sys.modules, module, raising=False)
+    monkeypatch.setenv("CHARACTERISTICS_DIR", str(characteristics_dir))
 
-    with pytest.raises(ConfigError, match=f"LANGUAGE_MODEL={provider.value} needs package"):
-        create_app(Settings(language_provider=provider))
+    with TestClient(create_app()) as client:
+        assert client.get("/api/v1/health").json()["llm_provider"] == "fake"
