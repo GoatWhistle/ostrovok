@@ -6,6 +6,7 @@ that owns each one. Scrubbed at submission.
 
 | Path | Written by | What |
 |---|---|---|
+| `plan.md` | план работ | Задачи до готового MVP, критерии готовности, риски |
 | `naming.md` | `naming` | Name candidates, scores, finalists, taglines, name origin |
 | `brand/` | `brand-identity` | Logo gallery and the chosen mark's rationale |
 | `design/` | `refero-style` | Style extraction, source-site screenshots, conflicts resolved |
