@@ -1,0 +1,696 @@
+openapi: 3.0.3
+info:
+  title: Hotel Agent API
+  version: 0.1.0
+  description: |
+    Контракт бэкенда для 3D-фронта: поиск отелей по найденным агентом свойствам,
+    3D-сцена здания, перелёт камеры, подсветка геообъектов свойства, карточка с провенансом.
+    Координаты WGS84, порядок [lon, lat] (GeoJSON). Высоты в метрах. Время ISO 8601 UTC.
+servers:
+  - url: http://localhost:8000/api/v1
+
+tags:
+  - name: meta
+  - name: search
+  - name: hotels
+  - name: geo
+  - name: hotelier
+
+paths:
+  /health:
+    get:
+      tags: [meta]
+      operationId: health
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+                  llm_provider: { type: string, example: fake }
+
+  /regions:
+    get:
+      tags: [meta]
+      operationId: listRegions
+      summary: Загруженные регионы и стартовый вид карты
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/Region" }
+
+  /characteristics:
+    get:
+      tags: [meta]
+      operationId: listCharacteristics
+      summary: Реестр характеристик (для чипов, легенды, цветов подсветки)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/Characteristic" }
+
+  /search:
+    post:
+      tags: [search]
+      operationId: searchHotels
+      summary: Поиск на естественном языке
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/SearchRequest" }
+            example:
+              query: тихий номер с видом на закат недалеко от моря
+              region_id: sochi
+              limit: 20
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SearchResponse" }
+
+  /hotels/{hotel_id}:
+    get:
+      tags: [hotels]
+      operationId: getHotelCard
+      summary: Карточка отеля со всеми фактами и источниками
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelCard" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /hotels/{hotel_id}/scene:
+    get:
+      tags: [hotels, geo]
+      operationId: getHotelScene
+      summary: 3D-сцена здания отеля, фасады, соседи, пресеты камеры
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+        - name: context_radius_m
+          in: query
+          schema: { type: integer, default: 250, maximum: 1000 }
+          description: Радиус соседних зданий для контекста (0 = без соседей)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelScene" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /hotels/{hotel_id}/facts/{fact_id}:
+    get:
+      tags: [hotels]
+      operationId: getFact
+      summary: Один факт с полным провенансом и историей
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+        - $ref: "#/components/parameters/FactId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/FactDetail" }
+
+  /geo-features:batch:
+    post:
+      tags: [geo]
+      operationId: getGeoFeatures
+      summary: Геометрии по id для подсветки при наведении на свойство
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids:
+                  type: array
+                  maxItems: 200
+                  items: { type: string }
+            example:
+              ids: [gf_route_sea_123, gf_poi_n987654321]
+      responses:
+        "200":
+          description: GeoJSON FeatureCollection, порядок как в запросе
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/GeoFeatureCollection" }
+
+  /compare:
+    post:
+      tags: [hotels]
+      operationId: compareHotels
+      summary: Сравнение отелей по характеристикам (этап 2)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [hotel_ids]
+              properties:
+                hotel_ids: { type: array, minItems: 2, maxItems: 5, items: { type: string } }
+                characteristic_keys: { type: array, items: { type: string } }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  characteristic_keys: { type: array, items: { type: string } }
+                  rows:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        hotel_id: { type: string }
+                        cells:
+                          type: object
+                          additionalProperties: { $ref: "#/components/schemas/FactBrief" }
+
+  /hotelier/{hotel_id}/questions:
+    get:
+      tags: [hotelier]
+      operationId: listHotelierQuestions
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/HotelierQuestion" }
+
+  /hotelier/questions/{question_id}/answer:
+    post:
+      tags: [hotelier]
+      operationId: answerHotelierQuestion
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text: { type: string }
+            example:
+              text: С собаками до 10 кг можно, 1500 ₽ в сутки, кошек тоже берём
+      responses:
+        "200":
+          description: Ответ разложен по полям, созданы факты
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  question_id: { type: string }
+                  extracted:
+                    type: array
+                    items: { $ref: "#/components/schemas/Fact" }
+                  conflicts:
+                    type: array
+                    items: { $ref: "#/components/schemas/Conflict" }
+                  follow_up: { $ref: "#/components/schemas/HotelierQuestion" }
+
+  /facts/{fact_id}/confirm:
+    post:
+      tags: [hotelier]
+      operationId: confirmFact
+      parameters:
+        - $ref: "#/components/parameters/FactId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Fact" }
+
+  /facts/{fact_id}/correct:
+    post:
+      tags: [hotelier]
+      operationId: correctFact
+      parameters:
+        - $ref: "#/components/parameters/FactId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value: {}
+                comment: { type: string }
+      responses:
+        "200":
+          description: Новый факт от отельера, старый superseded
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Fact" }
+
+components:
+  parameters:
+    HotelId:
+      name: hotel_id
+      in: path
+      required: true
+      schema: { type: string, example: h_osm_w123456789 }
+    FactId:
+      name: fact_id
+      in: path
+      required: true
+      schema: { type: string, example: f_01JB2X }
+
+  responses:
+    NotFound:
+      description: Не найдено
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, example: not_found }
+        message: { type: string }
+
+    LonLat:
+      type: array
+      description: "[lon, lat]"
+      minItems: 2
+      maxItems: 2
+      items: { type: number }
+      example: [39.7203, 43.5855]
+
+    BBox:
+      type: array
+      description: "[min_lon, min_lat, max_lon, max_lat]"
+      minItems: 4
+      maxItems: 4
+      items: { type: number }
+
+    Camera:
+      type: object
+      description: |
+        Параметры для map.flyTo (MapLibre/Mapbox). Для Cesium: target + range_m + heading/pitch.
+        bearing направлен на лучший по запросу фасад (азимут фасада + 180).
+      required: [center, zoom, pitch, bearing]
+      properties:
+        center: { $ref: "#/components/schemas/LonLat" }
+        zoom: { type: number, example: 17.4 }
+        pitch: { type: number, description: "градусы, 0 = сверху", example: 60 }
+        bearing: { type: number, description: "градусы от севера по часовой", example: 75 }
+        duration_ms: { type: integer, example: 2000 }
+        target_alt_m: { type: number, description: "высота точки взгляда над уровнем моря", example: 42.5 }
+        range_m: { type: number, description: "дистанция до цели для Cesium", example: 180 }
+        focus_facade_id: { type: string, nullable: true, example: fc_h_osm_w123456789_255 }
+
+    Region:
+      type: object
+      properties:
+        id: { type: string, example: sochi }
+        name: { type: string, example: Сочи }
+        bbox: { $ref: "#/components/schemas/BBox" }
+        hotels_count: { type: integer, example: 412 }
+        data_as_of: { type: string, format: date, example: "2026-10-20" }
+        default_camera: { $ref: "#/components/schemas/Camera" }
+
+    Characteristic:
+      type: object
+      required: [key, title, value_type, scope]
+      properties:
+        key: { type: string, example: distance_to_sea }
+        title: { type: string, example: Пешком до моря }
+        description: { type: string }
+        value_type: { type: string, enum: [bool, number, enum, text, object] }
+        unit: { type: string, nullable: true, example: min }
+        scope: { type: string, enum: [hotel, room, facade] }
+        ttl_days: { type: integer, example: 365 }
+        source_kinds:
+          type: array
+          items: { $ref: "#/components/schemas/SourceType" }
+        display:
+          type: object
+          properties:
+            icon: { type: string, example: waves }
+            color: { type: string, description: "hex для подсветки", example: "#1E88E5" }
+            geo_style: { type: string, enum: [line, points, polygon, viewshed, facade], example: line }
+
+    SourceType:
+      type: string
+      enum: [osm, dem, computed, open_meteo, hotelier, llm_extraction]
+
+    Provenance:
+      type: object
+      required: [source_type, confidence, computed_at]
+      properties:
+        source_type: { $ref: "#/components/schemas/SourceType" }
+        source_ref: { type: string, nullable: true, example: "osm:way/123456789" }
+        source_url: { type: string, nullable: true, example: "https://www.openstreetmap.org/way/123456789" }
+        method: { type: string, example: "distance_to_sea@1" }
+        confidence: { type: number, minimum: 0, maximum: 1, example: 0.86 }
+        observed_at: { type: string, format: date-time, nullable: true }
+        computed_at: { type: string, format: date-time }
+        valid_until: { type: string, format: date-time, nullable: true }
+        evidence:
+          type: array
+          items:
+            type: object
+            properties:
+              kind: { type: string, enum: [tag, quote, param, dataset] }
+              text: { type: string }
+
+    FactStatus:
+      type: string
+      enum: [active, conflicted, superseded, confirmed_by_hotelier, stale, computing]
+
+    FactBrief:
+      type: object
+      description: Лёгкая форма факта для списков и сравнения
+      required: [fact_id, characteristic_key, value, label, confidence, source_type, status]
+      properties:
+        fact_id: { type: string }
+        characteristic_key: { type: string }
+        value: {}
+        unit: { type: string, nullable: true }
+        label: { type: string, description: "готовая строка для чипа", example: "6 мин до моря" }
+        confidence: { type: number }
+        source_type: { $ref: "#/components/schemas/SourceType" }
+        status: { $ref: "#/components/schemas/FactStatus" }
+        geo_refs:
+          type: array
+          description: id геообъектов для подсветки (см. /geo-features:batch)
+          items: { type: string }
+
+    Fact:
+      allOf:
+        - $ref: "#/components/schemas/FactBrief"
+        - type: object
+          properties:
+            subject: { type: string, example: "hotel:h_osm_w123456789" }
+            qualifiers:
+              type: object
+              additionalProperties: true
+              example: { from_floor: 5, months: [4, 5, 6, 7, 8], facade_azimuth: 255 }
+            explanation: { type: string, example: "Закат виден с 5-го этажа западной стороны, апрель–август" }
+            provenance: { $ref: "#/components/schemas/Provenance" }
+
+    FactDetail:
+      allOf:
+        - $ref: "#/components/schemas/Fact"
+        - type: object
+          properties:
+            history:
+              type: array
+              items: { $ref: "#/components/schemas/Fact" }
+            conflicts:
+              type: array
+              items: { $ref: "#/components/schemas/Conflict" }
+
+    Conflict:
+      type: object
+      properties:
+        id: { type: string }
+        characteristic_key: { type: string }
+        fact_ids: { type: array, items: { type: string } }
+        resolution: { type: string, enum: [pending, resolved_by_rule, resolved_by_hotelier] }
+        winner_fact_id: { type: string, nullable: true }
+        rule: { type: string, example: "hotelier > fresh_computed > osm_tag" }
+
+    SearchRequest:
+      type: object
+      required: [query]
+      properties:
+        query: { type: string }
+        region_id: { type: string, nullable: true, example: sochi }
+        bbox: { $ref: "#/components/schemas/BBox" }
+        limit: { type: integer, default: 20, maximum: 100 }
+        cursor: { type: string, nullable: true }
+        compute_missing:
+          type: boolean
+          default: true
+          description: Разрешить агенту досчитывать редкие характеристики для top-N
+
+    ParsedIntent:
+      type: object
+      properties:
+        characteristic_key: { type: string, example: sunset_view }
+        op: { type: string, enum: [eq, lte, gte, exists, near], example: eq }
+        value: { example: true }
+        weight: { type: number, example: 1.0 }
+        required: { type: boolean, example: false }
+        source_text: { type: string, example: "с видом на закат" }
+
+    MatchedProperty:
+      type: object
+      description: Свойство, найденное агентом и показанное в выдаче. Наведение = подсветка geo_refs.
+      required: [characteristic_key, match, label]
+      properties:
+        characteristic_key: { type: string }
+        match: { type: string, enum: [full, partial, none, unknown, computing] }
+        label: { type: string, example: "Закат с 5-го этажа" }
+        explanation: { type: string, example: "Закат есть, но только с 5-го этажа западной стороны" }
+        fact: { $ref: "#/components/schemas/FactBrief" }
+        geo_refs: { type: array, items: { type: string } }
+        camera: { $ref: "#/components/schemas/Camera" }
+
+    HotelSummary:
+      type: object
+      required: [id, name, location]
+      properties:
+        id: { type: string, example: h_osm_w123456789 }
+        name: { type: string, example: Гостиница «Приморская» }
+        stars: { type: integer, nullable: true, example: 4 }
+        address: { type: string, nullable: true }
+        location: { $ref: "#/components/schemas/LonLat" }
+        building_id: { type: string, example: b_osm_w123456789 }
+        height_m: { type: number, example: 28.8 }
+        levels: { type: integer, nullable: true, example: 9 }
+        thumbnail_url: { type: string, nullable: true }
+
+    SearchResult:
+      type: object
+      required: [hotel, score, matched]
+      properties:
+        hotel: { $ref: "#/components/schemas/HotelSummary" }
+        score: { type: number, example: 0.82 }
+        matched:
+          type: array
+          items: { $ref: "#/components/schemas/MatchedProperty" }
+        camera: { $ref: "#/components/schemas/Camera" }
+        footprint:
+          description: Упрощённый контур для отрисовки всех результатов сразу (MapLibre fill-extrusion)
+          $ref: "#/components/schemas/BuildingFeature"
+
+    SearchResponse:
+      type: object
+      required: [query_id, parsed, results]
+      properties:
+        query_id: { type: string }
+        parsed:
+          type: object
+          properties:
+            intents:
+              type: array
+              items: { $ref: "#/components/schemas/ParsedIntent" }
+            unmatched_terms: { type: array, items: { type: string } }
+            location_hint: { type: string, nullable: true }
+        results:
+          type: array
+          items: { $ref: "#/components/schemas/SearchResult" }
+        viewport:
+          type: object
+          description: Рамка для fitBounds по всем результатам
+          properties:
+            bbox: { $ref: "#/components/schemas/BBox" }
+            camera: { $ref: "#/components/schemas/Camera" }
+        pending:
+          type: array
+          description: Характеристики, которые агент ещё считает; повторить поиск с тем же query_id позже
+          items:
+            type: object
+            properties:
+              hotel_id: { type: string }
+              characteristic_key: { type: string }
+        next_cursor: { type: string, nullable: true }
+        took_ms: { type: integer }
+
+    BuildingFeature:
+      type: object
+      description: GeoJSON Feature здания
+      required: [type, geometry, properties]
+      properties:
+        type: { type: string, enum: [Feature] }
+        id: { type: string }
+        geometry:
+          type: object
+          description: Polygon | MultiPolygon
+        properties:
+          type: object
+          properties:
+            building_id: { type: string }
+            hotel_id: { type: string, nullable: true }
+            is_hotel: { type: boolean }
+            height_m: { type: number }
+            min_height_m: { type: number, default: 0 }
+            levels: { type: integer, nullable: true }
+            ground_elevation_m: { type: number, description: "отметка земли по DEM" }
+            roof_shape: { type: string, nullable: true, example: flat }
+            height_fact_id: { type: string, description: "факт building_height с провенансом" }
+
+    Facade:
+      type: object
+      description: Сторона здания; на неё вешаются факты scope=facade (шум, закат)
+      properties:
+        id: { type: string, example: fc_h_osm_w123456789_255 }
+        azimuth_deg: { type: number, description: "направление нормали наружу", example: 255 }
+        label: { type: string, example: Запад }
+        geometry:
+          type: object
+          description: GeoJSON LineString по ребру footprint
+        facts:
+          type: array
+          items: { $ref: "#/components/schemas/FactBrief" }
+
+    HotelScene:
+      type: object
+      required: [hotel_id, building, cameras]
+      properties:
+        hotel_id: { type: string }
+        building:
+          type: object
+          description: FeatureCollection зданий отеля (корпуса)
+          properties:
+            type: { type: string, enum: [FeatureCollection] }
+            features:
+              type: array
+              items: { $ref: "#/components/schemas/BuildingFeature" }
+        facades:
+          type: array
+          items: { $ref: "#/components/schemas/Facade" }
+        context_buildings:
+          type: object
+          properties:
+            type: { type: string, enum: [FeatureCollection] }
+            features:
+              type: array
+              items: { $ref: "#/components/schemas/BuildingFeature" }
+        cameras:
+          type: object
+          properties:
+            overview: { $ref: "#/components/schemas/Camera" }
+            best_match: { $ref: "#/components/schemas/Camera" }
+            by_facade:
+              type: object
+              additionalProperties: { $ref: "#/components/schemas/Camera" }
+        terrain:
+          type: object
+          nullable: true
+          properties:
+            dem_source: { type: string, example: Copernicus GLO-30 }
+            terrain_tiles_url: { type: string, nullable: true }
+
+    GeoFeature:
+      type: object
+      required: [type, id, geometry, properties]
+      properties:
+        type: { type: string, enum: [Feature] }
+        id: { type: string, example: gf_route_sea_123 }
+        geometry: { type: object }
+        properties:
+          type: object
+          properties:
+            kind: { type: string, enum: [route, poi, area, line, viewshed, facade] }
+            characteristic_key: { type: string }
+            name: { type: string, nullable: true }
+            label: { type: string, nullable: true, example: "480 м, 6 мин, −22 м" }
+            osm_ref: { type: string, nullable: true }
+            style_hint: { type: string, nullable: true }
+
+    GeoFeatureCollection:
+      type: object
+      properties:
+        type: { type: string, enum: [FeatureCollection] }
+        features:
+          type: array
+          items: { $ref: "#/components/schemas/GeoFeature" }
+
+    HotelCard:
+      type: object
+      required: [hotel, facts]
+      properties:
+        hotel: { $ref: "#/components/schemas/HotelSummary" }
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              capacity: { type: integer }
+              floor_range: { type: array, items: { type: integer } }
+              facade_ids: { type: array, items: { type: string } }
+              facts:
+                type: array
+                items: { $ref: "#/components/schemas/FactBrief" }
+        facts:
+          type: array
+          description: Активные факты, по одному победителю на характеристику и субъект
+          items: { $ref: "#/components/schemas/Fact" }
+        conflicts:
+          type: array
+          items: { $ref: "#/components/schemas/Conflict" }
+        stale_count: { type: integer }
+        open_questions: { type: integer }
+        camera: { $ref: "#/components/schemas/Camera" }
+
+    HotelierQuestion:
+      type: object
+      properties:
+        id: { type: string }
+        hotel_id: { type: string }
+        characteristic_key: { type: string }
+        text: { type: string, example: "Какие номера выходят окнами на запад?" }
+        reason: { type: string, enum: [missing, conflict, stale, low_confidence] }
+        status: { type: string, enum: [open, answered, skipped] }
+        created_at: { type: string, format: date-time }
