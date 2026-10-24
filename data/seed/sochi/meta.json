@@ -1,0 +1,39 @@
+{
+  "bbox": [
+    39.55,
+    43.35,
+    40.0,
+    43.75
+  ],
+  "built_at": "2026-10-24T22:16:14.767674+00:00",
+  "bytes": {
+    "beaches": 100800,
+    "buildings": 32681928,
+    "coastline": 61517,
+    "hotels": 209787,
+    "noise_sources": 663074,
+    "pois": 26633,
+    "walk": 11899185
+  },
+  "counts": {
+    "beaches": 115,
+    "buildings": 105981,
+    "coastline": 78,
+    "hotels": 854,
+    "noise_sources": 2015,
+    "pois": 147,
+    "walk": 34028
+  },
+  "dem_source": "dem:Copernicus GLO-30 Copernicus_DSM_COG_10_N43_00_E039_00_DEM.tif, Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif",
+  "elevation": {
+    "bytes": 3238812,
+    "crs": "EPSG:4326",
+    "dtype": "float32",
+    "height": 1440,
+    "max_m": 1787.91,
+    "min_m": -3.59,
+    "width": 1620
+  },
+  "osm_source": "osm:south-fed-district-latest.osm.pbf",
+  "region": "sochi"
+}

@@ -25,7 +25,8 @@ P0 scenario: пользователь вводит «тихий номер с в
 | Реестр характеристик | implemented | 7 YAML в `characteristics/`, новая характеристика добавляется файлом без правки кода | `tests/unit/adapters/registry/test_yaml_loader.py`, 2026-10-24 |
 | LLM | verified | `fake` по умолчанию; `openai_compat` работает вживую: Yandex Cloud AI Studio, `yandexgpt-5.1`, structured output по JSON Schema. Ответ модели проверяется против реестра и против текста ответа отельера | `make llm-check`, 2026-10-25; [ADR 0003](../docs/adr/0003-yandex-openai-compatible-endpoint.md) |
 | Исходные данные | verified | `make fetch-seed` скачал в `data/raw/`: Geofabrik «Южный ФО» 302 МБ (от 2026-10-24) и два тайла Copernicus GLO-30 (11 и 35 МБ). `data/raw/` в `.gitignore`, коммитится только срез в `data/seed/` | `make fetch-seed`, 2026-10-25 |
-| Демо-данные | open | `data/seed/sochi/` ещё пуст: срез из сырых данных не построен | — |
+| Демо-данные | verified | `data/seed/sochi/`: 854 отеля, 105 981 здание, 147 баров, 78 линий берега, 115 пляжей, 2 015 источников шума, 34 028 пешеходных рёбер, DEM 1620x1440 float32 (−3,59..1787,91 м). 46,6 МБ, бюджет 50 МБ | `make build-seed`, 7 мин, 2026-10-25 |
+| Высоты зданий | verified | В срезе Сочи `height` есть у 113 зданий, `building:levels` — у 37 378, ни того ни другого — у 68 490. Это и обосновывает три яруса уверенности 0,9 / 0,7 / 0,3 | `make build-seed`, 2026-10-25 |
 
 ## Pointers
 

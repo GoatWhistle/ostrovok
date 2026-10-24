@@ -5,9 +5,16 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.143.1",
     "httpx>=0.28.1",
+    "osmium>=4.3.2",
+    "pyproj>=3.8.0",
     "pyyaml>=6.0.2",
+    "rasterio>=1.5.2",
+    "shapely>=2.2.0",
     "uvicorn>=0.54.0",
 ]
+
+[project.scripts]
+hotel-agent = "hotel_agent.cli:main"
 
 [dependency-groups]
 dev = [
@@ -51,6 +58,11 @@ mypy_path = "src:."
 explicit_package_bases = true
 namespace_packages = true
 files = ["src", "tests"]
+
+# rasterio ships no py.typed marker; its own API is exercised in tests/unit/adapters/geo/
+[[tool.mypy.overrides]]
+module = ["rasterio.*"]
+ignore_missing_imports = true
 
 [tool.importlinter]
 root_packages = ["hotel_agent"]

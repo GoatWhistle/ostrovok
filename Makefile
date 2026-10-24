@@ -5,7 +5,7 @@ BACKEND := uv run --directory backend
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed build-seed llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -27,6 +27,13 @@ api: ## Run the API locally with reload against the compose database
 
 fetch-seed: ## Download the raw OSM extract and DEM tiles (manual, needs network)
 	bash scripts/fetch-seed.sh
+
+build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline)
+	$(BACKEND) hotel-agent build-seed --region sochi \
+		--pbf $(CURDIR)/data/raw/south-fed-district-latest.osm.pbf \
+		--dem $(CURDIR)/data/raw/Copernicus_DSM_COG_10_N43_00_E039_00_DEM.tif \
+		      $(CURDIR)/data/raw/Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif \
+		--out $(CURDIR)/data/seed/sochi
 
 llm-check: ## Call the configured LLM provider for real (manual, spends quota)
 	set -a; . ./.env; set +a; LLM_PROVIDER=openai_compat $(LOCAL_DATA) $(BACKEND) python scripts/llm_check.py

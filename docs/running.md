@@ -24,6 +24,10 @@ docker compose up -d --wait
 `make fetch-seed` скачивает исходный экстракт OSM и тайлы DEM в `data/raw/`,
 `make llm-check` делает настоящий вызов к провайдеру из `.env` и тратит квоту.
 
+`make build-seed` режет из скачанного срез Сочи в `data/seed/sochi/` и сети не требует. Он нужен
+только при смене границ или обновлении данных: готовый срез лежит в репозитории.
+На Apple M-серии полный проход по экстракту «Южный ФО» занимает около 7 минут.
+
 Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
 Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
 `<COMPOSE_PROJECT_NAME>-backend:<TAG>` и `<COMPOSE_PROJECT_NAME>-frontend:<TAG>` и не скачивает их

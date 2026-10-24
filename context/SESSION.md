@@ -21,19 +21,17 @@ Updated: 2026-10-24, MSK
 
 ## Current state
 
-- Task: этапы 1 и 2 закрыты, живой LLM-провайдер сделан вне очереди. Идёт этап 3 «Данные Сочи»:
-  сырые данные скачаны, срез ещё не построен.
+- Task: этапы 1 и 2 закрыты, живой LLM-провайдер сделан вне очереди. Этап 3 наполовину: срез Сочи
+  построен и лежит в `data/seed/sochi/`; базы, миграций и `ingest` ещё нет.
 - Branch and revision: `feat/hotel-agent-mvp`, см. `git log -1`.
 - Stand: Compose поднимает `db` (imresamu/postgis:16-3.4) и `backend`; отвечают
   `GET /api/v1/health` и `GET /api/v1/characteristics`. Таблиц и миграций ещё нет.
 
 ## How to continue
 
-Этап 3 «Данные Сочи». `make fetch-seed` уже отработал, в `data/raw/` лежат pbf и два тайла DEM.
-Дальше: построить срез в `data/seed/sochi/` (pyosmium стримит pbf по bbox Сочи
-39.55–40.00 E / 43.35–43.75 N, rasterio режет и склеивает DEM), затем миграции dbmate (первая включает PostGIS и создаёт GiST-индексы),
+Этап 3 «Данные Сочи», остаток. Срез готов (`make build-seed`). Дальше: миграции dbmate (первая включает PostGIS и создаёт GiST-индексы),
 репозитории в `adapters/db/`, CLI `ingest --region sochi --from data/seed/sochi` в
-`interfaces/cli/main.py`. Критерий: `make seed` укладывается в 60 с, в БД 100+ отелей с footprint.
+`interfaces/cli/main.py`. Критерий: `make seed` укладывается в 60 с, в БД 100+ отелей с footprint — в срезе их 854.
 
 ## Pitfalls already hit
 
@@ -64,5 +62,5 @@ Updated: 2026-10-24, MSK
 
 ## Red checks
 
-Нет. `make lint` и `make test` зелёные: 159 unit + 5 contract, ruff, ruff format, mypy strict,
+Нет. `make lint` и `make test` зелёные: 212 unit + 5 contract, ruff, ruff format, mypy strict,
 3 контракта import-linter. `make test-integration` пуст (exit 5) — интеграционных тестов ещё нет.
