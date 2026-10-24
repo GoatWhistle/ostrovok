@@ -1,0 +1,141 @@
+{
+  "title": "Find your kind of place",
+  "subtitle": "Hotels that fit your needs, backed by facts you can check.",
+  "navigation": {
+    "search": "Find a hotel",
+    "hotelier": "For hoteliers",
+    "compare": "Compare"
+  },
+  "search": {
+    "label": "What matters to you?",
+    "placeholder": "A quiet room with a sunset view, close to the sea",
+    "submit": "Find a hotel",
+    "region": "Region",
+    "allRegions": "All regions",
+    "regionUnavailable": "Regions are currently unavailable. You can search without selecting one.",
+    "traits": "Add what matters",
+    "traitError": "Could not load characteristics"
+  },
+  "results": {
+    "title": "Matching hotels",
+    "initial": "Every trip has its own requirements",
+    "initialText": "Describe yours in the search. Hotels and the reasons they fit will appear here.",
+    "empty": "No matching hotels yet",
+    "emptyText": "Try changing your requirements or selecting another region.",
+    "error": "Search is currently unavailable",
+    "errorText": "The server did not return a result. Try again shortly.",
+    "more": "Show more",
+    "open": "Open hotel",
+    "selected": "Selected",
+    "compare": "Add to comparison",
+    "removeCompare": "Remove from comparison",
+    "unmatched": "Could not interpret",
+    "pending": "Some characteristics are still being calculated",
+    "count": "Found: {{count, number}}",
+    "selectionLimit": "You can compare up to five hotels"
+  },
+  "map": {
+    "title": "Explore the surroundings",
+    "canvas": "Interactive hotel map",
+    "empty": "Your hotel will appear here",
+    "emptyText": "Find a place that fits your needs. The map will show the evidence behind its recommendations.",
+    "error": "Could not load the scene",
+    "unsupported": "3D map is unavailable",
+    "unsupportedText": "You can keep searching and explore the facts in the list.",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "overview": "Show overview",
+    "layer": "Buildings and surroundings",
+    "noHeight": "Height is unknown for some buildings",
+    "geometryError": "Could not load property geometry",
+    "geodataInvalid": "Some geometry could not be displayed",
+    "list": "List",
+    "map": "Map",
+    "attribution": "OpenStreetMap data"
+  },
+  "details": {
+    "empty": "Get to know the place",
+    "emptyText": "Choose a hotel in the results to explore its properties, rooms and sources.",
+    "error": "Hotel details are unavailable",
+    "rooms": "Rooms",
+    "source": "Source",
+    "confidence": "Source confidence",
+    "checked": "Calculated",
+    "observed": "Observed",
+    "validUntil": "Valid until",
+    "method": "Method",
+    "history": "History",
+    "conflicts": "Conflicting sources",
+    "back": "Back to hotel",
+    "factError": "Could not load fact details",
+    "ask": "Ask the hotelier",
+    "unknown": "No data",
+    "levels": "Floors: {{count, number}}",
+    "confirm": "Confirm",
+    "correct": "Correct",
+    "correction": "Clarification of the value",
+    "save": "Save clarification",
+    "saved": "Fact updated",
+    "saveError": "Could not save the change",
+    "title": "Hotel details"
+  },
+  "status": {
+    "active": "Current",
+    "conflicted": "Conflicting",
+    "superseded": "Replaced",
+    "confirmed_by_hotelier": "Confirmed by hotelier",
+    "stale": "Needs updating",
+    "computing": "Calculating"
+  },
+  "match": {
+    "full": "Matches",
+    "partial": "Matches with conditions",
+    "none": "Does not match",
+    "unknown": "Unknown",
+    "computing": "Calculating"
+  },
+  "source": {
+    "osm": "OpenStreetMap",
+    "dem": "Elevation model",
+    "computed": "Geographic calculation",
+    "open_meteo": "Open-Meteo",
+    "hotelier": "Hotelier",
+    "llm_extraction": "Extracted from a source"
+  },
+  "hotelier": {
+    "title": "Answer once",
+    "description": "Clarify information about your hotel. Your answer becomes a fact with its source and date.",
+    "hotelId": "Hotel identifier",
+    "open": "Open questions",
+    "empty": "No open questions",
+    "error": "Questions are unavailable",
+    "answer": "Your answer",
+    "placeholder": "Include room categories, conditions and restrictions",
+    "send": "Save answer",
+    "saved": "Answer saved",
+    "failed": "Could not save the answer",
+    "followUp": "An additional clarification is needed",
+    "select": "Choose a hotel or enter its identifier",
+    "reason": {
+      "missing": "Missing information",
+      "conflict": "Sources disagree",
+      "stale": "Outdated information",
+      "low_confidence": "Confirmation needed"
+    }
+  },
+  "compare": {
+    "title": "Compare what matters",
+    "description": "Characteristics and sources for your selected hotels.",
+    "empty": "Add at least two hotels",
+    "emptyText": "Select hotels for comparison in the search results.",
+    "error": "Comparison is unavailable",
+    "back": "Back to search",
+    "hotel": "Hotel"
+  },
+  "service": {
+    "online": "Service is online",
+    "offline": "Service is unavailable",
+    "loading": "Checking connection",
+    "facts": "Facts you can verify"
+  }
+}

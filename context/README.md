@@ -8,7 +8,7 @@ Deadline: {{date, time, timezone}}
 P0 scenario: пользователь вводит «тихий номер с видом на закат недалеко от моря» и получает список
 отелей с объяснением каждого совпадения, геообъектами для подсветки и параметрами камеры.
 
-Фронт (3D-карта) делает другая команда. Наша зона — бэкенд и данные.
+Фронтенд влит из `feat/hotel-frontend` в `feat/hotel-agent-mvp`; дальше обе части идут одной веткой.
 Источник истины по API — [`docs/api/openapi.yaml`](../docs/api/openapi.yaml): форма ответов не
 меняется без правки этого файла.
 
@@ -16,6 +16,7 @@ P0 scenario: пользователь вводит «тихий номер с в
 
 | Topic | Status | Current fact | Evidence |
 |---|---|---|---|
+| Фронтенд | verified | Поиск, MapLibre, факты, сравнение и кабинет по контракту; реальные health/catalog, остальные методы пока недоступны на сервере. 309 unit + 10 e2e на production-сборке | [Проверка](../work/frontend/validation.md), [аудит](../work/audits/frontend-1.md), 2026-10-25 |
 | Контракт API | approved | 13 путей, 26 схем, валиден по OpenAPI 3.0.3; отдан фронту в ветке `feat/hotel-agent-mvp` | `uvx openapi-spec-validator docs/api/openapi.yaml` → OK, 2026-10-24 |
 | Размещение кода | approved | Пакет `backend/src/hotel_agent`, слои `domain/application/adapters/interfaces` | [ADR 0002](../docs/adr/0002-layers-inside-backend.md), 2026-10-24 |
 | Хранилище | approved | PostgreSQL 16 + PostGIS 3.4, сырой SQL через psycopg 3, миграции dbmate (вместо SQLAlchemy+Alembic из промпта) | [ADR 0001](../docs/adr/0001-postgis-raw-sql.md), 2026-10-24 |

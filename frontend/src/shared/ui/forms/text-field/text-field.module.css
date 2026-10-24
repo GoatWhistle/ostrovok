@@ -1,0 +1,27 @@
+.field {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+.label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+.input {
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  background: var(--surface-sunken);
+  color: var(--text-primary);
+  font: inherit;
+}
+.input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+.area {
+  min-block-size: var(--state-min-height);
+  resize: vertical;
+}

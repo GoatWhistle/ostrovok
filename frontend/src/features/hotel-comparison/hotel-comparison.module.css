@@ -1,0 +1,22 @@
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+.table th,
+.table td {
+  padding: var(--space-16);
+  border-block-end: var(--hairline) solid var(--border-subtle);
+  text-align: start;
+  min-inline-size: var(--term-min);
+}
+.table th {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+.source {
+  display: block;
+  margin-block-start: var(--space-8);
+  color: var(--text-muted);
+  font-size: var(--font-size-caption);
+}

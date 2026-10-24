@@ -1,0 +1,73 @@
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
+import { api, unwrap } from "@/shared/api"
+import type { SearchRequest } from "@/shared/api/hotel-types"
+export function useHotelSearch(request: SearchRequest | null) {
+  return useInfiniteQuery({
+    queryKey: ["search", request],
+    enabled: request !== null,
+    initialPageParam: null as string | null,
+    queryFn: ({ signal, pageParam }) =>
+      unwrap(
+        api.POST("/search", {
+          signal,
+          body: {
+            query: request?.query ?? "",
+            ...request,
+            limit: request?.limit ?? 20,
+            compute_missing: request?.compute_missing ?? true,
+            cursor: pageParam,
+          },
+        }),
+      ),
+    getNextPageParam: (page) => page.next_cursor ?? undefined,
+    retry: false,
+  })
+}
+export function useHotel(id: string | undefined) {
+  return useQuery({
+    queryKey: ["hotel", id],
+    enabled: id !== undefined,
+    queryFn: ({ signal }) =>
+      unwrap(api.GET("/hotels/{hotel_id}", { signal, params: { path: { hotel_id: id ?? "" } } })),
+    retry: false,
+  })
+}
+export function useHotelScene(id: string | undefined) {
+  return useQuery({
+    queryKey: ["scene", id],
+    enabled: id !== undefined,
+    queryFn: ({ signal }) =>
+      unwrap(
+        api.GET("/hotels/{hotel_id}/scene", {
+          signal,
+          params: { path: { hotel_id: id ?? "" }, query: { context_radius_m: 250 } },
+        }),
+      ),
+    retry: false,
+  })
+}
+export function useFact(hotel: string | undefined, fact: string | undefined) {
+  return useQuery({
+    queryKey: ["fact", hotel, fact],
+    enabled: hotel !== undefined && fact !== undefined,
+    queryFn: ({ signal }) =>
+      unwrap(
+        api.GET("/hotels/{hotel_id}/facts/{fact_id}", {
+          signal,
+          params: { path: { hotel_id: hotel ?? "", fact_id: fact ?? "" } },
+        }),
+      ),
+    retry: false,
+  })
+}
+export function useGeoFeatures(ids: readonly string[]) {
+  const normalized = [...new Set(ids)].sort().slice(0, 200)
+  return useQuery({
+    queryKey: ["geometry", normalized],
+    enabled: normalized.length > 0,
+    staleTime: Number.POSITIVE_INFINITY,
+    queryFn: ({ signal }) =>
+      unwrap(api.POST("/geo-features:batch", { signal, body: { ids: normalized } })),
+    retry: false,
+  })
+}

@@ -11,6 +11,7 @@ that owns each one. Scrubbed at submission.
 | `design/` | `refero-style` | Style extraction, source-site screenshots, conflicts resolved |
 | `competitors.md` | `competitors` | Rivals, threat tiers, criterion scores |
 | `repo.json` | `repo-meta` | GitHub description and topics proposal |
+| `frontend/` | frontend implementation | Integration plan, review verdict and validation |
 | `screens/` | frontend workflows | Screen specifications |
 | `audits/` | audit workflows | Dated findings and check results |
 | `research/` | `research` | Investigation notes |

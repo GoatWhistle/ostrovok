@@ -18,7 +18,19 @@ function violations(file: SourceFile, messages: readonly string[]): Violation[] 
 
 function scriptRemoteProblems(file: SourceFile): string[] {
   const found: string[] = []
-  walkAst(parseScript(file.path, file.text).program, (node: AstNode) => {
+  const program = parseScript(file.path, file.text).program
+  const citations = new Set<AstNode>()
+  walkAst(program, (node: AstNode) => {
+    if (node.type !== "JSXOpeningElement" || (node.name as AstNode | undefined)?.name !== "a")
+      return
+    for (const attribute of (node.attributes as readonly AstNode[] | undefined) ?? []) {
+      if ((attribute.name as AstNode | undefined)?.name !== "href") continue
+      const value = attribute.value as AstNode | undefined
+      if (value) walkAst(value, (child) => citations.add(child))
+    }
+  })
+  walkAst(program, (node: AstNode) => {
+    if (citations.has(node)) return
     if (node.type !== "Literal" && node.type !== "TemplateLiteral") return
     for (const text of literalStrings(node)) {
       const remote = REMOTE_STRING.test(text.trim()) || REMOTE_REFERENCE.test(text)

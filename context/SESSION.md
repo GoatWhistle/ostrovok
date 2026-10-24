@@ -1,6 +1,6 @@
 # Session state
 
-Updated: 2026-10-24, MSK
+Updated: 2026-10-25, Europe/Moscow
 
 ## Explicit user instructions
 
@@ -19,17 +19,30 @@ Updated: 2026-10-24, MSK
 - Из промпта, действует постоянно: LLM не угадывает значения фактов; значение даёт тулз или
   отельер. Без сети в `make seed` и в тестах. Ключи только в `.env`.
 
+- 2026-10-25: «давай делай план как ты будешь добавлять фронт к беку и сделав ревью начинай писать фронт как закончишь сделай пуш ветки»
+- 2026-10-25: «посмотри в ветке mvp уже бек есть проверь и сделай чтобы наша ветка от нее шла»
+- User supplied Mapbox reference and CSS/JSON tokens; copied unchanged to work/design/source/. Frontend branch publication is now explicitly authorized.
+
 ## Current state
 
-- Task: этапы 1 и 2 закрыты, живой LLM-провайдер сделан вне очереди. Этап 3 наполовину: срез Сочи
-  построен и лежит в `data/seed/sochi/`; базы, миграций и `ingest` ещё нет.
+- Task: бэкенд — этапы 1 и 2 закрыты, живой LLM-провайдер сделан вне очереди, этап 3 наполовину:
+  срез Сочи построен и лежит в `data/seed/sochi/`; базы, миграций и `ingest` ещё нет.
+  Фронтенд влит из `feat/hotel-frontend` (коммиты 52c34d3, bcf0e31, 7d562e5).
 - Branch and revision: `feat/hotel-agent-mvp`, см. `git log -1`.
 - Stand: Compose поднимает `db` (imresamu/postgis:16-3.4) и `backend`; отвечают
   `GET /api/v1/health` и `GET /api/v1/characteristics`. Таблиц и миграций ещё нет.
+- Фронтенд: поиск, результаты, геометрия MapLibre, подсветка, провенанс фактов, мутации отельера
+  и сравнение. Типы генерятся из локального `docs/api/openapi.yaml`, рантайм-фикстур нет.
+  Проверки фронта: typecheck, lint, 309 тестов, сборка, 10 e2e на продакшен-сборке включая axe.
+  Отчёты — `work/frontend/`, `work/audits/frontend-1.md`. Эталон стиля — Mapbox dark,
+  исходники пользователя в `work/design/source/`, описание — `frontend/DESIGN.md`.
+- Экраны фронта ходят в реальное API: пока бэкенд отдаёт только `/health` и `/characteristics`,
+  остальные экраны показывают честное состояние ошибки.
 
 ## How to continue
 
-Этап 3 «Данные Сочи», остаток. Срез готов (`make build-seed`). Дальше: миграции dbmate (первая включает PostGIS и создаёт GiST-индексы),
+Этап 3 «Данные Сочи», остаток. Срез готов (`make build-seed`). Дальше: миграции dbmate
+(первая включает PostGIS и создаёт GiST-индексы),
 репозитории в `adapters/db/`, CLI `ingest --region sochi --from data/seed/sochi` в
 `interfaces/cli/main.py`. Критерий: `make seed` укладывается в 60 с, в БД 100+ отелей с footprint — в срезе их 854.
 
@@ -53,12 +66,15 @@ Updated: 2026-10-24, MSK
 
 ## Left, in order
 
-1. Этап 3: `make fetch-seed` (разово, с сетью) и `ingest --region sochi`, миграции dbmate.
+1. Этап 3, остаток: миграции dbmate, репозитории, `ingest --region sochi`.
 2. Этап 4: предрасчёт `building_height`, `distance_to_sea`, `bars_nearby`, `noise_level`.
 3. Этап 5: `/search`, `/hotels/{id}`, `/hotels/{id}/scene`, `/geo-features:batch`, `/regions`.
 4. Этап 6: `sunset_view` как тулз через `ToolRegistry`, кэш факта.
 5. Этап 7: вопросы отельеру, извлечение полей, разрешение конфликта с тегом OSM.
 6. Этап 8 (опционально): `eval` на разметке 30 отелей.
+7. Подключить экраны фронта к готовым методам по мере их появления.
+
+Полный план с задачами и критериями готовности — [work/plan.md](../work/plan.md).
 
 ## Red checks
 
