@@ -29,6 +29,11 @@ class RegionNotFound(NotFound):
     message = "Region not found"
 
 
+class InvalidValue(DomainError):
+    code = "invalid_value"
+    message = "Value is outside its allowed range"
+
+
 class UnknownCharacteristic(DomainError):
     code = "unknown_characteristic"
     message = "Characteristic is not registered"

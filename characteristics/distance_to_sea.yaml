@@ -4,6 +4,7 @@ description: "Кратчайший пеший маршрут по графу OSM
 value_type: number
 unit: min
 scope: hotel
+conflict_tolerance: 2
 tool: distance_to_sea
 ttl_days: 365
 precompute: true

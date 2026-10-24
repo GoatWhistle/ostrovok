@@ -13,6 +13,7 @@ description: Бассейн с подогревом по словам отель
 value_type: bool
 unit: null
 scope: hotel
+conflict_tolerance: 0
 tool: null
 ttl_days: 365
 precompute: false
@@ -93,6 +94,11 @@ def test_unknown_key_is_reported(tmp_path: Path) -> None:
             "pool_heated.yaml",
             MINIMAL.replace("precompute: false", "precompute: maybe"),
             "precompute: expected true or false",
+        ),
+        (
+            "pool_heated.yaml",
+            MINIMAL.replace("conflict_tolerance: 0", "conflict_tolerance: -1"),
+            "conflict_tolerance: expected a number at or above zero",
         ),
     ],
 )

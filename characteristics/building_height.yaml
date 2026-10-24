@@ -4,6 +4,7 @@ description: "Высота по тегу OSM height, иначе по building:le
 value_type: number
 unit: m
 scope: hotel
+conflict_tolerance: 3
 tool: building_height
 ttl_days: 730
 precompute: true

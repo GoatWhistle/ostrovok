@@ -4,6 +4,7 @@ description: "Количество объектов amenity=bar, pub или nigh
 value_type: number
 unit: count
 scope: hotel
+conflict_tolerance: 1
 tool: bars_nearby
 ttl_days: 90
 precompute: true

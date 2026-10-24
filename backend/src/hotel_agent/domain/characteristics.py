@@ -82,6 +82,7 @@ class Characteristic:
     value_type: ValueType
     unit: str | None
     scope: Scope
+    conflict_tolerance: float
     synonyms: tuple[str, ...]
     matchers: tuple[Matcher, ...]
     fields: tuple[FieldRule, ...]

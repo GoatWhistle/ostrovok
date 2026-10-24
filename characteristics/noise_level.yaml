@@ -4,6 +4,7 @@ description: "Балл 0-10 по расстоянию до магистрале�
 value_type: number
 unit: score
 scope: facade
+conflict_tolerance: 1
 tool: noise_level
 ttl_days: 180
 precompute: true

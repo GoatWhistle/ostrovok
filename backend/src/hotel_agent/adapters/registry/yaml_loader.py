@@ -60,6 +60,7 @@ def _characteristic(path: Path) -> Characteristic:
         value_type=_choice(data, "value_type", ValueType, where),
         unit=_optional_text(data, "unit", where),
         scope=_choice(data, "scope", Scope, where),
+        conflict_tolerance=_non_negative(data, "conflict_tolerance", where),
         synonyms=tuple(_text_list(data, "synonyms", where)),
         matchers=tuple(_matcher(item, where) for item in _list(data, "matchers", where)),
         fields=tuple(_field_rule(item, where) for item in _list(data, "fields", where)),
@@ -158,6 +159,13 @@ def _number(data: Mapping[str, object], key: str, where: str) -> float:
     if isinstance(raw, bool) or not isinstance(raw, int | float):
         raise InvalidRegistry(f"{where}.{key}: expected a number")
     return float(raw)
+
+
+def _non_negative(data: Mapping[str, object], key: str, where: str) -> float:
+    value = _number(data, key, where)
+    if value < 0:
+        raise InvalidRegistry(f"{where}.{key}: expected a number at or above zero")
+    return value
 
 
 def _flag(data: Mapping[str, object], key: str, where: str) -> bool:
