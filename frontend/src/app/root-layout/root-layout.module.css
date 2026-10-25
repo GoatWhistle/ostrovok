@@ -25,6 +25,8 @@
 }
 
 .main {
+  display: grid;
   min-inline-size: 0;
+  min-block-size: 0;
   outline: none;
 }

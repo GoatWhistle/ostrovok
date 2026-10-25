@@ -2,14 +2,14 @@
   position: relative;
   z-index: var(--layer-raised);
   display: grid;
-  justify-items: center;
+  justify-items: start;
   gap: var(--space-16);
   inline-size: min(100%, var(--start-card-width));
   padding: var(--space-32);
   border-radius: var(--radius-xl);
   background-color: var(--surface-overlay);
   box-shadow: var(--shadow-overlay);
-  text-align: center;
+  text-align: start;
   animation: var(--motion-state-in);
 }
 
@@ -30,9 +30,16 @@
   --start-step: 4;
 }
 
+.card > :nth-child(6) {
+  --start-step: 5;
+}
+
 .title {
   composes: headingText from "../../shared/styles/compose.module.css";
-  font-size: var(--font-size-heading-lg);
+}
+
+.card .title {
+  font-size: var(--font-size-display-sm);
   line-height: var(--line-height-heading-lg);
 }
 
@@ -52,9 +59,39 @@
   box-shadow: none;
 }
 
+.composer form > p {
+  display: none;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--space-8);
+}
+
+.stats {
+  composes: plainList from "../../shared/styles/compose.module.css";
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding-block-start: var(--space-8);
+  box-shadow: var(--shadow-divider-top);
+  inline-size: 100%;
+}
+
+@media (max-width: 47.99rem) {
+  .card {
+    gap: var(--space-12);
+    inline-size: 100%;
+    padding: var(--space-24) var(--space-16) var(--space-16);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .card > :first-child {
+    display: none;
+  }
+
+  .chips {
+    gap: var(--space-6);
+  }
 }

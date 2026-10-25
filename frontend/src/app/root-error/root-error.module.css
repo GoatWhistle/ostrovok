@@ -17,6 +17,5 @@
 }
 
 .state {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
-  inline-size: 100%;
+  max-inline-size: var(--field-max-width);
 }

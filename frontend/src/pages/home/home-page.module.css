@@ -1,7 +1,8 @@
 .page {
   display: grid;
   grid-template-rows: minmax(0, 1fr);
-  block-size: calc(100dvh - var(--header-height));
+  block-size: 100%;
+  max-block-size: calc(100dvh - var(--header-height));
   min-inline-size: 0;
 }
 
@@ -77,8 +78,14 @@
   inset: 0;
   z-index: var(--layer-sticky);
   display: grid;
-  place-items: center;
-  padding: var(--space-24);
+  align-items: center;
+  justify-items: start;
+  padding: var(--space-24) var(--space-page-wide);
+  pointer-events: none;
+}
+
+.start > * {
+  pointer-events: auto;
 }
 
 .start::before {
@@ -140,6 +147,11 @@
 @media (max-width: 63.99rem) {
   .page {
     grid-template-rows: auto minmax(0, 1fr);
+    max-block-size: none;
+  }
+
+  .workspace {
+    grid-row: 2;
   }
 
   .tabs {
@@ -176,5 +188,10 @@
 
   .workspace[data-mode="start"] .map {
     display: grid;
+  }
+
+  .start {
+    align-items: end;
+    padding: 0;
   }
 }

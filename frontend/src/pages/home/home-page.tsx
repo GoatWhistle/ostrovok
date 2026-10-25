@@ -95,6 +95,7 @@ export function HomePage() {
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
+            showcase={start}
           />
           {start ? (
             <div className={styles.start}>
