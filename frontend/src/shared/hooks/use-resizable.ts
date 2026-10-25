@@ -65,14 +65,17 @@ export function useResizable({ storageKey, edge, initial, min, max }: ResizableO
     const from = panel?.getBoundingClientRect().width ?? readPixels(initial)
     handle.setPointerCapture(event.pointerId)
     handle.dataset.dragging = "true"
+    const shift = (clientX: number) =>
+      (clamp(from + (clientX - start) * direction) - from) * direction
     const move = (moveEvent: globalThis.PointerEvent) =>
-      setWidth(clamp(from + (moveEvent.clientX - start) * direction))
+      handle.style.setProperty("--resize-shift", `${shift(moveEvent.clientX)}px`)
     const stop = (upEvent: globalThis.PointerEvent) => {
       handle.removeEventListener("pointermove", move)
       handle.removeEventListener("pointerup", stop)
       handle.removeEventListener("pointercancel", stop)
       delete handle.dataset.dragging
-      apply(from + (upEvent.clientX - start) * direction)
+      handle.style.removeProperty("--resize-shift")
+      apply(from + shift(upEvent.clientX) * direction)
     }
     handle.addEventListener("pointermove", move)
     handle.addEventListener("pointerup", stop)

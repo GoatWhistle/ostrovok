@@ -1,4 +1,5 @@
 import { useTranslation } from "@/shared/i18n"
+import { usePresence } from "@/shared/motion"
 import { Button, ScrollArea } from "@/shared/ui"
 import styles from "./chat-history.module.css"
 
@@ -20,8 +21,16 @@ export function ChatHistory({
   onOpen,
 }: ChatHistoryProps) {
   const { t } = useTranslation()
+  const presence = usePresence(!hidden)
+  if (!presence.mounted) return null
   return (
-    <nav id={id} className={styles.history} aria-label={t("explore:chat.history")} hidden={hidden}>
+    <nav
+      id={id}
+      className={styles.history}
+      aria-label={t("explore:chat.history")}
+      data-state={presence.state}
+      onTransitionEnd={presence.onTransitionEnd}
+    >
       <ScrollArea className={styles.scroll}>
         <ul className={styles.list}>
           {conversations.map((conversation) => (
