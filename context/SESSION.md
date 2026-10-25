@@ -51,14 +51,14 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Branch `feat/hotel-agent-mvp`, Git HEAD before timeout fix `5ccfbd5`. Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend rebuilt after retry fix.
+- Branch `feat/hotel-agent-mvp`, timeout-fix commit `113ac67` (Git HEAD while updating this note). Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend rebuilt after retry fix.
 - Added PostgreSQL chat history, contextual query rewrite, RU/EN answers grounded in search results; right chat, left recommendations and selected hotel card, center map. Card reads real rooms/facts and shows honest empty state because `rooms` has 0 rows. Nearby buildings in 350 m are all extruded; OSM floor heights and estimated fallback are marked.
 - Live stand: initial query returned 20 shown candidates; follow-up retained three wishes; GET restored four messages. Scene for `n10058556917`: 512 neighboring buildings, 512 volumes, 161 with OSM levels. Prior `work/evals/search-22-results.json`: 22 search queries, 16 with results.
 - `npm run verify`: 36 rules, 310 tests, build. Backend after timeout fix: Ruff, mypy, import-linter, 226 tests. Full Playwright from prior turn: 10/10, including 1440/375/320, both themes/languages, long text.
 
 ## Next actions and pitfalls
 
-- Commit and push timeout fix after final checks. If user provides the exact failed message, replay it through the live stand. Watch for a room/pricing source answer and connect it if provided.
+- Timeout fix committed and pushed. If user provides the exact failed message, replay it through the live stand. Watch for a room/pricing source answer and connect it if provided.
 - User was asked asynchronously for a source of room inventory and prices; no answer received. Do not invent or seed rooms. Current UI displays unavailable fields.
 - One transient Yandex ConnectError occurred on the first live chat request; a single automatic retry was added and tested. Failed send preserves draft. Secrets remain only in ignored `.env`.
 - Последний пользовательский POST `/chat/messages` в 09:49:45 UTC завершился 503 после 30-секундного `ReadTimeout` Yandex Cloud. Запрос не сохранился. Добавлен повтор `ReadTimeout`; тест сначала падал, после правки проходит. Контрольный живой запрос через frontend вернул 200 за 3,66 с. Точный текст неуспешного сообщения не логируется; пользователь был запрошен асинхронно.
