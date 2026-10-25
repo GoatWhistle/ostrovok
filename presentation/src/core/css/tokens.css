@@ -1,29 +1,199 @@
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/manrope-cyrillic-ext-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/manrope-cyrillic-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/manrope-latin-ext-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/manrope-latin-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("fonts/jetbrains-mono-cyrillic-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("fonts/jetbrains-mono-latin-ext-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("fonts/jetbrains-mono-latin-wght-normal.woff2") format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 :root {
+  --cobalt-50: #eef3ff;
+  --cobalt-100: #dce6ff;
+  --cobalt-200: #b9ccff;
+  --cobalt-300: #8eabff;
+  --cobalt-400: #5f84fa;
+  --cobalt-500: #3763ee;
+  --cobalt-600: #1546db;
+  --cobalt-700: #0f37b4;
+  --cobalt-800: #0e2d8c;
+  --cobalt-900: #0e2668;
+  --cobalt-950: #0a1740;
+
+  --lime-50: #f6fde9;
+  --lime-100: #ebfbcf;
+  --lime-200: #d9f7a4;
+  --lime-300: #c4f178;
+  --lime-400: #b0ea55;
+  --lime-500: #96d63a;
+  --lime-600: #74b024;
+  --lime-700: #57871c;
+  --lime-800: #43681a;
+  --lime-900: #37551a;
+
   --neutral-0: #ffffff;
-  --neutral-50: #f6f6f7;
-  --neutral-100: #ececee;
-  --neutral-150: #e2e2e6;
-  --neutral-200: #d4d4d9;
-  --neutral-300: #b5b5bd;
-  --neutral-400: #8c8c96;
-  --neutral-500: #686872;
-  --neutral-600: #54545c;
-  --neutral-700: #3e3e45;
-  --neutral-800: #2b2b30;
-  --neutral-850: #222226;
-  --neutral-900: #1a1a1e;
-  --neutral-950: #121215;
-  --accent-200: #b9c6f7;
-  --accent-300: #93a6f2;
-  --accent-500: #3d5bd9;
-  --accent-600: #3149bd;
-  --accent-700: #273b9a;
-  --red-300: #f59a9a;
-  --red-600: #c4322f;
-  --green-300: #7fd1a0;
-  --green-700: #1d7a45;
-  --amber-300: #f2c46d;
-  --amber-700: #8f5a00;
+  --neutral-25: #fbfbf8;
+  --neutral-50: #f4f5f1;
+  --neutral-100: #eaece5;
+  --neutral-200: #dadcd4;
+  --neutral-300: #c2c6bb;
+  --neutral-400: #a0a598;
+  --neutral-500: #7e8376;
+  --neutral-600: #61665a;
+  --neutral-700: #4a4e44;
+  --neutral-800: #31352d;
+  --neutral-850: #262922;
+  --neutral-900: #1d201a;
+  --neutral-925: #181b16;
+  --neutral-950: #12140f;
+  --neutral-1000: #0c0e0a;
+
+  --green-50: #eaf7ee;
+  --green-100: #cfeed9;
+  --green-300: #7fd19b;
+  --green-400: #4fbb75;
+  --green-600: #1b8445;
+  --green-700: #156a38;
+
+  --red-50: #fdeeec;
+  --red-100: #fad7d2;
+  --red-300: #f29286;
+  --red-400: #ec6556;
+  --red-500: #dc3f2e;
+  --red-600: #be2d1f;
+  --red-700: #9a2419;
+
+  --amber-50: #fff5e5;
+  --amber-100: #ffe6bf;
+  --amber-300: #ffc266;
+  --amber-400: #ffaa33;
+  --amber-500: #f08c00;
+  --amber-700: #8f5100;
+
+  --violet-50: #f3effe;
+  --violet-300: #b49cf8;
+  --violet-400: #9877f3;
+  --violet-600: #6540cf;
+  --violet-700: #5032a6;
+
+  --hue-sea-600: #1a76c9;
+  --hue-sea-300: #6cb8ff;
+  --hue-sunset-600: #d9600f;
+  --hue-sunset-300: #ff9f5c;
+  --hue-quiet-600: #6a46d6;
+  --hue-quiet-300: #ad92ff;
+  --hue-nightlife-600: #c9336a;
+  --hue-nightlife-300: #ff80ad;
+  --hue-dark-600: #3c4767;
+  --hue-dark-300: #98a4cc;
+  --hue-pets-600: #a0661a;
+  --hue-pets-300: #e8b260;
+  --hue-height-600: #56634f;
+  --hue-height-300: #aab8a3;
+  --hue-walk-600: #0b8a85;
+  --hue-walk-300: #45d6cf;
+
+  --map-light-land: #eef0e8;
+  --map-light-water: #bcd8f0;
+  --map-light-water-line: #9cc4e6;
+  --map-light-park: #d6e7c3;
+  --map-light-sand: #f1e8cc;
+  --map-light-building: #e1e3da;
+  --map-light-building-line: #cbcec3;
+  --map-light-road: #ffffff;
+  --map-light-road-casing: #d3d6cb;
+  --map-light-rail: #b4b8ac;
+  --map-light-label: #4a4e44;
+  --map-light-road-major: #fbfbf8;
+  --map-light-sea-dusk: #b6b3d8;
+  --map-light-sea-night: #5b7294;
+  --map-light-sky: #cfe3f3;
+  --map-light-sky-dusk: #f6c9a8;
+  --map-light-sky-night: #26344c;
+  --map-light-horizon: #f3f4ee;
+  --map-light-horizon-dusk: #fbe3c8;
+  --map-light-horizon-night: #3b4b64;
+  --map-light-hill-shadow: #9aa592;
+  --map-light-hill-highlight: #fbfcf6;
+  --map-dark-land: #161913;
+  --map-dark-water: #0d1c29;
+  --map-dark-water-line: #1a3550;
+  --map-dark-park: #1a2416;
+  --map-dark-sand: #24221a;
+  --map-dark-building: #22261e;
+  --map-dark-building-line: #2e3329;
+  --map-dark-road: #2b3026;
+  --map-dark-road-casing: #12140f;
+  --map-dark-rail: #3f453a;
+  --map-dark-label: #a7ad9f;
+  --map-dark-road-major: #3a4033;
+  --map-dark-contour: #bcc1b5;
+  --map-dark-sea-dusk: #1d1a2e;
+  --map-dark-sea-night: #070f18;
+  --map-dark-sky: #1b2a3a;
+  --map-dark-sky-dusk: #4a3446;
+  --map-dark-sky-night: #070b12;
+  --map-dark-horizon: #232a22;
+  --map-dark-horizon-dusk: #5a4237;
+  --map-dark-horizon-night: #111720;
+  --map-dark-hill-shadow: #0a0c08;
+  --map-dark-hill-highlight: #3a4234;
 }
 
 :root,
@@ -32,93 +202,266 @@
 
   --surface-base: var(--neutral-50);
   --surface-raised: var(--neutral-0);
-  --surface-raised-hover: color-mix(in oklab, var(--neutral-0), var(--neutral-900) 4%);
+  --surface-raised-hover: var(--neutral-25);
   --surface-sunken: var(--neutral-100);
-  --surface-selected: var(--neutral-0);
-  --surface-skeleton: color-mix(in oklab, var(--neutral-0), var(--neutral-900) 8%);
-
-  --text-primary: var(--neutral-900);
-  --text-secondary: var(--neutral-600);
-  --text-muted: var(--neutral-500);
-  --text-disabled: color-mix(in oklab, var(--neutral-900) 38%, var(--neutral-0));
-  --text-accent: var(--accent-600);
-  --text-danger: var(--red-600);
+  --surface-overlay: var(--neutral-0);
+  --surface-inverse: var(--neutral-950);
+  --surface-selected: var(--cobalt-50);
+  --surface-highlight: var(--lime-200);
+  --surface-skeleton: var(--neutral-100);
+  --surface-scrim: color-mix(in oklab, var(--neutral-950) 42%, transparent);
+  --text-primary: var(--neutral-950);
+  --text-secondary: var(--neutral-700);
+  --text-muted: var(--neutral-600);
+  --text-disabled: var(--neutral-400);
+  --text-accent: var(--cobalt-600);
+  --text-link: var(--cobalt-600);
+  --text-danger: var(--red-700);
   --text-success: var(--green-700);
   --text-warning: var(--amber-700);
+  --text-conflict: var(--violet-700);
+  --text-on-inverse: var(--neutral-25);
+  --text-on-highlight: var(--neutral-950);
+  --text-on-fact: var(--neutral-950);
   --action-primary-text: var(--neutral-0);
-
-  --action-primary: var(--accent-500);
-  --action-primary-hover: var(--accent-600);
-  --action-primary-press: var(--accent-700);
-  --action-ghost-hover: color-mix(in oklab, var(--neutral-900) 6%, transparent);
-  --action-ghost-press: color-mix(in oklab, var(--neutral-900) 11%, transparent);
+  --action-primary: var(--cobalt-600);
+  --action-primary-hover: var(--cobalt-700);
+  --action-primary-press: var(--cobalt-800);
+  --action-secondary: var(--cobalt-50);
+  --action-secondary-hover: var(--cobalt-100);
+  --action-secondary-press: var(--cobalt-200);
+  --action-secondary-text: var(--cobalt-700);
+  --action-fact: var(--lime-400);
+  --action-fact-hover: var(--lime-300);
+  --action-fact-press: var(--lime-500);
+  --action-ghost-hover: color-mix(in oklab, var(--neutral-950) 6%, transparent);
+  --action-ghost-press: color-mix(in oklab, var(--neutral-950) 10%, transparent);
   --action-disabled: var(--neutral-100);
-
-  --border-subtle: color-mix(in oklab, var(--neutral-900) 10%, transparent);
-  --border-strong: color-mix(in oklab, var(--neutral-900) 18%, transparent);
-
+  --action-confirm: var(--green-50);
+  --action-confirm-hover: var(--green-100);
+  --action-reject: var(--red-50);
+  --action-reject-hover: var(--red-100);
+  --border-subtle: color-mix(in oklab, var(--neutral-950) 8%, transparent);
+  --border-default: color-mix(in oklab, var(--neutral-950) 14%, transparent);
+  --border-strong: color-mix(in oklab, var(--neutral-950) 26%, transparent);
+  --border-inverse: color-mix(in oklab, var(--neutral-25) 16%, transparent);
+  --status-success: var(--green-600);
+  --status-success-surface: var(--green-50);
   --status-danger: var(--red-600);
-  --status-success: var(--green-700);
-  --status-warning: var(--amber-700);
+  --status-danger-surface: var(--red-50);
+  --status-warning: var(--amber-500);
+  --status-warning-surface: var(--amber-50);
+  --status-conflict: var(--violet-600);
+  --status-conflict-surface: var(--violet-50);
+  --status-info: var(--cobalt-600);
+  --status-info-surface: var(--cobalt-50);
   --status-neutral: var(--neutral-500);
-
-  --focus-ring: var(--accent-500);
-  --shadow-color: color-mix(in oklab, var(--neutral-950) 12%, transparent);
-  --scrollbar-thumb: color-mix(in oklab, var(--neutral-900) 24%, transparent);
-  --scrollbar-thumb-hover: color-mix(in oklab, var(--neutral-900) 42%, transparent);
+  --status-neutral-surface: var(--neutral-100);
+  --confidence-high: var(--green-600);
+  --confidence-mid: var(--amber-500);
+  --confidence-low: var(--red-500);
+  --confidence-track: var(--neutral-200);
+  --hue-sea: var(--hue-sea-600);
+  --hue-sunset: var(--hue-sunset-600);
+  --hue-quiet: var(--hue-quiet-600);
+  --hue-nightlife: var(--hue-nightlife-600);
+  --hue-dark: var(--hue-dark-600);
+  --hue-pets: var(--hue-pets-600);
+  --hue-height: var(--hue-height-600);
+  --hue-walk: var(--hue-walk-600);
+  --mark-side: var(--cobalt-600);
+  --mark-fact: var(--lime-400);
+  --map-land: var(--map-light-land);
+  --map-water: var(--map-light-water);
+  --map-water-line: var(--map-light-water-line);
+  --map-park: var(--map-light-park);
+  --map-sand: var(--map-light-sand);
+  --map-building: var(--map-light-building);
+  --map-building-line: var(--map-light-building-line);
+  --map-road: var(--map-light-road);
+  --map-road-casing: var(--map-light-road-casing);
+  --map-rail: var(--map-light-rail);
+  --map-label: var(--map-light-label);
+  --map-road-major: var(--map-light-road-major);
+  --map-contour: color-mix(in oklab, var(--neutral-600) 18%, transparent);
+  --map-sea: var(--map-light-water);
+  --map-sea-dusk: var(--map-light-sea-dusk);
+  --map-sea-night: var(--map-light-sea-night);
+  --map-sky: var(--map-light-sky);
+  --map-sky-dusk: var(--map-light-sky-dusk);
+  --map-sky-night: var(--map-light-sky-night);
+  --map-horizon: var(--map-light-horizon);
+  --map-horizon-dusk: var(--map-light-horizon-dusk);
+  --map-horizon-night: var(--map-light-horizon-night);
+  --map-hill-shadow: var(--map-light-hill-shadow);
+  --map-hill-highlight: var(--map-light-hill-highlight);
+  --map-beach: var(--map-light-sand);
+  --map-coast: var(--map-light-water-line);
+  --map-highlight: var(--map-fact-line);
+  --map-label-halo: var(--neutral-50);
+  --map-hotel: var(--neutral-0);
+  --map-hotel-text: var(--neutral-950);
+  --map-hotel-selected: var(--cobalt-600);
+  --map-fact: var(--lime-400);
+  --map-fact-line: var(--lime-700);
+  --map-route: var(--cobalt-600);
+  --map-viewshed-line: var(--hue-sunset-600);
+  --map-noise: color-mix(in oklab, var(--hue-nightlife-600) 14%, transparent);
+  --mask-on: var(--neutral-0);
+  --surface-tint: color-mix(in oklab, currentColor 14%, transparent);
+  --surface-wash: color-mix(in oklab, currentColor 12%, var(--surface-raised));
+  --focus-ring: var(--cobalt-600);
+  --shadow-color: color-mix(in oklab, var(--neutral-950) 10%, transparent);
+  --shadow-color-strong: color-mix(in oklab, var(--neutral-950) 18%, transparent);
+  --scrollbar-thumb: color-mix(in oklab, var(--neutral-950) 22%, transparent);
+  --scrollbar-thumb-hover: color-mix(in oklab, var(--neutral-950) 38%, transparent);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
 
   --surface-base: var(--neutral-950);
-  --surface-raised: var(--neutral-900);
-  --surface-raised-hover: color-mix(in oklab, var(--neutral-900), var(--neutral-0) 5%);
-  --surface-sunken: var(--neutral-850);
-  --surface-selected: var(--neutral-700);
-  --surface-skeleton: color-mix(in oklab, var(--neutral-900), var(--neutral-0) 9%);
-
-  --text-primary: var(--neutral-50);
-  --text-secondary: var(--neutral-300);
-  --text-muted: var(--neutral-400);
-  --text-disabled: color-mix(in oklab, var(--neutral-50) 38%, var(--neutral-900));
-  --text-accent: var(--accent-300);
+  --surface-raised: var(--neutral-925);
+  --surface-raised-hover: var(--neutral-900);
+  --surface-sunken: var(--neutral-1000);
+  --surface-overlay: var(--neutral-900);
+  --surface-inverse: var(--neutral-50);
+  --surface-selected: #18203a;
+  --surface-highlight: #26341a;
+  --surface-skeleton: var(--neutral-850);
+  --surface-scrim: color-mix(in oklab, var(--neutral-1000) 60%, transparent);
+  --text-primary: #eef0ea;
+  --text-secondary: #bcc1b5;
+  --text-muted: #8f9488;
+  --text-disabled: #5c6157;
+  --text-accent: var(--cobalt-300);
+  --text-link: var(--cobalt-300);
   --text-danger: var(--red-300);
   --text-success: var(--green-300);
   --text-warning: var(--amber-300);
-  --action-primary-text: var(--neutral-950);
-
-  --action-primary: var(--accent-300);
-  --action-primary-hover: var(--accent-200);
-  --action-primary-press: color-mix(in oklab, var(--accent-300), var(--neutral-950) 12%);
-  --action-ghost-hover: color-mix(in oklab, var(--neutral-0) 8%, transparent);
-  --action-ghost-press: color-mix(in oklab, var(--neutral-0) 14%, transparent);
+  --text-conflict: var(--violet-300);
+  --text-on-inverse: var(--neutral-950);
+  --text-on-highlight: var(--lime-200);
+  --text-on-fact: var(--neutral-950);
+  --action-primary-text: var(--neutral-0);
+  --action-primary: var(--cobalt-500);
+  --action-primary-hover: var(--cobalt-600);
+  --action-primary-press: var(--cobalt-700);
+  --action-secondary: #1b2440;
+  --action-secondary-hover: #222d50;
+  --action-secondary-press: #2a3760;
+  --action-secondary-text: var(--cobalt-200);
+  --action-fact: var(--lime-400);
+  --action-fact-hover: var(--lime-300);
+  --action-fact-press: var(--lime-500);
+  --action-ghost-hover: color-mix(in oklab, #eef0ea 7%, transparent);
+  --action-ghost-press: color-mix(in oklab, #eef0ea 12%, transparent);
   --action-disabled: var(--neutral-850);
-
-  --border-subtle: color-mix(in oklab, var(--neutral-0) 10%, transparent);
-  --border-strong: color-mix(in oklab, var(--neutral-0) 18%, transparent);
-
-  --status-danger: var(--red-300);
-  --status-success: var(--green-300);
-  --status-warning: var(--amber-300);
-  --status-neutral: var(--neutral-400);
-
-  --focus-ring: var(--accent-300);
-  --shadow-color: color-mix(in oklab, var(--neutral-950) 64%, transparent);
-  --scrollbar-thumb: color-mix(in oklab, var(--neutral-0) 24%, transparent);
-  --scrollbar-thumb-hover: color-mix(in oklab, var(--neutral-0) 42%, transparent);
+  --action-confirm: #16301f;
+  --action-confirm-hover: #1d3d28;
+  --action-reject: #3a1b17;
+  --action-reject-hover: #4a221d;
+  --border-subtle: color-mix(in oklab, #eef0ea 7%, transparent);
+  --border-default: color-mix(in oklab, #eef0ea 13%, transparent);
+  --border-strong: color-mix(in oklab, #eef0ea 24%, transparent);
+  --border-inverse: color-mix(in oklab, var(--neutral-950) 16%, transparent);
+  --status-success: var(--green-400);
+  --status-success-surface: #16301f;
+  --status-danger: var(--red-400);
+  --status-danger-surface: #3a1b17;
+  --status-warning: var(--amber-400);
+  --status-warning-surface: #3a2a10;
+  --status-conflict: var(--violet-400);
+  --status-conflict-surface: #261d42;
+  --status-info: var(--cobalt-400);
+  --status-info-surface: #18203a;
+  --status-neutral: var(--neutral-500);
+  --status-neutral-surface: var(--neutral-850);
+  --confidence-high: var(--green-400);
+  --confidence-mid: var(--amber-400);
+  --confidence-low: var(--red-400);
+  --confidence-track: var(--neutral-800);
+  --hue-sea: var(--hue-sea-300);
+  --hue-sunset: var(--hue-sunset-300);
+  --hue-quiet: var(--hue-quiet-300);
+  --hue-nightlife: var(--hue-nightlife-300);
+  --hue-dark: var(--hue-dark-300);
+  --hue-pets: var(--hue-pets-300);
+  --hue-height: var(--hue-height-300);
+  --hue-walk: var(--hue-walk-300);
+  --mark-side: var(--cobalt-400);
+  --mark-fact: var(--lime-400);
+  --map-land: var(--map-dark-land);
+  --map-water: var(--map-dark-water);
+  --map-water-line: var(--map-dark-water-line);
+  --map-park: var(--map-dark-park);
+  --map-sand: var(--map-dark-sand);
+  --map-building: var(--map-dark-building);
+  --map-building-line: var(--map-dark-building-line);
+  --map-road: var(--map-dark-road);
+  --map-road-casing: var(--map-dark-road-casing);
+  --map-rail: var(--map-dark-rail);
+  --map-label: var(--map-dark-label);
+  --map-road-major: var(--map-dark-road-major);
+  --map-contour: color-mix(in oklab, var(--map-dark-contour) 12%, transparent);
+  --map-sea: var(--map-dark-water);
+  --map-sea-dusk: var(--map-dark-sea-dusk);
+  --map-sea-night: var(--map-dark-sea-night);
+  --map-sky: var(--map-dark-sky);
+  --map-sky-dusk: var(--map-dark-sky-dusk);
+  --map-sky-night: var(--map-dark-sky-night);
+  --map-horizon: var(--map-dark-horizon);
+  --map-horizon-dusk: var(--map-dark-horizon-dusk);
+  --map-horizon-night: var(--map-dark-horizon-night);
+  --map-hill-shadow: var(--map-dark-hill-shadow);
+  --map-hill-highlight: var(--map-dark-hill-highlight);
+  --map-beach: var(--map-dark-sand);
+  --map-coast: var(--map-dark-water-line);
+  --map-highlight: var(--map-fact-line);
+  --map-label-halo: var(--neutral-950);
+  --map-hotel: var(--neutral-900);
+  --map-hotel-text: #eef0ea;
+  --map-hotel-selected: var(--cobalt-500);
+  --map-fact: var(--lime-400);
+  --map-fact-line: var(--lime-300);
+  --map-route: var(--cobalt-300);
+  --map-viewshed-line: var(--hue-sunset-300);
+  --map-noise: color-mix(in oklab, var(--hue-nightlife-300) 12%, transparent);
+  --mask-on: var(--neutral-0);
+  --surface-tint: color-mix(in oklab, currentColor 14%, transparent);
+  --surface-wash: color-mix(in oklab, currentColor 12%, var(--surface-raised));
+  --focus-ring: var(--cobalt-300);
+  --shadow-color: color-mix(in oklab, #000000 36%, transparent);
+  --shadow-color-strong: color-mix(in oklab, #000000 55%, transparent);
+  --scrollbar-thumb: color-mix(in oklab, #eef0ea 20%, transparent);
+  --scrollbar-thumb-hover: color-mix(in oklab, #eef0ea 36%, transparent);
 }
 
 :root {
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-pill: 9999px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
 }
 
 :root {
+  --mark-md: 32px;
+  --mark-lg: 72px;
+  --mark-xl: 144px;
+  --workspace-marker-width: 160px;
+  --workspace-sidebar: 420px;
+  --workspace-map-min: 420px;
+  --workspace-map-height: 560px;
+  --workspace-map-mobile: 520px;
+  --map-time-panel: 320px;
+  --space-60: 60px;
+  --space-96: 96px;
+  --space-80: 80px;
   --space-2: 2px;
   --space-4: 4px;
+  --space-6: 6px;
   --space-8: 8px;
   --space-12: 12px;
   --space-16: 16px;
@@ -131,7 +474,7 @@
 
   --space-page: var(--space-24);
   --space-page-wide: var(--space-32);
-  --space-section: var(--space-32);
+  --space-section: var(--space-48);
   --space-card: var(--space-20);
   --space-element: var(--space-12);
 
@@ -139,6 +482,7 @@
   --target-min: 44px;
   --control-height: 44px;
   --control-height-compact: 36px;
+  --control-height-hero: 56px;
   --icon-sm: 16px;
   --icon-md: 20px;
   --icon-lg: 24px;
@@ -147,34 +491,70 @@
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --scrollbar-size: 10px;
-  --scrollbar-gutter: 2px;
+  --scrollbar-gutter: 3px;
   --header-height: 64px;
   --state-min-height: 160px;
   --panel-min: 320px;
   --term-min: 160px;
   --prose-measure: 70ch;
   --field-max-width: 480px;
+  --field-min: 240px;
+  --badge-height: 24px;
+  --pin-height: 30px;
+  --pin-dot: 20px;
+  --thumb-size: 96px;
+  --workspace-detail: 400px;
+  --chip-dot: 26px;
+  --chip-static-height: 30px;
+  --chip-static-dot: 18px;
+  --workspace-panel: 400px;
+  --workspace-panel-compact: 360px;
+  --workspace-chat: 400px;
+  --workspace-chat-compact: 360px;
+  --chat-avatar: 32px;
+  --thumb-panel: 84px;
+  --select-layer-min: 200px;
+  --map-contour-width: 1px;
+  --map-sand-width: 6px;
+  --map-coast-width: 1.5px;
+  --map-building-stroke: 0.8px;
+  --map-casing-width: 9px;
+  --map-casing-major-width: 15px;
+  --map-road-width: 6.5px;
+  --map-road-major-width: 12px;
+  --lost-route-width: 4px;
+  --lost-route-dash: 0.5px 10px;
+  --lost-reveal-width: 16px;
+  --lost-start-stroke: 3px;
+  --lost-pin-stroke: 2px;
+  --lost-pin-dash: 4px 3px;
+  --chat-bubble-offset: 15%;
+  --composer-max: 9.5rem;
+  --map-legend-width: 260px;
+  --legend-swatch: 22px;
 }
 
 :root {
-  --font-sans:
-    "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sans);
   --font-mono:
     "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas,
     monospace;
   --font-features: "kern" 1;
   --font-numeric: tabular-nums;
 
-  --weight-regular: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
+  --weight-regular: 450;
+  --weight-medium: 560;
+  --weight-semibold: 650;
+  --weight-bold: 750;
+  --weight-black: 800;
 
+  --font-size-micro: 0.6875rem;
+  --line-height-micro: 1.35;
   --font-size-caption: 0.75rem;
-  --line-height-caption: 1.45;
+  --line-height-caption: 1.4;
   --font-size-label: 0.8125rem;
-  --line-height-label: 1.4;
+  --line-height-label: 1.35;
   --font-size-body-sm: 0.875rem;
   --line-height-body-sm: 1.45;
   --font-size-body: 1rem;
@@ -182,26 +562,48 @@
   --font-size-subheading: 1.125rem;
   --line-height-subheading: 1.35;
   --font-size-heading: 1.5rem;
-  --line-height-heading: 1.25;
-  --font-size-heading-lg: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-  --line-height-heading-lg: 1.15;
+  --line-height-heading: 1.2;
+  --font-size-heading-lg: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  --line-height-heading-lg: 1.08;
+  --font-size-display: clamp(2.5rem, 1.4rem + 4vw, 5.5rem);
+  --line-height-display: 0.98;
 
   --tracking-normal: 0;
-  --tracking-tight: -0.015em;
+  --tracking-tight: -0.025em;
+  --tracking-display: -0.045em;
+  --tracking-mono: -0.01em;
+  --tracking-caps: 0.06em;
 }
 
 :root {
+  --layer-base: 0;
   --layer-raised: 1;
   --layer-sticky: 10;
+  --layer-map-controls: 20;
   --layer-popover: 40;
   --layer-dialog: 50;
   --layer-toast: 55;
   --layer-tooltip: 60;
   --layer-skip-link: 70;
 
-  --shadow-ring: inset 0 0 0 var(--hairline) var(--border-strong);
+  --shadow-ring: inset 0 0 0 var(--hairline) var(--border-default);
+  --shadow-ring-subtle: inset 0 0 0 var(--hairline) var(--border-subtle);
+  --shadow-ring-strong: inset 0 0 0 var(--hairline) var(--border-strong);
+  --shadow-ring-focus: inset 0 0 0 var(--focus-ring-width) var(--focus-ring);
+  --shadow-ring-selected: inset 0 0 0 var(--focus-ring-width) var(--action-primary);
+  --shadow-ring-danger: inset 0 0 0 var(--focus-ring-width) var(--status-danger);
   --shadow-raised: 0 1px 2px var(--shadow-color);
-  --shadow-float: 0 1px 2px var(--shadow-color), 0 8px 24px var(--shadow-color);
+  --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
+  --shadow-overlay:
+    0 0 0 var(--hairline) var(--border-subtle), 0 16px 48px var(--shadow-color-strong);
+  --shadow-divider-top: inset 0 var(--hairline) 0 var(--border-subtle);
+  --shadow-divider-bottom: inset 0 calc(var(--hairline) * -1) 0 var(--border-subtle);
+  --shadow-divider-start: inset var(--hairline) 0 0 var(--border-subtle);
+  --shadow-divider-end: inset calc(var(--hairline) * -1) 0 0 var(--border-subtle);
+  --shadow-ring-current: inset 0 0 0 var(--focus-ring-width) currentColor;
+  --shadow-float-focus: var(--shadow-float), var(--shadow-ring-focus);
+  --shadow-raised-ring: var(--shadow-raised), var(--shadow-ring-subtle);
+  --shadow-pin: 0 0 0 var(--hairline) var(--border-default), 0 3px 10px var(--shadow-color);
 
   --opacity-stale: 0.55;
 }
@@ -210,6 +612,7 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-fold: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-linear: linear;
 
   --dur-instant: 80ms;
@@ -219,18 +622,26 @@
   --dur-base: 200ms;
   --dur-exit: 140ms;
   --dur-panel: 260ms;
+  --dur-panel-exit: 200ms;
   --dur-slow: 320ms;
+  --dur-reveal: 560ms;
+  --dur-fold: 720ms;
   --dur-draw: 900ms;
   --dur-spin: 800ms;
-  --dur-breathe: 2400ms;
+  --dur-breathe: 1600ms;
 
+  --path-length: 1000;
   --stagger: 40ms;
+  --stagger-roll: 18ms;
+  --stagger-unfold: 160ms;
+  --delay-unfold-mid: 400ms;
   --press-scale: 0.97;
   --press-scale-surface: 0.99;
   --enter-scale: 0.95;
   --shift-rise: 6px;
   --shift-anchor: 4px;
   --blur-soft: 2px;
+  --shift-toast: 24px;
 
   --delay-skeleton: 200ms;
   --hold-skeleton: 300ms;
@@ -238,14 +649,24 @@
   --reduced-fade: 160ms;
   --reduced-fade-exit: 110ms;
   --view-transition-limit: 900ms;
+  --delay-tooltip: 500ms;
+  --toast-life: 5000ms;
+  --toast-life-error: 10000ms;
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out), scale var(--dur-instant) var(--ease-out);
+    border-color var(--dur-fast) var(--ease-out), scale var(--dur-press) var(--ease-out);
   --transition-control-press:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out), scale var(--dur-press) var(--ease-out);
   --transition-fade: opacity var(--dur-base) var(--ease-out);
+  --transition-layer:
+    opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  --transition-reveal-in:
+    clip-path var(--dur-panel) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+  --transition-reveal-out:
+    clip-path var(--dur-exit) var(--ease-out), opacity var(--dur-exit) var(--ease-out);
+  --transition-press: scale var(--dur-press) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
@@ -254,7 +675,25 @@
   --motion-rise-in: kf-rise-in var(--dur-slow) var(--ease-out) both;
   --motion-swap-in: kf-swap-in var(--dur-fast) var(--ease-out) both;
   --motion-swap-out: kf-swap-out var(--dur-fast-exit) var(--ease-out) both;
+  --motion-atlas-in: kf-atlas-in var(--dur-panel) var(--ease-out) both;
+  --motion-compass-in: kf-compass-in var(--dur-panel) var(--ease-out) both;
   --motion-spin: kf-spin var(--dur-spin) var(--ease-linear) infinite;
+  --motion-anchor-in: kf-anchor-in var(--dur-base) var(--ease-out) both;
+  --motion-toast-in: kf-toast-in var(--dur-panel) var(--ease-out) both;
+  --motion-toast-out: kf-toast-out var(--dur-exit) var(--ease-out) both;
+  --motion-pin-in: kf-pin-in var(--dur-slow) var(--ease-out) both;
+  --motion-draw: kf-draw var(--dur-draw) var(--ease-in-out) both;
+  --motion-lost-draw: kf-draw var(--dur-draw) var(--ease-in-out) var(--dur-slow) both;
+  --motion-lost-pin: kf-pin-drop var(--dur-base) var(--ease-out)
+    calc(var(--dur-slow) + var(--dur-draw)) both;
+  --motion-fact-ping: kf-fact-ping var(--dur-draw) var(--ease-out) 2;
+  --motion-state-ping: kf-fact-ping var(--dur-draw) var(--ease-out) var(--dur-base) both;
+  --motion-state-in: kf-scale-in var(--dur-base) var(--ease-out) both;
+  --motion-unfold-side: kf-unfold-side var(--dur-fold) var(--ease-fold) both;
+  --motion-unfold-mid: kf-unfold-mid var(--dur-fold) var(--ease-fold) both;
+  --motion-fold-left: kf-fold-left var(--dur-breathe) var(--ease-fold) infinite;
+  --motion-fold-mid: kf-fold-mid var(--dur-breathe) var(--ease-fold) infinite;
+  --motion-fold-right: kf-fold-right var(--dur-breathe) var(--ease-fold) infinite;
   --motion-shimmer: kf-shimmer var(--dur-breathe) var(--ease-in-out) infinite;
 }
 
@@ -267,19 +706,35 @@
     --dur-base: 1ms;
     --dur-exit: 1ms;
     --dur-panel: 1ms;
+    --dur-panel-exit: 1ms;
     --dur-slow: 1ms;
+    --dur-reveal: 1ms;
+    --dur-fold: 1ms;
     --dur-draw: 1ms;
     --dur-spin: 1ms;
     --dur-breathe: 1ms;
     --stagger: 0ms;
+    --stagger-roll: 0ms;
+    --stagger-unfold: 0ms;
+    --delay-unfold-mid: 0ms;
+    --shift-toast: 0px;
     --press-scale: 1;
     --press-scale-surface: 1;
     --enter-scale: 1;
     --shift-rise: 0px;
     --shift-anchor: 0px;
     --blur-soft: 0px;
+    --motion-atlas-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-compass-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-spin: none;
+    --motion-lost-draw: none;
+    --motion-lost-pin: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-state-ping: none;
+    --motion-state-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
+    --motion-fold-left: none;
+    --motion-fold-mid: none;
+    --motion-fold-right: none;
   }
 
   [data-motion="fade"] {
@@ -291,6 +746,11 @@
     --motion-swap-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-swap-out: kf-fade-out var(--reduced-fade-exit) var(--ease-out) both;
   }
+}
+
+[data-input-source="keyboard"] {
+  --motion-atlas-in: none;
+  --motion-compass-in: none;
 }
 
 @keyframes kf-fade-in {
@@ -356,5 +816,139 @@
 
   50% {
     opacity: 0.6;
+  }
+}
+
+@keyframes kf-atlas-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes kf-compass-in {
+  from {
+    opacity: 0;
+    transform: rotate(-70deg) scale(var(--enter-scale));
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes kf-anchor-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-anchor) * -1)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--shift-toast)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(var(--shift-toast));
+  }
+}
+
+@keyframes kf-pin-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-rise) * -1)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-draw {
+  from {
+    stroke-dashoffset: var(--path-length, 1000);
+  }
+}
+
+@keyframes kf-fact-ping {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes kf-unfold-side {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-unfold-mid {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes kf-fold-left {
+  0%,
+  12% {
+    transform: scaleX(0);
+  }
+  40%,
+  70% {
+    transform: scaleX(1);
+  }
+  92%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-fold-mid {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  26%,
+  78% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes kf-fold-right {
+  0%,
+  20% {
+    transform: scaleX(0);
+  }
+  48%,
+  62% {
+    transform: scaleX(1);
+  }
+  86%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-pin-drop {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-rise) * -1)) scale(var(--enter-scale));
   }
 }
