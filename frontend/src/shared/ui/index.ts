@@ -25,6 +25,7 @@ export { TextArea, TextField } from "./forms/text-field/text-field"
 export { Card, type CardProps } from "./layout/card/card"
 export { Disclosure, type DisclosureProps } from "./layout/disclosure/disclosure"
 export { PageHeader, type PageHeaderProps } from "./layout/page-header/page-header"
+export { ResizeHandle, type ResizeHandleProps } from "./layout/resize-handle/resize-handle"
 export { ScrollArea } from "./layout/scroll-area/scroll-area"
 export {
   Button,

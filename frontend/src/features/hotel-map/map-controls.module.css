@@ -105,3 +105,7 @@
   border-block-end: var(--space-4) solid var(--map-hill-shadow);
   background-color: var(--map-park);
 }
+
+.hint {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}

@@ -32,10 +32,26 @@ function useBearing(map: RefObject<MapLibreMap | null>, ready: boolean) {
   return compass
 }
 
+function useFlat(map: RefObject<MapLibreMap | null>, ready: boolean) {
+  const [flat, setFlat] = useState(false)
+  useEffect(() => {
+    const instance = map.current
+    if (!ready || !instance) return
+    const update = () => setFlat(instance.getPitch() < 10)
+    update()
+    instance.on("pitchend", update)
+    return () => {
+      instance.off("pitchend", update)
+    }
+  }, [map, ready])
+  return flat
+}
+
 export function MapControls({ map, ready, disabled, onOverview }: MapControlsProps) {
   const { t } = useTranslation()
   const [legend, setLegend] = useState(false)
   const compass = useBearing(map, ready)
+  const flat = useFlat(map, ready)
   const layers = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     if (!legend) return
@@ -75,6 +91,22 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
       </div>
       <div className={styles.group}>
         <Button
+          variant="ghost"
+          iconOnly
+          icon="rotate-left"
+          className={styles.control}
+          title={t("explore:map.rotateLeft")}
+          disabled={disabled}
+          onClick={(event) =>
+            map.current?.easeTo({
+              bearing: (map.current?.getBearing() ?? 0) - 45,
+              duration: duration(event),
+            })
+          }
+        >
+          {t("explore:map.rotateLeft")}
+        </Button>
+        <Button
           ref={compass}
           variant="ghost"
           iconOnly
@@ -85,6 +117,36 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
           onClick={(event) => map.current?.easeTo({ bearing: 0, duration: duration(event) })}
         >
           {t("explore:map.north")}
+        </Button>
+        <Button
+          variant="ghost"
+          iconOnly
+          icon="rotate-right"
+          className={styles.control}
+          title={t("explore:map.rotateRight")}
+          disabled={disabled}
+          onClick={(event) =>
+            map.current?.easeTo({
+              bearing: (map.current?.getBearing() ?? 0) + 45,
+              duration: duration(event),
+            })
+          }
+        >
+          {t("explore:map.rotateRight")}
+        </Button>
+        <Button
+          variant="ghost"
+          iconOnly
+          icon="tilt"
+          className={styles.control}
+          title={flat ? t("explore:map.tilt") : t("explore:map.flat")}
+          aria-pressed={!flat}
+          disabled={disabled}
+          onClick={(event) =>
+            map.current?.easeTo({ pitch: flat ? 60 : 0, duration: duration(event) })
+          }
+        >
+          {flat ? t("explore:map.tilt") : t("explore:map.flat")}
         </Button>
       </div>
       <div className={styles.group}>
@@ -154,6 +216,8 @@ function MapLegend({ open }: { readonly open: boolean }) {
           </li>
         ))}
       </ul>
+      <p className={styles.legendTitle}>{t("explore:map.controlsTitle")}</p>
+      <p className={styles.hint}>{t("explore:map.controlsHint")}</p>
     </section>
   )
 }

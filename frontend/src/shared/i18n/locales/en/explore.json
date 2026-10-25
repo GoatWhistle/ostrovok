@@ -4,7 +4,7 @@
     "you": "You",
     "selected": "Selected hotel: {{name}}",
     "error": "The search did not complete",
-    "placeholder": "A quiet room with a sunset view, near the sea",
+    "placeholder": "Describe the hotel in words",
     "send": "Send",
     "log": "Search conversation",
     "newSearch": "New search",
@@ -75,7 +75,13 @@
     "pinNoData": "{{name}}: no data for your wishes yet",
     "cluster": "{{count, number}} hotels here. Zoom in to see them",
     "clusterCount": "{{count, number}}",
-    "loading": "Loading the map"
+    "loading": "Loading the map",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "tilt": "3D tilt",
+    "flat": "Top view",
+    "controlsTitle": "How to move the map",
+    "controlsHint": "Drag the map to move it. Right mouse button or Ctrl with dragging rotates and tilts the camera. The mouse wheel zooms; on a phone use two fingers."
   },
   "weather": {
     "scene": "Sun and weather",
@@ -297,6 +303,8 @@
     "emptyText": "Describe the hotel you need in the chat. Matching hotels show up here, and the map shows why.",
     "noneTitle": "No hotels like that",
     "noneText": "Refine the request in the chat: soften the conditions or describe them differently.",
-    "back": "All hotels"
+    "back": "All hotels",
+    "resizePanel": "Resize the hotels panel",
+    "resizeChat": "Resize the chat"
   }
 }

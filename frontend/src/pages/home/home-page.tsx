@@ -1,12 +1,14 @@
+import type { CSSProperties } from "react"
 import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
+import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { Swap, usePresence } from "@/shared/motion"
-import { Button, ButtonLink, ScrollArea, Segmented } from "@/shared/ui"
+import { Button, ButtonLink, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
 import styles from "./home-page.module.css"
 
 export function HomePage() {
@@ -15,9 +17,26 @@ export function HomePage() {
   const state = useHotelWorkspace()
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
-  const compared = state.hotelId !== undefined && state.compared.includes(state.hotelId)
   const compareDock = usePresence(state.compared.length >= 2)
   const limitDock = usePresence(state.limitReached)
+  const panelSize = useResizable({
+    storageKey: "factmap-panel-width",
+    edge: "end",
+    initial: "--workspace-panel",
+    min: "--workspace-panel-min",
+    max: "--workspace-panel-max",
+  })
+  const chatSize = useResizable({
+    storageKey: "factmap-chat-width",
+    edge: "start",
+    initial: "--workspace-chat",
+    min: "--workspace-panel-min",
+    max: "--workspace-panel-max",
+  })
+  const sizes = {
+    ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
+    ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
+  } as CSSProperties
   return (
     <div className={styles.page}>
       <div className={styles.tabs}>
@@ -32,55 +51,17 @@ export function HomePage() {
           onChange={state.setView}
         />
       </div>
-      <div className={styles.workspace} data-view={state.view}>
+      <div className={styles.workspace} data-view={state.view} style={sizes}>
         <aside className={styles.panel} aria-label={t("explore:panel.title")}>
+          <ResizeHandle
+            label={t("explore:panel.resizePanel")}
+            edge="end"
+            current={panelSize.width ?? panelSize.min}
+            resizable={panelSize}
+          />
           <Swap swapKey={state.hotelId ? "hotel" : "list"} as="div" className={styles.swap}>
             {state.hotelId ? (
-              <>
-                <div className={styles.bar}>
-                  <Button
-                    variant="ghost"
-                    size="compact"
-                    icon="chevron-left"
-                    onClick={state.closeHotel}
-                  >
-                    {t("explore:panel.back")}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="compact"
-                    icon="compare"
-                    aria-pressed={compared}
-                    onClick={() => state.hotelId && state.compare(state.hotelId)}
-                  >
-                    {compared ? t("explore:results.removeCompare") : t("explore:results.compare")}
-                  </Button>
-                </div>
-                <ScrollArea
-                  ref={state.detailRef}
-                  tabIndex={-1}
-                  className={styles.scroll}
-                  aria-label={t("explore:details.title")}
-                >
-                  <Swap swapKey={state.factId ?? state.hotelId} as="div">
-                    {state.factId ? (
-                      <FactDetails
-                        hotelId={state.hotelId}
-                        factId={state.factId}
-                        onBack={state.closeFact}
-                      />
-                    ) : (
-                      <HotelDetails
-                        hotelId={state.hotelId}
-                        matched={selected?.matched ?? []}
-                        onProperty={(item) => selected && state.property(selected, item)}
-                        onFact={state.fact}
-                        onPreview={(item) => selected && state.preview(selected, item)}
-                      />
-                    )}
-                  </Swap>
-                </ScrollArea>
-              </>
+              <SelectedHotel state={state} />
             ) : (
               <ScrollArea className={styles.scroll}>
                 <SearchResults
@@ -109,6 +90,12 @@ export function HomePage() {
           />
         </div>
         <div className={styles.chat}>
+          <ResizeHandle
+            label={t("explore:panel.resizeChat")}
+            edge="start"
+            current={chatSize.width ?? chatSize.min}
+            resizable={chatSize}
+          />
           <SearchChat
             messages={state.messages}
             search={state.search}
@@ -147,5 +134,53 @@ export function HomePage() {
         </p>
       ) : null}
     </div>
+  )
+}
+
+type Workspace = ReturnType<typeof useHotelWorkspace>
+
+function SelectedHotel({ state }: { readonly state: Workspace }) {
+  const { t } = useTranslation()
+  if (!state.hotelId) return null
+  const selected = state.results.find((item) => item.hotel.id === state.hotelId)
+  const compared = state.compared.includes(state.hotelId)
+  const hotelId = state.hotelId
+  return (
+    <>
+      <div className={styles.bar}>
+        <Button variant="ghost" size="compact" icon="chevron-left" onClick={state.closeHotel}>
+          {t("explore:panel.back")}
+        </Button>
+        <Button
+          variant="ghost"
+          size="compact"
+          icon="compare"
+          aria-pressed={compared}
+          onClick={() => state.compare(hotelId)}
+        >
+          {compared ? t("explore:results.removeCompare") : t("explore:results.compare")}
+        </Button>
+      </div>
+      <ScrollArea
+        ref={state.detailRef}
+        tabIndex={-1}
+        className={styles.scroll}
+        aria-label={t("explore:details.title")}
+      >
+        <Swap swapKey={state.factId ?? hotelId} as="div">
+          {state.factId ? (
+            <FactDetails hotelId={hotelId} factId={state.factId} onBack={state.closeFact} />
+          ) : (
+            <HotelDetails
+              hotelId={hotelId}
+              matched={selected?.matched ?? []}
+              onProperty={(item) => selected && state.property(selected, item)}
+              onFact={state.fact}
+              onPreview={(item) => selected && state.preview(selected, item)}
+            />
+          )}
+        </Swap>
+      </ScrollArea>
+    </>
   )
 }

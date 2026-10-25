@@ -1,0 +1,55 @@
+.handle {
+  position: absolute;
+  inset-block: 0;
+  z-index: var(--layer-sticky);
+  inline-size: var(--target-min);
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.handle[data-edge="end"] {
+  inset-inline-start: calc(100% - var(--resize-overlap));
+}
+
+.handle[data-edge="start"] {
+  inset-inline-end: calc(100% - var(--resize-overlap));
+}
+
+.handle::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inline-size: var(--resize-glow);
+  background-color: var(--resize-tint);
+  opacity: 0;
+  transition: var(--transition-fade);
+}
+
+.handle[data-edge="end"]::after {
+  inset-inline-start: calc(var(--resize-overlap) - var(--resize-glow) / 2);
+}
+
+.handle[data-edge="start"]::after {
+  inset-inline-end: calc(var(--resize-overlap) - var(--resize-glow) / 2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .handle:hover::after {
+    opacity: 1;
+  }
+}
+
+.handle[data-dragging="true"]::after,
+.handle:focus-visible::after {
+  opacity: 1;
+}
+
+.handle:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 63.99rem) {
+  .handle {
+    display: none;
+  }
+}

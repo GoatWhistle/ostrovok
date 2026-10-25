@@ -11,11 +11,14 @@
 
 .workspace {
   display: grid;
-  grid-template-columns: var(--workspace-panel) minmax(0, 1fr) var(--workspace-chat);
+  grid-template-columns:
+    var(--panel-width, var(--workspace-panel)) minmax(0, 1fr)
+    var(--chat-width, var(--workspace-chat));
   min-block-size: 0;
 }
 
 .panel {
+  position: relative;
   display: grid;
   min-block-size: 0;
   min-inline-size: 0;
@@ -58,6 +61,7 @@
 }
 
 .chat {
+  position: relative;
   display: grid;
   min-block-size: 0;
   min-inline-size: 0;
@@ -98,8 +102,8 @@
 @media (max-width: 89.99rem) {
   .workspace {
     grid-template-columns:
-      var(--workspace-panel-compact) minmax(0, 1fr)
-      var(--workspace-chat-compact);
+      var(--panel-width, var(--workspace-panel-compact)) minmax(0, 1fr)
+      var(--chat-width, var(--workspace-chat-compact));
   }
 }
 
