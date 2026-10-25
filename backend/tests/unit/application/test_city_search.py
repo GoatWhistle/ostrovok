@@ -7,6 +7,7 @@ from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, ParsedQuery
@@ -14,7 +15,9 @@ from hotel_agent.domain.services.scoring import MatchQuality
 
 
 def search(
-    parsed: ParsedQuery, city_bbox: tuple[float, float, float, float] | None = None
+    parsed: ParsedQuery,
+    city_bbox: tuple[float, float, float, float] | None = None,
+    areas: SearchAreasPort | None = None,
 ) -> tuple[SearchHotels, SimpleNamespace, SimpleNamespace, MagicMock]:
     llm = SimpleNamespace(parse_query=AsyncMock(return_value=parsed))
     regions = SimpleNamespace(city_bbox=AsyncMock(return_value=city_bbox))
@@ -43,7 +46,10 @@ def search(
     scope.__aexit__ = AsyncMock(return_value=None)
     clock = SimpleNamespace(now=lambda: datetime(2026, 10, 25, tzinfo=UTC))
     use_case = SearchHotels(
-        cast(LLMPort, llm), cast(UnitOfWorkFactory, lambda: scope), cast(ClockPort, clock)
+        cast(LLMPort, llm),
+        cast(UnitOfWorkFactory, lambda: scope),
+        cast(ClockPort, clock),
+        areas=areas,
     )
     return use_case, regions, hotels, scope
 
@@ -93,3 +99,34 @@ async def test_unindexed_city_is_reported_without_searching_all_russia() -> None
     assert result.results == ()
     assert result.parsed.unsupported_region == "Несуществующий"
     hotels.list_hotels.assert_not_awaited()
+
+
+async def test_named_region_searches_inside_boundary_without_requiring_city() -> None:
+    area = SimpleNamespace(bbox=(46.0, 41.0, 48.0, 44.0), contains=lambda point: point[0] > 46)
+    use_case, regions, hotels, _ = search(
+        ParsedQuery(intents=(), unmatched_terms=("высоко в горах",), location_hint="Дагестан"),
+        areas=cast(SearchAreasPort, SimpleNamespace(resolve=lambda name: area)),
+    )
+    inside = SearchHotelRecord(
+        id="dagestan",
+        region_id="russia",
+        name="Горный отель",
+        location=(46.5, 42.0),
+        stars=None,
+        building_id=None,
+        height_m=None,
+        levels=None,
+        footprint=None,
+    )
+    outside = hotels.list_hotels.return_value[0]
+    hotels.list_hotels.return_value = [inside, outside]
+
+    result = await use_case(
+        "хочу отель высоко в горах в Дагестане, любой город", "russia", None, 20
+    )
+
+    assert not result.parsed.needs_clarification
+    assert result.parsed.unsupported_region is None
+    assert [row.hotel.id for row in result.results] == ["dagestan"]
+    hotels.list_hotels.assert_awaited_once_with("russia", area.bbox)
+    regions.city_bbox.assert_not_awaited()

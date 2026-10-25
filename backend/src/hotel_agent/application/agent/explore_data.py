@@ -67,6 +67,7 @@ class DataExplorer:
                             "city": city,
                             "candidate_count": len(tools.hotels),
                             "bbox": tools.bbox,
+                            "allow_expand": allow_expand,
                             "remaining_steps": 5 - index,
                             "observations": observations,
                         },

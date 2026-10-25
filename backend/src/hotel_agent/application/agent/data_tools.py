@@ -82,7 +82,9 @@ class DataTools:
 
     async def _find(self, radius: float) -> dict[str, Any]:
         if not self._allow_expand:
-            raise ValueError("The user supplied a bounding box; expansion is not allowed")
+            raise ValueError(
+                "The search has an explicit geographic boundary; expansion is not allowed"
+            )
         if not 1000 <= radius <= 50000 or not self.hotels:
             raise ValueError("Search radius must be 1000–50000 m with a known city")
         async with self._uow() as uow:

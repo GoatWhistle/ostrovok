@@ -7,11 +7,13 @@ from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
+from hotel_agent.application.geographic_extent import intersection
 from hotel_agent.application.nearby_matching import nearby_intent, nearby_key, nearby_record
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
 from hotel_agent.domain.entities import Fact
@@ -42,12 +44,14 @@ class SearchHotels:
         clock: ClockPort,
         place_lookup: PlaceLookupPort | None = None,
         explorer: DataExplorer | None = None,
+        areas: SearchAreasPort | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
         self._clock = clock
         self._place_lookup = place_lookup
         self._explorer = explorer
+        self._areas = areas
 
     async def __call__(
         self,
@@ -74,23 +78,27 @@ class SearchHotels:
         if parsed.needs_clarification or not location:
             parsed = replace(parsed, location_hint=location, needs_clarification=True)
             return _empty(query, region, bbox, parsed)
+        area = self._areas.resolve(location) if self._areas else None
+        allow_expand = allow_expand and area is None
         async with self._uow() as uow:
             if location.casefold() in {"сочи", "sochi", "адлер", "adler"}:
                 region = "sochi"
             else:
                 region = "russia"
-                city_bbox = await uow.regions.city_bbox(location)
+                city_bbox = area.bbox if area else await uow.regions.city_bbox(location)
                 if city_bbox is None:
                     parsed = replace(parsed, unsupported_region=location)
                     return _empty(query, region, bbox, parsed)
                 if bbox is not None:
-                    overlap = _intersection(bbox, city_bbox)
+                    overlap = intersection(bbox, city_bbox)
                     if overlap is None:
                         return _empty(query, region, bbox, parsed)
                     bbox = overlap
                 else:
                     bbox = city_bbox
             hotels = await uow.search.list_hotels(region, bbox)
+            if area:
+                hotels = [hotel for hotel in hotels if area.contains(hotel.location)]
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         if self._explorer is not None and parsed.unmatched_terms:
             explored = await self._explorer(
@@ -217,14 +225,6 @@ def _empty(
     return SearchOutcome(
         query_id=hashlib.sha256(fingerprint).hexdigest()[:16], parsed=parsed, results=()
     )
-
-
-def _intersection(
-    first: tuple[float, float, float, float], second: tuple[float, float, float, float]
-) -> tuple[float, float, float, float] | None:
-    west, south = max(first[0], second[0]), max(first[1], second[1])
-    east, north = min(first[2], second[2]), min(first[3], second[3])
-    return (west, south, east, north) if west <= east and south <= north else None
 
 
 def _best_facts(rows: Sequence[SearchFactRecord]) -> dict[str, dict[str, Fact]]:

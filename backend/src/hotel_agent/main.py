@@ -6,6 +6,7 @@ from fastapi import FastAPI
 
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
+from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
@@ -58,6 +59,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             logger,
             CountryBoundary(config.seed_dir / "russia-boundary.geojson"),
         ),
+        SearchAreas(config.seed_dir / "russia-admin1.geojson"),
     )
     app.include_router(
         api_router_v1(

@@ -1,6 +1,6 @@
 # Session state
 
-Updated: 2026-10-25, Europe/Moscow
+Updated: 2026-10-26, Europe/Moscow
 
 ## Explicit user instructions
 
@@ -73,12 +73,10 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Ветка `feat/hotel-agent-mvp`: слита `feat/satellite-building-texture` (`8e4d267`) с актуальным MVP `92c454f`. Сохранены изменения frontend до `afa5953` и новый backend. Прежнее состояние обеих веток: [архив](../work/building-texture/merge-session-origin.md).
-- Текстура на карте только у выбранного отеля по контуру и высоте API; соседние здания обычные. Сохранены showcase/orbit и атрибут выбранной текстуры. [Ревью ship и проверки](../work/building-texture/finish-review.md).
-- Backend :8000, основной стенд :8080. Отдельная проверенная сборка текстур :5182. Конфликты SESSION объединяют все инструкции дословно.
+- Ветка `feat/hotel-agent-mvp`, исходный SHA этой задачи `9917e11` (включает текстуры). Исправлен запрос про горы в Дагестане: модель принимает регион, поиск фильтрует полигоны Natural Earth Admin 1; агент измеряет DEM при запросе. Стенд :8080 обновлён. [План, результаты и проверки](../work/evals/dagestan-plan.md), `dagestan-fresh.json`, `dagestan-context.json`, `dagestan-links.json`.
+- Два живых запроса прошли; исходный чат `29180a98-3251-4367-ae43-107698605da3` уже содержит новую выдачу. Backend: 287 unit/contract/integration, Ruff, mypy, import-linter прошли. Подробности прежнего состояния и все числа [в архиве](../work/session-state-2026-10-26-regions.md).
 
 ## Next actions and pitfalls
 
-- После разрешения конфликтов npm verify прошёл: 36 правил, TypeScript/Biome, 320 тестов и build. Выбор/снятие текстуры проверены на живом API в объединённом интерфейсе 1440/375 px: ошибок JS и переполнения нет. [Отчёт](../work/building-texture/merge-browser-check.json).
-- Материал условный, крыша плоская, неизвестный контур/высота не выдумываются. Ограничения backend и 50 запросов [сохранены](../work/building-texture/merge-session-origin.md).
+- Остальные ошибки 50 запросов не считаются исправленными. Границы 1:10m, DEM оценочный, лимит измерения 500 отелей, инвентаризация номеров неполна.
 - SESSION превышает целевой размер из-за защищённых пользовательских инструкций, сохранённых дословно.
