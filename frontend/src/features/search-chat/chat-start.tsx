@@ -1,11 +1,20 @@
-import { useId } from "react"
-import { useTranslation } from "@/shared/i18n"
+import { useId, useState } from "react"
+import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { useFirstVisit } from "@/shared/motion"
 import { BrandMark, Chip, characteristicHue, characteristicIcon } from "@/shared/ui"
 import { ChatComposer } from "./chat-composer"
-import { SUGGESTIONS } from "./chat-greeting"
 import styles from "./chat-start.module.css"
 import { useTypedExample } from "./use-typed-example"
+
+const START_SUGGESTIONS: readonly { readonly key: string; readonly label: MessageKey }[] = [
+  { key: "sunset_view", label: "explore:chat.suggestSunset" },
+  { key: "distance_to_sea", label: "explore:chat.suggestWalk" },
+  { key: "noise_level", label: "explore:chat.suggestQuiet" },
+  { key: "pets_policy", label: "explore:chat.suggestPets" },
+  { key: "bars_nearby", label: "explore:chat.suggestBars" },
+  { key: "building_height", label: "explore:chat.suggestHigh" },
+  { key: "blackout_curtains", label: "explore:chat.suggestBlackout" },
+]
 
 export interface ChatStartProps {
   readonly pending: boolean
@@ -16,14 +25,15 @@ export function ChatStart({ pending, onSend }: ChatStartProps) {
   const { t } = useTranslation()
   const titleId = useId()
   const firstVisit = useFirstVisit("factmap-start")
+  const [unfold, setUnfold] = useState(0)
   const typed = useTypedExample(
     [t("explore:chat.example1"), t("explore:chat.example2"), t("explore:chat.example3")],
     pending,
   )
   return (
     <section className={styles.card} aria-labelledby={titleId}>
-      <div className={styles.lockup}>
-        <BrandMark size="md" motion={firstVisit ? "enter" : "still"} />
+      <div className={styles.lockup} onPointerEnter={() => setUnfold((count) => count + 1)}>
+        <BrandMark key={unfold} size="lg" motion={firstVisit || unfold > 0 ? "enter" : "still"} />
         <span className={styles.word}>{t("common:app.wordmark")}</span>
       </div>
       <h1 id={titleId} className={styles.title}>
@@ -34,12 +44,13 @@ export function ChatStart({ pending, onSend }: ChatStartProps) {
         <ChatComposer pending={pending} placeholder={typed.text} onSend={onSend} />
       </div>
       <div className={styles.chips}>
-        {SUGGESTIONS.map((item) => (
+        {START_SUGGESTIONS.map((item) => (
           <Chip
             key={item.key}
             icon={characteristicIcon(item.key)}
             hue={characteristicHue(item.key)}
             label={t(item.label)}
+            size="large"
             onClick={() => onSend(t(item.label))}
           />
         ))}

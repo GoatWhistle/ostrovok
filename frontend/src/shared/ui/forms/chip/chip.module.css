@@ -19,6 +19,17 @@
   inset-inline: 0;
 }
 
+.large {
+  min-block-size: var(--control-height);
+  padding-inline: var(--space-6) var(--space-16);
+  gap: var(--space-8);
+  font-size: var(--font-size-body-sm);
+}
+
+.large::before {
+  inset-block: 0;
+}
+
 .dot {
   display: grid;
   place-items: center;
@@ -35,6 +46,11 @@
 .still .dot {
   inline-size: var(--chip-static-dot);
   block-size: var(--chip-static-dot);
+}
+
+.large .dot {
+  inline-size: var(--chip-dot-large);
+  block-size: var(--chip-dot-large);
 }
 
 .chip[aria-pressed="true"],
