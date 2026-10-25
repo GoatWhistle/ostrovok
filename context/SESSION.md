@@ -48,9 +48,11 @@ Updated: 2026-10-25, Europe/Moscow
 
 то есь надо еще поддержку чата и контекста сделать. Так же в карточке отеля надо показывать всю его информацию. Какие там есть номера, сколько стоят, на каком этаже, с какой стороны, что включено, может краткое саммари по отелю делать. Также рисуй все здания рядом в 3д».
 - 2026-10-25: «посмотри логи последнего запроса. Почему не работает».
+- 2026-10-25: «Надо еще брать данные по отелям, номерам, услугам. Желательно еще знать на каком этаже номер, что в него включено. Возможно есть ли там бассейн, все в включено и тп. Желательно брать апишку, чтобы понимать какие номера свободны и на какой день».
 
 ## Current state
 
+- Branch `feat/hotel-agent-mvp`, supplier-offers commit `bb03302` (Git HEAD while updating this note). ETG/RateHawk Hotelpage adapter, verified hotel-ID mapping table and date-based `/hotels/{id}/offers` are implemented. RU/EN card selects dates and guest count; no ETG keys or mappings are present, so stand returns honest `provider_unavailable`. Static Content API sync and pool/room services remain pending source access. Browser 375/1440 px checked; 10/10 Playwright; frontend verify 36/310/build; backend 232 tests, Ruff/mypy/import-linter. See `work/research/hotel-inventory.md`.
 - Branch `feat/hotel-agent-mvp`, timeout-fix commit `113ac67` (Git HEAD while updating this note). Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend rebuilt after retry fix.
 - Added PostgreSQL chat history, contextual query rewrite, RU/EN answers grounded in search results; right chat, left recommendations and selected hotel card, center map. Card reads real rooms/facts and shows honest empty state because `rooms` has 0 rows. Nearby buildings in 350 m are all extruded; OSM floor heights and estimated fallback are marked.
 - Live stand: initial query returned 20 shown candidates; follow-up retained three wishes; GET restored four messages. Scene for `n10058556917`: 512 neighboring buildings, 512 volumes, 161 with OSM levels. Prior `work/evals/search-22-results.json`: 22 search queries, 16 with results.
@@ -58,6 +60,7 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Next actions and pitfalls
 
+- Await provider name and partner credentials (request sent asynchronously). Do not use Yandex LLM key as hotel supplier key. For ETG, obtain Content API permission, verify OSM-to-ETG hotel mappings, then sync hotel/room/amenity catalog offline; only then live offers can appear. `rg_ext.floor` is floor type, not a numeric room floor. Do not fabricate exact floor, pool or all-inclusive.
 - Timeout fix committed and pushed. If user provides the exact failed message, replay it through the live stand. Watch for a room/pricing source answer and connect it if provided.
 - User was asked asynchronously for a source of room inventory and prices; no answer received. Do not invent or seed rooms. Current UI displays unavailable fields.
 - One transient Yandex ConnectError occurred on the first live chat request; a single automatic retry was added and tested. Failed send preserves draft. Secrets remain only in ignored `.env`.
