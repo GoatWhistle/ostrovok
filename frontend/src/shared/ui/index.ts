@@ -32,6 +32,12 @@ export { PageHeader, type PageHeaderProps } from "./layout/page-header/page-head
 export { ResizeHandle, type ResizeHandleProps } from "./layout/resize-handle/resize-handle"
 export { ScrollArea } from "./layout/scroll-area/scroll-area"
 export {
+  SettingsFooter,
+  SettingsMenu,
+  type SettingsMenuProps,
+  SettingsRow,
+} from "./layout/settings-menu/settings-menu"
+export {
   Button,
   type ButtonProps,
   type ButtonSize,

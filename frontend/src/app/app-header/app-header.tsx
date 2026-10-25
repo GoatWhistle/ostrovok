@@ -1,9 +1,16 @@
 import { NavLink } from "react-router"
 import { useHealth } from "@/entities/health"
 import { LocaleSwitch } from "@/features/locale-switch"
-import { ThemeSwitch } from "@/features/theme-switch"
+import { ThemeChoice } from "@/features/theme-switch"
 import { useTranslation } from "@/shared/i18n"
-import { BrandMark, Icon, StatusBadge, type StatusTone } from "@/shared/ui"
+import {
+  BrandMark,
+  Icon,
+  SettingsMenu,
+  SettingsRow,
+  StatusBadge,
+  type StatusTone,
+} from "@/shared/ui"
 import styles from "./app-header.module.css"
 
 export function AppHeader() {
@@ -35,8 +42,14 @@ export function AppHeader() {
             </StatusBadge>
           </span>
         )}
-        <LocaleSwitch />
-        <ThemeSwitch />
+        <SettingsMenu label={t("explore:landing.settings")}>
+          <SettingsRow label={t("explore:landing.language")}>
+            <LocaleSwitch />
+          </SettingsRow>
+          <SettingsRow label={t("explore:landing.theme")}>
+            <ThemeChoice />
+          </SettingsRow>
+        </SettingsMenu>
       </div>
     </header>
   )
