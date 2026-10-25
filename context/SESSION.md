@@ -47,17 +47,19 @@ Updated: 2026-10-25, Europe/Moscow
 и так же слева в этой плашке при выбора отеля будет его карточка высвечиваться
 
 то есь надо еще поддержку чата и контекста сделать. Так же в карточке отеля надо показывать всю его информацию. Какие там есть номера, сколько стоят, на каком этаже, с какой стороны, что включено, может краткое саммари по отелю делать. Также рисуй все здания рядом в 3д».
+- 2026-10-25: «посмотри логи последнего запроса. Почему не работает».
 
 ## Current state
 
-- Branch `feat/hotel-agent-mvp`, implementation commit `c81a679` (Git HEAD while updating this session). Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend and frontend rebuilt and healthy.
+- Branch `feat/hotel-agent-mvp`, Git HEAD before timeout fix `5ccfbd5`. Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend rebuilt after retry fix.
 - Added PostgreSQL chat history, contextual query rewrite, RU/EN answers grounded in search results; right chat, left recommendations and selected hotel card, center map. Card reads real rooms/facts and shows honest empty state because `rooms` has 0 rows. Nearby buildings in 350 m are all extruded; OSM floor heights and estimated fallback are marked.
 - Live stand: initial query returned 20 shown candidates; follow-up retained three wishes; GET restored four messages. Scene for `n10058556917`: 512 neighboring buildings, 512 volumes, 161 with OSM levels. Prior `work/evals/search-22-results.json`: 22 search queries, 16 with results.
-- `npm run verify`: 36 rules, 310 tests, build. Backend: Ruff, mypy, import-linter, 225 tests. Full Playwright: 10/10, including 1440/375/320, both themes/languages, long text. No browser JS errors or horizontal overflow in manual live checks.
+- `npm run verify`: 36 rules, 310 tests, build. Backend after timeout fix: Ruff, mypy, import-linter, 226 tests. Full Playwright from prior turn: 10/10, including 1440/375/320, both themes/languages, long text.
 
 ## Next actions and pitfalls
 
-- Push implementation and session commits to `origin/feat/hotel-agent-mvp`; watch for a room/pricing source answer and connect it if provided. Stand was rebuilt and smoke tested after final code changes.
+- Commit and push timeout fix after final checks. If user provides the exact failed message, replay it through the live stand. Watch for a room/pricing source answer and connect it if provided.
 - User was asked asynchronously for a source of room inventory and prices; no answer received. Do not invent or seed rooms. Current UI displays unavailable fields.
 - One transient Yandex ConnectError occurred on the first live chat request; a single automatic retry was added and tested. Failed send preserves draft. Secrets remain only in ignored `.env`.
+- Последний пользовательский POST `/chat/messages` в 09:49:45 UTC завершился 503 после 30-секундного `ReadTimeout` Yandex Cloud. Запрос не сохранился. Добавлен повтор `ReadTimeout`; тест сначала падал, после правки проходит. Контрольный живой запрос через frontend вернул 200 за 3,66 с. Точный текст неуспешного сообщения не логируется; пользователь был запрошен асинхронно.
 - Бюджет SESSION 6000 символов превышен из-за защищённых дословных инструкций пользователя; их не сокращать.

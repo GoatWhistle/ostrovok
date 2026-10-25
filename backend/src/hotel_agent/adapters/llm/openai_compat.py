@@ -197,11 +197,19 @@ class OpenAICompatLLM:
                 response = await self._client.post("/chat/completions", json=request)
                 response.raise_for_status()
                 return content_of(response.json())
-            except httpx.ConnectError as error:
+            except (httpx.ConnectError, httpx.ReadTimeout) as error:
                 if attempt == 0:
+                    self._logger.warning(
+                        "llm_request_retry",
+                        provider=self.provider,
+                        cause=type(error).__name__,
+                        response="structured" if response_format is not None else "text",
+                    )
                     await asyncio.sleep(0.2)
                     continue
-                raise ModelFailure("Language model is unreachable: ConnectError") from error
+                raise ModelFailure(
+                    f"Language model is unreachable: {type(error).__name__}"
+                ) from error
             except httpx.HTTPStatusError as error:
                 raise ModelFailure(
                     f"Language model returned HTTP {error.response.status_code}"
