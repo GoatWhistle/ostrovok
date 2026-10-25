@@ -84,7 +84,7 @@ try {
         await run.clear()
         await run.choose(1)
         await run.textured(1)
-        await run.page.waitForTimeout(500)
+        await run.page.waitForLoadState("networkidle")
         const screenshot = `work/building-texture/map-${width}-${locale}-${theme}.png`
         await run.page.screenshot({ path: screenshot, fullPage: true })
         const overflow = await run.page.evaluate(() => document.documentElement.scrollWidth > innerWidth)
@@ -103,6 +103,7 @@ try {
     await run.page.getByText(run.copy.map.textureUnavailable, { exact: true }).waitFor()
     assert.equal(await run.page.locator("[data-textured-hotel]").count(), 0)
     assert.equal(await run.page.evaluate(() => window.textureProbe.live.size), 0)
+    await run.page.waitForLoadState("networkidle")
     await run.page.screenshot({ path: `work/building-texture/map-${mode}.png`, fullPage: true })
     assert.deepEqual(run.errors, [])
     reports.push({ scenario: mode, standardVolumeRetained: true, activeTexturedPrograms: 0, errors: run.errors })

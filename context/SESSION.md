@@ -68,9 +68,9 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Ветка `feat/satellite-building-texture`, отдельный worktree `/Users/savelij/.codex/worktrees/1e4a/o-hack`, исходный GLB в `49af5b3`; свидетельства MVP синхронизированы с `b957c55` без изменений исходного checkout.
+- Ветка `feat/satellite-building-texture`, отдельный worktree `/Users/savelij/.codex/worktrees/1e4a/o-hack`, код карты `01a033f`, исходный GLB `49af5b3`; свидетельства MVP синхронизированы с `b957c55` без изменений исходного checkout.
 - В карте приложения текстура натягивается только на выбранный отель по его контуру и высоте API. Смена/снятие выбора освобождает старый GPU-слой. Соседние здания обычные. [Решение](../docs/design-decisions.md), [проверки](../work/building-texture/README.md).
-- Приложение: `http://127.0.0.1:5181/`, подключено к работающему backend :8000. Старое GLB-превью :8766 сохранено отдельно.
+- Приложение dev :5181, production `http://127.0.0.1:5182/`, оба используют живой backend :8000. GLB-превью :8766 отдельно. Ревью: `ship`; [отчёт](../work/building-texture/finish-review.md).
 
 ## Next actions and pitfalls
 
