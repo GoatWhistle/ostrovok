@@ -1,9 +1,21 @@
 .history {
+  flex: none;
   box-shadow: var(--shadow-divider-bottom);
+  transform-origin: top center;
+  transition: var(--transition-layer);
 }
 
-.history[hidden] {
-  display: none;
+.history[data-state="closed"] {
+  opacity: 0;
+  transform: translateY(calc(var(--shift-anchor) * -1));
+  transition-duration: var(--dur-exit);
+}
+
+@starting-style {
+  .history[data-state="open"] {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-anchor) * -1));
+  }
 }
 
 .scroll {

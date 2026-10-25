@@ -4,7 +4,7 @@ import { Chip, characteristicHue, characteristicIcon } from "@/shared/ui"
 import styles from "./agent-reply.module.css"
 import { AgentBubble } from "./chat-bubble"
 
-const SUGGESTIONS: readonly { readonly key: string; readonly label: MessageKey }[] = [
+export const SUGGESTIONS: readonly { readonly key: string; readonly label: MessageKey }[] = [
   { key: "sunset_view", label: "explore:chat.suggestSunset" },
   { key: "distance_to_sea", label: "explore:chat.suggestWalk" },
   { key: "pets_policy", label: "explore:chat.suggestPets" },

@@ -169,3 +169,13 @@
     gap: 0;
   }
 }
+
+.stage[data-showcase] .topStart,
+.stage[data-showcase] .bottomStart,
+.stage[data-showcase] .scale {
+  display: none;
+}
+
+.stage[data-showcase] .bottom {
+  inset-block: var(--space-12) auto;
+}

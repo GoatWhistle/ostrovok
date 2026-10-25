@@ -6,10 +6,11 @@ import styles from "./chat-composer.module.css"
 export interface ChatComposerProps {
   readonly pending: boolean
   readonly selectedHotel?: string | undefined
+  readonly placeholder?: string | undefined
   readonly onSend: (query: string) => void
 }
 
-export function ChatComposer({ pending, selectedHotel, onSend }: ChatComposerProps) {
+export function ChatComposer({ pending, selectedHotel, placeholder, onSend }: ChatComposerProps) {
   const { t } = useTranslation()
   const hint = useId()
   const [value, setValue] = useState("")
@@ -29,7 +30,7 @@ export function ChatComposer({ pending, selectedHotel, onSend }: ChatComposerPro
       ) : null}
       <SearchBox
         label={t("explore:chat.composer")}
-        placeholder={t("explore:chat.placeholder")}
+        placeholder={placeholder ?? t("explore:chat.placeholder")}
         value={value}
         maxLength={2000}
         describedBy={hint}

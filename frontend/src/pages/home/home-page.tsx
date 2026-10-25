@@ -3,11 +3,11 @@ import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import { SearchChat } from "@/features/search-chat"
+import { ChatStart, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { Swap, usePresence } from "@/shared/motion"
+import { Swap, usePresence, withViewTransition } from "@/shared/motion"
 import { Button, ButtonLink, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
 import styles from "./home-page.module.css"
 
@@ -33,13 +33,16 @@ export function HomePage() {
     min: "--workspace-panel-min",
     max: "--workspace-panel-max",
   })
+  const start =
+    state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
+  const send = (message: string) => void withViewTransition("layout", () => state.send(message))
   const sizes = {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
     ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
   } as CSSProperties
   return (
     <div className={styles.page}>
-      <div className={styles.tabs}>
+      <div className={styles.tabs} hidden={start}>
         <Segmented<WorkspaceView>
           label={t("explore:panel.tabs")}
           options={[
@@ -51,7 +54,12 @@ export function HomePage() {
           onChange={state.setView}
         />
       </div>
-      <div className={styles.workspace} data-view={state.view} style={sizes}>
+      <div
+        className={styles.workspace}
+        data-view={state.view}
+        data-mode={start ? "start" : "work"}
+        style={sizes}
+      >
         <aside className={styles.panel} aria-label={t("explore:panel.title")}>
           <ResizeHandle
             label={t("explore:panel.resizePanel")}
@@ -83,11 +91,17 @@ export function HomePage() {
             geoRefs={state.geoRefs}
             focusedFact={state.focusedFact}
             focusProperty={state.focusProperty}
-            regionId="russia"
+            regionId={state.search ? "russia" : "sochi"}
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
+            showcase={start}
           />
+          {start ? (
+            <div className={styles.start}>
+              <ChatStart pending={state.sending} onSend={send} />
+            </div>
+          ) : null}
         </div>
         <div className={styles.chat}>
           <ResizeHandle
