@@ -46,14 +46,14 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Branch/SHA `feat/hotel-agent-mvp` / `d8e2486` (code tip); docs pending. Compose localhost:8080 is healthy; ignored `.env` selects DeepSeek V4.1 Flash.
+- Branch/SHA `feat/hotel-agent-mvp` / `c792285` (parser fix, docs update pending). Compose localhost:8080 is healthy; ignored `.env` selects DeepSeek V4.1 Flash.
 - Search validates typos, geography, contradictions; extracts basic wishes and on-demand arbitrary OSM nearby objects; ranks hotels, card only requested wishes. Map highlights POIs/routes. Local DEM relief, 3D, sun/date and weather run on stand.
-- `work/evals/search-22-results.json`: 22/22 HTTP 200, 16 with results, median 3.46 s; `docs/evidence.md` has limits.
+- `work/evals/search-22-results.json`: 22/22 HTTP 200, 16 with results, median 3.79 s; `docs/evidence.md` has limits.
 - Confirmed room inventory is absent; double-room condition remains unknown, never claimed satisfied.
 
 ## Next actions and pitfalls
 
 - Frontend restarted after selected-hotel marker; zoo focus showed hotel plus 9 POIs with no JS errors.
 - `npm run verify`: 36 rules, 310 tests and build pass; backend ruff/format/mypy and 223 tests pass.
-- Commit docs/eval/context, push authorized branch.
+- Commit updated 22-query eval/docs/context and push branch.
 - Do not expose Yandex API key or add synthetic room inventory without user answer. `work/plan.md` contains later hotelier/sunset-view stages not implemented.

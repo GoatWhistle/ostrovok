@@ -1,5 +1,5 @@
 {
-  "ran_at": "2026-10-25T00:26:00.189920+00:00",
+  "ran_at": "2026-10-25T00:36:29.112634+00:00",
   "results": [
     {
       "number": 1,
@@ -141,8 +141,8 @@
           ]
         }
       ],
-      "took_ms": 4089,
-      "elapsed_s": 4.11
+      "took_ms": 3715,
+      "elapsed_s": 3.72
     },
     {
       "number": 2,
@@ -177,9 +177,9 @@
             "reason": "Опечатка: пропущена буква «т» в слове «двухместный»."
           },
           {
-            "original": "в Соче",
-            "corrected": "в Сочи",
-            "reason": "Географическая ошибка: название города — Сочи."
+            "original": "Соче",
+            "corrected": "Сочи",
+            "reason": "Географическая ошибка: город называется Сочи."
           }
         ],
         "needs_clarification": false
@@ -323,8 +323,8 @@
           ]
         }
       ],
-      "took_ms": 4677,
-      "elapsed_s": 4.68
+      "took_ms": 4285,
+      "elapsed_s": 4.29
     },
     {
       "number": 3,
@@ -478,8 +478,8 @@
           ]
         }
       ],
-      "took_ms": 3876,
-      "elapsed_s": 3.88
+      "took_ms": 3856,
+      "elapsed_s": 3.86
     },
     {
       "number": 4,
@@ -591,8 +591,8 @@
           ]
         }
       ],
-      "took_ms": 2744,
-      "elapsed_s": 2.75
+      "took_ms": 3081,
+      "elapsed_s": 3.08
     },
     {
       "number": 5,
@@ -698,8 +698,8 @@
           ]
         }
       ],
-      "took_ms": 2677,
-      "elapsed_s": 2.68
+      "took_ms": 4986,
+      "elapsed_s": 4.99
     },
     {
       "number": 6,
@@ -933,8 +933,8 @@
           ]
         }
       ],
-      "took_ms": 3089,
-      "elapsed_s": 3.09
+      "took_ms": 2610,
+      "elapsed_s": 2.61
     },
     {
       "number": 7,
@@ -1142,8 +1142,8 @@
           ]
         }
       ],
-      "took_ms": 3529,
-      "elapsed_s": 3.53
+      "took_ms": 2458,
+      "elapsed_s": 2.46
     },
     {
       "number": 8,
@@ -1425,8 +1425,8 @@
           ]
         }
       ],
-      "took_ms": 3129,
-      "elapsed_s": 3.13
+      "took_ms": 3399,
+      "elapsed_s": 3.4
     },
     {
       "number": 9,
@@ -1550,8 +1550,8 @@
           ]
         }
       ],
-      "took_ms": 2933,
-      "elapsed_s": 2.94
+      "took_ms": 2393,
+      "elapsed_s": 2.4
     },
     {
       "number": 10,
@@ -1675,8 +1675,8 @@
           ]
         }
       ],
-      "took_ms": 3360,
-      "elapsed_s": 3.36
+      "took_ms": 4136,
+      "elapsed_s": 4.14
     },
     {
       "number": 11,
@@ -1796,8 +1796,8 @@
           ]
         }
       ],
-      "took_ms": 3400,
-      "elapsed_s": 3.4
+      "took_ms": 4156,
+      "elapsed_s": 4.16
     },
     {
       "number": 12,
@@ -1903,8 +1903,8 @@
           ]
         }
       ],
-      "took_ms": 3032,
-      "elapsed_s": 3.04
+      "took_ms": 2989,
+      "elapsed_s": 2.99
     },
     {
       "number": 13,
@@ -2041,8 +2041,8 @@
           ]
         }
       ],
-      "took_ms": 2310,
-      "elapsed_s": 2.31
+      "took_ms": 2599,
+      "elapsed_s": 2.6
     },
     {
       "number": 14,
@@ -2066,8 +2066,8 @@
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 3512,
-      "elapsed_s": 3.52
+      "took_ms": 3002,
+      "elapsed_s": 3.0
     },
     {
       "number": 15,
@@ -2091,8 +2091,8 @@
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 2718,
-      "elapsed_s": 2.72
+      "took_ms": 3308,
+      "elapsed_s": 3.31
     },
     {
       "number": 16,
@@ -2267,8 +2267,8 @@
           ]
         }
       ],
-      "took_ms": 3660,
-      "elapsed_s": 3.66
+      "took_ms": 4216,
+      "elapsed_s": 4.22
     },
     {
       "number": 17,
@@ -2918,8 +2918,8 @@
           ]
         }
       ],
-      "took_ms": 5183,
-      "elapsed_s": 5.19
+      "took_ms": 5164,
+      "elapsed_s": 5.17
     },
     {
       "number": 18,
@@ -2937,8 +2937,8 @@
           }
         ],
         "unmatched_terms": [],
-        "location_hint": "Сочи",
-        "normalized_query": "hotel near a zoo within 10 km in Sochi",
+        "location_hint": "Sochi",
+        "normalized_query": "Hotel near a zoo within 10 km in Sochi",
         "corrections": [],
         "needs_clarification": false
       },
@@ -3074,38 +3074,58 @@
           ]
         }
       ],
-      "took_ms": 3876,
-      "elapsed_s": 3.88
+      "took_ms": 3969,
+      "elapsed_s": 3.97
     },
     {
       "number": 19,
       "query": "хочу гостиницу в Сочи в Турции рядом с кафе",
       "status": 200,
       "parsed": {
-        "intents": [],
-        "unmatched_terms": [],
+        "intents": [
+          {
+            "characteristic_key": "nearby:amenity:cafe:0:500",
+            "op": "gte",
+            "value": 1.0,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с кафе"
+          }
+        ],
+        "unmatched_terms": [
+          "Турция"
+        ],
         "location_hint": "Сочи",
-        "normalized_query": "хочу гостиницу в Сочи / в Турции рядом с кафе",
+        "normalized_query": "хочу гостиницу в Сочи в Турции рядом с кафе",
         "corrections": [
           {
             "original": "в Сочи в Турции",
-            "corrected": "в Сочи / в Турции",
-            "reason": "Противоречие: Сочи — город в России, Турция — другая страна; одновременно оба условия выполнить нельзя, нужно уточнить, какое из них верное."
+            "corrected": "в Сочи в Турции",
+            "reason": "Противоречие в локации: Сочи — город в России, а Турция — другая страна. Оба условия сохранены, нужно уточнить, какое место имеется в виду."
           }
         ],
         "needs_clarification": true
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 6508,
-      "elapsed_s": 6.51
+      "took_ms": 8686,
+      "elapsed_s": 8.69
     },
     {
       "number": 20,
       "query": "отель в Казани рядом с музеем",
       "status": 200,
       "parsed": {
-        "intents": [],
+        "intents": [
+          {
+            "characteristic_key": "nearby:tourism:museum:0:500",
+            "op": "gte",
+            "value": 1.0,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с музеем"
+          }
+        ],
         "unmatched_terms": [],
         "location_hint": "Казань",
         "normalized_query": "отель в Казани рядом с музеем",
@@ -3115,8 +3135,8 @@
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 3378,
-      "elapsed_s": 3.38
+      "took_ms": 3174,
+      "elapsed_s": 3.18
     },
     {
       "number": 21,
@@ -3147,15 +3167,15 @@
           {
             "original": "не больше 5 минут и не меньше 20 минут",
             "corrected": "не больше 5 минут и не меньше 20 минут",
-            "reason": "Противоречие: одновременно требуется, чтобы до моря было не больше 5 минут и не меньше 20 минут. Оба условия сохранены, нужно уточнить, какое из них верное."
+            "reason": "Противоречие: расстояние до моря не может быть одновременно не больше 5 минут и не меньше 20 минут. Оба условия сохранены, нужно уточнить, какое из них верное."
           }
         ],
         "needs_clarification": true
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 5925,
-      "elapsed_s": 5.93
+      "took_ms": 5522,
+      "elapsed_s": 5.53
     },
     {
       "number": 22,
@@ -3164,7 +3184,7 @@
       "parsed": {
         "intents": [
           {
-            "characteristic_key": "nearby:aeroway:spaceport:0:2000",
+            "characteristic_key": "nearby:man_made:launch_pad:0:2000",
             "op": "gte",
             "value": 1.0,
             "weight": 1.0,
@@ -3179,8 +3199,8 @@
       },
       "result_count": 0,
       "first_results": [],
-      "took_ms": 10040,
-      "elapsed_s": 10.05
+      "took_ms": 6623,
+      "elapsed_s": 6.63
     }
   ]
 }
