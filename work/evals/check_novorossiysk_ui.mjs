@@ -33,6 +33,7 @@ try {
     assert.equal(overflow, false)
     assert.deepEqual(errors, [])
     assert.equal(calls, 0)
+    await page.waitForTimeout(300)
     const screenshot = `work/evals/novorossiysk-ui-${width}.png`
     await page.screenshot({ path: screenshot })
     reports.push({ width, selected: 'Капиталъ', factStatus: fact.status(), errors, overflow, modelCalls: calls, screenshot })
