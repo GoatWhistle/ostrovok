@@ -68,7 +68,13 @@ bash scripts/sync-nuitee-matches.sh
 |---|---|---|
 | `make fetch-seed` | Скачивает экстракт OSM «Южный ФО» с Geofabrik и два тайла Copernicus GLO-30 в `data/raw/` | Да |
 | `make fetch-russia` | Докачивает полный OSM-снимок России в `data/raw/` и проверяет MD5; это не импорт в PostGIS | Да |
+| `make ingest-russia` | Потоком загружает отели и объекты интереса из проверенного PBF в регион `russia`; сохраняет пакеты по 5000 записей и останавливается, если свободно меньше 6 ГиБ | Нет |
 | `make build-seed` | Режет из `data/raw/` срез Сочи в `data/seed/sochi/` и печатает число объектов каждого слоя | Нет |
+
+`make ingest-russia` повторяем: существующие OSM ID обновляются. Слой выбирается через
+`RUSSIA_LAYERS`, например `RUSSIA_LAYERS='buildings beaches coastline noise_sources walk'`.
+Большие слои загружают отдельным запуском после проверки свободного места. Импорт OSM не
+добавляет номера, цены, рельеф или готовые тайлы карты.
 
 ## Как включить живую модель и предложения на даты?
 
@@ -108,6 +114,7 @@ npm run dev
 | `LLM_API_KEY` | пусто | Ключ провайдера. Обязателен для `openai_compat` |
 | `NUITEE_API_KEY` | пусто | Ключ Nuitee Connect для категорий номеров и проверки тарифов; тестовый ключ помечает ответ как sandbox |
 | `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
+| `LLM_FALLBACK_MODEL` | пусто | Резервная модель того же endpoint; вызывается после таймаута или ошибки 5xx основной модели |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды, больше нуля |
 | `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk, задаются вместе. Без них предложения отвечают `provider_unavailable` |
 | `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production` |
@@ -172,7 +179,7 @@ Chromium должен быть установлен (`npx playwright install chr
 | `LLM_PROVIDER=anthropic is not implemented yet` | Адаптера нет: оставьте `fake` или `openai_compat` |
 | `LLM_PROVIDER=openai_compat needs LLM_*` | Для живой модели нужны все три переменные: адрес, ключ и модель |
 | `ETG_KEY_ID and ETG_API_KEY must be configured together` | Задайте обе переменные или ни одной |
-| Чат отвечает `503`, в логе `model_failure` | Модель не ответила за `LLM_TIMEOUT_S` после одного повтора или вернула HTTP-ошибку; при `Language model returned HTTP 401` проверьте ключ |
+| Чат отвечает `503`, в логе `model_failure` | Основная и резервная модель не ответили или вернули ошибку; при `Language model returned HTTP 401` проверьте ключ |
 | `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
 | Погода «недоступна» | Нет сети до Open-Meteo или дата дальше 15 дней от сегодня |
 | Зависимости не скачиваются | Доступ к реестрам npm, PyPI и Docker во время сборки |

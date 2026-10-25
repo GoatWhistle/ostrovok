@@ -1,7 +1,10 @@
 import asyncio
 import os
+import shutil
 import sys
-from collections.abc import Sequence
+from argparse import Namespace
+from collections.abc import Mapping, Sequence
+from datetime import UTC, datetime
 from pathlib import Path
 
 from psycopg_pool import AsyncConnectionPool
@@ -17,16 +20,17 @@ from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
 from hotel_agent.adapters.log.stdlib import StdlibLogger
-from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
+from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource, iter_region_batches
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
+from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
-from hotel_agent.interfaces.cli.main import build_parser, run_build_seed
+from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
 from hotel_agent.settings import load_settings
 
 
@@ -46,6 +50,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return run_build_seed(build, args, print)
     if args.command == "ingest":
         return asyncio.run(_ingest(args.region, Path(args.directory), settings.database_url))
+    if args.command == "ingest-pbf":
+        return asyncio.run(_ingest_pbf(args, settings.database_url, logger))
     if args.command == "precompute":
         return asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
     if args.command == "sync-nuitee":
@@ -68,6 +74,47 @@ async def _ingest(region: str, directory: Path, database_url: str) -> int:
     for name, count in report.counts.items():
         print(f"{name}: {count}")
     print(f"hotels with footprint: {report.hotels_with_footprint}")
+    return 0
+
+
+async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) -> int:
+    path = Path(args.pbf)
+    if not path.is_file() or not path.with_name(path.name + ".ok").is_file():
+        raise SystemExit(f"Verified PBF and .ok marker are required: {path}")
+    selected = frozenset(args.layers)
+    valid = frozenset(
+        ("buildings", "hotels", "pois", "coastline", "beaches", "noise_sources", "walk")
+    )
+    if not selected or selected - valid:
+        raise SystemExit(f"Invalid layers: {sorted(selected - valid)}")
+    if args.min_free_gib < 1:
+        raise SystemExit("min-free-gib must be at least 1")
+    bbox = parse_bbox(args.bbox)
+    minimum = int(args.min_free_gib * 1024**3)
+
+    def check_capacity() -> None:
+        free = shutil.disk_usage(path.parent).free
+        if free < minimum:
+            raise RuntimeError(f"Import stopped with {free / 1024**3:.1f} GiB free")
+
+    def on_batch(number: int, counts: Mapping[str, int]) -> None:
+        if number % 20 == 0:
+            print(f"batches={number} counts={counts}", flush=True)
+
+    meta: dict[str, object] = {
+        "bbox": list(bbox.as_tuple()),
+        "built_at": datetime.now(UTC).isoformat(),
+    }
+    check_capacity()
+    async with (
+        AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
+        PostgresSeedWriter(pool) as writer,
+    ):
+        batches = iter_region_batches(path, bbox, logger, selected, args.batch_size)
+        report = await IngestPbf(writer)(
+            args.region, meta, batches, selected, check_capacity, on_batch
+        )
+    print(f"region={report.region} batches={report.batches} counts={dict(report.counts)}")
     return 0
 
 

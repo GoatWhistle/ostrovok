@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from hotel_agent.adapters.osm.pbf_reader import read_region
+from hotel_agent.adapters.osm.pbf_reader import iter_region_batches, read_region
 from hotel_agent.application.dto import SeedLayers
 from hotel_agent.application.ports.log import LogValue
 from hotel_agent.domain.value_objects import BBox
@@ -72,6 +72,29 @@ def test_hotels_outside_the_bbox_are_left_out(layers: SeedLayers) -> None:
 
     assert "Приморская" in names
     assert "Далеко" not in names
+
+
+def test_streamed_batches_only_include_selected_layers(tmp_path: Path) -> None:
+    extract = tmp_path / "sample.osm"
+    extract.write_text(EXTRACT, encoding="utf-8")
+
+    batches = list(
+        iter_region_batches(extract, BBOX, SilentLogger(), frozenset({"hotels", "pois"}), 1)
+    )
+
+    assert sum(len(batch.hotels) for batch in batches) == 1
+    assert sum(len(batch.pois) for batch in batches) == 2
+    assert all(not batch.buildings and not batch.walk for batch in batches)
+
+
+def test_streamed_building_layer_keeps_closed_ways(tmp_path: Path) -> None:
+    extract = tmp_path / "sample.osm"
+    extract.write_text(EXTRACT, encoding="utf-8")
+
+    batches = list(iter_region_batches(extract, BBOX, SilentLogger(), frozenset({"buildings"}), 1))
+
+    assert [feature.id for batch in batches for feature in batch.buildings] == ["w100"]
+    assert all(not batch.hotels and not batch.pois for batch in batches)
 
 
 def test_a_hotel_keeps_its_source_id_and_selected_tags(layers: SeedLayers) -> None:

@@ -23,6 +23,14 @@ def build_parser() -> ArgumentParser:
     ingest.add_argument("--region", default="sochi")
     ingest.add_argument("--from", dest="directory", required=True)
 
+    pbf = commands.add_parser("ingest-pbf", help="Stream OSM PBF layers into PostGIS")
+    pbf.add_argument("--region", default="russia")
+    pbf.add_argument("--bbox", default="-180,41,180,82")
+    pbf.add_argument("--pbf", required=True)
+    pbf.add_argument("--layers", nargs="+", default=["hotels", "pois"])
+    pbf.add_argument("--batch-size", type=int, default=5_000)
+    pbf.add_argument("--min-free-gib", type=float, default=6.0)
+
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")
     precompute.add_argument("--from", dest="directory", required=True)

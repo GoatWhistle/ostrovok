@@ -30,7 +30,13 @@ def read_region(path: Path, bbox: BBox, logger: LoggerPort) -> SeedLayers:
     layers = SeedLayers()
     geojson = osmium.geom.GeoJSONFactory()
     seen = 0
-    for obj in osmium.FileProcessor(str(path)).with_locations("flex_mem").with_areas():
+    processor = (
+        osmium.FileProcessor(str(path))
+        .with_locations("flex_mem")
+        .with_areas()
+        .with_filter(osmium.filter.EmptyTagFilter())
+    )
+    for obj in processor:
         seen += 1
         if seen % 10_000_000 == 0:
             logger.info("seed_scan", millions=seen // 1_000_000, kept=sum(layers.counts().values()))
@@ -46,52 +52,147 @@ def read_region(path: Path, bbox: BBox, logger: LoggerPort) -> SeedLayers:
     return layers
 
 
-def _node(obj: Any, tags: dict[str, str], bbox: BBox, layers: SeedLayers) -> None:
+def iter_region_batches(
+    path: Path,
+    bbox: BBox,
+    logger: LoggerPort,
+    selected_layers: frozenset[str],
+    batch_size: int = 5_000,
+) -> Iterator[SeedLayers]:
+    if batch_size <= 0:
+        raise ValueError("batch_size must be positive")
+    layers = SeedLayers()
+    geojson = osmium.geom.GeoJSONFactory()
+    kept = 0
+    seen = 0
+    processor = osmium.FileProcessor(str(path)).with_locations("flex_mem")
+    if selected_layers & {"hotels", "pois", "buildings", "beaches"}:
+        processor = processor.with_areas()
+    processor = processor.with_filter(osmium.filter.EmptyTagFilter())
+    keys = _filter_keys(selected_layers)
+    if keys:
+        processor = processor.with_filter(osmium.filter.KeyFilter(*keys))
+    for obj in processor:
+        seen += 1
+        if seen % 10_000_000 == 0:
+            logger.info("country_scan", millions=seen // 1_000_000, kept=kept)
+        tags = dict(obj.tags)
+        if not tags:
+            continue
+        if isinstance(obj, osmium.osm.Area):
+            _area(obj, tags, geojson, bbox, layers, selected_layers)
+        elif isinstance(obj, osmium.osm.Node):
+            _node(obj, tags, bbox, layers, selected_layers)
+        elif isinstance(obj, osmium.osm.Way):
+            _way(obj, tags, geojson, bbox, layers, selected_layers)
+        size = sum(layers.counts().values())
+        if size >= batch_size:
+            kept += size
+            yield layers
+            layers = SeedLayers()
+    if sum(layers.counts().values()):
+        yield layers
+
+
+def _filter_keys(selected_layers: frozenset[str]) -> tuple[str, ...]:
+    keys: set[str] = set()
+    if "hotels" in selected_layers:
+        keys.add("tourism")
+    if "pois" in selected_layers:
+        keys.update(key for key in rules.POI_KEYS if key not in {"name", "opening_hours"})
+    if "buildings" in selected_layers:
+        keys.add("building")
+    if "beaches" in selected_layers:
+        keys.update(("natural", "leisure"))
+    if "coastline" in selected_layers:
+        keys.add("natural")
+    if "noise_sources" in selected_layers:
+        keys.update(("highway", "railway"))
+    if "walk" in selected_layers:
+        keys.add("highway")
+    return tuple(sorted(keys))
+
+
+def _node(
+    obj: Any,
+    tags: dict[str, str],
+    bbox: BBox,
+    layers: SeedLayers,
+    selected_layers: frozenset[str] | None = None,
+) -> None:
     if not obj.location.valid():
         return
     lon, lat = obj.location.lon, obj.location.lat
     if not _inside(bbox, lon, lat):
         return
     point: Geometry = {"type": "Point", "coordinates": [_round(lon), _round(lat)]}
-    if rules.is_hotel(tags):
+    if (selected_layers is None or "hotels" in selected_layers) and rules.is_hotel(tags):
         layers.hotels.append(_feature(f"n{obj.id}", point, tags, rules.HOTEL_KEYS))
-    if rules.is_poi(tags):
+    if (selected_layers is None or "pois" in selected_layers) and rules.is_poi(tags):
         layers.pois.append(_feature(f"n{obj.id}", point, tags, rules.POI_KEYS))
 
 
-def _way(obj: Any, tags: dict[str, str], geojson: Any, bbox: BBox, layers: SeedLayers) -> None:
-    wanted = rules.is_coastline(tags) or rules.is_noise_source(tags) or rules.is_walkable(tags)
+def _way(
+    obj: Any,
+    tags: dict[str, str],
+    geojson: Any,
+    bbox: BBox,
+    layers: SeedLayers,
+    selected_layers: frozenset[str] | None = None,
+) -> None:
+    wanted = (
+        ((selected_layers is None or "coastline" in selected_layers) and rules.is_coastline(tags))
+        or (
+            (selected_layers is None or "noise_sources" in selected_layers)
+            and rules.is_noise_source(tags)
+        )
+        or ((selected_layers is None or "walk" in selected_layers) and rules.is_walkable(tags))
+    )
     if not wanted:
         return
     line = _geometry(lambda: geojson.create_linestring(obj))
     if line is None or not _touches(bbox, line):
         return
-    if rules.is_coastline(tags):
+    if (selected_layers is None or "coastline" in selected_layers) and rules.is_coastline(tags):
         layers.coastline.append(_feature(f"w{obj.id}", line, tags, ("natural", "name")))
-    if rules.is_noise_source(tags):
+    if (selected_layers is None or "noise_sources" in selected_layers) and rules.is_noise_source(
+        tags
+    ):
         layers.noise_sources.append(_feature(f"w{obj.id}", line, tags, rules.NOISE_KEYS))
-    if rules.is_walkable(tags):
+    if (selected_layers is None or "walk" in selected_layers) and rules.is_walkable(tags):
         layers.walk.append(_feature(f"w{obj.id}", line, tags, rules.WALK_KEYS))
 
 
-def _area(obj: Any, tags: dict[str, str], geojson: Any, bbox: BBox, layers: SeedLayers) -> None:
-    wanted = rules.is_hotel(tags) or rules.is_building(tags) or rules.is_beach(tags)
-    if not wanted and not rules.is_poi(tags):
+def _area(
+    obj: Any,
+    tags: dict[str, str],
+    geojson: Any,
+    bbox: BBox,
+    layers: SeedLayers,
+    selected_layers: frozenset[str] | None = None,
+) -> None:
+    hotel = (selected_layers is None or "hotels" in selected_layers) and rules.is_hotel(tags)
+    building = (selected_layers is None or "buildings" in selected_layers) and rules.is_building(
+        tags
+    )
+    beach = (selected_layers is None or "beaches" in selected_layers) and rules.is_beach(tags)
+    poi = (selected_layers is None or "pois" in selected_layers) and rules.is_poi(tags)
+    if not (hotel or building or beach or poi):
         return
     polygon = _geometry(lambda: geojson.create_multipolygon(obj))
     if polygon is None or not _touches(bbox, polygon):
         return
     identifier = f"{'r' if obj.from_way() is False else 'w'}{obj.orig_id()}"
-    if rules.is_building(tags):
+    if building:
         layers.buildings.append(_feature(identifier, polygon, tags, rules.BUILDING_KEYS))
-    if rules.is_beach(tags):
+    if beach:
         layers.beaches.append(_feature(identifier, polygon, tags, ("natural", "leisure", "name")))
     centre = _centroid(polygon)
     if centre is None:
         return
-    if rules.is_hotel(tags):
+    if hotel:
         layers.hotels.append(_feature(identifier, centre, tags, rules.HOTEL_KEYS))
-    if rules.is_poi(tags):
+    if poi:
         layers.pois.append(_feature(identifier, centre, tags, rules.POI_KEYS))
 
 

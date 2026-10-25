@@ -47,10 +47,11 @@ class PostgresSeedWriter:
         await self._db().execute(
             """INSERT INTO regions (id, name, bbox, built_at)
             VALUES (%(id)s, %(name)s, ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326), %(built_at)s)
-            ON CONFLICT (id) DO UPDATE SET bbox = EXCLUDED.bbox, built_at = EXCLUDED.built_at""",
+            ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name,
+                bbox = EXCLUDED.bbox, built_at = EXCLUDED.built_at""",
             {
                 "id": region,
-                "name": "Сочи" if region == "sochi" else region,
+                "name": {"sochi": "Сочи", "russia": "Россия"}.get(region, region),
                 "west": bbox[0],
                 "south": bbox[1],
                 "east": bbox[2],

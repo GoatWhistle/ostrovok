@@ -5,7 +5,7 @@ BACKEND := uv run --directory backend
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed precompute llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -41,6 +41,12 @@ build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline
 seed: ## Load the prepared Sochi slice into the running PostGIS database
 	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
+
+ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-space guard
+	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(BACKEND) hotel-agent ingest-pbf --region russia \
+		--pbf $(CURDIR)/data/raw/$${RUSSIA_SNAPSHOT:-russia-261024}.osm.pbf \
+		--layers $${RUSSIA_LAYERS:-hotels pois} --min-free-gib $${RUSSIA_MIN_FREE_GIB:-6}
 
 precompute: ## Compute characteristic facts from the loaded region
 	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
