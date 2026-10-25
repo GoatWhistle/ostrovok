@@ -35,6 +35,7 @@ from hotel_agent.domain.query import (
     NearbyObjectRequest,
     ParsedQuery,
     QueryCorrection,
+    SpatialRequest,
 )
 
 
@@ -114,6 +115,11 @@ class OpenAICompatLLM:
                 facility_item
                 for raw in items(payload, "facility_requests")
                 if (facility_item := _facility_request(raw, query)) is not None
+            ),
+            spatial_requests=tuple(
+                item
+                for raw in items(payload, "spatial_requests")
+                if (item := _spatial_request(raw, query)) is not None
             ),
             normalized_query=optional_text(payload, "normalized_query") or query,
             corrections=tuple(
@@ -380,4 +386,25 @@ def _facility_request(raw: Mapping[str, object], query: str) -> FacilityRequest 
         return None
     return FacilityRequest(
         term=term.strip(), source_text=source.strip(), required=flag(raw, "required")
+    )
+
+
+def _spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | None:
+    kind = text(raw, "kind")
+    target = optional_text(raw, "target")
+    source = text(raw, "source_text").strip()
+    if (
+        kind not in {"city_center", "landmark_view", "landmark_nearby"}
+        or not source
+        or normalize(source) not in normalize(query)
+        or (kind != "city_center" and (target is None or len(target.strip()) < 3))
+    ):
+        return None
+    default = 1500 if kind == "city_center" else 2000 if kind == "landmark_view" else 500
+    radius = int(number(raw, "radius_m") or default)
+    return SpatialRequest(
+        kind=kind,
+        target=target.strip() if target else None,
+        radius_m=max(100, min(50000, radius)),
+        source_text=source,
     )

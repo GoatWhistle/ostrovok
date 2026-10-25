@@ -4,6 +4,7 @@ from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.external.etg_offers import EtgHotelOffers
 from hotel_agent.adapters.external.nuitee_offers import NuiteeHotelOffers
+from hotel_agent.adapters.external.wikidata_places import WikidataPlaceLookup
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
@@ -11,6 +12,7 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.hotel_offers import HotelOffersPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
+from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.settings import ConfigError, LLMProvider, Settings
 
@@ -23,10 +25,12 @@ class Providers:
     logger: LoggerPort
     uow: PostgresUnitOfWorkFactory
     hotel_offers: HotelOffersPort | None
+    place_lookup: PlaceLookupPort
 
     async def aclose(self) -> None:
         await self.llm.aclose()
         await self.uow.aclose()
+        await self.place_lookup.aclose()
 
 
 def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
@@ -38,6 +42,7 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
         logger=logger,
         uow=PostgresUnitOfWorkFactory(settings.database_url),
         hotel_offers=build_hotel_offers(settings),
+        place_lookup=WikidataPlaceLookup(),
     )
 
 

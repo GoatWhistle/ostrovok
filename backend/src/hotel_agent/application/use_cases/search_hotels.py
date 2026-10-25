@@ -1,18 +1,20 @@
 import hashlib
 from collections.abc import Sequence
 from dataclasses import dataclass, replace
-from datetime import datetime, timedelta
 
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
+from hotel_agent.application.nearby_matching import nearby_intent, nearby_key, nearby_record
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
-from hotel_agent.domain.characteristics import Op
+from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
+from hotel_agent.application.spatial_resolution import resolve_spatial_requests
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import InvalidQuery
-from hotel_agent.domain.query import Intent, NearbyObjectRequest, ParsedQuery
+from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import Scored, score
 
 
@@ -30,10 +32,17 @@ class SearchOutcome:
 
 
 class SearchHotels:
-    def __init__(self, llm: LLMPort, uow: UnitOfWorkFactory, clock: ClockPort) -> None:
+    def __init__(
+        self,
+        llm: LLMPort,
+        uow: UnitOfWorkFactory,
+        clock: ClockPort,
+        place_lookup: PlaceLookupPort | None = None,
+    ) -> None:
         self._llm = llm
         self._uow = uow
         self._clock = clock
+        self._place_lookup = place_lookup
 
     async def __call__(
         self,
@@ -45,12 +54,13 @@ class SearchHotels:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
         parsed = await self._llm.parse_query(query)
-        if parsed.nearby_objects or parsed.facility_requests:
+        if parsed.nearby_objects or parsed.facility_requests or parsed.spatial_requests:
             parsed = replace(
                 parsed,
                 intents=parsed.intents
-                + tuple(_nearby_intent(request) for request in parsed.nearby_objects)
-                + tuple(facility_intent(request) for request in parsed.facility_requests),
+                + tuple(nearby_intent(request) for request in parsed.nearby_objects)
+                + tuple(facility_intent(request) for request in parsed.facility_requests)
+                + tuple(spatial_intent(request) for request in parsed.spatial_requests),
             )
         location = parsed.location_hint.strip() if parsed.location_hint else None
         if location and location.casefold() in {"россия", "russia"}:
@@ -76,6 +86,9 @@ class SearchHotels:
                     bbox = city_bbox
             hotels = await uow.search.list_hotels(region, bbox)
             stored = await uow.search.list_facts(region)
+            spatial = await resolve_spatial_requests(
+                uow, parsed.spatial_requests, location, bbox, hotels
+            )
             nearby = [
                 (request, await uow.nearby_objects.list_matches(region, request, bbox))
                 for request in parsed.nearby_objects
@@ -83,16 +96,44 @@ class SearchHotels:
             supplier_content = (
                 await uow.search.list_supplier_content(region) if parsed.facility_requests else ()
             )
+        spatial_bbox = bbox
+        if spatial_bbox is None and hotels:
+            spatial_bbox = (
+                min(hotel.location[0] for hotel in hotels) - 0.1,
+                min(hotel.location[1] for hotel in hotels) - 0.1,
+                max(hotel.location[0] for hotel in hotels) + 0.1,
+                max(hotel.location[1] for hotel in hotels) + 0.1,
+            )
+        if self._place_lookup is not None and spatial_bbox is not None:
+            for index, (spatial_request, target) in enumerate(spatial):
+                if target is not None or spatial_request.kind == "city_center":
+                    continue
+                position = await self._place_lookup.coordinates(
+                    spatial_request.target or "", spatial_bbox
+                )
+                if position is None:
+                    continue
+                async with self._uow() as uow:
+                    place = await uow.named_places.near_coordinate(position, spatial_bbox)
+                spatial[index] = (spatial_request, place)
         facts = _best_facts(stored)
         now = self._clock.now()
         if nearby:
             for request, matches in nearby:
-                key = _nearby_key(request)
+                key = nearby_key(request)
                 for hotel in hotels:
                     ids = matches.get(hotel.id, ())
                     facts.setdefault(hotel.id, {})[key] = fact_from_record(
-                        _nearby_record(hotel.id, key, request, ids, now)
+                        nearby_record(hotel.id, key, request, ids, now)
                     )
+        for spatial_request, target in spatial:
+            if target is None:
+                continue
+            for hotel in hotels:
+                spatial_record = spatial_fact(spatial_request, hotel, target, now)
+                facts.setdefault(hotel.id, {})[spatial_record.characteristic_key] = (
+                    fact_from_record(spatial_record)
+                )
         for facility_request in parsed.facility_requests:
             for content in supplier_content:
                 record = facility_fact(facility_request, content)
@@ -159,51 +200,3 @@ def _best_facts(rows: Sequence[SearchFactRecord]) -> dict[str, dict[str, Fact]]:
         ):
             current[row.characteristic_key] = fact
     return grouped
-
-
-def _nearby_key(request: NearbyObjectRequest) -> str:
-    return (
-        f"nearby:{request.osm_key}:{request.osm_value}:{int(request.open_24h)}:{request.radius_m}"
-    )
-
-
-def _nearby_intent(request: NearbyObjectRequest) -> Intent:
-    return Intent(
-        characteristic_key=_nearby_key(request),
-        op=Op.GTE,
-        value=1.0,
-        weight=1.0,
-        required=False,
-        source_text=request.source_text,
-    )
-
-
-def _nearby_record(
-    hotel_id: str,
-    key: str,
-    request: NearbyObjectRequest,
-    ids: Sequence[str],
-    now: datetime,
-) -> SearchFactRecord:
-    digest = hashlib.sha256(key.encode()).hexdigest()[:10]
-    return SearchFactRecord(
-        hotel_id=hotel_id,
-        id=f"f_near_{hotel_id}_{digest}",
-        characteristic_key=key,
-        value=len(ids),
-        unit="count",
-        qualifiers={},
-        source_type="computed",
-        source_id=None,
-        method="nearby_objects@1",
-        confidence=0.7,
-        computed_at=now,
-        valid_until=now + timedelta(days=30),
-        status="active",
-        geo_refs=tuple(f"g_poi_{item}" for item in ids),
-        explanation=(
-            f"Объекты OpenStreetMap в радиусе {request.radius_m} м"
-            + (" с тегом opening_hours=24/7" if request.open_24h else "")
-        ),
-        facade_azimuth=None,
-    )

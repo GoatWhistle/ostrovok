@@ -65,7 +65,9 @@ class QuestionStatus(StrEnum):
 
 
 SETTLED_STATUSES = frozenset({FactStatus.SUPERSEDED, FactStatus.COMPUTING})
-RESTRICTING_QUALIFIERS = frozenset({"from_floor", "months", "facade_azimuth"})
+RESTRICTING_QUALIFIERS = frozenset(
+    {"from_floor", "months", "facade_azimuth", "estimated_location", "estimated_view"}
+)
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

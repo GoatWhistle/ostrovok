@@ -42,7 +42,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
-    search_hotels = SearchHotels(providers.llm, providers.uow, providers.clock)
+    search_hotels = SearchHotels(
+        providers.llm, providers.uow, providers.clock, providers.place_lookup
+    )
     app.include_router(
         api_router_v1(
             llm_provider=providers.llm.provider,

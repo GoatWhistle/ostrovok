@@ -1,0 +1,61 @@
+from psycopg import AsyncConnection
+
+from hotel_agent.application.dto import NamedPlaceRecord
+
+NAME_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
+FROM pois
+WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
+  AND (translate(lower(tags->>'name'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
+    OR translate(lower(tags->>'name:ru'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
+    OR translate(lower(tags->>'alt_name'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е'))
+ORDER BY id LIMIT 1"""
+
+COORDINATE_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
+FROM pois
+WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
+  AND tags ? 'name'
+  AND ST_DWithin(location::geography,
+      ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography, 120)
+ORDER BY location <-> ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)
+LIMIT 1"""
+
+ALIAS_LOOKUP = """SELECT p.id, p.tags->>'name', ST_X(p.location), ST_Y(p.location)
+FROM named_place_aliases a JOIN pois p
+  ON ST_DWithin(p.location::geography, a.location::geography, 120)
+WHERE translate(lower(a.alias), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
+  AND p.location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
+  AND p.tags ? 'name'
+ORDER BY p.location <-> a.location LIMIT 1"""
+
+
+class PostgresNamedPlaceRepository:
+    def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
+        self._connection = connection
+
+    async def by_name(
+        self, name: str, bbox: tuple[float, float, float, float]
+    ) -> NamedPlaceRecord | None:
+        params = _params(bbox) | {"name": name}
+        row = await (await self._connection.execute(NAME_LOOKUP, params)).fetchone()
+        if row is None:
+            row = await (await self._connection.execute(ALIAS_LOOKUP, params)).fetchone()
+        return _record(row)
+
+    async def near_coordinate(
+        self, location: tuple[float, float], bbox: tuple[float, float, float, float]
+    ) -> NamedPlaceRecord | None:
+        params = _params(bbox) | {"lon": location[0], "lat": location[1]}
+        row = await (await self._connection.execute(COORDINATE_LOOKUP, params)).fetchone()
+        return _record(row)
+
+
+def _params(bbox: tuple[float, float, float, float]) -> dict[str, float]:
+    return dict(zip(("west", "south", "east", "north"), bbox, strict=True))
+
+
+def _record(row: tuple[object, ...] | None) -> NamedPlaceRecord | None:
+    if row is None or row[1] is None:
+        return None
+    return NamedPlaceRecord(
+        id=str(row[0]), name=str(row[1]), location=(float(str(row[2])), float(str(row[3])))
+    )

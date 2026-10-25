@@ -39,6 +39,13 @@ class RegionRecord:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class NamedPlaceRecord:
+    id: str
+    name: str
+    location: tuple[float, float]
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class SearchHotelRecord:
     id: str
     region_id: str

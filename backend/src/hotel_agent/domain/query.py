@@ -49,6 +49,14 @@ class FacilityRequest:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class SpatialRequest:
+    kind: str
+    target: str | None
+    radius_m: int
+    source_text: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class QueryCorrection:
     original: str
     corrected: str
@@ -62,6 +70,7 @@ class ParsedQuery:
     location_hint: str | None
     nearby_objects: tuple[NearbyObjectRequest, ...] = ()
     facility_requests: tuple[FacilityRequest, ...] = ()
+    spatial_requests: tuple[SpatialRequest, ...] = ()
     normalized_query: str | None = None
     corrections: tuple[QueryCorrection, ...] = ()
     unsupported_region: str | None = None

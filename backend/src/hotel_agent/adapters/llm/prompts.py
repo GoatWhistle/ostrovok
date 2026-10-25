@@ -38,7 +38,7 @@ PARSE_QUERY_SYSTEM = """\
 5. weight: 1.0 для главного условия запроса, 0.5-0.8 для второстепенных уточнений.
 6. source_text — дословный фрагмент запроса, из которого взят интент.
 7. Содержательные условия запроса, не покрытые ни одним интентом, nearby_objects
-   или facility_requests,
+   или facility_requests, или spatial_requests,
    перечисли в unmatched_terms. Не добавляй служебные слова вроде «хочу», «отель», «в», «с».
    Проверь каждую часть перечисления по отдельности: в фразе «с бассейном, баней и
    активностями поблизости» бассейн, баня и активности — три разных пожелания.
@@ -46,6 +46,14 @@ PARSE_QUERY_SYSTEM = """\
    Если в запросе указано число гостей, извлеки room_capacity с gte и этим числом.
    Не превращай число гостей в требование двухместного номера.
 8. Любые пожелания об объектах рядом запиши в nearby_objects, а не в intents.
+   Исключение: именованные достопримечательности и центр города записывай в
+   spatial_requests. Не заменяй конкретный памятник любым памятником того же типа.
+   kind=city_center для желания жить в центре города; target=null.
+   kind=landmark_view для вида на названный ориентир; target — его имя без слов
+   «видно», «видом» и предлогов. kind=landmark_nearby для близости к названному
+   ориентиру. Для вида по умолчанию radius_m=2000, для центра=1500, для близости=500;
+   явное расстояние пользователя важнее. source_text — дословный фрагмент запроса.
+   Не дублируй эти условия в nearby_objects или unmatched_terms.
    Для OSM используй osm_key из amenity, shop, leisure, tourism, historic, natural,
    healthcare, office, craft, man_made, emergency, public_transport, railway,
    aeroway, sport и osm_value по тегам OSM. Например, зоопарк: tourism=zoo.
@@ -185,6 +193,20 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
                         "term": {"type": "string"},
                         "source_text": {"type": "string"},
                         "required": {"type": "boolean"},
+                    }
+                ),
+            },
+            "spatial_requests": {
+                "type": "array",
+                "items": _object(
+                    {
+                        "kind": {
+                            "type": "string",
+                            "enum": ["city_center", "landmark_view", "landmark_nearby"],
+                        },
+                        "target": {"type": ["string", "null"]},
+                        "radius_m": {"type": "integer"},
+                        "source_text": {"type": "string"},
                     }
                 ),
             },

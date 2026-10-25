@@ -21,6 +21,12 @@ FROM hotels WHERE region_id = 'russia'
   AND translate(lower(tags->>'addr:city'), 'ё', 'е') =
       translate(lower(%(city)s), 'ё', 'е')"""
 
+CITY_CENTER = """SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY ST_X(location)),
+    percentile_cont(0.5) WITHIN GROUP (ORDER BY ST_Y(location))
+FROM hotels WHERE region_id = 'russia'
+  AND translate(lower(tags->>'addr:city'), 'ё', 'е') =
+      translate(lower(%(city)s), 'ё', 'е')"""
+
 
 class PostgresRegionRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
@@ -60,3 +66,9 @@ class PostgresRegionRepository:
             east + longitude_margin,
             north + latitude_margin,
         )
+
+    async def city_center(self, city: str) -> tuple[float, float] | None:
+        row = await (await self._connection.execute(CITY_CENTER, {"city": city})).fetchone()
+        if row is None or row[0] is None or row[1] is None:
+            return None
+        return float(str(row[0])), float(str(row[1]))

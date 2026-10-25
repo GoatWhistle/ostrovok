@@ -103,6 +103,39 @@ async def test_a_structured_answer_becomes_intents(build: Build) -> None:
     assert parsed.location_hint == "Сочи"
 
 
+async def test_named_landmark_and_city_center_keep_separate_wishes(build: Build) -> None:
+    query = "отель в центре ижевска на одного, чтобы было видно монумент дружбы народов"
+    llm = build(
+        {
+            "intents": [],
+            "nearby_objects": [],
+            "facility_requests": [],
+            "spatial_requests": [
+                {
+                    "kind": "city_center",
+                    "target": None,
+                    "radius_m": 1500,
+                    "source_text": "в центре ижевска",
+                },
+                {
+                    "kind": "landmark_view",
+                    "target": "монумент дружбы народов",
+                    "radius_m": 2000,
+                    "source_text": "видно монумент дружбы народов",
+                },
+            ],
+            "unmatched_terms": [],
+            "location_hint": "Ижевск",
+        }
+    )
+
+    parsed = await llm.parse_query(query)
+
+    assert [item.kind for item in parsed.spatial_requests] == ["city_center", "landmark_view"]
+    assert parsed.spatial_requests[1].target == "монумент дружбы народов"
+    assert parsed.unmatched_terms == ()
+
+
 async def test_room_request_keeps_only_explicit_stay_details(build: Build) -> None:
     llm = build(
         {
