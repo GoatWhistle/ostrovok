@@ -23,7 +23,7 @@
   <a href="#результаты"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-1.dark.png"><img src="docs/readme/badge-status-1.light.png" alt="22 запроса на стенде: 16 с выдачей" width="258" height="28"></picture></a>
   <a href="#запуск"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-2.dark.png"><img src="docs/readme/badge-status-2.light.png" alt="без ключей: офлайн-разбор" width="212" height="28"></picture></a>
   <br>
-  <a href="docs/evidence.md#проверка-диалога-и-сцены-25-октября-2026"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-3.dark.png"><img src="docs/readme/badge-status-3.light.png" alt="тесты: 226 бэкенд, 310 фронтенд" width="248" height="28"></picture></a>
+  <a href="docs/evidence.md#проверка-предложений-по-датам-25-октября-2026"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-3.dark.png"><img src="docs/readme/badge-status-3.light.png" alt="тесты: 232 бэкенд, 310 фронтенд" width="248" height="28"></picture></a>
   <picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-4.dark.png"><img src="docs/readme/badge-status-4.light.png" alt="интерфейс: RU и EN" width="158" height="28"></picture>
   <a href="LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-5.dark.png"><img src="docs/readme/badge-status-5.light.png" alt="лицензия: MIT" width="124" height="28"></picture></a>
   <!-- /readme:status -->
