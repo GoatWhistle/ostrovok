@@ -1,0 +1,47 @@
+  <div class="block">
+    <h3 data-i18n="h.es">Пустые состояния и ошибки</h3>
+    <p data-i18n="es.p">Пустое состояние и ошибка стоят по центру своей панели. Появляются коротко: плитка с иконкой вырастает из 0,95, вокруг неё один раз расходится мягкое кольцо, затем по очереди приходят заголовок, текст и кнопка. При уменьшенном движении остаётся только прозрачность.</p>
+    <div class="grid" style="--min: 300px;">
+      <div class="es-card">
+        <header><b data-i18n="es.v.none">Ничего не нашлось</b><button class="btn btn--ghost btn--icon btn--compact js-play" type="button" data-target="#es-none" data-tip-key="es.replay">{{i:refresh:18}}</button></header>
+        <div class="es-panel">
+          <div class="es" id="es-none" data-autoplay>
+            <span class="es-ic" style="--i: 0">{{i:search:48}}</span>
+            <h4 style="--i: 1" data-i18n="es.none">Таких отелей не нашлось</h4>
+            <p style="--i: 2" data-i18n="es.none.t">Уточните запрос в чате: смягчите условия или опишите их иначе.</p>
+            <button class="btn btn--compact" type="button" style="--i: 3">{{i:edit:18}}<span data-i18n="es.none.b">Изменить запрос</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="es-card">
+        <header><b data-i18n="es.v.empty">До первого поиска</b><button class="btn btn--ghost btn--icon btn--compact js-play" type="button" data-target="#es-empty" data-tip-key="es.replay">{{i:refresh:18}}</button></header>
+        <div class="es-panel">
+          <div class="es" id="es-empty" data-autoplay>
+            <span class="es-ic" style="--i: 0">{{i:hotel:48}}</span>
+            <h4 style="--i: 1" data-i18n="es.empty">Здесь появятся отели</h4>
+            <p style="--i: 2" data-i18n="es.empty.t">Опишите в чате, какой отель нужен. Подходящие отели появятся здесь, а на карте будет видно почему.</p>
+          </div>
+        </div>
+      </div>
+      <div class="es-card">
+        <header><b data-i18n="es.v.error">Ошибка</b><button class="btn btn--ghost btn--icon btn--compact js-play" type="button" data-target="#es-error" data-tip-key="es.replay">{{i:refresh:18}}</button></header>
+        <div class="es-panel">
+          <div class="es" id="es-error" data-kind="error" data-autoplay>
+            <span class="es-ic" style="--i: 0">{{i:conflict:48}}</span>
+            <h4 style="--i: 1" data-i18n="chat.error">Не получилось выполнить поиск</h4>
+            <p style="--i: 2" data-i18n="bn.err.t">Сервер не ответил за 5 секунд.</p>
+            <button class="btn btn--primary btn--compact" type="button" style="--i: 3">{{i:refresh:18}}<span data-i18n="b.retry">Повторить</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <dl class="prov" style="margin-top: var(--space-16);">
+      <dt data-i18n="es.sp.layout">Место</dt><dd>place-items center, max-width 320px, gap --space-12</dd>
+      <dt data-i18n="es.sp.tile">Плитка</dt><dd>80px, icon 48px --icon-xl, --radius-xl, --surface-sunken | --status-danger-surface</dd>
+      <dt data-i18n="es.sp.enter">Плитка входит</dt><dd>kf-scale-in --dur-base --ease-out</dd>
+      <dt data-i18n="es.sp.ring">Кольцо</dt><dd>2px --border-strong | --status-danger, kf-fact-ping --dur-draw --ease-out, delay --dur-base, iterations 1</dd>
+      <dt data-i18n="es.sp.cascade">Каскад</dt><dd>kf-rise-in --dur-slow --ease-out, delay calc(--dur-base + i * --stagger), i = 1, 2, 3</dd>
+      <dt data-i18n="es.sp.reduced">Меньше движения</dt><dd>kf-fade-in, ring none</dd>
+    </dl>
+  </div>
+

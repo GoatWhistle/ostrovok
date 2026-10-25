@@ -1,0 +1,270 @@
+<section class="section" id="chat">
+  <div class="section-head">
+    <h2 data-i18n="nav.chat">Чат</h2>
+    <p data-i18n="chat.p.head">Поиск начинается с разговора. Путешественник описывает отель словами, подбор отвечает коротко: что понял, что нашёл, чего нет в данных. Ответ ведёт к карте, а не заменяет её.</p>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.anatomy">Анатомия</h3>
+    <p data-i18n="chat.p.anatomy">Панель чата шириной 400 px справа от карты. Сверху шапка с названием и кнопкой нового поиска, в середине лента сообщений со своей прокруткой, снизу поле ввода. Читалка экрана слышит ленту как журнал и узнаёт о новых сообщениях сама.</p>
+    <div class="chat-anatomy">
+      <div class="chat-figure">
+        <div class="chat-frame">
+          <section class="chat" aria-label="Подбор">
+            <header class="chat-head"><h4 data-i18n="chat.title">Подбор</h4><button class="btn btn--ghost btn--icon btn--compact" type="button" data-tip-key="chat.new">{{i:plus:18}}</button></header>
+            <div class="chat-log scroll-area" role="log" aria-live="polite">
+              <div class="chat-msg chat-msg--user"><p class="chat-user" data-i18n="q">тихий номер с видом на закат недалеко от моря</p></div>
+              <div class="chat-msg chat-msg--agent">
+                <span class="chat-avatar">{{MARK:w20}}</span>
+                <div class="chat-bubble">
+                  <p class="chat-lead" data-i18n="chat.found">Нашёл 24 отеля.</p>
+                  <div class="chat-part"><span class="chat-cap" data-i18n="chat.understood">Как я понял запрос</span><div class="chat-chips">
+                    <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-quiet)"><span class="chip-dot">{{i:quiet:12}}</span><span data-i18n="ch.quiet">Тихо</span></button>
+                    <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-sunset)"><span class="chip-dot">{{i:sunset:12}}</span><span data-i18n="ch.sunset">Закат из окна</span></button>
+                    <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="ch.walk">До моря пешком</span></button>
+                  </div></div>
+                  <div class="chat-actions"><button class="btn btn--fact btn--compact" type="button">{{i:map:18}}<span data-i18n="b.onmap">Показать на карте</span></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-composer">
+              <div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-placeholder="chat.ph" placeholder="Тихий номер с видом на закат, недалеко от моря"></textarea><button class="btn btn--primary btn--icon btn--compact" type="button" disabled data-tip-key="chat.send">{{i:arrow-up:18}}</button></div>
+              <p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p>
+            </div>
+          </section>
+        </div>
+        <span class="chat-tag" style="top: 28px">1</span>
+        <span class="chat-tag" style="top: 46%">2</span>
+        <span class="chat-tag" style="bottom: 40px; transform: translateY(50%)">3</span>
+      </div>
+      <ol class="chat-notes">
+        <li><span class="chat-num">1</span><div><b data-i18n="chat.n.head">Шапка</b><span data-i18n="chat.n.head.t">Заголовок «Подбор» и тихая кнопка «Новый поиск» с плюсом. Снизу линия в 1 px, как у шапки страницы.</span><code class="token">min-height 56px, --border-subtle</code></div></li>
+        <li><span class="chat-num">2</span><div><b data-i18n="chat.n.log">Лента</b><span data-i18n="chat.n.log.t">Сообщения с зазором 16 px, прокрутка своя. Новое сообщение подтягивает ленту к себе.</span><code class="token">role="log" aria-live="polite", --space-16</code></div></li>
+        <li><span class="chat-num">3</span><div><b data-i18n="chat.n.composer">Поле ввода</b><span data-i18n="chat.n.composer.t">Компактный поиск закреплён внизу, под ним подсказка про Enter.</span><code class="token">.hero-search, --radius-xl, --shadow-float</code></div></li>
+        <li><span class="chat-num">4</span><div><b data-i18n="chat.n.columns">Колонки</b><span data-i18n="chat.n.columns.t">Отели и чат по 400 px от 90rem и по 360 px от 64rem. На узком экране одна колонка и вкладки Чат, Отели, Карта.</span><code class="token">box-shadow: inset 1px 0 0 var(--border-subtle)</code></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.bubbles">Сообщения</h3>
+    <p data-i18n="chat.p.bubbles">Сообщение путешественника кобальтовое и прижато к концу строки. Подбор отвечает на поднятой поверхности, в начале строки аватар со знаком. Нижний угол со стороны говорящего скруглён меньше остальных, так видно, кто говорит.</p>
+    <div class="split">
+      <div class="stack">
+        <div class="chat-stage"><div class="chat-msg chat-msg--user"><p class="chat-user" data-i18n="q">тихий номер с видом на закат недалеко от моря</p></div></div>
+        <dl class="prov">
+          <dt data-i18n="chat.sp.bg">Фон</dt><dd>--action-primary</dd>
+          <dt data-i18n="chat.sp.text">Текст</dt><dd>--text-on-action, body-sm, --line-height-body</dd>
+          <dt data-i18n="chat.sp.pad">Отступы</dt><dd>--space-12 --space-16</dd>
+          <dt data-i18n="chat.sp.radius">Углы</dt><dd>--radius-lg, end-end --radius-xs</dd>
+          <dt data-i18n="chat.sp.width">Ширина</dt><dd>max-inline-size 85%</dd>
+        </dl>
+      </div>
+      <div class="stack">
+        <div class="chat-stage"><div class="chat-msg chat-msg--agent"><span class="chat-avatar">{{MARK:w20}}</span><div class="chat-bubble"><p data-i18n="chat.ex.a">Закат из окна виден с 4-го этажа. Посчитано по рельефу и высотам соседних домов.</p></div></div></div>
+        <dl class="prov">
+          <dt data-i18n="chat.sp.avatar">Аватар</dt><dd>32px, --radius-sm, --surface-sunken</dd>
+          <dt data-i18n="chat.sp.bg">Фон</dt><dd>--surface-raised, --shadow-ring</dd>
+          <dt data-i18n="chat.sp.pad">Отступы</dt><dd>--space-12 --space-16, gap --space-12</dd>
+          <dt data-i18n="chat.sp.radius">Углы</dt><dd>--radius-lg, end-start --radius-xs</dd>
+          <dt data-i18n="chat.sp.text">Текст</dt><dd>body-sm, --text-primary</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.result">Ответ с выдачей</h3>
+    <p data-i18n="chat.p.result">Ответ собирается из необязательных частей, всегда в одном порядке: итог одной фразой, как понят запрос, исправления, чего нет в данных, что ещё считается, действия. Пустые части не показываем.</p>
+    <div class="split">
+      <div class="chat-stage">
+        <div class="chat-msg chat-msg--agent">
+          <span class="chat-avatar">{{MARK:w20}}</span>
+          <div class="chat-bubble">
+            <p class="chat-lead" data-i18n="chat.found">Нашёл 24 отеля.</p>
+            <div class="chat-part"><span class="chat-cap" data-i18n="chat.understood">Как я понял запрос</span><div class="chat-chips">
+              <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-quiet)"><span class="chip-dot">{{i:quiet:12}}</span><span data-i18n="ch.quiet">Тихо</span></button>
+              <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-sunset)"><span class="chip-dot">{{i:sunset:12}}</span><span data-i18n="ch.sunset">Закат из окна</span></button>
+              <button class="chip chip--compact" type="button" aria-pressed="true" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="ch.walk">До моря пешком</span></button>
+            </div></div>
+            <div class="banner" style="--b-bg: var(--status-info-surface); --b-ic: var(--status-info);">{{i:info}}<div><span data-i18n="chat.fix">«сочы» исправлено на «Сочи»</span></div></div>
+            <span class="badge badge--warning">{{i:unknown}}<span data-i18n="chat.unmatched">Не нашёл в данных: зоопарк</span></span>
+            <span class="badge badge--info badge--pending">{{i:pending}}<span data-i18n="chat.pending">Досчитываю часть условий</span></span>
+            <div class="chat-actions"><button class="btn btn--fact btn--compact" type="button">{{i:map:18}}<span data-i18n="b.onmap">Показать на карте</span></button><button class="btn btn--ghost btn--compact" type="button" data-i18n="chat.restore">Вернуть эту выдачу</button></div>
+          </div>
+        </div>
+      </div>
+      <ol class="chat-notes">
+        <li><span class="chat-num">1</span><div><b data-i18n="chat.o.lead">Итог</b><span data-i18n="chat.o.lead.t">Одна фраза жирным: «Нашёл 24 отеля.», «Пока не нашёл подходящих отелей.», «Нужно уточнение.»</span></div></li>
+        <li><span class="chat-num">2</span><div><b data-i18n="chat.o.chips">Как я понял запрос</b><span data-i18n="chat.o.chips.t">Нажатые компактные чипы, по одному на пожелание, с цветом и иконкой характеристики.</span><code class="token">.chip aria-pressed="true", 30px</code></div></li>
+        <li><span class="chat-num">3</span><div><b data-i18n="chat.o.fix">Исправления</b><span data-i18n="chat.o.fix.t">Информационный баннер: что мы поняли иначе, чем написано.</span><code class="token">.banner, --status-info-surface</code></div></li>
+        <li><span class="chat-num">4</span><div><b data-i18n="chat.o.unmatched">Чего нет в данных</b><span data-i18n="chat.o.unmatched.t">Предупреждение с иконкой вопроса. Это не отказ, а честное «не знаем».</span><code class="token">.badge--warning, unknown</code></div></li>
+        <li><span class="chat-num">5</span><div><b data-i18n="chat.o.pending">Что ещё считается</b><span data-i18n="chat.o.pending.t">Синий статус с мерцающей иконкой, пока расчёт не готов.</span><code class="token">.badge--info .badge--pending</code></div></li>
+        <li><span class="chat-num">6</span><div><b data-i18n="chat.o.actions">Действия</b><span data-i18n="chat.o.actions.t">Лаймовая «Показать на карте» ведёт к первому совпавшему отелю. У старых ответов остаётся тихая «Вернуть эту выдачу».</span><code class="token">.btn--fact .btn--compact, .btn--ghost</code></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.clarify">Уточнение</h3>
+    <p data-i18n="chat.p.clarify">Если запрос можно понять по-разному, подбор не угадывает. Он говорит, что именно непонятно, и предлагает варианты чипами. Нажатие на чип отправляет его как сообщение.</p>
+    <div class="split">
+      <div class="chat-stage">
+        <div class="chat-msg chat-msg--agent">
+          <span class="chat-avatar">{{MARK:w20}}</span>
+          <div class="chat-bubble">
+            <p class="chat-lead" data-i18n="chat.clarify">Нужно уточнение.</p>
+            <div class="banner" style="--b-bg: var(--status-warning-surface); --b-ic: var(--status-warning);">{{i:warning}}<div><strong data-i18n="chat.clarify.t">Не понял, что значит «недалеко»</strong><p data-i18n="chat.clarify.p">Выберите расстояние или напишите своё.</p></div></div>
+            <div class="chat-chips">
+              <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="chat.opt.5">до моря 5 минут</span></button>
+              <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="chat.opt.10">до моря 10 минут</span></button>
+              <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="chat.opt.15">до моря 15 минут</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="prov">
+        <dt data-i18n="chat.sp.banner">Баннер</dt><dd>.banner, --status-warning-surface, warning</dd>
+        <dt data-i18n="chat.sp.chips">Чипы</dt><dd>.chip aria-pressed="false"</dd>
+        <dt data-i18n="chat.sp.tap">Нажатие</dt><dd>send(chip label)</dd>
+        <dt data-i18n="chat.sp.region">Не тот город</dt><dd>.banner, --status-neutral-surface</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.thinking">Подбор думает</h3>
+    <p data-i18n="chat.p.thinking">Пока идёт поиск, знак в аватаре складывается и раскрывается, как фирменный загрузчик. Через 200 мс появляется пузырь «Ищу по фактам» с тремя строками скелетона. Быстрый ответ приходит без мелькания.</p>
+    <div class="split">
+      <div class="chat-stage">
+        <div class="chat-msg chat-msg--agent">
+          <span class="chat-avatar"><span class="fold" role="img" aria-label="Загрузка"><svg viewBox="0 0 64 64"><path class="mk-ghost" d="M5 14 22 8v42L5 56Z"/><path class="mk-ghost" d="M25 8l14 6v42l-14-6Z"/><path class="mk-ghost" d="M42 14 59 8v42l-17 6Z"/><path class="mk-side f-l" d="M5 14 22 8v42L5 56Z"/><path class="mk-mid f-m" d="M25 8l14 6v42l-14-6Z"/><path class="mk-side f-r" d="M42 14 59 8v42l-17 6Z"/></svg></span></span>
+          <div class="chat-bubble chat-bubble--thinking"><span class="chat-cap" data-i18n="chat.thinking">Ищу по фактам</span><span class="chat-skel"><i class="skeleton"></i><i class="skeleton"></i><i class="skeleton"></i></span></div>
+        </div>
+      </div>
+      <dl class="prov">
+        <dt data-i18n="chat.sp.mark">Знак</dt><dd>.fold, --dur-breathe, --ease-fold</dd>
+        <dt data-i18n="chat.sp.enter">Появление</dt><dd>--delay-skeleton</dd>
+        <dt data-i18n="chat.sp.hold">Минимум</dt><dd>--hold-skeleton</dd>
+        <dt data-i18n="chat.sp.lines">Строки</dt><dd>.skeleton, --radius-xs, 10px</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.error">Ошибка</h3>
+    <p data-i18n="chat.p.error">Ошибка остаётся в ленте на месте ответа: иконка, что случилось и кнопка повтора. Повтор отправляет тот же запрос, набирать его заново не нужно.</p>
+    <div class="split">
+      <div class="chat-stage">
+        <div class="chat-msg chat-msg--agent">
+          <span class="chat-avatar">{{MARK:w20}}</span>
+          <div class="chat-bubble"><div class="chat-error"><span class="chat-error-ic">{{i:warning}}</span><div><b data-i18n="chat.error">Не получилось выполнить поиск</b><span data-i18n="bn.err.t">Сервер не ответил за 5 секунд.</span></div><button class="btn btn--primary btn--compact" type="button">{{i:refresh:18}}<span data-i18n="b.retry">Повторить</span></button></div></div>
+        </div>
+      </div>
+      <dl class="prov">
+        <dt data-i18n="chat.sp.icon">Иконка</dt><dd>40px, --radius-md, --status-danger-surface</dd>
+        <dt data-i18n="chat.sp.title">Заголовок</dt><dd>body-sm, --weight-bold</dd>
+        <dt data-i18n="chat.sp.button">Кнопка</dt><dd>.btn--primary .btn--compact, refresh</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.empty">Пустой чат</h3>
+    <p data-i18n="chat.p.empty">При первом визите лента не пустая: приветствие объясняет, что делать, а четыре чипа показывают, как ищут. Знак у приветствия раскрывается один раз за сессию вкладки.</p>
+    <div class="split">
+      <div class="chat-stage" id="chat-greet">
+        <div class="chat-msg chat-msg--agent">
+          <span class="chat-avatar">{{MARK:unfold}}</span>
+          <div class="chat-bubble"><p data-i18n="chat.greeting">Опишите отель словами. Я найду, где это правда, и покажу на карте почему.</p></div>
+        </div>
+        <div class="chat-part chat-suggest"><span class="chat-cap" data-i18n="chat.suggestions">Примеры запросов</span><div class="chat-chips">
+          <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-sunset)"><span class="chip-dot">{{i:sunset:12}}</span><span data-i18n="chat.s.sunset">закат из окна</span></button>
+          <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-walk)"><span class="chip-dot">{{i:walk:12}}</span><span data-i18n="chat.s.walk">до моря пешком</span></button>
+          <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-pets)"><span class="chip-dot">{{i:pets:12}}</span><span data-i18n="chat.s.pets">можно с собакой</span></button>
+          <button class="chip chip--compact" type="button" aria-pressed="false" style="--hue: var(--hue-quiet)"><span class="chip-dot">{{i:quiet:12}}</span><span data-i18n="chat.s.quiet">тихо ночью</span></button>
+        </div></div>
+      </div>
+      <div class="stack">
+        <dl class="prov">
+          <dt data-i18n="chat.sp.mark">Знак</dt><dd>.mk-unfold, --dur-fold, --ease-fold</dd>
+          <dt data-i18n="chat.sp.once">Сколько раз</dt><dd>sessionStorage, 1</dd>
+          <dt data-i18n="chat.sp.chips">Чипы</dt><dd>sunset, walk, pets, quiet</dd>
+        </dl>
+        <div class="row"><button class="btn btn--outline btn--compact js-replay" type="button" data-target="#chat-greet">{{i:refresh:18}}<span data-i18n="chat.replay.mark">Повторить знак</span></button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.composer">Поле ввода</h3>
+    <p data-i18n="chat.p.composer">Компактный поиск с многострочным полем: растёт до шести строк, дальше прокручивается. Кнопка отправки кобальтовая со стрелкой вверх. Пока поле пустое, она неактивна, пока идёт поиск, показывает спиннер.</p>
+    <div class="grid" style="--min: 420px;">
+      <div class="stack"><span class="label" data-i18n="chat.c.empty">Пусто</span><div class="chat-stage chat-stage--composer"><div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-placeholder="chat.ph" placeholder="Тихий номер с видом на закат, недалеко от моря"></textarea><button class="btn btn--primary btn--icon btn--compact" type="button" disabled data-tip-key="chat.send">{{i:arrow-up:18}}</button></div><p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p></div></div>
+      <div class="stack"><span class="label" data-i18n="chat.c.filled">С текстом</span><div class="chat-stage chat-stage--composer"><div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-value="q">тихий номер с видом на закат недалеко от моря</textarea><button class="btn btn--primary btn--icon btn--compact" type="button" data-tip-key="chat.send">{{i:arrow-up:18}}</button></div><p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p></div></div>
+      <div class="stack"><span class="label" data-i18n="chat.c.multi">Несколько строк</span><div class="chat-stage chat-stage--composer"><div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-value="chat.ex.multi">Тихий номер с видом на закат.
+До моря пешком, без подъёма.
+Можно с собакой до 10 кг.</textarea><button class="btn btn--primary btn--icon btn--compact" type="button" data-tip-key="chat.send">{{i:arrow-up:18}}</button></div><p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p></div></div>
+      <div class="stack"><span class="label" data-i18n="chat.c.busy">Поиск идёт</span><div class="chat-stage chat-stage--composer"><div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-placeholder="chat.ph" placeholder="Тихий номер с видом на закат, недалеко от моря"></textarea><button class="btn btn--primary btn--icon btn--compact" type="button" aria-busy="true" data-tip-key="chat.send"><span class="spinner"></span>{{i:arrow-up:18}}</button></div><p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p></div></div>
+    </div>
+    <dl class="prov" style="margin-top: var(--space-16);">
+      <dt data-i18n="chat.sp.height">Высота</dt><dd>min-height --control-height-hero, до 6 строк</dd>
+      <dt data-i18n="chat.sp.pad">Отступы</dt><dd>--space-8 --space-8 --space-8 --space-16</dd>
+      <dt data-i18n="chat.sp.radius">Углы</dt><dd>--radius-xl, --surface-raised, --shadow-float</dd>
+      <dt data-i18n="chat.sp.focus">Фокус</dt><dd>--shadow-float, inset 0 0 0 --focus-ring-width --focus-ring</dd>
+      <dt data-i18n="chat.sp.button">Кнопка</dt><dd>.btn--primary .btn--icon .btn--compact, arrow-up</dd>
+      <dt data-i18n="chat.sp.hint">Подсказка</dt><dd>caption, --text-muted</dd>
+    </dl>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.motion">Движение</h3>
+    <p data-i18n="chat.p.motion">Сообщения не выезжают и не прыгают. Новое вырастает из угла своего пузыря, лента едет к нему, ответ сменяет «Ищу по фактам» на том же месте. Отправьте сообщение в живом примере: там те же токены.</p>
+    <div class="table-wrap"><table class="tok-table chat-motion">
+      <tr><th data-i18n="chat.m.what">Что</th><th data-i18n="chat.m.how">Как</th><th data-i18n="chat.m.tokens">Токены</th><th data-i18n="chat.m.reduced">Меньше движения</th></tr>
+      <tr><td><b data-i18n="chat.m.1">Новое сообщение</b></td><td data-i18n="chat.m.1.t">Масштаб 0,95 и сдвиг 4 px из угла пузыря: у путешественника снизу справа, у подбора снизу слева.</td><td><code class="token">--motion-anchor-in</code><br><code class="token">kf-anchor-in --dur-base --ease-out</code></td><td data-i18n="chat.m.fade">Только прозрачность</td></tr>
+      <tr><td><b data-i18n="chat.m.2">Прокрутка ленты</b></td><td data-i18n="chat.m.2.t">Лента плавно едет к новому сообщению. После отправки с клавиатуры прыгает сразу, без анимации.</td><td><code class="token">scrollTo behavior smooth</code></td><td data-i18n="chat.m.jump">Прыжком</td></tr>
+      <tr><td><b data-i18n="chat.m.3">Подбор думает</b></td><td data-i18n="chat.m.3.t">Знак складывается в аватаре. Пузырь со скелетоном появляется через 200 мс и держится не меньше 300 мс.</td><td><code class="token">kf-fold-* --dur-breathe</code><br><code class="token">--delay-skeleton --hold-skeleton</code></td><td data-i18n="chat.m.still">Знак стоит, скелетон не мерцает</td></tr>
+      <tr><td><b data-i18n="chat.m.4">Смена ответа</b></td><td data-i18n="chat.m.4.t">«Ищу по фактам» уходит вверх с размытием 2 px, ответ приходит снизу в том же пузыре.</td><td><code class="token">kf-swap-out --dur-fast-exit</code><br><code class="token">kf-swap-in --dur-fast --blur-soft</code></td><td data-i18n="chat.m.instant">Мгновенная смена</td></tr>
+      <tr><td><b data-i18n="chat.m.5">Список и карточка</b></td><td data-i18n="chat.m.5.t">Карточка отеля сменяет список в левой панели той же сменой: прозрачность и сдвиг 4 px.</td><td><code class="token">kf-swap-in --shift-anchor</code></td><td data-i18n="chat.m.instant">Мгновенная смена</td></tr>
+    </table></div>
+    <div class="chat-live">
+      <div class="chat-frame chat-frame--live">
+        <section class="chat" id="chat-demo" aria-label="Подбор">
+          <header class="chat-head"><h4 data-i18n="chat.title">Подбор</h4><button class="btn btn--ghost btn--icon btn--compact js-chat-new" type="button" data-tip-key="chat.new">{{i:plus:18}}</button></header>
+          <div class="chat-log scroll-area js-chat-log" role="log" aria-live="polite"></div>
+          <form class="chat-composer js-chat-form">
+            <div class="hero-search chat-input"><textarea rows="1" aria-label="Сообщение для подбора" data-i18n-placeholder="chat.ph" placeholder="Тихий номер с видом на закат, недалеко от моря"></textarea><button class="btn btn--primary btn--icon btn--compact" type="submit" disabled data-tip-key="chat.send"><span class="spinner" hidden></span>{{i:arrow-up:18}}</button></div>
+            <p class="chat-hint" data-i18n="chat.hint">Enter отправляет, Shift и Enter переносят строку</p>
+          </form>
+        </section>
+      </div>
+      <div class="stack">
+        <span class="label" data-i18n="chat.live">Живой пример</span>
+        <p class="chat-live-note" data-i18n="chat.live.t">Напишите запрос и нажмите Enter или выберите чип. Подбор ответит выдачей, если узнает в запросе тишину, закат, море или собаку, и попросит уточнить, если нет.</p>
+        <div class="row"><button class="btn btn--outline btn--compact js-chat-replay" type="button">{{i:refresh:18}}<span data-i18n="chat.live.replay">Проиграть разговор</span></button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 data-i18n="h.chat.copy">Как пишет подбор</h3>
+    <p data-i18n="chat.p.copy">Подбор говорит тем же голосом, что и весь продукт: коротко, по делу, с числами. Неизвестное называет неизвестным и не выдаёт за отказ.</p>
+    <div class="dodont">
+      <div class="panel do"><h4>{{i:confirmed}}<span data-i18n="chat.do">Пишем</span></h4><ul>
+        <li>{{i:check}}<span data-i18n="chat.do.1">Итог первой фразой: «Нашёл 24 отеля.»</span></li>
+        <li>{{i:check}}<span data-i18n="chat.do.2">Чего нет в данных, так и называем: «Не нашёл в данных: зоопарк».</span></li>
+        <li>{{i:check}}<span data-i18n="chat.do.3">От первого лица и простыми глаголами: нашёл, исправил, досчитываю.</span></li>
+        <li>{{i:check}}<span data-i18n="chat.do.4">Честные состояния: «Ищу по фактам», пока ищем, ошибка всегда с повтором.</span></li>
+        <li>{{i:check}}<span data-i18n="chat.do.5">Кнопки глаголом и объектом: «Показать на карте», «Вернуть эту выдачу».</span></li>
+      </ul></div>
+      <div class="panel dont"><h4>{{i:rejected}}<span data-i18n="chat.dont">Не пишем</span></h4><ul>
+        <li>{{i:x}}<span data-i18n="chat.dont.1">Длинное тире, стрелки и точку посередине строки как разделители.</span></li>
+        <li>{{i:x}}<span data-i18n="chat.dont.2">Эмодзи, восклицательные знаки и «Отличный выбор».</span></li>
+        <li>{{i:x}}<span data-i18n="chat.dont.3">Рассуждения модели, проценты без источника и технические журналы.</span></li>
+        <li>{{i:x}}<span data-i18n="chat.dont.4">«Не найдено» там, где данных просто нет: это разные ответы.</span></li>
+        <li>{{i:x}}<span data-i18n="chat.dont.5">Обещания, которых нет в данных: «идеально», «лучший вид».</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>

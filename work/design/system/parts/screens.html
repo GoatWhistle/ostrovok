@@ -1,0 +1,48 @@
+<section class="section" id="screens">
+  <div class="section-head">
+    <h2 data-i18n="nav.screens">Экраны</h2>
+    <p>Как компоненты складываются в продукт. Это не макеты для пикселей, а договор о компоновке: что где лежит, что главное, что видно без прокрутки.</p>
+  </div>
+  <div class="block">
+    <h3 data-i18n="h.scr.search">Подбор, десктоп</h3>
+    <p data-i18n="scr.p.work">Три колонки на всю высоту: слева отели, в центре карта, справа чат. Поиск переехал в поле чата, в шапке остались навигация, язык и тема. Отели и чат по 400 px от 90rem и по 360 px от 64rem, каждая колонка прокручивается сама.</p>
+    <div class="screen ws" id="scr-desktop"></div>
+  </div>
+  <div class="block">
+    <h3 data-i18n="h.scr.hotel">Карточка отеля в левой панели</h3>
+    <p data-i18n="scr.p.hotel">Выбор отеля в списке или на карте заменяет список карточкой в той же панели. Сверху тихая кнопка «Все отели» и название, ниже совпадения по каждому пожеланию и факты с источником. Карта и чат остаются на месте.</p>
+    <div class="screen ws" id="scr-hotel"></div>
+  </div>
+  <div class="block">
+    <div class="phone-block">
+      <div class="phone-copy">
+        <h3 data-i18n="h.scr.mobile">Телефон</h3>
+        <p data-i18n="scr.p.phone">Одна колонка и три вкладки под шапкой: чат, отели, карта. Чат открыт по умолчанию, поле ввода прижато к низу под большой палец. Выдача и карта в соседних вкладках, позиция прокрутки в каждой сохраняется.</p>
+        <ul class="phone-notes">
+          <li>{{i:list:18}}<span data-i18n="scr.n.tabs">Segmented под шапкой: Чат, Отели, Карта. Чат открыт первым.</span></li>
+          <li>{{i:send:18}}<span data-i18n="scr.n.composer">Поле ввода внизу, над клавиатурой, растёт до шести строк.</span></li>
+          <li>{{i:map:18}}<span data-i18n="scr.n.map">Лаймовая кнопка в ответе открывает вкладку карты с доказательством.</span></li>
+          <li>{{i:hotel:18}}<span data-i18n="scr.n.hotel">Карточка отеля открывается во вкладке «Отели» с кнопкой «Все отели».</span></li>
+        </ul>
+      </div>
+      <div class="phone" id="scr-phone"></div>
+      <div class="phone" id="scr-phone-list"></div>
+    </div>
+  </div>
+  <div class="block">
+    <h3 data-i18n="h.scr.hotelier">Кабинет отельера</h3>
+    <p>Очередь вопросов слева, ответ справа. Каждый ответ сразу становится фактом с источником «отельер» и побеждает расчёт.</p>
+    <div class="screen screen--short" id="scr-hotelier"></div>
+  </div>
+  <div class="block">
+    <h3 data-i18n="h.scr.first">Первый вход</h3>
+    <p data-i18n="scr.p.first">Пустая выдача не пустая: слева объяснение, где появятся отели, в центре карта Сочи, в чате приветствие и примеры запросов. Знак у приветствия раскрывается один раз.</p>
+    <div class="screen ws ws--short" id="scr-first"></div>
+  </div>
+  <div class="block">
+    <h3 data-i18n="h.scr.404">Страница не найдена</h3>
+    <p data-i18n="scr.p.404">Этого места нет на карте: пеший маршрут рисуется по фрагменту карты и приходит к пустой метке с вопросом. Знак раскрывается один раз. Код 404 стоит маленьким нейтральным статусом, главное здесь путь обратно к поиску.</p>
+    <div class="screen nf" id="scr-404" data-autoplay></div>
+    <div class="row" style="margin-top: var(--space-12);"><button class="btn btn--outline btn--compact js-play" type="button" data-target="#scr-404">{{i:refresh:18}}<span data-i18n="map.replay">Проиграть появление</span></button></div>
+  </div>
+</section>
