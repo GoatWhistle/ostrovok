@@ -98,6 +98,8 @@ export function HomePage() {
           />
           <SearchChat
             messages={state.messages}
+            conversationId={state.conversationId}
+            history={state.history}
             search={state.search}
             outgoing={state.outgoing}
             selectedHotel={selected?.hotel.name}
@@ -109,6 +111,7 @@ export function HomePage() {
             onShowOnMap={state.showOnMap}
             onShowList={() => state.setView("hotels")}
             onReset={state.reset}
+            onOpenConversation={state.openConversation}
           />
         </div>
       </div>

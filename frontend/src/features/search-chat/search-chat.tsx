@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
@@ -7,6 +7,7 @@ import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
 import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
+import { ChatHistory } from "./chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
 
@@ -14,6 +15,8 @@ export type ChatMessage = components["schemas"]["ChatMessage"]
 
 export interface SearchChatProps {
   readonly messages: readonly ChatMessage[]
+  readonly conversationId: string | null
+  readonly history: readonly { readonly id: string; readonly title: string }[]
   readonly search: SearchResponse | undefined
   readonly outgoing: string | undefined
   readonly selectedHotel?: string | undefined
@@ -25,6 +28,7 @@ export interface SearchChatProps {
   readonly onShowOnMap: (result: SearchResult | undefined) => void
   readonly onShowList: () => void
   readonly onReset: () => void
+  readonly onOpenConversation: (id: string) => void
 }
 
 function useFollow() {
@@ -45,6 +49,8 @@ function useFollow() {
 
 export function SearchChat({
   messages,
+  conversationId,
+  history,
   search,
   outgoing,
   selectedHotel,
@@ -56,8 +62,10 @@ export function SearchChat({
   onShowOnMap,
   onShowList,
   onReset,
+  onOpenConversation,
 }: SearchChatProps) {
   const { t } = useTranslation()
+  const [historyOpen, setHistoryOpen] = useState(false)
   const { log, list } = useFollow()
   const lastAssistant = messages.findLast((message) => message.role === "assistant")?.id
   return (
@@ -66,18 +74,46 @@ export function SearchChat({
         <p id="chat-title" className={styles.title}>
           {t("explore:chat.title")}
         </p>
-        <Button
-          variant="ghost"
-          size="compact"
-          iconOnly
-          icon="new-search"
-          title={t("explore:chat.newSearch")}
-          disabled={messages.length === 0 && !outgoing}
-          onClick={onReset}
-        >
-          {t("explore:chat.newSearch")}
-        </Button>
+        <div className={styles.actions}>
+          <Button
+            variant="ghost"
+            size="compact"
+            icon="history"
+            title={t("explore:chat.history")}
+            aria-expanded={historyOpen}
+            aria-controls="chat-history"
+            disabled={history.length === 0}
+            onClick={() => setHistoryOpen((open) => !open)}
+          >
+            {t("explore:chat.history")}
+          </Button>
+          <Button
+            variant="ghost"
+            size="compact"
+            iconOnly
+            icon="new-search"
+            title={t("explore:chat.newSearch")}
+            disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
+            onClick={() => {
+              onReset()
+              setHistoryOpen(false)
+            }}
+          >
+            {t("explore:chat.newSearch")}
+          </Button>
+        </div>
       </header>
+      <ChatHistory
+        id="chat-history"
+        activeId={conversationId}
+        conversations={history}
+        hidden={!historyOpen}
+        pending={sending}
+        onOpen={(id) => {
+          onOpenConversation(id)
+          setHistoryOpen(false)
+        }}
+      />
       <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
         <ol ref={list} className={styles.messages}>
           {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
@@ -100,7 +136,12 @@ export function SearchChat({
           {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
         </ol>
       </ScrollArea>
-      <ChatComposer pending={sending} selectedHotel={selectedHotel} onSend={onSend} />
+      <ChatComposer
+        key={conversationId ?? "new"}
+        pending={sending}
+        selectedHotel={selectedHotel}
+        onSend={onSend}
+      />
     </section>
   )
 }

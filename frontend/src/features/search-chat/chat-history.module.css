@@ -1,0 +1,28 @@
+.history {
+  box-shadow: var(--shadow-divider-bottom);
+}
+
+.history[hidden] {
+  display: none;
+}
+
+.scroll {
+  max-block-size: min(38vh, 20rem);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-8);
+  list-style: none;
+}
+
+.item {
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+}
+
+.item[aria-current="true"] {
+  background-color: var(--surface-wash);
+}

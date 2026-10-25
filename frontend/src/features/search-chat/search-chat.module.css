@@ -1,6 +1,6 @@
 .chat {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   min-block-size: 0;
   block-size: 100%;
   background-color: var(--surface-base);
@@ -18,6 +18,12 @@
 
 .title {
   composes: subheadingText from "../../shared/styles/compose.module.css";
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
 .log {

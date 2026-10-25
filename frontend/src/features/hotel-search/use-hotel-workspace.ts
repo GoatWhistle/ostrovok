@@ -89,13 +89,22 @@ export function useHotelWorkspace() {
   }
   return {
     messages: ordered(chat.data?.messages ?? []),
+    conversationId: chat.conversationId,
+    history: chat.history,
     search,
     outgoing: chat.outgoing,
     send: chat.send,
     retry: chat.retry,
     reset: () => {
       clearSelection()
+      setCompared([])
       chat.reset()
+      setView("chat")
+    },
+    openConversation: (id: string) => {
+      clearSelection()
+      setCompared([])
+      chat.open(id)
       setView("chat")
     },
     chatLoading: chat.loading,

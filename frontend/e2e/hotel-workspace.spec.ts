@@ -37,6 +37,74 @@ test("chat refinement keeps results and shows a matched route on the map", async
   await expect(page.locator("canvas.maplibregl-canvas")).toBeVisible()
 })
 
+test("new search starts a separate chat and saved chats reopen", async ({ page }) => {
+  await installHotelContract(page)
+  const firstId = "00000000-0000-0000-0000-000000000011"
+  const secondId = "00000000-0000-0000-0000-000000000012"
+  const requests: (string | null)[] = []
+  const chats = new Map<string, { id: string; messages: object[] }>()
+  await page.route("**/api/v1/chat/messages", (route) => {
+    const body = route.request().postDataJSON()
+    const previousId = body.conversation_id as string | null
+    requests.push(previousId)
+    const id = previousId ?? (chats.size === 0 ? firstId : secondId)
+    const current = chats.get(id) ?? { id, messages: [] }
+    current.messages.push(
+      {
+        id: `${id}-u-${current.messages.length}`,
+        role: "user",
+        content: body.message,
+        created_at: new Date().toISOString(),
+      },
+      {
+        id: `${id}-a-${current.messages.length}`,
+        role: "assistant",
+        content: "Reply",
+        created_at: new Date().toISOString(),
+      },
+    )
+    chats.set(id, current)
+    return route.fulfill({ json: current })
+  })
+  await page.route("**/api/v1/chat/conversations/*", (route) => {
+    const id = new URL(route.request().url()).pathname.split("/").at(-1) ?? ""
+    const conversation = chats.get(id)
+    return conversation
+      ? route.fulfill({ json: conversation })
+      : route.fulfill({ status: 404, json: { code: "not_found", message: "Missing" } })
+  })
+  await page.goto("/")
+  const log = page.getByRole("log", { name: copy.chat.log })
+  const composer = page.getByRole("textbox", { name: copy.chat.composer })
+  const send = page.getByRole("button", { name: copy.chat.send, exact: true })
+  await composer.fill("First request")
+  await send.click()
+  await expect(log.getByText("First request", { exact: true })).toBeVisible()
+  await page.getByRole("button", { name: copy.chat.newSearch }).click()
+  await composer.fill("Second request")
+  await send.click()
+  await expect(log.getByText("Second request", { exact: true })).toBeVisible()
+  await expect(log.getByText("First request", { exact: true })).toBeHidden()
+  await page.getByRole("button", { name: copy.chat.history }).click()
+  await page
+    .getByRole("navigation", { name: copy.chat.history })
+    .getByRole("button", { name: "First request" })
+    .click()
+  await expect(log.getByText("First request", { exact: true })).toBeVisible()
+  await expect(log.getByText("Second request", { exact: true })).toBeHidden()
+  await composer.fill("Follow up")
+  await send.click()
+  await expect.poll(() => requests).toEqual([null, null, firstId])
+  await page.reload()
+  await expect(log.getByText("First request", { exact: true })).toBeVisible()
+  await page.getByRole("button", { name: copy.chat.history }).click()
+  await expect(
+    page
+      .getByRole("navigation", { name: copy.chat.history })
+      .getByRole("button", { name: "Second request" }),
+  ).toBeVisible()
+})
+
 test("mobile selection transfers keyboard focus into visible hotel details", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 900 })
   await installHotelContract(page)
