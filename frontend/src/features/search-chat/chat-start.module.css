@@ -1,0 +1,60 @@
+.card {
+  position: relative;
+  z-index: var(--layer-raised);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-16);
+  inline-size: min(100%, var(--start-card-width));
+  padding: var(--space-32);
+  border-radius: var(--radius-xl);
+  background-color: var(--surface-overlay);
+  box-shadow: var(--shadow-overlay);
+  text-align: center;
+  animation: var(--motion-state-in);
+}
+
+.card > :not(:first-child) {
+  animation: var(--motion-rise-in);
+  animation-delay: calc(var(--dur-base) + var(--stagger) * var(--start-step, 1));
+}
+
+.card > :nth-child(3) {
+  --start-step: 2;
+}
+
+.card > :nth-child(4) {
+  --start-step: 3;
+}
+
+.card > :nth-child(5) {
+  --start-step: 4;
+}
+
+.title {
+  composes: headingText from "../../shared/styles/compose.module.css";
+  font-size: var(--font-size-heading-lg);
+  line-height: var(--line-height-heading-lg);
+}
+
+.text {
+  composes: secondaryText from "../../shared/styles/compose.module.css";
+  font-size: var(--font-size-body);
+}
+
+.composer {
+  inline-size: 100%;
+  text-align: start;
+}
+
+.composer > form {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+}
