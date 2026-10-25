@@ -16,3 +16,4 @@ class ConversationRecord:
     region_id: str
     effective_query: str | None
     messages: tuple[ChatMessageRecord, ...]
+    search_snapshot: dict[str, object] | None = None

@@ -699,6 +699,10 @@ components:
               items: { $ref: "#/components/schemas/QueryCorrection" }
             unsupported_region: { type: string, nullable: true }
             needs_clarification: { type: boolean }
+            wants_room: { type: boolean }
+            check_in: { type: string, format: date, nullable: true }
+            check_out: { type: string, format: date, nullable: true }
+            adults: { type: integer, nullable: true }
         results:
           type: array
           items: { $ref: "#/components/schemas/SearchResult" }

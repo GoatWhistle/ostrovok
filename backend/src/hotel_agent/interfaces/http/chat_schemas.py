@@ -47,5 +47,11 @@ def conversation_schema(
             for item in conversation.messages
         ],
         effective_query=conversation.effective_query,
-        search=search_schema(outcome.search, registry, 0) if outcome.search else None,
+        search=(
+            SearchResponseSchema.model_validate(outcome.search_snapshot)
+            if outcome.search_snapshot is not None
+            else search_schema(outcome.search, registry, 0)
+            if outcome.search
+            else None
+        ),
     )

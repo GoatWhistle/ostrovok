@@ -21,6 +21,7 @@ from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.composition import build_providers
 from hotel_agent.interfaces.http.app import api_router_v1
 from hotel_agent.interfaces.http.errors import ErrorHandlers
+from hotel_agent.interfaces.http.search_schemas import search_schema
 from hotel_agent.settings import Settings, load_settings
 
 
@@ -46,7 +47,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             list_characteristics=ListCharacteristics(providers.registry),
             list_regions=ListRegions(providers.uow),
             search_hotels=search_hotels,
-            chat_service=Chat(providers.llm, providers.uow, search_hotels),
+            chat_service=Chat(
+                providers.llm,
+                providers.uow,
+                search_hotels,
+                lambda outcome: search_schema(outcome, providers.registry, 0).model_dump(
+                    mode="json"
+                ),
+            ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),

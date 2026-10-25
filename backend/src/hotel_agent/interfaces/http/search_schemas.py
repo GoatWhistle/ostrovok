@@ -1,4 +1,5 @@
 from collections.abc import Mapping
+from datetime import date
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -43,6 +44,10 @@ class ParsedSchema(BaseModel):
     corrections: list[QueryCorrectionSchema] = Field(default_factory=list)
     unsupported_region: str | None = None
     needs_clarification: bool = False
+    wants_room: bool = False
+    check_in: date | None = None
+    check_out: date | None = None
+    adults: int | None = None
 
 
 class FactBriefSchema(BaseModel):
@@ -136,6 +141,10 @@ def search_schema(
         ],
         unsupported_region=outcome.parsed.unsupported_region,
         needs_clarification=outcome.parsed.needs_clarification,
+        wants_room=outcome.parsed.wants_room,
+        check_in=outcome.parsed.check_in,
+        check_out=outcome.parsed.check_out,
+        adults=outcome.parsed.adults,
     )
     results = [_search_result(item, registry) for item in outcome.results]
     viewport = None

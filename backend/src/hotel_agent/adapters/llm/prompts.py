@@ -46,6 +46,12 @@ PARSE_QUERY_SYSTEM = """\
    Для баров: amenity=bar. Радиус по умолчанию 500 м, если пользователь не назвал другой.
    10 км = 10000 м. source_text — дословный фрагмент.
    Такие слова не дублируй в unmatched_terms.
+9. wants_room=true, если пользователь подбирает номер или спрашивает его доступность.
+   check_in и check_out — только явно указанные однозначные даты в формате YYYY-MM-DD.
+   Если даты относительные или неоднозначные, верни null: агент уточнит их.
+   adults — только явно названное число взрослых. Вместимость номера не означает
+   число заселяющихся взрослых: «двухместный номер» без состава гостей даёт null.
+   Не придумывай даты и состав гостей.
 
 Доступные характеристики:
 {catalog}"""
@@ -129,6 +135,10 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
             "location_hint": {"type": ["string", "null"]},
             "normalized_query": {"type": "string"},
             "needs_clarification": {"type": "boolean"},
+            "wants_room": {"type": "boolean"},
+            "check_in": {"type": ["string", "null"]},
+            "check_out": {"type": ["string", "null"]},
+            "adults": {"type": ["integer", "null"]},
             "corrections": {
                 "type": "array",
                 "items": _object(

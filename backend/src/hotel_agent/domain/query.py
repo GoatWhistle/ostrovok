@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date
 
 from hotel_agent.domain.characteristics import Op, ScalarValue
 
@@ -57,3 +58,7 @@ class ParsedQuery:
     corrections: tuple[QueryCorrection, ...] = ()
     unsupported_region: str | None = None
     needs_clarification: bool = False
+    wants_room: bool = False
+    check_in: date | None = None
+    check_out: date | None = None
+    adults: int | None = None

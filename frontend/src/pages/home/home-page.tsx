@@ -177,6 +177,7 @@ function SelectedHotel({ state }: { readonly state: Workspace }) {
             <HotelDetails
               hotelId={hotelId}
               matched={selected?.matched ?? []}
+              stay={state.search?.parsed}
               onProperty={(item) => selected && state.property(selected, item)}
               onFact={state.fact}
               onPreview={(item) => selected && state.preview(selected, item)}

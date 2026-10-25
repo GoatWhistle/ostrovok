@@ -136,6 +136,7 @@
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "adults": "Adults: {{count}}",
+    "chooseAdults": "Choose number of adults",
     "less": "Fewer",
     "more": "More",
     "availableRooms": "Rooms available: {{count}}",
@@ -151,13 +152,14 @@
     "hotelUnmapped": "This hotel has not been matched to the supplier catalogue yet. Availability is unknown.",
     "providerError": "Could not check availability with the supplier. Try again later.",
     "requestError": "Could not load room offers.",
-    "pickDates": "Select check-in and check-out dates.",
+    "pickDates": "Select check-in and check-out dates and the number of adults.",
     "noOffers": "The supplier returned no offers for these dates and guests. Availability is unknown.",
     "sandbox": "Supplier test data. Prices and availability are not confirmed for booking."
   },
   "details": {
     "summaryStars": "Category: {{count}} stars",
     "rooms": "Known room categories",
+    "roomsUnavailable": "The supplier has not provided room categories for this hotel yet. Floor, price and amenities are unknown.",
     "roomCapacity": "Up to {{count}} adults",
     "roomFloor": "Floors: {{min}}–{{max}}",
     "roomPrice": "Price: {{amount}} {{currency}}",

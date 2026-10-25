@@ -1,5 +1,6 @@
 import json
 from collections.abc import Callable
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -100,6 +101,26 @@ async def test_a_structured_answer_becomes_intents(build: Build) -> None:
     ]
     assert parsed.unmatched_terms == ("балкон",)
     assert parsed.location_hint == "Сочи"
+
+
+async def test_room_request_keeps_only_explicit_stay_details(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [],
+            "unmatched_terms": [],
+            "wants_room": True,
+            "check_in": "2026-11-01",
+            "check_out": "2026-11-04",
+            "adults": 2,
+        }
+    )
+
+    parsed = await llm.parse_query("номер для двух взрослых с 1 по 4 ноября")
+
+    assert parsed.wants_room
+    assert parsed.check_in == date(2026, 11, 1)
+    assert parsed.check_out == date(2026, 11, 4)
+    assert parsed.adults == 2
 
 
 async def test_the_request_carries_the_model_and_a_strict_schema(build: Build) -> None:

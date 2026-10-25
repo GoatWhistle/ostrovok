@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from dataclasses import dataclass
 from uuid import uuid4
 
@@ -12,24 +13,41 @@ from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery
 class ConversationOutcome:
     conversation: ConversationRecord
     search: SearchOutcome | None
+    search_snapshot: dict[str, object] | None = None
 
 
 class Chat:
-    def __init__(self, llm: LLMPort, uow: UnitOfWorkFactory, search: SearchHotels) -> None:
+    def __init__(
+        self,
+        llm: LLMPort,
+        uow: UnitOfWorkFactory,
+        search: SearchHotels,
+        serialize_search: Callable[[SearchOutcome], dict[str, object]],
+    ) -> None:
         self._llm = llm
         self._uow = uow
         self._search = search
+        self._serialize_search = serialize_search
 
     async def get(self, conversation_id: str) -> ConversationOutcome:
         async with self._uow() as uow:
             conversation = await uow.chat.get(conversation_id)
         if conversation is None:
             raise ConversationNotFound()
+        if conversation.search_snapshot is not None:
+            return ConversationOutcome(
+                conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
+            )
         search = (
             await self._search(conversation.effective_query, conversation.region_id, None, 20)
             if conversation.effective_query
             else None
         )
+        if search is not None:
+            snapshot = self._serialize_search(search)
+            async with self._uow() as uow:
+                await uow.chat.save_search_snapshot(conversation_id, snapshot)
+                await uow.commit()
         return ConversationOutcome(conversation=conversation, search=search)
 
     async def send(
@@ -53,6 +71,7 @@ class Chat:
             previous.effective_query if previous else None, message.strip()
         )
         search = await self._search(effective_query, region_id, None, 20)
+        snapshot = self._serialize_search(search)
         answer = self._answer(search, selected_hotel_id, locale)
         identifier = conversation_id or str(uuid4())
         async with self._uow() as uow:
@@ -64,6 +83,7 @@ class Chat:
                 message.strip(),
                 str(uuid4()),
                 answer,
+                snapshot,
             )
             await uow.commit()
         async with self._uow() as uow:
@@ -83,19 +103,45 @@ class Chat:
         count = len(search.results)
         if count == 0:
             if locale == "en":
-                return "I could not find hotels with a verified match. Try changing the conditions."
-            return (
+                answer = (
+                    "I could not find hotels with a verified match. Try changing the conditions."
+                )
+                return self._room_question(search, answer, locale)
+            answer = (
                 "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия."
             )
+            return self._room_question(search, answer, locale)
         if selected_hotel_id:
             selected = next(
                 (item for item in search.results if item.hotel.id == selected_hotel_id), None
             )
             if selected:
                 if locale == "en":
-                    return f"I applied your update. {selected.hotel.name} remains in the list. Showing {count} hotels."
-                return f"Учёл уточнение. «{selected.hotel.name}» остаётся в подборке. Показываю {count} отелей."
+                    answer = f"I applied your update. {selected.hotel.name} remains in the list. Showing {count} hotels."
+                    return self._room_question(search, answer, locale)
+                answer = f"Учёл уточнение. «{selected.hotel.name}» остаётся в подборке. Показываю {count} отелей."
+                return self._room_question(search, answer, locale)
         names = ", ".join(item.hotel.name for item in search.results[:3])
         if locale == "en":
-            return f"Showing {count} hotels. First in the list: {names}. Select a hotel to explore its surroundings."
-        return f"Показываю {count} отелей. Первые в подборке: {names}. Выберите отель, чтобы изучить его и окружение."
+            answer = f"Showing {count} hotels. First in the list: {names}. Select a hotel to explore its surroundings."
+            return self._room_question(search, answer, locale)
+        answer = f"Показываю {count} отелей. Первые в подборке: {names}. Выберите отель, чтобы изучить его и окружение."
+        return self._room_question(search, answer, locale)
+
+    def _room_question(self, search: SearchOutcome, answer: str, locale: str) -> str:
+        parsed = search.parsed
+        if not parsed.wants_room:
+            return answer
+        missing = []
+        if parsed.check_in is None:
+            missing.append("check-in date" if locale == "en" else "дату заезда")
+        if parsed.check_out is None:
+            missing.append("check-out date" if locale == "en" else "дату выезда")
+        if parsed.adults is None:
+            missing.append("number of adults" if locale == "en" else "число взрослых")
+        if not missing:
+            return answer
+        fields = ", ".join(missing)
+        if locale == "en":
+            return f"{answer} To check room availability, please tell me the {fields}."
+        return f"{answer} Чтобы проверить свободные номера, уточните {fields}."

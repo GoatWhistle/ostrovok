@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useHotelOffers } from "@/entities/hotel"
+import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Icon, Skeleton, TextField } from "@/shared/ui"
 import styles from "./hotel-offers.module.css"
@@ -18,6 +19,16 @@ function addDays(value: string, days: number): string {
   return localDate(date)
 }
 
+function validCheckout(checkIn: string, checkOut: string): string {
+  if (checkIn && (checkOut <= checkIn || checkOut > addDays(checkIn, 30)))
+    return addDays(checkIn, 1)
+  return checkOut
+}
+
+function hasStay(checkIn: string, checkOut: string, adults: number): boolean {
+  return Boolean(checkIn && checkOut && adults)
+}
+
 const STATUS: Readonly<Record<string, MessageKey>> = {
   provider_unavailable: "explore:offers.providerUnavailable",
   hotel_unmapped: "explore:offers.hotelUnmapped",
@@ -25,15 +36,33 @@ const STATUS: Readonly<Record<string, MessageKey>> = {
   no_offers: "explore:offers.noOffers",
 }
 
-export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
+function statusKey(status: string | undefined): MessageKey | undefined {
+  return status ? STATUS[status] : undefined
+}
+
+type Stay = components["schemas"]["SearchResponse"]["parsed"]
+
+export function HotelOffers({
+  hotelId,
+  stay,
+}: {
+  readonly hotelId: string
+  readonly stay?: Stay | undefined
+}) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const today = localDate(new Date())
-  const [checkIn, setCheckIn] = useState(today)
-  const [checkOut, setCheckOut] = useState(addDays(today, 1))
-  const [adults, setAdults] = useState(2)
+  const [checkIn, setCheckIn] = useState(stay?.check_in ?? "")
+  const [checkOut, setCheckOut] = useState(stay?.check_out ?? "")
+  const [adults, setAdults] = useState(stay?.adults ?? 0)
+  useEffect(() => {
+    setCheckIn(stay?.check_in ?? "")
+    setCheckOut(stay?.check_out ?? "")
+    setAdults(stay?.adults ?? 0)
+  }, [stay?.check_in, stay?.check_out, stay?.adults])
   const result = useHotelOffers(hotelId, checkIn, checkOut, adults)
-  const status = result.data?.status ? STATUS[result.data.status] : undefined
+  const complete = hasStay(checkIn, checkOut, adults)
+  const status = statusKey(result.data?.status)
   return (
     <section className={styles.section} aria-labelledby={`${hotelId}-offers`}>
       <p id={`${hotelId}-offers`} className={styles.heading}>
@@ -50,8 +79,7 @@ export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
           onChange={(event) => {
             const value = event.target.value
             setCheckIn(value)
-            if (value && (checkOut <= value || checkOut > addDays(value, 30)))
-              setCheckOut(addDays(value, 1))
+            setCheckOut(validCheckout(value, checkOut))
           }}
         />
         <TextField
@@ -65,7 +93,11 @@ export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
       </div>
       <div className={styles.guests}>
         <Icon name="guests" size="sm" className={styles.guestIcon} />
-        <span className={styles.guestLabel}>{t("explore:offers.adults", { count: adults })}</span>
+        <span className={styles.guestLabel}>
+          {adults
+            ? t("explore:offers.adults", { count: adults })
+            : t("explore:offers.chooseAdults")}
+        </span>
         <Button
           variant="secondary"
           size="compact"
@@ -89,10 +121,8 @@ export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
           {t("explore:offers.more")}
         </Button>
       </div>
-      {!checkIn || !checkOut ? (
-        <p className={styles.note}>{t("explore:offers.pickDates")}</p>
-      ) : null}
-      {result.isPending && checkIn && checkOut ? <Skeleton shape="block" /> : null}
+      {!complete ? <p className={styles.note}>{t("explore:offers.pickDates")}</p> : null}
+      {result.isPending && complete ? <Skeleton shape="block" /> : null}
       {result.isError ? <Banner tone="danger" title={t("explore:offers.requestError")} /> : null}
       {result.data?.sandbox ? <Banner tone="neutral" title={t("explore:offers.sandbox")} /> : null}
       {status ? <Banner tone="neutral" title={t(status)} /> : null}

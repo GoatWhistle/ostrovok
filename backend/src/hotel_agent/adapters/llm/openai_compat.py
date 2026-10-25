@@ -1,5 +1,6 @@
 import asyncio
 from collections.abc import Mapping, Sequence
+from datetime import date
 from typing import Any
 
 import httpx
@@ -104,6 +105,10 @@ class OpenAICompatLLM:
                 if (correction := _correction(raw, query)) is not None
             ),
             needs_clarification=flag(payload, "needs_clarification"),
+            wants_room=flag(payload, "wants_room"),
+            check_in=_date(payload.get("check_in")),
+            check_out=_date(payload.get("check_out")),
+            adults=_adults(payload.get("adults")),
         )
 
     async def plan_tools(
@@ -310,3 +315,18 @@ def _correction(raw: Mapping[str, object], query: str) -> QueryCorrection | None
     if not original or normalize(original) not in normalize(query) or not corrected or not reason:
         return None
     return QueryCorrection(original=original, corrected=corrected, reason=reason)
+
+
+def _date(value: object) -> date | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
+
+
+def _adults(value: object) -> int | None:
+    if isinstance(value, int) and not isinstance(value, bool) and 1 <= value <= 10:
+        return value
+    return None

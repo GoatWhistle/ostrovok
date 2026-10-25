@@ -40,7 +40,8 @@ export function useHotelOffers(
 ) {
   return useQuery({
     queryKey: ["hotel-offers", id, checkIn, checkOut, adults],
-    enabled: id !== undefined && checkIn !== "" && checkOut !== "" && checkOut > checkIn,
+    enabled:
+      id !== undefined && checkIn !== "" && checkOut !== "" && checkOut > checkIn && adults > 0,
     staleTime: 60_000,
     queryFn: ({ signal }) =>
       unwrap(

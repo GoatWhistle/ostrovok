@@ -2,6 +2,7 @@ import { clsx } from "clsx"
 import { useId } from "react"
 import { useHotel } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
+import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
 import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import { FactList } from "./fact-list"
@@ -14,6 +15,7 @@ import { RoomList } from "./room-list"
 export interface HotelDetailsProps {
   readonly hotelId: string | undefined
   readonly matched?: readonly MatchedProperty[]
+  readonly stay?: components["schemas"]["SearchResponse"]["parsed"] | undefined
   readonly onProperty?: (property: MatchedProperty) => void
   readonly onFact: (fact: FactBrief) => void
   readonly onPreview?: (property: MatchedProperty | undefined) => void
@@ -33,6 +35,7 @@ function DetailsSkeleton() {
 export function HotelDetails({
   hotelId,
   matched = [],
+  stay,
   onProperty,
   onFact,
   onPreview,
@@ -91,13 +94,11 @@ export function HotelDetails({
           onPreview={onPreview}
         />
       ) : null}
+      <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
+        {rooms.length ? <RoomList rooms={rooms} /> : <p>{t("explore:details.roomsUnavailable")}</p>}
+      </Disclosure>
+      <HotelOffers hotelId={card.hotel.id} stay={stay} />
       <FactList facts={card.facts} onFact={onFact} />
-      <HotelOffers hotelId={card.hotel.id} />
-      {rooms.length ? (
-        <Disclosure title={t("explore:details.rooms")} icon="room">
-          <RoomList rooms={rooms} />
-        </Disclosure>
-      ) : null}
     </article>
   )
 }

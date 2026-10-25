@@ -616,6 +616,12 @@ export interface components {
                 corrections?: components["schemas"]["QueryCorrection"][];
                 unsupported_region?: string | null;
                 needs_clarification?: boolean;
+                wants_room?: boolean;
+                /** Format: date */
+                check_in?: string | null;
+                /** Format: date */
+                check_out?: string | null;
+                adults?: number | null;
             };
             results: components["schemas"]["SearchResult"][];
             /** @description Рамка для fitBounds по всем результатам */
