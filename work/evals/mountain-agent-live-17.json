@@ -1,0 +1,342 @@
+{
+  "query": "хочу отель высоко в горах около Владикавказа",
+  "status": 200,
+  "elapsed_s": 29.22,
+  "response": {
+    "conversation_id": "ab2e7abf-ce19-46b5-9cf2-26cfa583de66",
+    "effective_query": "хочу отель высоко в горах около Владикавказа",
+    "answer": "Показываю 20 отелей. Первые в подборке: Чайка, У Стаса, У Лиды. Выберите отель, чтобы изучить его и окружение. Ни у одного отеля не подтверждены все условия; это ближайшие совпадения.",
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "derived:03bea3738dad",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "высоко в горах"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Владикавказ",
+      "normalized_query": "отель высоко в горах около Владикавказа",
+      "corrections": [],
+      "unsupported_region": null,
+      "needs_clarification": false,
+      "wants_room": false,
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    "result_count": 20,
+    "ranking": [
+      {
+        "id": "r11717341",
+        "name": "Чайка",
+        "score": 0.364,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n10872943605",
+        "name": "У Стаса",
+        "score": 0.36,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n11119940105",
+        "name": "У Лиды",
+        "score": 0.358,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n11135542305",
+        "name": "Тур дом",
+        "score": 0.342,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n6556081721",
+        "name": "Гостевой дом \"Майли\"",
+        "score": 0.337,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w1330362426",
+        "name": "Ирбис",
+        "score": 0.337,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n6616234085",
+        "name": "Майли",
+        "score": 0.336,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n7175232147",
+        "name": "Mountain Saniba Eco Hotel",
+        "score": 0.333,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n8764417681",
+        "name": "Artis Plaza Hotel",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n5831941488",
+        "name": "Hostel One",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w259715256",
+        "name": "olimp-plaza",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n9702620417",
+        "name": "Parson Hostel Hotel",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n13909088101",
+        "name": "Pillow",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w423874179",
+        "name": "Victoria",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n11131307205",
+        "name": "Алания",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w165504111",
+        "name": "Александровский",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n449097032",
+        "name": "Амелия",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n3875874521",
+        "name": "Амран",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n12549702016",
+        "name": "Ани",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w281433690",
+        "name": "Асса",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      }
+    ],
+    "top_results": [
+      {
+        "hotel": {
+          "id": "r11717341",
+          "name": "Чайка",
+          "address": null,
+          "location": [
+            44.7069859,
+            42.8097705
+          ],
+          "stars": null,
+          "building_id": "w854892928",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.364,
+        "matched": [
+          {
+            "characteristic_key": "derived:03bea3738dad",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1350.3; Перепад высот по 9 точкам в радиусе 1000 м: 818.1. Проверка пожелания: Высота над уровнем моря, м — не менее 1300; Перепад высот по 9 точкам в радиусе 1000 м — не менее 300. Оценочные критерии выбраны агентом по доступным данным. Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 24.8 км.",
+            "fact": {
+              "fact_id": "f_derived_03bea3738dad_r11717341",
+              "characteristic_key": "derived:03bea3738dad",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.727901923076923,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.706986_42.809770"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.706986_42.809770"
+            ],
+            "camera": null
+          }
+        ]
+      },
+      {
+        "hotel": {
+          "id": "n10872943605",
+          "name": "У Стаса",
+          "address": null,
+          "location": [
+            44.446619,
+            42.8628146
+          ],
+          "stars": null,
+          "building_id": "w1330362414",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.36,
+        "matched": [
+          {
+            "characteristic_key": "derived:03bea3738dad",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1370.1; Перепад высот по 9 точкам в радиусе 1000 м: 560. Проверка пожелания: Высота над уровнем моря, м — не менее 1300; Перепад высот по 9 точкам в радиусе 1000 м — не менее 300. Оценочные критерии выбраны агентом по доступным данным. Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 26.8 км.",
+            "fact": {
+              "fact_id": "f_derived_03bea3738dad_n10872943605",
+              "characteristic_key": "derived:03bea3738dad",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.7190442307692307,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.446619_42.862815"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.446619_42.862815"
+            ],
+            "camera": null
+          }
+        ]
+      },
+      {
+        "hotel": {
+          "id": "n11119940105",
+          "name": "У Лиды",
+          "address": null,
+          "location": [
+            44.8652225,
+            42.817038
+          ],
+          "stars": null,
+          "building_id": "w1272215209",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.358,
+        "matched": [
+          {
+            "characteristic_key": "derived:03bea3738dad",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1863.2; Перепад высот по 9 точкам в радиусе 1000 м: 433. Проверка пожелания: Высота над уровнем моря, м — не менее 1300; Перепад высот по 9 точкам в радиусе 1000 м — не менее 300. Оценочные критерии выбраны агентом по доступным данным. Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 28.2 км.",
+            "fact": {
+              "fact_id": "f_derived_03bea3738dad_n11119940105",
+              "characteristic_key": "derived:03bea3738dad",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.7157423076923077,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.865223_42.817038"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.865223_42.817038"
+            ],
+            "camera": null
+          }
+        ]
+      }
+    ],
+    "checks": {
+      "card": {
+        "status": 200,
+        "hotel_id": "r11717341",
+        "room_count": 0,
+        "rooms": []
+      },
+      "geo": {
+        "status": 200,
+        "requested": [
+          "g_point_44.706986_42.809770",
+          "g_point_44.446619_42.862815",
+          "g_point_44.865223_42.817038"
+        ],
+        "found": [
+          "g_point_44.446619_42.862815",
+          "g_point_44.706986_42.809770",
+          "g_point_44.865223_42.817038"
+        ],
+        "missing": []
+      }
+    }
+  }
+}

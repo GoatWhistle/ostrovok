@@ -2,6 +2,7 @@ from collections.abc import Mapping, Sequence
 
 from hotel_agent.adapters.llm.extraction import extract
 from hotel_agent.adapters.llm.text import WORD, normalize, terms_outside
+from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.domain.characteristics import Characteristic, Matcher
@@ -13,6 +14,9 @@ class FakeLLM:
 
     def __init__(self, registry: CharacteristicRegistryPort) -> None:
         self._registry = registry
+
+    async def explore_data(self, context: str) -> DataStep:
+        return DataStep(action="finish", arguments={})
 
     async def contextualize_query(
         self,

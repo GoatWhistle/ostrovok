@@ -1,11 +1,14 @@
 import json
 from collections.abc import Sequence
-from typing import Any
 
-from hotel_agent.domain.characteristics import Characteristic, Op
-from hotel_agent.domain.query import OSM_OBJECT_KEYS
+from hotel_agent.adapters.llm.response_schemas import (
+    extract_fields_schema,
+    parse_query_schema,
+    plan_tools_schema,
+)
+from hotel_agent.domain.characteristics import Characteristic
 
-SCALAR = {"type": ["boolean", "number", "string", "null"]}
+__all__ = ["extract_fields_schema", "parse_query_schema", "plan_tools_schema"]
 
 PARSE_QUERY_SYSTEM = """\
 Ты разбираешь поисковый запрос по отелям на интенты.
@@ -29,6 +32,9 @@ PARSE_QUERY_SYSTEM = """\
 2. Для каждой характеристики ориентируйся на её эталоны: подбирай ближайший по смыслу
    и повторяй его оператор и порядок величины значения. Не изобретай свою шкалу.
 3. Не выводи характеристику, о которой в запросе ничего не сказано.
+   building_height измеряется в МЕТРАХ и описывает строение. Этаж конкретного номера и
+   высота местности над морем не равны высоте здания: оставь их в unmatched_terms для
+   исследования данных, если нет точной подходящей характеристики.
    «Двухместный номер» не означает размещение с животными: pets_policy допустим только
    при явном упоминании питомца, собаки, кошки или другого животного.
 4. required ставь true, только если без этого условия вариант пользователю не подходит вовсе:
@@ -86,6 +92,7 @@ PARSE_QUERY_SYSTEM = """\
    а не общее «питание»; для «бани» term — «баня», а не общее «услуги».
    Для «тёплого бассейна» или «бассейна с подогревом» term — «бассейн с подогревом»,
    а не просто «бассейн». Не теряй уточняющие признаки услуги.
+   «С включённым завтраком» требует term «бесплатный завтрак», а не просто «завтрак».
    source_text — дословный фрагмент запроса. Не дублируй такие условия в unmatched_terms.
    required=true только при явно обязательном условии.
 9. wants_room=true, если пользователь подбирает номер или спрашивает его доступность.
@@ -154,148 +161,8 @@ def tool_list(registry: Sequence[Characteristic]) -> str:
     return ", ".join(item.key for item in registry if item.tool is not None) or "нет"
 
 
-def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
-    return _schema(
-        "parsed_query",
-        {
-            "intents": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "characteristic_key": {
-                            "type": "string",
-                            "enum": [item.key for item in registry],
-                        },
-                        "op": {"type": "string", "enum": [member.value for member in Op]},
-                        "value": SCALAR,
-                        "weight": {"type": "number", "minimum": 0, "maximum": 1},
-                        "required": {"type": "boolean"},
-                        "source_text": {"type": "string"},
-                    }
-                ),
-            },
-            "unmatched_terms": {"type": "array", "items": {"type": "string"}},
-            "location_hint": {"type": ["string", "null"]},
-            "normalized_query": {"type": "string"},
-            "needs_clarification": {"type": "boolean"},
-            "wants_room": {"type": "boolean"},
-            "check_in": {"type": ["string", "null"]},
-            "check_out": {"type": ["string", "null"]},
-            "adults": {"type": ["integer", "null"]},
-            "corrections": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "original": {"type": "string"},
-                        "corrected": {"type": "string"},
-                        "reason": {"type": "string"},
-                    }
-                ),
-            },
-            "nearby_objects": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "osm_key": {"type": "string", "enum": list(OSM_OBJECT_KEYS)},
-                        "osm_value": {"type": "string"},
-                        "open_24h": {"type": "boolean"},
-                        "avoid": {"type": "boolean"},
-                        "required": {"type": "boolean"},
-                        "radius_m": {"type": "integer"},
-                        "source_text": {"type": "string"},
-                    }
-                ),
-            },
-            "facility_requests": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "term": {"type": "string"},
-                        "source_text": {"type": "string"},
-                        "required": {"type": "boolean"},
-                    }
-                ),
-            },
-            "spatial_requests": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "kind": {
-                            "type": "string",
-                            "enum": [
-                                "city_center",
-                                "landmark_view",
-                                "landmark_nearby",
-                                "landmark_distance_min",
-                                "sea_view",
-                            ],
-                        },
-                        "target": {"type": ["string", "null"]},
-                        "radius_m": {"type": "integer"},
-                        "source_text": {"type": "string"},
-                        "required": {"type": "boolean"},
-                    }
-                ),
-            },
-        },
-    )
-
-
-def plan_tools_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
-    keys = [item.key for item in registry if item.tool is not None]
-    return _schema(
-        "tool_plan",
-        {
-            "calls": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "characteristic_key": {"type": "string", "enum": keys or ["none"]},
-                        "subject": {"type": "string"},
-                    }
-                ),
-            }
-        },
-    )
-
-
-def extract_fields_schema(characteristic: Characteristic) -> dict[str, Any]:
-    names = [rule.name for rule in characteristic.fields]
-    return _schema(
-        "extracted_fields",
-        {
-            "fields": {
-                "type": "array",
-                "items": _object(
-                    {
-                        "name": {"type": "string", "enum": names or ["none"]},
-                        "value": SCALAR,
-                        "quote": {"type": "string"},
-                    }
-                ),
-            }
-        },
-    )
-
-
 def field_list(characteristic: Characteristic) -> str:
     return json.dumps(
         [{"name": rule.name, "kind": rule.kind.value} for rule in characteristic.fields],
         ensure_ascii=False,
     )
-
-
-def _schema(name: str, properties: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "type": "json_schema",
-        "json_schema": {"name": name, "strict": True, "schema": _object(properties)},
-    }
-
-
-def _object(properties: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "type": "object",
-        "additionalProperties": False,
-        "required": sorted(properties),
-        "properties": properties,
-    }

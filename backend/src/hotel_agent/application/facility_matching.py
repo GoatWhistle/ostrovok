@@ -28,7 +28,14 @@ def facility_fact(
 ) -> SearchFactRecord | None:
     term = _normalize(request.term)
     names = content.facilities_ru + content.facilities_en
-    found = next((name for name in names if term in _normalize(name)), None)
+    included = any(
+        marker in _normalize(request.source_text)
+        for marker in ("включ", "бесплат", "included", "free")
+    )
+    found = next(
+        (name for name in names if term in _normalize(name) and (not included or _included(name))),
+        None,
+    )
     if found is None:
         return None
     key = facility_key(request)
@@ -55,3 +62,13 @@ def facility_fact(
 
 def _normalize(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold().replace("ё", "е")).strip()
+
+
+def _included(name: str) -> bool:
+    normalized = _normalize(name)
+    paid = {"платный", "платная", "платное", "платно", "плату", "оплачивается"}
+    if paid.intersection(re.findall(r"\w+", normalized)) or any(
+        marker in normalized for marker in ("не включ", "not included", "surcharge", "extra charge")
+    ):
+        return False
+    return any(marker in normalized for marker in ("бесплат", "включ", "free", "included"))

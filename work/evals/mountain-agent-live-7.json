@@ -1,0 +1,342 @@
+{
+  "query": "хочу отель высоко в горах около Владикавказа",
+  "status": 200,
+  "elapsed_s": 28.82,
+  "response": {
+    "conversation_id": "e3068b24-b41f-4fac-b19c-7908b9920799",
+    "effective_query": "хочу отель высоко в горах около Владикавказа",
+    "answer": "Показываю 20 отелей. Первые в подборке: У Лиды, Тур дом, У Стаса. Выберите отель, чтобы изучить его и окружение. Ни у одного отеля не подтверждены все условия; это ближайшие совпадения.",
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "derived:5c901a4c90bd",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "высоко в горах"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Владикавказ",
+      "normalized_query": "хочу отель высоко в горах около Владикавказа",
+      "corrections": [],
+      "unsupported_region": null,
+      "needs_clarification": false,
+      "wants_room": false,
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    "result_count": 20,
+    "ranking": [
+      {
+        "id": "n11119940105",
+        "name": "У Лиды",
+        "score": 0.395,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n11135542305",
+        "name": "Тур дом",
+        "score": 0.377,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n10872943605",
+        "name": "У Стаса",
+        "score": 0.376,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "r11717341",
+        "name": "Чайка",
+        "score": 0.376,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n6556081721",
+        "name": "Гостевой дом \"Майли\"",
+        "score": 0.372,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w1330362426",
+        "name": "Ирбис",
+        "score": 0.372,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w361383564",
+        "name": "Лечебно-оздоровительный комплекс \"Армхи\"",
+        "score": 0.371,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n6616234085",
+        "name": "Майли",
+        "score": 0.371,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w509426052",
+        "name": "Терк",
+        "score": 0.371,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w981005395",
+        "name": "Мят Лоам",
+        "score": 0.368,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n7175232147",
+        "name": "Mountain Saniba Eco Hotel",
+        "score": 0.366,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "w1119483594",
+        "name": "Джейрах",
+        "score": 0.366,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n7812921264",
+        "name": "Орлиное гнездо",
+        "score": 0.344,
+        "qualities": [
+          "partial"
+        ]
+      },
+      {
+        "id": "n8764417681",
+        "name": "Artis Plaza Hotel",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n5831941488",
+        "name": "Hostel One",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w259715256",
+        "name": "olimp-plaza",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n9702620417",
+        "name": "Parson Hostel Hotel",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n13909088101",
+        "name": "Pillow",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "w423874179",
+        "name": "Victoria",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      },
+      {
+        "id": "n11131307205",
+        "name": "Алания",
+        "score": 0.0,
+        "qualities": [
+          "none"
+        ]
+      }
+    ],
+    "top_results": [
+      {
+        "hotel": {
+          "id": "n11119940105",
+          "name": "У Лиды",
+          "address": null,
+          "location": [
+            44.8652225,
+            42.817038
+          ],
+          "stars": null,
+          "building_id": "w1272215209",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.395,
+        "matched": [
+          {
+            "characteristic_key": "derived:5c901a4c90bd",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1863.2; Перепад высот по 9 точкам в радиусе 1000 м: 433. Высота земли около отеля не ниже 1000 м и заметный перепад высот в окрестности (не менее 200 м) указывают на горный рельеф. Это оценка местности по DEM, а не здания/этажа/вида из окна. Среди 67 отелей в радиусе 30 км от Владикавказа такие значения встречаются (например, «У Лиды» — 1863 м, перепад 433 м). Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 28.2 км.",
+            "fact": {
+              "fact_id": "f_derived_5c901a4c90bd_n11119940105",
+              "characteristic_key": "derived:5c901a4c90bd",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.78974,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.865223_42.817038"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.865223_42.817038"
+            ],
+            "camera": null
+          }
+        ]
+      },
+      {
+        "hotel": {
+          "id": "n11135542305",
+          "name": "Тур дом",
+          "address": null,
+          "location": [
+            44.5139923,
+            42.8487163
+          ],
+          "stars": null,
+          "building_id": null,
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.377,
+        "matched": [
+          {
+            "characteristic_key": "derived:5c901a4c90bd",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1392.3; Перепад высот по 9 точкам в радиусе 1000 м: 416.9. Высота земли около отеля не ниже 1000 м и заметный перепад высот в окрестности (не менее 200 м) указывают на горный рельеф. Это оценка местности по DEM, а не здания/этажа/вида из окна. Среди 67 отелей в радиусе 30 км от Владикавказа такие значения встречаются (например, «У Лиды» — 1863 м, перепад 433 м). Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 24.5 км.",
+            "fact": {
+              "fact_id": "f_derived_5c901a4c90bd_n11135542305",
+              "characteristic_key": "derived:5c901a4c90bd",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.7544225,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.513992_42.848716"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.513992_42.848716"
+            ],
+            "camera": null
+          }
+        ]
+      },
+      {
+        "hotel": {
+          "id": "n10872943605",
+          "name": "У Стаса",
+          "address": null,
+          "location": [
+            44.446619,
+            42.8628146
+          ],
+          "stars": null,
+          "building_id": "w1330362414",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.376,
+        "matched": [
+          {
+            "characteristic_key": "derived:5c901a4c90bd",
+            "match": "partial",
+            "label": "высоко в горах",
+            "explanation": "Высота над уровнем моря, м: 1370.1; Перепад высот по 9 точкам в радиусе 1000 м: 560. Высота земли около отеля не ниже 1000 м и заметный перепад высот в окрестности (не менее 200 м) указывают на горный рельеф. Это оценка местности по DEM, а не здания/этажа/вида из окна. Среди 67 отелей в радиусе 30 км от Владикавказа такие значения встречаются (например, «У Лиды» — 1863 м, перепад 433 м). Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера. До точки города по прямой 26.8 км.",
+            "fact": {
+              "fact_id": "f_derived_5c901a4c90bd_n10872943605",
+              "characteristic_key": "derived:5c901a4c90bd",
+              "value": true,
+              "unit": null,
+              "label": "высоко в горах",
+              "confidence": 0.7527575,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_point_44.446619_42.862815"
+              ]
+            },
+            "geo_refs": [
+              "g_point_44.446619_42.862815"
+            ],
+            "camera": null
+          }
+        ]
+      }
+    ],
+    "checks": {
+      "card": {
+        "status": 200,
+        "hotel_id": "n11119940105",
+        "room_count": 0,
+        "rooms": []
+      },
+      "geo": {
+        "status": 200,
+        "requested": [
+          "g_point_44.865223_42.817038",
+          "g_point_44.513992_42.848716",
+          "g_point_44.446619_42.862815"
+        ],
+        "found": [
+          "g_point_44.446619_42.862815",
+          "g_point_44.513992_42.848716",
+          "g_point_44.865223_42.817038"
+        ],
+        "missing": []
+      }
+    }
+  }
+}

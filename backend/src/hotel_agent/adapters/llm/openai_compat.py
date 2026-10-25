@@ -1,23 +1,24 @@
-import asyncio
 from collections.abc import Mapping, Sequence
-from datetime import date
-from typing import Any
 
 import httpx
 
-from hotel_agent.adapters.llm import prompts
+from hotel_agent.adapters.llm import data_reasoning, prompts
+from hotel_agent.adapters.llm.openai_completion import OpenAICompletion
 from hotel_agent.adapters.llm.payload import (
     as_mapping,
-    content_of,
     flag,
     items,
     number,
-    optional_text,
     scalar,
-    strings,
     text,
 )
+from hotel_agent.adapters.llm.query_payload import (
+    parse_payload,
+    plan_request,
+    valid_intent_value,
+)
 from hotel_agent.adapters.llm.text import normalize
+from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.llm import (
     ExtractedField,
     Extraction,
@@ -26,20 +27,15 @@ from hotel_agent.application.ports.llm import (
 )
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
-from hotel_agent.domain.characteristics import Characteristic, Op, ValueType
+from hotel_agent.domain.characteristics import Characteristic, Op
 from hotel_agent.domain.errors import ModelFailure, UnknownCharacteristic
 from hotel_agent.domain.query import (
-    OSM_OBJECT_KEYS,
-    FacilityRequest,
     Intent,
-    NearbyObjectRequest,
     ParsedQuery,
-    QueryCorrection,
-    SpatialRequest,
 )
 
 
-class OpenAICompatLLM:
+class OpenAICompatLLM(OpenAICompletion):
     def __init__(
         self,
         *,
@@ -53,20 +49,15 @@ class OpenAICompatLLM:
         transport: httpx.AsyncBaseTransport | None = None,
     ) -> None:
         self._registry = registry
-        self._logger = logger
-        self._model = model
-        self._fallback_model = fallback_model
-        self._timeout_s = timeout_s
-        self._client = httpx.AsyncClient(
-            base_url=base_url.rstrip("/"),
-            headers={"Authorization": f"Bearer {api_key}"},
-            timeout=timeout_s,
+        super().__init__(
+            logger=logger,
+            base_url=base_url,
+            api_key=api_key,
+            model=model,
+            fallback_model=fallback_model,
+            timeout_s=timeout_s,
             transport=transport,
         )
-
-    @property
-    def provider(self) -> str:
-        return "openai_compat"
 
     async def contextualize_query(
         self,
@@ -97,42 +88,22 @@ class OpenAICompatLLM:
             user=query,
             schema=prompts.parse_query_schema(registry),
         )
-        intents = tuple(
-            intent
-            for raw in items(payload, "intents")
-            if (intent := self._intent(raw, query)) is not None
+        return parse_payload(payload, query, self._intent)
+
+    async def explore_data(self, context: str) -> DataStep:
+        raw = await self._post(
+            system=data_reasoning.SYSTEM,
+            user=context,
+            response_format=data_reasoning.schema(),
+            planning=True,
         )
-        return ParsedQuery(
-            intents=intents,
-            unmatched_terms=tuple(strings(payload, "unmatched_terms")),
-            location_hint=optional_text(payload, "location_hint"),
-            nearby_objects=tuple(
-                nearby_item
-                for raw in items(payload, "nearby_objects")
-                if (nearby_item := _nearby_object(raw, query)) is not None
-            ),
-            facility_requests=tuple(
-                facility_item
-                for raw in items(payload, "facility_requests")
-                if (facility_item := _facility_request(raw, query)) is not None
-            ),
-            spatial_requests=tuple(
-                item
-                for raw in items(payload, "spatial_requests")
-                if (item := _spatial_request(raw, query)) is not None
-            ),
-            normalized_query=optional_text(payload, "normalized_query") or query,
-            corrections=tuple(
-                correction
-                for raw in items(payload, "corrections")
-                if (correction := _correction(raw, query)) is not None
-            ),
-            needs_clarification=flag(payload, "needs_clarification"),
-            wants_room=flag(payload, "wants_room"),
-            check_in=_date(payload.get("check_in")),
-            check_out=_date(payload.get("check_out")),
-            adults=_adults(payload.get("adults")),
-        )
+        try:
+            return data_reasoning.step(as_mapping(raw))
+        except ModelFailure as error:
+            self._logger.warning(
+                "data_agent_invalid_response", detail=str(error), response_length=len(raw)
+            )
+            raise
 
     async def plan_tools(
         self,
@@ -143,7 +114,7 @@ class OpenAICompatLLM:
         registry = self._registry.all()
         payload = await self._complete(
             system=prompts.PLAN_TOOLS_SYSTEM.format(tools=prompts.tool_list(registry)),
-            user=_plan_request(query, subjects, known),
+            user=plan_request(query, subjects, known),
             schema=prompts.plan_tools_schema(registry),
         )
         allowed = set(subjects)
@@ -194,78 +165,6 @@ class OpenAICompatLLM:
             fields.append(ExtractedField(name=name, value=scalar(raw, "value"), quote=quote))
         return Extraction(characteristic_key=characteristic_key, fields=tuple(fields))
 
-    async def aclose(self) -> None:
-        await self._client.aclose()
-
-    async def _complete(
-        self, *, system: str, user: str, schema: dict[str, Any]
-    ) -> Mapping[str, object]:
-        body = await self._post(system=system, user=user, response_format=schema)
-        return as_mapping(body)
-
-    async def _complete_text(self, *, system: str, user: str) -> str:
-        text = await self._post(system=system, user=user, response_format=None)
-        if not text.strip():
-            raise ModelFailure("Language model returned an empty answer")
-        return text.strip()
-
-    async def _post(self, *, system: str, user: str, response_format: dict[str, Any] | None) -> str:
-        request: dict[str, Any] = {
-            "model": self._model,
-            "temperature": 0,
-            "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        }
-        if response_format is not None:
-            request["response_format"] = response_format
-        models = (self._model, self._fallback_model or self._model)
-        for attempt, model in enumerate(models):
-            request["model"] = model
-            try:
-                timeout = (
-                    min(self._timeout_s, 12)
-                    if self._fallback_model and attempt == 0
-                    else self._timeout_s
-                )
-                response = await self._client.post(
-                    "/chat/completions", json=request, timeout=timeout
-                )
-                response.raise_for_status()
-                return content_of(response.json())
-            except (httpx.ConnectError, httpx.ReadTimeout) as error:
-                if attempt == 0:
-                    self._logger.warning(
-                        "llm_request_retry",
-                        provider=self.provider,
-                        cause=type(error).__name__,
-                        fallback=bool(self._fallback_model),
-                        response="structured" if response_format is not None else "text",
-                    )
-                    await asyncio.sleep(0.2)
-                    continue
-                raise ModelFailure(
-                    f"Language model is unreachable: {type(error).__name__}"
-                ) from error
-            except httpx.HTTPStatusError as error:
-                if attempt == 0 and self._fallback_model and error.response.status_code >= 500:
-                    self._logger.warning(
-                        "llm_request_retry",
-                        provider=self.provider,
-                        cause=f"HTTP {error.response.status_code}",
-                        fallback=True,
-                    )
-                    continue
-                raise ModelFailure(
-                    f"Language model returned HTTP {error.response.status_code}"
-                ) from error
-            except httpx.HTTPError as error:
-                raise ModelFailure(
-                    f"Language model is unreachable: {type(error).__name__}"
-                ) from error
-        raise ModelFailure("Language model is unreachable")
-
     def _intent(self, raw: Mapping[str, object], query: str) -> Intent | None:
         key = text(raw, "characteristic_key")
         characteristic = self._characteristic(key)
@@ -281,7 +180,7 @@ class OpenAICompatLLM:
             self._dropped("source_not_in_query", key=key)
             return None
         value = scalar(raw, "value")
-        if not _valid_intent_value(characteristic.value_type, value):
+        if not valid_intent_value(characteristic.value_type, value):
             self._dropped("invalid_intent_value", key=key)
             return None
         if key == "pets_policy" and not any(
@@ -308,115 +207,3 @@ class OpenAICompatLLM:
 
     def _dropped(self, event: str, **fields: str) -> None:
         self._logger.warning(f"llm_{event}", provider=self.provider, **fields)
-
-
-def _plan_request(
-    query: ParsedQuery, subjects: Sequence[str], known: Mapping[str, Sequence[str]]
-) -> str:
-    wanted = ", ".join(intent.characteristic_key for intent in query.intents) or "нет"
-    lines = [f"{subject}: {', '.join(known.get(subject, ())) or 'ничего'}" for subject in subjects]
-    return f"Нужны характеристики: {wanted}\nУже известно по объектам:\n" + "\n".join(lines)
-
-
-def _valid_intent_value(value_type: ValueType, value: object) -> bool:
-    if value_type == ValueType.NUMBER:
-        return isinstance(value, int | float) and not isinstance(value, bool)
-    if value_type == ValueType.BOOL:
-        return isinstance(value, bool)
-    if value_type in {ValueType.ENUM, ValueType.TEXT}:
-        return isinstance(value, str)
-    return isinstance(value, bool | str | int | float)
-
-
-def _nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest | None:
-    key = text(raw, "osm_key")
-    value = text(raw, "osm_value").strip().lower()
-    source = text(raw, "source_text").strip()
-    if (
-        key not in OSM_OBJECT_KEYS
-        or not value
-        or not source
-        or normalize(source) not in normalize(query)
-    ):
-        return None
-    radius = number(raw, "radius_m")
-    return NearbyObjectRequest(
-        osm_key=key,
-        osm_value=value,
-        open_24h=flag(raw, "open_24h"),
-        avoid=flag(raw, "avoid"),
-        required=flag(raw, "required"),
-        radius_m=max(100, min(50000, int(radius or 500))),
-        source_text=source,
-    )
-
-
-def _correction(raw: Mapping[str, object], query: str) -> QueryCorrection | None:
-    original = text(raw, "original").strip()
-    corrected = text(raw, "corrected").strip()
-    reason = text(raw, "reason").strip()
-    if not original or normalize(original) not in normalize(query) or not corrected or not reason:
-        return None
-    return QueryCorrection(original=original, corrected=corrected, reason=reason)
-
-
-def _date(value: object) -> date | None:
-    if not isinstance(value, str):
-        return None
-    try:
-        return date.fromisoformat(value)
-    except ValueError:
-        return None
-
-
-def _adults(value: object) -> int | None:
-    if isinstance(value, int) and not isinstance(value, bool) and 1 <= value <= 10:
-        return value
-    return None
-
-
-def _facility_request(raw: Mapping[str, object], query: str) -> FacilityRequest | None:
-    term = optional_text(raw, "term")
-    source = optional_text(raw, "source_text")
-    if (
-        term is None
-        or source is None
-        or len(term) < 3
-        or len(term) > 80
-        or normalize(source) not in normalize(query)
-    ):
-        return None
-    return FacilityRequest(
-        term=term.strip(), source_text=source.strip(), required=flag(raw, "required")
-    )
-
-
-def _spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | None:
-    kind = text(raw, "kind")
-    target = optional_text(raw, "target")
-    source = text(raw, "source_text").strip()
-    if (
-        kind
-        not in {
-            "city_center",
-            "landmark_view",
-            "landmark_nearby",
-            "landmark_distance_min",
-            "sea_view",
-        }
-        or not source
-        or normalize(source) not in normalize(query)
-        or (kind not in {"city_center", "sea_view"} and (target is None or len(target.strip()) < 3))
-    ):
-        return None
-    default = (
-        1500 if kind in {"city_center", "sea_view"} else 2000 if kind == "landmark_view" else 500
-    )
-    radius = int(number(raw, "radius_m") or default)
-    return SpatialRequest(
-        kind=kind,
-        target=target.strip() if target else None,
-        radius_m=max(100, min(50000, radius)),
-        source_text=source,
-        required=flag(raw, "required"),
-    )

@@ -6,12 +6,14 @@ from psycopg_pool import AsyncConnectionPool
 
 from hotel_agent.adapters.db.chat import PostgresChatRepository
 from hotel_agent.adapters.db.coastlines import PostgresCoastlineRepository
+from hotel_agent.adapters.db.data_exploration import PostgresDataRepository
 from hotel_agent.adapters.db.geo_features import PostgresGeoFeatureRepository
 from hotel_agent.adapters.db.map_tiles import PostgresMapTileRepository
 from hotel_agent.adapters.db.named_places import PostgresNamedPlaceRepository
 from hotel_agent.adapters.db.nearby_objects import PostgresNearbyObjectRepository
 from hotel_agent.adapters.db.regions import PostgresRegionRepository
 from hotel_agent.adapters.db.search import PostgresSearchRepository
+from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
     CoastlineRepository,
@@ -60,6 +62,7 @@ class PostgresUnitOfWork:
         self.nearby_objects: NearbyObjectRepository
         self.named_places: NamedPlaceRepository
         self.coastlines: CoastlineRepository
+        self.data: DataRepository
         self.chat: ChatRepository
 
     async def __aenter__(self) -> Self:
@@ -71,6 +74,7 @@ class PostgresUnitOfWork:
         self.nearby_objects = PostgresNearbyObjectRepository(self._connection)
         self.named_places = PostgresNamedPlaceRepository(self._connection)
         self.coastlines = PostgresCoastlineRepository(self._connection)
+        self.data = PostgresDataRepository(self._connection)
         self.chat = PostgresChatRepository(self._connection)
         return self
 

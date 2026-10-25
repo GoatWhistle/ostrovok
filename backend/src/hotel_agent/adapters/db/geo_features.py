@@ -60,7 +60,7 @@ class PostgresGeoFeatureRepository:
                     kind="poi",
                     characteristic_key="spatial",
                     geometry={"type": "Point", "coordinates": [lon, lat]},
-                    name="Приблизительный центр города",
+                    name="Точка расчёта",
                     label=None,
                     osm_ref=None,
                     style_hint="points",

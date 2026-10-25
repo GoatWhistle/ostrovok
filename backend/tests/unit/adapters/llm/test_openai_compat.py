@@ -103,6 +103,43 @@ async def test_a_structured_answer_becomes_intents(build: Build) -> None:
     assert parsed.location_hint == "Сочи"
 
 
+async def test_room_floor_cannot_be_confirmed_by_building_height_in_metres(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [intent("building_height", "gte", 17, "на 17-м этаже")],
+            "unmatched_terms": [],
+            "location_hint": "Сочи",
+        }
+    )
+
+    parsed = await llm.parse_query("в Сочи хочу номер на 17-м этаже")
+
+    assert parsed.intents == ()
+    assert parsed.unmatched_terms == ("на 17-м этаже",)
+
+
+async def test_data_exploration_step_returns_only_a_plan_not_invented_measurements(
+    build: Build,
+) -> None:
+    llm = build(
+        {
+            "action": "measure_terrain",
+            "arguments": {"radius_m": 1000},
+            "criteria": [],
+            "question": None,
+        }
+    )
+
+    step = await llm.explore_data("hotel in mountainous terrain")
+
+    assert step.action == "measure_terrain"
+    assert step.arguments == {"radius_m": 1000}
+    assert step.criteria == ()
+    request = vars(llm)["sent"][-1]
+    assert request["reasoning_effort"] == "none"
+    assert request["temperature"] == 1
+
+
 async def test_named_landmark_and_city_center_keep_separate_wishes(build: Build) -> None:
     query = "отель в центре ижевска на одного, чтобы было видно монумент дружбы народов"
     llm = build(

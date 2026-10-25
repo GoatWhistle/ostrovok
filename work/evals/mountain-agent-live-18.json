@@ -1,0 +1,38 @@
+{
+  "query": "В Сочи хочу номер строго на 17-м этаже с включённым завтраком",
+  "status": 200,
+  "elapsed_s": 24.01,
+  "response": {
+    "conversation_id": "5b0b6879-1d41-4990-a59d-5fd4500a85bd",
+    "effective_query": "В Сочи хочу номер строго на 17-м этаже с включённым завтраком",
+    "answer": "В данных об номерах этаж почти нигде не указан, поэтому подтвердить 17-й этаж невозможно. Заменить его на менее строгое условие, например верхний этаж или широкий диапазон этажей, либо расширить область и список отелей?",
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "facility:0de8646194c2",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с включённым завтраком"
+        }
+      ],
+      "unmatched_terms": [
+        "17-й этаж"
+      ],
+      "location_hint": "Сочи",
+      "normalized_query": "В Сочи хочу номер строго на 17-м этаже с включённым завтраком",
+      "corrections": [],
+      "unsupported_region": null,
+      "needs_clarification": true,
+      "wants_room": true,
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    "result_count": 0,
+    "ranking": [],
+    "top_results": [],
+    "checks": {}
+  }
+}

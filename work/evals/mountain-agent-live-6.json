@@ -1,0 +1,209 @@
+{
+  "query": "хочу отель высоко в горах около Владикавказа",
+  "status": 200,
+  "elapsed_s": 31.47,
+  "response": {
+    "conversation_id": "686f8b57-31df-45d3-9445-fa6843ac15fd",
+    "effective_query": "хочу отель высоко в горах около Владикавказа",
+    "answer": "Показываю 20 отелей. Первые в подборке: Hostel One, olimp-plaza, Parson Hostel Hotel. Выберите отель, чтобы изучить его и окружение. Не смог проверить: высоко в горах. Эти условия не учтены в подборке.",
+    "parsed": {
+      "intents": [],
+      "unmatched_terms": [
+        "высоко в горах"
+      ],
+      "location_hint": "Владикавказ",
+      "normalized_query": "хочу отель высоко в горах около Владикавказа",
+      "corrections": [],
+      "unsupported_region": null,
+      "needs_clarification": false,
+      "wants_room": false,
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    "result_count": 20,
+    "ranking": [
+      {
+        "id": "n5831941488",
+        "name": "Hostel One",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "w259715256",
+        "name": "olimp-plaza",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n9702620417",
+        "name": "Parson Hostel Hotel",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n13909088101",
+        "name": "Pillow",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "w423874179",
+        "name": "Victoria",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n11131307205",
+        "name": "Алания",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "w165504111",
+        "name": "Александровский",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n3875874521",
+        "name": "Амран",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n12549702016",
+        "name": "Ани",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n12298945739",
+        "name": "Атмосфера",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n12298945740",
+        "name": "Атмосфера",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "w283104219",
+        "name": "База футбольного клуба \"Алания\"",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n9922435117",
+        "name": "Бумеранг",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "w121527238",
+        "name": "Владикавказ",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n13619018601",
+        "name": "Голд",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n9919719417",
+        "name": "Гостевой дом",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n4821450029",
+        "name": "Гостиница Ларс",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n4159770544",
+        "name": "Диакрис",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n10858540810",
+        "name": "Диамонд",
+        "score": 0.0,
+        "qualities": []
+      },
+      {
+        "id": "n7248441118",
+        "name": "Империал",
+        "score": 0.0,
+        "qualities": []
+      }
+    ],
+    "top_results": [
+      {
+        "hotel": {
+          "id": "n5831941488",
+          "name": "Hostel One",
+          "address": null,
+          "location": [
+            44.6914448,
+            43.0121197
+          ],
+          "stars": null,
+          "building_id": "w234270805",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": []
+      },
+      {
+        "hotel": {
+          "id": "w259715256",
+          "name": "olimp-plaza",
+          "address": "улица Шмулевича 6",
+          "location": [
+            44.6966776,
+            43.0237281
+          ],
+          "stars": null,
+          "building_id": "w259715256",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": []
+      },
+      {
+        "hotel": {
+          "id": "n9702620417",
+          "name": "Parson Hostel Hotel",
+          "address": "переулок Станиславского 4",
+          "location": [
+            44.6775987,
+            43.0290257
+          ],
+          "stars": null,
+          "building_id": "w332189267",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": []
+      }
+    ],
+    "checks": {
+      "card": {
+        "status": 200,
+        "hotel_id": "n5831941488",
+        "room_count": 0,
+        "rooms": []
+      }
+    }
+  }
+}

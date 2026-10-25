@@ -4,8 +4,13 @@ from hotel_agent.application.ports.log import LogValue
 
 
 class StdlibLogger:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, *, info: bool = False) -> None:
         self._logger = logging.getLogger(name)
+        if info:
+            self._logger.setLevel(logging.INFO)
+            if not self._logger.handlers:
+                self._logger.addHandler(logging.StreamHandler())
+            self._logger.propagate = False
 
     def info(self, event: str, **fields: LogValue) -> None:
         self._log(logging.INFO, event, fields)

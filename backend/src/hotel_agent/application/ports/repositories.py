@@ -12,6 +12,7 @@ from hotel_agent.application.dto import (
     SearchHotelRecord,
     SupplierContentRecord,
 )
+from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
 
@@ -105,6 +106,7 @@ class UnitOfWork(Protocol):
     nearby_objects: NearbyObjectRepository
     named_places: NamedPlaceRepository
     coastlines: CoastlineRepository
+    data: DataRepository
 
     async def __aenter__(self) -> Self: ...
 

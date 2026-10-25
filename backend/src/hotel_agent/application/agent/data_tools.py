@@ -1,0 +1,225 @@
+from collections import Counter
+from collections.abc import Sequence
+from math import cos, hypot, radians
+from statistics import median
+from typing import Any
+
+from hotel_agent.application.agent.record_filters import compare, field_value, fields
+from hotel_agent.application.dto import SearchHotelRecord
+from hotel_agent.application.ports.data_exploration import (
+    GeographicScopePort,
+    TerrainMeasurementPort,
+)
+from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+
+DATASETS = ("hotels", "rooms", "facilities")
+
+
+class DataTools:
+    def __init__(
+        self,
+        uow: UnitOfWorkFactory,
+        terrain: TerrainMeasurementPort,
+        hotels: Sequence[SearchHotelRecord],
+        city: str,
+        region: str,
+        bbox: tuple[float, float, float, float] | None,
+        allow_expand: bool,
+        country_scope: GeographicScopePort | None = None,
+    ) -> None:
+        self._uow, self._terrain = uow, terrain
+        self.hotels = tuple(hotels)
+        self.city, self.region, self.bbox = city, region, bbox
+        self._allow_expand = allow_expand
+        self._country_scope = country_scope
+        self.metrics: dict[str, dict[str, float]] = {}
+        self.descriptions: dict[str, str] = {}
+        self._reads = 0
+        self._measurements = 0
+
+    async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action == "inspect_data":
+            return await self._inspect()
+        if action == "find_hotels":
+            return await self._find(float(arguments.get("radius_m", 30000)))
+        if action == "read_records":
+            return await self._read(str(arguments.get("dataset", "")), arguments.get("filters"))
+        if action == "measure_terrain":
+            scope = None
+            if arguments.get("search_radius_m") is not None:
+                scope = await self._find(float(arguments["search_radius_m"]))
+            result = await self._measure(float(arguments.get("radius_m", 1000)))
+            if scope is not None:
+                result["scope"] = scope
+            return result
+        raise ValueError("Tool is not available")
+
+    async def _records(self, dataset: str) -> Sequence[dict[str, Any]]:
+        if dataset not in DATASETS:
+            raise ValueError("Available datasets: hotels, rooms, facilities")
+        async with self._uow() as uow:
+            return await uow.data.records(dataset, tuple(hotel.id for hotel in self.hotels))
+
+    async def _inspect(self) -> dict[str, Any]:
+        profiles = {}
+        for dataset in DATASETS:
+            rows = await self._records(dataset)
+            profiles[dataset] = {
+                "record_count": len(rows),
+                "fields": fields(rows),
+                "hotels_with_records": len({row["hotel_id"] for row in rows}),
+                "non_null": dict(
+                    Counter(key for row in rows for key in row if row[key] is not None)
+                ),
+                "samples": rows[:3],
+                "row_limit": 5000,
+            }
+        return {
+            "hotel_count": len(self.hotels),
+            "datasets": profiles,
+            "terrain": "Available on demand: ground elevation and sampled local relief from DEM, not floor/building height",
+        }
+
+    async def _find(self, radius: float) -> dict[str, Any]:
+        if not self._allow_expand:
+            raise ValueError("The user supplied a bounding box; expansion is not allowed")
+        if not 1000 <= radius <= 50000 or not self.hotels:
+            raise ValueError("Search radius must be 1000–50000 m with a known city")
+        async with self._uow() as uow:
+            center = await uow.regions.city_center(self.city)
+            if center is None:
+                center = (
+                    median(hotel.location[0] for hotel in self.hotels),
+                    median(hotel.location[1] for hotel in self.hotels),
+                )
+            dy = radius / 111200
+            dx = dy / max(cos(radians(center[1])), 0.1)
+            bbox = (center[0] - dx, center[1] - dy, center[0] + dx, center[1] + dy)
+            found = await uow.search.list_hotels(self.region, bbox)
+        combined = {hotel.id: hotel for hotel in (*self.hotels, *found)}
+        distances = {
+            hotel.id: hypot(
+                (hotel.location[0] - center[0]) * cos(radians(center[1])),
+                hotel.location[1] - center[1],
+            )
+            * 111200
+            for hotel in combined.values()
+        }
+        selected = sorted(
+            (
+                hotel
+                for hotel in combined.values()
+                if distances[hotel.id] <= radius
+                and (self._country_scope is None or self._country_scope.contains(hotel.location))
+            ),
+            key=lambda hotel: (distances[hotel.id], hotel.id),
+        )[:500]
+        for hotel in selected:
+            self.metrics.setdefault(hotel.id, {})["scope.distance_m"] = round(distances[hotel.id])
+        self.descriptions["scope.distance_m"] = "Расстояние по прямой до точки города, м"
+        self.hotels = tuple(selected)
+        if self.bbox is not None:
+            bbox = (
+                min(bbox[0], self.bbox[0]),
+                min(bbox[1], self.bbox[1]),
+                max(bbox[2], self.bbox[2]),
+                max(bbox[3], self.bbox[3]),
+            )
+        self.bbox = bbox
+        return {
+            "hotel_count": len(selected),
+            "radius_m": radius,
+            "bbox": bbox,
+            "available_before_limit": len(combined),
+            "limit": 500,
+            "country_scope_checked": self._country_scope is not None,
+            "samples": [
+                {
+                    "id": h.id,
+                    "name": h.name,
+                    "location": h.location,
+                    "distance_from_city_m": round(distances[h.id]),
+                }
+                for h in selected[:8]
+            ],
+        }
+
+    async def _read(self, dataset: str, filters: Any) -> dict[str, Any]:
+        if not isinstance(filters, list) or not filters or len(filters) > 8:
+            raise ValueError("Supply 1–8 filters with field, op and value")
+        rows = await self._records(dataset)
+        available = fields(rows)
+        if not rows:
+            return {
+                "dataset": dataset,
+                "record_count": 0,
+                "metrics": [],
+                "note": "No inventory; absence of records does not prove absence of a feature",
+            }
+        for item in filters:
+            if not isinstance(item, dict) or item.get("field") not in available:
+                raise ValueError(f"Unknown field; available fields: {available}")
+            if item.get("op") not in {"eq", "contains", "gte", "lte"}:
+                raise ValueError("Supported filter operators: eq, contains, gte, lte")
+        coverage = {
+            str(row["hotel_id"])
+            for row in rows
+            if all(field_value(row, item["field"]) is not None for item in filters)
+        }
+        matched = [
+            row
+            for row in rows
+            if all(
+                compare(field_value(row, item["field"]), item["op"], item.get("value"))
+                for item in filters
+            )
+        ]
+        counts = Counter(str(row["hotel_id"]) for row in matched)
+        self._reads += 1
+        field = f"r{self._reads}.match_count"
+        for hotel_id in coverage:
+            self.metrics.setdefault(hotel_id, {})[field] = float(counts[hotel_id])
+        self.descriptions[field] = f"Записи {dataset} по фильтрам {filters}"
+        return {
+            "dataset": dataset,
+            "field": field,
+            "hotels_with_data": len(coverage),
+            "matched_record_count": len(matched),
+            "samples": matched[:8],
+            "note": "Hotels without the required field have no metric, not a zero",
+        }
+
+    async def _measure(self, radius: float) -> dict[str, Any]:
+        measured = await self._terrain.measure({h.id: h.location for h in self.hotels}, radius)
+        self._measurements += 1
+        prefix = f"m{self._measurements}"
+        for hotel_id, row in measured.items():
+            for key, value in row.items():
+                self.metrics.setdefault(hotel_id, {})[f"{prefix}.{key}"] = value
+        self.descriptions[f"{prefix}.elevation_m"] = "Высота над уровнем моря, м"
+        self.descriptions[f"{prefix}.relief_m"] = (
+            f"Перепад высот по 9 точкам в радиусе {radius:g} м"
+        )
+        summary = {}
+        for field in ("elevation_m", "relief_m"):
+            values = [row[field] for row in measured.values() if field in row]
+            if values:
+                summary[f"{prefix}.{field}"] = {
+                    "min": min(values),
+                    "median": median(values),
+                    "max": max(values),
+                    "count": len(values),
+                }
+        names = {h.id: h.name for h in self.hotels}
+        ordered = sorted(measured, key=lambda key: -measured[key].get("elevation_m", 0))
+        return {
+            "fields": summary,
+            "source": "Copernicus GLO-30 / Mapterhorn DEM",
+            "radius_m": radius,
+            "hotel_count": len(self.hotels),
+            "measured_count": len(measured),
+            "highest": [
+                {"hotel_id": key, "name": names.get(key), **measured[key]} for key in ordered[:12]
+            ],
+            "note": "Ground height and sampled relief are approximate; no room or view evidence",
+        }

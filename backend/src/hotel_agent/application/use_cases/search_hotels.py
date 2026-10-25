@@ -2,6 +2,8 @@ import hashlib
 from collections.abc import Sequence
 from dataclasses import dataclass, replace
 
+from hotel_agent.application.agent.data_records import ExplorationOutcome
+from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
@@ -29,6 +31,7 @@ class SearchOutcome:
     query_id: str
     parsed: ParsedQuery
     results: Sequence[SearchResult]
+    question: str | None = None
 
 
 class SearchHotels:
@@ -38,11 +41,13 @@ class SearchHotels:
         uow: UnitOfWorkFactory,
         clock: ClockPort,
         place_lookup: PlaceLookupPort | None = None,
+        explorer: DataExplorer | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
         self._clock = clock
         self._place_lookup = place_lookup
+        self._explorer = explorer
 
     async def __call__(
         self,
@@ -54,6 +59,7 @@ class SearchHotels:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
         parsed = await self._llm.parse_query(query)
+        allow_expand = bbox is None
         if parsed.nearby_objects or parsed.facility_requests or parsed.spatial_requests:
             parsed = replace(
                 parsed,
@@ -85,6 +91,21 @@ class SearchHotels:
                 else:
                     bbox = city_bbox
             hotels = await uow.search.list_hotels(region, bbox)
+        explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
+        if self._explorer is not None and parsed.unmatched_terms:
+            explored = await self._explorer(
+                query, parsed.unmatched_terms, location, region, hotels, bbox, allow_expand
+            )
+            hotels, bbox = explored.hotels, explored.bbox
+            parsed = replace(
+                parsed,
+                intents=parsed.intents + explored.intents,
+                unmatched_terms=tuple(
+                    term for term in parsed.unmatched_terms if term not in explored.resolved_terms
+                ),
+                needs_clarification=bool(explored.question),
+            )
+        async with self._uow() as uow:
             stored = await uow.search.list_facts(region)
             spatial = await resolve_spatial_requests(
                 uow, parsed.spatial_requests, location, bbox, hotels
@@ -121,7 +142,7 @@ class SearchHotels:
                 async with self._uow() as uow:
                     place = await uow.named_places.near_coordinate(position, spatial_bbox)
                 spatial[index] = (spatial_request, place)
-        facts = _best_facts(stored)
+        facts = _best_facts((*stored, *explored.facts))
         now = self._clock.now()
         if nearby:
             for request, matches in nearby:
@@ -181,7 +202,8 @@ class SearchHotels:
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
             parsed=parsed,
-            results=ranked[:limit],
+            results=() if explored.question else ranked[:limit],
+            question=explored.question,
         )
 
 

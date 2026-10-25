@@ -18,13 +18,7 @@ display:
 synonyms:
   - высота здания
   - этажность
-  - высокий этаж
 matchers:
-  - phrase: высокий этаж
-    op: gte
-    value: 20
-    weight: 0.6
-    required: false
   - phrase: малоэтажный
     op: lte
     value: 12

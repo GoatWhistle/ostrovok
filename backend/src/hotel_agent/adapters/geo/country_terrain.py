@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from functools import lru_cache
 from pathlib import Path
 from typing import cast
@@ -9,6 +10,7 @@ from rasterio.enums import Resampling
 from rasterio.io import MemoryFile
 from rasterio.windows import Window
 
+from hotel_agent.adapters.geo.terrain_sampling import sample_points
 from hotel_agent.adapters.geo.terrain_tiles import (
     CopernicusTerrainTiles,
     encode_relief,
@@ -21,6 +23,7 @@ MAX_SOURCE_ZOOM = 12
 
 class CountryTerrainTiles:
     def __init__(self, local_dem: Path) -> None:
+        self._dem_path = local_dem
         self._local = CopernicusTerrainTiles(local_dem)
         self._client = httpx.Client(
             timeout=10,
@@ -46,6 +49,9 @@ class CountryTerrainTiles:
     def close(self) -> None:
         self._client.close()
         self._heights.cache_clear()
+
+    def sample_points(self, points: Mapping[str, tuple[float, float]]) -> dict[str, float]:
+        return sample_points(points, self._dem_path, self._heights)
 
     def _is_local(self, z: int, x: int, y: int) -> bool:
         if self._bounds is None:

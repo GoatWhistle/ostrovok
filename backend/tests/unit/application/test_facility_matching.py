@@ -31,3 +31,17 @@ def test_missing_facility_creates_no_positive_fact() -> None:
     request = FacilityRequest(term="сауна", source_text="с сауной")
 
     assert facility_fact(request, content()) is None
+
+
+def test_available_paid_breakfast_does_not_prove_it_is_included() -> None:
+    request = FacilityRequest(term="завтрак", source_text="с включённым завтраком")
+    paid = SupplierContentRecord(
+        hotel_id="hotel-1",
+        supplier="nuitee",
+        facilities_ru=("Завтрак доступен (за отдельную плату)",),
+        facilities_en=(),
+        updated_at=datetime(2026, 10, 25, tzinfo=UTC),
+    )
+
+    assert facility_fact(request, paid) is None
+    assert facility_fact(request, content()) is not None

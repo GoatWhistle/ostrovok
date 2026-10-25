@@ -4,9 +4,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
+from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
+from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
@@ -27,7 +30,7 @@ from hotel_agent.settings import Settings, load_settings
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     config = settings or load_settings(os.environ)
-    logger = StdlibLogger("hotel_agent")
+    logger = StdlibLogger("hotel_agent", info=True)
     providers = build_providers(config, logger)
     terrain_tiles = CountryTerrainTiles(config.seed_dir / "sochi" / "dem.tif")
 
@@ -43,7 +46,18 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
     search_hotels = SearchHotels(
-        providers.llm, providers.uow, providers.clock, providers.place_lookup
+        providers.llm,
+        providers.uow,
+        providers.clock,
+        providers.place_lookup,
+        DataExplorer(
+            providers.llm,
+            providers.uow,
+            TerrainMeasurements(terrain_tiles),
+            providers.clock,
+            logger,
+            CountryBoundary(config.seed_dir / "russia-boundary.geojson"),
+        ),
     )
     app.include_router(
         api_router_v1(
