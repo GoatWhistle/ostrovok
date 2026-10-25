@@ -15,28 +15,40 @@
   inset-inline-end: calc(100% - var(--resize-overlap));
 }
 
-.handle::after {
-  content: "";
+.line {
   position: absolute;
   inset-block: 0;
-  inline-size: var(--resize-glow);
-  background-color: var(--resize-tint);
+  inline-size: var(--focus-ring-width);
+  background-color: var(--border-strong);
   opacity: 0;
+  pointer-events: none;
   translate: var(--resize-shift, 0) 0;
   transition: var(--transition-fade);
 }
 
-.handle[data-edge="end"]::after {
-  inset-inline-start: calc(var(--resize-overlap) - var(--resize-glow) / 2);
+.handle[data-edge="end"] .line {
+  inset-inline-start: calc(var(--resize-overlap) - var(--focus-ring-width) / 2);
 }
 
-.handle[data-edge="start"]::after {
-  inset-inline-end: calc(var(--resize-overlap) - var(--resize-glow) / 2);
+.handle[data-edge="start"] .line {
+  inset-inline-end: calc(var(--resize-overlap) - var(--focus-ring-width) / 2);
 }
 
-.handle[data-dragging="true"]::after,
-.handle:focus-visible::after {
+@media (hover: hover) and (pointer: fine) {
+  .handle:hover .line {
+    opacity: 1;
+  }
+}
+
+.handle[data-dragging="true"] .line {
+  background-color: var(--focus-ring);
   opacity: 1;
+}
+
+.handle:focus-visible .line {
+  background-color: var(--focus-ring);
+  opacity: 1;
+  transition: none;
 }
 
 .handle:focus-visible {

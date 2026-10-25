@@ -1,0 +1,47 @@
+.root {
+  position: relative;
+  display: inline-flex;
+}
+
+.root .trigger {
+  --button-surface: var(--surface-glass);
+  --button-radius: var(--radius-pill);
+
+  box-shadow: var(--shadow-float);
+  backdrop-filter: var(--backdrop-glass);
+}
+
+.links {
+  composes: plainList glassSurface from "../../../styles/compose.module.css";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: calc(100% + var(--space-6));
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transform-origin: right center;
+  animation: var(--motion-scale-in);
+}
+
+.links[data-state="closed"] {
+  animation: var(--motion-scale-out);
+}
+
+.link {
+  composes: captionText from "../../../styles/compose.module.css";
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-min);
+  padding-inline: var(--space-8);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+  }
+}

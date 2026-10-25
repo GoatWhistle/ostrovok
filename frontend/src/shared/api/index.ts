@@ -12,3 +12,4 @@ export {
 } from "./client"
 export { createQueryClient, shouldRetry } from "./query-client"
 export type { components, paths } from "./schema.gen"
+export { warmCache } from "./warm-cache"

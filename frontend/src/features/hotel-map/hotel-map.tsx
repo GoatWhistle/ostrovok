@@ -1,15 +1,14 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { createPortal } from "react-dom"
 import { useRegions } from "@/entities/catalog"
 import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
-import { startOrbit } from "@/shared/geo/orbit"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { motionMs, useReducedMotion } from "@/shared/motion"
-import { ErrorState } from "@/shared/ui"
+import { motionMs } from "@/shared/motion"
+import { ErrorState, MapAttribution } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
 import { MapPin } from "./map-pin"
@@ -32,7 +31,6 @@ export interface HotelMapProps {
   readonly results: readonly SearchResult[]
   readonly bounds: readonly number[] | undefined
   readonly onSelect: (result: SearchResult) => void
-  readonly showcase?: boolean
 }
 
 function focusCopy(
@@ -64,8 +62,6 @@ function hasLine(features: readonly unknown[]) {
   })
 }
 
-const SHOWCASE = { center: [39.73, 43.6], zoom: 12.4, pitch: 62, degreesPerSecond: 2.4 } as const
-
 export function HotelMap({
   hotelId,
   camera,
@@ -76,7 +72,6 @@ export function HotelMap({
   results,
   bounds,
   onSelect,
-  showcase = false,
 }: HotelMapProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
@@ -120,12 +115,6 @@ export function HotelMap({
     focusLabel: focus.label,
     sun: sun.position,
   })
-  const reduced = useReducedMotion()
-  useEffect(() => {
-    const instance = map.instance.current
-    if (!showcase || !map.ready || !instance) return
-    return startOrbit(instance, SHOWCASE, !reduced)
-  }, [showcase, map.ready, map.instance, reduced])
   const overview = scene.data?.cameras.overview ?? selectedCamera
   const showOverview = (instant: boolean) => {
     if (!overview) return
@@ -142,7 +131,6 @@ export function HotelMap({
     <section
       className={styles.stage}
       aria-label={t("explore:map.title")}
-      data-showcase={showcase || undefined}
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
@@ -216,33 +204,20 @@ export function HotelMap({
           </div>
           <div className={styles.meta}>
             <MapScale map={map.instance} ready={map.ready} />
-            <a
-              className={styles.attribution}
-              href="https://www.openstreetmap.org/copyright"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t("explore:map.attribution")}
-            </a>
-            <a
-              className={styles.attribution}
-              href="https://mapterhorn.com/attribution/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t("explore:map.terrainAttribution")}
-            </a>
+            <MapAttribution
+              label={t("explore:map.attributionTitle")}
+              osm={t("explore:map.attribution")}
+              terrain={t("explore:map.terrainAttribution")}
+            />
           </div>
         </div>
       ) : null}
-      {showcase ? null : (
-        <MapControls
-          map={map.instance}
-          ready={map.ready}
-          disabled={!selectedCamera || map.failed || !map.ready}
-          onOverview={showOverview}
-        />
-      )}
+      <MapControls
+        map={map.instance}
+        ready={map.ready}
+        disabled={!selectedCamera || map.failed || !map.ready}
+        onOverview={showOverview}
+      />
     </section>
   )
 }

@@ -8,6 +8,10 @@ export {
 export { Confidence, type ConfidenceProps } from "./data-display/confidence/confidence"
 export { LostRoute } from "./data-display/lost-route/lost-route"
 export {
+  MapAttribution,
+  type MapAttributionProps,
+} from "./data-display/map-attribution/map-attribution"
+export {
   StatusBadge,
   type StatusBadgeProps,
   type StatusTone,

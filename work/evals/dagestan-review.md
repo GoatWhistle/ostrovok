@@ -17,6 +17,6 @@ The original conversation now stores the corrected result; GET restores its cach
 
 Initial harness postchecks incorrectly read key and GeoJSON coordinates instead of characteristic_key and the coordinate array. Both assertions were corrected and re-run against saved responses without another paid call. Fresh and context verifiers now pass.
 
-Automated gates: 287 unit/contract/integration tests; Ruff check/format, mypy, import-linter. No frontend files changed and no new browser claim is made. Existing frontend image retains the texture merge.
+Automated gates: 287 unit/contract/integration tests; Ruff check/format, mypy, import-linter. The region fix changes no frontend source. Before pushing, incoming landing updates were merged with the existing selected-hotel texture integration; the conflict resolution preserves the texture attribute and both translation keys.
 
 Limits: only these two live inputs were checked; regional terrain selections over 500 candidates remain unverified. Generalized boundary data and ground elevations are approximate; room inventory remains incomplete. The 50-query baseline failures remain documented separately.

@@ -17,3 +17,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.composer .send {
+  --button-radius: var(--radius-pill);
+}
+
+.composer .send:disabled {
+  --button-surface: transparent;
+}

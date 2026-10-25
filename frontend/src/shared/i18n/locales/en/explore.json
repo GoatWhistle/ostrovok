@@ -32,7 +32,8 @@
     "example1": "a quiet room with a sunset view, a short walk to the sea",
     "example2": "a hotel in the centre near the promenade and cafes",
     "example3": "dogs welcome, a park nearby for walks",
-    "regionHotels": "{{region}}: {{count, number}} hotels"
+    "suggestBars": "bars nearby",
+    "suggestHigh": "high floor"
   },
   "navigation": {
     "search": "Find a hotel",
@@ -94,7 +95,8 @@
     "controlsTitle": "How to move the map",
     "controlsHint": "Drag the map to move it. Right mouse button or Ctrl with dragging rotates and tilts the camera. The mouse wheel zooms; on a phone use two fingers.",
     "textureApproximate": "Illustrative texture on the selected hotel",
-    "textureUnavailable": "Texture unavailable. Showing the standard building"
+    "textureUnavailable": "Texture unavailable. Showing the standard building",
+    "attributionTitle": "Map data sources"
   },
   "weather": {
     "scene": "Sun and weather",
@@ -327,5 +329,26 @@
     "back": "All hotels",
     "resizePanel": "Resize the hotels panel",
     "resizeChat": "Resize the chat"
+  },
+  "landing": {
+    "settings": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "places": {
+      "elbrus": "Elbrus",
+      "seaport": "Sochi seaport",
+      "klyuchevskaya": "Klyuchevskaya Sopka",
+      "avachinsky": "Avachinsky volcano",
+      "fisht": "Fisht Stadium",
+      "belukha": "Belukha",
+      "khosta": "Khosta",
+      "khibiny": "Khibiny",
+      "tyatya": "Tyatya volcano",
+      "dombay": "Dombay",
+      "kronotsky": "Kronotsky volcano",
+      "goldenBridge": "Golden Bridge",
+      "ergaki": "Ergaki",
+      "teriberka": "Teriberka"
+    }
   }
 }

@@ -5,6 +5,7 @@ const STRENGTH: Readonly<Record<LightMode, number>> = { day: 0, dusk: 0.22, nigh
 const TINTED = [
   "land",
   "park",
+  "rock",
   "sand",
   "building",
   "buildingLine",

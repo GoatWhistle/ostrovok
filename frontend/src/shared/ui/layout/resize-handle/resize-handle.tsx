@@ -24,6 +24,8 @@ export function ResizeHandle({ label, edge, current, resizable }: ResizeHandlePr
       onPointerDown={resizable.onPointerDown}
       onKeyDown={resizable.onKeyDown}
       onDoubleClick={resizable.onDoubleClick}
-    />
+    >
+      <span className={styles.line} aria-hidden="true" />
+    </div>
   )
 }

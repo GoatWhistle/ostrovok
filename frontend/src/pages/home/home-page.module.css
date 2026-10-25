@@ -10,10 +10,6 @@
   display: none;
 }
 
-.tabs[hidden] {
-  display: none;
-}
-
 .workspace {
   display: grid;
   grid-template-columns:
@@ -71,38 +67,6 @@
   min-block-size: 0;
   min-inline-size: 0;
   box-shadow: var(--shadow-divider-start);
-}
-
-.start {
-  position: absolute;
-  inset: 0;
-  z-index: var(--layer-sticky);
-  display: grid;
-  align-items: center;
-  justify-items: start;
-  padding: var(--space-24) var(--space-page-wide);
-  pointer-events: none;
-}
-
-.start > * {
-  pointer-events: auto;
-}
-
-.start::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--surface-base);
-  opacity: var(--start-scrim);
-}
-
-.workspace[data-mode="start"] {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.workspace[data-mode="start"] .panel,
-.workspace[data-mode="start"] .chat {
-  display: none;
 }
 
 .dock {
@@ -184,14 +148,5 @@
   .workspace:not([data-view="map"]) .map,
   .workspace:not([data-view="chat"]) .chat {
     display: none;
-  }
-
-  .workspace[data-mode="start"] .map {
-    display: grid;
-  }
-
-  .start {
-    align-items: end;
-    padding: 0;
   }
 }

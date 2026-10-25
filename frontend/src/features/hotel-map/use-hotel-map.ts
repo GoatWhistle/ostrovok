@@ -1,4 +1,9 @@
-import { Map as MapLibreMap, setWorkerUrl } from "maplibre-gl"
+import {
+  type ErrorEvent,
+  GPUInitializationError,
+  Map as MapLibreMap,
+  setWorkerUrl,
+} from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
@@ -15,6 +20,7 @@ import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapMarkers } from "./use-map-markers"
 
 setWorkerUrl(workerUrl)
+const MAX_PIXEL_RATIO = 1.5
 export interface MapData {
   readonly camera: Camera | undefined
   readonly buildings: readonly unknown[]
@@ -26,6 +32,12 @@ export interface MapData {
   readonly focusFeatures: readonly unknown[]
   readonly focusLabel: string | undefined
   readonly sun: SunPosition
+}
+
+function isFatalMapError(event: ErrorEvent, started: boolean): boolean {
+  if (event.error instanceof GPUInitializationError) return true
+  if ("sourceId" in event || "tile" in event) return false
+  return !started
 }
 
 function useMapInstance(hasCamera: boolean) {
@@ -42,12 +54,23 @@ function useMapInstance(hasCamera: boolean) {
         style: { version: 8, sources: {}, layers: [], transition: { duration: 0, delay: 0 } },
         attributionControl: false,
         maxPitch: 75,
+        pixelRatio: Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO),
       })
       instance.current = map
-      const loaded = () => setReady(true)
-      const error = () => setFailed(true)
+      let started = false
+      const loaded = () => {
+        started = true
+        setReady(true)
+      }
+      const error = (event: ErrorEvent) => {
+        if (isFatalMapError(event, started)) setFailed(true)
+      }
+      const lost = () => setFailed(true)
+      const restored = () => setFailed(false)
       map.on("load", loaded)
       map.on("error", error)
+      map.on("webglcontextlost", lost)
+      map.on("webglcontextrestored", restored)
       let visible = false
       const resize = new ResizeObserver(([entry]) => {
         map.resize()
@@ -60,6 +83,8 @@ function useMapInstance(hasCamera: boolean) {
         resize.disconnect()
         map.off("load", loaded)
         map.off("error", error)
+        map.off("webglcontextlost", lost)
+        map.off("webglcontextrestored", restored)
         map.remove()
         instance.current = null
         setReady(false)

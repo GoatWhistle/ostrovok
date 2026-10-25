@@ -22,6 +22,7 @@ export interface TerrainColors {
   readonly hillShadow: string
   readonly hillHighlight: string
   readonly sunlight: string
+  readonly rock: string
 }
 
 export type LightMode = "day" | "dusk" | "night"
@@ -60,7 +61,7 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
     900,
     colors.park,
     2200,
-    colors.building,
+    colors.rock,
   ]
 }
 

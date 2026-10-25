@@ -1,0 +1,59 @@
+.landing {
+  position: relative;
+  display: grid;
+  min-block-size: 100dvh;
+  overflow: hidden;
+  background-color: var(--surface-base);
+  isolation: isolate;
+}
+
+.corner {
+  position: absolute;
+  inset-block-start: var(--space-16);
+  inset-inline-end: var(--space-16);
+  z-index: var(--layer-popover);
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-block-size: 100dvh;
+}
+
+.copy {
+  align-self: center;
+  justify-self: center;
+  inline-size: min(100%, var(--landing-copy) + var(--space-page-wide) * 2);
+  padding: var(--space-64) var(--space-page-wide);
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  min-block-size: 0;
+  animation: var(--motion-fade-in);
+}
+
+@media (max-width: 63.99rem) {
+  .corner {
+    inset-inline-end: var(--space-12);
+    inset-block-start: var(--space-12);
+  }
+
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: var(--space-24);
+    min-block-size: 0;
+  }
+
+  .copy {
+    padding: var(--space-8) var(--space-page) var(--space-32);
+  }
+
+  .visual {
+    order: -1;
+    block-size: var(--landing-visual-compact);
+  }
+}

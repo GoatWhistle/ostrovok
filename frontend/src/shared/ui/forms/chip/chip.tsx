@@ -9,6 +9,7 @@ export interface ChipProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>,
   readonly pressed?: boolean
   readonly label: string
   readonly static?: boolean
+  readonly size?: "regular" | "large"
 }
 
 export function Chip({
@@ -17,6 +18,7 @@ export function Chip({
   pressed = false,
   label,
   static: still = false,
+  size = "regular",
   className,
   style,
   ...rest
@@ -39,7 +41,7 @@ export function Chip({
       {...rest}
       type="button"
       aria-pressed={pressed}
-      className={clsx(styles.chip, className)}
+      className={clsx(styles.chip, size === "large" && styles.large, className)}
       style={{ ...style, "--chip-hue": hue } as CSSProperties}
     >
       <span className={styles.dot}>

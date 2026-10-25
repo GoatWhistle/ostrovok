@@ -1,0 +1,37 @@
+.reel {
+  position: relative;
+  margin: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 0;
+  overflow: hidden;
+  background-color: var(--map-sea);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: var(--transition-reel);
+}
+
+.reel[data-shown="true"] .canvas {
+  opacity: 1;
+}
+
+.reel[data-failed] .canvas {
+  display: none;
+}
+
+.attribution {
+  position: absolute;
+  inset-block-end: var(--space-16);
+  inset-inline-end: var(--space-16);
+}
+
+@media (max-width: 63.99rem) {
+  .attribution {
+    inset-block-end: var(--space-12);
+    inset-inline-end: var(--space-12);
+  }
+}

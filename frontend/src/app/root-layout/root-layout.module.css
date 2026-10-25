@@ -4,6 +4,14 @@
   min-block-size: 100dvh;
 }
 
+.shell:has([data-chrome="bare"]) {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.shell:has([data-chrome="bare"]) > header {
+  display: none;
+}
+
 .skip {
   composes: controlText from "../../shared/styles/compose.module.css";
   position: fixed;

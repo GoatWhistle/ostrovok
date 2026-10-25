@@ -1,16 +1,27 @@
 .card {
   position: relative;
-  z-index: var(--layer-raised);
   display: grid;
   justify-items: start;
-  gap: var(--space-16);
-  inline-size: min(100%, var(--start-card-width));
-  padding: var(--space-32);
-  border-radius: var(--radius-xl);
-  background-color: var(--surface-overlay);
-  box-shadow: var(--shadow-overlay);
+  gap: var(--space-20);
+  inline-size: 100%;
   text-align: start;
-  animation: var(--motion-state-in);
+}
+
+.card > * {
+  position: relative;
+}
+
+.lockup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-block-end: var(--space-32);
+}
+
+.word {
+  composes: headingText from "../../shared/styles/compose.module.css";
+  font-size: var(--font-size-display-sm);
+  line-height: var(--line-height-heading-lg);
 }
 
 .card > :not(:first-child) {
@@ -64,34 +75,29 @@
 }
 
 .chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-}
-
-.stats {
-  composes: plainList from "../../shared/styles/compose.module.css";
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  padding-block-start: var(--space-8);
-  box-shadow: var(--shadow-divider-top);
-  inline-size: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: var(--space-12) var(--space-8);
+  padding-block-start: var(--space-4);
 }
 
 @media (max-width: 47.99rem) {
   .card {
     gap: var(--space-12);
-    inline-size: 100%;
-    padding: var(--space-24) var(--space-16) var(--space-16);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   }
 
   .card > :first-child {
     display: none;
   }
 
+  .card .title {
+    font-size: var(--font-size-heading-lg);
+  }
+}
+
+@media (max-width: 74.99rem) {
   .chips {
-    gap: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
   }
 }

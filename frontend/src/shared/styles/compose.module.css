@@ -89,6 +89,13 @@
   box-shadow: var(--shadow-float);
 }
 
+.glassSurface {
+  border-radius: var(--radius-md);
+  background-color: var(--surface-glass);
+  box-shadow: var(--shadow-float);
+  backdrop-filter: var(--backdrop-glass);
+}
+
 .subheadingText {
   composes: strongWeight;
   font-size: var(--font-size-subheading);
