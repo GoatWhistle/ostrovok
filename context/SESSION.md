@@ -43,17 +43,21 @@ Updated: 2026-10-25, Europe/Moscow
 при нажитии камера перемещается на место этого отеля, справла появляется карточка
 на карточке при наведении хотелку на карте как то должно отобраться объяснение как это было выбрано».
 - 2026-10-25: «Также сделай приятную карту, с каким то цветами, рельефом, солнцем, закатом, чтобы вообще можно было выбрать дату и посмотреть погоду или где солнце находится. Можешь рисовать вообще полностью с нуля через WebGL».
+- 2026-10-25, дословно: «сделай справа как чат, а слева буду отели рекомендоваться
+и так же слева в этой плашке при выбора отеля будет его карточка высвечиваться
+
+то есь надо еще поддержку чата и контекста сделать. Так же в карточке отеля надо показывать всю его информацию. Какие там есть номера, сколько стоят, на каком этаже, с какой стороны, что включено, может краткое саммари по отелю делать. Также рисуй все здания рядом в 3д».
 
 ## Current state
 
-- Branch/SHA `feat/hotel-agent-mvp` / `c792285` (parser fix, docs update pending). Compose localhost:8080 is healthy; ignored `.env` selects DeepSeek V4.1 Flash.
-- Search validates typos, geography, contradictions; extracts basic wishes and on-demand arbitrary OSM nearby objects; ranks hotels, card only requested wishes. Map highlights POIs/routes. Local DEM relief, 3D, sun/date and weather run on stand.
-- `work/evals/search-22-results.json`: 22/22 HTTP 200, 16 with results, median 3.79 s; `docs/evidence.md` has limits.
-- Confirmed room inventory is absent; double-room condition remains unknown, never claimed satisfied.
+- Branch `feat/hotel-agent-mvp`, implementation commit `c81a679` (Git HEAD while updating this session). Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend and frontend rebuilt and healthy.
+- Added PostgreSQL chat history, contextual query rewrite, RU/EN answers grounded in search results; right chat, left recommendations and selected hotel card, center map. Card reads real rooms/facts and shows honest empty state because `rooms` has 0 rows. Nearby buildings in 350 m are all extruded; OSM floor heights and estimated fallback are marked.
+- Live stand: initial query returned 20 shown candidates; follow-up retained three wishes; GET restored four messages. Scene for `n10058556917`: 512 neighboring buildings, 512 volumes, 161 with OSM levels. Prior `work/evals/search-22-results.json`: 22 search queries, 16 with results.
+- `npm run verify`: 36 rules, 310 tests, build. Backend: Ruff, mypy, import-linter, 225 tests. Full Playwright: 10/10, including 1440/375/320, both themes/languages, long text. No browser JS errors or horizontal overflow in manual live checks.
 
 ## Next actions and pitfalls
 
-- Frontend restarted after selected-hotel marker; zoo focus showed hotel plus 9 POIs with no JS errors.
-- `npm run verify`: 36 rules, 310 tests and build pass; backend ruff/format/mypy and 223 tests pass.
-- Commit updated 22-query eval/docs/context and push branch.
-- Do not expose Yandex API key or add synthetic room inventory without user answer. `work/plan.md` contains later hotelier/sunset-view stages not implemented.
+- Push implementation and session commits to `origin/feat/hotel-agent-mvp`; watch for a room/pricing source answer and connect it if provided. Stand was rebuilt and smoke tested after final code changes.
+- User was asked asynchronously for a source of room inventory and prices; no answer received. Do not invent or seed rooms. Current UI displays unavailable fields.
+- One transient Yandex ConnectError occurred on the first live chat request; a single automatic retry was added and tested. Failed send preserves draft. Secrets remain only in ignored `.env`.
+- Бюджет SESSION 6000 символов превышен из-за защищённых дословных инструкций пользователя; их не сокращать.
