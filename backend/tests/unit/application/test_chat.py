@@ -4,8 +4,10 @@ from types import SimpleNamespace
 from typing import Any, cast
 from unittest.mock import AsyncMock, MagicMock
 
+from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.dto import SearchHotelRecord
+from hotel_agent.application.exploration_requests import apply_exploration
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.chat import Chat
@@ -30,6 +32,23 @@ def chat(search: Any = None, uow: Any = None) -> Chat:
 
 def outcome(parsed: ParsedQuery) -> SearchOutcome:
     return SearchOutcome(query_id="test", parsed=parsed, results=())
+
+
+def test_missing_tool_matches_do_not_claim_query_conditions_are_contradictory() -> None:
+    parsed = ParsedQuery(
+        intents=(), unmatched_terms=("с рестораном",), location_hint="Новороссийск"
+    )
+    explored = ExplorationOutcome(hotels=(), question="Уточнить область поиска?")
+
+    result = apply_exploration(parsed, explored)
+
+    assert not result.needs_clarification
+    answer = chat()._answer(
+        SearchOutcome(query_id="test", parsed=result, results=(), question=explored.question),
+        None,
+        "ru",
+    )
+    assert answer == "Уточнить область поиска?"
 
 
 def test_room_request_asks_for_missing_dates_and_guests() -> None:

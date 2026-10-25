@@ -16,6 +16,7 @@ from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
+from hotel_agent.application.search_evidence import save_search_evidence
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
 from hotel_agent.domain.entities import Fact
@@ -203,6 +204,7 @@ class SearchHotels:
             )
         if parsed.anywhere and (parsed.intents or parsed.unmatched_terms):
             ranked = [item for item in ranked if item.scored.score > 0]
+        await save_search_evidence(self._uow, explored.facts, [r.hotel.id for r in ranked[:limit]])
         fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],

@@ -14,6 +14,8 @@ API = runpy.run_path(str(ROOT / 'run_diverse_50.py'))
 
 def run(case):
     payload = {'message': case['query'], 'region_id': 'russia', 'locale': 'ru'}
+    if case.get('conversation_id'):
+        payload['conversation_id'] = case['conversation_id']
     if case['id'] == 'context-underwater':
         payload['conversation_id'] = '205e236b-1226-407e-bcb2-5ec0d3d805f4'
     started = time.monotonic()
@@ -39,6 +41,12 @@ def run(case):
                 checks['asks_place'] = parsed['needs_clarification'] and not parsed['location_hint']
             if case['expect'] == 'place':
                 checks['place_kept'] = bool(parsed['location_hint'])
+            if case['expect'] == 'novorossiysk':
+                checks['no_false_contradiction'] = not parsed['needs_clarification']
+                checks['has_results'] = summary['result_count'] > 0
+                checks['capital_with_evidence'] = any(item['hotel']['id'] == 'w711007670'
+                    and sum(m['match'] in {'partial','full'} for m in item['matched']) >= 2
+                    for item in summary['top_results'])
             record['links'] = API['inspect_links'](body['search'])
         record['checks'] = checks
         record['passed'] = all(checks.values())

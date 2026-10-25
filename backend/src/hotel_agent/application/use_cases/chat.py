@@ -103,9 +103,9 @@ class Chat:
             if locale == "en":
                 return f"I could not locate {search.parsed.unsupported_region} in the hotel data. Please clarify the city."
             return f"Не нашёл город «{search.parsed.unsupported_region}» в данных об отелях. Уточните название города."
+        if search.question:
+            return search.question
         if search.parsed.needs_clarification:
-            if search.question:
-                return search.question
             if locale == "en":
                 return "Please clarify your request: some conditions conflict."
             return "Уточните условия: в запросе есть противоречие."

@@ -58,10 +58,25 @@ def materialize(
             explanation = f"{measured}. Проверка пожелания: {rules}. Оценочные критерии выбраны агентом по доступным данным."
             if terrain:
                 explanation += " Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера."
+            quotes = tuple(
+                quote
+                for check in criterion.checks
+                for quote in tools.reader.quotes.get(hotel.id, {}).get(check.field, ())
+            )
             if "scope.distance_m" in metrics:
                 explanation += (
                     f" До точки города по прямой {metrics['scope.distance_m'] / 1000:.1f} км."
                 )
+            refs = {
+                ref
+                for check in criterion.checks
+                for ref in (
+                    *tools.geo_refs.get(hotel.id, {}).get(check.field, ()),
+                    *tools.reader.geo_refs.get(hotel.id, {}).get(check.field, ()),
+                )
+            }
+            if terrain:
+                refs.add(f"g_point_{hotel.location[0]:.6f}_{hotel.location[1]:.6f}")
             records.append(
                 SearchFactRecord(
                     hotel_id=hotel.id,
@@ -69,7 +84,11 @@ def materialize(
                     characteristic_key=key,
                     value=all(matches),
                     unit=None,
-                    qualifiers={"estimated_location": True},
+                    qualifiers={
+                        "estimated_location": True,
+                        "source_text": criterion.source_text,
+                        "source_quotes": list(quotes),
+                    },
                     source_type="computed",
                     source_id=None,
                     method="data_agent_tools@1",
@@ -77,9 +96,7 @@ def materialize(
                     computed_at=now,
                     valid_until=now + timedelta(days=1),
                     status="active",
-                    geo_refs=(f"g_point_{hotel.location[0]:.6f}_{hotel.location[1]:.6f}",)
-                    if terrain
-                    else (),
+                    geo_refs=tuple(sorted(refs)),
                     explanation=explanation,
                     facade_azimuth=None,
                 )
@@ -100,14 +117,20 @@ def materialize(
             )
         )
         resolved.append(criterion.term)
+    if intents and not any(intent.required for intent in intents):
+        question = None
     if intents and question is None:
-        keys = {item.characteristic_key for item in intents}
+        keys = (
+            {item.characteristic_key for item in intents}
+            if any(item.required for item in intents)
+            else set()
+        )
         by_hotel: dict[str, dict[str, bool]] = {}
         for record in facts:
             by_hotel.setdefault(record.hotel_id, {})[record.characteristic_key] = (
                 record.value is True
             )
-        if not any(
+        if keys and not any(
             keys <= set(values) and all(values[key] for key in keys) for values in by_hotel.values()
         ):
             wanted = "; ".join(f"«{term}»" for term in resolved)

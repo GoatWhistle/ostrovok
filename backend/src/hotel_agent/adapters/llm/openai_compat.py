@@ -2,7 +2,7 @@ from collections.abc import Mapping, Sequence
 
 import httpx
 
-from hotel_agent.adapters.llm import data_reasoning, prompts
+from hotel_agent.adapters.llm import data_reasoning, prompts, text_evidence
 from hotel_agent.adapters.llm.openai_completion import OpenAICompletion
 from hotel_agent.adapters.llm.payload import (
     as_mapping,
@@ -27,6 +27,7 @@ from hotel_agent.application.ports.llm import (
 )
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
+from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import Characteristic, Op
 from hotel_agent.domain.errors import ModelFailure, UnknownCharacteristic
 from hotel_agent.domain.query import (
@@ -104,6 +105,23 @@ class OpenAICompatLLM(OpenAICompletion):
                 "data_agent_invalid_response", detail=str(error), response_length=len(raw)
             )
             raise
+
+    async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]:
+        raw = await self._post(
+            system=text_evidence.SYSTEM,
+            user=context,
+            response_format=text_evidence.schema(),
+            planning=True,
+        )
+        payload = as_mapping(raw)
+        return tuple(
+            EvidenceVerdict(
+                record_id=text(item, "record_id"),
+                supported=flag(item, "supported"),
+                quote=text(item, "quote"),
+            )
+            for item in items(payload, "verdicts")
+        )
 
     async def plan_tools(
         self,

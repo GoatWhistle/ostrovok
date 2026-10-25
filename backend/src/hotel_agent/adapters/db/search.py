@@ -4,6 +4,7 @@ from datetime import datetime
 
 from psycopg import AsyncConnection
 
+from hotel_agent.adapters.db.derived_facts import save_derived_facts
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -71,6 +72,9 @@ price_amount, price_currency, included FROM rooms WHERE hotel_id = %(hotel_id)s 
 class PostgresSearchRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
+
+    async def save_facts(self, records: Sequence[SearchFactRecord]) -> None:
+        await save_derived_facts(self._connection, records)
 
     async def by_ids(self, hotel_ids: Sequence[str]) -> Sequence[SearchHotelRecord]:
         cursor = await self._connection.execute(

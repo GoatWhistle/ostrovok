@@ -62,6 +62,8 @@ class OpenAICompletion:
         request: dict[str, Any] = {
             "model": self._model,
             "temperature": 0,
+            "reasoning_effort": "none",
+            "max_tokens": 4000,
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
@@ -87,7 +89,7 @@ class OpenAICompletion:
                 )
                 response.raise_for_status()
                 return content_of(response.json())
-            except (httpx.ConnectError, httpx.ReadTimeout) as error:
+            except (httpx.NetworkError, httpx.TimeoutException) as error:
                 if attempt == 0:
                     self._logger.warning(
                         "llm_request_retry",

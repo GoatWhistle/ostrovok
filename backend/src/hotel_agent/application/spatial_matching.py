@@ -31,7 +31,7 @@ def spatial_fact(
 ) -> SearchFactRecord:
     position = target.location if isinstance(target, NamedPlaceRecord) else target
     name = target.name if isinstance(target, NamedPlaceRecord) else request.target or "ориентир"
-    distance = _distance_m(hotel.location, position)
+    distance = distance_m(hotel.location, position)
     key = spatial_key(request)
     ref = (
         f"g_poi_{target.id}"
@@ -86,7 +86,7 @@ def spatial_fact(
     )
 
 
-def _distance_m(first: tuple[float, float], second: tuple[float, float]) -> float:
+def distance_m(first: tuple[float, float], second: tuple[float, float]) -> float:
     lon1, lat1, lon2, lat2 = map(radians, (*first, *second))
     latitude = sin((lat2 - lat1) / 2) ** 2
     longitude = cos(lat1) * cos(lat2) * sin((lon2 - lon1) / 2) ** 2

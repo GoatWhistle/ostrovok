@@ -6,6 +6,7 @@ from typing import Any
 from hotel_agent.application.agent.data_evidence import materialize
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
+from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.data_exploration import (
@@ -60,6 +61,7 @@ class DataExplorer:
             self._country_scope,
             self._semantic,
             discovery_allowed,
+            DocumentEvidence(self._llm, terms),
         )
         observations: list[dict[str, Any]] = []
         retained = fallback

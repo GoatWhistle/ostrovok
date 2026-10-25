@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from hotel_agent.application.agent.data_records import DataStep
+from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import ScalarValue
 from hotel_agent.domain.query import ParsedQuery
 
@@ -39,6 +40,7 @@ class LLMPort(Protocol):
     async def parse_query(self, query: str) -> ParsedQuery: ...
 
     async def explore_data(self, context: str) -> DataStep: ...
+    async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]: ...
 
     async def contextualize_query(
         self,

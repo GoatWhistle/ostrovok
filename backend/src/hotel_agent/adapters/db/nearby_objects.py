@@ -4,14 +4,20 @@ from psycopg import AsyncConnection
 
 from hotel_agent.domain.query import NearbyObjectRequest
 
-NEARBY = """SELECT h.id,
-    COALESCE(array_agg(p.id ORDER BY p.id) FILTER (WHERE p.id IS NOT NULL), ARRAY[]::text[])
-FROM hotels h LEFT JOIN pois p
-  ON p.region_id = h.region_id
- AND p.tags ? %(osm_key)s
- AND (%(osm_value)s = '*' OR p.tags->>%(osm_key)s = %(osm_value)s)
- AND (NOT %(open_24h)s OR lower(trim(p.tags->>'opening_hours')) = '24/7')
- AND ST_DWithin(p.location::geography, h.location::geography, %(radius_m)s)
+NEARBY = """WITH objects AS MATERIALIZED (
+    SELECT p.id,p.location FROM pois p
+    WHERE p.region_id = %(region)s AND p.tags ? %(osm_key)s
+      AND (%(osm_value)s = '*' OR p.tags @> jsonb_build_object(%(osm_key)s::text,%(osm_value)s::text))
+      AND (NOT %(open_24h)s OR lower(trim(p.tags->>'opening_hours')) = '24/7')
+      AND (%(bbox)s::double precision[] IS NULL OR ST_DWithin(p.location::geography,
+          ST_MakeEnvelope((%(bbox)s::double precision[])[1], (%(bbox)s::double precision[])[2],
+                          (%(bbox)s::double precision[])[3], (%(bbox)s::double precision[])[4],
+                          4326)::geography, %(radius_m)s))
+)
+SELECT h.id, COALESCE(array_agg(p.id ORDER BY p.id)
+    FILTER (WHERE p.id IS NOT NULL), ARRAY[]::text[])
+FROM hotels h LEFT JOIN objects p
+ ON ST_DWithin(p.location::geography, h.location::geography, %(radius_m)s)
 WHERE h.region_id = %(region)s
   AND (%(bbox)s::double precision[] IS NULL OR ST_Intersects(h.location,
       ST_MakeEnvelope((%(bbox)s::double precision[])[1], (%(bbox)s::double precision[])[2],

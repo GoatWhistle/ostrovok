@@ -4,9 +4,11 @@ from math import cos, hypot, radians
 from statistics import median
 from typing import Any
 
+from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.document_search import search_documents
-from hotel_agent.application.agent.record_filters import compare, field_value, fields
+from hotel_agent.application.agent.record_filters import fields
 from hotel_agent.application.agent.record_preview import preview
+from hotel_agent.application.agent.record_reader import RecordReader
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.data_exploration import (
     GeographicScopePort,
@@ -14,8 +16,9 @@ from hotel_agent.application.ports.data_exploration import (
 )
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
+from hotel_agent.application.spatial_matching import distance_m
 
-DATASETS = ("hotels", "rooms", "facilities", "documents")
+DATASETS = ("hotels", "rooms", "facilities", "documents", "onsite_objects")
 
 
 class DataTools:
@@ -31,6 +34,7 @@ class DataTools:
         country_scope: GeographicScopePort | None = None,
         semantic: SemanticSearchPort | None = None,
         discovery_allowed: bool = False,
+        evidence: DocumentEvidence | None = None,
     ) -> None:
         self._uow, self._terrain = uow, terrain
         self.hotels = tuple(hotels)
@@ -41,10 +45,16 @@ class DataTools:
         self._discovery_allowed = discovery_allowed
         self.metrics: dict[str, dict[str, float]] = {}
         self.descriptions: dict[str, str] = {}
-        self._reads = 0
+        self.reader = RecordReader(self._records, self.metrics, self.descriptions, evidence)
         self._measurements = 0
+        self._geometry_reads = 0
+        self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action == "measure_geometry":
+            if arguments.get("dataset") != "coastlines":
+                raise ValueError("Available geometry dataset: coastlines")
+            return await self._coast()
         if action == "search_documents":
             self.hotels, observation = await search_documents(
                 self._semantic,
@@ -59,7 +69,9 @@ class DataTools:
         if action == "find_hotels":
             return await self._find(float(arguments.get("radius_m", 30000)))
         if action == "read_records":
-            return await self._read(str(arguments.get("dataset", "")), arguments.get("filters"))
+            return await self.reader.read(
+                str(arguments.get("dataset", "")), arguments.get("filters"), arguments.get("term")
+            )
         if action == "measure_terrain":
             scope = None
             if arguments.get("search_radius_m") is not None:
@@ -69,6 +81,32 @@ class DataTools:
                 result["scope"] = scope
             return result
         raise ValueError("Tool is not available")
+
+    async def _coast(self) -> dict[str, Any]:
+        async with self._uow() as uow:
+            points = await uow.coastlines.nearest_points(tuple(h.id for h in self.hotels))
+        self._geometry_reads += 1
+        field = f"g{self._geometry_reads}.distance_m"
+        self.descriptions[field] = "Расстояние до известной береговой линии по прямой, м"
+        measured = []
+        for hotel in self.hotels:
+            if hotel.id not in points:
+                continue
+            coast = points[hotel.id]
+            value = round(distance_m(hotel.location, coast), 1)
+            self.metrics.setdefault(hotel.id, {})[field] = value
+            self.geo_refs.setdefault(hotel.id, {})[field] = (
+                f"g_point_{hotel.location[0]:.6f}_{hotel.location[1]:.6f}",
+                f"g_point_{coast[0]:.6f}_{coast[1]:.6f}",
+            )
+            measured.append({"hotel_id": hotel.id, "name": hotel.name, "distance_m": value})
+        return {
+            "field": field,
+            "source": "OpenStreetMap coastline",
+            "measured_count": len(measured),
+            "nearest": sorted(measured, key=lambda row: float(str(row["distance_m"])))[:12],
+            "note": "Straight-line distance only; does not establish walking time or access.",
+        }
 
     async def _records(self, dataset: str) -> Sequence[dict[str, Any]]:
         if dataset not in DATASETS:
@@ -160,51 +198,6 @@ class DataTools:
                 }
                 for h in selected[:8]
             ],
-        }
-
-    async def _read(self, dataset: str, filters: Any) -> dict[str, Any]:
-        if not isinstance(filters, list) or not filters or len(filters) > 8:
-            raise ValueError("Supply 1–8 filters with field, op and value")
-        rows = await self._records(dataset)
-        available = fields(rows)
-        if not rows:
-            return {
-                "dataset": dataset,
-                "record_count": 0,
-                "metrics": [],
-                "note": "No inventory; absence of records does not prove absence of a feature",
-            }
-        for item in filters:
-            if not isinstance(item, dict) or item.get("field") not in available:
-                raise ValueError(f"Unknown field; available fields: {available}")
-            if item.get("op") not in {"eq", "contains", "gte", "lte"}:
-                raise ValueError("Supported filter operators: eq, contains, gte, lte")
-        coverage = {
-            str(row["hotel_id"])
-            for row in rows
-            if all(field_value(row, item["field"]) is not None for item in filters)
-        }
-        matched = [
-            row
-            for row in rows
-            if all(
-                compare(field_value(row, item["field"]), item["op"], item.get("value"))
-                for item in filters
-            )
-        ]
-        counts = Counter(str(row["hotel_id"]) for row in matched)
-        self._reads += 1
-        field = f"r{self._reads}.match_count"
-        for hotel_id in coverage:
-            self.metrics.setdefault(hotel_id, {})[field] = float(counts[hotel_id])
-        self.descriptions[field] = f"Записи {dataset} по фильтрам {filters}"
-        return {
-            "dataset": dataset,
-            "field": field,
-            "hotels_with_data": len(coverage),
-            "matched_record_count": len(matched),
-            "samples": preview(matched[:8]),
-            "note": "Hotels without the required field have no metric, not a zero",
         }
 
     async def _measure(self, radius: float) -> dict[str, Any]:

@@ -5,6 +5,7 @@ from hotel_agent.adapters.llm.text import WORD, normalize, terms_outside
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
+from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import Characteristic, Matcher
 from hotel_agent.domain.query import Intent, ParsedQuery
 
@@ -85,6 +86,9 @@ class FakeLLM:
 
     async def aclose(self) -> None:
         return None
+
+    async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]:
+        return ()
 
 
 def _best_matcher(characteristic: Characteristic, text: str) -> tuple[Matcher, int] | None:

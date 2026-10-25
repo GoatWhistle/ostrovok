@@ -19,16 +19,11 @@ def apply_exploration(parsed: ParsedQuery, explored: ExplorationOutcome) -> Pars
     return replace(
         parsed,
         intents=tuple(
-            intent
-            for intent in parsed.intents
-            if not (
-                intent.characteristic_key.startswith("facility:")
-                and intent.source_text in explored.resolved_terms
-            )
+            intent for intent in parsed.intents if intent.source_text not in explored.resolved_terms
         )
         + explored.intents,
         unmatched_terms=tuple(
             term for term in parsed.unmatched_terms if term not in explored.resolved_terms
         ),
-        needs_clarification=bool(explored.question),
+        needs_clarification=False,
     )

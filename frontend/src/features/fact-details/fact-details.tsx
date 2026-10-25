@@ -66,7 +66,7 @@ export function FactDetails({
             <FactTile characteristicKey={fact.characteristic_key} />
             <div className={styles.titles}>
               <p id={titleId} className={styles.title}>
-                {characteristicTitle(fact.characteristic_key, locale)}
+                {characteristicTitle(fact.characteristic_key, locale, fact.label)}
               </p>
               {factExplanation(fact, locale) ? (
                 <p className={styles.explanation}>{factExplanation(fact, locale)}</p>

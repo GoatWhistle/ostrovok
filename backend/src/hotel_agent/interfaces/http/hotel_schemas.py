@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 from datetime import date, datetime
 
 from pydantic import BaseModel, Field
@@ -7,7 +6,7 @@ from hotel_agent.application.dto import BuildingRecord, SearchHotelRecord
 from hotel_agent.application.use_cases.get_hotel_card import HotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import HotelOffers, OfferStatus
 from hotel_agent.application.use_cases.get_hotel_scene import HotelScene
-from hotel_agent.domain.entities import Fact
+from hotel_agent.interfaces.http.fact_schemas import FactDetailSchema, FactSchema, fact_schema
 from hotel_agent.interfaces.http.schemas import CameraSchema
 from hotel_agent.interfaces.http.search_schemas import (
     BuildingFeatureSchema,
@@ -15,26 +14,7 @@ from hotel_agent.interfaces.http.search_schemas import (
     HotelSummarySchema,
 )
 
-
-class ProvenanceSchema(BaseModel):
-    source_type: str
-    source_ref: str | None = None
-    method: str
-    confidence: float
-    computed_at: datetime
-    valid_until: datetime | None = None
-
-
-class FactSchema(FactBriefSchema):
-    subject: str
-    qualifiers: dict[str, object]
-    explanation: str
-    provenance: ProvenanceSchema
-
-
-class FactDetailSchema(FactSchema):
-    history: list[FactSchema] = Field(default_factory=list)
-    conflicts: list[dict[str, object]] = Field(default_factory=list)
+__all__ = ["FactDetailSchema", "fact_schema"]
 
 
 class HotelCardSchema(BaseModel):
@@ -238,32 +218,6 @@ def _hotel_summary(hotel: SearchHotelRecord) -> HotelSummarySchema:
         building_id=hotel.building_id,
         height_m=hotel.height_m,
         levels=hotel.levels,
-    )
-
-
-def fact_schema(fact: Fact) -> FactSchema:
-    label = f"{fact.characteristic_key}: {fact.value} {fact.unit or ''}".strip()
-    return FactSchema(
-        fact_id=str(fact.id),
-        characteristic_key=fact.characteristic_key,
-        value=dict(fact.value) if isinstance(fact.value, Mapping) else fact.value,
-        unit=fact.unit,
-        label=label,
-        confidence=fact.confidence.value,
-        source_type=fact.provenance.source_type,
-        status=fact.status,
-        geo_refs=[str(ref) for ref in fact.geo_refs],
-        subject=str(fact.subject),
-        qualifiers=dict(fact.qualifiers),
-        explanation=fact.explanation,
-        provenance=ProvenanceSchema(
-            source_type=fact.provenance.source_type,
-            source_ref=fact.provenance.source.ref,
-            method=fact.provenance.method,
-            confidence=fact.confidence.value,
-            computed_at=fact.provenance.computed_at,
-            valid_until=fact.provenance.valid_until,
-        ),
     )
 
 

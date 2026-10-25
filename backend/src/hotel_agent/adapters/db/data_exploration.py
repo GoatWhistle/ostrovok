@@ -4,6 +4,11 @@ from typing import Any
 from psycopg import AsyncConnection
 
 QUERIES = {
+    "onsite_objects": """SELECT jsonb_build_object('hotel_id',h.id,'id',p.id,
+        'relation','within_hotel_building','tags',p.tags,'source','OpenStreetMap',
+        'geo_ref','g_poi_' || p.id) FROM hotels h JOIN buildings b ON b.id=h.building_id
+        JOIN pois p ON ST_Covers(b.footprint,p.location)
+        WHERE h.id=ANY(%(ids)s::text[]) ORDER BY h.id,p.id LIMIT 5000""",
     "documents": """SELECT jsonb_build_object('hotel_id',hotel_id,'id',id,
         'text',text,'source',source) FROM hotel_search_documents
         WHERE hotel_id=ANY(%(ids)s::text[]) ORDER BY hotel_id,id LIMIT 5000""",

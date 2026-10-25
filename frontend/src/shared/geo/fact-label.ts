@@ -38,7 +38,8 @@ export function factLabel(fact: FactBrief, locale: Locale): string {
 export function matchedTitle(item: MatchedProperty, locale: Locale): string {
   if (
     item.characteristic_key.startsWith("nearby:") ||
-    item.characteristic_key.startsWith("facility:")
+    item.characteristic_key.startsWith("facility:") ||
+    item.characteristic_key.startsWith("derived:")
   )
     return item.label
   return item.fact
@@ -88,7 +89,7 @@ export function factExplanation(fact: Fact, locale: Locale): string | undefined 
   )
 }
 
-export function characteristicTitle(key: string, locale: Locale): string {
+export function characteristicTitle(key: string, locale: Locale, label = key): string {
   if (key.startsWith("nearby:")) return i18n.t("explore:facts.titleNearby", { lng: locale })
   switch (key) {
     case "distance_to_sea":
@@ -108,6 +109,6 @@ export function characteristicTitle(key: string, locale: Locale): string {
     case "room_capacity":
       return i18n.t("explore:facts.titleRoomCapacity", { lng: locale })
     default:
-      return key
+      return label
   }
 }

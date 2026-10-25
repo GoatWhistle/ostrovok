@@ -55,7 +55,9 @@ def build(
     rows: dict[str, list[dict[str, Any]]] | None = None,
 ) -> tuple[DataExplorer, SimpleNamespace, SimpleNamespace]:
     state = SimpleNamespace(active=False)
-    llm = SimpleNamespace(explore_data=AsyncMock(side_effect=steps))
+    llm = SimpleNamespace(
+        explore_data=AsyncMock(side_effect=steps), verify_evidence=AsyncMock(return_value=[])
+    )
     records = rows or {
         "hotels": [{"hotel_id": "city", "name": "city"}],
         "rooms": [],
