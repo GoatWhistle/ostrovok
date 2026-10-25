@@ -13,6 +13,7 @@ from hotel_agent.application.dto import (
     SupplierContentRecord,
 )
 from hotel_agent.application.ports.data_exploration import DataRepository
+from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
 from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
 
@@ -41,6 +42,7 @@ class CoastlineRepository(Protocol):
 
 
 class SearchRepository(Protocol):
+    async def by_ids(self, hotel_ids: Sequence[str]) -> Sequence[SearchHotelRecord]: ...
     async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None: ...
     async def list_supplier_content(self, region: str) -> Sequence[SupplierContentRecord]: ...
     async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]: ...
@@ -98,6 +100,7 @@ class ChatRepository(Protocol):
 
 
 class UnitOfWork(Protocol):
+    documents: SearchDocumentsPort
     chat: ChatRepository
     regions: RegionRepository
     search: SearchRepository

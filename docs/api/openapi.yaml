@@ -695,6 +695,7 @@ components:
               items: { $ref: "#/components/schemas/ParsedIntent" }
             unmatched_terms: { type: array, items: { type: string } }
             location_hint: { type: string, nullable: true }
+            anywhere: { type: boolean, description: Пользователь явно разрешил поиск без ограничения по городу }
             normalized_query: { type: string, nullable: true }
             corrections:
               type: array

@@ -1,5 +1,6 @@
 from datetime import UTC, datetime
 
+from psycopg.types.json import Jsonb
 from psycopg_pool import AsyncConnectionPool
 
 from hotel_agent.application.ports.hotel_catalog import CatalogHotel
@@ -23,27 +24,35 @@ class PostgresHotelCatalog:
             )
             await db.execute(
                 """INSERT INTO hotel_supplier_content
-                (hotel_id, supplier, facilities_ru, facilities_en)
-                VALUES (%s, 'nuitee', %s, %s)
+                (hotel_id, supplier, facilities_ru, facilities_en, details)
+                VALUES (%s, 'nuitee', %s, %s, %s)
                 ON CONFLICT (hotel_id, supplier) DO UPDATE SET
                 facilities_ru = EXCLUDED.facilities_ru,
                 facilities_en = EXCLUDED.facilities_en,
+                details = EXCLUDED.details,
                 updated_at = now()""",
-                (hotel_id, list(hotel.facilities_ru), list(hotel.facilities_en)),
+                (
+                    hotel_id,
+                    list(hotel.facilities_ru),
+                    list(hotel.facilities_en),
+                    Jsonb(hotel.details),
+                ),
             )
             for room in hotel.rooms:
                 await db.execute(
                     """INSERT INTO rooms
-                    (id, hotel_id, name, capacity, floor_min, floor_max, synthetic, included)
-                    VALUES (%s, %s, %s, %s, NULL, NULL, false, %s)
+                    (id, hotel_id, name, capacity, floor_min, floor_max, synthetic, included, details)
+                    VALUES (%s, %s, %s, %s, NULL, NULL, false, %s, %s)
                     ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name,
-                    capacity = EXCLUDED.capacity, included = EXCLUDED.included""",
+                    capacity = EXCLUDED.capacity, included = EXCLUDED.included,
+                    details = EXCLUDED.details""",
                     (
                         f"nuitee:{hotel.supplier_id}:{room.supplier_id}",
                         hotel_id,
                         room.name,
                         room.max_adults,
                         list(room.amenities),
+                        Jsonb(room.details),
                     ),
                 )
             if hotel.rooms:

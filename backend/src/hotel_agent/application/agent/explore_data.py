@@ -15,6 +15,7 @@ from hotel_agent.application.ports.data_exploration import (
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.domain.errors import ModelFailure
 
 
@@ -27,10 +28,12 @@ class DataExplorer:
         clock: ClockPort,
         logger: LoggerPort,
         country_scope: GeographicScopePort | None = None,
+        semantic: SemanticSearchPort | None = None,
     ) -> None:
         self._llm, self._uow, self._terrain = llm, uow, terrain
         self._clock, self._logger = clock, logger
         self._country_scope = country_scope
+        self._semantic = semantic
 
     async def __call__(
         self,
@@ -41,12 +44,22 @@ class DataExplorer:
         hotels: Sequence[SearchHotelRecord],
         bbox: tuple[float, float, float, float] | None,
         allow_expand: bool,
+        discovery_allowed: bool = False,
     ) -> ExplorationOutcome:
         fallback = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         if not terms or not hotels:
             return fallback
         tools = DataTools(
-            self._uow, self._terrain, hotels, city, region, bbox, allow_expand, self._country_scope
+            self._uow,
+            self._terrain,
+            hotels,
+            city,
+            region,
+            bbox,
+            allow_expand,
+            self._country_scope,
+            self._semantic,
+            discovery_allowed,
         )
         observations: list[dict[str, Any]] = []
         retained = fallback
@@ -68,6 +81,7 @@ class DataExplorer:
                             "candidate_count": len(tools.hotels),
                             "bbox": tools.bbox,
                             "allow_expand": allow_expand,
+                            "discovery_allowed": discovery_allowed,
                             "remaining_steps": 5 - index,
                             "observations": observations,
                         },

@@ -5,15 +5,17 @@ from dataclasses import dataclass, replace
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
-from hotel_agent.application.geographic_extent import intersection
 from hotel_agent.application.nearby_matching import nearby_intent, nearby_key, nearby_record
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
+from hotel_agent.application.ports.semantic_search import SemanticSearchPort
+from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
 from hotel_agent.domain.entities import Fact
@@ -45,6 +47,7 @@ class SearchHotels:
         place_lookup: PlaceLookupPort | None = None,
         explorer: DataExplorer | None = None,
         areas: SearchAreasPort | None = None,
+        semantic: SemanticSearchPort | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
@@ -52,6 +55,7 @@ class SearchHotels:
         self._place_lookup = place_lookup
         self._explorer = explorer
         self._areas = areas
+        self._semantic = semantic
 
     async def __call__(
         self,
@@ -63,7 +67,6 @@ class SearchHotels:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
         parsed = await self._llm.parse_query(query)
-        allow_expand = bbox is None
         if parsed.nearby_objects or parsed.facility_requests or parsed.spatial_requests:
             parsed = replace(
                 parsed,
@@ -75,48 +78,34 @@ class SearchHotels:
         location = parsed.location_hint.strip() if parsed.location_hint else None
         if location and location.casefold() in {"россия", "russia"}:
             location = None
-        if parsed.needs_clarification or not location:
+        if parsed.needs_clarification or (not location and not parsed.anywhere):
             parsed = replace(parsed, location_hint=location, needs_clarification=True)
             return _empty(query, region, bbox, parsed)
-        area = self._areas.resolve(location) if self._areas else None
-        allow_expand = allow_expand and area is None
-        async with self._uow() as uow:
-            if location.casefold() in {"сочи", "sochi", "адлер", "adler"}:
-                region = "sochi"
-            else:
-                region = "russia"
-                city_bbox = area.bbox if area else await uow.regions.city_bbox(location)
-                if city_bbox is None:
-                    parsed = replace(parsed, unsupported_region=location)
-                    return _empty(query, region, bbox, parsed)
-                if bbox is not None:
-                    overlap = intersection(bbox, city_bbox)
-                    if overlap is None:
-                        return _empty(query, region, bbox, parsed)
-                    bbox = overlap
-                else:
-                    bbox = city_bbox
-            hotels = await uow.search.list_hotels(region, bbox)
-            if area:
-                hotels = [hotel for hotel in hotels if area.contains(hotel.location)]
+        candidates = await find_candidates(
+            query, location, region, bbox, self._uow, self._areas, self._semantic
+        )
+        region, bbox, hotels = candidates.region, candidates.bbox, candidates.hotels
+        if candidates.unsupported:
+            return _empty(query, region, bbox, replace(parsed, unsupported_region=location))
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
-        if self._explorer is not None and parsed.unmatched_terms:
+        if self._explorer is not None and exploration_terms(parsed):
             explored = await self._explorer(
-                query, parsed.unmatched_terms, location, region, hotels, bbox, allow_expand
+                query,
+                exploration_terms(parsed),
+                location or "Россия",
+                region,
+                hotels,
+                bbox,
+                candidates.allow_expand,
+                discovery_allowed=parsed.anywhere and location is None,
             )
             hotels, bbox = explored.hotels, explored.bbox
-            parsed = replace(
-                parsed,
-                intents=parsed.intents + explored.intents,
-                unmatched_terms=tuple(
-                    term for term in parsed.unmatched_terms if term not in explored.resolved_terms
-                ),
-                needs_clarification=bool(explored.question),
-            )
+            parsed = apply_exploration(parsed, explored)
         async with self._uow() as uow:
-            stored = await uow.search.list_facts(region)
+            regions = tuple(dict.fromkeys(hotel.region_id for hotel in hotels)) or (region,)
+            stored = [row for selected in regions for row in await uow.search.list_facts(selected)]
             spatial = await resolve_spatial_requests(
-                uow, parsed.spatial_requests, location, bbox, hotels
+                uow, parsed.spatial_requests, location or "Россия", bbox, hotels
             )
             sea_positions = (
                 await uow.coastlines.nearest_points(tuple(hotel.id for hotel in hotels))
@@ -128,7 +117,13 @@ class SearchHotels:
                 for request in parsed.nearby_objects
             ]
             supplier_content = (
-                await uow.search.list_supplier_content(region) if parsed.facility_requests else ()
+                [
+                    row
+                    for selected in regions
+                    for row in await uow.search.list_supplier_content(selected)
+                ]
+                if parsed.facility_requests
+                else ()
             )
         spatial_bbox = bbox
         if spatial_bbox is None and hotels:
@@ -206,6 +201,8 @@ class SearchHotels:
                     item.hotel.name.casefold(),
                 )
             )
+        if parsed.anywhere and (parsed.intents or parsed.unmatched_terms):
+            ranked = [item for item in ranked if item.scored.score > 0]
         fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],

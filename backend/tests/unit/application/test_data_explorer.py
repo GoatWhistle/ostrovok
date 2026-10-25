@@ -61,7 +61,9 @@ def build(
         "rooms": [],
         "facilities": [],
     }
-    repo = SimpleNamespace(records=AsyncMock(side_effect=lambda dataset, _: records[dataset]))
+    repo = SimpleNamespace(
+        records=AsyncMock(side_effect=lambda dataset, _: records.get(dataset, []))
+    )
     search = SimpleNamespace(
         list_hotels=AsyncMock(return_value=[hotel("city"), hotel("mountain"), hotel("plateau")])
     )

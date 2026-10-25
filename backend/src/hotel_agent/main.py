@@ -9,6 +9,9 @@ from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
 from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
 from hotel_agent.adapters.log.stdlib import StdlibLogger
+from hotel_agent.adapters.semantic.index import DocumentIndex
+from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
+from hotel_agent.adapters.semantic.search import SemanticSearch
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.use_cases.chat import Chat
@@ -34,6 +37,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     logger = StdlibLogger("hotel_agent", info=True)
     providers = build_providers(config, logger)
     terrain_tiles = CountryTerrainTiles(config.seed_dir / "sochi" / "dem.tif")
+    embedder = (
+        PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
+        if config.embedding_api_key
+        else None
+    )
+    semantic = SemanticSearch(
+        providers.uow,
+        DocumentIndex(config.seed_dir.parent / "raw" / "semantic", config.embedding_model),
+        embedder,
+        logger,
+    )
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -41,6 +55,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         try:
             yield
         finally:
+            if embedder:
+                await embedder.aclose()
             terrain_tiles.close()
             await providers.aclose()
 
@@ -58,8 +74,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             providers.clock,
             logger,
             CountryBoundary(config.seed_dir / "russia-boundary.geojson"),
+            semantic,
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
+        semantic,
     )
     app.include_router(
         api_router_v1(

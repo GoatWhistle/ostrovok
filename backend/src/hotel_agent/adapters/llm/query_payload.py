@@ -149,6 +149,7 @@ def parse_payload(
         intents=intents,
         unmatched_terms=tuple(dict.fromkeys((*strings(payload, "unmatched_terms"), *unit_terms))),
         location_hint=optional_text(payload, "location_hint"),
+        anywhere=flag(payload, "anywhere"),
         nearby_objects=tuple(
             nearby_item
             for raw in items(payload, "nearby_objects")

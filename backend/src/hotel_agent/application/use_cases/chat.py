@@ -95,7 +95,7 @@ class Chat:
         return ConversationOutcome(conversation=conversation, search=search)
 
     def _answer(self, search: SearchOutcome, selected_hotel_id: str | None, locale: str) -> str:
-        if not search.parsed.location_hint:
+        if not search.parsed.location_hint and not search.parsed.anywhere:
             if locale == "en":
                 return "Which city should I search in?"
             return "В каком городе ищете отель?"
@@ -111,6 +111,18 @@ class Chat:
             return "Уточните условия: в запросе есть противоречие."
         count = len(search.results)
         if count == 0:
+            if search.parsed.anywhere:
+                wishes = ", ".join(
+                    dict.fromkeys(
+                        (
+                            *search.parsed.unmatched_terms,
+                            *(intent.source_text for intent in search.parsed.intents),
+                        )
+                    )
+                )
+                if locale == "en":
+                    return f"I searched the loaded Russian hotel catalog without a city restriction. I could not verify your wishes{': ' + wishes if wishes else ''}. This does not establish that such hotels do not exist elsewhere."
+                return f"Искал без ограничения по городу в загруженном каталоге России. Пока не нашёл данных, подтверждающих ваши пожелания{': ' + wishes if wishes else ''}. Это не означает, что таких отелей не существует в других странах или источниках."
             if locale == "en":
                 answer = (
                     "I could not find hotels with a verified match. Try changing the conditions."

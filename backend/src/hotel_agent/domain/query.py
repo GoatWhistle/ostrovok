@@ -71,6 +71,7 @@ class ParsedQuery:
     intents: tuple[Intent, ...]
     unmatched_terms: tuple[str, ...]
     location_hint: str | None
+    anywhere: bool = False
     nearby_objects: tuple[NearbyObjectRequest, ...] = ()
     facility_requests: tuple[FacilityRequest, ...] = ()
     spatial_requests: tuple[SpatialRequest, ...] = ()

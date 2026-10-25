@@ -8,6 +8,7 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
+from hotel_agent.application.ports.semantic_search import SearchDocument, SemanticSearchPort
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, ParsedQuery
@@ -18,6 +19,7 @@ def search(
     parsed: ParsedQuery,
     city_bbox: tuple[float, float, float, float] | None = None,
     areas: SearchAreasPort | None = None,
+    semantic: SemanticSearchPort | None = None,
 ) -> tuple[SearchHotels, SimpleNamespace, SimpleNamespace, MagicMock]:
     llm = SimpleNamespace(parse_query=AsyncMock(return_value=parsed))
     regions = SimpleNamespace(city_bbox=AsyncMock(return_value=city_bbox))
@@ -34,6 +36,7 @@ def search(
     )
     hotels = SimpleNamespace(
         list_hotels=AsyncMock(return_value=[hotel]),
+        by_ids=AsyncMock(return_value=[hotel]),
         list_facts=AsyncMock(return_value=[]),
         list_supplier_content=AsyncMock(return_value=[]),
     )
@@ -50,6 +53,7 @@ def search(
         cast(UnitOfWorkFactory, lambda: scope),
         cast(ClockPort, clock),
         areas=areas,
+        semantic=semantic,
     )
     return use_case, regions, hotels, scope
 
@@ -65,6 +69,36 @@ async def test_missing_city_asks_before_accessing_hotels() -> None:
     assert result.results == ()
     scope.__aenter__.assert_not_awaited()
     hotels.list_hotels.assert_not_awaited()
+
+
+async def test_anywhere_retrieves_candidates_but_similarity_does_not_prove_underwater_room() -> (
+    None
+):
+    semantic = SimpleNamespace(
+        search=AsyncMock(
+            return_value=[
+                SearchDocument(
+                    id="hotel:m1",
+                    hotel_id="m1",
+                    text="Бассейн у моря",
+                    source="catalog",
+                    relevance=0.99,
+                )
+            ]
+        )
+    )
+    use_case, regions, hotels, _ = search(
+        ParsedQuery(intents=(), unmatched_terms=("под водой",), location_hint=None, anywhere=True),
+        semantic=cast(SemanticSearchPort, semantic),
+    )
+
+    result = await use_case("неважно где, хочу отель под водой", "russia", None, 20)
+
+    assert not result.parsed.needs_clarification
+    assert not result.results
+    regions.city_bbox.assert_not_awaited()
+    semantic.search.assert_awaited_once()
+    hotels.by_ids.assert_awaited_once_with(("m1",))
 
 
 async def test_city_routes_search_to_national_hotels_and_keeps_unknown_rooms() -> None:

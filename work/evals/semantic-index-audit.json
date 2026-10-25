@@ -1,0 +1,22 @@
+{
+  "model": "qwen/qwen3-embedding-8b",
+  "source_documents": 34206,
+  "indexed_chunks": 34532,
+  "covered_hotels": 34087,
+  "dimensions": 4096,
+  "finite": true,
+  "source_hashes_current": true,
+  "norm_min": 0.9999998807907104,
+  "norm_max": 1.0000001192092896,
+  "compressed_bytes": 238393388,
+  "progress": {
+    "model": "qwen/qwen3-embedding-8b",
+    "completed": 34532,
+    "total": 34532,
+    "hotels": 34087,
+    "unique_texts": 15995,
+    "embedded_unique": 15995,
+    "status": "complete",
+    "dimensions": 4096
+  }
+}

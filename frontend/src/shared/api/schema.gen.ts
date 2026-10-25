@@ -612,6 +612,8 @@ export interface components {
                 intents?: components["schemas"]["ParsedIntent"][];
                 unmatched_terms?: string[];
                 location_hint?: string | null;
+                /** @description Пользователь явно разрешил поиск без ограничения по городу */
+                anywhere?: boolean;
                 normalized_query?: string | null;
                 corrections?: components["schemas"]["QueryCorrection"][];
                 unsupported_region?: string | null;
@@ -697,7 +699,7 @@ export interface components {
                 };
             };
             terrain?: {
-                /** @example Copernicus GLO-30 */
+                /** @example Mapterhorn */
                 dem_source?: string;
                 terrain_tiles_url?: string | null;
             } | null;

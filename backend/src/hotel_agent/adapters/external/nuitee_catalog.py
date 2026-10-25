@@ -27,6 +27,7 @@ class NuiteeCatalog:
                 supplier_id=str(room["id"]),
                 name=str(room["roomName"]),
                 max_adults=int(room["maxAdults"]),
+                details=dict(room),
                 amenities=tuple(
                     str(item["name"])
                     for item in room.get("roomAmenities", [])
@@ -60,4 +61,5 @@ class NuiteeCatalog:
             rooms=rooms,
             facilities_ru=facilities_ru,
             facilities_en=facilities_en,
+            details=dict(hotel),
         )

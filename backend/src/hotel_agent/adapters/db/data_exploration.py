@@ -4,6 +4,9 @@ from typing import Any
 from psycopg import AsyncConnection
 
 QUERIES = {
+    "documents": """SELECT jsonb_build_object('hotel_id',hotel_id,'id',id,
+        'text',text,'source',source) FROM hotel_search_documents
+        WHERE hotel_id=ANY(%(ids)s::text[]) ORDER BY hotel_id,id LIMIT 5000""",
     "hotels": """SELECT jsonb_build_object(
         'hotel_id',h.id,'name',h.name,'stars',h.stars,'tags',h.tags,
         'longitude',ST_X(h.location),'latitude',ST_Y(h.location),
@@ -13,7 +16,7 @@ QUERIES = {
     "rooms": """SELECT jsonb_build_object(
         'hotel_id',hotel_id,'id',id,'name',name,'capacity',capacity,
         'floor_min',floor_min,'floor_max',floor_max,'price_amount',price_amount,
-        'price_currency',price_currency,'included',included)
+        'price_currency',price_currency,'included',included,'details',details)
         FROM rooms WHERE hotel_id=ANY(%(ids)s::text[]) ORDER BY hotel_id,id LIMIT 5000""",
     "facilities": """SELECT jsonb_build_object(
         'hotel_id',c.hotel_id,'name',f.name,'supplier',c.supplier)

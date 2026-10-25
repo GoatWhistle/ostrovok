@@ -4,15 +4,18 @@ from math import cos, hypot, radians
 from statistics import median
 from typing import Any
 
+from hotel_agent.application.agent.document_search import search_documents
 from hotel_agent.application.agent.record_filters import compare, field_value, fields
+from hotel_agent.application.agent.record_preview import preview
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.data_exploration import (
     GeographicScopePort,
     TerrainMeasurementPort,
 )
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 
-DATASETS = ("hotels", "rooms", "facilities")
+DATASETS = ("hotels", "rooms", "facilities", "documents")
 
 
 class DataTools:
@@ -26,18 +29,31 @@ class DataTools:
         bbox: tuple[float, float, float, float] | None,
         allow_expand: bool,
         country_scope: GeographicScopePort | None = None,
+        semantic: SemanticSearchPort | None = None,
+        discovery_allowed: bool = False,
     ) -> None:
         self._uow, self._terrain = uow, terrain
         self.hotels = tuple(hotels)
         self.city, self.region, self.bbox = city, region, bbox
         self._allow_expand = allow_expand
         self._country_scope = country_scope
+        self._semantic = semantic
+        self._discovery_allowed = discovery_allowed
         self.metrics: dict[str, dict[str, float]] = {}
         self.descriptions: dict[str, str] = {}
         self._reads = 0
         self._measurements = 0
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action == "search_documents":
+            self.hotels, observation = await search_documents(
+                self._semantic,
+                self._uow,
+                self.hotels,
+                str(arguments.get("query", "")),
+                self._discovery_allowed,
+            )
+            return observation
         if action == "inspect_data":
             return await self._inspect()
         if action == "find_hotels":
@@ -71,7 +87,7 @@ class DataTools:
                 "non_null": dict(
                     Counter(key for row in rows for key in row if row[key] is not None)
                 ),
-                "samples": rows[:3],
+                "samples": preview(rows[:3]),
                 "row_limit": 5000,
             }
         return {
@@ -187,7 +203,7 @@ class DataTools:
             "field": field,
             "hotels_with_data": len(coverage),
             "matched_record_count": len(matched),
-            "samples": matched[:8],
+            "samples": preview(matched[:8]),
             "note": "Hotels without the required field have no metric, not a zero",
         }
 

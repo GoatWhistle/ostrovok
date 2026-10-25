@@ -1,5 +1,5 @@
-from dataclasses import dataclass
-from typing import Protocol
+from dataclasses import dataclass, field
+from typing import Any, Protocol
 
 
 @dataclass(frozen=True, slots=True)
@@ -8,6 +8,7 @@ class CatalogRoom:
     name: str
     max_adults: int
     amenities: tuple[str, ...]
+    details: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True)
@@ -17,6 +18,7 @@ class CatalogHotel:
     rooms: tuple[CatalogRoom, ...]
     facilities_ru: tuple[str, ...] = ()
     facilities_en: tuple[str, ...] = ()
+    details: dict[str, Any] = field(default_factory=dict)
 
 
 class HotelCatalogSource(Protocol):

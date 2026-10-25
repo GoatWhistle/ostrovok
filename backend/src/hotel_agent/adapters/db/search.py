@@ -72,6 +72,14 @@ class PostgresSearchRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
 
+    async def by_ids(self, hotel_ids: Sequence[str]) -> Sequence[SearchHotelRecord]:
+        cursor = await self._connection.execute(
+            HOTEL_COLUMNS + "WHERE h.id=ANY(%(ids)s::text[]) AND h.name<>h.id "
+            "AND translate(lower(h.name), 'ё', 'е') NOT LIKE '%%общежити%%'",
+            {"ids": list(hotel_ids)},
+        )
+        return [_hotel(row) for row in await cursor.fetchall()]
+
     async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None:
         row = await (
             await self._connection.execute(

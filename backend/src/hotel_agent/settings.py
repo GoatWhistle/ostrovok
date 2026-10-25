@@ -31,6 +31,9 @@ class Settings:
     etg_api_key: str | None = None
     etg_environment: str = "sandbox"
     nuitee_api_key: str | None = None
+    embedding_api_key: str | None = None
+    embedding_model: str = "qwen/qwen3-embedding-8b"
+    embedding_base_url: str = "https://polza.ai/api/v1"
 
 
 def load_settings(env: Mapping[str, str]) -> Settings:
@@ -48,6 +51,9 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         etg_api_key=env.get("ETG_API_KEY") or None,
         etg_environment=_etg_environment(env),
         nuitee_api_key=env.get("NUITEE_API_KEY") or None,
+        embedding_api_key=env.get("EMBEDDING_API_KEY") or None,
+        embedding_model=env.get("EMBEDDING_MODEL") or "qwen/qwen3-embedding-8b",
+        embedding_base_url=env.get("EMBEDDING_BASE_URL") or "https://polza.ai/api/v1",
     )
 
 

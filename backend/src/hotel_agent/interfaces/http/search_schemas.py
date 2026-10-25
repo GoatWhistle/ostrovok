@@ -40,6 +40,7 @@ class ParsedSchema(BaseModel):
     intents: list[ParsedIntentSchema]
     unmatched_terms: list[str]
     location_hint: str | None = None
+    anywhere: bool = False
     normalized_query: str | None = None
     corrections: list[QueryCorrectionSchema] = Field(default_factory=list)
     unsupported_region: str | None = None
@@ -130,6 +131,7 @@ def search_schema(
         ],
         unmatched_terms=list(outcome.parsed.unmatched_terms),
         location_hint=outcome.parsed.location_hint,
+        anywhere=outcome.parsed.anywhere,
         normalized_query=outcome.parsed.normalized_query,
         corrections=[
             QueryCorrectionSchema(
