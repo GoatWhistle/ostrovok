@@ -39,7 +39,9 @@ export function sceneData(
   const selectedCamera = camera ?? scene?.cameras.best_match ?? scene?.cameras.overview ?? region
   const buildings = [
     ...(!scene
-      ? results.map((result) => result.footprint).filter((item) => item !== undefined)
+      ? results
+          .map((result) => result.footprint)
+          .filter((item) => item !== null && item !== undefined)
       : []),
     ...(scene?.context_buildings?.features ?? []),
     ...(scene?.building.features ?? []),
@@ -68,8 +70,8 @@ export function sceneQuality(
       featureCollection(highlights).features.length < highlights.length,
     missingHeight: buildings.some(
       (building) =>
-        Boolean(building.properties?.height_estimated) ||
-        Boolean(building.properties?.is_hotel && !building.properties.height_m),
+        Boolean(building?.properties?.height_estimated) ||
+        Boolean(building?.properties?.is_hotel && !building.properties.height_m),
     ),
   }
 }

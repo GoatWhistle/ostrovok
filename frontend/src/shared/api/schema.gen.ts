@@ -530,7 +530,7 @@ export interface components {
         };
         SearchRequest: {
             query: string;
-            /** @example sochi */
+            /** @example russia */
             region_id?: string | null;
             bbox?: components["schemas"]["BBox"];
             /** @default 20 */
@@ -604,7 +604,7 @@ export interface components {
             matched: components["schemas"]["MatchedProperty"][];
             camera?: components["schemas"]["Camera"];
             /** @description Упрощённый контур для отрисовки всех результатов сразу (MapLibre fill-extrusion) */
-            footprint?: components["schemas"]["BuildingFeature"];
+            footprint?: components["schemas"]["BuildingFeature"] | null;
         };
         SearchResponse: {
             query_id: string;
@@ -775,7 +775,7 @@ export interface components {
             /** Format: uuid */
             conversation_id?: string | null;
             message: string;
-            /** @default sochi */
+            /** @default russia */
             region_id: string;
             selected_hotel_id?: string | null;
             /**
