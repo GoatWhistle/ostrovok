@@ -75,8 +75,8 @@
 }
 
 .chips {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
   gap: var(--space-12) var(--space-8);
   padding-block-start: var(--space-4);
 }
@@ -92,5 +92,12 @@
 
   .card .title {
     font-size: var(--font-size-heading-lg);
+  }
+}
+
+@media (max-width: 74.99rem) {
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
