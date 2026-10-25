@@ -28,6 +28,7 @@ const TOKENS = {
   hillShadow: "--map-hill-shadow",
   hillHighlight: "--map-hill-highlight",
   sunlight: "--map-sunlight",
+  rock: "--map-rock",
 } as const
 
 export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }
