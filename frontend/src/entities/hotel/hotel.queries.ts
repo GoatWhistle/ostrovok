@@ -32,6 +32,29 @@ export function useHotel(id: string | undefined) {
     retry: false,
   })
 }
+export function useHotelOffers(
+  id: string | undefined,
+  checkIn: string,
+  checkOut: string,
+  adults: number,
+) {
+  return useQuery({
+    queryKey: ["hotel-offers", id, checkIn, checkOut, adults],
+    enabled: id !== undefined && checkIn !== "" && checkOut !== "" && checkOut > checkIn,
+    staleTime: 60_000,
+    queryFn: ({ signal }) =>
+      unwrap(
+        api.GET("/hotels/{hotel_id}/offers", {
+          signal,
+          params: {
+            path: { hotel_id: id ?? "" },
+            query: { check_in: checkIn, check_out: checkOut, adults, residency: "ru" },
+          },
+        }),
+      ),
+    retry: false,
+  })
+}
 export function useHotelScene(id: string | undefined) {
   return useQuery({
     queryKey: ["scene", id],

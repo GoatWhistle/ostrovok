@@ -26,6 +26,9 @@ class Settings:
     characteristics_dir: Path = Path("characteristics")
     seed_dir: Path = Path("data/seed")
     database_url: str = DEFAULT_DATABASE_URL
+    etg_key_id: str | None = None
+    etg_api_key: str | None = None
+    etg_environment: str = "sandbox"
 
 
 def load_settings(env: Mapping[str, str]) -> Settings:
@@ -38,7 +41,19 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         characteristics_dir=Path(env.get("CHARACTERISTICS_DIR") or "characteristics"),
         seed_dir=Path(env.get("SEED_DIR") or "data/seed"),
         database_url=env.get("DATABASE_URL") or DEFAULT_DATABASE_URL,
+        etg_key_id=env.get("ETG_KEY_ID") or None,
+        etg_api_key=env.get("ETG_API_KEY") or None,
+        etg_environment=_etg_environment(env),
     )
+
+
+def _etg_environment(env: Mapping[str, str]) -> str:
+    value = env.get("ETG_ENVIRONMENT") or "sandbox"
+    if value not in {"sandbox", "production"}:
+        raise ConfigError("ETG_ENVIRONMENT must be sandbox or production")
+    if bool(env.get("ETG_KEY_ID")) != bool(env.get("ETG_API_KEY")):
+        raise ConfigError("ETG_KEY_ID and ETG_API_KEY must be configured together")
+    return value
 
 
 def _choice[E: StrEnum](env: Mapping[str, str], name: str, kind: type[E], default: E) -> E:

@@ -6,6 +6,7 @@ import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Card, EmptyState, ErrorState, Icon, Skeleton } from "@/shared/ui"
 import { characteristicIcon } from "@/shared/ui/primitives/icon/characteristic-icon"
 import styles from "./hotel-details.module.css"
+import { HotelOffers } from "./hotel-offers"
 
 export interface HotelDetailsProps {
   readonly hotelId: string | undefined
@@ -107,10 +108,11 @@ export function HotelDetails({
           </div>
         </Card>
       ) : null}
-      <section className={styles.roomSection} aria-label={t("explore:details.rooms")}>
-        <strong className={styles.roomHeading}>{t("explore:details.rooms")}</strong>
-        {card.rooms?.length ? (
-          card.rooms.map((room) => (
+      <HotelOffers hotelId={hotelId} />
+      {card.rooms?.length ? (
+        <section className={styles.roomSection} aria-label={t("explore:details.rooms")}>
+          <strong className={styles.roomHeading}>{t("explore:details.rooms")}</strong>
+          {card.rooms.map((room) => (
             <div key={room.id} className={styles.room}>
               <strong>{room.name}</strong>
               <span>{t("explore:details.roomCapacity", { count: room.capacity })}</span>
@@ -139,11 +141,9 @@ export function HotelDetails({
                   : t("explore:details.roomIncludedUnknown")}
               </span>
             </div>
-          ))
-        ) : (
-          <p className={styles.help}>{t("explore:details.roomsUnknown")}</p>
-        )}
-      </section>
+          ))}
+        </section>
+      ) : null}
       {card.facts?.length ? (
         <section className={styles.factSection}>
           <Button

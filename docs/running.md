@@ -71,6 +71,8 @@ uv run uvicorn hotel_agent.main:create_app --factory --reload
 |---|---|---|
 | `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `openai_compat` — живой OpenAI-совместимый endpoint; `anthropic` пока останавливает запуск с явной ошибкой |
 | `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет. Обязателен для `openai_compat` |
+| `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk для проверки тарифов; указываются вместе. Без них карточка честно сообщает, что доступность неизвестна |
+| `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production`; данные и ключи сред не смешиваются |
 | `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
 | `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |

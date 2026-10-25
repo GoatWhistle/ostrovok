@@ -70,6 +70,15 @@ class PostgresSearchRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
 
+    async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None:
+        result = await self._connection.execute(
+            "SELECT supplier_id FROM hotel_supplier_refs WHERE hotel_id = %(hotel_id)s "
+            "AND supplier = %(supplier)s",
+            {"hotel_id": hotel_id, "supplier": supplier},
+        )
+        row = await result.fetchone()
+        return str(row[0]) if row else None
+
     async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]:
         rows = await (await self._connection.execute(ROOMS, {"hotel_id": hotel_id})).fetchall()
         return [

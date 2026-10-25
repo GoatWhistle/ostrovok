@@ -122,6 +122,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotels/{hotel_id}/offers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Актуальные предложения по номерам на даты и состав гостей */
+        get: operations["getHotelOffers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotels/{hotel_id}/scene": {
         parameters: {
             query?: never;
@@ -721,6 +738,30 @@ export interface components {
             open_questions?: number;
             camera?: components["schemas"]["Camera"];
         };
+        HotelOffers: {
+            hotel_id: string;
+            /** Format: date */
+            check_in: string;
+            /** Format: date */
+            check_out: string;
+            adults: number;
+            /** @enum {string} */
+            status: "provider_unavailable" | "hotel_unmapped" | "provider_error" | "sold_out" | "available";
+            source?: string | null;
+            /** Format: date-time */
+            checked_at?: string | null;
+            offers: components["schemas"]["RoomOffer"][];
+        };
+        RoomOffer: {
+            id: string;
+            room_name: string;
+            price_amount: number;
+            price_currency: string;
+            available_rooms: number;
+            meal?: string | null;
+            amenities: string[];
+            floor_number?: number | null;
+        };
         ChatRequest: {
             /** Format: uuid */
             conversation_id?: string | null;
@@ -953,6 +994,43 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+        };
+    };
+    getHotelOffers: {
+        parameters: {
+            query: {
+                check_in: string;
+                check_out: string;
+                adults?: number;
+                residency?: string;
+            };
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Предложения или честный статус отсутствия данных */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelOffers"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            /** @description Неверные даты или состав гостей */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     getHotelScene: {

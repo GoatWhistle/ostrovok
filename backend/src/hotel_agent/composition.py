@@ -2,10 +2,12 @@ from dataclasses import dataclass
 
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
+from hotel_agent.adapters.external.etg_offers import EtgHotelOffers
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.application.ports.clock import ClockPort
+from hotel_agent.application.ports.hotel_offers import HotelOffersPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
@@ -19,6 +21,7 @@ class Providers:
     clock: ClockPort
     logger: LoggerPort
     uow: PostgresUnitOfWorkFactory
+    hotel_offers: HotelOffersPort | None
 
     async def aclose(self) -> None:
         await self.llm.aclose()
@@ -33,6 +36,11 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
         clock=SystemClock(),
         logger=logger,
         uow=PostgresUnitOfWorkFactory(settings.database_url),
+        hotel_offers=(
+            EtgHotelOffers(settings.etg_key_id, settings.etg_api_key, settings.etg_environment)
+            if settings.etg_key_id and settings.etg_api_key
+            else None
+        ),
     )
 
 

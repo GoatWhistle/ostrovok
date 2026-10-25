@@ -138,6 +138,40 @@ paths:
               schema: { $ref: "#/components/schemas/HotelCard" }
         "404": { $ref: "#/components/responses/NotFound" }
 
+  /hotels/{hotel_id}/offers:
+    get:
+      tags: [hotels]
+      operationId: getHotelOffers
+      summary: Актуальные предложения по номерам на даты и состав гостей
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+        - name: check_in
+          in: query
+          required: true
+          schema: { type: string, format: date }
+        - name: check_out
+          in: query
+          required: true
+          schema: { type: string, format: date }
+        - name: adults
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 10, default: 2 }
+        - name: residency
+          in: query
+          schema: { type: string, pattern: "^[a-z]{2}$", default: ru }
+      responses:
+        "200":
+          description: Предложения или честный статус отсутствия данных
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelOffers" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422":
+          description: Неверные даты или состав гостей
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
   /hotels/{hotel_id}/scene:
     get:
       tags: [hotels, geo]
@@ -816,6 +850,36 @@ components:
         stale_count: { type: integer }
         open_questions: { type: integer }
         camera: { $ref: "#/components/schemas/Camera" }
+
+    HotelOffers:
+      type: object
+      required: [hotel_id, check_in, check_out, adults, status, offers]
+      properties:
+        hotel_id: { type: string }
+        check_in: { type: string, format: date }
+        check_out: { type: string, format: date }
+        adults: { type: integer }
+        status:
+          type: string
+          enum: [provider_unavailable, hotel_unmapped, provider_error, sold_out, available]
+        source: { type: string, nullable: true }
+        checked_at: { type: string, format: date-time, nullable: true }
+        offers:
+          type: array
+          items: { $ref: "#/components/schemas/RoomOffer" }
+
+    RoomOffer:
+      type: object
+      required: [id, room_name, price_amount, price_currency, available_rooms, amenities]
+      properties:
+        id: { type: string }
+        room_name: { type: string }
+        price_amount: { type: number }
+        price_currency: { type: string }
+        available_rooms: { type: integer }
+        meal: { type: string, nullable: true }
+        amenities: { type: array, items: { type: string } }
+        floor_number: { type: integer, nullable: true }
 
     ChatRequest:
       type: object

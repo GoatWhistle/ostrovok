@@ -1,0 +1,40 @@
+.section {
+  padding-block: var(--space-16);
+  border-block-start: 1px solid var(--border-subtle);
+}
+.heading {
+  display: block;
+  margin-block-end: var(--space-12);
+}
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+.fields label {
+  display: grid;
+  gap: var(--space-4);
+  min-inline-size: 0;
+}
+.fields input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--target-min);
+}
+.guests {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-block: var(--space-12);
+}
+.offer {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-12);
+  border-block-start: 1px solid var(--border-subtle);
+}
+.muted {
+  color: var(--text-muted);
+  font-size: var(--font-size-caption);
+}

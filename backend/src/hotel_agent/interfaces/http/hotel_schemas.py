@@ -1,10 +1,11 @@
 from collections.abc import Mapping
-from datetime import datetime
+from datetime import date, datetime
 
 from pydantic import BaseModel, Field
 
 from hotel_agent.application.dto import BuildingRecord, SearchHotelRecord
 from hotel_agent.application.use_cases.get_hotel_card import HotelCard
+from hotel_agent.application.use_cases.get_hotel_offers import HotelOffers, OfferStatus
 from hotel_agent.application.use_cases.get_hotel_scene import HotelScene
 from hotel_agent.domain.entities import Fact
 from hotel_agent.interfaces.http.schemas import CameraSchema
@@ -55,6 +56,53 @@ class RoomSchema(BaseModel):
     price_amount: float | None = None
     price_currency: str | None = None
     included: list[str]
+
+
+class RoomOfferSchema(BaseModel):
+    id: str
+    room_name: str
+    price_amount: float
+    price_currency: str
+    available_rooms: int
+    meal: str | None
+    amenities: list[str]
+    floor_number: int | None
+
+
+class HotelOffersSchema(BaseModel):
+    hotel_id: str
+    check_in: date
+    check_out: date
+    adults: int
+    status: OfferStatus
+    source: str | None
+    checked_at: datetime | None
+    offers: list[RoomOfferSchema]
+
+
+def hotel_offers_schema(result: HotelOffers) -> HotelOffersSchema:
+    return HotelOffersSchema(
+        hotel_id=result.hotel_id,
+        check_in=result.check_in,
+        check_out=result.check_out,
+        adults=result.adults,
+        status=result.status,
+        source=result.source,
+        checked_at=result.checked_at,
+        offers=[
+            RoomOfferSchema(
+                id=item.id,
+                room_name=item.room_name,
+                price_amount=item.price_amount,
+                price_currency=item.price_currency,
+                available_rooms=item.available_rooms,
+                meal=item.meal,
+                amenities=list(item.amenities),
+                floor_number=item.floor_number,
+            )
+            for item in result.offers
+        ],
+    )
 
 
 class FeatureCollectionSchema(BaseModel):
