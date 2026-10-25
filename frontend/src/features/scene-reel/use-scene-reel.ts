@@ -1,4 +1,4 @@
-import { Map as MapLibreMap, Marker } from "maplibre-gl"
+import { Map as MapLibreMap } from "maplibre-gl"
 import { useEffect, useRef, useState } from "react"
 import { renderBasemap } from "@/shared/geo/basemap"
 import { lightMode, renderTerrain, type SunPosition } from "@/shared/geo/terrain"
@@ -6,11 +6,13 @@ import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, useReducedMotion } from "@/shared/motion"
 import { type MapColors, useMapColors } from "@/shared/theme"
 import { prefetchShot } from "./prefetch"
-import { cameraOptions, SHOTS, type Shot } from "./shots"
+import { placeMarks, type ReelMark } from "./reel-marks"
+import { cameraOptions, SHOTS } from "./shots"
 
 const ROAD_LAYERS = ["base-roads-casing", "base-roads"] as const
 const ROAD_MIN_ZOOM = 14
 const MAX_PIXEL_RATIO = 1.5
+const TOP_PADDING = 0.28
 
 const EMPTY_STYLE = {
   version: 8 as const,
@@ -50,7 +52,10 @@ function useReelMap() {
     const lost = () => setFailed(true)
     map.on("load", loaded)
     map.on("webglcontextlost", lost)
-    const resize = new ResizeObserver(() => map.resize())
+    const resize = new ResizeObserver(() => {
+      map.resize()
+      map.setPadding({ top: element.clientHeight * TOP_PADDING, right: 0, bottom: 0, left: 0 })
+    })
     resize.observe(element)
     return () => {
       resize.disconnect()
@@ -73,26 +78,13 @@ function paintScene(map: MapLibreMap, colors: MapColors, sun: SunPosition) {
   for (const layer of ROAD_LAYERS) map.setLayerZoomRange(layer, ROAD_MIN_ZOOM, 24)
 }
 
-function dropPins(map: MapLibreMap, shot: Shot, className: string): Marker[] {
-  return shot.pins.map((position, step) => {
-    const element = document.createElement("span")
-    const dot = document.createElement("span")
-    dot.className = className
-    dot.style.setProperty("--pin-step", String(step))
-    element.append(dot)
-    element.setAttribute("aria-hidden", "true")
-    return new Marker({ element, anchor: "bottom" })
-      .setLngLat([position[0], position[1]])
-      .addTo(map)
-  })
-}
-
-export function useSceneReel(pinClass: string) {
+export function useSceneReel() {
   const { container, instance, ready, failed } = useReelMap()
   const colors = useMapColors()
   const reduced = useReducedMotion()
   const [index, setIndex] = useState(0)
   const [shown, setShown] = useState(false)
+  const [marks, setMarks] = useState<readonly ReelMark[]>([])
   const palette = useRef(colors)
   const sun = useRef<SunPosition>(SHOTS[0]?.sun ?? { azimuth: 200, altitude: 30 })
   useEffect(() => {
@@ -106,14 +98,15 @@ export function useSceneReel(pinClass: string) {
     if (!ready || !map || !shot) return
     const life = motionMs("--reel-life")
     const fade = motionMs("--dur-reveal")
-    let markers: Marker[] = []
+    let placed: ReelMark[] = []
     let next = 0
     let fallback = 0
     const reveal = () => {
       window.clearTimeout(fallback)
       map.off("idle", reveal)
       setShown(true)
-      markers = dropPins(map, shot, pinClass)
+      placed = placeMarks(map, shot)
+      setMarks((current) => [...current, ...placed])
       if (!reduced)
         map.easeTo({ ...cameraOptions(shot.to), duration: life + fade, easing: (t) => t })
       next = window.setTimeout(() => setIndex((current) => (current + 1) % SHOTS.length), life)
@@ -137,11 +130,12 @@ export function useSceneReel(pinClass: string) {
       window.clearTimeout(next)
       window.clearTimeout(fallback)
       map.off("idle", reveal)
-      const leaving = markers
+      const leaving = placed
       window.setTimeout(() => {
-        for (const marker of leaving) marker.remove()
+        for (const mark of leaving) mark.marker.remove()
+        setMarks((current) => current.filter((mark) => !leaving.includes(mark)))
       }, fade)
     }
-  }, [instance, ready, index, reduced, pinClass])
-  return { container, failed, index, shown, ready }
+  }, [instance, ready, index, reduced])
+  return { container, failed, index, shown, ready, marks }
 }

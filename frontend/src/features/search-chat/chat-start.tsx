@@ -5,7 +5,6 @@ import { BrandMark, Chip, characteristicHue, characteristicIcon } from "@/shared
 import { ChatComposer } from "./chat-composer"
 import { SUGGESTIONS } from "./chat-greeting"
 import styles from "./chat-start.module.css"
-import { StartRings } from "./start-rings"
 import { useTypedExample } from "./use-typed-example"
 
 export interface ChatStartProps {
@@ -17,19 +16,14 @@ export function ChatStart({ pending, onSend }: ChatStartProps) {
   const { t } = useTranslation()
   const titleId = useId()
   const firstVisit = useFirstVisit("factmap-start")
-  const examples = [
-    t("explore:chat.example1"),
-    t("explore:chat.example2"),
-    t("explore:chat.example3"),
-  ]
-  const placeholder = useTypedExample(examples, pending)
+  const typed = useTypedExample(
+    [t("explore:chat.example1"), t("explore:chat.example2"), t("explore:chat.example3")],
+    pending,
+  )
   return (
     <section className={styles.card} aria-labelledby={titleId}>
       <div className={styles.lockup}>
-        <span className={styles.mark}>
-          <StartRings />
-          <BrandMark size="lg" motion={firstVisit ? "enter" : "still"} />
-        </span>
+        <BrandMark size="md" motion={firstVisit ? "enter" : "still"} />
         <span className={styles.word}>{t("common:app.wordmark")}</span>
       </div>
       <h1 id={titleId} className={styles.title}>
@@ -37,7 +31,7 @@ export function ChatStart({ pending, onSend }: ChatStartProps) {
       </h1>
       <p className={styles.text}>{t("explore:chat.startText")}</p>
       <div className={styles.composer}>
-        <ChatComposer pending={pending} placeholder={placeholder} onSend={onSend} />
+        <ChatComposer pending={pending} placeholder={typed.text} onSend={onSend} />
       </div>
       <div className={styles.chips}>
         {SUGGESTIONS.map((item) => (

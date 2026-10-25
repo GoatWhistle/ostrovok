@@ -14,19 +14,13 @@
 .lockup {
   display: flex;
   align-items: center;
-  gap: var(--space-16);
-  margin-block-end: var(--space-16);
-}
-
-.mark {
-  position: relative;
-  display: grid;
-  place-items: center;
+  gap: var(--space-8);
+  margin-block-end: var(--space-24);
 }
 
 .word {
   composes: headingText from "../../shared/styles/compose.module.css";
-  font-size: var(--font-size-heading-lg);
+  font-size: var(--font-size-heading);
 }
 
 .card > :not(:first-child) {
@@ -96,9 +90,5 @@
 
   .card .title {
     font-size: var(--font-size-heading-lg);
-  }
-
-  .chips {
-    gap: var(--space-6);
   }
 }

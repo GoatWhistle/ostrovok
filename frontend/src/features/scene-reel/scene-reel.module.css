@@ -29,30 +29,6 @@
   inset-inline-end: var(--space-16);
 }
 
-.pin {
-  position: relative;
-  display: block;
-  inline-size: var(--space-16);
-  block-size: var(--space-16);
-  border: var(--space-4) solid var(--surface-overlay);
-  border-radius: var(--radius-pill);
-  background-color: var(--action-primary);
-  box-shadow: var(--shadow-pin);
-  animation: var(--motion-pin-in);
-  animation-delay: calc(var(--dur-reveal) + var(--stagger) * var(--pin-step, 0) * 2);
-}
-
-.pin::after {
-  content: "";
-  position: absolute;
-  inset: calc(var(--space-4) * -1);
-  border-radius: inherit;
-  background-color: var(--action-primary);
-  animation: var(--motion-fact-ping);
-  animation-delay: calc(var(--dur-reveal) * 2 + var(--stagger) * var(--pin-step, 0) * 2);
-  animation-fill-mode: both;
-}
-
 @media (max-width: 63.99rem) {
   .attribution {
     inset-block-end: var(--space-12);

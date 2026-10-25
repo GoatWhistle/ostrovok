@@ -1,4 +1,5 @@
 import type { SunPosition } from "@/shared/geo/terrain"
+import type { MessageKey } from "@/shared/i18n"
 
 export interface ShotCamera {
   readonly center: readonly [number, number]
@@ -7,12 +8,27 @@ export interface ShotCamera {
   readonly bearing: number
 }
 
+export interface ShotMark {
+  readonly name: MessageKey
+  readonly at: readonly [number, number]
+}
+
 export interface Shot {
   readonly id: string
   readonly from: ShotCamera
   readonly to: ShotCamera
   readonly sun: SunPosition
-  readonly pins: readonly (readonly [number, number])[]
+  readonly marks: readonly ShotMark[]
+}
+
+interface Place {
+  readonly id: string
+  readonly name: MessageKey
+  readonly at: readonly [number, number]
+  readonly bearing: number
+  readonly distanceKm: number
+  readonly zoom: number
+  readonly sun: SunPosition
 }
 
 const MORNING = { azimuth: 105, altitude: 12 }
@@ -20,80 +36,167 @@ const DAY = { azimuth: 200, altitude: 38 }
 const GOLDEN = { azimuth: 250, altitude: 9 }
 const DUSK = { azimuth: 285, altitude: 2 }
 
-export const SHOTS: readonly Shot[] = [
+const PITCH = 62
+const PITCH_DRIFT = 3
+const BEARING_DRIFT = 34
+const ZOOM_DRIFT = 0.4
+const KM_PER_DEGREE = 111.32
+
+const PLACES: readonly Place[] = [
   {
     id: "elbrus",
-    from: { center: [42.405, 43.318], zoom: 11.6, pitch: 64, bearing: 20 },
-    to: { center: [42.425, 43.33], zoom: 11.9, pitch: 66, bearing: 48 },
+    name: "explore:landing.places.elbrus",
+    at: [42.4453, 43.3499],
+    bearing: 20,
+    distanceKm: 5,
+    zoom: 11.6,
     sun: MORNING,
-    pins: [],
   },
   {
-    id: "port",
-    from: { center: [39.7196, 43.5812], zoom: 15.4, pitch: 58, bearing: -38 },
-    to: { center: [39.7206, 43.5822], zoom: 15.8, pitch: 62, bearing: -8 },
+    id: "seaport",
+    name: "explore:landing.places.seaport",
+    at: [39.7188, 43.5809],
+    bearing: -38,
+    distanceKm: 0.5,
+    zoom: 15.4,
     sun: DAY,
-    pins: [
-      [39.7188, 43.5809],
-      [39.7232, 43.5848],
-    ],
   },
   {
     id: "klyuchevskaya",
-    from: { center: [160.52, 56.0], zoom: 10.6, pitch: 62, bearing: 60 },
-    to: { center: [160.55, 56.02], zoom: 10.9, pitch: 64, bearing: 92 },
+    name: "explore:landing.places.klyuchevskaya",
+    at: [160.6427, 56.0563],
+    bearing: 60,
+    distanceKm: 12,
+    zoom: 10.6,
     sun: DUSK,
-    pins: [],
   },
   {
-    id: "mountains",
-    from: { center: [40.276, 43.668], zoom: 12.4, pitch: 62, bearing: 140 },
-    to: { center: [40.286, 43.671], zoom: 12.7, pitch: 64, bearing: 168 },
-    sun: GOLDEN,
-    pins: [
-      [40.2975, 43.6718],
-      [40.3108, 43.6645],
-    ],
-  },
-  {
-    id: "avacha",
-    from: { center: [158.72, 53.13], zoom: 10.8, pitch: 60, bearing: 330 },
-    to: { center: [158.74, 53.15], zoom: 11.1, pitch: 62, bearing: 356 },
+    id: "tyatya",
+    name: "explore:landing.places.tyatya",
+    at: [146.2565, 44.3506],
+    bearing: 330,
+    distanceKm: 8,
+    zoom: 11,
     sun: DAY,
-    pins: [],
   },
   {
-    id: "olympic",
-    from: { center: [39.9546, 43.4048], zoom: 14.8, pitch: 58, bearing: 18 },
-    to: { center: [39.9556, 43.4058], zoom: 15.2, pitch: 62, bearing: 48 },
+    id: "avachinsky",
+    name: "explore:landing.places.avachinsky",
+    at: [158.83, 53.255],
+    bearing: 10,
+    distanceKm: 12,
+    zoom: 10.8,
+    sun: DAY,
+  },
+  {
+    id: "dombay",
+    name: "explore:landing.places.dombay",
+    at: [41.62, 43.29],
+    bearing: 120,
+    distanceKm: 4,
+    zoom: 12,
+    sun: MORNING,
+  },
+  {
+    id: "fisht",
+    name: "explore:landing.places.fisht",
+    at: [39.9558, 43.4022],
+    bearing: 18,
+    distanceKm: 0.6,
+    zoom: 14.8,
     sun: GOLDEN,
-    pins: [
-      [39.9558, 43.4022],
-      [39.952, 43.4085],
-    ],
   },
   {
     id: "belukha",
-    from: { center: [86.56, 49.76], zoom: 11.2, pitch: 64, bearing: 0 },
-    to: { center: [86.575, 49.775], zoom: 11.5, pitch: 66, bearing: 30 },
+    name: "explore:landing.places.belukha",
+    at: [86.5897, 49.8072],
+    bearing: 20,
+    distanceKm: 6,
+    zoom: 11.2,
     sun: MORNING,
-    pins: [],
   },
   {
-    id: "coast",
-    from: { center: [39.862, 43.512], zoom: 13.2, pitch: 62, bearing: 58 },
-    to: { center: [39.868, 43.516], zoom: 13.5, pitch: 64, bearing: 84 },
+    id: "kronotsky",
+    name: "explore:landing.places.kronotsky",
+    at: [160.5267, 54.7533],
+    bearing: 40,
+    distanceKm: 10,
+    zoom: 10.8,
+    sun: GOLDEN,
+  },
+  {
+    id: "goldenBridge",
+    name: "explore:landing.places.goldenBridge",
+    at: [131.889, 43.111],
+    bearing: 200,
+    distanceKm: 1.5,
+    zoom: 13.6,
     sun: DUSK,
-    pins: [[39.8598, 43.5155]],
+  },
+  {
+    id: "ergaki",
+    name: "explore:landing.places.ergaki",
+    at: [93.32, 52.83],
+    bearing: 180,
+    distanceKm: 5,
+    zoom: 11.8,
+    sun: DAY,
+  },
+  {
+    id: "khosta",
+    name: "explore:landing.places.khosta",
+    at: [39.8598, 43.5155],
+    bearing: 58,
+    distanceKm: 2.5,
+    zoom: 13.2,
+    sun: DUSK,
+  },
+  {
+    id: "teriberka",
+    name: "explore:landing.places.teriberka",
+    at: [35.14, 69.165],
+    bearing: 0,
+    distanceKm: 5,
+    zoom: 11.8,
+    sun: GOLDEN,
   },
   {
     id: "khibiny",
-    from: { center: [33.62, 67.68], zoom: 11.2, pitch: 62, bearing: 200 },
-    to: { center: [33.64, 67.69], zoom: 11.5, pitch: 64, bearing: 228 },
+    name: "explore:landing.places.khibiny",
+    at: [33.64, 67.7],
+    bearing: 200,
+    distanceKm: 4,
+    zoom: 11.2,
     sun: GOLDEN,
-    pins: [],
   },
 ]
+
+function behind(place: Place): readonly [number, number] {
+  const radians = (place.bearing * Math.PI) / 180
+  const [lon, lat] = place.at
+  const north = (place.distanceKm * Math.cos(radians)) / KM_PER_DEGREE
+  const east =
+    (place.distanceKm * Math.sin(radians)) / (KM_PER_DEGREE * Math.cos((lat * Math.PI) / 180))
+  return [lon - east, lat - north]
+}
+
+function shotOf(place: Place): Shot {
+  const center = behind(place)
+  return {
+    id: place.id,
+    from: { center, zoom: place.zoom, pitch: PITCH, bearing: place.bearing },
+    to: {
+      center,
+      zoom: place.zoom + ZOOM_DRIFT,
+      pitch: PITCH + PITCH_DRIFT,
+      bearing: place.bearing + BEARING_DRIFT,
+    },
+    sun: place.sun,
+    marks: [{ name: place.name, at: place.at }],
+  }
+}
+
+export const SHOTS: readonly Shot[] = PLACES.map(shotOf)
 
 export function cameraOptions(camera: ShotCamera) {
   return {
