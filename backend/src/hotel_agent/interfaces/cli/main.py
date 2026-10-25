@@ -26,6 +26,10 @@ def build_parser() -> ArgumentParser:
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")
     precompute.add_argument("--from", dest="directory", required=True)
+
+    catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
+    catalog.add_argument("--hotel-id", required=True)
+    catalog.add_argument("--supplier-id", required=True)
     return parser
 
 

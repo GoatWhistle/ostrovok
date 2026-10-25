@@ -38,7 +38,9 @@ async def test_unconfigured_provider_is_not_reported_as_sold_out() -> None:
 
 @pytest.mark.asyncio
 async def test_unmapped_hotel_does_not_call_supplier() -> None:
-    provider = SimpleNamespace(fetch=AsyncMock())
+    provider = SimpleNamespace(
+        fetch=AsyncMock(), supplier="nuitee", source="Nuitee Connect", sandbox=True
+    )
     result = await GetHotelOffers(repository(None), cast(Any, provider), clock())(
         "hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
     )
@@ -58,12 +60,18 @@ async def test_mapped_hotel_returns_provider_rate() -> None:
         meal="breakfast",
         amenities=(),
     )
-    provider = SimpleNamespace(fetch=AsyncMock(return_value=OfferLookup((rate,), checked_at)))
+    provider = SimpleNamespace(
+        fetch=AsyncMock(return_value=OfferLookup((rate,), checked_at)),
+        supplier="nuitee",
+        source="Nuitee Connect",
+        sandbox=True,
+    )
     result = await GetHotelOffers(repository("42"), cast(Any, provider), clock())(
         "hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
     )
     assert result.status is OfferStatus.AVAILABLE
     assert result.offers == (rate,)
+    assert result.sandbox is True
     provider.fetch.assert_awaited_once()
 
 

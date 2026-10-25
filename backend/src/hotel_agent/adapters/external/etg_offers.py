@@ -17,23 +17,28 @@ PATH = "/api/b2b/v3/search/hp/"
 
 
 class EtgHotelOffers:
+    supplier = "etg"
+    source = "ETG/RateHawk"
+
     def __init__(
         self, key_id: str, api_key: str, environment: str, client: httpx.AsyncClient | None = None
     ) -> None:
         self._auth = httpx.BasicAuth(key_id, api_key)
         self._url = HOSTS[environment] + PATH
         self._client = client
+        self.sandbox = environment == "sandbox"
 
     async def fetch(
-        self, supplier_id: int, check_in: date, check_out: date, adults: int, residency: str
+        self, supplier_id: str, check_in: date, check_out: date, adults: int, residency: str
     ) -> OfferLookup:
+        numeric_id = int(supplier_id)
         payload = {
             "checkin": check_in.isoformat(),
             "checkout": check_out.isoformat(),
             "residency": residency,
             "language": "ru",
             "guests": [{"adults": adults, "children": []}],
-            "hid": supplier_id,
+            "hid": numeric_id,
             "currency": "RUB",
         }
         try:
@@ -53,7 +58,7 @@ class EtgHotelOffers:
                 (
                     hotel
                     for hotel in hotels
-                    if isinstance(hotel, dict) and hotel.get("hid") == supplier_id
+                    if isinstance(hotel, dict) and hotel.get("hid") == numeric_id
                 ),
                 None,
             )

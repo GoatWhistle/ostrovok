@@ -17,7 +17,7 @@ class OfferStatus(StrEnum):
     PROVIDER_UNAVAILABLE = "provider_unavailable"
     HOTEL_UNMAPPED = "hotel_unmapped"
     PROVIDER_ERROR = "provider_error"
-    SOLD_OUT = "sold_out"
+    NO_OFFERS = "no_offers"
     AVAILABLE = "available"
 
 
@@ -29,6 +29,7 @@ class HotelOffers:
     adults: int
     status: OfferStatus
     source: str | None
+    sandbox: bool
     checked_at: datetime | None
     offers: tuple[RoomOffer, ...]
 
@@ -55,7 +56,11 @@ class GetHotelOffers:
             hotel = await uow.search.get_hotel(hotel_id)
             if hotel is None:
                 raise HotelNotFound()
-            supplier_id = await uow.search.get_supplier_id(hotel_id, "etg")
+            supplier_id = (
+                await uow.search.get_supplier_id(hotel_id, self._provider.supplier)
+                if self._provider is not None
+                else None
+            )
         status = OfferStatus.HOTEL_UNMAPPED
         source = None
         checked_at = None
@@ -63,17 +68,17 @@ class GetHotelOffers:
         if self._provider is None:
             status = OfferStatus.PROVIDER_UNAVAILABLE
         elif supplier_id is not None:
-            source = "ETG/RateHawk"
+            source = self._provider.source
             try:
                 result = await self._provider.fetch(
-                    int(supplier_id), check_in, check_out, adults, residency.lower()
+                    supplier_id, check_in, check_out, adults, residency.lower()
                 )
             except OfferProviderFailure:
                 status = OfferStatus.PROVIDER_ERROR
             else:
                 checked_at = result.checked_at
                 offers = result.offers
-                status = OfferStatus.AVAILABLE if offers else OfferStatus.SOLD_OUT
+                status = OfferStatus.AVAILABLE if offers else OfferStatus.NO_OFFERS
         return HotelOffers(
             hotel_id=hotel_id,
             check_in=check_in,
@@ -81,6 +86,7 @@ class GetHotelOffers:
             adults=adults,
             status=status,
             source=source,
+            sandbox=self._provider.sandbox if self._provider is not None else False,
             checked_at=checked_at,
             offers=offers,
         )

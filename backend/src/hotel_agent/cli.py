@@ -8,9 +8,11 @@ from psycopg_pool import AsyncConnectionPool
 
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.facades import PostgresFacadeStore
+from hotel_agent.adapters.db.hotel_catalog import PostgresHotelCatalog
 from hotel_agent.adapters.db.precompute import PostgresPrecompute
 from hotel_agent.adapters.db.seed import PostgresSeedWriter
 from hotel_agent.adapters.db.walk import PostgresWalkStore
+from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
@@ -23,6 +25,7 @@ from hotel_agent.application.use_cases.ingest_seed import IngestSeed
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, run_build_seed
 from hotel_agent.settings import load_settings
 
@@ -45,6 +48,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest(args.region, Path(args.directory), settings.database_url))
     if args.command == "precompute":
         return asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
+    if args.command == "sync-nuitee":
+        if not settings.nuitee_api_key:
+            raise SystemExit("NUITEE_API_KEY is required for sync-nuitee")
+        return asyncio.run(
+            _sync_nuitee(
+                args.hotel_id, args.supplier_id, settings.database_url, settings.nuitee_api_key
+            )
+        )
     return 1
 
 
@@ -72,6 +83,15 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
     print(f"distance_to_sea: {routes}")
     for name, count in facades.items():
         print(f"{name}: {count}")
+    return 0
+
+
+async def _sync_nuitee(hotel_id: str, supplier_id: str, database_url: str, api_key: str) -> int:
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        count = await SyncHotelCatalog(NuiteeCatalog(api_key), PostgresHotelCatalog(pool))(
+            hotel_id, supplier_id
+        )
+    print(f"Imported {count} room categories for hotel {hotel_id}")
     return 0
 
 

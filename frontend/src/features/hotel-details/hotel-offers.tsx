@@ -22,7 +22,7 @@ const STATUS: Readonly<Record<string, MessageKey>> = {
   provider_unavailable: "explore:offers.providerUnavailable",
   hotel_unmapped: "explore:offers.hotelUnmapped",
   provider_error: "explore:offers.providerError",
-  sold_out: "explore:offers.soldOut",
+  no_offers: "explore:offers.noOffers",
 }
 
 export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
@@ -94,6 +94,7 @@ export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
       ) : null}
       {result.isPending && checkIn && checkOut ? <Skeleton shape="block" /> : null}
       {result.isError ? <Banner tone="danger" title={t("explore:offers.requestError")} /> : null}
+      {result.data?.sandbox ? <Banner tone="neutral" title={t("explore:offers.sandbox")} /> : null}
       {status ? <Banner tone="neutral" title={t(status)} /> : null}
       {result.data?.offers?.length ? (
         <ul className={styles.offers}>

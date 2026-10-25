@@ -832,7 +832,7 @@ components:
               id: { type: string }
               name: { type: string }
               capacity: { type: integer }
-              floor_range: { type: array, items: { type: integer } }
+              floor_range: { type: array, items: { type: integer }, nullable: true }
               facade_ids: { type: array, items: { type: string } }
               price_amount: { type: number, nullable: true }
               price_currency: { type: string, nullable: true }
@@ -853,7 +853,7 @@ components:
 
     HotelOffers:
       type: object
-      required: [hotel_id, check_in, check_out, adults, status, offers]
+      required: [hotel_id, check_in, check_out, adults, status, sandbox, offers]
       properties:
         hotel_id: { type: string }
         check_in: { type: string, format: date }
@@ -861,8 +861,9 @@ components:
         adults: { type: integer }
         status:
           type: string
-          enum: [provider_unavailable, hotel_unmapped, provider_error, sold_out, available]
+          enum: [provider_unavailable, hotel_unmapped, provider_error, no_offers, available]
         source: { type: string, nullable: true }
+        sandbox: { type: boolean }
         checked_at: { type: string, format: date-time, nullable: true }
         offers:
           type: array
@@ -876,7 +877,7 @@ components:
         room_name: { type: string }
         price_amount: { type: number }
         price_currency: { type: string }
-        available_rooms: { type: integer }
+        available_rooms: { type: integer, nullable: true }
         meal: { type: string, nullable: true }
         amenities: { type: array, items: { type: string } }
         floor_number: { type: integer, nullable: true }

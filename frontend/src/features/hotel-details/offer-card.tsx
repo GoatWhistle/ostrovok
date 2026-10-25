@@ -9,6 +9,10 @@ const MEAL: Readonly<Record<string, MessageKey>> = {
   breakfast: "explore:offers.breakfast",
   "half-board": "explore:offers.halfBoard",
   "full-board": "explore:offers.fullBoard",
+  BI: "explore:offers.breakfast",
+  HB: "explore:offers.halfBoard",
+  FB: "explore:offers.fullBoard",
+  AI: "explore:offers.allInclusive",
 }
 
 function mealKey(value: string): MessageKey {
@@ -33,10 +37,12 @@ export function OfferCard({ offer }: { readonly offer: Offer }) {
         <span className={styles.price}>{price}</span>
       </div>
       <ul className={styles.meta}>
-        <li className={styles.metaItem}>
-          <Icon name="room" size="sm" />
-          {t("explore:offers.availableRooms", { count: offer.available_rooms })}
-        </li>
+        {offer.available_rooms != null ? (
+          <li className={styles.metaItem}>
+            <Icon name="room" size="sm" />
+            {t("explore:offers.availableRooms", { count: offer.available_rooms })}
+          </li>
+        ) : null}
         {offer.meal ? (
           <li className={styles.metaItem}>
             <Icon name="check" size="sm" />

@@ -45,7 +45,7 @@ async def test_etg_offer_maps_live_price_meal_and_allotment() -> None:
 
     async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
         result = await EtgHotelOffers("id", "secret", "sandbox", client).fetch(
-            42, date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
+            "42", date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
         )
     assert len(result.offers) == 1
     offer = result.offers[0]
@@ -65,5 +65,5 @@ async def test_etg_error_does_not_look_like_sold_out() -> None:
     ) as client:
         with pytest.raises(OfferProviderFailure):
             await EtgHotelOffers("id", "secret", "sandbox", client).fetch(
-                42, date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
+                "42", date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
             )

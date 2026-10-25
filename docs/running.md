@@ -1,8 +1,7 @@
 # Запуск и проверки
 
-Compose запускает PostGIS, миграции, бэкенд и фронтенд. У бэкенда сейчас два метода —
-`GET /api/v1/health` и `GET /api/v1/characteristics`; поиск, карточка, сцена и геообъекты
-добавляются следующими этапами.
+Compose запускает PostGIS, миграции, бэкенд и фронтенд. Бэкенд обслуживает поиск,
+контекстный диалог, карточку отеля, сцену карты и проверку предложений по датам.
 
 **Читайте, если** вы запускаете шаблон · **Связано:** [архитектура](architecture.md) · [зависимости](dependencies.md)
 
@@ -30,6 +29,17 @@ docker compose up -d --wait
 После `make up` выполните `make seed`: он загружает готовый срез в PostGIS, повторный запуск
 обновляет те же записи без дублей и не обращается к сети. Миграции применяет одноразовый сервис
 `migrate` до запуска API. Для проверки схемы: `docker compose run --rm migrate`.
+
+Для ручной загрузки подтверждённого соответствия City Park Hotel и его категорий номеров
+нужен тестовый или рабочий ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается
+к API поставщика и записывает реальный каталог в PostgreSQL:
+
+```bash
+set -a; . ./.env; set +a
+DATABASE_URL=postgresql://hotel:hotel@localhost:5432/hotel \
+  uv run --directory backend hotel-agent sync-nuitee \
+  --hotel-id n736761646 --supplier-id lp552d8
+```
 
 Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
 Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
@@ -73,6 +83,7 @@ uv run uvicorn hotel_agent.main:create_app --factory --reload
 | `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет. Обязателен для `openai_compat` |
 | `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk для проверки тарифов; указываются вместе. Без них карточка честно сообщает, что доступность неизвестна |
 | `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production`; данные и ключи сред не смешиваются |
+| `NUITEE_API_KEY` | пусто | Ключ Nuitee Connect для категорий номеров и проверки тарифов; тестовый ключ помечает ответ как sandbox |
 | `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
 | `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |

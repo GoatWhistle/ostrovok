@@ -724,7 +724,7 @@ export interface components {
                 id?: string;
                 name?: string;
                 capacity?: number;
-                floor_range?: number[];
+                floor_range?: number[] | null;
                 facade_ids?: string[];
                 price_amount?: number | null;
                 price_currency?: string | null;
@@ -746,8 +746,9 @@ export interface components {
             check_out: string;
             adults: number;
             /** @enum {string} */
-            status: "provider_unavailable" | "hotel_unmapped" | "provider_error" | "sold_out" | "available";
+            status: "provider_unavailable" | "hotel_unmapped" | "provider_error" | "no_offers" | "available";
             source?: string | null;
+            sandbox: boolean;
             /** Format: date-time */
             checked_at?: string | null;
             offers: components["schemas"]["RoomOffer"][];
@@ -757,7 +758,7 @@ export interface components {
             room_name: string;
             price_amount: number;
             price_currency: string;
-            available_rooms: number;
+            available_rooms: number | null;
             meal?: string | null;
             amenities: string[];
             floor_number?: number | null;

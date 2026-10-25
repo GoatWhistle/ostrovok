@@ -29,6 +29,7 @@ class Settings:
     etg_key_id: str | None = None
     etg_api_key: str | None = None
     etg_environment: str = "sandbox"
+    nuitee_api_key: str | None = None
 
 
 def load_settings(env: Mapping[str, str]) -> Settings:
@@ -44,6 +45,7 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         etg_key_id=env.get("ETG_KEY_ID") or None,
         etg_api_key=env.get("ETG_API_KEY") or None,
         etg_environment=_etg_environment(env),
+        nuitee_api_key=env.get("NUITEE_API_KEY") or None,
     )
 
 

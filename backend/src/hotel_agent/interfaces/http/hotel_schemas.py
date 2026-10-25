@@ -51,7 +51,7 @@ class RoomSchema(BaseModel):
     id: str
     name: str
     capacity: int
-    floor_range: tuple[int, int]
+    floor_range: tuple[int, int] | None
     facade_ids: list[str]
     price_amount: float | None = None
     price_currency: str | None = None
@@ -63,7 +63,7 @@ class RoomOfferSchema(BaseModel):
     room_name: str
     price_amount: float
     price_currency: str
-    available_rooms: int
+    available_rooms: int | None
     meal: str | None
     amenities: list[str]
     floor_number: int | None
@@ -76,6 +76,7 @@ class HotelOffersSchema(BaseModel):
     adults: int
     status: OfferStatus
     source: str | None
+    sandbox: bool
     checked_at: datetime | None
     offers: list[RoomOfferSchema]
 
@@ -88,6 +89,7 @@ def hotel_offers_schema(result: HotelOffers) -> HotelOffersSchema:
         adults=result.adults,
         status=result.status,
         source=result.source,
+        sandbox=result.sandbox,
         checked_at=result.checked_at,
         offers=[
             RoomOfferSchema(
@@ -142,7 +144,9 @@ def hotel_card_schema(card: HotelCard) -> HotelCardSchema:
                 id=item.id,
                 name=item.name,
                 capacity=item.capacity,
-                floor_range=(item.floor_min, item.floor_max),
+                floor_range=(item.floor_min, item.floor_max)
+                if item.floor_min is not None and item.floor_max is not None
+                else None,
                 facade_ids=list(item.facade_ids),
                 price_amount=item.price_amount,
                 price_currency=item.price_currency,

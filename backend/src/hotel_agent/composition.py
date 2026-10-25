@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.external.etg_offers import EtgHotelOffers
+from hotel_agent.adapters.external.nuitee_offers import NuiteeHotelOffers
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
@@ -36,11 +37,7 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
         clock=SystemClock(),
         logger=logger,
         uow=PostgresUnitOfWorkFactory(settings.database_url),
-        hotel_offers=(
-            EtgHotelOffers(settings.etg_key_id, settings.etg_api_key, settings.etg_environment)
-            if settings.etg_key_id and settings.etg_api_key
-            else None
-        ),
+        hotel_offers=build_hotel_offers(settings),
     )
 
 
@@ -69,3 +66,11 @@ def _required(value: str | None, name: str) -> str:
     if not value:
         raise ConfigError(f"LLM_PROVIDER=openai_compat needs {name}")
     return value
+
+
+def build_hotel_offers(settings: Settings) -> HotelOffersPort | None:
+    if settings.nuitee_api_key:
+        return NuiteeHotelOffers(settings.nuitee_api_key)
+    if settings.etg_key_id and settings.etg_api_key:
+        return EtgHotelOffers(settings.etg_key_id, settings.etg_api_key, settings.etg_environment)
+    return None

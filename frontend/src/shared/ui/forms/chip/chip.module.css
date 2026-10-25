@@ -32,6 +32,11 @@
   color: var(--text-primary);
 }
 
+.still .dot {
+  inline-size: var(--chip-static-dot);
+  block-size: var(--chip-static-dot);
+}
+
 .chip[aria-pressed="true"],
 .chip[data-pressed="true"] {
   background-color: var(--surface-wash);
@@ -59,11 +64,6 @@
   min-block-size: var(--chip-static-height);
   padding-inline-start: var(--space-6);
   cursor: default;
-}
-
-.still .dot {
-  inline-size: var(--chip-static-dot);
-  block-size: var(--chip-static-dot);
 }
 
 .still::before {

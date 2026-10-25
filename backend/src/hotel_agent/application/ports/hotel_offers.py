@@ -9,7 +9,7 @@ class RoomOffer:
     room_name: str
     price_amount: float
     price_currency: str
-    available_rooms: int
+    available_rooms: int | None
     meal: str | None
     amenities: tuple[str, ...]
     floor_number: int | None = None
@@ -22,8 +22,12 @@ class OfferLookup:
 
 
 class HotelOffersPort(Protocol):
+    supplier: str
+    source: str
+    sandbox: bool
+
     async def fetch(
-        self, supplier_id: int, check_in: date, check_out: date, adults: int, residency: str
+        self, supplier_id: str, check_in: date, check_out: date, adults: int, residency: str
     ) -> OfferLookup: ...
 
 
