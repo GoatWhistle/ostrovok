@@ -44,6 +44,12 @@ class SearchHotels:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
         parsed = await self._llm.parse_query(query)
+        if parsed.nearby_objects:
+            parsed = replace(
+                parsed,
+                intents=parsed.intents
+                + tuple(_nearby_intent(request) for request in parsed.nearby_objects),
+            )
         async with self._uow() as uow:
             regions = await uow.regions.list_loaded()
             selected_region = next((item for item in regions if item.id == region), None)
@@ -81,10 +87,6 @@ class SearchHotels:
         facts = _best_facts(stored)
         now = self._clock.now()
         if nearby:
-            parsed = replace(
-                parsed,
-                intents=parsed.intents + tuple(_nearby_intent(request) for request, _ in nearby),
-            )
             for request, matches in nearby:
                 key = _nearby_key(request)
                 for hotel in hotels:
