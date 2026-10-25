@@ -45,7 +45,7 @@ class Scored:
 
 def score(intents: Sequence[Intent], facts: Mapping[str, Fact], now: datetime) -> Scored:
     matches = tuple(match(intent, facts.get(intent.characteristic_key), now) for intent in intents)
-    missed = any(item.intent.required and item.quality not in COUNTED_QUALITIES for item in matches)
+    missed = any(item.intent.required and item.quality is MatchQuality.NONE for item in matches)
     total_weight = sum(item.intent.weight for item in matches)
     if missed or total_weight <= 0.0:
         return Scored(score=0.0, matches=matches, disqualified=missed)

@@ -92,11 +92,12 @@ sequenceDiagram
 выполненных условий, взвешенная по весу условия и уверенности факта. Факт берётся из базы, а для
 объекта рядом создаётся в момент запроса из результата `ST_DWithin`
 (`backend/src/hotel_agent/adapters/db/nearby_objects.py`). Если факта нет, совпадение
-`unknown`: вес остаётся в знаменателе, отель опускается, но не исчезает. Обязательное условие без
-факта убирает отель из выдачи. Нарушение этих правил роняет тесты
+`unknown`: вес остаётся в знаменателе, отель опускается, но не исчезает. Обязательное условие
+убирает отель только при подтверждённом несоответствии; отсутствие факта оставляет частичное
+совпадение. Нарушение этих правил роняет тесты
 `backend/tests/unit/domain/test_scoring.py`, например
 `test_an_unknown_property_lowers_the_score_without_removing_the_hotel` и
-`test_a_required_property_that_is_missing_disqualifies_the_hotel`. Модель в этой точке ничего не
+`test_a_required_property_that_is_unknown_keeps_a_partial_recommendation`. Модель в этой точке ничего не
 решает: условие с характеристикой не из реестра или со значением не того типа отбрасывается до
 оценки (`test_an_invented_characteristic_is_dropped`,
 `test_model_invents_no_unmentioned_or_wrongly_typed_intents`).

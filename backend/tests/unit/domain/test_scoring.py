@@ -132,13 +132,28 @@ def test_an_unknown_property_lowers_the_score_without_removing_the_hotel(
     assert [item.quality for item in result.matches] == [MatchQuality.FULL, MatchQuality.UNKNOWN]
 
 
-def test_a_required_property_that_is_missing_disqualifies_the_hotel(
+def test_a_required_property_that_is_unknown_keeps_a_partial_recommendation(
     make_fact: FactMaker, now: datetime
 ) -> None:
     facts = {"distance_to_sea": make_fact(value=6.0, confidence=1.0, ttl_days=None)}
     wanted = [intent(), intent("pets_policy", Op.EQ, True, required=True)]
 
     result = score(wanted, facts, now)
+
+    assert not result.disqualified
+    assert result.score == pytest.approx(0.5)
+    assert result.matches[1].quality is MatchQuality.UNKNOWN
+
+
+def test_a_required_property_known_to_be_false_disqualifies_the_hotel(
+    make_fact: FactMaker, now: datetime
+) -> None:
+    facts = {
+        "distance_to_sea": make_fact(value=6.0, confidence=1.0, ttl_days=None),
+        "pets_policy": make_fact("f_pets", False, characteristic_key="pets_policy", ttl_days=None),
+    }
+
+    result = score([intent(), intent("pets_policy", Op.EQ, True, required=True)], facts, now)
 
     assert result.disqualified
     assert result.score == 0.0
