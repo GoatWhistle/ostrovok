@@ -1,3 +1,4 @@
+import { flushSync } from "react-dom"
 import { motionMs, readEasing } from "./css-tokens"
 import { prefersReducedMotion } from "./use-reduced-motion"
 
@@ -24,7 +25,7 @@ function clipFrames(kind: RevealKind, origin: RevealOrigin | undefined): string[
 
 export async function revealTransition(
   kind: RevealKind,
-  change: () => void | Promise<void>,
+  change: () => void,
   origin?: RevealOrigin,
   instant = false,
 ): Promise<void> {
@@ -35,23 +36,28 @@ export async function revealTransition(
   }
   if (instant || typeof document.startViewTransition !== "function" || prefersReducedMotion()) {
     root.dataset.switching = ""
-    await change()
+    flushSync(change)
     await nextFrames()
     finish()
     return
   }
   root.dataset.viewTransition = kind
-  const transition = document.startViewTransition(async () => {
+  const transition = document.startViewTransition(() => {
     root.dataset.switching = ""
-    await change()
+    flushSync(change)
   })
+  const limit = window.setTimeout(
+    () => transition.skipTransition(),
+    motionMs("--view-transition-limit"),
+  )
   try {
     await transition.ready
+    window.clearTimeout(limit)
     root.animate(
       { clipPath: clipFrames(kind, origin) },
       {
-        duration: motionMs("--dur-reveal"),
-        easing: readEasing("--ease-in-out"),
+        duration: motionMs("--dur-panel"),
+        easing: readEasing("--ease-out"),
         pseudoElement: "::view-transition-new(root)",
       },
     )
@@ -59,6 +65,7 @@ export async function revealTransition(
   } catch {
     return
   } finally {
+    window.clearTimeout(limit)
     finish()
   }
 }

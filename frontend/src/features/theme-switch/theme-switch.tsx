@@ -1,4 +1,3 @@
-import { flushSync } from "react-dom"
 import { useTranslation } from "@/shared/i18n"
 import { revealTransition } from "@/shared/motion"
 import { type Theme, useTheme } from "@/shared/theme"
@@ -18,7 +17,7 @@ export function ThemeSwitch() {
         const box = event.currentTarget.getBoundingClientRect()
         void revealTransition(
           "theme",
-          () => flushSync(() => setTheme(next)),
+          () => setTheme(next),
           { x: box.left + box.width / 2, y: box.top + box.height / 2 },
           event.detail === 0,
         )

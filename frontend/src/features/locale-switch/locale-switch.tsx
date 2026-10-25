@@ -3,10 +3,6 @@ import { LOCALES, type Locale, useLocale, useTranslation } from "@/shared/i18n"
 import { KeyboardInputContext, revealTransition } from "@/shared/motion"
 import { Segmented, type SegmentedOption } from "@/shared/ui"
 
-function nextFrame(): Promise<void> {
-  return new Promise((resolve) => requestAnimationFrame(() => resolve()))
-}
-
 export function LocaleSwitch() {
   const { t } = useTranslation()
   const { locale, setLocale } = useLocale()
@@ -25,9 +21,8 @@ export function LocaleSwitch() {
       onChange={(next) => {
         void revealTransition(
           "locale",
-          async () => {
-            await setLocale(next)
-            await nextFrame()
+          () => {
+            void setLocale(next)
           },
           undefined,
           keyboard,
