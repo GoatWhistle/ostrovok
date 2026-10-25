@@ -1,0 +1,12 @@
+{
+  "image_size_px": [1254, 1254],
+  "panels_px": {
+    "front": [3, 89, 939, 625],
+    "end": [971, 126, 1234, 625],
+    "rear": [3, 731, 779, 1248],
+    "roof": [791, 638, 1248, 1248]
+  },
+  "sampling": "linear, without mipmaps to prevent atlas panel bleeding",
+  "layout_method": "manual bounds from generated atlas; exclude sky and rooftop silhouette",
+  "texture_kind": "synthetic base color, with ambient shading baked into recesses"
+}

@@ -1,0 +1,33 @@
+@import url("../../frontend/src/shared/styles/tokens/palette.css");
+@import url("../../frontend/src/shared/styles/tokens/semantic.css");
+@import url("../../frontend/src/shared/styles/tokens/typography.css");
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-base); color: var(--text-primary); font: 1rem/1.55 var(--font-sans); }
+header { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 20px 32px; }
+h1 { margin: 0; font-size: var(--font-size-heading); line-height: 1.2; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+button, a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 16px; border: 0; border-radius: 8px; font: inherit; cursor: pointer; color: var(--action-secondary-text); background: var(--action-secondary); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+::selection { background: var(--surface-highlight); color: var(--text-on-highlight); }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; min-height: calc(100dvh - 90px); }
+.scene { position: relative; background: var(--surface-sunken); min-width: 0; }
+model-viewer { display: block; width: 100%; height: calc(100dvh - 100px); min-height: 440px; }
+.views { position: absolute; inset: auto 24px 24px; justify-content: center; }
+#status { position: absolute; inset: 12px 24px auto; margin: 0; pointer-events: none; }
+aside { padding: 0 24px 24px; }
+aside > p:first-child { font-weight: var(--weight-bold); }
+aside p { color: var(--text-secondary); }
+dl { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; font-variant-numeric: tabular-nums; }
+dt, dd { margin: 0; }
+dd { text-align: right; font-weight: var(--weight-semibold); }
+img { display: block; margin-top: 24px; width: 100%; height: auto; }
+@media (hover: hover) and (pointer: fine) { button:hover, a:hover { background: var(--action-secondary-hover); } }
+@media (max-width: 48rem) {
+  header { padding: 16px; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  main { display: block; }
+  model-viewer { height: 60dvh; min-height: 360px; }
+  .views { inset: auto 12px 12px; gap: 4px; }
+  .views button { padding-inline: 12px; }
+  aside { padding: 8px 16px 24px; }
+}
