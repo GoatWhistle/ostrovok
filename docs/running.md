@@ -1,34 +1,42 @@
 # Запуск и проверки
 
-Compose запускает PostGIS, миграции, бэкенд и фронтенд. Бэкенд обслуживает поиск,
-контекстный диалог, карточку отеля, сцену карты и проверку предложений по датам.
+> Стенд поднимают две команды: `make up` собирает образы и запускает PostGIS, миграции, бэкенд и
+> фронтенд, а `make seed && make precompute` загружает срез Сочи и рассчитывает факты. Ключи не
+> нужны: без `.env` работает офлайн-разбор запросов. Сеть нужна для сборки образов и прогноза погоды.
 
-**Читайте, если** вы запускаете шаблон · **Связано:** [архитектура](architecture.md) · [зависимости](dependencies.md)
+**Читайте, если** вы запускаете стенд или прогоняете проверки · **Связано:**
+[архитектура](architecture.md) · [зависимости](dependencies.md)
+
+---
 
 ## Как запустить через Docker?
 
-Нужны Docker и Compose v2. Из корня репозитория:
+Нужны Docker с Compose v2 и buildx, GNU Make и [uv](https://docs.astral.sh/uv/) на хосте:
+`make seed` и `make precompute` запускаются не в контейнере. Из корня репозитория:
 
 ```bash
-cp .env.example .env
-docker buildx bake
-docker compose up -d --wait
+make up
+make seed && make precompute
 ```
 
-Короткий путь через `make` из корня: `make up` собирает и поднимает весь стенд,
-`make build` собирает образы, `make api` запускает API локально с перезагрузкой,
-`make check` прогоняет линтеры и тесты. `make help` перечисляет цели.
+| Адрес | Что это |
+|---|---|
+| http://localhost:8080 | Интерфейс |
+| http://localhost:8000/api/v1/health | Проверка здоровья API, в ответе имя провайдера модели |
+| http://localhost:8000/docs | Swagger |
+| `localhost:5432` | PostgreSQL с PostGIS, пользователь, пароль и база `hotel` |
 
-Две команды ходят в сеть и запускаются вручную, их не вызывают ни `make seed`, ни тесты:
-`make fetch-seed` скачивает исходный экстракт OSM и тайлы DEM в `data/raw/`,
-`make llm-check` делает настоящий вызов к провайдеру из `.env` и тратит квоту.
+Все порты слушают только `127.0.0.1`.
 
-`make build-seed` режет из скачанного срез Сочи в `data/seed/sochi/` и сети не требует. Он нужен
-только при смене границ или обновлении данных: готовый срез лежит в репозитории.
-На Apple M-серии полный проход по экстракту «Южный ФО» занимает около 7 минут.
-После `make up` выполните `make seed`: он загружает готовый срез в PostGIS, повторный запуск
-обновляет те же записи без дублей и не обращается к сети. Миграции применяет одноразовый сервис
-`migrate` до запуска API. Для проверки схемы: `docker compose run --rm migrate`.
+| Команда | Что делает | Сеть |
+|---|---|---|
+| `make up` | `docker buildx bake`, затем `docker compose up -d --wait`; миграции dbmate применяются до старта бэкенда | Для сборки образов |
+| `make seed` | Загружает срез `data/seed/sochi` в PostGIS; повторный запуск обновляет те же записи без дублей | Нет |
+| `make precompute` | Считает по загруженному срезу факты: высоту здания, уровень шума, пеший маршрут до моря, фасады | Нет |
+| `make down` | Останавливает стенд, том с базой `db-data` остаётся | Нет |
+| `make logs` | Логи всех сервисов | Нет |
+| `make build` | Только сборка образов через `docker-bake.hcl` | Да |
+| `make help` | Список целей | Нет |
 
 Для ручной загрузки подтверждённого соответствия City Park Hotel и его категорий номеров
 нужен тестовый или рабочий ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается
@@ -41,109 +49,132 @@ DATABASE_URL=postgresql://hotel:hotel@localhost:5432/hotel \
   --hotel-id n736761646 --supplier-id lp552d8
 ```
 
-Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
-Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
+Образы собирает только `docker-bake.hcl`. Compose берёт готовые образы
 `<COMPOSE_PROJECT_NAME>-backend:<TAG>` и `<COMPOSE_PROJECT_NAME>-frontend:<TAG>` и не скачивает их
-из реестра. Без сборки `docker compose up` остановится с ошибкой об отсутствующем образе.
-Переменные контейнеров приходят из `.env` через `env_file`; без `.env` действуют значения по
-умолчанию. Первичная сборка требует сети для загрузки зависимостей и образов.
+из реестра (`pull_policy: never`), поэтому `docker compose up` без сборки остановится с ошибкой об
+отсутствующем образе. Переменные сборки `TAG`, `SITE_URL` и `COMPOSE_PROJECT_NAME` bake берёт из
+окружения, а не из `.env`.
 
-Реестр характеристик (`characteristics/`) и демо-данные (`data/`) не попадают в образ: Compose
-монтирует их в контейнер только для чтения по путям `/srv/characteristics` и `/srv/data`.
-Поэтому образ бэкенда сам по себе не запускается без этих каталогов рядом.
+Реестр характеристик `characteristics/` и данные `data/` в образ не попадают: Compose монтирует их
+только для чтения в `/srv/characteristics` и `/srv/data`. Образ бэкенда без этих каталогов рядом не
+запускается.
 
-Переменные сборки (`TAG`, `SITE_URL`, `COMPOSE_PROJECT_NAME`) bake берёт из окружения, а не из
-`.env`.
+## Как обновить демо-данные?
+
+Готовый срез Сочи лежит в репозитории, эти команды нужны только при смене границ или обновлении
+данных.
+
+| Команда | Что делает | Сеть |
+|---|---|---|
+| `make fetch-seed` | Скачивает экстракт OSM «Южный ФО» с Geofabrik и два тайла Copernicus GLO-30 в `data/raw/` | Да |
+| `make build-seed` | Режет из `data/raw/` срез Сочи в `data/seed/sochi/` и печатает число объектов каждого слоя | Нет |
+
+## Как включить живую модель и предложения на даты?
+
+Скопируйте `.env.example` в `.env`, заполните `LLM_*` или `ETG_*` из
+[таблицы переменных](#какие-переменные-читаются) и снова выполните `make up`. `.env` лежит в
+`.gitignore`. `make llm-check` делает один настоящий вызов к провайдеру из `.env` и тратит
+квоту; ни тесты, ни `make seed` его не вызывают.
 
 ## Как разрабатывать без Docker?
 
-Нужны Node.js 22.18+ или поддерживаемая более новая версия и npm.
+База должна работать: `make up` или `docker compose up -d db migrate`. Бэкенд с перезагрузкой на
+порту 8000 против базы из Compose:
+
+```bash
+make api
+```
+
+Фронтенд, нужен Node.js 22.18 или новее:
 
 ```bash
 cd frontend
-npm ci
+npm ci --silent
 npm run dev
 ```
 
-Адрес покажет Vite при запуске. Бэкенд без Docker, из корня:
+Адрес покажет Vite. Dev-сервер проксирует `/api` на `API_URL`, по умолчанию
+`http://localhost:8000`.
 
-```bash
-cd backend
-uv sync
-uv run uvicorn hotel_agent.main:create_app --factory --reload
-```
+## Какие переменные читаются?
 
-## Какие переменные читает бэкенд?
-
-Все необязательны: без них работает офлайн-реализация.
+Все необязательны: без них стенд работает с офлайн-разбором и без предложений поставщика.
 
 | Переменная | По умолчанию | Что задаёт |
 |---|---|---|
-| `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `openai_compat` — живой OpenAI-совместимый endpoint; `anthropic` пока останавливает запуск с явной ошибкой |
-| `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет. Обязателен для `openai_compat` |
-| `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk для проверки тарифов; указываются вместе. Без них карточка честно сообщает, что доступность неизвестна |
-| `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production`; данные и ключи сред не смешиваются |
+| `LLM_PROVIDER` | `fake` | `fake`: офлайн-разбор по фразам реестра, без ключа и сети; `openai_compat`: живой OpenAI-совместимый endpoint; `anthropic` останавливает запуск с ошибкой, адаптера нет |
+| `LLM_BASE_URL` | пусто | Адрес endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
+| `LLM_API_KEY` | пусто | Ключ провайдера. Обязателен для `openai_compat` |
 | `NUITEE_API_KEY` | пусто | Ключ Nuitee Connect для категорий номеров и проверки тарифов; тестовый ключ помечает ответ как sandbox |
-| `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
 | `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
-| `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |
-| `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик |
-| `SEED_DIR` | `data/seed` | Каталог демо-данных |
-| `DATABASE_URL` | `postgresql://hotel:hotel@localhost:5432/hotel` | Адрес PostgreSQL с PostGIS |
-| `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` | `hotel` | Учётные данные контейнера базы |
+| `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды, больше нуля |
+| `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk, задаются вместе. Без них предложения отвечают `provider_unavailable` |
+| `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production` |
+| `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик; в Compose `/srv/characteristics` |
+| `SEED_DIR` | `data/seed` | Каталог среза; из него бэкенд читает `sochi/dem.tif` для рельефа; в Compose `/srv/data/seed` |
+| `DATABASE_URL` | `postgresql://hotel:hotel@localhost:5432/hotel` | Адрес базы для бэкенда вне Compose; в Compose собирается из `POSTGRES_*` |
+| `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | `hotel` | Учётные данные базы; их же читают `make seed` и `make precompute` |
 | `POSTGRES_PORT` | `5432` | Порт базы на хосте |
-| `BACKEND_PORT` | `8000` | Порт бэкенда на хосте в Compose |
-| `TAG` | `latest` | Тег образов Compose и bake |
+| `BACKEND_PORT` | `8000` | Порт бэкенда на хосте |
+| `FRONTEND_PORT` | `8080` | Порт интерфейса на хосте |
+| `API_UPSTREAM` | `http://backend:8000` | Куда nginx фронтенда проксирует `/api/` |
+| `API_URL` | `http://localhost:8000` | Куда проксирует `/api` dev-сервер Vite |
+| `API_SCHEMA_URL` | `http://localhost:8000/openapi.json` | Источник схемы для `npm run api:types` |
+| `COMPOSE_PROJECT_NAME` | `hotel-agent` | Имя проекта Compose и префикс образов |
+| `TAG` | `latest` | Тег образов |
+| `SITE_URL` | пусто | Адрес сайта для мета-тегов при сборке фронтенда |
 
-Неизвестное значение останавливает запуск с ошибкой, где названа переменная и допустимые значения.
-
-## Как проверить фронтенд и презентацию?
-
-Из корня, каждую команду отдельно:
-
-```bash
-(cd frontend && npm run verify)
-(cd presentation && npm ci && npm run build)
-```
+Неверное значение `LLM_PROVIDER`, `LLM_TIMEOUT_S` или `ETG_ENVIRONMENT` останавливает запуск
+бэкенда с `ConfigError`, где названа переменная.
 
 ## Как проверить бэкенд?
 
-Нужен [uv](https://docs.astral.sh/uv/). Из корня:
+Из корня:
 
 ```bash
-cd backend
-uv sync
-uv run ruff check .
-uv run ruff format --check .
-uv run mypy .
-uv run lint-imports
-uv run pytest tests/unit
-uv run pytest tests/contract
-uv run pytest tests/integration
+make check
 ```
 
-`tests/unit` и `tests/contract` работают без базы и сети; `tests/integration` требует локальную
-инфраструктуру (PostgreSQL с PostGIS, `dbmate`, запущенный стенд) и пока пуст — пустая группа
-выходит с кодом 5. `uv run lint-imports` проверяет правило зависимостей слоёв по контрактам из
-`pyproject.toml`; то же правило независимо проверяет `tests/unit/architecture/`.
-`tests/contract` валидирует ответы API против `docs/api/openapi.yaml`.
-Число процессов pytest-xdist зависит от размера набора: маленький идёт в один процесс.
+`make check` запускает `ruff check`, `ruff format --check`, `mypy` в режиме `strict`,
+`lint-imports`, затем `pytest tests/unit` и `pytest tests/contract`. Обе группы тестов работают без
+базы и сети. `make test-integration` требует запущенный стенд с загруженным срезом: в
+`tests/integration` один тест `test_seeded_search_and_geo_features`. Число процессов pytest-xdist
+выбирается автоматически.
+
+`lint-imports` проверяет правило зависимостей слоёв по контрактам из `backend/pyproject.toml`, то же
+правило независимо проверяет `tests/unit/architecture/`. `tests/contract` проверяет, что
+`docs/api/openapi.yaml` валиден и что каждый путь бэкенда в нём есть ([API](api.md#где-спецификация)).
+
+## Как проверить фронтенд?
+
+```bash
+cd frontend
+npm run verify
+npm run e2e
+```
+
+`npm run verify` проверяет правила кода, CSS, текстов и движения, типы, Biome, запускает Vitest и
+собирает приложение. `npm run e2e` сам поднимает dev-сервер Vite и запускает Playwright; браузер
+Chromium должен быть установлен (`npx playwright install chromium`).
 
 ## Что делать, если не запускается?
 
 | Симптом | Что проверить |
 |---|---|
-| Порт 8080 занят | Задайте свободный `FRONTEND_PORT` в `.env` |
-| Порт 8000 занят | Задайте свободный `BACKEND_PORT` в `.env` |
-| Ошибка состояния API | `docker compose ps backend` и `docker compose logs backend`; затем `API_UPSTREAM` |
-| `ConfigError` при старте бэкенда | Значение переменной из сообщения; допустимые перечислены там же |
-| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптер ещё не написан: оставьте `fake` или `openai_compat` |
-| `LLM_PROVIDER=openai_compat needs LLM_*` | Для живого провайдера нужны все три: адрес, ключ и модель |
-| `Language model returned HTTP 401` | Ключ недействителен или у сервисного аккаунта нет роли `ai.languageModels.user` |
-| `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
 | `Cannot connect to the Docker daemon` | Docker не запущен |
-| `No such image` при `docker compose up` | Образы не собраны: `docker buildx bake` с теми же `COMPOSE_PROJECT_NAME` и `TAG` |
-| Зависимости не скачиваются | Доступ к реестрам npm и Docker во время сборки |
+| `No such image` при `docker compose up` | Образы не собраны: `make build` с теми же `COMPOSE_PROJECT_NAME` и `TAG` |
+| Порт 8080, 8000 или 5432 занят | Задайте свободный `FRONTEND_PORT`, `BACKEND_PORT` или `POSTGRES_PORT` в `.env` |
+| `uv: command not found` при `make seed` | `make seed`, `make precompute` и `make api` запускаются на хосте и требуют uv |
+| Чат отвечает, но отелей нет, карта пустая | Срез не загружен: `make seed && make precompute` |
+| Ошибка API в интерфейсе | `docker compose ps backend` и `docker compose logs --tail=50 backend`; затем `API_UPSTREAM` |
+| `ConfigError` при старте бэкенда | Значение переменной из сообщения; допустимые значения перечислены там же |
+| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптера нет: оставьте `fake` или `openai_compat` |
+| `LLM_PROVIDER=openai_compat needs LLM_*` | Для живой модели нужны все три переменные: адрес, ключ и модель |
+| `ETG_KEY_ID and ETG_API_KEY must be configured together` | Задайте обе переменные или ни одной |
+| Чат отвечает `503`, в логе `model_failure` | Модель не ответила за `LLM_TIMEOUT_S` после одного повтора или вернула HTTP-ошибку; при `Language model returned HTTP 401` проверьте ключ |
+| `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
+| Погода «недоступна» | Нет сети до Open-Meteo или дата дальше 15 дней от сегодня |
+| Зависимости не скачиваются | Доступ к реестрам npm, PyPI и Docker во время сборки |
 
 ---
 
