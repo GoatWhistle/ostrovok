@@ -28,6 +28,7 @@ export function HomePage() {
     initial: "--workspace-panel",
     min: "--workspace-panel-min",
     max: "--workspace-panel-max",
+    variable: "--panel-width",
   })
   const chatSize = useResizable({
     storageKey: "factmap-chat-width",
@@ -35,6 +36,7 @@ export function HomePage() {
     initial: "--workspace-chat",
     min: "--workspace-panel-min",
     max: "--workspace-panel-max",
+    variable: "--chat-width",
   })
   const start =
     state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
@@ -58,7 +60,7 @@ export function HomePage() {
           onChange={state.setView}
         />
       </div>
-      <div className={styles.workspace} data-view={state.view} style={sizes}>
+      <div className={styles.workspace} data-view={state.view} data-resize-root style={sizes}>
         <aside className={styles.panel} aria-label={t("explore:panel.title")}>
           <ResizeHandle
             label={t("explore:panel.resizePanel")}
