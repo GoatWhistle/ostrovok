@@ -52,38 +52,32 @@ class SearchHotels:
                 + tuple(_nearby_intent(request) for request in parsed.nearby_objects)
                 + tuple(facility_intent(request) for request in parsed.facility_requests),
             )
+        location = parsed.location_hint.strip() if parsed.location_hint else None
+        if location and location.casefold() in {"россия", "russia"}:
+            location = None
+        if parsed.needs_clarification or not location:
+            parsed = replace(parsed, location_hint=location, needs_clarification=True)
+            return _empty(query, region, bbox, parsed)
         async with self._uow() as uow:
-            regions = await uow.regions.list_loaded()
-            selected_region = next((item for item in regions if item.id == region), None)
-            location = parsed.location_hint
-            if (
-                location
-                and selected_region
-                and location.casefold().strip()
-                not in {
-                    selected_region.id.casefold(),
-                    selected_region.name.casefold(),
-                }
-            ):
-                parsed = replace(parsed, unsupported_region=location, needs_clarification=False)
-                return SearchOutcome(
-                    query_id=hashlib.sha256(f"{query}\x00{region}\x00{bbox}".encode()).hexdigest()[
-                        :16
-                    ],
-                    parsed=parsed,
-                    results=(),
-                )
-            if parsed.needs_clarification:
-                fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
-                return SearchOutcome(
-                    query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
-                    parsed=parsed,
-                    results=(),
-                )
+            if location.casefold() in {"сочи", "sochi", "адлер", "adler"}:
+                region = "sochi"
+            else:
+                region = "russia"
+                city_bbox = await uow.regions.city_bbox(location)
+                if city_bbox is None:
+                    parsed = replace(parsed, unsupported_region=location)
+                    return _empty(query, region, bbox, parsed)
+                if bbox is not None:
+                    overlap = _intersection(bbox, city_bbox)
+                    if overlap is None:
+                        return _empty(query, region, bbox, parsed)
+                    bbox = overlap
+                else:
+                    bbox = city_bbox
             hotels = await uow.search.list_hotels(region, bbox)
             stored = await uow.search.list_facts(region)
             nearby = [
-                (request, await uow.nearby_objects.list_matches(region, request))
+                (request, await uow.nearby_objects.list_matches(region, request, bbox))
                 for request in parsed.nearby_objects
             ]
             supplier_content = (
@@ -111,10 +105,14 @@ class SearchHotels:
             for hotel in hotels
         ]
         if parsed.intents:
-            ranked = [
-                item for item in ranked if item.scored.score > 0 and not item.scored.disqualified
-            ]
-            ranked.sort(key=lambda item: (-item.scored.score, item.hotel.id))
+            ranked = [item for item in ranked if not item.scored.disqualified]
+            ranked.sort(
+                key=lambda item: (
+                    -item.scored.score,
+                    item.hotel.name == item.hotel.id,
+                    item.hotel.name.casefold(),
+                )
+            )
         else:
             ranked.sort(
                 key=lambda item: (item.hotel.name == item.hotel.id, item.hotel.name.casefold())
@@ -125,6 +123,26 @@ class SearchHotels:
             parsed=parsed,
             results=ranked[:limit],
         )
+
+
+def _empty(
+    query: str,
+    region: str,
+    bbox: tuple[float, float, float, float] | None,
+    parsed: ParsedQuery,
+) -> SearchOutcome:
+    fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
+    return SearchOutcome(
+        query_id=hashlib.sha256(fingerprint).hexdigest()[:16], parsed=parsed, results=()
+    )
+
+
+def _intersection(
+    first: tuple[float, float, float, float], second: tuple[float, float, float, float]
+) -> tuple[float, float, float, float] | None:
+    west, south = max(first[0], second[0]), max(first[1], second[1])
+    east, north = min(first[2], second[2]), min(first[3], second[3])
+    return (west, south, east, north) if west <= east and south <= north else None
 
 
 def _best_facts(rows: Sequence[SearchFactRecord]) -> dict[str, dict[str, Fact]]:

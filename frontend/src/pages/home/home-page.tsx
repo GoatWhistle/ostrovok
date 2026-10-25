@@ -83,7 +83,7 @@ export function HomePage() {
             geoRefs={state.geoRefs}
             focusedFact={state.focusedFact}
             focusProperty={state.focusProperty}
-            regionId="sochi"
+            regionId="russia"
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}

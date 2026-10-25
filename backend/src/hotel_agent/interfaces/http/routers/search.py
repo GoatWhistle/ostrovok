@@ -19,7 +19,7 @@ def build_router(search_hotels: SearchHotels, registry: CharacteristicRegistryPo
         started = perf_counter()
         outcome = await search_hotels(
             request.query,
-            request.region_id or "sochi",
+            request.region_id or "russia",
             request.bbox,
             request.limit,
         )

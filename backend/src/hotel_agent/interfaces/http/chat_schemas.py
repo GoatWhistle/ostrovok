@@ -12,7 +12,7 @@ from hotel_agent.interfaces.http.search_schemas import SearchResponseSchema, sea
 class ChatRequestSchema(BaseModel):
     conversation_id: UUID | None = None
     message: str = Field(min_length=1, max_length=2000)
-    region_id: str = "sochi"
+    region_id: str = "russia"
     selected_hotel_id: str | None = None
     locale: Literal["ru", "en"] = "ru"
 

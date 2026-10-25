@@ -63,7 +63,11 @@ export function ReplyNotices({
       ))}
       {parsed.needs_clarification ? (
         <Banner tone="warning" title={t("explore:chat.clarify")}>
-          {t("explore:results.clarification")}
+          {t(
+            parsed.location_hint
+              ? "explore:results.clarification"
+              : "explore:results.clarificationCity",
+          )}
         </Banner>
       ) : null}
       {parsed.unsupported_region ? (

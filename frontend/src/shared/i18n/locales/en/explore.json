@@ -38,9 +38,10 @@
     "removeCompare": "Remove from comparison",
     "corrections": "Query clarification",
     "correction": "{{original}} corrected to {{corrected}}: {{reason}}",
-    "unsupportedRegion": "Data for {{region}} is not available yet.",
+    "unsupportedRegion": "I could not locate {{region}} in the hotel data. Please clarify the city.",
     "selectionLimit": "You can compare up to five hotels",
     "clarification": "Clarify the conflicting conditions in your query to find matching hotels.",
+    "clarificationCity": "Tell me which city to search in.",
     "score": "{{full, number}}/{{total, number}}"
   },
   "map": {
@@ -312,6 +313,8 @@
     "emptyText": "Describe the hotel you need in the chat. Matching hotels show up here, and the map shows why.",
     "noneTitle": "No hotels like that",
     "noneText": "Refine the request in the chat: soften the conditions or describe them differently.",
+    "cityTitle": "Choose a city",
+    "cityText": "Tell me in the chat where to search for a hotel.",
     "back": "All hotels",
     "resizePanel": "Resize the hotels panel",
     "resizeChat": "Resize the chat"

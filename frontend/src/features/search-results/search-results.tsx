@@ -54,15 +54,17 @@ export function SearchResults({
       </div>
     )
   const results = [...new Map(response.results.map((result) => [result.hotel.id, result])).values()]
-  if (results.length === 0)
+  if (results.length === 0) {
+    const cityNeeded = !response.parsed.location_hint || Boolean(response.parsed.unsupported_region)
     return (
       <EmptyState
         icon="search"
-        title={t("explore:panel.noneTitle")}
-        description={t("explore:panel.noneText")}
+        title={t(cityNeeded ? "explore:panel.cityTitle" : "explore:panel.noneTitle")}
+        description={t(cityNeeded ? "explore:panel.cityText" : "explore:panel.noneText")}
         className={styles.state}
       />
     )
+  }
   return (
     <section className={styles.results} aria-label={t("explore:panel.title")}>
       <div className={styles.count} aria-live="polite">

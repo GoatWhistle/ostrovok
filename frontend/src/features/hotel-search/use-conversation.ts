@@ -66,7 +66,7 @@ export function useConversation(
           body: {
             conversation_id: conversationId,
             message,
-            region_id: "sochi",
+            region_id: "russia",
             locale,
             selected_hotel_id: selectedHotel ?? null,
           },

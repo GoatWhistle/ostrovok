@@ -612,7 +612,7 @@ components:
       required: [query]
       properties:
         query: { type: string }
-        region_id: { type: string, nullable: true, example: sochi }
+        region_id: { type: string, nullable: true, default: russia, example: russia }
         bbox: { $ref: "#/components/schemas/BBox" }
         limit: { type: integer, default: 20, maximum: 100 }
         cursor: { type: string, nullable: true }
@@ -894,7 +894,7 @@ components:
       properties:
         conversation_id: { type: string, format: uuid, nullable: true }
         message: { type: string, minLength: 1, maxLength: 2000 }
-        region_id: { type: string, default: sochi }
+        region_id: { type: string, default: russia }
         selected_hotel_id: { type: string, nullable: true }
         locale: { type: string, enum: [ru, en], default: ru }
     ChatMessage:

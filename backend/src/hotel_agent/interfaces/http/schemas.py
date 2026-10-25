@@ -67,6 +67,7 @@ class RegionListResponse(BaseModel):
 
 def region_schema(region: RegionRecord) -> RegionSchema:
     west, south, east, north = region.bbox
+    national = region.id == "russia"
     return RegionSchema(
         id=region.id,
         name=region.name,
@@ -74,8 +75,8 @@ def region_schema(region: RegionRecord) -> RegionSchema:
         hotels_count=region.hotels_count,
         data_as_of=region.data_as_of.isoformat(),
         default_camera=CameraSchema(
-            center=((west + east) / 2, (south + north) / 2),
-            zoom=10,
+            center=(95, 61) if national else ((west + east) / 2, (south + north) / 2),
+            zoom=3 if national else 10,
             pitch=45,
             bearing=0,
         ),

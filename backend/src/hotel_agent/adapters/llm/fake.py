@@ -1,7 +1,7 @@
 from collections.abc import Mapping, Sequence
 
 from hotel_agent.adapters.llm.extraction import extract
-from hotel_agent.adapters.llm.text import normalize, terms_outside
+from hotel_agent.adapters.llm.text import WORD, normalize, terms_outside
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.domain.characteristics import Characteristic, Matcher
@@ -33,11 +33,14 @@ class FakeLLM:
             matcher, at = best
             spans.append((at, at + len(matcher.phrase)))
             found.append((at, _intent(characteristic, matcher)))
+        city_at = next((item.start() for item in WORD.finditer(text) if item.group() == "сочи"), -1)
+        if city_at >= 0:
+            spans.append((city_at, city_at + len("сочи")))
         found.sort(key=lambda item: item[0])
         return ParsedQuery(
             intents=tuple(intent for _, intent in found),
             unmatched_terms=terms_outside(text, spans),
-            location_hint=None,
+            location_hint="Сочи" if city_at >= 0 else None,
             normalized_query=text,
         )
 

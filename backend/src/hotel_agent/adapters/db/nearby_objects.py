@@ -13,6 +13,9 @@ FROM hotels h LEFT JOIN pois p
  AND (NOT %(open_24h)s OR lower(trim(p.tags->>'opening_hours')) = '24/7')
  AND ST_DWithin(p.location::geography, h.location::geography, %(radius_m)s)
 WHERE h.region_id = %(region)s
+  AND (%(bbox)s::double precision[] IS NULL OR ST_Intersects(h.location,
+      ST_MakeEnvelope((%(bbox)s::double precision[])[1], (%(bbox)s::double precision[])[2],
+                      (%(bbox)s::double precision[])[3], (%(bbox)s::double precision[])[4], 4326)))
 GROUP BY h.id"""
 
 
@@ -21,7 +24,10 @@ class PostgresNearbyObjectRepository:
         self._connection = connection
 
     async def list_matches(
-        self, region: str, request: NearbyObjectRequest
+        self,
+        region: str,
+        request: NearbyObjectRequest,
+        bbox: tuple[float, float, float, float] | None = None,
     ) -> Mapping[str, tuple[str, ...]]:
         result = await self._connection.execute(
             NEARBY,
@@ -31,6 +37,7 @@ class PostgresNearbyObjectRepository:
                 "osm_value": request.osm_value,
                 "open_24h": request.open_24h,
                 "radius_m": request.radius_m,
+                "bbox": list(bbox) if bbox else None,
             },
         )
         rows = await result.fetchall()

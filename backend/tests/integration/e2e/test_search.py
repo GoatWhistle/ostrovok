@@ -13,7 +13,10 @@ def test_seeded_search_and_geo_features() -> None:
     with TestClient(create_app(settings)) as client:
         response = client.post(
             "/api/v1/search",
-            json={"query": "тихий номер с видом на закат недалеко от моря", "region_id": "sochi"},
+            json={
+                "query": "тихий номер в Сочи с видом на закат недалеко от моря",
+                "region_id": "sochi",
+            },
         )
         assert response.status_code == 200, response.text
         data = response.json()
@@ -42,7 +45,7 @@ def test_seeded_search_and_geo_features() -> None:
         unsupported = client.post(
             "/api/v1/search",
             json={
-                "query": "отель с вертолётной площадкой",
+                "query": "отель в Сочи с вертолётной площадкой",
                 "region_id": "sochi",
             },
         )

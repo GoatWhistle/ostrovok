@@ -18,6 +18,8 @@ from hotel_agent.domain.query import NearbyObjectRequest
 class RegionRepository(Protocol):
     async def list_loaded(self) -> Sequence[RegionRecord]: ...
 
+    async def city_bbox(self, city: str) -> tuple[float, float, float, float] | None: ...
+
 
 class SearchRepository(Protocol):
     async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None: ...
@@ -49,7 +51,10 @@ class MapTileRepository(Protocol):
 
 class NearbyObjectRepository(Protocol):
     async def list_matches(
-        self, region: str, request: NearbyObjectRequest
+        self,
+        region: str,
+        request: NearbyObjectRequest,
+        bbox: tuple[float, float, float, float] | None = None,
     ) -> Mapping[str, tuple[str, ...]]: ...
 
 

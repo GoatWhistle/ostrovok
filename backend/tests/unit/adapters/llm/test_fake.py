@@ -43,6 +43,15 @@ async def test_parsing_is_deterministic(llm: FakeLLM) -> None:
     assert first == second
 
 
+async def test_offline_follow_up_recognizes_explicit_sochi(llm: FakeLLM) -> None:
+    query = await llm.contextualize_query("тихий номер", "Сочи")
+
+    parsed = await llm.parse_query(query)
+
+    assert parsed.location_hint == "Сочи"
+    assert "сочи" not in parsed.unmatched_terms
+
+
 async def test_tools_are_planned_only_for_missing_facts(llm: FakeLLM) -> None:
     parsed = await llm.parse_query("вид на закат недалеко от моря")
 

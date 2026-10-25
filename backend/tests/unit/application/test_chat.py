@@ -33,7 +33,7 @@ def outcome(parsed: ParsedQuery) -> SearchOutcome:
 
 
 def test_room_request_asks_for_missing_dates_and_guests() -> None:
-    parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint=None, wants_room=True)
+    parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint="Сочи", wants_room=True)
     answer = chat()._answer(outcome(parsed), None, "ru")
     assert "дату заезда" in answer
     assert "дату выезда" in answer
@@ -41,7 +41,7 @@ def test_room_request_asks_for_missing_dates_and_guests() -> None:
 
 
 def test_room_request_does_not_ask_when_stay_is_complete() -> None:
-    parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint=None, wants_room=True)
+    parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint="Сочи", wants_room=True)
     parsed = replace(parsed, check_in=date(2026, 11, 1), check_out=date(2026, 11, 2), adults=2)
     answer = chat()._answer(outcome(parsed), None, "ru")
     assert "Чтобы проверить свободные номера" not in answer
@@ -51,7 +51,7 @@ def test_unverified_conditions_are_named_in_answer() -> None:
     parsed = ParsedQuery(
         intents=(),
         unmatched_terms=("бассейн", "шведский стол"),
-        location_hint=None,
+        location_hint="Сочи",
     )
     answer = chat()._answer(outcome(parsed), None, "ru")
     assert "Не смог проверить: бассейн, шведский стол" in answer
@@ -67,7 +67,7 @@ def test_partial_recommendations_are_not_described_as_complete() -> None:
         required=True,
         source_text="на четверых",
     )
-    parsed = ParsedQuery(intents=(wanted,), unmatched_terms=(), location_hint=None)
+    parsed = ParsedQuery(intents=(wanted,), unmatched_terms=(), location_hint="Сочи")
     hotel = SearchHotelRecord(
         id="hotel-1",
         region_id="sochi",
@@ -93,6 +93,12 @@ def test_partial_recommendations_are_not_described_as_complete() -> None:
     )
 
     assert "Ни у одного отеля не подтверждены все условия" in answer
+
+
+def test_chat_asks_for_city_before_room_details() -> None:
+    parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint=None, wants_room=True)
+
+    assert chat()._answer(outcome(parsed), None, "ru") == "В каком городе ищете отель?"
 
 
 async def test_saved_conversation_uses_snapshot_without_search() -> None:

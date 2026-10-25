@@ -14,7 +14,7 @@ from hotel_agent.interfaces.http.schemas import CameraSchema
 
 class SearchRequestSchema(BaseModel):
     query: str
-    region_id: str | None = "sochi"
+    region_id: str | None = "russia"
     bbox: tuple[float, float, float, float] | None = None
     limit: int = Field(default=20, ge=1, le=100)
     cursor: str | None = None

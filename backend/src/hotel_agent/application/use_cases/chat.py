@@ -95,10 +95,14 @@ class Chat:
         return ConversationOutcome(conversation=conversation, search=search)
 
     def _answer(self, search: SearchOutcome, selected_hotel_id: str | None, locale: str) -> str:
+        if not search.parsed.location_hint:
+            if locale == "en":
+                return "Which city should I search in?"
+            return "В каком городе ищете отель?"
         if search.parsed.unsupported_region:
             if locale == "en":
-                return f"Data for {search.parsed.unsupported_region} is not loaded yet."
-            return f"Данные по региону «{search.parsed.unsupported_region}» пока не загружены."
+                return f"I could not locate {search.parsed.unsupported_region} in the hotel data. Please clarify the city."
+            return f"Не нашёл город «{search.parsed.unsupported_region}» в данных об отелях. Уточните название города."
         if search.parsed.needs_clarification:
             if locale == "en":
                 return "Please clarify your request: some conditions conflict."
