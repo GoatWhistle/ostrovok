@@ -44,6 +44,7 @@ export function ChatComposer({ pending, selectedHotel, placeholder, onSend }: Ch
             title={t("explore:chat.send")}
             pending={pending}
             disabled={!query}
+            className={styles.send}
           >
             {t("explore:chat.send")}
           </Button>
