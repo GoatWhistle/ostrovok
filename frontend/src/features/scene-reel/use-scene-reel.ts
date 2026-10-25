@@ -1,7 +1,7 @@
 import { Map as MapLibreMap } from "maplibre-gl"
 import { useEffect, useRef, useState } from "react"
 import { renderBasemap } from "@/shared/geo/basemap"
-import { lightMode, renderTerrain, type SunPosition } from "@/shared/geo/terrain"
+import { lightMode, renderTerrain, type SunPosition, scenePalette } from "@/shared/geo/terrain"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, useReducedMotion } from "@/shared/motion"
 import { type MapColors, useMapColors } from "@/shared/theme"
@@ -13,6 +13,7 @@ const ROAD_LAYERS = ["base-roads-casing", "base-roads"] as const
 const ROAD_MIN_ZOOM = 14
 const MAX_PIXEL_RATIO = 1.5
 const TOP_PADDING = 0.28
+const REVEAL_WAIT = 12
 
 const EMPTY_STYLE = {
   version: 8 as const,
@@ -72,10 +73,21 @@ function useReelMap() {
 function paintScene(map: MapLibreMap, colors: MapColors, sun: SunPosition) {
   if (!map.getLayer("canvas"))
     map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
-  const scene = tintForTime(colors, lightMode(sun.altitude))
+  const mode = lightMode(sun.altitude)
+  const scene = tintForTime(colors, mode)
   renderTerrain(map, scene, sun)
   renderBasemap(map, scene)
   for (const layer of ROAD_LAYERS) map.setLayerZoomRange(layer, ROAD_MIN_ZOOM, 24)
+  const { sky, horizon } = scenePalette(colors, mode)
+  map.setPaintProperty("canvas", "background-color", horizon)
+  map.setSky({
+    "sky-color": sky,
+    "horizon-color": horizon,
+    "fog-color": horizon,
+    "sky-horizon-blend": 0.6,
+    "horizon-fog-blend": 0.9,
+    "fog-ground-blend": 0.35,
+  })
 }
 
 export function useSceneReel() {
@@ -121,7 +133,7 @@ export function useSceneReel() {
         paintScene(map, palette.current, shot.sun)
         map.jumpTo(cameraOptions(shot.from))
         map.once("idle", reveal)
-        fallback = window.setTimeout(reveal, fade * 4)
+        fallback = window.setTimeout(reveal, fade * REVEAL_WAIT)
       },
       index === 0 && !map.isMoving() ? 0 : fade,
     )

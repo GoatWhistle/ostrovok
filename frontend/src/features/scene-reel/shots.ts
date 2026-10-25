@@ -36,10 +36,10 @@ const DAY = { azimuth: 200, altitude: 38 }
 const GOLDEN = { azimuth: 250, altitude: 9 }
 const DUSK = { azimuth: 285, altitude: 2 }
 
-const PITCH = 62
-const PITCH_DRIFT = 3
-const BEARING_DRIFT = 34
-const ZOOM_DRIFT = 0.4
+const PITCH = 58
+const PITCH_DRIFT = 2
+const BEARING_DRIFT = 14
+const ZOOM_DRIFT = 0.25
 const KM_PER_DEGREE = 111.32
 
 const PLACES: readonly Place[] = [
