@@ -4,6 +4,7 @@ import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from 
 export interface BuildingColors {
   readonly building: string
   readonly buildingLine: string
+  readonly buildingVolume: string
   readonly fact: string
   readonly factLine: string
 }
@@ -35,7 +36,7 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
     "case",
     HOTEL,
     colors.fact,
-    colors.building,
+    colors.buildingVolume,
   ])
   map.setPaintProperty("buildings-outline", "line-color", colors.factLine)
 }
@@ -63,7 +64,8 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
     source: "buildings",
     filter: ["all", POLYGON, [">", ["to-number", ["get", "height_m"], 0], 0]],
     paint: {
-      "fill-extrusion-color": ["case", HOTEL, colors.fact, colors.building],
+      "fill-extrusion-color": ["case", HOTEL, colors.fact, colors.buildingVolume],
+      "fill-extrusion-vertical-gradient": true,
       "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
       "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
       "fill-extrusion-opacity": 0.95,

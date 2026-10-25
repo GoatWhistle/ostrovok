@@ -11,7 +11,8 @@ import {
   renderBuildings,
   renderHighlights,
 } from "@/shared/geo/map-layers"
-import { renderTerrain, type SunPosition } from "@/shared/geo/terrain"
+import { lightMode, renderTerrain, type SunPosition } from "@/shared/geo/terrain"
+import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { useMapColors } from "@/shared/theme"
 import { useMapMarkers } from "./use-map-markers"
@@ -148,9 +149,10 @@ export function useHotelMap({
     if (!ready || !map) return
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
-    renderTerrain(map, colors, sun)
-    renderBasemap(map, colors)
-    renderBuildings(map, featureCollection(buildings), colors)
+    const scene = tintForTime(colors, lightMode(sun.altitude))
+    renderTerrain(map, scene, sun)
+    renderBasemap(map, scene)
+    renderBuildings(map, featureCollection(buildings), scene)
     const hasRoute = renderHighlights(map, highlightData, colors)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,

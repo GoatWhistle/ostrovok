@@ -21,12 +21,13 @@ export interface TerrainColors {
   readonly horizonNight: string
   readonly hillShadow: string
   readonly hillHighlight: string
+  readonly sunlight: string
 }
 
 export type LightMode = "day" | "dusk" | "night"
 
 const DEM_TILES = "/api/v1/map/terrain/{z}/{x}/{y}.png"
-const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 0.78, night: 0.4 }
+const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
 const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
 
 export function lightMode(altitude: number): LightMode {
@@ -113,7 +114,7 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   map.setLight({
     anchor: "map",
     position: [1.15, sun.azimuth, Math.max(5, Math.min(110, 90 - sun.altitude))],
-    color: mode === "dusk" ? colors.horizonDusk : colors.hillHighlight,
+    color: mode === "dusk" ? colors.horizonDusk : colors.sunlight,
     intensity: LIGHT_INTENSITY[mode],
   })
   map.setSky({

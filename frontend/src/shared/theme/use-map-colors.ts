@@ -8,6 +8,7 @@ const TOKENS = {
   water: "--map-water",
   building: "--map-building",
   buildingLine: "--map-building-line",
+  buildingVolume: "--map-building-volume",
   road: "--map-road",
   roadCasing: "--map-road-casing",
   coast: "--map-coast",
@@ -26,6 +27,7 @@ const TOKENS = {
   horizonNight: "--map-horizon-night",
   hillShadow: "--map-hill-shadow",
   hillHighlight: "--map-hill-highlight",
+  sunlight: "--map-sunlight",
 } as const
 
 export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }
