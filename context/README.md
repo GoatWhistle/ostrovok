@@ -16,7 +16,7 @@ P0 scenario: пользователь вводит «тихий номер с в
 
 | Topic | Status | Current fact | Evidence |
 |---|---|---|---|
-| Фронтенд | verified | Слева рекомендации и карточка, в центре карта, справа раздельные чаты с историей и новым поиском без старого контекста; 312 unit, целевой e2e и браузерная проверка 1440/375 px. Реальные API на стенде | [Решение](../docs/design-decisions.md), 2026-10-25 |
+| Фронтенд | verified | Слева рекомендации и карточка, в центре карта, справа раздельные чаты; 313 unit и браузерная проверка 1440/375 px. Карта принимает `footprint: null` для отелей без здания | [Доказательства](../docs/evidence.md), 2026-10-25 |
 | Контракт API | implemented | HTTP-контракт диалога и карточки в OpenAPI, типы фронтенда сгенерированы из него | [`docs/api/openapi.yaml`](../docs/api/openapi.yaml), 2026-10-25 |
 | Размещение кода | approved | Пакет `backend/src/hotel_agent`, слои `domain/application/adapters/interfaces` | [ADR 0002](../docs/adr/0002-layers-inside-backend.md), 2026-10-24 |
 | Хранилище | approved | PostgreSQL 16 + PostGIS 3.4, сырой SQL через psycopg 3, миграции dbmate (вместо SQLAlchemy+Alembic из промпта) | [ADR 0001](../docs/adr/0001-postgis-raw-sql.md), 2026-10-24 |
