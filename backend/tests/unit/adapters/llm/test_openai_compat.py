@@ -136,6 +136,41 @@ async def test_named_landmark_and_city_center_keep_separate_wishes(build: Build)
     assert parsed.unmatched_terms == ()
 
 
+async def test_negative_radius_and_sea_view_are_kept_distinct(build: Build) -> None:
+    query = "в Новосибирске без аэропорта в 10 км, но с видом на море"
+    llm = build(
+        {
+            "intents": [],
+            "nearby_objects": [
+                {
+                    "osm_key": "aeroway",
+                    "osm_value": "aerodrome",
+                    "open_24h": False,
+                    "avoid": True,
+                    "radius_m": 10000,
+                    "source_text": "без аэропорта в 10 км",
+                }
+            ],
+            "spatial_requests": [
+                {
+                    "kind": "sea_view",
+                    "target": None,
+                    "radius_m": 1500,
+                    "source_text": "с видом на море",
+                }
+            ],
+            "facility_requests": [],
+            "unmatched_terms": [],
+            "location_hint": "Новосибирск",
+        }
+    )
+
+    parsed = await llm.parse_query(query)
+
+    assert parsed.nearby_objects[0].avoid
+    assert parsed.spatial_requests[0].kind == "sea_view"
+
+
 async def test_room_request_keeps_only_explicit_stay_details(build: Build) -> None:
     llm = build(
         {

@@ -8,18 +8,19 @@ from hotel_agent.domain.query import Intent, NearbyObjectRequest
 
 
 def nearby_key(request: NearbyObjectRequest) -> str:
-    return (
+    base = (
         f"nearby:{request.osm_key}:{request.osm_value}:{int(request.open_24h)}:{request.radius_m}"
     )
+    return f"{base}:avoid" if request.avoid else base
 
 
 def nearby_intent(request: NearbyObjectRequest) -> Intent:
     return Intent(
         characteristic_key=nearby_key(request),
-        op=Op.GTE,
-        value=1.0,
+        op=Op.LTE if request.avoid else Op.GTE,
+        value=0.0 if request.avoid else 1.0,
         weight=1.0,
-        required=False,
+        required=request.required,
         source_text=request.source_text,
     )
 
@@ -38,7 +39,7 @@ def nearby_record(
         characteristic_key=key,
         value=len(ids),
         unit="count",
-        qualifiers={},
+        qualifiers={"estimated_absence": True} if request.avoid else {},
         source_type="computed",
         source_id=None,
         method="nearby_objects@1",
@@ -48,7 +49,10 @@ def nearby_record(
         status="active",
         geo_refs=tuple(f"g_poi_{item}" for item in ids),
         explanation=(
-            f"Объекты OpenStreetMap в радиусе {request.radius_m} м"
+            f"По неполным данным OpenStreetMap в радиусе {request.radius_m} м найдено "
+            f"{len(ids)} объектов; отсутствие не гарантировано."
+            if request.avoid
+            else f"Объекты OpenStreetMap в радиусе {request.radius_m} м"
             + (" с тегом opening_hours=24/7" if request.open_24h else "")
         ),
         facade_azimuth=None,

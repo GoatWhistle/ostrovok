@@ -1,0 +1,3774 @@
+{
+  "ran_at": "2026-10-25T17:54:08.307840+00:00",
+  "results": [
+    {
+      "number": 4,
+      "query": "Во Владивостоке хочу утром видеть море, а до ближайшего пляжа идти не дольше 7 минут",
+      "status": 200,
+      "response": {
+        "query_id": "2c6a68efa5421074",
+        "parsed": {
+          "intents": [
+            {
+              "characteristic_key": "distance_to_sea",
+              "op": "lte",
+              "value": 7.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "до ближайшего пляжа идти не дольше 7 минут"
+            },
+            {
+              "characteristic_key": "spatial:5de6747b51f1",
+              "op": "lte",
+              "value": 2000.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "утром видеть море"
+            }
+          ],
+          "unmatched_terms": [],
+          "location_hint": "Владивосток",
+          "normalized_query": "Во Владивостоке хочу утром видеть море, а до ближайшего пляжа идти не дольше 7 минут",
+          "corrections": [],
+          "needs_clarification": false,
+          "wants_room": false
+        },
+        "results": [
+          {
+            "hotel": {
+              "id": "n13952880401",
+              "name": "Cape River 7",
+              "address": "Девятый вал 7, ст.2",
+              "location": [
+                131.8177201,
+                43.3015497
+              ]
+            },
+            "score": 0.2,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 7 м",
+                "explanation": "До ближайшей известной береговой линии 7 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n13952880401_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 7.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 7 м",
+                  "confidence": 0.7990597506728289,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.817685_43.301492"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.817685_43.301492"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.8177201,
+                43.3015497
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            }
+          },
+          {
+            "hotel": {
+              "id": "n11083645249",
+              "name": "Vladhome24",
+              "location": [
+                131.9227767,
+                43.2039363
+              ],
+              "building_id": "w462225995"
+            },
+            "score": 0.199,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 15 м",
+                "explanation": "До ближайшей известной береговой линии 15 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n11083645249_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 15.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 15 м",
+                  "confidence": 0.797958601522307,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.922747_43.204072"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.922747_43.204072"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.9227767,
+                43.2039363
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w462225995",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.9226467,
+                        43.2039499
+                      ],
+                      [
+                        131.9227128,
+                        43.2039741
+                      ],
+                      [
+                        131.9227194,
+                        43.2039646
+                      ],
+                      [
+                        131.9227786,
+                        43.2039864
+                      ],
+                      [
+                        131.9228317,
+                        43.2039097
+                      ],
+                      [
+                        131.9227744,
+                        43.2038887
+                      ],
+                      [
+                        131.9227848,
+                        43.2038735
+                      ],
+                      [
+                        131.9227168,
+                        43.2038486
+                      ],
+                      [
+                        131.9226467,
+                        43.2039499
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w462225995",
+                "hotel_id": "n11083645249",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n11083645249"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n13137937842",
+              "name": "Восточный берег",
+              "location": [
+                131.8758452,
+                43.1162174
+              ],
+              "building_id": "w553186264"
+            },
+            "score": 0.199,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 29 м",
+                "explanation": "До ближайшей известной береговой линии 29 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n13137937842_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 29.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 29 м",
+                  "confidence": 0.7961014159700782,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.875660_43.116443"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.875660_43.116443"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.8758452,
+                43.1162174
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w553186264",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.8759898,
+                        43.1162292
+                      ],
+                      [
+                        131.8756283,
+                        43.1158989
+                      ],
+                      [
+                        131.875511,
+                        43.1159673
+                      ],
+                      [
+                        131.8758726,
+                        43.1162976
+                      ],
+                      [
+                        131.8759898,
+                        43.1162292
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w553186264",
+                "hotel_id": "n13137937842",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n13137937842"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n11958491797",
+              "name": "Rodina Vladivostok",
+              "location": [
+                131.870392,
+                43.113634
+              ],
+              "building_id": "w469002399"
+            },
+            "score": 0.198,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 55 м",
+                "explanation": "До ближайшей известной береговой линии 55 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n11958491797_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 55.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 55 м",
+                  "confidence": 0.7927027995782426,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.870084_43.114072"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.870084_43.114072"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.870392,
+                43.113634
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w469002399",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.8702211,
+                        43.11384
+                      ],
+                      [
+                        131.870247,
+                        43.113864
+                      ],
+                      [
+                        131.8703748,
+                        43.1139295
+                      ],
+                      [
+                        131.8704052,
+                        43.1139345
+                      ],
+                      [
+                        131.8704441,
+                        43.1139266
+                      ],
+                      [
+                        131.8705694,
+                        43.1138739
+                      ],
+                      [
+                        131.8705863,
+                        43.1138601
+                      ],
+                      [
+                        131.8705923,
+                        43.1138429
+                      ],
+                      [
+                        131.8706042,
+                        43.1137503
+                      ],
+                      [
+                        131.8706091,
+                        43.1135826
+                      ],
+                      [
+                        131.8710756,
+                        43.1133146
+                      ],
+                      [
+                        131.8710188,
+                        43.1131963
+                      ],
+                      [
+                        131.8709611,
+                        43.1131589
+                      ],
+                      [
+                        131.8709175,
+                        43.1131454
+                      ],
+                      [
+                        131.8708733,
+                        43.1131464
+                      ],
+                      [
+                        131.8707413,
+                        43.1132042
+                      ],
+                      [
+                        131.8706562,
+                        43.1132438
+                      ],
+                      [
+                        131.8703631,
+                        43.1133766
+                      ],
+                      [
+                        131.8703194,
+                        43.1133999
+                      ],
+                      [
+                        131.8702926,
+                        43.1134254
+                      ],
+                      [
+                        131.8702788,
+                        43.1134583
+                      ],
+                      [
+                        131.8702108,
+                        43.1138062
+                      ],
+                      [
+                        131.8702211,
+                        43.11384
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w469002399",
+                "hotel_id": "n11958491797",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n11958491797"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n11961568777",
+              "name": "Парис",
+              "location": [
+                131.9340155,
+                43.0742601
+              ],
+              "building_id": "w510393362"
+            },
+            "score": 0.198,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 67 м",
+                "explanation": "До ближайшей известной береговой линии 67 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n11961568777_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 67.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 67 м",
+                  "confidence": 0.791124826700204,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.933446_43.073830"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.933446_43.073830"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.9340155,
+                43.0742601
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w510393362",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.9338033,
+                        43.0740967
+                      ],
+                      [
+                        131.9339221,
+                        43.0741768
+                      ],
+                      [
+                        131.9339229,
+                        43.0742422
+                      ],
+                      [
+                        131.9338526,
+                        43.0742927
+                      ],
+                      [
+                        131.9338491,
+                        43.0743224
+                      ],
+                      [
+                        131.9338657,
+                        43.0743411
+                      ],
+                      [
+                        131.9338943,
+                        43.0743514
+                      ],
+                      [
+                        131.9339346,
+                        43.0743485
+                      ],
+                      [
+                        131.9341632,
+                        43.074223
+                      ],
+                      [
+                        131.9338719,
+                        43.0740407
+                      ],
+                      [
+                        131.9338033,
+                        43.0740967
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w510393362",
+                "hotel_id": "n11961568777",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n11961568777"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n7080556685",
+              "name": "Русалочка",
+              "location": [
+                131.9041758,
+                43.0799629
+              ],
+              "building_id": "w106481542"
+            },
+            "score": 0.197,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 81 м",
+                "explanation": "До ближайшей известной береговой линии 81 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n7080556685_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 81.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 81 м",
+                  "confidence": 0.7892415308729392,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.904193_43.079237"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.904193_43.079237"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.9041758,
+                43.0799629
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w106481542",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.9043041,
+                        43.0801006
+                      ],
+                      [
+                        131.904376,
+                        43.0799969
+                      ],
+                      [
+                        131.9043171,
+                        43.0799751
+                      ],
+                      [
+                        131.9040893,
+                        43.079891
+                      ],
+                      [
+                        131.904112,
+                        43.0798583
+                      ],
+                      [
+                        131.90403,
+                        43.079828
+                      ],
+                      [
+                        131.9040469,
+                        43.0798036
+                      ],
+                      [
+                        131.9039397,
+                        43.079764
+                      ],
+                      [
+                        131.9039,
+                        43.0798213
+                      ],
+                      [
+                        131.9040057,
+                        43.0798603
+                      ],
+                      [
+                        131.9039636,
+                        43.0799212
+                      ],
+                      [
+                        131.9040151,
+                        43.0799402
+                      ],
+                      [
+                        131.9039855,
+                        43.0799829
+                      ],
+                      [
+                        131.9043041,
+                        43.0801006
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w106481542",
+                "hotel_id": "n7080556685",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n7080556685"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n4217020506",
+              "name": "База отдыха \"Песчаная\"",
+              "location": [
+                131.7751305,
+                43.1807522
+              ],
+              "building_id": "w461996241"
+            },
+            "score": 0.197,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 96 м",
+                "explanation": "До ближайшей известной береговой линии 96 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n4217020506_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 96.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 96 м",
+                  "confidence": 0.7871860501644048,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.775798_43.181467"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.775798_43.181467"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.7751305,
+                43.1807522
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w461996241",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.7752296,
+                        43.1813511
+                      ],
+                      [
+                        131.7753693,
+                        43.1813608
+                      ],
+                      [
+                        131.7754279,
+                        43.1809146
+                      ],
+                      [
+                        131.7752882,
+                        43.1809048
+                      ],
+                      [
+                        131.7752296,
+                        43.1813511
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w461996241",
+                "hotel_id": "n4217020506",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n4217020506"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w105257195",
+              "name": "Гостиница ПК ИРО",
+              "address": "улица Станюковича 28А",
+              "location": [
+                131.8735057,
+                43.1071279
+              ],
+              "building_id": "w105257195"
+            },
+            "score": 0.197,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 103 м",
+                "explanation": "До ближайшей известной береговой линии 103 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w105257195_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 103.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 103 м",
+                  "confidence": 0.7862859068140078,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.872376_43.107547"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.872376_43.107547"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.8735057,
+                43.1071279
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w105257195",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.8732127,
+                        43.1068836
+                      ],
+                      [
+                        131.873196,
+                        43.106899
+                      ],
+                      [
+                        131.8731251,
+                        43.1069644
+                      ],
+                      [
+                        131.8732669,
+                        43.1070463
+                      ],
+                      [
+                        131.8734876,
+                        43.1071738
+                      ],
+                      [
+                        131.8738115,
+                        43.1073609
+                      ],
+                      [
+                        131.8738303,
+                        43.1073436
+                      ],
+                      [
+                        131.8738723,
+                        43.1073048
+                      ],
+                      [
+                        131.8738991,
+                        43.1072801
+                      ],
+                      [
+                        131.8737358,
+                        43.1071858
+                      ],
+                      [
+                        131.8732127,
+                        43.1068836
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w105257195",
+                "hotel_id": "w105257195",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w105257195"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w107943102",
+              "name": "Amur Bay",
+              "location": [
+                131.8726046,
+                43.1123908
+              ],
+              "building_id": "w601910960"
+            },
+            "score": 0.196,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 112 м",
+                "explanation": "До ближайшей известной береговой линии 112 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w107943102_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 112.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 112 м",
+                  "confidence": 0.7850118312486353,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.871864_43.113245"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.871864_43.113245"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.8726046,
+                43.1123908
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w601910960",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.8728907,
+                        43.1123047
+                      ],
+                      [
+                        131.8728569,
+                        43.112351
+                      ],
+                      [
+                        131.872963,
+                        43.1123924
+                      ],
+                      [
+                        131.8729969,
+                        43.1123462
+                      ],
+                      [
+                        131.8728907,
+                        43.1123047
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w601910960",
+                "hotel_id": "w107943102",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w107943102"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n13141841799",
+              "name": "Kinney",
+              "location": [
+                131.9011595,
+                43.1140539
+              ],
+              "building_id": "w107179332"
+            },
+            "score": 0.196,
+            "matched": [
+              {
+                "characteristic_key": "distance_to_sea",
+                "match": "unknown",
+                "label": "Пешком до моря",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:5de6747b51f1",
+                "match": "partial",
+                "label": "утром видеть море: 116 м",
+                "explanation": "До ближайшей известной береговой линии 116 м по прямой. Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n13141841799_5de6747b51f1",
+                  "characteristic_key": "spatial:5de6747b51f1",
+                  "value": 116.0,
+                  "unit": "м",
+                  "label": "утром видеть море: 116 м",
+                  "confidence": 0.7845346912305795,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_131.901300_43.113016"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_131.901300_43.113016"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                131.9011595,
+                43.1140539
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w107179332",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        131.9011225,
+                        43.1140255
+                      ],
+                      [
+                        131.9011642,
+                        43.1140041
+                      ],
+                      [
+                        131.9012441,
+                        43.1139992
+                      ],
+                      [
+                        131.901332,
+                        43.1140184
+                      ],
+                      [
+                        131.9014077,
+                        43.1140441
+                      ],
+                      [
+                        131.9014333,
+                        43.1140862
+                      ],
+                      [
+                        131.9014271,
+                        43.1141226
+                      ],
+                      [
+                        131.9013873,
+                        43.1141382
+                      ],
+                      [
+                        131.9013178,
+                        43.1141425
+                      ],
+                      [
+                        131.9012388,
+                        43.1141341
+                      ],
+                      [
+                        131.9011769,
+                        43.1141151
+                      ],
+                      [
+                        131.9011326,
+                        43.1140913
+                      ],
+                      [
+                        131.9011142,
+                        43.1140659
+                      ],
+                      [
+                        131.9011225,
+                        43.1140255
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w107179332",
+                "hotel_id": "n13141841799",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n13141841799"
+              }
+            }
+          }
+        ],
+        "viewport": {
+          "bbox": [
+            131.7751305,
+            43.0742601,
+            131.9340155,
+            43.3015497
+          ],
+          "camera": {
+            "center": [
+              131.8177201,
+              43.3015497
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          }
+        },
+        "pending": [],
+        "took_ms": 8633
+      },
+      "elapsed_s": 8.65
+    },
+    {
+      "number": 7,
+      "query": "В Нижнем Новгороде рядом с Кремлём, балкон на запад, красивый закат и тихо",
+      "status": 200,
+      "response": {
+        "query_id": "8bcd050731cbcafd",
+        "parsed": {
+          "intents": [
+            {
+              "characteristic_key": "sunset_view",
+              "op": "eq",
+              "value": true,
+              "weight": 0.7,
+              "required": false,
+              "source_text": "на запад"
+            },
+            {
+              "characteristic_key": "noise_level",
+              "op": "lte",
+              "value": 3.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "тихо"
+            },
+            {
+              "characteristic_key": "facility:1c0c90d1f4b6",
+              "op": "eq",
+              "value": true,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "балкон на запад"
+            },
+            {
+              "characteristic_key": "spatial:7b99588f3344",
+              "op": "lte",
+              "value": 500.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "рядом с Кремлём"
+            }
+          ],
+          "unmatched_terms": [],
+          "location_hint": "Нижний Новгород",
+          "normalized_query": "В Нижнем Новгороде рядом с Кремлём, балкон на запад, красивый закат и тихо",
+          "corrections": [],
+          "needs_clarification": false,
+          "wants_room": false
+        },
+        "results": [
+          {
+            "hotel": {
+              "id": "n1806471981",
+              "name": "Ирис",
+              "location": [
+                43.9996586,
+                56.3304989
+              ]
+            },
+            "score": 0.177,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 270 м",
+                "explanation": "До ориентира «Нижегородский кремль» 270 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n1806471981_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 270.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 270 м",
+                  "confidence": 0.6560681081211994,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                43.9996586,
+                56.3304989
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            }
+          },
+          {
+            "hotel": {
+              "id": "n12176628301",
+              "name": "515",
+              "location": [
+                43.9984104,
+                56.3300976
+              ],
+              "building_id": "w1301920030"
+            },
+            "score": 0.175,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 287 м",
+                "explanation": "До ориентира «Нижегородский кремль» 287 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n12176628301_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 287.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 287 м",
+                  "confidence": 0.6469807605561255,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                43.9984104,
+                56.3300976
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w1301920030",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        43.9981229,
+                        56.3302392
+                      ],
+                      [
+                        43.9981661,
+                        56.330165
+                      ],
+                      [
+                        43.9986328,
+                        56.3302264
+                      ],
+                      [
+                        43.9985958,
+                        56.3303109
+                      ],
+                      [
+                        43.9981229,
+                        56.3302392
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w1301920030",
+                "hotel_id": "n12176628301",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n12176628301"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n6981267335",
+              "name": "Серебряный Ключ",
+              "address": "Рыбный переулок 8",
+              "location": [
+                43.9986611,
+                56.330532
+              ],
+              "building_id": "w1301920030"
+            },
+            "score": 0.172,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 310 м",
+                "explanation": "До ориентира «Нижегородский кремль» 310 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n6981267335_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 310.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 310 м",
+                  "confidence": 0.6348442000408896,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                43.9986611,
+                56.330532
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w1301920030",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        43.9981229,
+                        56.3302392
+                      ],
+                      [
+                        43.9981661,
+                        56.330165
+                      ],
+                      [
+                        43.9986328,
+                        56.3302264
+                      ],
+                      [
+                        43.9985958,
+                        56.3303109
+                      ],
+                      [
+                        43.9981229,
+                        56.3302392
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w1301920030",
+                "hotel_id": "n6981267335",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n6981267335"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n1723333257",
+              "name": "Горький Хостел",
+              "address": "Большая Покровская улица 5/6",
+              "location": [
+                44.0035415,
+                56.3254306
+              ]
+            },
+            "score": 0.166,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 348 м",
+                "explanation": "До ориентира «Нижегородский кремль» 348 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n1723333257_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 348.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 348 м",
+                  "confidence": 0.6142472061342471,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                44.0035415,
+                56.3254306
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            }
+          },
+          {
+            "hotel": {
+              "id": "w108772413",
+              "name": "Домино",
+              "address": "улица Почаинский Овраг 2",
+              "location": [
+                43.9959917,
+                56.3273526
+              ],
+              "building_id": "w108772413"
+            },
+            "score": 0.16,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 388 м",
+                "explanation": "До ориентира «Нижегородский кремль» 388 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_w108772413_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 388.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 388 м",
+                  "confidence": 0.5928783129817248,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                43.9959917,
+                56.3273526
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w108772413",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        43.9960408,
+                        56.327254
+                      ],
+                      [
+                        43.9961481,
+                        56.3272832
+                      ],
+                      [
+                        43.9959922,
+                        56.3274595
+                      ],
+                      [
+                        43.9958849,
+                        56.3274303
+                      ],
+                      [
+                        43.9959612,
+                        56.327344
+                      ],
+                      [
+                        43.9960297,
+                        56.3272666
+                      ],
+                      [
+                        43.9960408,
+                        56.327254
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w108772413",
+                "hotel_id": "w108772413",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w108772413"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n3302933084",
+              "name": "Smile Hostel",
+              "location": [
+                44.0034426,
+                56.3247874
+              ],
+              "building_id": "w907262476"
+            },
+            "score": 0.156,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 416 м",
+                "explanation": "До ориентира «Нижегородский кремль» 416 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n3302933084_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 416.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 416 м",
+                  "confidence": 0.5780715421042413,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                44.0034426,
+                56.3247874
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w907262476",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        44.0035338,
+                        56.3245849
+                      ],
+                      [
+                        44.0034667,
+                        56.3243978
+                      ],
+                      [
+                        44.0036943,
+                        56.3243727
+                      ],
+                      [
+                        44.0037614,
+                        56.3245598
+                      ],
+                      [
+                        44.0035338,
+                        56.3245849
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w907262476",
+                "hotel_id": "n3302933084",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n3302933084"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n5310405189",
+              "name": "Sheraton Nizhny Novgorod Kremlin",
+              "address": "Театральная площадь 1",
+              "location": [
+                44.0019088,
+                56.3246444
+              ],
+              "stars": 5
+            },
+            "score": 0.155,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 422 м",
+                "explanation": "До ориентира «Нижегородский кремль» 422 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n5310405189_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 422.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 422 м",
+                  "confidence": 0.5748707978670772,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                44.0019088,
+                56.3246444
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            }
+          },
+          {
+            "hotel": {
+              "id": "r4238216",
+              "name": "Никола Хаус",
+              "address": "улица Пожарского 18",
+              "location": [
+                44.0002839,
+                56.3245003
+              ],
+              "building_id": "w55910209"
+            },
+            "score": 0.151,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 450 м",
+                "explanation": "До ориентира «Нижегородский кремль» 450 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_r4238216_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 450.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 450 м",
+                  "confidence": 0.5597913141110613,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                44.0002839,
+                56.3245003
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w55910209",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        43.999809,
+                        56.324451
+                      ],
+                      [
+                        43.9998296,
+                        56.324484
+                      ],
+                      [
+                        43.9998589,
+                        56.3245308
+                      ],
+                      [
+                        43.999695,
+                        56.3245839
+                      ],
+                      [
+                        43.9995733,
+                        56.3245878
+                      ],
+                      [
+                        43.9995787,
+                        56.3245551
+                      ],
+                      [
+                        43.999605,
+                        56.3245291
+                      ],
+                      [
+                        43.9996459,
+                        56.3245054
+                      ],
+                      [
+                        43.999809,
+                        56.324451
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w55910209",
+                "hotel_id": "r4238216",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_r4238216"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n10766120705",
+              "name": "Багет",
+              "location": [
+                43.9946575,
+                56.3287342
+              ],
+              "building_id": "w147054096"
+            },
+            "score": 0.151,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 452 м",
+                "explanation": "До ориентира «Нижегородский кремль» 452 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n10766120705_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 452.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 452 м",
+                  "confidence": 0.558686367036491,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                43.9946575,
+                56.3287342
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w147054096",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        43.9945206,
+                        56.3287487
+                      ],
+                      [
+                        43.9946245,
+                        56.3287782
+                      ],
+                      [
+                        43.994727,
+                        56.3288072
+                      ],
+                      [
+                        43.9948154,
+                        56.3287112
+                      ],
+                      [
+                        43.9946396,
+                        56.3286197
+                      ],
+                      [
+                        43.9945206,
+                        56.3287487
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w147054096",
+                "hotel_id": "n10766120705",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n10766120705"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n12737618501",
+              "name": "bobo st.art.hotel",
+              "address": "Большая Покровская улица 6 литА",
+              "location": [
+                44.0037048,
+                56.3244761
+              ],
+              "building_id": "w907262476"
+            },
+            "score": 0.151,
+            "matched": [
+              {
+                "characteristic_key": "sunset_view",
+                "match": "unknown",
+                "label": "Вид на закат",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "noise_level",
+                "match": "unknown",
+                "label": "Шум со стороны фасада",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "facility:1c0c90d1f4b6",
+                "match": "unknown",
+                "label": "балкон на запад",
+                "explanation": "Нет подтверждённого факта",
+                "geo_refs": []
+              },
+              {
+                "characteristic_key": "spatial:7b99588f3344",
+                "match": "full",
+                "label": "рядом с Кремлём: 453 м",
+                "explanation": "До ориентира «Нижегородский кремль» 453 м по прямой.",
+                "fact": {
+                  "fact_id": "f_spatial_n12737618501_7b99588f3344",
+                  "characteristic_key": "spatial:7b99588f3344",
+                  "value": 453.0,
+                  "unit": "м",
+                  "label": "рядом с Кремлём: 453 м",
+                  "confidence": 0.5581387425028265,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_r2906502"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_r2906502"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                44.0037048,
+                56.3244761
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w907262476",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        44.0035338,
+                        56.3245849
+                      ],
+                      [
+                        44.0034667,
+                        56.3243978
+                      ],
+                      [
+                        44.0036943,
+                        56.3243727
+                      ],
+                      [
+                        44.0037614,
+                        56.3245598
+                      ],
+                      [
+                        44.0035338,
+                        56.3245849
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w907262476",
+                "hotel_id": "n12737618501",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n12737618501"
+              }
+            }
+          }
+        ],
+        "viewport": {
+          "bbox": [
+            43.9946575,
+            56.3244761,
+            44.0037048,
+            56.330532
+          ],
+          "camera": {
+            "center": [
+              43.9996586,
+              56.3304989
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          }
+        },
+        "pending": [],
+        "took_ms": 27022
+      },
+      "elapsed_s": 27.03
+    },
+    {
+      "number": 10,
+      "query": "В Ижевске в самом центре, вид на монумент Дружбы народов, но не ближе 2 км к нему",
+      "status": 200,
+      "response": {
+        "query_id": "f62f3bd99b784b89",
+        "parsed": {
+          "intents": [
+            {
+              "characteristic_key": "spatial:9b064a6b8b6d",
+              "op": "lte",
+              "value": 1500.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "в самом центре"
+            },
+            {
+              "characteristic_key": "spatial:52d361940835",
+              "op": "lte",
+              "value": 5000.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "вид на монумент Дружбы народов"
+            },
+            {
+              "characteristic_key": "spatial:3b14a4d7a08b",
+              "op": "gte",
+              "value": 2000.0,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "не ближе 2 км к нему"
+            }
+          ],
+          "unmatched_terms": [],
+          "location_hint": "Ижевск",
+          "normalized_query": "В Ижевске в самом центре, вид на монумент Дружбы народов, но не ближе 2 км к нему",
+          "corrections": [],
+          "needs_clarification": false,
+          "wants_room": false
+        },
+        "results": [
+          {
+            "hotel": {
+              "id": "n12173542996",
+              "name": "Дерябин",
+              "location": [
+                53.2365526,
+                56.8501787
+              ],
+              "building_id": "w389571923"
+            },
+            "score": 0.363,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1432 м",
+                "explanation": "До приблизительного центра города 1432 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_n12173542996_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1432.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1432 м",
+                  "confidence": 0.5454623602988747,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2405 м",
+                "explanation": "До ориентира «Навеки с Россией» 2405 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n12173542996_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2405.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2405 м",
+                  "confidence": 0.6717230838020662,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2405 м",
+                "explanation": "До ориентира «Навеки с Россией» 2405 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_n12173542996_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2405.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2405 м",
+                  "confidence": 0.47930770950516577,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2365526,
+                56.8501787
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w389571923",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2367484,
+                        56.8504648
+                      ],
+                      [
+                        53.2368642,
+                        56.8504604
+                      ],
+                      [
+                        53.2369934,
+                        56.8504546
+                      ],
+                      [
+                        53.2369594,
+                        56.8502124
+                      ],
+                      [
+                        53.2369784,
+                        56.8502116
+                      ],
+                      [
+                        53.2369737,
+                        56.8501775
+                      ],
+                      [
+                        53.2367753,
+                        56.8501859
+                      ],
+                      [
+                        53.2367395,
+                        56.8501874
+                      ],
+                      [
+                        53.2367322,
+                        56.8501347
+                      ],
+                      [
+                        53.2367482,
+                        56.850134
+                      ],
+                      [
+                        53.2367266,
+                        56.8499805
+                      ],
+                      [
+                        53.2364905,
+                        56.8499904
+                      ],
+                      [
+                        53.236498,
+                        56.8500434
+                      ],
+                      [
+                        53.2365154,
+                        56.8500426
+                      ],
+                      [
+                        53.2365395,
+                        56.8502101
+                      ],
+                      [
+                        53.2364951,
+                        56.8502122
+                      ],
+                      [
+                        53.2365039,
+                        56.8502678
+                      ],
+                      [
+                        53.2366257,
+                        56.850262
+                      ],
+                      [
+                        53.2367516,
+                        56.8502574
+                      ],
+                      [
+                        53.2367577,
+                        56.8503007
+                      ],
+                      [
+                        53.2367255,
+                        56.850302
+                      ],
+                      [
+                        53.2367382,
+                        56.8503926
+                      ],
+                      [
+                        53.2367484,
+                        56.8504648
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w389571923",
+                "hotel_id": "n12173542996",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n12173542996"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w60268279",
+              "name": "Номер-ок",
+              "address": "улица Ленина 94А",
+              "location": [
+                53.239843,
+                56.8458181
+              ],
+              "building_id": "w60268279"
+            },
+            "score": 0.341,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1657 м",
+                "explanation": "До приблизительного центра города 1657 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w60268279_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1657.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1657 м",
+                  "confidence": 0.5053791065246505,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2690 м",
+                "explanation": "До ориентира «Навеки с Россией» 2690 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w60268279_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2690.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2690 м",
+                  "confidence": 0.6565407375084966,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2690 м",
+                "explanation": "До ориентира «Навеки с Россией» 2690 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w60268279_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2690.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2690 м",
+                  "confidence": 0.4413518437712416,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.239843,
+                56.8458181
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w60268279",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2397089,
+                        56.8458498
+                      ],
+                      [
+                        53.2397366,
+                        56.8457461
+                      ],
+                      [
+                        53.2400441,
+                        56.8457707
+                      ],
+                      [
+                        53.2400164,
+                        56.8458743
+                      ],
+                      [
+                        53.2397089,
+                        56.8458498
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w60268279",
+                "hotel_id": "w60268279",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w60268279"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w623150726",
+              "name": "Достоевский",
+              "location": [
+                53.2324342,
+                56.8375409
+              ],
+              "building_id": "w623150726"
+            },
+            "score": 0.339,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1716 м",
+                "explanation": "До приблизительного центра города 1716 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w623150726_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1716.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1716 м",
+                  "confidence": 0.49495432606020195,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2693 м",
+                "explanation": "До ориентира «Навеки с Россией» 2693 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w623150726_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2693.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2693 м",
+                  "confidence": 0.6563831184485636,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2693 м",
+                "explanation": "До ориентира «Навеки с Россией» 2693 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w623150726_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2693.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2693 м",
+                  "confidence": 0.4409577961214088,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2324342,
+                56.8375409
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w623150726",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2323045,
+                        56.8375714
+                      ],
+                      [
+                        53.232593,
+                        56.8376005
+                      ],
+                      [
+                        53.2326285,
+                        56.8374952
+                      ],
+                      [
+                        53.2323407,
+                        56.8374658
+                      ],
+                      [
+                        53.2323045,
+                        56.8375714
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w623150726",
+                "hotel_id": "w623150726",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w623150726"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w406179611",
+              "name": "Astory Soul",
+              "address": "Пушкинская улица 55",
+              "location": [
+                53.217787,
+                56.8315776
+              ],
+              "building_id": "w406179611"
+            },
+            "score": 0.337,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1936 м",
+                "explanation": "До приблизительного центра города 1936 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w406179611_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1936.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1936 м",
+                  "confidence": 0.4558501166360611,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2612 м",
+                "explanation": "До ориентира «Навеки с Россией» 2612 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w406179611_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2612.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2612 м",
+                  "confidence": 0.6606882310677114,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2612 м",
+                "explanation": "До ориентира «Навеки с Россией» 2612 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w406179611_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2612.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2612 м",
+                  "confidence": 0.4517205776692783,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.217787,
+                56.8315776
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w406179611",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2175447,
+                        56.8316207
+                      ],
+                      [
+                        53.2181429,
+                        56.8316319
+                      ],
+                      [
+                        53.2181504,
+                        56.8315131
+                      ],
+                      [
+                        53.2175522,
+                        56.8315018
+                      ],
+                      [
+                        53.2175447,
+                        56.8316207
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w406179611",
+                "hotel_id": "w406179611",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w406179611"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w400095373",
+              "name": "сауна Astory",
+              "address": "Пушкинская улица 53",
+              "location": [
+                53.2179083,
+                56.8312762
+              ],
+              "building_id": "w400095373"
+            },
+            "score": 0.334,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1970 м",
+                "explanation": "До приблизительного центра города 1970 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w400095373_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1970.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1970 м",
+                  "confidence": 0.44976412324021364,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2645 м",
+                "explanation": "До ориентира «Навеки с Россией» 2645 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w400095373_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2645.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2645 м",
+                  "confidence": 0.6589303373853153,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2645 м",
+                "explanation": "До ориентира «Навеки с Россией» 2645 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w400095373_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2645.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2645 м",
+                  "confidence": 0.44732584346328824,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2179083,
+                56.8312762
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w400095373",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2179077,
+                        56.8313475
+                      ],
+                      [
+                        53.2179206,
+                        56.8312216
+                      ],
+                      [
+                        53.2179015,
+                        56.831221
+                      ],
+                      [
+                        53.2178982,
+                        56.831253
+                      ],
+                      [
+                        53.2176278,
+                        56.8312446
+                      ],
+                      [
+                        53.2176365,
+                        56.8311604
+                      ],
+                      [
+                        53.2178888,
+                        56.8311682
+                      ],
+                      [
+                        53.2178851,
+                        56.8312035
+                      ],
+                      [
+                        53.2179424,
+                        56.8312133
+                      ],
+                      [
+                        53.2182605,
+                        56.8312231
+                      ],
+                      [
+                        53.2182474,
+                        56.8313507
+                      ],
+                      [
+                        53.218149,
+                        56.8313477
+                      ],
+                      [
+                        53.2181391,
+                        56.8314443
+                      ],
+                      [
+                        53.2177457,
+                        56.8314322
+                      ],
+                      [
+                        53.2177548,
+                        56.8313428
+                      ],
+                      [
+                        53.2179077,
+                        56.8313475
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w400095373",
+                "hotel_id": "w400095373",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w400095373"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w105022964",
+              "name": "Арена",
+              "address": "Красноармейская улица 136",
+              "location": [
+                53.2112186,
+                56.8415079
+              ],
+              "building_id": "w105022964"
+            },
+            "score": 0.33,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 819 м",
+                "explanation": "До приблизительного центра города 819 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w105022964_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 819.0,
+                  "unit": "м",
+                  "label": "в самом центре: 819 м",
+                  "confidence": 0.6543472547790546,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 1463 м",
+                "explanation": "До ориентира «Навеки с Россией» 1463 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w105022964_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 1463.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 1463 м",
+                  "confidence": 0.7219887432940933,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "partial",
+                "label": "не ближе 2 км к нему: 1463 м",
+                "explanation": "До ориентира «Навеки с Россией» 1463 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w105022964_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 1463.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 1463 м",
+                  "confidence": 0.6049718582352331,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2112186,
+                56.8415079
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w105022964",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2111156,
+                        56.8416602
+                      ],
+                      [
+                        53.2113701,
+                        56.8416645
+                      ],
+                      [
+                        53.2115468,
+                        56.8415704
+                      ],
+                      [
+                        53.2115588,
+                        56.8414509
+                      ],
+                      [
+                        53.2113768,
+                        56.8413401
+                      ],
+                      [
+                        53.2111371,
+                        56.8413325
+                      ],
+                      [
+                        53.2109605,
+                        56.8414287
+                      ],
+                      [
+                        53.2109509,
+                        56.8415617
+                      ],
+                      [
+                        53.2111156,
+                        56.8416602
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w105022964",
+                "hotel_id": "w105022964",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w105022964"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n13115381929",
+              "name": "Март",
+              "location": [
+                53.2394033,
+                56.8602187
+              ],
+              "building_id": "w406397198"
+            },
+            "score": 0.328,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 2040 м",
+                "explanation": "До приблизительного центра города 2040 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_n13115381929_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 2040.0,
+                  "unit": "м",
+                  "label": "в самом центре: 2040 м",
+                  "confidence": 0.43734445320223614,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2719 м",
+                "explanation": "До ориентира «Навеки с Россией» 2719 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n13115381929_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2719.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2719 м",
+                  "confidence": 0.6549970790774211,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2719 м",
+                "explanation": "До ориентира «Навеки с Россией» 2719 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_n13115381929_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2719.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2719 м",
+                  "confidence": 0.4374926976935527,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2394033,
+                56.8602187
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w406397198",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2392669,
+                        56.8601485
+                      ],
+                      [
+                        53.2394704,
+                        56.8602912
+                      ],
+                      [
+                        53.2396649,
+                        56.8602082
+                      ],
+                      [
+                        53.2394614,
+                        56.8600656
+                      ],
+                      [
+                        53.2392669,
+                        56.8601485
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w406397198",
+                "hotel_id": "n13115381929",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n13115381929"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w1152220945",
+              "name": "Лесные посиделки",
+              "address": "улица Ленина 98Г",
+              "location": [
+                53.2431141,
+                56.8457311
+              ],
+              "building_id": "w1152220945"
+            },
+            "score": 0.325,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1854 м",
+                "explanation": "До приблизительного центра города 1854 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w1152220945_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1854.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1854 м",
+                  "confidence": 0.4703433543636045,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2885 м",
+                "explanation": "До ориентира «Навеки с Россией» 2885 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w1152220945_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2885.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2885 м",
+                  "confidence": 0.6461533544706045,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2885 м",
+                "explanation": "До ориентира «Навеки с Россией» 2885 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w1152220945_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2885.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2885 м",
+                  "confidence": 0.4153833861765113,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2431141,
+                56.8457311
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w1152220945",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2430597,
+                        56.8457574
+                      ],
+                      [
+                        53.243183,
+                        56.8457639
+                      ],
+                      [
+                        53.2431956,
+                        56.8456916
+                      ],
+                      [
+                        53.2430724,
+                        56.8456851
+                      ],
+                      [
+                        53.2430597,
+                        56.8457574
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w1152220945",
+                "hotel_id": "w1152220945",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w1152220945"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "w147859019",
+              "name": "ИжОтель",
+              "address": "Фронтовая улица 2",
+              "location": [
+                53.2449678,
+                56.8492138
+              ],
+              "building_id": "w147859019"
+            },
+            "score": 0.32,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 1936 м",
+                "explanation": "До приблизительного центра города 1936 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_w147859019_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 1936.0,
+                  "unit": "м",
+                  "label": "в самом центре: 1936 м",
+                  "confidence": 0.4558552676782333,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 2925 м",
+                "explanation": "До ориентира «Навеки с Россией» 2925 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_w147859019_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 2925.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 2925 м",
+                  "confidence": 0.6439868806284602,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "full",
+                "label": "не ближе 2 км к нему: 2925 м",
+                "explanation": "До ориентира «Навеки с Россией» 2925 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_w147859019_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 2925.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 2925 м",
+                  "confidence": 0.40996720157115035,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2449678,
+                56.8492138
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w147859019",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.244747,
+                        56.8494936
+                      ],
+                      [
+                        53.2447688,
+                        56.8494953
+                      ],
+                      [
+                        53.2450119,
+                        56.8495134
+                      ],
+                      [
+                        53.2450344,
+                        56.8495152
+                      ],
+                      [
+                        53.2451441,
+                        56.8491059
+                      ],
+                      [
+                        53.2451547,
+                        56.8490656
+                      ],
+                      [
+                        53.2451717,
+                        56.8490016
+                      ],
+                      [
+                        53.2451418,
+                        56.8489993
+                      ],
+                      [
+                        53.2451481,
+                        56.8489754
+                      ],
+                      [
+                        53.2449179,
+                        56.8489571
+                      ],
+                      [
+                        53.2449106,
+                        56.8489845
+                      ],
+                      [
+                        53.2448827,
+                        56.8489823
+                      ],
+                      [
+                        53.2447691,
+                        56.8494103
+                      ],
+                      [
+                        53.244747,
+                        56.8494936
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w147859019",
+                "hotel_id": "w147859019",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_w147859019"
+              }
+            }
+          },
+          {
+            "hotel": {
+              "id": "n3215293192",
+              "name": "Премьер-Отель",
+              "location": [
+                53.2141192,
+                56.8670901
+              ],
+              "building_id": "w315413603"
+            },
+            "score": 0.279,
+            "matched": [
+              {
+                "characteristic_key": "spatial:9b064a6b8b6d",
+                "match": "partial",
+                "label": "в самом центре: 2035 м",
+                "explanation": "До приблизительного центра города 2035 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+                "fact": {
+                  "fact_id": "f_spatial_n3215293192_9b064a6b8b6d",
+                  "characteristic_key": "spatial:9b064a6b8b6d",
+                  "value": 2035.0,
+                  "unit": "м",
+                  "label": "в самом центре: 2035 м",
+                  "confidence": 0.4382989339161776,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_point_53.213141_56.848801"
+                  ]
+                },
+                "geo_refs": [
+                  "g_point_53.213141_56.848801"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:52d361940835",
+                "match": "partial",
+                "label": "вид на монумент Дружбы народов: 1952 м",
+                "explanation": "До ориентира «Навеки с Россией» 1952 м по прямой. Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия.",
+                "fact": {
+                  "fact_id": "f_spatial_n3215293192_52d361940835",
+                  "characteristic_key": "spatial:52d361940835",
+                  "value": 1952.0,
+                  "unit": "м",
+                  "label": "вид на монумент Дружбы народов: 1952 м",
+                  "confidence": 0.6959064356292317,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              },
+              {
+                "characteristic_key": "spatial:3b14a4d7a08b",
+                "match": "partial",
+                "label": "не ближе 2 км к нему: 1952 м",
+                "explanation": "До ориентира «Навеки с Россией» 1952 м по прямой. Минимальное расстояние в запросе — 2000 м.",
+                "fact": {
+                  "fact_id": "f_spatial_n3215293192_3b14a4d7a08b",
+                  "characteristic_key": "spatial:3b14a4d7a08b",
+                  "value": 1952.0,
+                  "unit": "м",
+                  "label": "не ближе 2 км к нему: 1952 м",
+                  "confidence": 0.539766089073079,
+                  "source_type": "computed",
+                  "status": "active",
+                  "geo_refs": [
+                    "g_poi_w442350429"
+                  ]
+                },
+                "geo_refs": [
+                  "g_poi_w442350429"
+                ]
+              }
+            ],
+            "camera": {
+              "center": [
+                53.2141192,
+                56.8670901
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 0.0
+            },
+            "footprint": {
+              "type": "Feature",
+              "id": "w315413603",
+              "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                  [
+                    [
+                      [
+                        53.2137447,
+                        56.8671709
+                      ],
+                      [
+                        53.214167,
+                        56.8671809
+                      ],
+                      [
+                        53.2141748,
+                        56.8670834
+                      ],
+                      [
+                        53.2137524,
+                        56.8670734
+                      ],
+                      [
+                        53.2137447,
+                        56.8671709
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "properties": {
+                "building_id": "w315413603",
+                "hotel_id": "n3215293192",
+                "is_hotel": true,
+                "height_m": null,
+                "min_height_m": 0,
+                "levels": null,
+                "height_fact_id": "f_height_n3215293192"
+              }
+            }
+          }
+        ],
+        "viewport": {
+          "bbox": [
+            53.2112186,
+            56.8312762,
+            53.2449678,
+            56.8670901
+          ],
+          "camera": {
+            "center": [
+              53.2365526,
+              56.8501787
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          }
+        },
+        "pending": [],
+        "took_ms": 10562
+      },
+      "elapsed_s": 10.58
+    }
+  ]
+}

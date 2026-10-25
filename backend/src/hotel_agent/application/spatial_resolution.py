@@ -26,6 +26,9 @@ async def resolve_spatial_requests(
     )
     resolved: list[tuple[SpatialRequest, SpatialTarget]] = []
     for request in requests:
+        if request.kind == "sea_view":
+            resolved.append((request, None))
+            continue
         if request.kind == "city_center":
             center = await uow.regions.city_center(city)
             if center is None:

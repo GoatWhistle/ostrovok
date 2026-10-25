@@ -21,6 +21,7 @@ FROM hotels h LEFT JOIN buildings b ON b.id = h.building_id """
 HOTELS = (
     HOTEL_COLUMNS
     + """WHERE h.region_id = %(region)s AND h.name <> h.id
+  AND translate(lower(h.name), 'ё', 'е') NOT LIKE '%%общежити%%'
   AND (%(bbox)s::double precision[] IS NULL OR ST_Intersects(h.location,
       ST_MakeEnvelope((%(bbox)s::double precision[])[1], (%(bbox)s::double precision[])[2],
                       (%(bbox)s::double precision[])[3], (%(bbox)s::double precision[])[4], 4326)))

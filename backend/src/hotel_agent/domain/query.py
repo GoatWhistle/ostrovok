@@ -39,6 +39,8 @@ class NearbyObjectRequest:
     open_24h: bool
     radius_m: int
     source_text: str
+    avoid: bool = False
+    required: bool = False
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -54,6 +56,7 @@ class SpatialRequest:
     target: str | None
     radius_m: int
     source_text: str
+    required: bool = False
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

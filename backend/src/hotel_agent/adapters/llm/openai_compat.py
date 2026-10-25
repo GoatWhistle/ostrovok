@@ -344,6 +344,8 @@ def _nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest
         osm_key=key,
         osm_value=value,
         open_24h=flag(raw, "open_24h"),
+        avoid=flag(raw, "avoid"),
+        required=flag(raw, "required"),
         radius_m=max(100, min(50000, int(radius or 500))),
         source_text=source,
     )
@@ -394,17 +396,27 @@ def _spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | 
     target = optional_text(raw, "target")
     source = text(raw, "source_text").strip()
     if (
-        kind not in {"city_center", "landmark_view", "landmark_nearby"}
+        kind
+        not in {
+            "city_center",
+            "landmark_view",
+            "landmark_nearby",
+            "landmark_distance_min",
+            "sea_view",
+        }
         or not source
         or normalize(source) not in normalize(query)
-        or (kind != "city_center" and (target is None or len(target.strip()) < 3))
+        or (kind not in {"city_center", "sea_view"} and (target is None or len(target.strip()) < 3))
     ):
         return None
-    default = 1500 if kind == "city_center" else 2000 if kind == "landmark_view" else 500
+    default = (
+        1500 if kind in {"city_center", "sea_view"} else 2000 if kind == "landmark_view" else 500
+    )
     radius = int(number(raw, "radius_m") or default)
     return SpatialRequest(
         kind=kind,
         target=target.strip() if target else None,
         radius_m=max(100, min(50000, radius)),
         source_text=source,
+        required=flag(raw, "required"),
     )

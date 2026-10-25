@@ -89,6 +89,11 @@ class SearchHotels:
             spatial = await resolve_spatial_requests(
                 uow, parsed.spatial_requests, location, bbox, hotels
             )
+            sea_positions = (
+                await uow.coastlines.nearest_points(tuple(hotel.id for hotel in hotels))
+                if any(request.kind == "sea_view" for request in parsed.spatial_requests)
+                else {}
+            )
             nearby = [
                 (request, await uow.nearby_objects.list_matches(region, request, bbox))
                 for request in parsed.nearby_objects
@@ -106,7 +111,7 @@ class SearchHotels:
             )
         if self._place_lookup is not None and spatial_bbox is not None:
             for index, (spatial_request, target) in enumerate(spatial):
-                if target is not None or spatial_request.kind == "city_center":
+                if target is not None or spatial_request.kind in {"city_center", "sea_view"}:
                     continue
                 position = await self._place_lookup.coordinates(
                     spatial_request.target or "", spatial_bbox
@@ -127,6 +132,15 @@ class SearchHotels:
                         nearby_record(hotel.id, key, request, ids, now)
                     )
         for spatial_request, target in spatial:
+            if spatial_request.kind == "sea_view":
+                for hotel in hotels:
+                    coast = sea_positions.get(hotel.id)
+                    if coast is not None:
+                        sea_record = spatial_fact(spatial_request, hotel, coast, now)
+                        facts.setdefault(hotel.id, {})[sea_record.characteristic_key] = (
+                            fact_from_record(sea_record)
+                        )
+                continue
             if target is None:
                 continue
             for hotel in hotels:
@@ -151,12 +165,17 @@ class SearchHotels:
                 key=lambda item: (
                     -item.scored.score,
                     item.hotel.name == item.hotel.id,
+                    item.hotel.name.startswith("#"),
                     item.hotel.name.casefold(),
                 )
             )
         else:
             ranked.sort(
-                key=lambda item: (item.hotel.name == item.hotel.id, item.hotel.name.casefold())
+                key=lambda item: (
+                    item.hotel.name == item.hotel.id,
+                    item.hotel.name.startswith("#"),
+                    item.hotel.name.casefold(),
+                )
             )
         fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
         return SearchOutcome(

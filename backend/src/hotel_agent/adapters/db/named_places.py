@@ -27,6 +27,15 @@ WHERE translate(lower(a.alias), 'ё', 'е') = translate(lower(%(name)s), 'ё', '
   AND p.tags ? 'name'
 ORDER BY p.location <-> a.location LIMIT 1"""
 
+FRAGMENT_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
+FROM pois
+WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
+  AND translate(lower(tags->>'name'), 'ё', 'е') LIKE '%%' || %(fragment)s || '%%'
+  AND (tags->>'historic' IN ('castle', 'fort', 'monument', 'memorial')
+    OR tags->>'tourism' IN ('attraction', 'museum'))
+ORDER BY (tags->>'historic' = 'castle') DESC, length(tags->>'name'), id
+LIMIT 1"""
+
 
 class PostgresNamedPlaceRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
@@ -39,6 +48,12 @@ class PostgresNamedPlaceRepository:
         row = await (await self._connection.execute(NAME_LOOKUP, params)).fetchone()
         if row is None:
             row = await (await self._connection.execute(ALIAS_LOOKUP, params)).fetchone()
+        if row is None:
+            fragment = _fragment(name)
+            if len(fragment) >= 5:
+                row = await (
+                    await self._connection.execute(FRAGMENT_LOOKUP, params | {"fragment": fragment})
+                ).fetchone()
         return _record(row)
 
     async def near_coordinate(
@@ -59,3 +74,10 @@ def _record(row: tuple[object, ...] | None) -> NamedPlaceRecord | None:
     return NamedPlaceRecord(
         id=str(row[0]), name=str(row[1]), location=(float(str(row[2])), float(str(row[3])))
     )
+
+
+def _fragment(name: str) -> str:
+    value = name.strip().casefold().replace("ё", "е")
+    if value.endswith("лем"):
+        return value[:-2]
+    return value[:-1] if value.endswith(("ь", "я", "а")) else value

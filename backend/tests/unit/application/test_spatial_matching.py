@@ -63,3 +63,60 @@ def test_center_is_estimated_and_has_map_reference() -> None:
     )
     assert record.geo_refs[0].startswith("g_point_")
     assert "медиана координат отелей" in record.explanation
+
+
+def test_minimum_landmark_distance_rejects_hotels_too_close() -> None:
+    request = SpatialRequest(
+        kind="landmark_distance_min",
+        target="монумент Дружбы народов",
+        radius_m=2000,
+        source_text="не ближе 2 км к нему",
+        required=True,
+    )
+    hotel = SearchHotelRecord(
+        id="h1",
+        region_id="russia",
+        name="Гостиница",
+        location=(53.1972, 56.8522),
+        stars=None,
+        building_id=None,
+        height_m=None,
+        levels=None,
+        footprint=None,
+    )
+    place = NamedPlaceRecord(
+        id="w442350429", name="Навеки с Россией", location=(53.1971659, 56.852184)
+    )
+    now = datetime(2026, 10, 25, tzinfo=UTC)
+
+    record = spatial_fact(request, hotel, place, now)
+
+    assert (
+        match(spatial_intent(request), fact_from_record(record), now).quality is MatchQuality.NONE
+    )
+    assert spatial_intent(request).required
+    assert "Минимальное расстояние" in record.explanation
+
+
+def test_sea_view_is_never_claimed_from_coast_proximity_alone() -> None:
+    request = SpatialRequest(kind="sea_view", target=None, radius_m=1500, source_text="видеть море")
+    hotel = SearchHotelRecord(
+        id="h1",
+        region_id="russia",
+        name="Гостиница",
+        location=(131.89, 43.12),
+        stars=None,
+        building_id=None,
+        height_m=None,
+        levels=None,
+        footprint=None,
+    )
+    now = datetime(2026, 10, 25, tzinfo=UTC)
+
+    record = spatial_fact(request, hotel, (131.895, 43.121), now)
+
+    assert (
+        match(spatial_intent(request), fact_from_record(record), now).quality
+        is MatchQuality.PARTIAL
+    )
+    assert "Вид на море из номера не подтверждён" in record.explanation

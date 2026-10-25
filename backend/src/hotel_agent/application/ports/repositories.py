@@ -33,6 +33,12 @@ class NamedPlaceRepository(Protocol):
     ) -> NamedPlaceRecord | None: ...
 
 
+class CoastlineRepository(Protocol):
+    async def nearest_points(
+        self, hotel_ids: Sequence[str]
+    ) -> Mapping[str, tuple[float, float]]: ...
+
+
 class SearchRepository(Protocol):
     async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None: ...
     async def list_supplier_content(self, region: str) -> Sequence[SupplierContentRecord]: ...
@@ -98,6 +104,7 @@ class UnitOfWork(Protocol):
     map_tiles: MapTileRepository
     nearby_objects: NearbyObjectRepository
     named_places: NamedPlaceRepository
+    coastlines: CoastlineRepository
 
     async def __aenter__(self) -> Self: ...
 

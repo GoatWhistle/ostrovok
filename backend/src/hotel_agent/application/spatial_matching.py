@@ -15,10 +15,10 @@ def spatial_key(request: SpatialRequest) -> str:
 def spatial_intent(request: SpatialRequest) -> Intent:
     return Intent(
         characteristic_key=spatial_key(request),
-        op=Op.LTE,
+        op=Op.GTE if request.kind == "landmark_distance_min" else Op.LTE,
         value=float(request.radius_m),
         weight=1.0,
-        required=False,
+        required=request.required,
         source_text=request.source_text,
     )
 
@@ -50,6 +50,18 @@ def spatial_fact(
             "Вид из конкретного номера не подтверждён: неизвестны этаж, сторона и препятствия."
         )
         qualifiers = {"estimated_view": True}
+    elif request.kind == "sea_view":
+        explanation = (
+            f"До ближайшей известной береговой линии {round(distance)} м по прямой. "
+            "Вид на море из номера не подтверждён: неизвестны этаж, сторона и препятствия."
+        )
+        qualifiers = {"estimated_view": True}
+    elif request.kind == "landmark_distance_min":
+        explanation = (
+            f"До ориентира «{name}» {round(distance)} м по прямой. "
+            f"Минимальное расстояние в запросе — {request.radius_m} м."
+        )
+        qualifiers = {}
     else:
         explanation = f"До ориентира «{name}» {round(distance)} м по прямой."
         qualifiers = {}
