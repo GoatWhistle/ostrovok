@@ -88,6 +88,41 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/SearchResponse" }
 
+  /chat/conversations/{conversation_id}:
+    get:
+      tags: [chat]
+      operationId: getConversation
+      summary: История диалога и последний результат поиска
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Conversation" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /chat/messages:
+    post:
+      tags: [chat]
+      operationId: sendChatMessage
+      summary: Уточнение поиска с сохранением контекста
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChatRequest" }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Conversation" }
+
   /hotels/{hotel_id}:
     get:
       tags: [hotels]
@@ -765,6 +800,9 @@ components:
               capacity: { type: integer }
               floor_range: { type: array, items: { type: integer } }
               facade_ids: { type: array, items: { type: string } }
+              price_amount: { type: number, nullable: true }
+              price_currency: { type: string, nullable: true }
+              included: { type: array, items: { type: string } }
               facts:
                 type: array
                 items: { $ref: "#/components/schemas/FactBrief" }
@@ -778,6 +816,34 @@ components:
         stale_count: { type: integer }
         open_questions: { type: integer }
         camera: { $ref: "#/components/schemas/Camera" }
+
+    ChatRequest:
+      type: object
+      required: [message]
+      properties:
+        conversation_id: { type: string, format: uuid, nullable: true }
+        message: { type: string, minLength: 1, maxLength: 2000 }
+        region_id: { type: string, default: sochi }
+        selected_hotel_id: { type: string, nullable: true }
+        locale: { type: string, enum: [ru, en], default: ru }
+    ChatMessage:
+      type: object
+      required: [id, role, content, created_at]
+      properties:
+        id: { type: string, format: uuid }
+        role: { type: string, enum: [user, assistant] }
+        content: { type: string }
+        created_at: { type: string, format: date-time }
+    Conversation:
+      type: object
+      required: [id, messages]
+      properties:
+        id: { type: string, format: uuid }
+        messages:
+          type: array
+          items: { $ref: "#/components/schemas/ChatMessage" }
+        effective_query: { type: string, nullable: true }
+        search: { $ref: "#/components/schemas/SearchResponse" }
 
     HotelierQuestion:
       type: object

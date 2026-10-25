@@ -40,7 +40,7 @@ export function useHotelScene(id: string | undefined) {
       unwrap(
         api.GET("/hotels/{hotel_id}/scene", {
           signal,
-          params: { path: { hotel_id: id ?? "" }, query: { context_radius_m: 250 } },
+          params: { path: { hotel_id: id ?? "" }, query: { context_radius_m: 350 } },
         }),
       ),
     retry: false,

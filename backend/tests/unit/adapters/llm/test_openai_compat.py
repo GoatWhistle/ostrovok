@@ -116,6 +116,47 @@ async def test_the_request_carries_the_model_and_a_strict_schema(build: Build) -
     assert "distance_to_sea" in keys["characteristic_key"]["enum"]
 
 
+async def test_a_follow_up_is_rewritten_with_previous_conditions(build: Build) -> None:
+    llm = build("Двухместный номер в Сочи рядом с магазинами, до моря пешком 5 минут")
+
+    query = await llm.contextualize_query(
+        "Двухместный номер в Сочи рядом с магазинами", "а до моря пешком 5 минут"
+    )
+
+    assert query == "Двухместный номер в Сочи рядом с магазинами, до моря пешком 5 минут"
+    [request] = llm.sent  # type: ignore[attr-defined]
+    assert "Двухместный номер в Сочи рядом с магазинами" in request["messages"][1]["content"]
+    assert "а до моря пешком 5 минут" in request["messages"][1]["content"]
+
+
+async def test_transient_connection_failure_is_retried(
+    characteristics_dir: Path, logger: RecordingLogger
+) -> None:
+    calls = 0
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise httpx.ConnectError("temporary", request=request)
+        return httpx.Response(
+            200, json={"choices": [{"message": {"content": "hotel near the sea"}}]}
+        )
+
+    llm = OpenAICompatLLM(
+        registry=YamlCharacteristicRegistry.from_directory(characteristics_dir),
+        logger=logger,
+        base_url="https://example.com/v1",
+        api_key="secret",
+        model="test",
+        timeout_s=5,
+        transport=httpx.MockTransport(handle),
+    )
+
+    assert await llm.contextualize_query("hotel", "near the sea") == "hotel near the sea"
+    assert calls == 2
+
+
 async def test_a_nearby_place_request_is_kept_as_tool_input(build: Build) -> None:
     llm = build(
         {

@@ -47,6 +47,7 @@ function dynamicKind(path: string): string {
 
 export async function installHotelContract(page: Page) {
   const calls = { searches: 0, answers: 0, confirmed: 0, corrected: 0, batches: 0 }
+  const chatMessages: { id: string; role: string; content: string; created_at: string }[] = []
   await page.addInitScript(() => {
     localStorage.setItem("app-theme", "dark")
     localStorage.setItem("app-locale", "ru")
@@ -58,9 +59,17 @@ export async function installHotelContract(page: Page) {
       await route.continue()
       return
     }
-    const kind = ["/regions", "/search", "/geo-features:batch", "/compare"].includes(path)
+    const kind = [
+      "/regions",
+      "/search",
+      "/chat/messages",
+      "/geo-features:batch",
+      "/compare",
+    ].includes(path)
       ? path
-      : dynamicKind(path)
+      : path.startsWith("/chat/conversations/")
+        ? "conversation"
+        : dynamicKind(path)
     const responses: Readonly<Record<string, () => unknown>> = {
       "/regions": () => ({
         items: [{ id: "test", name: "Test region", default_camera: CAMERA }],
@@ -81,6 +90,7 @@ export async function installHotelContract(page: Page) {
                 characteristic_key: "distance_to_sea",
                 match: "full",
                 label: FACT.label,
+                explanation: FACT.explanation,
                 fact: FACT,
                 geo_refs: ["gf_route"],
               },
@@ -88,6 +98,33 @@ export async function installHotelContract(page: Page) {
           })),
         }
       },
+      "/chat/messages": () => {
+        const message = String(route.request().postDataJSON().message)
+        chatMessages.push({
+          id: `u-${chatMessages.length}`,
+          role: "user",
+          content: message,
+          created_at: new Date().toISOString(),
+        })
+        chatMessages.push({
+          id: `a-${chatMessages.length}`,
+          role: "assistant",
+          content: "Found two hotels.",
+          created_at: new Date().toISOString(),
+        })
+        return {
+          id: "00000000-0000-0000-0000-000000000001",
+          messages: chatMessages,
+          effective_query: message,
+          search: responses["/search"]?.(),
+        }
+      },
+      conversation: () => ({
+        id: "00000000-0000-0000-0000-000000000001",
+        messages: chatMessages,
+        effective_query: chatMessages.at(-2)?.content,
+        search: responses["/search"]?.(),
+      }),
       scene: () => ({
         hotel_id: hotel?.id,
         cameras: { overview: CAMERA, best_match: CAMERA },

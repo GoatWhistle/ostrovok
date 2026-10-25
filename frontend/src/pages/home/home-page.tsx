@@ -1,10 +1,11 @@
 import { FactDetails } from "@/features/fact-details"
+import { HotelChat } from "@/features/hotel-chat"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
-import { HotelSearch, useHotelWorkspace } from "@/features/hotel-search"
+import { useHotelWorkspace } from "@/features/hotel-search"
 import { SearchResults } from "@/features/search-results"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { ButtonLink, Segmented } from "@/shared/ui"
+import { ButtonLink, PageHeader, ScrollArea, Segmented } from "@/shared/ui"
 import styles from "./home-page.module.css"
 export function HomePage() {
   const { t } = useTranslation()
@@ -14,12 +15,15 @@ export function HomePage() {
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
   return (
     <div className={styles.page}>
+      <PageHeader title={t("explore:title")} />
       <div className={styles.mobileSwitch}>
         <Segmented
           label={t("explore:map.title")}
+          display="short"
           options={[
-            { value: "list", label: t("explore:map.list"), icon: "list" },
-            { value: "map", label: t("explore:map.map"), icon: "map" },
+            { value: "list", label: t("explore:map.list"), short: t("explore:map.list") },
+            { value: "map", label: t("explore:map.map"), short: t("explore:map.map") },
+            { value: "chat", label: t("explore:chat.title"), short: t("explore:chat.short") },
           ]}
           value={state.view}
           onChange={state.setView}
@@ -27,52 +31,67 @@ export function HomePage() {
       </div>
       <div className={styles.workspace} data-view={state.view}>
         <aside className={styles.sidebar}>
-          <HotelSearch onSearch={state.submit} pending={state.pending} />
-          <SearchResults
-            request={state.request}
-            hotelId={state.hotelId}
-            compared={state.compared}
-            onSelect={state.select}
-            onProperty={state.property}
-            onCompare={state.compare}
-            onPreview={state.preview}
-          />
+          <ScrollArea className={styles.sidebarScroll}>
+            <aside
+              className={styles.details}
+              ref={state.detailRef}
+              tabIndex={-1}
+              aria-label={t("explore:details.title")}
+            >
+              {state.hotelId && state.factId ? (
+                <FactDetails
+                  hotelId={state.hotelId}
+                  factId={state.factId}
+                  onBack={state.closeFact}
+                />
+              ) : state.hotelId ? (
+                <HotelDetails
+                  hotelId={state.hotelId}
+                  matched={selected?.matched ?? []}
+                  onProperty={(item) => {
+                    if (selected) state.property(selected, item)
+                  }}
+                  onFact={state.fact}
+                  onPreview={(item) => {
+                    if (selected) state.preview(selected, item)
+                  }}
+                />
+              ) : null}
+            </aside>
+            <SearchResults
+              response={state.search ?? null}
+              pending={state.pending}
+              hotelId={state.hotelId}
+              compared={state.compared}
+              onSelect={state.select}
+              onProperty={state.property}
+              onCompare={state.compare}
+              onPreview={state.preview}
+            />
+          </ScrollArea>
         </aside>
-        <div className={styles.canvasColumn} data-selected={state.hotelId !== undefined}>
+        <div className={styles.canvasColumn}>
           <HotelMap
             hotelId={state.hotelId}
             camera={state.camera}
             geoRefs={state.geoRefs}
             focusedFact={state.focusedFact}
             focusProperty={state.focusProperty}
-            regionId={state.request?.region_id ?? undefined}
+            regionId="sochi"
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
           />
-          <aside
-            className={styles.details}
-            ref={state.detailRef}
-            tabIndex={-1}
-            aria-label={t("explore:details.title")}
-          >
-            {state.hotelId && state.factId ? (
-              <FactDetails hotelId={state.hotelId} factId={state.factId} onBack={state.closeFact} />
-            ) : (
-              <HotelDetails
-                hotelId={state.hotelId}
-                matched={selected?.matched ?? []}
-                onProperty={(item) => {
-                  if (selected) state.property(selected, item)
-                }}
-                onFact={state.fact}
-                onPreview={(item) => {
-                  if (selected) state.preview(selected, item)
-                }}
-              />
-            )}
-          </aside>
         </div>
+        <aside className={styles.chatColumn}>
+          <HotelChat
+            messages={state.messages}
+            selectedHotel={selected?.hotel.name}
+            pending={state.pending}
+            error={state.chatError}
+            onSend={state.send}
+          />
+        </aside>
       </div>
       {state.compared.length >= 2 ? (
         <div className={styles.compare}>

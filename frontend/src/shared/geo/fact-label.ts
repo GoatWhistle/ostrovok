@@ -41,8 +41,6 @@ export function matchedTitle(item: MatchedProperty, locale: Locale): string {
 }
 
 export function matchedExplanation(item: MatchedProperty, locale: Locale): string | undefined {
-  if (locale === "ru") return item.explanation ?? undefined
-  if (!item.fact) return i18n.t("explore:map.noEvidence", { lng: locale })
   if (item.characteristic_key.startsWith("nearby:")) {
     const parts = item.characteristic_key.split(":")
     const radius = Number(parts[4])
@@ -52,12 +50,23 @@ export function matchedExplanation(item: MatchedProperty, locale: Locale): strin
       open: parts[3] === "1" ? i18n.t("explore:map.openAllDay", { lng: locale }) : "",
     })
   }
+  if (locale === "ru") return item.explanation ?? undefined
+  if (!item.fact) return i18n.t("explore:map.noEvidence", { lng: locale })
   if (item.characteristic_key === "distance_to_sea")
     return i18n.t("explore:map.walkEvidence", { lng: locale })
   return i18n.t("explore:map.genericEvidence", { lng: locale })
 }
 
 export function factExplanation(fact: Fact, locale: Locale): string | undefined {
+  if (fact.characteristic_key.startsWith("nearby:")) {
+    const parts = fact.characteristic_key.split(":")
+    const radius = Number(parts[4])
+    return i18n.t("explore:map.nearbyEvidence", {
+      lng: locale,
+      radius: Number.isFinite(radius) ? radius : 500,
+      open: parts[3] === "1" ? i18n.t("explore:map.openAllDay", { lng: locale }) : "",
+    })
+  }
   if (fact.characteristic_key === "noise_level")
     return i18n.t("explore:facts.noiseExplanation", { lng: locale })
   if (locale === "ru") return fact.explanation ?? undefined

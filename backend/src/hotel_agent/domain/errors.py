@@ -17,6 +17,10 @@ class HotelNotFound(NotFound):
     message = "Hotel not found"
 
 
+class ConversationNotFound(NotFound):
+    message = "Conversation not found"
+
+
 class FactNotFound(NotFound):
     message = "Fact not found"
 

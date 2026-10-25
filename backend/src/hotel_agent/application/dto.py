@@ -98,3 +98,4 @@ class BuildingRecord:
     geometry: Geometry
     height_m: float | None
     levels: int | None
+    height_estimated: bool = False

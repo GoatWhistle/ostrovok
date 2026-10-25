@@ -10,6 +10,7 @@ from hotel_agent.application.dto import (
     SearchFactRecord,
     SearchHotelRecord,
 )
+from hotel_agent.application.room_records import RoomRecord
 
 HOTEL_COLUMNS = """SELECT h.id, h.name, ST_X(h.location), ST_Y(h.location), h.stars,
     h.building_id, b.height_m, b.levels, ST_AsGeoJSON(b.footprint), h.region_id,
@@ -30,12 +31,21 @@ HOTEL_BY_ID = HOTEL_COLUMNS + "WHERE h.id = %(hotel_id)s"
 FACADES = """SELECT id, azimuth_deg, label, ST_AsGeoJSON(geometry)
 FROM facades WHERE hotel_id = %(hotel_id)s ORDER BY id"""
 
-CONTEXT_BUILDINGS = """SELECT b.id, ST_AsGeoJSON(b.footprint), b.height_m, b.levels
+CONTEXT_BUILDINGS = """SELECT b.id, ST_AsGeoJSON(b.footprint),
+COALESCE(b.height_m,
+    CASE WHEN (b.tags->>'building:levels') ~ '^[0-9]{1,2}$'
+        THEN LEAST((b.tags->>'building:levels')::integer, 60) * 3.2 END,
+    CASE WHEN b.levels IS NOT NULL THEN b.levels * 3.2 END,
+    3.2),
+COALESCE(b.levels,
+    CASE WHEN (b.tags->>'building:levels') ~ '^[0-9]{1,2}$'
+        THEN LEAST((b.tags->>'building:levels')::integer, 60) END),
+b.height_m IS NULL
 FROM hotels h JOIN buildings b
   ON b.region_id = h.region_id AND b.id <> h.building_id
  AND ST_DWithin(b.footprint::geography, h.location::geography, %(radius)s)
 WHERE h.id = %(hotel_id)s
-ORDER BY b.footprint <-> h.location LIMIT 150"""
+ORDER BY b.footprint <-> h.location"""
 
 FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
     f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
@@ -52,10 +62,30 @@ JOIN hotels h ON h.id = fa.hotel_id
 WHERE h.region_id = %(region)s AND f.subject_type = 'facade'
   AND f.status IN ('active', 'confirmed_by_hotelier')"""
 
+ROOMS = """SELECT id, name, capacity, floor_min, floor_max, facade_ids,
+price_amount, price_currency, included FROM rooms WHERE hotel_id = %(hotel_id)s ORDER BY id"""
+
 
 class PostgresSearchRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
+
+    async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]:
+        rows = await (await self._connection.execute(ROOMS, {"hotel_id": hotel_id})).fetchall()
+        return [
+            RoomRecord(
+                id=str(row[0]),
+                name=str(row[1]),
+                capacity=int(str(row[2])),
+                floor_min=int(str(row[3])),
+                floor_max=int(str(row[4])),
+                facade_ids=tuple(str(item) for item in row[5]) if isinstance(row[5], list) else (),
+                price_amount=float(str(row[6])) if row[6] is not None else None,
+                price_currency=str(row[7]) if row[7] is not None else None,
+                included=tuple(str(item) for item in row[8]) if isinstance(row[8], list) else (),
+            )
+            for row in rows
+        ]
 
     async def list_hotels(
         self, region: str, bbox: tuple[float, float, float, float] | None
@@ -97,6 +127,7 @@ class PostgresSearchRepository:
                 geometry=json.loads(str(row[1])),
                 height_m=float(str(row[2])) if row[2] is not None else None,
                 levels=int(str(row[3])) if row[3] is not None else None,
+                height_estimated=bool(row[4]),
             )
             for row in rows
         ]

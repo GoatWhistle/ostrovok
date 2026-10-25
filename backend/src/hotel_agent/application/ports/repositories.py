@@ -1,6 +1,7 @@
 from collections.abc import Callable, Mapping, Sequence
 from typing import Protocol, Self
 
+from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -9,6 +10,7 @@ from hotel_agent.application.dto import (
     SearchFactRecord,
     SearchHotelRecord,
 )
+from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
 
 
@@ -17,6 +19,7 @@ class RegionRepository(Protocol):
 
 
 class SearchRepository(Protocol):
+    async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]: ...
     async def list_hotels(
         self, region: str, bbox: tuple[float, float, float, float] | None
     ) -> Sequence[SearchHotelRecord]: ...
@@ -46,7 +49,23 @@ class NearbyObjectRepository(Protocol):
     ) -> Mapping[str, tuple[str, ...]]: ...
 
 
+class ChatRepository(Protocol):
+    async def get(self, conversation_id: str) -> ConversationRecord | None: ...
+
+    async def save(
+        self,
+        conversation_id: str,
+        region_id: str,
+        effective_query: str,
+        user_message_id: str,
+        user_text: str,
+        answer_id: str,
+        answer: str,
+    ) -> None: ...
+
+
 class UnitOfWork(Protocol):
+    chat: ChatRepository
     regions: RegionRepository
     search: SearchRepository
     geo_features: GeoFeatureRepository

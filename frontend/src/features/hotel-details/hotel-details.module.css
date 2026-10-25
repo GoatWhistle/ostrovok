@@ -1,19 +1,6 @@
 .product {
   min-inline-size: 0;
 }
-.summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  color: var(--text-secondary);
-  font-size: var(--font-size-body-sm);
-}
-.summary span {
-  padding: var(--space-4) var(--space-8);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-pill);
-  background: var(--surface-sunken);
-}
 .section {
   border-color: var(--border-subtle);
   background: var(--surface-sunken);
@@ -50,4 +37,34 @@
 }
 .notice {
   color: var(--text-warning);
+}
+.description {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.roomSection,
+.factSection {
+  padding-block: var(--space-16);
+  border-block-start: 1px solid var(--border-subtle);
+}
+.roomHeading {
+  display: block;
+  margin-block-end: var(--space-12);
+}
+.room {
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-16) 0;
+  border-block-start: 1px solid var(--border-subtle);
+}
+.room span,
+.factRow span {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+.factRow {
+  display: grid;
+  gap: var(--space-4);
+  inline-size: 100%;
+  text-align: start;
 }

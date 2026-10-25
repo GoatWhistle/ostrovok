@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test"
 
 const PORT = 5179
 const external = process.env.E2E_BASE_URL
+const executablePath = process.env.E2E_BROWSER_EXECUTABLE
 const baseURL = external ?? `http://localhost:${PORT}`
 const webServer = {
   command: `npm run dev -- --port ${PORT} --strictPort`,
@@ -22,7 +23,11 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+        ...(executablePath ? { launchOptions: { executablePath } } : {}),
+      },
     },
   ],
   ...(external === undefined ? { webServer } : {}),

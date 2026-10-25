@@ -1,11 +1,12 @@
-import { HotelResult, useHotelSearch } from "@/entities/hotel"
-import type { MatchedProperty, SearchRequest, SearchResult } from "@/shared/api/hotel-types"
+import { HotelResult } from "@/entities/hotel"
+import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
-import { Button, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
+import { EmptyState, Skeleton } from "@/shared/ui"
 import styles from "./search-results.module.css"
 export interface SearchResultsProps {
-  readonly request: SearchRequest | null
+  readonly response: components["schemas"]["SearchResponse"] | null
+  readonly pending: boolean
   readonly hotelId: string | undefined
   readonly compared: readonly string[]
   readonly onSelect: (result: SearchResult) => void
@@ -14,7 +15,8 @@ export interface SearchResultsProps {
   readonly onPreview: (result: SearchResult, property: MatchedProperty | undefined) => void
 }
 export function SearchResults({
-  request,
+  response,
+  pending,
   hotelId,
   compared,
   onSelect,
@@ -23,8 +25,7 @@ export function SearchResults({
   onPreview,
 }: SearchResultsProps) {
   const { t } = useTranslation()
-  const search = useHotelSearch(request)
-  if (request === null)
+  if (response === null && !pending)
     return (
       <EmptyState
         icon="compass"
@@ -32,7 +33,7 @@ export function SearchResults({
         description={t("explore:results.initialText")}
       />
     )
-  if (search.isPending)
+  if (response === null)
     return (
       <div className={styles.loading}>
         <Skeleton />
@@ -40,31 +41,16 @@ export function SearchResults({
         <Skeleton />
       </div>
     )
-  if (search.isError && !search.data)
-    return (
-      <ErrorState
-        title={t("explore:results.error")}
-        description={t("explore:results.errorText")}
-        onRetry={() => void search.refetch()}
-        retryPending={search.isFetching}
-      />
-    )
-  const pages = search.data?.pages ?? []
-  const results = [
-    ...new Map(
-      pages.flatMap((page) => page.results).map((result) => [result.hotel.id, result]),
-    ).values(),
-  ]
-  const first = pages[0]
+  const results = response.results
   return (
     <section className={styles.results} aria-label={t("explore:results.title")}>
-      <SearchSummary first={first} pages={pages} count={results.length} />
+      <SearchSummary first={response} count={results.length} />
       {results.length === 0 ? (
         <EmptyState
           icon="search"
           title={t("explore:results.empty")}
           description={
-            first?.parsed.needs_clarification
+            response.parsed.needs_clarification
               ? t("explore:results.clarification")
               : t("explore:results.emptyText")
           }
@@ -83,33 +69,15 @@ export function SearchResults({
           />
         ))
       )}
-      {search.isFetchNextPageError ? (
-        <ErrorState
-          title={t("explore:results.error")}
-          onRetry={() => void search.fetchNextPage()}
-        />
-      ) : null}
-      {search.hasNextPage ? (
-        <Button
-          variant="secondary"
-          icon="next"
-          pending={search.isFetchingNextPage}
-          onClick={() => void search.fetchNextPage()}
-        >
-          {t("explore:results.more")}
-        </Button>
-      ) : null}
     </section>
   )
 }
 
 function SearchSummary({
   first,
-  pages,
   count,
 }: {
   first: components["schemas"]["SearchResponse"] | undefined
-  pages: readonly components["schemas"]["SearchResponse"][]
   count: number
 }) {
   const { t } = useTranslation()
@@ -155,7 +123,7 @@ function SearchSummary({
       {first?.parsed.needs_clarification ? (
         <p role="status">{t("explore:results.clarification")}</p>
       ) : null}
-      {pages.some((page) => page.pending?.length) ? <p>{t("explore:results.pending")}</p> : null}
+      {first?.pending?.length ? <p>{t("explore:results.pending")}</p> : null}
     </div>
   )
 }

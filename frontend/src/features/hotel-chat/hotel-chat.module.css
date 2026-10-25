@@ -1,0 +1,80 @@
+.chat {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0;
+  padding: 0;
+  min-block-size: min(78vh, 880px);
+  max-block-size: calc(100vh - var(--space-96) - var(--space-24));
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+.chat > header {
+  padding: var(--space-24);
+  border-block-end: 1px solid var(--border-subtle);
+}
+.welcome p,
+.context {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-24);
+  overscroll-behavior: contain;
+}
+.welcome {
+  margin: auto 0;
+}
+.welcome strong {
+  display: block;
+  margin-block-end: var(--space-8);
+}
+.userMessage,
+.assistantMessage {
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-lg);
+  overflow-wrap: anywhere;
+}
+.userMessage {
+  align-self: flex-end;
+  background: var(--surface-sunken);
+}
+.assistantMessage {
+  align-self: flex-start;
+  border: 1px solid var(--border-subtle);
+}
+.userMessage span,
+.assistantMessage span {
+  color: var(--text-muted);
+  font-size: var(--font-size-caption);
+}
+.userMessage p,
+.assistantMessage p {
+  margin: var(--space-4) 0 0;
+  white-space: pre-wrap;
+}
+.working {
+  color: var(--text-secondary);
+}
+.composer {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border-block-start: 1px solid var(--border-subtle);
+}
+.composer button {
+  justify-self: end;
+}
+.error {
+  margin: 0;
+  color: var(--text-warning);
+}
+@media (max-width: 63.99rem) {
+  .chat {
+    min-block-size: 60vh;
+    max-block-size: none;
+  }
+}

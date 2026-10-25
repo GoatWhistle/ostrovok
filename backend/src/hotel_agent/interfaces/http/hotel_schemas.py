@@ -38,12 +38,23 @@ class FactDetailSchema(FactSchema):
 
 class HotelCardSchema(BaseModel):
     hotel: HotelSummarySchema
-    rooms: list[dict[str, object]] = Field(default_factory=list)
+    rooms: list["RoomSchema"] = Field(default_factory=list)
     facts: list[FactSchema]
     conflicts: list[dict[str, object]] = Field(default_factory=list)
     stale_count: int = 0
     open_questions: int = 0
     camera: CameraSchema
+
+
+class RoomSchema(BaseModel):
+    id: str
+    name: str
+    capacity: int
+    floor_range: tuple[int, int]
+    facade_ids: list[str]
+    price_amount: float | None = None
+    price_currency: str | None = None
+    included: list[str]
 
 
 class FeatureCollectionSchema(BaseModel):
@@ -78,6 +89,19 @@ def hotel_card_schema(card: HotelCard) -> HotelCardSchema:
     hotel = card.hotel
     return HotelCardSchema(
         hotel=_hotel_summary(hotel),
+        rooms=[
+            RoomSchema(
+                id=item.id,
+                name=item.name,
+                capacity=item.capacity,
+                floor_range=(item.floor_min, item.floor_max),
+                facade_ids=list(item.facade_ids),
+                price_amount=item.price_amount,
+                price_currency=item.price_currency,
+                included=list(item.included),
+            )
+            for item in card.rooms
+        ],
         facts=[fact_schema(fact) for fact in card.facts],
         camera=_camera(hotel.location, 0),
     )
@@ -140,6 +164,7 @@ def _context_feature(item: BuildingRecord) -> BuildingFeatureSchema:
             "height_m": item.height_m,
             "min_height_m": 0,
             "levels": item.levels,
+            "height_estimated": item.height_estimated,
         },
     )
 

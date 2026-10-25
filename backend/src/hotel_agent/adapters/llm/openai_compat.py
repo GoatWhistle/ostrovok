@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import Mapping, Sequence
 from typing import Any
 
@@ -60,6 +61,20 @@ class OpenAICompatLLM:
     @property
     def provider(self) -> str:
         return "openai_compat"
+
+    async def contextualize_query(self, previous: str | None, message: str) -> str:
+        if previous is None:
+            return message
+        return await self._complete_text(
+            system=(
+                "Ты ведёшь диалог о поиске отеля. Верни только полный актуальный запрос для поиска. "
+                "Сохрани прежние условия, если пользователь их не изменил. "
+                "Замени отменённые или исправленные условия; не добавляй новых. "
+                "Если пользователь начинает новый поиск, используй только новый запрос. "
+                "Не утверждай факты об отелях."
+            ),
+            user=f"Предыдущий запрос: {previous}\nНовое сообщение: {message}",
+        )
 
     async def parse_query(self, query: str) -> ParsedQuery:
         registry = self._registry.all()
@@ -177,16 +192,25 @@ class OpenAICompatLLM:
         }
         if response_format is not None:
             request["response_format"] = response_format
-        try:
-            response = await self._client.post("/chat/completions", json=request)
-            response.raise_for_status()
-            return content_of(response.json())
-        except httpx.HTTPStatusError as error:
-            raise ModelFailure(
-                f"Language model returned HTTP {error.response.status_code}"
-            ) from error
-        except httpx.HTTPError as error:
-            raise ModelFailure(f"Language model is unreachable: {type(error).__name__}") from error
+        for attempt in range(2):
+            try:
+                response = await self._client.post("/chat/completions", json=request)
+                response.raise_for_status()
+                return content_of(response.json())
+            except httpx.ConnectError as error:
+                if attempt == 0:
+                    await asyncio.sleep(0.2)
+                    continue
+                raise ModelFailure("Language model is unreachable: ConnectError") from error
+            except httpx.HTTPStatusError as error:
+                raise ModelFailure(
+                    f"Language model returned HTTP {error.response.status_code}"
+                ) from error
+            except httpx.HTTPError as error:
+                raise ModelFailure(
+                    f"Language model is unreachable: {type(error).__name__}"
+                ) from error
+        raise ModelFailure("Language model is unreachable")
 
     def _intent(self, raw: Mapping[str, object], query: str) -> Intent | None:
         key = text(raw, "characteristic_key")

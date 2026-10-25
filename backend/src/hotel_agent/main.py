@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from hotel_agent.adapters.geo.terrain_tiles import CopernicusTerrainTiles
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
+from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
@@ -37,12 +38,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
+    search_hotels = SearchHotels(providers.llm, providers.uow, providers.clock)
     app.include_router(
         api_router_v1(
             llm_provider=providers.llm.provider,
             list_characteristics=ListCharacteristics(providers.registry),
             list_regions=ListRegions(providers.uow),
-            search_hotels=SearchHotels(providers.llm, providers.uow, providers.clock),
+            search_hotels=search_hotels,
+            chat_service=Chat(providers.llm, providers.uow, search_hotels),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),

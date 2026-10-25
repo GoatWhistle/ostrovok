@@ -71,6 +71,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/chat/conversations/{conversation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** История диалога и последний результат поиска */
+        get: operations["getConversation"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/chat/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Уточнение поиска с сохранением контекста */
+        post: operations["sendChatMessage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotels/{hotel_id}": {
         parameters: {
             query?: never;
@@ -675,6 +709,9 @@ export interface components {
                 capacity?: number;
                 floor_range?: number[];
                 facade_ids?: string[];
+                price_amount?: number | null;
+                price_currency?: string | null;
+                included?: string[];
                 facts?: components["schemas"]["FactBrief"][];
             }[];
             /** @description Активные факты, по одному победителю на характеристику и субъект */
@@ -683,6 +720,35 @@ export interface components {
             stale_count?: number;
             open_questions?: number;
             camera?: components["schemas"]["Camera"];
+        };
+        ChatRequest: {
+            /** Format: uuid */
+            conversation_id?: string | null;
+            message: string;
+            /** @default sochi */
+            region_id: string;
+            selected_hotel_id?: string | null;
+            /**
+             * @default ru
+             * @enum {string}
+             */
+            locale: "ru" | "en";
+        };
+        ChatMessage: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            role: "user" | "assistant";
+            content: string;
+            /** Format: date-time */
+            created_at: string;
+        };
+        Conversation: {
+            /** Format: uuid */
+            id: string;
+            messages: components["schemas"]["ChatMessage"][];
+            effective_query?: string | null;
+            search?: components["schemas"]["SearchResponse"];
         };
         HotelierQuestion: {
             id?: string;
@@ -815,6 +881,53 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SearchResponse"];
+                };
+            };
+        };
+    };
+    getConversation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    sendChatMessage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ChatRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
                 };
             };
         };

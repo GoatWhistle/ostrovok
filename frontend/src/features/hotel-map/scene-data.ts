@@ -37,7 +37,9 @@ export function sceneData(
   return { selectedCamera, buildings, highlights }
 }
 export function sceneQuality(
-  buildings: readonly { properties?: { height_m?: number; is_hotel?: boolean } }[],
+  buildings: readonly {
+    properties?: { height_m?: number; is_hotel?: boolean; height_estimated?: boolean }
+  }[],
   highlights: readonly unknown[],
 ) {
   return {
@@ -45,7 +47,9 @@ export function sceneQuality(
       featureCollection(buildings).features.length < buildings.length ||
       featureCollection(highlights).features.length < highlights.length,
     missingHeight: buildings.some(
-      (building) => building.properties?.is_hotel && !building.properties.height_m,
+      (building) =>
+        Boolean(building.properties?.height_estimated) ||
+        Boolean(building.properties?.is_hotel && !building.properties.height_m),
     ),
   }
 }
