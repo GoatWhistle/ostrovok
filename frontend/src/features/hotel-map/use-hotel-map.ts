@@ -5,22 +5,20 @@ import type { Camera, SearchResult } from "@/shared/api/hotel-types"
 import { renderBasemap } from "@/shared/geo/basemap"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
-import {
-  type HighlightColors,
-  paintRoute,
-  renderBuildings,
-  renderHighlights,
-} from "@/shared/geo/map-layers"
+import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
 import { lightMode, renderTerrain, type SunPosition } from "@/shared/geo/terrain"
+import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { useMapColors } from "@/shared/theme"
+import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapMarkers } from "./use-map-markers"
 
 setWorkerUrl(workerUrl)
 export interface MapData {
   readonly camera: Camera | undefined
   readonly buildings: readonly unknown[]
+  readonly texturedFootprints: readonly TexturedFootprint[]
   readonly highlights: readonly unknown[]
   readonly bounds: readonly number[] | undefined
   readonly results: readonly SearchResult[]
@@ -131,6 +129,7 @@ function showView(
 export function useHotelMap({
   camera,
   buildings,
+  texturedFootprints,
   highlights,
   bounds,
   results,
@@ -152,12 +151,25 @@ export function useHotelMap({
     const scene = tintForTime(colors, lightMode(sun.altitude))
     renderTerrain(map, scene, sun)
     renderBasemap(map, scene)
-    renderBuildings(map, featureCollection(buildings), scene)
     const hasRoute = renderHighlights(map, highlightData, colors)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, buildings, highlightData, colors, sun])
+  }, [instance, ready, highlightData, colors, sun])
+  const buildingData = useMemo(() => featureCollection(buildings), [buildings])
+  const buildingColors = useMemo(
+    () => tintForTime(colors, lightMode(sun.altitude)),
+    [colors, sun.altitude],
+  )
+  const textureStatus = useTexturedHotel({
+    mapRef: instance,
+    ready,
+    hotelId,
+    footprints: texturedFootprints,
+    buildings: buildingData,
+    colors: buildingColors,
+    sun,
+  })
   useRouteDraw(instance, ready ? route : undefined, colors, reduced)
   const view = useRef<ViewApply | null>(null)
   useEffect(() => {
@@ -209,5 +221,5 @@ export function useHotelMap({
     focusFeatures,
     focusLabel,
   })
-  return { container, instance, ready, failed, markers }
+  return { container, instance, ready, failed, markers, textureStatus }
 }

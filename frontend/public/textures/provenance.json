@@ -1,0 +1,19 @@
+{
+  "asset": "hotel-albedo-v1.jpg",
+  "kind": "illustrative facade and roof base color",
+  "created_at": "2026-10-25",
+  "source": "data/assets/zhemchuzhina/albedo-atlas-v1.png",
+  "source_sha256": "c7941859b337dee48b0cde3fa947618929944dcec411eb07be5807ede0a0cb27",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "conversion": "sips JPEG quality 88, unchanged dimensions",
+  "generation_prompt": "embedded in JPEG COM",
+  "sha256": "9de2ebee8cad722c20dd3f0d9560ca1908ac0113c5d96b41030b99a4c05a19fa",
+  "limitations": [
+    "Synthetic appearance; not a survey of the selected hotel",
+    "Geometry and heights come from the selected hotel API response",
+    "Flat roof; facade details have no depth"
+  ]
+}

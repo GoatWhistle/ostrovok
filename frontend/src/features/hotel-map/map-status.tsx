@@ -2,6 +2,7 @@ import { useTranslation } from "@/shared/i18n"
 import { useLatched, usePresence } from "@/shared/motion"
 import { EmptyState, ErrorState, Icon, JourneyLoader, StatusBadge } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
+import type { HotelTextureStatus } from "./texture/use-textured-hotel"
 
 export interface MapStatusProps {
   readonly hasCamera: boolean
@@ -66,11 +67,35 @@ export function MapStatus({ hasCamera, sceneError, failed, ready, onRetry }: Map
 export function MapWarning({
   invalid,
   missingHeight,
+  textureStatus,
 }: {
   readonly invalid: boolean
   readonly missingHeight: boolean
+  readonly textureStatus: HotelTextureStatus
 }) {
   const { t } = useTranslation()
+  const quality = invalid
+    ? t("explore:map.geodataInvalid")
+    : missingHeight
+      ? t("explore:map.noHeight")
+      : undefined
+  if (textureStatus !== "none")
+    return (
+      <>
+        <StatusBadge tone="warning" className={styles.warning}>
+          {t(
+            textureStatus === "ready"
+              ? "explore:map.textureApproximate"
+              : "explore:map.textureUnavailable",
+          )}
+        </StatusBadge>
+        {quality ? (
+          <StatusBadge tone="warning" className={styles.warning}>
+            {quality}
+          </StatusBadge>
+        ) : null}
+      </>
+    )
   if (!invalid && !missingHeight) return null
   return (
     <StatusBadge tone="warning" className={styles.warning}>
