@@ -135,7 +135,7 @@
   --surface-highlight: #26341a;
   --surface-skeleton: var(--neutral-850);
   --surface-scrim: color-mix(in oklab, var(--neutral-1000) 60%, transparent);
-  --text-primary: #eef0ea;
+  --text-primary: #edeef0;
   --text-secondary: #bcc1b5;
   --text-muted: #8f9488;
   --text-disabled: #5c6157;
@@ -159,16 +159,16 @@
   --action-fact: var(--lime-400);
   --action-fact-hover: var(--lime-300);
   --action-fact-press: var(--lime-500);
-  --action-ghost-hover: color-mix(in oklab, #eef0ea 7%, transparent);
-  --action-ghost-press: color-mix(in oklab, #eef0ea 12%, transparent);
+  --action-ghost-hover: color-mix(in oklab, #edeef0 7%, transparent);
+  --action-ghost-press: color-mix(in oklab, #edeef0 12%, transparent);
   --action-disabled: var(--neutral-850);
   --action-confirm: #16301f;
   --action-confirm-hover: #1d3d28;
   --action-reject: #3a1b17;
   --action-reject-hover: #4a221d;
-  --border-subtle: color-mix(in oklab, #eef0ea 10%, transparent);
-  --border-default: color-mix(in oklab, #eef0ea 17%, transparent);
-  --border-strong: color-mix(in oklab, #eef0ea 30%, transparent);
+  --border-subtle: color-mix(in oklab, #edeef0 10%, transparent);
+  --border-default: color-mix(in oklab, #edeef0 17%, transparent);
+  --border-strong: color-mix(in oklab, #edeef0 30%, transparent);
   --border-inverse: color-mix(in oklab, var(--neutral-950) 16%, transparent);
   --status-success: var(--green-400);
   --status-success-surface: #16301f;
@@ -227,7 +227,7 @@
   --map-highlight: var(--map-fact-line);
   --map-label-halo: var(--neutral-950);
   --map-hotel: var(--neutral-900);
-  --map-hotel-text: #eef0ea;
+  --map-hotel-text: #edeef0;
   --map-hotel-selected: var(--cobalt-500);
   --map-fact: var(--lime-400);
   --map-fact-line: var(--lime-300);
@@ -241,6 +241,6 @@
   --focus-ring: var(--cobalt-300);
   --shadow-color: color-mix(in oklab, #000000 36%, transparent);
   --shadow-color-strong: color-mix(in oklab, #000000 55%, transparent);
-  --scrollbar-thumb: color-mix(in oklab, #eef0ea 20%, transparent);
-  --scrollbar-thumb-hover: color-mix(in oklab, #eef0ea 36%, transparent);
+  --scrollbar-thumb: color-mix(in oklab, #edeef0 20%, transparent);
+  --scrollbar-thumb-hover: color-mix(in oklab, #edeef0 36%, transparent);
 }
