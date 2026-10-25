@@ -46,7 +46,7 @@ const PLACES: readonly Place[] = [
   {
     id: "elbrus",
     name: "explore:landing.places.elbrus",
-    at: [42.4453, 43.3499],
+    at: [42.43784, 43.35241],
     bearing: 20,
     distanceKm: 5,
     zoom: 11.6,
@@ -55,7 +55,7 @@ const PLACES: readonly Place[] = [
   {
     id: "seaport",
     name: "explore:landing.places.seaport",
-    at: [39.7188, 43.5809],
+    at: [39.71117, 43.57959],
     bearing: -38,
     distanceKm: 0.5,
     zoom: 15.4,
@@ -64,7 +64,7 @@ const PLACES: readonly Place[] = [
   {
     id: "klyuchevskaya",
     name: "explore:landing.places.klyuchevskaya",
-    at: [160.6427, 56.0563],
+    at: [160.6423, 56.05642],
     bearing: 60,
     distanceKm: 12,
     zoom: 10.6,
@@ -73,7 +73,7 @@ const PLACES: readonly Place[] = [
   {
     id: "tyatya",
     name: "explore:landing.places.tyatya",
-    at: [146.2565, 44.3506],
+    at: [146.25308, 44.35371],
     bearing: 330,
     distanceKm: 8,
     zoom: 11,
@@ -82,7 +82,7 @@ const PLACES: readonly Place[] = [
   {
     id: "avachinsky",
     name: "explore:landing.places.avachinsky",
-    at: [158.83, 53.255],
+    at: [158.83684, 53.25559],
     bearing: 10,
     distanceKm: 12,
     zoom: 10.8,
@@ -91,7 +91,7 @@ const PLACES: readonly Place[] = [
   {
     id: "dombay",
     name: "explore:landing.places.dombay",
-    at: [41.62, 43.29],
+    at: [41.62035, 43.28839],
     bearing: 120,
     distanceKm: 4,
     zoom: 12,
@@ -100,7 +100,7 @@ const PLACES: readonly Place[] = [
   {
     id: "fisht",
     name: "explore:landing.places.fisht",
-    at: [39.9558, 43.4022],
+    at: [39.9586, 43.40066],
     bearing: 18,
     distanceKm: 0.6,
     zoom: 14.8,
@@ -109,7 +109,7 @@ const PLACES: readonly Place[] = [
   {
     id: "belukha",
     name: "explore:landing.places.belukha",
-    at: [86.5897, 49.8072],
+    at: [86.58991, 49.80707],
     bearing: 20,
     distanceKm: 6,
     zoom: 11.2,
@@ -118,7 +118,7 @@ const PLACES: readonly Place[] = [
   {
     id: "kronotsky",
     name: "explore:landing.places.kronotsky",
-    at: [160.5267, 54.7533],
+    at: [160.53257, 54.75318],
     bearing: 40,
     distanceKm: 10,
     zoom: 10.8,
@@ -127,7 +127,7 @@ const PLACES: readonly Place[] = [
   {
     id: "goldenBridge",
     name: "explore:landing.places.goldenBridge",
-    at: [131.889, 43.111],
+    at: [131.89675, 43.10907],
     bearing: 200,
     distanceKm: 1.5,
     zoom: 13.6,
@@ -145,7 +145,7 @@ const PLACES: readonly Place[] = [
   {
     id: "khosta",
     name: "explore:landing.places.khosta",
-    at: [39.8598, 43.5155],
+    at: [39.86395, 43.51177],
     bearing: 58,
     distanceKm: 2.5,
     zoom: 13.2,
