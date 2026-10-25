@@ -58,7 +58,7 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Ветка `feat/hotel-agent-mvp`, исходный SHA до текущих коммитов `63a2cdf`.
+- Ветка `feat/hotel-agent-mvp`, опубликованный SHA `962a27e`.
   Compose на localhost:8080/8000 healthy. Frontend Factmap, DeepSeek V4.1 Flash в бэкенде.
 - Nuitee sandbox подключён, City Park Hotel сопоставлен и имеет 8 категорий; тарифы Сочи
   не подтверждены. Факты и тесты: `docs/evidence.md`, `work/research/hotel-inventory.md`.
@@ -75,6 +75,6 @@ Updated: 2026-10-25, Europe/Moscow
 
 - Дождаться окончания PBF и проверки MD5; пока `.ok` нет, файл неполный. Это только OSM,
   без рельефа, тайлов и импорта страны в PostgreSQL.
-- Перенести локальные коммиты на свежую удалённую ветку (она ушла вперёд на 4 коммита),
-  разрешить пересечения фронта и документации, проверить чат и перезапустить стенд, затем push.
+- Новые коммиты фронта влиты, конфликт `docs/running.md` разрешён, `npm run verify` и целевой
+  Playwright снова прошли; фронт пересобран, стенд healthy, изменения запушены.
 - Секреты остаются только в `.env`. Не выдавать `no_offers` за заполненность отеля.
