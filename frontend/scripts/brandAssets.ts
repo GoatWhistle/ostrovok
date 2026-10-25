@@ -2,16 +2,37 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { chromium, type Page } from "@playwright/test"
-import { ICO_SIZES, type Locale, MANIFEST, META_LOCALE, ogFile, RASTERS } from "./brand/assets.ts"
+import {
+  CARD_THEME,
+  ICO_SIZES,
+  type Locale,
+  MANIFEST,
+  META_LOCALE,
+  ogFile,
+  RASTERS,
+  type RasterAsset,
+} from "./brand/assets.ts"
 import { buildIco, type PngImage } from "./brand/binary.ts"
-import { faviconSvg, paintedMark, readMark, readPalette } from "./brand/marks.ts"
-import { cardHtml, rasterHtml, tileHtml } from "./brand/pages.ts"
-import { FONT_PACKAGES, pickFontFaces } from "./exportTokens.ts"
+import {
+  FAVICON_TILE,
+  faviconSvg,
+  onFact,
+  onSurface,
+  onTile,
+  paintedMark,
+  readMark,
+  readPalette,
+  tileSvg,
+} from "./brand/marks.ts"
+import { cardHtml, svgHtml } from "./brand/pages.ts"
+import { pickFontFaces } from "./exportTokens.ts"
 
 interface CommonWords {
-  readonly app: { readonly name: string; readonly tagline: string }
+  readonly app: { readonly name: string; readonly tagline: string; readonly wordmark: string }
   readonly meta: { readonly description: string }
 }
+
+const FONT_PACKAGE = "@fontsource-variable/manrope"
 
 const frontendRoot = resolve(fileURLToPath(new URL("..", import.meta.url)))
 const repoRoot = resolve(frontendRoot, "..")
@@ -24,14 +45,12 @@ function words(locale: Locale): CommonWords {
 }
 
 function fontFaces(): string {
-  return FONT_PACKAGES.map((name) => {
-    const packageDir = join(frontendRoot, "node_modules", ...name.split("/"))
-    const faces = pickFontFaces(readFileSync(join(packageDir, "index.css"), "utf8"))
-    return faces.files.reduce((css, file) => {
-      const data = readFileSync(join(packageDir, "files", file)).toString("base64")
-      return css.replaceAll(`url("fonts/${file}")`, `url("data:font/woff2;base64,${data}")`)
-    }, faces.css)
-  }).join("\n")
+  const packageDir = join(frontendRoot, "node_modules", ...FONT_PACKAGE.split("/"))
+  const faces = pickFontFaces(readFileSync(join(packageDir, "index.css"), "utf8"))
+  return faces.files.reduce((css, file) => {
+    const data = readFileSync(join(packageDir, "files", file)).toString("base64")
+    return css.replaceAll(`url("fonts/${file}")`, `url("data:font/woff2;base64,${data}")`)
+  }, faces.css)
 }
 
 function fontFamily(): string {
@@ -56,44 +75,45 @@ async function shoot(page: Page, html: string): Promise<Buffer> {
 
 const mark = readMark(repoRoot)
 const palette = readPalette(frontendRoot)
-const light = paintedMark(mark, palette.light)
-const site = process.env.SITE_URL?.replace(/^https?:\/\//, "").replace(/\/$/, "") ?? ""
+const light = palette.light
+
+function rasterSvg(asset: RasterAsset): string {
+  if (asset.kind === "maskable") return tileSvg(mark, asset, onFact(light), light.fact)
+  return tileSvg(mark, asset, onTile(light), light.tile)
+}
 
 write("favicon.svg", faviconSvg(mark, palette))
 
 const browser = await chromium.launch()
 const page = await browser.newPage({ deviceScaleFactor: 1 })
 const ico: PngImage[] = []
-for (const size of ICO_SIZES)
-  ico.push({ size, data: await shoot(page, tileHtml(light, size, palette.light, true, 0.78)) })
+const tab = tileSvg(mark, FAVICON_TILE, onTile(light), light.tile)
+for (const size of ICO_SIZES) ico.push({ size, data: await shoot(page, svgHtml(tab, size)) })
 write("favicon.ico", buildIco(ico))
 for (const asset of RASTERS)
-  write(asset.file, await shoot(page, rasterHtml(light, asset, palette.light)))
+  write(asset.file, await shoot(page, svgHtml(rasterSvg(asset), asset.size)))
 const fonts = fontFaces()
 const family = fontFamily()
 for (const locale of LOCALES) {
   const text = words(locale)
-  const card = {
-    name: text.app.name,
-    tagline: text.app.tagline,
-    description: text.meta.description,
-    site: site || text.app.name,
-  }
-  write(ogFile(locale), await shoot(page, cardHtml(light, card, palette.light, fonts, family)))
+  const colors = palette[CARD_THEME[locale]]
+  const card = { wordmark: text.app.wordmark, tagline: text.app.tagline }
+  const painted = paintedMark(mark, onSurface(colors))
+  write(ogFile(locale), await shoot(page, cardHtml(painted, card, colors, fonts, family)))
 }
 await browser.close()
 
 const meta = words(META_LOCALE)
 const manifest = {
-  name: `${meta.app.name}`,
+  name: meta.app.name,
   short_name: meta.app.name,
   description: meta.meta.description,
   lang: META_LOCALE,
   start_url: "/",
   scope: "/",
   display: "standalone",
-  background_color: palette.light.surface,
-  theme_color: palette.light.surface,
+  background_color: light.surface,
+  theme_color: light.surface,
   icons: RASTERS.filter((asset) => asset.file.startsWith("icons/")).map((asset) => ({
     src: `/${asset.file}`,
     sizes: `${asset.size}x${asset.size}`,

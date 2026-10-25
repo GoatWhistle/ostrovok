@@ -4,12 +4,12 @@ import type { ThemeName } from "../checks/themes.ts"
 import { readTokenSources, themeColor } from "../tokenSources.ts"
 
 export interface ThemePalette {
-  readonly base: string
-  readonly accent: string
+  readonly side: string
+  readonly fact: string
+  readonly tile: string
+  readonly onTile: string
   readonly surface: string
-  readonly raised: string
-  readonly muted: string
-  readonly line: string
+  readonly text: string
 }
 
 export type BrandPalette = Readonly<Record<ThemeName, ThemePalette>>
@@ -19,17 +19,29 @@ export interface Mark {
   readonly body: string
 }
 
+export interface MarkColors {
+  readonly base: string
+  readonly accent: string
+}
+
+export interface Tile {
+  readonly radius: number
+  readonly scale: number
+}
+
 const SVG = /<svg\b[^>]*\bviewBox="([^"]+)"[^>]*>([\s\S]*?)<\/svg>/
 const SHELL_MARK = /<template id="brand-mark">\s*([\s\S]*?)\s*<\/template>/
 
 const PALETTE_TOKENS: Readonly<Record<keyof ThemePalette, string>> = {
-  base: "--text-primary",
-  accent: "--action-primary",
+  side: "--mark-side",
+  fact: "--mark-fact",
+  tile: "--action-primary",
+  onTile: "--action-primary-text",
   surface: "--surface-base",
-  raised: "--surface-raised",
-  muted: "--text-secondary",
-  line: "--border-subtle",
+  text: "--text-primary",
 }
+
+export const FAVICON_TILE: Tile = { radius: 14 / 64, scale: 0.78 }
 
 export function readMark(repoRoot: string): Mark {
   const symbol = join(repoRoot, "docs", "brand", "symbol.svg")
@@ -58,15 +70,53 @@ export function readPalette(frontendRoot: string): BrandPalette {
   return { light: pick("light"), dark: pick("dark") }
 }
 
-function markStyle(colors: ThemePalette): string {
-  return `.mark-base{fill:${colors.base}}.mark-accent{fill:${colors.accent}}`
+export const onSurface = (colors: ThemePalette): MarkColors => ({
+  base: colors.side,
+  accent: colors.fact,
+})
+
+export const onTile = (colors: ThemePalette): MarkColors => ({
+  base: colors.onTile,
+  accent: colors.fact,
+})
+
+export const onFact = (colors: ThemePalette): MarkColors => ({
+  base: colors.side,
+  accent: colors.text,
+})
+
+function markStyle(colors: MarkColors, tile?: string): string {
+  const background = tile === undefined ? "" : `.mark-tile{fill:${tile}}`
+  return `${background}.mark-base{fill:${colors.base}}.mark-accent{fill:${colors.accent}}`
+}
+
+function framed(mark: Mark, tile: Tile, filled: boolean): string {
+  const [x = 0, y = 0, width = 64, height = 64] = mark.viewBox.split(/[\s,]+/).map(Number)
+  const shift = (start: number, length: number): number =>
+    Number(((start + length / 2) * (1 - tile.scale)).toFixed(3))
+  const rect = !filled
+    ? ""
+    : `<rect class="mark-tile" x="${x}" y="${y}" width="${width}" height="${height}" rx="${Number((width * tile.radius).toFixed(3))}"/>`
+  return `${rect}<g transform="translate(${shift(x, width)} ${shift(y, height)}) scale(${Number(tile.scale.toFixed(4))})">${mark.body}</g>`
 }
 
 export function faviconSvg(mark: Mark, palette: BrandPalette): string {
-  const style = `${markStyle(palette.light)}@media (prefers-color-scheme:dark){${markStyle(palette.dark)}}`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mark.viewBox}"><style>${style}</style>${mark.body}</svg>\n`
+  const light = markStyle(onTile(palette.light), palette.light.tile)
+  const dark = markStyle(onTile(palette.dark), palette.dark.tile)
+  const style = `${light}@media (prefers-color-scheme:dark){${dark}}`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mark.viewBox}"><style>${style}</style>${framed(mark, FAVICON_TILE, true)}</svg>\n`
 }
 
-export function paintedMark(mark: Mark, colors: ThemePalette): string {
+export function tileSvg(
+  mark: Mark,
+  tile: Tile,
+  colors: MarkColors,
+  background: string | null,
+): string {
+  const style = markStyle(colors, background ?? undefined)
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mark.viewBox}" width="100%" height="100%"><style>${style}</style>${framed(mark, tile, background !== null)}</svg>`
+}
+
+export function paintedMark(mark: Mark, colors: MarkColors): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mark.viewBox}" width="100%" height="100%"><style>${markStyle(colors)}</style>${mark.body}</svg>`
 }

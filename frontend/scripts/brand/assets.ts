@@ -3,19 +3,25 @@ export type Locale = "ru" | "en"
 export interface RasterAsset {
   readonly file: string
   readonly size: number
-  readonly kind: "tab" | "app" | "maskable"
+  readonly kind: "touch" | "app" | "maskable"
+  readonly radius: number
+  readonly scale: number
 }
+
+export type CardTheme = "light" | "dark"
 
 export const META_LOCALE: Locale = "ru"
 
 export const ICO_SIZES = [16, 32, 48] as const
 
 export const RASTERS: readonly RasterAsset[] = [
-  { file: "apple-touch-icon.png", size: 180, kind: "app" },
-  { file: "icons/icon-192.png", size: 192, kind: "app" },
-  { file: "icons/icon-512.png", size: 512, kind: "app" },
-  { file: "icons/icon-maskable-512.png", size: 512, kind: "maskable" },
+  { file: "apple-touch-icon.png", size: 180, kind: "touch", radius: 0, scale: 36 / 64 },
+  { file: "icons/icon-192.png", size: 192, kind: "app", radius: 14 / 64, scale: 36 / 64 },
+  { file: "icons/icon-512.png", size: 512, kind: "app", radius: 14 / 64, scale: 36 / 64 },
+  { file: "icons/icon-maskable-512.png", size: 512, kind: "maskable", radius: 0, scale: 0.5 },
 ]
+
+export const CARD_THEME: Readonly<Record<Locale, CardTheme>> = { ru: "light", en: "dark" }
 
 export const OG_SIZE = { width: 1200, height: 630 } as const
 
