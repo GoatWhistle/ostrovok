@@ -22,6 +22,7 @@ class Settings:
     llm_api_key: str | None = None
     llm_base_url: str | None = None
     llm_model: str | None = None
+    llm_fallback_model: str | None = None
     llm_timeout_s: float = 30.0
     characteristics_dir: Path = Path("characteristics")
     seed_dir: Path = Path("data/seed")
@@ -38,6 +39,7 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         llm_api_key=env.get("LLM_API_KEY") or None,
         llm_base_url=env.get("LLM_BASE_URL") or None,
         llm_model=env.get("LLM_MODEL") or None,
+        llm_fallback_model=env.get("LLM_FALLBACK_MODEL") or None,
         llm_timeout_s=_positive(env, "LLM_TIMEOUT_S", 30.0),
         characteristics_dir=Path(env.get("CHARACTERISTICS_DIR") or "characteristics"),
         seed_dir=Path(env.get("SEED_DIR") or "data/seed"),

@@ -54,6 +54,7 @@ def build_llm(
                 base_url=_required(settings.llm_base_url, "LLM_BASE_URL"),
                 api_key=_required(settings.llm_api_key, "LLM_API_KEY"),
                 model=_required(settings.llm_model, "LLM_MODEL"),
+                fallback_model=settings.llm_fallback_model,
                 timeout_s=settings.llm_timeout_s,
             )
         case LLMProvider.ANTHROPIC:

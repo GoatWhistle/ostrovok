@@ -391,6 +391,39 @@ async def test_an_unreachable_endpoint_becomes_a_model_failure(build: Build) -> 
         await llm.parse_query("тихий номер")
 
 
+async def test_timeout_uses_the_configured_backup_model(
+    characteristics_dir: Path, logger: RecordingLogger
+) -> None:
+    models: list[str] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        body = json.loads(request.content)
+        models.append(body["model"])
+        if len(models) == 1:
+            raise httpx.ReadTimeout("slow model")
+        return httpx.Response(
+            200,
+            json={"choices": [{"message": {"content": '{"intents":[],"unmatched_terms":[]}'}}]},
+        )
+
+    llm = OpenAICompatLLM(
+        registry=YamlCharacteristicRegistry.from_directory(characteristics_dir),
+        logger=logger,
+        base_url="https://example.test/v1",
+        api_key="secret",
+        model="primary",
+        fallback_model="backup",
+        timeout_s=30,
+        transport=httpx.MockTransport(handle),
+    )
+
+    parsed = await llm.parse_query("отель в Сочи")
+
+    assert parsed.intents == ()
+    assert models == ["primary", "backup"]
+    assert "llm_request_retry" in logger.events
+
+
 async def test_prose_instead_of_json_becomes_a_model_failure(build: Build) -> None:
     llm = build("Конечно! Вот что я нашёл:")
 
