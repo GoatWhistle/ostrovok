@@ -1,0 +1,19 @@
+.composer {
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16) var(--space-16);
+  background-color: var(--surface-base);
+  box-shadow: var(--shadow-divider-top);
+}
+
+.hint {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  padding-inline: var(--space-8);
+}
+
+.context {
+  justify-self: start;
+  max-inline-size: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

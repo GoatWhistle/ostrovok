@@ -1,17 +1,17 @@
 {
   "app": {
-    "name": "Hotel Agent",
-    "tagline": "Find a hotel that fits"
+    "name": "Factmap",
+    "tagline": "Search in words. Check on the map.",
+    "wordmark": "factmap"
   },
   "meta": {
-    "description": "Hotels that fit your needs, backed by facts you can check."
+    "description": "Sochi hotels by conditions filters miss: quiet, a sunset view, the walk to the sea. Every match has a source."
   },
   "shell": {
     "skip": "Skip to content"
   },
   "action": {
-    "retry": "Try again",
-    "home": "Go to the start page"
+    "retry": "Try again"
   },
   "state": {
     "loading": "Loading"
@@ -22,8 +22,8 @@
   },
   "theme": {
     "legend": "Theme",
-    "light": "Light theme",
-    "dark": "Dark theme"
+    "light": "Switch to light theme",
+    "dark": "Switch to dark theme"
   },
   "language": {
     "legend": "Interface language",
@@ -35,7 +35,15 @@
     }
   },
   "notFound": {
-    "title": "Page not found",
-    "description": "The address may contain a typo, or the page has moved."
+    "title": "This place is not on the map",
+    "description": "The link may be outdated or mistyped. Describe a hotel in the search and we will show you where it is true.",
+    "code": "404",
+    "search": "Back to search",
+    "back": "Go back"
+  },
+  "confidence": {
+    "high": "high confidence",
+    "mid": "medium confidence",
+    "low": "low confidence"
   }
 }

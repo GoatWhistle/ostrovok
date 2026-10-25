@@ -1,39 +1,69 @@
-import type { FeatureCollection } from "geojson"
-import type { GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
+import type { Feature, FeatureCollection } from "geojson"
+import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
+
+export interface BuildingColors {
+  readonly building: string
+  readonly buildingLine: string
+  readonly fact: string
+  readonly factLine: string
+}
+
+export interface HighlightColors {
+  readonly fact: string
+  readonly factLine: string
+  readonly route: string
+  readonly land: string
+}
+
+const HOTEL: ExpressionSpecification = ["boolean", ["get", "is_hotel"], false]
+const POLYGON: ExpressionSpecification = ["==", ["geometry-type"], "Polygon"]
+
 export function updateSource(map: MapLibreMap, name: string, data: FeatureCollection) {
   const existing = map.getSource<GeoJSONSource>(name)
   if (existing) existing.setData(data)
   else map.addSource(name, { type: "geojson", data })
 }
-export function renderBuildings(
-  map: MapLibreMap,
-  data: FeatureCollection,
-  color: string,
-  selected: string,
-) {
+
+function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
+  map.setPaintProperty("buildings-context", "fill-color", [
+    "case",
+    HOTEL,
+    colors.fact,
+    colors.building,
+  ])
+  map.setPaintProperty("buildings-volume", "fill-extrusion-color", [
+    "case",
+    HOTEL,
+    colors.fact,
+    colors.building,
+  ])
+  map.setPaintProperty("buildings-outline", "line-color", colors.factLine)
+}
+
+export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
   updateSource(map, "buildings", data)
-  if (map.getLayer("buildings-volume")) return
+  if (map.getLayer("buildings-volume")) {
+    paintBuildings(map, colors)
+    return
+  }
   map.addLayer({
     id: "buildings-context",
     type: "fill",
     source: "buildings",
-    filter: ["==", ["geometry-type"], "Polygon"],
+    filter: POLYGON,
     paint: {
-      "fill-color": ["case", ["boolean", ["get", "is_hotel"], false], selected, color],
-      "fill-opacity": ["case", ["boolean", ["get", "is_hotel"], false], 0.7, 0.28],
+      "fill-color": ["case", HOTEL, colors.fact, colors.building],
+      "fill-outline-color": colors.buildingLine,
+      "fill-opacity": ["case", HOTEL, 0.9, 0.6],
     },
   })
   map.addLayer({
     id: "buildings-volume",
     type: "fill-extrusion",
     source: "buildings",
-    filter: [
-      "all",
-      ["==", ["geometry-type"], "Polygon"],
-      [">", ["to-number", ["get", "height_m"], 0], 0],
-    ],
+    filter: ["all", POLYGON, [">", ["to-number", ["get", "height_m"], 0], 0]],
     paint: {
-      "fill-extrusion-color": ["case", ["boolean", ["get", "is_hotel"], false], selected, color],
+      "fill-extrusion-color": ["case", HOTEL, colors.fact, colors.building],
       "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
       "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
       "fill-extrusion-opacity": 0.95,
@@ -43,38 +73,56 @@ export function renderBuildings(
     id: "buildings-outline",
     type: "line",
     source: "buildings",
-    filter: ["get", "is_hotel"],
-    paint: { "line-color": selected, "line-width": 3, "line-opacity": 0.9 },
+    filter: HOTEL,
+    paint: { "line-color": colors.factLine, "line-width": 2 },
   })
 }
-export function renderHighlights(
-  map: MapLibreMap,
-  data: FeatureCollection,
-  color: string,
-  casing: string,
-) {
-  updateSource(map, "highlights", data)
-  if (map.getLayer("highlight-line")) return
+
+function isRoute(feature: Feature): boolean {
+  const type = feature.geometry.type
+  return (
+    (type === "LineString" || type === "MultiLineString") && feature.properties?.kind !== "fact"
+  )
+}
+
+export function routeGradient(color: string, progress: number): ExpressionSpecification {
+  if (progress >= 1) return ["step", ["line-progress"], color, 2, color]
+  return ["step", ["line-progress"], color, Math.max(progress, 0.0001), "transparent"]
+}
+
+function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
   map.addLayer({
     id: "highlight-area",
     type: "fill",
     source: "highlights",
-    filter: ["==", ["geometry-type"], "Polygon"],
-    paint: { "fill-color": color, "fill-opacity": 0.16 },
-  })
-  map.addLayer({
-    id: "highlight-line-casing",
-    type: "line",
-    source: "highlights",
-    filter: ["!=", ["geometry-type"], "Point"],
-    paint: { "line-color": casing, "line-width": 8, "line-opacity": 0.9 },
+    filter: POLYGON,
+    paint: { "fill-color": colors.fact, "fill-opacity": 0.45 },
   })
   map.addLayer({
     id: "highlight-line",
     type: "line",
     source: "highlights",
     filter: ["!=", ["geometry-type"], "Point"],
-    paint: { "line-color": color, "line-width": 4 },
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: { "line-color": colors.factLine, "line-width": 2.5 },
+  })
+  map.addLayer({
+    id: "route-casing",
+    type: "line",
+    source: "routes",
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: {
+      "line-gradient": routeGradient(colors.land, 0),
+      "line-width": 9,
+      "line-opacity": 0.85,
+    },
+  })
+  map.addLayer({
+    id: "route-line",
+    type: "line",
+    source: "routes",
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: { "line-gradient": routeGradient(colors.route, 0), "line-width": 4.5 },
   })
   map.addLayer({
     id: "highlight-point",
@@ -82,10 +130,36 @@ export function renderHighlights(
     source: "highlights",
     filter: ["==", ["geometry-type"], "Point"],
     paint: {
-      "circle-color": color,
-      "circle-radius": 7,
+      "circle-color": colors.fact,
+      "circle-radius": 6,
       "circle-stroke-width": 2,
-      "circle-stroke-color": casing,
+      "circle-stroke-color": colors.factLine,
     },
   })
+}
+
+export function renderHighlights(
+  map: MapLibreMap,
+  data: FeatureCollection,
+  colors: HighlightColors,
+): boolean {
+  const routes = data.features.filter(isRoute)
+  const facts = data.features.filter((feature) => !isRoute(feature))
+  updateSource(map, "highlights", { type: "FeatureCollection", features: facts })
+  const existing = map.getSource<GeoJSONSource>("routes")
+  const routeData: FeatureCollection = { type: "FeatureCollection", features: routes }
+  if (existing) existing.setData(routeData)
+  else map.addSource("routes", { type: "geojson", data: routeData, lineMetrics: true })
+  if (!map.getLayer("highlight-area")) addHighlightLayers(map, colors)
+  map.setPaintProperty("highlight-area", "fill-color", colors.fact)
+  map.setPaintProperty("highlight-line", "line-color", colors.factLine)
+  map.setPaintProperty("highlight-point", "circle-color", colors.fact)
+  map.setPaintProperty("highlight-point", "circle-stroke-color", colors.factLine)
+  return routes.length > 0
+}
+
+export function paintRoute(map: MapLibreMap, colors: HighlightColors, progress: number) {
+  if (!map.getLayer("route-line")) return
+  map.setPaintProperty("route-casing", "line-gradient", routeGradient(colors.land, progress))
+  map.setPaintProperty("route-line", "line-gradient", routeGradient(colors.route, progress))
 }

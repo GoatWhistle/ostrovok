@@ -1,0 +1,34 @@
+.caption {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.static {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-12);
+  min-block-size: var(--target-min);
+  padding: var(--space-8) var(--space-12);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.label {
+  composes: label from "../../entities/evidence/evidence-text.module.css";
+}

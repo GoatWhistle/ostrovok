@@ -1,0 +1,131 @@
+.art {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+  background-color: var(--map-land);
+  box-shadow: var(--shadow-ring);
+}
+
+.svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.land {
+  fill: var(--map-land);
+}
+
+.contours {
+  fill: none;
+  stroke: var(--map-contour);
+  stroke-width: var(--map-contour-width);
+}
+
+.park {
+  fill: var(--map-park);
+}
+
+.buildings {
+  fill: var(--map-building);
+  stroke: var(--map-building-line);
+  stroke-width: var(--map-building-stroke);
+}
+
+.casing,
+.majorCasing,
+.road,
+.major {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.casing {
+  stroke: var(--map-road-casing);
+  stroke-width: var(--map-casing-width);
+}
+
+.majorCasing {
+  stroke: var(--map-road-casing);
+  stroke-width: var(--map-casing-major-width);
+}
+
+.road {
+  stroke: var(--map-road);
+  stroke-width: var(--map-road-width);
+}
+
+.major {
+  stroke: var(--map-road-major);
+  stroke-width: var(--map-road-major-width);
+}
+
+.sea {
+  fill: var(--map-water);
+}
+
+.sand {
+  fill: none;
+  stroke: var(--map-sand);
+  stroke-width: var(--map-sand-width);
+}
+
+.coast {
+  fill: none;
+  stroke: var(--map-water-line);
+  stroke-width: var(--map-coast-width);
+}
+
+.reveal {
+  fill: none;
+  stroke: var(--mask-on);
+  stroke-width: var(--lost-reveal-width);
+  stroke-linecap: round;
+  stroke-dasharray: var(--path-length);
+  animation: var(--motion-lost-draw);
+}
+
+.route {
+  fill: none;
+  stroke: var(--map-route);
+  stroke-width: var(--lost-route-width);
+  stroke-linecap: round;
+  stroke-dasharray: var(--lost-route-dash);
+}
+
+.start {
+  fill: var(--map-route);
+  stroke: var(--map-land);
+  stroke-width: var(--lost-start-stroke);
+}
+
+.pin {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: var(--motion-lost-pin);
+}
+
+.shadow {
+  fill: var(--shadow-color-strong);
+}
+
+.pinBody,
+.ask {
+  stroke: var(--text-muted);
+  stroke-width: var(--lost-pin-stroke);
+  vector-effect: non-scaling-stroke;
+}
+
+.pinBody {
+  fill: var(--map-hotel);
+  stroke-dasharray: var(--lost-pin-dash);
+}
+
+.ask {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.dot {
+  fill: var(--text-muted);
+}

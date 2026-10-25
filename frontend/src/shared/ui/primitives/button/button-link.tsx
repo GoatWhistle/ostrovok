@@ -12,6 +12,7 @@ import {
 import styles from "./button.module.css"
 
 export interface ButtonLinkProps {
+  readonly align?: "center" | "start"
   readonly to: To
   readonly variant?: ButtonVariant
   readonly size?: ButtonSize
@@ -27,10 +28,12 @@ export function ButtonLink({
   icon,
   className,
   children,
+  align = "center",
 }: ButtonLinkProps) {
   return (
     <Link
       to={to}
+      data-align={align}
       viewTransition
       className={clsx(styles.button, VARIANT_CLASS[variant], SIZE_CLASS[size], className)}
     >

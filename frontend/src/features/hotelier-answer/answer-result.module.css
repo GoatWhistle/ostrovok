@@ -1,0 +1,32 @@
+.result {
+  display: grid;
+  gap: var(--space-12);
+  animation: var(--motion-fade-in);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.label {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+}
+
+.list {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-12);
+  padding-block: var(--space-8);
+  border-block-end: var(--hairline) solid var(--border-subtle);
+}
+
+.value {
+  composes: label from "../../entities/evidence/evidence-text.module.css";
+}

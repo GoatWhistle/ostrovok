@@ -1,4 +1,4 @@
-import type { Map as MapLibreMap } from "maplibre-gl"
+import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 
 export interface SunPosition {
   readonly azimuth: number
@@ -6,6 +6,10 @@ export interface SunPosition {
 }
 
 export interface TerrainColors {
+  readonly land: string
+  readonly park: string
+  readonly sand: string
+  readonly building: string
   readonly sea: string
   readonly seaDusk: string
   readonly seaNight: string
@@ -19,43 +23,98 @@ export interface TerrainColors {
   readonly hillHighlight: string
 }
 
-export function lightMode(altitude: number) {
+export type LightMode = "day" | "dusk" | "night"
+
+const DEM_TILES = "/api/v1/map/terrain/{z}/{x}/{y}.png"
+const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 0.78, night: 0.4 }
+const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
+
+export function lightMode(altitude: number): LightMode {
   if (altitude < -6) return "night"
   if (altitude < 8) return "dusk"
   return "day"
 }
 
-function scenePalette(colors: TerrainColors, mode: string) {
-  return {
-    sea: mode === "night" ? colors.seaNight : mode === "dusk" ? colors.seaDusk : colors.sea,
-    sky: mode === "night" ? colors.skyNight : mode === "dusk" ? colors.skyDusk : colors.sky,
-    horizon:
-      mode === "night"
-        ? colors.horizonNight
-        : mode === "dusk"
-          ? colors.horizonDusk
-          : colors.horizon,
-  }
+function scenePalette(colors: TerrainColors, mode: LightMode) {
+  if (mode === "night")
+    return { sea: colors.seaNight, sky: colors.skyNight, horizon: colors.horizonNight }
+  if (mode === "dusk")
+    return { sea: colors.seaDusk, sky: colors.skyDusk, horizon: colors.horizonDusk }
+  return { sea: colors.sea, sky: colors.sky, horizon: colors.horizon }
+}
+
+function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification {
+  return [
+    "interpolate",
+    ["linear"],
+    ["elevation"],
+    0,
+    sea,
+    0.6,
+    colors.sand,
+    6,
+    colors.land,
+    260,
+    colors.land,
+    900,
+    colors.park,
+    2200,
+    colors.building,
+  ]
+}
+
+function demSource(map: MapLibreMap, id: string) {
+  if (map.getSource(id)) return
+  map.addSource(id, {
+    type: "raster-dem",
+    tiles: [`${window.location.origin}${DEM_TILES}`],
+    tileSize: 256,
+    minzoom: 8,
+    maxzoom: 14,
+    encoding: "mapbox",
+  })
+}
+
+function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) {
+  if (map.getLayer("sochi-relief")) return
+  demSource(map, "sochi-dem")
+  demSource(map, "sochi-dem-shade")
+  map.addLayer({
+    id: "sochi-relief",
+    type: "color-relief",
+    source: "sochi-dem-shade",
+    paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
+  })
+  map.addLayer({
+    id: "sochi-hillshade",
+    type: "hillshade",
+    source: "sochi-dem-shade",
+    paint: {
+      "hillshade-exaggeration": 0.5,
+      "hillshade-shadow-color": colors.hillShadow,
+      "hillshade-highlight-color": colors.hillHighlight,
+      "hillshade-accent-color": colors.hillShadow,
+    },
+  })
+  map.setTerrain({ source: "sochi-dem", exaggeration: 1.15 })
 }
 
 export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunPosition) {
   const mode = lightMode(sun.altitude)
   const { sea, sky, horizon } = scenePalette(colors, mode)
-  addTerrainSources(map, colors)
-  map.setPaintProperty(
-    "sochi-relief",
-    "raster-opacity",
-    mode === "night" ? 0.34 : mode === "dusk" ? 0.72 : 1,
-  )
+  addTerrainLayers(map, colors, sea)
+  map.setPaintProperty("sochi-relief", "color-relief-color", reliefRamp(colors, sea))
+  map.setPaintProperty("sochi-relief", "color-relief-opacity", RELIEF_OPACITY[mode])
   map.setPaintProperty("sochi-hillshade", "hillshade-shadow-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-highlight-color", colors.hillHighlight)
+  map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-illumination-direction", sun.azimuth)
   map.setPaintProperty("canvas", "background-color", sea)
   map.setLight({
     anchor: "map",
     position: [1.15, sun.azimuth, Math.max(5, Math.min(110, 90 - sun.altitude))],
     color: mode === "dusk" ? colors.horizonDusk : colors.hillHighlight,
-    intensity: mode === "night" ? 0.15 : mode === "dusk" ? 0.7 : 0.5,
+    intensity: LIGHT_INTENSITY[mode],
   })
   map.setSky({
     "sky-color": sky,
@@ -65,42 +124,4 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
     "horizon-fog-blend": 0.7,
     "fog-ground-blend": 0.5,
   })
-}
-
-function addTerrainSources(map: MapLibreMap, colors: TerrainColors) {
-  if (!map.getSource("sochi-dem")) {
-    map.addSource("sochi-dem", {
-      type: "raster-dem",
-      tiles: [`${window.location.origin}/api/v1/map/terrain/{z}/{x}/{y}.png`],
-      tileSize: 256,
-      minzoom: 8,
-      maxzoom: 14,
-      encoding: "mapbox",
-    })
-    map.addSource("sochi-relief", {
-      type: "raster",
-      tiles: [`${window.location.origin}/api/v1/map/relief/{z}/{x}/{y}.png`],
-      tileSize: 256,
-      minzoom: 8,
-      maxzoom: 14,
-    })
-    map.addLayer({
-      id: "sochi-relief",
-      type: "raster",
-      source: "sochi-relief",
-      paint: { "raster-opacity": 1 },
-    })
-    map.addLayer({
-      id: "sochi-hillshade",
-      type: "hillshade",
-      source: "sochi-dem",
-      paint: {
-        "hillshade-exaggeration": 0.55,
-        "hillshade-shadow-color": colors.hillShadow,
-        "hillshade-highlight-color": colors.hillHighlight,
-        "hillshade-accent-color": colors.hillShadow,
-      },
-    })
-    map.setTerrain({ source: "sochi-dem", exaggeration: 1.15 })
-  }
 }

@@ -1,0 +1,172 @@
+.host:focus-within,
+.host[data-selected="true"] {
+  z-index: var(--layer-raised);
+}
+
+.pin[data-kind] {
+  --button-height: var(--pin-height);
+  --button-padding: var(--space-8);
+  --button-radius: var(--radius-sm);
+  --button-surface: var(--map-hotel);
+  --button-surface-hover: var(--map-hotel-selected);
+  --button-surface-press: var(--map-hotel-selected);
+  --button-text: var(--map-hotel-text);
+
+  box-shadow: var(--shadow-pin);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+  animation: var(--motion-pin-in);
+  transform-origin: center bottom;
+}
+
+.pin[data-kind="hotel"] {
+  padding-inline-start: var(--space-4);
+}
+
+.pin[data-kind="cluster"] {
+  --button-radius: var(--radius-pill);
+  --button-surface: var(--surface-inverse);
+  --button-text: var(--text-on-inverse);
+}
+
+.pin[data-state="nodata"] {
+  --button-height: var(--space-12);
+  --button-padding: 0;
+  --button-radius: var(--radius-pill);
+  --button-surface: var(--text-primary);
+
+  inline-size: var(--space-12);
+  padding-inline: 0;
+}
+
+.pin[data-state="nodata"]::before {
+  inset: calc((var(--space-12) - var(--target-min)) / 2);
+}
+
+.pin[data-selected="true"] {
+  --button-surface: var(--map-hotel-selected);
+  --button-text: var(--action-primary-text);
+}
+
+.face {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  inline-size: var(--pin-dot);
+  block-size: var(--pin-dot);
+  border-radius: var(--radius-xs);
+  background-color: var(--status-warning-surface);
+  color: var(--text-warning);
+}
+
+.pin[data-state="complete"] .dot {
+  background-color: var(--surface-highlight);
+  color: var(--text-on-highlight);
+}
+
+.pin[data-selected="true"] .dot {
+  background-color: var(--action-fact);
+  color: var(--text-on-fact);
+}
+
+.bubble {
+  composes: floatingSurface labelText from "../../shared/styles/compose.module.css";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  inline-size: max-content;
+  max-inline-size: var(--field-max-width);
+  padding: var(--space-8) var(--space-12);
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.label {
+  inset-block-end: calc(100% + var(--space-8));
+  inset-inline-start: 50%;
+  display: none;
+  translate: -50% 0;
+  transform-origin: center bottom;
+  animation: var(--motion-anchor-in);
+}
+
+.pin[data-edge="start"] .label {
+  inset-inline-start: 0;
+  translate: none;
+}
+
+.pin[data-edge="end"] .label {
+  inset-inline: auto 0;
+  translate: none;
+}
+
+.pin[data-below="true"] .label {
+  inset-block: calc(100% + var(--space-8)) auto;
+  transform-origin: center top;
+}
+
+.pin[data-selected="true"] .label,
+.pin:focus-visible .label {
+  display: flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .host:hover {
+    z-index: var(--layer-raised);
+  }
+
+  .pin:hover .label {
+    display: flex;
+  }
+
+  .pin[data-kind="hotel"]:not([data-state="nodata"]):hover {
+    --button-text: var(--action-primary-text);
+  }
+}
+
+.place {
+  position: relative;
+  display: block;
+  inline-size: var(--space-12);
+  block-size: var(--space-12);
+  pointer-events: none;
+}
+
+.placeDot {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--map-fact);
+  box-shadow: var(--shadow-pin);
+  animation: var(--motion-scale-in);
+}
+
+.place[data-kind="route"] .placeDot {
+  background-color: var(--map-route);
+}
+
+.placeLabel {
+  inset-block-start: 50%;
+  inset-inline-start: calc(100% + var(--space-8));
+  translate: 0 -50%;
+  animation: var(--motion-fade-in);
+}
+
+.place[data-kind="route"] .placeLabel {
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+}
+
+.routeIcon {
+  flex: none;
+  color: var(--map-route);
+}

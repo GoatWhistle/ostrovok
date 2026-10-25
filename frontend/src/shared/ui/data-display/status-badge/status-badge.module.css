@@ -1,0 +1,68 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-block-size: var(--badge-height);
+  padding-inline: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  background-color: var(--badge-surface);
+  color: var(--badge-text);
+  font-size: var(--font-size-caption);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-height-caption);
+  white-space: nowrap;
+}
+
+.icon {
+  color: var(--badge-icon);
+}
+
+.success {
+  --badge-surface: var(--status-success-surface);
+  --badge-text: var(--text-success);
+  --badge-icon: var(--status-success);
+}
+
+.danger {
+  --badge-surface: var(--status-danger-surface);
+  --badge-text: var(--text-danger);
+  --badge-icon: var(--status-danger);
+}
+
+.warning {
+  --badge-surface: var(--status-warning-surface);
+  --badge-text: var(--text-warning);
+  --badge-icon: var(--status-warning);
+}
+
+.conflict {
+  --badge-surface: var(--status-conflict-surface);
+  --badge-text: var(--text-conflict);
+  --badge-icon: var(--status-conflict);
+}
+
+.info {
+  --badge-surface: var(--status-info-surface);
+  --badge-text: var(--text-accent);
+  --badge-icon: var(--status-info);
+}
+
+.neutral {
+  --badge-surface: var(--status-neutral-surface);
+  --badge-text: var(--text-secondary);
+  --badge-icon: var(--status-neutral);
+}
+
+.fact {
+  --badge-surface: var(--surface-highlight);
+  --badge-text: var(--text-on-highlight);
+  --badge-icon: var(--text-on-highlight);
+}
+
+.stale {
+  --badge-surface: transparent;
+  --badge-text: var(--text-muted);
+  --badge-icon: var(--text-muted);
+
+  box-shadow: var(--shadow-ring);
+}

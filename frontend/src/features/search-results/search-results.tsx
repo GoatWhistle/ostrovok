@@ -1,129 +1,99 @@
+import { useState } from "react"
 import { HotelResult } from "@/entities/hotel"
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
-import { useTranslation } from "@/shared/i18n"
-import { EmptyState, Skeleton } from "@/shared/ui"
+import { useLocale, useTranslation } from "@/shared/i18n"
+import { EmptyState, Select, Skeleton } from "@/shared/ui"
 import styles from "./search-results.module.css"
+
 export interface SearchResultsProps {
-  readonly response: components["schemas"]["SearchResponse"] | null
+  readonly response: components["schemas"]["SearchResponse"] | undefined
   readonly pending: boolean
   readonly hotelId: string | undefined
-  readonly compared: readonly string[]
   readonly onSelect: (result: SearchResult) => void
   readonly onProperty: (result: SearchResult, property: MatchedProperty) => void
-  readonly onCompare: (id: string) => void
   readonly onPreview: (result: SearchResult, property: MatchedProperty | undefined) => void
 }
+
+type Order = "match" | "name"
+
+function ordered(results: readonly SearchResult[], order: Order, locale: string) {
+  if (order === "match") return results
+  return [...results].sort((a, b) => a.hotel.name.localeCompare(b.hotel.name, locale))
+}
+
 export function SearchResults({
   response,
   pending,
   hotelId,
-  compared,
   onSelect,
   onProperty,
-  onCompare,
   onPreview,
 }: SearchResultsProps) {
   const { t } = useTranslation()
-  if (response === null && !pending)
+  const { locale } = useLocale()
+  const [order, setOrder] = useState<Order>("match")
+  if (response === undefined && !pending)
     return (
       <EmptyState
-        icon="compass"
-        title={t("explore:results.initial")}
-        description={t("explore:results.initialText")}
+        icon="building"
+        title={t("explore:panel.emptyTitle")}
+        description={t("explore:panel.emptyText")}
+        className={styles.state}
       />
     )
-  if (response === null)
+  if (response === undefined)
     return (
-      <div className={styles.loading}>
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
+      <div className={styles.loading} role="status" aria-label={t("common:state.loading")}>
+        {["first", "second", "third"].map((key) => (
+          <div key={key} className={styles.ghost}>
+            <Skeleton shape="block" className={styles.ghostThumb} />
+            <Skeleton lines={3} />
+          </div>
+        ))}
       </div>
     )
-  const results = response.results
+  const results = [...new Map(response.results.map((result) => [result.hotel.id, result])).values()]
+  if (results.length === 0)
+    return (
+      <EmptyState
+        icon="search"
+        title={t("explore:panel.noneTitle")}
+        description={t("explore:panel.noneText")}
+        className={styles.state}
+      />
+    )
   return (
-    <section className={styles.results} aria-label={t("explore:results.title")}>
-      <SearchSummary first={response} count={results.length} />
-      {results.length === 0 ? (
-        <EmptyState
-          icon="search"
-          title={t("explore:results.empty")}
-          description={
-            response.parsed.needs_clarification
-              ? t("explore:results.clarification")
-              : t("explore:results.emptyText")
-          }
+    <section className={styles.results} aria-label={t("explore:panel.title")}>
+      <div className={styles.count} aria-live="polite">
+        <p>
+          <b>{t("explore:panel.hotelCount", { count: results.length })}</b>{" "}
+          {t("explore:panel.matches", { count: results.length })}
+        </p>
+        <Select<Order>
+          label={t("explore:panel.sort")}
+          value={order}
+          onChange={setOrder}
+          size="compact"
+          options={[
+            { value: "match", label: t("explore:panel.sortMatch") },
+            { value: "name", label: t("explore:panel.sortName") },
+          ]}
         />
-      ) : (
-        results.map((result) => (
+      </div>
+      <div className={styles.list}>
+        {ordered(results, order, locale).map((result, index) => (
           <HotelResult
             key={result.hotel.id}
+            index={index}
             result={result}
             selected={hotelId === result.hotel.id}
-            compared={compared.includes(result.hotel.id)}
             onSelect={() => onSelect(result)}
             onProperty={(property) => onProperty(result, property)}
-            onCompare={() => onCompare(result.hotel.id)}
             onPreview={(property) => onPreview(result, property)}
           />
-        ))
-      )}
+        ))}
+      </div>
     </section>
-  )
-}
-
-function SearchSummary({
-  first,
-  count,
-}: {
-  first: components["schemas"]["SearchResponse"] | undefined
-  count: number
-}) {
-  const { t } = useTranslation()
-  return (
-    <div className={styles.summary} aria-live="polite">
-      <p>
-        {first?.parsed.intents?.length
-          ? t("explore:results.count", { count })
-          : t("explore:results.candidates", { count })}
-      </p>
-      {!first?.parsed.intents?.length ? <p>{t("explore:results.candidatesNote")}</p> : null}
-      {first?.parsed.intents?.length ? (
-        <div className={styles.intents}>
-          {first.parsed.intents.map((intent) => (
-            <span key={JSON.stringify(intent)}>
-              {intent.source_text ?? intent.characteristic_key}
-            </span>
-          ))}
-        </div>
-      ) : null}
-      {first?.parsed.unmatched_terms?.length ? (
-        <p>
-          {t("explore:results.unmatched")}: {first.parsed.unmatched_terms.join(", ")}
-        </p>
-      ) : null}
-      {first?.parsed.corrections?.length ? (
-        <div className={styles.intents} role="status">
-          <strong>{t("explore:results.corrections")}</strong>
-          {first.parsed.corrections.map((item) => (
-            <span key={`${item.original}:${item.corrected}`}>
-              {t("explore:results.correction", item)}
-            </span>
-          ))}
-        </div>
-      ) : null}
-      {first?.parsed.unsupported_region ? (
-        <p role="status">
-          {t("explore:results.unsupportedRegion", {
-            region: first.parsed.unsupported_region,
-          })}
-        </p>
-      ) : null}
-      {first?.parsed.needs_clarification ? (
-        <p role="status">{t("explore:results.clarification")}</p>
-      ) : null}
-      {first?.pending?.length ? <p>{t("explore:results.pending")}</p> : null}
-    </div>
   )
 }

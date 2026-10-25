@@ -1,0 +1,71 @@
+.chip {
+  composes: pressable inlineControl from "../../../styles/compose.module.css";
+  min-block-size: var(--control-height-compact);
+  padding-inline: var(--space-4) var(--space-12);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-ring);
+  color: var(--chip-hue);
+  font-size: var(--font-size-label);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-height-label);
+}
+
+.chip::before {
+  content: "";
+  position: absolute;
+  inset-block: calc((var(--control-height-compact) - var(--target-min)) / 2);
+  inset-inline: 0;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  inline-size: var(--chip-dot);
+  block-size: var(--chip-dot);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-tint);
+}
+
+.text {
+  color: var(--text-primary);
+}
+
+.chip[aria-pressed="true"],
+.chip[data-pressed="true"] {
+  background-color: var(--surface-wash);
+  box-shadow: var(--shadow-ring-current);
+}
+
+.chip[aria-pressed="true"] .dot,
+.chip[data-pressed="true"] .dot {
+  background-color: var(--chip-hue);
+  color: var(--surface-raised);
+}
+
+.chip:active {
+  scale: var(--press-scale);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover:not([aria-pressed="true"]) {
+    box-shadow: var(--shadow-ring-strong);
+  }
+}
+
+.still {
+  gap: var(--space-6);
+  min-block-size: var(--chip-static-height);
+  padding-inline-start: var(--space-6);
+  cursor: default;
+}
+
+.still .dot {
+  inline-size: var(--chip-static-dot);
+  block-size: var(--chip-static-dot);
+}
+
+.still::before {
+  content: none;
+}

@@ -1,0 +1,31 @@
+.confidence {
+  composes: monoText from "../../../styles/compose.module.css";
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--text-secondary);
+}
+
+.bars {
+  display: inline-flex;
+  gap: var(--space-2);
+}
+
+.bars i {
+  inline-size: var(--space-4);
+  block-size: var(--space-12);
+  border-radius: var(--radius-xs);
+  background-color: var(--confidence-track);
+}
+
+.confidence[data-level="high"] .bars i {
+  background-color: var(--confidence-high);
+}
+
+.confidence[data-level="mid"] .bars i:nth-child(-n + 2) {
+  background-color: var(--confidence-mid);
+}
+
+.confidence[data-level="low"] .bars i:first-child {
+  background-color: var(--confidence-low);
+}

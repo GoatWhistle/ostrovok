@@ -5,14 +5,15 @@
   --button-surface-press: var(--action-primary-press);
   --button-text: var(--action-primary-text);
   --button-height: var(--control-height);
-  --button-padding: var(--space-20);
+  --button-padding: var(--space-16);
+  --button-radius: var(--radius-md);
 
   position: relative;
   display: inline-grid;
   place-items: center;
   min-block-size: var(--button-height);
   padding-inline: var(--button-padding);
-  border-radius: var(--radius-pill);
+  border-radius: var(--button-radius);
   background-color: var(--button-surface);
   color: var(--button-text);
   text-decoration: none;
@@ -30,12 +31,19 @@
 }
 
 .secondary {
+  --button-surface: var(--action-secondary);
+  --button-surface-hover: var(--action-secondary-hover);
+  --button-surface-press: var(--action-secondary-press);
+  --button-text: var(--action-secondary-text);
+}
+
+.outline {
   --button-surface: transparent;
   --button-surface-hover: var(--action-ghost-hover);
   --button-surface-press: var(--action-ghost-press);
   --button-text: var(--text-primary);
 
-  box-shadow: var(--shadow-ring);
+  box-shadow: var(--shadow-ring-strong);
 }
 
 .ghost {
@@ -46,13 +54,55 @@
   --button-padding: var(--space-12);
 }
 
+.fact {
+  --button-surface: var(--action-fact);
+  --button-surface-hover: var(--action-fact-hover);
+  --button-surface-press: var(--action-fact-press);
+  --button-text: var(--text-on-fact);
+}
+
+.confirm {
+  --button-surface: var(--action-confirm);
+  --button-surface-hover: var(--action-confirm-hover);
+  --button-surface-press: var(--action-confirm-hover);
+  --button-text: var(--text-success);
+}
+
+.reject {
+  --button-surface: var(--action-reject);
+  --button-surface-hover: var(--action-reject-hover);
+  --button-surface-press: var(--action-reject-hover);
+  --button-text: var(--text-danger);
+}
+
 .compact {
   --button-height: var(--control-height-compact);
-  --button-padding: var(--space-16);
+  --button-padding: var(--space-12);
+  --button-radius: var(--radius-sm);
+
+  font-size: var(--font-size-label);
+}
+
+.hero {
+  --button-height: var(--control-height-hero);
+  --button-padding: var(--space-24);
+  --button-radius: var(--radius-lg);
+
+  font-size: var(--font-size-body);
 }
 
 .ghost.compact {
   --button-padding: var(--space-8);
+}
+
+.iconOnly {
+  --button-padding: 0;
+
+  inline-size: var(--button-height);
+}
+
+.iconOnly::before {
+  inset-inline: calc((var(--button-height) - var(--target-min)) / 2);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -69,6 +119,9 @@
 .button:disabled {
   --button-surface: var(--action-disabled);
   --button-text: var(--text-disabled);
+
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
 .button[aria-busy="true"] {
@@ -87,10 +140,34 @@
   transition: var(--transition-fade);
 }
 
+.icon {
+  inline-size: var(--icon-md);
+  block-size: var(--icon-md);
+}
+
+.compact .icon {
+  inline-size: var(--icon-sm);
+  block-size: var(--icon-sm);
+}
+
 .content[data-pending="true"] {
   opacity: 0;
 }
 
 .loader {
   animation: var(--motion-spin);
+}
+
+.button[data-align="start"] {
+  justify-items: stretch;
+  text-align: start;
+}
+.button[data-align="start"] .content {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+.button[data-align="start"] .content > span {
+  min-inline-size: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }

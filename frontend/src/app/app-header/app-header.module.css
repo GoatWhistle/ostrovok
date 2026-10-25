@@ -1,74 +1,110 @@
 .header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--layer-sticky);
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-12) var(--space-24);
   min-block-size: var(--header-height);
-  padding: var(--space-12) var(--space-page);
-  border-block-end: var(--hairline) solid var(--border-subtle);
+  padding: var(--space-8) var(--space-page);
+  background-color: var(--surface-base);
+  box-shadow: var(--shadow-ring-subtle);
 }
+
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--space-8);
   min-block-size: var(--target-min);
   color: var(--text-primary);
-  font-size: var(--font-size-subheading);
-  font-weight: var(--weight-bold);
   text-decoration: none;
 }
-.mark {
-  display: grid;
-  place-items: center;
-  inline-size: var(--target-min);
-  block-size: var(--target-min);
-  border-radius: var(--radius-pill);
-  background: var(--action-primary);
-  color: var(--action-primary-text);
+
+.word {
+  composes: headingText from "../../shared/styles/compose.module.css";
 }
+
 .navigation {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-24);
+  gap: var(--space-4);
 }
+
 .link {
+  composes: controlText pressable from "../../shared/styles/compose.module.css";
   display: inline-flex;
   align-items: center;
   gap: var(--space-8);
-  min-block-size: var(--target-min);
+  min-block-size: var(--control-height);
+  padding-inline: var(--space-12);
+  border-radius: var(--radius-md);
   color: var(--text-secondary);
-  font-size: var(--font-size-body-sm);
   text-decoration: none;
 }
-.link[aria-current="page"] {
-  color: var(--text-primary);
-  font-weight: var(--weight-medium);
+
+.link svg {
+  color: var(--text-muted);
 }
+
+.link[aria-current="page"] {
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-ring);
+  color: var(--text-primary);
+}
+
+.link[aria-current="page"] svg {
+  color: var(--text-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover:not([aria-current="page"]) {
+    background-color: var(--action-ghost-hover);
+    color: var(--text-primary);
+  }
+}
+
+.link:active {
+  scale: var(--press-scale);
+}
+
 .controls {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-12);
-}
-.service {
-  display: inline-flex;
   align-items: center;
   gap: var(--space-8);
-  color: var(--text-muted);
-  font-size: var(--font-size-caption);
+  margin-inline-start: auto;
 }
+
+.service {
+  display: inline-flex;
+}
+
 @media (max-width: 63.99rem) {
   .service {
     display: none;
   }
 }
+
 @media (max-width: 47.99rem) {
+  .header {
+    flex-wrap: wrap;
+    padding-inline: var(--space-16);
+    gap: var(--space-8);
+  }
+
+  .word {
+    font-size: var(--font-size-subheading);
+  }
+
   .navigation {
     order: 3;
     inline-size: 100%;
   }
+
+  .link {
+    flex: 1;
+    justify-content: center;
+  }
 }
+
 @media (min-width: 75rem) {
   .header {
     padding-inline: var(--space-page-wide);

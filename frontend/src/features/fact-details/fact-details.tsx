@@ -1,88 +1,102 @@
+import { clsx } from "clsx"
+import { useId } from "react"
+import { FactStatusBadge, FactTile, hueStyle, SourceBadge } from "@/entities/evidence"
 import { useFact } from "@/entities/hotel"
-import { sourceUrl } from "@/shared/api/source-url"
-import { factExplanation, factLabel } from "@/shared/geo/fact-label"
+import { characteristicTitle, factExplanation, factLabel } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Card, ErrorState, Skeleton } from "@/shared/ui"
+import { Banner, Button, Confidence, Disclosure, ErrorState, Skeleton } from "@/shared/ui"
 import { FactCorrection } from "./fact-correction"
 import styles from "./fact-details.module.css"
-
-function formatDate(value: string | null | undefined, locale: string, unknown: string) {
-  return value && Number.isFinite(Date.parse(value))
-    ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(value))
-    : unknown
-}
+import { FactHistory } from "./fact-history"
+import { FactProvenance } from "./fact-provenance"
 
 export interface FactDetailsProps {
   readonly hotelId: string
   readonly factId: string
   readonly onBack: () => void
   readonly review?: boolean
+  readonly className?: string | undefined
 }
-export function FactDetails({ hotelId, factId, onBack, review = false }: FactDetailsProps) {
+
+export function FactDetails({
+  hotelId,
+  factId,
+  onBack,
+  review = false,
+  className,
+}: FactDetailsProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
+  const titleId = useId()
   const query = useFact(hotelId, factId)
-  const date = (value: string | null | undefined) =>
-    formatDate(value, locale, t("explore:details.unknown"))
+  const fact = query.data
+  const conflicts = fact?.conflicts ?? []
   return (
-    <section className={styles.detail}>
-      <Button icon="back" variant="ghost" onClick={onBack}>
+    <section className={clsx(styles.detail, className)}>
+      <Button
+        icon="chevron-left"
+        variant="ghost"
+        size="compact"
+        onClick={onBack}
+        className={styles.back}
+      >
         {t("explore:details.back")}
       </Button>
-      {query.isPending ? <Skeleton /> : null}
-      {query.isError ? (
-        <ErrorState title={t("explore:details.factError")} onRetry={() => void query.refetch()} />
+      {query.isPending ? (
+        <div className={styles.skeleton} aria-hidden="true">
+          <Skeleton lines={2} />
+          <Skeleton shape="block" />
+        </div>
       ) : null}
-      {query.data ? (
-        <Card
-          title={factLabel(query.data, locale)}
-          description={factExplanation(query.data, locale)}
+      {query.isError ? (
+        <ErrorState
+          title={t("explore:details.factError")}
+          onRetry={() => void query.refetch()}
+          retryPending={query.isFetching}
+        />
+      ) : null}
+      {fact ? (
+        <article
+          className={styles.fact}
+          style={hueStyle(fact.characteristic_key)}
+          aria-labelledby={titleId}
+          data-state={fact.status}
         >
-          <p className={styles.status}>{t(`explore:status.${query.data.status}`)}</p>
-          {query.data.provenance ? (
-            <dl className={styles.provenance}>
-              <dt>{t("explore:details.source")}</dt>
-              <dd>{t(`explore:source.${query.data.provenance.source_type}`)}</dd>
-              <dt>{t("explore:details.checked")}</dt>
-              <dd>{date(query.data.provenance.computed_at)}</dd>
-              <dt>{t("explore:details.observed")}</dt>
-              <dd>{date(query.data.provenance.observed_at)}</dd>
-              <dt>{t("explore:details.validUntil")}</dt>
-              <dd>{date(query.data.provenance.valid_until)}</dd>
-            </dl>
-          ) : null}
-          <SourceLink url={query.data.provenance?.source_url} />
-          {query.data.provenance?.evidence?.map((item) => (
-            <blockquote className={styles.evidence} key={`${item.kind}-${item.text}`}>
-              {item.text}
-            </blockquote>
-          ))}
-          {query.data.conflicts?.length ? (
-            <p className={styles.status}>{t("explore:details.conflicts")}</p>
-          ) : null}
-          {query.data.history?.length ? (
-            <div className={styles.history}>
-              <p>{t("explore:details.history")}</p>
-              {query.data.history.map((fact) => (
-                <p key={fact.fact_id}>
-                  {factLabel(fact, locale)}: {t(`explore:status.${fact.status}`)}
-                </p>
-              ))}
+          <header className={styles.head}>
+            <FactTile characteristicKey={fact.characteristic_key} />
+            <div className={styles.titles}>
+              <p id={titleId} className={styles.title}>
+                {characteristicTitle(fact.characteristic_key, locale)}
+              </p>
+              {factExplanation(fact, locale) ? (
+                <p className={styles.explanation}>{factExplanation(fact, locale)}</p>
+              ) : null}
             </div>
+          </header>
+          <p className={styles.value}>{factLabel(fact, locale)}</p>
+          <div className={styles.badges}>
+            <SourceBadge source={fact.source_type} />
+            <Confidence value={fact.confidence} />
+            <FactStatusBadge status={fact.status} />
+          </div>
+          {conflicts.length ? (
+            <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
+              {t("explore:details.conflictsText")}
+            </Banner>
           ) : null}
-          {review ? <FactCorrection fact={query.data} /> : null}
-        </Card>
+          {fact.provenance ? (
+            <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen>
+              <FactProvenance provenance={fact.provenance} conflicts={conflicts} />
+            </Disclosure>
+          ) : null}
+          {fact.history?.length ? (
+            <Disclosure title={t("explore:details.history")} icon="history">
+              <FactHistory history={fact.history} />
+            </Disclosure>
+          ) : null}
+          {review ? <FactCorrection fact={fact} /> : null}
+        </article>
       ) : null}
     </section>
   )
-}
-
-function SourceLink({ url }: { readonly url: string | null | undefined }) {
-  const { t } = useTranslation()
-  const safe = sourceUrl(url)
-  return safe ? (
-    <a className={styles.link} href={safe} target="_blank" rel="noreferrer">
-      {t("explore:details.source")}
-    </a>
-  ) : null
 }

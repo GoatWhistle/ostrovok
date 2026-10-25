@@ -1,16 +1,28 @@
 .page {
-  display: grid;
-  gap: var(--space-32);
+  composes: pageShell from "../../shared/styles/compose.module.css";
+  gap: var(--space-24);
 }
 
 .panels {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: var(--space-24);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
+  gap: var(--space-24);
 }
-@media (max-width: 63.99rem) {
-  .panels {
-    grid-template-columns: minmax(0, 1fr);
+
+.detail {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
+  min-inline-size: 0;
+  padding: var(--space-card);
+}
+
+@media (min-width: 90rem) {
+  .panels[data-detail="true"] {
+    grid-template-columns: minmax(0, 1fr) var(--workspace-detail);
+  }
+
+  .detail {
+    position: sticky;
+    inset-block-start: var(--space-96);
   }
 }

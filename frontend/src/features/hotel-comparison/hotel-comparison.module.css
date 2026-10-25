@@ -1,22 +1,99 @@
+.frame {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
+  animation: var(--motion-fade-in);
+}
+
+.state {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
+}
+
+.skeleton {
+  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
+  display: grid;
+  gap: var(--space-16);
+  padding: var(--space-card);
+}
+
 .table {
   inline-size: 100%;
-  border-collapse: collapse;
-  text-align: start;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
 }
+
 .table th,
 .table td {
-  padding: var(--space-16);
-  border-block-end: var(--hairline) solid var(--border-subtle);
-  text-align: start;
   min-inline-size: var(--term-min);
+  padding: var(--space-12) var(--space-16);
+  border-block-end: var(--hairline) solid var(--border-subtle);
+  background-color: var(--surface-raised);
+  text-align: start;
+  vertical-align: middle;
 }
-.table th {
-  color: var(--text-primary);
-  font-weight: var(--weight-medium);
+
+.table th:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: var(--layer-raised);
+  min-inline-size: calc(var(--term-min) + var(--space-60));
+  border-inline-end: var(--hairline) solid var(--border-subtle);
 }
-.source {
-  display: block;
-  margin-block-start: var(--space-8);
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.corner {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+}
+
+.hotel {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+}
+
+.hotelName,
+.characteristic,
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.hotelName {
+  overflow-wrap: anywhere;
+}
+
+.hotelIcon,
+.unknown {
   color: var(--text-muted);
-  font-size: var(--font-size-caption);
+}
+
+.characteristic {
+  font-weight: var(--weight-semibold);
+}
+
+.cell {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.value {
+  font-variant-numeric: var(--font-numeric);
+}
+
+.source {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  padding-inline-start: var(--space-24);
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+@media (max-width: 47.99rem) {
+  .table th:first-child {
+    min-inline-size: var(--term-min);
+  }
 }

@@ -1,6 +1,22 @@
 .page {
   display: grid;
   align-content: center;
+  justify-items: center;
+  gap: var(--space-24);
   min-block-size: 100dvh;
   padding: var(--space-page);
+  background-color: var(--surface-base);
+}
+
+.brand {
+  composes: subheadingText from "../../shared/styles/compose.module.css";
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--text-primary);
+}
+
+.state {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
+  inline-size: 100%;
 }

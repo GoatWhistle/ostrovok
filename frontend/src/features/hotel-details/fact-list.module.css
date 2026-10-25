@@ -1,0 +1,29 @@
+.list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.value {
+  composes: label from "../../entities/evidence/evidence-text.module.css";
+  font-weight: var(--weight-bold);
+}
+
+.title {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}
+
+.empty {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  margin-block-start: var(--space-4);
+}
+
+.chevron {
+  color: var(--text-muted);
+}

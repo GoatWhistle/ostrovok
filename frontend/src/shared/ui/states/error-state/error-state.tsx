@@ -2,7 +2,7 @@ import { clsx } from "clsx"
 import type { ReactNode } from "react"
 import { useTranslation } from "../../../i18n"
 import { Button } from "../../primitives/button/button"
-import { Icon } from "../../primitives/icon/icon"
+import { StateTile } from "../state-tile/state-tile"
 import styles from "./error-state.module.css"
 
 export interface ErrorStateProps {
@@ -23,12 +23,12 @@ export function ErrorState({
   const { t } = useTranslation()
   return (
     <div className={clsx(styles.error, className)} role="alert" data-motion="fade">
-      <Icon name="alert" size="lg" className={styles.icon} />
+      <StateTile icon="alert" tone="danger" />
       <p className={styles.title}>{title}</p>
       {description === undefined ? null : <p className={styles.description}>{description}</p>}
       {onRetry === undefined ? null : (
         <Button
-          variant="secondary"
+          variant="primary"
           size="compact"
           icon="retry"
           pending={retryPending}

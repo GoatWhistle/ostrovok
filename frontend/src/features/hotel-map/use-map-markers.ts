@@ -1,100 +1,106 @@
-import { type Map as MapLibreMap, Marker } from "maplibre-gl"
-import { type RefObject, useEffect } from "react"
+import type { Map as MapLibreMap, Marker } from "maplibre-gl"
+import { type RefObject, useEffect, useMemo, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import { featureCollection } from "@/shared/geo/geometry"
-import styles from "./hotel-map.module.css"
+import {
+  createMarker,
+  type HotelView,
+  hotelPosition,
+  labelPlacement,
+  type MarkerView,
+  type PlaceView,
+  removeMarkers,
+} from "./marker-view"
+import { useResultPins } from "./use-result-pins"
 
 interface MarkerData {
-  mapRef: RefObject<MapLibreMap | null>
-  ready: boolean
-  results: readonly SearchResult[]
-  hotelId: string | undefined
-  onSelect: (result: SearchResult) => void
-  focusFeatures: readonly unknown[]
-  focusLabel: string | undefined
+  readonly mapRef: RefObject<MapLibreMap | null>
+  readonly ready: boolean
+  readonly results: readonly SearchResult[]
+  readonly hotelId: string | undefined
+  readonly focusFeatures: readonly unknown[]
+  readonly focusLabel: string | undefined
 }
 
-function featureMarker(
-  map: MapLibreMap,
-  feature: ReturnType<typeof featureCollection>["features"][number],
-  fallback: string | undefined,
-) {
+type Feature = ReturnType<typeof featureCollection>["features"][number]
+
+function placeTarget(feature: Feature, fallback: string | undefined) {
   const props = feature.properties ?? {}
-  let position: [number, number] | undefined
-  let label: string | undefined
-  if (feature.geometry.type === "Point") {
-    position = feature.geometry.coordinates as [number, number]
-    label = typeof props.name === "string" ? props.name : undefined
+  if (feature.geometry.type === "Point" && typeof props.name === "string")
+    return {
+      kind: "place" as const,
+      label: props.name,
+      position: feature.geometry.coordinates as [number, number],
+    }
+  if (feature.geometry.type === "LineString" && fallback) {
+    const end = feature.geometry.coordinates.at(-1) as [number, number] | undefined
+    return end ? { kind: "route" as const, label: fallback, position: end } : null
   }
-  if (feature.geometry.type === "LineString") {
-    position = feature.geometry.coordinates.at(-1) as [number, number] | undefined
-    label = fallback
-  }
-  if (!position || !label) return null
-  const element = document.createElement("div")
-  element.className = styles.placeMarker ?? ""
-  element.textContent = label
-  return new Marker({ element, anchor: "bottom" }).setLngLat(position).addTo(map)
+  return null
 }
 
-function hotelPoint(map: MapLibreMap, result: SearchResult) {
-  const [lon, lat] = result.hotel.location
-  if (lon === undefined || lat === undefined || !Number.isFinite(lon) || !Number.isFinite(lat))
-    return null
-  const point = map.project([lon, lat])
-  const canvas = map.getCanvas()
-  if (
-    point.x < 70 ||
-    point.x > canvas.clientWidth - 70 ||
-    point.y < 70 ||
-    point.y > canvas.clientHeight - 110
-  )
-    return null
-  return { lon, lat, x: point.x, y: point.y }
-}
-
-function hotelMarkers(
-  map: MapLibreMap,
-  results: readonly SearchResult[],
-  onSelect: MarkerData["onSelect"],
+function useFocusPlaces(
+  mapRef: RefObject<MapLibreMap | null>,
+  ready: boolean,
+  focusFeatures: readonly unknown[],
+  focusLabel: string | undefined,
 ) {
-  const markers: Marker[] = []
-  const placed: { x: number; y: number }[] = []
-  const limit = map.getCanvas().clientWidth < 500 ? 2 : 5
-  results.forEach((result, index) => {
-    if (markers.length >= limit || result.hotel.name === result.hotel.id) return
-    const point = hotelPoint(map, result)
-    if (!point) return
-    if (placed.some((item) => Math.abs(point.x - item.x) < 135 && Math.abs(point.y - item.y) < 48))
-      return
-    const button = document.createElement("button")
-    button.type = "button"
-    button.className = styles.hotelMarker ?? ""
-    button.textContent = `${index + 1}. ${result.hotel.name}`
-    button.addEventListener("click", () => onSelect(result))
-    markers.push(
-      new Marker({ element: button, anchor: "bottom" })
-        .setLngLat([point.lon, point.lat])
-        .addTo(map),
-    )
-    placed.push(point)
-  })
-  return markers
+  const [views, setViews] = useState<readonly PlaceView[]>([])
+  useEffect(() => {
+    const map = mapRef.current
+    if (!ready || !map || !focusFeatures.length) return
+    const markers: Marker[] = []
+    const next: PlaceView[] = []
+    featureCollection(focusFeatures).features.forEach((feature, index) => {
+      const target = placeTarget(feature, focusLabel)
+      if (!target) return
+      const { element, marker } = createMarker(map, target.position, "center")
+      markers.push(marker)
+      next.push({ key: `place-${index}`, element, kind: target.kind, label: target.label })
+    })
+    setViews(next)
+    return () => {
+      removeMarkers(markers)
+      setViews([])
+    }
+  }, [mapRef, ready, focusFeatures, focusLabel])
+  return views
 }
 
-function removeMarkers(markers: readonly Marker[]) {
-  markers.forEach((marker) => {
-    marker.remove()
-  })
-}
-
-function selectedHotelMarker(map: MapLibreMap, result: SearchResult) {
-  const [lon, lat] = result.hotel.location
-  if (lon === undefined || lat === undefined) return null
-  const element = document.createElement("div")
-  element.className = styles.selectedMarker ?? ""
-  element.textContent = result.hotel.name
-  return new Marker({ element, anchor: "bottom" }).setLngLat([lon, lat]).addTo(map)
+function useSelectedPin(
+  mapRef: RefObject<MapLibreMap | null>,
+  ready: boolean,
+  result: SearchResult | undefined,
+) {
+  const [view, setView] = useState<Omit<HotelView, "result">>()
+  const position = result ? hotelPosition(result) : undefined
+  const id = result?.hotel.id
+  const lon = position?.[0]
+  const lat = position?.[1]
+  useEffect(() => {
+    const map = mapRef.current
+    if (!ready || !map || !id || lon === undefined || lat === undefined) return
+    const { element, marker } = createMarker(map, [lon, lat], "bottom", true)
+    const place = () => {
+      const placement = labelPlacement(map, marker)
+      setView((current) =>
+        current && current.edge === placement.edge && current.below === placement.below
+          ? current
+          : { key: id, element, kind: "hotel", selected: true, ...placement },
+      )
+    }
+    place()
+    map.on("moveend", place)
+    return () => {
+      map.off("moveend", place)
+      marker.remove()
+      setView(undefined)
+    }
+  }, [mapRef, ready, id, lon, lat])
+  return useMemo<HotelView | undefined>(
+    () => (view && result ? { ...view, result } : undefined),
+    [view, result],
+  )
 }
 
 export function useMapMarkers({
@@ -102,40 +108,18 @@ export function useMapMarkers({
   ready,
   results,
   hotelId,
-  onSelect,
   focusFeatures,
   focusLabel,
-}: MarkerData) {
-  useEffect(() => {
-    const map = mapRef.current
-    if (!ready || !map || !focusFeatures.length) return
-    const markers = featureCollection(focusFeatures)
-      .features.map((feature) => featureMarker(map, feature, focusLabel))
-      .filter((marker): marker is Marker => marker !== null)
-    return () => removeMarkers(markers)
-  }, [mapRef, ready, focusFeatures, focusLabel])
-  useEffect(() => {
-    const map = mapRef.current
-    if (!ready || !map || hotelId) return
-    let markers: Marker[] = []
-    const render = () => {
-      removeMarkers(markers)
-      markers = hotelMarkers(map, results, onSelect)
-    }
-    render()
-    map.on("moveend", render)
-    return () => {
-      map.off("moveend", render)
-      removeMarkers(markers)
-    }
-  }, [mapRef, ready, results, hotelId, onSelect])
-  useEffect(() => {
-    const map = mapRef.current
-    const result = results.find((item) => item.hotel.id === hotelId)
-    if (!ready || !map || !result) return
-    const marker = selectedHotelMarker(map, result)
-    return () => {
-      marker?.remove()
-    }
-  }, [mapRef, ready, results, hotelId])
+}: MarkerData): readonly MarkerView[] {
+  const pins = useResultPins(mapRef, ready, results, hotelId)
+  const places = useFocusPlaces(mapRef, ready, focusFeatures, focusLabel)
+  const selected = useSelectedPin(
+    mapRef,
+    ready,
+    results.find((item) => item.hotel.id === hotelId),
+  )
+  return useMemo(
+    () => [...pins, ...places, ...(selected ? [selected] : [])],
+    [pins, places, selected],
+  )
 }

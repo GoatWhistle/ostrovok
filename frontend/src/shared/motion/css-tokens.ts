@@ -6,8 +6,15 @@ export type DurationToken =
   | "--reduced-fade"
   | "--reduced-fade-exit"
   | "--view-transition-limit"
+  | "--toast-life"
+  | "--toast-life-error"
 
-export type EasingToken = "--ease-out" | "--ease-in-out" | "--ease-drawer" | "--ease-linear"
+export type EasingToken =
+  | "--ease-out"
+  | "--ease-in-out"
+  | "--ease-drawer"
+  | "--ease-fold"
+  | "--ease-linear"
 
 const MS_PER_SECOND = 1000
 const DURATION_PATTERN = /^(-?\d*\.?\d+)(ms|s)$/

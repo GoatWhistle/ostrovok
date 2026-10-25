@@ -1,0 +1,60 @@
+.mark {
+  display: block;
+  flex: none;
+  overflow: visible;
+}
+.sm {
+  inline-size: var(--icon-lg);
+  block-size: var(--icon-lg);
+}
+.md {
+  inline-size: var(--mark-md);
+  block-size: var(--mark-md);
+}
+.lg {
+  inline-size: var(--mark-lg);
+  block-size: var(--mark-lg);
+}
+.xl {
+  inline-size: var(--mark-xl);
+  block-size: var(--mark-xl);
+}
+.left,
+.right {
+  fill: var(--mark-side);
+  transform-box: fill-box;
+}
+.middle {
+  fill: var(--mark-fact);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.left {
+  transform-origin: right center;
+}
+.right {
+  transform-origin: left center;
+}
+.ghost {
+  fill: var(--border-default);
+}
+.mark[data-motion-state="enter"] .left {
+  animation: var(--motion-unfold-side);
+}
+.mark[data-motion-state="enter"] .right {
+  animation: var(--motion-unfold-side);
+  animation-delay: var(--stagger-unfold);
+}
+.mark[data-motion-state="enter"] .middle {
+  animation: var(--motion-unfold-mid);
+  animation-delay: var(--delay-unfold-mid);
+}
+.mark[data-motion-state="loading"] .left {
+  animation: var(--motion-fold-left);
+}
+.mark[data-motion-state="loading"] .middle {
+  animation: var(--motion-fold-mid);
+}
+.mark[data-motion-state="loading"] .right {
+  animation: var(--motion-fold-right);
+}

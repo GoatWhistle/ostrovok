@@ -1,0 +1,25 @@
+.glyph {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+}
+
+.ok {
+  color: var(--status-success);
+}
+
+.part {
+  color: var(--status-warning);
+}
+
+.no {
+  color: var(--status-danger);
+}
+
+.conflict {
+  color: var(--status-conflict);
+}
+
+.muted {
+  color: var(--text-muted);
+}

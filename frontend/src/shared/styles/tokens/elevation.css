@@ -1,15 +1,32 @@
 :root {
+  --layer-base: 0;
   --layer-raised: 1;
   --layer-sticky: 10;
+  --layer-map-controls: 20;
   --layer-popover: 40;
   --layer-dialog: 50;
   --layer-toast: 55;
   --layer-tooltip: 60;
   --layer-skip-link: 70;
 
-  --shadow-ring: inset 0 0 0 var(--hairline) var(--border-strong);
+  --shadow-ring: inset 0 0 0 var(--hairline) var(--border-default);
+  --shadow-ring-subtle: inset 0 0 0 var(--hairline) var(--border-subtle);
+  --shadow-ring-strong: inset 0 0 0 var(--hairline) var(--border-strong);
+  --shadow-ring-focus: inset 0 0 0 var(--focus-ring-width) var(--focus-ring);
+  --shadow-ring-selected: inset 0 0 0 var(--focus-ring-width) var(--action-primary);
+  --shadow-ring-danger: inset 0 0 0 var(--focus-ring-width) var(--status-danger);
   --shadow-raised: 0 1px 2px var(--shadow-color);
-  --shadow-float: 0 1px 2px var(--shadow-color), 0 8px 24px var(--shadow-color);
+  --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
+  --shadow-overlay:
+    0 0 0 var(--hairline) var(--border-subtle), 0 16px 48px var(--shadow-color-strong);
+  --shadow-divider-top: inset 0 var(--hairline) 0 var(--border-subtle);
+  --shadow-divider-bottom: inset 0 calc(var(--hairline) * -1) 0 var(--border-subtle);
+  --shadow-divider-start: inset var(--hairline) 0 0 var(--border-subtle);
+  --shadow-divider-end: inset calc(var(--hairline) * -1) 0 0 var(--border-subtle);
+  --shadow-ring-current: inset 0 0 0 var(--focus-ring-width) currentColor;
+  --shadow-float-focus: var(--shadow-float), var(--shadow-ring-focus);
+  --shadow-raised-ring: var(--shadow-raised), var(--shadow-ring-subtle);
+  --shadow-pin: 0 0 0 var(--hairline) var(--border-default), 0 3px 10px var(--shadow-color);
 
   --opacity-stale: 0.55;
 }

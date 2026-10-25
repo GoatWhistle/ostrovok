@@ -1,6 +1,7 @@
 import { clsx } from "clsx"
 import type { ReactNode } from "react"
-import { Icon, type IconName } from "../../primitives/icon/icon"
+import type { IconName } from "../../primitives/icon/icon"
+import { StateTile } from "../state-tile/state-tile"
 import styles from "./empty-state.module.css"
 
 export interface EmptyStateProps {
@@ -14,7 +15,7 @@ export interface EmptyStateProps {
 export function EmptyState({ title, description, icon, action, className }: EmptyStateProps) {
   return (
     <div className={clsx(styles.empty, className)} data-motion="fade">
-      <Icon name={icon} size="xl" className={styles.icon} />
+      <StateTile icon={icon} tone="neutral" />
       <p className={styles.title}>{title}</p>
       {description === undefined ? null : <p className={styles.description}>{description}</p>}
       {action === undefined ? null : <div className={styles.action}>{action}</div>}

@@ -63,3 +63,137 @@
     opacity: 0.6;
   }
 }
+
+@keyframes kf-atlas-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes kf-compass-in {
+  from {
+    opacity: 0;
+    transform: rotate(-70deg) scale(var(--enter-scale));
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes kf-anchor-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-anchor) * -1)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--shift-toast)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(var(--shift-toast));
+  }
+}
+
+@keyframes kf-pin-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-rise) * -1)) scale(var(--enter-scale));
+  }
+}
+
+@keyframes kf-draw {
+  from {
+    stroke-dashoffset: var(--path-length, 1000);
+  }
+}
+
+@keyframes kf-fact-ping {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes kf-unfold-side {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-unfold-mid {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes kf-fold-left {
+  0%,
+  12% {
+    transform: scaleX(0);
+  }
+  40%,
+  70% {
+    transform: scaleX(1);
+  }
+  92%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-fold-mid {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  26%,
+  78% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes kf-fold-right {
+  0%,
+  20% {
+    transform: scaleX(0);
+  }
+  48%,
+  62% {
+    transform: scaleX(1);
+  }
+  86%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes kf-pin-drop {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--shift-rise) * -1)) scale(var(--enter-scale));
+  }
+}

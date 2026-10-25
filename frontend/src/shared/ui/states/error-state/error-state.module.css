@@ -1,15 +1,10 @@
 .error {
   composes: statePanel from "../../../styles/compose.module.css";
-  gap: var(--space-8);
-}
-
-.icon {
-  color: var(--status-danger);
+  gap: var(--space-12);
 }
 
 .title {
-  font-weight: var(--weight-semibold);
-  text-wrap: balance;
+  composes: subheadingText from "../../../styles/compose.module.css";
 }
 
 .description {
@@ -19,5 +14,5 @@
 }
 
 .retry {
-  margin-block-start: var(--space-8);
+  margin-block-start: var(--space-4);
 }

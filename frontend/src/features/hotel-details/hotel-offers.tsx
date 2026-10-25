@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useHotelOffers } from "@/entities/hotel"
-import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Skeleton } from "@/shared/ui"
+import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
+import { Banner, Button, Icon, Skeleton, TextField } from "@/shared/ui"
 import styles from "./hotel-offers.module.css"
+import { OfferCard } from "./offer-card"
 
 function localDate(value: Date): string {
   const year = value.getFullYear()
@@ -17,11 +18,14 @@ function addDays(value: string, days: number): string {
   return localDate(date)
 }
 
-interface HotelOffersProps {
-  readonly hotelId: string
+const STATUS: Readonly<Record<string, MessageKey>> = {
+  provider_unavailable: "explore:offers.providerUnavailable",
+  hotel_unmapped: "explore:offers.hotelUnmapped",
+  provider_error: "explore:offers.providerError",
+  sold_out: "explore:offers.soldOut",
 }
 
-export function HotelOffers({ hotelId }: HotelOffersProps) {
+export function HotelOffers({ hotelId }: { readonly hotelId: string }) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const today = localDate(new Date())
@@ -29,85 +33,78 @@ export function HotelOffers({ hotelId }: HotelOffersProps) {
   const [checkOut, setCheckOut] = useState(addDays(today, 1))
   const [adults, setAdults] = useState(2)
   const result = useHotelOffers(hotelId, checkIn, checkOut, adults)
-  const money = (amount: number, currency: string) =>
-    new Intl.NumberFormat(locale === "ru" ? "ru-RU" : "en-US", {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 0,
-    }).format(amount)
-
+  const status = result.data?.status ? STATUS[result.data.status] : undefined
   return (
-    <section className={styles.section} aria-label={t("explore:offers.title")}>
-      <strong className={styles.heading}>{t("explore:offers.title")}</strong>
+    <section className={styles.section} aria-labelledby={`${hotelId}-offers`}>
+      <p id={`${hotelId}-offers`} className={styles.heading}>
+        <Icon name="calendar" size="sm" />
+        {t("explore:offers.title")}
+      </p>
       <div className={styles.fields}>
-        <label>
-          <span>{t("explore:offers.checkIn")}</span>
-          <input
-            type="date"
-            min={today}
-            max={addDays(today, 730)}
-            value={checkIn}
-            onChange={(event) => {
-              const value = event.target.value
-              setCheckIn(value)
-              if (value && (checkOut <= value || checkOut > addDays(value, 30))) {
-                setCheckOut(addDays(value, 1))
-              }
-            }}
-          />
-        </label>
-        <label>
-          <span>{t("explore:offers.checkOut")}</span>
-          <input
-            type="date"
-            min={addDays(checkIn, 1)}
-            max={addDays(checkIn, 30)}
-            value={checkOut}
-            onChange={(event) => setCheckOut(event.target.value)}
-          />
-        </label>
+        <TextField
+          type="date"
+          label={t("explore:offers.checkIn")}
+          min={today}
+          max={addDays(today, 730)}
+          value={checkIn}
+          onChange={(event) => {
+            const value = event.target.value
+            setCheckIn(value)
+            if (value && (checkOut <= value || checkOut > addDays(value, 30)))
+              setCheckOut(addDays(value, 1))
+          }}
+        />
+        <TextField
+          type="date"
+          label={t("explore:offers.checkOut")}
+          min={addDays(checkIn, 1)}
+          max={addDays(checkIn, 30)}
+          value={checkOut}
+          onChange={(event) => setCheckOut(event.target.value)}
+        />
       </div>
       <div className={styles.guests}>
-        <span>{t("explore:offers.adults", { count: adults })}</span>
-        <Button variant="ghost" disabled={adults <= 1} onClick={() => setAdults(adults - 1)}>
+        <Icon name="guests" size="sm" className={styles.guestIcon} />
+        <span className={styles.guestLabel}>{t("explore:offers.adults", { count: adults })}</span>
+        <Button
+          variant="secondary"
+          size="compact"
+          iconOnly
+          icon="minus"
+          title={t("explore:offers.less")}
+          disabled={adults <= 1}
+          onClick={() => setAdults(adults - 1)}
+        >
           {t("explore:offers.less")}
         </Button>
-        <Button variant="ghost" disabled={adults >= 10} onClick={() => setAdults(adults + 1)}>
+        <Button
+          variant="secondary"
+          size="compact"
+          iconOnly
+          icon="plus"
+          title={t("explore:offers.more")}
+          disabled={adults >= 10}
+          onClick={() => setAdults(adults + 1)}
+        >
           {t("explore:offers.more")}
         </Button>
       </div>
       {!checkIn || !checkOut ? (
-        <p className={styles.muted}>{t("explore:offers.pickDates")}</p>
+        <p className={styles.note}>{t("explore:offers.pickDates")}</p>
       ) : null}
-      {result.isPending && checkIn && checkOut ? <Skeleton /> : null}
-      {result.isError ? <p className={styles.muted}>{t("explore:offers.requestError")}</p> : null}
-      {result.data?.status === "provider_unavailable" ? (
-        <p className={styles.muted}>{t("explore:offers.providerUnavailable")}</p>
+      {result.isPending && checkIn && checkOut ? <Skeleton shape="block" /> : null}
+      {result.isError ? <Banner tone="danger" title={t("explore:offers.requestError")} /> : null}
+      {status ? <Banner tone="neutral" title={t(status)} /> : null}
+      {result.data?.offers?.length ? (
+        <ul className={styles.offers}>
+          {result.data.offers.map((offer) => (
+            <OfferCard key={offer.id} offer={offer} />
+          ))}
+        </ul>
       ) : null}
-      {result.data?.status === "hotel_unmapped" ? (
-        <p className={styles.muted}>{t("explore:offers.hotelUnmapped")}</p>
-      ) : null}
-      {result.data?.status === "provider_error" ? (
-        <p className={styles.muted}>{t("explore:offers.providerError")}</p>
-      ) : null}
-      {result.data?.status === "sold_out" ? (
-        <p className={styles.muted}>{t("explore:offers.soldOut")}</p>
-      ) : null}
-      {result.data?.offers?.map((offer) => (
-        <div key={offer.id} className={styles.offer}>
-          <strong>{offer.room_name}</strong>
-          <span>{money(offer.price_amount, offer.price_currency)}</span>
-          <span>{t("explore:offers.availableRooms", { count: offer.available_rooms })}</span>
-          {offer.meal ? (
-            <span>{t("explore:offers.meal", { value: mealLabel(offer.meal, t) })}</span>
-          ) : null}
-          {offer.floor_number != null ? (
-            <span>{t("explore:offers.floor", { value: offer.floor_number })}</span>
-          ) : null}
-        </div>
-      ))}
       {result.data?.checked_at ? (
-        <p className={styles.muted}>
+        <p className={styles.note}>
+          <Icon name="source" size="sm" />
           {t("explore:offers.source", {
             source: result.data.source ?? "",
             time: new Intl.DateTimeFormat(locale === "ru" ? "ru-RU" : "en-US", {
@@ -119,17 +116,4 @@ export function HotelOffers({ hotelId }: HotelOffersProps) {
       ) : null}
     </section>
   )
-}
-
-function mealLabel(value: string, t: ReturnType<typeof useTranslation>["t"]): string {
-  const key = value.includes("all-inclusive")
-    ? "allInclusive"
-    : value === "breakfast"
-      ? "breakfast"
-      : value === "half-board"
-        ? "halfBoard"
-        : value === "full-board"
-          ? "fullBoard"
-          : "unknownMeal"
-  return t(`explore:offers.${key}`)
 }

@@ -1,40 +1,78 @@
 .section {
-  padding-block: var(--space-16);
-  border-block-start: 1px solid var(--border-subtle);
+  display: grid;
+  gap: var(--space-12);
 }
+
 .heading {
-  display: block;
-  margin-block-end: var(--space-12);
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
 }
+
 .fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-8);
 }
-.fields label {
-  display: grid;
-  gap: var(--space-4);
-  min-inline-size: 0;
-}
-.fields input {
-  inline-size: 100%;
-  min-inline-size: 0;
-  min-block-size: var(--target-min);
-}
+
 .guests {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-8);
-  margin-block: var(--space-12);
 }
+
+.guestIcon {
+  color: var(--text-muted);
+}
+
+.guestLabel {
+  composes: bodySmText from "../../shared/styles/compose.module.css";
+  flex: 1;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.offers {
+  composes: plainList from "../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+}
+
 .offer {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-12);
+}
+
+.offerTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.room {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.price {
+  composes: subheadingText from "../../shared/styles/compose.module.css";
+  flex: none;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.meta {
+  composes: plainList from "../../shared/styles/compose.module.css";
   display: grid;
   gap: var(--space-4);
-  padding-block: var(--space-12);
-  border-block-start: 1px solid var(--border-subtle);
 }
-.muted {
-  color: var(--text-muted);
-  font-size: var(--font-size-caption);
+
+.metaItem {
+  composes: captionText inlineRow from "../../shared/styles/compose.module.css";
+}
+
+.note {
+  composes: captionText inlineRow from "../../shared/styles/compose.module.css";
 }

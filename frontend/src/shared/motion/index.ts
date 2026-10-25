@@ -7,9 +7,11 @@ export {
   readPixels,
   readToken,
 } from "./css-tokens"
+export { type RevealKind, type RevealOrigin, revealTransition } from "./reveal-transition"
 export { type StaggerStyle, staggerStyle } from "./stagger"
 export { Swap, type SwapPhase, type SwapProps } from "./swap/swap"
-export { type InputModality, useInputModality } from "./use-input-modality"
+export { useFirstVisit } from "./use-first-visit"
+export { type InputModality, KeyboardInputContext, useInputModality } from "./use-input-modality"
 export { useLatched } from "./use-latched"
 export {
   type LoadingIndicator,

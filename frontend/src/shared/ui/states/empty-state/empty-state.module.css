@@ -1,11 +1,6 @@
 .empty {
   composes: statePanel from "../../../styles/compose.module.css";
-  gap: var(--space-8);
-}
-
-.icon {
-  margin-block-end: var(--space-4);
-  color: var(--text-muted);
+  gap: var(--space-12);
 }
 
 .title {
@@ -18,5 +13,5 @@
 }
 
 .action {
-  margin-block-start: var(--space-8);
+  margin-block-start: var(--space-4);
 }

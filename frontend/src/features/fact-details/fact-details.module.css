@@ -1,52 +1,63 @@
 .detail {
   display: grid;
+  align-content: start;
   gap: var(--space-12);
   min-inline-size: 0;
 }
-.status {
-  color: var(--text-secondary);
-  font-size: var(--font-size-body-sm);
+
+.back {
+  justify-self: start;
 }
-.provenance {
+
+.skeleton {
+  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-16);
+}
+
+.fact {
+  display: grid;
+  gap: var(--space-16);
+  min-inline-size: 0;
+  animation: var(--motion-fade-in);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
   gap: var(--space-12);
-  margin-block: var(--space-20);
-  font-size: var(--font-size-body-sm);
 }
-.provenance dt {
-  color: var(--text-muted);
+
+.titles {
+  display: grid;
+  flex: 1;
+  gap: var(--space-2);
+  min-inline-size: 0;
 }
-.provenance dd {
+
+.title {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+}
+
+.explanation {
+  composes: secondaryText from "../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
-.link {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: var(--target-min);
-  color: var(--text-accent);
-}
-.evidence {
-  margin-block: var(--space-12);
-  color: var(--text-secondary);
+
+.value {
+  composes: headingText from "../../shared/styles/compose.module.css";
+  font-variant-numeric: var(--font-numeric);
   overflow-wrap: anywhere;
 }
-.history {
-  display: grid;
-  gap: var(--space-8);
-  margin-block: var(--space-16);
+
+.fact[data-state="stale"] .value,
+.fact[data-state="superseded"] .value {
+  opacity: var(--opacity-stale);
 }
-.review {
-  display: grid;
-  gap: var(--space-12);
-  margin-block-start: var(--space-20);
-}
-.actions {
+
+.badges {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-8);
-}
-.edit {
-  display: grid;
-  gap: var(--space-12);
 }

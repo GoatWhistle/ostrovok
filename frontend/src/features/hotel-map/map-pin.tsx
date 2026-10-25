@@ -1,0 +1,84 @@
+import { matchScore } from "@/entities/hotel"
+import type { SearchResult } from "@/shared/api/hotel-types"
+import { useTranslation } from "@/shared/i18n"
+import { Button, Icon } from "@/shared/ui"
+import styles from "./map-pin.module.css"
+import type { ClusterView, HotelView, MarkerView, PlaceView } from "./marker-view"
+
+export interface MapPinProps {
+  readonly view: MarkerView
+  readonly onSelect: (result: SearchResult) => void
+  readonly onExpand: (view: ClusterView, keyboard: boolean) => void
+}
+
+function HotelPin({ view, onSelect }: { view: HotelView; onSelect: MapPinProps["onSelect"] }) {
+  const { t } = useTranslation()
+  const { full, total } = matchScore(view.result)
+  const name = view.result.hotel.name
+  const state = total === 0 ? "nodata" : full === total ? "complete" : "partial"
+  return (
+    <Button
+      variant="ghost"
+      size="compact"
+      className={styles.pin}
+      data-kind="hotel"
+      data-state={state}
+      data-selected={view.selected}
+      data-edge={view.edge}
+      data-below={view.below}
+      aria-pressed={view.selected}
+      aria-label={
+        total === 0
+          ? t("explore:map.pinNoData", { name })
+          : t("explore:map.pin", { name, full, total })
+      }
+      onClick={() => onSelect(view.result)}
+    >
+      <span className={styles.face} aria-hidden="true">
+        {total === 0 ? null : (
+          <>
+            <span className={styles.dot}>
+              <Icon name={state === "complete" ? "check" : "partial"} size="sm" />
+            </span>
+            <span>{t("explore:results.score", { full, total })}</span>
+          </>
+        )}
+        <span className={`${styles.bubble} ${styles.label}`}>{name}</span>
+      </span>
+    </Button>
+  )
+}
+
+function ClusterPin({ view, onExpand }: { view: ClusterView; onExpand: MapPinProps["onExpand"] }) {
+  const { t } = useTranslation()
+  return (
+    <Button
+      variant="ghost"
+      size="compact"
+      className={styles.pin}
+      data-kind="cluster"
+      aria-label={t("explore:map.cluster", { count: view.count })}
+      onClick={(event) => onExpand(view, event.detail === 0)}
+    >
+      {t("explore:map.clusterCount", { count: view.count })}
+    </Button>
+  )
+}
+
+function PlacePin({ view }: { view: PlaceView }) {
+  return (
+    <span className={styles.place} data-kind={view.kind}>
+      <span className={styles.placeDot} aria-hidden="true" />
+      <span className={`${styles.bubble} ${styles.placeLabel}`}>
+        {view.kind === "route" ? <Icon name="walk" size="sm" className={styles.routeIcon} /> : null}
+        <span>{view.label}</span>
+      </span>
+    </span>
+  )
+}
+
+export function MapPin({ view, onSelect, onExpand }: MapPinProps) {
+  if (view.kind === "hotel") return <HotelPin view={view} onSelect={onSelect} />
+  if (view.kind === "cluster") return <ClusterPin view={view} onExpand={onExpand} />
+  return <PlacePin view={view} />
+}

@@ -1,32 +1,45 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "./use-theme"
 
-function readColors() {
+const TOKENS = {
+  land: "--map-land",
+  park: "--map-park",
+  sand: "--map-sand",
+  water: "--map-water",
+  building: "--map-building",
+  buildingLine: "--map-building-line",
+  road: "--map-road",
+  roadCasing: "--map-road-casing",
+  coast: "--map-coast",
+  fact: "--map-fact",
+  factLine: "--map-fact-line",
+  route: "--map-route",
+  hotelSelected: "--map-hotel-selected",
+  sea: "--map-sea",
+  seaDusk: "--map-sea-dusk",
+  seaNight: "--map-sea-night",
+  sky: "--map-sky",
+  skyDusk: "--map-sky-dusk",
+  skyNight: "--map-sky-night",
+  horizon: "--map-horizon",
+  horizonDusk: "--map-horizon-dusk",
+  horizonNight: "--map-horizon-night",
+  hillShadow: "--map-hill-shadow",
+  hillHighlight: "--map-hill-highlight",
+} as const
+
+export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }
+
+function readColors(): MapColors {
   const style = getComputedStyle(document.documentElement)
-  return {
-    surface: style.getPropertyValue("--surface-sunken").trim(),
-    building: style.getPropertyValue("--map-building").trim(),
-    accent: style.getPropertyValue("--focus-ring").trim(),
-    beach: style.getPropertyValue("--map-beach").trim(),
-    baseBuilding: style.getPropertyValue("--map-building").trim(),
-    roadCasing: style.getPropertyValue("--map-road-casing").trim(),
-    road: style.getPropertyValue("--map-road").trim(),
-    coast: style.getPropertyValue("--map-coast").trim(),
-    highlight: style.getPropertyValue("--map-highlight").trim(),
-    sea: style.getPropertyValue("--map-sea").trim(),
-    seaDusk: style.getPropertyValue("--map-sea-dusk").trim(),
-    seaNight: style.getPropertyValue("--map-sea-night").trim(),
-    sky: style.getPropertyValue("--map-sky").trim(),
-    skyDusk: style.getPropertyValue("--map-sky-dusk").trim(),
-    skyNight: style.getPropertyValue("--map-sky-night").trim(),
-    horizon: style.getPropertyValue("--map-horizon").trim(),
-    horizonDusk: style.getPropertyValue("--map-horizon-dusk").trim(),
-    horizonNight: style.getPropertyValue("--map-horizon-night").trim(),
-    hillShadow: style.getPropertyValue("--map-hill-shadow").trim(),
-    hillHighlight: style.getPropertyValue("--map-hill-highlight").trim(),
-  }
+  const entries = Object.entries(TOKENS).map(([key, token]) => [
+    key,
+    style.getPropertyValue(token).trim(),
+  ])
+  return Object.fromEntries(entries) as MapColors
 }
-export function useMapColors() {
+
+export function useMapColors(): MapColors {
   const { theme } = useTheme()
   const [colors, setColors] = useState(readColors)
   useEffect(() => {

@@ -1,2 +1,2 @@
-export { HotelSearch } from "./hotel-search"
-export { useHotelWorkspace } from "./use-hotel-workspace"
+export { type Conversation, useConversation } from "./use-conversation"
+export { useHotelWorkspace, type WorkspaceView } from "./use-hotel-workspace"

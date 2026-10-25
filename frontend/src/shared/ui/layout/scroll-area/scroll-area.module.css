@@ -1,4 +1,6 @@
 .scroll {
   overflow: auto;
   min-inline-size: 0;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
 }

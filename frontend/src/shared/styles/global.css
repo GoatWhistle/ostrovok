@@ -26,7 +26,8 @@ body {
 h1,
 h2,
 h3 {
-  font-weight: var(--weight-semibold);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
 }
@@ -77,14 +78,33 @@ samp {
 }
 
 ::selection {
-  background-color: var(--action-primary);
-  color: var(--action-primary-text);
+  background-color: var(--action-fact);
+  color: var(--text-on-fact);
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: var(--dur-base);
   animation-timing-function: var(--ease-out);
+}
+
+:root[data-view-transition="theme"]::view-transition-old(root),
+:root[data-view-transition="theme"]::view-transition-new(root),
+:root[data-view-transition="locale"]::view-transition-old(root),
+:root[data-view-transition="locale"]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root[data-view-transition="theme"]::view-transition-new(root),
+:root[data-view-transition="locale"]::view-transition-new(root) {
+  z-index: var(--layer-raised);
+}
+
+html:root[data-switching] *,
+html:root[data-switching] *::before,
+html:root[data-switching] *::after {
+  transition: none;
 }
 
 :root[data-view-transition="layout"]::view-transition-group(*) {
@@ -101,4 +121,11 @@ samp {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+::view-transition-old(search-stage) {
+  animation: var(--motion-fade-out);
+}
+::view-transition-new(search-stage) {
+  animation: var(--motion-atlas-in);
 }

@@ -4,8 +4,9 @@ import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelierAnswer } from "@/features/hotelier-answer"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { PageHeader } from "@/shared/ui"
+import { PageHeader, StatusBadge } from "@/shared/ui"
 import styles from "./hotelier-page.module.css"
+
 export function HotelierPage() {
   const { t } = useTranslation()
   const { hotelId } = useParams()
@@ -16,11 +17,16 @@ export function HotelierPage() {
       <PageHeader
         title={t("explore:hotelier.title")}
         description={t("explore:hotelier.description")}
+        actions={
+          <StatusBadge tone="info" icon="hotelier">
+            {t("explore:hotelier.badge")}
+          </StatusBadge>
+        }
       />
-      <div className={styles.panels}>
-        <HotelierAnswer hotelId={hotelId} />
+      <div className={styles.panels} data-detail={hotelId !== undefined}>
+        <HotelierAnswer key={hotelId ?? "none"} hotelId={hotelId} />
         {hotelId ? (
-          <aside>
+          <aside className={styles.detail} aria-label={t("explore:hotelier.hotelCard")}>
             {selected?.hotel === hotelId ? (
               <FactDetails
                 hotelId={hotelId}

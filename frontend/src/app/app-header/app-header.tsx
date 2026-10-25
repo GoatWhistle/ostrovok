@@ -3,41 +3,38 @@ import { useHealth } from "@/entities/health"
 import { LocaleSwitch } from "@/features/locale-switch"
 import { ThemeSwitch } from "@/features/theme-switch"
 import { useTranslation } from "@/shared/i18n"
-import { Icon } from "@/shared/ui"
+import { BrandMark, Icon, StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./app-header.module.css"
+
 export function AppHeader() {
   const { t } = useTranslation()
   const health = useHealth()
+  const tone: StatusTone = health.isError ? "danger" : "info"
   return (
     <header className={styles.header}>
       <NavLink to="/" viewTransition className={styles.brand ?? ""}>
-        <span className={styles.mark}>
-          <Icon name="compass" size="lg" />
-        </span>
-        {t("common:app.name")}
+        <BrandMark size="md" />
+        <span className={styles.word}>{t("common:app.wordmark")}</span>
+        <span className="visually-hidden">{t("common:app.tagline")}</span>
       </NavLink>
       <nav className={styles.navigation} aria-label={t("explore:navigation.search")}>
-        <NavLink to="/" end className={styles.link ?? ""}>
+        <NavLink to="/" end viewTransition className={styles.link ?? ""}>
           <Icon name="search" size="sm" />
           {t("explore:navigation.search")}
         </NavLink>
-        <NavLink to="/hotelier" className={styles.link ?? ""}>
-          <Icon name="building" size="sm" />
+        <NavLink to="/hotelier" viewTransition className={styles.link ?? ""}>
+          <Icon name="hotelier" size="sm" />
           {t("explore:navigation.hotelier")}
         </NavLink>
       </nav>
       <div className={styles.controls}>
-        <span className={styles.service} role="status">
-          <Icon
-            name={health.isSuccess ? "success" : health.isError ? "alert" : "loader"}
-            size="sm"
-          />
-          {health.isSuccess
-            ? t("explore:service.online")
-            : health.isError
-              ? t("explore:service.offline")
-              : t("explore:service.loading")}
-        </span>
+        {health.isSuccess ? null : (
+          <span className={styles.service} role="status">
+            <StatusBadge tone={tone}>
+              {health.isError ? t("explore:service.offline") : t("explore:service.loading")}
+            </StatusBadge>
+          </span>
+        )}
         <LocaleSwitch />
         <ThemeSwitch />
       </div>

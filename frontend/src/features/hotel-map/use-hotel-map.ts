@@ -1,13 +1,18 @@
-import { Map as MapLibreMap, NavigationControl, ScaleControl, setWorkerUrl } from "maplibre-gl"
+import { Map as MapLibreMap, setWorkerUrl } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
-import { useEffect, useRef, useState } from "react"
+import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
 import { renderBasemap } from "@/shared/geo/basemap"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
-import { renderBuildings, renderHighlights } from "@/shared/geo/map-layers"
+import {
+  type HighlightColors,
+  paintRoute,
+  renderBuildings,
+  renderHighlights,
+} from "@/shared/geo/map-layers"
 import { renderTerrain, type SunPosition } from "@/shared/geo/terrain"
-import { motionMs, useReducedMotion } from "@/shared/motion"
+import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { useMapColors } from "@/shared/theme"
 import { useMapMarkers } from "./use-map-markers"
 
@@ -19,46 +24,38 @@ export interface MapData {
   readonly bounds: readonly number[] | undefined
   readonly results: readonly SearchResult[]
   readonly hotelId: string | undefined
-  readonly onSelect: (result: SearchResult) => void
   readonly focusFeatures: readonly unknown[]
   readonly focusLabel: string | undefined
   readonly sun: SunPosition
 }
-export function useHotelMap({
-  camera,
-  buildings,
-  highlights,
-  bounds,
-  results,
-  hotelId,
-  onSelect,
-  focusFeatures,
-  focusLabel,
-  sun,
-}: MapData) {
+
+function useMapInstance(hasCamera: boolean) {
   const container = useRef<HTMLDivElement>(null)
   const instance = useRef<MapLibreMap | null>(null)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
-  const reduced = useReducedMotion()
-  const colors = useMapColors()
-  const hasCamera = camera !== undefined
+  const [revealed, setRevealed] = useState(0)
   useEffect(() => {
     if (!container.current || !hasCamera) return
     try {
       const map = new MapLibreMap({
         container: container.current,
-        style: { version: 8, sources: {}, layers: [] },
+        style: { version: 8, sources: {}, layers: [], transition: { duration: 0, delay: 0 } },
         attributionControl: false,
+        maxPitch: 75,
       })
-      map.addControl(new NavigationControl({ showZoom: true, showCompass: true }), "top-right")
-      map.addControl(new ScaleControl({ maxWidth: 100, unit: "metric" }), "bottom-right")
       instance.current = map
       const loaded = () => setReady(true)
       const error = () => setFailed(true)
       map.on("load", loaded)
       map.on("error", error)
-      const resize = new ResizeObserver(() => map.resize())
+      let visible = false
+      const resize = new ResizeObserver(([entry]) => {
+        map.resize()
+        const shown = (entry?.contentRect.width ?? 0) > 0 && (entry?.contentRect.height ?? 0) > 0
+        if (shown && !visible) setRevealed((count) => count + 1)
+        visible = shown
+      })
       resize.observe(container.current)
       return () => {
         resize.disconnect()
@@ -73,52 +70,108 @@ export function useHotelMap({
     }
     return undefined
   }, [hasCamera])
+  return { container, instance, ready, failed, revealed }
+}
+
+function useRouteDraw(
+  mapRef: RefObject<MapLibreMap | null>,
+  route: string | undefined,
+  colors: HighlightColors,
+  reduced: boolean,
+) {
+  const palette = useRef(colors)
+  const progress = useRef(1)
+  useEffect(() => {
+    palette.current = colors
+    const map = mapRef.current
+    if (map) paintRoute(map, colors, progress.current)
+  }, [mapRef, colors])
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !route) return
+    progress.current = reduced ? 1 : 0
+    paintRoute(map, palette.current, progress.current)
+    if (reduced) return
+    const effect = new KeyframeEffect(null, null, {
+      duration: motionMs("--dur-draw"),
+      easing: readEasing("--ease-in-out"),
+      fill: "forwards",
+    })
+    const animation = new Animation(effect, document.timeline)
+    let frame = 0
+    const step = () => {
+      progress.current = effect.getComputedTiming().progress ?? 1
+      paintRoute(map, palette.current, progress.current)
+      if (animation.playState !== "finished") frame = requestAnimationFrame(step)
+    }
+    animation.play()
+    frame = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(frame)
+      animation.cancel()
+      progress.current = 1
+    }
+  }, [mapRef, route, reduced])
+}
+
+type ViewApply = (instant: boolean) => void
+
+function showView(
+  view: RefObject<ViewApply | null>,
+  map: MapLibreMap,
+  reduced: boolean,
+  apply: ViewApply,
+) {
+  view.current = apply
+  map.stop()
+  apply(reduced)
+}
+
+export function useHotelMap({
+  camera,
+  buildings,
+  highlights,
+  bounds,
+  results,
+  hotelId,
+  focusFeatures,
+  focusLabel,
+  sun,
+}: MapData) {
+  const { container, instance, ready, failed, revealed } = useMapInstance(camera !== undefined)
+  const reduced = useReducedMotion()
+  const colors = useMapColors()
+  const highlightData = useMemo(() => featureCollection(highlights), [highlights])
+  const [route, setRoute] = useState<string>()
   useEffect(() => {
     const map = instance.current
     if (!ready || !map) return
-    const color = colors.building
-    const accent = colors.accent
     if (!map.getLayer("canvas"))
-      map.addLayer({
-        id: "canvas",
-        type: "background",
-        paint: { "background-color": colors.sea },
-      })
+      map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
     renderTerrain(map, colors, sun)
     renderBasemap(map, colors)
-    renderBuildings(map, featureCollection(buildings), color, accent)
-    const highlight = focusFeatures.length ? colors.highlight : accent
-    renderHighlights(map, featureCollection(highlights), highlight, colors.surface)
-    map.setPaintProperty("buildings-volume", "fill-extrusion-color", [
-      "case",
-      ["boolean", ["get", "is_hotel"], false],
-      accent,
-      color,
-    ])
-    map.setPaintProperty("highlight-line", "line-color", highlight)
-    map.setPaintProperty("highlight-line-casing", "line-color", colors.surface)
-    map.setPaintProperty("highlight-area", "fill-color", highlight)
-    map.setPaintProperty("highlight-point", "circle-color", highlight)
-    map.setPaintProperty("highlight-point", "circle-stroke-color", colors.surface)
-  }, [ready, buildings, highlights, focusFeatures, colors, sun])
+    renderBuildings(map, featureCollection(buildings), colors)
+    const hasRoute = renderHighlights(map, highlightData, colors)
+    setRoute(
+      hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
+    )
+  }, [instance, ready, buildings, highlightData, colors, sun])
+  useRouteDraw(instance, ready ? route : undefined, colors, reduced)
+  const view = useRef<ViewApply | null>(null)
   useEffect(() => {
     const map = instance.current
     if (!ready || !map || !camera?.center.every(Number.isFinite)) return
-    map.stop()
     const options = {
       center: [camera.center[0] ?? 0, camera.center[1] ?? 0] as [number, number],
       zoom: camera.zoom,
       pitch: camera.pitch,
       bearing: camera.bearing,
     }
-    if (reduced) map.jumpTo(options)
-    else
-      map.flyTo({
-        ...options,
-        duration: camera.duration_ms ?? motionMs("--dur-draw"),
-        essential: false,
-      })
-  }, [camera, ready, reduced])
+    showView(view, map, reduced, (instant) => {
+      if (instant) map.jumpTo(options)
+      else map.flyTo({ ...options, duration: camera.duration_ms ?? motionMs("--dur-draw") })
+    })
+  }, [instance, camera, ready, reduced])
   useEffect(() => {
     const map = instance.current
     if (!ready || !map || !bounds || bounds.length !== 4 || !bounds.every(Number.isFinite)) return
@@ -126,24 +179,33 @@ export function useHotelMap({
       [bounds[0] ?? 0, bounds[1] ?? 0],
       [bounds[2] ?? 0, bounds[3] ?? 0],
     ]
-    map.stop()
-    if (reduced) {
-      const destination = map.cameraForBounds(corners)
-      if (destination) map.jumpTo(destination)
-    } else map.fitBounds(corners, { duration: motionMs("--dur-draw"), padding: 48 })
-  }, [bounds, ready, reduced])
+    showView(view, map, reduced, (instant) =>
+      map.fitBounds(corners, { duration: instant ? 0 : motionMs("--dur-draw"), padding: 48 }),
+    )
+  }, [instance, bounds, ready, reduced])
   useEffect(() => {
     const map = instance.current
     if (!ready || !map || !hotelId || !focusFeatures.length) return
     const corners = geometryBounds(featureCollection(focusFeatures), camera?.center)
     if (!corners) return
-    map.stop()
-    map.fitBounds(corners, {
-      padding: 72,
-      maxZoom: 17,
-      duration: reduced ? 0 : motionMs("--dur-draw"),
-    })
-  }, [ready, hotelId, focusFeatures, camera?.center, reduced])
-  useMapMarkers({ mapRef: instance, ready, results, hotelId, onSelect, focusFeatures, focusLabel })
-  return { container, instance, failed }
+    showView(view, map, reduced, (instant) =>
+      map.fitBounds(corners, {
+        padding: 72,
+        maxZoom: 17,
+        duration: instant ? 0 : motionMs("--dur-draw"),
+      }),
+    )
+  }, [instance, ready, hotelId, focusFeatures, camera?.center, reduced])
+  useEffect(() => {
+    if (revealed > 0) view.current?.(true)
+  }, [revealed])
+  const markers = useMapMarkers({
+    mapRef: instance,
+    ready,
+    results,
+    hotelId,
+    focusFeatures,
+    focusLabel,
+  })
+  return { container, instance, ready, failed, markers }
 }

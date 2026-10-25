@@ -1,0 +1,10 @@
+.label {
+  composes: smallStrong from "../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.skeletonReveal {
+  animation: var(--motion-fade-in);
+  animation-delay: var(--delay-skeleton);
+  animation-fill-mode: both;
+}

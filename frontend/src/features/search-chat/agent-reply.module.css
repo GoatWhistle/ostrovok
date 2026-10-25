@@ -1,0 +1,53 @@
+.lead {
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.group {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.caption {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.skeleton {
+  inline-size: 100%;
+  min-inline-size: var(--field-min);
+}
+
+.error {
+  align-items: flex-start;
+  min-block-size: 0;
+  padding: 0;
+  text-align: start;
+}
+
+@media (min-width: 64rem) {
+  .narrowOnly {
+    display: none;
+  }
+}
+
+.chips > * {
+  max-inline-size: 100%;
+  white-space: normal;
+}

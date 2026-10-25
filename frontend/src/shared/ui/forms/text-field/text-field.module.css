@@ -4,18 +4,29 @@
   min-inline-size: 0;
 }
 .label {
-  color: var(--text-secondary);
-  font-size: var(--font-size-body-sm);
+  composes: labelText from "../../../styles/compose.module.css";
+  font-weight: var(--weight-semibold);
 }
 .input {
+  composes: fieldSurface from "../../../styles/compose.module.css";
   inline-size: 100%;
-  min-block-size: var(--control-height);
-  border: var(--hairline) solid var(--border-strong);
-  border-radius: var(--radius-md);
-  padding: var(--space-12) var(--space-16);
-  background: var(--surface-sunken);
+  border: 0;
+  padding: var(--space-12);
+  font-size: var(--font-size-body-sm);
   color: var(--text-primary);
-  font: inherit;
+  font-weight: var(--weight-medium);
+}
+@media (hover: hover) and (pointer: fine) {
+  .input:hover:not(:focus-visible) {
+    box-shadow: var(--shadow-ring-strong);
+  }
+}
+.input:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-ring-focus);
+}
+.input[aria-invalid="true"] {
+  box-shadow: var(--shadow-ring-danger);
 }
 .input::placeholder {
   color: var(--text-muted);
@@ -23,5 +34,6 @@
 }
 .area {
   min-block-size: var(--state-min-height);
+  line-height: var(--line-height-body);
   resize: vertical;
 }

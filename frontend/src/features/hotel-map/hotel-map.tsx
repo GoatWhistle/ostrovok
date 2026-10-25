@@ -1,17 +1,25 @@
 import { useMemo, useState } from "react"
+import { createPortal } from "react-dom"
 import { useRegions } from "@/entities/catalog"
 import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { EmptyState, ErrorState, Icon } from "@/shared/ui"
+import { motionMs } from "@/shared/motion"
+import { ErrorState } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
-import { sceneData, sceneQuality } from "./scene-data"
+import { MapControls } from "./map-controls"
+import { MapPin } from "./map-pin"
+import { MapScale } from "./map-scale"
+import { MapFocus, MapStatus, MapWarning } from "./map-status"
+import { regionOverview, sceneData, sceneQuality } from "./scene-data"
 import { forecastEnd, sceneToday, sunScene } from "./scene-time"
 import { SceneTimePanel } from "./scene-time-panel"
 import { useHotelMap } from "./use-hotel-map"
+import { expandCluster } from "./use-result-pins"
 import { useWeather } from "./use-weather"
+
 export interface HotelMapProps {
   readonly hotelId: string | undefined
   readonly camera: Camera | undefined
@@ -46,6 +54,13 @@ function sceneLocation(result: SearchResult | undefined, camera: Camera | undefi
   ] as const
 }
 
+function hasLine(features: readonly unknown[]) {
+  return features.some((feature) => {
+    const geometry = (feature as { geometry?: { type?: string } }).geometry
+    return geometry?.type === "LineString" || geometry?.type === "MultiLineString"
+  })
+}
+
 export function HotelMap({
   hotelId,
   camera,
@@ -67,10 +82,12 @@ export function HotelMap({
   const geometry = useGeoFeatures(geoRefs)
   const region =
     regions.data?.items?.find((item) => item.id === regionId) ?? regions.data?.items?.[0]
+  const regionCamera = region?.default_camera
+  const fallbackCamera = useMemo(() => regionOverview(regionCamera), [regionCamera])
   const { selectedCamera, buildings, highlights } = sceneData(
     scene.data,
     camera,
-    region?.default_camera,
+    fallbackCamera,
     geometry.data,
     results,
   )
@@ -88,119 +105,108 @@ export function HotelMap({
     bounds,
     results,
     hotelId,
-    onSelect,
     focusFeatures,
     focusLabel: focus.label,
     sun: sun.position,
   })
+  const overview = scene.data?.cameras.overview ?? selectedCamera
+  const showOverview = (instant: boolean) => {
+    if (!overview) return
+    const options = {
+      center: [overview.center[0] ?? 0, overview.center[1] ?? 0] as [number, number],
+      zoom: overview.zoom,
+      bearing: overview.bearing,
+      pitch: overview.pitch,
+    }
+    if (instant) map.instance.current?.jumpTo(options)
+    else map.instance.current?.flyTo({ ...options, duration: motionMs("--dur-draw") })
+  }
   return (
     <section className={styles.stage} aria-label={t("explore:map.title")}>
-      <div className={styles.caption}>
-        <Icon name="layers" size="sm" />
-        <span>{t("explore:map.layer")}</span>
-      </div>
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
-      {focus.label ? (
-        <div className={styles.focusBadge} role="status">
-          <strong>{focus.label}</strong>
-          {focus.explanation ? <span>{focus.explanation}</span> : null}
-        </div>
-      ) : null}
-      <MapStates
+      {map.markers.map((view) =>
+        createPortal(
+          <MapPin
+            view={view}
+            onSelect={onSelect}
+            onExpand={(cluster, keyboard) => {
+              const instance = map.instance.current
+              if (instance)
+                void expandCluster(
+                  instance,
+                  cluster.clusterId,
+                  cluster.position,
+                  keyboard,
+                  motionMs("--dur-panel"),
+                )
+            }}
+          />,
+          view.element,
+          view.key,
+        ),
+      )}
+      <MapStatus
         hasCamera={selectedCamera !== undefined}
         sceneError={scene.isError}
         failed={map.failed}
+        ready={map.ready}
         onRetry={() => void scene.refetch()}
       />
-      {selectedCamera ? (
-        <SceneTimePanel
-          date={date}
-          minDate={today}
-          maxDate={forecastEnd(today)}
-          hour={hour}
-          altitude={sun.position.altitude}
-          azimuth={sun.position.azimuth}
-          sunset={sun.times.sunset}
-          weather={weather.data}
-          weatherPending={weather.isPending || weather.isFetching}
-          onDate={(value) => {
-            if (value) setDate(value)
-          }}
-          onHour={(value) => {
-            if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
-          }}
-          onOverview={() =>
-            map.instance.current?.jumpTo({
-              center: [selectedCamera.center[0] ?? 0, selectedCamera.center[1] ?? 0],
-              zoom: selectedCamera.zoom,
-              bearing: selectedCamera.bearing,
-              pitch: selectedCamera.pitch,
-            })
-          }
+      <div className={styles.topStart}>
+        <MapFocus
+          label={focus.label}
+          explanation={focus.explanation}
+          route={hasLine(focusFeatures)}
         />
-      ) : null}
-      {invalid || missingHeight ? (
-        <p className={styles.warnings}>
-          {invalid ? t("explore:map.geodataInvalid") : t("explore:map.noHeight")}
-        </p>
-      ) : null}
+        {geometry.isError ? (
+          <div className={styles.notice}>
+            <ErrorState
+              title={t("explore:map.geometryError")}
+              onRetry={() => void geometry.refetch()}
+            />
+          </div>
+        ) : null}
+      </div>
+
       {selectedCamera ? (
-        <a
-          className={styles.attribution}
-          href="https://www.openstreetmap.org/copyright"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t("explore:map.attribution")}
-        </a>
-      ) : null}
-      {geometry.isError ? (
-        <div className={styles.notice}>
-          <ErrorState
-            title={t("explore:map.geometryError")}
-            onRetry={() => void geometry.refetch()}
-          />
+        <div className={styles.bottom}>
+          <div className={styles.bottomStart}>
+            <MapWarning invalid={invalid} missingHeight={missingHeight} />
+            <SceneTimePanel
+              date={date}
+              minDate={today}
+              maxDate={forecastEnd(today)}
+              hour={hour}
+              altitude={sun.position.altitude}
+              azimuth={sun.position.azimuth}
+              sunset={sun.times.sunset}
+              weather={weather.data}
+              weatherPending={weather.isPending || weather.isFetching}
+              onDate={setDate}
+              onHour={(value) => {
+                if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
+              }}
+            />
+          </div>
+          <div className={styles.meta}>
+            <MapScale map={map.instance} ready={map.ready} />
+            <a
+              className={styles.attribution}
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t("explore:map.attribution")}
+            </a>
+          </div>
         </div>
       ) : null}
+      <MapControls
+        map={map.instance}
+        ready={map.ready}
+        disabled={!selectedCamera || map.failed || !map.ready}
+        onOverview={showOverview}
+      />
     </section>
   )
-}
-
-function MapStates({
-  hasCamera,
-  sceneError,
-  failed,
-  onRetry,
-}: {
-  hasCamera: boolean
-  sceneError: boolean
-  failed: boolean
-  onRetry: () => void
-}) {
-  const { t } = useTranslation()
-  if (failed)
-    return (
-      <div className={styles.empty}>
-        <EmptyState
-          icon="map"
-          title={t("explore:map.unsupported")}
-          description={t("explore:map.unsupportedText")}
-        />
-      </div>
-    )
-  if (sceneError)
-    return (
-      <div className={styles.empty}>
-        <ErrorState title={t("explore:map.error")} onRetry={onRetry} />
-      </div>
-    )
-  return !hasCamera ? (
-    <div className={styles.empty}>
-      <EmptyState
-        icon="map"
-        title={t("explore:map.empty")}
-        description={t("explore:map.emptyText")}
-      />
-    </div>
-  ) : null
 }

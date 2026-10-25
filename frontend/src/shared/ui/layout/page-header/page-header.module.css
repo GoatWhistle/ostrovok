@@ -14,12 +14,16 @@
 
 .title {
   font-size: var(--font-size-heading-lg);
+  font-weight: var(--weight-black);
   line-height: var(--line-height-heading-lg);
+  letter-spacing: var(--tracking-tight);
 }
 
 .description {
   max-inline-size: var(--prose-measure);
   color: var(--text-secondary);
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-body);
 }
 
 .actions {

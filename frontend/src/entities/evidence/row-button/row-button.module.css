@@ -1,0 +1,35 @@
+.row {
+  inline-size: 100%;
+  padding-block: var(--space-8);
+  font-weight: var(--weight-medium);
+}
+
+.row > span > span {
+  flex: 1 1 auto;
+}
+
+.face {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-12);
+  inline-size: 100%;
+}
+
+.face[data-align="start"] {
+  align-items: start;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-2);
+  min-inline-size: 0;
+  white-space: normal;
+}
+
+.trailing {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}

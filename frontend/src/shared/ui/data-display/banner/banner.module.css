@@ -1,0 +1,61 @@
+.banner {
+  composes: bodySmText from "../../../styles/compose.module.css";
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--banner-surface);
+}
+
+.icon {
+  flex: none;
+  margin-block-start: var(--space-2);
+  color: var(--banner-icon);
+}
+
+.body {
+  display: grid;
+  flex: 1;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.title {
+  font-weight: var(--weight-bold);
+}
+
+.text {
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.action {
+  flex: none;
+  align-self: center;
+}
+
+.info {
+  --banner-surface: var(--status-info-surface);
+  --banner-icon: var(--status-info);
+}
+
+.warning {
+  --banner-surface: var(--status-warning-surface);
+  --banner-icon: var(--status-warning);
+}
+
+.neutral {
+  --banner-surface: var(--status-neutral-surface);
+  --banner-icon: var(--status-neutral);
+}
+
+.danger {
+  --banner-surface: var(--status-danger-surface);
+  --banner-icon: var(--status-danger);
+}
+
+.success {
+  --banner-surface: var(--status-success-surface);
+  --banner-icon: var(--status-success);
+}

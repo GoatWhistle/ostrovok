@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { clsx } from "clsx"
+import { useId } from "react"
 import { useHotel } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
-import { characteristicTitle, matchedTitle } from "@/shared/geo/fact-label"
-import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Card, EmptyState, ErrorState, Icon, Skeleton } from "@/shared/ui"
-import { characteristicIcon } from "@/shared/ui/primitives/icon/characteristic-icon"
+import { useTranslation } from "@/shared/i18n"
+import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
+import { FactList } from "./fact-list"
 import styles from "./hotel-details.module.css"
+import { HotelHero } from "./hotel-hero"
 import { HotelOffers } from "./hotel-offers"
+import { MatchRows } from "./match-rows"
+import { RoomList } from "./room-list"
 
 export interface HotelDetailsProps {
   readonly hotelId: string | undefined
@@ -14,6 +17,17 @@ export interface HotelDetailsProps {
   readonly onProperty?: (property: MatchedProperty) => void
   readonly onFact: (fact: FactBrief) => void
   readonly onPreview?: (property: MatchedProperty | undefined) => void
+  readonly className?: string | undefined
+}
+
+function DetailsSkeleton() {
+  return (
+    <div className={styles.skeleton} aria-hidden="true">
+      <Skeleton shape="block" className={styles.skeletonThumb} />
+      <Skeleton lines={3} />
+      <Skeleton lines={4} className={styles.skeletonWide} />
+    </div>
+  )
 }
 
 export function HotelDetails({
@@ -22,10 +36,10 @@ export function HotelDetails({
   onProperty,
   onFact,
   onPreview,
+  className,
 }: HotelDetailsProps) {
   const { t } = useTranslation()
-  const { locale } = useLocale()
-  const [factsOpen, setFactsOpen] = useState(false)
+  const titleId = useId()
   const hotel = useHotel(hotelId)
   if (!hotelId)
     return (
@@ -33,146 +47,57 @@ export function HotelDetails({
         icon="building"
         title={t("explore:details.empty")}
         description={t("explore:details.emptyText")}
+        className={className}
       />
     )
-  if (hotel.isPending) return <Skeleton />
+  if (hotel.isPending) return <DetailsSkeleton />
   if (hotel.isError)
-    return <ErrorState title={t("explore:details.error")} onRetry={() => void hotel.refetch()} />
+    return (
+      <ErrorState
+        title={t("explore:details.error")}
+        onRetry={() => void hotel.refetch()}
+        retryPending={hotel.isFetching}
+        className={className}
+      />
+    )
   const card = hotel.data
+  const rooms = card.rooms ?? []
   return (
-    <Card
-      as="article"
-      title={card.hotel.name}
-      eyebrow={t("explore:details.hotel")}
-      description={card.hotel.address ?? undefined}
-      className={styles.product}
+    <article
+      className={clsx(styles.details, className)}
+      aria-labelledby={titleId}
+      data-motion="fade"
     >
-      {matched.length ? (
-        <p className={styles.description}>
-          {t("explore:details.summary", {
-            matched: matched.filter((item) => item.match === "full" || item.match === "partial")
-              .length,
-            total: matched.length,
-          })}
-        </p>
-      ) : null}
-      {card.hotel.stars ? (
-        <p className={styles.description}>
-          {t("explore:details.summaryStars", { count: card.hotel.stars })}
-        </p>
-      ) : null}
-      {matched.length ? (
-        <Card title={t("explore:details.yourRequest")} className={styles.section}>
-          <p className={styles.help}>{t("explore:details.mapHint")}</p>
-          <div className={styles.rows}>
-            {matched.map((item) => {
-              const fact = item.fact
-              const hasMap = (item.geo_refs?.length ?? fact?.geo_refs?.length ?? 0) > 0
-              const title = matchedTitle(item, locale)
-              const content = (
-                <span key={item.characteristic_key} className={styles.rowContent}>
-                  <strong>{title}</strong>
-                  <span className={styles.rowMeta}>
-                    {fact
-                      ? hasMap
-                        ? t("explore:details.showOnMap")
-                        : t(`explore:match.${item.match}`)
-                      : t("explore:details.noEvidence")}
-                  </span>
-                </span>
-              )
-              return fact ? (
-                <Button
-                  key={item.characteristic_key}
-                  variant="ghost"
-                  icon={characteristicIcon(item.characteristic_key)}
-                  onClick={() => {
-                    if (hasMap && onProperty) onProperty(item)
-                    else onFact(fact)
-                  }}
-                  onPointerEnter={() => onPreview?.(item)}
-                  onPointerLeave={() => onPreview?.(undefined)}
-                  onFocus={() => onPreview?.(item)}
-                  onBlur={() => onPreview?.(undefined)}
-                  className={styles.row}
-                >
-                  {content}
-                </Button>
-              ) : (
-                <div key={item.characteristic_key} className={styles.unavailable}>
-                  <Icon name={characteristicIcon(item.characteristic_key)} size="sm" />
-                  {content}
-                </div>
-              )
-            })}
-          </div>
-        </Card>
-      ) : null}
-      <HotelOffers hotelId={hotelId} />
-      {card.rooms?.length ? (
-        <section className={styles.roomSection} aria-label={t("explore:details.rooms")}>
-          <strong className={styles.roomHeading}>{t("explore:details.rooms")}</strong>
-          {card.rooms.map((room) => (
-            <div key={room.id} className={styles.room}>
-              <strong>{room.name}</strong>
-              <span>{t("explore:details.roomCapacity", { count: room.capacity })}</span>
-              <span>
-                {t("explore:details.roomFloor", {
-                  min: room.floor_range?.[0],
-                  max: room.floor_range?.[1],
-                })}
-              </span>
-              <span>
-                {room.price_amount != null && room.price_currency
-                  ? t("explore:details.roomPrice", {
-                      amount: room.price_amount,
-                      currency: room.price_currency,
-                    })
-                  : t("explore:details.roomPriceUnknown")}
-              </span>
-              <span>
-                {room.facade_ids?.length
-                  ? t("explore:details.roomSide", { value: room.facade_ids.join(", ") })
-                  : t("explore:details.roomSideUnknown")}
-              </span>
-              <span>
-                {room.included?.length
-                  ? t("explore:details.roomIncluded", { value: room.included.join(", ") })
-                  : t("explore:details.roomIncludedUnknown")}
-              </span>
-            </div>
-          ))}
-        </section>
-      ) : null}
-      {card.facts?.length ? (
-        <section className={styles.factSection}>
-          <Button
-            variant="ghost"
-            onClick={() => setFactsOpen((current) => !current)}
-            aria-expanded={factsOpen}
-          >
-            {t("explore:details.allFacts")}
-          </Button>
-          {factsOpen ? (
-            <div className={styles.rows}>
-              {card.facts.map((item) => (
-                <Button
-                  key={item.fact_id}
-                  variant="ghost"
-                  className={styles.factRow}
-                  onClick={() => onFact(item)}
-                >
-                  <strong>{characteristicTitle(item.characteristic_key, locale)}</strong>
-                  <span>{item.explanation}</span>
-                </Button>
-              ))}
-            </div>
-          ) : null}
-        </section>
-      ) : null}
+      <HotelHero hotel={card.hotel} matched={matched} titleId={titleId} />
       {card.conflicts?.length ? (
-        <p className={styles.notice}>{t("explore:details.conflicts")}</p>
+        <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
+          {t("explore:details.conflictsText")}
+        </Banner>
       ) : null}
-    </Card>
+      {card.stale_count ? (
+        <Banner
+          tone="neutral"
+          icon="stale"
+          title={t("explore:details.staleCount", { count: card.stale_count })}
+        >
+          {t("explore:details.staleText")}
+        </Banner>
+      ) : null}
+      {matched.length ? (
+        <MatchRows
+          matched={matched}
+          onProperty={onProperty}
+          onFact={onFact}
+          onPreview={onPreview}
+        />
+      ) : null}
+      <FactList facts={card.facts} onFact={onFact} />
+      <HotelOffers hotelId={card.hotel.id} />
+      {rooms.length ? (
+        <Disclosure title={t("explore:details.rooms")} icon="room">
+          <RoomList rooms={rooms} />
+        </Disclosure>
+      ) : null}
+    </article>
   )
 }

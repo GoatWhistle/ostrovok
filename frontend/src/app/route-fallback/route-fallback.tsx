@@ -6,9 +6,20 @@ export function RouteFallback() {
   const { t } = useTranslation()
   return (
     <div className={styles.fallback} role="status" aria-label={t("common:state.loading")}>
-      <Skeleton lines={2} className={styles.heading} />
-      <Skeleton shape="block" />
-      <Skeleton shape="block" />
+      <div className={styles.reveal}>
+        <Skeleton lines={2} className={styles.heading} />
+        <div className={styles.panels}>
+          <div className={styles.panel}>
+            <Skeleton lines={3} />
+            <Skeleton lines={3} />
+            <Skeleton lines={3} />
+          </div>
+          <div className={styles.panel}>
+            <Skeleton shape="block" />
+            <Skeleton lines={4} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

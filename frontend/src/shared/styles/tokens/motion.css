@@ -2,6 +2,7 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-fold: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-linear: linear;
 
   --dur-instant: 80ms;
@@ -11,18 +12,26 @@
   --dur-base: 200ms;
   --dur-exit: 140ms;
   --dur-panel: 260ms;
+  --dur-panel-exit: 200ms;
   --dur-slow: 320ms;
+  --dur-reveal: 560ms;
+  --dur-fold: 720ms;
   --dur-draw: 900ms;
   --dur-spin: 800ms;
-  --dur-breathe: 2400ms;
+  --dur-breathe: 1600ms;
 
+  --path-length: 1000;
   --stagger: 40ms;
+  --stagger-roll: 18ms;
+  --stagger-unfold: 160ms;
+  --delay-unfold-mid: 400ms;
   --press-scale: 0.97;
   --press-scale-surface: 0.99;
   --enter-scale: 0.95;
   --shift-rise: 6px;
   --shift-anchor: 4px;
   --blur-soft: 2px;
+  --shift-toast: 24px;
 
   --delay-skeleton: 200ms;
   --hold-skeleton: 300ms;
@@ -30,14 +39,24 @@
   --reduced-fade: 160ms;
   --reduced-fade-exit: 110ms;
   --view-transition-limit: 900ms;
+  --delay-tooltip: 500ms;
+  --toast-life: 5000ms;
+  --toast-life-error: 10000ms;
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out), scale var(--dur-instant) var(--ease-out);
+    border-color var(--dur-fast) var(--ease-out), scale var(--dur-press) var(--ease-out);
   --transition-control-press:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out), scale var(--dur-press) var(--ease-out);
   --transition-fade: opacity var(--dur-base) var(--ease-out);
+  --transition-layer:
+    opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  --transition-reveal-in:
+    clip-path var(--dur-panel) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+  --transition-reveal-out:
+    clip-path var(--dur-exit) var(--ease-out), opacity var(--dur-exit) var(--ease-out);
+  --transition-press: scale var(--dur-press) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
@@ -46,7 +65,25 @@
   --motion-rise-in: kf-rise-in var(--dur-slow) var(--ease-out) both;
   --motion-swap-in: kf-swap-in var(--dur-fast) var(--ease-out) both;
   --motion-swap-out: kf-swap-out var(--dur-fast-exit) var(--ease-out) both;
+  --motion-atlas-in: kf-atlas-in var(--dur-panel) var(--ease-out) both;
+  --motion-compass-in: kf-compass-in var(--dur-panel) var(--ease-out) both;
   --motion-spin: kf-spin var(--dur-spin) var(--ease-linear) infinite;
+  --motion-anchor-in: kf-anchor-in var(--dur-base) var(--ease-out) both;
+  --motion-toast-in: kf-toast-in var(--dur-panel) var(--ease-out) both;
+  --motion-toast-out: kf-toast-out var(--dur-exit) var(--ease-out) both;
+  --motion-pin-in: kf-pin-in var(--dur-slow) var(--ease-out) both;
+  --motion-draw: kf-draw var(--dur-draw) var(--ease-in-out) both;
+  --motion-lost-draw: kf-draw var(--dur-draw) var(--ease-in-out) var(--dur-slow) both;
+  --motion-lost-pin: kf-pin-drop var(--dur-base) var(--ease-out)
+    calc(var(--dur-slow) + var(--dur-draw)) both;
+  --motion-fact-ping: kf-fact-ping var(--dur-draw) var(--ease-out) 2;
+  --motion-state-ping: kf-fact-ping var(--dur-draw) var(--ease-out) var(--dur-base) both;
+  --motion-state-in: kf-scale-in var(--dur-base) var(--ease-out) both;
+  --motion-unfold-side: kf-unfold-side var(--dur-fold) var(--ease-fold) both;
+  --motion-unfold-mid: kf-unfold-mid var(--dur-fold) var(--ease-fold) both;
+  --motion-fold-left: kf-fold-left var(--dur-breathe) var(--ease-fold) infinite;
+  --motion-fold-mid: kf-fold-mid var(--dur-breathe) var(--ease-fold) infinite;
+  --motion-fold-right: kf-fold-right var(--dur-breathe) var(--ease-fold) infinite;
   --motion-shimmer: kf-shimmer var(--dur-breathe) var(--ease-in-out) infinite;
 }
 
@@ -59,19 +96,35 @@
     --dur-base: 1ms;
     --dur-exit: 1ms;
     --dur-panel: 1ms;
+    --dur-panel-exit: 1ms;
     --dur-slow: 1ms;
+    --dur-reveal: 1ms;
+    --dur-fold: 1ms;
     --dur-draw: 1ms;
     --dur-spin: 1ms;
     --dur-breathe: 1ms;
     --stagger: 0ms;
+    --stagger-roll: 0ms;
+    --stagger-unfold: 0ms;
+    --delay-unfold-mid: 0ms;
+    --shift-toast: 0px;
     --press-scale: 1;
     --press-scale-surface: 1;
     --enter-scale: 1;
     --shift-rise: 0px;
     --shift-anchor: 0px;
     --blur-soft: 0px;
+    --motion-atlas-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-compass-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-spin: none;
+    --motion-lost-draw: none;
+    --motion-lost-pin: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-state-ping: none;
+    --motion-state-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
+    --motion-fold-left: none;
+    --motion-fold-mid: none;
+    --motion-fold-right: none;
   }
 
   [data-motion="fade"] {
@@ -83,4 +136,9 @@
     --motion-swap-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-swap-out: kf-fade-out var(--reduced-fade-exit) var(--ease-out) both;
   }
+}
+
+[data-input-source="keyboard"] {
+  --motion-atlas-in: none;
+  --motion-compass-in: none;
 }

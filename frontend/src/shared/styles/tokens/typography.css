@@ -1,31 +1,40 @@
 :root {
-  --font-sans: "Cera Pro", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sans);
   --font-mono:
     "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas,
     monospace;
   --font-features: "kern" 1;
   --font-numeric: tabular-nums;
 
-  --weight-regular: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
+  --weight-regular: 450;
+  --weight-medium: 560;
+  --weight-semibold: 650;
+  --weight-bold: 750;
+  --weight-black: 800;
 
+  --font-size-micro: 0.6875rem;
+  --line-height-micro: 1.35;
   --font-size-caption: 0.75rem;
-  --line-height-caption: 1.45;
+  --line-height-caption: 1.4;
   --font-size-label: 0.8125rem;
-  --line-height-label: 1.4;
+  --line-height-label: 1.35;
   --font-size-body-sm: 0.875rem;
   --line-height-body-sm: 1.45;
   --font-size-body: 1rem;
-  --line-height-body: 1.5;
+  --line-height-body: 1.55;
   --font-size-subheading: 1.125rem;
   --line-height-subheading: 1.35;
   --font-size-heading: 1.5rem;
-  --line-height-heading: 1.25;
-  --font-size-heading-lg: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-  --line-height-heading-lg: 1.15;
+  --line-height-heading: 1.2;
+  --font-size-heading-lg: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  --line-height-heading-lg: 1.08;
+  --font-size-display: clamp(2.5rem, 1.4rem + 4vw, 5.5rem);
+  --line-height-display: 0.98;
 
   --tracking-normal: 0;
-  --tracking-tight: -0.015em;
+  --tracking-tight: -0.025em;
+  --tracking-display: -0.045em;
+  --tracking-mono: -0.01em;
+  --tracking-caps: 0.06em;
 }

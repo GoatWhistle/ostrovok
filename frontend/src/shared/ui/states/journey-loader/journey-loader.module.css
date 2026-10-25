@@ -1,0 +1,17 @@
+.loader {
+  composes: statePanel from "../../../styles/compose.module.css";
+  gap: var(--space-12);
+  opacity: 0;
+  animation: none;
+  transition: var(--transition-fade);
+}
+.loader[data-visible="true"] {
+  opacity: 1;
+}
+.title {
+  composes: subheadingText from "../../../styles/compose.module.css";
+}
+.description {
+  composes: secondaryText from "../../../styles/compose.module.css";
+  max-inline-size: var(--prose-measure);
+}

@@ -19,27 +19,24 @@ function renderSwitch() {
 describe("ThemeSwitch", () => {
   it("follows the system theme until a choice is made, without a system option", () => {
     renderSwitch()
-    expect(screen.getAllByRole("radio")).toHaveLength(2)
-    expect((screen.getByRole("radio", { name: ru.theme.light }) as HTMLInputElement).checked).toBe(
-      true,
-    )
+    expect(screen.getAllByRole("button")).toHaveLength(1)
+    expect(screen.getByRole("button", { name: ru.theme.dark })).toBeTruthy()
     expect(document.documentElement.dataset.theme).toBe("light")
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toBeNull()
   })
 
   it("applies and stores the chosen theme", async () => {
     renderSwitch()
-    await userEvent.click(screen.getByRole("radio", { name: ru.theme.dark }))
+    await userEvent.click(screen.getByRole("button", { name: ru.theme.dark }))
     expect(document.documentElement.dataset.theme).toBe("dark")
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe("dark")
+    expect(screen.getByRole("button", { name: ru.theme.light })).toBeTruthy()
   })
 
   it("restores the stored choice", () => {
     localStorage.setItem(THEME_STORAGE_KEY, "dark")
     renderSwitch()
-    expect((screen.getByRole("radio", { name: ru.theme.dark }) as HTMLInputElement).checked).toBe(
-      true,
-    )
+    expect(screen.getByRole("button", { name: ru.theme.light })).toBeTruthy()
     expect(document.documentElement.dataset.theme).toBe("dark")
   })
 })

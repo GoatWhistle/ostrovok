@@ -8,7 +8,7 @@ import { NAMESPACES } from "./resources"
 
 export interface LocaleState {
   readonly locale: Locale
-  readonly setLocale: (locale: Locale) => void
+  readonly setLocale: (locale: Locale) => Promise<void>
   readonly setPageTitle: (title: string | null) => void
 }
 
@@ -28,10 +28,15 @@ export function LocaleProvider({ children, instance = defaultInstance }: LocaleP
   const [locale, setLocaleState] = useState<Locale>(() => currentLocale(instance))
   const [pageTitle, setPageTitle] = useState<string | null>(null)
 
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next)
-    storeLocale(next)
-  }, [])
+  const setLocale = useCallback(
+    async (next: Locale) => {
+      setLocaleState(next)
+      storeLocale(next)
+      document.documentElement.lang = next
+      await instance.changeLanguage(next)
+    },
+    [instance],
+  )
 
   useEffect(() => {
     document.documentElement.lang = locale

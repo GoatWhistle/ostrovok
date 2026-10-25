@@ -1,64 +1,95 @@
+import type { CSSProperties } from "react"
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Icon } from "@/shared/ui"
-import { characteristicIcon } from "@/shared/ui/primitives/icon/characteristic-icon"
+import { staggerStyle } from "@/shared/motion"
+import { Button, characteristicHue, characteristicIcon, Icon, type IconName } from "@/shared/ui"
+import { HotelThumb } from "../hotel-thumb/hotel-thumb"
+import { MatchScore, matchScore } from "../match-score/match-score"
 import styles from "./hotel-result.module.css"
+
 export interface HotelResultProps {
   readonly result: SearchResult
   readonly selected: boolean
-  readonly compared: boolean
+  readonly index?: number
   readonly onSelect: () => void
-  readonly onCompare: () => void
   readonly onProperty: (property: MatchedProperty) => void
   readonly onPreview: (property: MatchedProperty | undefined) => void
 }
+
+const MATCH_ICON: Readonly<Record<MatchedProperty["match"], IconName>> = {
+  full: "success",
+  partial: "partial",
+  none: "rejected",
+  unknown: "unknown",
+  computing: "pending",
+}
+
 export function HotelResult({
   result,
   selected,
-  compared,
+  index,
   onSelect,
-  onCompare,
   onProperty,
   onPreview,
 }: HotelResultProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   return (
-    <article className={styles.result} data-selected={selected}>
-      <div className={styles.top}>
-        <Icon name="building" size="lg" />
-        <Button variant="ghost" onClick={onSelect} aria-pressed={selected} className={styles.name}>
-          {result.hotel.name}
-        </Button>
-      </div>
-      {result.hotel.address ? <p className={styles.address}>{result.hotel.address}</p> : null}
-      <div className={styles.properties}>
-        {result.matched.map((property) => (
+    <article
+      className={styles.hotel}
+      data-selected={selected}
+      style={index === undefined ? undefined : staggerStyle(index)}
+    >
+      <HotelThumb src={result.hotel.thumbnail_url} />
+      <div className={styles.body}>
+        <div className={styles.top}>
           <Button
-            key={property.characteristic_key}
             variant="ghost"
-            icon={characteristicIcon(property.characteristic_key)}
-            onClick={() => onProperty(property)}
-            onPointerEnter={() => onPreview(property)}
-            onPointerLeave={() => onPreview(undefined)}
-            onFocus={() => onPreview(property)}
-            onBlur={() => onPreview(undefined)}
+            align="start"
+            className={styles.name}
+            aria-pressed={selected}
+            onClick={onSelect}
           >
-            <span className={styles.property}>
-              <span>{matchedTitle(property, locale)}</span>
-              <span className={styles.match}>{t(`explore:match.${property.match}`)}</span>
-            </span>
+            {result.hotel.name}
           </Button>
-        ))}
-      </div>
-      <div className={styles.actions}>
-        <Button icon="next" variant="secondary" onClick={onSelect}>
-          {selected ? t("explore:results.selected") : t("explore:results.open")}
-        </Button>
-        <Button variant="ghost" icon="compare" aria-pressed={compared} onClick={onCompare}>
-          {compared ? t("explore:results.removeCompare") : t("explore:results.compare")}
-        </Button>
+          <MatchScore score={matchScore(result)} />
+        </div>
+        {result.hotel.address ? (
+          <p className={styles.meta}>
+            <Icon name="pin" size="sm" />
+            <span>{result.hotel.address}</span>
+          </p>
+        ) : null}
+        {result.matched.length ? (
+          <ul className={styles.matches}>
+            {result.matched.map((property) => (
+              <li
+                key={property.characteristic_key}
+                style={{ "--hue": characteristicHue(property.characteristic_key) } as CSSProperties}
+              >
+                <Button
+                  variant="ghost"
+                  size="compact"
+                  align="start"
+                  icon={characteristicIcon(property.characteristic_key)}
+                  className={styles.match}
+                  onClick={() => onProperty(property)}
+                  onPointerEnter={() => onPreview(property)}
+                  onPointerLeave={() => onPreview(undefined)}
+                  onFocus={() => onPreview(property)}
+                  onBlur={() => onPreview(undefined)}
+                >
+                  <span className={styles.label}>{matchedTitle(property, locale)}</span>
+                  <span className={styles.status} data-match={property.match}>
+                    <Icon name={MATCH_ICON[property.match]} size="sm" />
+                    <span className="visually-hidden">{t(`explore:match.${property.match}`)}</span>
+                  </span>
+                </Button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </article>
   )

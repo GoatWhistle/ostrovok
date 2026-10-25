@@ -1,0 +1,153 @@
+.panel {
+  composes: floatingSurface from "../../shared/styles/compose.module.css";
+  display: grid;
+  inline-size: min(var(--map-time-panel), 100cqi - var(--space-32));
+  color: var(--text-primary);
+}
+
+.panel[data-expanded="false"] {
+  inline-size: auto;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-inline-size: 0;
+  padding-inline-end: var(--space-12);
+}
+
+.toggle {
+  flex: none;
+}
+
+.summary {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  min-inline-size: 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-variant-numeric: var(--font-numeric);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-16);
+  padding: var(--space-4) var(--space-16) var(--space-16);
+  transform-origin: bottom left;
+  animation: var(--motion-anchor-in);
+}
+
+.body[data-state="closed"] {
+  animation: var(--motion-fade-out);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.fieldLabel {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: var(--hairline) solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.stepperValue {
+  composes: labelText from "../../shared/styles/compose.module.css";
+  min-inline-size: 0;
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+  text-align: center;
+}
+
+.sun {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.compass {
+  position: relative;
+  inline-size: var(--space-60);
+  block-size: var(--space-60);
+  border: var(--hairline) solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background-color: var(--map-land);
+}
+
+.compass::before {
+  content: "";
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-start: calc(50% - var(--hairline));
+  inline-size: var(--focus-ring-width);
+  block-size: var(--space-8);
+  background-color: var(--text-muted);
+}
+
+.needle {
+  position: absolute;
+  inset: var(--space-4);
+  display: flex;
+  justify-content: center;
+  color: var(--hue-sunset);
+  transform: rotate(var(--sun-azimuth));
+}
+
+.needle[data-below="true"] {
+  color: var(--text-muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.stat {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  min-inline-size: 0;
+}
+
+.statLabel {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}
+
+.statValue {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  margin: 0;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+@container map (max-width: 29.99rem) {
+  .summary {
+    display: none;
+  }
+}

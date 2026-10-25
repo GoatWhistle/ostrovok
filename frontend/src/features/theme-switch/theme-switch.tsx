@@ -1,27 +1,30 @@
+import { flushSync } from "react-dom"
 import { useTranslation } from "@/shared/i18n"
-import { THEMES, type Theme, useTheme } from "@/shared/theme"
-import { type IconName, Segmented, type SegmentedOption } from "@/shared/ui"
-
-const THEME_ICON: Readonly<Record<Theme, IconName>> = {
-  light: "theme-light",
-  dark: "theme-dark",
-}
+import { revealTransition } from "@/shared/motion"
+import { type Theme, useTheme } from "@/shared/theme"
+import { Button } from "@/shared/ui"
 
 export function ThemeSwitch() {
   const { t } = useTranslation()
   const { theme, setTheme } = useTheme()
-  const options: SegmentedOption<Theme>[] = THEMES.map((value) => ({
-    value,
-    label: t(`common:theme.${value}`),
-    icon: THEME_ICON[value],
-  }))
+  const next: Theme = theme === "dark" ? "light" : "dark"
   return (
-    <Segmented
-      label={t("common:theme.legend")}
-      options={options}
-      value={theme}
-      display="icon"
-      onChange={setTheme}
-    />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={theme === "dark" ? "theme-dark" : "theme-light"}
+      title={t(`common:theme.${next}`)}
+      onClick={(event) => {
+        const box = event.currentTarget.getBoundingClientRect()
+        void revealTransition(
+          "theme",
+          () => flushSync(() => setTheme(next)),
+          { x: box.left + box.width / 2, y: box.top + box.height / 2 },
+          event.detail === 0,
+        )
+      }}
+    >
+      {t(`common:theme.${next}`)}
+    </Button>
   )
 }

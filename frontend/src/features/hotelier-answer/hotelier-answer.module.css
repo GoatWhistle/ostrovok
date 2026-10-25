@@ -1,19 +1,50 @@
 .workspace {
+  composes: panelSurface from "../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-24);
+  grid-template-columns: minmax(0, var(--panel-min)) minmax(0, 1fr);
+  min-inline-size: 0;
+  overflow: hidden;
 }
+
+.queue {
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+  padding: var(--space-12);
+  border-inline-end: var(--hairline) solid var(--border-subtle);
+}
+
 .lookup {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: var(--space-16);
+  gap: var(--space-8);
+  padding: var(--space-4);
 }
-.form {
+
+.main {
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+  min-inline-size: 0;
+  padding: var(--space-24);
+}
+
+.skeleton {
+  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
   display: grid;
   gap: var(--space-16);
 }
-@media (max-width: 47.99rem) {
-  .lookup {
+
+@media (max-width: 63.99rem) {
+  .workspace {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .queue {
+    border-inline-end: 0;
+    border-block-end: var(--hairline) solid var(--border-subtle);
+  }
+
+  .main {
+    padding: var(--space-16);
   }
 }

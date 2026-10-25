@@ -1,0 +1,22 @@
+.queue {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.item {
+  padding-block: var(--space-12);
+  border-radius: var(--radius-md);
+}
+
+.item[aria-current="true"] {
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-ring);
+}
+
+.text {
+  composes: label from "../../entities/evidence/evidence-text.module.css";
+}
+
+.reason {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}

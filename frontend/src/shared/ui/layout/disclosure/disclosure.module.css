@@ -1,0 +1,46 @@
+.disclosure {
+  display: grid;
+  min-inline-size: 0;
+}
+
+.trigger {
+  composes: controlText pressable inlineRow from "../../../styles/compose.module.css";
+  min-block-size: var(--target-min);
+  text-align: start;
+}
+
+.icon,
+.chevron {
+  color: var(--text-muted);
+}
+
+.chevron {
+  margin-inline-start: auto;
+  transition: rotate var(--dur-base) var(--ease-out);
+}
+
+.trigger[aria-expanded="true"] .chevron {
+  rotate: 180deg;
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-12);
+  padding-block: var(--space-4) var(--space-8);
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: var(--transition-reveal-in);
+}
+
+.panel[data-state="closed"] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition: var(--transition-reveal-out);
+}
+
+@starting-style {
+  .panel[data-state="open"] {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+}

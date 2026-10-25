@@ -1,0 +1,19 @@
+.section {
+  display: grid;
+  gap: var(--space-8);
+  padding-block-start: var(--space-16);
+  border-block-start: var(--hairline) solid var(--border-subtle);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.heading {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+}
+
+.hint {
+  composes: captionText from "../../shared/styles/compose.module.css";
+}

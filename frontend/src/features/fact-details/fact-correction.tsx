@@ -1,14 +1,17 @@
-import { type FormEvent, useState } from "react"
+import { type FormEvent, useId, useState } from "react"
 import { useFactMutation } from "@/entities/hotel"
 import type { Fact } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
-import { Button, Segmented, TextField } from "@/shared/ui"
-import styles from "./fact-details.module.css"
+import { Banner, Button, Segmented, TextField } from "@/shared/ui"
+import styles from "./fact-correction.module.css"
+
 export interface FactCorrectionProps {
   readonly fact: Fact
 }
+
 export function FactCorrection({ fact }: FactCorrectionProps) {
   const { t } = useTranslation()
+  const headingId = useId()
   const [editing, setEditing] = useState(false)
   const [value, setValue] = useState(typeof fact.value === "object" ? "" : String(fact.value ?? ""))
   const mutation = useFactMutation(fact.fact_id)
@@ -25,20 +28,31 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
   }
   const editable = ["string", "number", "boolean"].includes(typeof fact.value)
   return (
-    <div className={styles.review}>
+    <section className={styles.review} aria-labelledby={headingId}>
+      <div className={styles.head}>
+        <p id={headingId} className={styles.title}>
+          {t("explore:details.reviewTitle")}
+        </p>
+        <p className={styles.text}>{t("explore:details.reviewText")}</p>
+      </div>
       <div className={styles.actions}>
         <Button
           icon="check"
-          variant="secondary"
-          pending={mutation.isPending}
+          variant="confirm"
+          pending={mutation.isPending && !editing}
           disabled={mutation.isSuccess}
           onClick={() => mutation.mutate({ action: "confirm" })}
         >
           {t("explore:details.confirm")}
         </Button>
         {editable ? (
-          <Button icon="edit" variant="ghost" onClick={() => setEditing((current) => !current)}>
-            {t("explore:details.correct")}
+          <Button
+            icon="edit"
+            variant="reject"
+            aria-expanded={editing}
+            onClick={() => setEditing((current) => !current)}
+          >
+            {t("explore:details.wrong")}
           </Button>
         ) : null}
       </div>
@@ -48,8 +62,8 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
             <Segmented
               label={t("explore:details.correction")}
               options={[
-                { value: "true", label: t("explore:match.full") },
-                { value: "false", label: t("explore:match.none") },
+                { value: "true", label: t("explore:match.full"), icon: "check" },
+                { value: "false", label: t("explore:match.none"), icon: "rejected" },
               ]}
               value={value}
               onChange={setValue}
@@ -63,13 +77,18 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
               inputMode={typeof fact.value === "number" ? "decimal" : "text"}
             />
           )}
-          <Button icon="check" type="submit" pending={mutation.isPending}>
-            {t("explore:details.save")}
-          </Button>
+          <div className={styles.actions}>
+            <Button icon="send" type="submit" pending={mutation.isPending}>
+              {t("explore:details.save")}
+            </Button>
+            <Button variant="ghost" onClick={() => setEditing(false)}>
+              {t("explore:details.cancel")}
+            </Button>
+          </div>
         </form>
       ) : null}
-      {mutation.isSuccess ? <p role="status">{t("explore:details.saved")}</p> : null}
-      {mutation.isError ? <p role="alert">{t("explore:details.saveError")}</p> : null}
-    </div>
+      {mutation.isSuccess ? <Banner tone="success" title={t("explore:details.saved")} /> : null}
+      {mutation.isError ? <Banner tone="danger" title={t("explore:details.saveError")} /> : null}
+    </section>
   )
 }

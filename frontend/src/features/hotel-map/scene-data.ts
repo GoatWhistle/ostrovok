@@ -5,6 +5,30 @@ import type {
   SearchResult,
 } from "@/shared/api/hotel-types"
 import { featureCollection } from "@/shared/geo/geometry"
+
+const OVERVIEW_ZOOM_STEP = 1.8
+const OVERVIEW_PITCH = 56
+const OVERVIEW_BEARING = 38
+const OVERVIEW_SHIFT_METERS = 2600
+const METERS_PER_DEGREE = 111320
+
+export function regionOverview(camera: Camera | undefined): Camera | undefined {
+  const [lon, lat] = camera?.center ?? []
+  if (!camera || lon === undefined || lat === undefined) return camera
+  const angle = (OVERVIEW_BEARING * Math.PI) / 180
+  const north = (OVERVIEW_SHIFT_METERS * Math.cos(angle)) / METERS_PER_DEGREE
+  const east =
+    (OVERVIEW_SHIFT_METERS * Math.sin(angle)) /
+    (METERS_PER_DEGREE * Math.cos((lat * Math.PI) / 180))
+  return {
+    ...camera,
+    center: [lon + east, lat + north],
+    zoom: camera.zoom + OVERVIEW_ZOOM_STEP,
+    pitch: OVERVIEW_PITCH,
+    bearing: OVERVIEW_BEARING,
+  }
+}
+
 export function sceneData(
   scene: HotelScene | undefined,
   camera: Camera | undefined,
@@ -23,16 +47,12 @@ export function sceneData(
   const focus = selectedCamera?.focus_facade_id
   const facades = focus ? (scene?.facades?.filter((facade) => facade.id === focus) ?? []) : []
   const highlights = [
-    ...(!scene
-      ? results.map((result) => ({
-          type: "Feature",
-          id: result.hotel.id,
-          geometry: { type: "Point", coordinates: result.hotel.location },
-          properties: {},
-        }))
-      : []),
     ...(geometry?.features ?? []),
-    ...facades.map((facade) => ({ type: "Feature", geometry: facade.geometry, properties: {} })),
+    ...facades.map((facade) => ({
+      type: "Feature",
+      geometry: facade.geometry,
+      properties: { kind: "fact" },
+    })),
   ]
   return { selectedCamera, buildings, highlights }
 }
