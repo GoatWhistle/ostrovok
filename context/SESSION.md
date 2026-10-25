@@ -67,8 +67,8 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Ветка `feat/hotel-agent-mvp`, продуктовый SHA `9a341c0`. Основной стенд localhost:8080, backend :8000, PostGIS. План и результаты 50 сообщений: `b957c55`, [отчёт](../work/evals/diverse-50-review.md).
-- Агент исследует непроверенные пожелания через inspect_data/find_hotels/read_records/measure_terrain. Владикавказ: горные кандидаты с DEM; >1500 м — два объекта, страна проверена; горы и ≤900 м — уточнение без подборки; 17-й этаж остаётся неизвестным. [Результаты и неудачные попытки](../work/evals/mountain-agent-review.md). Развёрнут финальный код, 281 тест и Ruff/mypy/import-linter прошли.
+- Ветка `feat/hotel-agent-mvp`, код `95c5693` (агент `9a341c0`, объединены 4 входящих frontend-коммита до `afa5953`). Основной стенд localhost:8080, backend :8000, PostGIS healthy. План и результаты 50 сообщений: `b957c55`, [отчёт](../work/evals/diverse-50-review.md).
+- Агент исследует непроверенные пожелания через inspect_data/find_hotels/read_records/measure_terrain. Владикавказ: горные кандидаты с DEM; >1500 м — два объекта, страна проверена; горы и ≤900 м — уточнение; 17-й этаж неизвестен. [Результаты](../work/evals/mountain-agent-review.md). Финальный backend развёрнут, 281 тест/Ruff/mypy/import-linter прошли. Входящий frontend пересобран; npm verify: 313 тестов, 36 правил, typecheck/lint/build прошли.
 
 ## Next actions and pitfalls
 
