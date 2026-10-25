@@ -1,8 +1,8 @@
 # Запуск и проверки
 
-Compose запускает PostGIS, бэкенд и фронтенд. У бэкенда сейчас два метода —
-`GET /api/v1/health` и `GET /api/v1/characteristics`; поиск, карточка, сцена, геообъекты,
-миграции и демо-данные добавляются следующими этапами.
+Compose запускает PostGIS, миграции, бэкенд и фронтенд. У бэкенда сейчас два метода —
+`GET /api/v1/health` и `GET /api/v1/characteristics`; поиск, карточка, сцена и геообъекты
+добавляются следующими этапами.
 
 **Читайте, если** вы запускаете шаблон · **Связано:** [архитектура](architecture.md) · [зависимости](dependencies.md)
 
@@ -16,7 +16,7 @@ docker buildx bake
 docker compose up -d --wait
 ```
 
-Короткий путь через `make` из корня: `make up` поднимает только базу и ждёт её готовности,
+Короткий путь через `make` из корня: `make up` собирает и поднимает весь стенд,
 `make build` собирает образы, `make api` запускает API локально с перезагрузкой,
 `make check` прогоняет линтеры и тесты. `make help` перечисляет цели.
 
@@ -27,6 +27,9 @@ docker compose up -d --wait
 `make build-seed` режет из скачанного срез Сочи в `data/seed/sochi/` и сети не требует. Он нужен
 только при смене границ или обновлении данных: готовый срез лежит в репозитории.
 На Apple M-серии полный проход по экстракту «Южный ФО» занимает около 7 минут.
+После `make up` выполните `make seed`: он загружает готовый срез в PostGIS, повторный запуск
+обновляет те же записи без дублей и не обращается к сети. Миграции применяет одноразовый сервис
+`migrate` до запуска API. Для проверки схемы: `docker compose run --rm migrate`.
 
 Интерфейс: http://localhost:8080, API: http://localhost:8000, Swagger: http://localhost:8000/docs.
 Образы собирает только `docker-bake.hcl`; Compose берёт готовые образы
@@ -69,7 +72,7 @@ uv run uvicorn hotel_agent.main:create_app --factory --reload
 | `LLM_PROVIDER` | `fake` | `fake` — детерминированный разбор на синонимах реестра, без ключа и без сети; `openai_compat` — живой OpenAI-совместимый endpoint; `anthropic` пока останавливает запуск с явной ошибкой |
 | `LLM_API_KEY` | пусто | Ключ провайдера; в коде ключей нет. Обязателен для `openai_compat` |
 | `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
-| `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/yandexgpt-5.1/latest`. Обязателен для `openai_compat` |
+| `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды |
 | `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик |
 | `SEED_DIR` | `data/seed` | Каталог демо-данных |
@@ -107,7 +110,7 @@ uv run pytest tests/integration
 ```
 
 `tests/unit` и `tests/contract` работают без базы и сети; `tests/integration` требует локальную
-инфраструктуру (PostgreSQL с PostGIS, `dbmate`, запущенный стенд) и сейчас пуст — пустая группа
+инфраструктуру (PostgreSQL с PostGIS, `dbmate`, запущенный стенд) и пока пуст — пустая группа
 выходит с кодом 5. `uv run lint-imports` проверяет правило зависимостей слоёв по контрактам из
 `pyproject.toml`; то же правило независимо проверяет `tests/unit/architecture/`.
 `tests/contract` валидирует ответы API против `docs/api/openapi.yaml`.

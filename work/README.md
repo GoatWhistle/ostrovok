@@ -15,6 +15,7 @@ that owns each one. Scrubbed at submission.
 | `frontend/` | frontend implementation | Integration plan, review verdict and validation |
 | `screens/` | frontend workflows | Screen specifications |
 | `audits/` | audit workflows | Dated findings and check results |
+| `evals/` | live search evaluation | Fixed query set and full results |
 | `research/` | `research` | Investigation notes |
 | `template-development.md` | template maintenance | History of work on this template; discard when starting a hackathon |
 | `submission/` | `submission` | Platform confirmations and screenshots with timestamps |
