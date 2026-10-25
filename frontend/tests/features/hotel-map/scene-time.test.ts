@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { forecastEnd, localClock, sunScene } from "../../../src/features/hotel-map/scene-time"
+import {
+  forecastEnd,
+  localClock,
+  sunScene,
+} from "../../../src/features/hotel-map/scene-time/scene-time"
 
 describe("Sochi scene time", () => {
   it("uses degree bearings and Moscow time for the sun and forecast window", () => {
