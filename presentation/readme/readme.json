@@ -1,17 +1,17 @@
 {
   "buttons": [
     {
-      "name": "live",
-      "label": "Открыть стенд",
-      "icon": "external-link",
-      "href": "https://{{DOMAIN}}",
-      "primary": true
-    },
-    {
       "name": "run",
       "label": "Запустить локально",
       "icon": "terminal",
-      "href": "#запуск"
+      "href": "#запуск",
+      "primary": true
+    },
+    {
+      "name": "jury",
+      "label": "Маршрут для жюри",
+      "icon": "play",
+      "href": "docs/for-jury.md"
     },
     {
       "name": "docs",
@@ -22,20 +22,20 @@
   ],
   "status": [
     {
-      "label": "{{M1}}",
-      "value": "{{значение на n}}",
+      "label": "22 запроса на стенде",
+      "value": "16 с выдачей",
       "href": "#результаты",
       "tone": "accent"
     },
     {
-      "label": "офлайн",
-      "value": "без ключей",
+      "label": "без ключей",
+      "value": "офлайн-разбор",
       "href": "#запуск"
     },
     {
       "label": "тесты",
-      "value": "{{N пройдено}}",
-      "href": "docs/running.md"
+      "value": "226 бэкенд, 310 фронтенд",
+      "href": "docs/evidence.md#проверка-диалога-и-сцены-25-октября-2026"
     },
     {
       "label": "интерфейс",
@@ -53,16 +53,20 @@
       "value": "React 19 и TypeScript"
     },
     {
+      "label": "карта",
+      "value": "MapLibre GL и рельеф GLO-30"
+    },
+    {
       "label": "API",
-      "value": "{{FastAPI}}"
+      "value": "FastAPI"
     },
     {
       "label": "хранилище",
-      "value": "{{PostgreSQL 16}}"
+      "value": "PostgreSQL 16 и PostGIS 3.4"
     },
     {
       "label": "модель",
-      "value": "{{название, локально}}"
+      "value": "DeepSeek V4.1 Flash или офлайн"
     },
     {
       "label": "запуск",
