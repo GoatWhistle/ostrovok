@@ -17,6 +17,7 @@ that owns each one. Scrubbed at submission.
 | `audits/` | audit workflows | Dated findings and check results |
 | `evals/` | live search evaluation | Fixed query set and full results |
 | `session-state-2026-10-25.md` | context compaction | Previous measured stand state and next actions |
+| `session-state-2026-10-25-evening.md` | context compaction | Full previous facts before the data exploration agent |
 | `research/` | `research` | Investigation notes |
 | `template-development.md` | template maintenance | History of work on this template; discard when starting a hackathon |
 | `submission/` | `submission` | Platform confirmations and screenshots with timestamps |
