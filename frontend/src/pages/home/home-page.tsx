@@ -10,6 +10,7 @@ export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
+  const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
   return (
     <div className={styles.page}>
@@ -42,7 +43,12 @@ export function HomePage() {
             hotelId={state.hotelId}
             camera={state.camera}
             geoRefs={state.geoRefs}
+            focusedFact={state.focusedFact}
+            focusProperty={state.focusProperty}
             regionId={state.request?.region_id ?? undefined}
+            results={state.results}
+            bounds={state.bounds}
+            onSelect={state.select}
           />
           <aside
             className={styles.details}
@@ -53,7 +59,17 @@ export function HomePage() {
             {state.hotelId && state.factId ? (
               <FactDetails hotelId={state.hotelId} factId={state.factId} onBack={state.closeFact} />
             ) : (
-              <HotelDetails hotelId={state.hotelId} onFact={state.fact} />
+              <HotelDetails
+                hotelId={state.hotelId}
+                matched={selected?.matched ?? []}
+                onProperty={(item) => {
+                  if (selected) state.property(selected, item)
+                }}
+                onFact={state.fact}
+                onPreview={(item) => {
+                  if (selected) state.preview(selected, item)
+                }}
+              />
             )}
           </aside>
         </div>

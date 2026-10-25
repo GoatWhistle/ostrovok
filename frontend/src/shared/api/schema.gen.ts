@@ -139,6 +139,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/tiles/{z}/{x}/{y}.pbf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Локальная векторная подложка карты Сочи из OpenStreetMap */
+        get: operations["getMapTile"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/map/terrain/{z}/{x}/{y}.png": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Локальный рельеф Сочи из Copernicus DEM в формате Terrain RGB */
+        get: operations["getTerrainTile"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/map/relief/{z}/{x}/{y}.png": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Цветной рельеф Сочи из Copernicus DEM */
+        get: operations["getReliefTile"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/weather": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Почасовой прогноз для выбранной даты и точки */
+        get: operations["getWeather"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/compare": {
         parameters: {
             query?: never;
@@ -224,6 +292,18 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Weather: {
+            /** @enum {string} */
+            status: "available" | "unavailable";
+            reason?: string | null;
+            /** Format: date */
+            date: string;
+            hour: number;
+            temperature_c?: number | null;
+            cloud_cover_pct?: number | null;
+            weather_code?: number | null;
+            source?: string | null;
+        };
         Error: {
             /** @example not_found */
             code: string;
@@ -428,6 +508,14 @@ export interface components {
             /** @example с видом на закат */
             source_text?: string;
         };
+        QueryCorrection: {
+            /** @example в Соче */
+            original: string;
+            /** @example в Сочи */
+            corrected: string;
+            /** @example Исправлена опечатка в названии города */
+            reason: string;
+        };
         /** @description Свойство, найденное агентом и показанное в выдаче. Наведение = подсветка geo_refs. */
         MatchedProperty: {
             characteristic_key: string;
@@ -473,6 +561,10 @@ export interface components {
                 intents?: components["schemas"]["ParsedIntent"][];
                 unmatched_terms?: string[];
                 location_hint?: string | null;
+                normalized_query?: string | null;
+                corrections?: components["schemas"]["QueryCorrection"][];
+                unsupported_region?: string | null;
+                needs_clarification?: boolean;
             };
             results: components["schemas"]["SearchResult"][];
             /** @description Рамка для fitBounds по всем результатам */
@@ -829,6 +921,106 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GeoFeatureCollection"];
+                };
+            };
+        };
+    };
+    getMapTile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                z: number;
+                x: number;
+                y: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Слои roads, coastline, beaches и buildings в формате Mapbox Vector Tile */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/vnd.mapbox-vector-tile": string;
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    getTerrainTile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                z: number;
+                x: number;
+                y: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description PNG с высотами в кодировке Mapbox Terrain RGB */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "image/png": string;
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    getReliefTile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                z: number;
+                x: number;
+                y: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Цветной PNG */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "image/png": string;
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    getWeather: {
+        parameters: {
+            query: {
+                lat: number;
+                lon: number;
+                date: string;
+                hour?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Прогноз Open-Meteo или явная недоступность */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Weather"];
                 };
             };
         };

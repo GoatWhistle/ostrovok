@@ -14,11 +14,16 @@ export function useHotelWorkspace() {
   const [factId, setFactId] = useState<string>()
   const [camera, setCamera] = useState<Camera>()
   const [previewRefs, setPreviewRefs] = useState<readonly string[]>()
+  const [previewMatch, setPreviewMatch] = useState<MatchedProperty>()
   const [geoRefs, setGeoRefs] = useState<readonly string[]>([])
+  const [focusedFact, setFocusedFact] = useState<FactBrief>()
+  const [focusedMatch, setFocusedMatch] = useState<MatchedProperty>()
   const [compared, setCompared] = useState<readonly string[]>([])
   const [limitReached, setLimitReached] = useState(false)
   const [view, setView] = useState("list")
   const search = useHotelSearch(request)
+  const results = search.data?.pages.flatMap((page) => page.results) ?? []
+  const bounds = search.data?.pages[0]?.viewport?.bbox
   const cache = useQueryClient()
   const detailRef = useRef<HTMLElement>(null)
   const activeSubject = factId ?? hotelId
@@ -31,19 +36,27 @@ export function useHotelWorkspace() {
     setCamera(result.camera)
     setFactId(undefined)
     setGeoRefs([])
+    setFocusedFact(undefined)
     setPreviewRefs(undefined)
+    setPreviewMatch(undefined)
+    setFocusedMatch(undefined)
     setView("map")
   }
   function property(result: SearchResult, item: MatchedProperty) {
     setHotelId(result.hotel.id)
     setCamera(item.camera ?? result.camera)
-    setFactId(item.fact?.fact_id)
+    setFactId(undefined)
     setGeoRefs(item.geo_refs ?? item.fact?.geo_refs ?? [])
+    setFocusedFact(item.fact ?? undefined)
+    setFocusedMatch(item)
+    setPreviewMatch(undefined)
     setView("map")
   }
   function fact(item: FactBrief) {
     setFactId(item.fact_id)
     setGeoRefs(item.geo_refs ?? [])
+    setFocusedFact(item)
+    setFocusedMatch(undefined)
     setCamera(undefined)
   }
   function compare(id: string) {
@@ -58,25 +71,33 @@ export function useHotelWorkspace() {
   function submit(next: SearchRequest) {
     void cache.resetQueries({ queryKey: ["search", next], exact: true })
     setPreviewRefs(undefined)
+    setPreviewMatch(undefined)
+    setFocusedMatch(undefined)
     setRequest(next)
     setHotelId(undefined)
     setFactId(undefined)
     setCamera(undefined)
     setGeoRefs([])
+    setFocusedFact(undefined)
     setView("list")
   }
   return {
     request,
+    results,
+    bounds: hotelId ? undefined : bounds,
     detailRef,
     submit,
     hotelId,
     factId,
     camera,
     geoRefs: previewRefs ?? geoRefs,
-    preview: (result: SearchResult, item: MatchedProperty | undefined) =>
-      setPreviewRefs(
-        result.hotel.id === hotelId ? (item?.geo_refs ?? item?.fact?.geo_refs) : undefined,
-      ),
+    focusedFact,
+    focusProperty: previewMatch ?? focusedMatch,
+    preview: (result: SearchResult, item: MatchedProperty | undefined) => {
+      const active = result.hotel.id === hotelId ? item : undefined
+      setPreviewRefs(active?.geo_refs ?? active?.fact?.geo_refs)
+      setPreviewMatch(active)
+    },
     compared,
     compare,
     limitReached,

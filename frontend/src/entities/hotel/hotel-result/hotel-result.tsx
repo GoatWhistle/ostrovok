@@ -1,5 +1,6 @@
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
-import { useTranslation } from "@/shared/i18n"
+import { matchedTitle } from "@/shared/geo/fact-label"
+import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
 import { characteristicIcon } from "@/shared/ui/primitives/icon/characteristic-icon"
 import styles from "./hotel-result.module.css"
@@ -22,6 +23,7 @@ export function HotelResult({
   onPreview,
 }: HotelResultProps) {
   const { t } = useTranslation()
+  const { locale } = useLocale()
   return (
     <article className={styles.result} data-selected={selected}>
       <div className={styles.top}>
@@ -44,7 +46,7 @@ export function HotelResult({
             onBlur={() => onPreview(undefined)}
           >
             <span className={styles.property}>
-              <span>{property.label}</span>
+              <span>{matchedTitle(property, locale)}</span>
               <span className={styles.match}>{t(`explore:match.${property.match}`)}</span>
             </span>
           </Button>

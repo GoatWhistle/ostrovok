@@ -1,7 +1,8 @@
 import { type FormEvent, useState } from "react"
 import { useCharacteristics, useRegions } from "@/entities/catalog"
 import type { SearchRequest } from "@/shared/api/hotel-types"
-import { useTranslation } from "@/shared/i18n"
+import { characteristicTitle } from "@/shared/geo/fact-label"
+import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon, Skeleton, TextArea } from "@/shared/ui"
 import { characteristicIcon } from "@/shared/ui/primitives/icon/characteristic-icon"
 import styles from "./hotel-search.module.css"
@@ -11,6 +12,7 @@ export interface HotelSearchProps {
 }
 export function HotelSearch({ onSearch, pending }: HotelSearchProps) {
   const { t } = useTranslation()
+  const { locale } = useLocale()
   const [query, setQuery] = useState("")
   const [region, setRegion] = useState("")
   const characteristics = useCharacteristics()
@@ -85,12 +87,12 @@ export function HotelSearch({ onSearch, pending }: HotelSearchProps) {
               onClick={() =>
                 setQuery((current) =>
                   current.trim()
-                    ? `${current.trim()}, ${item.title.toLocaleLowerCase()}`
-                    : item.title,
+                    ? `${current.trim()}, ${characteristicTitle(item.key, locale).toLocaleLowerCase()}`
+                    : characteristicTitle(item.key, locale),
                 )
               }
             >
-              {item.title}
+              {characteristicTitle(item.key, locale)}
             </Button>
           ))}
         </div>

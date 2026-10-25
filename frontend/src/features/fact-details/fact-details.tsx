@@ -1,5 +1,6 @@
 import { useFact } from "@/entities/hotel"
 import { sourceUrl } from "@/shared/api/source-url"
+import { factExplanation, factLabel } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Card, ErrorState, Skeleton } from "@/shared/ui"
 import { FactCorrection } from "./fact-correction"
@@ -33,31 +34,21 @@ export function FactDetails({ hotelId, factId, onBack, review = false }: FactDet
         <ErrorState title={t("explore:details.factError")} onRetry={() => void query.refetch()} />
       ) : null}
       {query.data ? (
-        <Card title={query.data.label} description={query.data.explanation}>
+        <Card
+          title={factLabel(query.data, locale)}
+          description={factExplanation(query.data, locale)}
+        >
           <p className={styles.status}>{t(`explore:status.${query.data.status}`)}</p>
           {query.data.provenance ? (
             <dl className={styles.provenance}>
               <dt>{t("explore:details.source")}</dt>
               <dd>{t(`explore:source.${query.data.provenance.source_type}`)}</dd>
-              <dt>{t("explore:details.confidence")}</dt>
-              <dd>
-                {new Intl.NumberFormat(locale, {
-                  style: "percent",
-                  maximumFractionDigits: 0,
-                }).format(query.data.provenance.confidence)}
-              </dd>
               <dt>{t("explore:details.checked")}</dt>
               <dd>{date(query.data.provenance.computed_at)}</dd>
               <dt>{t("explore:details.observed")}</dt>
               <dd>{date(query.data.provenance.observed_at)}</dd>
               <dt>{t("explore:details.validUntil")}</dt>
               <dd>{date(query.data.provenance.valid_until)}</dd>
-              {query.data.provenance.method ? (
-                <>
-                  <dt>{t("explore:details.method")}</dt>
-                  <dd>{query.data.provenance.method}</dd>
-                </>
-              ) : null}
             </dl>
           ) : null}
           <SourceLink url={query.data.provenance?.source_url} />
@@ -74,7 +65,7 @@ export function FactDetails({ hotelId, factId, onBack, review = false }: FactDet
               <p>{t("explore:details.history")}</p>
               {query.data.history.map((fact) => (
                 <p key={fact.fact_id}>
-                  {fact.label}: {t(`explore:status.${fact.status}`)}
+                  {factLabel(fact, locale)}: {t(`explore:status.${fact.status}`)}
                 </p>
               ))}
             </div>

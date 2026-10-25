@@ -8,6 +8,23 @@
   --surface-sunken: var(--neutral-100);
   --surface-selected: var(--neutral-0);
   --surface-skeleton: color-mix(in oklab, var(--neutral-0), var(--neutral-900) 8%);
+  --map-beach: var(--amber-300);
+  --map-building: #ad987d;
+  --map-road-casing: #b9b69e;
+  --map-road: #f8f4df;
+  --map-coast: var(--color-deep-signal);
+  --map-highlight: var(--amber-700);
+  --map-sea: #155b71;
+  --map-sea-dusk: #544a6b;
+  --map-sea-night: #183a55;
+  --map-sky: #7fb8cb;
+  --map-sky-dusk: #f2a379;
+  --map-sky-night: #142944;
+  --map-horizon: #d6e5dd;
+  --map-horizon-dusk: #ffd1a3;
+  --map-horizon-night: #314665;
+  --map-hill-shadow: #456a66;
+  --map-hill-highlight: #fff1ce;
 
   --text-primary: var(--neutral-900);
   --text-secondary: var(--neutral-600);
@@ -49,6 +66,23 @@
   --surface-sunken: var(--color-gunmetal);
   --surface-selected: var(--color-graphite);
   --surface-skeleton: color-mix(in oklab, var(--neutral-900), var(--neutral-0) 9%);
+  --map-beach: var(--amber-700);
+  --map-building: #887e79;
+  --map-road-casing: #777783;
+  --map-road: #d2cab6;
+  --map-coast: var(--color-signal-blue);
+  --map-highlight: var(--amber-300);
+  --map-sea: #174858;
+  --map-sea-dusk: #483b57;
+  --map-sea-night: #102236;
+  --map-sky: #426e80;
+  --map-sky-dusk: #9f705f;
+  --map-sky-night: #0a1930;
+  --map-horizon: #8fb0aa;
+  --map-horizon-dusk: #c89a7e;
+  --map-horizon-night: #223853;
+  --map-hill-shadow: #1f3e45;
+  --map-hill-highlight: #b7c2a1;
 
   --text-primary: var(--color-white);
   --text-secondary: var(--color-silver);

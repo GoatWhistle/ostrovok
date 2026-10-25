@@ -1,5 +1,6 @@
 import { HotelResult, useHotelSearch } from "@/entities/hotel"
 import type { MatchedProperty, SearchRequest, SearchResult } from "@/shared/api/hotel-types"
+import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
 import { Button, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import styles from "./search-results.module.css"
@@ -57,29 +58,16 @@ export function SearchResults({
   const first = pages[0]
   return (
     <section className={styles.results} aria-label={t("explore:results.title")}>
-      <div className={styles.summary} aria-live="polite">
-        <p>{t("explore:results.count", { count: results.length })}</p>
-        {first?.parsed.intents?.length ? (
-          <div className={styles.intents}>
-            {first.parsed.intents.map((intent) => (
-              <span key={JSON.stringify(intent)}>
-                {intent.source_text ?? intent.characteristic_key}
-              </span>
-            ))}
-          </div>
-        ) : null}
-        {first?.parsed.unmatched_terms?.length ? (
-          <p>
-            {t("explore:results.unmatched")}: {first.parsed.unmatched_terms.join(", ")}
-          </p>
-        ) : null}
-        {pages.some((page) => page.pending?.length) ? <p>{t("explore:results.pending")}</p> : null}
-      </div>
+      <SearchSummary first={first} pages={pages} count={results.length} />
       {results.length === 0 ? (
         <EmptyState
           icon="search"
           title={t("explore:results.empty")}
-          description={t("explore:results.emptyText")}
+          description={
+            first?.parsed.needs_clarification
+              ? t("explore:results.clarification")
+              : t("explore:results.emptyText")
+          }
         />
       ) : (
         results.map((result) => (
@@ -112,5 +100,62 @@ export function SearchResults({
         </Button>
       ) : null}
     </section>
+  )
+}
+
+function SearchSummary({
+  first,
+  pages,
+  count,
+}: {
+  first: components["schemas"]["SearchResponse"] | undefined
+  pages: readonly components["schemas"]["SearchResponse"][]
+  count: number
+}) {
+  const { t } = useTranslation()
+  return (
+    <div className={styles.summary} aria-live="polite">
+      <p>
+        {first?.parsed.intents?.length
+          ? t("explore:results.count", { count })
+          : t("explore:results.candidates", { count })}
+      </p>
+      {!first?.parsed.intents?.length ? <p>{t("explore:results.candidatesNote")}</p> : null}
+      {first?.parsed.intents?.length ? (
+        <div className={styles.intents}>
+          {first.parsed.intents.map((intent) => (
+            <span key={JSON.stringify(intent)}>
+              {intent.source_text ?? intent.characteristic_key}
+            </span>
+          ))}
+        </div>
+      ) : null}
+      {first?.parsed.unmatched_terms?.length ? (
+        <p>
+          {t("explore:results.unmatched")}: {first.parsed.unmatched_terms.join(", ")}
+        </p>
+      ) : null}
+      {first?.parsed.corrections?.length ? (
+        <div className={styles.intents} role="status">
+          <strong>{t("explore:results.corrections")}</strong>
+          {first.parsed.corrections.map((item) => (
+            <span key={`${item.original}:${item.corrected}`}>
+              {t("explore:results.correction", item)}
+            </span>
+          ))}
+        </div>
+      ) : null}
+      {first?.parsed.unsupported_region ? (
+        <p role="status">
+          {t("explore:results.unsupportedRegion", {
+            region: first.parsed.unsupported_region,
+          })}
+        </p>
+      ) : null}
+      {first?.parsed.needs_clarification ? (
+        <p role="status">{t("explore:results.clarification")}</p>
+      ) : null}
+      {pages.some((page) => page.pending?.length) ? <p>{t("explore:results.pending")}</p> : null}
+    </div>
   )
 }
