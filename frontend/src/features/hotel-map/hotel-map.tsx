@@ -5,6 +5,7 @@ import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
 import { startOrbit } from "@/shared/geo/orbit"
+import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { motionMs, useReducedMotion } from "@/shared/motion"
@@ -97,6 +98,10 @@ export function HotelMap({
     results,
   )
   const hotel = results.find((item) => item.hotel.id === hotelId)
+  const textured = useMemo(
+    () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
+    [hotelId, scene.data, hotel],
+  )
   const [lon, lat] = sceneLocation(hotel, selectedCamera)
   const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
   const weather = useWeather(lon, lat, date, hour, selectedCamera !== undefined)
@@ -106,6 +111,7 @@ export function HotelMap({
   const map = useHotelMap({
     camera: selectedCamera,
     buildings,
+    texturedFootprints: textured.features,
     highlights,
     bounds,
     results,
@@ -137,6 +143,7 @@ export function HotelMap({
       className={styles.stage}
       aria-label={t("explore:map.title")}
       data-showcase={showcase || undefined}
+      data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
       {map.markers.map((view) =>
@@ -186,7 +193,11 @@ export function HotelMap({
       {selectedCamera ? (
         <div className={styles.bottom}>
           <div className={styles.bottomStart}>
-            <MapWarning invalid={invalid} missingHeight={missingHeight} />
+            <MapWarning
+              invalid={invalid}
+              missingHeight={missingHeight}
+              textureStatus={map.textureStatus}
+            />
             <SceneTimePanel
               date={date}
               minDate={today}
