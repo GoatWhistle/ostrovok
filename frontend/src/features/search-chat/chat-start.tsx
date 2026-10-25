@@ -13,7 +13,6 @@ const START_SUGGESTIONS: readonly { readonly key: string; readonly label: Messag
   { key: "pets_policy", label: "explore:chat.suggestPets" },
   { key: "bars_nearby", label: "explore:chat.suggestBars" },
   { key: "building_height", label: "explore:chat.suggestHigh" },
-  { key: "blackout_curtains", label: "explore:chat.suggestBlackout" },
 ]
 
 export interface ChatStartProps {
