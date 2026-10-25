@@ -37,7 +37,12 @@ class LLMPort(Protocol):
 
     async def parse_query(self, query: str) -> ParsedQuery: ...
 
-    async def contextualize_query(self, previous: str | None, message: str) -> str: ...
+    async def contextualize_query(
+        self,
+        previous: str | None,
+        message: str,
+        history: Sequence[tuple[str, str]] = (),
+    ) -> str: ...
 
     async def plan_tools(
         self,

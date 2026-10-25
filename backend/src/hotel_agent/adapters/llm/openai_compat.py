@@ -67,18 +67,26 @@ class OpenAICompatLLM:
     def provider(self) -> str:
         return "openai_compat"
 
-    async def contextualize_query(self, previous: str | None, message: str) -> str:
+    async def contextualize_query(
+        self,
+        previous: str | None,
+        message: str,
+        history: Sequence[tuple[str, str]] = (),
+    ) -> str:
         if previous is None:
             return message
+        recent = "\n".join(f"{role}: {content}" for role, content in history[-8:])
         return await self._complete_text(
             system=(
                 "Ты ведёшь диалог о поиске отеля. Верни только полный актуальный запрос для поиска. "
                 "Сохрани прежние условия, если пользователь их не изменил. "
                 "Замени отменённые или исправленные условия; не добавляй новых. "
                 "Если пользователь начинает новый поиск, используй только новый запрос. "
+                "Учитывай историю беседы при разрешении ссылок вроде «он», «тот же» и «ещё». "
+                "Ответы ассистента в истории не являются доказательством свойств отеля. "
                 "Не утверждай факты об отелях."
             ),
-            user=f"Предыдущий запрос: {previous}\nНовое сообщение: {message}",
+            user=f"История беседы:\n{recent}\nАктуальные условия: {previous}\nНовое сообщение: {message}",
         )
 
     async def parse_query(self, query: str) -> ParsedQuery:

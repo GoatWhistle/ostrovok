@@ -69,7 +69,9 @@ class Chat:
                 raise ConversationNotFound()
             region_id = previous.region_id
         effective_query = await self._llm.contextualize_query(
-            previous.effective_query if previous else None, message.strip()
+            previous.effective_query if previous else None,
+            message.strip(),
+            tuple((item.role, item.content) for item in previous.messages[-8:]) if previous else (),
         )
         search = await self._search(effective_query, region_id, None, 20)
         snapshot = self._serialize_search(search)

@@ -14,7 +14,12 @@ class FakeLLM:
     def __init__(self, registry: CharacteristicRegistryPort) -> None:
         self._registry = registry
 
-    async def contextualize_query(self, previous: str | None, message: str) -> str:
+    async def contextualize_query(
+        self,
+        previous: str | None,
+        message: str,
+        history: Sequence[tuple[str, str]] = (),
+    ) -> str:
         return f"{previous}; {message}" if previous else message
 
     async def parse_query(self, query: str) -> ParsedQuery:

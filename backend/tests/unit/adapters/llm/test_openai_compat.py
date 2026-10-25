@@ -176,13 +176,17 @@ async def test_a_follow_up_is_rewritten_with_previous_conditions(build: Build) -
     llm = build("Двухместный номер в Сочи рядом с магазинами, до моря пешком 5 минут")
 
     query = await llm.contextualize_query(
-        "Двухместный номер в Сочи рядом с магазинами", "а до моря пешком 5 минут"
+        "Двухместный номер в Сочи рядом с магазинами",
+        "а до моря пешком 5 минут",
+        (("user", "Нужен двухместный номер в Сочи"), ("assistant", "Показываю отели")),
     )
 
     assert query == "Двухместный номер в Сочи рядом с магазинами, до моря пешком 5 минут"
     [request] = llm.sent  # type: ignore[attr-defined]
     assert "Двухместный номер в Сочи рядом с магазинами" in request["messages"][1]["content"]
     assert "а до моря пешком 5 минут" in request["messages"][1]["content"]
+    assert "user: Нужен двухместный номер в Сочи" in request["messages"][1]["content"]
+    assert "assistant: Показываю отели" in request["messages"][1]["content"]
 
 
 async def test_transient_connection_failure_is_retried(
