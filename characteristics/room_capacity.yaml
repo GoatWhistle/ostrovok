@@ -1,0 +1,39 @@
+key: room_capacity
+title_ru: Вместимость номера
+description: "Максимальное число взрослых в одной категории номера по каталогу поставщика."
+value_type: number
+unit: null
+scope: hotel
+conflict_tolerance: 0
+tool: null
+ttl_days: 90
+precompute: true
+ask_hotelier_if_missing: true
+question_template: "Сколько взрослых можно разместить в одном номере отеля {hotel}?"
+source_kinds: [hotelier, computed]
+display:
+  icon: room
+  color: "#546E7A"
+  geo_style: polygon
+synonyms:
+  - номер на четверых
+  - номер на четырех человек
+  - четырёхместный номер
+  - номер на 4 человек
+matchers:
+  - phrase: номер на четверых
+    op: gte
+    value: 4
+    weight: 1.0
+    required: true
+  - phrase: номер на 4 человек
+    op: gte
+    value: 4
+    weight: 1.0
+    required: true
+  - phrase: на 4-х
+    op: gte
+    value: 4
+    weight: 1.0
+    required: true
+fields: []

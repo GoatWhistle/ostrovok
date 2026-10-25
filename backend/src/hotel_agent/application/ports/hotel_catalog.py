@@ -15,6 +15,8 @@ class CatalogHotel:
     supplier_id: str
     name: str
     rooms: tuple[CatalogRoom, ...]
+    facilities_ru: tuple[str, ...] = ()
+    facilities_en: tuple[str, ...] = ()
 
 
 class HotelCatalogSource(Protocol):

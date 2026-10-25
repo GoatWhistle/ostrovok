@@ -30,6 +30,7 @@ from hotel_agent.domain.characteristics import Characteristic, Op, ValueType
 from hotel_agent.domain.errors import ModelFailure, UnknownCharacteristic
 from hotel_agent.domain.query import (
     OSM_OBJECT_KEYS,
+    FacilityRequest,
     Intent,
     NearbyObjectRequest,
     ParsedQuery,
@@ -94,9 +95,14 @@ class OpenAICompatLLM:
             unmatched_terms=tuple(strings(payload, "unmatched_terms")),
             location_hint=optional_text(payload, "location_hint"),
             nearby_objects=tuple(
-                item
+                nearby_item
                 for raw in items(payload, "nearby_objects")
-                if (item := _nearby_object(raw, query)) is not None
+                if (nearby_item := _nearby_object(raw, query)) is not None
+            ),
+            facility_requests=tuple(
+                facility_item
+                for raw in items(payload, "facility_requests")
+                if (facility_item := _facility_request(raw, query)) is not None
             ),
             normalized_query=optional_text(payload, "normalized_query") or query,
             corrections=tuple(
@@ -330,3 +336,19 @@ def _adults(value: object) -> int | None:
     if isinstance(value, int) and not isinstance(value, bool) and 1 <= value <= 10:
         return value
     return None
+
+
+def _facility_request(raw: Mapping[str, object], query: str) -> FacilityRequest | None:
+    term = optional_text(raw, "term")
+    source = optional_text(raw, "source_text")
+    if (
+        term is None
+        or source is None
+        or len(term) < 3
+        or len(term) > 80
+        or normalize(source) not in normalize(query)
+    ):
+        return None
+    return FacilityRequest(
+        term=term.strip(), source_text=source.strip(), required=flag(raw, "required")
+    )

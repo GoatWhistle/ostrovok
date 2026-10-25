@@ -28,19 +28,29 @@ export function factLabel(fact: FactBrief, locale: Locale): string {
     return fact.value === true
       ? i18n.t("explore:facts.doubleRoomAvailable", { lng: locale })
       : i18n.t("explore:facts.doubleRoomUnknown", { lng: locale })
+  if (fact.characteristic_key === "room_capacity" && value)
+    return i18n.t("explore:facts.roomCapacity", { value, lng: locale })
   if (fact.characteristic_key.startsWith("nearby:") && value)
     return i18n.t("explore:facts.nearbyObjects", { count: value, lng: locale })
   return fact.label
 }
 
 export function matchedTitle(item: MatchedProperty, locale: Locale): string {
-  if (item.characteristic_key.startsWith("nearby:")) return item.label
+  if (
+    item.characteristic_key.startsWith("nearby:") ||
+    item.characteristic_key.startsWith("facility:")
+  )
+    return item.label
   return item.fact
     ? factLabel(item.fact, locale)
     : characteristicTitle(item.characteristic_key, locale)
 }
 
 export function matchedExplanation(item: MatchedProperty, locale: Locale): string | undefined {
+  if (item.characteristic_key.startsWith("facility:"))
+    return locale === "ru"
+      ? (item.explanation ?? undefined)
+      : i18n.t("explore:map.supplierEvidence", { lng: locale })
   if (item.characteristic_key.startsWith("nearby:")) {
     const parts = item.characteristic_key.split(":")
     const radius = Number(parts[4])
@@ -95,6 +105,8 @@ export function characteristicTitle(key: string, locale: Locale): string {
       return i18n.t("explore:facts.titleBlackout", { lng: locale })
     case "double_room":
       return i18n.t("explore:facts.titleDoubleRoom", { lng: locale })
+    case "room_capacity":
+      return i18n.t("explore:facts.titleRoomCapacity", { lng: locale })
     default:
       return key
   }

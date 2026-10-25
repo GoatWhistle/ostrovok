@@ -5,11 +5,18 @@ from typing import Any, cast
 from unittest.mock import AsyncMock, MagicMock
 
 from hotel_agent.application.chat_records import ConversationRecord
+from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.chat import Chat
-from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
-from hotel_agent.domain.query import ParsedQuery
+from hotel_agent.application.use_cases.search_hotels import (
+    SearchHotels,
+    SearchOutcome,
+    SearchResult,
+)
+from hotel_agent.domain.characteristics import Op
+from hotel_agent.domain.query import Intent, ParsedQuery
+from hotel_agent.domain.services.scoring import MatchQuality, PropertyMatch, Scored
 
 
 def chat(search: Any = None, uow: Any = None) -> Chat:
@@ -38,6 +45,54 @@ def test_room_request_does_not_ask_when_stay_is_complete() -> None:
     parsed = replace(parsed, check_in=date(2026, 11, 1), check_out=date(2026, 11, 2), adults=2)
     answer = chat()._answer(outcome(parsed), None, "ru")
     assert "Чтобы проверить свободные номера" not in answer
+
+
+def test_unverified_conditions_are_named_in_answer() -> None:
+    parsed = ParsedQuery(
+        intents=(),
+        unmatched_terms=("бассейн", "шведский стол"),
+        location_hint=None,
+    )
+    answer = chat()._answer(outcome(parsed), None, "ru")
+    assert "Не смог проверить: бассейн, шведский стол" in answer
+    assert "не учтены в подборке" in answer
+
+
+def test_partial_recommendations_are_not_described_as_complete() -> None:
+    wanted = Intent(
+        characteristic_key="room_capacity",
+        op=Op.GTE,
+        value=4.0,
+        weight=1.0,
+        required=True,
+        source_text="на четверых",
+    )
+    parsed = ParsedQuery(intents=(wanted,), unmatched_terms=(), location_hint=None)
+    hotel = SearchHotelRecord(
+        id="hotel-1",
+        region_id="sochi",
+        name="Пример",
+        location=(39.7, 43.5),
+        stars=None,
+        building_id=None,
+        height_m=None,
+        levels=None,
+        footprint=None,
+    )
+    result = SearchResult(
+        hotel=hotel,
+        scored=Scored(
+            score=0.5,
+            matches=(PropertyMatch(intent=wanted, fact=None, quality=MatchQuality.UNKNOWN),),
+            disqualified=False,
+        ),
+    )
+
+    answer = chat()._answer(
+        SearchOutcome(query_id="test", parsed=parsed, results=(result,)), None, "ru"
+    )
+
+    assert "Ни у одного отеля не подтверждены все условия" in answer
 
 
 async def test_saved_conversation_uses_snapshot_without_search() -> None:

@@ -60,6 +60,18 @@ def test_a_boolean_fact_matches_on_equality(make_fact: FactMaker, now: datetime)
     assert match(wanted, make_fact(value=False), now).quality is MatchQuality.NONE
 
 
+def test_room_capacity_below_guest_count_is_never_a_partial_match(
+    make_fact: FactMaker, now: datetime
+) -> None:
+    wanted = intent("room_capacity", Op.GTE, 4.0, required=True)
+    fact = make_fact(value=3.0, characteristic_key="room_capacity")
+
+    result = score([wanted], {"room_capacity": fact}, now)
+
+    assert result.disqualified
+    assert result.matches[0].quality is MatchQuality.NONE
+
+
 def test_a_qualified_fact_is_only_a_partial_match(make_fact: FactMaker, now: datetime) -> None:
     restricted = make_fact(value=True, qualifiers={"from_floor": 5.0})
 

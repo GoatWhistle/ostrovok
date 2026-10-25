@@ -40,4 +40,24 @@ class NuiteeCatalog:
             and isinstance(room.get("maxAdults"), int)
             and room["maxAdults"] > 0
         )
-        return CatalogHotel(supplier_id=supplier_id, name=str(hotel["name"]), rooms=rooms)
+        facilities_ru = tuple(
+            dict.fromkeys(
+                str(item["name"])
+                for item in hotel.get("facilities", [])
+                if isinstance(item, dict) and item.get("name")
+            )
+        )
+        facilities_en = tuple(
+            dict.fromkeys(
+                str(item)
+                for item in hotel.get("hotelFacilities", [])
+                if isinstance(item, str) and item.strip()
+            )
+        )
+        return CatalogHotel(
+            supplier_id=supplier_id,
+            name=str(hotel["name"]),
+            rooms=rooms,
+            facilities_ru=facilities_ru,
+            facilities_en=facilities_en,
+        )

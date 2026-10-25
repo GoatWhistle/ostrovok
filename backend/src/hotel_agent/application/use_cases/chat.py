@@ -7,6 +7,7 @@ from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
 from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery
+from hotel_agent.domain.services.scoring import MatchQuality
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -130,6 +131,28 @@ class Chat:
 
     def _room_question(self, search: SearchOutcome, answer: str, locale: str) -> str:
         parsed = search.parsed
+        if (
+            parsed.intents
+            and search.results
+            and not any(
+                all(match.quality is MatchQuality.FULL for match in result.scored.matches)
+                for result in search.results
+            )
+        ):
+            if locale == "en":
+                answer += " No hotel has every condition verified; these are the closest matches."
+            else:
+                answer += (
+                    " Ни у одного отеля не подтверждены все условия; это ближайшие совпадения."
+                )
+        if parsed.unmatched_terms:
+            terms = ", ".join(parsed.unmatched_terms[:6])
+            if locale == "en":
+                answer += (
+                    f" I could not verify: {terms}. These conditions did not affect the ranking."
+                )
+            else:
+                answer += f" Не смог проверить: {terms}. Эти условия не учтены в подборке."
         if not parsed.wants_room:
             return answer
         missing = []

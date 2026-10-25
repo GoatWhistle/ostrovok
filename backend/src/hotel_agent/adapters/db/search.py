@@ -9,6 +9,7 @@ from hotel_agent.application.dto import (
     FacadeRecord,
     SearchFactRecord,
     SearchHotelRecord,
+    SupplierContentRecord,
 )
 from hotel_agent.application.room_records import RoomRecord
 
@@ -69,6 +70,28 @@ price_amount, price_currency, included FROM rooms WHERE hotel_id = %(hotel_id)s 
 class PostgresSearchRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
+
+    async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None:
+        row = await (
+            await self._connection.execute(
+                """SELECT hotel_id, supplier, facilities_ru, facilities_en, updated_at
+                FROM hotel_supplier_content WHERE hotel_id = %(hotel_id)s
+                ORDER BY updated_at DESC LIMIT 1""",
+                {"hotel_id": hotel_id},
+            )
+        ).fetchone()
+        return _supplier_content(row) if row else None
+
+    async def list_supplier_content(self, region: str) -> Sequence[SupplierContentRecord]:
+        rows = await (
+            await self._connection.execute(
+                """SELECT c.hotel_id, c.supplier, c.facilities_ru, c.facilities_en, c.updated_at
+                FROM hotel_supplier_content c JOIN hotels h ON h.id = c.hotel_id
+                WHERE h.region_id = %(region)s""",
+                {"region": region},
+            )
+        ).fetchall()
+        return [_supplier_content(row) for row in rows]
 
     async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None:
         result = await self._connection.execute(
@@ -185,4 +208,19 @@ def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:
         footprint=json.loads(str(row[8])) if row[8] is not None else None,
         region_id=str(row[9]),
         address=str(row[10]) if row[10] is not None else None,
+    )
+
+
+def _supplier_content(row: tuple[object, ...]) -> SupplierContentRecord:
+    assert isinstance(row[4], datetime)
+    return SupplierContentRecord(
+        hotel_id=str(row[0]),
+        supplier=str(row[1]),
+        facilities_ru=tuple(str(item) for item in row[2])
+        if isinstance(row[2], list | tuple)
+        else (),
+        facilities_en=tuple(str(item) for item in row[3])
+        if isinstance(row[3], list | tuple)
+        else (),
+        updated_at=row[4],
     )

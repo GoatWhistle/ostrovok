@@ -23,7 +23,8 @@ class PostgresChatRepository:
         rows = await (
             await self._connection.execute(
                 """SELECT id, role, content, created_at FROM chat_messages
-                WHERE conversation_id = %(id)s ORDER BY created_at, id""",
+                WHERE conversation_id = %(id)s
+                ORDER BY created_at, CASE role WHEN 'user' THEN 0 ELSE 1 END, id""",
                 {"id": conversation_id},
             )
         ).fetchall()

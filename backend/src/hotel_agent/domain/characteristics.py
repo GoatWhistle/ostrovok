@@ -23,6 +23,7 @@ class SourceType(StrEnum):
     OPEN_METEO = "open_meteo"
     HOTELIER = "hotelier"
     LLM_EXTRACTION = "llm_extraction"
+    SUPPLIER = "supplier"
 
 
 class GeoStyle(StrEnum):

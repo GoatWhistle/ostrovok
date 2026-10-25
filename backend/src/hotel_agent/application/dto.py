@@ -53,6 +53,15 @@ class SearchHotelRecord:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class SupplierContentRecord:
+    hotel_id: str
+    supplier: str
+    facilities_ru: tuple[str, ...]
+    facilities_en: tuple[str, ...]
+    updated_at: datetime
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class SearchFactRecord:
     hotel_id: str
     id: str

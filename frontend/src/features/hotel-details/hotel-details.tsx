@@ -7,6 +7,7 @@ import { useTranslation } from "@/shared/i18n"
 import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import { FactList } from "./fact-list"
 import styles from "./hotel-details.module.css"
+import { HotelFacilities } from "./hotel-facilities"
 import { HotelHero } from "./hotel-hero"
 import { HotelOffers } from "./hotel-offers"
 import { MatchRows } from "./match-rows"
@@ -97,6 +98,10 @@ export function HotelDetails({
       <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
         {rooms.length ? <RoomList rooms={rooms} /> : <p>{t("explore:details.roomsUnavailable")}</p>}
       </Disclosure>
+      <HotelFacilities
+        facilitiesRu={card.facilities_ru ?? []}
+        facilitiesEn={card.facilities_en ?? []}
+      />
       <HotelOffers hotelId={card.hotel.id} stay={stay} />
       <FactList facts={card.facts} onFact={onFact} />
     </article>

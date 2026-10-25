@@ -15,6 +15,12 @@ async def test_nuitee_catalog_keeps_provider_room_capacity_and_amenities() -> No
                 "data": {
                     "id": "lp552d8",
                     "name": "City Park Hotel Sochi",
+                    "facilities": [
+                        {"name": "Бассейн"},
+                        {"name": "Шведский стол"},
+                        {"name": "Бассейн"},
+                    ],
+                    "hotelFacilities": ["Pool", "Buffet breakfast", "Pool"],
                     "rooms": [
                         {
                             "id": 5960101,
@@ -33,3 +39,5 @@ async def test_nuitee_catalog_keeps_provider_room_capacity_and_amenities() -> No
     assert len(hotel.rooms) == 1
     assert hotel.rooms[0].max_adults == 2
     assert hotel.rooms[0].amenities == ("Кондиционер",)
+    assert hotel.facilities_ru == ("Бассейн", "Шведский стол")
+    assert hotel.facilities_en == ("Pool", "Buffet breakfast")

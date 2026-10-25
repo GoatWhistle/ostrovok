@@ -737,6 +737,8 @@ export interface components {
                 included?: string[];
                 facts?: components["schemas"]["FactBrief"][];
             }[];
+            facilities_ru?: string[];
+            facilities_en?: string[];
             /** @description Активные факты, по одному победителю на характеристику и субъект */
             facts: components["schemas"]["Fact"][];
             conflicts?: components["schemas"]["Conflict"][];

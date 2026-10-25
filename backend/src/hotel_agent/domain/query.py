@@ -42,6 +42,13 @@ class NearbyObjectRequest:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class FacilityRequest:
+    term: str
+    source_text: str
+    required: bool = False
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class QueryCorrection:
     original: str
     corrected: str
@@ -54,6 +61,7 @@ class ParsedQuery:
     unmatched_terms: tuple[str, ...]
     location_hint: str | None
     nearby_objects: tuple[NearbyObjectRequest, ...] = ()
+    facility_requests: tuple[FacilityRequest, ...] = ()
     normalized_query: str | None = None
     corrections: tuple[QueryCorrection, ...] = ()
     unsupported_region: str | None = None

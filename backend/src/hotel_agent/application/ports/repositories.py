@@ -9,6 +9,7 @@ from hotel_agent.application.dto import (
     RegionRecord,
     SearchFactRecord,
     SearchHotelRecord,
+    SupplierContentRecord,
 )
 from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
@@ -19,6 +20,8 @@ class RegionRepository(Protocol):
 
 
 class SearchRepository(Protocol):
+    async def get_supplier_content(self, hotel_id: str) -> SupplierContentRecord | None: ...
+    async def list_supplier_content(self, region: str) -> Sequence[SupplierContentRecord]: ...
     async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]: ...
     async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None: ...
     async def list_hotels(

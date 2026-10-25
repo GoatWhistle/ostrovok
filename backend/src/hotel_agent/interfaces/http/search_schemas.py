@@ -237,7 +237,9 @@ def _matched_schema(
     brief = None
     if fact is not None:
         label = (
-            f"{label}: {fact.value}"
+            label
+            if match.intent.characteristic_key.startswith("facility:")
+            else f"{label}: {fact.value}"
             if match.intent.characteristic_key.startswith("nearby:")
             else f"{label}: {fact.value} {fact.unit or ''}".strip()
         )

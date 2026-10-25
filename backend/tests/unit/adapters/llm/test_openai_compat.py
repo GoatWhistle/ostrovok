@@ -123,6 +123,41 @@ async def test_room_request_keeps_only_explicit_stay_details(build: Build) -> No
     assert parsed.adults == 2
 
 
+async def test_four_guest_room_is_a_capacity_intent(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [intent("room_capacity", "gte", 4, "на 4-х")],
+            "unmatched_terms": ["бассейн"],
+            "wants_room": True,
+            "adults": None,
+        }
+    )
+
+    parsed = await llm.parse_query("хочу номер на 4-х с бассейном")
+
+    assert [(item.characteristic_key, item.value) for item in parsed.intents] == [
+        ("room_capacity", 4.0)
+    ]
+    assert parsed.adults is None
+
+
+async def test_arbitrary_hotel_services_are_tool_requests(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [],
+            "facility_requests": [
+                {"term": "бассейн", "source_text": "с бассейном", "required": False},
+                {"term": "шведский стол", "source_text": "шведским столом", "required": False},
+            ],
+            "unmatched_terms": [],
+        }
+    )
+
+    parsed = await llm.parse_query("хочу отель с бассейном и шведским столом")
+
+    assert [item.term for item in parsed.facility_requests] == ["бассейн", "шведский стол"]
+
+
 async def test_the_request_carries_the_model_and_a_strict_schema(build: Build) -> None:
     llm = build({"intents": [], "unmatched_terms": []})
 

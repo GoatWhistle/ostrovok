@@ -80,6 +80,8 @@ def _quality(intent: Intent, value: FactValue) -> MatchQuality:
     wanted = _number(intent.value)
     if number is None or wanted is None:
         return MatchQuality.UNKNOWN
+    if intent.characteristic_key == "room_capacity" and intent.op is Op.GTE:
+        return MatchQuality.FULL if number >= wanted else MatchQuality.NONE
     if intent.op is Op.GTE:
         return _ordered(number, wanted, wanted / PARTIAL_SLACK, above=True)
     return _ordered(number, wanted, wanted * PARTIAL_SLACK, above=False)

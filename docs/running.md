@@ -38,16 +38,16 @@ make seed && make precompute
 | `make build` | Только сборка образов через `docker-bake.hcl` | Да |
 | `make help` | Список целей | Нет |
 
-Для ручной загрузки подтверждённого соответствия City Park Hotel и его категорий номеров
-нужен тестовый или рабочий ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается
-к API поставщика и записывает реальный каталог в PostgreSQL:
+Для ручной загрузки 15 проверенных соответствий OSM и Nuitee нужен тестовый или рабочий
+ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается к API поставщика и записывает
+категории номеров и услуги в PostgreSQL:
 
 ```bash
-set -a; . ./.env; set +a
-DATABASE_URL=postgresql://hotel:hotel@localhost:5432/hotel \
-  uv run --directory backend hotel-agent sync-nuitee \
-  --hotel-id n736761646 --supplier-id lp552d8
+bash scripts/sync-nuitee-matches.sh
 ```
+
+Пары хранятся в `data/seed/sochi/nuitee_matches.csv`. Импорт повторяемый; он использует
+реальный каталог Nuitee и не входит в офлайн-команду `make seed`. Без ключа завершается ошибкой.
 
 Образы собирает только `docker-bake.hcl`. Compose берёт готовые образы
 `<COMPOSE_PROJECT_NAME>-backend:<TAG>` и `<COMPOSE_PROJECT_NAME>-frontend:<TAG>` и не скачивает их

@@ -21,6 +21,16 @@ class PostgresHotelCatalog:
                 supplier_id = EXCLUDED.supplier_id, verified_at = EXCLUDED.verified_at""",
                 (hotel_id, hotel.supplier_id, datetime.now(UTC)),
             )
+            await db.execute(
+                """INSERT INTO hotel_supplier_content
+                (hotel_id, supplier, facilities_ru, facilities_en)
+                VALUES (%s, 'nuitee', %s, %s)
+                ON CONFLICT (hotel_id, supplier) DO UPDATE SET
+                facilities_ru = EXCLUDED.facilities_ru,
+                facilities_en = EXCLUDED.facilities_en,
+                updated_at = now()""",
+                (hotel_id, list(hotel.facilities_ru), list(hotel.facilities_en)),
+            )
             for room in hotel.rooms:
                 await db.execute(
                     """INSERT INTO rooms
@@ -52,6 +62,24 @@ class PostgresHotelCatalog:
                         f"f_double_room_{hotel_id}",
                         hotel_id,
                         "true" if any(room.max_adults == 2 for room in hotel.rooms) else "false",
+                    ),
+                )
+                await db.execute(
+                    """INSERT INTO facts
+                    (id, subject_type, subject_id, characteristic_key, value, unit, qualifiers,
+                     source_type, method, confidence, computed_at, valid_until, status, explanation)
+                    VALUES (%s, 'hotel', %s, 'room_capacity', %s::jsonb, NULL,
+                            '{"source":"room_inventory"}'::jsonb, 'computed',
+                            'room_capacity@1', 0.85, now(), now() + interval '90 days',
+                            'active', 'Вместимость одной категории номера по каталогу Nuitee')
+                    ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value,
+                    unit = EXCLUDED.unit,
+                    computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until,
+                    explanation = EXCLUDED.explanation""",
+                    (
+                        f"f_room_capacity_{hotel_id}",
+                        hotel_id,
+                        str(max(room.max_adults for room in hotel.rooms)),
                     ),
                 )
         return len(hotel.rooms)

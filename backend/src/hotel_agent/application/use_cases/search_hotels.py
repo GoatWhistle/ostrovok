@@ -4,6 +4,7 @@ from dataclasses import dataclass, replace
 from datetime import datetime, timedelta
 
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -44,11 +45,12 @@ class SearchHotels:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
         parsed = await self._llm.parse_query(query)
-        if parsed.nearby_objects:
+        if parsed.nearby_objects or parsed.facility_requests:
             parsed = replace(
                 parsed,
                 intents=parsed.intents
-                + tuple(_nearby_intent(request) for request in parsed.nearby_objects),
+                + tuple(_nearby_intent(request) for request in parsed.nearby_objects)
+                + tuple(facility_intent(request) for request in parsed.facility_requests),
             )
         async with self._uow() as uow:
             regions = await uow.regions.list_loaded()
@@ -84,6 +86,9 @@ class SearchHotels:
                 (request, await uow.nearby_objects.list_matches(region, request))
                 for request in parsed.nearby_objects
             ]
+            supplier_content = (
+                await uow.search.list_supplier_content(region) if parsed.facility_requests else ()
+            )
         facts = _best_facts(stored)
         now = self._clock.now()
         if nearby:
@@ -93,6 +98,13 @@ class SearchHotels:
                     ids = matches.get(hotel.id, ())
                     facts.setdefault(hotel.id, {})[key] = fact_from_record(
                         _nearby_record(hotel.id, key, request, ids, now)
+                    )
+        for facility_request in parsed.facility_requests:
+            for content in supplier_content:
+                record = facility_fact(facility_request, content)
+                if record is not None:
+                    facts.setdefault(content.hotel_id, {})[record.characteristic_key] = (
+                        fact_from_record(record)
                     )
         ranked = [
             SearchResult(hotel=hotel, scored=score(parsed.intents, facts.get(hotel.id, {}), now))

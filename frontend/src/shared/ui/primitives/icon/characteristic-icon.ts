@@ -9,6 +9,7 @@ const ALIASES: Readonly<Record<string, IconName>> = {
   blackout_curtains: "blackout",
   building_height: "height",
   double_room: "guests",
+  room_capacity: "guests",
 }
 
 const HUES: Readonly<Record<string, string>> = {
@@ -20,15 +21,18 @@ const HUES: Readonly<Record<string, string>> = {
   blackout_curtains: "var(--hue-dark)",
   building_height: "var(--hue-height)",
   double_room: "var(--hue-pets)",
+  room_capacity: "var(--hue-pets)",
 }
 
 export function characteristicIcon(key: string): IconName {
   if (key.startsWith("nearby:")) return "pin"
+  if (key.startsWith("facility:")) return "check"
   if (key in ICONS) return key as IconName
   return ALIASES[key] ?? "info"
 }
 
 export function characteristicHue(key: string): string {
   if (key.startsWith("nearby:")) return "var(--hue-walk)"
+  if (key.startsWith("facility:")) return "var(--hue-pets)"
   return HUES[key] ?? "var(--hue-sea)"
 }

@@ -40,6 +40,8 @@ class FactDetailSchema(FactSchema):
 class HotelCardSchema(BaseModel):
     hotel: HotelSummarySchema
     rooms: list["RoomSchema"] = Field(default_factory=list)
+    facilities_ru: list[str] = Field(default_factory=list)
+    facilities_en: list[str] = Field(default_factory=list)
     facts: list[FactSchema]
     conflicts: list[dict[str, object]] = Field(default_factory=list)
     stale_count: int = 0
@@ -154,6 +156,8 @@ def hotel_card_schema(card: HotelCard) -> HotelCardSchema:
             )
             for item in card.rooms
         ],
+        facilities_ru=list(card.supplier_content.facilities_ru) if card.supplier_content else [],
+        facilities_en=list(card.supplier_content.facilities_en) if card.supplier_content else [],
         facts=[fact_schema(fact) for fact in card.facts],
         camera=_camera(hotel.location, 0),
     )
