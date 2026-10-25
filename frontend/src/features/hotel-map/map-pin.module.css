@@ -49,9 +49,10 @@
 }
 
 .face {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: var(--space-4);
+  line-height: var(--pin-dot);
 }
 
 .dot {

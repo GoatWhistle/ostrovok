@@ -20,7 +20,9 @@ import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapMarkers } from "./use-map-markers"
 
 setWorkerUrl(workerUrl)
-const MAX_PIXEL_RATIO = 1.5
+const MAX_PIXEL_RATIO = 1.25
+const ROTATE_SPEED = 0.35
+const PITCH_SPEED = -0.25
 export interface MapData {
   readonly camera: Camera | undefined
   readonly buildings: readonly unknown[]
@@ -55,6 +57,10 @@ function useMapInstance(hasCamera: boolean) {
         attributionControl: false,
         maxPitch: 75,
         pixelRatio: Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO),
+        rotateSpeed: ROTATE_SPEED,
+        pitchSpeed: PITCH_SPEED,
+        fadeDuration: 0,
+        renderWorldCopies: false,
       })
       instance.current = map
       let started = false
