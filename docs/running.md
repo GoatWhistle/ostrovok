@@ -67,6 +67,7 @@ DATABASE_URL=postgresql://hotel:hotel@localhost:5432/hotel \
 | Команда | Что делает | Сеть |
 |---|---|---|
 | `make fetch-seed` | Скачивает экстракт OSM «Южный ФО» с Geofabrik и два тайла Copernicus GLO-30 в `data/raw/` | Да |
+| `make fetch-russia` | Докачивает полный OSM-снимок России в `data/raw/` и проверяет MD5; это не импорт в PostGIS | Да |
 | `make build-seed` | Режет из `data/raw/` срез Сочи в `data/seed/sochi/` и печатает число объектов каждого слоя | Нет |
 
 ## Как включить живую модель и предложения на даты?

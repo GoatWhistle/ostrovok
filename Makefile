@@ -5,7 +5,7 @@ BACKEND := uv run --directory backend
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed build-seed seed precompute llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed precompute llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -27,6 +27,9 @@ api: ## Run the API locally with reload against the compose database
 
 fetch-seed: ## Download the raw OSM extract and DEM tiles (manual, needs network)
 	bash scripts/fetch-seed.sh
+
+fetch-russia: ## Download and verify the full Russia OSM snapshot (manual, needs network)
+	bash scripts/fetch-russia.sh
 
 build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline)
 	$(BACKEND) hotel-agent build-seed --region sochi \

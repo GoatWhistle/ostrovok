@@ -52,38 +52,29 @@ Updated: 2026-10-25, Europe/Moscow
 
 - 2026-10-25 (фронт, Factmap): «теперь давай переделаем весь сайт под эту дизайн систему. надо делать идеально по ней»; «дизайн система один в один, должна быть она у нас идеальная её не ломай»; «делай периодически pull … улучшаем наш сервис под его обновления»; «обнови ридми … проверь фавиконы … фото для соц сетей, когда это сделаешь все сделай коммит и пушь в его ветку, разрешаю».
 
+- 2026-10-25, дословно: «спуль и сразу перезапусти стенд, там новый фронт».
+- 2026-10-25, дословно: «можешь пока скачать всю карту России. Сколько это займет места и времени?»
+- 2026-10-25, дословно: «А также сделай разные чаты, чтобы бы новый поиск без старого контекста».
+
 ## Current state
 
-- Factmap redesign merged on top of this branch (lead frontend session): brand Factmap, approved HTML design system `work/design/factmap-design-system.html` (source `work/design/system/`, extended with chat, states and 404), all screens on DS tokens; chat UI `features/search-chat` uses the persistent chat API; hotel card shows rooms and offers in DS; 404 «Этого места нет на карте»; favicons/PWA/OG regenerated (`npm run brand:assets`); README rendered in product style. `npm run verify`: 36 rules, 310 tests, build.
-- Branch `feat/hotel-agent-mvp`, supplier-offers commit `bb03302` (Git HEAD while updating this note). ETG/RateHawk Hotelpage adapter, verified hotel-ID mapping table and date-based `/hotels/{id}/offers` are implemented. RU/EN card selects dates and guest count; no ETG keys or mappings are present, so stand returns honest `provider_unavailable`. Static Content API sync and pool/room services remain pending source access. Browser 375/1440 px checked; 10/10 Playwright; frontend verify 36/310/build; backend 232 tests, Ruff/mypy/import-linter. See `work/research/hotel-inventory.md`.
-- Branch `feat/hotel-agent-mvp`, timeout-fix commit `113ac67` (Git HEAD while updating this note). Compose on localhost:8080/8000 uses DeepSeek V4.1 Flash through ignored `.env`; backend rebuilt after retry fix.
-- Added PostgreSQL chat history, contextual query rewrite, RU/EN answers grounded in search results; right chat, left recommendations and selected hotel card, center map. Card reads real rooms/facts and shows honest empty state because `rooms` has 0 rows. Nearby buildings in 350 m are all extruded; OSM floor heights and estimated fallback are marked.
-- Live stand: initial query returned 20 shown candidates; follow-up retained three wishes; GET restored four messages. Scene for `n10058556917`: 512 neighboring buildings, 512 volumes, 161 with OSM levels. Prior `work/evals/search-22-results.json`: 22 search queries, 16 with results.
-- `npm run verify`: 36 rules, 310 tests, build. Backend after timeout fix: Ruff, mypy, import-linter, 226 tests. Full Playwright from prior turn: 10/10, including 1440/375/320, both themes/languages, long text.
+- Ветка `feat/hotel-agent-mvp`, исходный SHA до текущих коммитов `63a2cdf`.
+  Compose на localhost:8080/8000 healthy. Frontend Factmap, DeepSeek V4.1 Flash в бэкенде.
+- Nuitee sandbox подключён, City Park Hotel сопоставлен и имеет 8 категорий; тарифы Сочи
+  не подтверждены. Факты и тесты: `docs/evidence.md`, `work/research/hotel-inventory.md`.
+- Отдельные чаты реализованы и развёрнуты: новый поиск посылает пустой conversation_id,
+  прежние беседы открываются из локальной истории. `npm run verify`: 36 правил, 312 тестов,
+  сборка; целевой Playwright прошёл, визуально проверено 375/1440 px. Полный e2e: 5/11,
+  оставшиеся ошибки в старых сценариях axe, фокуса карточки и сравнения.
+- Полный PBF России от Geofabrik (2026-10-24, 4 187 472 293 байта) докачивается в
+  игнорируемый `data/raw/`. Перед стартом свободно 30 ГиБ; наблюдалось около 1,1 МБ/с,
+  ETA 55–60 минут. `make fetch-russia` после скачивания проверяет MD5 и ставит `.ok`.
+  Исследование и ссылки: `work/research/russia-map-download.md`.
 
 ## Next actions and pitfalls
 
-- Await provider name and partner credentials (request sent asynchronously). Do not use Yandex LLM key as hotel supplier key. For ETG, obtain Content API permission, verify OSM-to-ETG hotel mappings, then sync hotel/room/amenity catalog offline; only then live offers can appear. `rg_ext.floor` is floor type, not a numeric room floor. Do not fabricate exact floor, pool or all-inclusive.
-- Timeout fix committed and pushed. If user provides the exact failed message, replay it through the live stand. Watch for a room/pricing source answer and connect it if provided.
-- User was asked asynchronously for a source of room inventory and prices; no answer received. Do not invent or seed rooms. Current UI displays unavailable fields.
-- One transient Yandex ConnectError occurred on the first live chat request; a single automatic retry was added and tested. Failed send preserves draft. Secrets remain only in ignored `.env`.
-- Последний пользовательский POST `/chat/messages` в 09:49:45 UTC завершился 503 после 30-секундного `ReadTimeout` Yandex Cloud. Запрос не сохранился. Добавлен повтор `ReadTimeout`; тест сначала падал, после правки проходит. Контрольный живой запрос через frontend вернул 200 за 3,66 с. Точный текст неуспешного сообщения не логируется; пользователь был запрошен асинхронно.
-- Бюджет SESSION 6000 символов превышен из-за защищённых дословных инструкций пользователя; их не сокращать.
-
-## 2026-10-25: обновление стенда и Nuitee
-
-- Пользователь дал тестовый ключ Nuitee Connect; секрет записан только в игнорируемый `.env`.
-- 2026-10-25, дословно: «спуль и сразу перезапусти стенд, там новый фронт».
-- Ветка `feat/hotel-agent-mvp`, исходный SHA после pull `90d5433`; подтянут Factmap frontend,
-  образы пересобраны и Compose backend/frontend перезапущены. Обе службы healthy, HTTP 200.
-- Подключён Nuitee sandbox для проверки дат; `2001` переводится в `no_offers`, не в «мест нет».
-  Метка sandbox видна на фронте. Один вручную подтверждённый матч City Park Hotel
-  `n736761646` ↔ `lp552d8` (13 м) синхронизирован: 8 реальных категорий номеров, без
-  выдуманного этажа, цены и остатка. API карточки отдаёт 8; ответ тарифов на 2026-11-15
-  возвращает `no_offers` и `sandbox=true`. Подробности в `docs/evidence.md`.
-- Миграция `20261025200000_unknown_room_floors.sql` применена. Frontend verify: 36 правил,
-  310 тестов, сборка. Backend unit/contract: 235; integration: 1. Ruff, mypy и import-linter
-  проходили до последней небольшой правки форматирования/факта; повторить финальный прогон.
-- Следующее: завершить визуальную проверку 375/1440 px, перепроверить сборку/тесты после
-  правок, обновить SHA после коммита и push. Для Сочи sandbox пока не дал тарифов; больше
-  OSM-отелей нужно сопоставлять вручную. Не утверждать о фактической доступности номеров.
+- Дождаться окончания PBF и проверки MD5; пока `.ok` нет, файл неполный. Это только OSM,
+  без рельефа, тайлов и импорта страны в PostgreSQL.
+- Перенести локальные коммиты на свежую удалённую ветку (она ушла вперёд на 4 коммита),
+  разрешить пересечения фронта и документации, проверить чат и перезапустить стенд, затем push.
+- Секреты остаются только в `.env`. Не выдавать `no_offers` за заполненность отеля.
