@@ -102,7 +102,7 @@ def test_a_way_closed_to_pedestrians_is_not_walkable(layers: SeedLayers) -> None
 
 
 def test_bars_are_collected_as_points(layers: SeedLayers) -> None:
-    [bar] = layers.pois
+    [bar] = [item for item in layers.pois if item.properties.get("amenity") == "bar"]
 
     assert (bar.id, bar.properties["name"]) == ("n3", "Якорь")
 
@@ -120,7 +120,7 @@ def test_counts_name_every_layer(layers: SeedLayers) -> None:
     assert layers.counts() == {
         "hotels": 1,
         "buildings": 1,
-        "pois": 1,
+        "pois": 2,
         "coastline": 1,
         "beaches": 0,
         "noise_sources": 1,

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from hotel_agent.adapters.clock.system import SystemClock
+from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
@@ -17,9 +18,11 @@ class Providers:
     llm: LLMPort
     clock: ClockPort
     logger: LoggerPort
+    uow: PostgresUnitOfWorkFactory
 
     async def aclose(self) -> None:
         await self.llm.aclose()
+        await self.uow.aclose()
 
 
 def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
@@ -29,6 +32,7 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
         llm=build_llm(settings, registry, logger),
         clock=SystemClock(),
         logger=logger,
+        uow=PostgresUnitOfWorkFactory(settings.database_url),
     )
 
 

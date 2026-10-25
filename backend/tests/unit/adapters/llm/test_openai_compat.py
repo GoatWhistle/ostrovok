@@ -116,6 +116,80 @@ async def test_the_request_carries_the_model_and_a_strict_schema(build: Build) -
     assert "distance_to_sea" in keys["characteristic_key"]["enum"]
 
 
+async def test_a_nearby_place_request_is_kept_as_tool_input(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [intent("double_room", "eq", True, "2х местный номер")],
+            "nearby_objects": [
+                {
+                    "osm_key": "shop",
+                    "osm_value": "*",
+                    "open_24h": True,
+                    "radius_m": 500,
+                    "source_text": "круглосуточными магазинами",
+                }
+            ],
+            "unmatched_terms": [],
+            "location_hint": "Сочи",
+        }
+    )
+
+    parsed = await llm.parse_query("2х местный номер с круглосуточными магазинами")
+
+    assert [item.characteristic_key for item in parsed.intents] == ["double_room"]
+    assert [(item.osm_key, item.osm_value, item.open_24h) for item in parsed.nearby_objects] == [
+        ("shop", "*", True)
+    ]
+
+
+async def test_model_invents_no_unmentioned_or_wrongly_typed_intents(
+    build: Build, logger: RecordingLogger
+) -> None:
+    llm = build(
+        {
+            "intents": [
+                intent("double_room", "eq", True, "2х местный номер"),
+                intent("distance_to_sea", "lte", True, "круглосуточными магазинами"),
+                intent("pets_policy", "eq", True, "2х местный номер"),
+            ],
+            "nearby_objects": [],
+            "unmatched_terms": [],
+            "location_hint": "Сочи",
+        }
+    )
+
+    parsed = await llm.parse_query("хочу 2х местный номер в Сочи с круглосуточными магазинами")
+
+    assert [item.characteristic_key for item in parsed.intents] == ["double_room"]
+    assert "llm_invalid_intent_value" in logger.events
+    assert "llm_ungrounded_pets_policy" in logger.events
+
+
+async def test_zoos_can_be_requested_with_a_ten_kilometre_radius(build: Build) -> None:
+    llm = build(
+        {
+            "intents": [],
+            "nearby_objects": [
+                {
+                    "osm_key": "tourism",
+                    "osm_value": "zoo",
+                    "open_24h": False,
+                    "radius_m": 10000,
+                    "source_text": "зоопарк в радиусе 10 км",
+                }
+            ],
+            "unmatched_terms": [],
+            "location_hint": None,
+        }
+    )
+
+    parsed = await llm.parse_query("хочу зоопарк в радиусе 10 км")
+
+    assert [(item.osm_key, item.osm_value, item.radius_m) for item in parsed.nearby_objects] == [
+        ("tourism", "zoo", 10000)
+    ]
+
+
 async def test_an_invented_characteristic_is_dropped(build: Build, logger: RecordingLogger) -> None:
     llm = build(
         {

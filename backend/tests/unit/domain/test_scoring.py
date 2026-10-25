@@ -68,6 +68,14 @@ def test_a_qualified_fact_is_only_a_partial_match(make_fact: FactMaker, now: dat
     assert graded.quality is MatchQuality.PARTIAL
 
 
+def test_route_metadata_does_not_restrict_match(make_fact: FactMaker, now: datetime) -> None:
+    route = make_fact(value=6.0, qualifiers={"meters": 480.0})
+
+    graded = match(intent("distance_to_sea", Op.LTE, 10.0), route, now)
+
+    assert graded.quality is MatchQuality.FULL
+
+
 def test_a_missing_fact_is_unknown_rather_than_a_mismatch(now: datetime) -> None:
     assert match(intent(), None, now).quality is MatchQuality.UNKNOWN
 

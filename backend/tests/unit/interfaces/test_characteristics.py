@@ -43,10 +43,10 @@ def test_registry_is_published_for_the_frontend(settings: Settings) -> None:
     assert response.status_code == 200
     items = response.json()["items"]
     assert {item["key"] for item in items} == {
-        "bars_nearby",
         "blackout_curtains",
         "building_height",
         "distance_to_sea",
+        "double_room",
         "noise_level",
         "pets_policy",
         "sunset_view",

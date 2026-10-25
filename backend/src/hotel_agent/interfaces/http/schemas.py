@@ -2,6 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from hotel_agent.application.dto import RegionRecord
 from hotel_agent.domain.characteristics import (
     Characteristic,
     GeoStyle,
@@ -41,6 +42,44 @@ class CharacteristicSchema(BaseModel):
 
 class CharacteristicListResponse(BaseModel):
     items: list[CharacteristicSchema] = Field(default_factory=list)
+
+
+class CameraSchema(BaseModel):
+    center: tuple[float, float]
+    zoom: float
+    pitch: float
+    bearing: float
+    focus_facade_id: str | None = None
+
+
+class RegionSchema(BaseModel):
+    id: str
+    name: str
+    bbox: tuple[float, float, float, float]
+    hotels_count: int
+    data_as_of: str
+    default_camera: CameraSchema
+
+
+class RegionListResponse(BaseModel):
+    items: list[RegionSchema]
+
+
+def region_schema(region: RegionRecord) -> RegionSchema:
+    west, south, east, north = region.bbox
+    return RegionSchema(
+        id=region.id,
+        name=region.name,
+        bbox=region.bbox,
+        hotels_count=region.hotels_count,
+        data_as_of=region.data_as_of.isoformat(),
+        default_camera=CameraSchema(
+            center=((west + east) / 2, (south + north) / 2),
+            zoom=10,
+            pitch=45,
+            bearing=0,
+        ),
+    )
 
 
 def characteristic_schema(characteristic: Characteristic) -> CharacteristicSchema:

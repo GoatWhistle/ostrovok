@@ -18,6 +18,22 @@ services:
       retries: 20
     restart: unless-stopped
 
+  migrate:
+    image: ghcr.io/amacneil/dbmate:2.36.0
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-hotel}:${POSTGRES_PASSWORD:-hotel}@db:5432/${POSTGRES_DB:-hotel}?sslmode=disable
+      DBMATE_MIGRATIONS_DIR: /db/migrations
+      DBMATE_NO_DUMP_SCHEMA: "true"
+      DBMATE_STRICT: "true"
+      DBMATE_WAIT: "true"
+      DBMATE_MIGRATION_LOCK: "true"
+    volumes:
+      - ./backend/migrations/postgres:/db/migrations:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    command: up
+
   backend:
     image: ${COMPOSE_PROJECT_NAME:-hotel-agent}-backend:${TAG:-latest}
     pull_policy: never
@@ -32,8 +48,8 @@ services:
       - ./characteristics:/srv/characteristics:ro
       - ./data:/srv/data:ro
     depends_on:
-      db:
-        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
     ports:
       - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
     healthcheck:

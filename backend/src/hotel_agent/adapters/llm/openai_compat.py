@@ -24,9 +24,15 @@ from hotel_agent.application.ports.llm import (
 )
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
-from hotel_agent.domain.characteristics import Characteristic, Op
+from hotel_agent.domain.characteristics import Characteristic, Op, ValueType
 from hotel_agent.domain.errors import ModelFailure, UnknownCharacteristic
-from hotel_agent.domain.query import Intent, ParsedQuery
+from hotel_agent.domain.query import (
+    OSM_OBJECT_KEYS,
+    Intent,
+    NearbyObjectRequest,
+    ParsedQuery,
+    QueryCorrection,
+)
 
 
 class OpenAICompatLLM:
@@ -63,12 +69,26 @@ class OpenAICompatLLM:
             schema=prompts.parse_query_schema(registry),
         )
         intents = tuple(
-            intent for raw in items(payload, "intents") if (intent := self._intent(raw)) is not None
+            intent
+            for raw in items(payload, "intents")
+            if (intent := self._intent(raw, query)) is not None
         )
         return ParsedQuery(
             intents=intents,
             unmatched_terms=tuple(strings(payload, "unmatched_terms")),
             location_hint=optional_text(payload, "location_hint"),
+            nearby_objects=tuple(
+                item
+                for raw in items(payload, "nearby_objects")
+                if (item := _nearby_object(raw, query)) is not None
+            ),
+            normalized_query=optional_text(payload, "normalized_query") or query,
+            corrections=tuple(
+                correction
+                for raw in items(payload, "corrections")
+                if (correction := _correction(raw, query)) is not None
+            ),
+            needs_clarification=flag(payload, "needs_clarification"),
         )
 
     async def plan_tools(
@@ -168,22 +188,37 @@ class OpenAICompatLLM:
         except httpx.HTTPError as error:
             raise ModelFailure(f"Language model is unreachable: {type(error).__name__}") from error
 
-    def _intent(self, raw: Mapping[str, object]) -> Intent | None:
+    def _intent(self, raw: Mapping[str, object], query: str) -> Intent | None:
         key = text(raw, "characteristic_key")
-        if self._characteristic(key) is None:
+        characteristic = self._characteristic(key)
+        if characteristic is None:
             return None
         try:
             op = Op(text(raw, "op"))
         except ValueError:
             self._dropped("unknown_operator", key=key, op=text(raw, "op"))
             return None
+        source = text(raw, "source_text").strip()
+        if not source or normalize(source) not in normalize(query):
+            self._dropped("source_not_in_query", key=key)
+            return None
+        value = scalar(raw, "value")
+        if not _valid_intent_value(characteristic.value_type, value):
+            self._dropped("invalid_intent_value", key=key)
+            return None
+        if key == "pets_policy" and not any(
+            marker in normalize(source)
+            for marker in ("питом", "собак", "кошк", "живот", "pet", "dog", "cat")
+        ):
+            self._dropped("ungrounded_pets_policy", key=key)
+            return None
         return Intent(
             characteristic_key=key,
             op=op,
-            value=scalar(raw, "value"),
+            value=value,
             weight=number(raw, "weight"),
             required=flag(raw, "required"),
-            source_text=text(raw, "source_text"),
+            source_text=source,
         )
 
     def _characteristic(self, key: str) -> Characteristic | None:
@@ -203,3 +238,43 @@ def _plan_request(
     wanted = ", ".join(intent.characteristic_key for intent in query.intents) or "нет"
     lines = [f"{subject}: {', '.join(known.get(subject, ())) or 'ничего'}" for subject in subjects]
     return f"Нужны характеристики: {wanted}\nУже известно по объектам:\n" + "\n".join(lines)
+
+
+def _valid_intent_value(value_type: ValueType, value: object) -> bool:
+    if value_type == ValueType.NUMBER:
+        return isinstance(value, int | float) and not isinstance(value, bool)
+    if value_type == ValueType.BOOL:
+        return isinstance(value, bool)
+    if value_type in {ValueType.ENUM, ValueType.TEXT}:
+        return isinstance(value, str)
+    return isinstance(value, bool | str | int | float)
+
+
+def _nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest | None:
+    key = text(raw, "osm_key")
+    value = text(raw, "osm_value").strip().lower()
+    source = text(raw, "source_text").strip()
+    if (
+        key not in OSM_OBJECT_KEYS
+        or not value
+        or not source
+        or normalize(source) not in normalize(query)
+    ):
+        return None
+    radius = number(raw, "radius_m")
+    return NearbyObjectRequest(
+        osm_key=key,
+        osm_value=value,
+        open_24h=flag(raw, "open_24h"),
+        radius_m=max(100, min(50000, int(radius or 500))),
+        source_text=source,
+    )
+
+
+def _correction(raw: Mapping[str, object], query: str) -> QueryCorrection | None:
+    original = text(raw, "original").strip()
+    corrected = text(raw, "corrected").strip()
+    reason = text(raw, "reason").strip()
+    if not original or normalize(original) not in normalize(query) or not corrected or not reason:
+        return None
+    return QueryCorrection(original=original, corrected=corrected, reason=reason)

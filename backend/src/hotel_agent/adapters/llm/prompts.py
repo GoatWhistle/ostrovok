@@ -3,6 +3,7 @@ from collections.abc import Sequence
 from typing import Any
 
 from hotel_agent.domain.characteristics import Characteristic, Op
+from hotel_agent.domain.query import OSM_OBJECT_KEYS
 
 SCALAR = {"type": ["boolean", "number", "string", "null"]}
 
@@ -10,17 +11,39 @@ PARSE_QUERY_SYSTEM = """\
 Ты разбираешь поисковый запрос по отелям на интенты.
 
 Правила:
+0. Проверь запрос: исправь очевидные опечатки и географические ошибки в normalized_query.
+   В corrections укажи исходный дословный фрагмент, исправленный вариант и короткую причину.
+   Сохраняй смысл пожеланий. При противоречии не выбирай условие за пользователя:
+   сохрани оба условия, объясни противоречие в corrections и поставь needs_clarification=true.
+   При несовместимых городах/странах тоже поставь needs_clarification=true.
+   Один конкретный город вне Сочи сам по себе не противоречие: needs_clarification=false.
+   Очевидная опечатка не требует уточнения. Не выдумывай город и данные об отелях.
+   Язык причины и исправленного текста — язык запроса.
+   location_hint — нормализованный город. Доступный регион данных — Сочи;
+   Адлер и Красную Поляну относите к Сочи. Другой город не подменяй Сочи.
 1. Бери характеристики только из списка ниже, операторы — только из перечня эталонов.
 2. Для каждой характеристики ориентируйся на её эталоны: подбирай ближайший по смыслу
    и повторяй его оператор и порядок величины значения. Не изобретай свою шкалу.
 3. Не выводи характеристику, о которой в запросе ничего не сказано.
+   «Двухместный номер» не означает размещение с животными: pets_policy допустим только
+   при явном упоминании питомца, собаки, кошки или другого животного.
 4. required ставь true, только если без этого условия вариант пользователю не подходит вовсе:
    явные маркеры «обязательно», «только», «нужен», «без этого никак», либо условие о том,
    кого заселяют (питомец, ребёнок, доступность). По умолчанию false.
    Пожелания комфорта («тихий», «с видом», «недалеко») — это false.
 5. weight: 1.0 для главного условия запроса, 0.5-0.8 для второстепенных уточнений.
 6. source_text — дословный фрагмент запроса, из которого взят интент.
-7. Слова запроса, не покрытые ни одним интентом, перечисли в unmatched_terms.
+7. Содержательные условия запроса, не покрытые ни одним интентом или nearby_objects,
+   перечисли в unmatched_terms. Не добавляй служебные слова вроде «хочу», «отель», «в», «с».
+8. Любые пожелания об объектах рядом запиши в nearby_objects, а не в intents.
+   Для OSM используй osm_key из amenity, shop, leisure, tourism, historic, natural,
+   healthcare, office, craft, man_made, emergency, public_transport, railway,
+   aeroway, sport и osm_value по тегам OSM. Например, зоопарк: tourism=zoo.
+   Для любых магазинов: osm_key=shop, osm_value=*. Для круглосуточных — open_24h=true.
+   Для аптек: amenity=pharmacy. Не подменяй магазины барами.
+   Для баров: amenity=bar. Радиус по умолчанию 500 м, если пользователь не назвал другой.
+   10 км = 10000 м. source_text — дословный фрагмент.
+   Такие слова не дублируй в unmatched_terms.
 
 Доступные характеристики:
 {catalog}"""
@@ -102,6 +125,30 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
             },
             "unmatched_terms": {"type": "array", "items": {"type": "string"}},
             "location_hint": {"type": ["string", "null"]},
+            "normalized_query": {"type": "string"},
+            "needs_clarification": {"type": "boolean"},
+            "corrections": {
+                "type": "array",
+                "items": _object(
+                    {
+                        "original": {"type": "string"},
+                        "corrected": {"type": "string"},
+                        "reason": {"type": "string"},
+                    }
+                ),
+            },
+            "nearby_objects": {
+                "type": "array",
+                "items": _object(
+                    {
+                        "osm_key": {"type": "string", "enum": list(OSM_OBJECT_KEYS)},
+                        "osm_value": {"type": "string"},
+                        "open_24h": {"type": "boolean"},
+                        "radius_m": {"type": "integer"},
+                        "source_text": {"type": "string"},
+                    }
+                ),
+            },
         },
     )
 

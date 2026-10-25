@@ -30,6 +30,7 @@ class FakeLLM:
             intents=tuple(intent for _, intent in found),
             unmatched_terms=terms_outside(text, spans),
             location_hint=None,
+            normalized_query=text,
         )
 
     async def plan_tools(

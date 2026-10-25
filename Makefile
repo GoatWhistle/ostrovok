@@ -5,13 +5,13 @@ BACKEND := uv run --directory backend
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed build-seed llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed build-seed seed precompute llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
 
-up: ## Start PostGIS and wait until it is healthy
-	$(COMPOSE) up -d --wait db
+up: build ## Build and start the full stand, including migrations
+	$(COMPOSE) up -d --wait
 
 down: ## Stop the stand and keep the data volume
 	$(COMPOSE) down
@@ -34,6 +34,14 @@ build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline
 		--dem $(CURDIR)/data/raw/Copernicus_DSM_COG_10_N43_00_E039_00_DEM.tif \
 		      $(CURDIR)/data/raw/Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif \
 		--out $(CURDIR)/data/seed/sochi
+
+seed: ## Load the prepared Sochi slice into the running PostGIS database
+	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
+
+precompute: ## Compute characteristic facts from the loaded region
+	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
 
 llm-check: ## Call the configured LLM provider for real (manual, spends quota)
 	set -a; . ./.env; set +a; LLM_PROVIDER=openai_compat $(LOCAL_DATA) $(BACKEND) python scripts/llm_check.py

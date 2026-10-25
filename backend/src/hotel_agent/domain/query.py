@@ -2,6 +2,24 @@ from dataclasses import dataclass
 
 from hotel_agent.domain.characteristics import Op, ScalarValue
 
+OSM_OBJECT_KEYS = (
+    "amenity",
+    "shop",
+    "leisure",
+    "tourism",
+    "historic",
+    "natural",
+    "healthcare",
+    "office",
+    "craft",
+    "man_made",
+    "emergency",
+    "public_transport",
+    "railway",
+    "aeroway",
+    "sport",
+)
+
 
 @dataclass(frozen=True, slots=True, kw_only=True)
 class Intent:
@@ -14,7 +32,28 @@ class Intent:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class NearbyObjectRequest:
+    osm_key: str
+    osm_value: str
+    open_24h: bool
+    radius_m: int
+    source_text: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class QueryCorrection:
+    original: str
+    corrected: str
+    reason: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class ParsedQuery:
     intents: tuple[Intent, ...]
     unmatched_terms: tuple[str, ...]
     location_hint: str | None
+    nearby_objects: tuple[NearbyObjectRequest, ...] = ()
+    normalized_query: str | None = None
+    corrections: tuple[QueryCorrection, ...] = ()
+    unsupported_region: str | None = None
+    needs_clarification: bool = False

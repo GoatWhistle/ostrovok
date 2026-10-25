@@ -65,6 +65,7 @@ class QuestionStatus(StrEnum):
 
 
 SETTLED_STATUSES = frozenset({FactStatus.SUPERSEDED, FactStatus.COMPUTING})
+RESTRICTING_QUALIFIERS = frozenset({"from_floor", "months", "facade_azimuth"})
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -94,7 +95,7 @@ class Fact:
         return self.provenance.is_expired_at(now)
 
     def is_restricted(self) -> bool:
-        return bool(self.qualifiers)
+        return bool(RESTRICTING_QUALIFIERS.intersection(self.qualifiers))
 
     def at(self, now: datetime) -> "Fact":
         if self.status in SETTLED_STATUSES or not self.is_stale_at(now):

@@ -1,0 +1,38 @@
+key: double_room
+title_ru: Двухместный номер
+description: "Наличие номера на двух гостей по подтверждённой инвентаризации отеля."
+value_type: bool
+unit: null
+scope: hotel
+conflict_tolerance: 0
+tool: double_room
+ttl_days: 90
+precompute: true
+ask_hotelier_if_missing: true
+question_template: "Есть ли в отеле {hotel} номер для двух гостей?"
+source_kinds: [hotelier, computed]
+display:
+  icon: room
+  color: "#546E7A"
+  geo_style: polygon
+synonyms:
+  - двухместный номер
+  - номер на двоих
+  - 2х местный номер
+matchers:
+  - phrase: 2х местный номер
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: двухместный номер
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+  - phrase: номер на двоих
+    op: eq
+    value: true
+    weight: 1.0
+    required: false
+fields: []

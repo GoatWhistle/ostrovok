@@ -14,6 +14,7 @@ tags:
   - name: search
   - name: hotels
   - name: geo
+  - name: map
   - name: hotelier
 
 paths:
@@ -162,6 +163,74 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/GeoFeatureCollection" }
 
+  /map/tiles/{z}/{x}/{y}.pbf:
+    get:
+      tags: [map]
+      operationId: getMapTile
+      summary: Локальная векторная подложка карты Сочи из OpenStreetMap
+      parameters:
+        - { name: z, in: path, required: true, schema: { type: integer, minimum: 0, maximum: 19 } }
+        - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
+        - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
+      responses:
+        "200":
+          description: Слои roads, coastline, beaches и buildings в формате Mapbox Vector Tile
+          content:
+            application/vnd.mapbox-vector-tile:
+              schema: { type: string, format: binary }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /map/terrain/{z}/{x}/{y}.png:
+    get:
+      tags: [map]
+      operationId: getTerrainTile
+      summary: Локальный рельеф Сочи из Copernicus DEM в формате Terrain RGB
+      parameters:
+        - { name: z, in: path, required: true, schema: { type: integer, minimum: 8, maximum: 14 } }
+        - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
+        - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
+      responses:
+        "200":
+          description: PNG с высотами в кодировке Mapbox Terrain RGB
+          content:
+            image/png:
+              schema: { type: string, format: binary }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /map/relief/{z}/{x}/{y}.png:
+    get:
+      tags: [map]
+      operationId: getReliefTile
+      summary: Цветной рельеф Сочи из Copernicus DEM
+      parameters:
+        - { name: z, in: path, required: true, schema: { type: integer, minimum: 8, maximum: 14 } }
+        - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
+        - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
+      responses:
+        "200":
+          description: Цветной PNG
+          content:
+            image/png:
+              schema: { type: string, format: binary }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /weather:
+    get:
+      tags: [weather]
+      operationId: getWeather
+      summary: Почасовой прогноз для выбранной даты и точки
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number, minimum: -90, maximum: 90 } }
+        - { name: lon, in: query, required: true, schema: { type: number, minimum: -180, maximum: 180 } }
+        - { name: date, in: query, required: true, schema: { type: string, format: date } }
+        - { name: hour, in: query, schema: { type: integer, minimum: 0, maximum: 23, default: 18 } }
+      responses:
+        "200":
+          description: Прогноз Open-Meteo или явная недоступность
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Weather" }
+
   /compare:
     post:
       tags: [hotels]
@@ -307,6 +376,18 @@ components:
           schema: { $ref: "#/components/schemas/Error" }
 
   schemas:
+    Weather:
+      type: object
+      required: [status, date, hour]
+      properties:
+        status: { type: string, enum: [available, unavailable] }
+        reason: { type: string, nullable: true }
+        date: { type: string, format: date }
+        hour: { type: integer }
+        temperature_c: { type: number, nullable: true }
+        cloud_cover_pct: { type: integer, nullable: true }
+        weather_code: { type: integer, nullable: true }
+        source: { type: string, nullable: true }
     Error:
       type: object
       required: [code, message]
@@ -481,6 +562,14 @@ components:
         required: { type: boolean, example: false }
         source_text: { type: string, example: "с видом на закат" }
 
+    QueryCorrection:
+      type: object
+      required: [original, corrected, reason]
+      properties:
+        original: { type: string, example: "в Соче" }
+        corrected: { type: string, example: "в Сочи" }
+        reason: { type: string, example: "Исправлена опечатка в названии города" }
+
     MatchedProperty:
       type: object
       description: Свойство, найденное агентом и показанное в выдаче. Наведение = подсветка geo_refs.
@@ -535,6 +624,12 @@ components:
               items: { $ref: "#/components/schemas/ParsedIntent" }
             unmatched_terms: { type: array, items: { type: string } }
             location_hint: { type: string, nullable: true }
+            normalized_query: { type: string, nullable: true }
+            corrections:
+              type: array
+              items: { $ref: "#/components/schemas/QueryCorrection" }
+            unsupported_region: { type: string, nullable: true }
+            needs_clarification: { type: boolean }
         results:
           type: array
           items: { $ref: "#/components/schemas/SearchResult" }

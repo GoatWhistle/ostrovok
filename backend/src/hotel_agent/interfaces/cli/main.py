@@ -18,6 +18,14 @@ def build_parser() -> ArgumentParser:
     seed.add_argument("--pbf", required=True)
     seed.add_argument("--dem", nargs="+", required=True)
     seed.add_argument("--out", required=True)
+
+    ingest = commands.add_parser("ingest", help="Load a prepared region slice into PostGIS")
+    ingest.add_argument("--region", default="sochi")
+    ingest.add_argument("--from", dest="directory", required=True)
+
+    precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
+    precompute.add_argument("--region", default="sochi")
+    precompute.add_argument("--from", dest="directory", required=True)
     return parser
 
 

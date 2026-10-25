@@ -55,7 +55,7 @@ def _node(obj: Any, tags: dict[str, str], bbox: BBox, layers: SeedLayers) -> Non
     point: Geometry = {"type": "Point", "coordinates": [_round(lon), _round(lat)]}
     if rules.is_hotel(tags):
         layers.hotels.append(_feature(f"n{obj.id}", point, tags, rules.HOTEL_KEYS))
-    if rules.is_bar(tags):
+    if rules.is_poi(tags):
         layers.pois.append(_feature(f"n{obj.id}", point, tags, rules.POI_KEYS))
 
 
@@ -76,7 +76,7 @@ def _way(obj: Any, tags: dict[str, str], geojson: Any, bbox: BBox, layers: SeedL
 
 def _area(obj: Any, tags: dict[str, str], geojson: Any, bbox: BBox, layers: SeedLayers) -> None:
     wanted = rules.is_hotel(tags) or rules.is_building(tags) or rules.is_beach(tags)
-    if not wanted and not rules.is_bar(tags):
+    if not wanted and not rules.is_poi(tags):
         return
     polygon = _geometry(lambda: geojson.create_multipolygon(obj))
     if polygon is None or not _touches(bbox, polygon):
@@ -91,7 +91,7 @@ def _area(obj: Any, tags: dict[str, str], geojson: Any, bbox: BBox, layers: Seed
         return
     if rules.is_hotel(tags):
         layers.hotels.append(_feature(identifier, centre, tags, rules.HOTEL_KEYS))
-    if rules.is_bar(tags):
+    if rules.is_poi(tags):
         layers.pois.append(_feature(identifier, centre, tags, rules.POI_KEYS))
 
 

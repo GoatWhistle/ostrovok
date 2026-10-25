@@ -5,6 +5,7 @@ ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.11.33@sha256:77280f2f771df71f90786c314fe1bbc
 FROM ${UV_IMAGE} AS uv
 
 FROM ${PYTHON_IMAGE} AS base
+RUN apt-get update && apt-get install -y --no-install-recommends libexpat1 && rm -rf /var/lib/apt/lists/*
 RUN useradd --create-home --uid 1000 app
 ENV UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy \

@@ -1,21 +1,35 @@
+import asyncio
 import os
 import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from psycopg_pool import AsyncConnectionPool
+
 from hotel_agent.adapters.clock.system import SystemClock
+from hotel_agent.adapters.db.facades import PostgresFacadeStore
+from hotel_agent.adapters.db.precompute import PostgresPrecompute
+from hotel_agent.adapters.db.seed import PostgresSeedWriter
+from hotel_agent.adapters.db.walk import PostgresWalkStore
 from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
+from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
+from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
+from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
+from hotel_agent.application.use_cases.ingest_seed import IngestSeed
+from hotel_agent.application.use_cases.precompute import Precompute
+from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
+from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.interfaces.cli.main import build_parser, run_build_seed
 from hotel_agent.settings import load_settings
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    load_settings(os.environ)
+    settings = load_settings(os.environ)
     logger = StdlibLogger("hotel_agent.cli")
     if args.command == "build-seed":
         out = Path(args.out)
@@ -27,7 +41,38 @@ def main(argv: Sequence[str] | None = None) -> int:
             logger=logger,
         )
         return run_build_seed(build, args, print)
+    if args.command == "ingest":
+        return asyncio.run(_ingest(args.region, Path(args.directory), settings.database_url))
+    if args.command == "precompute":
+        return asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
     return 1
+
+
+async def _ingest(region: str, directory: Path, database_url: str) -> int:
+    async with (
+        AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
+        PostgresSeedWriter(pool) as writer,
+    ):
+        report = await IngestSeed(GeoJsonSeedReader(), writer)(region, directory)
+    for name, count in report.counts.items():
+        print(f"{name}: {count}")
+    print(f"hotels with footprint: {report.hotels_with_footprint}")
+    return 0
+
+
+async def _precompute(region: str, directory: Path, database_url: str) -> int:
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        counts = await Precompute(PostgresPrecompute(pool))(region)
+        routes = await PrecomputeWalk(SochiWalkGraph(), PostgresWalkStore(pool))(region, directory)
+        facades = await PrecomputeFacades(FootprintFacadeExtractor(), PostgresFacadeStore(pool))(
+            region
+        )
+    for name, count in counts.items():
+        print(f"{name}: {count}")
+    print(f"distance_to_sea: {routes}")
+    for name, count in facades.items():
+        print(f"{name}: {count}")
+    return 0
 
 
 if __name__ == "__main__":

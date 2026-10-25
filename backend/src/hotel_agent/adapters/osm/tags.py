@@ -3,7 +3,6 @@ from collections.abc import Mapping
 HOTEL_TOURISM = frozenset(
     {"hotel", "hostel", "guest_house", "apartment", "motel", "resort", "chalet"}
 )
-BAR_AMENITY = frozenset({"bar", "pub", "nightclub"})
 LOUD_HIGHWAY = frozenset({"motorway", "trunk", "primary", "secondary"})
 WALKABLE_HIGHWAY = frozenset(
     {
@@ -37,7 +36,25 @@ HOTEL_KEYS = (
     "addr:city",
 )
 BUILDING_KEYS = ("building", "height", "building:levels", "min_height", "roof:shape", "name")
-POI_KEYS = ("name", "amenity", "opening_hours")
+POI_KEYS = (
+    "name",
+    "opening_hours",
+    "amenity",
+    "shop",
+    "leisure",
+    "tourism",
+    "historic",
+    "natural",
+    "healthcare",
+    "office",
+    "craft",
+    "man_made",
+    "emergency",
+    "public_transport",
+    "railway",
+    "aeroway",
+    "sport",
+)
 WALK_KEYS = ("highway", "foot", "access", "surface", "incline")
 NOISE_KEYS = ("highway", "railway", "name", "maxspeed", "lanes")
 
@@ -50,8 +67,8 @@ def is_building(tags: Mapping[str, str]) -> bool:
     return "building" in tags and tags.get("building") != "no"
 
 
-def is_bar(tags: Mapping[str, str]) -> bool:
-    return tags.get("amenity", "") in BAR_AMENITY
+def is_poi(tags: Mapping[str, str]) -> bool:
+    return any(tags.get(key) for key in POI_KEYS if key not in {"name", "opening_hours"})
 
 
 def is_coastline(tags: Mapping[str, str]) -> bool:
