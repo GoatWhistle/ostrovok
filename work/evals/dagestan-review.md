@@ -20,3 +20,16 @@ Initial harness postchecks incorrectly read key and GeoJSON coordinates instead 
 Automated gates: 287 unit/contract/integration tests; Ruff check/format, mypy, import-linter. The region fix changes no frontend source. Before pushing, incoming landing updates were merged with the existing selected-hotel texture integration; the conflict resolution preserves the texture attribute and both translation keys.
 
 Limits: only these two live inputs were checked; regional terrain selections over 500 candidates remain unverified. Generalized boundary data and ground elevations are approximate; room inventory remains incomplete. The 50-query baseline failures remain documented separately.
+
+
+Merge/deployment: a6c63f9 is the regional search fix; c2f3e6a merges incoming frontend
+through 545dd54 with the texture branch. Both backend and frontend images were built and
+recreated. Main health returns 200. Frontend verify passes 36 rules, 320 tests,
+typecheck, Biome and build; existing PostCSS and chunk-size warnings remain.
+Eight browser checks restore the actual user chat, select the Хидиб hotel and display
+the map at 375/1440 px, RU/EN, light/dark. Zero JavaScript exceptions, zero horizontal
+overflow and zero POST chat/model calls during restoration; screenshots for 1440 light RU
+and 375 dark RU were inspected. The map's existing terrain appearance is outside this fix.
+
+Context compaction moved detailed prior facts into session-state-2026-10-26-regions.md;
+all explicit user instructions remain verbatim. No completed product facts were discarded.
