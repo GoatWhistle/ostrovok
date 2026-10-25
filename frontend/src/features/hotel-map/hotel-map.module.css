@@ -130,23 +130,6 @@
   border-block-start: 0;
 }
 
-.attribution {
-  composes: captionText from "../../shared/styles/compose.module.css";
-  display: inline-flex;
-  align-items: center;
-  min-block-size: var(--target-min);
-  padding-inline: var(--space-8);
-  color: var(--map-label);
-  text-decoration: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .attribution:hover {
-    color: var(--text-primary);
-    text-decoration: underline;
-  }
-}
-
 .state,
 .loading {
   position: absolute;
@@ -168,14 +151,4 @@
     align-items: flex-end;
     gap: 0;
   }
-}
-
-.stage[data-showcase] .topStart,
-.stage[data-showcase] .bottomStart,
-.stage[data-showcase] .scale {
-  display: none;
-}
-
-.stage[data-showcase] .bottom {
-  inset-block: var(--space-12) auto;
 }

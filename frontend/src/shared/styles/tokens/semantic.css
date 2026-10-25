@@ -12,6 +12,7 @@
   --surface-highlight: var(--lime-200);
   --surface-skeleton: var(--neutral-100);
   --surface-scrim: color-mix(in oklab, var(--neutral-950) 42%, transparent);
+  --surface-glass: color-mix(in oklab, var(--neutral-0) 70%, transparent);
   --text-primary: var(--neutral-950);
   --text-secondary: var(--neutral-700);
   --text-muted: var(--neutral-600);
@@ -112,7 +113,6 @@
   --map-viewshed-line: var(--hue-sunset-600);
   --map-noise: color-mix(in oklab, var(--hue-nightlife-600) 14%, transparent);
   --mask-on: var(--neutral-0);
-  --resize-tint: color-mix(in oklab, var(--focus-ring) 28%, transparent);
   --surface-tint: color-mix(in oklab, currentColor 14%, transparent);
   --surface-wash: color-mix(in oklab, currentColor 12%, var(--surface-raised));
   --focus-ring: var(--cobalt-600);
@@ -135,6 +135,7 @@
   --surface-highlight: #26341a;
   --surface-skeleton: var(--neutral-850);
   --surface-scrim: color-mix(in oklab, var(--neutral-1000) 60%, transparent);
+  --surface-glass: color-mix(in oklab, var(--neutral-900) 62%, transparent);
   --text-primary: #edeef0;
   --text-secondary: #bcc1b5;
   --text-muted: #8f9488;
@@ -235,7 +236,6 @@
   --map-viewshed-line: var(--hue-sunset-300);
   --map-noise: color-mix(in oklab, var(--hue-nightlife-300) 12%, transparent);
   --mask-on: var(--neutral-0);
-  --resize-tint: color-mix(in oklab, var(--focus-ring) 28%, transparent);
   --surface-tint: color-mix(in oklab, currentColor 14%, transparent);
   --surface-wash: color-mix(in oklab, currentColor 12%, var(--surface-raised));
   --focus-ring: var(--cobalt-300);

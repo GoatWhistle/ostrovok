@@ -12,7 +12,7 @@ export function AppHeader() {
   const tone: StatusTone = health.isError ? "danger" : "info"
   return (
     <header className={styles.header}>
-      <NavLink to="/" viewTransition className={styles.brand ?? ""}>
+      <NavLink to="/" state={{ fresh: true }} viewTransition className={styles.brand ?? ""}>
         <BrandMark size="md" />
         <span className={styles.word}>{t("common:app.wordmark")}</span>
         <span className="visually-hidden">{t("common:app.tagline")}</span>

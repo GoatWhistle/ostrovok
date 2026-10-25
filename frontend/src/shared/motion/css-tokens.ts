@@ -8,6 +8,7 @@ export type DurationToken =
   | "--view-transition-limit"
   | "--toast-life"
   | "--toast-life-error"
+  | "--reel-life"
 
 export type EasingToken =
   | "--ease-out"

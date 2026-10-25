@@ -108,6 +108,7 @@
   --surface-highlight: var(--lime-200);
   --surface-skeleton: var(--neutral-100);
   --surface-scrim: rgb(18 20 15 / 0.42);
+  --surface-glass: rgb(255 255 255 / 0.7);
 
   --text-primary: var(--neutral-950);
   --text-secondary: var(--neutral-700);
@@ -218,6 +219,7 @@
   --surface-highlight: rgb(176 234 85 / 0.16);
   --surface-skeleton: var(--neutral-850);
   --surface-scrim: rgb(6 7 5 / 0.6);
+  --surface-glass: rgb(23 24 26 / 0.62);
 
   --text-primary: #edeef0;
   --text-secondary: #bcc1b5;
@@ -407,6 +409,7 @@
   --shadow-ring: inset 0 0 0 var(--hairline) var(--border-default);
   --shadow-raised: 0 1px 2px var(--shadow-color);
   --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
+  --backdrop-glass: blur(14px) saturate(1.4);
   --shadow-overlay: 0 0 0 var(--hairline) var(--border-subtle), 0 16px 48px var(--shadow-color-strong);
   --shadow-pin: 0 0 0 var(--hairline) var(--border-default), 0 3px 10px var(--shadow-color);
 
@@ -450,6 +453,8 @@
   --delay-tooltip: 500ms;
   --toast-life: 5000ms;
   --toast-life-error: 10000ms;
+  --reel-life: 7000ms;
+  --transition-reel: opacity var(--dur-reveal) var(--ease-out);
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),

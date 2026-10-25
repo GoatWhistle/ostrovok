@@ -1,0 +1,53 @@
+.root {
+  position: relative;
+}
+
+.root .trigger {
+  --button-surface: var(--surface-glass);
+
+  box-shadow: var(--shadow-float);
+  backdrop-filter: var(--backdrop-glass);
+}
+
+.panel {
+  composes: floatingSurface from "../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-8));
+  inset-inline-end: 0;
+  z-index: var(--layer-popover);
+  display: grid;
+  min-inline-size: var(--select-layer-min);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  transform-origin: top right;
+  animation: var(--motion-scale-in);
+}
+
+.panel[data-state="closed"] {
+  animation: var(--motion-scale-out);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  min-block-size: var(--target-min);
+  padding-inline: var(--space-8) 0;
+}
+
+.label {
+  composes: bodySmText from "../../shared/styles/compose.module.css";
+  color: var(--text-secondary);
+}
+
+.footer {
+  display: grid;
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-6);
+  box-shadow: var(--shadow-divider-top);
+}
+
+.link {
+  inline-size: 100%;
+}

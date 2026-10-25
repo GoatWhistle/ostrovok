@@ -197,3 +197,14 @@
     transform: translateY(calc(var(--shift-rise) * -1)) scale(var(--enter-scale));
   }
 }
+
+@keyframes kf-ripple {
+  from {
+    opacity: 0.5;
+    transform: scale(0.08);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

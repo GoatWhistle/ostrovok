@@ -42,6 +42,7 @@
   --delay-tooltip: 500ms;
   --toast-life: 5000ms;
   --toast-life-error: 10000ms;
+  --reel-life: 7000ms;
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
@@ -57,6 +58,7 @@
   --transition-reveal-out:
     clip-path var(--dur-exit) var(--ease-out), opacity var(--dur-exit) var(--ease-out);
   --transition-press: scale var(--dur-press) var(--ease-out);
+  --transition-reel: opacity var(--dur-reveal) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
@@ -85,6 +87,7 @@
   --motion-fold-mid: kf-fold-mid var(--dur-breathe) var(--ease-fold) infinite;
   --motion-fold-right: kf-fold-right var(--dur-breathe) var(--ease-fold) infinite;
   --motion-shimmer: kf-shimmer var(--dur-breathe) var(--ease-in-out) infinite;
+  --motion-ripple: kf-ripple calc(var(--dur-breathe) * 2) var(--ease-out) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -122,6 +125,7 @@
     --motion-state-ping: none;
     --motion-state-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
+    --motion-ripple: none;
     --motion-fold-left: none;
     --motion-fold-mid: none;
     --motion-fold-right: none;

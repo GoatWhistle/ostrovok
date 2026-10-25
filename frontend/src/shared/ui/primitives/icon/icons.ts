@@ -34,6 +34,7 @@ import {
   RotateCwSquare,
   Search,
   Send,
+  Settings,
   Share2,
   SquarePen,
   Sun,
@@ -127,6 +128,7 @@ export const ICONS = {
   retry: RotateCcw,
   "theme-light": Sun,
   "theme-dark": Moon,
+  settings: Settings,
 } as const satisfies Record<string, ComponentType<GlyphProps>>
 
 export type IconName = keyof typeof ICONS

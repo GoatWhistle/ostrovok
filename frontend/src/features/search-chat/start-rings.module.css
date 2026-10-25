@@ -1,0 +1,30 @@
+.rings {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: var(--start-rings);
+  block-size: var(--start-rings);
+  max-inline-size: none;
+  translate: -50% -50%;
+  stroke: var(--map-contour);
+  stroke-width: var(--map-contour-width);
+  pointer-events: none;
+}
+
+.ring {
+  stroke-dasharray: var(--path-length);
+  vector-effect: non-scaling-stroke;
+  opacity: calc(1 - var(--ring-step) * 0.07);
+  animation: var(--motion-draw);
+  animation-delay: calc(var(--stagger) * var(--ring-step));
+}
+
+.ripple {
+  stroke: var(--action-primary);
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: var(--motion-ripple);
+  animation-delay: calc(var(--dur-breathe) * var(--ripple-step) + var(--dur-draw));
+}

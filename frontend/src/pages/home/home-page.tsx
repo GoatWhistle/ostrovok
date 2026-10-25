@@ -3,18 +3,21 @@ import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import { ChatStart, SearchChat } from "@/features/search-chat"
+import { SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { Swap, usePresence, withViewTransition } from "@/shared/motion"
 import { Button, ButtonLink, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
 import styles from "./home-page.module.css"
+import { Landing } from "./landing"
+import { useFreshStart } from "./use-fresh-start"
 
 export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
+  useFreshStart(state.reset)
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
   const compareDock = usePresence(state.compared.length >= 2)
@@ -40,9 +43,10 @@ export function HomePage() {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
     ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
   } as CSSProperties
+  if (start) return <Landing pending={state.sending} onSend={send} />
   return (
     <div className={styles.page}>
-      <div className={styles.tabs} hidden={start}>
+      <div className={styles.tabs}>
         <Segmented<WorkspaceView>
           label={t("explore:panel.tabs")}
           options={[
@@ -54,12 +58,7 @@ export function HomePage() {
           onChange={state.setView}
         />
       </div>
-      <div
-        className={styles.workspace}
-        data-view={state.view}
-        data-mode={start ? "start" : "work"}
-        style={sizes}
-      >
+      <div className={styles.workspace} data-view={state.view} style={sizes}>
         <aside className={styles.panel} aria-label={t("explore:panel.title")}>
           <ResizeHandle
             label={t("explore:panel.resizePanel")}
@@ -95,13 +94,7 @@ export function HomePage() {
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
-            showcase={start}
           />
-          {start ? (
-            <div className={styles.start}>
-              <ChatStart pending={state.sending} onSend={send} />
-            </div>
-          ) : null}
         </div>
         <div className={styles.chat}>
           <ResizeHandle

@@ -31,8 +31,7 @@
     "startText": "Quiet nights, a sunset view, the walk to the sea. We find hotels where it is backed by data and show the proof on the map.",
     "example1": "a quiet room with a sunset view, a short walk to the sea",
     "example2": "a hotel in the centre near the promenade and cafes",
-    "example3": "dogs welcome, a park nearby for walks",
-    "regionHotels": "{{region}}: {{count, number}} hotels"
+    "example3": "dogs welcome, a park nearby for walks"
   },
   "navigation": {
     "search": "Find a hotel",
@@ -92,7 +91,8 @@
     "tilt": "3D tilt",
     "flat": "Top view",
     "controlsTitle": "How to move the map",
-    "controlsHint": "Drag the map to move it. Right mouse button or Ctrl with dragging rotates and tilts the camera. The mouse wheel zooms; on a phone use two fingers."
+    "controlsHint": "Drag the map to move it. Right mouse button or Ctrl with dragging rotates and tilts the camera. The mouse wheel zooms; on a phone use two fingers.",
+    "attributionTitle": "Map data sources"
   },
   "weather": {
     "scene": "Sun and weather",
@@ -325,5 +325,10 @@
     "back": "All hotels",
     "resizePanel": "Resize the hotels panel",
     "resizeChat": "Resize the chat"
+  },
+  "landing": {
+    "settings": "Settings",
+    "language": "Language",
+    "theme": "Theme"
   }
 }
