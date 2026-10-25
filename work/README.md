@@ -16,6 +16,7 @@ that owns each one. Scrubbed at submission.
 | `screens/` | frontend workflows | Screen specifications |
 | `audits/` | audit workflows | Dated findings and check results |
 | `evals/` | live search evaluation | Fixed query set and full results |
+| `session-state-2026-10-25.md` | context compaction | Previous measured stand state and next actions |
 | `research/` | `research` | Investigation notes |
 | `template-development.md` | template maintenance | History of work on this template; discard when starting a hackathon |
 | `submission/` | `submission` | Platform confirmations and screenshots with timestamps |
