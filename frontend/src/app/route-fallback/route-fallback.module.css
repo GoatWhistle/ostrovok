@@ -1,33 +1,3 @@
 .fallback {
-  composes: pageShell from "../../shared/styles/compose.module.css";
-}
-
-.reveal {
-  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
-  display: grid;
-  gap: var(--space-24);
-}
-
-.heading {
-  max-inline-size: var(--prose-measure);
-}
-
-.panels {
-  display: grid;
-  grid-template-columns: minmax(0, var(--workspace-sidebar)) minmax(0, 1fr);
-  gap: var(--space-24);
-}
-
-.panel {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
-  display: grid;
-  align-content: start;
-  gap: var(--space-24);
-  padding: var(--space-card);
-}
-
-@media (max-width: 63.99rem) {
-  .panels {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  composes: page from "../root-error/root-error.module.css";
 }
