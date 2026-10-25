@@ -206,7 +206,10 @@ def hotel_scene_schema(scene: HotelScene) -> HotelSceneSchema:
             best_match=next(iter(by_facade.values()), overview),
             by_facade=by_facade,
         ),
-        terrain={"dem_source": "Copernicus GLO-30", "terrain_tiles_url": None},
+        terrain={
+            "dem_source": "Copernicus GLO-30" if hotel.region_id == "sochi" else "Mapterhorn",
+            "terrain_tiles_url": "/api/v1/map/terrain/{z}/{x}/{y}.png",
+        },
     )
 
 

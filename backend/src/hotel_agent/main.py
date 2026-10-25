@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from hotel_agent.adapters.geo.terrain_tiles import CopernicusTerrainTiles
+from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
 from hotel_agent.application.use_cases.chat import Chat
@@ -29,6 +29,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     config = settings or load_settings(os.environ)
     logger = StdlibLogger("hotel_agent")
     providers = build_providers(config, logger)
+    terrain_tiles = CountryTerrainTiles(config.seed_dir / "sochi" / "dem.tif")
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -36,6 +37,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         try:
             yield
         finally:
+            terrain_tiles.close()
             await providers.aclose()
 
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
@@ -61,9 +63,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             get_hotel_offers=GetHotelOffers(providers.uow, providers.hotel_offers, providers.clock),
             get_hotel_scene=GetHotelScene(providers.uow),
             get_map_tile=GetMapTile(providers.uow),
-            get_terrain_tile=GetTerrainTile(
-                CopernicusTerrainTiles(config.seed_dir / "sochi" / "dem.tif")
-            ),
+            get_terrain_tile=GetTerrainTile(terrain_tiles),
             get_weather=GetWeather(OpenMeteoWeather()),
         )
     )

@@ -113,7 +113,22 @@ def test_streamed_buildings_can_be_limited_to_hotel_neighborhoods(tmp_path: Path
     )
 
     assert rejected == []
-    assert [feature.id for batch in accepted for feature in batch.buildings] == ["w100"]
+    [building] = [feature for batch in accepted for feature in batch.buildings]
+    assert building.id == "w100"
+    assert building.geometry == {
+        "type": "MultiPolygon",
+        "coordinates": [
+            [
+                [
+                    [39.713, 43.572],
+                    [39.714, 43.572],
+                    [39.714, 43.573],
+                    [39.713, 43.573],
+                    [39.713, 43.572],
+                ]
+            ]
+        ],
+    }
 
 
 def test_a_hotel_keeps_its_source_id_and_selected_tags(layers: SeedLayers) -> None:

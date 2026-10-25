@@ -797,7 +797,7 @@ components:
           type: object
           nullable: true
           properties:
-            dem_source: { type: string, example: Copernicus GLO-30 }
+            dem_source: { type: string, example: Mapterhorn }
             terrain_tiles_url: { type: string, nullable: true }
 
     GeoFeature:

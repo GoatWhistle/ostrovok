@@ -198,6 +198,14 @@ export function HotelMap({
             >
               {t("explore:map.attribution")}
             </a>
+            <a
+              className={styles.attribution}
+              href="https://mapterhorn.com/attribution/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t("explore:map.terrainAttribution")}
+            </a>
           </div>
         </div>
       ) : null}

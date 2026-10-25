@@ -43,7 +43,7 @@ COALESCE(b.levels,
         THEN LEAST((b.tags->>'building:levels')::integer, 60) END),
 b.height_m IS NULL
 FROM hotels h JOIN buildings b
-  ON b.region_id = h.region_id AND b.id <> h.building_id
+  ON b.region_id = h.region_id AND (h.building_id IS NULL OR b.id <> h.building_id)
  AND ST_DWithin(b.footprint::geography, h.location::geography, %(radius)s)
 WHERE h.id = %(hotel_id)s
 ORDER BY b.footprint <-> h.location"""

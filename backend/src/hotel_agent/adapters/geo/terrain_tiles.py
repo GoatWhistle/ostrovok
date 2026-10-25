@@ -25,7 +25,10 @@ class CopernicusTerrainTiles:
 
 @lru_cache(maxsize=512)
 def render_tile(dem_path: str, z: int, x: int, y: int) -> bytes:
-    heights = read_heights(dem_path, z, x, y)
+    return encode_terrain(read_heights(dem_path, z, x, y))
+
+
+def encode_terrain(heights: np.ndarray) -> bytes:
     encoded = np.clip(np.rint((heights + 10_000) * 10), 0, 16_777_215).astype(np.uint32)
     channels = np.stack(
         ((encoded >> 16) & 255, (encoded >> 8) & 255, encoded & 255), axis=0
@@ -35,7 +38,10 @@ def render_tile(dem_path: str, z: int, x: int, y: int) -> bytes:
 
 @lru_cache(maxsize=512)
 def relief_tile(dem_path: str, z: int, x: int, y: int) -> bytes:
-    heights = read_heights(dem_path, z, x, y)
+    return encode_relief(read_heights(dem_path, z, x, y))
+
+
+def encode_relief(heights: np.ndarray) -> bytes:
     stops = [-10, 0, 1, 80, 350, 900, 1800]
     red = [14, 14, 221, 206, 152, 116, 234]
     green = [67, 67, 211, 205, 166, 136, 230]

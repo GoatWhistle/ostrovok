@@ -38,4 +38,7 @@ class IngestPbf:
             await self._writer.commit()
             batch_count += 1
             on_batch(batch_count, counts)
+        if "buildings" in selected_layers and counts["buildings"]:
+            await self._writer.link_hotels(region)
+            await self._writer.commit()
         return PbfIngestReport(region=region, batches=batch_count, counts=counts)
