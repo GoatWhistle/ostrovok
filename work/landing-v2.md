@@ -26,7 +26,11 @@ Feedback source: user messages in session, 2026-10-25.
 ## Follow-up feedback handled
 
 - Settings popover: language and theme are both segmented controls; hotelier link below a divider.
-- Logo lockup on the landing with contour rings and a ripple drawn from the mark.
+- Contour rings and the request-parsing demo were tried on the left half and removed on user feedback.
+- Reel: 14 places across Russia with name labels; elevation labels were removed because the DEM at
+  reel zoom underestimates peaks (Tyatya 1480 m vs 1819 m). Rosa Khutor removed: DEM tile edges.
+- Route fallback is the brand loader instead of a generic page skeleton.
+- Send button is round and transparent while disabled.
 - Send button centred on the first line of the composer (`SearchBox .actions`).
 - Map pixel ratio capped at 1.5 on both maps.
 
