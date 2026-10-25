@@ -58,7 +58,7 @@ Updated: 2026-10-25, Europe/Moscow
 
 ## Current state
 
-- Ветка `feat/hotel-agent-mvp`, опубликованный SHA `962a27e`.
+- Ветка `feat/hotel-agent-mvp`, SHA перед текущим перезапуском `afeb402`.
   Compose на localhost:8080/8000 healthy. Frontend Factmap, DeepSeek V4.1 Flash в бэкенде.
 - Nuitee sandbox подключён, City Park Hotel сопоставлен и имеет 8 категорий; тарифы Сочи
   не подтверждены. Факты и тесты: `docs/evidence.md`, `work/research/hotel-inventory.md`.
@@ -70,6 +70,9 @@ Updated: 2026-10-25, Europe/Moscow
   игнорируемый `data/raw/`. Перед стартом свободно 30 ГиБ; наблюдалось около 1,1 МБ/с,
   ETA 55–60 минут. `make fetch-russia` после скачивания проверяет MD5 и ставит `.ok`.
   Исследование и ссылки: `work/research/russia-map-download.md`.
+- После повторного `git pull --ff-only` новых коммитов не было. `make build` и
+  `docker compose up -d --force-recreate backend frontend` выполнены; backend, frontend и db
+  healthy, HTTP 200 на главной, health и карточке City Park. PBF на момент проверки 60,2%.
 
 ## Next actions and pitfalls
 
