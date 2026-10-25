@@ -12,6 +12,19 @@ PLAN = ROOT / "adversarial-10.md"
 URL = "http://127.0.0.1:8000/api/v1/search"
 
 
+def summarize(body: dict[str, object]) -> dict[str, object]:
+    results = body.get("results", [])
+    return {
+        "query_id": body.get("query_id"),
+        "parsed": body.get("parsed"),
+        "took_ms": body.get("took_ms"),
+        "results": [
+            {"hotel": item["hotel"], "score": item["score"], "matched": item["matched"]}
+            for item in results
+        ],
+    }
+
+
 def main() -> None:
     queries = []
     for line in PLAN.read_text().splitlines():
@@ -39,7 +52,7 @@ def main() -> None:
         try:
             with urllib.request.urlopen(request, timeout=120) as response:
                 record["status"] = response.status
-                record["response"] = json.load(response)
+                record["response"] = summarize(json.load(response))
         except (urllib.error.URLError, TimeoutError, ValueError) as error:
             record["error"] = str(error)
         record["elapsed_s"] = round(time.monotonic() - started, 2)
