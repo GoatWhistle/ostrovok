@@ -30,6 +30,7 @@ def build_parser() -> ArgumentParser:
     pbf.add_argument("--layers", nargs="+", default=["hotels", "pois"])
     pbf.add_argument("--batch-size", type=int, default=5_000)
     pbf.add_argument("--min-free-gib", type=float, default=6.0)
+    pbf.add_argument("--building-radius-m", type=float, default=0.0)
 
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")

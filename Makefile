@@ -46,7 +46,8 @@ ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-spa
 	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(BACKEND) hotel-agent ingest-pbf --region russia \
 		--pbf $(CURDIR)/data/raw/$${RUSSIA_SNAPSHOT:-russia-261024}.osm.pbf \
-		--layers $${RUSSIA_LAYERS:-hotels pois} --min-free-gib $${RUSSIA_MIN_FREE_GIB:-6}
+		--layers $${RUSSIA_LAYERS:-hotels pois} --min-free-gib $${RUSSIA_MIN_FREE_GIB:-6} \
+		--building-radius-m $${RUSSIA_BUILDING_RADIUS_M:-0}
 
 precompute: ## Compute characteristic facts from the loaded region
 	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \

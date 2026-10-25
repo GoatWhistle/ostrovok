@@ -20,7 +20,9 @@ from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
 from hotel_agent.adapters.log.stdlib import StdlibLogger
-from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource, iter_region_batches
+from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
+from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
+from hotel_agent.adapters.osm.pbf_stream import iter_region_batches
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
@@ -89,6 +91,8 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
         raise SystemExit(f"Invalid layers: {sorted(selected - valid)}")
     if args.min_free_gib < 1:
         raise SystemExit("min-free-gib must be at least 1")
+    if args.building_radius_m < 0:
+        raise SystemExit("building-radius-m must not be negative")
     bbox = parse_bbox(args.bbox)
     minimum = int(args.min_free_gib * 1024**3)
 
@@ -110,7 +114,20 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
         AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
         PostgresSeedWriter(pool) as writer,
     ):
-        batches = iter_region_batches(path, bbox, logger, selected, args.batch_size)
+        building_nearby = None
+        if "buildings" in selected and args.building_radius_m > 0:
+            async with pool.connection() as connection:
+                cursor = await connection.execute(
+                    "SELECT ST_X(location), ST_Y(location) FROM hotels WHERE region_id = %s",
+                    (args.region,),
+                )
+                locations = await cursor.fetchall()
+            if not locations:
+                raise SystemExit(f"No hotels in region {args.region}; import hotels first")
+            building_nearby = HotelProximity(locations, args.building_radius_m)
+        batches = iter_region_batches(
+            path, bbox, logger, selected, args.batch_size, building_nearby
+        )
         report = await IngestPbf(writer)(
             args.region, meta, batches, selected, check_capacity, on_batch
         )

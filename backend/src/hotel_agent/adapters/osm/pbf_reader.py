@@ -52,67 +52,6 @@ def read_region(path: Path, bbox: BBox, logger: LoggerPort) -> SeedLayers:
     return layers
 
 
-def iter_region_batches(
-    path: Path,
-    bbox: BBox,
-    logger: LoggerPort,
-    selected_layers: frozenset[str],
-    batch_size: int = 5_000,
-) -> Iterator[SeedLayers]:
-    if batch_size <= 0:
-        raise ValueError("batch_size must be positive")
-    layers = SeedLayers()
-    geojson = osmium.geom.GeoJSONFactory()
-    kept = 0
-    seen = 0
-    processor = osmium.FileProcessor(str(path)).with_locations("flex_mem")
-    if selected_layers & {"hotels", "pois", "buildings", "beaches"}:
-        processor = processor.with_areas()
-    processor = processor.with_filter(osmium.filter.EmptyTagFilter())
-    keys = _filter_keys(selected_layers)
-    if keys:
-        processor = processor.with_filter(osmium.filter.KeyFilter(*keys))
-    for obj in processor:
-        seen += 1
-        if seen % 10_000_000 == 0:
-            logger.info("country_scan", millions=seen // 1_000_000, kept=kept)
-        tags = dict(obj.tags)
-        if not tags:
-            continue
-        if isinstance(obj, osmium.osm.Area):
-            _area(obj, tags, geojson, bbox, layers, selected_layers)
-        elif isinstance(obj, osmium.osm.Node):
-            _node(obj, tags, bbox, layers, selected_layers)
-        elif isinstance(obj, osmium.osm.Way):
-            _way(obj, tags, geojson, bbox, layers, selected_layers)
-        size = sum(layers.counts().values())
-        if size >= batch_size:
-            kept += size
-            yield layers
-            layers = SeedLayers()
-    if sum(layers.counts().values()):
-        yield layers
-
-
-def _filter_keys(selected_layers: frozenset[str]) -> tuple[str, ...]:
-    keys: set[str] = set()
-    if "hotels" in selected_layers:
-        keys.add("tourism")
-    if "pois" in selected_layers:
-        keys.update(key for key in rules.POI_KEYS if key not in {"name", "opening_hours"})
-    if "buildings" in selected_layers:
-        keys.add("building")
-    if "beaches" in selected_layers:
-        keys.update(("natural", "leisure"))
-    if "coastline" in selected_layers:
-        keys.add("natural")
-    if "noise_sources" in selected_layers:
-        keys.update(("highway", "railway"))
-    if "walk" in selected_layers:
-        keys.add("highway")
-    return tuple(sorted(keys))
-
-
 def _node(
     obj: Any,
     tags: dict[str, str],
@@ -170,6 +109,7 @@ def _area(
     bbox: BBox,
     layers: SeedLayers,
     selected_layers: frozenset[str] | None = None,
+    building_nearby: Callable[[float, float], bool] | None = None,
 ) -> None:
     hotel = (selected_layers is None or "hotels" in selected_layers) and rules.is_hotel(tags)
     building = (selected_layers is None or "buildings" in selected_layers) and rules.is_building(
@@ -183,11 +123,16 @@ def _area(
     if polygon is None or not _touches(bbox, polygon):
         return
     identifier = f"{'r' if obj.from_way() is False else 'w'}{obj.orig_id()}"
-    if building:
+    centre = _centroid(polygon) if building and building_nearby else None
+    near = building_nearby is None or (
+        centre is not None
+        and building_nearby(float(centre["coordinates"][0]), float(centre["coordinates"][1]))
+    )
+    if building and near:
         layers.buildings.append(_feature(identifier, polygon, tags, rules.BUILDING_KEYS))
     if beach:
         layers.beaches.append(_feature(identifier, polygon, tags, ("natural", "leisure", "name")))
-    centre = _centroid(polygon)
+    centre = centre or _centroid(polygon)
     if centre is None:
         return
     if hotel:

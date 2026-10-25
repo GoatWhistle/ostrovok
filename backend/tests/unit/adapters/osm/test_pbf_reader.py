@@ -2,7 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from hotel_agent.adapters.osm.pbf_reader import iter_region_batches, read_region
+from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
+from hotel_agent.adapters.osm.pbf_reader import read_region
+from hotel_agent.adapters.osm.pbf_stream import iter_region_batches
 from hotel_agent.application.dto import SeedLayers
 from hotel_agent.application.ports.log import LogValue
 from hotel_agent.domain.value_objects import BBox
@@ -95,6 +97,23 @@ def test_streamed_building_layer_keeps_closed_ways(tmp_path: Path) -> None:
 
     assert [feature.id for batch in batches for feature in batch.buildings] == ["w100"]
     assert all(not batch.hotels and not batch.pois for batch in batches)
+
+
+def test_streamed_buildings_can_be_limited_to_hotel_neighborhoods(tmp_path: Path) -> None:
+    extract = tmp_path / "sample.osm"
+    extract.write_text(EXTRACT, encoding="utf-8")
+    distant = HotelProximity([(39.8, 43.8)], 500)
+    nearby = HotelProximity([(39.713, 43.572)], 500)
+
+    rejected = list(
+        iter_region_batches(extract, BBOX, SilentLogger(), frozenset({"buildings"}), 1, distant)
+    )
+    accepted = list(
+        iter_region_batches(extract, BBOX, SilentLogger(), frozenset({"buildings"}), 1, nearby)
+    )
+
+    assert rejected == []
+    assert [feature.id for batch in accepted for feature in batch.buildings] == ["w100"]
 
 
 def test_a_hotel_keeps_its_source_id_and_selected_tags(layers: SeedLayers) -> None:
