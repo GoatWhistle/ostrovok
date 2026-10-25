@@ -5,6 +5,8 @@ import { motionMs, prefersReducedMotion, usePresence } from "@/shared/motion"
 import { Button, Icon } from "@/shared/ui"
 import styles from "./map-controls.module.css"
 
+const ROTATE_STEP = 30
+
 export interface MapControlsProps {
   readonly map: RefObject<MapLibreMap | null>
   readonly ready: boolean
@@ -99,7 +101,7 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
           disabled={disabled}
           onClick={(event) =>
             map.current?.easeTo({
-              bearing: (map.current?.getBearing() ?? 0) - 45,
+              bearing: (map.current?.getBearing() ?? 0) - ROTATE_STEP,
               duration: duration(event),
             })
           }
@@ -127,7 +129,7 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
           disabled={disabled}
           onClick={(event) =>
             map.current?.easeTo({
-              bearing: (map.current?.getBearing() ?? 0) + 45,
+              bearing: (map.current?.getBearing() ?? 0) + ROTATE_STEP,
               duration: duration(event),
             })
           }

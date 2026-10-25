@@ -9,6 +9,7 @@ export interface ResizableOptions {
   readonly initial: `--${string}`
   readonly min: `--${string}`
   readonly max: `--${string}`
+  readonly variable: `--${string}`
 }
 
 export interface Resizable {
@@ -40,7 +41,14 @@ function remember(key: string, value: number | undefined) {
   }
 }
 
-export function useResizable({ storageKey, edge, initial, min, max }: ResizableOptions): Resizable {
+export function useResizable({
+  storageKey,
+  edge,
+  initial,
+  min,
+  max,
+  variable,
+}: ResizableOptions): Resizable {
   const [width, setWidth] = useState(() => stored(storageKey))
   const bounds = { min: readPixels(min), max: readPixels(max) }
   const clamp = useCallback(
@@ -65,17 +73,25 @@ export function useResizable({ storageKey, edge, initial, min, max }: ResizableO
     const from = panel?.getBoundingClientRect().width ?? readPixels(initial)
     handle.setPointerCapture(event.pointerId)
     handle.dataset.dragging = "true"
-    const shift = (clientX: number) =>
-      (clamp(from + (clientX - start) * direction) - from) * direction
-    const move = (moveEvent: globalThis.PointerEvent) =>
-      handle.style.setProperty("--resize-shift", `${shift(moveEvent.clientX)}px`)
+    const root = handle.closest<HTMLElement>("[data-resize-root]")
+    const widthAt = (clientX: number) => clamp(from + (clientX - start) * direction)
+    let frame = 0
+    let latest = from
+    const move = (moveEvent: globalThis.PointerEvent) => {
+      latest = widthAt(moveEvent.clientX)
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        frame = 0
+        root?.style.setProperty(variable, `${latest}px`)
+      })
+    }
     const stop = (upEvent: globalThis.PointerEvent) => {
       handle.removeEventListener("pointermove", move)
       handle.removeEventListener("pointerup", stop)
       handle.removeEventListener("pointercancel", stop)
+      cancelAnimationFrame(frame)
       delete handle.dataset.dragging
-      handle.style.removeProperty("--resize-shift")
-      apply(from + shift(upEvent.clientX) * direction)
+      apply(widthAt(upEvent.clientX))
     }
     handle.addEventListener("pointermove", move)
     handle.addEventListener("pointerup", stop)

@@ -37,7 +37,7 @@ export function lightMode(altitude: number): LightMode {
   return "day"
 }
 
-function scenePalette(colors: TerrainColors, mode: LightMode) {
+export function scenePalette(colors: TerrainColors, mode: LightMode) {
   if (mode === "night")
     return { sea: colors.seaNight, sky: colors.skyNight, horizon: colors.horizonNight }
   if (mode === "dusk")

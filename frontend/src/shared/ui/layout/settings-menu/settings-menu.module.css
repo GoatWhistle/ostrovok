@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.root .trigger {
+.root .glass {
   --button-surface: var(--surface-glass);
 
   box-shadow: var(--shadow-float);
@@ -10,7 +10,7 @@
 }
 
 .panel {
-  composes: floatingSurface from "../../shared/styles/compose.module.css";
+  composes: floatingSurface from "../../../styles/compose.module.css";
   position: absolute;
   inset-block-start: calc(100% + var(--space-8));
   inset-inline-end: 0;
@@ -37,7 +37,7 @@
 }
 
 .label {
-  composes: bodySmText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../../styles/compose.module.css";
   color: var(--text-secondary);
 }
 
@@ -48,6 +48,6 @@
   box-shadow: var(--shadow-divider-top);
 }
 
-.link {
+.footer > * {
   inline-size: 100%;
 }
