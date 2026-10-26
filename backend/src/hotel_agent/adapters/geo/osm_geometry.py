@@ -167,7 +167,16 @@ class OSMViewGeometry:
             identifier = ("r" if element.tag == "relation" else "w") + element.attrib["id"]
             if (tags.get("building") or tags.get("building:part")) and identifier not in objects:
                 missing.append(identifier)
-        for identifier in missing[:8]:
+        downloads = 0
+        for identifier in missing:
+            object_path = self._cache / f"{identifier}.osm" if self._cache else None
+            cached = identifier in self._memory or (
+                object_path is not None and object_path.is_file()
+            )
+            if not cached:
+                if downloads >= 8:
+                    continue
+                downloads += 1
             recovered = await self.object(identifier)
             if recovered is not None:
                 objects[identifier] = (recovered.tags, recovered.geometry)
