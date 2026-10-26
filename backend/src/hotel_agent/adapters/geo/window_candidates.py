@@ -206,7 +206,19 @@ class WindowCandidates:
                                 )
                             )
             if hotel_rays:
-                groups.append(hotel_rays)
+                by_target: dict[str, list[WindowRay]] = {}
+                for ray in hotel_rays:
+                    by_target.setdefault(ray.target.id, []).append(ray)
+                for samples in by_target.values():
+                    samples.sort(key=lambda ray: -ray.target_height.minimum_m)
+                groups.append(
+                    [
+                        ray
+                        for batch in zip_longest(*by_target.values())
+                        for ray in batch
+                        if ray is not None
+                    ]
+                )
             if not found_observer and hotel.id not in reasons:
                 rejected.append(hotel.id)
                 reasons[hotel.id] = (

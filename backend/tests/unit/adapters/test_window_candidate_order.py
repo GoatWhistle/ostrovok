@@ -57,3 +57,17 @@ async def test_complex_target_does_not_spend_all_rays_on_first_hotels() -> None:
     assert not prepared.unchecked
     counts = [sum(ray.hotel_id == h.id for ray in prepared.rays) for h in hotels]
     assert max(counts) - min(counts) <= 1
+
+
+async def test_many_hotels_still_check_distinct_target_parts_and_dome_apex() -> None:
+    hotels = tuple(replace(hotel(), id=f"hotel{i}") for i in range(64))
+    prepared = await WindowCandidates(PartsGeometry()).prepare(
+        hotels,
+        request(),
+        {h.id: NamedPlaceRecord(id="n20", name="Собор", location=(39.01, 43)) for h in hotels},
+        {},
+    )
+    for candidate in hotels:
+        rays = [ray for ray in prepared.rays if ray.hotel_id == candidate.id]
+        assert {ray.target.id for ray in rays} >= {"cross", "n20", "dome"}
+        assert any(ray.target.id == "dome" and ray.target_height.minimum_m >= 95 for ray in rays)
