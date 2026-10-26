@@ -3,6 +3,7 @@ from dataclasses import replace
 from hotel_agent.adapters.geo.window_candidates import WindowCandidates
 from hotel_agent.application.dto import NamedPlaceRecord
 from hotel_agent.application.ports.view_geometry import PhysicalObject
+from tests.unit.adapters.test_view_components import PartsGeometry
 from tests.unit.adapters.test_window_views import Geometry, hotel, request, square
 
 
@@ -31,3 +32,28 @@ async def test_shore_hotel_is_checked_before_hotels_near_remote_water_centroid()
     )
     assert near.id not in prepared.unchecked
     assert prepared.rays[0].hotel_id == near.id
+
+
+async def test_complex_target_does_not_spend_all_rays_on_first_hotels() -> None:
+    geometry = PartsGeometry()
+    geometry.parts = tuple(
+        PhysicalObject(
+            f"part{i}",
+            {"building:part": "yes", "height": str(20 + i)},
+            square(39.01, 0.00001),
+            "test:part",
+        )
+        for i in range(30)
+    )
+    hotels = tuple(replace(hotel(), id=f"hotel{i}") for i in range(10))
+    prepared = await WindowCandidates(geometry).prepare(
+        hotels,
+        request(),
+        {h.id: NamedPlaceRecord(id="n20", name="Fortress", location=(39.01, 43)) for h in hotels},
+        {},
+    )
+    assert len(prepared.rays) <= 216
+    assert {ray.hotel_id for ray in prepared.rays} == {h.id for h in hotels}
+    assert not prepared.unchecked
+    counts = [sum(ray.hotel_id == h.id for ray in prepared.rays) for h in hotels]
+    assert max(counts) - min(counts) <= 1

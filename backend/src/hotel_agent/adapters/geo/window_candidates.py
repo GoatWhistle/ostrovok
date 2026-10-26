@@ -1,5 +1,6 @@
 from collections.abc import Mapping, Sequence
 from dataclasses import replace
+from itertools import islice, zip_longest
 
 from shapely.geometry import shape
 
@@ -26,7 +27,7 @@ class WindowCandidates:
         targets: Mapping[str, NamedPlaceRecord | tuple[float, float]],
         buildings: Mapping[str, SceneBuilding],
     ) -> PreparedViews:
-        rays: list[WindowRay] = []
+        groups: list[list[WindowRay]] = []
         reasons: dict[str, str] = {}
         rejected: list[str] = []
         unchecked: list[str] = []
@@ -75,7 +76,7 @@ class WindowCandidates:
                 )
                 continue
             tags = own.tags if own else {}
-            if footprint is None and hotel.id.startswith(("w", "r")) and len(rays) < 216:
+            if footprint is None and hotel.id.startswith(("w", "r")):
                 recovered = await self._geometry.object(hotel.id)
                 if recovered is not None and recovered.geometry["type"] in {
                     "Polygon",
@@ -116,12 +117,6 @@ class WindowCandidates:
             if dimensions.levels is None and lower > 1:
                 reasons[hotel.id] = (
                     "Неизвестна этажность здания: запрошенный этаж подтвердить невозможно."
-                )
-                continue
-            if len(rays) >= 216:
-                unchecked.append(hotel.id)
-                reasons[hotel.id] = (
-                    "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска."
                 )
                 continue
             identifier = target.id if isinstance(target, NamedPlaceRecord) else str(target)
@@ -179,6 +174,7 @@ class WindowCandidates:
                 if request.target_part == "top"
                 else tuple(objective.id for objective in objectives)
             )
+            hotel_rays: list[WindowRay] = []
             found_observer = False
             for objective in objectives:
                 if objective.id not in choices:
@@ -196,10 +192,10 @@ class WindowCandidates:
                     )
                     found_observer = found_observer or bool(observers)
                     for observer in observers[:3]:
-                        if len(rays) < 216:
-                            rays.append(
+                        if len(hotel_rays) < 216:
+                            hotel_rays.append(
                                 WindowRay(
-                                    f"{hotel.id}:{len(rays)}",
+                                    f"{hotel.id}:{len(hotel_rays)}",
                                     hotel.id,
                                     observer,
                                     dimensions,
@@ -209,11 +205,16 @@ class WindowCandidates:
                                     tuple(range(lower, upper + 1)),
                                 )
                             )
+            if hotel_rays:
+                groups.append(hotel_rays)
             if not found_observer and hotel.id not in reasons:
                 rejected.append(hotel.id)
                 reasons[hotel.id] = (
                     "С запрошенной стороны здания ориентир не попадает в поле зрения окна."
                 )
+        rays = islice(
+            (ray for batch in zip_longest(*groups) for ray in batch if ray is not None), 216
+        )
         return PreparedViews(
             request, tuple(hotels), tuple(rays), reasons, tuple(rejected), tuple(unchecked)
         )
