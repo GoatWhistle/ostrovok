@@ -343,7 +343,7 @@ paths:
     post:
       tags: [hotels]
       operationId: compareHotels
-      summary: Сравнение отелей по характеристикам (этап 2)
+      summary: Сравнение отелей по характеристикам
       requestBody:
         required: true
         content:
@@ -372,6 +372,31 @@ paths:
                         cells:
                           type: object
                           additionalProperties: { $ref: "#/components/schemas/FactBrief" }
+
+  /places/{place_id}:
+    get:
+      tags: [geo]
+      operationId: getPlace
+      summary: Объект OpenStreetMap и путь от выбранного отеля
+      parameters:
+        - name: place_id
+          in: path
+          required: true
+          schema: { type: string }
+        - name: from_hotel
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PlaceCard" }
+        "404":
+          description: Объект или отель не найден
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
 
   /hotelier/{hotel_id}/questions:
     get:
@@ -555,6 +580,13 @@ components:
         unit: { type: string, nullable: true, example: min }
         scope: { type: string, enum: [hotel, room, facade] }
         ttl_days: { type: integer, example: 365 }
+        compare:
+          type: object
+          nullable: true
+          required: [group]
+          properties:
+            group: { type: string, enum: [location, view, room, nearby, amenities] }
+            better: { type: string, enum: [lower, higher, null], nullable: true }
         source_kinds:
           type: array
           items: { $ref: "#/components/schemas/SourceType" }
@@ -564,6 +596,37 @@ components:
             icon: { type: string, example: waves }
             color: { type: string, description: "hex для подсветки", example: "#1E88E5" }
             geo_style: { type: string, enum: [line, points, polygon, viewshed, facade], example: line }
+
+    PlaceCard:
+      type: object
+      required: [id, name, kind, location, osm_ref, tags, source, facts, walk]
+      properties:
+        id: { type: string }
+        name: { type: string, nullable: true }
+        kind: { type: string }
+        location: { type: array, minItems: 2, maxItems: 2, items: { type: number } }
+        osm_ref: { type: string }
+        tags: { type: object, additionalProperties: { type: string } }
+        source:
+          type: object
+          required: [type, extracted_at, license, url]
+          properties:
+            type: { type: string, enum: [osm_tag] }
+            extracted_at: { type: string, format: date-time }
+            license: { type: string, enum: [ODbL] }
+            url: { type: string, format: uri }
+        facts:
+          type: array
+          items: { $ref: "#/components/schemas/FactBrief" }
+        walk:
+          type: object
+          nullable: true
+          required: [distance_m, minutes, geo_ref, mode]
+          properties:
+            distance_m: { type: number, minimum: 0 }
+            minutes: { type: number, minimum: 0, nullable: true }
+            geo_ref: { type: string }
+            mode: { type: string, enum: [graph, straight] }
 
     SourceType:
       type: string

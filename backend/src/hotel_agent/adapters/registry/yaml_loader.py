@@ -6,7 +6,10 @@ from typing import Self
 import yaml
 
 from hotel_agent.domain.characteristics import (
+    BetterDirection,
     Characteristic,
+    CompareGroup,
+    CompareHint,
     Display,
     FieldKind,
     FieldRule,
@@ -73,7 +76,19 @@ def _characteristic(path: Path) -> Characteristic:
             _parse_choice(item, SourceType, f"{where}.source_kinds")
             for item in _text_list(data, "source_kinds", where)
         ),
+        compare=_compare(data.get("compare"), where),
         display=_display(_mapping(data.get("display"), f"{where}.display"), where),
+    )
+
+
+def _compare(raw: object, where: str) -> CompareHint | None:
+    if raw is None:
+        return None
+    data = _mapping(raw, f"{where}.compare")
+    better = _optional_text(data, "better", where)
+    return CompareHint(
+        group=_choice(data, "group", CompareGroup, where),
+        better=_parse_choice(better, BetterDirection, where) if better else None,
     )
 
 

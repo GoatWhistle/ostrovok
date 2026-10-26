@@ -1,0 +1,21 @@
+key: nearby
+title_ru: Объекты рядом
+description: Категория для характеристик найденных поблизости объектов OpenStreetMap.
+value_type: number
+unit: count
+scope: hotel
+conflict_tolerance: 0
+tool: null
+ttl_days: 365
+precompute: false
+ask_hotelier_if_missing: false
+question_template: null
+source_kinds: [osm, computed]
+display:
+  icon: map-pin
+  color: "#1E88E5"
+  geo_style: points
+synonyms: []
+matchers: []
+fields: []
+compare: { group: nearby }

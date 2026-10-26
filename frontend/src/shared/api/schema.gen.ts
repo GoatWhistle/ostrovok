@@ -269,8 +269,25 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Сравнение отелей по характеристикам (этап 2) */
+        /** Сравнение отелей по характеристикам */
         post: operations["compareHotels"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/places/{place_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Объект OpenStreetMap и путь от выбранного отеля */
+        get: operations["getPlace"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -434,6 +451,12 @@ export interface components {
             scope: "hotel" | "room" | "facade";
             /** @example 365 */
             ttl_days?: number;
+            compare?: {
+                /** @enum {string} */
+                group: "location" | "view" | "room" | "nearby" | "amenities";
+                /** @enum {string|null} */
+                better?: "lower" | "higher" | null;
+            } | null;
             source_kinds?: components["schemas"]["SourceType"][];
             display?: {
                 /** @example waves */
@@ -449,6 +472,34 @@ export interface components {
                  */
                 geo_style?: "line" | "points" | "polygon" | "viewshed" | "facade";
             };
+        };
+        PlaceCard: {
+            id: string;
+            name: string | null;
+            kind: string;
+            location: number[];
+            osm_ref: string;
+            tags: {
+                [key: string]: string;
+            };
+            source: {
+                /** @enum {string} */
+                type: "osm_tag";
+                /** Format: date-time */
+                extracted_at: string;
+                /** @enum {string} */
+                license: "ODbL";
+                /** Format: uri */
+                url: string;
+            };
+            facts: components["schemas"]["FactBrief"][];
+            walk: {
+                distance_m: number;
+                minutes: number | null;
+                geo_ref: string;
+                /** @enum {string} */
+                mode: "graph" | "straight";
+            } | null;
         };
         /** @enum {string} */
         SourceType: "osm" | "dem" | "computed" | "open_meteo" | "hotelier" | "llm_extraction" | "supplier";
@@ -1327,6 +1378,39 @@ export interface operations {
                             };
                         }[];
                     };
+                };
+            };
+        };
+    };
+    getPlace: {
+        parameters: {
+            query?: {
+                from_hotel?: string;
+            };
+            header?: never;
+            path: {
+                place_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlaceCard"];
+                };
+            };
+            /** @description Объект или отель не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
