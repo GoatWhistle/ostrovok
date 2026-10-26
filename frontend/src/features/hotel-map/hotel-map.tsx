@@ -13,7 +13,7 @@ import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
 import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
-import { MapFocus, MapStatus, MapWarning } from "./map-status"
+import { MapFocus, MapStatus, mapNotes } from "./map-status"
 import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, sceneToday, sunScene } from "./scene-time/scene-time"
@@ -194,11 +194,6 @@ export function HotelMap({
       {selectedCamera ? (
         <div className={styles.bottom}>
           <div className={styles.bottomStart}>
-            <MapWarning
-              invalid={invalid}
-              missingHeight={missingHeight}
-              textureStatus={map.textureStatus}
-            />
             <SceneTimePanel
               date={date}
               minDate={today}
@@ -230,6 +225,7 @@ export function HotelMap({
         ready={map.ready}
         disabled={!selectedCamera || map.failed || !map.ready}
         onOverview={showOverview}
+        notes={mapNotes(invalid, missingHeight, map.textureStatus)}
       />
     </section>
   )

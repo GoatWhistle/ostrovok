@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type MouseEvent, type RefObject, useEffect, useRef, useState } from "react"
-import { useTranslation } from "@/shared/i18n"
+import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { motionMs, prefersReducedMotion } from "@/shared/motion"
 import { Button } from "@/shared/ui"
 import styles from "./map-controls.module.css"
@@ -13,6 +13,7 @@ export interface MapControlsProps {
   readonly ready: boolean
   readonly disabled: boolean
   readonly onOverview: (instant: boolean) => void
+  readonly notes: readonly MessageKey[]
 }
 
 function duration(event: MouseEvent<HTMLButtonElement>): number {
@@ -50,7 +51,7 @@ function useFlat(map: RefObject<MapLibreMap | null>, ready: boolean) {
   return flat
 }
 
-export function MapControls({ map, ready, disabled, onOverview }: MapControlsProps) {
+export function MapControls({ map, ready, disabled, onOverview, notes }: MapControlsProps) {
   const { t } = useTranslation()
   const [legend, setLegend] = useState(false)
   const compass = useBearing(map, ready)
@@ -176,12 +177,13 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
             title={t("explore:map.layers")}
             aria-expanded={legend}
             aria-pressed={legend}
+            data-notes={notes.length > 0 || undefined}
             onClick={() => setLegend((current) => !current)}
           >
             {t("explore:map.layers")}
           </Button>
         </div>
-        <MapLegend open={legend} />
+        <MapLegend open={legend} notes={notes} />
       </div>
     </div>
   )

@@ -110,3 +110,23 @@
   color: var(--text-secondary);
   text-align: end;
 }
+
+.notes {
+  composes: plainList from "../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+}
+
+.note {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-columns: var(--legend-swatch) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-12);
+  color: var(--text-secondary);
+}
+
+.noteIcon {
+  justify-self: center;
+  color: var(--text-warning);
+}

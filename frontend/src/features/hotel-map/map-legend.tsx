@@ -19,7 +19,13 @@ const GESTURES: readonly { readonly input: MessageKey; readonly action: MessageK
   { input: "explore:map.gestureTouch", action: "explore:map.gestureTouchAction" },
 ]
 
-export function MapLegend({ open }: { readonly open: boolean }) {
+export function MapLegend({
+  open,
+  notes,
+}: {
+  readonly open: boolean
+  readonly notes: readonly MessageKey[]
+}) {
   const { t } = useTranslation()
   const presence = usePresence(open)
   if (!presence.mounted) return null
@@ -45,6 +51,19 @@ export function MapLegend({ open }: { readonly open: boolean }) {
           </li>
         ))}
       </ul>
+      {notes.length ? (
+        <>
+          <p className={styles.title}>{t("explore:map.approximateTitle")}</p>
+          <ul className={styles.notes}>
+            {notes.map((note) => (
+              <li key={note} className={styles.note}>
+                <Icon name="partial" size="sm" className={styles.noteIcon} />
+                <span>{t(note)}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
       <p className={styles.title}>{t("explore:map.controlsTitle")}</p>
       <dl className={styles.gestures}>
         {GESTURES.map((gesture) => (
