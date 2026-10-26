@@ -15,7 +15,7 @@ class PartsGeometry(Geometry):
         self.target = PhysicalObject(
             "n20", {"name": "Собор", "height": "100"}, square(39.01, 0.0003), "test:cathedral"
         )
-        self.parts = (
+        self.parts: tuple[PhysicalObject, ...] = (
             PhysicalObject(
                 "cross",
                 {"building:part": "yes", "height": "110"},
@@ -82,3 +82,29 @@ def test_component_constraints_have_distinct_cache_identity() -> None:
     assert dome is not None and onion is not None
     assert spatial_key(dome) != spatial_key(onion)
     assert spatial_key(dome) != spatial_key(replace(request(), source_text=dome.source_text))
+
+
+async def test_any_component_checks_middle_part_between_nearest_and_highest() -> None:
+    geometry = PartsGeometry()
+    geometry.parts = tuple(
+        PhysicalObject(
+            identifier,
+            {"building:part": "yes", "height": str(height), "roof:shape": "dome"},
+            square(longitude, 0.00001),
+            "test:dome",
+        )
+        for identifier, height, longitude in (
+            ("highest", 110, 39.0102),
+            ("middle", 96, 39.01),
+            ("nearest", 60, 39.0098),
+        )
+    )
+    wanted = component_request()
+    assert wanted is not None
+    prepared = await WindowCandidates(geometry).prepare(
+        (hotel(),),
+        replace(wanted, target_part="any"),
+        {"h1": NamedPlaceRecord(id="n20", name="Собор", location=(39.01, 43))},
+        {},
+    )
+    assert {ray.target.id for ray in prepared.rays} == {"highest", "middle", "nearest"}

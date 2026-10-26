@@ -5,7 +5,7 @@ from shapely.geometry import shape
 
 from hotel_agent.adapters.geo.building_dimensions import building_dimensions
 from hotel_agent.adapters.geo.facade_observers import facade_observers
-from hotel_agent.adapters.geo.window_targets import WindowTargets, target_point
+from hotel_agent.adapters.geo.window_targets import WindowTargets, target_point, target_points
 from hotel_agent.application.dto import NamedPlaceRecord, SearchHotelRecord
 from hotel_agent.application.ports.view_geometry import PhysicalObject, ViewGeometryPort
 from hotel_agent.application.ports.view_scenes import SceneBuilding
@@ -174,45 +174,41 @@ class WindowCandidates:
                     else "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием."
                 )
                 continue
-            nearest = min(
-                objectives,
-                key=lambda item: distance_m(hotel.location, target_point(item, hotel.location)[0]),
-            )
             choices = (
                 (objectives[0].id,)
                 if request.target_part == "top"
-                else tuple(dict.fromkeys([nearest.id, objectives[0].id]))
+                else tuple(objective.id for objective in objectives)
             )
             found_observer = False
             for objective in objectives:
                 if objective.id not in choices:
                     continue
-                position, height = target_point(
+                for position, height in target_points(
                     objective, hotel.location, top=request.target_part == "top"
-                )
-                if distance_m(hotel.location, position) > request.radius_m:
-                    reasons[hotel.id] = (
-                        "Ориентир находится за пределами запрошенной области проверки вида."
-                    )
-                    continue
-                observers = facade_observers(
-                    footprint, hotel.location, position, request.facade_azimuth_deg
-                )
-                found_observer = found_observer or bool(observers)
-                for observer in observers[:3]:
-                    if len(rays) < 216:
-                        rays.append(
-                            WindowRay(
-                                f"{hotel.id}:{len(rays)}",
-                                hotel.id,
-                                observer,
-                                dimensions,
-                                objective,
-                                position,
-                                height,
-                                tuple(range(lower, upper + 1)),
-                            )
+                ):
+                    if distance_m(hotel.location, position) > request.radius_m:
+                        reasons[hotel.id] = (
+                            "Ориентир находится за пределами запрошенной области проверки вида."
                         )
+                        continue
+                    observers = facade_observers(
+                        footprint, hotel.location, position, request.facade_azimuth_deg
+                    )
+                    found_observer = found_observer or bool(observers)
+                    for observer in observers[:3]:
+                        if len(rays) < 216:
+                            rays.append(
+                                WindowRay(
+                                    f"{hotel.id}:{len(rays)}",
+                                    hotel.id,
+                                    observer,
+                                    dimensions,
+                                    objective,
+                                    position,
+                                    height,
+                                    tuple(range(lower, upper + 1)),
+                                )
+                            )
             if not found_observer and hotel.id not in reasons:
                 rejected.append(hotel.id)
                 reasons[hotel.id] = (

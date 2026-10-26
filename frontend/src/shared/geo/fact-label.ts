@@ -1,6 +1,7 @@
 import type { Fact, FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { Locale } from "@/shared/i18n"
 import { i18n } from "@/shared/i18n/instance"
+import { viewExplanation } from "./view-explanation"
 
 function number(value: unknown, locale: Locale) {
   return typeof value === "number" && Number.isFinite(value)
@@ -97,7 +98,7 @@ export function factExplanation(fact: Fact, locale: Locale): string | undefined 
   if (fact.characteristic_key === "noise_level")
     return i18n.t("explore:facts.noiseExplanation", { lng: locale })
   if (locale === "ru") return fact.explanation ?? undefined
-  const view = windowExplanation(fact, locale)
+  const view = viewExplanation(fact, locale) ?? windowExplanation(fact, locale)
   if (view) return view
   return i18n.t(
     fact.characteristic_key === "distance_to_sea"

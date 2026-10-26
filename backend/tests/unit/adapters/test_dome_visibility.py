@@ -156,3 +156,18 @@ def test_roof_in_front_of_requested_apex_is_still_checked() -> None:
     samples = scene_samples(ray, (building,))
     profile = obstacles(samples, {key: 0 for key in samples.points})
     assert any(p.id == "dome" and p.geometry_model == "dome_envelope@1" for p in profile)
+
+
+def test_only_exact_target_object_uses_shared_ground_datum() -> None:
+    ray, building = dome_scene(TAGS)
+    samples = scene_samples(ray, (building,))
+    heights = {key: 0.0 for key in samples.points}
+    base = ElevationRange(8, 12)
+    same = obstacles(samples, heights, "dome", base)
+    unrelated = obstacles(samples, heights, "other-building", base)
+    assert all(p.shared_target_ground_span_m == 4 for p in same if p.kind == "building")
+    assert all(p.shared_target_ground_span_m == 0 for p in unrelated)
+    assert max(p.elevation.maximum_m for p in same if p.elevation and p.elevation.maximum_m) > 40
+    assert (
+        max(p.elevation.maximum_m for p in unrelated if p.elevation and p.elevation.maximum_m) < 34
+    )

@@ -4,6 +4,7 @@ from shapely.ops import nearest_points
 
 from hotel_agent.adapters.geo.building_dimensions import building_dimensions, length_values
 from hotel_agent.adapters.geo.roof_profile import dome_apex
+from hotel_agent.adapters.geo.roof_targets import dome_surface_points
 from hotel_agent.application.dto import NamedPlaceRecord
 from hotel_agent.application.ports.view_geometry import PhysicalObject, ViewGeometryPort
 from hotel_agent.domain.visibility import ElevationRange
@@ -95,3 +96,10 @@ def target_point(
     if target.tags.get("natural") in {"peak", "volcano", "hill"}:
         height = ElevationRange(0, 0)
     return (point.x, point.y), height
+
+
+def target_points(
+    target: PhysicalObject, hotel: tuple[float, float], *, top: bool = False
+) -> tuple[tuple[tuple[float, float], ElevationRange], ...]:
+    edge = target_point(target, hotel, top=top)
+    return (edge,) if top else (edge, *dome_surface_points(target, hotel))
