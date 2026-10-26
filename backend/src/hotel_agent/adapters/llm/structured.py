@@ -120,7 +120,7 @@ class StructuredLLM:
 
     async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]:
         raw = await self._completion.complete(
-            system=text_evidence.SYSTEM,
+            system=text_evidence.instructions(context),
             user=context,
             schema=text_evidence.schema(),
             planning=True,

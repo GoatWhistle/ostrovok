@@ -165,3 +165,21 @@ def test_more_specific_wish_is_not_dropped_when_it_contains_a_basic_condition() 
         wishes=("с бассейном с морской водой",),
     )
     assert exploration_terms(parsed) == ("с бассейном", "с бассейном с морской водой")
+
+
+def test_facade_within_requested_bound_wins_over_a_restricted_near_miss() -> None:
+    term = "тихо"
+    intent = Intent(
+        characteristic_key="noise_level",
+        op=Op.LTE,
+        value=3,
+        weight=1,
+        required=False,
+        source_text=term,
+    )
+    near_miss = replace(record("noise_level", 3.8), facade_azimuth=90)
+    quiet = replace(record("noise_level", 0.5), facade_azimuth=270)
+    result = native_facts(term, RequestedEvidence((intent,), (near_miss, quiet)), NOW)
+    assert result[0].qualifiers["native_value"] == 0.5
+    assert result[0].facade_azimuth == 270
+    assert result[0].qualifiers["estimated_match"]

@@ -1,6 +1,5 @@
 import json
 from collections.abc import Mapping, Sequence
-from dataclasses import asdict
 
 from hotel_agent.application.agent.semantic_review import ReviewClaim, ReviewResult, SemanticReview
 from hotel_agent.application.dto import SearchHotelRecord
@@ -33,11 +32,25 @@ def recommendation_claim(
     hotel: SearchHotelRecord, scored: Scored, parsed: ParsedQuery
 ) -> ReviewClaim:
     claims = [
-        {"wish": match.intent.source_text, "quality": str(match.quality)}
+        {
+            "wish": match.intent.source_text,
+            "quality": str(match.quality),
+            "explanation": match.fact.explanation if match.fact else "Нет подтверждённого факта",
+            "guaranteed": match.quality is MatchQuality.FULL,
+        }
         for match in scored.matches
     ]
     evidence = {
-        "hotel": asdict(hotel),
+        "hotel": {
+            "id": hotel.id,
+            "name": hotel.name,
+            "region_id": hotel.region_id,
+            "location": hotel.location,
+            "address": hotel.address,
+            "stars": hotel.stars,
+            "height_m": hotel.height_m,
+            "levels": hotel.levels,
+        },
         "facts": [
             {
                 "wish": match.intent.source_text,

@@ -6,7 +6,10 @@ from unittest.mock import AsyncMock, MagicMock
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
-from hotel_agent.application.agent.recommendation_review import RecommendationReview
+from hotel_agent.application.agent.recommendation_review import (
+    RecommendationReview,
+    recommendation_claim,
+)
 from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.agent.wish_evidence import wish_intent
 from hotel_agent.application.dto import SearchHotelRecord
@@ -15,7 +18,7 @@ from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, ParsedQuery
-from hotel_agent.domain.services.scoring import Scored, score
+from hotel_agent.domain.services.scoring import MatchQuality, Scored, score
 from tests.unit.application.test_city_search import search
 from tests.unit.application.test_data_explorer import NOW, hotel
 from tests.unit.application.test_wish_native_and_ranking import record
@@ -155,3 +158,23 @@ async def test_search_filters_rejected_hotels_before_saving_their_facts() -> Non
     assert [result.hotel.id for result in outcome.results] == ["m2"]
     assert outcome.review and outcome.review.rejected_ids == ("m1",)
     assert {row.hotel_id for row in repository.save_facts.await_args.args[0]} == {"m2"}
+
+
+def test_estimated_match_review_includes_the_actual_displayed_limitations() -> None:
+    parsed, rows = candidates(1)
+    candidate, scored = rows[0]
+    partial = replace(
+        scored.matches[0],
+        quality=MatchQuality.PARTIAL,
+        fact=fact_from_record(
+            replace(
+                record("derived:quiet", True, candidate.id),
+                explanation="Оценка 0–10 по расстоянию до дорог; не замер звука",
+            )
+        ),
+    )
+    claim = recommendation_claim(candidate, replace(scored, matches=(partial,)), parsed)
+    displayed = json.loads(claim.answer)["matches"][0]
+    assert displayed["guaranteed"] is False
+    assert "не замер звука" in displayed["explanation"]
+    assert "footprint" not in json.loads(claim.evidence)["hotel"]

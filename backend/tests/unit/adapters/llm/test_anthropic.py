@@ -4,6 +4,7 @@ from typing import Any
 import httpx
 import pytest
 
+from hotel_agent.adapters.llm import text_evidence
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.domain.errors import ModelFailure
 from hotel_agent.domain.query import ParsedQuery
@@ -200,5 +201,30 @@ async def test_agent_exploration_and_evidence_use_structured_output(
             body = json.loads(request.content)
             assert body["max_tokens"] == 2000
             assert body["output_config"]["format"]["type"] == "json_schema"
+    finally:
+        await llm.aclose()
+
+
+@pytest.mark.parametrize(
+    "mode", ("recommendation_scope", "answer_scope", "measurement_scope", None)
+)
+async def test_semantic_review_uses_instructions_for_the_claim_scope(
+    anthropic_build: AnthropicBuild,
+    anthropic_requests: list[httpx.Request],
+    mode: str | None,
+) -> None:
+    llm = anthropic_build(lambda request: message({"verdicts": []}))
+    context = json.dumps({"mode": mode, "records": []})
+    try:
+        await llm.verify_evidence(context)
+        system = json.loads(anthropic_requests[-1].content)["system"]
+        expected = (
+            text_evidence.RECOMMENDATION_SYSTEM
+            if mode == "recommendation_scope"
+            else text_evidence.ANSWER_SYSTEM
+            if mode == "answer_scope"
+            else text_evidence.SYSTEM
+        )
+        assert system == expected
     finally:
         await llm.aclose()

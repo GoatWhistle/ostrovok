@@ -39,13 +39,15 @@ def native_facts(
         MatchQuality.UNKNOWN: 0,
     }
     for index, intent in enumerate(intents):
-        selected: dict[str, tuple[int, float, SearchFactRecord]] = {}
+        selected: dict[str, tuple[int, int, float, SearchFactRecord]] = {}
         for row in evidence.facts:
             if row.characteristic_key != intent.characteristic_key:
                 continue
-            matched = match(intent, fact_from_record(row), now)
-            rank = (ranks[matched.quality], row.confidence)
-            if row.hotel_id in selected and rank <= selected[row.hotel_id][:2]:
+            fact = fact_from_record(row)
+            matched = match(intent, fact, now)
+            unrestricted = match(intent, replace(fact, qualifiers={}), now)
+            rank = (ranks[matched.quality], ranks[unrestricted.quality], row.confidence)
+            if row.hotel_id in selected and rank <= selected[row.hotel_id][:3]:
                 continue
             value = (
                 True
@@ -59,12 +61,16 @@ def native_facts(
                 "source_text": term,
                 "native_characteristic_key": row.characteristic_key,
                 "native_value": row.value,
+                "native_unit": row.unit,
+                "native_op": str(intent.op),
+                "native_threshold": intent.value,
             }
             if matched.quality is MatchQuality.PARTIAL:
                 qualifiers["estimated_match"] = True
             selected[row.hotel_id] = (
                 rank[0],
                 rank[1],
+                rank[2],
                 replace(
                     row,
                     characteristic_key=str(index),
@@ -73,7 +79,7 @@ def native_facts(
                     qualifiers=qualifiers,
                 ),
             )
-        result.extend(row for _, _, row in selected.values())
+        result.extend(row for _, _, _, row in selected.values())
     return relabel_facts(term, result, {str(i) for i in range(len(intents))})
 
 
