@@ -197,3 +197,18 @@ Full round3 started on source13bcbe8/window-location-20261026 after both service
 and proxy health200. Immutable run metadata in round3/run.json. Sequential50, timeout900s;
 live exec session95830. Do not restart deployment while this frozen evaluation runs.
 This continuation made progress (parser regression/fix, deployment, full-run start).
+
+## Round3 relevance defect found while frozen run continues
+
+First Isaac response54.72s/HTTP200 passed old geometric assertions but returned2 blocked
+and3 unknown view candidates, with no fulfilled wishes. First-floor response33.88s also
+returned only none/unknown. These are NOT semantic passes. Supplementary executable
+`audit_recommendations.py round3` catches all10 records; the old summary is not a complete
+success measure. Main50 continues unchanged on13bcbe8/session95830.
+
+New red regression showed RecommendationReview accepting all-none/all-unknown candidates
+when a permissive semantic verifier returned valid quotations. A deterministic eligibility
+gate rejects these before model review, retaining location-only searches without wishes.
+638 unit tests/Ruff/mypy pass. Local fix only; deploy AFTER frozen50.
+This only prevents wrong recommendations: the first review batch rejected geometric-positive
+candidates, which still requires investigation. Do not redefine completion as empty safe output.

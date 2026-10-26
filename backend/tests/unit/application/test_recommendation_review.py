@@ -178,3 +178,36 @@ def test_estimated_match_review_includes_the_actual_displayed_limitations() -> N
     assert displayed["guaranteed"] is False
     assert "не замер звука" in displayed["explanation"]
     assert "footprint" not in json.loads(claim.evidence)["hotel"]
+
+
+async def test_model_cannot_recommend_only_blocked_or_unknown_wishes() -> None:
+    parsed, rows = candidates(2)
+    rows = [
+        (
+            candidate,
+            replace(
+                scored,
+                matches=tuple(replace(match, quality=quality) for match in scored.matches),
+                score=0,
+            ),
+        )
+        for (candidate, scored), quality in zip(
+            rows, (MatchQuality.NONE, MatchQuality.UNKNOWN), strict=True
+        )
+    ]
+
+    async def approve(context: str) -> tuple[EvidenceVerdict, ...]:
+        return tuple(
+            EvidenceVerdict(
+                record_id=row["record_id"], supported=True, quote="Double room on floor 2"
+            )
+            for row in json.loads(context)["records"]
+        )
+
+    llm = SimpleNamespace(verify_evidence=AsyncMock(side_effect=approve))
+    report = await RecommendationReview(SemanticReview(cast(LLMPort, llm), MagicMock())).check(
+        "Нужен номер с видом", parsed, rows, 5
+    )
+    assert report.accepted_ids == ()
+    assert report.rejected_ids == ("0", "1")
+    llm.verify_evidence.assert_not_awaited()

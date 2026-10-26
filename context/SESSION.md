@@ -118,7 +118,7 @@ Updated: 2026-10-26, Europe/Moscow
 
 - Worktree `/Users/savelij/projects/o-hack-stand`, branch `fix/stand-agent-integration`, source13bcbe8; root source untouched. Main :8080 runs `window-location-20261026`, Yandex DeepSeek/free mode.
 - Shore ordering, OSM cache precedence and model location-fragment extraction fixed.637 unit tests/Ruff/mypy pass. Previous2 live probes timed out180s; they remain failures. [View plan](../work/window-views/plan.md).
-- Full50 round3 running in exec session95830 after health200; observation timeout900s, old timeout failures preserved. No source deployment during frozen50 run. Goal incomplete.
+- Full50 round3 running in exec session95830 after health200; observation timeout900s, old timeout failures preserved. No deployment during run. First2 geometric passes are semantic failures; local eligibility fix638 tests. See plan.
 
 ## Next actions and pitfalls
 

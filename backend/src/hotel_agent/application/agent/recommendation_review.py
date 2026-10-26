@@ -5,7 +5,7 @@ from hotel_agent.application.agent.semantic_review import ReviewClaim, ReviewRes
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.query import ParsedQuery
-from hotel_agent.domain.services.scoring import MatchQuality, Scored
+from hotel_agent.domain.services.scoring import COUNTED_QUALITIES, MatchQuality, Scored
 
 
 def fact_evidence(fact: Fact | None) -> dict[str, object] | None:
@@ -92,6 +92,15 @@ class RecommendationReview:
     ) -> ReviewResult:
         accepted: list[str] = []
         rejected: list[str] = []
+        eligible = []
+        for hotel, scored in candidates:
+            if (parsed.intents or parsed.unmatched_terms or parsed.wishes) and not any(
+                item.quality in COUNTED_QUALITIES for item in scored.matches
+            ):
+                rejected.append(hotel.id)
+            else:
+                eligible.append((hotel, scored))
+        candidates = eligible
         for offset in range(0, min(len(candidates), self._max_candidates), 12):
             batch = candidates[offset : min(offset + 12, self._max_candidates)]
             report = await self._review.check(
