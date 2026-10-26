@@ -1,0 +1,733 @@
+[
+  {
+    "id": "weather",
+    "query": "отель в Сочи, где 28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+    "elapsed_s": 12.94,
+    "status": 200,
+    "body": {
+      "query_id": "9945043a1d25bde8",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:0a3e8ae3b718",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": true,
+            "source_text": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Сочи",
+        "anywhere": false,
+        "normalized_query": "отель в Сочи, где 28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+        "corrections": [],
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false
+      },
+      "results": [
+        {
+          "hotel": {
+            "id": "n10058780093",
+            "name": "Белый аист",
+            "location": [
+              39.9167167,
+              43.428775
+            ],
+            "building_id": "w53292079",
+            "height_m": 3.2,
+            "levels": 1
+          },
+          "score": 0.341,
+          "matched": [
+            {
+              "characteristic_key": "derived:0a3e8ae3b718",
+              "match": "partial",
+              "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+              "explanation": "Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00: 23.9. Проверка пожелания: Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00 — не менее 15. Оценочные критерии выбраны агентом по доступным данным. Источники: https://open-meteo.com/en/docs",
+              "fact": {
+                "fact_id": "f_derived_0a3e8ae3b718_n10058780093",
+                "characteristic_key": "derived:0a3e8ae3b718",
+                "value": true,
+                "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+                "confidence": 0.739,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": []
+              },
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.9167167,
+              43.428775
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w53292079",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.91664,
+                      43.4287823
+                    ],
+                    [
+                      39.9167481,
+                      43.428719
+                    ],
+                    [
+                      39.9169163,
+                      43.4288703
+                    ],
+                    [
+                      39.9168083,
+                      43.4289337
+                    ],
+                    [
+                      39.91664,
+                      43.4287823
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w53292079",
+              "hotel_id": "n10058780093",
+              "is_hotel": true,
+              "height_m": 3.2,
+              "min_height_m": 0,
+              "levels": 1,
+              "height_fact_id": "f_height_n10058780093"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n10058760244",
+            "name": "Самшит",
+            "location": [
+              39.9159261,
+              43.4283312
+            ],
+            "building_id": "w131715093",
+            "height_m": 9.6
+          },
+          "score": 0.341,
+          "matched": [
+            {
+              "characteristic_key": "derived:0a3e8ae3b718",
+              "match": "partial",
+              "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+              "explanation": "Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00: 23.9. Проверка пожелания: Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00 — не менее 15. Оценочные критерии выбраны агентом по доступным данным. Источники: https://open-meteo.com/en/docs",
+              "fact": {
+                "fact_id": "f_derived_0a3e8ae3b718_n10058760244",
+                "characteristic_key": "derived:0a3e8ae3b718",
+                "value": true,
+                "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+                "confidence": 0.739,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": []
+              },
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.9159261,
+              43.4283312
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w131715093",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.9157504,
+                      43.428244
+                    ],
+                    [
+                      39.9158271,
+                      43.4281692
+                    ],
+                    [
+                      39.9160532,
+                      43.4282914
+                    ],
+                    [
+                      39.9159493,
+                      43.4283927
+                    ],
+                    [
+                      39.9158973,
+                      43.4283646
+                    ],
+                    [
+                      39.9158294,
+                      43.4283279
+                    ],
+                    [
+                      39.9158565,
+                      43.4283014
+                    ],
+                    [
+                      39.9157504,
+                      43.428244
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w131715093",
+              "hotel_id": "n10058760244",
+              "is_hotel": true,
+              "height_m": 9.6,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n10058760244"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n10759614195",
+            "name": "Golden Tennis Club",
+            "location": [
+              39.9162591,
+              43.4244336
+            ],
+            "building_id": "w80180147",
+            "height_m": 16.0,
+            "levels": 5
+          },
+          "score": 0.316,
+          "matched": [
+            {
+              "characteristic_key": "derived:0a3e8ae3b718",
+              "match": "partial",
+              "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+              "explanation": "Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00: 23.9. Проверка пожелания: Прогноз температуры воздуха, °C, 2026-10-28T12:00:00+03:00 — не менее 15. Оценочные критерии выбраны агентом по доступным данным. Источники: https://open-meteo.com/en/docs",
+              "fact": {
+                "fact_id": "f_derived_0a3e8ae3b718_n10759614195",
+                "characteristic_key": "derived:0a3e8ae3b718",
+                "value": true,
+                "label": "28 октября 2026 в 12:00 по Москве температура воздуха выше 15 градусов",
+                "confidence": 0.739,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": []
+              },
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.9162591,
+              43.4244336
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w80180147",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.916045,
+                      43.4244222
+                    ],
+                    [
+                      39.9160998,
+                      43.4243623
+                    ],
+                    [
+                      39.916114,
+                      43.4243648
+                    ],
+                    [
+                      39.9161924,
+                      43.4243522
+                    ],
+                    [
+                      39.9162094,
+                      43.4243308
+                    ],
+                    [
+                      39.9162579,
+                      43.424351
+                    ],
+                    [
+                      39.9163259,
+                      43.4243401
+                    ],
+                    [
+                      39.9163391,
+                      43.4243418
+                    ],
+                    [
+                      39.9163437,
+                      43.4243481
+                    ],
+                    [
+                      39.916345,
+                      43.4243547
+                    ],
+                    [
+                      39.9163383,
+                      43.4243596
+                    ],
+                    [
+                      39.9163099,
+                      43.4243667
+                    ],
+                    [
+                      39.9163664,
+                      43.4243934
+                    ],
+                    [
+                      39.9163143,
+                      43.42445
+                    ],
+                    [
+                      39.9163264,
+                      43.4244559
+                    ],
+                    [
+                      39.9162967,
+                      43.4244884
+                    ],
+                    [
+                      39.9162907,
+                      43.4244855
+                    ],
+                    [
+                      39.9162645,
+                      43.4245141
+                    ],
+                    [
+                      39.9162279,
+                      43.4244964
+                    ],
+                    [
+                      39.9161775,
+                      43.4245513
+                    ],
+                    [
+                      39.9161283,
+                      43.4245275
+                    ],
+                    [
+                      39.9161388,
+                      43.424516
+                    ],
+                    [
+                      39.9161283,
+                      43.4245109
+                    ],
+                    [
+                      39.9161393,
+                      43.4244989
+                    ],
+                    [
+                      39.9161493,
+                      43.4245037
+                    ],
+                    [
+                      39.9161691,
+                      43.4244821
+                    ],
+                    [
+                      39.916045,
+                      43.4244222
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w80180147",
+              "hotel_id": "n10759614195",
+              "is_hotel": true,
+              "height_m": 16.0,
+              "min_height_m": 0,
+              "levels": 5,
+              "height_fact_id": "f_height_n10759614195"
+            }
+          }
+        }
+      ],
+      "viewport": {
+        "bbox": [
+          39.9159261,
+          43.4244336,
+          39.9167167,
+          43.428775
+        ],
+        "camera": {
+          "center": [
+            39.9167167,
+            43.428775
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0
+        }
+      },
+      "pending": [],
+      "took_ms": 12905
+    }
+  },
+  {
+    "id": "current",
+    "query": "отель в Мурманске, где прямо сейчас солнце выше горизонта",
+    "elapsed_s": 20.74,
+    "status": 200,
+    "body": {
+      "query_id": "95fbe2964d30d782",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:6d6d97071e7c",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": true,
+            "source_text": "прямо сейчас солнце выше горизонта"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Мурманск",
+        "anywhere": false,
+        "normalized_query": "отель в Мурманске, где прямо сейчас солнце выше горизонта",
+        "corrections": [],
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false
+      },
+      "results": [],
+      "pending": [],
+      "took_ms": 20700
+    }
+  },
+  {
+    "id": "shine",
+    "query": "Ищу в Сочи отель Shine House с бассейном, который подогревается круглый год",
+    "elapsed_s": 26.76,
+    "status": 200,
+    "body": {
+      "query_id": "a5e25e2bf6d94129",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "facility:681437af94cd",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "с бассейном, который подогревается круглый год"
+          }
+        ],
+        "unmatched_terms": [
+          "подогревается круглый год"
+        ],
+        "location_hint": "Сочи",
+        "anywhere": false,
+        "normalized_query": "Ищу в Сочи отель Shine House с бассейном, который подогревается круглый год",
+        "corrections": [],
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false
+      },
+      "results": [
+        {
+          "hotel": {
+            "id": "w739663665",
+            "name": "\"Море и Лес\"",
+            "address": "улица Володарского 44/2",
+            "location": [
+              39.8819443,
+              43.5331068
+            ],
+            "building_id": "w739663665",
+            "height_m": 9.6
+          },
+          "score": 0.0,
+          "matched": [
+            {
+              "characteristic_key": "facility:681437af94cd",
+              "match": "unknown",
+              "label": "с бассейном, который подогревается круглый год",
+              "explanation": "Нет подтверждённого факта",
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.8819443,
+              43.5331068
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w739663665",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.8818853,
+                      43.533103
+                    ],
+                    [
+                      39.8819754,
+                      43.5330548
+                    ],
+                    [
+                      39.8820349,
+                      43.5331132
+                    ],
+                    [
+                      39.8819408,
+                      43.53316
+                    ],
+                    [
+                      39.8818853,
+                      43.533103
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w739663665",
+              "hotel_id": "w739663665",
+              "is_hotel": true,
+              "height_m": 9.6,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_w739663665"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n6276321485",
+            "name": "\"У Тёмы\"",
+            "address": "Енисейская улица 541",
+            "location": [
+              39.6077381,
+              43.6866181
+            ],
+            "building_id": "w690523843",
+            "height_m": 9.6
+          },
+          "score": 0.0,
+          "matched": [
+            {
+              "characteristic_key": "facility:681437af94cd",
+              "match": "unknown",
+              "label": "с бассейном, который подогревается круглый год",
+              "explanation": "Нет подтверждённого факта",
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.6077381,
+              43.6866181
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w690523843",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.6076745,
+                      43.6866672
+                    ],
+                    [
+                      39.607786,
+                      43.6865504
+                    ],
+                    [
+                      39.6079148,
+                      43.6866148
+                    ],
+                    [
+                      39.6078033,
+                      43.6867315
+                    ],
+                    [
+                      39.6076745,
+                      43.6866672
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w690523843",
+              "hotel_id": "n6276321485",
+              "is_hotel": true,
+              "height_m": 9.6,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n6276321485"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "w54437496",
+            "name": "777",
+            "address": "Орбитовская улица 9",
+            "location": [
+              39.9047123,
+              43.4634661
+            ],
+            "building_id": "w54437496",
+            "height_m": 9.6
+          },
+          "score": 0.0,
+          "matched": [
+            {
+              "characteristic_key": "facility:681437af94cd",
+              "match": "unknown",
+              "label": "с бассейном, который подогревается круглый год",
+              "explanation": "Нет подтверждённого факта",
+              "geo_refs": []
+            }
+          ],
+          "camera": {
+            "center": [
+              39.9047123,
+              43.4634661
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w54437496",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      39.9045767,
+                      43.4634214
+                    ],
+                    [
+                      39.9047069,
+                      43.4633912
+                    ],
+                    [
+                      39.9047276,
+                      43.4634383
+                    ],
+                    [
+                      39.9047468,
+                      43.4634339
+                    ],
+                    [
+                      39.9047735,
+                      43.4634411
+                    ],
+                    [
+                      39.904786,
+                      43.4634688
+                    ],
+                    [
+                      39.9047732,
+                      43.4634888
+                    ],
+                    [
+                      39.9047492,
+                      43.4634943
+                    ],
+                    [
+                      39.9047732,
+                      43.4635491
+                    ],
+                    [
+                      39.9046458,
+                      43.4635786
+                    ],
+                    [
+                      39.9045767,
+                      43.4634214
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w54437496",
+              "hotel_id": "w54437496",
+              "is_hotel": true,
+              "height_m": 9.6,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_w54437496"
+            }
+          }
+        }
+      ],
+      "viewport": {
+        "bbox": [
+          39.6077381,
+          43.4634661,
+          39.9047123,
+          43.6866181
+        ],
+        "camera": {
+          "center": [
+            39.8819443,
+            43.5331068
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0
+        }
+      },
+      "pending": [],
+      "took_ms": 26752
+    }
+  }
+]

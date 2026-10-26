@@ -18,7 +18,7 @@ P0 scenario: пользователь вводит «тихий номер с в
 |---|---|---|
 | Стенд Compose :8080 | verified | [Проверки чата, карточек и карты](../docs/evidence.md), 2026-10-26 |
 | API и слои | implemented | [OpenAPI](../docs/api/openapi.yaml), [архитектура](../docs/architecture.md), ADR 0001/0002 |
-| LLM и факты | verified | DeepSeek V4.1 Flash через Yandex; Qwen3 Embedding 8B через Polza индексирует 34 087 отелей. Факты из БД и тулзов. [Решения](../docs/design-decisions.md) |
+| LLM и факты | verified | DeepSeek V4.1 Flash через Yandex; Qwen3 Embedding 8B через Polza индексирует 34 087 отелей. Факты из БД, веб-источников и инструментов погоды/солнца/вида. [Решения](../docs/design-decisions.md) |
 | Россия и рельеф | verified | OSM в PostGIS, DEM по запросу; [доказательства и размеры](../docs/evidence.md), [полные прежние факты](../work/session-state-2026-10-26-regions.md) |
 | География поиска | verified | Город из адресов OSM или регион по полигону; Дагестан проверен в новом и старом чате. [Результаты](../docs/evidence.md#поиск-горных-отелей-по-региону) |
 | Произвольные пожелания | verified | Исследование записей и DEM; [отрицательные результаты 50 запросов и границы проверки](../docs/limitations.md) |

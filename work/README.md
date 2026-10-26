@@ -15,7 +15,7 @@ that owns each one. Scrubbed at submission.
 | `frontend/` | frontend implementation | Integration plan, review verdict and validation |
 | `screens/` | frontend workflows | Screen specifications |
 | `audits/` | audit workflows | Dated findings and check results |
-| `evals/` | live search evaluation | Fixed query set and full results |
+| `evals/` | live search evaluation | Fixed query set and full results; latest: `evals/map-fact-geography-review.md` |
 | `building-texture/` | building texture experiment | Satellite references, generation prompt, GLB builder and local preview |
 | `session-state-2026-10-25.md` | context compaction | Previous measured stand state and next actions |
 | `session-state-2026-10-25-evening.md` | context compaction | Full previous facts before the data exploration agent |
