@@ -209,3 +209,12 @@ async def test_long_view_loads_entire_corridor_without_exhausting_cell_budget(
     visibility = result.facts[0].qualifiers["visibility"]
     assert visibility["complete_coverage"] is True
     assert result.facts[0].value is expected
+
+
+async def test_unknown_target_height_is_explained_as_missing_data() -> None:
+    geometry = Geometry()
+    geometry.target = replace(geometry.target, tags={"name": "Башня", "man_made": "tower"})
+    evidence = await compute(request(floor=1), geometry)
+    fact = evidence.facts[0]
+    assert fact.value is None
+    assert "высота ориентира или его выбранной части" in fact.qualifiers["visibility"]["missing"]

@@ -97,6 +97,8 @@ class WindowViews:
                 and all(area.complete for area in loaded)
             )
             missing = [] if complete else ["неполное покрытие контуров зданий вдоль линии"]
+            if ray.target_height.maximum_m is None:
+                missing.append("высота ориентира или его выбранной части")
             obstructions = obstacles(
                 samples,
                 heights,
