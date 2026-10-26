@@ -6,7 +6,7 @@ from psycopg.types.json import Jsonb
 
 from hotel_agent.application.ports.view_scenes import PathBuildings, SceneBuilding
 
-BUILDING_ROW_LIMIT = 20000
+BUILDINGS_PER_PATH = 512
 
 HOTEL_BUILDINGS = """SELECT h.id,b.id,ST_AsGeoJSON(b.footprint),b.tags,b.height_m,b.levels
 FROM hotels h JOIN buildings b ON b.id=h.building_id WHERE h.id=ANY(%(ids)s::text[])"""
@@ -16,12 +16,18 @@ PATH_BUILDINGS = """WITH paths AS (
  FROM jsonb_each(%(paths)s::jsonb)
 ), segments AS (
  SELECT id,(ST_DumpSegments(line)).geom AS line FROM paths
-)
-SELECT DISTINCT ON (s.id,b.id) s.id,b.id,ST_AsGeoJSON(b.footprint),b.tags,b.height_m,b.levels
-FROM segments s JOIN buildings b
+), hits AS (
+ SELECT DISTINCT ON (s.id,b.id) s.id AS path_id,b.id AS building_id,
+ ST_AsGeoJSON(b.footprint) AS geometry,b.tags,b.height_m,b.levels
+ FROM segments s JOIN buildings b
  ON b.footprint && ST_Expand(s.line,0.001)
  AND ST_DWithin(b.footprint::geography,s.line::geography,30)
-ORDER BY s.id,b.id LIMIT %(limit)s"""
+ ORDER BY s.id,b.id
+), ranked AS (
+ SELECT *,row_number() OVER (PARTITION BY path_id ORDER BY building_id) AS ordinal FROM hits
+)
+SELECT path_id,building_id,geometry,tags,height_m,levels FROM ranked
+WHERE ordinal<=%(limit)s ORDER BY path_id,building_id"""
 
 
 PATH_COVERAGE = """WITH paths AS (
@@ -59,26 +65,25 @@ class PostgresViewScenes:
         }
         rows = await (
             await self._connection.execute(
-                PATH_BUILDINGS, {"paths": Jsonb(geometries), "limit": BUILDING_ROW_LIMIT + 1}
+                PATH_BUILDINGS, {"paths": Jsonb(geometries), "limit": BUILDINGS_PER_PATH + 1}
             )
         ).fetchall()
         grouped: dict[str, list[SceneBuilding]] = {key: [] for key in paths}
-        for row in rows[:BUILDING_ROW_LIMIT]:
-            grouped[str(row[0])].append(_building(row))
+        unfinished = set()
+        for row in rows:
+            identifier = str(row[0])
+            if len(grouped[identifier]) < BUILDINGS_PER_PATH:
+                grouped[identifier].append(_building(row))
+            else:
+                unfinished.add(identifier)
         coverage = await (
             await self._connection.execute(PATH_COVERAGE, {"paths": Jsonb(geometries)})
         ).fetchall()
-        truncated = len(rows) > BUILDING_ROW_LIMIT
-        complete_paths = (
-            frozenset(str(row[0]) for row in rows[:-1]) - {str(rows[-1][0])}
-            if truncated
-            else frozenset(paths)
-        )
         return PathBuildings(
             {key: tuple(values) for key, values in grouped.items()},
-            truncated,
+            bool(unfinished),
             {str(row[0]): str(row[1]) for row in coverage},
-            complete_paths,
+            frozenset(paths) - unfinished,
         )
 
 
