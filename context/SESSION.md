@@ -116,10 +116,9 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Current state
 
-- `/Users/savelij/projects/o-hack-stand`, `fix/stand-agent-integration`, code `3abcbf7` after integration `0bb2ea1`. Main Compose :8080 runs pinned `agent-loop-stand-20261026b`, Yandex DeepSeek, free hotel-data mode. Original root source remains uncommitted and preserved.
-- New loop/reviewer verified in container by module hashes. Live quiet-Sochi chat:20 hotels/52.15s; chat reload/card/fact/scene200. Cold scene18.29s remains slow. 649 backend checks (11 integrations),324 frontend/36 rules passed. [Restart record and raw evidence](../work/stand-restart/README.md).
-
-- Code429743a deployed `window-cache-20261026`;635 unit tests. Ready replay session77112 running; audit key filter changed. See view plan.
+- Worktree `/Users/savelij/projects/o-hack-stand`, branch `fix/stand-agent-integration`, source13bcbe8; root source untouched. Main :8080 runs `window-location-20261026`, Yandex DeepSeek/free mode.
+- Shore ordering, OSM cache precedence and model location-fragment extraction fixed.637 unit tests/Ruff/mypy pass. Previous2 live probes timed out180s; they remain failures. [View plan](../work/window-views/plan.md).
+- Full50 round3 running in exec session95830 after health200; observation timeout900s, old timeout failures preserved. No source deployment during frozen50 run. Goal incomplete.
 
 ## Next actions and pitfalls
 

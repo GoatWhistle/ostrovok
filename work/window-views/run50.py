@@ -172,7 +172,7 @@ async def run(args):
     output = ROOT / args.output
     output.mkdir(exist_ok=True)
     reports = []
-    async with httpx.AsyncClient(base_url="http://127.0.0.1:8080", timeout=180) as client:
+    async with httpx.AsyncClient(base_url="http://127.0.0.1:8080", timeout=args.timeout) as client:
         for case in cases:
             reports.append(await check(client, case, output))
             (output / "summary.json").write_text(json.dumps(reports, ensure_ascii=False, indent=2))
@@ -181,5 +181,6 @@ async def run(args):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--ids")
+parser.add_argument("--timeout", type=float, default=180)
 parser.add_argument("--output", default="round1")
 asyncio.run(run(parser.parse_args()))

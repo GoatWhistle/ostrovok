@@ -186,3 +186,14 @@ exists. Two parser regressions cover dropping city-only and preserving location-
 wishes; centre and view remain.637 unit tests/Ruff/mypy pass. Not deployed at this checkpoint.
 Samara native evidence remains unresolved and agent is researching additional sources;
 current live run session77112 must be polled before restarting.
+
+cache-replay-ready completed: both Isaac and Samara client ReadTimeout180s,0/2.
+These remain failures. New full run uses900s observation timeout so slower full pipeline
+responses can be inspected, not silently treated as absence of hotels. Latencies remain
+reported and are not claimed fixed.50 cases and physical/semantic audit expectations
+unchanged; cancellation explicitly fails. Runtime must be healthy before launching.
+
+Full round3 started on source13bcbe8/window-location-20261026 after both services healthy
+and proxy health200. Immutable run metadata in round3/run.json. Sequential50, timeout900s;
+live exec session95830. Do not restart deployment while this frozen evaluation runs.
+This continuation made progress (parser regression/fix, deployment, full-run start).
