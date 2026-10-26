@@ -1,3 +1,4 @@
+import argparse
 import re
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -39,4 +40,7 @@ class Handler(SimpleHTTPRequestHandler):
             outputfile.write(chunk)
             self.remaining -= len(chunk)
 
-ThreadingHTTPServer(('0.0.0.0', 8090), Handler).serve_forever()
+parser = argparse.ArgumentParser()
+parser.add_argument('--port', type=int, default=8090)
+args = parser.parse_args()
+ThreadingHTTPServer(('0.0.0.0', args.port), Handler).serve_forever()

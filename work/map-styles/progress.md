@@ -9,4 +9,4 @@
 - 30 screenshots (5 styles × 3 camera presets × 2 widths), zero console errors/overflow. Second-scene and time/toggle checks recorded in controls.json. Backend 431 tests; frontend 352 tests/36 rules; Ruff/mypy/import contracts passed. Main Compose stand rebuilt successfully, 18082/18083 healthy.
 - Negative measurements retained in scorecard.md: SwiftShader 50/30 FPS not met; max HTTP tile 192.63 ms above 150 ms; Three unminified gzip 417.3 KB above 180 KB; actual GPU memory and hardware speed unverified. No paid calls.
 - Style choice pending. Do not integrate a style or add runtime app dependencies before the user chooses. App DPR/cache integration from §3.1 is deferred with §3.8.
-- Gallery commit and second push are the final delivery step. No force push. Preserve dirty teammate context through rebase.
+- Catalog commit 6d90b29 and gallery implementation 2de615e pushed. A follow-up explicitly includes binary models, DEM, sprites and screenshots otherwise excluded by the repository-wide work/model ignore rules. Verify the exported Git tree before reporting delivery. Teammate context remained byte-identical through rebase.
