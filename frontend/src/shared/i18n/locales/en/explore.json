@@ -378,5 +378,15 @@
       "ergaki": "Ergaki",
       "teriberka": "Teriberka"
     }
+  },
+  "viewEvidence": {
+    "visible": "The sightline is clear in the calculated model",
+    "blocked": "The sightline is blocked",
+    "unknown": "An unobstructed view could not be confirmed",
+    "floor": "floor {{floor}}",
+    "distance": "{{distance}} m to the target",
+    "wholeUnknown": "A view of the entire object has not been verified",
+    "missing": "Some geometry or height data are missing",
+    "facade": "This is a facade estimate; confirm a room with this view with the hotel"
   }
 }
