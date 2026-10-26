@@ -1,9 +1,10 @@
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 
 from hotel_agent.application.agent.semantic_review import ReviewClaim, SemanticReview
 from hotel_agent.application.dto import NamedPlaceRecord
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.domain.query import SpatialRequest
 
 
@@ -14,7 +15,10 @@ class LandmarkResolution:
 
 
 class LandmarkResolver:
-    def __init__(self, uow: UnitOfWorkFactory, review: SemanticReview) -> None:
+    def __init__(
+        self, uow: UnitOfWorkFactory, review: SemanticReview, areas: SearchAreasPort | None = None
+    ) -> None:
+        self._areas = areas
         self._uow, self._review = uow, review
         self._cache: dict[str, LandmarkResolution] = {}
 
@@ -47,6 +51,17 @@ class LandmarkResolver:
             return LandmarkResolution(fallback)
         if len(candidates) == 1:
             return LandmarkResolution(candidates[0])
+        if self._areas is not None:
+            candidates = tuple(
+                replace(
+                    place,
+                    tags={
+                        **place.tags,
+                        "geographic_region": self._areas.region_at(place.location) or "unknown",
+                    },
+                )
+                for place in candidates
+            )
         claims = tuple(
             ReviewClaim(
                 id=place.id,

@@ -6,9 +6,11 @@ from hotel_agent.application.dto import (
     SearchFactRecord,
     SearchHotelRecord,
 )
+from hotel_agent.application.geographic_distance import geographic_distance
 from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_key, nearby_record
 from hotel_agent.application.ports.clock import ClockPort
+from hotel_agent.application.ports.geographic_objects import GeographicObjectsPort
 from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.requested_evidence import RequestedEvidence
@@ -29,9 +31,11 @@ class RequestedTools:
         place: PlaceLookupPort | None,
         windows: EvaluateWindowViews | None,
         landmarks: LandmarkResolver | None = None,
+        geographic_objects: GeographicObjectsPort | None = None,
     ) -> None:
         self._parsed, self._city, self._region = parsed, city, region
         self._landmarks = landmarks
+        self._geographic_objects = geographic_objects
         self._uow, self._clock, self._place, self._windows = uow, clock, place, windows
 
     async def check(
@@ -112,5 +116,18 @@ class RequestedTools:
                     records.extend(evaluated.facts)
                     features.extend(evaluated.features)
             elif target is not None:
-                records.extend(spatial_fact(spatial_request, h, target, now) for h in hotels)
+                geometry = (
+                    await self._geographic_objects.get(target.id)
+                    if self._geographic_objects is not None and isinstance(target, NamedPlaceRecord)
+                    else None
+                )
+                if geometry is not None and isinstance(target, NamedPlaceRecord):
+                    for hotel in hotels:
+                        fact, feature = geographic_distance(
+                            spatial_request, hotel, target, geometry, now
+                        )
+                        records.append(fact)
+                        features.append(feature)
+                else:
+                    records.extend(spatial_fact(spatial_request, h, target, now) for h in hotels)
         return RequestedEvidence(intents, tuple(records), tuple(features))

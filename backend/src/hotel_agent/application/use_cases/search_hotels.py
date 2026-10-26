@@ -14,6 +14,7 @@ from hotel_agent.application.facility_matching import facility_intent
 from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_intent
 from hotel_agent.application.ports.clock import ClockPort
+from hotel_agent.application.ports.geographic_objects import GeographicObjectsPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
@@ -58,7 +59,9 @@ class SearchHotels:
         window_views: EvaluateWindowViews | None = None,
         review: RecommendationReview | None = None,
         landmark_review: SemanticReview | None = None,
+        geographic_objects: GeographicObjectsPort | None = None,
     ) -> None:
+        self._geographic_objects = geographic_objects
         self._llm = llm
         self._uow = uow
         self._clock = clock
@@ -93,6 +96,19 @@ class SearchHotels:
                 bbox,
                 replace(parsed, location_hint=location, needs_clarification=True),
             )
+        landmarks = (
+            LandmarkResolver(self._uow, self._landmark_review, self._areas)
+            if self._landmark_review
+            else None
+        )
+        location_request = next(
+            (
+                r
+                for r in parsed.spatial_requests
+                if r.target and location and r.target.casefold() == location.casefold()
+            ),
+            None,
+        )
         candidates = await find_candidates(
             query,
             location,
@@ -102,6 +118,9 @@ class SearchHotels:
             self._areas,
             self._semantic,
             self._place_lookup,
+            self._geographic_objects,
+            landmarks,
+            location_request,
         )
         if candidates.location_hint:
             location = candidates.location_hint
@@ -117,7 +136,8 @@ class SearchHotels:
             self._clock,
             self._place_lookup,
             self._window_views,
-            LandmarkResolver(self._uow, self._landmark_review) if self._landmark_review else None,
+            landmarks,
+            self._geographic_objects,
         )
         terms = exploration_terms(parsed)
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)

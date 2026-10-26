@@ -11,6 +11,7 @@ from hotel_agent.adapters.external.overpass_geography import OverpassGeography
 from hotel_agent.adapters.external.web_research import PublicWebResearch
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
+from hotel_agent.adapters.geo.geographic_objects import GeographicObjects
 from hotel_agent.adapters.geo.osm_geometry import OSMViewGeometry
 from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
@@ -139,6 +140,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
         RecommendationReview(semantic_review),
         landmark_review=semantic_review,
+        geographic_objects=GeographicObjects(view_geometry),
     )
     app.include_router(
         api_router_v1(

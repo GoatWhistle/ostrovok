@@ -90,7 +90,7 @@ class OSMViewGeometry:
                         body = bytearray()
                         async for chunk in response.aiter_bytes():
                             body.extend(chunk)
-                            if len(body) > 12_000_000:
+                            if len(body) > 32_000_000:
                                 return None
                     payload = bytes(body)
                 objects = await asyncio.to_thread(physical_objects, payload)
