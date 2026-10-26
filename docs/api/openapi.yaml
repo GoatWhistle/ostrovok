@@ -105,6 +105,45 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/Conversation" }
         "404": { $ref: "#/components/responses/NotFound" }
+    patch:
+      tags: [chat]
+      operationId: renameConversation
+      summary: Переименовать диалог
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ConversationTitle" }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Conversation" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422":
+          description: Название пустое или длиннее 80 символов после обрезки пробелов
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    delete:
+      tags: [chat]
+      operationId: deleteConversation
+      summary: Удалить диалог вместе с сообщениями
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "204":
+          description: Удалено
+        "404": { $ref: "#/components/responses/NotFound" }
 
   /chat/messages:
     post:
@@ -910,11 +949,21 @@ components:
         role: { type: string, enum: [user, assistant] }
         content: { type: string }
         created_at: { type: string, format: date-time }
+    ConversationTitle:
+      type: object
+      required: [title]
+      properties:
+        title: { type: string, description: "1–80 символов после обрезки пробелов" }
     Conversation:
       type: object
-      required: [id, messages]
+      required: [id, title, updated_at, messages]
       properties:
         id: { type: string, format: uuid }
+        title:
+          type: string
+          nullable: true
+          description: Название из распознанного запроса или заданное пользователем
+        updated_at: { type: string, format: date-time, nullable: true }
         messages:
           type: array
           items: { $ref: "#/components/schemas/ChatMessage" }

@@ -106,6 +106,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 lambda outcome: search_schema(outcome, providers.registry, 0).model_dump(
                     mode="json"
                 ),
+                providers.registry,
             ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),

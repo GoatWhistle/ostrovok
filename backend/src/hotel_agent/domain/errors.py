@@ -57,6 +57,11 @@ class InvalidQuery(DomainError):
     message = "Search query is invalid"
 
 
+class InvalidConversationTitle(InvalidQuery):
+    code = "invalid_title"
+    message = "Conversation title must be 1 to 80 characters"
+
+
 class ModelFailure(DomainError):
     code = "model_failure"
     message = "Language model failed"

@@ -3,7 +3,9 @@ from dataclasses import dataclass
 from uuid import uuid4
 
 from hotel_agent.application.chat_records import ConversationRecord
+from hotel_agent.application.conversation_titles import conversation_title, validated_title
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
 from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery
@@ -24,11 +26,13 @@ class Chat:
         uow: UnitOfWorkFactory,
         search: SearchHotels,
         serialize_search: Callable[[SearchOutcome], dict[str, object]],
+        registry: CharacteristicRegistryPort,
     ) -> None:
         self._llm = llm
         self._uow = uow
         self._search = search
         self._serialize_search = serialize_search
+        self._registry = registry
 
     async def get(self, conversation_id: str) -> ConversationOutcome:
         async with self._uow() as uow:
@@ -50,6 +54,28 @@ class Chat:
                 await uow.chat.save_search_snapshot(conversation_id, snapshot)
                 await uow.commit()
         return ConversationOutcome(conversation=conversation, search=search)
+
+    async def rename(self, conversation_id: str, title: str) -> ConversationOutcome:
+        cleaned = validated_title(title)
+        async with self._uow() as uow:
+            renamed = await uow.chat.rename(conversation_id, cleaned)
+            await uow.commit()
+        if not renamed:
+            raise ConversationNotFound()
+        async with self._uow() as uow:
+            conversation = await uow.chat.get(conversation_id)
+        if conversation is None:
+            raise ConversationNotFound()
+        return ConversationOutcome(
+            conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
+        )
+
+    async def delete(self, conversation_id: str) -> None:
+        async with self._uow() as uow:
+            deleted = await uow.chat.delete(conversation_id)
+            await uow.commit()
+        if not deleted:
+            raise ConversationNotFound()
 
     async def send(
         self,
@@ -77,6 +103,11 @@ class Chat:
         snapshot = self._serialize_search(search)
         answer = self._answer(search, selected_hotel_id, locale)
         identifier = conversation_id or str(uuid4())
+        title = (
+            None
+            if previous
+            else conversation_title(search.parsed, message.strip(), locale, self._registry)
+        )
         async with self._uow() as uow:
             await uow.chat.save(
                 identifier,
@@ -87,6 +118,7 @@ class Chat:
                 str(uuid4()),
                 answer,
                 snapshot,
+                title,
             )
             await uow.commit()
         async with self._uow() as uow:
