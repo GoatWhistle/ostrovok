@@ -58,6 +58,7 @@ export function useMapInstance(hasCamera: boolean) {
       let visible = false
       const resize = new ResizeObserver(([entry]) => {
         map.resize()
+        map.redraw()
         const shown = (entry?.contentRect.width ?? 0) > 0 && (entry?.contentRect.height ?? 0) > 0
         if (shown && !visible) setRevealed((count) => count + 1)
         visible = shown
