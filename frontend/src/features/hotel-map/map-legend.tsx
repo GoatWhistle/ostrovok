@@ -11,6 +11,7 @@ const ITEMS: readonly { readonly label: MessageKey; readonly swatch: string }[] 
   { label: "explore:map.legendFact", swatch: "fact" },
   { label: "explore:map.legendRoute", swatch: "route" },
   { label: "explore:map.legendRelief", swatch: "relief" },
+  { label: "explore:map.legendNight", swatch: "night" },
 ]
 
 const GESTURES: readonly { readonly input: MessageKey; readonly action: MessageKey }[] = [

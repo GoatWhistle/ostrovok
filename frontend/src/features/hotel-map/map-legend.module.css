@@ -110,6 +110,12 @@
   box-shadow: var(--shadow-ring);
 }
 
+.swatch[data-swatch="night"] {
+  border: var(--focus-ring-width) solid var(--map-window-warm);
+  background-color: var(--map-building-volume);
+  box-shadow: var(--shadow-ring);
+}
+
 .gestures {
   display: grid;
   gap: var(--space-8);
