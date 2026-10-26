@@ -134,6 +134,17 @@ class WindowCandidates:
                     ):
                         resolved = None
                 parts = await self._targets.parts(resolved) if resolved is not None else ()
+                if request.target_component_key:
+                    parts = tuple(
+                        part
+                        for part in parts
+                        if part.tags.get(request.target_component_key) is not None
+                        and (
+                            not request.target_component_values
+                            or part.tags[request.target_component_key]
+                            in request.target_component_values
+                        )
+                    )
                 physical[identifier] = tuple(
                     replace(
                         part,
@@ -158,7 +169,9 @@ class WindowCandidates:
             objectives = physical[identifier]
             if not objectives:
                 reasons[hotel.id] = (
-                    "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием."
+                    "Не получена геометрия запрошенной части ориентира: вид на другую часть её не заменяет."
+                    if request.target_component_key
+                    else "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием."
                 )
                 continue
             nearest = min(
@@ -174,7 +187,9 @@ class WindowCandidates:
             for objective in objectives:
                 if objective.id not in choices:
                     continue
-                position, height = target_point(objective, hotel.location)
+                position, height = target_point(
+                    objective, hotel.location, top=request.target_part == "top"
+                )
                 if distance_m(hotel.location, position) > request.radius_m:
                     reasons[hotel.id] = (
                         "Ориентир находится за пределами запрошенной области проверки вида."

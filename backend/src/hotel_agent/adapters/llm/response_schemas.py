@@ -101,6 +101,8 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
                         "target_part": {"type": "string", "enum": ["any", "top", "whole"]},
                         "target_osm_key": {"type": ["string", "null"]},
                         "target_osm_values": {"type": "array", "items": {"type": "string"}},
+                        "target_component_key": {"type": ["string", "null"]},
+                        "target_component_values": {"type": "array", "items": {"type": "string"}},
                     }
                 ),
             },

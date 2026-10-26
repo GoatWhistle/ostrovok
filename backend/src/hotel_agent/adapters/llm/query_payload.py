@@ -129,6 +129,8 @@ def spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | N
         facade_azimuth_deg=_azimuth(raw.get("facade_azimuth_deg")),
         target_osm_key=optional_text(raw, "target_osm_key"),
         target_osm_values=tuple(strings(raw, "target_osm_values")),
+        target_component_key=optional_text(raw, "target_component_key"),
+        target_component_values=tuple(strings(raw, "target_component_values")),
         target_part=str(raw.get("target_part"))
         if raw.get("target_part") in {"top", "whole"}
         else "any",

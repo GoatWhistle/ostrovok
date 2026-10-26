@@ -11,6 +11,10 @@ def spatial_key(request: SpatialRequest) -> str:
     identity = f"{request.kind}\x00{request.target or ''}\x00{request.source_text}"
     if request.kind in {"landmark_view", "sea_view"}:
         identity += f"\x00visibility@1:{request.floor_min}:{request.floor_max}:{request.facade_azimuth_deg}:{request.target_part}:{request.target_osm_key}:{request.target_osm_values}"
+    if request.target_component_key:
+        identity += (
+            f"\x00component:{request.target_component_key}:{request.target_component_values}"
+        )
     return f"spatial:{hashlib.sha256(identity.encode()).hexdigest()[:12]}"
 
 

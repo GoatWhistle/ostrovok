@@ -2,7 +2,8 @@ from pyproj import Geod
 from shapely.geometry import Point, shape
 from shapely.ops import nearest_points
 
-from hotel_agent.adapters.geo.building_dimensions import building_dimensions
+from hotel_agent.adapters.geo.building_dimensions import building_dimensions, length_values
+from hotel_agent.adapters.geo.roof_profile import dome_apex
 from hotel_agent.application.dto import NamedPlaceRecord
 from hotel_agent.application.ports.view_geometry import PhysicalObject, ViewGeometryPort
 from hotel_agent.domain.visibility import ElevationRange
@@ -55,7 +56,7 @@ class WindowTargets:
 
 
 def target_point(
-    target: PhysicalObject, hotel: tuple[float, float]
+    target: PhysicalObject, hotel: tuple[float, float], *, top: bool = False
 ) -> tuple[tuple[float, float], ElevationRange]:
     geometry = shape(target.geometry)
     dimensions = building_dimensions(target.tags)
@@ -75,6 +76,16 @@ def target_point(
                 nearest.y + (interior.y - nearest.y) * step,
             )
         return (nearest.x, nearest.y), ElevationRange(0, 0 if water else None)
+    apex = dome_apex(geometry, target.tags)
+    if apex is not None and dimensions.height is not None:
+        if top:
+            return apex, dimensions.height
+        edge = nearest_points(Point(hotel), geometry)[1]
+        roof = length_values(target.tags.get("roof:height"))[0]
+        return (edge.x, edge.y), ElevationRange(
+            dimensions.height.minimum_m - roof,
+            dimensions.height.maximum_m - roof if dimensions.height.maximum_m is not None else None,
+        )
     point = (
         nearest_points(Point(hotel), geometry)[1]
         if geometry.geom_type in {"Polygon", "MultiPolygon"}

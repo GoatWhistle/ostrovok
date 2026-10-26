@@ -10,6 +10,7 @@ from shapely.geometry import LineString, Point, mapping
 from hotel_agent.adapters.geo.building_dimensions import building_dimensions
 from hotel_agent.adapters.geo.roof_profile import dome_profile
 from hotel_agent.adapters.geo.window_scene import obstacles, scene_samples
+from hotel_agent.adapters.geo.window_targets import target_point
 from hotel_agent.application.ports.view_geometry import PhysicalObject
 from hotel_agent.application.ports.view_scenes import SceneBuilding
 from hotel_agent.application.ports.window_views import WindowRay
@@ -123,3 +124,35 @@ def test_interval_envelope_covers_continuous_hemisphere_between_samples(offset: 
             true_height = 10 + sqrt(max(0, 400 - (x - 70) ** 2 - offset**2))
             assert 30 - first.drop.minimum_m >= true_height - 1e-8
             assert 30 - last.drop.minimum_m >= true_height - 1e-8
+
+
+def test_dome_target_is_at_roof_apex_instead_of_float_above_nearest_edge() -> None:
+    ray, building = dome_scene(TAGS)
+    target = PhysicalObject("dome", TAGS, building.geometry, "test")
+    point, height = target_point(target, ray.observer.location, top=True)
+    project = Transformer.from_crs(
+        4326, "+proj=aeqd +lat_0=60 +lon_0=30 +datum=WGS84 +units=m", always_xy=True
+    )
+    assert project.transform(*point) == pytest.approx((70, 0), abs=0.001)
+    assert height == ElevationRange(30, 30)
+
+
+def test_default_dome_view_targets_real_front_surface_height() -> None:
+    ray, building = dome_scene(TAGS)
+    target = PhysicalObject("dome", TAGS, building.geometry, "test")
+    point, height = target_point(target, ray.observer.location)
+    project = Transformer.from_crs(
+        4326, "+proj=aeqd +lat_0=60 +lon_0=30 +datum=WGS84 +units=m", always_xy=True
+    )
+    assert project.transform(*point) == pytest.approx((50, 0), abs=0.001)
+    assert height == ElevationRange(10, 10)
+
+
+def test_roof_in_front_of_requested_apex_is_still_checked() -> None:
+    ray, building = dome_scene(TAGS)
+    target = PhysicalObject("dome", TAGS, building.geometry, "test")
+    point, height = target_point(target, ray.observer.location, top=True)
+    ray = replace(ray, target=target, target_location=point, target_height=height)
+    samples = scene_samples(ray, (building,))
+    profile = obstacles(samples, {key: 0 for key in samples.points})
+    assert any(p.id == "dome" and p.geometry_model == "dome_envelope@1" for p in profile)

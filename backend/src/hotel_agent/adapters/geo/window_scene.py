@@ -82,7 +82,10 @@ def scene_samples(ray: WindowRay, buildings: tuple[SceneBuilding, ...]) -> Scene
         intersection = polygon.intersection(line)
         if intersection.is_empty:
             continue
-        if building.id == ray.target.id:
+        if (
+            building.id == ray.target.id
+            and polygon.boundary.distance(Point(project.transform(*end))) < 0.5
+        ):
             continue
         nearest, farthest = polygon.distance(Point(0, 0)), 0.0
         segments = (

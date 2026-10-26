@@ -63,6 +63,8 @@ class SpatialRequest:
     target_part: str = "any"
     target_osm_key: str | None = None
     target_osm_values: tuple[str, ...] = ()
+    target_component_key: str | None = None
+    target_component_values: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

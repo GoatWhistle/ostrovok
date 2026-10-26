@@ -61,7 +61,9 @@ class WindowViews:
                 if area:
                     for item in area.buildings:
                         rows[item.id] = SceneBuilding(item.id, item.geometry, item.tags, None, None)
-            rows.pop(ray.target.tags.get("view:parent", ray.target.id), None)
+            parent = ray.target.tags.get("view:parent", ray.target.id)
+            if parent != ray.target.id:
+                rows.pop(parent, None)
             samples = await asyncio.to_thread(scene_samples, ray, tuple(rows.values()))
             heights = await asyncio.to_thread(self._terrain.sample_points, samples.points)
             base = base_elevation(

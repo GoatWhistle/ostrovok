@@ -69,6 +69,8 @@ def window_evidence(
                 "target_id": ray.target.tags.get("view:parent", ray.target.id),
                 "target_part_id": ray.target.id,
                 "requested_target_scope": request.target_part,
+                "requested_component_key": request.target_component_key,
+                "requested_component_values": list(request.target_component_values),
                 "entire_target_verified": False,
                 "target_tags": {
                     key.removeprefix("view:parent:"): value
