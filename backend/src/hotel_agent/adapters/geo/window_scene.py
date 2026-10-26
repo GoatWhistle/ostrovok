@@ -8,6 +8,7 @@ from shapely import transform
 from shapely.geometry import LineString, Point, shape
 
 from hotel_agent.adapters.geo.building_dimensions import building_dimensions
+from hotel_agent.adapters.geo.roof_profile import RoofSample, dome_profile
 from hotel_agent.application.ports.view_scenes import SceneBuilding
 from hotel_agent.application.ports.window_views import WindowRay
 from hotel_agent.domain.visibility import ElevationRange, RayObstacle
@@ -21,7 +22,7 @@ class SceneSamples:
     distance_m: float
     points: dict[str, tuple[float, float]]
     terrain: tuple[tuple[str, float], ...]
-    buildings: tuple[tuple[SceneBuilding, tuple[float, ...], tuple[str, ...]], ...]
+    buildings: tuple[tuple[SceneBuilding, tuple[RoofSample, ...], tuple[str, ...]], ...]
 
 
 def corridor_cells(ray: WindowRay) -> tuple[tuple[float, float, float, float], ...]:
@@ -70,10 +71,12 @@ def scene_samples(ray: WindowRay, buildings: tuple[SceneBuilding, ...]) -> Scene
         **ground_points(start, "observer-ground"),
         **ground_points(end, "target-ground"),
     }
-    crossings: list[tuple[SceneBuilding, tuple[float, ...], tuple[str, ...]]] = []
+    crossings: list[tuple[SceneBuilding, tuple[RoofSample, ...], tuple[str, ...]]] = []
     polygons = []
     for building in buildings:
         polygon: Any = transform(shape(building.geometry), project.transform, interleaved=False)
+        if polygon.geom_type == "MultiPolygon" and len(polygon.geoms) == 1:
+            polygon = polygon.geoms[0]
         if not polygon.is_valid:
             continue
         intersection = polygon.intersection(line)
@@ -87,7 +90,7 @@ def scene_samples(ray: WindowRay, buildings: tuple[SceneBuilding, ...]) -> Scene
             if intersection.geom_type in {"LineString", "Point"}
             else list(intersection.geoms)
         )
-        distances: list[float] = []
+        distances: list[RoofSample] = []
         for segment in segments:
             if not hasattr(segment, "coords"):
                 continue
@@ -95,7 +98,16 @@ def scene_samples(ray: WindowRay, buildings: tuple[SceneBuilding, ...]) -> Scene
             if not projected:
                 continue
             low, high = min(projected), max(projected)
-            distances.extend((low + 0.05, (low + high) / 2, high - 0.05))
+            roof = (
+                dome_profile(polygon, line, low, high, building.tags)
+                if polygon.geom_type == "Polygon"
+                else None
+            )
+            distances.extend(
+                roof
+                if roof is not None
+                else (RoofSample(low + 0.05), RoofSample((low + high) / 2), RoofSample(high - 0.05))
+            )
             farthest = max(farthest, high)
         if not distances:
             continue
@@ -108,7 +120,11 @@ def scene_samples(ray: WindowRay, buildings: tuple[SceneBuilding, ...]) -> Scene
         samples = ground_points(inverse.transform(base.x, base.y), prefix)
         points.update(samples)
         crossings.append(
-            (building, tuple(d for d in distances if 0.5 < d < length - 0.5), tuple(samples))
+            (
+                building,
+                tuple(d for d in distances if 0.5 < d.distance_m < length - 0.5),
+                tuple(samples),
+            )
         )
         polygons.append(polygon)
     terrain = []
@@ -167,5 +183,18 @@ def obstacles(samples: SceneSamples, heights: dict[str, float]) -> tuple[RayObst
             if base is not None and dimensions.minimum_height_m > 0
             else None
         )
-        result.extend(RayObstacle(building.id, "building", d, top, bottom) for d in distances)
+        for sample in distances:
+            roof_top = (
+                ElevationRange(
+                    top.minimum_m - (sample.drop.maximum_m or 0),
+                    top.maximum_m - sample.drop.minimum_m if top.maximum_m is not None else None,
+                )
+                if top
+                else None
+            )
+            result.append(
+                RayObstacle(
+                    building.id, "building", sample.distance_m, roof_top, bottom, sample.model
+                )
+            )
     return tuple(result)

@@ -25,6 +25,7 @@ class RayObstacle:
     distance_m: float
     elevation: ElevationRange | None
     bottom: ElevationRange | None = None
+    geometry_model: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
