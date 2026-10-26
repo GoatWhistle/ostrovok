@@ -66,7 +66,27 @@ class SemanticReview:
             and verdict.quote in sources[verdict.record_id]
         )
         rejected = tuple(claim.id for claim in claims if claim.id not in accepted)
+        by_id = {verdict.record_id: verdict for verdict in verdicts}
+        reasons: Counter[str] = Counter()
+        for identifier in rejected:
+            verdict = by_id.get(identifier)
+            reason = (
+                "missing_verdict"
+                if verdict is None
+                else "duplicate_verdict"
+                if counts[identifier] != 1
+                else "unsupported"
+                if not verdict.supported
+                else "short_quote"
+                if len(verdict.quote.strip()) < 12
+                else "ungrounded_quote"
+            )
+            reasons[reason] += 1
         self._logger.info(
-            "semantic_review_finished", mode=mode, accepted=len(accepted), rejected=len(rejected)
+            "semantic_review_finished",
+            mode=mode,
+            accepted=len(accepted),
+            rejected=len(rejected),
+            rejection_reasons=json.dumps(reasons, sort_keys=True),
         )
         return ReviewResult(accepted, rejected)

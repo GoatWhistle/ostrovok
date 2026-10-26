@@ -212,3 +212,15 @@ gate rejects these before model review, retaining location-only searches without
 638 unit tests/Ruff/mypy pass. Local fix only; deploy AFTER frozen50.
 This only prevents wrong recommendations: the first review batch rejected geometric-positive
 candidates, which still requires investigation. Do not redefine completion as empty safe output.
+
+## Continued frozen-run inspection
+
+Third case isaac_floor7 returned386.9s/HTTP200, no geometric target evidence. Returned
+facts say requested floor absent or wish timed out; supplementary relevance audit catches
+these none/unknown-only results too. Full run95830 remains active (PID47919 checked).
+No runtime source changes while run is active.
+
+Current log only says accepted/rejected and cannot distinguish a model refusal from an
+invalid/missing quotation. Added tested rejection-reason counters (unsupported, missing,
+duplicate, short quote, ungrounded quote), without logging query/source content. This is
+instrumentation for the next replay, not proof of the cause of current model refusals.

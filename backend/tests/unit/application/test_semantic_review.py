@@ -121,3 +121,20 @@ async def test_empty_review_does_not_call_a_model_and_duplicate_claim_ids_are_re
     with pytest.raises(ValueError, match="identifiers must be unique"):
         await review.check("Запрос", "answer_scope", (CLAIM, CLAIM))
     llm.verify_evidence.assert_not_awaited()
+
+
+async def test_review_logs_semantic_refusal_separately_from_broken_quote() -> None:
+    llm = SimpleNamespace(
+        verify_evidence=AsyncMock(
+            return_value=(
+                EvidenceVerdict(record_id="hotel", supported=False, quote=SOURCE),
+                EvidenceVerdict(record_id="other", supported=True, quote="This quote is absent."),
+            )
+        )
+    )
+    logger = MagicMock()
+    await SemanticReview(cast(LLMPort, llm), logger).check(
+        "Запрос", "recommendation_scope", (CLAIM, ReviewClaim("other", CLAIM.answer, SOURCE))
+    )
+    details = json.loads(logger.info.call_args.kwargs["rejection_reasons"])
+    assert details == {"unsupported": 1, "ungrounded_quote": 1}
