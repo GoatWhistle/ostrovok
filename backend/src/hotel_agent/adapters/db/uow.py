@@ -1,4 +1,5 @@
 import asyncio
+from pathlib import Path
 from typing import Self
 
 from psycopg import AsyncConnection
@@ -11,12 +12,14 @@ from hotel_agent.adapters.db.geo_features import PostgresGeoFeatureRepository
 from hotel_agent.adapters.db.map_tiles import PostgresMapTileRepository
 from hotel_agent.adapters.db.named_places import PostgresNamedPlaceRepository
 from hotel_agent.adapters.db.nearby_objects import PostgresNearbyObjectRepository
+from hotel_agent.adapters.db.places import PostgresPlaceRepository
 from hotel_agent.adapters.db.regions import PostgresRegionRepository
 from hotel_agent.adapters.db.search import PostgresSearchRepository
 from hotel_agent.adapters.db.search_documents import PostgresSearchDocuments
 from hotel_agent.adapters.db.view_scenes import PostgresViewScenes
 from hotel_agent.adapters.db.walk_router import PostgresWalkRouter, WalkRouteCache
 from hotel_agent.application.ports.data_exploration import DataRepository
+from hotel_agent.application.ports.places import PlaceRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
     CoastlineRepository,
@@ -33,7 +36,8 @@ from hotel_agent.application.ports.walk import WalkRouterPort
 
 
 class PostgresUnitOfWorkFactory:
-    def __init__(self, database_url: str) -> None:
+    def __init__(self, database_url: str, seed_dir: Path = Path("data/seed")) -> None:
+        self.seed_dir = seed_dir
         self._pool: AsyncConnectionPool[AsyncConnection[tuple[object, ...]]] = AsyncConnectionPool(
             database_url, min_size=1, max_size=5, open=False
         )
@@ -62,6 +66,7 @@ class PostgresUnitOfWork:
     def __init__(self, factory: PostgresUnitOfWorkFactory) -> None:
         self._factory = factory
         self._connection: AsyncConnection[tuple[object, ...]] | None = None
+        self.places: PlaceRepository
         self.walk: WalkRouterPort
         self.regions: RegionRepository
         self.search: SearchRepository
@@ -77,6 +82,7 @@ class PostgresUnitOfWork:
 
     async def __aenter__(self) -> Self:
         self._connection = await self._factory.connection()
+        self.places = PostgresPlaceRepository(self._connection, self._factory.seed_dir)
         self.walk = PostgresWalkRouter(self._connection, self._factory.walk_cache)
         self.regions = PostgresRegionRepository(self._connection)
         self.search = PostgresSearchRepository(self._connection)

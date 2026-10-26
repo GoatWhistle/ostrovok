@@ -40,7 +40,7 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
         llm=build_llm(settings, registry, logger),
         clock=SystemClock(),
         logger=logger,
-        uow=PostgresUnitOfWorkFactory(settings.database_url),
+        uow=PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir),
         hotel_offers=build_hotel_offers(settings),
         place_lookup=WikidataPlaceLookup(),
     )

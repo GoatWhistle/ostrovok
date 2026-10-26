@@ -23,6 +23,7 @@ SOCHI = LonLat(39.7203, 43.5855)
     ("raw", "kind", "owner", "part"),
     [
         ("hotel:h_osm_w123", SubjectKind.HOTEL, "h_osm_w123", None),
+        ("place:n123", SubjectKind.PLACE, "n123", None),
         ("room:r_7", SubjectKind.ROOM, "r_7", None),
         ("facade:h_osm_w123:255", SubjectKind.FACADE, "h_osm_w123", "255"),
     ],

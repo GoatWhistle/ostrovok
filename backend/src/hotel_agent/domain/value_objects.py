@@ -7,6 +7,7 @@ from hotel_agent.domain.characteristics import SourceType
 from hotel_agent.domain.errors import InvalidValue
 
 HotelId = NewType("HotelId", str)
+PlaceId = NewType("PlaceId", str)
 RoomId = NewType("RoomId", str)
 BuildingId = NewType("BuildingId", str)
 FactId = NewType("FactId", str)
@@ -18,6 +19,7 @@ ConflictId = NewType("ConflictId", str)
 
 class SubjectKind(StrEnum):
     HOTEL = "hotel"
+    PLACE = "place"
     ROOM = "room"
     FACADE = "facade"
 
@@ -86,6 +88,10 @@ class Subject:
     @classmethod
     def hotel(cls, hotel_id: HotelId) -> Self:
         return cls(kind=SubjectKind.HOTEL, owner=hotel_id)
+
+    @classmethod
+    def place(cls, place_id: PlaceId) -> Self:
+        return cls(kind=SubjectKind.PLACE, owner=place_id)
 
     @classmethod
     def room(cls, room_id: RoomId) -> Self:
