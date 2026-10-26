@@ -1,6 +1,7 @@
 from collections.abc import Sequence
 from typing import Any
 
+from hotel_agent.application.agent.candidate_lookup import lookup_candidates
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
@@ -12,9 +13,11 @@ async def search_documents(
     hotels: Sequence[SearchHotelRecord],
     query: str,
     discovery_allowed: bool,
+    identity_records: Sequence[dict[str, Any]] = (),
 ) -> tuple[tuple[SearchHotelRecord, ...], dict[str, Any]]:
     if semantic is None:
         return tuple(hotels), {
+            "catalogue_candidates": lookup_candidates(hotels, identity_records, {"query": query}),
             "hits": [],
             "unavailable": True,
             "note": "Semantic retrieval is not configured",
@@ -32,6 +35,7 @@ async def search_documents(
     }
     hotels = tuple(sorted(hotels, key=lambda hotel: priorities.get(hotel.id, len(priorities))))
     return tuple(hotels), {
+        "catalogue_candidates": lookup_candidates(hotels, identity_records, {"query": query}),
         "hits": [
             {
                 "id": d.id,

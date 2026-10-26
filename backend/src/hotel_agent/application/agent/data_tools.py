@@ -2,11 +2,14 @@ from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime
 from typing import Any
 
+from hotel_agent.application.agent.candidate_lookup import lookup_candidates
 from hotel_agent.application.agent.candidate_measurements import CandidateMeasurements
 from hotel_agent.application.agent.coast_measurements import CoastMeasurements
 from hotel_agent.application.agent.data_profile import profile_data
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.document_search import search_documents
+from hotel_agent.application.agent.event_discovery import search_events
+from hotel_agent.application.agent.event_venues import event_providers
 from hotel_agent.application.agent.place_tools import ACTIONS, PlaceTools
 from hotel_agent.application.agent.provider_content import ProviderContent
 from hotel_agent.application.agent.record_reader import RecordReader
@@ -23,6 +26,7 @@ from hotel_agent.application.ports.data_exploration import (
 )
 from hotel_agent.application.ports.destination_conditions import DestinationConditionsPort
 from hotel_agent.application.ports.hotel_catalog import HotelCatalogSource
+from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.requested_evidence import RequestedEvidencePort
@@ -57,6 +61,7 @@ class DataTools:
         catalog: HotelCatalogSource | None = None,
         parsed: ParsedQuery | None = None,
         places: Mapping[str, PlaceResearchPort] | None = None,
+        llm: LLMPort | None = None,
     ) -> None:
         self._uow = uow
         self._terms = terms
@@ -123,7 +128,7 @@ class DataTools:
         self.room_web = RoomWebFallback(self.research, lambda: self.hotels, city, web is not None)
 
         self.places = PlaceTools(
-            places or {},
+            event_providers(places or {}, web, uow, llm, city, bbox),
             lambda: self.hotels,
             self.metrics,
             self.descriptions,
@@ -147,6 +152,8 @@ class DataTools:
         return self.candidates.bbox
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action == "search_events":
+            return await search_events(self.places, self.research, self.city, arguments, self._now)
         if action in ACTIONS:
             return await self.places.execute(action, arguments)
         if action == "check_requested":
@@ -182,7 +189,7 @@ class DataTools:
                 **await self.room_web.search(result.get("missing_room_hotel_ids", ())),
             }
         if action == "list_candidates":
-            return self.candidates.list(arguments)
+            return lookup_candidates(self.hotels, await self._records("hotels"), arguments)
         if action == "read_web_page":
             return await read_page_evidence(
                 self.research, self.reader, self._terms, arguments, self.hotels, self._records
@@ -206,6 +213,7 @@ class DataTools:
                 self.hotels,
                 str(arguments.get("query", "")),
                 self.discovery_allowed,
+                await self._records("hotels"),
             )
             self.records.retrieved = [dict(item) for item in observation.get("hits", ())]
             return observation

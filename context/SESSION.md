@@ -104,23 +104,69 @@ Updated: 2026-10-26, Europe/Moscow
 
 - 2026-10-26, дословно: «поищи пока еще полезные источники, которые бы помогли в поиске отеля на любой запрос пользователя».
 
-- 2026-10-26, дословно: «Твоя задача сейчас сделать агентский цикл, на каждую хотелку пользователь агент должен ходить и вызывать инструменты до тех пор, пока либо не поймет, что ничего найти не может, либо не найдет. Он должен по смыслу сопоставить описание человеком его желание с данными из бд, эмбедингов, данных отеля из провайдера».
+- 2026-10-26, дословно: «давай еще какие нибудь события афишы и тп».
 
-- 2026-10-26, дословно: «еще если по апишке нет данных по отелю, то попытайся найти в интернете информацию по номерам этого отеля».
+- 2026-10-26, дословно: «запусти опять на дипсике из яндекса».
 
-- 2026-10-26, дословно: «валидируй ответ по смыслу».
+- 2026-10-26, дословно: «ставь все что считаешь нужным и подключай тулзы».
 
-- 2026-10-26, дословно: «запусти опять на дипсике из яндекса». This later instruction supersedes the historical no-start instruction.
+- 2026-10-26, дословно: «сделай у нас так же» — после разбора https://github.com/LegacyTeam26/ostrovok; подключить номера и цены через JSON сайта Островка без ключа.
 
-- 2026-10-26, дословно: «перезапусти стенд».
+- 2026-10-26, дословно: «скачай абсолютно все подробные данные для все России подобно Сочи, либо ходи в апишку, если локально данных нет».
+
+- 2026-10-26, дословно: «запускай пайплайн только когда пользователь реально хочет найти отель, а так он должен консультировать. Если пользователь выбрал конкретный отель, то агент может ему что то подсказать».
+
+
+- 2026-10-26, preserved user instruction: «Нужен отель в Сочи»
+
+- 2026-10-26, preserved user instruction: «перезапусти стенд»
+
+- 2026-10-26, preserved user instruction: «попытайся еще раз, прогони 10 разных запросов по разным городам, смешивай обычный желания с необычными и нестандартными»
+
+- 2026-10-26, дословно: «"отель в ижевске с видом на пруд" не работает».
+
+- 2026-10-26, дословно: «да и запусти на клоде». Authorizes interrupting current live evaluation and deploying the verified pond fix with Claude.
+
+- 2026-10-26, дословно: «проверь тот апи ключ еще раз».
+
+- 2026-10-26, дословно: «модель сама дожна попытаться определить город, по описанию запроса. Я захотел отель на берегу байкала, а агент спросил про город,  так быть не должно».
+
+- 2026-10-26, дословно: «смержи в feat/hotel-agent-mvp».
+
+- 2026-10-26, дословно: «пока смержи в feat/hotel-agent-mvp все что успел пофиксить».
+
+- 2026-10-26, дословно: «мероприятия не ищутся. Если что то экзотическое, то агент должен ходить в интернет и там что то искать дополнительно и уже ориентируясь на эту инфу что-то предлагать. Так же унас есть афиша. Посмотри мой последний запрос».
+
+- 2026-10-26, дословно: «перезапусти и проаверь».
+
+- 2026-10-26, дословно: «спуль и перезапусти».
+
+- 2026-10-26, дословно: «я запустил запрос, все равно ничего не нашел».
+
+- 2026-10-26, дословно: «хочу отель в Москве, в котором останавливался сам трамп
+
+просто пусть ищет в интернете и все. Напиши прямо в промпте, если не удается опознать по имеющимся ВСЕМ имеющимся данным, тулзам, апишкам и тп, пусть начинает ходить в интернет и в интернете по разным сайтам искать инфу. Так же он может использовать внутренние знания модели».
+
+- 2026-10-26, дословно: «не надо опираться на конкретные примеры. С каждым новым примером все ломается. Надо сказать в общем».
+
+- 2026-10-26, дословно: «После того как поменял прогони запрос».
+
+- 2026-10-26, дословно: «все равно запросы не работают. Надо пофиксить и прогнать похожие максимально случайные запросы».
+
+- 2026-10-26, дословно: «запиши оставшиеся действия в md и заканчивай».
+- 2026-10-26, дословно: «влей все в agent mvp ветку».
+
+- 2026-10-26, дословно: «запиши оставшиеся действия в md и заканчивай».
+- 2026-10-26, дословно: «влей все в agent mvp ветку».
 
 ## Current state
 
-- Stand worktree `fix/stand-agent-integration`/d335a31. Current root snapshot merged;76 verified delta files synced back to root without resetting/staging its prior work.737 backend checks (including integration),328 frontend tests/36 rules pass.
-- Main :8080 healthy on `window-integrated-20261026d`, backend image5ebea97d, frontend index--3cQvo5k.js. New loop, stable verifier, candidate eligibility, chat consultation, height/geography updates integrated. [Refresh](../work/stand-refresh/README.md).
-- Full50 round4 running exec88733; immutable-image guard enabled,900s observation timeout. Read round4/run.json and poll handle; do not restart while running. Prior round3 invalidated by container replacement. Goal incomplete.
+- Main/origin2d2fd12; backend view-corridor-20261026 image14de83d8 healthy200. Only3geometrymodules overlaid on independentfdcd62b4 runtime; TAGpersisted,frontendunchanged.817clean/833root unitcontract+12DBtests passed.
+- NativeOstankino now2positive rays, independentaudit0errors; 40535terminal3/3pass;15672+22504stoppedSIGINTbyuser.18801terminal dueindependentdeploy;Onega/russianbridge/nevyan resumed. Goal incomplete:50processed acrossversions27auto18review5special. [Evidence](../../o-hack-stand/work/window-views/review-probe/README.md).
+- Moscow-City complex absent locally; externalidentity+geometryneeded. Independent event/web workdirty,preserved. Priorstate:[archive](../work/window-views/session-before-round15.md). Protectedverbatimquotes exceedSESSIONtarget.
 
-## Next actions and pitfalls
+- Active web research repair on feat/hotel-agent-mvp: catalogue aliases, source text budget, verified-result retention, source reuse. Original query now returns The Carlton Moscow (40.5s isolated;116.7s main).12-case round2 running; full details work/web-search-fix/README.md. Main image also changes concurrently; final deployment pending.
 
-- Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
-- Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.
+- Web research work stopped by user; evaluation container stopped and temporary environment snapshots removed. Remaining work: work/web-search-fix/remaining.md. Round2 completed2/12 cases; original returned National, poet rejected by final review. Last checks834unit/contract,ruff,mypy pass. Saving task changes on feat/hotel-agent-mvp (precommitHEAD2d2fd12). Current main image view-corridor-20261026, final deployment of latest fixes not verified.
+
+- Window-view work stopped at user request. Remaining actions and Onega fallback-loss reproduction: [handoff](../work/window-views/remaining-actions.md). No more tests until resumed. All task code merged/pushed2d2fd12; handoff commit pending. Stand left running.

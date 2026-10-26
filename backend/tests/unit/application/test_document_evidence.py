@@ -97,3 +97,18 @@ async def test_street_name_does_not_prove_underwater_accommodation() -> None:
     assert all(row.value is None for row in result.facts)
     assert not result.resolved_terms
     llm.verify_evidence.assert_awaited_once()
+
+
+async def test_verification_sees_evidence_after_long_page_navigation() -> None:
+    quote = "The observatory is open to hotel guests every evening."
+    text = "Navigation and unrelated introductory material. " * 250 + quote
+    llm = SimpleNamespace(
+        verify_evidence=AsyncMock(
+            return_value=[EvidenceVerdict(record_id="0", supported=True, quote=quote)]
+        )
+    )
+    matched = await DocumentEvidence(cast(LLMPort, llm), ("с обсерваторией",)).verify(
+        None, [{"hotel_id": "hotel", "text": text}], []
+    )
+    assert quote in llm.verify_evidence.call_args.args[0]
+    assert matched[0]["_evidence_quote"] == quote

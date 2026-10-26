@@ -25,10 +25,14 @@ def materialize(
     for criterion in criteria:
         term = _normalize(criterion.term)
         source = _normalize(criterion.source_text)
+        verified = criterion.source_text == criterion.term and all(
+            tools.reader.verified_terms.get(check.field) == criterion.term
+            for check in criterion.checks
+        )
         if (
             criterion.term not in terms
             or not criterion.source_text.strip()
-            or _normalize(criterion.source_text) not in normalized
+            or (_normalize(criterion.source_text) not in normalized and not verified)
             or (term in normalized and term not in source and source not in term)
             or not criterion.checks
             or len(criterion.checks) > 8
@@ -87,6 +91,8 @@ def materialize(
                     )
                 )
             )
+            if quotes and any(check.field.startswith("event") for check in criterion.checks):
+                explanation += " " + " ".join(quotes)
             if urls:
                 explanation += " Источники: " + ", ".join(urls)
             if "scope.distance_m" in metrics:

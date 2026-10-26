@@ -95,7 +95,8 @@ async def test_event_evidence_propagates_quote_source_and_venue_only_when_verifi
         assert fact.qualifiers["source_quotes"]
         assert fact.geo_refs == ("g_point_39.721000_43.581000",)
         assert "2026-10-27" in fact.explanation
-    assert "requested_start" in llm.verify_evidence.call_args.args[0]
+    assert ARGUMENTS["check_in"] in llm.verify_evidence.call_args.args[0]
+    assert ARGUMENTS["check_out"] in llm.verify_evidence.call_args.args[0]
 
 
 async def test_missing_provider_and_upstream_failure_leave_metrics_unknown() -> None:

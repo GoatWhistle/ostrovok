@@ -131,7 +131,12 @@ class RecordReader:
             {"dataset": dataset, "filters": filters}, ensure_ascii=False
         )
         self._descriptions[field] = (
-            "Проверенных событий: " + "; ".join(str(r.get("text", ""))[:1800] for r in matched[:4])
+            "Проверенных событий: "
+            + "; ".join(
+                dict.fromkeys(
+                    f"{r.get('title')} — {r.get('place')}, {r.get('start')}" for r in matched
+                )
+            )[:1200]
             if dataset == "events"
             else "Объектов внутри здания отеля"
             if dataset == "onsite_objects"

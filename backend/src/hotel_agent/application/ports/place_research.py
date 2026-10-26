@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Protocol
 
+from hotel_agent.application.ports.web_research import WebPage
+
 
 @dataclass(frozen=True, slots=True)
 class PlaceResearchRequest:
@@ -12,6 +14,8 @@ class PlaceResearchRequest:
     start: datetime | None = None
     end: datetime | None = None
     url: str = ""
+    page: WebPage | None = None
+    city: str = ""
 
 
 @dataclass(frozen=True, slots=True)

@@ -77,3 +77,52 @@ async def test_provider_failure_becomes_recoverable_tool_failure() -> None:
             await web.search("hotel")
     finally:
         await web.aclose()
+
+
+async def test_empty_primary_search_tries_secondary_provider() -> None:
+    def handle(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "freeserp.ai":
+            return httpx.Response(200, json={"ok": True, "results": []})
+        return httpx.Response(
+            200,
+            text="<rss><channel><item><title>Concert</title><link>https://example.org/event</link><description>Venue</description></item></channel></rss>",
+        )
+
+    web = PublicWebResearch(httpx.MockTransport(handle))
+    try:
+        hits = await web.search("Concert Moscow")
+        assert hits[0].url == "https://example.org/event"
+    finally:
+        await web.aclose()
+
+
+async def test_page_meta_charset_preserves_non_utf8_event_text() -> None:
+    body = '<meta charset="windows-1251"><p>Концерт в Москве</p>'.encode("cp1251")
+    web = PublicWebResearch(
+        httpx.MockTransport(
+            lambda r: httpx.Response(200, headers={"content-type": "text/html"}, content=body)
+        )
+    )
+    try:
+        with patch("hotel_agent.adapters.external.web_research.public_url", new=AsyncMock()):
+            page = await web.read("https://example.org/event")
+        assert "Концерт в Москве" in page.text
+        assert "\ufffd" not in page.text
+    finally:
+        await web.aclose()
+
+
+async def test_unrelated_fallback_hits_are_not_returned_as_event_discovery() -> None:
+    def handle(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "freeserp.ai":
+            return httpx.Response(200, json={"ok": True, "results": []})
+        return httpx.Response(
+            200,
+            text="<rss><channel><item><title>Outlook email</title><link>https://outlook.live.com/</link><description>Sign in</description></item></channel></rss>",
+        )
+
+    web = PublicWebResearch(httpx.MockTransport(handle))
+    try:
+        assert not await web.search("Кишлак концерт Москва 2026")
+    finally:
+        await web.aclose()

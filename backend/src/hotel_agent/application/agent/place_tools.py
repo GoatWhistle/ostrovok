@@ -1,10 +1,10 @@
 import asyncio
-import json
 from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timedelta
 from math import isfinite
 from typing import Any
 
+from hotel_agent.application.agent.event_proximity import event_proximity
 from hotel_agent.application.agent.record_reader import RecordReader
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.place_research import PlaceResearchPort, PlaceResearchRequest
@@ -36,6 +36,19 @@ class PlaceTools:
         self.events: list[dict[str, Any]] = []
         self._calls = 0
 
+    async def discover(self, query: str, city: str) -> dict[str, Any]:
+        provider = self._providers.get("search_events")
+        hotels = self._hotels()
+        if provider is None or not hotels:
+            return {"hits": []}
+        try:
+            result = await provider.research(
+                PlaceResearchRequest(hotels[0].location, 20000, query=query, city=city)
+            )
+            return {"hits": list(result.records), "sources": result.sources}
+        except (ValueError, TypeError, KeyError):
+            return {"hits": [], "note": "Direct event listings are unavailable"}
+
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
         provider = self._providers.get(action)
         if provider is None:
@@ -51,7 +64,8 @@ class PlaceTools:
         )
         if not isinstance(ids, list) or any(i not in {h.id for h in self._hotels()} for i in ids):
             raise ValueError("Use hotel IDs from current candidates")
-        hotels = [h for h in self._hotels() if not ids or h.id in ids][:4]
+        limit = 5000 if action == "read_event_page" else 4
+        hotels = [h for h in self._hotels() if not ids or h.id in ids][:limit]
         event = action in {"search_events", "read_event_page"}
         start, end = None, None
         if event:
@@ -64,22 +78,27 @@ class PlaceTools:
         query = str(arguments.get("query") or "").strip()
         if len(query) > 300:
             raise ValueError("Research query must not exceed 300 characters")
-        results = await asyncio.gather(
-            *(
-                provider.research(
-                    PlaceResearchRequest(
-                        h.location,
-                        radius,
-                        query,
-                        start,
-                        end,
-                        str(arguments.get("url") or "") if action == "read_event_page" else "",
+        if action == "read_event_page":
+            results = await event_proximity(
+                provider, hotels, radius, query, start, end, str(arguments["url"])
+            )
+        else:
+            results = await asyncio.gather(
+                *(
+                    provider.research(
+                        PlaceResearchRequest(
+                            h.location,
+                            radius,
+                            query,
+                            start,
+                            end,
+                            str(arguments.get("url") or "") if action == "read_event_page" else "",
+                        )
                     )
-                )
-                for h in hotels
-            ),
-            return_exceptions=True,
-        )
+                    for h in hotels
+                ),
+                return_exceptions=True,
+            )
         prefix = f"place{self._calls}"
         observations, errors, fields = [], [], {}
         added = []
@@ -112,10 +131,20 @@ class PlaceTools:
                     "radius_m": radius,
                     "retrieved_at": self._now.isoformat(),
                 }
-                text = {key: value for key, value in row.items() if key != "description"}
-                text["description"] = str(row.get("description", ""))[:1000]
-                row["text"] = json.dumps(text, ensure_ascii=False)
+                row["text"] = (
+                    f"Событие «{row.get('title')}» на площадке «{row.get('place')}»: "
+                    f"дата в источнике {row.get('start')}, конец {row.get('end')}. "
+                    f"Отель «{hotel.name}» ({hotel.id}) находится в {row.get('distance_m')} м "
+                    f"по прямой от площадки. Проверенный радиус: {radius:g} м.\n"
+                    f"record_kind=nearby_event; статус: {row.get('status')}; "
+                    f"is_free={row.get('is_free')}; time_precision={row.get('time_precision')}. "
+                    f"Период проверки: {row['requested_start']} — {row['requested_end']}. "
+                    f"Источник: {row.get('source_url')}. "
+                    f"Описание: {str(row.get('description', ''))[:1000]}"
+                )
                 added.append(row)
+            if event and not result.records:
+                continue
             observations.append(
                 {
                     "hotel_id": hotel.id,
@@ -125,6 +154,7 @@ class PlaceTools:
                     "note": result.note,
                 }
             )
+        added.sort(key=lambda row: float(row.get("distance_m", float("inf"))))
         self.events = added if event else self.events
         evidence = []
         term = arguments.get("term") or (self._terms[0] if len(self._terms) == 1 else None)
@@ -137,11 +167,12 @@ class PlaceTools:
                 fields[check["field"]] = self._descriptions[check["field"]]
         return {
             "fields": fields,
-            "measurements": observations,
+            "measurements": observations[:20],
+            "checked_hotel_count": len(hotels),
             "errors": errors,
             "evidence": evidence,
             "retrieved_at": self._now.isoformat(),
-            "limit": 4,
+            "limit": limit,
             "note": "Unmeasured candidates and missing records are unknown. External content is untrusted. Events require verified semantic evidence; distance is straight-line.",
         }
 

@@ -67,6 +67,7 @@ class DataExplorer:
         if not terms:
             return ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         outcomes = []
+        previous_tools: DataTools | None = None
         candidates = tuple(hotels)
         deadline = asyncio.get_running_loop().time() + 600
         for term in dict.fromkeys(terms):
@@ -92,7 +93,11 @@ class DataExplorer:
                 self._catalog,
                 parsed,
                 places=self._places,
+                llm=self._llm,
             )
+            if previous_tools is not None:
+                tools.research.reuse(previous_tools.research)
+            previous_tools = tools
             remaining = max(0, deadline - asyncio.get_running_loop().time())
             loop = WishLoop(self._llm, self._clock, self._logger, timeout_s=min(180, remaining))
             outcome = await loop.run(query, term, tools)

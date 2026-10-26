@@ -1,5 +1,6 @@
 import asyncio
 import ipaddress
+import re
 import socket
 from collections.abc import Sequence
 from datetime import UTC, datetime
@@ -61,7 +62,7 @@ class PublicWebResearch:
             response.raise_for_status()
             payload = response.json()
             if payload.get("ok") is True:
-                return [
+                hits = [
                     WebPage(
                         url=str(item["url"]),
                         title=str(item.get("title", "")),
@@ -71,6 +72,8 @@ class PublicWebResearch:
                     for item in payload.get("results", [])[:6]
                     if str(item.get("url", "")).startswith(("https://", "http://"))
                 ]
+                if hits:
+                    return hits
         except (httpx.HTTPError, ValueError, TypeError):
             pass
         response = await self._client.get(FALLBACK_SEARCH_URL, params={"q": query, "format": "rss"})
@@ -79,6 +82,7 @@ class PublicWebResearch:
             root = ElementTree.fromstring(response.content[:MAX_BYTES])
         except ElementTree.ParseError as error:
             raise ValueError("Search provider returned an unreadable response") from error
+        tokens = [word.casefold()[:4] for word in re.findall(r"[^\W\d_]{3,}", query)]
         return [
             WebPage(
                 url=item.findtext("link", ""),
@@ -88,6 +92,16 @@ class PublicWebResearch:
             )
             for item in root.findall("./channel/item")[:6]
             if item.findtext("link", "").startswith(("https://", "http://"))
+            and (
+                not tokens
+                or any(
+                    word
+                    in (
+                        item.findtext("title", "") + " " + item.findtext("description", "")
+                    ).casefold()
+                    for word in tokens
+                )
+            )
         ]
 
     async def read(self, url: str) -> WebPage:
@@ -113,7 +127,18 @@ class PublicWebResearch:
                         body.extend(chunk)
                         if len(body) > MAX_BYTES:
                             raise ValueError("The page exceeds the 1 MB reading limit")
-                    text = body.decode(response.encoding or "utf-8", errors="replace")
+                    charset = re.search(
+                        rb'<meta[^>]+charset=["\']?([a-zA-Z0-9_-]+)', body[:8192], re.IGNORECASE
+                    )
+                    encoding = (
+                        charset.group(1).decode("ascii")
+                        if charset
+                        else response.encoding or "utf-8"
+                    )
+                    try:
+                        text = body.decode(encoding, errors="replace")
+                    except LookupError:
+                        text = body.decode("utf-8", errors="replace")
                     parser = PageText()
                     parser.feed(text)
                     metadata = HotelMetadata()

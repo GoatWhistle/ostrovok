@@ -33,7 +33,9 @@ async def read_page_evidence(
         ]
         if len(matches) == 1:
             arguments["hotel_id"] = str(matches[0]["hotel_id"])
-    result = await research.execute("read_web_page", arguments)
+    selected = arguments.get("hotel_id") or selected
+    identity = next((row for row in await records("hotels") if row["hotel_id"] == selected), {})
+    result = await research.execute("read_web_page", arguments, identity=identity)
     if not terms or not result.get("hotel_id"):
         return result
     selected_terms = (arguments["term"],) if arguments.get("term") in terms else terms[:4]

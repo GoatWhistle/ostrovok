@@ -16,7 +16,9 @@ class DocumentEvidence:
         if term not in self._terms:
             raise ValueError(f"Supply term from the requested wishes: {self._terms}")
         sources = {}
-        for index, row in enumerate(rows[:12]):
+        selected = rows[:12]
+        budget = min(40000, 48000 // max(len(selected), 1))
+        for index, row in enumerate(selected):
             text = row.get("text") or json.dumps(row, ensure_ascii=False)
             text = str(text)
             values = [
@@ -32,7 +34,7 @@ class DocumentEvidence:
                 ),
                 default=0,
             )
-            snippet = text[max(start - 400, 0) : max(start - 400, 0) + 2400]
+            snippet = text[max(start - 400, 0) : max(start - 400, 0) + budget]
             sources[str(index)] = (row, snippet)
         if not sources:
             return []
@@ -50,6 +52,7 @@ class DocumentEvidence:
                                 "hotel_name",
                                 "hotel_address",
                                 "hotel_location",
+                                "hotel_identity",
                                 "source_url",
                             )
                             if field in row

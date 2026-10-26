@@ -140,7 +140,7 @@ async def test_public_event_markup_is_parsed_without_hotel_identity(
         await web.aclose()
 
 
-async def test_missing_timezone_and_end_are_unknown() -> None:
+async def test_missing_timezone_preserves_day_but_not_exact_time_or_end() -> None:
     web = AsyncMock()
     web.read.return_value = WebPage(
         "https://example.org",
@@ -163,7 +163,9 @@ async def test_missing_timezone_and_end_are_unknown() -> None:
                 REQUEST.location, 1000, start=START, end=END, url="https://example.org"
             )
         )
-        assert not result.records
+        assert result.records[0]["start"] == "2026-10-27"
+        assert result.records[0]["time_precision"] == "date"
+        assert result.records[0]["end"] is None
     finally:
         await provider.aclose()
 

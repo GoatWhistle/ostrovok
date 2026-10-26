@@ -3,7 +3,12 @@ from dataclasses import replace
 from typing import Any
 
 from hotel_agent.application.agent.data_evidence import materialize
-from hotel_agent.application.agent.data_records import DataCheck, DataCriterion, ExplorationOutcome
+from hotel_agent.application.agent.data_records import (
+    DataCheck,
+    DataCriterion,
+    DataStep,
+    ExplorationOutcome,
+)
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.wish_context import wish_context
 from hotel_agent.application.agent.wish_criteria import evaluate_criteria
@@ -77,7 +82,11 @@ class WishLoop:
                         self._max_steps - index,
                         self._clock.now(),
                     )
-                    step = await self._llm.explore_data(context)
+                    step = (
+                        DataStep(action="match_records", arguments={"dataset": "web_documents"})
+                        if index == 0 and tools.research.pages
+                        else await self._llm.explore_data(context)
+                    )
                     self._logger.info(
                         "wish_agent_step", wish=term, step=index + 1, action=step.action
                     )
@@ -166,11 +175,19 @@ class WishLoop:
                     observations.append(
                         {"tool": step.action, "arguments": step.arguments, "result": result}
                     )
-                    if step.action == "match_records" and result.get("matched_record_count", 0) > 0:
+                    verified = (
+                        [result]
+                        if step.action == "match_records"
+                        else (result.get("evidence", []) if step.action == "read_web_page" else [])
+                    )
+                    supported = next(
+                        (item for item in verified if item.get("matched_record_count", 0) > 0), None
+                    )
+                    if supported is not None:
                         criterion = DataCriterion(
                             term=term,
                             source_text=term,
-                            checks=(DataCheck(field=str(result["field"]), op="gte", value=1),),
+                            checks=(DataCheck(field=str(supported["field"]), op="gte", value=1),),
                             required=tools.native_required.get(term, False),
                             explanation="Смысл пожелания подтверждён цитатой источника.",
                         )

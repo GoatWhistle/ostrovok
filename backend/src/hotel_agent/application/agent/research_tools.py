@@ -6,7 +6,7 @@ from hotel_agent.application.agent.solar_position import solar_position
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.destination_conditions import DestinationConditionsPort
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
-from hotel_agent.application.ports.web_research import WebResearchPort
+from hotel_agent.application.ports.web_research import WebPage, WebResearchPort
 
 DESCRIPTIONS = {
     "sun_azimuth_deg": "Азимут солнца от севера по часовой стрелке, градусы",
@@ -35,11 +35,19 @@ class ResearchTools:
         self._web, self._conditions, self._now = web, conditions, now
         self._view = view
         self.pages: list[dict[str, Any]] = []
+        self._page_cache: dict[str, WebPage] = {}
         self.sources: dict[str, dict[str, tuple[str, ...]]] = {}
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
         self._calls = 0
 
-    async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+    def reuse(self, previous: "ResearchTools") -> None:
+        ids = {hotel.id for hotel in self._hotels()}
+        self.pages = [dict(row) for row in previous.pages if row["hotel_id"] in ids]
+        self._page_cache = dict(previous._page_cache)
+
+    async def execute(
+        self, action: str, arguments: dict[str, Any], identity: dict[str, Any] | None = None
+    ) -> dict[str, Any]:
         self._calls += 1
         if action == "search_web":
             if self._web is None:
@@ -54,14 +62,29 @@ class ResearchTools:
                 return {"error": "Internet page reading is unavailable"}
             ids = arguments.get("hotel_ids") or []
             hotel_id = arguments.get("hotel_id") or (ids[0] if len(ids) == 1 else "")
-            hotel = self._hotel(str(hotel_id))
-            page = await self._web.read(str(arguments.get("url", "")))
+            hotel = self._hotel(str(hotel_id)) if hotel_id else None
+            url = str(arguments.get("url", ""))
+            page = self._page_cache.get(url)
+            if page is None:
+                page = await self._web.read(url)
+                self._page_cache[url] = self._page_cache[page.url] = page
+            if hotel is None:
+                return {
+                    "source_url": page.url,
+                    "title": page.title,
+                    "text": page.text[:40000],
+                    "events": list(page.events),
+                    "retrieved_at": page.retrieved_at.isoformat(),
+                    "discovery_only": True,
+                    "note": "Untrusted source context, not hotel evidence. Resolve the object with list_candidates query, then read this URL with its verified hotel_id to check the wish. For event proximity use read_event_page. Do not invent hotel association or coordinates.",
+                }
             self.pages.append(
                 {
                     "hotel_id": hotel.id,
                     "hotel_name": hotel.name,
                     "hotel_address": hotel.address,
                     "hotel_location": hotel.location,
+                    "hotel_identity": identity or {},
                     "source_url": page.url,
                     "title": page.title,
                     "text": page.text,

@@ -1,7 +1,9 @@
+from datetime import datetime, time
 from typing import Any
 
 import httpx
 
+from hotel_agent.adapters.external.event_listings import event_listings
 from hotel_agent.adapters.external.event_records import event_record, timestamp
 from hotel_agent.adapters.external.public_json import public_json
 from hotel_agent.application.ports.place_research import PlaceResearchRequest, PlaceResearchResult
@@ -22,10 +24,12 @@ class PublicEvents:
         await self._client.aclose()
 
     async def research(self, request: PlaceResearchRequest) -> PlaceResearchResult:
+        if request.start is None and request.end is None and request.city:
+            return await event_listings(self._client, request.query, request.city)
         if request.start is None or request.end is None:
             raise ValueError("Events require start and end with UTC offsets")
         if request.url:
-            page = await self._web.read(request.url)
+            page = request.page or await self._web.read(request.url)
             records = self._records(page.events, request, page.url, True)
             sources = (page.url,)
         else:
@@ -93,6 +97,21 @@ class PublicEvents:
                 if not isinstance(interval, dict):
                     continue
                 start, end = timestamp(interval.get("start")), timestamp(interval.get("end"))
+                date_only = False
+                if start is None and schema and request.start and request.end:
+                    raw_start = interval.get("start")
+                    if (
+                        isinstance(raw_start, str)
+                        and request.start.time() == request.end.time() == time.min
+                    ):
+                        try:
+                            local = datetime.fromisoformat(raw_start)
+                        except ValueError:
+                            continue
+                        if local.utcoffset() is None:
+                            start = datetime.combine(local.date(), time.min, request.start.tzinfo)
+                            end = None
+                            date_only = True
                 if interval.get("is_startless") or interval.get("is_endless"):
                     continue
                 end_known = end is not None
@@ -106,10 +125,16 @@ class PublicEvents:
                     or (end == request.start and end > start)
                 ):
                     continue
+                if start == end and start.astimezone(request.start.tzinfo).time() == time.min:
+                    date_only = True
+                    end_known = False
                 result.append(
                     {
                         **record,
-                        "start": start.isoformat(),
+                        "start": start.astimezone(request.start.tzinfo).date().isoformat()
+                        if date_only
+                        else start.isoformat(),
+                        "time_precision": "date" if date_only else "instant",
                         "end": end.isoformat() if end_known else None,
                         "distance_m": round(distance, 1),
                     }
