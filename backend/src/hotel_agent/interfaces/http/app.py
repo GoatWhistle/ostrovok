@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
@@ -14,6 +15,7 @@ from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.interfaces.http.routers import (
     chat,
+    compare,
     geo,
     health,
     hotels,
@@ -36,6 +38,7 @@ def api_router_v1(
     registry: CharacteristicRegistryPort,
     get_geo_features: GetGeoFeatures,
     get_hotel_card: GetHotelCard,
+    compare_hotels: CompareHotels,
     get_hotel_offers: GetHotelOffers,
     get_hotel_scene: GetHotelScene,
     get_map_tile: GetMapTile,
@@ -43,6 +46,7 @@ def api_router_v1(
     get_weather: GetWeather,
 ) -> APIRouter:
     router = APIRouter(prefix="/api/v1")
+    router.include_router(compare.build_router(compare_hotels))
     router.include_router(health.build_router(llm_provider))
     router.include_router(meta.build_router(list_characteristics))
     router.include_router(regions.build_router(list_regions))

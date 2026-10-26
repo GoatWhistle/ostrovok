@@ -20,6 +20,7 @@ from hotel_agent.adapters.weather.destination_conditions import OpenMeteoConditi
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
@@ -119,6 +120,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),
+            compare_hotels=CompareHotels(providers.uow, providers.registry, providers.clock),
             get_hotel_offers=get_hotel_offers,
             get_hotel_scene=GetHotelScene(providers.uow),
             get_map_tile=GetMapTile(providers.uow),
