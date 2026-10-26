@@ -2,7 +2,7 @@ import json
 from collections.abc import Mapping
 from typing import Any
 
-from hotel_agent.adapters.llm.payload import flag, items, number, optional_text, text
+from hotel_agent.adapters.llm.payload import flag, items, number, optional_text, strings, text
 from hotel_agent.adapters.llm.research_instructions import SYSTEM
 from hotel_agent.application.agent.data_records import DataCheck, DataCriterion, DataStep
 from hotel_agent.domain.errors import ModelFailure
@@ -35,6 +35,10 @@ def schema(known_fields: list[str] | None = None, finish_only: bool = False) -> 
                 if finish_only
                 else [
                     "inspect_data",
+                    "check_requested",
+                    "match_records",
+                    "list_candidates",
+                    "get_provider_content",
                     "search_documents",
                     "find_hotels",
                     "read_records",
@@ -51,6 +55,8 @@ def schema(known_fields: list[str] | None = None, finish_only: bool = False) -> 
             },
             "arguments": _object(
                 {
+                    "offset": {"type": ["integer", "null"]},
+                    "limit": {"type": ["integer", "null"]},
                     "query": {"type": ["string", "null"]},
                     "url": {"type": ["string", "null"]},
                     "hotel_id": {"type": ["string", "null"]},
@@ -79,6 +85,8 @@ def schema(known_fields: list[str] | None = None, finish_only: bool = False) -> 
             ),
             "criteria": {"type": "array", "items": criterion},
             "question": {"type": ["string", "null"]},
+            "reason": {"type": "string"},
+            "irrelevant_sources": {"type": "array", "items": {"type": "string"}},
         }
     )
     return {
@@ -121,6 +129,8 @@ def step(payload: Mapping[str, object]) -> DataStep:
         arguments={str(key): value for key, value in arguments.items() if value is not None},
         criteria=tuple(criteria),
         question=question,
+        reason=optional_text(payload, "reason") or "",
+        irrelevant_sources=tuple(strings(payload, "irrelevant_sources")),
     )
 
 

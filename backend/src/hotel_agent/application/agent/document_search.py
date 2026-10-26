@@ -14,7 +14,11 @@ async def search_documents(
     discovery_allowed: bool,
 ) -> tuple[tuple[SearchHotelRecord, ...], dict[str, Any]]:
     if semantic is None:
-        return tuple(hotels), {"hits": [], "note": "Semantic retrieval is not configured"}
+        return tuple(hotels), {
+            "hits": [],
+            "unavailable": True,
+            "note": "Semantic retrieval is not configured",
+        }
     hits = await semantic.search(
         query, None if discovery_allowed else tuple(h.id for h in hotels), 12
     )
@@ -36,6 +40,7 @@ async def search_documents(
                 "website": d.website,
                 "text": d.text,
                 "source": d.source,
+                "source_url": d.website,
                 "relevance": d.relevance,
             }
             for d in hits

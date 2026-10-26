@@ -18,6 +18,7 @@ class RoomOfferTools:
         self._offers, self._hotels = offers, hotels
         self._metrics, self._descriptions = metrics, descriptions
         self._calls = 0
+        self.records: list[dict[str, Any]] = []
 
     async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:
         if self._offers is None:
@@ -62,6 +63,41 @@ class RoomOfferTools:
                         for offer in result.offers[:6]
                     ],
                 }
+            )
+            self.records.extend(
+                {
+                    "hotel_id": hotel.id,
+                    "hotel_name": hotel.name,
+                    "hotel_address": hotel.address,
+                    "hotel_location": hotel.location,
+                    "id": offer.id,
+                    "name": offer.room_name,
+                    "price_amount": offer.price_amount,
+                    "price_currency": offer.price_currency,
+                    "meal": offer.meal,
+                    "amenities": list(offer.amenities),
+                    "floor_number": offer.floor_number,
+                    "check_in": str(check_in),
+                    "check_out": str(check_out),
+                    "adults": adults,
+                    "sandbox": result.sandbox,
+                    "source": result.source,
+                    "text": str(
+                        {
+                            "room": offer.room_name,
+                            "meal": offer.meal,
+                            "amenities": offer.amenities,
+                            "floor_number": offer.floor_number,
+                            "price_amount": offer.price_amount,
+                            "price_currency": offer.price_currency,
+                            "check_in": str(check_in),
+                            "check_out": str(check_out),
+                            "adults": adults,
+                            "sandbox": result.sandbox,
+                        }
+                    ),
+                }
+                for offer in result.offers
             )
             if result.status not in {"available", "no_offers"}:
                 continue

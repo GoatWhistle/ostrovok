@@ -42,6 +42,10 @@ class GetHotelOffers:
         self._provider = provider
         self._clock = clock
 
+    @property
+    def configured(self) -> bool:
+        return self._provider is not None
+
     async def __call__(
         self, hotel_id: str, check_in: date, check_out: date, adults: int, residency: str
     ) -> HotelOffers:

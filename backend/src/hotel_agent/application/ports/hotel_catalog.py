@@ -27,3 +27,7 @@ class HotelCatalogSource(Protocol):
 
 class HotelCatalogStore(Protocol):
     async def save(self, hotel_id: str, hotel: CatalogHotel) -> int: ...
+
+
+class CatalogProviderFailure(ValueError):
+    pass

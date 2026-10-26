@@ -168,6 +168,11 @@ def parse_payload(
             valid_raw.append(raw)
     intents = tuple(intent for raw in valid_raw if (intent := parse_intent(raw, query)) is not None)
     return ParsedQuery(
+        wishes=tuple(
+            item.strip()
+            for item in strings(payload, "wishes")
+            if item.strip() and normalize(item) in normalize(query)
+        ),
         intents=intents,
         unmatched_terms=tuple(dict.fromkeys((*strings(payload, "unmatched_terms"), *unit_terms))),
         location_hint=optional_text(payload, "location_hint"),

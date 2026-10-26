@@ -23,13 +23,16 @@ def test_seeded_search_and_geo_features() -> None:
         assert data["results"], "Run make seed and make precompute before integration tests"
         assert data["results"][0]["hotel"]["location"]
         matched = data["results"][0]["matched"]
-        sea = next(item for item in matched if item["characteristic_key"] == "distance_to_sea")
+        sea = next(item for item in matched if item["label"] == "недалеко от моря")
         assert sea["match"] in {"full", "partial"}
         assert sea["geo_refs"]
         features = client.post("/api/v1/geo-features:batch", json={"ids": sea["geo_refs"]})
         assert features.status_code == 200, features.text
         assert features.json()["features"][0]["geometry"]["type"] == "LineString"
         hotel_id = data["results"][0]["hotel"]["id"]
+        sea_detail = client.get(f"/api/v1/hotels/{hotel_id}/facts/{sea['fact']['fact_id']}")
+        assert sea_detail.status_code == 200, sea_detail.text
+        assert sea_detail.json()["fact_id"] == sea["fact"]["fact_id"]
         card = client.get(f"/api/v1/hotels/{hotel_id}")
         scene = client.get(f"/api/v1/hotels/{hotel_id}/scene")
         assert card.status_code == 200, card.text
@@ -50,6 +53,8 @@ def test_seeded_search_and_geo_features() -> None:
             },
         )
         assert unsupported.status_code == 200, unsupported.text
-        assert unsupported.json()["parsed"]["intents"] == []
+        assert unsupported.json()["parsed"]["intents"]
         assert unsupported.json()["results"]
-        assert unsupported.json()["results"][0]["matched"] == []
+        assert all(
+            item["match"] == "unknown" for item in unsupported.json()["results"][0]["matched"]
+        )

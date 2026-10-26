@@ -6,8 +6,8 @@ from hotel_agent.application.ports.llm import LLMPort
 
 
 class DocumentEvidence:
-    def __init__(self, llm: LLMPort, terms: tuple[str, ...]) -> None:
-        self._llm, self._terms = llm, terms
+    def __init__(self, llm: LLMPort, terms: tuple[str, ...], query: str = "") -> None:
+        self._llm, self._terms, self._query = llm, terms, query
 
     async def verify(
         self, term: str | None, rows: Sequence[dict[str, Any]], filters: Sequence[dict[str, Any]]
@@ -39,6 +39,7 @@ class DocumentEvidence:
         context = json.dumps(
             {
                 "wish": term,
+                "request": self._query,
                 "records": [
                     {
                         "record_id": key,

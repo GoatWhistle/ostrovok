@@ -73,6 +73,7 @@ RESTRICTING_QUALIFIERS = frozenset(
         "estimated_location",
         "estimated_view",
         "estimated_absence",
+        "estimated_match",
     }
 )
 

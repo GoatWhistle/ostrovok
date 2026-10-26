@@ -41,8 +41,6 @@ class ResearchTools:
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
         self._calls += 1
-        if self._calls > 5:
-            raise ValueError("External research budget exhausted")
         if action == "search_web":
             if self._web is None:
                 return {"error": "Internet search is unavailable"}

@@ -27,6 +27,7 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
                     }
                 ),
             },
+            "wishes": {"type": "array", "items": {"type": "string"}},
             "unmatched_terms": {"type": "array", "items": {"type": "string"}},
             "location_hint": {"type": ["string", "null"]},
             "anywhere": {"type": "boolean"},

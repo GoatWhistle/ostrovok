@@ -91,3 +91,4 @@ class ParsedQuery:
     check_in: date | None = None
     check_out: date | None = None
     adults: int | None = None
+    wishes: tuple[str, ...] = ()

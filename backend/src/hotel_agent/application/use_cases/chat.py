@@ -2,6 +2,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from uuid import uuid4
 
+from hotel_agent.application.agent.wish_response import wish_response
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, validated_title
 from hotel_agent.application.ports.llm import LLMPort
@@ -190,6 +191,7 @@ class Chat:
         return self._room_question(search, answer, locale)
 
     def _room_question(self, search: SearchOutcome, answer: str, locale: str) -> str:
+        answer = wish_response(answer, search.wish_results, locale)
         parsed = search.parsed
         if (
             parsed.intents

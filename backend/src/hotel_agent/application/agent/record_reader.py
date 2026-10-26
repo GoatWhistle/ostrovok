@@ -1,3 +1,4 @@
+import json
 from collections import Counter
 from collections.abc import Awaitable, Callable, Sequence
 from typing import Any
@@ -18,9 +19,55 @@ class RecordReader:
         self._records, self._metrics, self._descriptions = records, metrics, descriptions
         self._evidence = evidence
         self._reads = 0
+        self.verified_terms: dict[str, str] = {}
+        self.field_context: dict[str, str] = {}
         self.quotes: dict[str, dict[str, tuple[str, ...]]] = {}
         self.source_urls: dict[str, dict[str, tuple[str, ...]]] = {}
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
+
+    async def match(
+        self,
+        dataset: str,
+        term: str,
+        offset: int = 0,
+        limit: int = 12,
+        hotel_ids: Sequence[str] = (),
+    ) -> dict[str, Any]:
+        if offset < 0 or not 1 <= limit <= 12:
+            raise ValueError("Use a nonnegative offset and a page of 1–12 records")
+        rows = await self._records(dataset)
+        selected = [row for row in rows if not hotel_ids or row["hotel_id"] in hotel_ids]
+        batch = selected[offset : offset + limit]
+        matched = await self._evidence.verify(term, batch, ()) if self._evidence else []
+        self._reads += 1
+        field = f"r{self._reads}.match_count"
+        for hotel_id in dict.fromkeys(str(row["hotel_id"]) for row in matched):
+            supported = [row for row in matched if str(row["hotel_id"]) == hotel_id]
+            self._metrics.setdefault(hotel_id, {})[field] = float(len(supported))
+            self.quotes.setdefault(hotel_id, {})[field] = tuple(
+                str(row["_evidence_quote"]) for row in supported
+            )
+            self.source_urls.setdefault(hotel_id, {})[field] = tuple(
+                str(row["source_url"]) for row in supported if row.get("source_url")
+            )
+            self.geo_refs.setdefault(hotel_id, {})[field] = tuple(
+                str(row["geo_ref"]) for row in supported if row.get("geo_ref")
+            )
+        self._descriptions[field] = "Подтверждения смысла пожелания цитатой из источника"
+        self.verified_terms[field] = term
+        return {
+            "dataset": dataset,
+            "field": field,
+            "record_count": len(selected),
+            "examined_count": len(batch),
+            "matched_record_count": len(matched),
+            "matched_hotel_ids": list(dict.fromkeys(str(row["hotel_id"]) for row in matched)),
+            "samples": preview(matched),
+            "offset": offset,
+            "next_offset": offset + len(batch) if offset + len(batch) < len(selected) else None,
+            "has_more": offset + len(batch) < len(selected),
+            "note": "Semantic verification with exact source quotes; unchecked records remain unknown.",
+        }
 
     async def read(self, dataset: str, filters: Any, term: str | None = None) -> dict[str, Any]:
         if not isinstance(filters, list) or not filters or len(filters) > 8:
@@ -78,6 +125,11 @@ class RecordReader:
                 for row in matched
                 if row["hotel_id"] == hotel_id and row.get("geo_ref")
             )
+        if textual and term:
+            self.verified_terms[field] = term
+        self.field_context[field] = json.dumps(
+            {"dataset": dataset, "filters": filters}, ensure_ascii=False
+        )
         self._descriptions[field] = (
             "Объектов внутри здания отеля"
             if dataset == "onsite_objects"

@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.web_research import PublicWebResearch
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
@@ -96,6 +97,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             conditions,
             NearbyViewAssessment(terrain_tiles, providers.uow),
             get_hotel_offers,
+            NuiteeCatalog(config.nuitee_api_key)
+            if config.nuitee_api_key
+            and providers.hotel_offers is not None
+            and providers.hotel_offers.supplier == "nuitee"
+            else None,
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,

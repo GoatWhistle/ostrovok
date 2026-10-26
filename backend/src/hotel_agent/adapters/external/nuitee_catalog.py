@@ -1,6 +1,10 @@
 import httpx
 
-from hotel_agent.application.ports.hotel_catalog import CatalogHotel, CatalogRoom
+from hotel_agent.application.ports.hotel_catalog import (
+    CatalogHotel,
+    CatalogProviderFailure,
+    CatalogRoom,
+)
 
 URL = "https://api.liteapi.travel/v3.0/data/hotel"
 
@@ -11,6 +15,12 @@ class NuiteeCatalog:
         self._client = client
 
     async def get_hotel(self, supplier_id: str) -> CatalogHotel:
+        try:
+            return await self._get_hotel(supplier_id)
+        except (httpx.HTTPError, KeyError, TypeError, ValueError) as error:
+            raise CatalogProviderFailure(type(error).__name__) from error
+
+    async def _get_hotel(self, supplier_id: str) -> CatalogHotel:
         params = {"hotelId": supplier_id, "language": "ru"}
         headers = {"X-API-Key": self._api_key}
         if self._client is None:

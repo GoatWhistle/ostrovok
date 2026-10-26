@@ -65,3 +65,26 @@ async def test_scope_acceptance_requires_a_verbatim_quote_from_real_measurements
     )
     assert accepted == (criterion,)
     assert rejected == ()
+
+
+async def test_capacity_filter_cannot_establish_a_room_floor_wish() -> None:
+    tools = DataTools(MagicMock(), MagicMock(), [], "Сочи", "sochi", None, False)
+    tools.descriptions["r1.match_count"] = "Подтверждений в данных источника"
+    tools.reader.field_context["r1.match_count"] = (
+        '{"dataset":"rooms","filters":[{"field":"capacity","op":"eq","value":2}]}'
+    )
+    wanted = DataCriterion(
+        term="на 17 этаже",
+        source_text="на 17 этаже",
+        required=False,
+        checks=(DataCheck(field="r1.match_count", op="gte", value=1),),
+        explanation="",
+    )
+    llm = SimpleNamespace(verify_evidence=AsyncMock(return_value=[]))
+    accepted, rejected = await verify_measurement_scope(
+        cast(LLMPort, llm), "номер на 17 этаже", (wanted,), tools, datetime.now(UTC)
+    )
+    assert accepted == ()
+    assert rejected == ("на 17 этаже",)
+    context = json.loads(llm.verify_evidence.await_args.args[0])
+    assert "capacity" in context["records"][0]["source_text"]

@@ -1,3 +1,4 @@
+import json
 import re
 from collections.abc import Mapping, Sequence
 
@@ -42,7 +43,25 @@ class FakeLLM:
         self._registry = registry
 
     async def explore_data(self, context: str) -> DataStep:
-        return DataStep(action="finish", arguments={})
+        payload = json.loads(context)
+        term = payload.get("current_wish") or payload.get("terms", [""])[0]
+        observed = payload.get("observations", [])
+        if not any(item.get("tool") == "match_records" for item in observed):
+            return DataStep(action="match_records", arguments={"dataset": "hotels", "term": term})
+        if payload.get("pending_pages"):
+            dataset, offset = next(iter(payload["pending_pages"].items()))
+            return DataStep(
+                action="match_records",
+                arguments={"dataset": dataset, "offset": offset, "term": term},
+            )
+        return DataStep(
+            action="finish",
+            arguments={},
+            reason="Доступный автономный режим не нашёл подтверждения пожелания в источниках.",
+            irrelevant_sources=tuple(
+                key for key in payload.get("available_sources", {}) if key != "database"
+            ),
+        )
 
     async def contextualize_query(
         self,

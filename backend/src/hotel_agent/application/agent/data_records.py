@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Any
 
-from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.agent.wish_records import WishResult
+from hotel_agent.application.dto import GeoFeatureRecord, SearchFactRecord, SearchHotelRecord
 from hotel_agent.domain.query import Intent
 
 
@@ -27,6 +28,8 @@ class DataStep:
     arguments: dict[str, Any]
     criteria: tuple[DataCriterion, ...] = ()
     question: str | None = None
+    reason: str = ""
+    irrelevant_sources: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -37,3 +40,6 @@ class ExplorationOutcome:
     resolved_terms: tuple[str, ...] = ()
     bbox: tuple[float, float, float, float] | None = None
     question: str | None = None
+    features: tuple[GeoFeatureRecord, ...] = ()
+    wish_results: tuple[WishResult, ...] = ()
+    processed_terms: tuple[str, ...] = ()

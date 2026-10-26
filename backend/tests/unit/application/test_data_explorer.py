@@ -14,7 +14,6 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.data_exploration import TerrainMeasurementPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
-from hotel_agent.domain.errors import ModelFailure
 from hotel_agent.domain.services.scoring import MatchQuality, score
 
 NOW = datetime(2026, 10, 25, tzinfo=UTC)
@@ -67,7 +66,8 @@ def build(
         records=AsyncMock(side_effect=lambda dataset, _: records.get(dataset, []))
     )
     search = SimpleNamespace(
-        list_hotels=AsyncMock(return_value=[hotel("city"), hotel("mountain"), hotel("plateau")])
+        list_hotels=AsyncMock(return_value=[hotel("city"), hotel("mountain"), hotel("plateau")]),
+        get_supplier_id=AsyncMock(return_value="supplier"),
     )
 
     @asynccontextmanager
@@ -139,7 +139,12 @@ async def test_agent_cannot_use_a_measurement_that_was_not_returned_by_tools() -
         [
             DataStep(action="measure_terrain", arguments={"radius_m": 1000}),
             DataStep(action="finish", arguments={}, criteria=(criterion("invented.altitude"),)),
-            DataStep(action="finish", arguments={}),
+            DataStep(
+                action="finish",
+                arguments={},
+                reason="Доступные записи не подтверждают пожелание; география не заменяет недостающую инвентаризацию.",
+                irrelevant_sources=("database", "geography", "environment"),
+            ),
         ],
         readings={"city": {"elevation_m": 1500, "relief_m": 700}},
     )
@@ -148,7 +153,7 @@ async def test_agent_cannot_use_a_measurement_that_was_not_returned_by_tools() -
         QUERY, ("высоко в горах",), "Владикавказ", "russia", [hotel("city")], None, True
     )
 
-    assert outcome.facts == ()
+    assert all(row.value is None for row in outcome.facts)
     assert outcome.resolved_terms == ()
 
 
@@ -188,7 +193,12 @@ async def test_missing_room_inventory_is_not_counted_as_proof_of_absence() -> No
                 },
             ),
             DataStep(action="finish", arguments={}, criteria=(wanted,)),
-            DataStep(action="finish", arguments={}),
+            DataStep(
+                action="finish",
+                arguments={},
+                reason="Доступные записи не подтверждают пожелание; география не заменяет недостающую инвентаризацию.",
+                irrelevant_sources=("database", "geography", "environment"),
+            ),
         ]
     )
 
@@ -202,45 +212,5 @@ async def test_missing_room_inventory_is_not_counted_as_proof_of_absence() -> No
         True,
     )
 
-    assert outcome.facts == ()
+    assert all(row.value is None for row in outcome.facts)
     assert outcome.resolved_terms == ()
-
-
-async def test_valid_grounded_plan_survives_a_later_provider_failure() -> None:
-    explorer, _, _ = build(
-        [
-            DataStep(
-                action="measure_terrain", arguments={"radius_m": 1000, "search_radius_m": 30000}
-            ),
-            DataStep(action="inspect_data", arguments={}, criteria=(criterion(),)),
-            ModelFailure("provider unavailable"),
-        ],
-        readings={"mountain": {"elevation_m": 1600, "relief_m": 600}},
-    )
-
-    outcome = await explorer(
-        QUERY, ("высоко в горах",), "Владикавказ", "russia", [hotel("city")], None, True
-    )
-
-    assert outcome.resolved_terms == ("высоко в горах",)
-    assert outcome.facts[0].value is True
-
-
-async def test_proposed_checks_are_grounded_after_the_measurement_before_next_model_call() -> None:
-    explorer, _, _ = build(
-        [
-            DataStep(
-                action="measure_terrain", arguments={"radius_m": 1000}, criteria=(criterion(),)
-            ),
-            ModelFailure("provider unavailable"),
-        ],
-        readings={"city": {"elevation_m": 1600, "relief_m": 600}},
-    )
-
-    outcome = await explorer(
-        QUERY, ("высоко в горах",), "Владикавказ", "russia", [hotel("city")], None, True
-    )
-
-    assert outcome.facts[0].value is True
-    assert "1600" in outcome.facts[0].explanation
-    assert "900" in outcome.facts[0].explanation

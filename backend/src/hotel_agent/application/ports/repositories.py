@@ -60,7 +60,11 @@ class SearchRepository(Protocol):
     ) -> Sequence[SearchHotelRecord]: ...
 
     async def list_facts(
-        self, region: str | None, hotel_id: str | None = None
+        self,
+        region: str | None,
+        hotel_id: str | None = None,
+        hotel_ids: Sequence[str] | None = None,
+        characteristic_keys: Sequence[str] | None = None,
     ) -> Sequence[SearchFactRecord]: ...
 
     async def get_hotel(self, hotel_id: str) -> SearchHotelRecord | None: ...

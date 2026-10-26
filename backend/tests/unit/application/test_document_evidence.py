@@ -62,6 +62,12 @@ async def test_street_name_does_not_prove_underwater_accommodation() -> None:
                 criteria=(wanted,),
             ),
             DataStep(action="finish", arguments={}, criteria=(wanted,)),
+            DataStep(
+                action="finish",
+                arguments={},
+                reason="Адрес не подтверждает проживание под водой; проверенные записи не содержат такого описания.",
+                irrelevant_sources=("geography", "environment"),
+            ),
         ],
         rows={
             "hotels": [{"hotel_id": "city", "name": "Гостевой дом"}],
@@ -88,6 +94,6 @@ async def test_street_name_does_not_prove_underwater_accommodation() -> None:
         False,
     )
 
-    assert not result.facts
+    assert all(row.value is None for row in result.facts)
     assert not result.resolved_terms
     llm.verify_evidence.assert_awaited_once()
