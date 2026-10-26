@@ -6,7 +6,6 @@ import { ChatComposer } from "./chat-composer"
 import type { HistoryEntry } from "./chat-history"
 import styles from "./chat-start.module.css"
 import { historyStamp } from "./history-stamp"
-import { useTypedExample } from "./use-typed-example"
 
 const UNFOLD_COOLDOWN = 2
 const RECENT_LIMIT = 3
@@ -40,34 +39,36 @@ export function ChatStart({ pending, recent, onSend, onOpen, onHistory }: ChatSt
     unfoldedAt.current = now
     setUnfold((count) => count + 1)
   }
-  const typed = useTypedExample(
-    [t("explore:chat.example1"), t("explore:chat.example2"), t("explore:chat.example3")],
-    pending,
-  )
   return (
     <section className={styles.card} aria-labelledby={titleId}>
       <div className={styles.lockup} onPointerEnter={replay}>
         <BrandMark key={unfold} size="lg" motion={firstVisit || unfold > 0 ? "enter" : "still"} />
         <span className={styles.word}>{t("common:app.wordmark")}</span>
       </div>
-      <h1 id={titleId} className={styles.title}>
-        {t("explore:chat.startTitle")}
-      </h1>
-      <p className={styles.text}>{t("explore:chat.startText")}</p>
-      <div className={styles.composer}>
-        <ChatComposer pending={pending} placeholder={typed.text} onSend={onSend} />
-      </div>
-      <div className={styles.chips}>
-        {START_SUGGESTIONS.map((item) => (
-          <Chip
-            key={item.key}
-            icon={characteristicIcon(item.key)}
-            hue={characteristicHue(item.key)}
-            label={t(item.label)}
-            size="large"
-            onClick={() => onSend(t(item.label))}
+      <div className={styles.main}>
+        <h1 id={titleId} className={styles.title}>
+          {t("explore:chat.startTitle")}
+        </h1>
+        <p className={styles.text}>{t("explore:chat.startText")}</p>
+        <div className={styles.composer}>
+          <ChatComposer
+            pending={pending}
+            placeholder={t("explore:chat.startPlaceholder")}
+            onSend={onSend}
           />
-        ))}
+        </div>
+        <div className={styles.chips}>
+          {START_SUGGESTIONS.map((item) => (
+            <Chip
+              key={item.key}
+              icon={characteristicIcon(item.key)}
+              hue={characteristicHue(item.key)}
+              label={t(item.label)}
+              size="large"
+              onClick={() => onSend(t(item.label))}
+            />
+          ))}
+        </div>
       </div>
       {recent.length ? (
         <RecentSearches recent={recent} onOpen={onOpen} onHistory={onHistory} />

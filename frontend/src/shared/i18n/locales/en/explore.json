@@ -26,11 +26,8 @@
     "composer": "Message to the search",
     "hint": "Enter sends, Shift and Enter add a line",
     "errorText": "Could not continue the conversation. Send the message again.",
-    "startTitle": "Search in words. Check on the map.",
-    "startText": "Quiet nights, a sunset view, the walk to the sea. We find hotels where it is backed by data and show the proof on the map.",
-    "example1": "a quiet room with a sunset view, a short walk to the sea",
-    "example2": "a hotel in the centre near the promenade and cafes",
-    "example3": "dogs welcome, a park nearby for walks",
+    "startTitle": "What kind of hotel are you looking for?",
+    "startText": "Write it in plain words. We check each condition against data and show it on the map.",
     "suggestBars": "bars nearby",
     "suggestHigh": "high floor",
     "historyShort": "History",
@@ -49,7 +46,8 @@
     "cityPrompt": "Popular destinations",
     "citySochi": "Sochi",
     "cityMoscow": "Moscow",
-    "citySpb": "Saint Petersburg"
+    "citySpb": "Saint Petersburg",
+    "startPlaceholder": "For example, a quiet room with a sunset view"
   },
   "navigation": {
     "search": "Find a hotel",

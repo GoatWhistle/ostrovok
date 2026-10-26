@@ -1,21 +1,18 @@
 .card {
-  position: relative;
   display: grid;
-  justify-items: start;
-  gap: var(--space-20);
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-40);
   inline-size: 100%;
+  min-block-size: 100%;
   text-align: start;
-}
-
-.card > * {
-  position: relative;
+  animation: var(--motion-fade-in);
 }
 
 .lockup {
   display: flex;
   align-items: center;
   gap: var(--space-12);
-  margin-block-end: var(--space-32);
+  justify-self: start;
 }
 
 .word {
@@ -24,32 +21,19 @@
   line-height: var(--line-height-heading-lg);
 }
 
-.card > :not(:first-child) {
-  animation: var(--motion-rise-in);
-  animation-delay: calc(var(--dur-base) + var(--stagger) * var(--start-step, 1));
-}
-
-.card > :nth-child(3) {
-  --start-step: 2;
-}
-
-.card > :nth-child(4) {
-  --start-step: 3;
-}
-
-.card > :nth-child(5) {
-  --start-step: 4;
-}
-
-.card > :nth-child(6) {
-  --start-step: 5;
+.main {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-16);
 }
 
 .title {
   composes: headingText from "../../shared/styles/compose.module.css";
+  text-wrap: balance;
 }
 
-.card .title {
+.main .title {
   font-size: var(--font-size-display-sm);
   line-height: var(--line-height-heading-lg);
 }
@@ -61,6 +45,7 @@
 
 .composer {
   inline-size: 100%;
+  margin-block-start: var(--space-8);
   text-align: start;
 }
 
@@ -85,7 +70,6 @@
   display: grid;
   gap: var(--space-8);
   inline-size: 100%;
-  margin-block-start: var(--space-12);
 }
 
 .recentHead {
@@ -167,14 +151,15 @@
 
 @media (max-width: 47.99rem) {
   .card {
-    gap: var(--space-12);
+    grid-template-rows: auto;
+    gap: var(--space-32);
   }
 
-  .card > :first-child {
+  .lockup {
     display: none;
   }
 
-  .card .title {
+  .main .title {
     font-size: var(--font-size-heading-lg);
   }
 }
