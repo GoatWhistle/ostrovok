@@ -93,3 +93,34 @@ async def test_incomplete_disk_cache_uses_complete_geography_context(
     if available:
         assert result == complete
     assert calls == [bbox]
+
+
+@pytest.mark.parametrize("cached", [True, False])
+async def test_all_cached_relations_are_recovered_beyond_download_limit(
+    tmp_path: Path, cached: bool
+) -> None:
+    bbox = (39.0, 43.0, 39.01, 43.01)
+    relations = []
+    for identifier in range(100, 112):
+        relations.append(
+            f'<relation id="{identifier}"><member type="way" ref="999" role="outer"/>'
+            '<tag k="type" v="multipolygon"/><tag k="building" v="yes"/></relation>'
+        )
+        if cached:
+            (tmp_path / f"r{identifier}.osm").write_bytes(
+                XML.replace(b'<relation id="100">', f'<relation id="{identifier}">'.encode())
+            )
+    payload = ('<osm version="0.6">' + "".join(relations) + "</osm>").encode()
+    (tmp_path / "area-39.000000-43.000000-39.010000-43.010000.osm").write_bytes(payload)
+    requests: list[httpx.Request] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        requests.append(request)
+        return httpx.Response(503)
+
+    source = OSMViewGeometry(tmp_path, httpx.MockTransport(handle))
+    result = await source.area(bbox)
+    await source.aclose()
+    assert result is not None and result.complete is cached
+    assert len(result.buildings) == (12 if cached else 0)
+    assert len(requests) == (0 if cached else 8)
