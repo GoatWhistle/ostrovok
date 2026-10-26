@@ -130,7 +130,7 @@ class OSMViewGeometry:
                     self._areas[key] = refreshed
                 if refreshed is not None or cached is not None:
                     return refreshed if refreshed is not None else cached
-            return await self._area(bbox)
+            return cached if cached is not None else await self._area(bbox)
 
     async def _area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea | None:
         west, south, east, north = bbox
@@ -142,7 +142,7 @@ class OSMViewGeometry:
             raise ValueError("A small valid OSM map bounding box is required")
         box = ",".join(f"{number:.6f}" for number in bbox)
         key = "area-" + box.replace(",", "-")
-        if key in self._areas:
+        if key in self._areas and self._areas[key].complete:
             return self._areas[key]
         path = self._cache / f"{key}.osm" if self._cache else None
         url = "https://api.openstreetmap.org/api/0.6/map?" + urlencode({"bbox": box})

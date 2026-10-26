@@ -145,3 +145,29 @@ async def test_unavailable_context_uses_osm_map_source(tmp_path: Path) -> None:
     assert result is not None and result.complete
     assert [building.id for building in result.buildings] == ["r100"]
     assert calls == ["/api/0.6/map"]
+
+
+async def test_incomplete_area_can_resume_member_recovery_in_same_process(tmp_path: Path) -> None:
+    relations = "".join(
+        f'<relation id="{i}"><member type="way" ref="999" role="outer"/>'
+        '<tag k="type" v="multipolygon"/><tag k="building" v="yes"/></relation>'
+        for i in range(100, 112)
+    )
+    payload = ('<osm version="0.6">' + relations + "</osm>").encode()
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/map"):
+            return httpx.Response(200, content=payload)
+        identifier = request.url.path.split("/")[-2]
+        return httpx.Response(
+            200,
+            content=XML.replace(b'<relation id="100">', f'<relation id="{identifier}">'.encode()),
+        )
+
+    source = OSMViewGeometry(tmp_path, httpx.MockTransport(handle))
+    first = await source.area((39, 43, 39.01, 43.01))
+    second = await source.area((39, 43, 39.01, 43.01))
+    await source.aclose()
+    assert first is not None and not first.complete
+    assert second is not None and second.complete
+    assert len(second.buildings) == 12
