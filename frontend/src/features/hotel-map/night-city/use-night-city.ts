@@ -2,6 +2,7 @@ import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useMapScene, useTileVersions } from "@/entities/map-data"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
+import { type QualityLevel, windowDensity } from "@/shared/geo/map-quality"
 import {
   nightFactor,
   renderNightLights,
@@ -32,6 +33,7 @@ export interface NightCityInput {
   readonly colors: MapColors
   readonly volumeColor: ExpressionSpecification | string
   readonly sun: SunPosition
+  readonly quality: QualityLevel
 }
 
 function useWindowLayer(mapRef: RefObject<MapLibreMap | null>, ready: boolean) {
@@ -64,6 +66,7 @@ export function useNightCity({
   colors,
   volumeColor,
   sun,
+  quality,
 }: NightCityInput) {
   const [viewport, setViewport] = useState<SceneViewport>()
   const { layer, builder } = useWindowLayer(mapRef, ready)
@@ -111,11 +114,13 @@ export function useNightCity({
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
-    renderNightLights(map, night, { lamp: colors.lamp, cityGlow: colors.cityGlow })
+    const lights = quality >= 2 ? 0 : night
+    renderNightLights(map, lights, { lamp: colors.lamp, cityGlow: colors.cityGlow })
     const update = () =>
       layer.current?.setLight({
         night,
         fade: windowFade(map.getZoom()),
+        density: windowDensity(quality),
         warm: rgb(colors.windowWarm),
         cool: rgb(colors.windowCool),
       })
@@ -124,5 +129,5 @@ export function useNightCity({
     return () => {
       map.off("zoom", update)
     }
-  }, [mapRef, ready, night, colors, layer])
+  }, [mapRef, ready, night, colors, layer, quality])
 }

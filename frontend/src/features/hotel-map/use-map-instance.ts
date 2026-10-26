@@ -6,9 +6,9 @@ import {
 } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import { useEffect, useRef, useState } from "react"
+import { FULL_PIXEL_RATIO } from "@/shared/geo/map-quality"
 
 setWorkerUrl(workerUrl)
-const MAX_PIXEL_RATIO = 1.25
 const ROTATE_SPEED = 0.35
 const PITCH_SPEED = -0.25
 const MIN_ZOOM = 2
@@ -34,7 +34,8 @@ export function useMapInstance(hasCamera: boolean) {
         attributionControl: false,
         maxPitch: 75,
         minZoom: MIN_ZOOM,
-        pixelRatio: Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO),
+        pixelRatio: Math.min(window.devicePixelRatio, FULL_PIXEL_RATIO),
+        canvasContextAttributes: { antialias: true },
         rotateSpeed: ROTATE_SPEED,
         pitchSpeed: PITCH_SPEED,
         fadeDuration: 0,

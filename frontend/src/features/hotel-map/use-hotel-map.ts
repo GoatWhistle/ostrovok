@@ -24,6 +24,7 @@ import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { readTokenColors, useMapColors } from "@/shared/theme"
 import { buildingIds, drawnVolumes } from "./night-city/night-city-data"
 import { useNightCity } from "./night-city/use-night-city"
+import { useMapQuality } from "./quality/use-map-quality"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapInstance } from "./use-map-instance"
 import { useMapMarkers } from "./use-map-markers"
@@ -173,6 +174,7 @@ export function useHotelMap({
   )
   const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
   const textured = useMemo(() => new Set(buildingIds(texturedFootprints)), [texturedFootprints])
+  const quality = useMapQuality(instance, ready)
   useNightCity({
     mapRef: instance,
     ready,
@@ -182,6 +184,7 @@ export function useHotelMap({
     colors,
     volumeColor: classes.volume,
     sun,
+    quality,
   })
   useRouteDraw(instance, ready ? route : undefined, colors, reduced)
   useEffect(() => {
