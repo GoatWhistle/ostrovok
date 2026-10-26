@@ -12,8 +12,7 @@ const TONE: Readonly<Record<StateTone, string | undefined>> = {
 export function StateTile({ icon, tone }: { readonly icon: IconName; readonly tone: StateTone }) {
   return (
     <span className={`${styles.tile} ${TONE[tone] ?? ""}`}>
-      <span className={styles.ping} aria-hidden="true" />
-      <Icon name={icon} size="xl" className={styles.icon} />
+      <Icon name={icon} size="xl" />
     </span>
   )
 }

@@ -1,42 +1,17 @@
 .tile {
-  position: relative;
   display: grid;
   place-items: center;
-  padding: var(--space-16);
-  border-radius: var(--radius-xl);
-  background-color: var(--state-surface);
   color: var(--state-icon);
-  animation: var(--motion-state-in);
-}
-
-.ping {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: var(--shadow-ring-current);
-  color: var(--state-ring);
-  opacity: 0;
-  animation: var(--motion-state-ping);
-}
-
-.icon {
-  position: relative;
 }
 
 .neutral {
-  --state-surface: var(--surface-sunken);
   --state-icon: var(--text-muted);
-  --state-ring: var(--border-strong);
 }
 
 .danger {
-  --state-surface: var(--status-danger-surface);
   --state-icon: var(--status-danger);
-  --state-ring: var(--status-danger);
 }
 
 .fact {
-  --state-surface: var(--surface-highlight);
-  --state-icon: var(--text-on-highlight);
-  --state-ring: var(--map-fact-line);
+  --state-icon: var(--text-success);
 }

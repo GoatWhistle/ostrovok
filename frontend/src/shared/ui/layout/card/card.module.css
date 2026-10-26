@@ -8,7 +8,7 @@
 }
 
 .entering {
-  animation: var(--motion-rise-in);
+  animation: var(--motion-fade-in);
   animation-delay: calc(var(--i) * var(--stagger));
 }
 

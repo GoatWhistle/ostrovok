@@ -1,11 +1,11 @@
 .chip {
   composes: pressable inlineControl from "../../../styles/compose.module.css";
+  gap: var(--space-6);
   min-block-size: var(--control-height-compact);
-  padding-inline: var(--space-4) var(--space-12);
+  padding-inline: var(--space-8) var(--space-12);
   border: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--surface-raised);
-  box-shadow: var(--shadow-ring);
+  border-radius: var(--radius-md);
+  background-color: var(--action-ghost-hover);
   color: var(--chip-hue);
   font-size: var(--font-size-label);
   font-weight: var(--weight-semibold);
@@ -21,7 +21,7 @@
 
 .large {
   min-block-size: var(--control-height);
-  padding-inline: var(--space-6) var(--space-16);
+  padding-inline: var(--space-12) var(--space-16);
   gap: var(--space-8);
   font-size: var(--font-size-body-sm);
 }
@@ -30,39 +30,17 @@
   inset-block: 0;
 }
 
-.dot {
-  display: grid;
-  place-items: center;
-  inline-size: var(--chip-dot);
-  block-size: var(--chip-dot);
-  border-radius: var(--radius-pill);
-  background-color: var(--surface-tint);
+.icon {
+  flex: none;
 }
 
 .text {
   color: var(--text-primary);
 }
 
-.still .dot {
-  inline-size: var(--chip-static-dot);
-  block-size: var(--chip-static-dot);
-}
-
-.large .dot {
-  inline-size: var(--chip-dot-large);
-  block-size: var(--chip-dot-large);
-}
-
 .chip[aria-pressed="true"],
 .chip[data-pressed="true"] {
-  background-color: var(--surface-wash);
-  box-shadow: var(--shadow-ring-current);
-}
-
-.chip[aria-pressed="true"] .dot,
-.chip[data-pressed="true"] .dot {
-  background-color: var(--chip-hue);
-  color: var(--surface-raised);
+  background-color: var(--surface-tint);
 }
 
 .chip:active {
@@ -71,14 +49,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .chip:hover:not([aria-pressed="true"]) {
-    box-shadow: var(--shadow-ring-strong);
+    background-color: var(--action-ghost-press);
   }
 }
 
 .still {
-  gap: var(--space-6);
   min-block-size: var(--chip-static-height);
-  padding-inline-start: var(--space-6);
   cursor: default;
 }
 

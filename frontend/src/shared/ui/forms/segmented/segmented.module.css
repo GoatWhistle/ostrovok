@@ -6,7 +6,6 @@
   padding: var(--space-2);
   border-radius: var(--radius-md);
   background-color: var(--surface-sunken);
-  box-shadow: var(--shadow-ring-subtle);
 }
 
 .indicator {
@@ -14,7 +13,6 @@
   inset-block: var(--space-2);
   inset-inline: 0;
   background-color: var(--surface-raised);
-  box-shadow: var(--shadow-raised-ring);
   clip-path: inset(0 100% 0 0);
   pointer-events: none;
 }

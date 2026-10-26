@@ -120,19 +120,7 @@
   min-block-size: var(--state-min-height);
   padding: var(--space-24);
   text-align: center;
-}
-
-.statePanel > :not(:first-child) {
-  animation: var(--motion-rise-in);
-  animation-delay: calc(var(--dur-base) + var(--stagger) * var(--state-step, 1));
-}
-
-.statePanel > :nth-child(3) {
-  --state-step: 2;
-}
-
-.statePanel > :nth-child(4) {
-  --state-step: 3;
+  animation: var(--motion-fade-in);
 }
 
 .monoText {
@@ -156,9 +144,8 @@
 }
 
 .panelSurface {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background-color: var(--surface-raised);
-  box-shadow: var(--shadow-ring);
 }
 
 .popoverPanel {
@@ -168,7 +155,6 @@
   inset-inline-end: 0;
   z-index: var(--layer-popover);
   display: grid;
-  border-radius: var(--radius-lg);
   transform-origin: top right;
   animation: var(--motion-scale-in);
 }
