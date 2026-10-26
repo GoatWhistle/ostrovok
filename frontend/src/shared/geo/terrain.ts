@@ -72,7 +72,7 @@ function demSource(map: MapLibreMap, id: string) {
     type: "raster-dem",
     tiles: [`${window.location.origin}${DEM_TILES}`],
     tileSize: 256,
-    minzoom: 8,
+    minzoom: 0,
     maxzoom: 14,
     encoding: "mapbox",
   })
