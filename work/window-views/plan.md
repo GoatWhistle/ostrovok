@@ -266,3 +266,8 @@ agent files back to root with before/after byte checks; future root builds keep 
 Main deploy healthy, frontend updated. Round4 frozen at backend5ebea97d/source d335a31,
 exec88733 with900s timeout and image guard. This turn is progress: integration/root sync,
 checks, actual deployment and start of protected full run. Goal remains incomplete.
+
+Round4 first2 completed on main:Isaac18.08s,4 visible candidates (Four Seasons,SO/,Angleterre,
+Astoria);floor1 16.98s,3 visible candidates (Four Seasons,Angleterre,Astoria).
+Geometric and supplementary relevance audits both pass these two only; not full50 completion.
+These are facade estimates with room availability unconfirmed, not verified room bookings.
