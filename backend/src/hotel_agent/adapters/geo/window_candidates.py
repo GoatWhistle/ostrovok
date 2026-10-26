@@ -174,14 +174,10 @@ class WindowCandidates:
                     else "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием."
                 )
                 continue
-            nearest = min(
-                objectives,
-                key=lambda item: distance_m(hotel.location, target_point(item, hotel.location)[0]),
-            )
             choices = (
                 (objectives[0].id,)
                 if request.target_part == "top"
-                else tuple(dict.fromkeys([nearest.id, objectives[0].id]))
+                else tuple(objective.id for objective in objectives)
             )
             found_observer = False
             for objective in objectives:
