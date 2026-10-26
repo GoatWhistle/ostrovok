@@ -26,17 +26,19 @@ class GetHotelScene:
             hotel = await uow.search.get_hotel(hotel_id)
             if hotel is None:
                 raise HotelNotFound()
-        if self._geography is not None:
+            facades = await uow.search.list_facades(hotel_id)
+            context = await uow.search.list_context_buildings(hotel_id, radius_m)
+        if self._geography is not None and (hotel.footprint is None or not context):
             lon, lat = hotel.location
             dy = max(100, radius_m) / 111200
             dx = dy / max(cos(radians(lat)), 0.01)
             await self._geography.area(
                 (max(-180, lon - dx), lat - dy, min(180, lon + dx), lat + dy), hotel.region_id
             )
-        async with self._uow() as uow:
-            updated = await uow.search.get_hotel(hotel_id)
-            if updated is not None:
-                hotel = updated
-            facades = await uow.search.list_facades(hotel_id)
-            context = await uow.search.list_context_buildings(hotel_id, radius_m)
+            async with self._uow() as uow:
+                updated = await uow.search.get_hotel(hotel_id)
+                if updated is not None:
+                    hotel = updated
+                facades = await uow.search.list_facades(hotel_id)
+                context = await uow.search.list_context_buildings(hotel_id, radius_m)
         return HotelScene(hotel=hotel, facades=tuple(facades), context_buildings=tuple(context))

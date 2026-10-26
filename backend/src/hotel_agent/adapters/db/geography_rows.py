@@ -39,7 +39,14 @@ async def save_layer(
         if name == "hotels":
             stars = feature.properties.get("stars", "")
             row.update(
-                name=feature.properties.get("name", feature.id),
+                name=next(
+                    (
+                        feature.properties[key]
+                        for key in ("name", "name:ru", "name:en")
+                        if feature.properties.get(key)
+                    ),
+                    feature.id,
+                ),
                 stars=int(stars) if stars.isdecimal() and int(stars) <= 7 else None,
             )
         elif name == "buildings":

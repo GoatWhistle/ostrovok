@@ -14,7 +14,7 @@ def build_router(get_map_tile: GetMapTile) -> APIRouter:
         return Response(
             content=data,
             media_type="application/vnd.mapbox-vector-tile",
-            headers={"Cache-Control": "public, max-age=86400"},
+            headers={"Cache-Control": "public, max-age=86400" if data else "public, max-age=30"},
         )
 
     return router

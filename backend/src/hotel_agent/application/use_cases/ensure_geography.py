@@ -45,7 +45,11 @@ class EnsureGeography:
                 return cached
             if self._failed.get(bbox, 0) > now.timestamp():
                 return None
-            snapshot = await self._source.fetch(bbox)
+            try:
+                async with asyncio.timeout(20):
+                    snapshot = await self._source.fetch(bbox)
+            except TimeoutError:
+                snapshot = None
             if snapshot is None:
                 if len(self._failed) >= 512:
                     self._failed = {
