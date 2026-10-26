@@ -223,7 +223,7 @@ own version of what the first one already has.
 ## 7. Styles
 
 - Global styles live only in `shared/styles/`. `global.css` pulls `reset.css` and
-  `tokens/{palette,semantic,radius,space,typography,elevation,motion,keyframes}.css` and is imported
+  `tokens/{palette,semantic,map,radius,space,typography,elevation,motion,keyframes}.css` and is imported
   once in `main.tsx`.
 - Everything else is a CSS Module next to its component. A module is imported only by its component,
   selectors start with the component class, no unused classes.
@@ -232,7 +232,8 @@ own version of what the first one already has.
   use the semantic layer (`--surface-*`, `--text-*`, `--action-*`, `--border-*`, `--focus-ring`),
   never the palette directly.
 - Two themes, light and dark. The semantic layer is defined twice, in `:root[data-theme="light"]` and
-  `:root[data-theme="dark"]`. Components know nothing about the theme. The switch has exactly two
+  `:root[data-theme="dark"]`. Map colours in `tokens/map.css` are the same in both themes
+  (the selected map style does not follow the UI theme). Components know nothing about the theme. The switch has exactly two
   options, light and dark; there is no "system" option. Until the user picks one, the theme follows
   the system setting (and its changes); the pick is kept in `localStorage` and wins from then on. The
   theme is applied before first paint with no flash. A test

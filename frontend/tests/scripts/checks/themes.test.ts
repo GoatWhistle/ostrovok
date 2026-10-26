@@ -12,6 +12,10 @@ const PALETTE = tokens(
 )
 const LIGHT = `--surface-base: var(--mist); --surface-raised: var(--white); --surface-raised-hover: color-mix(in oklab, var(--white), var(--ink) 4%); --surface-sunken: var(--grey); --surface-selected: var(--white); --text-primary: var(--ink); --text-disabled: var(--pale); --action-primary-text: var(--white); --action-primary: var(--blue); --action-primary-hover: var(--blue); --action-primary-press: var(--blue); --focus-ring: var(--blue);`
 const DARK = `--surface-base: var(--night); --surface-raised: var(--ink); --surface-raised-hover: var(--ink); --surface-sunken: var(--ink); --surface-selected: var(--ink); --text-primary: var(--mist); --text-disabled: var(--pale); --action-primary-text: var(--night); --action-primary: var(--light); --action-primary-hover: var(--light); --action-primary-press: var(--light); --focus-ring: var(--light);`
+const MAP = tokens(
+  "map.css",
+  ":root { --map-hotel: var(--ink); --map-hotel-text: var(--mist); --map-hotel-selected: var(--light); --map-hotel-selected-text: var(--night); --map-route: var(--light); }",
+)
 const semantic = (light: string, dark: string) =>
   tokens(
     "semantic.css",
@@ -48,17 +52,31 @@ describe("theme-parity", () => {
 
 describe("contrast", () => {
   it("passes readable pairs in both themes", () => {
-    expect(contrast.run([PALETTE, semantic(LIGHT, DARK)])).toEqual([])
+    expect(contrast.run([PALETTE, MAP, semantic(LIGHT, DARK)])).toEqual([])
+  })
+
+  it("checks map pin text on its own surface in both themes", () => {
+    const weak = tokens(
+      "map.css",
+      MAP.text.replace("--map-hotel-text: var(--mist)", "--map-hotel-text: var(--night)"),
+    )
+    const messages = contrast
+      .run([PALETTE, weak, semantic(LIGHT, DARK)])
+      .map((item) => item.message)
+    expect(
+      messages.filter((message) => message.includes("--map-hotel-text on --map-hotel")),
+    ).toHaveLength(2)
   })
 
   it("reports a text token below 4.5:1 and an unresolved pair", () => {
     const weak = `${LIGHT} --text-secondary: var(--pale);`
     const messages = contrast
-      .run([PALETTE, semantic(weak, `${DARK} --text-secondary: var(--pale);`)])
+      .run([PALETTE, MAP, semantic(weak, `${DARK} --text-secondary: var(--pale);`)])
       .map((item) => item.message)
     expect(messages.some((message) => message.startsWith("light: --text-secondary"))).toBe(true)
     const broken = contrast.run([
       PALETTE,
+      MAP,
       semantic(LIGHT.replace("--action-primary-text", "--x"), DARK),
     ])
     expect(broken.map((item) => item.message)).toContain(

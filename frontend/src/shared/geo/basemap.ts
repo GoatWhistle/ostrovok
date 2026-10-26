@@ -6,8 +6,18 @@ export interface BasemapColors {
   readonly buildingLine: string
   readonly roadCasing: string
   readonly road: string
+  readonly roadLight: string
+  readonly roadGlow: string
   readonly coast: string
 }
+
+const LIT: ExpressionSpecification = [
+  "match",
+  ["get", "kind"],
+  ["motorway", "trunk", "primary", "secondary", "tertiary", "residential"],
+  true,
+  false,
+]
 
 const MAJOR: ExpressionSpecification = [
   "match",
@@ -35,6 +45,8 @@ function paintBasemap(map: MapLibreMap, colors: BasemapColors) {
   map.setPaintProperty("base-buildings", "fill-outline-color", colors.buildingLine)
   map.setPaintProperty("base-roads-casing", "line-color", colors.roadCasing)
   map.setPaintProperty("base-roads", "line-color", colors.road)
+  map.setPaintProperty("base-roads-glow", "line-color", colors.roadGlow)
+  map.setPaintProperty("base-roads-light", "line-color", colors.roadLight)
   map.setPaintProperty("base-coastline", "line-color", colors.coast)
 }
 
@@ -65,6 +77,20 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     paint: { "fill-color": colors.building, "fill-outline-color": colors.buildingLine },
   })
   map.addLayer({
+    id: "base-roads-glow",
+    type: "line",
+    source: "sochi-map",
+    "source-layer": "roads",
+    minzoom: 13,
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: {
+      "line-color": colors.roadGlow,
+      "line-width": roadWidth([2, 10], [3, 16]),
+      "line-blur": roadWidth([1.5, 6], [2, 9]),
+      "line-opacity": 0.45,
+    },
+  })
+  map.addLayer({
     id: "base-roads-casing",
     type: "line",
     source: "sochi-map",
@@ -79,6 +105,20 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     "source-layer": "roads",
     layout: { "line-cap": "round", "line-join": "round" },
     paint: { "line-color": colors.road, "line-width": roadWidth([0.8, 4.2], [1.4, 7.5]) },
+  })
+  map.addLayer({
+    id: "base-roads-light",
+    type: "line",
+    source: "sochi-map",
+    "source-layer": "roads",
+    minzoom: 13,
+    filter: LIT,
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: {
+      "line-color": colors.roadLight,
+      "line-width": roadWidth([0.4, 1.2], [0.6, 1.8]),
+      "line-opacity": 0.7,
+    },
   })
   map.addLayer({
     id: "base-coastline",

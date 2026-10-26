@@ -1,6 +1,6 @@
 import type { LightMode } from "./terrain"
 
-const STRENGTH: Readonly<Record<LightMode, number>> = { day: 0, dusk: 0.22, night: 0.55 }
+const STRENGTH: Readonly<Record<LightMode, number>> = { day: 0, dusk: 0.12, night: 0.22 }
 
 const TINTED = [
   "land",

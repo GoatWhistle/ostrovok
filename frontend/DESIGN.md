@@ -27,10 +27,10 @@ colors:
   neutral-950: '#12140f'
   green-600: '#1b8445'
   red-600: '#be2d1f'
-  map-light-land: '#eef0e8'
-  map-light-water: '#bcd8f0'
-  map-dark-land: '#161913'
-  map-dark-water: '#0d1c29'
+  map-neon-land: '#111b2d'
+  map-neon-water: '#0a2943'
+  map-neon-road-light: '#5acbd7'
+  map-neon-hotel-volume: '#76d8d0'
 typography:
   display:
     fontFamily: '"Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif'
@@ -147,8 +147,10 @@ read first. The reference is `work/map-styles/05-neon.html`.
 - **Characteristic hues** (`--hue-*`): sea, sunset, quiet, nightlife, dark, pets, height, walk. They
   colour the icon of a wish in chips, match rows and fact tiles. They carry meaning, so they colour
   the icon only and never sit behind it as a pastel disc.
-- **Map** (`--map-*`): land, water, parks, sand, buildings, roads, labels, sky and terrain shading for
-  both themes, plus hotel pins, fact and route colours.
+- **Map** (`--map-*`): style No. 5 in both UI themes: navy land, deep water, teal-green parks,
+  thin road cores with a limited cyan glow, the selected hotel volume in teal, pink routes with a
+  soft glow. The UI theme and the calculated time of day are independent; night lighting only
+  darkens the map slightly, so buildings and labels stay readable.
 
 ## Typography
 
