@@ -119,6 +119,14 @@ class WindowCandidates:
                         part,
                         tags={
                             **part.tags,
+                            **(
+                                {
+                                    f"view:parent:{key}": value
+                                    for key, value in resolved.tags.items()
+                                }
+                                if resolved
+                                else {}
+                            ),
                             "name": resolved.tags.get("name", request.target or "Море")
                             if resolved
                             else request.target or "Море",

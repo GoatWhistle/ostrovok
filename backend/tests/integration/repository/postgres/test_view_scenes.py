@@ -80,3 +80,28 @@ async def test_target_type_excludes_same_named_hotel_and_finds_actual_mountain()
     finally:
         await connection.rollback()
         await connection.close()
+
+
+async def test_typed_target_accepts_unique_name_variant_and_preserves_ambiguity() -> None:
+    connection = await psycopg.AsyncConnection.connect(
+        os.environ.get("DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel")
+    )
+    try:
+        await connection.execute("""INSERT INTO pois(id,region_id,location,tags) VALUES
+          ('view-test-variant-tower','sochi',ST_SetSRID(ST_MakePoint(0,0),4326),
+           '{"name":"Lookout Television Tower","man_made":"tower"}')""")
+        repo = PostgresNamedPlaceRepository(connection)
+        target = await repo.by_name(
+            "Lookout TeleTower", (-0.1, -0.1, 0.1, 0.1), "man_made", ("tower",)
+        )
+        assert target is not None and target.id == "view-test-variant-tower"
+        await connection.execute("""INSERT INTO pois(id,region_id,location,tags) VALUES
+          ('view-test-other-tower','sochi',ST_SetSRID(ST_MakePoint(0.02,0),4326),
+           '{"name":"Lookout Other Tower","man_made":"tower"}')""")
+        assert (
+            await repo.by_name("Lookout TeleTower", (-0.1, -0.1, 0.1, 0.1), "man_made", ("tower",))
+            is None
+        )
+    finally:
+        await connection.rollback()
+        await connection.close()

@@ -57,6 +57,16 @@ def window_evidence(
                 "target_id": ray.target.tags.get("view:parent", ray.target.id),
                 "target_part_id": ray.target.id,
                 "target_tags": {
+                    key.removeprefix("view:parent:"): value
+                    for key, value in ray.target.tags.items()
+                    if key.startswith("view:parent:")
+                }
+                or {
+                    key: value
+                    for key, value in ray.target.tags.items()
+                    if not key.startswith("view:")
+                },
+                "target_part_tags": {
                     key: value
                     for key, value in ray.target.tags.items()
                     if not key.startswith("view:")
