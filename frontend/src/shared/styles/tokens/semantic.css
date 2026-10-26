@@ -85,7 +85,6 @@
   --map-road: var(--map-light-road);
   --map-road-casing: var(--map-light-road-casing);
   --map-rail: var(--map-light-rail);
-  --map-ripple: var(--map-light-ripple);
   --map-road-major: var(--map-light-road-major);
   --map-contour: color-mix(in oklab, var(--neutral-600) 18%, transparent);
   --map-sea: var(--map-light-water);
@@ -210,7 +209,6 @@
   --map-road: var(--map-dark-road);
   --map-road-casing: var(--map-dark-road-casing);
   --map-rail: var(--map-dark-rail);
-  --map-ripple: var(--map-dark-ripple);
   --map-road-major: var(--map-dark-road-major);
   --map-contour: color-mix(in oklab, var(--map-dark-contour) 12%, transparent);
   --map-sea: var(--map-dark-water);

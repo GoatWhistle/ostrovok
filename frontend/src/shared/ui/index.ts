@@ -11,7 +11,6 @@ export {
   MapAttribution,
   type MapAttributionProps,
 } from "./data-display/map-attribution/map-attribution"
-export { SeaRipples, type SeaRipplesProps } from "./data-display/sea-ripples/sea-ripples"
 export {
   StatusBadge,
   type StatusBadgeProps,

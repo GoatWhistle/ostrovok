@@ -8,7 +8,7 @@ import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { motionMs } from "@/shared/motion"
-import { ErrorState, MapAttribution, SeaRipples } from "@/shared/ui"
+import { ErrorState, MapAttribution } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
 import { MapPin } from "./map-pin"
@@ -141,7 +141,6 @@ export function HotelMap({
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
-      <SeaRipples map={map.instance} ready={map.ready} />
       <SceneSun
         map={map.instance}
         ready={map.ready}
