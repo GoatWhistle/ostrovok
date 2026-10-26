@@ -71,3 +71,27 @@ async def test_many_hotels_still_check_distinct_target_parts_and_dome_apex() -> 
         rays = [ray for ray in prepared.rays if ray.hotel_id == candidate.id]
         assert {ray.target.id for ray in rays} >= {"cross", "n20", "dome"}
         assert any(ray.target.id == "dome" and ray.target_height.minimum_m >= 95 for ray in rays)
+
+
+async def test_known_requested_floor_is_prioritized_over_nearer_short_hotels() -> None:
+    short = tuple(
+        replace(
+            hotel(),
+            id=f"short{i}",
+            location=(39.009, 43),
+            footprint=square(39.009),
+            levels=1,
+            height_m=4,
+        )
+        for i in range(64)
+    )
+    tall = replace(hotel(), id="tall", levels=20)
+    hotels = (*short, tall)
+    prepared = await WindowCandidates(Geometry()).prepare(
+        hotels,
+        request(floor=10),
+        {h.id: NamedPlaceRecord(id="n20", name="Башня", location=(39.01, 43)) for h in hotels},
+        {},
+    )
+    assert any(ray.hotel_id == tall.id and 10 in ray.floors for ray in prepared.rays)
+    assert tall.id not in prepared.unchecked

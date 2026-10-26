@@ -42,10 +42,10 @@ class WindowCandidates:
             if identifier not in resolved_targets:
                 resolved_targets[identifier] = await self._targets.resolve(candidate_target)
 
-        def proximity(hotel: SearchHotelRecord) -> float:
+        def proximity(hotel: SearchHotelRecord) -> tuple[int, float]:
             target = targets.get(hotel.id)
             if target is None:
-                return float("inf")
+                return 3, float("inf")
             identifier = target.id if isinstance(target, NamedPlaceRecord) else str(target)
             resolved = resolved_targets[identifier]
             point = (
@@ -55,7 +55,20 @@ class WindowCandidates:
                 if isinstance(target, NamedPlaceRecord)
                 else target
             )
-            return distance_m(hotel.location, point)
+            own = buildings.get(hotel.id)
+            levels = building_dimensions(
+                own.tags if own else {}, hotel.height_m, hotel.levels
+            ).levels
+            requested_floor = request.floor_min or 1
+            floor_priority = (
+                0
+                if requested_floor <= 1 or (levels is not None and levels >= requested_floor)
+                else 1
+                if levels is None
+                else 2
+            )
+            distance = distance_m(hotel.location, point)
+            return (floor_priority if distance <= request.radius_m else 3), distance
 
         selected = sorted(hotels, key=proximity)
         for candidate_index, hotel in enumerate(selected):
