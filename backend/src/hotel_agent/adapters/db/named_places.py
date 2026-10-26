@@ -2,6 +2,12 @@ from psycopg import AsyncConnection
 
 from hotel_agent.application.dto import NamedPlaceRecord
 
+GEOGRAPHIC_NAME = """SELECT id,tags->>'name',ST_X(location),ST_Y(location)
+FROM pois WHERE tags ? 'name' AND tags ?| ARRAY['natural','waterway','tourism','historic','place']
+ AND ARRAY[translate(lower(tags->>'name'),'ё','е'),translate(lower(tags->>'name:ru'),'ё','е'),
+ translate(lower(tags->>'alt_name'),'ё','е')] @> ARRAY[translate(lower(%(name)s),'ё','е')]
+ORDER BY id LIMIT 2"""
+
 NAME_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
 FROM pois
 WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
@@ -40,6 +46,10 @@ LIMIT 1"""
 class PostgresNamedPlaceRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
+
+    async def geographic_name(self, name: str) -> NamedPlaceRecord | None:
+        rows = await (await self._connection.execute(GEOGRAPHIC_NAME, {"name": name})).fetchall()
+        return _record(rows[0]) if len(rows) == 1 else None
 
     async def by_name(
         self, name: str, bbox: tuple[float, float, float, float]

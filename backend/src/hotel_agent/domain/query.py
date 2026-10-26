@@ -80,6 +80,8 @@ class ParsedQuery:
     unsupported_region: str | None = None
     needs_clarification: bool = False
     wants_room: bool = False
+    room_preferences_unrestricted: bool = False
+    budget: str | None = None
     check_in: date | None = None
     check_out: date | None = None
     adults: int | None = None

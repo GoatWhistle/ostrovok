@@ -528,7 +528,7 @@ components:
 
     SourceType:
       type: string
-      enum: [osm, dem, computed, open_meteo, hotelier, llm_extraction]
+      enum: [osm, dem, computed, open_meteo, hotelier, llm_extraction, supplier]
 
     Provenance:
       type: object
@@ -703,6 +703,8 @@ components:
             unsupported_region: { type: string, nullable: true }
             needs_clarification: { type: boolean }
             wants_room: { type: boolean }
+            room_preferences_unrestricted: { type: boolean }
+            budget: { type: string, nullable: true }
             check_in: { type: string, format: date, nullable: true }
             check_out: { type: string, format: date, nullable: true }
             adults: { type: integer, nullable: true }

@@ -59,6 +59,10 @@ class DocumentIndex:
         pieces = chunks(documents)
         wanted = tokens(query)
         scores = [len(wanted & tokens(d.text)) / max(len(wanted), 1) * 0.2 for d in pieces]
+        for i, doc in enumerate(pieces):
+            name = tokens(doc.hotel_name or "")
+            if name and name <= wanted:
+                scores[i] += 2.0
         indexed = [
             (i, self._rows[d.id])
             for i, d in enumerate(pieces)

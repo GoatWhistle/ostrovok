@@ -10,6 +10,8 @@ from hotel_agent.interfaces.http.search_schemas import FactBriefSchema
 class ProvenanceSchema(BaseModel):
     source_type: str
     source_ref: str | None = None
+    source_url: str | None = None
+    evidence: list[dict[str, str]] = Field(default_factory=list)
     method: str
     confidence: float
     computed_at: datetime
@@ -29,9 +31,11 @@ class FactDetailSchema(FactSchema):
 
 
 def fact_schema(fact: Fact) -> FactSchema:
+    source_ref = fact.provenance.source.ref
+    quotes = fact.qualifiers.get("source_quotes", ())
     label = (
         str(fact.qualifiers.get("source_text"))
-        if fact.characteristic_key.startswith("derived:")
+        if fact.qualifiers.get("source_text")
         else f"{fact.characteristic_key}: {fact.value} {fact.unit or ''}".strip()
     )
     return FactSchema(
@@ -50,6 +54,13 @@ def fact_schema(fact: Fact) -> FactSchema:
         provenance=ProvenanceSchema(
             source_type=fact.provenance.source_type,
             source_ref=fact.provenance.source.ref,
+            source_url=source_ref
+            if source_ref and source_ref.startswith(("https://", "http://"))
+            else None,
+            evidence=[
+                {"kind": "quote", "text": str(quote)}
+                for quote in (quotes if isinstance(quotes, list | tuple) else ())
+            ],
             method=fact.provenance.method,
             confidence=fact.confidence.value,
             computed_at=fact.provenance.computed_at,

@@ -4,7 +4,7 @@ from dataclasses import dataclass, replace
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
-from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
@@ -16,10 +16,9 @@ from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
-from hotel_agent.application.search_evidence import save_search_evidence
+from hotel_agent.application.search_evidence import best_facts, save_search_evidence
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
-from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import InvalidQuery
 from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import Scored, score
@@ -83,8 +82,18 @@ class SearchHotels:
             parsed = replace(parsed, location_hint=location, needs_clarification=True)
             return _empty(query, region, bbox, parsed)
         candidates = await find_candidates(
-            query, location, region, bbox, self._uow, self._areas, self._semantic
+            query,
+            location,
+            region,
+            bbox,
+            self._uow,
+            self._areas,
+            self._semantic,
+            self._place_lookup,
         )
+        if candidates.location_hint:
+            location = candidates.location_hint
+            parsed = replace(parsed, location_hint=location)
         region, bbox, hotels = candidates.region, candidates.bbox, candidates.hotels
         if candidates.unsupported:
             return _empty(query, region, bbox, replace(parsed, unsupported_region=location))
@@ -146,22 +155,24 @@ class SearchHotels:
                 async with self._uow() as uow:
                     place = await uow.named_places.near_coordinate(position, spatial_bbox)
                 spatial[index] = (spatial_request, place)
-        facts = _best_facts((*stored, *explored.facts))
+        facts = best_facts((*stored, *explored.facts))
+        evidence = list(explored.facts)
         now = self._clock.now()
         if nearby:
             for request, matches in nearby:
                 key = nearby_key(request)
                 for hotel in hotels:
                     ids = matches.get(hotel.id, ())
-                    facts.setdefault(hotel.id, {})[key] = fact_from_record(
-                        nearby_record(hotel.id, key, request, ids, now)
-                    )
+                    nearby_evidence = nearby_record(hotel.id, key, request, ids, now)
+                    evidence.append(nearby_evidence)
+                    facts.setdefault(hotel.id, {})[key] = fact_from_record(nearby_evidence)
         for spatial_request, target in spatial:
             if spatial_request.kind == "sea_view":
                 for hotel in hotels:
                     coast = sea_positions.get(hotel.id)
                     if coast is not None:
                         sea_record = spatial_fact(spatial_request, hotel, coast, now)
+                        evidence.append(sea_record)
                         facts.setdefault(hotel.id, {})[sea_record.characteristic_key] = (
                             fact_from_record(sea_record)
                         )
@@ -170,6 +181,7 @@ class SearchHotels:
                 continue
             for hotel in hotels:
                 spatial_record = spatial_fact(spatial_request, hotel, target, now)
+                evidence.append(spatial_record)
                 facts.setdefault(hotel.id, {})[spatial_record.characteristic_key] = (
                     fact_from_record(spatial_record)
                 )
@@ -177,6 +189,7 @@ class SearchHotels:
             for content in supplier_content:
                 record = facility_fact(facility_request, content)
                 if record is not None:
+                    evidence.append(record)
                     facts.setdefault(content.hotel_id, {})[record.characteristic_key] = (
                         fact_from_record(record)
                     )
@@ -204,7 +217,7 @@ class SearchHotels:
             )
         if parsed.anywhere and (parsed.intents or parsed.unmatched_terms):
             ranked = [item for item in ranked if item.scored.score > 0]
-        await save_search_evidence(self._uow, explored.facts, [r.hotel.id for r in ranked[:limit]])
+        await save_search_evidence(self._uow, evidence, [r.hotel.id for r in ranked[:limit]])
         fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
@@ -224,19 +237,3 @@ def _empty(
     return SearchOutcome(
         query_id=hashlib.sha256(fingerprint).hexdigest()[:16], parsed=parsed, results=()
     )
-
-
-def _best_facts(rows: Sequence[SearchFactRecord]) -> dict[str, dict[str, Fact]]:
-    grouped: dict[str, dict[str, Fact]] = {}
-    for row in rows:
-        current = grouped.setdefault(row.hotel_id, {})
-        fact = fact_from_record(row)
-        old = current.get(row.characteristic_key)
-        if old is None or (
-            row.characteristic_key == "noise_level"
-            and isinstance(fact.value, int | float)
-            and isinstance(old.value, int | float)
-            and fact.value < old.value
-        ):
-            current[row.characteristic_key] = fact
-    return grouped

@@ -72,7 +72,7 @@ def spatial_fact(
         characteristic_key=key,
         value=round(distance),
         unit="м",
-        qualifiers=qualifiers,
+        qualifiers={**qualifiers, "source_text": request.source_text},
         source_type="computed",
         source_id=target.id if isinstance(target, NamedPlaceRecord) else None,
         method="spatial_distance@1",

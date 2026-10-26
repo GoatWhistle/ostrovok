@@ -1,3 +1,4 @@
+import json
 from collections.abc import Mapping, Sequence
 
 import httpx
@@ -73,6 +74,8 @@ class OpenAICompatLLM(OpenAICompletion):
             system=(
                 "Ты ведёшь диалог о поиске отеля. Верни только полный актуальный запрос для поиска. "
                 "Сохрани прежние условия, если пользователь их не изменил. "
+                "Согласие искать без города («мне не важен город», «где угодно») обязательно "
+                "сохраняй в полном запросе, пока пользователь явно не ограничит место. "
                 "Замени отменённые или исправленные условия; не добавляй новых. "
                 "Если пользователь начинает новый поиск, используй только новый запрос. "
                 "Учитывай историю беседы при разрешении ссылок вроде «он», «тот же» и «ещё». "
@@ -95,7 +98,11 @@ class OpenAICompatLLM(OpenAICompletion):
         raw = await self._post(
             system=data_reasoning.SYSTEM,
             user=context,
-            response_format=data_reasoning.schema(),
+            response_format=data_reasoning.schema(
+                data_reasoning.observed_fields(context),
+                finish_only=context.startswith("{")
+                and json.loads(context).get("remaining_tool_calls") == 0,
+            ),
             planning=True,
         )
         try:

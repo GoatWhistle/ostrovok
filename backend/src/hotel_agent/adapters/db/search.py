@@ -54,7 +54,8 @@ FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifier
     f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
     f.status, f.geo_refs, f.explanation, NULL::double precision
 FROM facts f JOIN hotels h ON h.id = f.subject_id
-WHERE h.region_id = %(region)s AND f.subject_type = 'hotel'
+WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
+  AND (%(hotel_id)s::text IS NULL OR h.id = %(hotel_id)s) AND f.subject_type = 'hotel'
   AND f.status IN ('active', 'confirmed_by_hotelier')
 UNION ALL
 SELECT fa.hotel_id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
@@ -62,7 +63,8 @@ SELECT fa.hotel_id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
     f.status, f.geo_refs, f.explanation, fa.azimuth_deg
 FROM facts f JOIN facades fa ON fa.id = f.subject_id
 JOIN hotels h ON h.id = fa.hotel_id
-WHERE h.region_id = %(region)s AND f.subject_type = 'facade'
+WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
+  AND (%(hotel_id)s::text IS NULL OR h.id = %(hotel_id)s) AND f.subject_type = 'facade'
   AND f.status IN ('active', 'confirmed_by_hotelier')"""
 
 ROOMS = """SELECT id, name, capacity, floor_min, floor_max, facade_ids,
@@ -177,8 +179,10 @@ class PostgresSearchRepository:
             for row in rows
         ]
 
-    async def list_facts(self, region: str) -> Sequence[SearchFactRecord]:
-        result = await self._connection.execute(FACTS, {"region": region})
+    async def list_facts(
+        self, region: str | None, hotel_id: str | None = None
+    ) -> Sequence[SearchFactRecord]:
+        result = await self._connection.execute(FACTS, {"region": region, "hotel_id": hotel_id})
         rows = await result.fetchall()
         records = []
         for row in rows:

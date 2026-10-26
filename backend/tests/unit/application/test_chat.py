@@ -48,7 +48,8 @@ def test_missing_tool_matches_do_not_claim_query_conditions_are_contradictory() 
         None,
         "ru",
     )
-    assert answer == "Уточнить область поиска?"
+    assert answer.startswith("Уточнить область поиска?")
+    assert "противореч" not in answer
 
 
 def test_room_request_asks_for_missing_dates_and_guests() -> None:
@@ -61,7 +62,13 @@ def test_room_request_asks_for_missing_dates_and_guests() -> None:
 
 def test_room_request_does_not_ask_when_stay_is_complete() -> None:
     parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint="Сочи", wants_room=True)
-    parsed = replace(parsed, check_in=date(2026, 11, 1), check_out=date(2026, 11, 2), adults=2)
+    parsed = replace(
+        parsed,
+        check_in=date(2026, 11, 1),
+        check_out=date(2026, 11, 2),
+        adults=2,
+        budget="до 5000 рублей за ночь",
+    )
     answer = chat()._answer(outcome(parsed), None, "ru")
     assert "Чтобы проверить свободные номера" not in answer
 
@@ -138,3 +145,14 @@ async def test_saved_conversation_uses_snapshot_without_search() -> None:
 
     assert result.search_snapshot == {"query_id": "saved"}
     search.assert_not_awaited()
+
+
+def test_explicit_waiver_skips_room_questions_but_anywhere_alone_does_not() -> None:
+    parsed = ParsedQuery(
+        intents=(), unmatched_terms=(), location_hint=None, anywhere=True, wants_room=True
+    )
+    answer = chat()._answer(outcome(parsed), None, "ru")
+    assert "бюджет" in answer and "число взрослых" in answer
+    waived = replace(parsed, room_preferences_unrestricted=True)
+    answer = chat()._answer(outcome(waived), None, "ru")
+    assert "Чтобы проверить свободные номера" not in answer

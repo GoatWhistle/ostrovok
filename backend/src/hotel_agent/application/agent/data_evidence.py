@@ -63,6 +63,18 @@ def materialize(
                 for check in criterion.checks
                 for quote in tools.reader.quotes.get(hotel.id, {}).get(check.field, ())
             )
+            urls = tuple(
+                dict.fromkeys(
+                    url
+                    for check in criterion.checks
+                    for url in (
+                        *tools.reader.source_urls.get(hotel.id, {}).get(check.field, ()),
+                        *tools.research.sources.get(hotel.id, {}).get(check.field, ()),
+                    )
+                )
+            )
+            if urls:
+                explanation += " Источники: " + ", ".join(urls)
             if "scope.distance_m" in metrics:
                 explanation += (
                     f" До точки города по прямой {metrics['scope.distance_m'] / 1000:.1f} км."
@@ -73,6 +85,7 @@ def materialize(
                 for ref in (
                     *tools.geo_refs.get(hotel.id, {}).get(check.field, ()),
                     *tools.reader.geo_refs.get(hotel.id, {}).get(check.field, ()),
+                    *tools.research.geo_refs.get(hotel.id, {}).get(check.field, ()),
                 )
             }
             if terrain:
@@ -88,13 +101,21 @@ def materialize(
                         "estimated_location": True,
                         "source_text": criterion.source_text,
                         "source_quotes": list(quotes),
+                        "source_urls": list(urls),
                     },
                     source_type="computed",
-                    source_id=None,
+                    source_id=urls[0] if urls else None,
                     method="data_agent_tools@1",
                     confidence=_confidence(criterion, metrics),
                     computed_at=now,
-                    valid_until=now + timedelta(days=1),
+                    valid_until=now
+                    + (
+                        timedelta(minutes=10)
+                        if any(c.field.startswith("offers") for c in criterion.checks)
+                        else timedelta(hours=1)
+                        if urls
+                        else timedelta(days=1)
+                    ),
                     status="active",
                     geo_refs=tuple(sorted(refs)),
                     explanation=explanation,

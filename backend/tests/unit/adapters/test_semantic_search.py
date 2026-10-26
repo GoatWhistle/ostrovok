@@ -116,3 +116,29 @@ async def test_identical_source_text_is_embedded_once_for_all_hotels(tmp_path: P
     metadata = json.loads((tmp_path / "metadata.json").read_text())
     assert len(metadata["ids"]) == 5
     assert np.load(tmp_path / "index.npz")["vectors"].shape == (5, 2)
+
+
+def test_exact_hotel_name_is_retrievable_without_treating_name_as_property_evidence(
+    tmp_path: Path,
+) -> None:
+    named = SearchDocument(
+        id="osm:h1",
+        hotel_id="h1",
+        text='{"tourism":"hotel"}',
+        source="OSM",
+        hotel_name="Shine",
+        website="https://shine-hotel.ru/",
+    )
+    similar = SearchDocument(
+        id="osm:h2",
+        hotel_id="h2",
+        text="hotel with swimming pool",
+        source="OSM",
+        hotel_name="Другой",
+    )
+
+    hits = DocumentIndex(tmp_path).rank("Shine House отель Сочи", [similar, named], 2)
+
+    assert hits[0].hotel_id == "h1"
+    assert hits[0].website == "https://shine-hotel.ru/"
+    assert "Shine" not in hits[0].text

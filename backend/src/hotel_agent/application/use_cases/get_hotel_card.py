@@ -25,7 +25,7 @@ class GetHotelCard:
             hotel = await uow.search.get_hotel(hotel_id)
             if hotel is None:
                 raise HotelNotFound()
-            rows = await uow.search.list_facts(hotel.region_id)
+            rows = await uow.search.list_facts(None, hotel_id)
             rooms = await uow.search.list_rooms(hotel_id)
             content = await uow.search.get_supplier_content(hotel_id)
         return HotelCard(

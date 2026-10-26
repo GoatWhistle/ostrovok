@@ -10,8 +10,8 @@ async def save_derived_facts(
     connection: AsyncConnection[tuple[object, ...]], records: Sequence[SearchFactRecord]
 ) -> None:
     for row in records:
-        if not row.characteristic_key.startswith("derived:"):
-            raise ValueError("Only derived search evidence can be saved")
+        if not row.characteristic_key.startswith(("derived:", "nearby:", "spatial:", "facility:")):
+            raise ValueError("Only dynamic search evidence can be saved")
     async with connection.cursor() as cursor:
         await cursor.executemany(
             """INSERT INTO facts

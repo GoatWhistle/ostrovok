@@ -33,6 +33,8 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
             "normalized_query": {"type": "string"},
             "needs_clarification": {"type": "boolean"},
             "wants_room": {"type": "boolean"},
+            "room_preferences_unrestricted": {"type": "boolean"},
+            "budget": {"type": ["string", "null"]},
             "check_in": {"type": ["string", "null"]},
             "check_out": {"type": ["string", "null"]},
             "adults": {"type": ["integer", "null"]},

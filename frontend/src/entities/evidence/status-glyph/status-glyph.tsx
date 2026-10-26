@@ -50,6 +50,7 @@ const SOURCE_ICON: Readonly<Record<SourceType, IconName>> = {
   computed: "computed",
   open_meteo: "computed",
   llm_extraction: "source",
+  supplier: "source",
 }
 
 function Glyph({ icon, tone, label }: { icon: IconName; tone: GlyphTone; label: string }) {

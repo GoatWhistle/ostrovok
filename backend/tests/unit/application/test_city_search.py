@@ -6,12 +6,14 @@ from unittest.mock import AsyncMock, MagicMock
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SearchDocument, SemanticSearchPort
+from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.domain.characteristics import Op
-from hotel_agent.domain.query import Intent, ParsedQuery
+from hotel_agent.domain.query import Intent, NearbyObjectRequest, ParsedQuery
 from hotel_agent.domain.services.scoring import MatchQuality
 
 
@@ -43,7 +45,10 @@ def search(
     scope = MagicMock()
     scope.__aenter__ = AsyncMock(
         return_value=SimpleNamespace(
-            regions=regions, search=hotels, nearby_objects=SimpleNamespace()
+            regions=regions,
+            search=hotels,
+            nearby_objects=SimpleNamespace(),
+            named_places=SimpleNamespace(geographic_name=AsyncMock(return_value=None)),
         )
     )
     scope.__aexit__ = AsyncMock(return_value=None)
@@ -164,3 +169,53 @@ async def test_named_region_searches_inside_boundary_without_requiring_city() ->
     assert [row.hotel.id for row in result.results] == ["dagestan"]
     hotels.list_hotels.assert_awaited_once_with("russia", area.bbox)
     regions.city_bbox.assert_not_awaited()
+
+
+async def test_nearby_search_saves_evidence_for_later_fact_card() -> None:
+    request = NearbyObjectRequest(
+        osm_key="natural",
+        osm_value="water",
+        open_24h=False,
+        radius_m=500,
+        source_text="озеро поблизости",
+    )
+    use_case, _, hotels, scope = search(
+        ParsedQuery(
+            intents=(), unmatched_terms=(), location_hint="Москва", nearby_objects=(request,)
+        ),
+        (37.4, 55.5, 37.9, 56.0),
+    )
+    hotels.save_facts = AsyncMock()
+    entered = scope.__aenter__.return_value
+    entered.commit = AsyncMock()
+    entered.nearby_objects.list_matches = AsyncMock(return_value={"m1": ("lake1",)})
+
+    result = await use_case("отель в Москве, озеро поблизости", "russia", None, 20)
+
+    hotels.save_facts.assert_awaited_once()
+    records = hotels.save_facts.call_args.args[0]
+    fact = result.results[0].scored.matches[0].fact
+    assert fact is not None
+    assert records[0].id == str(fact.id)
+    assert records[0].geo_refs == ("g_poi_lake1",)
+    entered.commit.assert_awaited_once()
+
+
+async def test_geographic_object_can_supply_region_when_it_is_not_a_city() -> None:
+    _, _, hotels, scope = search(ParsedQuery(intents=(), unmatched_terms=(), location_hint="озеро"))
+    lookup = SimpleNamespace(coordinates=AsyncMock(return_value=(87.60, 51.64)))
+    areas = SimpleNamespace(resolve=lambda name: None, region_at=lambda point: "Республика Алтай")
+    result = await find_candidates(
+        "у Телецкого озера",
+        "Телецкое озеро",
+        "russia",
+        None,
+        cast(UnitOfWorkFactory, lambda: scope),
+        cast(SearchAreasPort, areas),
+        None,
+        cast(PlaceLookupPort, lookup),
+    )
+    assert result.location_hint == "Республика Алтай"
+    assert not result.unsupported
+    assert result.bbox is not None and result.bbox[0] < 87.60 < result.bbox[2]
+    hotels.list_hotels.assert_awaited_once()

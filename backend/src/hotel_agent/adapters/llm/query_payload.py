@@ -173,6 +173,8 @@ def parse_payload(
         ),
         needs_clarification=flag(payload, "needs_clarification"),
         wants_room=flag(payload, "wants_room"),
+        room_preferences_unrestricted=flag(payload, "room_preferences_unrestricted"),
+        budget=optional_text(payload, "budget"),
         check_in=parse_date(payload.get("check_in")),
         check_out=parse_date(payload.get("check_out")),
         adults=adults(payload.get("adults")),

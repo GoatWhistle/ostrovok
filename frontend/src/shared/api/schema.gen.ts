@@ -449,7 +449,7 @@ export interface components {
             };
         };
         /** @enum {string} */
-        SourceType: "osm" | "dem" | "computed" | "open_meteo" | "hotelier" | "llm_extraction";
+        SourceType: "osm" | "dem" | "computed" | "open_meteo" | "hotelier" | "llm_extraction" | "supplier";
         Provenance: {
             source_type: components["schemas"]["SourceType"];
             /** @example osm:way/123456789 */
@@ -619,6 +619,8 @@ export interface components {
                 unsupported_region?: string | null;
                 needs_clarification?: boolean;
                 wants_room?: boolean;
+                room_preferences_unrestricted?: boolean;
+                budget?: string | null;
                 /** Format: date */
                 check_in?: string | null;
                 /** Format: date */

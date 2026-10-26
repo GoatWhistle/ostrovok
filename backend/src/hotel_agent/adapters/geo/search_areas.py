@@ -24,14 +24,20 @@ class AreaBoundary:
 class SearchAreas:
     def __init__(self, path: Path) -> None:
         self._areas: dict[str, AreaBoundary] = {}
+        self._regions: list[tuple[str, AreaBoundary]] = []
         if not path.is_file():
             return
         for feature in json.loads(path.read_text())["features"]:
             area = AreaBoundary(shape(feature["geometry"]))
-            for value in feature["properties"].values():
+            properties = feature["properties"]
+            self._regions.append((str(properties.get("name_ru") or properties.get("name")), area))
+            for value in properties.values():
                 if isinstance(value, str):
                     for name in value.split("|"):
                         self._areas[normalize_name(name)] = area
 
     def resolve(self, name: str) -> AreaBoundary | None:
         return self._areas.get(normalize_name(name))
+
+    def region_at(self, location: tuple[float, float]) -> str | None:
+        return next((name for name, area in self._regions if area.contains(location)), None)

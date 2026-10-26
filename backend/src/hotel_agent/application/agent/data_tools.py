@@ -1,22 +1,28 @@
-from collections import Counter
 from collections.abc import Sequence
+from datetime import UTC, datetime
 from math import cos, hypot, radians
 from statistics import median
 from typing import Any
 
+from hotel_agent.application.agent.data_profile import profile_data
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.document_search import search_documents
-from hotel_agent.application.agent.record_filters import fields
-from hotel_agent.application.agent.record_preview import preview
 from hotel_agent.application.agent.record_reader import RecordReader
+from hotel_agent.application.agent.research_tools import ResearchTools
+from hotel_agent.application.agent.room_offer_tools import RoomOfferTools
+from hotel_agent.application.agent.web_evidence import read_page_evidence
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.data_exploration import (
     GeographicScopePort,
     TerrainMeasurementPort,
 )
+from hotel_agent.application.ports.destination_conditions import DestinationConditionsPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
+from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
+from hotel_agent.application.ports.web_research import WebResearchPort
 from hotel_agent.application.spatial_matching import distance_m
+from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 
 DATASETS = ("hotels", "rooms", "facilities", "documents", "onsite_objects")
 
@@ -35,8 +41,15 @@ class DataTools:
         semantic: SemanticSearchPort | None = None,
         discovery_allowed: bool = False,
         evidence: DocumentEvidence | None = None,
+        web: WebResearchPort | None = None,
+        conditions: DestinationConditionsPort | None = None,
+        now: datetime | None = None,
+        view: ViewAssessmentPort | None = None,
+        offers: GetHotelOffers | None = None,
+        terms: tuple[str, ...] = (),
     ) -> None:
         self._uow, self._terrain = uow, terrain
+        self._terms = terms
         self.hotels = tuple(hotels)
         self.city, self.region, self.bbox = city, region, bbox
         self._allow_expand = allow_expand
@@ -46,11 +59,29 @@ class DataTools:
         self.metrics: dict[str, dict[str, float]] = {}
         self.descriptions: dict[str, str] = {}
         self.reader = RecordReader(self._records, self.metrics, self.descriptions, evidence)
+        self.research = ResearchTools(
+            lambda: self.hotels,
+            self.metrics,
+            self.descriptions,
+            web,
+            conditions,
+            now or datetime.now(UTC),
+            view,
+        )
+        self.room_offers = RoomOfferTools(
+            offers, lambda: self.hotels, self.metrics, self.descriptions
+        )
         self._measurements = 0
         self._geometry_reads = 0
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action == "read_web_page":
+            return await read_page_evidence(
+                self.research, self.reader, self._terms, arguments, self.hotels, self._records
+            )
+        if action == "get_room_offers":
+            return await self.room_offers.execute(arguments)
         if action == "measure_geometry":
             if arguments.get("dataset") != "coastlines":
                 raise ValueError("Available geometry dataset: coastlines")
@@ -65,7 +96,7 @@ class DataTools:
             )
             return observation
         if action == "inspect_data":
-            return await self._inspect()
+            return await profile_data(self._records, DATASETS, len(self.hotels))
         if action == "find_hotels":
             return await self._find(float(arguments.get("radius_m", 30000)))
         if action == "read_records":
@@ -80,7 +111,7 @@ class DataTools:
             if scope is not None:
                 result["scope"] = scope
             return result
-        raise ValueError("Tool is not available")
+        return await self.research.execute(action, arguments)
 
     async def _coast(self) -> dict[str, Any]:
         async with self._uow() as uow:
@@ -109,30 +140,12 @@ class DataTools:
         }
 
     async def _records(self, dataset: str) -> Sequence[dict[str, Any]]:
+        if dataset == "web_documents":
+            return self.research.pages
         if dataset not in DATASETS:
             raise ValueError("Available datasets: hotels, rooms, facilities")
         async with self._uow() as uow:
             return await uow.data.records(dataset, tuple(hotel.id for hotel in self.hotels))
-
-    async def _inspect(self) -> dict[str, Any]:
-        profiles = {}
-        for dataset in DATASETS:
-            rows = await self._records(dataset)
-            profiles[dataset] = {
-                "record_count": len(rows),
-                "fields": fields(rows),
-                "hotels_with_records": len({row["hotel_id"] for row in rows}),
-                "non_null": dict(
-                    Counter(key for row in rows for key in row if row[key] is not None)
-                ),
-                "samples": preview(rows[:3]),
-                "row_limit": 5000,
-            }
-        return {
-            "hotel_count": len(self.hotels),
-            "datasets": profiles,
-            "terrain": "Available on demand: ground elevation and sampled local relief from DEM, not floor/building height",
-        }
 
     async def _find(self, radius: float) -> dict[str, Any]:
         if not self._allow_expand:

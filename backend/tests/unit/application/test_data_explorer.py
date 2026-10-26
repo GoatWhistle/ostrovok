@@ -139,6 +139,7 @@ async def test_agent_cannot_use_a_measurement_that_was_not_returned_by_tools() -
         [
             DataStep(action="measure_terrain", arguments={"radius_m": 1000}),
             DataStep(action="finish", arguments={}, criteria=(criterion("invented.altitude"),)),
+            DataStep(action="finish", arguments={}),
         ],
         readings={"city": {"elevation_m": 1500, "relief_m": 700}},
     )
@@ -187,6 +188,7 @@ async def test_missing_room_inventory_is_not_counted_as_proof_of_absence() -> No
                 },
             ),
             DataStep(action="finish", arguments={}, criteria=(wanted,)),
+            DataStep(action="finish", arguments={}),
         ]
     )
 

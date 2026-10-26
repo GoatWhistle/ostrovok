@@ -22,11 +22,18 @@ async def search_documents(
         async with uow_factory() as uow:
             found = await uow.search.by_ids(tuple(dict.fromkeys(d.hotel_id for d in hits)))
         hotels = tuple({h.id: h for h in (*hotels, *found)}.values())[:500]
+    priorities = {
+        hotel_id: index
+        for index, hotel_id in enumerate(dict.fromkeys(hit.hotel_id for hit in hits))
+    }
+    hotels = tuple(sorted(hotels, key=lambda hotel: priorities.get(hotel.id, len(priorities))))
     return tuple(hotels), {
         "hits": [
             {
                 "id": d.id,
                 "hotel_id": d.hotel_id,
+                "hotel_name": d.hotel_name,
+                "website": d.website,
                 "text": d.text,
                 "source": d.source,
                 "relevance": d.relevance,

@@ -4,14 +4,17 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.web_research import PublicWebResearch
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
 from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
+from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
+from hotel_agent.adapters.weather.destination_conditions import OpenMeteoConditions
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.use_cases.chat import Chat
@@ -36,7 +39,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     config = settings or load_settings(os.environ)
     logger = StdlibLogger("hotel_agent", info=True)
     providers = build_providers(config, logger)
-    terrain_tiles = CountryTerrainTiles(config.seed_dir / "sochi" / "dem.tif")
+    terrain_tiles = CountryTerrainTiles(
+        config.seed_dir / "sochi" / "dem.tif", config.terrain_cache_dir
+    )
+    web_research = PublicWebResearch()
+    conditions = OpenMeteoConditions()
     embedder = (
         PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
         if config.embedding_api_key
@@ -57,11 +64,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         finally:
             if embedder:
                 await embedder.aclose()
+            await web_research.aclose()
+            await conditions.aclose()
             terrain_tiles.close()
             await providers.aclose()
 
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
+    get_hotel_offers = GetHotelOffers(providers.uow, providers.hotel_offers, providers.clock)
     search_hotels = SearchHotels(
         providers.llm,
         providers.uow,
@@ -75,6 +85,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             logger,
             CountryBoundary(config.seed_dir / "russia-boundary.geojson"),
             semantic,
+            web_research,
+            conditions,
+            NearbyViewAssessment(terrain_tiles, providers.uow),
+            get_hotel_offers,
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
@@ -96,7 +110,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),
-            get_hotel_offers=GetHotelOffers(providers.uow, providers.hotel_offers, providers.clock),
+            get_hotel_offers=get_hotel_offers,
             get_hotel_scene=GetHotelScene(providers.uow),
             get_map_tile=GetMapTile(providers.uow),
             get_terrain_tile=GetTerrainTile(terrain_tiles),

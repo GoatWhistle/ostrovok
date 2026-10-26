@@ -10,6 +10,8 @@ class SearchDocument:
     text: str
     source: str
     relevance: float = 0.0
+    hotel_name: str | None = None
+    website: str | None = None
 
 
 class SemanticSearchPort(Protocol):

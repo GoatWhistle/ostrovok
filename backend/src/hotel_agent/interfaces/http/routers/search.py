@@ -4,8 +4,8 @@ from fastapi import APIRouter
 
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
+from hotel_agent.interfaces.http.query_schemas import SearchRequestSchema
 from hotel_agent.interfaces.http.search_schemas import (
-    SearchRequestSchema,
     SearchResponseSchema,
     search_schema,
 )

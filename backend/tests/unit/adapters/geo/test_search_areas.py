@@ -32,3 +32,10 @@ def test_federal_city_has_its_own_boundary() -> None:
 
     assert area is not None
     assert area.contains((37.61, 55.75))
+
+
+def test_named_geographic_object_coordinates_resolve_to_region() -> None:
+    areas = SearchAreas(Path(__file__).resolve().parents[5] / "data/seed/russia-admin1.geojson")
+    assert areas.region_at((87.60, 51.64)) == "Республика Алтай"
+    assert areas.region_at((160.64, 56.06)) == "Камчатский край"
+    assert areas.region_at((0, 0)) is None

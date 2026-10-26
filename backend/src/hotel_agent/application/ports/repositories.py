@@ -26,6 +26,8 @@ class RegionRepository(Protocol):
 
 
 class NamedPlaceRepository(Protocol):
+    async def geographic_name(self, name: str) -> NamedPlaceRecord | None: ...
+
     async def by_name(
         self, name: str, bbox: tuple[float, float, float, float]
     ) -> NamedPlaceRecord | None: ...
@@ -52,7 +54,9 @@ class SearchRepository(Protocol):
         self, region: str, bbox: tuple[float, float, float, float] | None
     ) -> Sequence[SearchHotelRecord]: ...
 
-    async def list_facts(self, region: str) -> Sequence[SearchFactRecord]: ...
+    async def list_facts(
+        self, region: str | None, hotel_id: str | None = None
+    ) -> Sequence[SearchFactRecord]: ...
 
     async def get_hotel(self, hotel_id: str) -> SearchHotelRecord | None: ...
 

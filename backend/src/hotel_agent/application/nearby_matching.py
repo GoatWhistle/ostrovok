@@ -39,7 +39,10 @@ def nearby_record(
         characteristic_key=key,
         value=len(ids),
         unit="count",
-        qualifiers={"estimated_absence": True} if request.avoid else {},
+        qualifiers={
+            "source_text": request.source_text,
+            **({"estimated_absence": True} if request.avoid else {}),
+        },
         source_type="computed",
         source_id=None,
         method="nearby_objects@1",

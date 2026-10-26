@@ -19,6 +19,7 @@ class RecordReader:
         self._evidence = evidence
         self._reads = 0
         self.quotes: dict[str, dict[str, tuple[str, ...]]] = {}
+        self.source_urls: dict[str, dict[str, tuple[str, ...]]] = {}
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
 
     async def read(self, dataset: str, filters: Any, term: str | None = None) -> dict[str, Any]:
@@ -64,6 +65,11 @@ class RecordReader:
                 str(row["_evidence_quote"])
                 for row in matched
                 if row["hotel_id"] == hotel_id and row.get("_evidence_quote")
+            )
+            self.source_urls.setdefault(hotel_id, {})[field] = tuple(
+                str(row["source_url"])
+                for row in matched
+                if row["hotel_id"] == hotel_id and row.get("source_url")
             )
             if quotes:
                 self.quotes.setdefault(hotel_id, {})[field] = quotes

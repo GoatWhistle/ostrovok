@@ -104,7 +104,7 @@ class Chat:
                 return f"I could not locate {search.parsed.unsupported_region} in the hotel data. Please clarify the city."
             return f"Не нашёл город «{search.parsed.unsupported_region}» в данных об отелях. Уточните название города."
         if search.question:
-            return search.question
+            return self._room_question(search, search.question, locale)
         if search.parsed.needs_clarification:
             if locale == "en":
                 return "Please clarify your request: some conditions conflict."
@@ -121,8 +121,16 @@ class Chat:
                     )
                 )
                 if locale == "en":
-                    return f"I searched the loaded Russian hotel catalog without a city restriction. I could not verify your wishes{': ' + wishes if wishes else ''}. This does not establish that such hotels do not exist elsewhere."
-                return f"Искал без ограничения по городу в загруженном каталоге России. Пока не нашёл данных, подтверждающих ваши пожелания{': ' + wishes if wishes else ''}. Это не означает, что таких отелей не существует в других странах или источниках."
+                    return self._room_question(
+                        search,
+                        f"I searched the loaded Russian hotel catalog without a city restriction. I could not verify your wishes{': ' + wishes if wishes else ''}. This does not establish that such hotels do not exist elsewhere.",
+                        locale,
+                    )
+                return self._room_question(
+                    search,
+                    f"Искал без ограничения по городу в загруженном каталоге России. Пока не нашёл данных, подтверждающих ваши пожелания{': ' + wishes if wishes else ''}. Это не означает, что таких отелей не существует в других странах или источниках.",
+                    locale,
+                )
             if locale == "en":
                 answer = (
                     "I could not find hotels with a verified match. Try changing the conditions."
@@ -173,7 +181,7 @@ class Chat:
                 )
             else:
                 answer += f" Не смог проверить: {terms}. Эти условия не учтены в подборке."
-        if not parsed.wants_room:
+        if not parsed.wants_room or parsed.room_preferences_unrestricted:
             return answer
         missing = []
         if parsed.check_in is None:
@@ -182,6 +190,12 @@ class Chat:
             missing.append("check-out date" if locale == "en" else "дату выезда")
         if parsed.adults is None:
             missing.append("number of adults" if locale == "en" else "число взрослых")
+        if parsed.budget is None:
+            missing.append(
+                "budget per night or for the whole stay"
+                if locale == "en"
+                else "бюджет за ночь или за всё проживание"
+            )
         if not missing:
             return answer
         fields = ", ".join(missing)

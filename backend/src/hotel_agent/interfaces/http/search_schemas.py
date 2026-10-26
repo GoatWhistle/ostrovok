@@ -1,5 +1,4 @@
 from collections.abc import Mapping
-from datetime import date
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -9,46 +8,12 @@ from hotel_agent.application.use_cases.search_hotels import SearchOutcome, Searc
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import UnknownCharacteristic
 from hotel_agent.domain.services.scoring import PropertyMatch
+from hotel_agent.interfaces.http.query_schemas import (
+    ParsedIntentSchema,
+    ParsedSchema,
+    QueryCorrectionSchema,
+)
 from hotel_agent.interfaces.http.schemas import CameraSchema
-
-
-class SearchRequestSchema(BaseModel):
-    query: str
-    region_id: str | None = "russia"
-    bbox: tuple[float, float, float, float] | None = None
-    limit: int = Field(default=20, ge=1, le=100)
-    cursor: str | None = None
-    compute_missing: bool = True
-
-
-class ParsedIntentSchema(BaseModel):
-    characteristic_key: str
-    op: str
-    value: bool | float | str | None
-    weight: float
-    required: bool
-    source_text: str
-
-
-class QueryCorrectionSchema(BaseModel):
-    original: str
-    corrected: str
-    reason: str
-
-
-class ParsedSchema(BaseModel):
-    intents: list[ParsedIntentSchema]
-    unmatched_terms: list[str]
-    location_hint: str | None = None
-    anywhere: bool = False
-    normalized_query: str | None = None
-    corrections: list[QueryCorrectionSchema] = Field(default_factory=list)
-    unsupported_region: str | None = None
-    needs_clarification: bool = False
-    wants_room: bool = False
-    check_in: date | None = None
-    check_out: date | None = None
-    adults: int | None = None
 
 
 class FactBriefSchema(BaseModel):
@@ -144,6 +109,8 @@ def search_schema(
         unsupported_region=outcome.parsed.unsupported_region,
         needs_clarification=outcome.parsed.needs_clarification,
         wants_room=outcome.parsed.wants_room,
+        room_preferences_unrestricted=outcome.parsed.room_preferences_unrestricted,
+        budget=outcome.parsed.budget,
         check_in=outcome.parsed.check_in,
         check_out=outcome.parsed.check_out,
         adults=outcome.parsed.adults,

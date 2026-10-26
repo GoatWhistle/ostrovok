@@ -19,7 +19,11 @@ class DocumentEvidence:
         for index, row in enumerate(rows[:12]):
             text = row.get("text") or json.dumps(row, ensure_ascii=False)
             text = str(text)
-            values = [str(item.get("value", "")) for item in filters]
+            values = [
+                str(item.get("value", ""))
+                for item in filters
+                if item.get("field") not in {"source_url", "hotel_id"}
+            ]
             start = min(
                 (
                     text.casefold().find(value.casefold())
@@ -36,7 +40,21 @@ class DocumentEvidence:
             {
                 "wish": term,
                 "records": [
-                    {"record_id": key, "source_text": text} for key, (_, text) in sources.items()
+                    {
+                        "record_id": key,
+                        "source_text": text,
+                        **{
+                            field: row[field]
+                            for field in (
+                                "hotel_name",
+                                "hotel_address",
+                                "hotel_location",
+                                "source_url",
+                            )
+                            if field in row
+                        },
+                    }
+                    for key, (row, text) in sources.items()
                 ],
             },
             ensure_ascii=False,

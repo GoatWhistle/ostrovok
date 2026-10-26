@@ -38,31 +38,34 @@ export function FactList({ facts, onFact }: FactListProps) {
     <DetailsSection title={t("explore:details.facts")}>
       {groups.length ? (
         <ul className={styles.list}>
-          {groups.map(({ fact, count }) => (
-            <li key={fact.characteristic_key}>
-              <RowButton
-                leadingAlign="start"
-                leading={<FactTile characteristicKey={fact.characteristic_key} size="sm" />}
-                trailing={<Icon name="chevron-right" size="sm" className={styles.chevron} />}
-                onClick={() => onFact(fact)}
-              >
-                <span className={styles.value}>{factLabel(fact, locale)}</span>
-                <span className={styles.title}>
-                  {characteristicTitle(fact.characteristic_key, locale)}
-                </span>
-                <span className={styles.badges}>
-                  <SourceBadge source={fact.source_type} />
-                  <Confidence value={fact.confidence} />
-                  <FactStatusBadge status={fact.status} />
-                  {count > 1 ? (
-                    <span className={styles.title}>
-                      {t("explore:details.facadeValues", { count })}
-                    </span>
+          {groups.map(({ fact, count }) => {
+            const title = characteristicTitle(fact.characteristic_key, locale)
+            return (
+              <li key={fact.characteristic_key}>
+                <RowButton
+                  leadingAlign="start"
+                  leading={<FactTile characteristicKey={fact.characteristic_key} size="sm" />}
+                  trailing={<Icon name="chevron-right" size="sm" className={styles.chevron} />}
+                  onClick={() => onFact(fact)}
+                >
+                  <span className={styles.value}>{factLabel(fact, locale)}</span>
+                  {title !== fact.characteristic_key ? (
+                    <span className={styles.title}>{title}</span>
                   ) : null}
-                </span>
-              </RowButton>
-            </li>
-          ))}
+                  <span className={styles.badges}>
+                    <SourceBadge source={fact.source_type} />
+                    <Confidence value={fact.confidence} />
+                    <FactStatusBadge status={fact.status} />
+                    {count > 1 ? (
+                      <span className={styles.title}>
+                        {t("explore:details.facadeValues", { count })}
+                      </span>
+                    ) : null}
+                  </span>
+                </RowButton>
+              </li>
+            )
+          })}
         </ul>
       ) : (
         <p className={styles.empty}>{t("explore:details.factsEmpty")}</p>

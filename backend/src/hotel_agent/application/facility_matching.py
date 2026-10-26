@@ -46,7 +46,7 @@ def facility_fact(
         characteristic_key=key,
         value=True,
         unit=None,
-        qualifiers={"facility": found},
+        qualifiers={"facility": found, "source_text": request.source_text},
         source_type="supplier",
         source_id=content.supplier,
         method="supplier_facility@1",
