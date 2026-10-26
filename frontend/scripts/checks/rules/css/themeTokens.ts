@@ -30,6 +30,9 @@ export const ON_SURFACES: Readonly<Record<string, readonly string[]>> = {
 }
 export const EXTRA_TEXT: ReadonlyArray<readonly [string, string]> = [
   ["--text-primary", "--surface-selected"],
+  ["--map-hotel-text", "--map-hotel"],
+  ["--map-hotel-selected-text", "--map-hotel-selected"],
+  ["--map-route", "--map-hotel"],
 ]
 export const EXEMPT_TEXT = new Set(["--text-disabled"])
 const NON_TEXT: ReadonlyArray<readonly [string, string]> = [

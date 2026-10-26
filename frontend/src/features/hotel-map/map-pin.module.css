@@ -26,12 +26,12 @@
 .pin[data-kind="cluster"] {
   --button-radius: var(--radius-pill);
   --button-surface: var(--map-hotel-selected);
-  --button-surface-hover: var(--action-primary-hover);
-  --button-text: var(--action-primary-text);
+  --button-surface-hover: var(--map-hotel-selected);
+  --button-text: var(--map-hotel-selected-text);
   --button-height: var(--space-32);
 
   min-inline-size: var(--button-height);
-  border: var(--focus-ring-width) solid var(--action-primary-text);
+  border: var(--focus-ring-width) solid var(--map-hotel);
 }
 
 .pin[data-kind="cluster"][data-size="medium"] {
@@ -58,7 +58,7 @@
 
 .pin[data-selected="true"] {
   --button-surface: var(--map-hotel-selected);
-  --button-text: var(--action-primary-text);
+  --button-text: var(--map-hotel-selected-text);
 }
 
 .face {
@@ -140,7 +140,7 @@
   }
 
   .pin[data-kind="hotel"]:not([data-state="nodata"]):hover {
-    --button-text: var(--action-primary-text);
+    --button-text: var(--map-hotel-selected-text);
   }
 }
 

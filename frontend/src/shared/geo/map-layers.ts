@@ -5,14 +5,15 @@ export interface BuildingColors {
   readonly building: string
   readonly buildingLine: string
   readonly buildingVolume: string
-  readonly fact: string
-  readonly factLine: string
+  readonly hotelVolume: string
+  readonly hotelSelected: string
 }
 
 export interface HighlightColors {
   readonly fact: string
   readonly factLine: string
   readonly route: string
+  readonly routeGlow: string
   readonly land: string
 }
 
@@ -29,16 +30,16 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
   map.setPaintProperty("buildings-context", "fill-color", [
     "case",
     HOTEL,
-    colors.fact,
+    colors.hotelVolume,
     colors.building,
   ])
   map.setPaintProperty("buildings-volume", "fill-extrusion-color", [
     "case",
     HOTEL,
-    colors.fact,
+    colors.hotelVolume,
     colors.buildingVolume,
   ])
-  map.setPaintProperty("buildings-outline", "line-color", colors.factLine)
+  map.setPaintProperty("buildings-outline", "line-color", colors.hotelSelected)
 }
 
 export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
@@ -53,7 +54,7 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
     source: "buildings",
     filter: POLYGON,
     paint: {
-      "fill-color": ["case", HOTEL, colors.fact, colors.building],
+      "fill-color": ["case", HOTEL, colors.hotelVolume, colors.building],
       "fill-outline-color": colors.buildingLine,
       "fill-opacity": ["case", HOTEL, 0.9, 0.6],
     },
@@ -64,7 +65,7 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
     source: "buildings",
     filter: ["all", POLYGON, [">", ["to-number", ["get", "height_m"], 0], 0]],
     paint: {
-      "fill-extrusion-color": ["case", HOTEL, colors.fact, colors.buildingVolume],
+      "fill-extrusion-color": ["case", HOTEL, colors.hotelVolume, colors.buildingVolume],
       "fill-extrusion-vertical-gradient": true,
       "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
       "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
@@ -76,7 +77,7 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
     type: "line",
     source: "buildings",
     filter: HOTEL,
-    paint: { "line-color": colors.factLine, "line-width": 2 },
+    paint: { "line-color": colors.hotelSelected, "line-width": 2 },
   })
 }
 
@@ -109,6 +110,19 @@ function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
     paint: { "line-color": colors.factLine, "line-width": 2.5 },
   })
   map.addLayer({
+    id: "route-glow",
+    filter: ["!=", ["get", "mode"], "straight"],
+    type: "line",
+    source: "routes",
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: {
+      "line-gradient": routeGradient(colors.routeGlow, 0),
+      "line-width": 14,
+      "line-blur": 8,
+      "line-opacity": 0.55,
+    },
+  })
+  map.addLayer({
     id: "route-casing",
     filter: ["!=", ["get", "mode"], "straight"],
     type: "line",
@@ -117,7 +131,7 @@ function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
     paint: {
       "line-gradient": routeGradient(colors.land, 0),
       "line-width": 9,
-      "line-opacity": 0.85,
+      "line-opacity": 0.35,
     },
   })
   map.addLayer({
@@ -173,6 +187,7 @@ export function paintRoute(map: MapLibreMap, colors: HighlightColors, progress: 
   if (!map.getLayer("route-line")) return
   map.setPaintProperty("route-straight", "line-color", colors.route)
   map.setPaintProperty("route-straight", "line-opacity", progress)
+  map.setPaintProperty("route-glow", "line-gradient", routeGradient(colors.routeGlow, progress))
   map.setPaintProperty("route-casing", "line-gradient", routeGradient(colors.land, progress))
   map.setPaintProperty("route-line", "line-gradient", routeGradient(colors.route, progress))
 }

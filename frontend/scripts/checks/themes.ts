@@ -5,7 +5,7 @@ export type ThemeName = "light" | "dark"
 
 export type ThemeTables = Readonly<Record<ThemeName, ReadonlyMap<string, string>>>
 
-const COLOR_FILES = ["palette.css", "semantic.css", "elevation.css"]
+const COLOR_FILES = ["palette.css", "semantic.css", "map.css", "elevation.css"]
 const BLOCK = /([^{}]+)\{([^{}]*)\}/g
 const DECLARATION = /(--[\w-]+)\s*:\s*([^;]+);/g
 const VAR_ONLY = /^var\((--[\w-]+)\)$/

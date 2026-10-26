@@ -2,6 +2,15 @@
 name: Factmap
 description: Hotel search where every match is a verifiable fact on the map
 colors:
+  night-950: '#0a1223'
+  night-900: '#101e32'
+  night-50: '#e8f5ff'
+  night-300: '#abc2d2'
+  frost-50: '#f0f4f8'
+  cyan-300: '#5ce5ff'
+  cyan-700: '#066a81'
+  pink-300: '#f6a2d4'
+  pink-700: '#ac287e'
   cobalt-600: '#1546db'
   cobalt-500: '#3763ee'
   cobalt-300: '#8eabff'
@@ -18,10 +27,10 @@ colors:
   neutral-950: '#12140f'
   green-600: '#1b8445'
   red-600: '#be2d1f'
-  map-light-land: '#eef0e8'
-  map-light-water: '#bcd8f0'
-  map-dark-land: '#161913'
-  map-dark-water: '#0d1c29'
+  map-neon-land: '#111b2d'
+  map-neon-water: '#0a2943'
+  map-neon-road-light: '#5acbd7'
+  map-neon-hotel-volume: '#76d8d0'
 typography:
   display:
     fontFamily: '"Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif'
@@ -79,8 +88,8 @@ spacing:
   '64': 64px
 components:
   button-primary:
-    backgroundColor: '{colors.cobalt-600}'
-    textColor: '{colors.neutral-0}'
+    backgroundColor: '{colors.cyan-300}'
+    textColor: '{colors.night-950}'
     rounded: '{rounded.md}'
     height: 44px
   button-fact:
@@ -109,31 +118,39 @@ This file explains what the tokens mean; when they disagree, the tokens win.
 
 ## Overview
 
-**North star: the folded map.** The mark is a map folded into three panels: two cobalt sides and a
-lime middle. Cobalt is the product (actions, selection, routes); lime is the fact (proof on the map,
-complete matches, the "show on map" action). Everything else stays quiet so that facts and their
-sources read first.
+**North star: the city after sunset.** The interface follows map style No. 5, "Night neon",
+chosen by the user on 2026-10-26: deep navy surfaces, one cyan action colour and pink walking
+routes. The mark keeps its folded map of two cobalt sides and a lime middle; lime still means a
+confirmed fact or a complete match. Everything else stays quiet so that facts and their sources
+read first. The reference is `work/map-styles/05-neon.html`.
 
-- Calm neutral grounds with a faint green cast, one cobalt action colour, one lime fact colour.
+- Navy grounds in dark, cool frost grounds in light; one cyan action colour, one lime fact colour.
 - Manrope for every role, with heavy weights for headings; JetBrains Mono only for values and codes.
 - Flat surfaces separated by tone; hairline rings only on fields, shadows only for floating layers.
 - Honest states: unknown, computing, conflict and missing are visibly different from "no".
 
 ## Colors
 
-- **Cobalt** (`--action-primary`, `--focus-ring`, `--map-route`, `--map-hotel-selected`): primary
-  buttons, the user's chat bubble, the selected hotel ring, walking routes.
+- **Cyan** (`--action-primary`, `--focus-ring`, `--text-accent`, `--status-info`): primary buttons
+  with dark text in dark theme and white text in light theme, the user's chat bubble, focus, links
+  and the selected object. Light theme uses the deeper `cyan-700` with the same meaning.
+- **Pink** (`--map-route`): the walking route and its direction. It never means an error and never
+  replaces a fact or conflict status.
 - **Lime** (`--action-fact`, `--surface-highlight`, `--map-fact`): the fact. Used for complete match
   badges, "Показать на карте", text selection and fact geometry. Never for decoration.
-- **Neutrals**: `--surface-base` page, `--surface-raised` cards and bubbles, `--surface-sunken`
-  tracks and tiles, `--surface-overlay` floating layers.
-- **Status**: success green, danger red, warning amber, conflict violet, info cobalt, neutral grey;
+- **Cobalt**: only the brand mark.
+- **Night and frost neutrals**: `--surface-base` page, `--surface-raised` cards and bubbles,
+  `--surface-sunken` tracks and tiles, `--surface-overlay` floating layers. Dark theme is the main
+  reference; light theme keeps the same roles on cool surfaces with dark text.
+- **Status**: success green, danger red, warning amber, conflict violet, info cyan, neutral grey;
   each has a surface and a text pair and always comes with an icon.
 - **Characteristic hues** (`--hue-*`): sea, sunset, quiet, nightlife, dark, pets, height, walk. They
   colour the icon of a wish in chips, match rows and fact tiles. They carry meaning, so they colour
   the icon only and never sit behind it as a pastel disc.
-- **Map** (`--map-*`): land, water, parks, sand, buildings, roads, labels, sky and terrain shading for
-  both themes, plus hotel pins, fact and route colours.
+- **Map** (`--map-*`): style No. 5 in both UI themes: navy land, deep water, teal-green parks,
+  thin road cores with a limited cyan glow, the selected hotel volume in teal, pink routes with a
+  soft glow. The UI theme and the calculated time of day are independent; night lighting only
+  darkens the map slightly, so buildings and labels stay readable.
 
 ## Typography
 
@@ -153,7 +170,7 @@ Other pages use the page shell with 24px gutters (32px from 75rem) and full widt
 Resting surfaces are flat: `--surface-raised` panels and cards sit on `--surface-base` without a
 ring or shadow, and hover moves to `--surface-raised-hover`. The header and panel edges use a single
 hairline divider. Hairline rings (`--shadow-ring`) stay only on fields (inputs, select, composer),
-where they mark the editable area; the selected hotel keeps the cobalt ring. The Segmented track is a
+where they mark the editable area; the selected hotel keeps one cyan ring. The Segmented track is a
 sunken tone with a raised, unringed indicator. Shadows and glass are reserved for layers that float
 over the map or the page: map controls and overlays use `--shadow-float`, menus and popovers
 `--shadow-float` or `--shadow-overlay`, map pins `--shadow-pin`.
@@ -176,9 +193,9 @@ towards their author.
   the hotel has a photo; there is no placeholder tile in the list.
 - **EmptyState / ErrorState**: a 48px icon in the tone colour without a tile, title, text and an
   action; the panel fades in as one piece.
-- **Chat**: agent bubbles with the mark as avatar, user bubbles in cobalt, result replies with
+- **Chat**: agent bubbles with the mark as avatar, user bubbles in cyan, result replies with
   understood wishes, corrections, unknown terms, pending work and the lime "show on map" action;
-  composer with an auto-growing field and a cobalt send button.
+  composer with an auto-growing field and a cyan send button.
 - **Banner**, **StatusBadge**, **Confidence**, **Select** (custom listbox), **Segmented**,
   **Disclosure**, **EmptyState**, **ErrorState**, **Skeleton**: see the design system sections.
 
@@ -191,7 +208,8 @@ draw along their path. Reduced motion compresses everything to fades.
 
 ## Do's and Don'ts
 
-- Do use lime only for facts and proof; cobalt only for actions and selection.
+- Do use lime only for facts and proof; cyan only for actions and selection; pink only for routes.
+- Do keep glow on roads, routes and the active object; text, photos, tables and forms stay sharp.
 - Do show unknown and computing explicitly; never present missing data as "no".
 - Do keep every string in the dictionaries, RU and EN.
 - Don't use gradients, glass, emoji, em dashes, arrow glyphs or middle-dot separators.
