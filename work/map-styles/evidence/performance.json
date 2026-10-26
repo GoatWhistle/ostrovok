@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-26",
+  "browser": "153.0.8010.12",
+  "environment": "WSL2 headless ANGLE SwiftShader, software rasterizer",
+  "rows": [
+    {
+      "style": "clean",
+      "width": 1440,
+      "cpuThrottle": 1,
+      "errors": [],
+      "fps": 6.236357966949476,
+      "frameMeanMs": 160.34999999994412,
+      "frameP95Ms": 283.3000000000011,
+      "sampleSize": 40,
+      "firstMapFrameMs": 2030.300000000745,
+      "metrics": {
+        "fps": 5.806638923836247,
+        "frameMs": 58.54312499998137,
+        "dpr": 1,
+        "buildings": 1582,
+        "props": 0,
+        "quality": "эффекты отключены"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "toy",
+      "width": 1440,
+      "cpuThrottle": 1,
+      "errors": [],
+      "fps": 5.284262223741879,
+      "frameMeanMs": 189.24117647058824,
+      "frameP95Ms": 233.39999999999964,
+      "sampleSize": 34,
+      "firstMapFrameMs": 1179.199999999255,
+      "metrics": {
+        "fps": 6.760753824051376,
+        "frameMs": 205.43750000001555,
+        "dpr": 1,
+        "buildings": 1670,
+        "props": 0,
+        "quality": "эффекты отключены"
+      },
+      "props": {
+        "instances": 381,
+        "types": 10,
+        "mapped": 79
+      },
+      "shadowWorkerMs": 16.599999997764826,
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "iso",
+      "width": 1440,
+      "cpuThrottle": 1,
+      "errors": [],
+      "fps": 2.045665549418319,
+      "frameMeanMs": 488.83846153851886,
+      "frameP95Ms": 1116.6000000000004,
+      "sampleSize": 13,
+      "firstMapFrameMs": 1245.0999999977648,
+      "metrics": {
+        "fps": 1.791151710549886,
+        "frameMs": 572.5600000001117,
+        "dpr": 1,
+        "buildings": 1811,
+        "props": 0,
+        "quality": "эффекты отключены"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "sunset",
+      "width": 1440,
+      "cpuThrottle": 1,
+      "errors": [],
+      "fps": 0.4498627918483857,
+      "frameMeanMs": 2222.9000000004967,
+      "frameP95Ms": 2802.300000001491,
+      "sampleSize": 3,
+      "firstMapFrameMs": 978.3999999985099,
+      "metrics": {
+        "fps": 0.44446419840881823,
+        "frameMs": 1679.6500000001863,
+        "dpr": 1,
+        "buildings": 1565,
+        "props": 0,
+        "quality": "эффекты отключены"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "neon",
+      "width": 1440,
+      "cpuThrottle": 1,
+      "errors": [],
+      "fps": 5.912280428794546,
+      "frameMeanMs": 169.13947368424977,
+      "frameP95Ms": 233.39999999999964,
+      "sampleSize": 38,
+      "firstMapFrameMs": 897.3000000007451,
+      "metrics": {
+        "fps": 5.624824224242998,
+        "frameMs": 183.54905660378762,
+        "dpr": 1,
+        "buildings": 1647,
+        "props": 0,
+        "quality": "эффекты отключены"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "clean",
+      "width": 375,
+      "cpuThrottle": 4,
+      "errors": [],
+      "fps": 8.764646185069411,
+      "frameMeanMs": 114.09473684214447,
+      "frameP95Ms": 266.60000000000036,
+      "sampleSize": 57,
+      "firstMapFrameMs": 2127.099999997765,
+      "metrics": {
+        "fps": 6.3642149286298775,
+        "frameMs": 53.538202247195194,
+        "dpr": 1.5,
+        "buildings": 383,
+        "props": 0,
+        "quality": "DPR 1,5"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "toy",
+      "width": 375,
+      "cpuThrottle": 4,
+      "errors": [],
+      "fps": 8.642508796836328,
+      "frameMeanMs": 115.70714285718279,
+      "frameP95Ms": 266.6999999999998,
+      "sampleSize": 56,
+      "firstMapFrameMs": 2337.5,
+      "metrics": {
+        "fps": 15.484370463563351,
+        "frameMs": 141.64861111110076,
+        "dpr": 1.5,
+        "buildings": 392,
+        "props": 0,
+        "quality": "DPR 1,5"
+      },
+      "props": {
+        "instances": 381,
+        "types": 10,
+        "mapped": 79
+      },
+      "shadowWorkerMs": 16.600000001490116,
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "iso",
+      "width": 375,
+      "cpuThrottle": 4,
+      "errors": [],
+      "fps": 6.94583789957782,
+      "frameMeanMs": 143.97111111112767,
+      "frameP95Ms": 316.7000000000007,
+      "sampleSize": 45,
+      "firstMapFrameMs": 2875.7999999970198,
+      "metrics": {
+        "fps": 8.437236336364498,
+        "frameMs": 249.63673469389275,
+        "dpr": 1.5,
+        "buildings": 1811,
+        "props": 0,
+        "quality": "DPR 1,5"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "sunset",
+      "width": 375,
+      "cpuThrottle": 4,
+      "errors": [],
+      "fps": 4.942313929604622,
+      "frameMeanMs": 202.33437499993016,
+      "frameP95Ms": 983.3999999999996,
+      "sampleSize": 32,
+      "firstMapFrameMs": 2124.7000000029802,
+      "metrics": {
+        "fps": 11.804052724768834,
+        "frameMs": 394.53103448270724,
+        "dpr": 1.5,
+        "buildings": 381,
+        "props": 0,
+        "quality": "DPR 1,5"
+      },
+      "renderer": "WebKit WebGL"
+    },
+    {
+      "style": "neon",
+      "width": 375,
+      "cpuThrottle": 4,
+      "errors": [],
+      "fps": 8.531232065021529,
+      "frameMeanMs": 117.21636363639071,
+      "frameP95Ms": 199.89999999999964,
+      "sampleSize": 55,
+      "firstMapFrameMs": 2136.099999997765,
+      "metrics": {
+        "fps": 8.572244975711975,
+        "frameMs": 141.55588235297404,
+        "dpr": 1.5,
+        "buildings": 385,
+        "props": 0,
+        "quality": "DPR 1,5"
+      },
+      "renderer": "WebKit WebGL"
+    }
+  ]
+}

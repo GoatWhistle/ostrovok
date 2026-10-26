@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-26T13:43:09.322342+00:00",
+  "source": "data/raw/sochi-map-layers.json.gz",
+  "counts": {
+    "landcover": 11101,
+    "natural_areas": 2392,
+    "leisure": 2414,
+    "trees": 1732,
+    "water": 563
+  },
+  "thresholds": {
+    "landcover": 1000,
+    "natural_areas": 500,
+    "leisure": 500,
+    "trees": 1000,
+    "water": 50
+  },
+  "download_required": false
+}

@@ -1,0 +1,128 @@
+{
+  "scenes": {
+    "adler": {
+      "id": "adler",
+      "center": [
+        39.904065,
+        43.4451502
+      ],
+      "bbox": [
+        39.89169213035965,
+        43.43616708825009,
+        39.916437869640355,
+        43.454133311749914
+      ],
+      "hotel": {
+        "id": "n11331531334",
+        "name": "Cosmos Adler Hotel",
+        "location": [
+          39.904065,
+          43.4451502
+        ]
+      },
+      "bar": {
+        "id": "n7355084687",
+        "name": "Место вст",
+        "location": [
+          39.910055,
+          43.4466382
+        ]
+      },
+      "neighbors": [
+        {
+          "id": "w1030684742",
+          "name": "АК \"Cosmos Adler Hotel\"",
+          "location": [
+            39.904226,
+            43.4449436
+          ]
+        },
+        {
+          "id": "n7169680844",
+          "name": "F & G",
+          "location": [
+            39.9048938,
+            43.4443602
+          ]
+        }
+      ],
+      "counts": {
+        "buildings": 1802,
+        "ground": 364,
+        "water": 4,
+        "trees": 129,
+        "roads": 824,
+        "beaches": 4,
+        "coast": 1,
+        "routes": 2
+      },
+      "bytes": 1051822,
+      "gzip_bytes": 148983
+    },
+    "sochi": {
+      "id": "sochi",
+      "center": [
+        39.7322506,
+        43.5711773
+      ],
+      "bbox": [
+        39.71985186970747,
+        43.56219418825009,
+        39.74464933029253,
+        43.580160411749915
+      ],
+      "hotel": {
+        "id": "w51847420",
+        "name": "Жемчужина",
+        "location": [
+          39.7322506,
+          43.5711773
+        ]
+      },
+      "bar": {
+        "id": "n5911346886",
+        "name": "Harat, s pub",
+        "location": [
+          39.7316948,
+          43.5686546
+        ]
+      },
+      "neighbors": [
+        {
+          "id": "w51847429",
+          "name": "Жемчужина",
+          "location": [
+            39.7314295,
+            43.5708048
+          ]
+        },
+        {
+          "id": "n948203233",
+          "name": "Отель \"Жемчуг\"",
+          "location": [
+            39.7325921,
+            43.5726527
+          ]
+        }
+      ],
+      "counts": {
+        "buildings": 1248,
+        "ground": 279,
+        "water": 36,
+        "trees": 19,
+        "roads": 1136,
+        "beaches": 3,
+        "coast": 2,
+        "routes": 1
+      },
+      "bytes": 1008355,
+      "gzip_bytes": 157329
+    }
+  },
+  "sources": {
+    "osm": "OpenStreetMap contributors, ODbL",
+    "basemap": "Protomaps 20261026, tileset4.15.2",
+    "dem": "Copernicus GLO-30"
+  },
+  "decorations": "Scattered props are illustrative; mapped trees carry mapped=true"
+}

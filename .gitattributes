@@ -23,3 +23,6 @@ uv.lock -diff linguist-generated
 **/schema.gen.ts -diff linguist-generated
 work/design/source/mapbox-reference.txt -text
 work/design/source/mapbox-tokens.json -text
+
+work/map-styles/shared/vendor/* -whitespace linguist-vendored
+work/map-styles/shared/utils/* -whitespace linguist-vendored
