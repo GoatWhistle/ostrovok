@@ -54,7 +54,7 @@ def append_closed_way(
             Feature(
                 id=identifier,
                 geometry=geometry,
-                properties=rules.selected(tags, rules.BUILDING_KEYS),
+                properties=dict(tags),
             )
         )
     if beach:
@@ -62,6 +62,6 @@ def append_closed_way(
             Feature(
                 id=identifier,
                 geometry=geometry,
-                properties=rules.selected(tags, ("natural", "leisure", "name")),
+                properties=dict(tags),
             )
         )

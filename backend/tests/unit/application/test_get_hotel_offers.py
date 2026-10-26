@@ -6,7 +6,12 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 from hotel_agent.application.ports.clock import ClockPort
-from hotel_agent.application.ports.hotel_offers import OfferLookup, RoomOffer
+from hotel_agent.application.ports.hotel_offers import (
+    HotelOfferSearchPort,
+    OfferLookup,
+    OfferProviderFailure,
+    RoomOffer,
+)
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers, OfferStatus
 from hotel_agent.application.use_cases.match_hotel_catalog import CatalogMatch, MatchHotelCatalog
@@ -15,7 +20,11 @@ from hotel_agent.domain.errors import InvalidQuery
 
 def repository(supplier_id: str | None) -> UnitOfWorkFactory:
     search = SimpleNamespace(
-        get_hotel=AsyncMock(return_value=SimpleNamespace(id="hotel-1")),
+        get_hotel=AsyncMock(
+            return_value=SimpleNamespace(
+                id="hotel-1", name="Жемчужина", address="Черноморская 3", location=(39.73, 43.57)
+            )
+        ),
         get_supplier_id=AsyncMock(return_value=supplier_id),
     )
     scope = MagicMock()
@@ -47,6 +56,43 @@ async def test_unmapped_hotel_does_not_call_supplier() -> None:
     )
     assert result.status is OfferStatus.HOTEL_UNMAPPED
     provider.fetch.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("outcome", "expected"),
+    [
+        ("rates", OfferStatus.AVAILABLE),
+        ("empty", OfferStatus.NO_OFFERS),
+        ("unmapped", OfferStatus.HOTEL_UNMAPPED),
+        ("error", OfferStatus.PROVIDER_ERROR),
+    ],
+)
+async def test_free_site_search_uses_local_identity_and_preserves_unknown_states(
+    outcome: str, expected: OfferStatus
+) -> None:
+    rate = RoomOffer("rate", "Номер", 12000, "RUB", None, "nomeal", ())
+    lookup = (
+        None
+        if outcome == "unmapped"
+        else OfferLookup((rate,) if outcome == "rates" else (), datetime(2026, 10, 25, tzinfo=UTC))
+    )
+    search = AsyncMock(return_value=lookup)
+    if outcome == "error":
+        search.side_effect = OfferProviderFailure()
+    source = cast(
+        HotelOfferSearchPort, SimpleNamespace(search=search, source="Островок", sandbox=False)
+    )
+    result = await GetHotelOffers(repository(None), None, clock(), search_provider=source)(
+        "hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru"
+    )
+    assert result.status is expected
+    assert result.source == "Островок"
+    assert result.sandbox is False
+    identity = search.call_args.args[0]
+    assert identity.name == "Жемчужина"
+    assert identity.address == "Черноморская 3"
+    assert identity.location == (39.73, 43.57)
+    assert result.offers == ((rate,) if outcome == "rates" else ())
 
 
 @pytest.mark.asyncio

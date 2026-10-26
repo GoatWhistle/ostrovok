@@ -8,12 +8,14 @@ class PrecomputeFacades:
         self._extractor = extractor
         self._store = store
 
-    async def __call__(self, region: str) -> Mapping[str, int]:
+    async def __call__(self, region: str, *, compute_noise: bool = True) -> Mapping[str, int]:
         facades = [
             facade
             for footprint in await self._store.footprints(region)
             for facade in self._extractor.extract(footprint)
         ]
         count = await self._store.save(region, facades)
+        if not compute_noise:
+            return {"facades": count}
         noise_count = await self._store.compute_noise(region)
         return {"facades": count, "noise_level": noise_count}

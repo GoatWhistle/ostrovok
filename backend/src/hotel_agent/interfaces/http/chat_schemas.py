@@ -35,6 +35,7 @@ class ConversationSchema(BaseModel):
     messages: list[ChatMessageSchema]
     effective_query: str | None = None
     search: SearchResponseSchema | None = None
+    search_message_id: UUID | None = None
 
 
 def conversation_schema(
@@ -55,6 +56,15 @@ def conversation_schema(
             for item in conversation.messages
         ],
         effective_query=conversation.effective_query,
+        search_message_id=(
+            UUID(str(conversation.search_snapshot["_chat_message_id"]))
+            if conversation.search_snapshot and conversation.search_snapshot.get("_chat_message_id")
+            else next(
+                (UUID(m.id) for m in reversed(conversation.messages) if m.role == "assistant"), None
+            )
+            if conversation.search_snapshot is not None
+            else None
+        ),
         search=(
             SearchResponseSchema.model_validate(outcome.search_snapshot)
             if outcome.search_snapshot is not None

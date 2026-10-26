@@ -1,3 +1,4 @@
+import math
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
@@ -38,6 +39,8 @@ def site_offers(row: dict[str, Any]) -> tuple[RoomOffer, ...]:
             if not isinstance(rate, dict):
                 raise TypeError("Invalid rate")
             offer = _offer(rate)
+            if offer.available_rooms == 0:
+                continue
             key = (offer.room_name, offer.price_currency, offer.meal, offer.amenities)
             if key not in offers or offer.price_amount < offers[key].price_amount:
                 offers[key] = offer
@@ -50,7 +53,10 @@ def _offer(rate: dict[str, Any]) -> RoomOffer:
     name, rate_id = rate.get("room_name"), rate.get("hash")
     if not isinstance(name, str) or not name.strip() or not isinstance(rate_id, str) or not rate_id:
         raise ValueError("Missing room name or rate ID")
-    payments = rate["payment_options"]["payment_types"]
+    payment_options = rate["payment_options"]
+    if not isinstance(payment_options, dict):
+        raise TypeError("Invalid payment options")
+    payments = payment_options["payment_types"]
     if not isinstance(payments, list) or not payments:
         raise ValueError("Missing prices")
     priced: list[tuple[Decimal, str]] = []
@@ -61,7 +67,12 @@ def _offer(rate: dict[str, Any]) -> RoomOffer:
             continue
         amount = Decimal(str(payment["show_amount"]))
         currency = payment["show_currency_code"]
-        if not amount.is_finite() or amount <= 0 or currency != "RUB":
+        if (
+            not amount.is_finite()
+            or not math.isfinite(float(amount))
+            or amount <= 0
+            or currency != "RUB"
+        ):
             raise ValueError("Invalid RUB price")
         priced.append((amount, currency))
     if not priced:
@@ -70,17 +81,22 @@ def _offer(rate: dict[str, Any]) -> RoomOffer:
     rooms = rate.get("rooms", [])
     if not isinstance(rooms, list) or any(not isinstance(room, dict) for room in rooms):
         raise ValueError("Invalid room details")
-    amenities = {
-        amenity
-        for room in rooms
-        for amenity in room.get("amenities_data", [])
-        if isinstance(amenity, str)
-    }
+    amenities: set[str] = set()
+    for room in rooms:
+        values = room.get("amenities_data", [])
+        if not isinstance(values, list) or any(not isinstance(item, str) for item in values):
+            raise TypeError("Invalid amenities")
+        amenities.update(values)
     meal_data = rate.get("meal_data", {})
-    meals = meal_data.get("meals", [])
-    if not isinstance(meals, list):
+    if not isinstance(meal_data, dict):
         raise TypeError("Invalid meal data")
-    meal_values = {meal.get("value") for meal in meals if isinstance(meal, dict)}
+    meals = meal_data.get("meals", [])
+    if not isinstance(meals, list) or any(not isinstance(meal, dict) for meal in meals):
+        raise TypeError("Invalid meal data")
+    values = [meal.get("value") for meal in meals]
+    if any(value is not None and not isinstance(value, str) for value in values):
+        raise TypeError("Invalid meal code")
+    meal_values = set(values)
     meal = next(iter(meal_values)) if len(meal_values) == 1 else None
     if meal is not None and not isinstance(meal, str):
         raise ValueError("Invalid meal code")

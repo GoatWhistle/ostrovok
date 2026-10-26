@@ -18,6 +18,7 @@ def iter_region_batches(
     selected_layers: frozenset[str],
     batch_size: int = 5_000,
     building_nearby: Callable[[float, float], bool] | None = None,
+    location_index: str = "flex_mem",
 ) -> Iterator[SeedLayers]:
     if batch_size <= 0:
         raise ValueError("batch_size must be positive")
@@ -33,7 +34,7 @@ def iter_region_batches(
         node_locations = _nearby_nodes(path, bbox, building_nearby, logger)
         processor = osmium.FileProcessor(str(path))
     else:
-        processor = osmium.FileProcessor(str(path)).with_locations("flex_mem")
+        processor = osmium.FileProcessor(str(path)).with_locations(location_index)
     if assemble_areas:
         processor = processor.with_areas()
     processor = processor.with_filter(osmium.filter.EmptyTagFilter())
@@ -98,7 +99,7 @@ def _filter_keys(selected_layers: frozenset[str]) -> tuple[str, ...]:
     if "pois" in selected_layers:
         keys.update(key for key in rules.POI_KEYS if key not in {"name", "opening_hours"})
     if "buildings" in selected_layers:
-        keys.add("building")
+        keys.update(("building", "building:part"))
     if "beaches" in selected_layers:
         keys.update(("natural", "leisure"))
     if "coastline" in selected_layers:

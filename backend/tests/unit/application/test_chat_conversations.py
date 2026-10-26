@@ -1,3 +1,4 @@
+import json
 from collections.abc import Sequence
 from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime
@@ -7,6 +8,7 @@ from typing import Self, cast
 import pytest
 
 from hotel_agent.application.chat_records import ChatMessageRecord, ConversationRecord
+from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
@@ -34,12 +36,12 @@ class FakeChatRepository:
         self,
         conversation_id: str,
         region_id: str,
-        effective_query: str,
+        effective_query: str | None,
         user_message_id: str,
         user_text: str,
         answer_id: str,
         answer: str,
-        search_snapshot: dict[str, object],
+        search_snapshot: dict[str, object] | None,
         title: str | None = None,
     ) -> None:
         previous = self.conversations.get(conversation_id)
@@ -89,10 +91,10 @@ class FakeUnitOfWork:
 
 
 class FakeLLM:
-    async def contextualize_query(
-        self, previous: str | None, message: str, history: tuple[tuple[str, str], ...]
-    ) -> str:
-        return f"{previous} {message}" if previous else message
+    async def respond_to_chat(self, context: str) -> ChatDecision:
+        data = json.loads(context)
+        previous, message = data["previous_search_query"], data["message"]
+        return ChatDecision(ChatMode.SEARCH, query=f"{previous} {message}" if previous else message)
 
 
 class FakeSearch:
@@ -169,7 +171,8 @@ async def test_renamed_title_survives_follow_up_messages() -> None:
 
     assert renamed.conversation.title == "Отпуск в октябре"
     assert renamed.conversation.updated_at == NOW
-    assert renamed.search_snapshot == {"query_id": "q"}
+    assert renamed.search_snapshot is not None
+    assert renamed.search_snapshot["query_id"] == "q"
     assert followed.conversation.title == "Отпуск в октябре"
 
 

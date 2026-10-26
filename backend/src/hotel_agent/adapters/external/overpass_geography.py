@@ -57,8 +57,10 @@ class OverpassGeography:
                         if len(body) > 12_000_000:
                             return None
                 return await asyncio.to_thread(parse_snapshot, bytes(body), bbox, self._endpoint)
+            except httpx.HTTPError:
+                self._unavailable_until = max(self._unavailable_until, monotonic() + 30)
+                return None
             except (
-                httpx.HTTPError,
                 ValueError,
                 RuntimeError,
                 ElementTree.ParseError,

@@ -22,6 +22,20 @@ CLASSES = {
     100: "moss",
 }
 
+LABELS = {
+    "trees": "древесный покров (включая сады и плантации)",
+    "shrubs": "кустарники",
+    "grass": "травянистый покров",
+    "crops": "пашня",
+    "built": "застройка",
+    "bare": "голая поверхность",
+    "snow": "снег и лёд",
+    "water": "постоянная вода",
+    "wetland": "травянистые водно-болотные угодья",
+    "mangrove": "мангры",
+    "moss": "мхи и лишайники",
+}
+
 
 def tile_name(lon: float, lat: float) -> str:
     x, y = floor(lon / 3) * 3, floor(lat / 3) * 3
@@ -77,7 +91,7 @@ class WorldCover:
                 sources.append(url)
         total = sum(counts.values())
         descriptions = {
-            f"{label}_sample_pct": f"ESA WorldCover 2021: доля точек класса {label} среди не менее 10 из 13 точек в радиусе {request.radius_m:g} м, %; выборка, не измерение площади и не вид из окна"
+            f"{label}_sample_pct": f"ESA WorldCover 2021: доля точек класса «{LABELS[label]}» среди не менее 10 из 13 точек в радиусе {request.radius_m:g} м, %; выборка, не измерение площади и не вид из окна"
             for label in CLASSES.values()
         }
         return PlaceResearchResult(

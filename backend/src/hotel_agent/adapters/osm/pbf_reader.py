@@ -66,9 +66,9 @@ def _node(
         return
     point: Geometry = {"type": "Point", "coordinates": [_round(lon), _round(lat)]}
     if (selected_layers is None or "hotels" in selected_layers) and rules.is_hotel(tags):
-        layers.hotels.append(_feature(f"n{obj.id}", point, tags, rules.HOTEL_KEYS))
+        layers.hotels.append(_feature(f"n{obj.id}", point, tags))
     if (selected_layers is None or "pois" in selected_layers) and rules.is_poi(tags):
-        layers.pois.append(_feature(f"n{obj.id}", point, tags, rules.POI_KEYS))
+        layers.pois.append(_feature(f"n{obj.id}", point, tags))
 
 
 def _way(
@@ -93,13 +93,13 @@ def _way(
     if line is None or not _touches(bbox, line):
         return
     if (selected_layers is None or "coastline" in selected_layers) and rules.is_coastline(tags):
-        layers.coastline.append(_feature(f"w{obj.id}", line, tags, ("natural", "name")))
+        layers.coastline.append(_feature(f"w{obj.id}", line, tags))
     if (selected_layers is None or "noise_sources" in selected_layers) and rules.is_noise_source(
         tags
     ):
-        layers.noise_sources.append(_feature(f"w{obj.id}", line, tags, rules.NOISE_KEYS))
+        layers.noise_sources.append(_feature(f"w{obj.id}", line, tags))
     if (selected_layers is None or "walk" in selected_layers) and rules.is_walkable(tags):
-        layers.walk.append(_feature(f"w{obj.id}", line, tags, rules.WALK_KEYS))
+        layers.walk.append(_feature(f"w{obj.id}", line, tags))
 
 
 def _area(
@@ -129,22 +129,20 @@ def _area(
         and building_nearby(float(centre["coordinates"][0]), float(centre["coordinates"][1]))
     )
     if building and near:
-        layers.buildings.append(_feature(identifier, polygon, tags, rules.BUILDING_KEYS))
+        layers.buildings.append(_feature(identifier, polygon, tags))
     if beach:
-        layers.beaches.append(_feature(identifier, polygon, tags, ("natural", "leisure", "name")))
+        layers.beaches.append(_feature(identifier, polygon, tags))
     centre = centre or _centroid(polygon)
     if centre is None:
         return
     if hotel:
-        layers.hotels.append(_feature(identifier, centre, tags, rules.HOTEL_KEYS))
+        layers.hotels.append(_feature(identifier, centre, tags))
     if poi:
-        layers.pois.append(_feature(identifier, centre, tags, rules.POI_KEYS))
+        layers.pois.append(_feature(identifier, centre, tags))
 
 
-def _feature(
-    identifier: str, geometry: Geometry, tags: Mapping[str, str], keys: tuple[str, ...]
-) -> Feature:
-    return Feature(id=identifier, geometry=geometry, properties=rules.selected(tags, keys))
+def _feature(identifier: str, geometry: Geometry, tags: Mapping[str, str]) -> Feature:
+    return Feature(id=identifier, geometry=geometry, properties=dict(tags))
 
 
 def _geometry(build: Callable[[], str]) -> Geometry | None:

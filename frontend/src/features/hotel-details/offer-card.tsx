@@ -6,6 +6,7 @@ import styles from "./hotel-offers.module.css"
 type Offer = NonNullable<components["schemas"]["HotelOffers"]["offers"]>[number]
 
 const MEAL: Readonly<Record<string, MessageKey>> = {
+  nomeal: "explore:offers.noMeal",
   breakfast: "explore:offers.breakfast",
   "half-board": "explore:offers.halfBoard",
   "full-board": "explore:offers.fullBoard",
@@ -37,6 +38,10 @@ export function OfferCard({ offer }: { readonly offer: Offer }) {
         <span className={styles.price}>{price}</span>
       </div>
       <ul className={styles.meta}>
+        <li className={styles.metaItem}>
+          <Icon name="calendar" size="sm" />
+          {t("explore:offers.stayTotal")}
+        </li>
         {offer.available_rooms != null ? (
           <li className={styles.metaItem}>
             <Icon name="room" size="sm" />

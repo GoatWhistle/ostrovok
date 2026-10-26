@@ -752,6 +752,7 @@ components:
           items: { $ref: "#/components/schemas/SearchResult" }
         viewport:
           type: object
+          nullable: true
           description: Рамка для fitBounds по всем результатам
           properties:
             bbox: { $ref: "#/components/schemas/BBox" }
@@ -958,6 +959,11 @@ components:
       type: object
       required: [id, title, updated_at, messages]
       properties:
+        search_message_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: ID ответа, создавшего текущую выдачу. Консультации сохраняют его; открытие чата не запускает поиск.
         id: { type: string, format: uuid }
         title:
           type: string
@@ -968,7 +974,10 @@ components:
           type: array
           items: { $ref: "#/components/schemas/ChatMessage" }
         effective_query: { type: string, nullable: true }
-        search: { $ref: "#/components/schemas/SearchResponse" }
+        search:
+          nullable: true
+          allOf:
+            - { $ref: "#/components/schemas/SearchResponse" }
 
     HotelierQuestion:
       type: object

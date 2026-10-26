@@ -131,6 +131,7 @@ export function HomePage() {
             conversationId={state.conversationId}
             history={state.history}
             search={state.search}
+            searchMessageId={state.searchMessageId}
             outgoing={state.outgoing}
             selectedHotel={selected?.hotel.name}
             loading={state.chatLoading}

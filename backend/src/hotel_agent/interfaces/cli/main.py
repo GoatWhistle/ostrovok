@@ -31,10 +31,16 @@ def build_parser() -> ArgumentParser:
     pbf.add_argument("--batch-size", type=int, default=5_000)
     pbf.add_argument("--min-free-gib", type=float, default=6.0)
     pbf.add_argument("--building-radius-m", type=float, default=0.0)
+    pbf.add_argument("--workers", type=int, default=1)
 
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")
     precompute.add_argument("--from", dest="directory", required=True)
+
+    geometry = commands.add_parser(
+        "refresh-geography", help="Refresh facades and explicit OSM heights"
+    )
+    geometry.add_argument("--region", default="russia")
 
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)

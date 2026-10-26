@@ -20,6 +20,7 @@ export interface SearchChatProps {
   readonly history: readonly HistoryEntry[]
   readonly view: ChatView
   readonly search: SearchResponse | undefined
+  readonly searchMessageId?: string | null | undefined
   readonly outgoing: string | undefined
   readonly selectedHotel?: string | undefined
   readonly loading: boolean
@@ -57,6 +58,7 @@ export function SearchChat({
   conversationId,
   history,
   search,
+  searchMessageId,
   outgoing,
   selectedHotel,
   loading,
@@ -76,7 +78,10 @@ export function SearchChat({
   const { t } = useTranslation()
   const format = useFormatters()
   const { log, list } = useFollow()
-  const lastAssistant = messages.findLast((message) => message.role === "assistant")?.id
+  const lastAssistant =
+    searchMessageId === undefined
+      ? messages.findLast((message) => message.role === "assistant")?.id
+      : searchMessageId
   const title =
     history.find((item) => item.id === conversationId)?.title ||
     (conversationId ? t("explore:chat.untitled") : t("explore:chat.newSearch"))

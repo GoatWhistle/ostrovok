@@ -8,6 +8,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import asdict
 from datetime import UTC, datetime
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from psycopg_pool import AsyncConnectionPool
 
@@ -31,11 +32,13 @@ from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
+from hotel_agent.application.use_cases.ingest_polygons import IngestPolygons
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
 from hotel_agent.settings import HotelDataMode, load_settings
@@ -68,6 +71,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest_pbf(args, settings.database_url, logger))
     if args.command == "precompute":
         return asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
+    if args.command == "refresh-geography":
+        return asyncio.run(_refresh_geography(args.region, settings.database_url))
     if args.command == "sync-nuitee":
         if not settings.nuitee_api_key:
             raise SystemExit("NUITEE_API_KEY is required for sync-nuitee")
@@ -109,6 +114,8 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
         raise SystemExit("min-free-gib must be at least 1")
     if args.building_radius_m < 0:
         raise SystemExit("building-radius-m must not be negative")
+    if not 1 <= args.workers <= 4 or (args.workers > 1 and selected - {"buildings", "beaches"}):
+        raise SystemExit("workers must be 1–4; parallel import supports only buildings/beaches")
     bbox = parse_bbox(args.bbox)
     minimum = int(args.min_free_gib * 1024**3)
 
@@ -126,10 +133,13 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
         "built_at": datetime.now(UTC).isoformat(),
     }
     check_capacity()
-    async with (
-        AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
-        PostgresSeedWriter(pool) as writer,
-    ):
+    async with AsyncConnectionPool(
+        database_url,
+        min_size=1,
+        max_size=max(2, args.workers),
+        open=False,
+        kwargs={"application_name": "geography-import"},
+    ) as pool:
         building_nearby = None
         if "buildings" in selected and args.building_radius_m > 0:
             async with pool.connection() as connection:
@@ -141,12 +151,25 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
             if not locations:
                 raise SystemExit(f"No hotels in region {args.region}; import hotels first")
             building_nearby = HotelProximity(locations, args.building_radius_m)
-        batches = iter_region_batches(
-            path, bbox, logger, selected, args.batch_size, building_nearby
-        )
-        report = await IngestPbf(writer)(
-            args.region, meta, batches, selected, check_capacity, on_batch
-        )
+        with TemporaryDirectory(prefix="osm-nodes-", dir=path.parent) as cache:
+            batches = iter_region_batches(
+                path,
+                bbox,
+                logger,
+                selected,
+                args.batch_size,
+                building_nearby,
+                f"sparse_file_array,{Path(cache) / 'nodes.idx'}",
+            )
+            if args.workers > 1:
+                report = await IngestPolygons(lambda: PostgresSeedWriter(pool), args.workers)(
+                    args.region, meta, batches, selected, check_capacity, on_batch
+                )
+            else:
+                async with PostgresSeedWriter(pool) as writer:
+                    report = await IngestPbf(writer)(
+                        args.region, meta, batches, selected, check_capacity, on_batch
+                    )
     print(f"region={report.region} batches={report.batches} counts={dict(report.counts)}")
     return 0
 
@@ -164,6 +187,19 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
     for name, count in facades.items():
         print(f"{name}: {count}")
     return 0
+
+
+async def _refresh_geography(region: str, database_url: str) -> int:
+    uow = PostgresUnitOfWorkFactory(database_url)
+    try:
+        heights = await RefreshHotelHeights(uow, SystemClock())(region)
+        facades = await PrecomputeFacades(
+            FootprintFacadeExtractor(), PostgresFacadeStore(uow.pool)
+        )(region, compute_noise=False)
+        print(json.dumps(dict(heights) | dict(facades)))
+        return 0
+    finally:
+        await uow.aclose()
 
 
 async def _sync_nuitee(hotel_id: str, supplier_id: str, database_url: str, api_key: str) -> int:

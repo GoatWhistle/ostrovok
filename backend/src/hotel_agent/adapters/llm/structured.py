@@ -2,7 +2,7 @@ import json
 from collections.abc import Mapping, Sequence
 from typing import Any
 
-from hotel_agent.adapters.llm import data_reasoning, prompts, text_evidence
+from hotel_agent.adapters.llm import chat_dialogue, data_reasoning, prompts, text_evidence
 from hotel_agent.adapters.llm.completion import Completion
 from hotel_agent.adapters.llm.payload import (
     as_mapping,
@@ -19,6 +19,7 @@ from hotel_agent.adapters.llm.query_payload import (
 )
 from hotel_agent.adapters.llm.text import normalize
 from hotel_agent.application.agent.data_records import DataStep
+from hotel_agent.application.ports.chat_dialogue import ChatDecision
 from hotel_agent.application.ports.llm import (
     ExtractedField,
     Extraction,
@@ -65,6 +66,12 @@ class StructuredLLM:
         if not result.strip():
             raise ModelFailure("Language model returned an empty answer")
         return result.strip()
+
+    async def respond_to_chat(self, context: str) -> ChatDecision:
+        payload = await self._complete(
+            system=chat_dialogue.SYSTEM, user=context, schema=chat_dialogue.schema()
+        )
+        return chat_dialogue.decision(payload)
 
     async def contextualize_query(
         self,

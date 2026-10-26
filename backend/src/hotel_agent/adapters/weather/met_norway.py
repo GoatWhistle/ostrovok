@@ -83,9 +83,9 @@ class MetNorwayConditions:
             return None
         details = row.get("data", {}).get("instant", {}).get("details", {})
         temp, cloud = details.get("air_temperature"), details.get("cloud_area_fraction")
-        symbol = (
-            row.get("data", {}).get("next_1_hours", {}).get("summary", {}).get("symbol_code", "")
-        )
+        period = row.get("data", {}).get("next_1_hours")
+        summary = period.get("summary") if isinstance(period, dict) else None
+        symbol = summary.get("symbol_code", "") if isinstance(summary, dict) else ""
         codes = {
             "clearsky": 0,
             "fair": 1,
@@ -123,6 +123,11 @@ class MetNorwayConditions:
             try:
                 when = datetime.fromisoformat(row["time"])
             except (ValueError, KeyError, TypeError):
+                continue
+            data = row.get("data")
+            if not isinstance(data, dict) or not isinstance(data.get("instant"), dict):
+                continue
+            if not isinstance(data["instant"].get("details"), dict):
                 continue
             if when.utcoffset() is not None and abs((when - target).total_seconds()) <= 1800:
                 return row
@@ -191,5 +196,5 @@ class MetNorwayConditions:
                         if len(self._cache) > 128:
                             del self._cache[next(iter(self._cache))]
                         return payload
-            except (httpx.HTTPError, TimeoutError, json.JSONDecodeError) as error:
+            except (httpx.HTTPError, TimeoutError, json.JSONDecodeError, RecursionError) as error:
                 raise ValueError("MET Norway forecast is unavailable") from error

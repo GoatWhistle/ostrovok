@@ -21,5 +21,5 @@ async def public_json(
                 if not isinstance(result, dict):
                     raise TypeError("Public data response must be a JSON object")
                 return result
-    except (httpx.HTTPError, TimeoutError, json.JSONDecodeError) as error:
+    except (httpx.HTTPError, TimeoutError, json.JSONDecodeError, RecursionError) as error:
         raise ValueError("Public data provider is unavailable or returned invalid JSON") from error

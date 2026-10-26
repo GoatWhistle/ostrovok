@@ -52,6 +52,17 @@ def test_exact_name_with_missing_address_requires_50_metre_proximity() -> None:
     assert not assess_identity(local, candidate(address=None, location=(39.722, 43.58))).accepted
 
 
+def test_passage_abbreviation_matches_without_accepting_a_different_street_type() -> None:
+    local = replace(LOCAL, name="Метрополь", address="Театральный проезд 2")
+    remote = HotelCandidate(
+        supplier_id="7595994",
+        identity=replace(local, name="Отель Метрополь", address="Театральный пр-д, д.2, Москва"),
+    )
+    assert assess_identity(local, remote).accepted
+    wrong_street = replace(remote, identity=replace(remote.identity, address="Театральная улица 2"))
+    assert assess_identity(local, wrong_street).reason == "address_conflict"
+
+
 def test_fuzzy_name_requires_a_confirmed_address() -> None:
     remote = candidate(name="Marinz Park Hotel", location=(39.722, 43.58))
     assert assess_identity(LOCAL, remote).accepted

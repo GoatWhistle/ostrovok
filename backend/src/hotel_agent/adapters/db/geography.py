@@ -1,12 +1,14 @@
 import hashlib
 import json
+from collections.abc import Sequence
 from datetime import datetime, timedelta
 
 from psycopg import AsyncConnection
 from psycopg.types.json import Jsonb
 
+from hotel_agent.adapters.db.building_facts import refresh_heights
 from hotel_agent.adapters.db.geography_rows import save_layer
-from hotel_agent.application.ports.geography import GeographicBounds, GeographySnapshot
+from hotel_agent.application.ports.geography import GeographicBounds, GeographySnapshot, HotelTags
 from hotel_agent.application.ports.view_geometry import PhysicalArea, PhysicalObject
 
 COVERAGE_SQL = """SELECT complete,source_url FROM geography_coverage
@@ -26,8 +28,8 @@ LINK_SQL = """UPDATE hotels h SET building_id=(
  SELECT b.id FROM buildings b
  WHERE b.footprint && ST_Expand(h.location,0.001)
  AND ST_DWithin(b.footprint::geography,h.location::geography,30)
- AND b.tags->>'building:part' IS NULL
- ORDER BY ST_Distance(b.footprint::geography,h.location::geography),b.id LIMIT 1)
+ AND COALESCE(b.tags->>'building:part','no') = 'no'
+ ORDER BY (b.id=h.id) DESC,ST_Distance(b.footprint::geography,h.location::geography),b.id LIMIT 1)
 WHERE h.building_id IS NULL AND h.location &&
  ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326)"""
 
@@ -38,6 +40,13 @@ VALUES (%(id)s,ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326),
 ON CONFLICT(id) DO UPDATE SET source_url=EXCLUDED.source_url,
  fetched_at=EXCLUDED.fetched_at,valid_until=EXCLUDED.valid_until,
  complete=EXCLUDED.complete,counts=EXCLUDED.counts"""
+
+HOTEL_TAGS_SQL = """UPDATE hotels h SET tags=h.tags || incoming.tags,
+name=COALESCE(NULLIF(incoming.tags->>'name',''),
+ CASE WHEN h.name=h.id THEN COALESCE(NULLIF(incoming.tags->>'name:ru',''),
+ NULLIF(incoming.tags->>'name:en','')) END,h.name)
+FROM jsonb_to_recordset(%(records)s::jsonb) AS incoming(id text,tags jsonb)
+WHERE h.id=incoming.id"""
 
 
 class PostgresGeography:
@@ -85,6 +94,16 @@ class PostgresGeography:
                 "counts": Jsonb(snapshot.layers.counts()),
             },
         )
+
+    async def merge_hotel_tags(self, records: Sequence[HotelTags]) -> int:
+        cursor = await self._connection.execute(
+            HOTEL_TAGS_SQL,
+            {"records": Jsonb([{"id": item.id, "tags": item.tags} for item in records])},
+        )
+        return cursor.rowcount
+
+    async def refresh_heights(self, region: str, now: datetime) -> dict[str, int]:
+        return await refresh_heights(self._connection, region, now)
 
 
 def _bounds(bbox: GeographicBounds) -> dict[str, object]:

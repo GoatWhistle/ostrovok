@@ -3,9 +3,11 @@ import re
 from collections.abc import Mapping, Sequence
 
 from hotel_agent.adapters.llm.extraction import extract
+from hotel_agent.adapters.llm.fake_chat import respond
 from hotel_agent.adapters.llm.offline_review import review_typed_recommendations
 from hotel_agent.adapters.llm.text import normalize, terms_outside
 from hotel_agent.application.agent.data_records import DataStep
+from hotel_agent.application.ports.chat_dialogue import ChatDecision
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
@@ -42,6 +44,9 @@ class FakeLLM:
 
     def __init__(self, registry: CharacteristicRegistryPort) -> None:
         self._registry = registry
+
+    async def respond_to_chat(self, context: str) -> ChatDecision:
+        return respond(context)
 
     async def explore_data(self, context: str) -> DataStep:
         payload = json.loads(context)

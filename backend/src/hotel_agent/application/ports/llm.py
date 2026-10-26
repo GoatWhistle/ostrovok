@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from hotel_agent.application.agent.data_records import DataStep
+from hotel_agent.application.ports.chat_dialogue import ChatDecision
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import ScalarValue
 from hotel_agent.domain.query import ParsedQuery
@@ -36,6 +37,8 @@ class Extraction:
 class LLMPort(Protocol):
     @property
     def provider(self) -> str: ...
+
+    async def respond_to_chat(self, context: str) -> ChatDecision: ...
 
     async def parse_query(self, query: str) -> ParsedQuery: ...
 

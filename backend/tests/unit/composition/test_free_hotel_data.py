@@ -2,6 +2,7 @@ from dataclasses import replace
 
 import pytest
 
+from hotel_agent.adapters.external.ostrovok_offers import OstrovokHotelOffers
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.cli import main
 from hotel_agent.composition import build_providers
@@ -17,10 +18,26 @@ async def test_keys_alone_do_not_enable_commercial_hotel_apis(settings: Settings
     )
     try:
         assert providers.hotel_offers is None
+        assert isinstance(providers.hotel_offer_search, OstrovokHotelOffers)
         assert providers.catalog_matcher is None
         assert isinstance(providers.llm, FakeLLM)
     finally:
         await providers.aclose()
+
+
+async def test_free_website_search_can_be_disabled_without_enabling_paid_providers(
+    settings: Settings,
+) -> None:
+    providers = build_providers(replace(settings, ostrovok_site_enabled=False), SilentLogger())
+    try:
+        assert providers.hotel_offers is None
+        assert providers.hotel_offer_search is None
+        assert providers.catalog_matcher is None
+    finally:
+        await providers.aclose()
+    assert not load_settings({"OSTROVOK_SITE": "off"}).ostrovok_site_enabled
+    with pytest.raises(ConfigError, match="OSTROVOK_SITE"):
+        load_settings({"OSTROVOK_SITE": "invalid"})
 
 
 async def test_partner_data_requires_an_explicit_mode(settings: Settings) -> None:

@@ -95,19 +95,20 @@ async def test_api_forbidden_is_an_honest_error() -> None:
     [
         ("EventScheduled", "OfflineEventAttendanceMode", 1),
         ("EventCancelled", "OfflineEventAttendanceMode", 0),
+        (["EventScheduled", "EventCancelled"], "OfflineEventAttendanceMode", 0),
         ("EventPostponed", "OfflineEventAttendanceMode", 0),
         ("EventScheduled", "OnlineEventAttendanceMode", 0),
     ],
 )
 async def test_public_event_markup_is_parsed_without_hotel_identity(
-    monkeypatch: pytest.MonkeyPatch, status: str, attendance: str, count: int
+    monkeypatch: pytest.MonkeyPatch, status: str | list[str], attendance: str, count: int
 ) -> None:
     record = {
         "@type": "MusicEvent",
         "name": "Вечер джаза",
         "startDate": "2026-10-27T20:00:00+03:00",
         "endDate": "2026-10-27T22:00:00+03:00",
-        "eventStatus": "https://schema.org/" + status,
+        "eventStatus": ("https://schema.org/" + status) if isinstance(status, str) else status,
         "eventAttendanceMode": "https://schema.org/" + attendance,
         "location": {
             "@type": "Place",

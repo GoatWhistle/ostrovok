@@ -82,6 +82,8 @@ ADDRESS_WORDS = frozenset(
         "embankment",
         "shosse",
         "highway",
+        "proezd",
+        "pr-d",
         "dom",
         "d",
         "russia",
@@ -94,6 +96,7 @@ STREET_TYPES = {
     **dict.fromkeys(("pereulok", "per", "lane"), "lane"),
     **dict.fromkeys(("naberezhnaya", "embankment"), "embankment"),
     **dict.fromkeys(("shosse", "highway"), "highway"),
+    **dict.fromkeys(("proezd", "pr-d"), "passage"),
 }
 
 

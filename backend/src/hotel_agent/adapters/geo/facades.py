@@ -1,17 +1,15 @@
-import math
 from collections.abc import Sequence
 from itertools import pairwise
 
-from pyproj import Transformer
+from pyproj import Geod
 from shapely.geometry import MultiPolygon, Polygon, shape
-from shapely.geometry.polygon import orient
 
 from hotel_agent.application.ports.facades import BuildingFootprint, FacadeSegment
 
 
 class FootprintFacadeExtractor:
     def __init__(self) -> None:
-        self._project = Transformer.from_crs(4326, 32637, always_xy=True)
+        self._geod = Geod(ellps="WGS84")
 
     def extract(self, footprint: BuildingFootprint) -> Sequence[FacadeSegment]:
         geometry = shape(footprint.geometry)
@@ -20,17 +18,20 @@ class FootprintFacadeExtractor:
             if isinstance(geometry, MultiPolygon)
             else geometry
         )
-        if not isinstance(polygon, Polygon) or polygon.is_empty:
+        if not isinstance(polygon, Polygon) or polygon.is_empty or not polygon.is_valid:
             return []
-        ring = list(orient(polygon, sign=1).exterior.coords)
+        ring = list(polygon.exterior.coords)
+        area, _ = self._geod.polygon_area_perimeter(
+            [coordinate[0] for coordinate in ring], [coordinate[1] for coordinate in ring]
+        )
+        if area < 0:
+            ring.reverse()
         segments: list[FacadeSegment] = []
         for first, second in pairwise(ring):
-            ax, ay = self._project.transform(*first)
-            bx, by = self._project.transform(*second)
-            dx, dy = bx - ax, by - ay
-            if math.hypot(dx, dy) < 2:
+            heading, _, length = self._geod.inv(*first[:2], *second[:2])
+            if length < 2:
                 continue
-            azimuth = math.degrees(math.atan2(dy, -dx)) % 360
+            azimuth = (heading + 90) % 360
             index = len(segments) + 1
             segments.append(
                 FacadeSegment(

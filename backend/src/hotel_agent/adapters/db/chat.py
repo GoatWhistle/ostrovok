@@ -50,12 +50,12 @@ class PostgresChatRepository:
         self,
         conversation_id: str,
         region_id: str,
-        effective_query: str,
+        effective_query: str | None,
         user_message_id: str,
         user_text: str,
         answer_id: str,
         answer: str,
-        search_snapshot: dict[str, object],
+        search_snapshot: dict[str, object] | None,
         title: str | None = None,
     ) -> None:
         await self._connection.execute(
@@ -68,7 +68,7 @@ class PostgresChatRepository:
                 "id": conversation_id,
                 "region": region_id,
                 "query": effective_query,
-                "snapshot": Jsonb(search_snapshot),
+                "snapshot": Jsonb(search_snapshot) if search_snapshot is not None else None,
                 "title": title,
             },
         )

@@ -64,7 +64,7 @@ def is_hotel(tags: Mapping[str, str]) -> bool:
 
 
 def is_building(tags: Mapping[str, str]) -> bool:
-    return "building" in tags and tags.get("building") != "no"
+    return tags.get("building") not in {None, "no"} or tags.get("building:part") not in {None, "no"}
 
 
 def is_poi(tags: Mapping[str, str]) -> bool:

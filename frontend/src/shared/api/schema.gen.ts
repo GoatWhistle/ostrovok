@@ -634,7 +634,7 @@ export interface components {
             viewport?: {
                 bbox?: components["schemas"]["BBox"];
                 camera?: components["schemas"]["Camera"];
-            };
+            } | null;
             /** @description Характеристики, которые агент ещё считает; повторить поиск с тем же query_id позже */
             pending?: {
                 hotel_id?: string;
@@ -804,6 +804,11 @@ export interface components {
             title: string;
         };
         Conversation: {
+            /**
+             * Format: uuid
+             * @description ID ответа, создавшего текущую выдачу. Консультации сохраняют его; открытие чата не запускает поиск.
+             */
+            search_message_id?: string | null;
             /** Format: uuid */
             id: string;
             /** @description Название из распознанного запроса или заданное пользователем */
@@ -812,7 +817,7 @@ export interface components {
             updated_at: string | null;
             messages: components["schemas"]["ChatMessage"][];
             effective_query?: string | null;
-            search?: components["schemas"]["SearchResponse"];
+            search?: components["schemas"]["SearchResponse"] | null;
         };
         HotelierQuestion: {
             id?: string;

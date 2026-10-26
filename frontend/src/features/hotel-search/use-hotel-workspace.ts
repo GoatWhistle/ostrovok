@@ -40,13 +40,15 @@ export function useHotelWorkspace() {
     setFocusedMatch(undefined)
   }
   const chat = useConversation(hotelId, (data: Conversation) => {
+    const answer = data.messages.findLast((item) => item.role === "assistant")
+    if (data.search_message_id !== undefined && data.search_message_id !== answer?.id) return
     setFactId(undefined)
     setPreviewRefs(undefined)
     setPreviewMatch(undefined)
     setFocusedMatch(undefined)
     if (!data.search?.results.some((item) => item.hotel.id === hotelId)) clearSelection()
   })
-  const search = chat.data?.search
+  const search = chat.data?.search ?? undefined
   const results = [
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
@@ -90,6 +92,7 @@ export function useHotelWorkspace() {
   return {
     messages: ordered(chat.data?.messages ?? []),
     conversationId: chat.conversationId,
+    searchMessageId: chat.data?.search_message_id,
     history: chat.history,
     search,
     outgoing: chat.outgoing,

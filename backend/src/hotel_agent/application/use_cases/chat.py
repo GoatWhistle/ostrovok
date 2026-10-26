@@ -3,15 +3,18 @@ from dataclasses import dataclass
 from uuid import uuid4
 
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview, safe_answer
-from hotel_agent.application.agent.wish_response import wish_response
+from hotel_agent.application.chat_dialogue import ChatDialogue
 from hotel_agent.application.chat_records import ConversationRecord
-from hotel_agent.application.conversation_titles import conversation_title, validated_title
+from hotel_agent.application.conversation_titles import conversation_title, shorten, validated_title
+from hotel_agent.application.ports.chat_dialogue import ChatMode
+from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.search_reply import search_reply
+from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
 from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery
-from hotel_agent.domain.services.scoring import MatchQuality
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -29,35 +32,25 @@ class Chat:
         search: SearchHotels,
         serialize_search: Callable[[SearchOutcome], dict[str, object]],
         registry: CharacteristicRegistryPort,
+        hotel_card: GetHotelCard | None = None,
+        clock: ClockPort | None = None,
         review: ChatAnswerReview | None = None,
     ) -> None:
-        self._llm = llm
+        self._review = review
         self._uow = uow
         self._search = search
         self._serialize_search = serialize_search
         self._registry = registry
-        self._review = review
+        self._dialogue = ChatDialogue(llm, hotel_card, clock)
 
     async def get(self, conversation_id: str) -> ConversationOutcome:
         async with self._uow() as uow:
             conversation = await uow.chat.get(conversation_id)
         if conversation is None:
             raise ConversationNotFound()
-        if conversation.search_snapshot is not None:
-            return ConversationOutcome(
-                conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
-            )
-        search = (
-            await self._search(conversation.effective_query, conversation.region_id, None, 20)
-            if conversation.effective_query
-            else None
+        return ConversationOutcome(
+            conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
         )
-        if search is not None:
-            snapshot = self._serialize_search(search)
-            async with self._uow() as uow:
-                await uow.chat.save_search_snapshot(conversation_id, snapshot)
-                await uow.commit()
-        return ConversationOutcome(conversation=conversation, search=search)
 
     async def rename(self, conversation_id: str, title: str) -> ConversationOutcome:
         cleaned = validated_title(title)
@@ -98,23 +91,43 @@ class Chat:
             if previous is None:
                 raise ConversationNotFound()
             region_id = previous.region_id
-        effective_query = await self._llm.contextualize_query(
-            previous.effective_query if previous else None,
-            message.strip(),
-            tuple((item.role, item.content) for item in previous.messages[-8:]) if previous else (),
+        decision = await self._dialogue.respond(
+            previous, message.strip(), selected_hotel_id, locale
         )
-        search = await self._search(effective_query, region_id, None, 20)
-        snapshot = self._serialize_search(search)
-        answer = self._answer(search, selected_hotel_id, locale)
-        if self._review is not None and not await self._review.accepts(
-            effective_query, answer, search
-        ):
-            answer = safe_answer(search, locale)
+        search = None
+        effective_query = previous.effective_query if previous else None
+        snapshot = (
+            dict(previous.search_snapshot)
+            if previous and previous.search_snapshot is not None
+            else None
+        )
+        if snapshot is not None and "_chat_message_id" not in snapshot and previous:
+            snapshot["_chat_message_id"] = next(
+                (m.id for m in reversed(previous.messages) if m.role == "assistant"), None
+            )
+        answer_id = str(uuid4())
+        if decision.mode is ChatMode.SEARCH:
+            assert decision.query is not None
+            effective_query = decision.query
+            search = await self._search(effective_query, region_id, None, 20)
+            snapshot = {**self._serialize_search(search), "_chat_message_id": answer_id}
+            answer = self._answer(search, selected_hotel_id, locale)
+            if self._review is not None and not await self._review.accepts(
+                effective_query, answer, search
+            ):
+                answer = safe_answer(search, locale)
+        else:
+            assert decision.reply is not None
+            answer = decision.reply
         identifier = conversation_id or str(uuid4())
         title = (
             None
             if previous
-            else conversation_title(search.parsed, message.strip(), locale, self._registry)
+            else (
+                conversation_title(search.parsed, message.strip(), locale, self._registry)
+                if search
+                else shorten(" ".join(message.split()), 60)
+            )
         )
         async with self._uow() as uow:
             await uow.chat.save(
@@ -123,7 +136,7 @@ class Chat:
                 effective_query,
                 str(uuid4()),
                 message.strip(),
-                str(uuid4()),
+                answer_id,
                 answer,
                 snapshot,
                 title,
@@ -132,116 +145,9 @@ class Chat:
         async with self._uow() as uow:
             conversation = await uow.chat.get(identifier)
         assert conversation is not None
-        return ConversationOutcome(conversation=conversation, search=search)
+        return ConversationOutcome(
+            conversation=conversation, search=search, search_snapshot=snapshot
+        )
 
     def _answer(self, search: SearchOutcome, selected_hotel_id: str | None, locale: str) -> str:
-        if not search.parsed.location_hint and not search.parsed.anywhere:
-            if locale == "en":
-                return "Which city should I search in?"
-            return "В каком городе ищете отель?"
-        if search.parsed.unsupported_region:
-            if locale == "en":
-                return f"I could not locate {search.parsed.unsupported_region} in the hotel data. Please clarify the city."
-            return f"Не нашёл город «{search.parsed.unsupported_region}» в данных об отелях. Уточните название города."
-        if search.review and search.review.unavailable:
-            return self._room_question(search, safe_answer(search, locale), locale)
-        if search.question:
-            return self._room_question(search, search.question, locale)
-        if search.parsed.needs_clarification:
-            if locale == "en":
-                return "Please clarify your request: some conditions conflict."
-            return "Уточните условия: в запросе есть противоречие."
-        count = len(search.results)
-        if count == 0:
-            if search.parsed.anywhere:
-                wishes = ", ".join(
-                    dict.fromkeys(
-                        (
-                            *search.parsed.unmatched_terms,
-                            *(intent.source_text for intent in search.parsed.intents),
-                        )
-                    )
-                )
-                if locale == "en":
-                    return self._room_question(
-                        search,
-                        f"I searched the loaded Russian hotel catalog without a city restriction. I could not verify your wishes{': ' + wishes if wishes else ''}. This does not establish that such hotels do not exist elsewhere.",
-                        locale,
-                    )
-                return self._room_question(
-                    search,
-                    f"Искал без ограничения по городу в загруженном каталоге России. Пока не нашёл данных, подтверждающих ваши пожелания{': ' + wishes if wishes else ''}. Это не означает, что таких отелей не существует в других странах или источниках.",
-                    locale,
-                )
-            if locale == "en":
-                answer = (
-                    "I could not find hotels with a verified match. Try changing the conditions."
-                )
-                return self._room_question(search, answer, locale)
-            answer = (
-                "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия."
-            )
-            return self._room_question(search, answer, locale)
-        if selected_hotel_id:
-            selected = next(
-                (item for item in search.results if item.hotel.id == selected_hotel_id), None
-            )
-            if selected:
-                if locale == "en":
-                    answer = f"I applied your update. {selected.hotel.name} remains in the list. Showing {count} hotels."
-                    return self._room_question(search, answer, locale)
-                answer = f"Учёл уточнение. «{selected.hotel.name}» остаётся в подборке. Показываю {count} отелей."
-                return self._room_question(search, answer, locale)
-        names = ", ".join(item.hotel.name for item in search.results[:3])
-        if locale == "en":
-            answer = f"Showing {count} hotels. First in the list: {names}. Select a hotel to explore its surroundings."
-            return self._room_question(search, answer, locale)
-        answer = f"Показываю {count} отелей. Первые в подборке: {names}. Выберите отель, чтобы изучить его и окружение."
-        return self._room_question(search, answer, locale)
-
-    def _room_question(self, search: SearchOutcome, answer: str, locale: str) -> str:
-        answer = wish_response(answer, search.wish_results, locale)
-        parsed = search.parsed
-        if (
-            parsed.intents
-            and search.results
-            and not any(
-                all(match.quality is MatchQuality.FULL for match in result.scored.matches)
-                for result in search.results
-            )
-        ):
-            if locale == "en":
-                answer += " No hotel has every condition verified; these are the closest matches."
-            else:
-                answer += (
-                    " Ни у одного отеля не подтверждены все условия; это ближайшие совпадения."
-                )
-        if parsed.unmatched_terms:
-            terms = ", ".join(parsed.unmatched_terms[:6])
-            if locale == "en":
-                answer += (
-                    f" I could not verify: {terms}. These conditions did not affect the ranking."
-                )
-            else:
-                answer += f" Не смог проверить: {terms}. Эти условия не учтены в подборке."
-        if not parsed.wants_room or parsed.room_preferences_unrestricted:
-            return answer
-        missing = []
-        if parsed.check_in is None:
-            missing.append("check-in date" if locale == "en" else "дату заезда")
-        if parsed.check_out is None:
-            missing.append("check-out date" if locale == "en" else "дату выезда")
-        if parsed.adults is None:
-            missing.append("number of adults" if locale == "en" else "число взрослых")
-        if parsed.budget is None:
-            missing.append(
-                "budget per night or for the whole stay"
-                if locale == "en"
-                else "бюджет за ночь или за всё проживание"
-            )
-        if not missing:
-            return answer
-        fields = ", ".join(missing)
-        if locale == "en":
-            return f"{answer} To check room availability, please tell me the {fields}."
-        return f"{answer} Чтобы проверить свободные номера, уточните {fields}."
+        return search_reply(search, selected_hotel_id, locale)

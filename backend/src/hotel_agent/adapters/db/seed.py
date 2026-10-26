@@ -6,6 +6,7 @@ from typing import Self
 from psycopg import AsyncConnection
 from psycopg_pool import AsyncConnectionPool
 
+from hotel_agent.adapters.geo.building_dimensions import length_values
 from hotel_agent.application.dto import Feature
 
 TABLES = {
@@ -64,24 +65,41 @@ class PostgresSeedWriter:
         table, geometry_column, geometry_sql = TABLES[name]
         db = self._db()
         await db.execute(
-            "CREATE TEMP TABLE seed_stage (id text, geometry_json text, tags_json text) ON COMMIT DROP"
+            "CREATE TEMP TABLE seed_stage (id text, geometry_json text, tags_json text, "
+            "height_m double precision, levels integer) ON COMMIT DROP"
         )
         async with (
             db.cursor() as cursor,
-            cursor.copy("COPY seed_stage (id, geometry_json, tags_json) FROM STDIN") as copy,
+            cursor.copy(
+                "COPY seed_stage (id, geometry_json, tags_json, height_m, levels) FROM STDIN"
+            ) as copy,
         ):
             for feature in features:
+                heights = (
+                    length_values(feature.properties.get("height")) if name == "buildings" else ()
+                )
+                levels = (
+                    length_values(feature.properties.get("building:levels"))
+                    if name == "buildings"
+                    else ()
+                )
                 await copy.write_row(
                     (
                         feature.id,
                         json.dumps(feature.geometry, separators=(",", ":")),
                         json.dumps(feature.properties, ensure_ascii=False, separators=(",", ":")),
+                        heights[0] if heights and len(set(heights)) == 1 else None,
+                        int(max(levels))
+                        if levels
+                        and all(value.is_integer() and 1 <= value <= 200 for value in levels)
+                        else None,
                     )
                 )
         if name == "hotels":
             await db.execute(
                 f"""INSERT INTO hotels (id, region_id, name, location, stars, tags)
-                SELECT id, %(region)s, COALESCE(tags_json::jsonb->>'name', id),
+                SELECT id, %(region)s, COALESCE(NULLIF(tags_json::jsonb->>'name',''),
+                       NULLIF(tags_json::jsonb->>'name:ru',''),NULLIF(tags_json::jsonb->>'name:en',''),id),
                        {geometry_sql},
                        CASE WHEN tags_json::jsonb->>'stars' ~ '^[0-9]+$'
                             THEN (tags_json::jsonb->>'stars')::integer ELSE NULL END,
@@ -89,6 +107,15 @@ class PostgresSeedWriter:
                 FROM seed_stage
                 ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name,
                     location = EXCLUDED.location, stars = EXCLUDED.stars, tags = EXCLUDED.tags""",
+                {"region": region},
+            )
+        elif name == "buildings":
+            await db.execute(
+                f"""INSERT INTO buildings(id,region_id,footprint,tags,height_m,levels)
+                SELECT id,%(region)s,{geometry_sql},tags_json::jsonb,height_m,levels FROM seed_stage
+                ON CONFLICT(id) DO UPDATE SET footprint=EXCLUDED.footprint,tags=EXCLUDED.tags,
+                 height_m=COALESCE(EXCLUDED.height_m,buildings.height_m),
+                 levels=COALESCE(EXCLUDED.levels,buildings.levels)""",
                 {"region": region},
             )
         else:
@@ -107,9 +134,10 @@ class PostgresSeedWriter:
         await db.execute(
             """UPDATE hotels h SET building_id = (
                 SELECT b.id FROM buildings b
-                WHERE b.region_id = %(region)s
+                WHERE COALESCE(b.tags->>'building:part', 'no') = 'no'
                   AND ST_DWithin(b.footprint::geography, h.location::geography, 30)
-                ORDER BY ST_Distance(b.footprint::geography, h.location::geography), b.id
+                ORDER BY (b.id = h.id) DESC,
+                    ST_Distance(b.footprint::geography, h.location::geography), b.id
                 LIMIT 1
             ) WHERE h.region_id = %(region)s""",
             {"region": region},

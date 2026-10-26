@@ -17,13 +17,14 @@ class GetMapTile:
         if data or self._geography is None or z < 16:
             return data
         size = 2**z
-        await self._geography.area(
-            (
-                x / size * 360 - 180,
-                degrees(atan(sinh(pi * (1 - 2 * (y + 1) / size)))),
-                (x + 1) / size * 360 - 180,
-                degrees(atan(sinh(pi * (1 - 2 * y / size)))),
-            )
+        bounds = (
+            x / size * 360 - 180,
+            degrees(atan(sinh(pi * (1 - 2 * (y + 1) / size)))),
+            (x + 1) / size * 360 - 180,
+            degrees(atan(sinh(pi * (1 - 2 * y / size)))),
         )
+        if bounds[1] < -85 or bounds[3] > 85:
+            return data
+        await self._geography.area(bounds)
         async with self._uow() as uow:
             return await uow.map_tiles.get(z, x, y)
