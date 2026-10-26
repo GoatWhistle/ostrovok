@@ -1,0 +1,354 @@
+{
+  "fact_id": "f_wish_fa1567f95f48_w508887500",
+  "characteristic_key": "derived:fa1567f95f48",
+  "value": null,
+  "unit": null,
+  "label": "из номера на первом этаже должен быть виден Исаакиевский собор",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w508887500_115a402aaddc_ray",
+    "g_window_w508887500_115a402aaddc_target",
+    "g_window_w508887500_115a402aaddc_observer",
+    "g_window_w508887500_115a402aaddc_blocker_0",
+    "g_window_w508887500_115a402aaddc_blocker_1",
+    "g_window_w508887500_115a402aaddc_blocker_2"
+  ],
+  "subject": "hotel:w508887500",
+  "qualifiers": {
+    "native_op": "eq",
+    "tool_calls": 1,
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 14.0,
+            "minimum_m": 12.0
+          },
+          "distance_m": 67.45464532650342
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 9.25,
+            "minimum_m": 7.25
+          },
+          "distance_m": 89.93952710200458
+        },
+        {
+          "id": "r3077276",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 29.625,
+            "minimum_m": 17.225
+          },
+          "distance_m": 27.277099559322522
+        },
+        {
+          "id": "r3077276",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 29.625,
+            "minimum_m": 17.225
+          },
+          "distance_m": 42.26616011057218
+        },
+        {
+          "id": "r3077276",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 29.625,
+            "minimum_m": 17.225
+          },
+          "distance_m": 57.255220661821845
+        },
+        {
+          "id": "r3229896",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 96.5,
+            "minimum_m": 92.5
+          },
+          "elevation": {
+            "maximum_m": 105.5,
+            "minimum_m": 101.5
+          },
+          "distance_m": 156.27709042805984
+        },
+        {
+          "id": "r3229896",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 96.5,
+            "minimum_m": 92.5
+          },
+          "elevation": {
+            "maximum_m": 105.5,
+            "minimum_m": 101.5
+          },
+          "distance_m": 156.81063143129057
+        },
+        {
+          "id": "r3229897",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 56.5,
+            "minimum_m": 52.5
+          },
+          "elevation": {
+            "maximum_m": 81.5,
+            "minimum_m": 77.5
+          },
+          "distance_m": 138.7433889006815
+        },
+        {
+          "id": "r3229897",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 56.5,
+            "minimum_m": 52.5
+          },
+          "elevation": {
+            "maximum_m": 81.5,
+            "minimum_m": 77.5
+          },
+          "distance_m": 148.04378066760142
+        },
+        {
+          "id": "r3229898",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 81.5,
+            "minimum_m": 77.5
+          },
+          "elevation": {
+            "maximum_m": 102.5,
+            "minimum_m": 98.5
+          },
+          "distance_m": 140.32695724147587
+        },
+        {
+          "id": "r3229898",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 81.5,
+            "minimum_m": 77.5
+          },
+          "elevation": {
+            "maximum_m": 102.5,
+            "minimum_m": 98.5
+          },
+          "distance_m": 148.8355648379986
+        },
+        {
+          "id": "r3229899",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 56.25,
+            "minimum_m": 52.25
+          },
+          "distance_m": 119.98219136044005
+        },
+        {
+          "id": "r3229899",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 56.25,
+            "minimum_m": 52.25
+          },
+          "distance_m": 138.66318189748068
+        },
+        {
+          "id": "r3229926",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 51.5,
+            "minimum_m": 47.5
+          },
+          "distance_m": 109.25414309986529
+        },
+        {
+          "id": "r3229926",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 51.5,
+            "minimum_m": 47.5
+          },
+          "distance_m": 114.56816723015268
+        },
+        {
+          "id": "r3229926",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 51.5,
+            "minimum_m": 47.5
+          },
+          "distance_m": 119.88219136044006
+        }
+      ],
+      "sources": [
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305000%2C59.930000%2C30.310000%2C59.935000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305000%2C59.935000%2C30.310000%2C59.940000"
+      ],
+      "blockers": [
+        {
+          "id": "r3229898",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 140.32695724147587,
+          "penetration_m": 8.156398623359166
+        },
+        {
+          "id": "r3229898",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 148.8355648379986,
+          "penetration_m": 3.342348869194254
+        },
+        {
+          "id": "r3229896",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 156.27709042805984,
+          "penetration_m": 2.1320310272879794
+        },
+        {
+          "id": "r3229896",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 156.81063143129057,
+          "penetration_m": 1.8301602202737968
+        }
+      ],
+      "target_id": "r3229838",
+      "distance_m": 157.4,
+      "target_name": "Исаакиевский собор",
+      "target_tags": {
+        "fee": "yes",
+        "name": "Исаакиевский собор",
+        "amenity": "place_of_worship",
+        "name:ar": "كاتدرائية القديس إسحاق",
+        "name:ca": "Catedral de Sant Isaac",
+        "name:cs": "Katedrála svatého Izáka",
+        "name:de": "Isaakskathedrale",
+        "name:en": "St Isaac's Cathedral",
+        "name:es": "Catedral de San Isaac",
+        "name:fa": "کلیسای جامع سنت اسحاق",
+        "name:fi": "Iisakinkirkko",
+        "name:fr": "Cathédrale Saint-Isaac",
+        "name:ja": "イサク聖堂",
+        "name:ru": "Исаакиевский собор",
+        "name:zh": "聖以薩主教座堂",
+        "tourism": "museum",
+        "alt_name": "Собор Исаакия Далматского",
+        "building": "cathedral",
+        "operator": "Государственный музей-памятник \"Исаакиевский собор\"",
+        "religion": "christian",
+        "wikidata": "Q215423",
+        "panoramax": "9bbe1873-7d60-4098-ad83-2da59c780b40",
+        "wikipedia": "ru:Исаакиевский собор",
+        "contact:vk": "isaac_cathedral",
+        "start_date": "1818..1858",
+        "wheelchair": "limited",
+        "addr:street": "Исаакиевская площадь",
+        "denomination": "russian_orthodox",
+        "payment:cash": "yes",
+        "payment:visa": "yes",
+        "addr:postcode": "190031",
+        "contact:phone": "+7 812 315-97-32",
+        "opening_hours": "10:00-18:00; May-Sep 10:00-21:00",
+        "ref:sobory.ru": "01555",
+        "building:parts": "mixed",
+        "contact:website": "https://cathedral.ru",
+        "payment:maestro": "yes",
+        "addr:housenumber": "4",
+        "payment:mastercard": "yes",
+        "building:architecture": "neoclassicism",
+        "payment:visa_electron": "yes",
+        "name:etymology:wikidata": "Q705202"
+      },
+      "target_part_id": "r3229900",
+      "terrain_step_m": 25,
+      "target_location": [
+        30.3061511,
+        59.9340813
+      ],
+      "target_part_tags": {
+        "name": "Исаакиевский собор",
+        "height": "101.5",
+        "min_height": "95",
+        "building:part": "yes",
+        "roof:material": "gold",
+        "building:material": "gold"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        30.308643205066154,
+        59.93473835906417
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 271.51,
+      "target_elevation_m": {
+        "maximum_m": 108.0,
+        "minimum_m": 104.0
+      },
+      "minimum_clearance_m": -8.156398623359166,
+      "sampled_line_status": "unknown",
+      "observer_elevation_m": {
+        "maximum_m": 19.55,
+        "minimum_m": 14.95
+      },
+      "calculation_attempted": true,
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "entire_target_verified": false,
+      "requested_target_scope": "any",
+      "bookable_room_confirmed": false,
+      "horizontal_field_of_view_deg": 120,
+      "required_observer_elevation_m": 562.5300145850217
+    },
+    "native_unit": null,
+    "source_text": "из номера на первом этаже должен быть виден Исаакиевский собор",
+    "wish_status": "matched",
+    "native_value": null,
+    "estimated_view": true,
+    "checked_sources": [
+      "database"
+    ],
+    "native_threshold": true,
+    "native_characteristic_key": "spatial:115a402aaddc"
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Исаакиевский собор», 157 м, этаж 1, направление окон 272°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 140 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T14:44:18.559844Z",
+    "valid_until": "2026-11-02T14:44:18.559844Z"
+  },
+  "history": [],
+  "conflicts": []
+}

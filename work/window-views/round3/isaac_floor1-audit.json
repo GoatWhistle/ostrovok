@@ -1,0 +1,116 @@
+{
+  "id": "isaac_floor1",
+  "query": "Отель в Петербурге, из номера на первом этаже должен быть виден Исаакиевский собор",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n4538542704",
+      "name": "Isaac Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Исаакиевский собор",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "isaac_floor1-n4538542704-f_wish_fa1567f95f48_n4538542704.json"
+        }
+      ]
+    },
+    {
+      "id": "n4309341589",
+      "name": "Loft Hostel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Исаакиевский собор",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "isaac_floor1-n4309341589-f_wish_fa1567f95f48_n4309341589.json"
+        }
+      ]
+    },
+    {
+      "id": "n7832342054",
+      "name": "Randhouse Bed & Breakfast",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Исаакиевский собор",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "isaac_floor1-n7832342054-f_wish_fa1567f95f48_n7832342054.json"
+        }
+      ]
+    },
+    {
+      "id": "n5146364826",
+      "name": "Residence",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Исаакиевский собор",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "isaac_floor1-n5146364826-f_wish_fa1567f95f48_n5146364826.json"
+        }
+      ]
+    },
+    {
+      "id": "w508887500",
+      "name": "SO/",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Исаакиевский собор",
+          "floor": 1,
+          "missing": [],
+          "reason": null,
+          "artifact": "isaac_floor1-w508887500-f_wish_fa1567f95f48_w508887500.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:fa1567f95f48",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из номера на первом этаже должен быть виден Исаакиевский собор"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге, из номера на первом этаже должен быть виден Исаакиевский собор",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Очевидное сокращение названия города нормализовано"
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 33.88,
+  "passed_automatic_audit": true
+}
