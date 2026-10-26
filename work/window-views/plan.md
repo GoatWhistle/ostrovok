@@ -151,3 +151,15 @@ rays. Reuse resolved objects, preserving typed identity validation and unknown-d
 Regression now passes;19 focused geometry/source tests and634 backend unit tests pass,
 Ruff and mypy pass. Not deployed yet; actual Samara replay and final50 remain pending.
 This turn is progress (red/green authoritative regression and source change), not completion.
+
+## Stand replay and cache regression
+
+Shore ordering deployed as `window-shore-20261026` (source92e58f1); runtime file SHA256
+05814f5be0fe8e11315c4498d310d9006539f3f61250937a0e583311bca15d2a equals local source.
+Both services healthy. Two-case replay started in shore-replay/.
+Live Isaac logs exposed geography_unavailable for cell30.305,59.93,30.31,59.935 while
+/srv/cache/view-geometry/area-30.305000-59.930000-30.310000-59.935000.osm exists.
+OSMViewGeometry.area immediately delegated to new geography context and bypassed its
+previous disk/memory cache. A regression using the real XML parser failed (None instead
+of cached PhysicalArea); cache-first ordering fixes it without treating missing coverage
+as complete.635 unit tests pass; Ruff/mypy pass. Cache correction not yet deployed.

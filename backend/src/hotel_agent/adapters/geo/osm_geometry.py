@@ -115,9 +115,16 @@ class OSMViewGeometry:
             return result
 
     async def area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea | None:
-        if self._context is not None:
-            return await self._context.area(bbox)
         async with self._area_locks[hash(bbox) % len(self._area_locks)]:
+            box = ",".join(f"{number:.6f}" for number in bbox)
+            key = "area-" + box.replace(",", "-")
+            path = self._cache / f"{key}.osm" if self._cache else None
+            if key in self._areas or (path is not None and path.is_file()):
+                cached = await self._area(bbox)
+                if cached is not None:
+                    return cached
+            if self._context is not None:
+                return await self._context.area(bbox)
             return await self._area(bbox)
 
     async def _area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea | None:
