@@ -27,7 +27,7 @@ class SearchAreas:
         self._regions: list[tuple[str, AreaBoundary]] = []
         if not path.is_file():
             return
-        for feature in json.loads(path.read_text())["features"]:
+        for feature in json.loads(path.read_text(encoding="utf-8"))["features"]:
             area = AreaBoundary(shape(feature["geometry"]))
             properties = feature["properties"]
             self._regions.append((str(properties.get("name_ru") or properties.get("name")), area))
