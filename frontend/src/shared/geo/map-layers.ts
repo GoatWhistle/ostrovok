@@ -83,7 +83,7 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
 function isRoute(feature: Feature): boolean {
   const type = feature.geometry.type
   return (
-    (type === "LineString" || type === "MultiLineString") && feature.properties?.kind !== "fact"
+    (type === "LineString" || type === "MultiLineString") && feature.properties?.kind === "route"
   )
 }
 

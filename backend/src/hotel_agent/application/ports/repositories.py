@@ -14,6 +14,7 @@ from hotel_agent.application.dto import (
 )
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
+from hotel_agent.application.ports.view_scenes import ViewSceneRepository
 from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
 
@@ -29,7 +30,11 @@ class NamedPlaceRepository(Protocol):
     async def geographic_name(self, name: str) -> NamedPlaceRecord | None: ...
 
     async def by_name(
-        self, name: str, bbox: tuple[float, float, float, float]
+        self,
+        name: str,
+        bbox: tuple[float, float, float, float],
+        target_key: str | None = None,
+        target_values: Sequence[str] = (),
     ) -> NamedPlaceRecord | None: ...
 
     async def near_coordinate(
@@ -69,6 +74,7 @@ class SearchRepository(Protocol):
 
 class GeoFeatureRepository(Protocol):
     async def get_batch(self, ids: Sequence[str]) -> Sequence[GeoFeatureRecord]: ...
+    async def save_batch(self, records: Sequence[GeoFeatureRecord]) -> None: ...
 
 
 class MapTileRepository(Protocol):
@@ -105,6 +111,7 @@ class ChatRepository(Protocol):
 
 
 class UnitOfWork(Protocol):
+    view_scenes: ViewSceneRepository
     documents: SearchDocumentsPort
     chat: ChatRepository
     regions: RegionRepository

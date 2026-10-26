@@ -90,6 +90,12 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
                         "radius_m": {"type": "integer"},
                         "source_text": {"type": "string"},
                         "required": {"type": "boolean"},
+                        "floor_min": {"type": ["integer", "null"]},
+                        "floor_max": {"type": ["integer", "null"]},
+                        "facade_azimuth_deg": {"type": ["number", "null"]},
+                        "target_part": {"type": "string", "enum": ["any", "top", "whole"]},
+                        "target_osm_key": {"type": ["string", "null"]},
+                        "target_osm_values": {"type": "array", "items": {"type": "string"}},
                     }
                 ),
             },

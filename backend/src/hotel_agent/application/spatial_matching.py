@@ -9,14 +9,22 @@ from hotel_agent.domain.query import Intent, SpatialRequest
 
 def spatial_key(request: SpatialRequest) -> str:
     identity = f"{request.kind}\x00{request.target or ''}\x00{request.source_text}"
+    if request.kind in {"landmark_view", "sea_view"}:
+        identity += f"\x00visibility@1:{request.floor_min}:{request.floor_max}:{request.facade_azimuth_deg}:{request.target_part}:{request.target_osm_key}:{request.target_osm_values}"
     return f"spatial:{hashlib.sha256(identity.encode()).hexdigest()[:12]}"
 
 
 def spatial_intent(request: SpatialRequest) -> Intent:
     return Intent(
         characteristic_key=spatial_key(request),
-        op=Op.GTE if request.kind == "landmark_distance_min" else Op.LTE,
-        value=float(request.radius_m),
+        op=(
+            Op.EQ
+            if request.kind in {"landmark_view", "sea_view"}
+            else Op.GTE
+            if request.kind == "landmark_distance_min"
+            else Op.LTE
+        ),
+        value=True if request.kind in {"landmark_view", "sea_view"} else float(request.radius_m),
         weight=1.0,
         required=request.required,
         source_text=request.source_text,
@@ -70,7 +78,7 @@ def spatial_fact(
         hotel_id=hotel.id,
         id=f"f_spatial_{hotel.id}_{key.removeprefix('spatial:')}",
         characteristic_key=key,
-        value=round(distance),
+        value=None if request.kind in {"landmark_view", "sea_view"} else round(distance),
         unit="м",
         qualifiers={**qualifiers, "source_text": request.source_text},
         source_type="computed",

@@ -57,8 +57,11 @@ function sceneLocation(result: SearchResult | undefined, camera: Camera | undefi
 
 function hasLine(features: readonly unknown[]) {
   return features.some((feature) => {
-    const geometry = (feature as { geometry?: { type?: string } }).geometry
-    return geometry?.type === "LineString" || geometry?.type === "MultiLineString"
+    const data = feature as { geometry?: { type?: string }; properties?: { kind?: string } }
+    return (
+      data.properties?.kind === "route" &&
+      (data.geometry?.type === "LineString" || data.geometry?.type === "MultiLineString")
+    )
   })
 }
 

@@ -22,6 +22,30 @@ class PostgresGeoFeatureRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
 
+    async def save_batch(self, records: Sequence[GeoFeatureRecord]) -> None:
+        async with self._connection.cursor() as cursor:
+            await cursor.executemany(
+                """INSERT INTO geo_features
+                (id, kind, characteristic_key, geometry, name, label, osm_ref, style_hint)
+                VALUES (%s,%s,%s,ST_SetSRID(ST_GeomFromGeoJSON(%s),4326),%s,%s,%s,%s)
+                ON CONFLICT (id) DO UPDATE SET geometry=EXCLUDED.geometry,
+                    name=EXCLUDED.name,label=EXCLUDED.label,osm_ref=EXCLUDED.osm_ref,
+                    style_hint=EXCLUDED.style_hint""",
+                [
+                    (
+                        r.id,
+                        r.kind,
+                        r.characteristic_key,
+                        json.dumps(r.geometry),
+                        r.name,
+                        r.label,
+                        r.osm_ref,
+                        r.style_hint,
+                    )
+                    for r in records
+                ],
+            )
+
     async def get_batch(self, ids: Sequence[str]) -> Sequence[GeoFeatureRecord]:
         result = await self._connection.execute(GET_BATCH, {"ids": list(ids)})
         rows = list(await result.fetchall())

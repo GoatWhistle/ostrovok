@@ -207,7 +207,7 @@ def _matched_schema(
     if fact is not None:
         label = (
             label
-            if match.intent.characteristic_key.startswith(("facility:", "derived:"))
+            if match.intent.characteristic_key.startswith(("facility:", "derived:", "spatial:"))
             else f"{label}: {fact.value}"
             if match.intent.characteristic_key.startswith("nearby:")
             else f"{label}: {fact.value} {fact.unit or ''}".strip()

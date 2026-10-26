@@ -32,7 +32,7 @@ function placeTarget(feature: Feature, fallback: string | undefined) {
       label: props.name,
       position: feature.geometry.coordinates as [number, number],
     }
-  if (feature.geometry.type === "LineString" && fallback) {
+  if (feature.geometry.type === "LineString" && feature.properties?.kind === "route" && fallback) {
     const end = feature.geometry.coordinates.at(-1) as [number, number] | undefined
     return end ? { kind: "route" as const, label: fallback, position: end } : null
   }

@@ -1,0 +1,155 @@
+from collections.abc import Mapping
+from datetime import UTC, datetime
+from typing import Any
+
+import pytest
+
+from hotel_agent.adapters.geo.window_views import WindowViews
+from hotel_agent.application.dto import NamedPlaceRecord, SearchHotelRecord
+from hotel_agent.application.fact_records import fact_from_record
+from hotel_agent.application.ports.view_geometry import PhysicalArea, PhysicalObject
+from hotel_agent.application.ports.view_scenes import PathBuildings, SceneBuilding
+from hotel_agent.application.ports.window_views import WindowEvidence
+from hotel_agent.application.spatial_matching import spatial_intent
+from hotel_agent.domain.query import SpatialRequest
+from hotel_agent.domain.services.scoring import MatchQuality, match
+
+
+def square(lon: float, half_width: float = 0.0001) -> dict[str, Any]:
+    return {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [lon - half_width, 43 - half_width],
+                [lon + half_width, 43 - half_width],
+                [lon + half_width, 43 + half_width],
+                [lon - half_width, 43 + half_width],
+                [lon - half_width, 43 - half_width],
+            ]
+        ],
+    }
+
+
+class FlatTerrain:
+    def sample_points(self, points: Mapping[str, tuple[float, float]]) -> dict[str, float]:
+        return {key: 0.0 for key in points}
+
+
+class Geometry:
+    def __init__(self, blocker_height: str | None = "30", complete: bool = True) -> None:
+        self.complete = complete
+        self.target = PhysicalObject(
+            "n20",
+            {"name": "Башня", "height": "40", "man_made": "tower"},
+            {"type": "Point", "coordinates": [39.01, 43]},
+            "https://www.openstreetmap.org/node/20",
+        )
+        self.blocker = PhysicalObject(
+            "w30",
+            {"building": "yes", **({"height": blocker_height} if blocker_height else {})},
+            square(39.005),
+            "https://www.openstreetmap.org/way/30",
+        )
+
+    async def object(self, identifier: str) -> PhysicalObject | None:
+        return self.target if identifier == self.target.id else None
+
+    async def area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea:
+        return PhysicalArea(bbox, (self.blocker,), self.complete, "https://www.openstreetmap.org")
+
+
+def hotel() -> SearchHotelRecord:
+    return SearchHotelRecord(
+        id="h1",
+        region_id="sochi",
+        name="Отель",
+        location=(39, 43),
+        stars=4,
+        building_id="w10",
+        height_m=60,
+        levels=20,
+        footprint=square(39),
+    )
+
+
+async def compute(request: SpatialRequest, geometry: Geometry | None = None) -> WindowEvidence:
+    engine = WindowViews(FlatTerrain(), geometry or Geometry())
+    building = SceneBuilding(
+        "w10", square(39), {"building": "hotel", "height": "60", "building:levels": "20"}, 60, 20
+    )
+    prepared = await engine.prepare(
+        (hotel(),),
+        request,
+        {"h1": NamedPlaceRecord(id="n20", name="Башня", location=(39.01, 43))},
+        {"h1": building},
+    )
+    return await engine.evaluate(
+        prepared, PathBuildings({}, False), datetime(2026, 10, 26, tzinfo=UTC)
+    )
+
+
+def request(floor: int | None = None, direction: float | None = None) -> SpatialRequest:
+    return SpatialRequest(
+        kind="landmark_view",
+        target="Башня",
+        radius_m=2000,
+        source_text="вид на башню",
+        floor_min=floor,
+        floor_max=floor,
+        facade_azimuth_deg=direction,
+    )
+
+
+async def test_real_facade_ray_is_blocked_on_low_floor_and_clear_on_high_floor() -> None:
+    low, high = await compute(request(1)), await compute(request(15))
+    assert low.facts[0].value is False
+    assert high.facts[0].value is True
+    for outcome, status in ((low, "blocked"), (high, "visible")):
+        fact = outcome.facts[0]
+        visibility = fact.qualifiers["visibility"]
+        assert visibility["status"] == status
+        assert visibility["target_id"] == "n20"
+        assert visibility["distance_m"] > 800
+        assert visibility["complete_coverage"]
+        assert visibility["profile"]
+        assert len(outcome.features) >= 3
+        assert visibility["observer_location"][0] > 39.0001
+        assert visibility["bookable_room_confirmed"] is False
+    assert low.facts[0].qualifiers["visibility"]["blockers"][0]["id"] == "w30"
+    assert (
+        match(
+            spatial_intent(request(15)),
+            fact_from_record(high.facts[0]),
+            datetime(2026, 10, 26, tzinfo=UTC),
+        ).quality
+        is MatchQuality.PARTIAL
+    )
+
+
+async def test_unspecified_floor_selects_first_computed_clear_floor() -> None:
+    result = await compute(request())
+    fact = result.facts[0]
+    assert fact.value is True
+    level = fact.qualifiers["visibility"]["floor"]
+    assert 1 < level < 20
+    lower = await compute(request(level - 1))
+    assert lower.facts[0].value is not True
+
+
+@pytest.mark.parametrize("missing", ["height", "coverage"])
+async def test_missing_sources_stay_unknown_instead_of_becoming_clear(missing: str) -> None:
+    result = await compute(
+        request(15), Geometry(None if missing == "height" else "30", missing != "coverage")
+    )
+    assert result.facts[0].value is None
+    assert result.facts[0].qualifiers["visibility"]["status"] == "unknown"
+    assert result.facts[0].qualifiers["visibility"]["missing"]
+
+
+@pytest.mark.parametrize("wanted", [request(99), request(1, 270)])
+async def test_impossible_floor_or_opposite_windows_are_rejected(wanted: SpatialRequest) -> None:
+    result = await compute(wanted)
+    assert result.facts[0].value is False
+    assert result.facts[0].qualifiers["visibility"]["status"] == "blocked"
+    assert result.facts[0].explanation
+    assert result.features == ()

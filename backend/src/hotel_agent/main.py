@@ -7,9 +7,11 @@ from fastapi import FastAPI
 from hotel_agent.adapters.external.web_research import PublicWebResearch
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
+from hotel_agent.adapters.geo.osm_geometry import OSMViewGeometry
 from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
 from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
+from hotel_agent.adapters.geo.window_views import WindowViews
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
@@ -18,6 +20,7 @@ from hotel_agent.adapters.weather.destination_conditions import OpenMeteoConditi
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
@@ -44,6 +47,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     web_research = PublicWebResearch()
     conditions = OpenMeteoConditions()
+    view_geometry = OSMViewGeometry(
+        config.terrain_cache_dir.parent / "view-geometry" if config.terrain_cache_dir else None
+    )
     embedder = (
         PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
         if config.embedding_api_key
@@ -66,6 +72,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 await embedder.aclose()
             await web_research.aclose()
             await conditions.aclose()
+            await view_geometry.aclose()
             terrain_tiles.close()
             await providers.aclose()
 
@@ -92,6 +99,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
+        EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
     )
     app.include_router(
         api_router_v1(

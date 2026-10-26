@@ -57,6 +57,12 @@ class SpatialRequest:
     radius_m: int
     source_text: str
     required: bool = False
+    floor_min: int | None = None
+    floor_max: int | None = None
+    facade_azimuth_deg: float | None = None
+    target_part: str = "any"
+    target_osm_key: str | None = None
+    target_osm_values: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

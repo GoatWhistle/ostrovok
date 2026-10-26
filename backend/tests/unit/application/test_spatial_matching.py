@@ -33,7 +33,7 @@ def test_landmark_view_is_located_but_room_view_remains_unverified() -> None:
     record = spatial_fact(request, hotel, place, now)
     found = match(spatial_intent(request), fact_from_record(record), now)
 
-    assert found.quality is MatchQuality.PARTIAL
+    assert found.quality is MatchQuality.UNKNOWN
     assert record.geo_refs == ("g_poi_w442350429",)
     assert "Вид из конкретного номера не подтверждён" in record.explanation
 
@@ -117,6 +117,6 @@ def test_sea_view_is_never_claimed_from_coast_proximity_alone() -> None:
 
     assert (
         match(spatial_intent(request), fact_from_record(record), now).quality
-        is MatchQuality.PARTIAL
+        is MatchQuality.UNKNOWN
     )
     assert "Вид на море из номера не подтверждён" in record.explanation

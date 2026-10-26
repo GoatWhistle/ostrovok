@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from math import cos, radians
 from statistics import median
 
 from hotel_agent.application.dto import NamedPlaceRecord, SearchHotelRecord
@@ -39,6 +40,16 @@ async def resolve_spatial_requests(
             resolved.append((request, center))
             continue
         target = request.target or ""
-        place = await uow.named_places.by_name(target, extent)
+        place = await uow.named_places.by_name(
+            target, extent, request.target_osm_key, request.target_osm_values
+        )
+        if place is None and request.kind == "landmark_view":
+            latitude = (extent[1] + extent[3]) / 2
+            dy = request.radius_m / 111200
+            dx = dy / max(cos(radians(latitude)), 0.1)
+            expanded = (extent[0] - dx, extent[1] - dy, extent[2] + dx, extent[3] + dy)
+            place = await uow.named_places.by_name(
+                target, expanded, request.target_osm_key, request.target_osm_values
+            )
         resolved.append((request, place))
     return resolved

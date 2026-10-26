@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 from psycopg import AsyncConnection
 
 from hotel_agent.application.dto import NamedPlaceRecord
@@ -11,10 +13,16 @@ ORDER BY id LIMIT 2"""
 NAME_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
 FROM pois
 WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
+  AND (%(target_key)s::text IS NULL OR (tags ? %(target_key)s
+    AND (cardinality(%(target_values)s::text[])=0 OR tags->>%(target_key)s = ANY(%(target_values)s::text[]))))
   AND (translate(lower(tags->>'name'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
     OR translate(lower(tags->>'name:ru'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
     OR translate(lower(tags->>'alt_name'), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е'))
-ORDER BY id LIMIT 1"""
+ORDER BY CASE
+ WHEN tags->>'public_transport' IN ('platform','stop_position') THEN 2
+ WHEN tags ? 'historic' OR tags ? 'natural' OR tags->>'tourism' IN ('attraction','museum')
+   OR tags->>'amenity' IN ('place_of_worship','theatre') THEN 0
+ ELSE 1 END, id LIMIT 1"""
 
 COORDINATE_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
 FROM pois
@@ -31,13 +39,17 @@ FROM named_place_aliases a JOIN pois p
 WHERE translate(lower(a.alias), 'ё', 'е') = translate(lower(%(name)s), 'ё', 'е')
   AND p.location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
   AND p.tags ? 'name'
+  AND (%(target_key)s::text IS NULL OR (p.tags ? %(target_key)s
+    AND (cardinality(%(target_values)s::text[])=0 OR p.tags->>%(target_key)s = ANY(%(target_values)s::text[]))))
 ORDER BY p.location <-> a.location LIMIT 1"""
 
 FRAGMENT_LOOKUP = """SELECT id, tags->>'name', ST_X(location), ST_Y(location)
 FROM pois
 WHERE location && ST_MakeEnvelope(%(west)s, %(south)s, %(east)s, %(north)s, 4326)
   AND translate(lower(tags->>'name'), 'ё', 'е') LIKE '%%' || %(fragment)s || '%%'
-  AND (tags->>'historic' IN ('castle', 'fort', 'monument', 'memorial')
+  AND (%(target_key)s::text IS NULL OR (tags ? %(target_key)s
+    AND (cardinality(%(target_values)s::text[])=0 OR tags->>%(target_key)s = ANY(%(target_values)s::text[]))))
+  AND (%(target_key)s::text IS NOT NULL OR tags->>'historic' IN ('castle', 'fort', 'monument', 'memorial')
     OR tags->>'tourism' IN ('attraction', 'museum'))
 ORDER BY (tags->>'historic' = 'castle') DESC, length(tags->>'name'), id
 LIMIT 1"""
@@ -52,9 +64,17 @@ class PostgresNamedPlaceRepository:
         return _record(rows[0]) if len(rows) == 1 else None
 
     async def by_name(
-        self, name: str, bbox: tuple[float, float, float, float]
+        self,
+        name: str,
+        bbox: tuple[float, float, float, float],
+        target_key: str | None = None,
+        target_values: Sequence[str] = (),
     ) -> NamedPlaceRecord | None:
-        params = _params(bbox) | {"name": name}
+        params = _params(bbox) | {
+            "name": name,
+            "target_key": target_key,
+            "target_values": list(target_values),
+        }
         row = await (await self._connection.execute(NAME_LOOKUP, params)).fetchone()
         if row is None:
             row = await (await self._connection.execute(ALIAS_LOOKUP, params)).fetchone()

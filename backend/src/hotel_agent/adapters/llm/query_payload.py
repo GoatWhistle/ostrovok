@@ -121,9 +121,31 @@ def spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | N
     return SpatialRequest(
         kind=kind,
         target=target.strip() if target else None,
-        radius_m=max(100, min(50000, radius)),
+        radius_m=max(100, min(200000 if kind == "landmark_view" else 50000, radius)),
         source_text=source,
         required=flag(raw, "required"),
+        floor_min=_floor(raw.get("floor_min")),
+        floor_max=_floor(raw.get("floor_max")),
+        facade_azimuth_deg=_azimuth(raw.get("facade_azimuth_deg")),
+        target_osm_key=optional_text(raw, "target_osm_key"),
+        target_osm_values=tuple(strings(raw, "target_osm_values")),
+        target_part=str(raw.get("target_part"))
+        if raw.get("target_part") in {"top", "whole"}
+        else "any",
+    )
+
+
+def _azimuth(value: object) -> float | None:
+    if isinstance(value, int | float) and not isinstance(value, bool) and 0 <= value < 360:
+        return float(value)
+    return None
+
+
+def _floor(value: object) -> int | None:
+    return (
+        value
+        if isinstance(value, int) and not isinstance(value, bool) and 1 <= value <= 200
+        else None
     )
 
 

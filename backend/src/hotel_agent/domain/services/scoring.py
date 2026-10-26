@@ -74,6 +74,8 @@ def _contribution(item: PropertyMatch, now: datetime) -> float:
 def _quality(intent: Intent, value: FactValue) -> MatchQuality:
     if intent.op is Op.EXISTS:
         return MatchQuality.FULL if value is not None else MatchQuality.NONE
+    if value is None:
+        return MatchQuality.UNKNOWN
     if intent.op is Op.EQ:
         return MatchQuality.FULL if _same(value, intent.value) else MatchQuality.NONE
     number = _number(value)

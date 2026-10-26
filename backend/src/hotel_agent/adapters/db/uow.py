@@ -14,6 +14,7 @@ from hotel_agent.adapters.db.nearby_objects import PostgresNearbyObjectRepositor
 from hotel_agent.adapters.db.regions import PostgresRegionRepository
 from hotel_agent.adapters.db.search import PostgresSearchRepository
 from hotel_agent.adapters.db.search_documents import PostgresSearchDocuments
+from hotel_agent.adapters.db.view_scenes import PostgresViewScenes
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
@@ -26,6 +27,7 @@ from hotel_agent.application.ports.repositories import (
     SearchRepository,
 )
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
+from hotel_agent.application.ports.view_scenes import ViewSceneRepository
 
 
 class PostgresUnitOfWorkFactory:
@@ -67,6 +69,7 @@ class PostgresUnitOfWork:
         self.data: DataRepository
         self.chat: ChatRepository
         self.documents: SearchDocumentsPort
+        self.view_scenes: ViewSceneRepository
 
     async def __aenter__(self) -> Self:
         self._connection = await self._factory.connection()
@@ -80,6 +83,7 @@ class PostgresUnitOfWork:
         self.data = PostgresDataRepository(self._connection)
         self.chat = PostgresChatRepository(self._connection)
         self.documents = PostgresSearchDocuments(self._connection)
+        self.view_scenes = PostgresViewScenes(self._connection)
         return self
 
     async def __aexit__(self, *exc: object) -> None:

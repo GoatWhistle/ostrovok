@@ -4,7 +4,7 @@ from dataclasses import dataclass, replace
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
-from hotel_agent.application.dto import SearchHotelRecord
+from hotel_agent.application.dto import GeoFeatureRecord, SearchHotelRecord
 from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
 from hotel_agent.application.facility_matching import facility_fact, facility_intent
 from hotel_agent.application.fact_records import fact_from_record
@@ -17,8 +17,10 @@ from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import best_facts, save_search_evidence
+from hotel_agent.application.search_ranking import search_rank
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
+from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.domain.errors import InvalidQuery
 from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import Scored, score
@@ -48,6 +50,7 @@ class SearchHotels:
         explorer: DataExplorer | None = None,
         areas: SearchAreasPort | None = None,
         semantic: SemanticSearchPort | None = None,
+        window_views: EvaluateWindowViews | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
@@ -56,6 +59,7 @@ class SearchHotels:
         self._explorer = explorer
         self._areas = areas
         self._semantic = semantic
+        self._window_views = window_views
 
     async def __call__(
         self,
@@ -157,6 +161,7 @@ class SearchHotels:
                 spatial[index] = (spatial_request, place)
         facts = best_facts((*stored, *explored.facts))
         evidence = list(explored.facts)
+        features: list[GeoFeatureRecord] = []
         now = self._clock.now()
         if nearby:
             for request, matches in nearby:
@@ -167,14 +172,19 @@ class SearchHotels:
                     evidence.append(nearby_evidence)
                     facts.setdefault(hotel.id, {})[key] = fact_from_record(nearby_evidence)
         for spatial_request, target in spatial:
-            if spatial_request.kind == "sea_view":
-                for hotel in hotels:
-                    coast = sea_positions.get(hotel.id)
-                    if coast is not None:
-                        sea_record = spatial_fact(spatial_request, hotel, coast, now)
-                        evidence.append(sea_record)
-                        facts.setdefault(hotel.id, {})[sea_record.characteristic_key] = (
-                            fact_from_record(sea_record)
+            if spatial_request.kind in {"sea_view", "landmark_view"}:
+                if self._window_views is not None:
+                    targets = (
+                        sea_positions
+                        if spatial_request.kind == "sea_view"
+                        else {hotel.id: target for hotel in hotels if target is not None}
+                    )
+                    evaluated = await self._window_views(hotels, spatial_request, targets, now)
+                    features.extend(evaluated.features)
+                    evidence.extend(evaluated.facts)
+                    for row in evaluated.facts:
+                        facts.setdefault(row.hotel_id, {})[row.characteristic_key] = (
+                            fact_from_record(row)
                         )
                 continue
             if target is None:
@@ -199,14 +209,7 @@ class SearchHotels:
         ]
         if parsed.intents:
             ranked = [item for item in ranked if not item.scored.disqualified]
-            ranked.sort(
-                key=lambda item: (
-                    -item.scored.score,
-                    item.hotel.name == item.hotel.id,
-                    item.hotel.name.startswith("#"),
-                    item.hotel.name.casefold(),
-                )
-            )
+            ranked.sort(key=lambda item: search_rank(item.hotel, item.scored))
         else:
             ranked.sort(
                 key=lambda item: (
@@ -217,7 +220,9 @@ class SearchHotels:
             )
         if parsed.anywhere and (parsed.intents or parsed.unmatched_terms):
             ranked = [item for item in ranked if item.scored.score > 0]
-        await save_search_evidence(self._uow, evidence, [r.hotel.id for r in ranked[:limit]])
+        await save_search_evidence(
+            self._uow, evidence, [r.hotel.id for r in ranked[:limit]], features
+        )
         fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
