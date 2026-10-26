@@ -8,37 +8,16 @@
 .userText {
   composes: bodySmText from "../../shared/styles/compose.module.css";
   position: relative;
-  margin-inline: var(--chat-bubble-offset) var(--space-8);
-  padding: var(--space-8) var(--space-12) var(--space-8) var(--space-16);
+  margin-inline-start: var(--chat-bubble-offset);
+  padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-sm);
   background-color: var(--action-primary);
   color: var(--action-primary-text);
   font-weight: var(--weight-medium);
   line-height: var(--line-height-body);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-}
-
-.userText::before,
-.userText::after {
-  content: "";
-  position: absolute;
-  inset-block-end: 0;
-  block-size: var(--space-12);
-}
-
-.userText::before {
-  inset-inline-end: calc(var(--space-4) * -1);
-  inline-size: var(--space-12);
-  border-end-start-radius: var(--radius-md) var(--radius-sm);
-  background-color: var(--action-primary);
-}
-
-.userText::after {
-  background-color: var(--surface-base);
-  inset-inline-end: calc(var(--space-16) * -1);
-  inline-size: var(--space-16);
-  border-end-start-radius: var(--radius-sm);
 }
 
 .userText .time {
