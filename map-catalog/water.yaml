@@ -1,0 +1,13 @@
+key: water
+layer: ground
+match:
+- tag: natural
+  values:
+  - water
+- tag: waterway
+  values:
+  - riverbank
+priority: 90
+min_zoom: 10
+style:
+  fill: --map-class-water

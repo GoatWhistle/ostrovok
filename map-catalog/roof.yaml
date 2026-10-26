@@ -1,0 +1,10 @@
+key: roof
+layer: volume
+match:
+- tag: building
+  values:
+  - roof
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-roof

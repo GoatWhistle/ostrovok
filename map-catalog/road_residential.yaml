@@ -1,0 +1,11 @@
+key: road_residential
+layer: ground
+match:
+- tag: highway
+  values:
+  - residential
+  - residential_link
+priority: 75
+min_zoom: 14
+style:
+  fill: --map-class-road_residential

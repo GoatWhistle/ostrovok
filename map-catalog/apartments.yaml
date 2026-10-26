@@ -1,0 +1,11 @@
+key: apartments
+layer: volume
+match:
+- tag: building
+  values:
+  - apartments
+  - dormitory
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-apartments

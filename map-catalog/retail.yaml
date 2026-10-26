@@ -1,0 +1,15 @@
+key: retail
+layer: volume
+match:
+- tag: building
+  values:
+  - retail
+  - supermarket
+  - kiosk
+- tag: shop
+  values:
+  - '*'
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-retail

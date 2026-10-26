@@ -17,6 +17,10 @@ class TerrainNotFound(NotFound):
     message = "Terrain tile not found"
 
 
+class PlaceNotFound(NotFound):
+    message = "Place not found"
+
+
 class HotelNotFound(NotFound):
     message = "Hotel not found"
 

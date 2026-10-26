@@ -1,0 +1,11 @@
+key: road_pedestrian
+layer: ground
+match:
+- tag: highway
+  values:
+  - pedestrian
+  - pedestrian_link
+priority: 72
+min_zoom: 14
+style:
+  fill: --map-class-road_pedestrian

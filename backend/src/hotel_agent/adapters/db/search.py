@@ -5,7 +5,7 @@ from datetime import datetime
 from psycopg import AsyncConnection
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
-from hotel_agent.adapters.db.search_fact_rows import search_fact
+from hotel_agent.adapters.db.search_facts import FACTS, fact_record
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -50,27 +50,6 @@ FROM hotels h JOIN buildings b
  AND ST_DWithin(b.footprint::geography, h.location::geography, %(radius)s)
 WHERE h.id = %(hotel_id)s
 ORDER BY b.footprint <-> h.location"""
-
-FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
-    f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
-    f.status, f.geo_refs, f.explanation, NULL::double precision
-FROM facts f JOIN hotels h ON h.id = f.subject_id
-WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
-  AND (%(hotel_id)s::text IS NULL OR h.id = %(hotel_id)s) AND f.subject_type = 'hotel'
-  AND (%(hotel_ids)s::text[] IS NULL OR h.id=ANY(%(hotel_ids)s::text[]))
-  AND (%(characteristic_keys)s::text[] IS NULL OR f.characteristic_key=ANY(%(characteristic_keys)s::text[]))
-  AND f.status IN ('active', 'confirmed_by_hotelier')
-UNION ALL
-SELECT fa.hotel_id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
-    f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
-    f.status, f.geo_refs, f.explanation, fa.azimuth_deg
-FROM facts f JOIN facades fa ON fa.id = f.subject_id
-JOIN hotels h ON h.id = fa.hotel_id
-WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
-  AND (%(hotel_id)s::text IS NULL OR h.id = %(hotel_id)s) AND f.subject_type = 'facade'
-  AND (%(hotel_ids)s::text[] IS NULL OR h.id=ANY(%(hotel_ids)s::text[]))
-  AND (%(characteristic_keys)s::text[] IS NULL OR f.characteristic_key=ANY(%(characteristic_keys)s::text[]))
-  AND f.status IN ('active', 'confirmed_by_hotelier')"""
 
 ROOMS = """SELECT id, name, capacity, floor_min, floor_max, facade_ids,
 price_amount, price_currency, included FROM rooms WHERE hotel_id = %(hotel_id)s ORDER BY id"""
@@ -203,7 +182,7 @@ class PostgresSearchRepository:
             },
         )
         rows = await result.fetchall()
-        return [search_fact(row) for row in rows]
+        return [fact_record(row) for row in rows]
 
 
 def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:

@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol
+from typing import Literal, Protocol
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -19,3 +19,19 @@ class WalkSourcePort(Protocol):
 
 class WalkStorePort(Protocol):
     async def save(self, region: str, paths: Sequence[WalkPath]) -> int: ...
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class PlaceWalk:
+    hotel_id: str
+    place_id: str
+    meters: float
+    minutes: float | None
+    mode: Literal["graph", "straight"]
+    geometry: dict[str, object]
+
+
+class WalkRouterPort(Protocol):
+    async def routes(
+        self, origin: str, targets: Sequence[str], max_m: float
+    ) -> Sequence[PlaceWalk]: ...

@@ -1,0 +1,15 @@
+key: office
+layer: volume
+match:
+- tag: building
+  values:
+  - office
+  - commercial
+- tag: landuse
+  values:
+  - commercial
+  - retail
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-office

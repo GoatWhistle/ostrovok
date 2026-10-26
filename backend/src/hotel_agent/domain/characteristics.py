@@ -75,6 +75,25 @@ class FieldRule:
     negative: tuple[str, ...]
 
 
+class CompareGroup(StrEnum):
+    LOCATION = "location"
+    VIEW = "view"
+    ROOM = "room"
+    NEARBY = "nearby"
+    AMENITIES = "amenities"
+
+
+class BetterDirection(StrEnum):
+    LOWER = "lower"
+    HIGHER = "higher"
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class CompareHint:
+    group: CompareGroup
+    better: BetterDirection | None = None
+
+
 @dataclass(frozen=True, slots=True, kw_only=True)
 class Characteristic:
     key: str
@@ -94,3 +113,4 @@ class Characteristic:
     question_template: str | None
     source_kinds: tuple[SourceType, ...]
     display: Display
+    compare: CompareHint | None = None

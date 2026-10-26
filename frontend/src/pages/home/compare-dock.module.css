@@ -1,0 +1,15 @@
+.dock {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4);
+  animation: var(--motion-anchor-in);
+}
+
+.dock[data-state="closed"] {
+  animation: var(--motion-fade-out);
+}
+
+.dock > a {
+  box-shadow: var(--shadow-float);
+}

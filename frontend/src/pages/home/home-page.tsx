@@ -1,22 +1,24 @@
-import { type CSSProperties, useState } from "react"
-import { FactDetails } from "@/features/fact-details"
-import { HotelDetails } from "@/features/hotel-details"
+import { type CSSProperties, useCallback, useState } from "react"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { type ChatView, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { Swap, usePresence, withViewTransition } from "@/shared/motion"
-import { Button, ButtonLink, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
+import { Swap, withViewTransition } from "@/shared/motion"
+import { ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
+import { CompareDock } from "./compare-dock"
 import styles from "./home-page.module.css"
 import { Landing } from "./landing"
+import { SelectedHotel } from "./selected-hotel"
 import { useFreshStart } from "./use-fresh-start"
 
 export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
+  const [sceneTime, setSceneTime] = useState({ date: "", hour: 16 })
+  const onTimeChange = useCallback((date: string, hour: number) => setSceneTime({ date, hour }), [])
   const [stay, setStay] = useState(false)
   const [chatView, setChatView] = useState<ChatView>("chat")
   useFreshStart(() => {
@@ -24,9 +26,6 @@ export function HomePage() {
     state.reset()
   })
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
-  const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
-  const compareDock = usePresence(state.compared.length >= 2)
-  const limitDock = usePresence(state.limitReached)
   const panelSize = useResizable({
     storageKey: "factmap-panel-width",
     edge: "end",
@@ -91,7 +90,7 @@ export function HomePage() {
           />
           <Swap swapKey={state.hotelId ? "hotel" : "list"} as="div" className={styles.swap}>
             {state.hotelId ? (
-              <SelectedHotel state={state} />
+              <SelectedHotel state={state} time={sceneTime} />
             ) : (
               <ScrollArea className={styles.scroll}>
                 <SearchResults
@@ -117,6 +116,9 @@ export function HomePage() {
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
+            onPlace={state.openPlace}
+            onTimeChange={onTimeChange}
+            bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
           />
         </div>
         <div className={styles.chat}>
@@ -153,76 +155,11 @@ export function HomePage() {
           />
         </div>
       </div>
-      {compareDock.mounted ? (
-        <div
-          className={styles.compare}
-          data-state={compareDock.state}
-          onAnimationEnd={compareDock.onAnimationEnd}
-        >
-          <ButtonLink to={`/compare?${compareQuery}`} icon="compare">
-            {t("explore:navigation.compare")} ({state.compared.length})
-          </ButtonLink>
+      {state.view === "hotels" ? (
+        <div className={styles.mobileDock}>
+          <CompareDock ids={state.compared} limit={state.limitReached} />
         </div>
       ) : null}
-      {limitDock.mounted ? (
-        <p
-          className={styles.status}
-          role="status"
-          data-state={limitDock.state}
-          onAnimationEnd={limitDock.onAnimationEnd}
-        >
-          {t("explore:results.selectionLimit")}
-        </p>
-      ) : null}
     </div>
-  )
-}
-
-type Workspace = ReturnType<typeof useHotelWorkspace>
-
-function SelectedHotel({ state }: { readonly state: Workspace }) {
-  const { t } = useTranslation()
-  if (!state.hotelId) return null
-  const selected = state.results.find((item) => item.hotel.id === state.hotelId)
-  const compared = state.compared.includes(state.hotelId)
-  const hotelId = state.hotelId
-  return (
-    <>
-      <div className={styles.bar}>
-        <Button variant="ghost" size="compact" icon="chevron-left" onClick={state.closeHotel}>
-          {t("explore:panel.back")}
-        </Button>
-        <Button
-          variant="ghost"
-          size="compact"
-          icon="compare"
-          aria-pressed={compared}
-          onClick={() => state.compare(hotelId)}
-        >
-          {compared ? t("explore:results.removeCompare") : t("explore:results.compare")}
-        </Button>
-      </div>
-      <ScrollArea
-        ref={state.detailRef}
-        tabIndex={-1}
-        className={styles.scroll}
-        aria-label={t("explore:details.title")}
-      >
-        <Swap swapKey={state.factId ?? hotelId} as="div">
-          {state.factId ? (
-            <FactDetails hotelId={hotelId} factId={state.factId} onBack={state.closeFact} />
-          ) : (
-            <HotelDetails
-              hotelId={hotelId}
-              matched={selected?.matched ?? []}
-              stay={state.search?.parsed}
-              onProperty={(item) => selected && state.property(selected, item)}
-              onFact={state.fact}
-              onPreview={(item) => selected && state.preview(selected, item)}
-            />
-          )}
-        </Swap>
-      </ScrollArea>
-    </>
   )
 }

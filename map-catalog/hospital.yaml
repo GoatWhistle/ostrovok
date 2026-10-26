@@ -1,0 +1,14 @@
+key: hospital
+layer: volume
+match:
+- tag: building
+  values:
+  - hospital
+- tag: amenity
+  values:
+  - hospital
+  - clinic
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-hospital

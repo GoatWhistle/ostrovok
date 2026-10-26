@@ -13,8 +13,10 @@ from hotel_agent.application.dto import (
     SupplierContentRecord,
 )
 from hotel_agent.application.ports.data_exploration import DataRepository
+from hotel_agent.application.ports.places import PlaceRepository
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
 from hotel_agent.application.ports.view_scenes import ViewSceneRepository
+from hotel_agent.application.ports.walk import WalkRouterPort
 from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.domain.query import NearbyObjectRequest
 
@@ -128,6 +130,8 @@ class ChatRepository(Protocol):
 
 
 class UnitOfWork(Protocol):
+    walk: WalkRouterPort
+    places: PlaceRepository
     view_scenes: ViewSceneRepository
     documents: SearchDocumentsPort
     chat: ChatRepository

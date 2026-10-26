@@ -192,6 +192,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read OSM rendering classes and classification rules */
+        get: operations["getMapCatalog"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/map/tiles/{z}/{x}/{y}.pbf": {
         parameters: {
             query?: never;
@@ -269,8 +286,25 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Сравнение отелей по характеристикам (этап 2) */
+        /** Сравнение отелей по характеристикам */
         post: operations["compareHotels"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/places/{place_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Объект OpenStreetMap и путь от выбранного отеля */
+        get: operations["getPlace"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -434,6 +468,12 @@ export interface components {
             scope: "hotel" | "room" | "facade";
             /** @example 365 */
             ttl_days?: number;
+            compare?: {
+                /** @enum {string} */
+                group: "location" | "view" | "room" | "nearby" | "amenities";
+                /** @enum {string|null} */
+                better?: "lower" | "higher" | null;
+            } | null;
             source_kinds?: components["schemas"]["SourceType"][];
             display?: {
                 /** @example waves */
@@ -449,6 +489,34 @@ export interface components {
                  */
                 geo_style?: "line" | "points" | "polygon" | "viewshed" | "facade";
             };
+        };
+        PlaceCard: {
+            id: string;
+            name: string | null;
+            kind: string;
+            location: number[];
+            osm_ref: string;
+            tags: {
+                [key: string]: string;
+            };
+            source: {
+                /** @enum {string} */
+                type: "osm_tag";
+                /** Format: date-time */
+                extracted_at: string;
+                /** @enum {string} */
+                license: "ODbL";
+                /** Format: uri */
+                url: string;
+            };
+            facts: components["schemas"]["FactBrief"][];
+            walk: {
+                distance_m: number;
+                minutes: number | null;
+                geo_ref: string;
+                /** @enum {string} */
+                mode: "graph" | "straight";
+            } | null;
         };
         /** @enum {string} */
         SourceType: "osm" | "dem" | "computed" | "open_meteo" | "hotelier" | "llm_extraction" | "supplier";
@@ -723,7 +791,34 @@ export interface components {
                 label?: string | null;
                 osm_ref?: string | null;
                 style_hint?: string | null;
+                place_id?: string;
+                hotel_id?: string;
+                distance_m?: number;
+                minutes?: number | null;
+                /** @enum {string} */
+                mode?: "graph" | "straight";
             };
+        };
+        MapCatalog: {
+            version: string;
+            classes: components["schemas"]["MapClass"][];
+        };
+        MapClass: {
+            key: string;
+            /** @enum {string} */
+            layer: "ground" | "volume" | "prop" | "poi";
+            match: {
+                tag: string;
+                values: string[];
+            }[];
+            priority: number;
+            min_zoom: number;
+            style: {
+                [key: string]: string;
+            };
+            props?: {
+                [key: string]: unknown;
+            } | null;
         };
         GeoFeatureCollection: {
             /** @enum {string} */
@@ -1201,6 +1296,29 @@ export interface operations {
             };
         };
     };
+    getMapCatalog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Versioned rendering catalog */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        version: string;
+                        classes: components["schemas"]["MapClass"][];
+                    };
+                };
+            };
+        };
+    };
     getMapTile: {
         parameters: {
             query?: never;
@@ -1332,6 +1450,39 @@ export interface operations {
                             };
                         }[];
                     };
+                };
+            };
+        };
+    };
+    getPlace: {
+        parameters: {
+            query?: {
+                from_hotel?: string;
+            };
+            header?: never;
+            path: {
+                place_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlaceCard"];
+                };
+            };
+            /** @description Объект или отель не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

@@ -1,0 +1,14 @@
+key: tree_row
+layer: prop
+match:
+- tag: natural
+  values:
+  - tree_row
+priority: 60
+min_zoom: 15
+style:
+  fill: --map-class-tree_row
+props:
+  model: tree-oak
+  scatter_per_1000_m2: 4
+  min_zoom: 15

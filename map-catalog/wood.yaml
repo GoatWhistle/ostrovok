@@ -1,0 +1,14 @@
+key: wood
+layer: ground
+match:
+- tag: natural
+  values:
+  - wood
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-wood
+props:
+  model: tree-oak
+  scatter_per_1000_m2: 4
+  min_zoom: 15

@@ -45,7 +45,7 @@ class Providers:
 
 def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
     registry = YamlCharacteristicRegistry.from_directory(settings.characteristics_dir)
-    uow = PostgresUnitOfWorkFactory(settings.database_url)
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
     clock = SystemClock()
     matcher = (
         MatchHotelCatalog(

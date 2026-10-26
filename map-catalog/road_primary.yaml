@@ -1,0 +1,11 @@
+key: road_primary
+layer: ground
+match:
+- tag: highway
+  values:
+  - primary
+  - primary_link
+priority: 78
+min_zoom: 10
+style:
+  fill: --map-class-road_primary

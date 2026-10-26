@@ -1,0 +1,11 @@
+key: road_tertiary
+layer: ground
+match:
+- tag: highway
+  values:
+  - tertiary
+  - tertiary_link
+priority: 76
+min_zoom: 10
+style:
+  fill: --map-class-road_tertiary

@@ -1,0 +1,11 @@
+key: road_steps
+layer: ground
+match:
+- tag: highway
+  values:
+  - steps
+  - steps_link
+priority: 71
+min_zoom: 14
+style:
+  fill: --map-class-road_steps

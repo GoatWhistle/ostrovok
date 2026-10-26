@@ -2,13 +2,8 @@ import type { FeatureCollection, Point } from "geojson"
 import type { GeoJSONSource, MapGeoJSONFeature, Map as MapLibreMap, Marker } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
-import {
-  createMarker,
-  hotelPosition,
-  labelPlacement,
-  type MarkerView,
-  removeMarkers,
-} from "./marker-view"
+import { createMarker, hotelPosition, type MarkerView, removeMarkers } from "./marker-view"
+import { stackViews } from "./markers/spiderfy"
 
 const SOURCE = "hotel-results"
 
@@ -37,8 +32,8 @@ function ensureSource(map: MapLibreMap, data: FeatureCollection) {
     type: "geojson",
     data,
     cluster: true,
-    clusterRadius: 56,
-    clusterMaxZoom: 17,
+    clusterRadius: 40,
+    clusterMaxZoom: 15,
   })
   map.addLayer({
     id: SOURCE,
@@ -49,7 +44,6 @@ function ensureSource(map: MapLibreMap, data: FeatureCollection) {
 }
 
 function viewFor(
-  map: MapLibreMap,
   feature: MapGeoJSONFeature,
   marker: Marker,
   result: SearchResult | undefined,
@@ -67,7 +61,7 @@ function viewFor(
       position: (feature.geometry as Point).coordinates as [number, number],
     }
   if (!result) return null
-  return { key, element, kind: "hotel", result, selected: false, ...labelPlacement(map, marker) }
+  return { key, element, kind: "hotel", result, selected: false }
 }
 
 function featureKey(feature: MapGeoJSONFeature) {
@@ -99,7 +93,7 @@ function collect(
     const position = (feature.geometry as Point).coordinates as [number, number]
     const marker = markers.get(key) ?? createMarker(map, position, "bottom").marker
     markers.set(key, marker)
-    const view = viewFor(map, feature, marker, result)
+    const view = viewFor(feature, marker, result)
     if (view) views.push(view)
   }
   prune(markers, seen)
@@ -107,9 +101,7 @@ function collect(
 }
 
 function signature(views: readonly MarkerView[]) {
-  return views
-    .map((view) => (view.kind === "hotel" ? `${view.key}:${view.edge}:${view.below}` : view.key))
-    .join("|")
+  return views.map((view) => view.key).join("|")
 }
 
 export function useResultPins(
@@ -128,17 +120,33 @@ export function useResultPins(
     ensureSource(map, JSON.parse(key) as FeatureCollection)
     const markers = new Map<string, Marker>()
     let last = ""
+    let expanded: string | undefined
     const sync = () => {
-      const next = collect(map, markers, latest.current)
+      const next = stackViews(
+        map,
+        markers,
+        collect(map, markers, latest.current),
+        expanded,
+        (key) => {
+          expanded = key
+          sync()
+        },
+      )
       const current = signature(next)
       if (current === last) return
       last = current
       setViews(next)
     }
+    const collapse = () => {
+      expanded = undefined
+      sync()
+    }
+    map.on("movestart", collapse)
     map.on("idle", sync)
     map.on("moveend", sync)
     sync()
     return () => {
+      map.off("movestart", collapse)
       map.off("idle", sync)
       map.off("moveend", sync)
       removeMarkers(markers.values())
@@ -166,6 +174,22 @@ export async function expandCluster(
   const source = map.getSource<GeoJSONSource>(SOURCE)
   if (!source) return
   const zoom = await source.getClusterExpansionZoom(clusterId)
+  if (zoom > 16) {
+    const leaves = await source.getClusterLeaves(clusterId, 1000, 0)
+    const points = leaves.map((item) => (item.geometry as Point).coordinates)
+    const longitudes = points.map((point) => point[0] ?? position[0])
+    const latitudes = points.map((point) => point[1] ?? position[1])
+    if (points.length) {
+      map.fitBounds(
+        [
+          [Math.min(...longitudes), Math.min(...latitudes)],
+          [Math.max(...longitudes), Math.max(...latitudes)],
+        ],
+        { padding: 48, maxZoom: map.getMaxZoom(), duration: instant ? 0 : duration },
+      )
+      return
+    }
+  }
   map.easeTo({
     center: position,
     zoom: Math.min(zoom, map.getMaxZoom()),

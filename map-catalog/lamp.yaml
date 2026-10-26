@@ -1,0 +1,14 @@
+key: lamp
+layer: prop
+match:
+- tag: highway
+  values:
+  - street_lamp
+priority: 60
+min_zoom: 15
+style:
+  fill: --map-class-lamp
+props:
+  model: lamp
+  scatter_per_1000_m2: 4
+  min_zoom: 15

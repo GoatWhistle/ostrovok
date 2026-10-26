@@ -1,0 +1,17 @@
+key: school
+layer: volume
+match:
+- tag: building
+  values:
+  - school
+  - university
+  - kindergarten
+- tag: amenity
+  values:
+  - school
+  - university
+  - kindergarten
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-school

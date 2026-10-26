@@ -3,6 +3,7 @@ from collections.abc import Sequence
 from datetime import datetime, timedelta
 
 from hotel_agent.application.dto import SearchFactRecord
+from hotel_agent.application.walk_refs import nearby_walk_refs
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, NearbyObjectRequest
 
@@ -50,7 +51,10 @@ def nearby_record(
         computed_at=now,
         valid_until=now + timedelta(days=30),
         status="active",
-        geo_refs=tuple(f"g_poi_{item}" for item in ids),
+        geo_refs=(
+            *(f"g_poi_{item}" for item in ids),
+            *nearby_walk_refs(hotel_id, ids),
+        ),
         explanation=(
             f"По неполным данным OpenStreetMap в радиусе {request.radius_m} м найдено "
             f"{len(ids)} объектов; отсутствие не гарантировано."

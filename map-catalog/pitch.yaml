@@ -1,0 +1,11 @@
+key: pitch
+layer: ground
+match:
+- tag: leisure
+  values:
+  - pitch
+  - sports_centre
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-pitch

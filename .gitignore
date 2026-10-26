@@ -56,3 +56,7 @@ var/
 
 # raw downloads for seed building; only the derived slice in data/seed/ is committed
 data/raw/
+
+!work/map-styles/shared/models/
+!work/map-styles/shared/models/**
+!work/map-styles/**/*.png

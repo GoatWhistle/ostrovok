@@ -9,6 +9,13 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Cloud,
+  CloudFog,
+  CloudLightning,
+  CloudMoon,
+  CloudRain,
+  CloudSnow,
+  CloudSun,
   Compass,
   Copy,
   GitCompareArrows,
@@ -69,6 +76,13 @@ import {
 } from "./own-glyphs"
 
 export const ICONS = {
+  cloud: Cloud,
+  "cloud-fog": CloudFog,
+  "cloud-lightning": CloudLightning,
+  "cloud-moon": CloudMoon,
+  "cloud-rain": CloudRain,
+  "cloud-snow": CloudSnow,
+  "cloud-sun": CloudSun,
   back: ArrowLeft,
   next: ArrowRight,
   "arrow-up": ArrowUp,

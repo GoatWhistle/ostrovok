@@ -1,0 +1,10 @@
+key: wetland
+layer: ground
+match:
+- tag: natural
+  values:
+  - wetland
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-wetland

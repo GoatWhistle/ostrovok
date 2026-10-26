@@ -4,7 +4,9 @@ from pydantic import BaseModel, Field
 
 from hotel_agent.application.dto import RegionRecord
 from hotel_agent.domain.characteristics import (
+    BetterDirection,
     Characteristic,
+    CompareGroup,
     GeoStyle,
     Scope,
     SourceType,
@@ -28,6 +30,11 @@ class DisplaySchema(BaseModel):
     geo_style: GeoStyle
 
 
+class CompareHintSchema(BaseModel):
+    group: CompareGroup
+    better: BetterDirection | None = None
+
+
 class CharacteristicSchema(BaseModel):
     key: str
     title: str
@@ -38,6 +45,7 @@ class CharacteristicSchema(BaseModel):
     ttl_days: int
     source_kinds: list[SourceType]
     display: DisplaySchema
+    compare: CompareHintSchema | None = None
 
 
 class CharacteristicListResponse(BaseModel):
@@ -93,6 +101,11 @@ def characteristic_schema(characteristic: Characteristic) -> CharacteristicSchem
         scope=characteristic.scope,
         ttl_days=characteristic.ttl_days,
         source_kinds=list(characteristic.source_kinds),
+        compare=CompareHintSchema(
+            group=characteristic.compare.group, better=characteristic.compare.better
+        )
+        if characteristic.compare
+        else None,
         display=DisplaySchema(
             icon=characteristic.display.icon,
             color=characteristic.display.color,

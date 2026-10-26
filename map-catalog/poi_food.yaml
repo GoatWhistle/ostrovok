@@ -1,0 +1,12 @@
+key: poi_food
+layer: poi
+match:
+- tag: amenity
+  values:
+  - restaurant
+  - cafe
+  - fast_food
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_food

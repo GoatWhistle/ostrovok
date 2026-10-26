@@ -1,0 +1,12 @@
+key: house
+layer: volume
+match:
+- tag: building
+  values:
+  - house
+  - detached
+  - semidetached_house
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-house

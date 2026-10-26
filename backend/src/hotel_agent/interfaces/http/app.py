@@ -2,11 +2,14 @@ from fastapi import APIRouter
 
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
+from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
+from hotel_agent.application.use_cases.get_place import GetPlace
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
@@ -14,11 +17,14 @@ from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.interfaces.http.routers import (
     chat,
+    compare,
     geo,
     health,
     hotels,
+    map_catalog,
     map_tiles,
     meta,
+    places,
     regions,
     search,
     terrain,
@@ -36,13 +42,18 @@ def api_router_v1(
     registry: CharacteristicRegistryPort,
     get_geo_features: GetGeoFeatures,
     get_hotel_card: GetHotelCard,
+    get_place: GetPlace,
+    compare_hotels: CompareHotels,
     get_hotel_offers: GetHotelOffers,
     get_hotel_scene: GetHotelScene,
     get_map_tile: GetMapTile,
+    get_map_catalog: GetMapCatalog,
     get_terrain_tile: GetTerrainTile,
     get_weather: GetWeather,
 ) -> APIRouter:
     router = APIRouter(prefix="/api/v1")
+    router.include_router(places.build_router(get_place))
+    router.include_router(compare.build_router(compare_hotels))
     router.include_router(health.build_router(llm_provider))
     router.include_router(meta.build_router(list_characteristics))
     router.include_router(regions.build_router(list_regions))
@@ -51,6 +62,7 @@ def api_router_v1(
     router.include_router(geo.build_router(get_geo_features))
     router.include_router(hotels.build_router(get_hotel_card, get_hotel_scene, get_hotel_offers))
     router.include_router(map_tiles.build_router(get_map_tile))
+    router.include_router(map_catalog.build_router(get_map_catalog))
     router.include_router(terrain.build_router(get_terrain_tile))
     router.include_router(weather.build_router(get_weather))
     return router

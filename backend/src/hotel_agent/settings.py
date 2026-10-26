@@ -29,6 +29,7 @@ class Settings:
     llm_model: str | None = None
     llm_fallback_model: str | None = None
     llm_timeout_s: float = 30.0
+    map_catalog_dir: Path | None = None
     characteristics_dir: Path = Path("characteristics")
     seed_dir: Path = Path("data/seed")
     terrain_cache_dir: Path | None = None
@@ -52,6 +53,7 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         or "https://overpass.private.coffee/api/interpreter",
         public_data_user_agent=env.get("PUBLIC_DATA_USER_AGENT")
         or "HotelAgent/0.1 (https://github.com/GoatWhistle/o-hack)",
+        map_catalog_dir=Path(env["MAP_CATALOG_DIR"]) if env.get("MAP_CATALOG_DIR") else None,
         terrain_cache_dir=Path(env["TERRAIN_CACHE_DIR"]) if env.get("TERRAIN_CACHE_DIR") else None,
         llm_provider=_choice(env, "LLM_PROVIDER", LLMProvider, LLMProvider.FAKE),
         llm_api_key=env.get("LLM_API_KEY") or None,

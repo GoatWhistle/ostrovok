@@ -54,7 +54,7 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
   const compass = useBearing(map, ready)
   const flat = useFlat(map, ready)
   return (
-    <div className={styles.controls}>
+    <div className={styles.controls} data-map-obstacle>
       <div className={styles.group}>
         <Button
           variant="ghost"

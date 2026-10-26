@@ -1,0 +1,11 @@
+key: road_path
+layer: ground
+match:
+- tag: highway
+  values:
+  - path
+  - path_link
+priority: 70
+min_zoom: 14
+style:
+  fill: --map-class-road_path

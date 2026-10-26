@@ -1,0 +1,47 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-20);
+  border-block-end: var(--hairline) solid var(--border-subtle);
+}
+
+.row[data-different="true"] {
+  background-color: var(--surface-highlight);
+}
+
+.title {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.value {
+  --button-padding: 0;
+  --button-surface-hover: var(--action-ghost-hover);
+  --button-surface-press: var(--action-ghost-press);
+
+  font-variant-numeric: var(--font-numeric);
+}
+
+.value > span > span {
+  white-space: normal;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.evidence {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.missing {
+  composes: secondaryText from "../../shared/styles/compose.module.css";
+  margin: 0;
+}

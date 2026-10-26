@@ -1,6 +1,7 @@
 import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 
@@ -19,6 +20,7 @@ from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
 from hotel_agent.adapters.geo.window_views import WindowViews
 from hotel_agent.adapters.geo.worldcover import WorldCover
 from hotel_agent.adapters.log.stdlib import StdlibLogger
+from hotel_agent.adapters.map_catalog.loader import load_catalog
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
@@ -29,13 +31,16 @@ from hotel_agent.application.agent.recommendation_review import RecommendationRe
 from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.ensure_geography import EnsureGeography
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
+from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
+from hotel_agent.application.use_cases.get_place import GetPlace
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
@@ -163,9 +168,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),
+            get_place=GetPlace(providers.uow, providers.clock),
+            compare_hotels=CompareHotels(providers.uow, providers.registry, providers.clock),
             get_hotel_offers=get_hotel_offers,
             get_hotel_scene=GetHotelScene(providers.uow, geography),
             get_map_tile=GetMapTile(providers.uow, geography),
+            get_map_catalog=GetMapCatalog(
+                load_catalog(
+                    config.map_catalog_dir or Path(__file__).resolve().parents[3] / "map-catalog"
+                )
+            ),
             get_terrain_tile=GetTerrainTile(terrain_tiles),
             get_weather=GetWeather(conditions),
         )

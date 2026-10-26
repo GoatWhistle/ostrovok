@@ -26,6 +26,7 @@ def geo_feature_schema(item: GeoFeatureRecord) -> GeoFeatureSchema:
         id=item.id,
         geometry=item.geometry,
         properties={
+            **item.properties,
             "kind": item.kind,
             "characteristic_key": item.characteristic_key,
             "name": item.name,

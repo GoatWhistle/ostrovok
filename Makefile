@@ -78,3 +78,12 @@ fmt: ## Apply ruff formatting and import order
 	$(BACKEND) ruff format .
 
 check: lint test ## Run every check that needs nothing started
+
+fetch-map-layers:
+	python3 scripts/fetch-map-layers.py
+
+fetch-basemap:
+	bash scripts/fetch-basemap.sh
+
+import-map-layers:
+	$(BACKEND) python scripts/import_map_layers.py --root $(CURDIR)

@@ -1,0 +1,11 @@
+key: road_cycleway
+layer: ground
+match:
+- tag: highway
+  values:
+  - cycleway
+  - cycleway_link
+priority: 69
+min_zoom: 14
+style:
+  fill: --map-class-road_cycleway

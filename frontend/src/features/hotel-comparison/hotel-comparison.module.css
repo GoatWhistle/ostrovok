@@ -1,99 +1,118 @@
-.frame {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
-  animation: var(--motion-fade-in);
-}
-
-.state {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
-}
-
-.skeleton {
-  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
-  display: grid;
+.comparison {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-16);
-  padding: var(--space-card);
+  min-inline-size: 0;
 }
 
-.table {
-  inline-size: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: var(--font-size-body-sm);
-  line-height: var(--line-height-body-sm);
-}
-
-.table th,
-.table td {
-  min-inline-size: var(--term-min);
-  padding: var(--space-12) var(--space-16);
-  border-block-end: var(--hairline) solid var(--border-subtle);
-  background-color: var(--surface-raised);
-  text-align: start;
-  vertical-align: middle;
-}
-
-.table th:first-child {
+.toolbar {
   position: sticky;
-  inset-inline-start: 0;
+  inset-block-start: 0;
   z-index: var(--layer-raised);
-  min-inline-size: calc(var(--term-min) + var(--space-60));
-  border-inline-end: var(--hairline) solid var(--border-subtle);
-}
-
-.table thead th {
-  vertical-align: bottom;
-}
-
-.corner {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
-}
-
-.hotel {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
-}
-
-.hotelName,
-.characteristic,
-.value {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-16);
+  padding-block: var(--space-12);
+  background-color: var(--surface-base);
 }
 
-.hotelName {
-  overflow-wrap: anywhere;
+.summary {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  margin: 0;
+  margin-inline-end: auto;
 }
 
-.hotelIcon,
-.unknown {
-  color: var(--text-muted);
+.dates {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
 }
 
-.characteristic {
-  font-weight: var(--weight-semibold);
+.dates > * {
+  min-inline-size: 0;
+  flex: 1;
 }
 
-.cell {
+.frame {
+  min-inline-size: 0;
+  max-block-size: calc(100dvh - var(--header-height) - var(--space-96));
+  scroll-snap-type: x proximity;
+}
+
+.cards {
   display: grid;
-  gap: var(--space-2);
+  grid-auto-flow: column;
+  grid-template-columns: repeat(var(--compare-count), minmax(var(--compare-card-min), 1fr)) var(
+      --term-min
+    );
+  grid-template-rows: repeat(var(--compare-rows), auto);
+  column-gap: var(--space-16);
+  padding-block-end: var(--space-12);
 }
 
-.value {
-  font-variant-numeric: var(--font-numeric);
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span var(--compare-rows);
+  min-inline-size: 0;
+  padding: 0;
+  gap: 0 var(--space-16);
+  box-shadow: var(--shadow-ring);
+  scroll-snap-align: start;
+  overflow: clip;
 }
 
-.source {
+.strengths {
   composes: captionText from "../../shared/styles/compose.module.css";
-  padding-inline-start: var(--space-24);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-20);
 }
 
-.table tbody tr:last-child th,
-.table tbody tr:last-child td {
-  border-block-end: 0;
+.group {
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  margin: 0;
+  padding: var(--space-12) var(--space-20);
+  background-color: var(--surface-sunken);
 }
 
-@media (max-width: 47.99rem) {
-  .table th:first-child {
-    min-inline-size: var(--term-min);
+.facilities {
+  composes: secondaryText from "../../shared/styles/compose.module.css";
+  padding: var(--space-16) var(--space-20);
+}
+
+.facilities .group {
+  margin-block: 0 var(--space-12);
+}
+
+.facilities p {
+  margin: 0;
+}
+
+.facilities ul {
+  padding-inline-start: var(--space-16);
+  margin: 0;
+}
+
+.add {
+  grid-row: span var(--compare-rows);
+  padding: var(--space-20);
+  min-inline-size: 0;
+}
+
+@media (max-width: 63.99rem) {
+  .cards {
+    grid-template-columns: none;
+    grid-auto-columns: var(--compare-mobile-width);
+  }
+
+  .dates {
+    inline-size: 100%;
   }
 }

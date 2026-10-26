@@ -1,0 +1,10 @@
+key: poi_shop
+layer: poi
+match:
+- tag: shop
+  values:
+  - '*'
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_shop

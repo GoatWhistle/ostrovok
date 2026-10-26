@@ -1,0 +1,47 @@
+.trigger {
+  composes: floatingSurface from "../../../styles/compose.module.css";
+  max-inline-size: 100%;
+  border-radius: var(--radius-pill);
+  font-variant-numeric: var(--font-numeric);
+}
+
+.trigger[aria-expanded] {
+  --button-surface: var(--surface-overlay);
+  --button-surface-hover: var(--surface-raised-hover);
+  --button-radius: var(--radius-pill);
+}
+
+.panel {
+  composes: floatingSurface from "../../../styles/compose.module.css";
+  position: fixed;
+  z-index: var(--layer-popover);
+  inline-size: min(var(--map-time-panel), calc(100vw - var(--space-32)));
+  max-block-size: calc(100dvh - var(--space-32));
+  overflow: auto;
+  padding: var(--space-16);
+  transform-origin: bottom left;
+  clip-path: inset(0 0 0 0 round var(--radius-md));
+  opacity: 1;
+  transition: var(--transition-reveal-in);
+}
+
+.panel[data-placement="bottom"] {
+  transform-origin: top left;
+}
+
+.panel[data-state="closed"] {
+  clip-path: inset(100% 0 0 0 round var(--radius-md));
+  opacity: 0;
+  transition: var(--transition-reveal-out);
+}
+
+.panel[data-instant="true"] {
+  transition: none;
+}
+
+@starting-style {
+  .panel {
+    clip-path: inset(100% 0 0 0 round var(--radius-md));
+    opacity: 0;
+  }
+}

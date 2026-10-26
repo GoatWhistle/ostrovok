@@ -48,6 +48,7 @@ def test_registry_is_published_for_the_frontend(settings: Settings) -> None:
         "distance_to_sea",
         "double_room",
         "noise_level",
+        "nearby",
         "pets_policy",
         "room_capacity",
         "sunset_view",
@@ -61,6 +62,7 @@ def test_each_item_carries_display_hints(settings: Settings) -> None:
     sea = next(item for item in items if item["key"] == "distance_to_sea")
     assert sea["title"] == "Пешком до моря"
     assert sea["unit"] == "min"
+    assert sea["compare"] == {"group": "location", "better": "lower"}
     assert sea["scope"] == "hotel"
     assert sea["display"] == {"icon": "waves", "color": "#1E88E5", "geo_style": "line"}
     assert sea["source_kinds"] == ["osm", "dem", "computed"]
@@ -80,4 +82,4 @@ def test_a_new_yaml_file_reaches_the_endpoint_without_code_changes(
     added = next(item for item in items if item["key"] == "pool_heated")
     assert added["title"] == "Подогреваемый бассейн"
     assert added["display"]["icon"] == "pool"
-    assert len(items) == 9
+    assert len(items) == 10

@@ -1,7 +1,5 @@
-import heapq
 import math
 from collections.abc import Sequence
-from itertools import pairwise
 from pathlib import Path
 
 import rasterio
@@ -10,11 +8,14 @@ from shapely.geometry import Point, box, shape
 from shapely.ops import transform
 from shapely.strtree import STRtree
 
+from hotel_agent.adapters.geo.walk_network import (
+    WALK_METERS_PER_MINUTE,
+    Node,
+    build_graph,
+    distances,
+)
 from hotel_agent.adapters.seed.files import read_layer
-from hotel_agent.application.dto import Feature
 from hotel_agent.application.ports.walk import WalkPath
-
-type Node = tuple[float, float]
 
 
 class SochiWalkGraph:
@@ -23,11 +24,11 @@ class SochiWalkGraph:
 
     def calculate(self, directory: Path) -> Sequence[WalkPath]:
         walk = read_layer(directory, "walk")
-        coordinates, adjacency = self._build_graph(walk)
+        coordinates, adjacency = build_graph(walk, self._project)
         if not coordinates:
             return []
         sources = self._sea_nodes(directory, coordinates)
-        distance, parent = self._distances(adjacency, sources)
+        distance, parent = distances(adjacency, sources)
         points = [Point(*xy) for xy in coordinates.values()]
         tree = STRtree(points)
         node_ids = list(coordinates)
@@ -53,32 +54,13 @@ class SochiWalkGraph:
                 paths.append(
                     WalkPath(
                         hotel_id=hotel.id,
-                        minutes=round(meters / 80, 1),
+                        minutes=round(meters / WALK_METERS_PER_MINUTE, 1),
                         meters=round(meters, 1),
                         elevation_delta_m=round(elevation_delta, 1),
                         geometry={"type": "LineString", "coordinates": route},
                     )
                 )
         return paths
-
-    def _build_graph(
-        self, features: Sequence[Feature]
-    ) -> tuple[dict[Node, tuple[float, float]], dict[Node, dict[Node, float]]]:
-        coordinates: dict[Node, tuple[float, float]] = {}
-        adjacency: dict[Node, dict[Node, float]] = {}
-        for feature in features:
-            line = feature.geometry["coordinates"]
-            for first, second in pairwise(line):
-                a = (round(first[0], 7), round(first[1], 7))
-                b = (round(second[0], 7), round(second[1], 7))
-                if a == b:
-                    continue
-                coordinates.setdefault(a, self._project.transform(*a))
-                coordinates.setdefault(b, self._project.transform(*b))
-                length = math.dist(coordinates[a], coordinates[b])
-                adjacency.setdefault(a, {})[b] = length
-                adjacency.setdefault(b, {})[a] = length
-        return coordinates, adjacency
 
     def _sea_nodes(
         self, directory: Path, coordinates: dict[Node, tuple[float, float]]
@@ -93,22 +75,3 @@ class SochiWalkGraph:
             if any(shapes[int(index)].distance(point) <= 50 for index in candidates):
                 sources.add(node)
         return sources
-
-    def _distances(
-        self, adjacency: dict[Node, dict[Node, float]], sources: set[Node]
-    ) -> tuple[dict[Node, float], dict[Node, Node]]:
-        distance = dict.fromkeys(sources, 0.0)
-        parent: dict[Node, Node] = {}
-        queue = [(0.0, source) for source in sources]
-        heapq.heapify(queue)
-        while queue:
-            cost, node = heapq.heappop(queue)
-            if cost > distance[node]:
-                continue
-            for neighbor, length in adjacency[node].items():
-                candidate = cost + length
-                if candidate < distance.get(neighbor, math.inf):
-                    distance[neighbor] = candidate
-                    parent[neighbor] = node
-                    heapq.heappush(queue, (candidate, neighbor))
-        return distance, parent

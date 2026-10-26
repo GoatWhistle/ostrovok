@@ -122,7 +122,9 @@
     "approximateTitle": "Approximate",
     "viewVisible": "The calculated line of sight is clear. A room with these windows must be confirmed with the hotel.",
     "viewBlocked": "The calculated line of sight is blocked by a building or terrain.",
-    "viewUnknown": "There is not enough data to verify a clear view from a window."
+    "viewUnknown": "There is not enough data to verify a clear view from a window.",
+    "walkShort": "{{value}} min",
+    "focusDetails": "Details"
   },
   "weather": {
     "scene": "Sun and weather",
@@ -147,7 +149,8 @@
     "altitude": "Altitude",
     "azimuth": "Azimuth",
     "sunsetShort": "Sunset",
-    "degrees": "{{value, number}}°"
+    "degrees": "{{value, number}}°",
+    "compact": "{{value, number}}°"
   },
   "facts": {
     "titleSea": "Walk to the sea",
@@ -325,7 +328,33 @@
     "emptyText": "Select hotels for comparison in the search results.",
     "error": "Comparison is unavailable",
     "back": "Back to search",
-    "characteristic": "Characteristic"
+    "remove": "Remove {{name}} from comparison",
+    "hotelPending": "Loading hotel",
+    "stars": "Stars: {{count}}",
+    "addressMissing": "Address not provided",
+    "cardError": "Could not load this hotel",
+    "priceMissing": "No price retrieved for these dates",
+    "retryPrice": "Retry price request",
+    "better": "Better",
+    "noData": "No data: this feature is not confirmed yet",
+    "onlyDifferences": "Differences only",
+    "summary": "{{different}} of {{total}} features differ",
+    "add": "Add a hotel",
+    "strengths": "Strengths",
+    "noStrengths": "No confirmed advantage",
+    "groups": {
+      "location": "Location",
+      "view": "View",
+      "room": "Room",
+      "nearby": "Nearby",
+      "amenities": "Amenities",
+      "other": "Other conditions"
+    },
+    "facilitiesMissing": "Amenities have not been retrieved",
+    "emptyDifference": "All known values match",
+    "priceDates": "Prices for two guests on these dates",
+    "registryError": "Could not load comparison rules",
+    "noiseIndex": "Noise index: {{value}}"
   },
   "service": {
     "offline": "Service is unavailable",
@@ -388,5 +417,56 @@
     "wholeUnknown": "A view of the entire object has not been verified",
     "missing": "Some geometry or height data are missing",
     "facade": "This is a facade estimate; confirm a room with this view with the hotel"
+  },
+  "place": {
+    "fieldSource": "OpenStreetMap {{ref}} / {{date}} / {{license}}",
+    "interval": "{{start}}–{{end}}{{next}}",
+    "title": "Place details",
+    "name": "Name",
+    "back": "Back to hotel",
+    "error": "Could not load this place",
+    "openOsm": "Open in OpenStreetMap",
+    "unnamed": "Unnamed {{kind}}",
+    "hours": "Opening hours",
+    "noHours": "Opening hours are not listed in OpenStreetMap.",
+    "open": "Open at the selected time",
+    "closed": "Closed at the selected time",
+    "atTime": "{{date}}, {{hour}}:00 (Moscow time)",
+    "unparsed": "This schedule is too complex to interpret. The original OpenStreetMap text is shown above.",
+    "nextDay": " next day",
+    "dayOff": "Closed",
+    "fromHotel": "Walk from this hotel",
+    "showRoute": "Show route",
+    "meters": "{{value}} m",
+    "straight": "About {{value}} m in a straight line",
+    "noGraph": "No connected walking path was found. The map shows a dashed straight line.",
+    "noRoute": "No route from this hotel is available.",
+    "noAddress": "A street address is not listed in OpenStreetMap.",
+    "missingFields": "Only fields present in the OpenStreetMap extract are shown.",
+    "nearest": "Nearest: {{value}}",
+    "withoutRoute": "{{count}} more without a route",
+    "yes": "Yes",
+    "no": "No",
+    "kinds": {
+      "bar": "bar",
+      "pub": "pub",
+      "cafe": "café",
+      "restaurant": "restaurant",
+      "nightclub": "nightclub",
+      "place": "place",
+      "nearby": "place"
+    },
+    "fields": {
+      "addr:street": "Street",
+      "addr:housenumber": "Building number",
+      "addr:city": "City",
+      "addr:postcode": "Postcode",
+      "cuisine": "Cuisine",
+      "outdoor_seating": "Outdoor seating",
+      "wheelchair": "Wheelchair access",
+      "phone": "Phone",
+      "website": "Website"
+    },
+    "kind": "Place type"
   }
 }
