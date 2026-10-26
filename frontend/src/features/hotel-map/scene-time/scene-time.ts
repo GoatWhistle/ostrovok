@@ -4,6 +4,8 @@ import { i18n } from "@/shared/i18n/instance"
 
 const ZONE = "Europe/Moscow"
 
+export const OVERVIEW_SUN = { azimuth: 335, altitude: 45 } as const
+
 export function sceneToday(): string {
   return new Intl.DateTimeFormat("sv-SE", { timeZone: ZONE }).format(new Date())
 }

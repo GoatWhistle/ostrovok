@@ -17,7 +17,7 @@ import { MapScale } from "./map-scale"
 import { MapFocus, MapStatus, mapNotes } from "./map-status"
 import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
-import { forecastEnd, sceneToday, sunScene } from "./scene-time/scene-time"
+import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
 import { useHotelMap } from "./use-hotel-map"
 import { expandCluster } from "./use-result-pins"
@@ -99,9 +99,10 @@ export function HotelMap({
     () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
     [hotelId, scene.data, hotel],
   )
-  const [lon, lat] = sceneLocation(hotel ?? results[0], selectedCamera)
+  const place = hotel ?? results[0]
+  const [lon, lat] = sceneLocation(place, selectedCamera)
   const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
-  const weather = useWeather(lon, lat, date, hour, selectedCamera !== undefined)
+  const weather = useWeather(lon, lat, date, hour, place !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)
   const focusFeatures = geoRefs.length ? (geometry.data?.features ?? []) : []
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
@@ -115,7 +116,7 @@ export function HotelMap({
     hotelId,
     focusFeatures,
     focusLabel: focus.label,
-    sun: sun.position,
+    sun: place ? sun.position : OVERVIEW_SUN,
   })
   const overview = scene.data?.cameras.overview ?? selectedCamera
   const showOverview = (instant: boolean) => {
@@ -142,12 +143,14 @@ export function HotelMap({
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
-      <SceneSun
-        map={map.instance}
-        ready={map.ready}
-        azimuth={sun.position.azimuth}
-        altitude={sun.position.altitude}
-      />
+      {place ? (
+        <SceneSun
+          map={map.instance}
+          ready={map.ready}
+          azimuth={sun.position.azimuth}
+          altitude={sun.position.altitude}
+        />
+      ) : null}
       {map.markers.map((view) =>
         createPortal(
           <MapPin
@@ -195,21 +198,23 @@ export function HotelMap({
       {selectedCamera ? (
         <div className={styles.bottom}>
           <div className={styles.bottomStart}>
-            <SceneTimePanel
-              date={date}
-              minDate={today}
-              maxDate={forecastEnd(today)}
-              hour={hour}
-              altitude={sun.position.altitude}
-              azimuth={sun.position.azimuth}
-              sunset={sun.times.sunset}
-              weather={weather.data}
-              weatherPending={weather.isPending || weather.isFetching}
-              onDate={setDate}
-              onHour={(value) => {
-                if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
-              }}
-            />
+            {place ? (
+              <SceneTimePanel
+                date={date}
+                minDate={today}
+                maxDate={forecastEnd(today)}
+                hour={hour}
+                altitude={sun.position.altitude}
+                azimuth={sun.position.azimuth}
+                sunset={sun.times.sunset}
+                weather={weather.data}
+                weatherPending={weather.isPending || weather.isFetching}
+                onDate={setDate}
+                onHour={(value) => {
+                  if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
+                }}
+              />
+            ) : null}
           </div>
           <div className={styles.meta}>
             <MapScale map={map.instance} ready={map.ready} />
