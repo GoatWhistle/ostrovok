@@ -1,11 +1,11 @@
 import { SceneReel } from "@/features/scene-reel"
-import { ChatStart } from "@/features/search-chat"
+import { ChatStart, type ChatStartProps } from "@/features/search-chat"
 import styles from "./landing.module.css"
 import { LandingSettings } from "./landing-settings"
 
 export interface LandingProps {
   readonly pending: boolean
-  readonly recent: readonly { readonly id: string; readonly title: string }[]
+  readonly recent: ChatStartProps["recent"]
   readonly onSend: (message: string) => void
   readonly onOpen: (id: string) => void
   readonly onHistory: () => void

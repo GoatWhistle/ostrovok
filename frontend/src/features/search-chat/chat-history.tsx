@@ -3,6 +3,7 @@ import { useFormatters, useTranslation } from "@/shared/i18n"
 import { EmptyState, ScrollArea, TextField } from "@/shared/ui"
 import styles from "./chat-history.module.css"
 import { HistoryRow } from "./history-row"
+import { historyStamp } from "./history-stamp"
 
 export interface HistoryEntry {
   readonly id: string
@@ -17,10 +18,6 @@ export interface ChatHistoryProps {
   readonly onOpen: (id: string) => void
   readonly onRename: (id: string, title: string) => Promise<unknown>
   readonly onDelete: (id: string) => Promise<unknown>
-}
-
-function isToday(value: string) {
-  return new Date(value).toDateString() === new Date().toDateString()
 }
 
 export function ChatHistory({
@@ -67,13 +64,7 @@ export function ChatHistory({
               <HistoryRow
                 key={item.id}
                 title={item.title || t("explore:chat.untitled")}
-                date={
-                  item.updatedAt
-                    ? isToday(item.updatedAt)
-                      ? format.time(item.updatedAt)
-                      : format.date(item.updatedAt)
-                    : undefined
-                }
+                date={historyStamp(format, item.updatedAt)}
                 current={item.id === activeId}
                 pending={pending}
                 onOpen={() => onOpen(item.id)}
