@@ -59,6 +59,8 @@
     clip-path var(--dur-exit) var(--ease-out), opacity var(--dur-exit) var(--ease-out);
   --transition-press: scale var(--dur-press) var(--ease-out);
   --transition-reel: opacity var(--dur-reveal) var(--ease-out);
+  --transition-clip: clip-path var(--dur-panel) var(--ease-out);
+  --transition-clip-out: clip-path var(--dur-panel-exit) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;

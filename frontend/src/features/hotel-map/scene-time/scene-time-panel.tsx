@@ -1,7 +1,6 @@
 import { useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { usePresence } from "@/shared/motion"
 import { Button, Icon } from "@/shared/ui"
 import { zoneHour } from "./scene-time"
 import { DateStepper, HourStepper } from "./scene-time-fields"
@@ -41,31 +40,14 @@ export function SceneTimePanel({
   const { t } = useTranslation()
   const { locale } = useLocale()
   const sunsetHour = zoneHour(sunset)
-  const body = usePresence(expanded)
   return (
-    <section
-      className={styles.panel}
-      data-expanded={body.mounted}
-      aria-label={t("explore:weather.scene")}
-    >
-      <div className={styles.heading}>
-        <Button
-          variant="ghost"
-          icon="sunset"
-          align="start"
-          className={styles.toggle}
-          aria-expanded={expanded}
-          onClick={() => setExpanded((current) => !current)}
-        >
-          {t("explore:weather.scene")}
-        </Button>
-        <span className={styles.meta}>
-          <span className={styles.summary}>{weatherText(weather, weatherPending, locale)}</span>
-          <Icon name="chevron-down" size="sm" className={styles.chevron} />
-        </span>
-      </div>
-      {body.mounted ? (
-        <div className={styles.body} data-state={body.state} onAnimationEnd={body.onAnimationEnd}>
+    <div className={styles.shell}>
+      <section
+        className={styles.panel}
+        data-expanded={expanded}
+        aria-label={t("explore:weather.scene")}
+      >
+        <div className={styles.body} inert={!expanded}>
           <div className={styles.fields}>
             <DateStepper date={date} minDate={minDate} maxDate={maxDate} onDate={onDate} />
             <HourStepper hour={hour} onHour={onHour} />
@@ -83,7 +65,21 @@ export function SceneTimePanel({
             </Button>
           )}
         </div>
-      ) : null}
-    </section>
+        <Button
+          variant="ghost"
+          icon="sunset"
+          align="start"
+          className={styles.toggle}
+          aria-expanded={expanded}
+          onClick={() => setExpanded((current) => !current)}
+        >
+          <span className={styles.row}>
+            <span className={styles.title}>{t("explore:weather.scene")}</span>
+            <span className={styles.summary}>{weatherText(weather, weatherPending, locale)}</span>
+            <Icon name="chevron-down" size="sm" className={styles.chevron} />
+          </span>
+        </Button>
+      </section>
+    </div>
   )
 }

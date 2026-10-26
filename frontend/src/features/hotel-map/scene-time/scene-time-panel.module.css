@@ -1,38 +1,62 @@
-.panel {
-  composes: floatingSurface from "../../../shared/styles/compose.module.css";
-  display: grid;
-  inline-size: min(var(--map-time-panel), 100cqi - var(--space-32));
-  color: var(--text-primary);
+.shell {
+  filter: var(--filter-float);
 }
 
-.heading {
-  position: relative;
+.panel {
   display: grid;
-  min-inline-size: 0;
+  inline-size: min(var(--map-time-panel), 100cqi - var(--space-32));
+  border-radius: var(--radius-md);
+  background-color: var(--surface-overlay);
+  color: var(--text-primary);
+  clip-path: inset(calc(100% - var(--control-height)) 0 0 0 round var(--radius-md));
+  transition: var(--transition-clip-out);
+}
+
+.panel[data-expanded="true"] {
+  clip-path: inset(0 0 0 0 round var(--radius-md));
+  transition: var(--transition-clip);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-12) var(--space-8);
+  opacity: 0;
+  transition: var(--transition-fade);
+}
+
+.panel[data-expanded="true"] .body {
+  opacity: 1;
 }
 
 .toggle {
   inline-size: 100%;
-  padding-inline-end: var(--space-40);
 }
 
-.meta {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-end: var(--space-12);
+.toggle > :first-child {
+  inline-size: 100%;
+}
+
+.row {
   display: flex;
+  flex: 1;
   align-items: center;
   gap: var(--space-8);
   min-inline-size: 0;
-  pointer-events: none;
+}
+
+.title {
+  flex: none;
 }
 
 .summary {
   composes: captionText from "../../../shared/styles/compose.module.css";
+  flex: 1;
   min-inline-size: 0;
   overflow: hidden;
   color: var(--text-secondary);
   font-variant-numeric: var(--font-numeric);
+  text-align: end;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -40,23 +64,12 @@
 .chevron {
   flex: none;
   color: var(--text-secondary);
+  transform: rotate(180deg);
   transition: var(--transition-layer);
 }
 
 .panel[data-expanded="true"] .chevron {
-  transform: rotate(180deg);
-}
-
-.body {
-  display: grid;
-  gap: var(--space-12);
-  padding: var(--space-4) var(--space-12) var(--space-12);
-  transform-origin: bottom left;
-  animation: var(--motion-anchor-in);
-}
-
-.body[data-state="closed"] {
-  animation: var(--motion-fade-out);
+  transform: none;
 }
 
 .fields {

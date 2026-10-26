@@ -18,6 +18,8 @@
   --shadow-raised: 0 1px 2px var(--shadow-color);
   --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
   --backdrop-glass: blur(14px) saturate(1.4);
+  --filter-float: drop-shadow(0 0 var(--hairline) var(--border-strong))
+    drop-shadow(0 4px 12px var(--shadow-color));
   --shadow-overlay:
     0 0 0 var(--hairline) var(--border-subtle), 0 16px 48px var(--shadow-color-strong);
   --shadow-divider-top: inset 0 var(--hairline) 0 var(--border-subtle);
