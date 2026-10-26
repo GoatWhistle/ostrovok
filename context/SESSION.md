@@ -119,6 +119,8 @@ Updated: 2026-10-26, Europe/Moscow
 - `/Users/savelij/projects/o-hack-stand`, `fix/stand-agent-integration`, code `3abcbf7` after integration `0bb2ea1`. Main Compose :8080 runs pinned `agent-loop-stand-20261026b`, Yandex DeepSeek, free hotel-data mode. Original root source remains uncommitted and preserved.
 - New loop/reviewer verified in container by module hashes. Live quiet-Sochi chat:20 hotels/52.15s; chat reload/card/fact/scene200. Cold scene18.29s remains slow. 649 backend checks (11 integrations),324 frontend/36 rules passed. [Restart record and raw evidence](../work/stand-restart/README.md).
 
+- Shore candidate ordering fixed locally after `a636442`:634 unit tests pass; not deployed. See view plan.
+
 ## Next actions and pitfalls
 
 - Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.

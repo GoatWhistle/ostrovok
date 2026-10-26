@@ -31,12 +31,29 @@ class WindowCandidates:
         rejected: list[str] = []
         unchecked: list[str] = []
         physical: dict[str, tuple[PhysicalObject, ...]] = {}
+        resolved_targets: dict[str, PhysicalObject | None] = {}
+        for candidate_target in targets.values():
+            identifier = (
+                candidate_target.id
+                if isinstance(candidate_target, NamedPlaceRecord)
+                else str(candidate_target)
+            )
+            if identifier not in resolved_targets:
+                resolved_targets[identifier] = await self._targets.resolve(candidate_target)
 
         def proximity(hotel: SearchHotelRecord) -> float:
             target = targets.get(hotel.id)
             if target is None:
                 return float("inf")
-            point = target.location if isinstance(target, NamedPlaceRecord) else target
+            identifier = target.id if isinstance(target, NamedPlaceRecord) else str(target)
+            resolved = resolved_targets[identifier]
+            point = (
+                target_point(resolved, hotel.location)[0]
+                if resolved is not None
+                else target.location
+                if isinstance(target, NamedPlaceRecord)
+                else target
+            )
             return distance_m(hotel.location, point)
 
         selected = sorted(hotels, key=proximity)
@@ -109,7 +126,7 @@ class WindowCandidates:
                 continue
             identifier = target.id if isinstance(target, NamedPlaceRecord) else str(target)
             if identifier not in physical:
-                resolved = await self._targets.resolve(target)
+                resolved = resolved_targets[identifier]
                 if resolved is not None and request.target_osm_key is not None:
                     value = resolved.tags.get(request.target_osm_key)
                     if value is None or (

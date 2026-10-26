@@ -140,3 +140,14 @@ Next investigations:
   marker can overlap the selected hotel; full-object visibility remains unverified;
 - merge follow-up with the main branch while preserving concurrent Anthropic work, deploy and
   replay all 50 on final version; independently inspect real targets and source profiles.
+
+## Shore candidate regression, integration branch
+
+2026-10-26: `fix/stand-agent-integration` after a636442. Minimal real candidate-preparation
+regression with 65 hotels and an elongated water polygon failed: a shore hotel roughly
+110 m from water was unchecked after 64 hotels closer to the label centroid. Resolve each
+unique physical target before ordering; order by the same target-point geometry used by
+rays. Reuse resolved objects, preserving typed identity validation and unknown-data rules.
+Regression now passes;19 focused geometry/source tests and634 backend unit tests pass,
+Ruff and mypy pass. Not deployed yet; actual Samara replay and final50 remain pending.
+This turn is progress (red/green authoritative regression and source change), not completion.
