@@ -1,4 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { retryingTileUrl } from "./dem-protocol"
 import { addSnowLayers, paintSnow } from "./snow"
 
 export interface SunPosition {
@@ -33,6 +34,7 @@ export type LightMode = "day" | "dusk" | "night"
 export const TERRAIN_TILE_VERSION = "2"
 const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
 const DEM_MAX_ZOOM = 14
+const FALLBACK_MAX_ZOOM = 6
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
@@ -72,22 +74,29 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
   ]
 }
 
-function demSource(map: MapLibreMap, id: string) {
+function demSource(map: MapLibreMap, id: string, maxzoom = DEM_MAX_ZOOM) {
   if (map.getSource(id)) return
   map.addSource(id, {
     type: "raster-dem",
-    tiles: [`${window.location.origin}${DEM_TILES}`],
+    tiles: [retryingTileUrl(`${window.location.origin}${DEM_TILES}`)],
     tileSize: 256,
     minzoom: 0,
-    maxzoom: DEM_MAX_ZOOM,
+    maxzoom,
     encoding: "mapbox",
   })
 }
 
 function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) {
   if (map.getLayer("sochi-relief")) return
+  demSource(map, "sochi-dem-fallback", FALLBACK_MAX_ZOOM)
   demSource(map, "sochi-dem")
   demSource(map, "sochi-dem-shade")
+  map.addLayer({
+    id: "sochi-relief-fallback",
+    type: "color-relief",
+    source: "sochi-dem-fallback",
+    paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
+  })
   map.addLayer({
     id: "sochi-relief",
     type: "color-relief",
@@ -123,7 +132,9 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   const mode = lightMode(sun.altitude)
   const { sea, sky } = scenePalette(colors, mode)
   addTerrainLayers(map, colors, sea)
-  map.setPaintProperty("sochi-relief", "color-relief-color", reliefRamp(colors, sea))
+  const ramp = reliefRamp(colors, sea)
+  map.setPaintProperty("sochi-relief-fallback", "color-relief-color", ramp)
+  map.setPaintProperty("sochi-relief", "color-relief-color", ramp)
   map.setPaintProperty("sochi-relief", "color-relief-opacity", RELIEF_OPACITY[mode])
   paintSnow(map, colors.snow)
   map.setPaintProperty("sochi-hillshade", "hillshade-shadow-color", colors.hillShadow)
