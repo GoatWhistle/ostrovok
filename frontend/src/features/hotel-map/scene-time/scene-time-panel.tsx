@@ -2,11 +2,11 @@ import { useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
-import { Button } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
 import { zoneHour } from "./scene-time"
 import { DateStepper, HourStepper } from "./scene-time-fields"
 import styles from "./scene-time-panel.module.css"
-import { SunFacts, WeatherBadge, weatherText } from "./scene-time-sun"
+import { SunFacts, weatherText } from "./scene-time-sun"
 
 type Weather = components["schemas"]["Weather"]
 
@@ -52,15 +52,17 @@ export function SceneTimePanel({
         <Button
           variant="ghost"
           icon="sunset"
+          align="start"
           className={styles.toggle}
           aria-expanded={expanded}
           onClick={() => setExpanded((current) => !current)}
         >
           {t("explore:weather.scene")}
         </Button>
-        {body.mounted ? null : (
+        <span className={styles.meta}>
           <span className={styles.summary}>{weatherText(weather, weatherPending, locale)}</span>
-        )}
+          <Icon name="chevron-down" size="sm" className={styles.chevron} />
+        </span>
       </div>
       {body.mounted ? (
         <div className={styles.body} data-state={body.state} onAnimationEnd={body.onAnimationEnd}>
@@ -69,20 +71,17 @@ export function SceneTimePanel({
             <HourStepper hour={hour} onHour={onHour} />
           </div>
           <SunFacts altitude={altitude} azimuth={azimuth} sunset={sunset} />
-          <div className={styles.footer}>
-            <WeatherBadge weather={weather} pending={weatherPending} />
-            {sunsetHour === null ? null : (
-              <Button
-                variant="outline"
-                size="compact"
-                icon="sunset"
-                disabled={sunsetHour === hour}
-                onClick={() => onHour(sunsetHour)}
-              >
-                {t("explore:weather.atSunset")}
-              </Button>
-            )}
-          </div>
+          {sunsetHour === null ? null : (
+            <Button
+              variant="secondary"
+              icon="sunset"
+              className={styles.sunset}
+              disabled={sunsetHour === hour}
+              onClick={() => onHour(sunsetHour)}
+            >
+              {t("explore:weather.atSunset")}
+            </Button>
+          )}
         </div>
       ) : null}
     </section>

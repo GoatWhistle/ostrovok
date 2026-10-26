@@ -97,7 +97,7 @@ export function HotelMap({
     () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
     [hotelId, scene.data, hotel],
   )
-  const [lon, lat] = sceneLocation(hotel, selectedCamera)
+  const [lon, lat] = sceneLocation(hotel ?? results[0], selectedCamera)
   const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
   const weather = useWeather(lon, lat, date, hour, selectedCamera !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)

@@ -5,20 +5,26 @@
   color: var(--text-primary);
 }
 
-.panel[data-expanded="false"] {
-  inline-size: auto;
-}
-
 .heading {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
+  position: relative;
+  display: grid;
   min-inline-size: 0;
-  padding-inline-end: var(--space-12);
 }
 
 .toggle {
-  flex: none;
+  inline-size: 100%;
+  padding-inline-end: var(--space-40);
+}
+
+.meta {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: var(--space-12);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-inline-size: 0;
+  pointer-events: none;
 }
 
 .summary {
@@ -31,10 +37,20 @@
   white-space: nowrap;
 }
 
+.chevron {
+  flex: none;
+  color: var(--text-secondary);
+  transition: var(--transition-layer);
+}
+
+.panel[data-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
 .body {
   display: grid;
-  gap: var(--space-16);
-  padding: var(--space-4) var(--space-16) var(--space-16);
+  gap: var(--space-12);
+  padding: var(--space-4) var(--space-12) var(--space-12);
   transform-origin: bottom left;
   animation: var(--motion-anchor-in);
 }
@@ -53,10 +69,6 @@
   display: grid;
   gap: var(--space-8);
   min-inline-size: 0;
-}
-
-.fieldLabel {
-  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .stepper {
@@ -80,6 +92,8 @@
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: var(--space-16);
+  padding-block-start: var(--space-12);
+  box-shadow: var(--shadow-divider-top);
 }
 
 .compass {
@@ -130,6 +144,7 @@
 
 .statLabel {
   composes: captionText from "../../../shared/styles/compose.module.css";
+  color: var(--text-muted);
 }
 
 .statValue {
@@ -138,12 +153,8 @@
   font-variant-numeric: var(--font-numeric);
 }
 
-.footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
+.sunset {
+  inline-size: 100%;
 }
 
 @container map (max-width: 29.99rem) {
