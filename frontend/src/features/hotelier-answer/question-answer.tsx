@@ -3,6 +3,7 @@ import { HueIcon } from "@/entities/evidence"
 import { useHotelierAnswer } from "@/entities/hotelier"
 import type { components } from "@/shared/api/schema.gen"
 import { characteristicTitle } from "@/shared/geo/fact-label"
+import { useSessionDraft } from "@/shared/hooks"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, TextArea } from "@/shared/ui"
 import { AnswerResult } from "./answer-result"
@@ -21,15 +22,19 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
   const { t } = useTranslation()
   const { locale } = useLocale()
   const titleId = useId()
-  const [text, setText] = useState("")
+  const {
+    value: text,
+    setValue: setText,
+    atRisk,
+  } = useSessionDraft(`question:${hotelId}:${question.id ?? ""}`)
   const [sent, setSent] = useState<Quick>()
-  const answer = useHotelierAnswer()
+  const answer = useHotelierAnswer(hotelId, question.id ?? "")
   const open = (question.status ?? "open") === "open"
   const key = question.characteristic_key
   function send(kind: Quick, value: string) {
     if (!question.id || !value.trim() || answer.isPending) return
     setSent(kind)
-    answer.mutate({ questionId: question.id, text: value.trim() }, { onSuccess: () => setText("") })
+    answer.mutate({ text: value.trim(), draft: text })
   }
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -54,6 +59,7 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
               variant="confirm"
               icon="check"
               pending={answer.isPending && sent === "yes"}
+              disabled={answer.isPending}
               onClick={() => send("yes", t("explore:hotelier.yesText"))}
             >
               {t("explore:hotelier.yes")}
@@ -62,12 +68,13 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
               variant="reject"
               icon="rejected"
               pending={answer.isPending && sent === "no"}
+              disabled={answer.isPending}
               onClick={() => send("no", t("explore:hotelier.noText"))}
             >
               {t("explore:hotelier.no")}
             </Button>
             {onSkip ? (
-              <Button variant="ghost" icon="next" onClick={onSkip}>
+              <Button variant="ghost" icon="next" onClick={onSkip} disabled={answer.isPending}>
                 {t("explore:hotelier.unknown")}
               </Button>
             ) : null}
@@ -86,7 +93,7 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
               type="submit"
               icon="send"
               pending={answer.isPending && sent === "text"}
-              disabled={!text.trim() || !question.id}
+              disabled={answer.isPending || !text.trim() || !question.id}
               className={styles.submit}
             >
               {t("explore:hotelier.send")}
@@ -94,8 +101,9 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
           </form>
         </>
       ) : null}
+      {atRisk ? <Banner tone="warning" title={t("explore:hotelier.draftAtRisk")} /> : null}
       <CurrentState hotelId={hotelId} characteristicKey={key} />
-      {answer.isSuccess ? <AnswerResult result={answer.data} /> : null}
+      {answer.isSuccess && answer.data ? <AnswerResult result={answer.data} /> : null}
       {answer.isError ? <Banner tone="danger" title={t("explore:hotelier.failed")} /> : null}
     </section>
   )

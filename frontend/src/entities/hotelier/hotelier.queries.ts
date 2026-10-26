@@ -1,5 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { api, unwrap } from "@/shared/api"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { api, unwrap, useRecordMutation } from "@/shared/api"
+import { clearSessionDraft } from "@/shared/hooks"
 export function useHotelierQuestions(id: string | undefined) {
   return useQuery({
     queryKey: ["questions", id],
@@ -14,17 +15,20 @@ export function useHotelierQuestions(id: string | undefined) {
     retry: false,
   })
 }
-export function useHotelierAnswer() {
+export function useHotelierAnswer(hotelId: string, questionId: string) {
   const cache = useQueryClient()
-  return useMutation({
-    mutationFn: ({ questionId, text }: { readonly questionId: string; readonly text: string }) =>
+  return useRecordMutation(["question-write", questionId], {
+    mutationFn: ({ text }: { readonly text: string; readonly draft: string }) =>
       unwrap(
         api.POST("/hotelier/questions/{question_id}/answer", {
           params: { path: { question_id: questionId } },
           body: { text },
         }),
       ),
-    onSuccess: async () => {
+    onSuccess: async (data, input) => {
+      if (!data.follow_up && data.extracted?.length) {
+        clearSessionDraft(`question:${hotelId}:${questionId}`, input.draft)
+      }
       await Promise.all(
         ["questions", "hotel", "fact", "search", "compare", "scene", "geometry"].map((key) =>
           cache.invalidateQueries({ queryKey: [key] }),
