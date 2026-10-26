@@ -224,3 +224,22 @@ Current log only says accepted/rejected and cannot distinguish a model refusal f
 invalid/missing quotation. Added tested rejection-reason counters (unsupported, missing,
 duplicate, short quote, ungrounded quote), without logging query/source content. This is
 instrumentation for the next replay, not proof of the cause of current model refusals.
+
+## Round3 interrupted by concurrent stand replacement
+
+Run95830 terminal:4 HTTP200,46 HTTP502. Container was recreated at2026-10-26T14:54:51Z;
+actual image51e66040bf10c6901bfb907661846d2eb77d76632a73cf9c4a6f0d013df43086 replaces
+frozen5b9158cc under the same window-location-20261026 tag. New container has no
+application/agent/semantic_review.py. Four returned results remain available for review;
+46 gateway errors are not successful query tests. Runtime Docker event output observed
+kill(signal9),stop/create/start with changed image; later event-history retrieval was empty.
+Current main health200; do not overwrite newer root work without integrating its snapshot.
+
+Runner now checks expected immutable image before/after each request and stops on502/503/504.
+Verified guard against current stand: fingerprint-check/interruption.json;0 model calls.
+Use --expected-image for every subsequent full run. No active run handle remains.
+
+Historical positive-view probe in review-probe/ was approved by frozen13bcbe8 in an isolated
+immutable container. Initial probe accidentally used newly replaced root runtime and was
+rejected; these are labelled separately. Neither proves why the actual first12 were rejected.
+Need actual captured candidate claims with current geometry; do not guess a broad prompt fix.

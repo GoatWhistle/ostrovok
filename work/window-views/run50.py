@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import json
+import subprocess
 import time
 from pathlib import Path
 
@@ -174,13 +175,39 @@ async def run(args):
     reports = []
     async with httpx.AsyncClient(base_url="http://127.0.0.1:8080", timeout=args.timeout) as client:
         for case in cases:
+            before = runtime_image()
+            if args.expected_image and before != args.expected_image:
+                interruption(output, case, args.expected_image, before)
+                break
             reports.append(await check(client, case, output))
+            after = runtime_image()
+            if args.expected_image and after != args.expected_image:
+                reports[-1]["errors"].append("runtime_image_changed")
+                reports[-1]["passed_automatic_audit"] = False
+                interruption(output, case, args.expected_image, after)
             (output / "summary.json").write_text(json.dumps(reports, ensure_ascii=False, indent=2))
+            if args.expected_image and after != args.expected_image:
+                break
+            if reports[-1].get("http_status") in {502, 503, 504}:
+                (output / "interruption.json").write_text(json.dumps({"case": case["id"], "reason": "service_unavailable", "remaining_cases_not_executed": True}))
+                break
     print("automatic_audit", sum(item["passed_automatic_audit"] for item in reports), "/", len(reports), flush=True)
+
+
+def runtime_image():
+    result = subprocess.run(["docker", "inspect", "hotel-agent-backend-1", "--format", "{{.Image}}"], capture_output=True, text=True)
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
+def interruption(output, case, expected, actual):
+    report = {"case": case["id"], "reason": "runtime_image_changed", "expected_image": expected, "actual_image": actual, "remaining_cases_not_executed": True}
+    (output / "interruption.json").write_text(json.dumps(report, indent=2))
+    print(json.dumps(report), flush=True)
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--ids")
+parser.add_argument("--expected-image")
 parser.add_argument("--timeout", type=float, default=180)
 parser.add_argument("--output", default="round1")
 asyncio.run(run(parser.parse_args()))

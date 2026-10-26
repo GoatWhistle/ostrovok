@@ -1,0 +1,111 @@
+{
+  "id": "isaac_floor7",
+  "query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "n4538542704",
+      "name": "Isaac Hotel",
+      "views": [
+        {
+          "status": "blocked",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+          "artifact": "isaac_floor7-n4538542704-f_wish_04d7fa16b822_n4538542704.json"
+        }
+      ]
+    },
+    {
+      "id": "n4309341589",
+      "name": "Loft Hostel",
+      "views": [
+        {
+          "status": "blocked",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+          "artifact": "isaac_floor7-n4309341589-f_wish_04d7fa16b822_n4309341589.json"
+        }
+      ]
+    },
+    {
+      "id": "n8887918248",
+      "name": "Meadow",
+      "views": [
+        {
+          "status": "blocked",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+          "artifact": "isaac_floor7-n8887918248-f_wish_04d7fa16b822_n8887918248.json"
+        }
+      ]
+    },
+    {
+      "id": "n5146364826",
+      "name": "Residence",
+      "views": [
+        {
+          "status": "blocked",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+          "artifact": "isaac_floor7-n5146364826-f_wish_04d7fa16b822_n5146364826.json"
+        }
+      ]
+    },
+    {
+      "id": "n4580635692",
+      "name": "Russian Soul",
+      "views": [
+        {
+          "status": "blocked",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+          "artifact": "isaac_floor7-n4580635692-f_wish_04d7fa16b822_n4580635692.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:04d7fa16b822",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на купол Исаакиевского собора"
+      },
+      {
+        "characteristic_key": "derived:8df26d96d175",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с седьмого этажа"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 386.9,
+  "passed_automatic_audit": false
+}

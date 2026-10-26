@@ -1,0 +1,48 @@
+{
+  "fact_id": "f_wish_04d7fa16b822_n4580635692",
+  "characteristic_key": "derived:04d7fa16b822",
+  "value": false,
+  "unit": null,
+  "label": "с видом на купол Исаакиевского собора",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n4580635692",
+  "qualifiers": {
+    "native_op": "eq",
+    "tool_calls": 16,
+    "visibility": {
+      "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+      "status": "blocked",
+      "calculation_attempted": true,
+      "bookable_room_confirmed": false
+    },
+    "native_unit": null,
+    "source_text": "с видом на купол Исаакиевского собора",
+    "wish_status": "incomplete",
+    "native_value": false,
+    "estimated_view": true,
+    "checked_sources": [
+      "database",
+      "embeddings",
+      "geography",
+      "web"
+    ],
+    "native_threshold": true,
+    "native_characteristic_key": "spatial:dad163dbaebe"
+  },
+  "explanation": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T14:44:51.691210Z",
+    "valid_until": "2026-11-02T14:44:51.691210Z"
+  },
+  "history": [],
+  "conflicts": []
+}
