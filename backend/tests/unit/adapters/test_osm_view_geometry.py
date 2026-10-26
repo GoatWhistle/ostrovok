@@ -1,8 +1,10 @@
 from pathlib import Path
 
 import httpx
+import pytest
 
 from hotel_agent.adapters.geo.osm_geometry import OSMViewGeometry, physical_objects
+from hotel_agent.application.ports.view_geometry import PhysicalArea
 
 XML = b"""<osm version="0.6">
 <node id="1" lat="43" lon="39"/>
@@ -57,3 +59,37 @@ async def test_complete_map_area_includes_physical_relations_and_preserves_heigh
     assert result.buildings[0].id == "r100"
     assert result.buildings[0].tags["height"] == "80"
     await source.aclose()
+
+
+@pytest.mark.parametrize("available", [True, False])
+async def test_incomplete_disk_cache_uses_complete_geography_context(
+    tmp_path: Path, available: bool
+) -> None:
+    bbox = (39.0, 43.0, 39.01, 43.01)
+    payload = XML.replace(
+        b'<member type="way" ref="11" role="outer"/>',
+        b'<member type="way" ref="999" role="outer"/>',
+    )
+    (tmp_path / "area-39.000000-43.000000-39.010000-43.010000.osm").write_bytes(payload)
+    calls: list[tuple[float, float, float, float]] = []
+    complete = PhysicalArea(bbox, (), True, "local:complete-snapshot")
+
+    class Context:
+        async def area(
+            self, bbox: tuple[float, float, float, float], region: str = "russia"
+        ) -> PhysicalArea | None:
+            calls.append(bbox)
+            return complete if available else None
+
+    source = OSMViewGeometry(
+        tmp_path,
+        httpx.MockTransport(lambda request: httpx.Response(503)),
+        context=Context(),
+    )
+    result = await source.area(bbox)
+    await source.aclose()
+    assert result is not None
+    assert result.complete is available
+    if available:
+        assert result == complete
+    assert calls == [bbox]
