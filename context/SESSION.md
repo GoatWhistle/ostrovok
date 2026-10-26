@@ -116,9 +116,9 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Current state
 
-- Worktree `/Users/savelij/projects/o-hack-stand`, branch `fix/stand-agent-integration`, HEAD7c9197c plus new evaluation evidence.639 unit tests pass. Eligibility/rejection diagnostics are local, not on main.
+- Worktree `/Users/savelij/projects/o-hack-stand`, branch `fix/stand-agent-integration`, HEAD680cdae plus verifier fix.640 unit tests pass. Eligibility/rejection diagnostics are local, not on main.
 - Round3 ended:4 HTTP200,46 gateway502 after concurrent container recreation changed5b9158cc to51e66040 under the same tag. Current main healthy, root-source build lacks semantic_review.py. Root source preserved.
-- No active test process. Full50 not verified. Runner fingerprint guard added/tested; use --expected-image. Historical positive-view probe passes frozen13bcbe8, actual rejected batches still need diagnosis. [View plan](../work/window-views/plan.md).
+- No active test process. Full50 not verified. Runner fingerprint guard added/tested; use --expected-image. Current4 positive rays independently pass; filtered/temp0 review accepts4/4. Main integration/full50 pending. [View plan](../work/window-views/plan.md).
 
 ## Next actions and pitfalls
 

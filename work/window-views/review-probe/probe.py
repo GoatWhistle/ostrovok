@@ -14,8 +14,8 @@ async def run():
     payload = Path('/tmp/view-probe-input.json').read_text()
     try:
         verdicts = await llm.verify_evidence(payload)
-        source = json.loads(payload)['records'][0]['source_text']
-        print(json.dumps([{'id':v.record_id,'supported':v.supported,'quote':v.quote,'quote_grounded':v.quote in source} for v in verdicts],ensure_ascii=False))
+        sources = {r['record_id']:r['source_text'] for r in json.loads(payload)['records']}
+        print(json.dumps([{'id':v.record_id,'supported':v.supported,'quote':v.quote,'quote_grounded':v.quote in sources.get(v.record_id, "")} for v in verdicts],ensure_ascii=False))
     finally:
         await llm.aclose()
 

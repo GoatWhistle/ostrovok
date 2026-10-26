@@ -123,7 +123,6 @@ class StructuredLLM:
             system=text_evidence.instructions(context),
             user=context,
             schema=text_evidence.schema(),
-            planning=True,
         )
         payload = as_mapping(raw)
         return tuple(

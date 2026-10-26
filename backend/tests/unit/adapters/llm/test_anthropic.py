@@ -198,9 +198,9 @@ async def test_agent_exploration_and_evidence_use_structured_output(
         assert step.action == "finish"
         [verdict] = await llm.verify_evidence("Бассейн")
         assert verdict.record_id == "hotel-1" and verdict.supported
-        for request in anthropic_requests:
+        for request, budget in zip(anthropic_requests, (2000, 4000), strict=True):
             body = json.loads(request.content)
-            assert body["max_tokens"] == 2000
+            assert body["max_tokens"] == budget
             assert body["output_config"]["format"]["type"] == "json_schema"
     finally:
         await llm.aclose()

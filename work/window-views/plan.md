@@ -243,3 +243,16 @@ Historical positive-view probe in review-probe/ was approved by frozen13bcbe8 in
 immutable container. Initial probe accidentally used newly replaced root runtime and was
 rejected; these are labelled separately. Neither proves why the actual first12 were rejected.
 Need actual captured candidate claims with current geometry; do not guess a broad prompt fix.
+
+## Candidate-specific diagnosis and positive evidence
+
+Isolated current native replay found4 visible Isaac estimates:Four Seasons Lion Palace,
+SO/,Angleterre,Astoria; independent profile reconstruction passes4/4, all realr3229838.
+Actual captured first12 claim shapes contain4 positive+8 nonmatching candidates; old
+verifier approved12/12 after retry quoting only wishes. Found code-level issue: verification
+called completion with planning=True (temperature1,max_tokens2000). Red HTTP request test
+reproduced it. Verification now uses standardtemperature0/4000, Anthropic budget test updated.
+640 unit tests/Ruff/mypy pass. With earlier eligibility filter and new mode, standalone
+live4-candidate check approves4/4 with actual visibility qualifiers quoted. Both settings
+and candidate set changed; do not attribute success solely to temperature. Details/raw
+artifacts in review-probe/. No main deployment or full50 completed this turn.
