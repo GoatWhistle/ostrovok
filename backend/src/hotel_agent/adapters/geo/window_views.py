@@ -53,6 +53,7 @@ class WindowViews:
 
         areas = dict(await asyncio.gather(*(load(cell) for cell in all_cells[:128])))
         reports: dict[str, WindowReport] = {}
+        reasons = dict(prepared.reasons)
         for ray in prepared.rays:
             rows = {row.id: row for row in buildings.buildings.get(ray.id, ())}
             for cell in cell_sets[ray.id]:
@@ -77,6 +78,9 @@ class WindowViews:
             ):
                 target_base = ElevationRange(heights["target"] - 2, heights["target"] + 2)
             if base is None or target_base is None:
+                reasons[ray.hotel_id] = (
+                    "Не получены высоты рельефа у отеля или ориентира: линию обзора рассчитать невозможно."
+                )
                 continue
             target = ElevationRange(
                 target_base.minimum_m + ray.target_height.minimum_m,
@@ -153,7 +157,7 @@ class WindowViews:
                 prepared.request,
                 now,
                 reports.get(hotel.id),
-                prepared.reasons.get(hotel.id),
+                reasons.get(hotel.id),
                 hotel.id in prepared.rejected,
             )
             facts.append(fact)

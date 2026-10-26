@@ -90,6 +90,7 @@ def window_evidence(
                 "profile": [asdict(obstacle) for obstacle in report.obstacles],
                 "curvature_coefficient": 6 / 7,
                 "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120,
             }
         )
         text = {

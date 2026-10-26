@@ -7,6 +7,7 @@ import pytest
 from hotel_agent.adapters.geo.window_views import WindowViews
 from hotel_agent.application.dto import NamedPlaceRecord, SearchHotelRecord
 from hotel_agent.application.fact_records import fact_from_record
+from hotel_agent.application.ports.elevation import ElevationPort
 from hotel_agent.application.ports.view_geometry import PhysicalArea, PhysicalObject
 from hotel_agent.application.ports.view_scenes import PathBuildings, SceneBuilding
 from hotel_agent.application.ports.window_views import WindowEvidence
@@ -72,8 +73,10 @@ def hotel() -> SearchHotelRecord:
     )
 
 
-async def compute(request: SpatialRequest, geometry: Geometry | None = None) -> WindowEvidence:
-    engine = WindowViews(FlatTerrain(), geometry or Geometry())
+async def compute(
+    request: SpatialRequest, geometry: Geometry | None = None, terrain: ElevationPort | None = None
+) -> WindowEvidence:
+    engine = WindowViews(terrain or FlatTerrain(), geometry or Geometry())
     building = SceneBuilding(
         "w10", square(39), {"building": "hotel", "height": "60", "building:levels": "20"}, 60, 20
     )
@@ -152,4 +155,18 @@ async def test_impossible_floor_or_opposite_windows_are_rejected(wanted: Spatial
     assert result.facts[0].value is False
     assert result.facts[0].qualifiers["visibility"]["status"] == "blocked"
     assert result.facts[0].explanation
+    assert result.features == ()
+
+
+class MissingTerrain:
+    def sample_points(self, points: Mapping[str, tuple[float, float]]) -> dict[str, float]:
+        return {}
+
+
+async def test_missing_observer_or_target_dem_preserves_the_specific_source_failure() -> None:
+    result = await compute(request(), terrain=MissingTerrain())
+    fact = result.facts[0]
+    assert fact.value is None
+    assert fact.qualifiers["visibility"]["status"] == "unknown"
+    assert "рельефа" in fact.qualifiers["visibility"]["reason"]
     assert result.features == ()

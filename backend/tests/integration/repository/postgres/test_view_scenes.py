@@ -105,3 +105,24 @@ async def test_typed_target_accepts_unique_name_variant_and_preserves_ambiguity(
     finally:
         await connection.rollback()
         await connection.close()
+
+
+async def test_rare_name_token_outweighs_a_common_building_category() -> None:
+    connection = await psycopg.AsyncConnection.connect(
+        os.environ.get("DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel")
+    )
+    try:
+        await connection.execute("""INSERT INTO pois(id,region_id,location,tags) VALUES
+          ('view-test-rare-name','sochi',ST_SetSRID(ST_MakePoint(0,0),4326),
+           '{"name":"Кул-Шариф","amenity":"place_of_worship"}'),
+          ('view-test-generic-a','sochi',ST_SetSRID(ST_MakePoint(0.01,0),4326),
+           '{"name":"Мечеть Центральная","amenity":"place_of_worship"}'),
+          ('view-test-generic-b','sochi',ST_SetSRID(ST_MakePoint(0.02,0),4326),
+           '{"name":"Мечеть Новая","amenity":"place_of_worship"}')""")
+        target = await PostgresNamedPlaceRepository(connection).by_name(
+            "мечеть Кул-Шариф", (-0.1, -0.1, 0.1, 0.1), "amenity", ("place_of_worship",)
+        )
+        assert target is not None and target.id == "view-test-rare-name"
+    finally:
+        await connection.rollback()
+        await connection.close()

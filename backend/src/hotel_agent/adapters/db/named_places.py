@@ -55,14 +55,24 @@ ORDER BY (tags->>'historic' = 'castle') DESC, length(tags->>'name'), id
 LIMIT 1"""
 
 
-TOKEN_LOOKUP = """SELECT p.id,p.tags->>'name',ST_X(p.location),ST_Y(p.location)
-FROM pois p
-WHERE p.location && ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326)
-  AND %(target_key)s::text IS NOT NULL AND p.tags ? %(target_key)s
-  AND (cardinality(%(target_values)s::text[])=0 OR p.tags->>%(target_key)s = ANY(%(target_values)s::text[]))
-  AND EXISTS (SELECT 1 FROM regexp_split_to_table(%(name)s,'[^[:alpha:]]+') AS token
-    WHERE length(token)>=5 AND to_tsvector('russian',p.tags->>'name') @@ plainto_tsquery('russian',token))
-ORDER BY p.id LIMIT 2"""
+TOKEN_LOOKUP = """WITH candidates AS (
+ SELECT id,tags,location,to_tsvector('russian',tags->>'name') AS document
+ FROM pois WHERE location && ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326)
+  AND %(target_key)s::text IS NOT NULL AND tags ? %(target_key)s
+  AND (cardinality(%(target_values)s::text[])=0 OR tags->>%(target_key)s = ANY(%(target_values)s::text[]))
+), tokens AS (
+ SELECT DISTINCT token,plainto_tsquery('russian',token) AS query
+ FROM regexp_split_to_table(%(name)s,'[^[:alpha:]]+') AS token WHERE length(token)>=5
+), hits AS (
+ SELECT c.id,t.token,count(*) OVER (PARTITION BY t.token) AS frequency
+ FROM candidates c JOIN tokens t ON c.document @@ t.query
+), ranked AS (
+ SELECT id,sum(1.0/frequency)::double precision AS score FROM hits GROUP BY id
+)
+SELECT c.id,c.tags->>'name',ST_X(c.location),ST_Y(c.location),r.score,
+ COALESCE(c.tags->>'tourism' IN ('attraction','museum'),false) AS canonical
+FROM ranked r JOIN candidates c ON c.id=r.id
+ORDER BY r.score DESC,canonical DESC,c.id LIMIT 2"""
 
 
 class PostgresNamedPlaceRepository:
@@ -96,7 +106,14 @@ class PostgresNamedPlaceRepository:
                 ).fetchone()
         if row is None and target_key is not None:
             rows = await (await self._connection.execute(TOKEN_LOOKUP, params)).fetchall()
-            row = rows[0] if len(rows) == 1 else None
+            unique = len(rows) == 1 or (
+                len(rows) == 2
+                and (
+                    float(str(rows[0][4])) > float(str(rows[1][4])) + 1e-9
+                    or (bool(rows[0][5]) and not bool(rows[1][5]))
+                )
+            )
+            row = rows[0] if unique else None
         return _record(row)
 
     async def near_coordinate(
