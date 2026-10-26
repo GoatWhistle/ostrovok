@@ -93,9 +93,9 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Current state
 
-- `feat/hotel-agent-mvp`: product `921ab5b`, terrain `6b1444f`; main :8080 healthy on both images. 332 backend tests, 320 frontend tests/36 rules passed. Evidence: `docs/evidence.md`, `work/evals/map-fact-geography-review.md`.
+- `feat/hotel-agent-mvp`: published product `921ab5b`, terrain `6b1444f`, evidence `ea4e8a5`; main :8080 healthy. 332 backend tests, 320 frontend tests/36 rules passed. Evidence: `docs/evidence.md`, `work/evals/map-fact-geography-review.md`.
 - Web → quoted facts verified for Shine; geographic objects, weather/sun time scope, view/room tools and dynamic fact cards implemented. The 34 087 embeddings remain intact. Detailed prior state: `work/session-before-release-2026-10-26.md`.
 
 ## Next actions and pitfalls
 
-- Publish checked code and this report. Catalog/inventory, forecast horizon and view estimates remain bounded; see `docs/limitations.md`. Preserve all protected instructions despite SESSION target overflow.
+- Required work is complete. Catalog/inventory, forecast horizon and view estimates remain bounded; see `docs/limitations.md`. Preserve protected instructions despite SESSION target overflow.
