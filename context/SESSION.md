@@ -1,8 +1,12 @@
 # Session state
 
-Updated: 2026-10-26, Europe/Moscow
+Updated: 2026-10-27, Europe/Moscow
 
 ## Explicit user instructions
+
+- 2026-10-27, дословно: «начинай выполнение плана в ветке хотел мвп .»
+- 2026-10-27, дословно: «и дополни в спеку чтобы после каждого пункта комит . но пуш токо в самом конце когда все будет сделано из пунктов»
+- 2026-10-27, дословно: «а надо еще в фоне запустить скачку карты россии»
 
 - 2026-10-26: «скинь энвы запущенного стенд (можешь ничего не скрывать)».
 
@@ -166,6 +170,14 @@ Updated: 2026-10-26, Europe/Moscow
 - Main/origin2d2fd12; backend view-corridor-20261026 image14de83d8 healthy200. Only3geometrymodules overlaid on independentfdcd62b4 runtime; TAGpersisted,frontendunchanged.817clean/833root unitcontract+12DBtests passed.
 - NativeOstankino now2positive rays, independentaudit0errors; 40535terminal3/3pass;15672+22504stoppedSIGINTbyuser.18801terminal dueindependentdeploy;Onega/russianbridge/nevyan resumed. Goal incomplete:50processed acrossversions27auto18review5special. [Evidence](../../o-hack-stand/work/window-views/review-probe/README.md).
 - Moscow-City complex absent locally; externalidentity+geometryneeded. Independent event/web workdirty,preserved. Priorstate:[archive](../work/window-views/session-before-round15.md). Protectedverbatimquotes exceedSESSIONtarget.
+- Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, starting SHA `63bef5f`. [Progress](../work/frontend-evolution/progress.md). E00 baseline and H01 checked; commit preparation. No push performed; final push only after all E00–E18/H01–H07 are complete.
+- Isolated FakeLLM/PostGIS Compose `hotel-evolution`, API :18085, DB :15435, frontend dev :5179. Node24 in `/tmp/hotel-node24/bin`; host Node20 is unsupported. Russia download running outside Git; log in sibling root `work/russia-download/`.
+
+## Historical state from preceding session
+
+- Stand worktree `fix/stand-agent-integration`/d335a31. Current root snapshot merged;76 verified delta files synced back to root without resetting/staging its prior work.737 backend checks (including integration),328 frontend tests/36 rules pass.
+- Main :8080 healthy on `window-integrated-20261026d`, backend image5ebea97d, frontend index--3cQvo5k.js. New loop, stable verifier, candidate eligibility, chat consultation, height/geography updates integrated. [Refresh](../work/stand-refresh/README.md).
+- Full50 round4 running exec88733; immutable-image guard enabled,900s observation timeout. Read round4/run.json and poll handle; do not restart while running. Prior round3 invalidated by container replacement. Goal incomplete.
 
 - Web research round3 done on feat/hotel-agent-mvp: review rejection fed back into research, catalogue identity passed to the final review, duplicate wish researched once, contact User-Agent and typed page failures. 845 unit/contract, ruff, mypy, import contracts pass.
 
@@ -186,3 +198,7 @@ Updated: 2026-10-26, Europe/Moscow
 - Backend 892 unit/contract, ruff, mypy 485, import contracts; frontend verify 36 правил/369 тестов/сборка. Стенд: hotel-agent-backend:supplier-details-20261027c и hotel-agent-frontend:supplier-details-20261027c, оба healthy, `/hotels/w51847429/offers` отдаёт 48 тарифов, 15 категорий и 24 фото.
 - Не сделано: браузерный проход по новому блоку карточки на 375/1440 в двух темах и языках — карточка открывается только после поиска агентом, это платный вызов модели, явного разрешения не было. Блок покрыт четырьмя компонентными тестами на реальном ответе (work/hotel-data/catalog-match/live-card.json).
 - Ничего не коммитил: в этом дереве параллельно работают другие сессии, их правки лежат в тех же docs/*.md. Все изменения в рабочем дереве на feat/hotel-agent-mvp поверх 6e59442.
+- Continue evolution plan from its progress document. Do not mix unrelated map-reference files into commits. Full verification, browser checks and local commits per completed item; no intermediate push. Existing window-view evaluation below is historical separate work, not a replacement for this task. Protected user instructions exceed the SESSION target and remain verbatim.
+
+- Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
+- Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.
