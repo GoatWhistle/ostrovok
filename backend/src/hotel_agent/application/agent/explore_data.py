@@ -4,6 +4,7 @@ from collections.abc import Mapping, Sequence
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
+from hotel_agent.application.agent.review_feedback import ReviewFeedback, research_note
 from hotel_agent.application.agent.view_consistency import reconcile_views
 from hotel_agent.application.agent.wish_loop import WishLoop
 from hotel_agent.application.dto import SearchHotelRecord
@@ -63,10 +64,12 @@ class DataExplorer:
         discovery_allowed: bool = False,
         native: RequestedEvidencePort | None = None,
         parsed: ParsedQuery | None = None,
+        feedback: Sequence[ReviewFeedback] = (),
     ) -> ExplorationOutcome:
         if not terms:
             return ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         outcomes = []
+        note = research_note(feedback)
         previous_tools: DataTools | None = None
         candidates = tuple(hotels)
         deadline = asyncio.get_running_loop().time() + 600
@@ -100,7 +103,7 @@ class DataExplorer:
             previous_tools = tools
             remaining = max(0, deadline - asyncio.get_running_loop().time())
             loop = WishLoop(self._llm, self._clock, self._logger, timeout_s=min(180, remaining))
-            outcome = await loop.run(query, term, tools)
+            outcome = await loop.run(query, term, tools, note)
             outcomes.append(outcome)
             candidates = tuple({h.id: h for h in (*candidates, *outcome.hotels)}.values())
             bbox = outcome.bbox

@@ -2,11 +2,12 @@ from collections.abc import Callable, Sequence
 from datetime import UTC, datetime
 from typing import Any
 
+from hotel_agent.application.agent.page_library import PageLibrary
 from hotel_agent.application.agent.solar_position import solar_position
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.destination_conditions import DestinationConditionsPort
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
-from hotel_agent.application.ports.web_research import WebPage, WebResearchPort
+from hotel_agent.application.ports.web_research import WebResearchPort
 
 DESCRIPTIONS = {
     "sun_azimuth_deg": "Азимут солнца от севера по часовой стрелке, градусы",
@@ -34,16 +35,17 @@ class ResearchTools:
         self._hotels, self._metrics, self._descriptions = hotels, metrics, descriptions
         self._web, self._conditions, self._now = web, conditions, now
         self._view = view
-        self.pages: list[dict[str, Any]] = []
-        self._page_cache: dict[str, WebPage] = {}
+        self._library = PageLibrary(web)
         self.sources: dict[str, dict[str, tuple[str, ...]]] = {}
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
         self._calls = 0
 
+    @property
+    def pages(self) -> list[dict[str, Any]]:
+        return self._library.pages
+
     def reuse(self, previous: "ResearchTools") -> None:
-        ids = {hotel.id for hotel in self._hotels()}
-        self.pages = [dict(row) for row in previous.pages if row["hotel_id"] in ids]
-        self._page_cache = dict(previous._page_cache)
+        self._library.reuse(previous._library, {hotel.id for hotel in self._hotels()})
 
     async def execute(
         self, action: str, arguments: dict[str, Any], identity: dict[str, Any] | None = None
@@ -58,46 +60,14 @@ class ResearchTools:
                 "note": "Discovery only. Read the page and verify hotel identity before claiming a match.",
             }
         if action == "read_web_page":
-            if self._web is None:
-                return {"error": "Internet page reading is unavailable"}
             ids = arguments.get("hotel_ids") or []
             hotel_id = arguments.get("hotel_id") or (ids[0] if len(ids) == 1 else "")
-            hotel = self._hotel(str(hotel_id)) if hotel_id else None
-            url = str(arguments.get("url", ""))
-            page = self._page_cache.get(url)
-            if page is None:
-                page = await self._web.read(url)
-                self._page_cache[url] = self._page_cache[page.url] = page
-            if hotel is None:
-                return {
-                    "source_url": page.url,
-                    "title": page.title,
-                    "text": page.text[:40000],
-                    "events": list(page.events),
-                    "retrieved_at": page.retrieved_at.isoformat(),
-                    "discovery_only": True,
-                    "note": "Untrusted source context, not hotel evidence. Resolve the object with list_candidates query, then read this URL with its verified hotel_id to check the wish. For event proximity use read_event_page. Do not invent hotel association or coordinates.",
-                }
-            self.pages.append(
-                {
-                    "hotel_id": hotel.id,
-                    "hotel_name": hotel.name,
-                    "hotel_address": hotel.address,
-                    "hotel_location": hotel.location,
-                    "hotel_identity": identity or {},
-                    "source_url": page.url,
-                    "title": page.title,
-                    "text": page.text,
-                    "retrieved_at": page.retrieved_at.isoformat(),
-                }
+            return await self._library.read(
+                str(arguments.get("url", "")),
+                self._hotel(str(hotel_id)) if hotel_id else None,
+                identity or {},
+                str(arguments.get("query") or "").strip(),
             )
-            phrase = str(arguments.get("query") or "").strip()
-            start = max(0, page.text.casefold().find(phrase.casefold()) - 500) if phrase else 0
-            return {
-                **self.pages[-1],
-                "text": page.text[start : start + 8000],
-                "note": "Untrusted page content; verify via read_records dataset=web_documents with a quote and term.",
-            }
         if action == "assess_view":
             return await self._assess_view(arguments)
         if action not in {"get_weather", "calculate_sun"}:

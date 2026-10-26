@@ -83,3 +83,37 @@ async def test_later_wish_rechecks_cached_source_instead_of_restarting_web_disco
     assert llm.explore_data.await_count == 1
     assert llm.verify_evidence.await_count == 2
     provider.read.assert_awaited_once_with(url)
+
+
+async def test_verified_page_fact_carries_catalogue_identity_for_the_final_review() -> None:
+    term = "где жил поэт"
+    quote = "В этой гостинице «Ритц-Карлтон» в 1925 году жил поэт."
+    url = "https://example.org/history"
+    explorer, llm, _ = build(
+        [
+            DataStep(action="read_web_page", arguments={"url": url, "hotel_id": "city"}),
+        ],
+        rows={
+            "hotels": [
+                {
+                    "hotel_id": "city",
+                    "name": "The Carlton",
+                    "tags": {"wikipedia": "ru:Ритц-Карлтон Москва", "building:levels": "11"},
+                }
+            ]
+        },
+    )
+    provider = SimpleNamespace(
+        read=AsyncMock(return_value=WebPage(url, "История", "Текст. " * 200 + quote, NOW))
+    )
+    explorer._web = cast(WebResearchPort, provider)
+    llm.verify_evidence.return_value = [EvidenceVerdict(record_id="0", supported=True, quote=quote)]
+
+    result = await explorer(
+        "гостиница, где жил поэт", (term,), "Москва", "russia", [hotel("city")], None, False
+    )
+
+    identity = result.facts[0].qualifiers["catalogue_identity"]
+    assert "wikipedia=ru:Ритц-Карлтон Москва" in identity
+    assert "name=The Carlton" in identity
+    assert not any("building:levels" in row for row in identity)

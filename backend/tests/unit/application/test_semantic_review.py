@@ -8,6 +8,7 @@ import pytest
 
 from hotel_agent.application.agent.semantic_review import ReviewClaim, SemanticReview
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.errors import ModelFailure
 
@@ -138,3 +139,34 @@ async def test_review_logs_semantic_refusal_separately_from_broken_quote() -> No
     )
     details = json.loads(logger.info.call_args.kwargs["rejection_reasons"])
     assert details == {"unsupported": 1, "ungrounded_quote": 1}
+
+
+async def test_cosmetically_different_quote_is_still_rejected_but_counted() -> None:
+    logged: list[dict[str, object]] = []
+    llm = SimpleNamespace(
+        verify_evidence=AsyncMock(
+            return_value=[
+                EvidenceVerdict(
+                    record_id="h1",
+                    supported=True,
+                    quote='Гостиница  "Англетер"\nв Петербурге',
+                    reason="Источник называет гостиницу",
+                )
+            ]
+        )
+    )
+    logger = SimpleNamespace(
+        info=lambda event, **fields: logged.append({"event": event, **fields}),
+        warning=lambda *_, **__: None,
+    )
+    review = SemanticReview(cast(LLMPort, llm), cast(LoggerPort, logger))
+
+    result = await review.check(
+        "где жил поэт",
+        "recommendation_scope",
+        [ReviewClaim("h1", "{}", 'Гостиница «Англетер» в Петербурге')],
+    )
+
+    assert result.accepted_ids == ()
+    assert result.rejections[0].cause == "ungrounded_quote"
+    assert logged[-1]["cosmetic_quote_mismatches"] == 1

@@ -9,6 +9,7 @@ from hotel_agent.adapters.llm.payload import (
     flag,
     items,
     number,
+    optional_text,
     scalar,
     text,
 )
@@ -139,6 +140,7 @@ class StructuredLLM:
                 record_id=text(item, "record_id"),
                 supported=flag(item, "supported"),
                 quote=text(item, "quote"),
+                reason=optional_text(item, "reason") or "",
             )
             for item in items(payload, "verdicts")
         )

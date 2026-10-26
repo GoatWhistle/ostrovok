@@ -125,9 +125,9 @@ async def test_web_search_is_not_evidence_but_verified_page_has_citation() -> No
 async def test_unverified_page_cannot_mark_a_wish_as_satisfied() -> None:
     llm = SimpleNamespace(verify_evidence=AsyncMock(return_value=[]))
     instance = tools(llm=cast(LLMPort, llm))
-    instance.research.pages = [
+    instance.research.pages.append(
         {"hotel_id": "h1", "text": "Подводная улица", "source_url": "https://example.org"}
-    ]
+    )
     await instance.execute(
         "read_records",
         {

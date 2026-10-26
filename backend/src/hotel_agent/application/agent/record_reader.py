@@ -3,6 +3,7 @@ from collections import Counter
 from collections.abc import Awaitable, Callable, Sequence
 from typing import Any
 
+from hotel_agent.application.agent.candidate_lookup import identity_tags
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.record_filters import compare, field_value, fields
 from hotel_agent.application.agent.record_preview import preview
@@ -22,6 +23,7 @@ class RecordReader:
         self.verified_terms: dict[str, str] = {}
         self.field_context: dict[str, str] = {}
         self.quotes: dict[str, dict[str, tuple[str, ...]]] = {}
+        self.identities: dict[str, tuple[str, ...]] = {}
         self.source_urls: dict[str, dict[str, tuple[str, ...]]] = {}
         self.geo_refs: dict[str, dict[str, tuple[str, ...]]] = {}
 
@@ -41,6 +43,7 @@ class RecordReader:
         matched = await self._evidence.verify(term, batch, ()) if self._evidence else []
         self._reads += 1
         field = f"r{self._reads}.match_count"
+        self.remember_identity(matched)
         for hotel_id in dict.fromkeys(str(row["hotel_id"]) for row in matched):
             supported = [row for row in matched if str(row["hotel_id"]) == hotel_id]
             self._metrics.setdefault(hotel_id, {})[field] = float(len(supported))
@@ -68,6 +71,21 @@ class RecordReader:
             "has_more": offset + len(batch) < len(selected),
             "note": "Semantic verification with exact source quotes; unchecked records remain unknown.",
         }
+
+    def remember_identity(self, rows: Sequence[dict[str, Any]]) -> None:
+        for row in rows:
+            identity = row.get("hotel_identity")
+            if not isinstance(identity, dict):
+                continue
+            tags = identity.get("tags")
+            names = {
+                **({"name": identity["name"]} if identity.get("name") else {}),
+                **(identity_tags(tags) if isinstance(tags, dict) else {}),
+            }
+            if names:
+                self.identities[str(row["hotel_id"])] = tuple(
+                    f"{key}={value}" for key, value in sorted(names.items())
+                )
 
     async def read(self, dataset: str, filters: Any, term: str | None = None) -> dict[str, Any]:
         if not isinstance(filters, list) or not filters or len(filters) > 8:
@@ -103,6 +121,7 @@ class RecordReader:
         if textual:
             matched = await self._evidence.verify(term, matched, filters) if self._evidence else []
             coverage = {str(row["hotel_id"]) for row in matched}
+        self.remember_identity(matched)
         counts = Counter(str(row["hotel_id"]) for row in matched)
         self._reads += 1
         field = f"{'event' if dataset == 'events' else 'r'}{self._reads}.match_count"

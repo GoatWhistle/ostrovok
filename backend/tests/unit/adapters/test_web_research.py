@@ -126,3 +126,23 @@ async def test_unrelated_fallback_hits_are_not_returned_as_event_discovery() -> 
         assert not await web.search("Кишлак концерт Москва 2026")
     finally:
         await web.aclose()
+
+
+async def test_reader_identifies_itself_with_a_contact_and_names_refusal_causes() -> None:
+    seen: list[str] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        seen.append(request.headers.get("user-agent", ""))
+        status = 403 if request.url.path.endswith("blocked") else 404
+        return httpx.Response(status, headers={"content-type": "text/html"}, text="no")
+
+    web = PublicWebResearch(httpx.MockTransport(handle))
+    try:
+        with patch("hotel_agent.adapters.external.web_research.public_url", new=AsyncMock()):
+            with pytest.raises(ValueError, match="^blocked: "):
+                await web.read("https://example.org/blocked")
+            with pytest.raises(ValueError, match="^missing: "):
+                await web.read("https://example.org/gone")
+    finally:
+        await web.aclose()
+    assert all("https://github.com/" in agent for agent in seen)

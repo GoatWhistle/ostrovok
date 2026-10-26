@@ -1,7 +1,13 @@
 from dataclasses import replace
 
-from hotel_agent.application.exploration_requests import exploration_terms
-from hotel_agent.domain.query import FacilityRequest, ParsedQuery, SpatialRequest
+from hotel_agent.application.agent.data_records import ExplorationOutcome
+from hotel_agent.application.exploration_requests import (
+    apply_exploration,
+    exploration_plan,
+    exploration_terms,
+)
+from hotel_agent.domain.characteristics import Op
+from hotel_agent.domain.query import FacilityRequest, Intent, ParsedQuery, SpatialRequest
 
 
 def query() -> ParsedQuery:
@@ -55,3 +61,63 @@ def test_substring_inside_a_word_does_not_remove_an_independent_wish() -> None:
         wishes=("бар",),
     )
     assert "бар" in exploration_terms(parsed)
+
+
+def test_whole_query_repeating_a_condition_is_not_researched_twice() -> None:
+    parsed = ParsedQuery(
+        intents=(
+            Intent(
+                characteristic_key="derived:a",
+                op=Op.EQ,
+                value=True,
+                weight=1,
+                required=False,
+                source_text="где жил Есенин",
+            ),
+            Intent(
+                characteristic_key="derived:b",
+                op=Op.EQ,
+                value=True,
+                weight=1,
+                required=False,
+                source_text="гостиница в Санкт-Петербурге, где жил Есенин",
+            ),
+        ),
+        unmatched_terms=(),
+        location_hint="Санкт-Петербург",
+    )
+    plan = exploration_plan(parsed)
+
+    assert plan.terms == ("где жил Есенин",)
+    assert plan.duplicates == ("гостиница в Санкт-Петербурге, где жил Есенин",)
+    kept = apply_exploration(parsed, ExplorationOutcome(hotels=()), plan.duplicates)
+    assert [intent.source_text for intent in kept.intents] == ["где жил Есенин"]
+
+
+def test_longer_condition_with_its_own_requirement_is_kept() -> None:
+    parsed = ParsedQuery(
+        intents=(
+            Intent(
+                characteristic_key="derived:a",
+                op=Op.EQ,
+                value=True,
+                weight=1,
+                required=False,
+                source_text="с бассейном",
+            ),
+            Intent(
+                characteristic_key="derived:b",
+                op=Op.EQ,
+                value=True,
+                weight=1,
+                required=False,
+                source_text="отель в Сочи с бассейном и завтраком",
+            ),
+        ),
+        unmatched_terms=(),
+        location_hint="Сочи",
+    )
+    plan = exploration_plan(parsed)
+
+    assert plan.terms == ("с бассейном", "отель в Сочи с бассейном и завтраком")
+    assert plan.duplicates == ()

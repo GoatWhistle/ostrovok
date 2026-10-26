@@ -1,0 +1,61 @@
+{
+  "id": "tower",
+  "query": "Хочу пожить в Москве в гостинице внутри сталинской высотки",
+  "check": "Building identity and hotel co-location; not merely a nearby tower.",
+  "seconds": 71.5,
+  "http_status": 200,
+  "response": {
+    "id": "649bcf84-eb2a-482a-8901-555b5558850a",
+    "title": "Москва: сталинская высотка",
+    "updated_at": "2026-10-26T20:59:25.265358Z",
+    "messages": [
+      {
+        "id": "97d60000-7900-4787-9303-79642c23fa32",
+        "role": "user",
+        "content": "Хочу пожить в Москве в гостинице внутри сталинской высотки",
+        "created_at": "2026-10-26T20:59:25.265358Z"
+      },
+      {
+        "id": "f4c1b665-2fa5-4648-99fa-fe6a6972ecfd",
+        "role": "assistant",
+        "content": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска.",
+        "created_at": "2026-10-26T20:59:25.265358Z"
+      }
+    ],
+    "effective_query": "гостиница в сталинской высотке в Москве",
+    "search": {
+      "query_id": "832b98d43108d833",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:959729973d5f",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "сталинская высотка"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Москва",
+        "anywhere": false,
+        "normalized_query": "гостиница в сталинской высотке в Москве",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [],
+      "viewport": null,
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "f4c1b665-2fa5-4648-99fa-fe6a6972ecfd"
+  }
+}

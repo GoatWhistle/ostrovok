@@ -1,0 +1,61 @@
+{
+  "id": "impossible",
+  "query": "Хочу отель в Самаре с настоящей действующей машиной времени",
+  "check": "No fabricated confirmation; honest inability to verify.",
+  "seconds": 187.2,
+  "http_status": 200,
+  "response": {
+    "id": "549e544c-29af-4eed-b9b1-d5a614645589",
+    "title": "Самара: настоящая действующая машина времени",
+    "updated_at": "2026-10-26T21:11:52.402653Z",
+    "messages": [
+      {
+        "id": "668ee8fe-4c88-42ea-b84f-320d1082eb61",
+        "role": "user",
+        "content": "Хочу отель в Самаре с настоящей действующей машиной времени",
+        "created_at": "2026-10-26T21:11:52.402653Z"
+      },
+      {
+        "id": "28883fb4-41f4-410a-aa1a-94c642586264",
+        "role": "assistant",
+        "content": "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия. Проверка не завершена: настоящая действующая машина времени. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+        "created_at": "2026-10-26T21:11:52.402653Z"
+      }
+    ],
+    "effective_query": "отель в Самаре с настоящей действующей машиной времени",
+    "search": {
+      "query_id": "b1bbd557bf08d1da",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:90eebdcb3b4e",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "настоящая действующая машина времени"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Самара",
+        "anywhere": false,
+        "normalized_query": "отель в Самаре с настоящей действующей машиной времени",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [],
+      "viewport": null,
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "28883fb4-41f4-410a-aa1a-94c642586264"
+  }
+}

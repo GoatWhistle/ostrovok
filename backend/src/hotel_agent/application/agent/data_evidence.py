@@ -122,6 +122,11 @@ def materialize(
                         "source_text": criterion.source_text,
                         "source_quotes": list(quotes),
                         "source_urls": list(urls),
+                        **(
+                            {"catalogue_identity": list(tools.reader.identities[hotel.id])}
+                            if quotes and hotel.id in tools.reader.identities
+                            else {}
+                        ),
                     },
                     source_type="computed",
                     source_id=urls[0] if urls else None,

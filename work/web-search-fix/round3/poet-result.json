@@ -1,0 +1,240 @@
+{
+  "id": "poet",
+  "query": "Найди гостиницу в Петербурге, где жил Есенин",
+  "check": "Historical residence established by a page and tied to catalogue identity.",
+  "seconds": 66.3,
+  "http_status": 200,
+  "response": {
+    "id": "348f1747-abdf-4067-8eb0-38a88224f821",
+    "title": "Санкт-Петербург: где жил Есенин",
+    "updated_at": "2026-10-26T20:58:13.723205Z",
+    "messages": [
+      {
+        "id": "b763732f-6a1e-4645-95e8-f9eed4b93e7d",
+        "role": "user",
+        "content": "Найди гостиницу в Петербурге, где жил Есенин",
+        "created_at": "2026-10-26T20:58:13.723205Z"
+      },
+      {
+        "id": "2cfb3499-52d4-4549-8c05-c92e1713ccd3",
+        "role": "assistant",
+        "content": "Показываю 1 отелей. Первые в подборке: Англетер. Выберите отель, чтобы изучить его и окружение. Ни у одного отеля не подтверждены все условия; это ближайшие совпадения. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+        "created_at": "2026-10-26T20:58:13.723205Z"
+      }
+    ],
+    "effective_query": "гостиница в Санкт-Петербурге, где жил Есенин",
+    "search": {
+      "query_id": "883a7d96ec9d86bc",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:76d4fd6ff3d4",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "где жил Есенин"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Санкт-Петербург",
+        "anywhere": false,
+        "normalized_query": "гостиница в Санкт-Петербурге, где жил Есенин",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [
+        {
+          "hotel": {
+            "id": "w49861780",
+            "name": "Англетер",
+            "address": "Малая Морская улица 24",
+            "location": [
+              30.3091487,
+              59.9336636
+            ],
+            "stars": 5,
+            "building_id": "w49861780",
+            "height_m": null,
+            "levels": 4
+          },
+          "score": 0.325,
+          "matched": [
+            {
+              "characteristic_key": "derived:76d4fd6ff3d4",
+              "match": "partial",
+              "label": "где жил Есенин",
+              "explanation": "Подтверждений в данных источника: 1. Проверка пожелания: Подтверждений в данных источника — не менее 1. Оценочные критерии выбраны агентом по доступным данным. Источники: https://blog.ostrovok.ru/5-rossijskix-otelej-s-privideniyami/",
+              "fact": {
+                "fact_id": "f_wish_76d4fd6ff3d4_w49861780",
+                "characteristic_key": "derived:76d4fd6ff3d4",
+                "value": true,
+                "unit": null,
+                "label": "где жил Есенин",
+                "confidence": 0.65,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": []
+              },
+              "geo_refs": [],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              30.3091487,
+              59.9336636
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w49861780",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      30.3086272,
+                      59.9333213
+                    ],
+                    [
+                      30.3088163,
+                      59.9333595
+                    ],
+                    [
+                      30.3089145,
+                      59.9333687
+                    ],
+                    [
+                      30.3090669,
+                      59.9334077
+                    ],
+                    [
+                      30.3091597,
+                      59.9334412
+                    ],
+                    [
+                      30.3095149,
+                      59.9335696
+                    ],
+                    [
+                      30.3096524,
+                      59.9336193
+                    ],
+                    [
+                      30.3100357,
+                      59.9337594
+                    ],
+                    [
+                      30.310155,
+                      59.9338031
+                    ],
+                    [
+                      30.3100496,
+                      59.9338849
+                    ],
+                    [
+                      30.30987,
+                      59.9338171
+                    ],
+                    [
+                      30.3097111,
+                      59.9337578
+                    ],
+                    [
+                      30.3088917,
+                      59.9334586
+                    ],
+                    [
+                      30.3089093,
+                      59.9335877
+                    ],
+                    [
+                      30.3088731,
+                      59.933585
+                    ],
+                    [
+                      30.3088883,
+                      59.9338751
+                    ],
+                    [
+                      30.3090321,
+                      59.9339274
+                    ],
+                    [
+                      30.3088858,
+                      59.9340317
+                    ],
+                    [
+                      30.3088079,
+                      59.9340034
+                    ],
+                    [
+                      30.3086493,
+                      59.9339457
+                    ],
+                    [
+                      30.3086467,
+                      59.9338709
+                    ],
+                    [
+                      30.3086352,
+                      59.9335474
+                    ],
+                    [
+                      30.3086272,
+                      59.9333213
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w49861780",
+              "hotel_id": "w49861780",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 4,
+              "height_fact_id": "f_height_w49861780"
+            }
+          }
+        }
+      ],
+      "viewport": {
+        "bbox": [
+          30.3091487,
+          59.9336636,
+          30.3091487,
+          59.9336636
+        ],
+        "camera": {
+          "center": [
+            30.3091487,
+            59.9336636
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        }
+      },
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "2cfb3499-52d4-4549-8c05-c92e1713ccd3"
+  }
+}

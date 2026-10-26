@@ -6,10 +6,11 @@ from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.requested_tools import RequestedTools
+from hotel_agent.application.agent.review_feedback import ReviewFeedback, rejection_feedback
 from hotel_agent.application.agent.semantic_review import ReviewResult, SemanticReview
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchHotelRecord
-from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
+from hotel_agent.application.exploration_requests import apply_exploration, exploration_plan
 from hotel_agent.application.facility_matching import facility_intent
 from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_intent
@@ -21,13 +22,13 @@ from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
-from hotel_agent.application.search_evidence import best_facts, save_search_evidence
-from hotel_agent.application.search_ranking import search_rank, view_eligible
+from hotel_agent.application.search_evidence import save_search_evidence
+from hotel_agent.application.search_selection import Selection, select_candidates
 from hotel_agent.application.spatial_matching import spatial_intent
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.domain.errors import InvalidQuery
 from hotel_agent.domain.query import ParsedQuery
-from hotel_agent.domain.services.scoring import Scored, score
+from hotel_agent.domain.services.scoring import Scored
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -139,10 +140,15 @@ class SearchHotels:
             landmarks,
             self._geographic_objects,
         )
-        terms = exploration_terms(parsed)
+        plan = exploration_plan(parsed)
+        terms = plan.terms
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
-        if self._explorer is not None and terms:
-            explored = await self._explorer(
+        explorer = self._explorer
+
+        async def explore(feedback: tuple[ReviewFeedback, ...]) -> ExplorationOutcome:
+            if explorer is None:
+                return explored
+            return await explorer(
                 query,
                 terms,
                 location or "Россия",
@@ -153,8 +159,12 @@ class SearchHotels:
                 discovery_allowed=parsed.anywhere and location is None,
                 native=native,
                 parsed=parsed,
+                feedback=feedback,
             )
-            parsed = apply_exploration(parsed, explored)
+
+        if explorer is not None and terms:
+            explored = await explore(())
+            parsed = apply_exploration(parsed, explored, plan.duplicates)
         elif terms:
             collected = [await native.check(term, hotels, bbox) for term in terms]
             explored = ExplorationOutcome(
@@ -163,42 +173,35 @@ class SearchHotels:
                 facts=tuple(row for item in collected for row in item.facts),
                 features=tuple(feature for item in collected for feature in item.features),
             )
-        hotels, bbox = explored.hotels, explored.bbox
-        facts = best_facts(explored.facts)
-        now = self._clock.now()
-        ranked = [
-            SearchResult(hotel=hotel, scored=score(parsed.intents, facts.get(hotel.id, {}), now))
-            for hotel in hotels
+        selection = await self._selection(query, parsed, explored, limit)
+        feedback = rejection_feedback(selection.ranked, selection.report)
+        if feedback and explorer is not None and terms and not explored.question:
+            retried = await explore(feedback)
+            retried_parsed = apply_exploration(parsed, retried, plan.duplicates)
+            attempt = await self._selection(query, retried_parsed, retried, limit)
+            if attempt.accepted:
+                explored, parsed, selection = retried, retried_parsed, attempt
+        results = [
+            SearchResult(hotel=hotel, scored=scored) for hotel, scored in selection.accepted[:limit]
         ]
-        if parsed.intents:
-            ranked = [
-                item
-                for item in ranked
-                if not item.scored.disqualified and view_eligible(item.scored)
-            ]
-        ranked.sort(key=lambda item: search_rank(item.hotel, item.scored))
-        if parsed.anywhere and (parsed.intents or parsed.unmatched_terms):
-            ranked = [item for item in ranked if item.scored.score > 0]
-        if explored.question:
-            ranked = [item for item in ranked if item.scored.score > 0]
-        report = None
-        if self._review is not None:
-            report = await self._review.check(
-                query, parsed, [(item.hotel, item.scored) for item in ranked], limit
-            )
-            ranked = [item for item in ranked if item.hotel.id in report.accepted_ids]
-        selected = ranked[:limit]
         await save_search_evidence(
-            self._uow, explored.facts, [item.hotel.id for item in selected], explored.features
+            self._uow, explored.facts, [item.hotel.id for item in results], explored.features
         )
-        fingerprint = f"{query}\x00{region}\x00{bbox}".encode()
+        fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
             parsed=parsed,
-            results=selected,
+            results=results,
             question=explored.question,
             wish_results=explored.wish_results,
-            review=report,
+            review=selection.report,
+        )
+
+    async def _selection(
+        self, query: str, parsed: ParsedQuery, explored: ExplorationOutcome, limit: int
+    ) -> Selection:
+        return await select_candidates(
+            query, parsed, explored, self._clock.now(), self._review, limit
         )
 
 

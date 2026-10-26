@@ -189,7 +189,16 @@ async def test_agent_exploration_and_evidence_use_structured_output(
                 "reason": "Проверка завершена по доступным источникам.",
                 "irrelevant_sources": [],
             },
-            {"verdicts": [{"record_id": "hotel-1", "supported": True, "quote": "Бассейн"}]},
+            {
+                "verdicts": [
+                    {
+                        "record_id": "hotel-1",
+                        "supported": True,
+                        "quote": "Бассейн",
+                        "reason": "Источник называет бассейн отеля",
+                    }
+                ]
+            },
         ]
     )
     llm = anthropic_build(lambda request: message(next(answers)))

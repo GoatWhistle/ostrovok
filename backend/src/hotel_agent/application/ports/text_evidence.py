@@ -6,3 +6,4 @@ class EvidenceVerdict:
     record_id: str
     supported: bool
     quote: str
+    reason: str = ""

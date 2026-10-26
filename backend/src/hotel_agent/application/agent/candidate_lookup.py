@@ -1,6 +1,6 @@
 import re
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from math import log
 from typing import Any
 
@@ -11,6 +11,18 @@ def words(text: str) -> set[str]:
     return set(re.findall(r"[^\W_]+", text.casefold().replace("ё", "е")))
 
 
+IDENTITY_KEYS = {"name", "old_name", "alt_name", "official_name", "short_name", "addr", "wikipedia"}
+
+
+def identity_tags(tags: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in tags.items()
+        if key.split(":")[0] in IDENTITY_KEYS
+        or key in {"website", "contact:website", "wikidata"}
+    }
+
+
 def lookup_candidates(
     hotels: Sequence[SearchHotelRecord],
     records: Sequence[dict[str, Any]],
@@ -19,15 +31,7 @@ def lookup_candidates(
     offset, limit = int(arguments.get("offset") or 0), int(arguments.get("limit") or 12)
     if offset < 0 or not 1 <= limit <= 50:
         raise ValueError("Use a nonnegative offset and page size 1–50")
-    metadata = {}
-    for row in records:
-        metadata[str(row["hotel_id"])] = {
-            key: value
-            for key, value in row.get("tags", {}).items()
-            if key.split(":")[0]
-            in {"name", "old_name", "alt_name", "official_name", "short_name", "addr", "wikipedia"}
-            or key in {"website", "contact:website"}
-        }
+    metadata = {str(row["hotel_id"]): identity_tags(row.get("tags", {})) for row in records}
     indexed = {
         h.id: words(" ".join([h.name, h.address or "", *map(str, metadata.get(h.id, {}).values())]))
         for h in hotels

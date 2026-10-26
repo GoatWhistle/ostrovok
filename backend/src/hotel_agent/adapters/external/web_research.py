@@ -14,6 +14,7 @@ from hotel_agent.adapters.external.hotel_metadata import HotelMetadata
 from hotel_agent.adapters.external.web_pages import PageText
 from hotel_agent.application.ports.web_research import WebPage
 
+USER_AGENT = "HotelAgent/0.1 (+https://github.com/GoatWhistle/o-hack; hotel information research)"
 SEARCH_URL = "https://freeserp.ai/api.php"
 FALLBACK_SEARCH_URL = "https://www.bing.com/search"
 MAX_BYTES = 1_000_000
@@ -39,7 +40,7 @@ class PublicWebResearch:
         self._client = httpx.AsyncClient(
             timeout=httpx.Timeout(7, connect=2),
             follow_redirects=False,
-            headers={"User-Agent": "HotelAgent/0.1 (hotel information research)"},
+            headers={"User-Agent": USER_AGENT},
             transport=transport,
         )
 
@@ -107,8 +108,12 @@ class PublicWebResearch:
     async def read(self, url: str) -> WebPage:
         try:
             return await self._read(url)
+        except httpx.HTTPStatusError as error:
+            raise ValueError(unreadable(error.response.status_code)) from error
         except (httpx.HTTPError, TimeoutError, OSError) as error:
-            raise ValueError("The internet page could not be read") from error
+            raise ValueError(
+                "unreachable: the host did not return the page within the time limit"
+            ) from error
 
     async def _read(self, url: str) -> WebPage:
         async with asyncio.timeout(10):
@@ -121,12 +126,15 @@ class PublicWebResearch:
                     response.raise_for_status()
                     content_type = response.headers.get("content-type", "")
                     if not any(kind in content_type for kind in ("text/html", "text/plain")):
-                        raise ValueError("The page is not readable HTML or plain text")
+                        raise ValueError(
+                            f"unsupported_type: the page is {content_type or 'unknown'},"
+                            " not HTML or plain text"
+                        )
                     body = bytearray()
                     async for chunk in response.aiter_bytes():
                         body.extend(chunk)
                         if len(body) > MAX_BYTES:
-                            raise ValueError("The page exceeds the 1 MB reading limit")
+                            raise ValueError("too_large: the page exceeds the 1 MB reading limit")
                     charset = re.search(
                         rb'<meta[^>]+charset=["\']?([a-zA-Z0-9_-]+)', body[:8192], re.IGNORECASE
                     )
@@ -159,4 +167,17 @@ class PublicWebResearch:
                         retrieved_at=datetime.now(UTC),
                         events=tuple(events.records),
                     )
-        raise ValueError("Too many page redirects")
+        raise ValueError("unreachable: too many page redirects")
+
+
+def unreadable(status: int) -> str:
+    if status in {401, 403, 429}:
+        return (
+            f"blocked: the site refused automated reading with HTTP {status};"
+            " this is not evidence about the hotel, use another source"
+        )
+    if status in {404, 410}:
+        return f"missing: the page no longer exists (HTTP {status})"
+    if status >= 500:
+        return f"unavailable: the site returned HTTP {status}"
+    return f"unreadable: the site returned HTTP {status}"

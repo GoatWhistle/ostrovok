@@ -1,0 +1,22 @@
+...F                                                                     [100%]
+=================================== FAILURES ===================================
+__________ test_verification_sees_evidence_after_long_page_navigation __________
+
+    async def test_verification_sees_evidence_after_long_page_navigation() -> None:
+        quote = "The observatory is open to hotel guests every evening."
+        text = "Navigation and unrelated introductory material. " * 250 + quote
+        llm = SimpleNamespace(
+            verify_evidence=AsyncMock(
+                return_value=[EvidenceVerdict(record_id="0", supported=True, quote=quote)]
+            )
+        )
+        matched = await DocumentEvidence(cast(LLMPort, llm), ("с обсерваторией",)).verify(
+            None, [{"hotel_id": "hotel", "text": text}], []
+        )
+>       assert quote in llm.verify_evidence.call_args.args[0]
+E       assert 'The observatory is open to hotel guests every evening.' in '{"wish": "с обсерваторией", "request": "", "records": [{"record_id": "0", "source_text": "Navigation and unrelated in...ductory material. Navigation and unrelated introductory material. Navigation and unrelated introductory material. "}]}'
+
+tests/unit/application/test_document_evidence.py:113: AssertionError
+=========================== short test summary info ============================
+FAILED tests/unit/application/test_document_evidence.py::test_verification_sees_evidence_after_long_page_navigation
+1 failed, 3 passed in 0.09s

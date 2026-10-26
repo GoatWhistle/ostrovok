@@ -1,7 +1,12 @@
 import json
 from collections.abc import Mapping, Sequence
 
-from hotel_agent.application.agent.semantic_review import ReviewClaim, ReviewResult, SemanticReview
+from hotel_agent.application.agent.semantic_review import (
+    ReviewClaim,
+    ReviewRejection,
+    ReviewResult,
+    SemanticReview,
+)
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.query import ParsedQuery
@@ -92,12 +97,16 @@ class RecommendationReview:
     ) -> ReviewResult:
         accepted: list[str] = []
         rejected: list[str] = []
+        rejections: list[ReviewRejection] = []
         eligible = []
         for hotel, scored in candidates:
             if (parsed.intents or parsed.unmatched_terms or parsed.wishes) and not any(
                 item.quality in COUNTED_QUALITIES for item in scored.matches
             ):
                 rejected.append(hotel.id)
+                rejections.append(
+                    ReviewRejection(hotel.id, "no_verified_wish", "Ни одно пожелание не проверено.")
+                )
             else:
                 eligible.append((hotel, scored))
         candidates = eligible
@@ -110,6 +119,9 @@ class RecommendationReview:
             )
             accepted.extend(report.accepted_ids)
             rejected.extend(report.rejected_ids)
+            rejections.extend(report.rejections)
             if report.unavailable or len(accepted) >= limit:
-                return ReviewResult(tuple(accepted), tuple(rejected), report.unavailable)
-        return ReviewResult(tuple(accepted), tuple(rejected))
+                return ReviewResult(
+                    tuple(accepted), tuple(rejected), report.unavailable, tuple(rejections)
+                )
+        return ReviewResult(tuple(accepted), tuple(rejected), rejections=tuple(rejections))

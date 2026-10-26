@@ -1,0 +1,61 @@
+{
+  "id": "architecture",
+  "query": "Найди гостиницу в Казани в здании дореволюционного особняка",
+  "check": "Building history and current hotel identity verified, not stylistic imitation.",
+  "seconds": 185.8,
+  "http_status": 200,
+  "response": {
+    "id": "fadf4c84-7e50-439c-af88-17bf7e14d227",
+    "title": "Казань: в здании дореволюционного особняка",
+    "updated_at": "2026-10-26T21:08:35.150918Z",
+    "messages": [
+      {
+        "id": "212d5fb3-895b-4480-b4bf-eb97c773923e",
+        "role": "user",
+        "content": "Найди гостиницу в Казани в здании дореволюционного особняка",
+        "created_at": "2026-10-26T21:08:35.150918Z"
+      },
+      {
+        "id": "d40506fd-c82c-4e4e-b989-11e107890612",
+        "role": "assistant",
+        "content": "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия. Проверка не завершена: в здании дореволюционного особняка. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+        "created_at": "2026-10-26T21:08:35.150918Z"
+      }
+    ],
+    "effective_query": "гостиница в Казани в здании дореволюционного особняка",
+    "search": {
+      "query_id": "3556e588ab93461b",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:52a08e9312b5",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "в здании дореволюционного особняка"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Казань",
+        "anywhere": false,
+        "normalized_query": "гостиница в Казани в здании дореволюционного особняка",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [],
+      "viewport": null,
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "d40506fd-c82c-4e4e-b989-11e107890612"
+  }
+}

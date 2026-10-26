@@ -1,5 +1,6 @@
 import asyncio
 import json
+import re
 from collections import Counter
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -7,6 +8,20 @@ from dataclasses import dataclass
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
+
+WHITESPACE = re.compile(r"\s+")
+
+
+def comparable(text: str) -> str:
+    return WHITESPACE.sub(
+        " ",
+        text.casefold()
+        .replace("ё", "е")
+        .replace("«", '"')
+        .replace("»", '"')
+        .replace("\\n", " ")
+        .replace('\\"', '"'),
+    ).strip()
 
 
 @dataclass(frozen=True, slots=True)
@@ -17,10 +32,18 @@ class ReviewClaim:
 
 
 @dataclass(frozen=True, slots=True)
+class ReviewRejection:
+    id: str
+    cause: str
+    reason: str = ""
+
+
+@dataclass(frozen=True, slots=True)
 class ReviewResult:
     accepted_ids: tuple[str, ...] = ()
     rejected_ids: tuple[str, ...] = ()
     unavailable: bool = False
+    rejections: tuple[ReviewRejection, ...] = ()
 
 
 class SemanticReview:
@@ -68,9 +91,11 @@ class SemanticReview:
         rejected = tuple(claim.id for claim in claims if claim.id not in accepted)
         by_id = {verdict.record_id: verdict for verdict in verdicts}
         reasons: Counter[str] = Counter()
+        rejections = []
+        cosmetic = 0
         for identifier in rejected:
             verdict = by_id.get(identifier)
-            reason = (
+            cause = (
                 "missing_verdict"
                 if verdict is None
                 else "duplicate_verdict"
@@ -81,12 +106,19 @@ class SemanticReview:
                 if len(verdict.quote.strip()) < 12
                 else "ungrounded_quote"
             )
-            reasons[reason] += 1
+            reasons[cause] += 1
+            if cause == "ungrounded_quote" and verdict is not None:
+                cosmetic += comparable(verdict.quote) in comparable(sources[identifier])
+            rejections.append(ReviewRejection(identifier, cause, verdict.reason if verdict else ""))
         self._logger.info(
             "semantic_review_finished",
             mode=mode,
             accepted=len(accepted),
             rejected=len(rejected),
             rejection_reasons=json.dumps(reasons, sort_keys=True),
+            cosmetic_quote_mismatches=cosmetic,
+            rejection_notes=json.dumps(
+                [row.reason for row in rejections if row.reason][:4], ensure_ascii=False
+            ),
         )
-        return ReviewResult(accepted, rejected)
+        return ReviewResult(accepted, rejected, rejections=tuple(rejections))

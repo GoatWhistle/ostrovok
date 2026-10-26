@@ -34,10 +34,16 @@ class WishLoop:
         self._llm, self._clock, self._logger = llm, clock, logger
         self._max_steps, self._timeout = max_steps, timeout_s
 
-    async def run(self, query: str, term: str, tools: DataTools) -> ExplorationOutcome:
+    async def run(
+        self,
+        query: str,
+        term: str,
+        tools: DataTools,
+        note: dict[str, Any] | None = None,
+    ) -> ExplorationOutcome:
         ledger = WishLedger(tools.sources)
         completion = WishCompletion(self._clock, self._logger, term, ledger, tools)
-        observations: list[dict[str, Any]] = []
+        observations: list[dict[str, Any]] = [note] if note else []
         retained = ExplorationOutcome(hotels=tools.hotels, bbox=tools.bbox)
         reason = "Поиск пожелания не завершён; это не означает отсутствие подходящих отелей."
         status = WishStatus.INCOMPLETE
@@ -84,7 +90,7 @@ class WishLoop:
                     )
                     step = (
                         DataStep(action="match_records", arguments={"dataset": "web_documents"})
-                        if index == 0 and tools.research.pages
+                        if index == 0 and tools.research.pages and note is None
                         else await self._llm.explore_data(context)
                     )
                     self._logger.info(
