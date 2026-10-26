@@ -18,6 +18,7 @@ from hotel_agent.adapters.llm.query_payload import (
     valid_intent_value,
 )
 from hotel_agent.adapters.llm.text import normalize
+from hotel_agent.adapters.llm.view_scope import review_view_scopes
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.chat_dialogue import ChatDecision
 from hotel_agent.application.ports.llm import (
@@ -104,7 +105,8 @@ class StructuredLLM:
             user=query,
             schema=prompts.parse_query_schema(registry),
         )
-        return parse_payload(payload, query, self._intent)
+        parsed = parse_payload(payload, query, self._intent)
+        return await review_view_scopes(self._completion, query, parsed)
 
     async def explore_data(self, context: str) -> DataStep:
         raw = await self._completion.complete(

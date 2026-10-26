@@ -161,3 +161,21 @@ def _object(properties: dict[str, Any]) -> dict[str, Any]:
         "required": sorted(properties),
         "properties": properties,
     }
+
+
+def view_scope_schema(identifiers: Sequence[str]) -> dict[str, Any]:
+    return _schema(
+        "view_scope_review",
+        {
+            "scopes": {
+                "type": "array",
+                "items": _object(
+                    {
+                        "id": {"type": "string", "enum": list(identifiers)},
+                        "scope": {"type": "string", "enum": ["any", "top", "whole"]},
+                        "quote": {"type": "string"},
+                    }
+                ),
+            }
+        },
+    )
