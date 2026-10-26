@@ -42,6 +42,11 @@ const TOKENS = {
 
 export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }
 
+export function readTokenColors(tokens: readonly string[]): ReadonlyMap<string, string> {
+  const style = getComputedStyle(document.documentElement)
+  return new Map(tokens.map((token) => [token, style.getPropertyValue(token).trim()]))
+}
+
 function readColors(): MapColors {
   const style = getComputedStyle(document.documentElement)
   const entries = Object.entries(TOKENS).map(([key, token]) => [

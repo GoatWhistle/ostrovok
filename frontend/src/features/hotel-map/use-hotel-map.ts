@@ -1,10 +1,11 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useRegions } from "@/entities/catalog"
-import { useBasemaps } from "@/entities/map-data"
+import { useBasemaps, useMapCatalog } from "@/entities/map-data"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
 import { renderBasemap } from "@/shared/geo/basemap"
 import { renderBasemapLabels } from "@/shared/geo/basemap-labels"
+import { classColors, renderCatalogLayers } from "@/shared/geo/catalog-layers"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
@@ -20,7 +21,7 @@ import type { TexturedFootprint } from "@/shared/geo/textured-building/selection
 import { tintForTime } from "@/shared/geo/time-tint"
 import { useLocale } from "@/shared/i18n"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
-import { useMapColors } from "@/shared/theme"
+import { readTokenColors, useMapColors } from "@/shared/theme"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapInstance } from "./use-map-instance"
 import { useMapMarkers } from "./use-map-markers"
@@ -114,6 +115,17 @@ export function useHotelMap({
     [regions.data],
   )
   const basemaps = useBasemaps(regionIds)
+  const catalog = useMapCatalog()
+  const classes = useMemo(() => {
+    const items = catalog.data?.classes ?? []
+    const tokens = readTokenColors(items.map((item) => item.style.fill ?? ""))
+    return classColors(items, (token) => tokens.get(token), {
+      land: colors.land,
+      building: colors.building,
+      road: colors.road,
+      park: colors.park,
+    })
+  }, [catalog.data, colors])
   useEffect(() => retainPmtiles(), [])
   const highlightData = useMemo(() => featureCollection(highlights), [highlights])
   const [route, setRoute] = useState<string>()
@@ -129,12 +141,13 @@ export function useHotelMap({
       .getContainer()
       .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
     renderBasemap(map, scene)
+    renderCatalogLayers(map, classes)
     const hasRoute = renderHighlights(map, highlightData, colors)
     renderBasemapLabels(map, basemaps, colors, locale)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, highlightData, colors, sun, basemaps, locale])
+  }, [instance, ready, highlightData, colors, sun, basemaps, locale, classes])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
     () => tintForTime(colors, lightMode(sun.altitude)),
