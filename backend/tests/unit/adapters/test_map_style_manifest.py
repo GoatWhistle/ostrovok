@@ -61,3 +61,15 @@ def test_a_broken_manifest_fails_loudly(tmp_path: Path) -> None:
     (directory / "manifest.json").write_text(json.dumps({"archive": "a-1.pmtiles"}))
     with pytest.raises(InvalidRegistry):
         ManifestFiles(tmp_path).region("demo")
+
+
+def test_a_large_regional_basemap_comes_from_the_basemaps_folder(tmp_path: Path) -> None:
+    seed, basemaps = tmp_path / "seed", tmp_path / "basemaps"
+    seed.mkdir()
+    write_basemap(tmp_path / "staging")
+    (basemaps).mkdir()
+    (tmp_path / "staging" / "demo-map" / "basemap").rename(basemaps / "demo")
+    record = ManifestFiles(seed, basemaps).region("demo")
+    assert record.basemap is not None
+    assert record.basemap.version == "basemap-1"
+    assert ManifestFiles(seed).region("demo").basemap is None

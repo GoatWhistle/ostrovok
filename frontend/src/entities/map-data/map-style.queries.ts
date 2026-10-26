@@ -16,6 +16,8 @@ function basemapAssets(results: UseQueryResult<MapStyleManifest>[]): readonly Ba
             basemapUrl: data.assets.basemap_url,
             glyphsUrl: data.assets.glyphs_url,
             spriteUrl: data.assets.sprite_url,
+            bbox: data.bbox,
+            maxZoom: data.assets.max_zoom,
           },
         ]
       : [],

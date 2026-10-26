@@ -6,13 +6,16 @@ from hotel_agent.domain.errors import InvalidRegistry
 
 
 class ManifestFiles:
-    def __init__(self, seed_dir: Path) -> None:
-        self._seed_dir = seed_dir
+    def __init__(self, seed_dir: Path, basemaps_dir: Path | None = None) -> None:
+        self._seed_dir, self._basemaps_dir = seed_dir, basemaps_dir
 
     def region(self, region_id: str) -> RegionMapRecord:
         directory = self._seed_dir / f"{region_id}-map"
+        basemap = self._basemap(directory / "basemap")
+        if basemap is None and self._basemaps_dir is not None:
+            basemap = self._basemap(self._basemaps_dir / region_id)
         return RegionMapRecord(
-            basemap=self._basemap(directory / "basemap"),
+            basemap=basemap,
             tiles_version=self._tiles_version(directory / "manifest.json"),
             terrain=(self._seed_dir / region_id / "dem.tif").is_file(),
         )

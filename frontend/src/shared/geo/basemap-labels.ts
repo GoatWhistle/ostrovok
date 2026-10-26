@@ -1,11 +1,18 @@
 import { layers, namedFlavor } from "@protomaps/basemaps"
-import type { LayerSpecification, Map as MapLibreMap } from "maplibre-gl"
+import type {
+  ExpressionSpecification,
+  FilterSpecification,
+  LayerSpecification,
+  Map as MapLibreMap,
+} from "maplibre-gl"
 
 export interface BasemapAssets {
   readonly regionId: string
   readonly basemapUrl: string
   readonly glyphsUrl: string
   readonly spriteUrl: string
+  readonly bbox: readonly number[]
+  readonly maxZoom: number
 }
 
 export interface LabelColors {
@@ -21,10 +28,50 @@ function absolute(path: string): string {
   return new URL(path, window.location.origin).href.replaceAll("%7B", "{").replaceAll("%7D", "}")
 }
 
-function labelLayers(source: string, lang: string): LayerSpecification[] {
+function outside(bboxes: readonly (readonly number[])[]): ExpressionSpecification | undefined {
+  const rings = bboxes.flatMap(([west, south, east, north]) =>
+    west === undefined || south === undefined || east === undefined || north === undefined
+      ? []
+      : [
+          [
+            [west, south],
+            [east, south],
+            [east, north],
+            [west, north],
+            [west, south],
+          ],
+        ],
+  )
+  if (rings.length === 0) return undefined
+  return ["!", ["within", { type: "MultiPolygon", coordinates: rings.map((ring) => [ring]) }]]
+}
+
+function withExclusion(layer: LayerSpecification, exclusion: ExpressionSpecification | undefined) {
+  if (!exclusion || layer.type !== "symbol") return layer
+  const filter = (
+    layer.filter ? ["all", layer.filter, exclusion] : exclusion
+  ) as FilterSpecification
+  return { ...layer, filter }
+}
+
+function labelLayers(
+  source: string,
+  lang: string,
+  exclusion: ExpressionSpecification | undefined,
+): LayerSpecification[] {
   return layers(source, namedFlavor("black"), { lang, labelsOnly: true })
     .filter((layer) => !SKIPPED.some((part) => layer.id.includes(part)))
-    .map((layer) => ({ ...layer, id: `${source}-${layer.id}`, metadata: { lang } }))
+    .map((layer) =>
+      withExclusion({ ...layer, id: `${source}-${layer.id}`, metadata: { lang } }, exclusion),
+    )
+}
+
+export function finerBounds(asset: BasemapAssets, assets: readonly BasemapAssets[]) {
+  return assets.filter((other) => other.maxZoom > asset.maxZoom).map((other) => other.bbox)
+}
+
+export function exclusionFor(asset: BasemapAssets, assets: readonly BasemapAssets[]) {
+  return outside(finerBounds(asset, assets))
 }
 
 function labelIds(map: MapLibreMap): string[] {
@@ -73,11 +120,13 @@ export function renderBasemapLabels(
   if (!map.getGlyphs()) map.setGlyphs(absolute(first.glyphsUrl))
   if (!map.getSprite().length) map.setSprite(absolute(first.spriteUrl))
   dropStale(map, lang)
-  for (const asset of assets) {
+  for (const asset of [...assets].sort((left, right) => left.maxZoom - right.maxZoom)) {
     const source = `${PREFIX}${asset.regionId}`
     if (!map.getSource(source))
       map.addSource(source, { type: "vector", url: `pmtiles://${absolute(asset.basemapUrl)}` })
-    for (const layer of labelLayers(source, lang)) if (!map.getLayer(layer.id)) map.addLayer(layer)
+    const exclusion = exclusionFor(asset, assets)
+    for (const layer of labelLayers(source, lang, exclusion))
+      if (!map.getLayer(layer.id)) map.addLayer(layer)
   }
   paintLabels(map, colors)
   raiseLabels(map)

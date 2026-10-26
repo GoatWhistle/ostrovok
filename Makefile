@@ -89,5 +89,8 @@ fetch-map-layers:
 fetch-basemap:
 	bash scripts/fetch-basemap.sh
 
+fetch-basemap-russia: ## Extract the Russia basemap (about 13 GB) and prepare it for the stand
+	bash scripts/fetch-basemap-russia.sh
+
 import-map-layers:
 	$(BACKEND) python scripts/import_map_layers.py --root $(CURDIR)

@@ -31,6 +31,13 @@ make seed && make precompute
 Подложку с подписями Compose монтирует из `data/seed/sochi-map/basemap/` во фронтенд, nginx отдаёт её
 по `/maps/sochi/` частями (`Range`); сеть для неё не нужна.
 
+Подложка всей России (z0–14, около 13 ГБ) в Git не хранится. Её готовит
+`PMTILES_BIN=/path/to/pmtiles make fetch-basemap-russia`: вырезка из сборки Protomaps, проверка,
+манифест с SHA-256 и ссылка на архив с хешем в имени в каталоге `MAP_BASEMAPS_HOST_DIR`
+(по умолчанию `data/basemaps`). Compose монтирует этот каталог во фронтенд и бэкенд только для
+чтения, после этого `/api/v1/map/style?region_id=russia` отвечает `available: true`. Без каталога
+стенд работает с подложкой Сочи.
+
 | Команда | Что делает | Сеть |
 |---|---|---|
 | `make up` | `docker buildx bake`, затем `docker compose up -d --wait`; миграции dbmate применяются до старта бэкенда | Для сборки образов |

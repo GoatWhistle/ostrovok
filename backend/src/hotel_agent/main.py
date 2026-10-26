@@ -195,7 +195,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             ),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),
             get_map_style=GetMapStyle(
-                providers.uow, ManifestFiles(config.seed_dir), CATALOG_VERSION
+                providers.uow,
+                ManifestFiles(config.seed_dir, config.map_basemaps_dir),
+                CATALOG_VERSION,
             ),
         )
     )
