@@ -165,3 +165,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.mapPointShape {
+  inline-size: var(--space-12);
+  block-size: var(--space-12);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pin);
+}

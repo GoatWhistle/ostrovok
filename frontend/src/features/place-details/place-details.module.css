@@ -1,0 +1,66 @@
+.detail {
+  display: grid;
+  gap: var(--space-24);
+  padding: var(--space-24);
+  overflow-wrap: anywhere;
+}
+.head {
+  display: grid;
+  gap: var(--space-12);
+}
+.name {
+  font-size: var(--font-size-heading);
+  line-height: var(--line-height-heading);
+}
+.field {
+  display: grid;
+  gap: var(--space-8);
+}
+.fieldTitle {
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--weight-semibold);
+}
+.value {
+  display: grid;
+  gap: var(--space-8);
+}
+.meta,
+.provenance {
+  color: var(--text-secondary);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-body);
+}
+.provenance {
+  display: grid;
+  gap: var(--space-8);
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+.walk {
+  display: grid;
+  gap: var(--space-12);
+}
+.raw {
+  font-variant-numeric: var(--font-numeric);
+}
+.schedule {
+  display: grid;
+  gap: var(--space-8);
+  list-style: none;
+  padding: 0;
+  font-size: var(--font-size-body-sm);
+}
+.schedule li {
+  display: grid;
+  gap: var(--space-4);
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-min);
+  color: var(--text-link);
+  text-decoration: underline;
+}

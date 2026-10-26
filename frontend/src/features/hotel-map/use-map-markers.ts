@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap, Marker } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
-import { featureCollection } from "@/shared/geo/geometry"
+import { useLocale } from "@/shared/i18n"
 import {
   createMarker,
   type HotelView,
@@ -10,6 +10,7 @@ import {
   type PlaceView,
   removeMarkers,
 } from "./marker-view"
+import { placeTargets } from "./markers/place-targets"
 import { useMarkerLabels } from "./markers/use-marker-labels"
 import { useResultPins } from "./use-result-pins"
 
@@ -22,48 +23,30 @@ interface MarkerData {
   readonly focusLabel: string | undefined
 }
 
-type Feature = ReturnType<typeof featureCollection>["features"][number]
-
-function placeTarget(feature: Feature, fallback: string | undefined) {
-  const props = feature.properties ?? {}
-  if (feature.geometry.type === "Point" && typeof props.name === "string")
-    return {
-      kind: "place" as const,
-      label: props.name,
-      position: feature.geometry.coordinates as [number, number],
-    }
-  if (feature.geometry.type === "LineString" && feature.properties?.kind === "route" && fallback) {
-    const end = feature.geometry.coordinates.at(-1) as [number, number] | undefined
-    return end ? { kind: "route" as const, label: fallback, position: end } : null
-  }
-  return null
-}
-
 function useFocusPlaces(
   mapRef: RefObject<MapLibreMap | null>,
   ready: boolean,
   focusFeatures: readonly unknown[],
   focusLabel: string | undefined,
 ) {
+  const { locale } = useLocale()
   const [views, setViews] = useState<readonly PlaceView[]>([])
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map || !focusFeatures.length) return
     const markers: Marker[] = []
     const next: PlaceView[] = []
-    featureCollection(focusFeatures).features.forEach((feature, index) => {
-      const target = placeTarget(feature, focusLabel)
-      if (!target) return
+    placeTargets(focusFeatures, focusLabel, locale).forEach((target, index) => {
       const { element, marker } = createMarker(map, target.position, "center")
       markers.push(marker)
-      next.push({ key: `place-${index}`, element, kind: target.kind, label: target.label })
+      next.push({ key: `place-${index}`, element, ...target })
     })
     setViews(next)
     return () => {
       removeMarkers(markers)
       setViews([])
     }
-  }, [mapRef, ready, focusFeatures, focusLabel])
+  }, [mapRef, ready, focusFeatures, focusLabel, locale])
   return views
 }
 

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedValue } from "@/shared/geo/fact-label"
 import { useLocale } from "@/shared/i18n"
@@ -10,9 +11,10 @@ export interface MapFocusProps {
   readonly fact: FactBrief | undefined
   readonly property: MatchedProperty | undefined
   readonly route: boolean
+  readonly children?: ReactNode
 }
 
-export function MapFocus({ label, explanation, fact, property, route }: MapFocusProps) {
+export function MapFocus({ label, explanation, fact, property, route, children }: MapFocusProps) {
   const { locale } = useLocale()
   if (!label) return null
   const selected = property?.fact ?? fact
@@ -29,6 +31,7 @@ export function MapFocus({ label, explanation, fact, property, route }: MapFocus
         <div className={styles.content}>
           <strong>{label}</strong>
           {explanation ? <span>{explanation}</span> : null}
+          {children}
         </div>
       </Popover>
     </div>

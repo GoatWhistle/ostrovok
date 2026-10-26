@@ -1,10 +1,9 @@
-import { type ReactNode, useMemo, useState } from "react"
+import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
-import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
+import { useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
-import { factLabel, matchedExplanation, matchedTitle, matchedValue } from "@/shared/geo/fact-label"
+import { matchedValue } from "@/shared/geo/fact-label"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
-import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { motionMs } from "@/shared/motion"
 import { ErrorState, MapAttribution } from "@/shared/ui"
@@ -15,7 +14,17 @@ import { MapLegendToggle } from "./map-legend"
 import { MapScale } from "./map-scale"
 import { MapStatus, mapNotes } from "./map-status"
 import { MapPins } from "./markers/map-pins"
-import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
+import { useFocusGeometry } from "./markers/use-focus-geometry"
+import { WalkSummary } from "./markers/walk-summary"
+import {
+  focusCopy,
+  hasLine,
+  regionOverview,
+  resultCorners,
+  sceneData,
+  sceneLocation,
+  sceneQuality,
+} from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
@@ -32,39 +41,9 @@ export interface HotelMapProps {
   readonly results: readonly SearchResult[]
   readonly bounds: readonly number[] | undefined
   readonly bottomCenter?: ReactNode
+  readonly onPlace: (id: string) => void
+  readonly onTimeChange: (date: string, hour: number) => void
   readonly onSelect: (result: SearchResult) => void
-}
-
-function focusCopy(
-  property: MatchedProperty | undefined,
-  fact: FactBrief | undefined,
-  hasFeatures: boolean,
-  locale: Locale,
-) {
-  if (property)
-    return {
-      label: matchedTitle(property, locale),
-      explanation: matchedExplanation(property, locale),
-    }
-  if (fact && hasFeatures) return { label: factLabel(fact, locale), explanation: undefined }
-  return { label: undefined, explanation: undefined }
-}
-
-function sceneLocation(result: SearchResult | undefined, camera: Camera | undefined) {
-  return [
-    result?.hotel.location[0] ?? camera?.center[0] ?? 39.72,
-    result?.hotel.location[1] ?? camera?.center[1] ?? 43.59,
-  ] as const
-}
-
-function hasLine(features: readonly unknown[]) {
-  return features.some((feature) => {
-    const data = feature as { geometry?: { type?: string }; properties?: { kind?: string } }
-    return (
-      data.properties?.kind === "route" &&
-      (data.geometry?.type === "LineString" || data.geometry?.type === "MultiLineString")
-    )
-  })
 }
 
 export function HotelMap({
@@ -77,6 +56,8 @@ export function HotelMap({
   results,
   bounds,
   onSelect,
+  onPlace,
+  onTimeChange,
   bottomCenter,
 }: HotelMapProps) {
   const { t } = useTranslation()
@@ -86,7 +67,9 @@ export function HotelMap({
   const [hour, setHour] = useState(16)
   const scene = useHotelScene(hotelId)
   const regions = useRegions()
-  const geometry = useGeoFeatures(geoRefs)
+  const hotel = results.find((item) => item.hotel.id === hotelId)
+  const geometry = useFocusGeometry(geoRefs, hotel)
+  useEffect(() => onTimeChange(date, hour), [onTimeChange, date, hour])
   const region =
     regions.data?.items?.find((item) => item.id === regionId) ?? regions.data?.items?.[0]
   const regionCamera = region?.default_camera
@@ -98,7 +81,6 @@ export function HotelMap({
     geometry.data,
     results,
   )
-  const hotel = results.find((item) => item.hotel.id === hotelId)
   const textured = useMemo(
     () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
     [hotelId, scene.data, hotel],
@@ -155,7 +137,7 @@ export function HotelMap({
           altitude={sun.position.altitude}
         />
       ) : null}
-      <MapPins views={map.markers} map={map.instance} onSelect={onSelect} />
+      <MapPins views={map.markers} map={map.instance} onSelect={onSelect} onPlace={onPlace} />
       <MapStatus
         hasCamera={selectedCamera !== undefined}
         sceneError={scene.isError}
@@ -170,7 +152,9 @@ export function HotelMap({
           fact={focusedFact}
           property={focusProperty}
           route={hasLine(focusFeatures)}
-        />
+        >
+          <WalkSummary features={focusFeatures} />
+        </MapFocus>
         {geometry.isError ? (
           <div className={styles.notice}>
             <ErrorState

@@ -1,10 +1,14 @@
 import type {
   Camera,
+  FactBrief,
   GeoFeatureCollection,
   HotelScene,
+  MatchedProperty,
   SearchResult,
 } from "@/shared/api/hotel-types"
+import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
 import { featureCollection } from "@/shared/geo/geometry"
+import type { Locale } from "@/shared/i18n"
 
 const OVERVIEW_ZOOM_STEP = 1.8
 const OVERVIEW_PITCH = 56
@@ -89,4 +93,36 @@ export function resultCorners(
     [Math.min(...lons), Math.min(...lats)],
     [Math.max(...lons), Math.max(...lats)],
   ]
+}
+
+export function focusCopy(
+  property: MatchedProperty | undefined,
+  fact: FactBrief | undefined,
+  hasFeatures: boolean,
+  locale: Locale,
+) {
+  if (property)
+    return {
+      label: matchedTitle(property, locale),
+      explanation: matchedExplanation(property, locale),
+    }
+  if (fact && hasFeatures) return { label: factLabel(fact, locale), explanation: undefined }
+  return { label: undefined, explanation: undefined }
+}
+
+export function sceneLocation(result: SearchResult | undefined, camera: Camera | undefined) {
+  return [
+    result?.hotel.location[0] ?? camera?.center[0] ?? 39.72,
+    result?.hotel.location[1] ?? camera?.center[1] ?? 43.59,
+  ] as const
+}
+
+export function hasLine(features: readonly unknown[]) {
+  return features.some((feature) => {
+    const data = feature as { geometry?: { type?: string }; properties?: { kind?: string } }
+    return (
+      data.properties?.kind === "route" &&
+      (data.geometry?.type === "LineString" || data.geometry?.type === "MultiLineString")
+    )
+  })
 }

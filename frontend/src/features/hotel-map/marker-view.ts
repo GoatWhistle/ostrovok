@@ -24,6 +24,9 @@ export interface ClusterView extends ViewBase {
 export interface PlaceView extends ViewBase {
   readonly kind: "place" | "route"
   readonly label: string
+  readonly ariaLabel: string
+  readonly placeId: string | undefined
+  readonly quiet: boolean
 }
 
 export type MarkerView = HotelView | ClusterView | PlaceView

@@ -10,14 +10,16 @@ import { expandCluster } from "../use-result-pins"
 export interface MapPinsProps {
   readonly views: readonly MarkerView[]
   readonly map: RefObject<MapLibreMap | null>
+  readonly onPlace: (id: string) => void
   readonly onSelect: (result: SearchResult) => void
 }
 
-export function MapPins({ views, map, onSelect }: MapPinsProps) {
+export function MapPins({ views, map, onSelect, onPlace }: MapPinsProps) {
   return views.map((view) =>
     createPortal(
       <MapPin
         view={view}
+        onPlace={onPlace}
         onSelect={onSelect}
         onExpand={(cluster, keyboard) => {
           if (cluster.onSpread) {

@@ -110,6 +110,7 @@ function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
   })
   map.addLayer({
     id: "route-casing",
+    filter: ["!=", ["get", "mode"], "straight"],
     type: "line",
     source: "routes",
     layout: { "line-cap": "round", "line-join": "round" },
@@ -121,10 +122,18 @@ function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
   })
   map.addLayer({
     id: "route-line",
+    filter: ["!=", ["get", "mode"], "straight"],
     type: "line",
     source: "routes",
     layout: { "line-cap": "round", "line-join": "round" },
     paint: { "line-gradient": routeGradient(colors.route, 0), "line-width": 4.5 },
+  })
+  map.addLayer({
+    id: "route-straight",
+    type: "line",
+    source: "routes",
+    filter: ["==", ["get", "mode"], "straight"],
+    paint: { "line-color": colors.route, "line-width": 3, "line-dasharray": [2, 2] },
   })
   map.addLayer({
     id: "highlight-point",
@@ -162,6 +171,8 @@ export function renderHighlights(
 
 export function paintRoute(map: MapLibreMap, colors: HighlightColors, progress: number) {
   if (!map.getLayer("route-line")) return
+  map.setPaintProperty("route-straight", "line-color", colors.route)
+  map.setPaintProperty("route-straight", "line-opacity", progress)
   map.setPaintProperty("route-casing", "line-gradient", routeGradient(colors.land, progress))
   map.setPaintProperty("route-line", "line-gradient", routeGradient(colors.route, progress))
 }

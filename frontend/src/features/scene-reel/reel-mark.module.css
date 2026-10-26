@@ -19,11 +19,9 @@
 }
 
 .dot {
+  composes: mapPointShape from "../../shared/styles/compose.module.css";
   position: relative;
-  inline-size: var(--space-12);
-  block-size: var(--space-12);
   border: var(--space-2) solid var(--surface-overlay);
-  border-radius: var(--radius-pill);
   background-color: var(--action-primary);
   box-shadow: var(--shadow-pin);
 }

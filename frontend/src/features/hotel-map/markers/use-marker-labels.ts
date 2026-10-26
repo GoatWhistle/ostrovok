@@ -13,6 +13,8 @@ function priority(view: MarkerView): number {
     if (view.selected) return 100
     return view.element.matches(":hover, :focus-within") ? 40 : 0
   }
+  if (view.kind !== "cluster" && view.quiet && !view.element.matches(":hover, :focus-within"))
+    return 0
   return view.kind === "route" ? 80 : 60
 }
 

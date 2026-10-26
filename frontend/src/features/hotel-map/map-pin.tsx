@@ -7,6 +7,7 @@ import type { ClusterView, HotelView, MarkerView, PlaceView } from "./marker-vie
 
 export interface MapPinProps {
   readonly view: MarkerView
+  readonly onPlace: (id: string) => void
   readonly onSelect: (result: SearchResult) => void
   readonly onExpand: (view: ClusterView, keyboard: boolean) => void
 }
@@ -66,20 +67,37 @@ function ClusterPin({ view, onExpand }: { view: ClusterView; onExpand: MapPinPro
   )
 }
 
-function PlacePin({ view }: { view: PlaceView }) {
-  return (
-    <span role="img" className={styles.place} data-kind={view.kind} aria-label={view.label}>
+function PlacePin({ view, onPlace }: { view: PlaceView; onPlace: MapPinProps["onPlace"] }) {
+  const content = (
+    <>
       <span className={styles.placeDot} aria-hidden="true" />
       <span data-map-label className={`${styles.bubble} ${styles.placeLabel}`}>
         {view.kind === "route" ? <Icon name="walk" size="sm" className={styles.routeIcon} /> : null}
         <span>{view.label}</span>
       </span>
+    </>
+  )
+  if (view.placeId)
+    return (
+      <Button
+        variant="ghost"
+        className={styles.place}
+        data-kind={view.kind}
+        aria-label={view.ariaLabel}
+        onClick={() => view.placeId && onPlace(view.placeId)}
+      >
+        {content}
+      </Button>
+    )
+  return (
+    <span role="img" className={styles.place} data-kind={view.kind} aria-label={view.label}>
+      {content}
     </span>
   )
 }
 
-export function MapPin({ view, onSelect, onExpand }: MapPinProps) {
+export function MapPin({ view, onSelect, onExpand, onPlace }: MapPinProps) {
   if (view.kind === "hotel") return <HotelPin view={view} onSelect={onSelect} />
   if (view.kind === "cluster") return <ClusterPin view={view} onExpand={onExpand} />
-  return <PlacePin view={view} />
+  return <PlacePin view={view} onPlace={onPlace} />
 }

@@ -18,6 +18,7 @@ function ordered(messages: readonly Message[]): readonly Message[] {
 
 export function useHotelWorkspace() {
   const [hotelId, setHotelId] = useState<string>()
+  const [placeId, setPlaceId] = useState<string>()
   const [factId, setFactId] = useState<string>()
   const [camera, setCamera] = useState<Camera>()
   const [previewRefs, setPreviewRefs] = useState<readonly string[]>()
@@ -31,6 +32,7 @@ export function useHotelWorkspace() {
   const detailRef = useRef<HTMLDivElement>(null)
   function clearSelection() {
     setHotelId(undefined)
+    setPlaceId(undefined)
     setFactId(undefined)
     setCamera(undefined)
     setGeoRefs([])
@@ -40,6 +42,7 @@ export function useHotelWorkspace() {
     setFocusedMatch(undefined)
   }
   const chat = useConversation(hotelId, (data: Conversation) => {
+    setPlaceId(undefined)
     setFactId(undefined)
     setPreviewRefs(undefined)
     setPreviewMatch(undefined)
@@ -50,11 +53,11 @@ export function useHotelWorkspace() {
   const results = [
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
-  const activeSubject = factId ?? hotelId
+  const activeSubject = placeId ?? factId ?? hotelId
   useEffect(() => {
-    if (activeSubject && view === "hotels" && window.matchMedia(NARROW).matches)
+    if (activeSubject && view === "hotels" && (placeId || window.matchMedia(NARROW).matches))
       detailRef.current?.focus()
-  }, [activeSubject, view])
+  }, [activeSubject, view, placeId])
   function select(result: SearchResult) {
     clearSelection()
     setHotelId(result.hotel.id)
@@ -64,6 +67,7 @@ export function useHotelWorkspace() {
   function property(result: SearchResult, item: MatchedProperty) {
     setHotelId(result.hotel.id)
     setCamera(item.camera ?? result.camera)
+    setPlaceId(undefined)
     setFactId(undefined)
     setGeoRefs(item.geo_refs ?? item.fact?.geo_refs ?? [])
     setFocusedFact(item.fact ?? undefined)
@@ -72,6 +76,7 @@ export function useHotelWorkspace() {
     setView("map")
   }
   function fact(item: FactBrief) {
+    setPlaceId(undefined)
     setFactId(item.fact_id)
     setGeoRefs(item.geo_refs ?? [])
     setFocusedFact(item)
@@ -126,6 +131,18 @@ export function useHotelWorkspace() {
     bounds: hotelId ? undefined : search?.viewport?.bbox,
     detailRef,
     hotelId,
+    placeId,
+    openPlace: (id: string) => {
+      setPlaceId(id)
+      setView("hotels")
+    },
+    closePlace: () => setPlaceId(undefined),
+    placeRoute: (ref: string) => {
+      setGeoRefs(placeId ? [ref, `g_poi_${placeId}`] : [ref])
+      setPreviewRefs(undefined)
+      setPreviewMatch(undefined)
+      setView("map")
+    },
     factId,
     camera,
     geoRefs: previewRefs ?? geoRefs,
