@@ -1,0 +1,469 @@
+{
+  "query_id": "20410890d8070505",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:47f4ef2ac9c2",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна была видна Ключевская сопка"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Камчатский край",
+    "anywhere": false,
+    "normalized_query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n4352148294",
+        "name": "\"Алена-тур\"",
+        "address": "Кедровая улица 4",
+        "location": [
+          158.6920166,
+          55.9237251
+        ],
+        "building_id": "w532725554"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:47f4ef2ac9c2",
+          "match": "unknown",
+          "label": "из окна была видна Ключевская сопка",
+          "explanation": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "fact": {
+            "fact_id": "f_window_n4352148294_47f4ef2ac9c2",
+            "characteristic_key": "spatial:47f4ef2ac9c2",
+            "label": "из окна была видна Ключевская сопка",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6920166,
+          55.9237251
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w532725554",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6918021,
+                  55.9237502
+                ],
+                [
+                  158.6918014,
+                  55.923802
+                ],
+                [
+                  158.6918463,
+                  55.9238017
+                ],
+                [
+                  158.691861,
+                  55.9238757
+                ],
+                [
+                  158.6919442,
+                  55.923872
+                ],
+                [
+                  158.6919388,
+                  55.9237953
+                ],
+                [
+                  158.69203,
+                  55.9237888
+                ],
+                [
+                  158.692026,
+                  55.9237412
+                ],
+                [
+                  158.6920407,
+                  55.9237412
+                ],
+                [
+                  158.6920354,
+                  55.9236995
+                ],
+                [
+                  158.6920152,
+                  55.9236999
+                ],
+                [
+                  158.6918892,
+                  55.9237014
+                ],
+                [
+                  158.6918852,
+                  55.9237435
+                ],
+                [
+                  158.6918021,
+                  55.9237502
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w532725554",
+          "hotel_id": "n4352148294",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4352148294"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w886993743",
+        "name": "Bay House",
+        "address": "Авачинская улица 15",
+        "location": [
+          158.6307838,
+          53.0326358
+        ],
+        "building_id": "w886993743"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:47f4ef2ac9c2",
+          "match": "unknown",
+          "label": "из окна была видна Ключевская сопка",
+          "explanation": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "fact": {
+            "fact_id": "f_window_w886993743_47f4ef2ac9c2",
+            "characteristic_key": "spatial:47f4ef2ac9c2",
+            "label": "из окна была видна Ключевская сопка",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6307838,
+          53.0326358
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w886993743",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6306958,
+                  53.0326102
+                ],
+                [
+                  158.6308551,
+                  53.0325749
+                ],
+                [
+                  158.6309158,
+                  53.0326741
+                ],
+                [
+                  158.6307565,
+                  53.0327094
+                ],
+                [
+                  158.6306958,
+                  53.0326102
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w886993743",
+          "hotel_id": "w886993743",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w886993743"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w447348692",
+        "name": "Bigriver",
+        "location": [
+          156.2921325,
+          52.8241667
+        ],
+        "stars": 3,
+        "building_id": "w447348692"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:47f4ef2ac9c2",
+          "match": "unknown",
+          "label": "из окна была видна Ключевская сопка",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w447348692_47f4ef2ac9c2",
+            "characteristic_key": "spatial:47f4ef2ac9c2",
+            "label": "из окна была видна Ключевская сопка",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          156.2921325,
+          52.8241667
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w447348692",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  156.2921325,
+                  52.8240912
+                ],
+                [
+                  156.2920396,
+                  52.8241824
+                ],
+                [
+                  156.2921791,
+                  52.8242342
+                ],
+                [
+                  156.2922719,
+                  52.8241431
+                ],
+                [
+                  156.2921325,
+                  52.8240912
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w447348692",
+          "hotel_id": "w447348692",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w447348692"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n12169988265",
+        "name": "Cozy nook",
+        "location": [
+          158.702774,
+          55.919191
+        ]
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:47f4ef2ac9c2",
+          "match": "unknown",
+          "label": "из окна была видна Ключевская сопка",
+          "explanation": "Неизвестен контур здания отеля: невозможно определить положение окна.",
+          "fact": {
+            "fact_id": "f_window_n12169988265_47f4ef2ac9c2",
+            "characteristic_key": "spatial:47f4ef2ac9c2",
+            "label": "из окна была видна Ключевская сопка",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          158.702774,
+          55.919191
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11166229886",
+        "name": "FRIENDS",
+        "location": [
+          158.6300477,
+          53.0576403
+        ],
+        "building_id": "w102609605"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:47f4ef2ac9c2",
+          "match": "unknown",
+          "label": "из окна была видна Ключевская сопка",
+          "explanation": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "fact": {
+            "fact_id": "f_window_n11166229886_47f4ef2ac9c2",
+            "characteristic_key": "spatial:47f4ef2ac9c2",
+            "label": "из окна была видна Ключевская сопка",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6300477,
+          53.0576403
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w102609605",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6302217,
+                  53.0579314
+                ],
+                [
+                  158.6302279,
+                  53.0576157
+                ],
+                [
+                  158.6301092,
+                  53.0576148
+                ],
+                [
+                  158.6301108,
+                  53.0575327
+                ],
+                [
+                  158.6296179,
+                  53.0575292
+                ],
+                [
+                  158.6296118,
+                  53.0578319
+                ],
+                [
+                  158.6299313,
+                  53.0578343
+                ],
+                [
+                  158.6299302,
+                  53.0578907
+                ],
+                [
+                  158.6300467,
+                  53.0578915
+                ],
+                [
+                  158.6300459,
+                  53.0579301
+                ],
+                [
+                  158.6302217,
+                  53.0579314
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w102609605",
+          "hotel_id": "n11166229886",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11166229886"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      156.2921325,
+      52.8241667,
+      158.702774,
+      55.9237251
+    ],
+    "camera": {
+      "center": [
+        158.6920166,
+        55.9237251
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 5294
+}

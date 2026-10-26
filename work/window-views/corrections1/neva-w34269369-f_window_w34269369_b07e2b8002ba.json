@@ -1,0 +1,175 @@
+{
+  "fact_id": "f_window_w34269369_b07e2b8002ba",
+  "characteristic_key": "spatial:b07e2b8002ba",
+  "value": null,
+  "unit": null,
+  "label": "номер с видом на Неву",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w34269369_b07e2b8002ba_ray",
+    "g_window_w34269369_b07e2b8002ba_target",
+    "g_window_w34269369_b07e2b8002ba_observer",
+    "g_window_w34269369_b07e2b8002ba_blocker_0",
+    "g_window_w34269369_b07e2b8002ba_blocker_1",
+    "g_window_w34269369_b07e2b8002ba_blocker_2"
+  ],
+  "subject": "hotel:w34269369",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 11.125,
+            "minimum_m": 9.125
+          },
+          "distance_m": 44.98233935115543
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 10.75,
+            "minimum_m": 8.75
+          },
+          "distance_m": 67.47350902673315
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 9.375,
+            "minimum_m": 7.375
+          },
+          "distance_m": 89.96467870231086
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 7.875,
+            "minimum_m": 5.875
+          },
+          "distance_m": 112.45584837788857
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 7.0,
+            "minimum_m": 5.0
+          },
+          "distance_m": 134.9470180534663
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/relation/2599821",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.395000%2C59.915000%2C30.400000%2C59.920000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.400000%2C59.915000%2C30.405000%2C59.920000"
+      ],
+      "blockers": [
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 67.47350902673315,
+          "penetration_m": 5.0317604231374276
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 134.9470180534663,
+          "penetration_m": 5.012908338509943
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 89.96467870231086,
+          "penetration_m": 4.900544451346589
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 112.45584837788857,
+          "penetration_m": 4.644260423137428
+        },
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 44.98233935115543,
+          "penetration_m": 4.162908338509943
+        }
+      ],
+      "target_id": "r2599821",
+      "distance_m": 179.9,
+      "target_name": "Нева",
+      "target_tags": {
+        "name": "Нева",
+        "water": "river",
+        "name:en": "Neva",
+        "name:ru": "Нева",
+        "natural": "water",
+        "wikipedia": "ru:Нева",
+        "wikipedia:ru": "Нева"
+      },
+      "target_part_id": "r2599821",
+      "terrain_step_m": 25,
+      "target_location": [
+        30.39959311821155,
+        59.919328406400105
+      ],
+      "complete_coverage": true,
+      "observer_location": [
+        30.398578096433653,
+        59.91779591399778
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 27.6,
+      "target_elevation_m": {
+        "maximum_m": 3.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": -5.0317604231374276,
+      "observer_elevation_m": {
+        "maximum_m": 14.05,
+        "minimum_m": 9.45
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": 30.301633354039783
+    },
+    "source_text": "номер с видом на Неву",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Нева», 180 м, этаж 1, направление окон 28°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 67 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/2599821",
+    "source_url": "https://www.openstreetmap.org/relation/2599821",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:29:59.677061Z",
+    "valid_until": "2026-11-02T09:29:59.677061Z"
+  },
+  "history": [],
+  "conflicts": []
+}

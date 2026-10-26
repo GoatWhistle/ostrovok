@@ -1,0 +1,104 @@
+{
+  "id": "volga_nizhny",
+  "query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w164954147",
+      "name": "12 месяцев",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "volga_nizhny-w164954147-f_window_w164954147_c43d13711235.json"
+        }
+      ]
+    },
+    {
+      "id": "n12176628301",
+      "name": "515",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Волга",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "volga_nizhny-n12176628301-f_window_n12176628301_c43d13711235.json"
+        }
+      ]
+    },
+    {
+      "id": "n4097183267",
+      "name": "ABC Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "volga_nizhny-n4097183267-f_window_n4097183267_c43d13711235.json"
+        }
+      ]
+    },
+    {
+      "id": "w204705961",
+      "name": "Art11",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "volga_nizhny-w204705961-f_window_w204705961_c43d13711235.json"
+        }
+      ]
+    },
+    {
+      "id": "n1964968440",
+      "name": "Baker Street Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "volga_nizhny-n1964968440-f_window_n1964968440_c43d13711235.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:c43d13711235",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Волгу из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Нижний Новгород",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 15.15,
+  "passed_automatic_audit": true
+}

@@ -1,0 +1,35 @@
+{
+  "id": "elbrus_low",
+  "query": "Кисловодск, первый этаж с видом на Эльбрус, если горы по пути его не закрывают",
+  "errors": [
+    "no_geometric_target_evidence",
+    "no_results_for_resolvable_target"
+  ],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:a7e174eb8120",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Эльбрус"
+      }
+    ],
+    "unmatched_terms": [
+      "если горы по пути его не закрывают"
+    ],
+    "location_hint": "Кисловодск",
+    "anywhere": false,
+    "normalized_query": "Кисловодск, первый этаж с видом на Эльбрус, если горы по пути его не закрывают",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 34.01,
+  "passed_automatic_audit": false
+}

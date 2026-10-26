@@ -1,0 +1,34 @@
+{
+  "fact_id": "f_window_n13142525356_bac7599b20fd",
+  "characteristic_key": "spatial:bac7599b20fd",
+  "value": null,
+  "unit": null,
+  "label": "с видом из окна на мечеть Кул-Шариф",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n13142525356",
+  "qualifiers": {
+    "visibility": {
+      "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+      "status": "unknown",
+      "bookable_room_confirmed": false
+    },
+    "source_text": "с видом из окна на мечеть Кул-Шариф",
+    "estimated_view": true
+  },
+  "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:10:43.406041Z",
+    "valid_until": "2026-11-02T09:10:43.406041Z"
+  },
+  "history": [],
+  "conflicts": []
+}

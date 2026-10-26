@@ -1,0 +1,103 @@
+{
+  "id": "sea_floor1",
+  "query": "Хочу в Сочи номер на первом этаже с открытым видом на море",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "w739663665",
+      "name": "\"Море и Лес\"",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "sea_floor1-w739663665-f_window_w739663665_d9a7335539d8.json"
+        }
+      ]
+    },
+    {
+      "id": "n6276321485",
+      "name": "\"У Тёмы\"",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "sea_floor1-n6276321485-f_window_n6276321485_d9a7335539d8.json"
+        }
+      ]
+    },
+    {
+      "id": "w54437496",
+      "name": "777",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "sea_floor1-w54437496-f_window_w54437496_d9a7335539d8.json"
+        }
+      ]
+    },
+    {
+      "id": "n4712092442",
+      "name": "Abris",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "sea_floor1-n4712092442-f_window_n4712092442_d9a7335539d8.json"
+        }
+      ]
+    },
+    {
+      "id": "w98649229",
+      "name": "AIDA",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "sea_floor1-w98649229-f_window_w98649229_d9a7335539d8.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:d9a7335539d8",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с открытым видом на море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Хочу в Сочи номер на первом этаже с открытым видом на море",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 8.54,
+  "passed_automatic_audit": false
+}

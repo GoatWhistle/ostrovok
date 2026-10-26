@@ -1,0 +1,598 @@
+{
+  "query_id": "2358e849aa5e8526",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:dad163dbaebe",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на купол Исаакиевского собора"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w508887500",
+        "name": "SO/",
+        "location": [
+          30.3090209,
+          59.9349901
+        ],
+        "building_id": "w66067677"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "match": "unknown",
+          "label": "с видом на купол Исаакиевского собора",
+          "explanation": "Свободный обзор подтвердить не удалось: «Исаакиевский собор», 157 м, этаж 7, направление окон 272°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 139 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w508887500_dad163dbaebe",
+            "characteristic_key": "spatial:dad163dbaebe",
+            "label": "с видом на купол Исаакиевского собора",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w508887500_dad163dbaebe_ray",
+              "g_window_w508887500_dad163dbaebe_target",
+              "g_window_w508887500_dad163dbaebe_observer",
+              "g_window_w508887500_dad163dbaebe_blocker_0",
+              "g_window_w508887500_dad163dbaebe_blocker_1",
+              "g_window_w508887500_dad163dbaebe_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w508887500_dad163dbaebe_ray",
+            "g_window_w508887500_dad163dbaebe_target",
+            "g_window_w508887500_dad163dbaebe_observer",
+            "g_window_w508887500_dad163dbaebe_blocker_0",
+            "g_window_w508887500_dad163dbaebe_blocker_1",
+            "g_window_w508887500_dad163dbaebe_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.3090209,
+              59.9349901
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 92.0,
+            "focus_facade_id": "window_w508887500_dad163dbaebe_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3090209,
+          59.9349901
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 92.0,
+        "focus_facade_id": "window_w508887500_dad163dbaebe_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w66067677",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3086464,
+                  59.934714
+                ],
+                [
+                  30.3086481,
+                  59.9347464
+                ],
+                [
+                  30.3086549,
+                  59.9348787
+                ],
+                [
+                  30.3086638,
+                  59.9350533
+                ],
+                [
+                  30.3089096,
+                  59.9350564
+                ],
+                [
+                  30.3090517,
+                  59.9351028
+                ],
+                [
+                  30.3090008,
+                  59.9351411
+                ],
+                [
+                  30.3090021,
+                  59.9351558
+                ],
+                [
+                  30.3091939,
+                  59.935219
+                ],
+                [
+                  30.3093179,
+                  59.9352053
+                ],
+                [
+                  30.3093355,
+                  59.9351931
+                ],
+                [
+                  30.3093823,
+                  59.9351607
+                ],
+                [
+                  30.3095982,
+                  59.9350114
+                ],
+                [
+                  30.3094661,
+                  59.9349623
+                ],
+                [
+                  30.3093588,
+                  59.9350315
+                ],
+                [
+                  30.3090061,
+                  59.9349106
+                ],
+                [
+                  30.3090128,
+                  59.9348293
+                ],
+                [
+                  30.3090472,
+                  59.9348042
+                ],
+                [
+                  30.30879,
+                  59.9347138
+                ],
+                [
+                  30.3086464,
+                  59.934714
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w66067677",
+          "hotel_id": "w508887500",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w508887500"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "r3107676",
+        "name": "Астория",
+        "address": "Большая Морская улица 39",
+        "location": [
+          30.3089239,
+          59.9329815
+        ]
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "match": "unknown",
+          "label": "с видом на купол Исаакиевского собора",
+          "explanation": "Свободный обзор подтвердить не удалось: «Исаакиевский собор», 167 м, этаж 7, направление окон 270°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 151 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_r3107676_dad163dbaebe",
+            "characteristic_key": "spatial:dad163dbaebe",
+            "label": "с видом на купол Исаакиевского собора",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r3107676_dad163dbaebe_ray",
+              "g_window_r3107676_dad163dbaebe_target",
+              "g_window_r3107676_dad163dbaebe_observer",
+              "g_window_r3107676_dad163dbaebe_blocker_0",
+              "g_window_r3107676_dad163dbaebe_blocker_1",
+              "g_window_r3107676_dad163dbaebe_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_r3107676_dad163dbaebe_ray",
+            "g_window_r3107676_dad163dbaebe_target",
+            "g_window_r3107676_dad163dbaebe_observer",
+            "g_window_r3107676_dad163dbaebe_blocker_0",
+            "g_window_r3107676_dad163dbaebe_blocker_1",
+            "g_window_r3107676_dad163dbaebe_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.3089239,
+              59.9329815
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 90.0,
+            "focus_facade_id": "window_r3107676_dad163dbaebe_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3089239,
+          59.9329815
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 90.0,
+        "focus_facade_id": "window_r3107676_dad163dbaebe_ray"
+      }
+    },
+    {
+      "hotel": {
+        "id": "r1258391",
+        "name": "Петро Палас",
+        "address": "Малая Морская улица 14",
+        "location": [
+          30.3112632,
+          59.934676
+        ],
+        "stars": 4
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "match": "unknown",
+          "label": "с видом на купол Исаакиевского собора",
+          "explanation": "Свободный обзор подтвердить не удалось: «Исаакиевский собор», 277 м, этаж 7, направление окон 234°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 19 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_r1258391_dad163dbaebe",
+            "characteristic_key": "spatial:dad163dbaebe",
+            "label": "с видом на купол Исаакиевского собора",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r1258391_dad163dbaebe_ray",
+              "g_window_r1258391_dad163dbaebe_target",
+              "g_window_r1258391_dad163dbaebe_observer",
+              "g_window_r1258391_dad163dbaebe_blocker_0",
+              "g_window_r1258391_dad163dbaebe_blocker_1",
+              "g_window_r1258391_dad163dbaebe_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_r1258391_dad163dbaebe_ray",
+            "g_window_r1258391_dad163dbaebe_target",
+            "g_window_r1258391_dad163dbaebe_observer",
+            "g_window_r1258391_dad163dbaebe_blocker_0",
+            "g_window_r1258391_dad163dbaebe_blocker_1",
+            "g_window_r1258391_dad163dbaebe_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.3112632,
+              59.934676
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 54.0,
+            "focus_facade_id": "window_r1258391_dad163dbaebe_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3112632,
+          59.934676
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 54.0,
+        "focus_facade_id": "window_r1258391_dad163dbaebe_ray"
+      }
+    },
+    {
+      "hotel": {
+        "id": "n14062456889",
+        "name": "+Питер Хостел",
+        "location": [
+          30.3748219,
+          59.9284742
+        ],
+        "building_id": "w51262712"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "match": "unknown",
+          "label": "с видом на купол Исаакиевского собора",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n14062456889_dad163dbaebe",
+            "characteristic_key": "spatial:dad163dbaebe",
+            "label": "с видом на купол Исаакиевского собора",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3748219,
+          59.9284742
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w51262712",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3744838,
+                  59.9282561
+                ],
+                [
+                  30.3745788,
+                  59.9282254
+                ],
+                [
+                  30.3746924,
+                  59.9281899
+                ],
+                [
+                  30.3747058,
+                  59.9281999
+                ],
+                [
+                  30.3748159,
+                  59.9282816
+                ],
+                [
+                  30.3748315,
+                  59.9282932
+                ],
+                [
+                  30.3748659,
+                  59.9282816
+                ],
+                [
+                  30.3748857,
+                  59.9282963
+                ],
+                [
+                  30.3749078,
+                  59.9283145
+                ],
+                [
+                  30.3748734,
+                  59.9283261
+                ],
+                [
+                  30.3748863,
+                  59.9283355
+                ],
+                [
+                  30.3750291,
+                  59.9284399
+                ],
+                [
+                  30.3748192,
+                  59.9285102
+                ],
+                [
+                  30.3748012,
+                  59.9284966
+                ],
+                [
+                  30.3746608,
+                  59.9283902
+                ],
+                [
+                  30.3745561,
+                  59.9283109
+                ],
+                [
+                  30.3744998,
+                  59.9282682
+                ],
+                [
+                  30.3744838,
+                  59.9282561
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w51262712",
+          "hotel_id": "n14062456889",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n14062456889"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n7934321885",
+        "name": "1,5kapart",
+        "location": [
+          30.3234506,
+          59.9278162
+        ],
+        "building_id": "w66319045"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "match": "unknown",
+          "label": "с видом на купол Исаакиевского собора",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n7934321885_dad163dbaebe",
+            "characteristic_key": "spatial:dad163dbaebe",
+            "label": "с видом на купол Исаакиевского собора",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3234506,
+          59.9278162
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w66319045",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3232622,
+                  59.9280156
+                ],
+                [
+                  30.3235237,
+                  59.927839
+                ],
+                [
+                  30.3236604,
+                  59.9277476
+                ],
+                [
+                  30.3236935,
+                  59.9277596
+                ],
+                [
+                  30.3236626,
+                  59.9277812
+                ],
+                [
+                  30.3236922,
+                  59.9277928
+                ],
+                [
+                  30.323827,
+                  59.9278459
+                ],
+                [
+                  30.3239132,
+                  59.9277966
+                ],
+                [
+                  30.3237149,
+                  59.9277098
+                ],
+                [
+                  30.3234974,
+                  59.9276276
+                ],
+                [
+                  30.3233393,
+                  59.9277318
+                ],
+                [
+                  30.3233273,
+                  59.9277397
+                ],
+                [
+                  30.323315,
+                  59.9277478
+                ],
+                [
+                  30.3233038,
+                  59.9277552
+                ],
+                [
+                  30.3230488,
+                  59.9279272
+                ],
+                [
+                  30.3232622,
+                  59.9280156
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w66319045",
+          "hotel_id": "n7934321885",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n7934321885"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      30.3089239,
+      59.9278162,
+      30.3748219,
+      59.9349901
+    ],
+    "camera": {
+      "center": [
+        30.3090209,
+        59.9349901
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 92.0,
+      "focus_facade_id": "window_w508887500_dad163dbaebe_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 7700
+}

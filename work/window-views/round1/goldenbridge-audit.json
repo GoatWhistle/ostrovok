@@ -1,0 +1,103 @@
+{
+  "id": "goldenbridge",
+  "query": "Во Владивостоке нужен номер с видом на Золотой мост",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "w107943102",
+      "name": "Amur Bay",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "artifact": "goldenbridge-w107943102-f_window_w107943102_552e85001cc0.json"
+        }
+      ]
+    },
+    {
+      "id": "n9967715857",
+      "name": "Bay garden",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "goldenbridge-n9967715857-f_window_n9967715857_552e85001cc0.json"
+        }
+      ]
+    },
+    {
+      "id": "n4325561089",
+      "name": "Busse Mini-hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "artifact": "goldenbridge-n4325561089-f_window_n4325561089_552e85001cc0.json"
+        }
+      ]
+    },
+    {
+      "id": "n13952880401",
+      "name": "Cape River 7",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "goldenbridge-n13952880401-f_window_n13952880401_552e85001cc0.json"
+        }
+      ]
+    },
+    {
+      "id": "n7295769686",
+      "name": "Capsule Hotel ALOHA",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "artifact": "goldenbridge-n7295769686-f_window_n7295769686_552e85001cc0.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:552e85001cc0",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Золотой мост"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Во Владивостоке нужен номер с видом на Золотой мост",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 5.95,
+  "passed_automatic_audit": false
+}

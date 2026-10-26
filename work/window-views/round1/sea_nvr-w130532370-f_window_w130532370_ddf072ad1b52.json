@@ -1,0 +1,130 @@
+{
+  "fact_id": "f_window_w130532370_ddf072ad1b52",
+  "characteristic_key": "spatial:ddf072ad1b52",
+  "value": null,
+  "unit": null,
+  "label": "с видом на море",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w130532370_ddf072ad1b52_ray",
+    "g_window_w130532370_ddf072ad1b52_target",
+    "g_window_w130532370_ddf072ad1b52_observer"
+  ],
+  "subject": "hotel:w130532370",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "высоты части препятствий или участки рельефа",
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 4.875,
+            "minimum_m": 2.875
+          },
+          "distance_m": 73.45471472169767
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.25,
+            "minimum_m": -0.75
+          },
+          "distance_m": 97.93961962893023
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 122.42452453616279
+        },
+        {
+          "id": "w344135923",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 48.757181180585015
+        },
+        {
+          "id": "w344135923",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 51.25971966250922
+        },
+        {
+          "id": "w344135923",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 53.762258144433424
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.700000%2C44.650000%2C37.705000%2C44.655000"
+      ],
+      "blockers": [],
+      "target_id": "coastline",
+      "distance_m": 171.4,
+      "target_name": "Море",
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        37.7012689362743,
+        44.65222133620437
+      ],
+      "complete_coverage": true,
+      "observer_location": [
+        37.7014093541464,
+        44.65376043225668
+      ],
+      "unknown_obstacles": 3,
+      "facade_azimuth_deg": 170.33,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": 0.31023034395478166,
+      "observer_elevation_m": {
+        "maximum_m": 14.05,
+        "minimum_m": 9.45
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на море",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Море», 171 м, этаж 1, направление окон 170°. Проверены рельеф и здания на всём пути. Не хватает данных: высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:14:01.720786Z",
+    "valid_until": "2026-11-02T09:14:01.720786Z"
+  },
+  "history": [],
+  "conflicts": []
+}

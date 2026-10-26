@@ -1,0 +1,352 @@
+[
+  {
+    "id": "isaac",
+    "expected_location": "Санкт-Петербург",
+    "target": "Исаакиевский собор",
+    "query": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "isaac_floor1",
+    "expected_location": "Санкт-Петербург",
+    "target": "Исаакиевский собор",
+    "query": "Отель в Петербурге, из номера на первом этаже должен быть виден Исаакиевский собор",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "isaac_floor7",
+    "expected_location": "Санкт-Петербург",
+    "target": "Исаакиевский собор",
+    "query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "isaac_west",
+    "expected_location": "Санкт-Петербург",
+    "target": "Исаакиевский собор",
+    "query": "В Петербурге хочу западные окна и чтобы из них был виден Исаакиевский собор",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "hermitage",
+    "expected_location": "Санкт-Петербург",
+    "target": "Эрмитаж",
+    "query": "Отель в Петербурге с видом на Эрмитаж, без здания перед окнами",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "peterpaul",
+    "expected_location": "Санкт-Петербург",
+    "target": "Петропавловская крепость",
+    "query": "В Санкт-Петербурге нужен вид из окна на Петропавловскую крепость",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "aurora",
+    "expected_location": "Санкт-Петербург",
+    "target": "Аврора",
+    "query": "Хочу в Петербурге отель, из окна которого видно крейсер Аврора",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "neva",
+    "expected_location": "Санкт-Петербург",
+    "target": "Нева",
+    "query": "В Петербурге нужен номер с видом на Неву, а не просто рядом с рекой",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "kazan",
+    "expected_location": "Казань",
+    "target": "Казанский кремль",
+    "query": "Хочу отель в Казани с видом на Казанский кремль",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "kulsharif",
+    "expected_location": "Казань",
+    "target": "Кул-Шариф",
+    "query": "В Казани отель с видом из окна на мечеть Кул-Шариф",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "kulsharif_low",
+    "expected_location": "Казань",
+    "target": "Кул-Шариф",
+    "query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "kulsharif_high",
+    "expected_location": "Казань",
+    "target": "Кул-Шариф",
+    "query": "Казань, отель с видом на Кул-Шариф, этаж не ниже десятого",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "kremlin",
+    "expected_location": "Москва",
+    "target": "Московский Кремль",
+    "query": "Хочу отель в Москве с видом на Московский Кремль",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "basil",
+    "expected_location": "Москва",
+    "target": "Храм Василия Блаженного",
+    "query": "Москва: хочу видеть из номера храм Василия Блаженного",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "ostankino",
+    "expected_location": "Москва",
+    "target": "Останкинская телебашня",
+    "query": "Нужен отель в Москве, чтобы из окна была видна Останкинская телебашня",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "ostankino_far",
+    "expected_location": "Москва",
+    "target": "Останкинская телебашня",
+    "query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "moscowcity",
+    "expected_location": "Москва",
+    "target": "Москва-Сити",
+    "query": "Отель в Москве с панорамой Москва-Сити из номера",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "seamoon",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_floor1",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "Хочу в Сочи номер на первом этаже с открытым видом на море",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_floor8",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "В Сочи хочу вид на море с восьмого этажа",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_east",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "В Сочи нужны окна строго на восток и прямой вид на море из этих окон",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_west",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "Сочи, западные окна, море должно быть видно из окна без зданий впереди",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_adler",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "В Адлере нужен отель с видом на море со второго этажа",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_nvr",
+    "expected_location": "Новороссийск",
+    "target": null,
+    "query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_gel",
+    "expected_location": "Геленджик",
+    "target": null,
+    "query": "В Геленджике хочу видеть море из номера на третьем этаже",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_anapa",
+    "expected_location": "Анапа",
+    "target": null,
+    "query": "Хочу отель в Анапе, вид на море с пятого этажа",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_vlad",
+    "expected_location": "Владивосток",
+    "target": null,
+    "query": "Во Владивостоке хочу номер с видом на море",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "sea_makh",
+    "expected_location": "Махачкала",
+    "target": null,
+    "query": "В Махачкале хочу номер с видом на Каспийское море",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "elbrus",
+    "expected_location": "Кисловодск",
+    "target": "Эльбрус",
+    "query": "Отель в Кисловодске, из окна которого видно Эльбрус",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "elbrus_low",
+    "expected_location": "Кисловодск",
+    "target": "Эльбрус",
+    "query": "Кисловодск, первый этаж с видом на Эльбрус, если горы по пути его не закрывают",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "mashuk",
+    "expected_location": "Пятигорск",
+    "target": "Машук",
+    "query": "Отель в Пятигорске с видом на Машук из окна",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "beshtau",
+    "expected_location": "Пятигорск",
+    "target": "Бештау",
+    "query": "В Пятигорске нужен отель с видом из номера на Бештау",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "klyuchevskaya",
+    "expected_location": "Камчатский край",
+    "target": "Ключевская сопка",
+    "query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "avacha",
+    "expected_location": "Петропавловск-Камчатский",
+    "target": "Авачинская сопка",
+    "query": "В Петропавловске-Камчатском хочу отель с видом на Авачинскую сопку",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "volga_nizhny",
+    "expected_location": "Нижний Новгород",
+    "target": "Волга",
+    "query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "volga_samara",
+    "expected_location": "Самара",
+    "target": "Волга",
+    "query": "В Самаре хочу видеть Волгу из номера на втором этаже",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "volga_volgograd",
+    "expected_location": "Волгоград",
+    "target": "Волга",
+    "query": "В Волгограде хочу номер с открытым видом на Волгу",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "yenisei",
+    "expected_location": "Красноярск",
+    "target": "Енисей",
+    "query": "В Красноярске нужен отель с видом на Енисей из окна",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "teletskoye",
+    "expected_location": "Республика Алтай",
+    "target": "Телецкое озеро",
+    "query": "Хочу отель у Телецкого озера, чтобы озеро было видно из номера",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "onega",
+    "expected_location": "Петрозаводск",
+    "target": "Онежское озеро",
+    "query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "mamaev",
+    "expected_location": "Волгоград",
+    "target": "Мамаев курган",
+    "query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "goldenbridge",
+    "expected_location": "Владивосток",
+    "target": "Золотой мост",
+    "query": "Во Владивостоке нужен номер с видом на Золотой мост",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "russianbridge",
+    "expected_location": "Владивосток",
+    "target": "Русский мост",
+    "query": "Хочу во Владивостоке видеть Русский мост из номера",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "nevyan",
+    "expected_location": "Невьянск",
+    "target": "Невьянская башня",
+    "query": "В Невьянске нужен отель с видом на Невьянскую башню",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  },
+  {
+    "id": "no_city",
+    "expected_location": null,
+    "target": null,
+    "query": "Хочу отель с видом на море",
+    "expectation": "explicit clarification or unknown; no invented target/floor"
+  },
+  {
+    "id": "ambiguous",
+    "expected_location": null,
+    "target": "Белая река",
+    "query": "Хочу отель, из окна которого видна Белая река",
+    "expectation": "explicit clarification or unknown; no invented target/floor"
+  },
+  {
+    "id": "impossible_floor",
+    "expected_location": "Казань",
+    "target": "Казанский кремль",
+    "query": "В Казани ищу одноэтажный отель, номер на сотом этаже с видом на Кремль",
+    "expectation": "explicit clarification or unknown; no invented target/floor"
+  },
+  {
+    "id": "fictional",
+    "expected_location": "Москва",
+    "target": "Летающий замок Хаула",
+    "query": "В Москве хочу номер с видом на летающий замок Хаула",
+    "expectation": "explicit clarification or unknown; no invented target/floor"
+  },
+  {
+    "id": "opposite",
+    "expected_location": "Сочи",
+    "target": null,
+    "query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+    "expectation": "explicit clarification or unknown; no invented target/floor"
+  },
+  {
+    "id": "named_without_city",
+    "expected_location": "Санкт-Петербург",
+    "target": "Исаакиевский собор",
+    "query": "Хочу из номера видеть Исаакиевский собор, город сам определи",
+    "expectation": "resolve target and compute actual whole-path visibility; unknown only with explicit missing source evidence"
+  }
+]

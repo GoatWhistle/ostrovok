@@ -1,0 +1,103 @@
+{
+  "id": "isaac_floor7",
+  "query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "n14062456889",
+      "name": "+Питер Хостел",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "isaac_floor7-n14062456889-f_window_n14062456889_6ae0c4356b68.json"
+        }
+      ]
+    },
+    {
+      "id": "n7934321885",
+      "name": "1,5kapart",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "isaac_floor7-n7934321885-f_window_n7934321885_6ae0c4356b68.json"
+        }
+      ]
+    },
+    {
+      "id": "n8516947532",
+      "name": "1001 ночь",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "isaac_floor7-n8516947532-f_window_n8516947532_6ae0c4356b68.json"
+        }
+      ]
+    },
+    {
+      "id": "n11805430895",
+      "name": "16/8",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "isaac_floor7-n11805430895-f_window_n11805430895_6ae0c4356b68.json"
+        }
+      ]
+    },
+    {
+      "id": "n9749740416",
+      "name": "1715 Duplex Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "isaac_floor7-n9749740416-f_window_n9749740416_6ae0c4356b68.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:6ae0c4356b68",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на купол Исаакиевского собора"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 5.92,
+  "passed_automatic_audit": false
+}

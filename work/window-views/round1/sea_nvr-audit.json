@@ -1,0 +1,124 @@
+{
+  "id": "sea_nvr",
+  "query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n2406789942",
+      "name": "Метроклуб",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-n2406789942-f_window_n2406789942_ddf072ad1b52.json"
+        }
+      ]
+    },
+    {
+      "id": "w344135449",
+      "name": "Панорама",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-w344135449-f_window_w344135449_ddf072ad1b52.json"
+        }
+      ]
+    },
+    {
+      "id": "r5886036",
+      "name": "База отдыха \"Тополек\"",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-r5886036-f_window_r5886036_ddf072ad1b52.json"
+        }
+      ]
+    },
+    {
+      "id": "w130532370",
+      "name": "База отдыха \"Садко\"",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-w130532370-f_window_w130532370_ddf072ad1b52.json"
+        }
+      ]
+    },
+    {
+      "id": "w232381278",
+      "name": "База отдыха \"Метроклуб\"",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-w232381278-f_window_w232381278_ddf072ad1b52.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:ddf072ad1b52",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море"
+      },
+      {
+        "characteristic_key": "derived:f8919807a75b",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "чтобы соседний дом его не закрывал"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Новороссийск",
+    "anywhere": false,
+    "normalized_query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 40.2,
+  "passed_automatic_audit": true
+}

@@ -4,7 +4,10 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Explicit user instructions
 
-- 2026-10-26, active goal, verbatim: «твоя задача сделать такие тулы и заставить агента их вызывать так, чтобы он по любому абсолютно случайно запросу пользователя сам думал какие данные могут помочь чтобы найти подходящий отель. В крайнем случае есть всегда эмбединги, по которым можно искать самые абсурдные запросы. Нужны всегда задавать вопросы по самому номеру, сколько человек, какая цена, и тп, потому что человек в первую очередь ищет жилье, а если он уже отвечает что ему не важен ни город, ни номер пусть уже агент показывает только его хотелки. Желательно всегда выводить самую важную информацию об отеле, сколько звезд, сколько будет стоить проживать это время, и тп. Также агент должен ориентируясь на рельеф и высоту зданий поблизости понимать какой вид из окна, что там будет и тп. Время от времени проводи тесты на самых разных и даже иногда максимально абсурдных абстрактных и странных запросах, чтобы протестировать агента и исправить его так, чтобы все срабатывало. Можешь кстати добавить краткую сводку об отеле. Главное чтобы фронт и отрисовка работали быстро и отели искались не так долго.».
+- 2026-10-26: «скинь энвы запущенного стенд (можешь ничего не скрывать)».
+
+- 2026-10-26, active goal, verbatim: «надо чтобы определялись отели с конкретным выдом из окна по запросу. По рельефу, высоте отеля и соседний зданий, что рядом это место есть и ничего не перекрывает вид на это место. Протестируй на 50 разных запросах».
+- Previous cleared objective and full prior state: `work/window-views/session-before-window-goal.md`; compatible product preferences remain applicable.
 
 - 2026-10-24: «Возьми задачу отсюда» + вставленный промпт «MVP "О!дин шаг до идеального отеля"»
   и файл контракта. Промпт — источник истины по задаче, `docs/api/openapi.yaml` — по форме ответов.
@@ -93,9 +96,15 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Current state
 
-- `feat/hotel-agent-mvp`: published product `921ab5b`, terrain `6b1444f`, evidence `ea4e8a5`; main :8080 healthy. 332 backend tests, 320 frontend tests/36 rules passed. Evidence: `docs/evidence.md`, `work/evals/map-fact-geography-review.md`.
-- Web → quoted facts verified for Shine; geographic objects, weather/sun time scope, view/room tools and dynamic fact cards implemented. The 34 087 embeddings remain intact. Detailed prior state: `work/session-before-release-2026-10-26.md`.
+- `feat/hotel-agent-mvp`, product `0c3732d`; view goal active, not complete. Search now computes facades/floors, whole-path DEM/buildings/curvature and persists map evidence. :8080 deployed; backend/frontend refresh with merged frontend/chat updates underway.
+- Main fixed 50-case round1: 49 HTTP200, one500; initial audit 26/50 was too weak (Elbrus resort mistaken for mountain), not semantic accuracy. Sources/review: `work/window-views/plan.md`, raw `round1/`. Local type filter now resolves actual volcano/river/castle.
+- 400 backend tests/gates, 324 frontend tests/36 rules/build passed after merge. 8 old-UI variants inspected; merged UI needs recheck. `work/window-views/ui-check.json`.
+- Env displayed as requested, keys outside Git. Unrelated accidental root Ruff edits fully reverted.
 
 ## Next actions and pitfalls
 
-- Required work is complete. Catalog/inventory, forecast horizon and view estimates remain bounded; see `docs/limitations.md`. Preserve protected instructions despite SESSION target overflow.
+- Finish refresh, replay failures and all 50 with stronger identity audit; inspect remaining UI and source geometry; commit/push and update evidence. No goal completion yet. corrections1 passed 4/7; details in plan.
+- Zero-score unchecked alphabetical hotels hid computed views: sorting deployed. North azimuth rounded to360: reproduced/fixed; Teletskoye now HTTP200, still lacks geometry proof.
+- Unique typed name variants and parent tags corrected after first replays; full round2 required. EN generic explanation loses status; observer label can overlap hotel.
+- Missing OSM relations/parts/heights remain unknown; cathedral parts not rendered in 3D proof. Whole-object panorama unsupported. Data read-only, cache `/srv/cache` writable.
+- Preserve protected instructions despite SESSION target overflow.

@@ -1,0 +1,105 @@
+{
+  "id": "kazan",
+  "query": "Хочу отель в Казани с видом на Казанский кремль",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n12272572531",
+      "name": "84",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "kazan-n12272572531-f_window_n12272572531_07e691ad94d2.json"
+        }
+      ]
+    },
+    {
+      "id": "n13142525356",
+      "name": "Alfa best house",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "kazan-n13142525356-f_window_n13142525356_07e691ad94d2.json"
+        }
+      ]
+    },
+    {
+      "id": "n12484773914",
+      "name": "Amati",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Казанский кремль",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "kazan-n12484773914-f_window_n12484773914_07e691ad94d2.json"
+        }
+      ]
+    },
+    {
+      "id": "n10004372105",
+      "name": "Amsterdam",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Казанский кремль",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "kazan-n10004372105-f_window_n10004372105_07e691ad94d2.json"
+        }
+      ]
+    },
+    {
+      "id": "n14118698146",
+      "name": "Amsterdam",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "kazan-n14118698146-f_window_n14118698146_07e691ad94d2.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:07e691ad94d2",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Казанский кремль"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Казани с видом на Казанский кремль",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 2,
+  "seconds": 11.4,
+  "passed_automatic_audit": true
+}

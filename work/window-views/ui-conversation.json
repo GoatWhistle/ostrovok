@@ -1,0 +1,2799 @@
+{
+  "id": "fb82f7c6-0d97-4df6-bdae-b9e3d82a5307",
+  "messages": [
+    {
+      "id": "e94af936-45a1-427a-ad62-96752c0ff1b8",
+      "role": "user",
+      "content": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор. Параметры номера и даты сейчас не важны.",
+      "created_at": "2026-10-26T09:09:32.406293Z"
+    },
+    {
+      "id": "7d8bd689-df54-43e0-9de8-421bd3777a4d",
+      "role": "assistant",
+      "content": "Показываю 20 отелей. Первые в подборке: Four Seasons Hotel Lion Palace, Lotte, SO/. Выберите отель, чтобы изучить его и окружение. Ни у одного отеля не подтверждены все условия; это ближайшие совпадения.",
+      "created_at": "2026-10-26T09:09:32.406293Z"
+    }
+  ],
+  "effective_query": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор. Параметры номера и даты сейчас не важны.",
+  "search": {
+    "query_id": "5c2f9952f885f9d1",
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:ce0b831c8212",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом из окна на Исаакиевский собор"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор. Параметры номера и даты сейчас не важны.",
+      "corrections": [],
+      "unsupported_region": null,
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": true,
+      "budget": null,
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    "results": [
+      {
+        "hotel": {
+          "id": "r21187261",
+          "name": "Four Seasons Hotel Lion Palace",
+          "address": null,
+          "location": [
+            30.3077885,
+            59.9349658
+          ],
+          "stars": 5,
+          "building_id": null,
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.4,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "partial",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 51 м, этаж 1, направление окон 232°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+            "fact": {
+              "fact_id": "f_window_r21187261_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": true,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.8,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_window_r21187261_ce0b831c8212_ray",
+                "g_window_r21187261_ce0b831c8212_target",
+                "g_window_r21187261_ce0b831c8212_observer"
+              ]
+            },
+            "geo_refs": [
+              "g_window_r21187261_ce0b831c8212_ray",
+              "g_window_r21187261_ce0b831c8212_target",
+              "g_window_r21187261_ce0b831c8212_observer"
+            ],
+            "camera": {
+              "center": [
+                30.3077885,
+                59.9349658
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 52.0,
+              "focus_facade_id": "window_r21187261_ce0b831c8212_ray"
+            }
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3077885,
+            59.9349658
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 52.0,
+          "focus_facade_id": "window_r21187261_ce0b831c8212_ray"
+        },
+        "footprint": null
+      },
+      {
+        "hotel": {
+          "id": "w499303839",
+          "name": "Lotte",
+          "address": null,
+          "location": [
+            30.3108473,
+            59.9314905
+          ],
+          "stars": null,
+          "building_id": "w66339281",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.4,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "partial",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 310 м, этаж 1, направление окон 339°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+            "fact": {
+              "fact_id": "f_window_w499303839_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": true,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.8,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_window_w499303839_ce0b831c8212_ray",
+                "g_window_w499303839_ce0b831c8212_target",
+                "g_window_w499303839_ce0b831c8212_observer"
+              ]
+            },
+            "geo_refs": [
+              "g_window_w499303839_ce0b831c8212_ray",
+              "g_window_w499303839_ce0b831c8212_target",
+              "g_window_w499303839_ce0b831c8212_observer"
+            ],
+            "camera": {
+              "center": [
+                30.3108473,
+                59.9314905
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 159.0,
+              "focus_facade_id": "window_w499303839_ce0b831c8212_ray"
+            }
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3108473,
+            59.9314905
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 159.0,
+          "focus_facade_id": "window_w499303839_ce0b831c8212_ray"
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w66339281",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3112681,
+                    59.9312233
+                  ],
+                  [
+                    30.3106154,
+                    59.9310808
+                  ],
+                  [
+                    30.3100812,
+                    59.9316227
+                  ],
+                  [
+                    30.310109,
+                    59.9316508
+                  ],
+                  [
+                    30.3102066,
+                    59.9316699
+                  ],
+                  [
+                    30.3109198,
+                    59.9318097
+                  ],
+                  [
+                    30.3109945,
+                    59.9317347
+                  ],
+                  [
+                    30.3110977,
+                    59.9316301
+                  ],
+                  [
+                    30.3113119,
+                    59.9314067
+                  ],
+                  [
+                    30.3113785,
+                    59.9313468
+                  ],
+                  [
+                    30.3114635,
+                    59.9312677
+                  ],
+                  [
+                    30.3112681,
+                    59.9312233
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w66339281",
+            "hotel_id": "w499303839",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_w499303839"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "w508887500",
+          "name": "SO/",
+          "address": null,
+          "location": [
+            30.3090209,
+            59.9349901
+          ],
+          "stars": null,
+          "building_id": "w66067677",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.4,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "partial",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 107 м, этаж 4, направление окон 272°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+            "fact": {
+              "fact_id": "f_window_w508887500_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": true,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.8,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_window_w508887500_ce0b831c8212_ray",
+                "g_window_w508887500_ce0b831c8212_target",
+                "g_window_w508887500_ce0b831c8212_observer"
+              ]
+            },
+            "geo_refs": [
+              "g_window_w508887500_ce0b831c8212_ray",
+              "g_window_w508887500_ce0b831c8212_target",
+              "g_window_w508887500_ce0b831c8212_observer"
+            ],
+            "camera": {
+              "center": [
+                30.3090209,
+                59.9349901
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 92.0,
+              "focus_facade_id": "window_w508887500_ce0b831c8212_ray"
+            }
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3090209,
+            59.9349901
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 92.0,
+          "focus_facade_id": "window_w508887500_ce0b831c8212_ray"
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w66067677",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3086464,
+                    59.934714
+                  ],
+                  [
+                    30.3086481,
+                    59.9347464
+                  ],
+                  [
+                    30.3086549,
+                    59.9348787
+                  ],
+                  [
+                    30.3086638,
+                    59.9350533
+                  ],
+                  [
+                    30.3089096,
+                    59.9350564
+                  ],
+                  [
+                    30.3090517,
+                    59.9351028
+                  ],
+                  [
+                    30.3090008,
+                    59.9351411
+                  ],
+                  [
+                    30.3090021,
+                    59.9351558
+                  ],
+                  [
+                    30.3091939,
+                    59.935219
+                  ],
+                  [
+                    30.3093179,
+                    59.9352053
+                  ],
+                  [
+                    30.3093355,
+                    59.9351931
+                  ],
+                  [
+                    30.3093823,
+                    59.9351607
+                  ],
+                  [
+                    30.3095982,
+                    59.9350114
+                  ],
+                  [
+                    30.3094661,
+                    59.9349623
+                  ],
+                  [
+                    30.3093588,
+                    59.9350315
+                  ],
+                  [
+                    30.3090061,
+                    59.9349106
+                  ],
+                  [
+                    30.3090128,
+                    59.9348293
+                  ],
+                  [
+                    30.3090472,
+                    59.9348042
+                  ],
+                  [
+                    30.30879,
+                    59.9347138
+                  ],
+                  [
+                    30.3086464,
+                    59.934714
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w66067677",
+            "hotel_id": "w508887500",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_w508887500"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "w49861780",
+          "name": "Англетер",
+          "address": "Малая Морская улица 24",
+          "location": [
+            30.3091487,
+            59.9336636
+          ],
+          "stars": 5,
+          "building_id": "w49861780",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.4,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "partial",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 90 м, этаж 1, направление окон 271°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+            "fact": {
+              "fact_id": "f_window_w49861780_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": true,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.8,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_window_w49861780_ce0b831c8212_ray",
+                "g_window_w49861780_ce0b831c8212_target",
+                "g_window_w49861780_ce0b831c8212_observer"
+              ]
+            },
+            "geo_refs": [
+              "g_window_w49861780_ce0b831c8212_ray",
+              "g_window_w49861780_ce0b831c8212_target",
+              "g_window_w49861780_ce0b831c8212_observer"
+            ],
+            "camera": {
+              "center": [
+                30.3091487,
+                59.9336636
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 91.0,
+              "focus_facade_id": "window_w49861780_ce0b831c8212_ray"
+            }
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3091487,
+            59.9336636
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 91.0,
+          "focus_facade_id": "window_w49861780_ce0b831c8212_ray"
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w49861780",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3088858,
+                    59.9340317
+                  ],
+                  [
+                    30.3090321,
+                    59.9339274
+                  ],
+                  [
+                    30.3088883,
+                    59.9338751
+                  ],
+                  [
+                    30.3088731,
+                    59.933585
+                  ],
+                  [
+                    30.3089093,
+                    59.9335877
+                  ],
+                  [
+                    30.3088917,
+                    59.9334586
+                  ],
+                  [
+                    30.3097111,
+                    59.9337578
+                  ],
+                  [
+                    30.30987,
+                    59.9338171
+                  ],
+                  [
+                    30.3100496,
+                    59.9338849
+                  ],
+                  [
+                    30.310155,
+                    59.9338031
+                  ],
+                  [
+                    30.3100357,
+                    59.9337594
+                  ],
+                  [
+                    30.3096524,
+                    59.9336193
+                  ],
+                  [
+                    30.3095149,
+                    59.9335696
+                  ],
+                  [
+                    30.3091597,
+                    59.9334412
+                  ],
+                  [
+                    30.3090669,
+                    59.9334077
+                  ],
+                  [
+                    30.3089145,
+                    59.9333687
+                  ],
+                  [
+                    30.3088163,
+                    59.9333595
+                  ],
+                  [
+                    30.3086272,
+                    59.9333213
+                  ],
+                  [
+                    30.3086352,
+                    59.9335474
+                  ],
+                  [
+                    30.3086467,
+                    59.9338709
+                  ],
+                  [
+                    30.3086493,
+                    59.9339457
+                  ],
+                  [
+                    30.3088079,
+                    59.9340034
+                  ],
+                  [
+                    30.3088858,
+                    59.9340317
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w49861780",
+            "hotel_id": "w49861780",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_w49861780"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "r3107676",
+          "name": "Астория",
+          "address": "Большая Морская улица 39",
+          "location": [
+            30.3089239,
+            59.9329815
+          ],
+          "stars": null,
+          "building_id": null,
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.4,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "partial",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 124 м, этаж 1, направление окон 270°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+            "fact": {
+              "fact_id": "f_window_r3107676_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": true,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.8,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": [
+                "g_window_r3107676_ce0b831c8212_ray",
+                "g_window_r3107676_ce0b831c8212_target",
+                "g_window_r3107676_ce0b831c8212_observer"
+              ]
+            },
+            "geo_refs": [
+              "g_window_r3107676_ce0b831c8212_ray",
+              "g_window_r3107676_ce0b831c8212_target",
+              "g_window_r3107676_ce0b831c8212_observer"
+            ],
+            "camera": {
+              "center": [
+                30.3089239,
+                59.9329815
+              ],
+              "zoom": 17.0,
+              "pitch": 60.0,
+              "bearing": 90.0,
+              "focus_facade_id": "window_r3107676_ce0b831c8212_ray"
+            }
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3089239,
+            59.9329815
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 90.0,
+          "focus_facade_id": "window_r3107676_ce0b831c8212_ray"
+        },
+        "footprint": null
+      },
+      {
+        "hotel": {
+          "id": "n14062456889",
+          "name": "+Питер Хостел",
+          "address": null,
+          "location": [
+            30.3748219,
+            59.9284742
+          ],
+          "stars": null,
+          "building_id": "w51262712",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n14062456889_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3748219,
+            59.9284742
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w51262712",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3744838,
+                    59.9282561
+                  ],
+                  [
+                    30.3745788,
+                    59.9282254
+                  ],
+                  [
+                    30.3746924,
+                    59.9281899
+                  ],
+                  [
+                    30.3747058,
+                    59.9281999
+                  ],
+                  [
+                    30.3748159,
+                    59.9282816
+                  ],
+                  [
+                    30.3748315,
+                    59.9282932
+                  ],
+                  [
+                    30.3748659,
+                    59.9282816
+                  ],
+                  [
+                    30.3748857,
+                    59.9282963
+                  ],
+                  [
+                    30.3749078,
+                    59.9283145
+                  ],
+                  [
+                    30.3748734,
+                    59.9283261
+                  ],
+                  [
+                    30.3748863,
+                    59.9283355
+                  ],
+                  [
+                    30.3750291,
+                    59.9284399
+                  ],
+                  [
+                    30.3748192,
+                    59.9285102
+                  ],
+                  [
+                    30.3748012,
+                    59.9284966
+                  ],
+                  [
+                    30.3746608,
+                    59.9283902
+                  ],
+                  [
+                    30.3745561,
+                    59.9283109
+                  ],
+                  [
+                    30.3744998,
+                    59.9282682
+                  ],
+                  [
+                    30.3744838,
+                    59.9282561
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w51262712",
+            "hotel_id": "n14062456889",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n14062456889"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n7934321885",
+          "name": "1,5kapart",
+          "address": null,
+          "location": [
+            30.3234506,
+            59.9278162
+          ],
+          "stars": null,
+          "building_id": "w66319045",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n7934321885_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3234506,
+            59.9278162
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w66319045",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3232622,
+                    59.9280156
+                  ],
+                  [
+                    30.3235237,
+                    59.927839
+                  ],
+                  [
+                    30.3236604,
+                    59.9277476
+                  ],
+                  [
+                    30.3236935,
+                    59.9277596
+                  ],
+                  [
+                    30.3236626,
+                    59.9277812
+                  ],
+                  [
+                    30.3236922,
+                    59.9277928
+                  ],
+                  [
+                    30.323827,
+                    59.9278459
+                  ],
+                  [
+                    30.3239132,
+                    59.9277966
+                  ],
+                  [
+                    30.3237149,
+                    59.9277098
+                  ],
+                  [
+                    30.3234974,
+                    59.9276276
+                  ],
+                  [
+                    30.3233393,
+                    59.9277318
+                  ],
+                  [
+                    30.3233273,
+                    59.9277397
+                  ],
+                  [
+                    30.323315,
+                    59.9277478
+                  ],
+                  [
+                    30.3233038,
+                    59.9277552
+                  ],
+                  [
+                    30.3230488,
+                    59.9279272
+                  ],
+                  [
+                    30.3232622,
+                    59.9280156
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w66319045",
+            "hotel_id": "n7934321885",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n7934321885"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n8516947532",
+          "name": "1001 ночь",
+          "address": "Гончарная улица 15А",
+          "location": [
+            30.3652287,
+            59.928421
+          ],
+          "stars": null,
+          "building_id": "w292599376",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n8516947532_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3652287,
+            59.928421
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w292599376",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3650708,
+                    59.9279349
+                  ],
+                  [
+                    30.3651069,
+                    59.9279377
+                  ],
+                  [
+                    30.3652348,
+                    59.9279477
+                  ],
+                  [
+                    30.3653954,
+                    59.9279603
+                  ],
+                  [
+                    30.3654183,
+                    59.9278859
+                  ],
+                  [
+                    30.3654449,
+                    59.9277999
+                  ],
+                  [
+                    30.3653435,
+                    59.927792
+                  ],
+                  [
+                    30.3653467,
+                    59.9277816
+                  ],
+                  [
+                    30.3653584,
+                    59.9277437
+                  ],
+                  [
+                    30.3652016,
+                    59.9277357
+                  ],
+                  [
+                    30.3651887,
+                    59.9277777
+                  ],
+                  [
+                    30.3651666,
+                    59.9278494
+                  ],
+                  [
+                    30.3651349,
+                    59.9278466
+                  ],
+                  [
+                    30.3648101,
+                    59.9278177
+                  ],
+                  [
+                    30.3647543,
+                    59.9279986
+                  ],
+                  [
+                    30.3646949,
+                    59.9281912
+                  ],
+                  [
+                    30.364661,
+                    59.9283111
+                  ],
+                  [
+                    30.3649733,
+                    59.9283389
+                  ],
+                  [
+                    30.3650175,
+                    59.9283429
+                  ],
+                  [
+                    30.3649691,
+                    59.9284902
+                  ],
+                  [
+                    30.3651258,
+                    59.9284982
+                  ],
+                  [
+                    30.3651407,
+                    59.9284499
+                  ],
+                  [
+                    30.3652421,
+                    59.9284578
+                  ],
+                  [
+                    30.3652532,
+                    59.9284219
+                  ],
+                  [
+                    30.3652666,
+                    59.9283783
+                  ],
+                  [
+                    30.3652921,
+                    59.9282992
+                  ],
+                  [
+                    30.365139,
+                    59.9282862
+                  ],
+                  [
+                    30.3650013,
+                    59.9282745
+                  ],
+                  [
+                    30.3649669,
+                    59.9282719
+                  ],
+                  [
+                    30.3649876,
+                    59.9282046
+                  ],
+                  [
+                    30.3650166,
+                    59.9281065
+                  ],
+                  [
+                    30.3650447,
+                    59.9280198
+                  ],
+                  [
+                    30.3650708,
+                    59.9279349
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w292599376",
+            "hotel_id": "n8516947532",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n8516947532"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n11805430895",
+          "name": "16/8",
+          "address": null,
+          "location": [
+            30.2981842,
+            59.9640828
+          ],
+          "stars": null,
+          "building_id": "w85526335",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n11805430895_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.2981842,
+            59.9640828
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w85526335",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.2982995,
+                    59.9639942
+                  ],
+                  [
+                    30.2980072,
+                    59.9641301
+                  ],
+                  [
+                    30.2980611,
+                    59.9641604
+                  ],
+                  [
+                    30.2982295,
+                    59.9640833
+                  ],
+                  [
+                    30.2983534,
+                    59.9640267
+                  ],
+                  [
+                    30.2982995,
+                    59.9639942
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w85526335",
+            "hotel_id": "n11805430895",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n11805430895"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n9749740416",
+          "name": "1715 Duplex Hotel",
+          "address": null,
+          "location": [
+            30.3270185,
+            59.9432683
+          ],
+          "stars": null,
+          "building_id": "w99250160",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n9749740416_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3270185,
+            59.9432683
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w99250160",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3261347,
+                    59.9436428
+                  ],
+                  [
+                    30.3262481,
+                    59.9435729
+                  ],
+                  [
+                    30.3262149,
+                    59.9435595
+                  ],
+                  [
+                    30.3262464,
+                    59.9435397
+                  ],
+                  [
+                    30.3262782,
+                    59.9435197
+                  ],
+                  [
+                    30.326309,
+                    59.9435321
+                  ],
+                  [
+                    30.3265355,
+                    59.9433907
+                  ],
+                  [
+                    30.3265049,
+                    59.9433784
+                  ],
+                  [
+                    30.3265376,
+                    59.943358
+                  ],
+                  [
+                    30.3265653,
+                    59.9433409
+                  ],
+                  [
+                    30.326594,
+                    59.9433525
+                  ],
+                  [
+                    30.3268236,
+                    59.9432117
+                  ],
+                  [
+                    30.3267955,
+                    59.9432003
+                  ],
+                  [
+                    30.3268186,
+                    59.9431859
+                  ],
+                  [
+                    30.3268485,
+                    59.9431673
+                  ],
+                  [
+                    30.3268823,
+                    59.9431809
+                  ],
+                  [
+                    30.327007,
+                    59.9431021
+                  ],
+                  [
+                    30.3270718,
+                    59.9431295
+                  ],
+                  [
+                    30.3272089,
+                    59.9431836
+                  ],
+                  [
+                    30.3270497,
+                    59.9432815
+                  ],
+                  [
+                    30.3267815,
+                    59.9434493
+                  ],
+                  [
+                    30.3264926,
+                    59.9436288
+                  ],
+                  [
+                    30.326338,
+                    59.9437249
+                  ],
+                  [
+                    30.3261347,
+                    59.9436428
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w99250160",
+            "hotel_id": "n9749740416",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n9749740416"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n12319032635",
+          "name": "18 Line",
+          "address": null,
+          "location": [
+            30.2696976,
+            59.9336171
+          ],
+          "stars": null,
+          "building_id": "w51069889",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n12319032635_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.2696976,
+            59.9336171
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w51069889",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.2694336,
+                    59.933809
+                  ],
+                  [
+                    30.2694833,
+                    59.9337656
+                  ],
+                  [
+                    30.2695042,
+                    59.9337473
+                  ],
+                  [
+                    30.2697139,
+                    59.9335641
+                  ],
+                  [
+                    30.2699628,
+                    59.9336356
+                  ],
+                  [
+                    30.2697329,
+                    59.9338365
+                  ],
+                  [
+                    30.2696825,
+                    59.9338805
+                  ],
+                  [
+                    30.2694336,
+                    59.933809
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w51069889",
+            "hotel_id": "n12319032635",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n12319032635"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n3954003786",
+          "name": "1913",
+          "address": null,
+          "location": [
+            30.3080528,
+            59.9289967
+          ],
+          "stars": null,
+          "building_id": "w134408909",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n3954003786_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3080528,
+            59.9289967
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w134408909",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.307357,
+                    59.928525
+                  ],
+                  [
+                    30.3071833,
+                    59.9287325
+                  ],
+                  [
+                    30.3073266,
+                    59.9287652
+                  ],
+                  [
+                    30.3074607,
+                    59.928619
+                  ],
+                  [
+                    30.3077713,
+                    59.9286879
+                  ],
+                  [
+                    30.3078265,
+                    59.9286871
+                  ],
+                  [
+                    30.3078297,
+                    59.9287806
+                  ],
+                  [
+                    30.3078338,
+                    59.9289021
+                  ],
+                  [
+                    30.3077533,
+                    59.9289028
+                  ],
+                  [
+                    30.3077549,
+                    59.9289491
+                  ],
+                  [
+                    30.3078406,
+                    59.9289483
+                  ],
+                  [
+                    30.3078437,
+                    59.9290416
+                  ],
+                  [
+                    30.3078027,
+                    59.9290506
+                  ],
+                  [
+                    30.3076485,
+                    59.9290151
+                  ],
+                  [
+                    30.3074584,
+                    59.9289713
+                  ],
+                  [
+                    30.3074857,
+                    59.9289419
+                  ],
+                  [
+                    30.3075743,
+                    59.9289623
+                  ],
+                  [
+                    30.3077262,
+                    59.9287811
+                  ],
+                  [
+                    30.3074344,
+                    59.928718
+                  ],
+                  [
+                    30.307382,
+                    59.9287779
+                  ],
+                  [
+                    30.3075319,
+                    59.9288121
+                  ],
+                  [
+                    30.3073163,
+                    59.9290636
+                  ],
+                  [
+                    30.3074759,
+                    59.9291004
+                  ],
+                  [
+                    30.3075537,
+                    59.9291183
+                  ],
+                  [
+                    30.307609,
+                    59.929131
+                  ],
+                  [
+                    30.3080284,
+                    59.9292277
+                  ],
+                  [
+                    30.3080951,
+                    59.929215
+                  ],
+                  [
+                    30.308093,
+                    59.9291594
+                  ],
+                  [
+                    30.3080857,
+                    59.9289627
+                  ],
+                  [
+                    30.3080798,
+                    59.9288042
+                  ],
+                  [
+                    30.3080769,
+                    59.9287253
+                  ],
+                  [
+                    30.3080754,
+                    59.9286843
+                  ],
+                  [
+                    30.307357,
+                    59.928525
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w134408909",
+            "hotel_id": "n3954003786",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n3954003786"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n13141999373",
+          "name": "25/7 Заневский",
+          "address": "проспект Энергетиков 2 к2",
+          "location": [
+            30.4344257,
+            59.9320205
+          ],
+          "stars": null,
+          "building_id": "w759890053",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n13141999373_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.4344257,
+            59.9320205
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w759890053",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.4347351,
+                    59.9322733
+                  ],
+                  [
+                    30.4347363,
+                    59.9322237
+                  ],
+                  [
+                    30.434833,
+                    59.9322243
+                  ],
+                  [
+                    30.4348318,
+                    59.9322739
+                  ],
+                  [
+                    30.4347351,
+                    59.9322733
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w759890053",
+            "hotel_id": "n13141999373",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n13141999373"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n1304505090",
+          "name": "2nd Court Yard",
+          "address": null,
+          "location": [
+            30.3498059,
+            59.932906
+          ],
+          "stars": null,
+          "building_id": "w60196034",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n1304505090_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3498059,
+            59.932906
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w60196034",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3508917,
+                    59.9325198
+                  ],
+                  [
+                    30.350995,
+                    59.9327323
+                  ],
+                  [
+                    30.3508733,
+                    59.9327486
+                  ],
+                  [
+                    30.3508569,
+                    59.9327037
+                  ],
+                  [
+                    30.3508554,
+                    59.9326995
+                  ],
+                  [
+                    30.3507796,
+                    59.9326794
+                  ],
+                  [
+                    30.3506369,
+                    59.9326928
+                  ],
+                  [
+                    30.350654,
+                    59.9327314
+                  ],
+                  [
+                    30.3506636,
+                    59.9327531
+                  ],
+                  [
+                    30.3502792,
+                    59.9328036
+                  ],
+                  [
+                    30.350269,
+                    59.9327863
+                  ],
+                  [
+                    30.3502574,
+                    59.9327664
+                  ],
+                  [
+                    30.350185,
+                    59.932751
+                  ],
+                  [
+                    30.3501244,
+                    59.9327608
+                  ],
+                  [
+                    30.3502533,
+                    59.9330458
+                  ],
+                  [
+                    30.3500749,
+                    59.9330637
+                  ],
+                  [
+                    30.3499188,
+                    59.9327375
+                  ],
+                  [
+                    30.349878,
+                    59.9327433
+                  ],
+                  [
+                    30.3498243,
+                    59.932751
+                  ],
+                  [
+                    30.3497841,
+                    59.9326586
+                  ],
+                  [
+                    30.3498366,
+                    59.932652
+                  ],
+                  [
+                    30.3499315,
+                    59.93264
+                  ],
+                  [
+                    30.3501727,
+                    59.9326098
+                  ],
+                  [
+                    30.3501658,
+                    59.9325961
+                  ],
+                  [
+                    30.3503346,
+                    59.9325749
+                  ],
+                  [
+                    30.3504972,
+                    59.9325545
+                  ],
+                  [
+                    30.3505042,
+                    59.9325684
+                  ],
+                  [
+                    30.3506587,
+                    59.9325491
+                  ],
+                  [
+                    30.3508422,
+                    59.932526
+                  ],
+                  [
+                    30.3508917,
+                    59.9325198
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w60196034",
+            "hotel_id": "n1304505090",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n1304505090"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n5516563098",
+          "name": "3 Гнома",
+          "address": null,
+          "location": [
+            30.3268522,
+            59.9259352
+          ],
+          "stars": null,
+          "building_id": "w134618086",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n5516563098_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3268522,
+            59.9259352
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w134618086",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3269706,
+                    59.9259383
+                  ],
+                  [
+                    30.3268907,
+                    59.9259071
+                  ],
+                  [
+                    30.3267543,
+                    59.925854
+                  ],
+                  [
+                    30.3266864,
+                    59.9258275
+                  ],
+                  [
+                    30.326618,
+                    59.9258013
+                  ],
+                  [
+                    30.3264054,
+                    59.9257197
+                  ],
+                  [
+                    30.3263827,
+                    59.9257109
+                  ],
+                  [
+                    30.326137,
+                    59.9258703
+                  ],
+                  [
+                    30.3259706,
+                    59.9259782
+                  ],
+                  [
+                    30.3259013,
+                    59.9260232
+                  ],
+                  [
+                    30.3256976,
+                    59.9261553
+                  ],
+                  [
+                    30.3266909,
+                    59.9265441
+                  ],
+                  [
+                    30.3267765,
+                    59.9264904
+                  ],
+                  [
+                    30.3266829,
+                    59.926451
+                  ],
+                  [
+                    30.3263201,
+                    59.9262985
+                  ],
+                  [
+                    30.3260293,
+                    59.9261751
+                  ],
+                  [
+                    30.3259901,
+                    59.9262002
+                  ],
+                  [
+                    30.3259744,
+                    59.926194
+                  ],
+                  [
+                    30.3259592,
+                    59.9261879
+                  ],
+                  [
+                    30.3262798,
+                    59.9259803
+                  ],
+                  [
+                    30.3263299,
+                    59.9259478
+                  ],
+                  [
+                    30.3263889,
+                    59.9259096
+                  ],
+                  [
+                    30.3266918,
+                    59.9260249
+                  ],
+                  [
+                    30.3266534,
+                    59.9260477
+                  ],
+                  [
+                    30.3266171,
+                    59.9260349
+                  ],
+                  [
+                    30.3265913,
+                    59.926036
+                  ],
+                  [
+                    30.3265558,
+                    59.9260586
+                  ],
+                  [
+                    30.3265588,
+                    59.9260729
+                  ],
+                  [
+                    30.3266028,
+                    59.9260909
+                  ],
+                  [
+                    30.3269883,
+                    59.9262499
+                  ],
+                  [
+                    30.3271349,
+                    59.9263104
+                  ],
+                  [
+                    30.3272377,
+                    59.9262456
+                  ],
+                  [
+                    30.3271497,
+                    59.9262133
+                  ],
+                  [
+                    30.3269225,
+                    59.9261308
+                  ],
+                  [
+                    30.3267649,
+                    59.9260704
+                  ],
+                  [
+                    30.3269706,
+                    59.9259383
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w134618086",
+            "hotel_id": "n5516563098",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n5516563098"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n9122630717",
+          "name": "33 Hotel",
+          "address": "Петровская улица 5",
+          "location": [
+            29.7845752,
+            59.9862481
+          ],
+          "stars": null,
+          "building_id": "w1280522052",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n9122630717_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            29.7845752,
+            59.9862481
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w1280522052",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    29.7844141,
+                    59.9865948
+                  ],
+                  [
+                    29.7848216,
+                    59.9865137
+                  ],
+                  [
+                    29.7846471,
+                    59.9862945
+                  ],
+                  [
+                    29.7845701,
+                    59.9861978
+                  ],
+                  [
+                    29.784373,
+                    59.9859501
+                  ],
+                  [
+                    29.7839569,
+                    59.986033
+                  ],
+                  [
+                    29.7838475,
+                    59.9860548
+                  ],
+                  [
+                    29.7834408,
+                    59.9861358
+                  ],
+                  [
+                    29.7835094,
+                    59.9862219
+                  ],
+                  [
+                    29.7836407,
+                    59.9863869
+                  ],
+                  [
+                    29.783692,
+                    59.9864513
+                  ],
+                  [
+                    29.7838181,
+                    59.9864262
+                  ],
+                  [
+                    29.7837668,
+                    59.9863618
+                  ],
+                  [
+                    29.7837425,
+                    59.9863313
+                  ],
+                  [
+                    29.7838161,
+                    59.9863167
+                  ],
+                  [
+                    29.7837564,
+                    59.9862417
+                  ],
+                  [
+                    29.7839634,
+                    59.9862005
+                  ],
+                  [
+                    29.7840728,
+                    59.9861787
+                  ],
+                  [
+                    29.784296,
+                    59.9861343
+                  ],
+                  [
+                    29.7843548,
+                    59.9862081
+                  ],
+                  [
+                    29.7844253,
+                    59.986194
+                  ],
+                  [
+                    29.7844477,
+                    59.9862222
+                  ],
+                  [
+                    29.7845247,
+                    59.9863189
+                  ],
+                  [
+                    29.7844542,
+                    59.986333
+                  ],
+                  [
+                    29.7845139,
+                    59.986408
+                  ],
+                  [
+                    29.7842994,
+                    59.9864507
+                  ],
+                  [
+                    29.7844141,
+                    59.9865948
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w1280522052",
+            "hotel_id": "n9122630717",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n9122630717"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n11787343512",
+          "name": "338",
+          "address": null,
+          "location": [
+            30.3157632,
+            59.9594277
+          ],
+          "stars": null,
+          "building_id": "w84779972",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n11787343512_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3157632,
+            59.9594277
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w84779972",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3156166,
+                    59.9595611
+                  ],
+                  [
+                    30.3157788,
+                    59.9593661
+                  ],
+                  [
+                    30.3159344,
+                    59.9593984
+                  ],
+                  [
+                    30.315772,
+                    59.9595928
+                  ],
+                  [
+                    30.3156166,
+                    59.9595611
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w84779972",
+            "hotel_id": "n11787343512",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n11787343512"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n9057050339",
+          "name": "338 Hotel",
+          "address": null,
+          "location": [
+            30.3160801,
+            59.9586063
+          ],
+          "stars": null,
+          "building_id": "w1115220096",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n9057050339_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3160801,
+            59.9586063
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w1115220096",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.315686,
+                    59.9587085
+                  ],
+                  [
+                    30.3156416,
+                    59.9587665
+                  ],
+                  [
+                    30.3156207,
+                    59.9587621
+                  ],
+                  [
+                    30.3155624,
+                    59.9588369
+                  ],
+                  [
+                    30.315515,
+                    59.9588277
+                  ],
+                  [
+                    30.3155462,
+                    59.9587873
+                  ],
+                  [
+                    30.3155635,
+                    59.9587644
+                  ],
+                  [
+                    30.3156161,
+                    59.9586949
+                  ],
+                  [
+                    30.315686,
+                    59.9587085
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w1115220096",
+            "hotel_id": "n9057050339",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n9057050339"
+          }
+        }
+      },
+      {
+        "hotel": {
+          "id": "n5610975272",
+          "name": "365",
+          "address": null,
+          "location": [
+            30.3405908,
+            59.9093893
+          ],
+          "stars": null,
+          "building_id": null,
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n5610975272_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3405908,
+            59.9093893
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": null
+      },
+      {
+        "hotel": {
+          "id": "n4803639721",
+          "name": "9 Сов",
+          "address": null,
+          "location": [
+            30.3715272,
+            59.9383128
+          ],
+          "stars": null,
+          "building_id": "w114667010",
+          "height_m": null,
+          "levels": null
+        },
+        "score": 0.0,
+        "matched": [
+          {
+            "characteristic_key": "spatial:ce0b831c8212",
+            "match": "unknown",
+            "label": "с видом из окна на Исаакиевский собор",
+            "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "fact": {
+              "fact_id": "f_window_n4803639721_ce0b831c8212",
+              "characteristic_key": "spatial:ce0b831c8212",
+              "value": null,
+              "unit": null,
+              "label": "с видом из окна на Исаакиевский собор",
+              "confidence": 0.3,
+              "source_type": "computed",
+              "status": "active",
+              "geo_refs": []
+            },
+            "geo_refs": [],
+            "camera": null
+          }
+        ],
+        "camera": {
+          "center": [
+            30.3715272,
+            59.9383128
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        },
+        "footprint": {
+          "type": "Feature",
+          "id": "w114667010",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    30.3711813,
+                    59.9384536
+                  ],
+                  [
+                    30.3716128,
+                    59.9383561
+                  ],
+                  [
+                    30.3722851,
+                    59.9382041
+                  ],
+                  [
+                    30.3722864,
+                    59.9381922
+                  ],
+                  [
+                    30.3721507,
+                    59.9380915
+                  ],
+                  [
+                    30.3721828,
+                    59.9380814
+                  ],
+                  [
+                    30.3722198,
+                    59.9380697
+                  ],
+                  [
+                    30.3722546,
+                    59.9380588
+                  ],
+                  [
+                    30.3723071,
+                    59.9380423
+                  ],
+                  [
+                    30.372295,
+                    59.9380326
+                  ],
+                  [
+                    30.3725259,
+                    59.937957
+                  ],
+                  [
+                    30.3724002,
+                    59.9378658
+                  ],
+                  [
+                    30.3723569,
+                    59.9378631
+                  ],
+                  [
+                    30.3721566,
+                    59.9379232
+                  ],
+                  [
+                    30.372143,
+                    59.9379152
+                  ],
+                  [
+                    30.3718998,
+                    59.9379959
+                  ],
+                  [
+                    30.3719965,
+                    59.938067
+                  ],
+                  [
+                    30.3714707,
+                    59.9382027
+                  ],
+                  [
+                    30.3714023,
+                    59.9382221
+                  ],
+                  [
+                    30.371352,
+                    59.938168
+                  ],
+                  [
+                    30.3713098,
+                    59.9381624
+                  ],
+                  [
+                    30.3711384,
+                    59.9382025
+                  ],
+                  [
+                    30.3712076,
+                    59.9382665
+                  ],
+                  [
+                    30.37114,
+                    59.9382841
+                  ],
+                  [
+                    30.3711756,
+                    59.9383179
+                  ],
+                  [
+                    30.3710448,
+                    59.9383481
+                  ],
+                  [
+                    30.3711813,
+                    59.9384536
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w114667010",
+            "hotel_id": "n4803639721",
+            "is_hotel": true,
+            "height_m": null,
+            "min_height_m": 0,
+            "levels": null,
+            "height_fact_id": "f_height_n4803639721"
+          }
+        }
+      }
+    ],
+    "viewport": {
+      "bbox": [
+        29.7845752,
+        59.9093893,
+        30.4344257,
+        59.9862481
+      ],
+      "camera": {
+        "center": [
+          30.3077885,
+          59.9349658
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 52.0,
+        "focus_facade_id": "window_r21187261_ce0b831c8212_ray"
+      }
+    },
+    "pending": [],
+    "next_cursor": null,
+    "took_ms": 0
+  }
+}

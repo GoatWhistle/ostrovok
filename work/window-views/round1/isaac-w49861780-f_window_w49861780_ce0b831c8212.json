@@ -1,0 +1,116 @@
+{
+  "fact_id": "f_window_w49861780_ce0b831c8212",
+  "characteristic_key": "spatial:ce0b831c8212",
+  "value": true,
+  "unit": null,
+  "label": "с видом из окна на Исаакиевский собор",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w49861780_ce0b831c8212_ray",
+    "g_window_w49861780_ce0b831c8212_target",
+    "g_window_w49861780_ce0b831c8212_observer"
+  ],
+  "subject": "hotel:w49861780",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "visible",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 9.0,
+            "minimum_m": 7.0
+          },
+          "distance_m": 44.82605905153126
+        },
+        {
+          "id": "r13331165",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 15.25,
+            "minimum_m": 6.45
+          },
+          "distance_m": 77.88947443119304
+        },
+        {
+          "id": "r13331165",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 15.25,
+            "minimum_m": 6.45
+          },
+          "distance_m": 82.548285013492
+        },
+        {
+          "id": "r13331165",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 15.25,
+            "minimum_m": 6.45
+          },
+          "distance_m": 87.20709559579096
+        }
+      ],
+      "sources": [
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305000%2C59.930000%2C30.310000%2C59.935000"
+      ],
+      "blockers": [],
+      "target_id": "r3229838",
+      "distance_m": 89.7,
+      "target_name": "Исаакиевский собор",
+      "target_part_id": "r3229926",
+      "terrain_step_m": 25,
+      "target_location": [
+        30.3071051,
+        59.9341528
+      ],
+      "complete_coverage": true,
+      "observer_location": [
+        30.308644179305446,
+        59.93392703913704
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 271.0,
+      "target_elevation_m": {
+        "maximum_m": 52.5,
+        "minimum_m": 48.5
+      },
+      "minimum_clearance_m": 18.037364831302916,
+      "observer_elevation_m": {
+        "maximum_m": 10.175,
+        "minimum_m": 5.575
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": -30.09972966260583
+    },
+    "source_text": "с видом из окна на Исаакиевский собор",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 90 м, этаж 1, направление окон 271°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:08:42.780171Z",
+    "valid_until": "2026-11-02T09:08:42.780171Z"
+  },
+  "history": [],
+  "conflicts": []
+}

@@ -1,0 +1,29 @@
+{
+  "query_id": "9f945914c31c82c7",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:b6f0ab7db9cd",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с настоящим видом на море"
+      }
+    ],
+    "unmatched_terms": [
+      "настоящий вид на море",
+      "не в пяти минутах ходьбы от него"
+    ],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 52349
+}

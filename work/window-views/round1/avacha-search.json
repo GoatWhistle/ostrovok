@@ -1,0 +1,638 @@
+{
+  "query_id": "e2e605093af3ae66",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:f6853b1732e7",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Авачинскую сопку"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Петропавловск-Камчатский",
+    "anywhere": false,
+    "normalized_query": "В Петропавловске-Камчатском хочу отель с видом на Авачинскую сопку",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w886993743",
+        "name": "Bay House",
+        "address": "Авачинская улица 15",
+        "location": [
+          158.6307838,
+          53.0326358
+        ],
+        "building_id": "w886993743"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f6853b1732e7",
+          "match": "none",
+          "label": "с видом на Авачинскую сопку",
+          "explanation": "Линия обзора перекрыта: «Авачинская сопка», 28378 м, этаж 1, направление окон 20°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 1124 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w886993743_f6853b1732e7",
+            "characteristic_key": "spatial:f6853b1732e7",
+            "value": false,
+            "label": "с видом на Авачинскую сопку",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w886993743_f6853b1732e7_ray",
+              "g_window_w886993743_f6853b1732e7_target",
+              "g_window_w886993743_f6853b1732e7_observer",
+              "g_window_w886993743_f6853b1732e7_blocker_0",
+              "g_window_w886993743_f6853b1732e7_blocker_1",
+              "g_window_w886993743_f6853b1732e7_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w886993743_f6853b1732e7_ray",
+            "g_window_w886993743_f6853b1732e7_target",
+            "g_window_w886993743_f6853b1732e7_observer",
+            "g_window_w886993743_f6853b1732e7_blocker_0",
+            "g_window_w886993743_f6853b1732e7_blocker_1",
+            "g_window_w886993743_f6853b1732e7_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              158.6307838,
+              53.0326358
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 200.0,
+            "focus_facade_id": "window_w886993743_f6853b1732e7_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6307838,
+          53.0326358
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 200.0,
+        "focus_facade_id": "window_w886993743_f6853b1732e7_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w886993743",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6306958,
+                  53.0326102
+                ],
+                [
+                  158.6308551,
+                  53.0325749
+                ],
+                [
+                  158.6309158,
+                  53.0326741
+                ],
+                [
+                  158.6307565,
+                  53.0327094
+                ],
+                [
+                  158.6306958,
+                  53.0326102
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w886993743",
+          "hotel_id": "w886993743",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w886993743"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11166229886",
+        "name": "FRIENDS",
+        "location": [
+          158.6300477,
+          53.0576403
+        ],
+        "building_id": "w102609605"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f6853b1732e7",
+          "match": "unknown",
+          "label": "с видом на Авачинскую сопку",
+          "explanation": "Свободный обзор подтвердить не удалось: «Авачинская сопка», 25991 м, этаж 1, направление окон 359°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 199 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11166229886_f6853b1732e7",
+            "characteristic_key": "spatial:f6853b1732e7",
+            "label": "с видом на Авачинскую сопку",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11166229886_f6853b1732e7_ray",
+              "g_window_n11166229886_f6853b1732e7_target",
+              "g_window_n11166229886_f6853b1732e7_observer",
+              "g_window_n11166229886_f6853b1732e7_blocker_0",
+              "g_window_n11166229886_f6853b1732e7_blocker_1",
+              "g_window_n11166229886_f6853b1732e7_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11166229886_f6853b1732e7_ray",
+            "g_window_n11166229886_f6853b1732e7_target",
+            "g_window_n11166229886_f6853b1732e7_observer",
+            "g_window_n11166229886_f6853b1732e7_blocker_0",
+            "g_window_n11166229886_f6853b1732e7_blocker_1",
+            "g_window_n11166229886_f6853b1732e7_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              158.6300477,
+              53.0576403
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 179.0,
+            "focus_facade_id": "window_n11166229886_f6853b1732e7_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6300477,
+          53.0576403
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 179.0,
+        "focus_facade_id": "window_n11166229886_f6853b1732e7_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w102609605",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6302217,
+                  53.0579314
+                ],
+                [
+                  158.6302279,
+                  53.0576157
+                ],
+                [
+                  158.6301092,
+                  53.0576148
+                ],
+                [
+                  158.6301108,
+                  53.0575327
+                ],
+                [
+                  158.6296179,
+                  53.0575292
+                ],
+                [
+                  158.6296118,
+                  53.0578319
+                ],
+                [
+                  158.6299313,
+                  53.0578343
+                ],
+                [
+                  158.6299302,
+                  53.0578907
+                ],
+                [
+                  158.6300467,
+                  53.0578915
+                ],
+                [
+                  158.6300459,
+                  53.0579301
+                ],
+                [
+                  158.6302217,
+                  53.0579314
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w102609605",
+          "hotel_id": "n11166229886",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11166229886"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4168042791",
+        "name": "Hostel Fiesta",
+        "location": [
+          158.6058027,
+          53.0709454
+        ],
+        "building_id": "w106795540"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f6853b1732e7",
+          "match": "unknown",
+          "label": "с видом на Авачинскую сопку",
+          "explanation": "Свободный обзор подтвердить не удалось: «Авачинская сопка», 25716 м, этаж 1, направление окон 6°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 164 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4168042791_f6853b1732e7",
+            "characteristic_key": "spatial:f6853b1732e7",
+            "label": "с видом на Авачинскую сопку",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4168042791_f6853b1732e7_ray",
+              "g_window_n4168042791_f6853b1732e7_target",
+              "g_window_n4168042791_f6853b1732e7_observer",
+              "g_window_n4168042791_f6853b1732e7_blocker_0",
+              "g_window_n4168042791_f6853b1732e7_blocker_1",
+              "g_window_n4168042791_f6853b1732e7_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4168042791_f6853b1732e7_ray",
+            "g_window_n4168042791_f6853b1732e7_target",
+            "g_window_n4168042791_f6853b1732e7_observer",
+            "g_window_n4168042791_f6853b1732e7_blocker_0",
+            "g_window_n4168042791_f6853b1732e7_blocker_1",
+            "g_window_n4168042791_f6853b1732e7_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              158.6058027,
+              53.0709454
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 186.0,
+            "focus_facade_id": "window_n4168042791_f6853b1732e7_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6058027,
+          53.0709454
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 186.0,
+        "focus_facade_id": "window_n4168042791_f6853b1732e7_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w106795540",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6059086,
+                  53.0708454
+                ],
+                [
+                  158.6045342,
+                  53.0709396
+                ],
+                [
+                  158.6045561,
+                  53.0710547
+                ],
+                [
+                  158.6059305,
+                  53.0709605
+                ],
+                [
+                  158.6059086,
+                  53.0708454
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w106795540",
+          "hotel_id": "n4168042791",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4168042791"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w515851698",
+        "name": "The House",
+        "address": "улица Чернышевского 45",
+        "location": [
+          158.6509894,
+          53.0404048
+        ],
+        "building_id": "w515851698"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f6853b1732e7",
+          "match": "none",
+          "label": "с видом на Авачинскую сопку",
+          "explanation": "Линия обзора перекрыта: «Авачинская сопка», 26978 м, этаж 1, направление окон 360°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 50 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w515851698_f6853b1732e7",
+            "characteristic_key": "spatial:f6853b1732e7",
+            "value": false,
+            "label": "с видом на Авачинскую сопку",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w515851698_f6853b1732e7_ray",
+              "g_window_w515851698_f6853b1732e7_target",
+              "g_window_w515851698_f6853b1732e7_observer",
+              "g_window_w515851698_f6853b1732e7_blocker_0",
+              "g_window_w515851698_f6853b1732e7_blocker_1",
+              "g_window_w515851698_f6853b1732e7_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w515851698_f6853b1732e7_ray",
+            "g_window_w515851698_f6853b1732e7_target",
+            "g_window_w515851698_f6853b1732e7_observer",
+            "g_window_w515851698_f6853b1732e7_blocker_0",
+            "g_window_w515851698_f6853b1732e7_blocker_1",
+            "g_window_w515851698_f6853b1732e7_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              158.6509894,
+              53.0404048
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 180.0,
+            "focus_facade_id": "window_w515851698_f6853b1732e7_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6509894,
+          53.0404048
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 180.0,
+        "focus_facade_id": "window_w515851698_f6853b1732e7_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w515851698",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6509228,
+                  53.0403512
+                ],
+                [
+                  158.6510905,
+                  53.0403517
+                ],
+                [
+                  158.6510898,
+                  53.0404408
+                ],
+                [
+                  158.650922,
+                  53.0404402
+                ],
+                [
+                  158.6509228,
+                  53.0403512
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w515851698",
+          "hotel_id": "w515851698",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w515851698"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w94412874",
+        "name": "Авача",
+        "address": "Ленинградская улица 61",
+        "location": [
+          158.6555813,
+          53.0374813
+        ],
+        "stars": 3,
+        "building_id": "w354428591"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f6853b1732e7",
+          "match": "none",
+          "label": "с видом на Авачинскую сопку",
+          "explanation": "Линия обзора перекрыта: «Авачинская сопка», 27099 м, этаж 1, направление окон 61°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 425 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w94412874_f6853b1732e7",
+            "characteristic_key": "spatial:f6853b1732e7",
+            "value": false,
+            "label": "с видом на Авачинскую сопку",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w94412874_f6853b1732e7_ray",
+              "g_window_w94412874_f6853b1732e7_target",
+              "g_window_w94412874_f6853b1732e7_observer",
+              "g_window_w94412874_f6853b1732e7_blocker_0",
+              "g_window_w94412874_f6853b1732e7_blocker_1",
+              "g_window_w94412874_f6853b1732e7_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w94412874_f6853b1732e7_ray",
+            "g_window_w94412874_f6853b1732e7_target",
+            "g_window_w94412874_f6853b1732e7_observer",
+            "g_window_w94412874_f6853b1732e7_blocker_0",
+            "g_window_w94412874_f6853b1732e7_blocker_1",
+            "g_window_w94412874_f6853b1732e7_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              158.6555813,
+              53.0374813
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 241.0,
+            "focus_facade_id": "window_w94412874_f6853b1732e7_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          158.6555813,
+          53.0374813
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 241.0,
+        "focus_facade_id": "window_w94412874_f6853b1732e7_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w354428591",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  158.6553744,
+                  53.0372658
+                ],
+                [
+                  158.6555625,
+                  53.0370607
+                ],
+                [
+                  158.6559775,
+                  53.0371984
+                ],
+                [
+                  158.6557896,
+                  53.0374033
+                ],
+                [
+                  158.6559441,
+                  53.0374545
+                ],
+                [
+                  158.6558935,
+                  53.0375097
+                ],
+                [
+                  158.6561499,
+                  53.0375947
+                ],
+                [
+                  158.6560444,
+                  53.0377098
+                ],
+                [
+                  158.6552408,
+                  53.0374433
+                ],
+                [
+                  158.6553461,
+                  53.0373284
+                ],
+                [
+                  158.6554658,
+                  53.0373681
+                ],
+                [
+                  158.6555164,
+                  53.0373129
+                ],
+                [
+                  158.6553744,
+                  53.0372658
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w354428591",
+          "hotel_id": "w94412874",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w94412874"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      158.6058027,
+      53.0326358,
+      158.6555813,
+      53.0709454
+    ],
+    "camera": {
+      "center": [
+        158.6307838,
+        53.0326358
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 200.0,
+      "focus_facade_id": "window_w886993743_f6853b1732e7_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 15131
+}

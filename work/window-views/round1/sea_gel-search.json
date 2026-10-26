@@ -1,0 +1,531 @@
+{
+  "query_id": "2c10bcc322a1ae10",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:07432c87195f",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть море из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Геленджик",
+    "anywhere": false,
+    "normalized_query": "В Геленджике хочу видеть море из номера на третьем этаже",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n6542008186",
+        "name": "Апартаменты Афродита на берегу моря",
+        "location": [
+          38.0666894,
+          44.5542138
+        ],
+        "building_id": "w500723422"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:07432c87195f",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 203 м, этаж 3, направление окон 25°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6542008186_07432c87195f",
+            "characteristic_key": "spatial:07432c87195f",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6542008186_07432c87195f_ray",
+              "g_window_n6542008186_07432c87195f_target",
+              "g_window_n6542008186_07432c87195f_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6542008186_07432c87195f_ray",
+            "g_window_n6542008186_07432c87195f_target",
+            "g_window_n6542008186_07432c87195f_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0666894,
+              44.5542138
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 205.0,
+            "focus_facade_id": "window_n6542008186_07432c87195f_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0666894,
+          44.5542138
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 205.0,
+        "focus_facade_id": "window_n6542008186_07432c87195f_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w500723422",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0663623,
+                  44.5539008
+                ],
+                [
+                  38.066432,
+                  44.5538626
+                ],
+                [
+                  38.0665004,
+                  44.5538425
+                ],
+                [
+                  38.0665554,
+                  44.5538732
+                ],
+                [
+                  38.066672,
+                  44.553856
+                ],
+                [
+                  38.0667579,
+                  44.5538903
+                ],
+                [
+                  38.0667901,
+                  44.5539591
+                ],
+                [
+                  38.0667767,
+                  44.5543471
+                ],
+                [
+                  38.0666909,
+                  44.5543758
+                ],
+                [
+                  38.0666073,
+                  44.5543098
+                ],
+                [
+                  38.0664554,
+                  44.55419
+                ],
+                [
+                  38.0663422,
+                  44.5541006
+                ],
+                [
+                  38.0662912,
+                  44.5540432
+                ],
+                [
+                  38.066314,
+                  44.5539945
+                ],
+                [
+                  38.0663971,
+                  44.5539305
+                ],
+                [
+                  38.0663623,
+                  44.5539008
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w500723422",
+          "hotel_id": "n6542008186",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6542008186"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n14159417302",
+        "name": "\"Дарья\"",
+        "address": "улица Циолковского 30",
+        "location": [
+          38.0597762,
+          44.5855138
+        ],
+        "building_id": "w105890874"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:07432c87195f",
+          "match": "unknown",
+          "label": "видеть море из номера",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n14159417302_07432c87195f",
+            "characteristic_key": "spatial:07432c87195f",
+            "label": "видеть море из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0597762,
+          44.5855138
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w105890874",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0596647,
+                  44.5855322
+                ],
+                [
+                  38.0597145,
+                  44.5854999
+                ],
+                [
+                  38.0597326,
+                  44.5855141
+                ],
+                [
+                  38.0598107,
+                  44.5854634
+                ],
+                [
+                  38.059841,
+                  44.585487
+                ],
+                [
+                  38.0598287,
+                  44.585495
+                ],
+                [
+                  38.0598957,
+                  44.5855474
+                ],
+                [
+                  38.0597802,
+                  44.5856224
+                ],
+                [
+                  38.0596647,
+                  44.5855322
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w105890874",
+          "hotel_id": "n14159417302",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n14159417302"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n7847096523",
+        "name": "Akropolis",
+        "location": [
+          37.939534,
+          44.6504988
+        ],
+        "building_id": "w251295322"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:07432c87195f",
+          "match": "unknown",
+          "label": "видеть море из номера",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n7847096523_07432c87195f",
+            "characteristic_key": "spatial:07432c87195f",
+            "label": "видеть море из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          37.939534,
+          44.6504988
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w251295322",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.939422,
+                  44.6504482
+                ],
+                [
+                  37.9394767,
+                  44.6505323
+                ],
+                [
+                  37.9396177,
+                  44.6504859
+                ],
+                [
+                  37.939563,
+                  44.6504018
+                ],
+                [
+                  37.939422,
+                  44.6504482
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w251295322",
+          "hotel_id": "n7847096523",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n7847096523"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w444802651",
+        "name": "Alean Family Biarritz",
+        "location": [
+          38.0733665,
+          44.5771813
+        ],
+        "building_id": "w105895396"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:07432c87195f",
+          "match": "unknown",
+          "label": "видеть море из номера",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w444802651_07432c87195f",
+            "characteristic_key": "spatial:07432c87195f",
+            "label": "видеть море из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0733665,
+          44.5771813
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w105895396",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0733216,
+                  44.5772126
+                ],
+                [
+                  38.0733624,
+                  44.5771702
+                ],
+                [
+                  38.0732608,
+                  44.5771206
+                ],
+                [
+                  38.07322,
+                  44.5771631
+                ],
+                [
+                  38.0733216,
+                  44.5772126
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w105895396",
+          "hotel_id": "w444802651",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w444802651"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n10944576908",
+        "name": "Aurum",
+        "location": [
+          37.943858,
+          44.6544386
+        ],
+        "building_id": "w623027501"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:07432c87195f",
+          "match": "unknown",
+          "label": "видеть море из номера",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n10944576908_07432c87195f",
+            "characteristic_key": "spatial:07432c87195f",
+            "label": "видеть море из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          37.943858,
+          44.6544386
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w623027501",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.9438016,
+                  44.6545234
+                ],
+                [
+                  37.943986,
+                  44.6544487
+                ],
+                [
+                  37.9439,
+                  44.6543411
+                ],
+                [
+                  37.9437155,
+                  44.6544157
+                ],
+                [
+                  37.9438016,
+                  44.6545234
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w623027501",
+          "hotel_id": "n10944576908",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n10944576908"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      37.939534,
+      44.5542138,
+      38.0733665,
+      44.6544386
+    ],
+    "camera": {
+      "center": [
+        38.0666894,
+        44.5542138
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 205.0,
+      "focus_facade_id": "window_n6542008186_07432c87195f_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 8116
+}

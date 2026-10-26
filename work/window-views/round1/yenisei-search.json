@@ -1,0 +1,517 @@
+{
+  "query_id": "f0411170bd20ac5e",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:bf75eb39cd7f",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Енисей из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Красноярск",
+    "anywhere": false,
+    "normalized_query": "В Красноярске нужен отель с видом на Енисей из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w130002342",
+        "name": "A-House",
+        "address": "Биатлонная улица 10",
+        "location": [
+          92.7605788,
+          56.0028204
+        ],
+        "building_id": "w130002342"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:bf75eb39cd7f",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "fact": {
+            "fact_id": "f_window_w130002342_bf75eb39cd7f",
+            "characteristic_key": "spatial:bf75eb39cd7f",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          92.7605788,
+          56.0028204
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w130002342",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.7606094,
+                  56.0027278
+                ],
+                [
+                  92.760444,
+                  56.0028117
+                ],
+                [
+                  92.7606155,
+                  56.0029173
+                ],
+                [
+                  92.7607809,
+                  56.0028334
+                ],
+                [
+                  92.7606094,
+                  56.0027278
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w130002342",
+          "hotel_id": "w130002342",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w130002342"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11843540166",
+        "name": "Domdlyavas",
+        "location": [
+          92.7786612,
+          56.0078954
+        ],
+        "building_id": "w1255370323"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:bf75eb39cd7f",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "fact": {
+            "fact_id": "f_window_n11843540166_bf75eb39cd7f",
+            "characteristic_key": "spatial:bf75eb39cd7f",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          92.7786612,
+          56.0078954
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w1255370323",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.7787604,
+                  56.0079586
+                ],
+                [
+                  92.7787577,
+                  56.0078651
+                ],
+                [
+                  92.7786407,
+                  56.0078665
+                ],
+                [
+                  92.7786434,
+                  56.00796
+                ],
+                [
+                  92.7787604,
+                  56.0079586
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w1255370323",
+          "hotel_id": "n11843540166",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11843540166"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w209494908",
+        "name": "Hilton Garden Inn",
+        "address": "улица Молокова 37",
+        "location": [
+          92.8973673,
+          56.0359654
+        ],
+        "stars": 4,
+        "building_id": "w209494908"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:bf75eb39cd7f",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "fact": {
+            "fact_id": "f_window_w209494908_bf75eb39cd7f",
+            "characteristic_key": "spatial:bf75eb39cd7f",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8973673,
+          56.0359654
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w209494908",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8969042,
+                  56.0362826
+                ],
+                [
+                  92.8968994,
+                  56.0354934
+                ],
+                [
+                  92.8978655,
+                  56.0354915
+                ],
+                [
+                  92.8978708,
+                  56.0363575
+                ],
+                [
+                  92.897566,
+                  56.0363581
+                ],
+                [
+                  92.8975655,
+                  56.0362814
+                ],
+                [
+                  92.8969042,
+                  56.0362826
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w209494908",
+          "hotel_id": "w209494908",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w209494908"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6939626591",
+        "name": "Hollywood",
+        "location": [
+          92.8610884,
+          56.0593251
+        ],
+        "building_id": "w204706311"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:bf75eb39cd7f",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n6939626591_bf75eb39cd7f",
+            "characteristic_key": "spatial:bf75eb39cd7f",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8610884,
+          56.0593251
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w204706311",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8607893,
+                  56.0591059
+                ],
+                [
+                  92.8607834,
+                  56.0592411
+                ],
+                [
+                  92.860976,
+                  56.0592437
+                ],
+                [
+                  92.8609819,
+                  56.0591086
+                ],
+                [
+                  92.8607893,
+                  56.0591059
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w204706311",
+          "hotel_id": "n6939626591",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6939626591"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9965493646",
+        "name": "Hovel Hostel Krasnoyarsk",
+        "address": "улица Ленина 52",
+        "location": [
+          92.8778992,
+          56.01511
+        ],
+        "building_id": "w318189416"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:bf75eb39cd7f",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+          "fact": {
+            "fact_id": "f_window_n9965493646_bf75eb39cd7f",
+            "characteristic_key": "spatial:bf75eb39cd7f",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8778992,
+          56.01511
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w318189416",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8775726,
+                  56.0151177
+                ],
+                [
+                  92.877956,
+                  56.0151446
+                ],
+                [
+                  92.8779425,
+                  56.0152048
+                ],
+                [
+                  92.8782634,
+                  56.0152265
+                ],
+                [
+                  92.8783012,
+                  56.0150576
+                ],
+                [
+                  92.8782089,
+                  56.015052
+                ],
+                [
+                  92.8783432,
+                  56.0144536
+                ],
+                [
+                  92.8780158,
+                  56.0144307
+                ],
+                [
+                  92.8780114,
+                  56.0144502
+                ],
+                [
+                  92.8779312,
+                  56.0144454
+                ],
+                [
+                  92.8779169,
+                  56.0145028
+                ],
+                [
+                  92.8780088,
+                  56.0145072
+                ],
+                [
+                  92.8778894,
+                  56.0150446
+                ],
+                [
+                  92.8778477,
+                  56.0150416
+                ],
+                [
+                  92.8778501,
+                  56.015031
+                ],
+                [
+                  92.8776776,
+                  56.0150189
+                ],
+                [
+                  92.877682,
+                  56.0149994
+                ],
+                [
+                  92.8776004,
+                  56.0149937
+                ],
+                [
+                  92.8775726,
+                  56.0151177
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w318189416",
+          "hotel_id": "n9965493646",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9965493646"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      92.7605788,
+      56.0028204,
+      92.8973673,
+      56.0593251
+    ],
+    "camera": {
+      "center": [
+        92.7605788,
+        56.0028204
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 6390
+}

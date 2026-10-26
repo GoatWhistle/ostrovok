@@ -1,0 +1,34 @@
+{
+  "fact_id": "f_window_n9723066817_1625c36716e9",
+  "characteristic_key": "spatial:1625c36716e9",
+  "value": null,
+  "unit": null,
+  "label": "с видом из номера на Бештау",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n9723066817",
+  "qualifiers": {
+    "visibility": {
+      "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+      "status": "unknown",
+      "bookable_room_confirmed": false
+    },
+    "source_text": "с видом из номера на Бештау",
+    "estimated_view": true
+  },
+  "explanation": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:15:52.639103Z",
+    "valid_until": "2026-11-02T09:15:52.639103Z"
+  },
+  "history": [],
+  "conflicts": []
+}

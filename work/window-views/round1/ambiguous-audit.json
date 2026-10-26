@@ -1,0 +1,20 @@
+{
+  "id": "ambiguous",
+  "query": "Хочу отель, из окна которого видна Белая река",
+  "errors": [],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [],
+    "unmatched_terms": [],
+    "anywhere": false,
+    "normalized_query": "Хочу отель, из окна которого видна Белая река",
+    "corrections": [],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "clarification": true,
+  "seconds": 3.28,
+  "passed_automatic_audit": true
+}

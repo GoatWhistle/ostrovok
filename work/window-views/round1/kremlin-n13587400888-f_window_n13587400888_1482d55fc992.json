@@ -1,0 +1,34 @@
+{
+  "fact_id": "f_window_n13587400888_1482d55fc992",
+  "characteristic_key": "spatial:1482d55fc992",
+  "value": null,
+  "unit": null,
+  "label": "с видом на Московский Кремль",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n13587400888",
+  "qualifiers": {
+    "visibility": {
+      "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+      "status": "unknown",
+      "bookable_room_confirmed": false
+    },
+    "source_text": "с видом на Московский Кремль",
+    "estimated_view": true
+  },
+  "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:10:59.581398Z",
+    "valid_until": "2026-11-02T09:10:59.581398Z"
+  },
+  "history": [],
+  "conflicts": []
+}

@@ -1,0 +1,34 @@
+{
+  "fact_id": "f_window_n4208531789_dce1e4349dd4",
+  "characteristic_key": "spatial:dce1e4349dd4",
+  "value": null,
+  "unit": null,
+  "label": "из окна была видна Останкинская телебашня",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n4208531789",
+  "qualifiers": {
+    "visibility": {
+      "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+      "status": "unknown",
+      "bookable_room_confirmed": false
+    },
+    "source_text": "из окна была видна Останкинская телебашня",
+    "estimated_view": true
+  },
+  "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:30:22.548282Z",
+    "valid_until": "2026-11-02T09:30:22.548282Z"
+  },
+  "history": [],
+  "conflicts": []
+}
