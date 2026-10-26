@@ -50,6 +50,7 @@ export function HotelResult({
             variant="ghost"
             align="start"
             className={styles.name}
+            id={`hotel-result-${result.hotel.id}`}
             aria-pressed={selected}
             onClick={onSelect}
           >

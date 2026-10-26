@@ -44,7 +44,12 @@ export function HomePage() {
     variable: "--chat-width",
   })
   const start =
-    !stay && state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
+    !stay &&
+    !state.navigation.started &&
+    state.messages.length === 0 &&
+    !state.outgoing &&
+    !state.chatLoading &&
+    !state.search
   const send = (message: string) => void withViewTransition("layout", () => state.send(message))
   const sizes = {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
@@ -97,7 +102,7 @@ export function HomePage() {
               {state.hotelId ? (
                 <SelectedHotel state={state} time={sceneTime} />
               ) : (
-                <ScrollArea className={styles.scroll}>
+                <ScrollArea ref={state.listRef} className={styles.scroll}>
                   <SearchResults
                     response={state.search}
                     pending={state.sending || state.chatLoading}

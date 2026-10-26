@@ -1,11 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { useCallback, useEffect, useState } from "react"
-import { api, isApiError, unwrap } from "@/shared/api"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { api, unwrap, useRecordMutation } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale } from "@/shared/i18n"
 import {
   forgetSaved,
-  readActiveConversation,
   readConversationHistory,
   renameSaved,
   type SavedConversation,
@@ -16,6 +15,24 @@ import {
 
 export type Conversation = components["schemas"]["Conversation"]
 
+export interface ConversationControl {
+  readonly id: string | null
+  readonly scopeKey: string
+  readonly begin: () => void
+  readonly receive: (id: string) => void
+  readonly open: (id: string) => void
+  readonly reset: () => void
+}
+
+interface SendInput {
+  readonly message: string
+  readonly id: string | null
+  readonly scope: string
+  readonly generation: number
+  readonly hotel: string | undefined
+  readonly locale: "ru" | "en"
+}
+
 function serverEntry(data: Conversation) {
   return {
     id: data.id,
@@ -25,15 +42,34 @@ function serverEntry(data: Conversation) {
   }
 }
 
+async function sendRequest(input: SendInput) {
+  const data = await unwrap(
+    api.POST("/chat/messages", {
+      body: {
+        conversation_id: input.id,
+        message: input.message,
+        region_id: "russia",
+        locale: input.locale,
+        selected_hotel_id: input.hotel ?? null,
+      },
+    }),
+  )
+  if (input.id && data.id !== input.id) throw new Error("Conversation response mismatch")
+  return data
+}
+
 export function useConversation(
   selectedHotel: string | undefined,
   onAnswer: (data: Conversation) => void,
+  control: ConversationControl,
 ) {
   const { locale } = useLocale()
   const cache = useQueryClient()
-  const [conversationId, setConversationId] = useState<string | null>(readActiveConversation)
   const [history, setHistory] = useState(readConversationHistory)
-  const [outgoing, setOutgoing] = useState<string>()
+  const active = useRef({ scope: control.scopeKey, generation: 0 })
+  if (active.current.scope !== control.scopeKey) {
+    active.current = { scope: control.scopeKey, generation: active.current.generation + 1 }
+  }
   const updateHistory = useCallback(
     (change: (previous: SavedConversation[]) => SavedConversation[]) =>
       setHistory((previous) => {
@@ -44,48 +80,32 @@ export function useConversation(
     [],
   )
   const conversation = useQuery({
-    queryKey: ["conversation", conversationId],
-    enabled: conversationId !== null,
+    queryKey: ["conversation", control.id],
+    enabled: control.id !== null,
     queryFn: ({ signal }) =>
       unwrap(
         api.GET("/chat/conversations/{conversation_id}", {
           signal,
-          params: { path: { conversation_id: conversationId ?? "" } },
+          params: { path: { conversation_id: control.id ?? "" } },
         }),
       ),
     retry: false,
   })
   useEffect(() => {
-    if (!isApiError(conversation.error, "not_found")) return
-    saveActiveConversation(null)
-    setConversationId(null)
-    if (conversationId) updateHistory((previous) => forgetSaved(previous, conversationId))
-  }, [conversation.error, conversationId, updateHistory])
-  useEffect(() => {
     const data = conversation.data
-    if (!data) return
-    if (!data.messages.some((item) => item.role === "user")) return
-    updateHistory((previous) => syncConversation(previous, serverEntry(data)))
-  }, [conversation.data, updateHistory])
-  const sendMessage = useMutation({
-    mutationFn: (message: string) =>
-      unwrap(
-        api.POST("/chat/messages", {
-          body: {
-            conversation_id: conversationId,
-            message,
-            region_id: "russia",
-            locale,
-            selected_hotel_id: selectedHotel ?? null,
-          },
-        }),
-      ),
-    onSuccess: (data: Conversation) => {
-      saveActiveConversation(data.id)
+    if (data?.messages.some((item) => item.role === "user")) {
       updateHistory((previous) => syncConversation(previous, serverEntry(data)))
+    }
+  }, [conversation.data, updateHistory])
+  const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
+    mutationFn: sendRequest,
+    onSuccess: (data, input) => {
       cache.setQueryData(["conversation", data.id], data)
-      setConversationId(data.id)
-      setOutgoing(undefined)
+      updateHistory((previous) => syncConversation(previous, serverEntry(data)))
+      if (input.scope !== active.current.scope || input.generation !== active.current.generation)
+        return
+      saveActiveConversation(data.id)
+      control.receive(data.id)
       onAnswer(data)
     },
   })
@@ -113,41 +133,44 @@ export function useConversation(
     onSuccess: (id: string) => {
       cache.removeQueries({ queryKey: ["conversation", id] })
       updateHistory((previous) => forgetSaved(previous, id))
-      if (id === conversationId) {
-        saveActiveConversation(null)
-        setConversationId(null)
-        setOutgoing(undefined)
-      }
+      if (id === active.current.scope) reset()
     },
   })
-  function send(message: string) {
-    setOutgoing(message)
-    sendMessage.mutate(message)
+  function reset() {
+    active.current.generation += 1
+    saveActiveConversation(null)
+    control.reset()
   }
+  function send(message: string) {
+    if (!message.trim() || sendMessage.isPending) return
+    control.begin()
+    sendMessage.mutate({
+      message,
+      id: control.id,
+      scope: control.scopeKey,
+      generation: active.current.generation,
+      hotel: selectedHotel,
+      locale,
+    })
+  }
+  const outgoing =
+    sendMessage.isPending || sendMessage.isError ? sendMessage.variables?.message : undefined
   return {
     data: conversation.data,
-    conversationId,
+    conversationId: control.id,
     history,
     outgoing,
     send,
-    retry: () => (outgoing ? sendMessage.mutate(outgoing) : void conversation.refetch()),
-    reset: () => {
-      if (sendMessage.isPending) return
-      saveActiveConversation(null)
-      setConversationId(null)
-      setOutgoing(undefined)
-      sendMessage.reset()
-    },
+    retry: () => (outgoing ? send(outgoing) : void conversation.refetch()),
+    reset,
     open: (id: string) => {
-      if (sendMessage.isPending || !history.some((item) => item.id === id)) return
+      active.current.generation += 1
       saveActiveConversation(id)
-      setConversationId(id)
-      setOutgoing(undefined)
-      sendMessage.reset()
+      control.open(id)
     },
     rename: (id: string, title: string) => renameMutation.mutateAsync({ id, title }),
     remove: (id: string) => removeMutation.mutateAsync(id),
-    loading: conversation.isPending && conversationId !== null,
+    loading: conversation.isPending && control.id !== null,
     sending: sendMessage.isPending,
     failed: sendMessage.isError || (conversation.isError && !conversation.data),
   }
