@@ -222,7 +222,7 @@ p95 по ближайшему рангу 29,98 с. Все 43 проверенн�
 | Обязательное условие без подтверждённого факта убирает отель | **Закреплено** | `test_a_required_property_that_is_missing_disqualifies_the_hotel` там же |
 | Ошибка или отсутствие поставщика не выглядит как «мест нет» | **Закреплено** | `test_etg_error_does_not_look_like_sold_out`, `test_unconfigured_provider_is_not_reported_as_sold_out` |
 | Слои зависят только внутрь | **Закреплено** | `uv run lint-imports` и `backend/tests/unit/architecture/test_dependency_rule.py` |
-| Бэкенд отдаёт ровно 24 операции контракта | **Закреплено** | `test_every_documented_operation_is_served` в `backend/tests/contract/test_meta.py` |
+| Бэкенд отдаёт ровно 25 операций контракта | **Закреплено** | `test_every_documented_operation_is_served` в `backend/tests/contract/test_meta.py` |
 | Ответ отельера сохраняется с цитатами, правка оставляет прежнюю версию, одновременные ответы дают один факт | **Закреплено** | 8 тестов `backend/tests/integration/repository/postgres/test_hotelier_workflows.py` на отдельной базе с миграциями dbmate |
 | 22 из 22 запросов набора получили HTTP 200, у 16 есть выдача | **Измерено** | Порога и базовой линии нет; [прогон 22 запросов](#проверка-22-запросов-на-живом-стенде-2026-10-25) |
 | В загруженном срезе 854 отеля и 105 981 здание | **Измерено** | [Срез Сочи](#сколько-данных-в-загруженном-срезе) |
@@ -485,6 +485,17 @@ Flash, одна попытка на запрос. Набор и ожидаемо
 
 Всё, что не измерялось вовсе, перечислено с причиной в [ограничениях](limitations.md#что-не-измерено-вовсе).
 
+
+## Подложка Сочи на стенде, 26 октября 2026
+
+Через nginx стенда (`127.0.0.1:18082`): `GET /api/v1/map/style?region_id=sochi` вернул версию
+`basemap-142dbe50d10e` и адреса `/maps/sochi/…`; для региона «Россия» `available: false`. Запрос
+архива с `Range: bytes=0-126` дал `206`, `Content-Range: bytes 0-126/12314945`,
+`Content-Type: application/vnd.pmtiles`, ETag и `Cache-Control: immutable`; полный ответ сообщает
+`Accept-Ranges: bytes`. Диапазон за концом файла даёт `416`, отсутствующий файл `404` без HTML
+приложения, глиф `0-255.pbf` приходит как `application/x-protobuf`. В браузере на 1440 px у отеля
+Green Club видны подписи «Курортный проспект» и «Терренкур», ошибок страницы нет. Размер подложки с
+глифами и спрайтом 14 МБ.
 
 ## Ответ отельера на стенде, 26 октября 2026
 

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import type { FeatureCollection } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef, useState } from "react"
+import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { type BuildingColors, renderBuildings } from "@/shared/geo/map-layers"
 import type { SunPosition } from "@/shared/geo/terrain"
 import { buildingMesh } from "@/shared/geo/textured-building/geometry"
@@ -72,7 +73,7 @@ export function useTexturedHotel({
     const activate = () => {
       if (layer.current !== current) return
       try {
-        map.addLayer(current)
+        map.addLayer(current, labelAnchor(map))
         renderBuildings(map, remainingBuildings(data.current, footprints), palette.current)
         setStatus("ready")
       } catch {

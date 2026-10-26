@@ -35,6 +35,9 @@ const TOKENS = {
   rock: "--map-rock",
   snow: "--map-snow",
   meadow: "--map-meadow",
+  label: "--map-label",
+  labelStrong: "--map-label-strong",
+  labelHalo: "--map-label-halo",
 } as const
 
 export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }

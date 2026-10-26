@@ -290,6 +290,28 @@ paths:
                     type: array
                     items: { $ref: '#/components/schemas/MapClass' }
 
+  /map/style:
+    get:
+      tags: [map]
+      operationId: getMapStyle
+      summary: Версия и локальные адреса картографических ресурсов региона
+      description: >
+        Клиент берёт отсюда адреса подложки PMTiles, глифов, спрайта и собственных тайлов, а не
+        собирает их из констант. Регион без подложки отвечает 200 с available=false.
+      parameters:
+        - name: region_id
+          in: query
+          required: true
+          schema: { type: string, pattern: "^[a-z0-9_-]+$", maxLength: 64, example: sochi }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MapStyleManifest" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
   /map/tiles/{z}/{x}/{y}.pbf:
     get:
       tags: [map]
@@ -967,6 +989,36 @@ components:
             distance_m: { type: number, minimum: 0 }
             minutes: { type: number, minimum: 0, nullable: true }
             mode: { type: string, enum: [graph, straight] }
+
+    MapStyleManifest:
+      type: object
+      required: [region_id, available, reason, bbox, version, catalog_version, tiles_version, assets, capabilities]
+      properties:
+        region_id: { type: string }
+        available: { type: boolean }
+        reason: { type: string, nullable: true, enum: [basemap_missing, null] }
+        bbox: { $ref: "#/components/schemas/BBox" }
+        version: { type: string, nullable: true, description: "Версия подложки; меняется вместе с именем архива" }
+        catalog_version: { type: string }
+        tiles_version: { type: string, nullable: true }
+        assets:
+          type: object
+          nullable: true
+          required: [basemap_url, glyphs_url, sprite_url, vector_tiles_url, terrain_tiles_url, min_zoom, max_zoom]
+          properties:
+            basemap_url: { type: string, example: /maps/sochi/sochi-basemap-142dbe50d10e.pmtiles }
+            glyphs_url: { type: string, example: "/maps/sochi/fonts/{fontstack}/{range}.pbf" }
+            sprite_url: { type: string, example: /maps/sochi/sprites/black }
+            vector_tiles_url: { type: string, example: "/api/v1/map/tiles/{z}/{x}/{y}.pbf" }
+            terrain_tiles_url: { type: string, nullable: true, example: "/api/v1/map/terrain/{z}/{x}/{y}.png" }
+            min_zoom: { type: integer }
+            max_zoom: { type: integer }
+        capabilities:
+          type: object
+          required: [terrain, render_scene]
+          properties:
+            terrain: { type: boolean }
+            render_scene: { type: boolean }
 
     MapCatalog:
       type: object

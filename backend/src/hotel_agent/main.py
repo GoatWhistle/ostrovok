@@ -22,6 +22,7 @@ from hotel_agent.adapters.geo.window_views import WindowViews
 from hotel_agent.adapters.geo.worldcover import WorldCover
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.map_catalog.loader import load_catalog
+from hotel_agent.adapters.map_style.manifest_files import ManifestFiles
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
@@ -30,6 +31,7 @@ from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.semantic_review import SemanticReview
+from hotel_agent.application.map_catalog import CATALOG_VERSION
 from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
@@ -43,6 +45,7 @@ from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
+from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
@@ -191,6 +194,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 providers.uow, providers.registry, providers.llm, providers.clock, new_id
             ),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),
+            get_map_style=GetMapStyle(
+                providers.uow, ManifestFiles(config.seed_dir), CATALOG_VERSION
+            ),
         )
     )
     return app

@@ -75,6 +75,8 @@ services:
         required: false
     ports:
       - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    volumes:
+      - ./data/seed/sochi-map/basemap:/usr/share/nginx/maps/sochi:ro
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
       interval: 10s

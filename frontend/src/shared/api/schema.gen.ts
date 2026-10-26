@@ -209,6 +209,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/style": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Версия и локальные адреса картографических ресурсов региона
+         * @description Клиент берёт отсюда адреса подложки PMTiles, глифов, спрайта и собственных тайлов, а не собирает их из констант. Регион без подложки отвечает 200 с available=false.
+         */
+        get: operations["getMapStyle"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/map/tiles/{z}/{x}/{y}.pbf": {
         parameters: {
             query?: never;
@@ -800,6 +820,35 @@ export interface components {
                 mode?: "graph" | "straight";
             };
         };
+        MapStyleManifest: {
+            region_id: string;
+            available: boolean;
+            /** @enum {string|null} */
+            reason: "basemap_missing" | null;
+            bbox: components["schemas"]["BBox"];
+            /** @description Версия подложки; меняется вместе с именем архива */
+            version: string | null;
+            catalog_version: string;
+            tiles_version: string | null;
+            assets: {
+                /** @example /maps/sochi/sochi-basemap-142dbe50d10e.pmtiles */
+                basemap_url: string;
+                /** @example /maps/sochi/fonts/{fontstack}/{range}.pbf */
+                glyphs_url: string;
+                /** @example /maps/sochi/sprites/black */
+                sprite_url: string;
+                /** @example /api/v1/map/tiles/{z}/{x}/{y}.pbf */
+                vector_tiles_url: string;
+                /** @example /api/v1/map/terrain/{z}/{x}/{y}.png */
+                terrain_tiles_url: string | null;
+                min_zoom: number;
+                max_zoom: number;
+            } | null;
+            capabilities: {
+                terrain: boolean;
+                render_scene: boolean;
+            };
+        };
         MapCatalog: {
             version: string;
             classes: components["schemas"]["MapClass"][];
@@ -1356,6 +1405,30 @@ export interface operations {
                     };
                 };
             };
+        };
+    };
+    getMapStyle: {
+        parameters: {
+            query: {
+                region_id: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MapStyleManifest"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
         };
     };
     getMapTile: {

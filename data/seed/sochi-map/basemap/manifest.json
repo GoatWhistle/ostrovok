@@ -1,0 +1,59 @@
+{
+  "region_id": "sochi",
+  "version": "basemap-142dbe50d10e",
+  "bbox": [
+    39.55,
+    43.35,
+    40.0,
+    43.75
+  ],
+  "min_zoom": 0,
+  "max_zoom": 15,
+  "archive": "sochi-basemap-142dbe50d10e.pmtiles",
+  "sha256": "142dbe50d10e189487920df96f9573d90c78474fc410b6f31d93429ac7519507",
+  "bytes": 12314945,
+  "glyphs": "fonts/{fontstack}/{range}.pbf",
+  "font_ranges": {
+    "Noto Sans Italic": [
+      "0-255.pbf",
+      "1024-1279.pbf",
+      "1280-1535.pbf",
+      "256-511.pbf",
+      "512-767.pbf",
+      "768-1023.pbf",
+      "8192-8447.pbf"
+    ],
+    "Noto Sans Medium": [
+      "0-255.pbf",
+      "1024-1279.pbf",
+      "1280-1535.pbf",
+      "256-511.pbf",
+      "512-767.pbf",
+      "768-1023.pbf",
+      "8192-8447.pbf"
+    ],
+    "Noto Sans Regular": [
+      "0-255.pbf",
+      "1024-1279.pbf",
+      "1280-1535.pbf",
+      "256-511.pbf",
+      "512-767.pbf",
+      "768-1023.pbf",
+      "8192-8447.pbf",
+      "8448-8703.pbf"
+    ]
+  },
+  "sprite": "sprites/black",
+  "source": {
+    "name": "Protomaps Basemap",
+    "build": "https://build.protomaps.com/20261026.pmtiles",
+    "tileset_version": "4.15.2",
+    "osm_replication_time": "2026-10-26T04:00:00Z",
+    "extract": "pmtiles extract --bbox=39.55,43.35,40.0,43.75 --maxzoom=15"
+  },
+  "licenses": {
+    "data": "© OpenStreetMap contributors, ODbL; see DATA-LICENSE.md",
+    "glyphs": "Noto Sans, SIL OFL 1.1; see fonts/Noto-LICENSE",
+    "sprites": "protomaps/basemaps-assets, BSD-3-Clause; see sprites/LICENSE"
+  }
+}

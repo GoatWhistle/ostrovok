@@ -4,6 +4,7 @@ from typing import Literal
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
+from hotel_agent.application.map_catalog import CATALOG_VERSION
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
 
 
@@ -23,7 +24,7 @@ class MapClassSchema(BaseModel):
 
 
 class MapCatalogSchema(BaseModel):
-    version: str = "1"
+    version: str = CATALOG_VERSION
     classes: list[MapClassSchema]
 
 

@@ -1,6 +1,6 @@
 # API
 
-> HTTP API бэкенда Factmap: 24 операции под префиксом `/api/v1`. Контракт записан в
+> HTTP API бэкенда Factmap: 25 операций под префиксом `/api/v1`. Контракт записан в
 > [`docs/api/openapi.yaml`](api/openapi.yaml); контрактный тест падает, если набор операций
 > бэкенда и контракта расходится в любую сторону. Ошибка у всего API одна по форме: машинный `code`
 > и `message` для логов.
@@ -29,7 +29,7 @@
 | Тест | Что падает |
 |---|---|
 | `test_contract_file_is_a_valid_openapi_document` | Контракт перестал быть валидным OpenAPI |
-| `test_every_documented_operation_is_served` | Пары метод и путь бэкенда и контракта не совпали; ожидается 24 |
+| `test_every_documented_operation_is_served` | Пары метод и путь бэкенда и контракта не совпали; ожидается 25 |
 | `test_health_matches_the_contract`, `test_characteristics_match_the_contract` | Ответ `/health` или `/characteristics` не совпал со схемой контракта |
 | `test_hotelier.py` | Ответы очереди вопросов, ответа отельера, подтверждения, исправления, факта с историей и их ошибки не совпали со схемами |
 
@@ -143,6 +143,7 @@
 | Метод | Путь | Что делает |
 |---|---|---|
 | POST | `/api/v1/geo-features:batch` | Геометрии по списку id, до 200 за запрос, для подсветки доказательства на карте |
+| GET | `/api/v1/map/style?region_id=` | Версия и локальные адреса подложки, глифов, спрайта и тайлов региона; без подложки `available: false` |
 | GET | `/api/v1/map/tiles/{z}/{x}/{y}.pbf` | Векторная подложка из загруженных в PostGIS данных OSM |
 | GET | `/api/v1/map/terrain/{z}/{x}/{y}.png` | Рельеф Copernicus GLO-30 в формате Terrain RGB |
 | GET | `/api/v1/map/relief/{z}/{x}/{y}.png` | Цветной рельеф Copernicus GLO-30 |

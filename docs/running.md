@@ -28,6 +28,9 @@ make seed && make precompute
 
 Все порты слушают только `127.0.0.1`.
 
+Подложку с подписями Compose монтирует из `data/seed/sochi-map/basemap/` во фронтенд, nginx отдаёт её
+по `/maps/sochi/` частями (`Range`); сеть для неё не нужна.
+
 | Команда | Что делает | Сеть |
 |---|---|---|
 | `make up` | `docker buildx bake`, затем `docker compose up -d --wait`; миграции dbmate применяются до старта бэкенда | Для сборки образов |

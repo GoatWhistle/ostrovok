@@ -1,10 +1,14 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
+import { useRegions } from "@/entities/catalog"
+import { useBasemaps } from "@/entities/map-data"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
 import { renderBasemap } from "@/shared/geo/basemap"
+import { renderBasemapLabels } from "@/shared/geo/basemap-labels"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
+import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
 import {
   followTerrainZoom,
   lightMode,
@@ -14,6 +18,7 @@ import {
 } from "@/shared/geo/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
+import { useLocale } from "@/shared/i18n"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { useMapColors } from "@/shared/theme"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
@@ -102,6 +107,14 @@ export function useHotelMap({
   const { container, instance, ready, failed, revealed } = useMapInstance(camera !== undefined)
   const reduced = useReducedMotion()
   const colors = useMapColors()
+  const { locale } = useLocale()
+  const regions = useRegions()
+  const regionIds = useMemo(
+    () => regions.data?.items?.flatMap((item) => (item.id ? [item.id] : [])) ?? [],
+    [regions.data],
+  )
+  const basemaps = useBasemaps(regionIds)
+  useEffect(() => retainPmtiles(), [])
   const highlightData = useMemo(() => featureCollection(highlights), [highlights])
   const [route, setRoute] = useState<string>()
   useEffect(() => {
@@ -117,10 +130,11 @@ export function useHotelMap({
       .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
     renderBasemap(map, scene)
     const hasRoute = renderHighlights(map, highlightData, colors)
+    renderBasemapLabels(map, basemaps, colors, locale)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, highlightData, colors, sun])
+  }, [instance, ready, highlightData, colors, sun, basemaps, locale])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
     () => tintForTime(colors, lightMode(sun.altitude)),

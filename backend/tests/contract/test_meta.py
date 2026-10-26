@@ -45,7 +45,7 @@ def test_every_documented_operation_is_served(client: TestClient, contract: dict
     }
 
     assert served == documented
-    assert len(documented) == 24
+    assert len(documented) == 25
 
 
 def test_validator_rejects_a_payload_that_breaks_the_contract(validate: Any) -> None:
