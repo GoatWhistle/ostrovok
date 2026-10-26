@@ -20,9 +20,7 @@
 }
 
 .userText::before,
-.userText::after,
-.agentBody::before,
-.agentBody::after {
+.userText::after {
   content: "";
   position: absolute;
   inset-block-end: 0;
@@ -36,28 +34,11 @@
   background-color: var(--action-primary);
 }
 
-.userText::after,
-.agentBody::after {
-  background-color: var(--surface-base);
-}
-
 .userText::after {
+  background-color: var(--surface-base);
   inset-inline-end: calc(var(--space-16) * -1);
   inline-size: var(--space-16);
   border-end-start-radius: var(--radius-sm);
-}
-
-.agentBody::before {
-  inset-inline-start: calc(var(--space-4) * -1);
-  inline-size: var(--space-12);
-  border-end-end-radius: var(--radius-md) var(--radius-sm);
-  background-color: var(--surface-raised);
-}
-
-.agentBody::after {
-  inset-inline-start: calc(var(--space-12) * -1);
-  inline-size: var(--space-8);
-  border-end-end-radius: var(--radius-sm);
 }
 
 .userText .time {
@@ -95,7 +76,27 @@
   min-inline-size: 0;
   position: relative;
   padding: var(--space-12) var(--space-16);
-  border-end-start-radius: var(--radius-xs);
+  border-end-start-radius: 0;
+}
+
+.tail {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: calc(var(--space-8) * -1);
+  inline-size: var(--space-12);
+  block-size: var(--space-12);
+  overflow: visible;
+}
+
+.tailFill {
+  fill: var(--surface-raised);
+}
+
+.tailEdge {
+  fill: none;
+  stroke: var(--border-default);
+  stroke-width: var(--hairline);
+  vector-effect: non-scaling-stroke;
 }
 
 .agentTime {
