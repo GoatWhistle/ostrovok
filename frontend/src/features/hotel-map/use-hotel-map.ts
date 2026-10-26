@@ -22,6 +22,8 @@ import { tintForTime } from "@/shared/geo/time-tint"
 import { useLocale } from "@/shared/i18n"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
 import { readTokenColors, useMapColors } from "@/shared/theme"
+import { buildingIds } from "./night-city/night-city-data"
+import { useNightCity } from "./night-city/use-night-city"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapInstance } from "./use-map-instance"
 import { useMapMarkers } from "./use-map-markers"
@@ -160,6 +162,23 @@ export function useHotelMap({
     footprints: texturedFootprints,
     buildings: buildingData,
     colors: buildingColors,
+    sun,
+  })
+  const regionBoxes = useMemo(
+    () =>
+      regions.data?.items?.flatMap((item) =>
+        item.id && item.bbox ? [{ id: item.id, bbox: item.bbox }] : [],
+      ) ?? [],
+    [regions.data],
+  )
+  const sceneIds = useMemo(() => buildingIds(buildings), [buildings])
+  useNightCity({
+    mapRef: instance,
+    ready,
+    regions: regionBoxes,
+    excluded: sceneIds,
+    colors,
+    volumeColor: classes.volume,
     sun,
   })
   useRouteDraw(instance, ready ? route : undefined, colors, reduced)

@@ -229,6 +229,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/scene": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Полные контуры фоновых зданий в ограниченной области для объёмов и окон
+         * @description Здания, пересекающие bbox, возвращаются целиком с отверстиями. Не больше 800 зданий и 100 000 вершин; порядок детерминирован расстоянием до центра и id. Условная высота отделена от измеренной и не создаёт факт.
+         */
+        get: operations["getMapScene"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/map/tiles/{z}/{x}/{y}.pbf": {
         parameters: {
             query?: never;
@@ -818,6 +838,38 @@ export interface components {
                 minutes?: number | null;
                 /** @enum {string} */
                 mode?: "graph" | "straight";
+            };
+        };
+        MapRenderScene: {
+            region_id: string;
+            version: string | null;
+            bbox: components["schemas"]["BBox"];
+            truncated: boolean;
+            eligible_count: number;
+            features: components["schemas"]["MapRenderBuilding"][];
+        };
+        MapRenderBuilding: {
+            /** @enum {string} */
+            type: "Feature";
+            id: string;
+            geometry: {
+                /** @enum {string} */
+                type: "Polygon" | "MultiPolygon";
+                coordinates: unknown[];
+            };
+            properties: {
+                building_id: string;
+                hotel_id: string | null;
+                class: string;
+                class_source: string;
+                height_m: number | null;
+                levels: number | null;
+                height_source: string;
+                render_height_m: number;
+                height_estimated: boolean;
+                min_height_m: number;
+                ground_elevation_m: number | null;
+                ground_source: string | null;
             };
         };
         MapStyleManifest: {
@@ -1428,6 +1480,44 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+        };
+    };
+    getMapScene: {
+        parameters: {
+            query: {
+                region_id: string;
+                /** @description west,south,east,north в WGS84; площадь не больше 4 км² */
+                bbox: string;
+                zoom: number;
+                /** @description Версия тайлов из /map/style; при расхождении ответ 409 */
+                v?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MapRenderScene"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            /** @description Версия данных изменилась, нужно перечитать /map/style */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             422: components["responses"]["InvalidInput"];
         };
     };

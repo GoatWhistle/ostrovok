@@ -45,6 +45,7 @@ from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
+from hotel_agent.application.use_cases.get_map_scene import GetMapScene
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
@@ -114,6 +115,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             terrain_tiles.close()
             await providers.aclose()
 
+    map_files = ManifestFiles(config.seed_dir, config.map_basemaps_dir)
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
     get_hotel_offers = GetHotelOffers(
@@ -194,11 +196,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 providers.uow, providers.registry, providers.llm, providers.clock, new_id
             ),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),
-            get_map_style=GetMapStyle(
-                providers.uow,
-                ManifestFiles(config.seed_dir, config.map_basemaps_dir),
-                CATALOG_VERSION,
-            ),
+            get_map_style=GetMapStyle(providers.uow, map_files, CATALOG_VERSION),
+            get_map_scene=GetMapScene(providers.uow, map_files),
         )
     )
     return app

@@ -14,6 +14,7 @@ from hotel_agent.application.dto import (
 )
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.fact_store import FactStore, QuestionStore
+from hotel_agent.application.ports.map_scene import MapSceneRepository
 from hotel_agent.application.ports.places import PlaceRepository
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
 from hotel_agent.application.ports.view_scenes import ViewSceneRepository
@@ -146,6 +147,7 @@ class UnitOfWork(Protocol):
     data: DataRepository
     facts: FactStore
     questions: QuestionStore
+    map_scene: MapSceneRepository
 
     async def __aenter__(self) -> Self: ...
 

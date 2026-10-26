@@ -60,7 +60,7 @@ def map_style_schema(style: MapStyle) -> MapStyleSchema:
         catalog_version=style.catalog_version,
         tiles_version=style.tiles_version,
         assets=assets,
-        capabilities=MapCapabilitiesSchema(terrain=style.terrain, render_scene=False),
+        capabilities=MapCapabilitiesSchema(terrain=style.terrain, render_scene=True),
     )
 
 

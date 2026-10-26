@@ -38,6 +38,10 @@ const TOKENS = {
   label: "--map-label",
   labelStrong: "--map-label-strong",
   labelHalo: "--map-label-halo",
+  windowWarm: "--map-window-warm",
+  windowCool: "--map-window-cool",
+  lamp: "--map-lamp",
+  cityGlow: "--map-city-glow",
 } as const
 
 export type MapColors = { readonly [Key in keyof typeof TOKENS]: string }

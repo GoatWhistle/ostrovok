@@ -11,6 +11,7 @@ from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
+from hotel_agent.application.use_cases.get_map_scene import GetMapScene
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
@@ -28,6 +29,7 @@ from hotel_agent.interfaces.http.routers import (
     hotelier,
     hotels,
     map_catalog,
+    map_scene,
     map_style,
     map_tiles,
     meta,
@@ -62,6 +64,7 @@ def api_router_v1(
     answer_hotelier_question: AnswerHotelierQuestion,
     change_facts: ChangeFacts,
     get_map_style: GetMapStyle,
+    get_map_scene: GetMapScene,
 ) -> APIRouter:
     router = APIRouter(prefix="/api/v1")
     router.include_router(places.build_router(get_place))
@@ -81,6 +84,7 @@ def api_router_v1(
     router.include_router(map_tiles.build_router(get_map_tile))
     router.include_router(map_catalog.build_router(get_map_catalog))
     router.include_router(map_style.build_router(get_map_style))
+    router.include_router(map_scene.build_router(get_map_scene))
     router.include_router(terrain.build_router(get_terrain_tile))
     router.include_router(weather.build_router(get_weather))
     return router

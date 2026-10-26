@@ -47,8 +47,16 @@ function compile(gl: WebGL2RenderingContext, type: number, source: string) {
 }
 
 export function buildingProgram(gl: WebGL2RenderingContext) {
-  const vertex = compile(gl, gl.VERTEX_SHADER, VERTEX_SHADER)
-  const fragment = compile(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER)
+  return linkProgram(gl, VERTEX_SHADER, FRAGMENT_SHADER)
+}
+
+export function linkProgram(
+  gl: WebGL2RenderingContext,
+  vertexSource: string,
+  fragmentSource: string,
+) {
+  const vertex = compile(gl, gl.VERTEX_SHADER, vertexSource)
+  const fragment = compile(gl, gl.FRAGMENT_SHADER, fragmentSource)
   const program = gl.createProgram()
   if (!program) throw new Error("Building program unavailable")
   gl.attachShader(program, vertex)

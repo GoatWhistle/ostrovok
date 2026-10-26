@@ -312,6 +312,48 @@ paths:
         "404": { $ref: "#/components/responses/NotFound" }
         "422": { $ref: "#/components/responses/InvalidInput" }
 
+  /map/scene:
+    get:
+      tags: [map]
+      operationId: getMapScene
+      summary: Полные контуры фоновых зданий в ограниченной области для объёмов и окон
+      description: >
+        Здания, пересекающие bbox, возвращаются целиком с отверстиями. Не больше 800 зданий и
+        100 000 вершин; порядок детерминирован расстоянием до центра и id. Условная высота
+        отделена от измеренной и не создаёт факт.
+      parameters:
+        - name: region_id
+          in: query
+          required: true
+          schema: { type: string, pattern: "^[a-z0-9_-]+$", maxLength: 64 }
+        - name: bbox
+          in: query
+          required: true
+          description: "west,south,east,north в WGS84; площадь не больше 4 км²"
+          schema: { type: string, example: "39.900,43.442,39.909,43.448" }
+        - name: zoom
+          in: query
+          required: true
+          schema: { type: number, minimum: 16, maximum: 19 }
+        - name: v
+          in: query
+          required: false
+          description: Версия тайлов из /map/style; при расхождении ответ 409
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MapRenderScene" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409":
+          description: Версия данных изменилась, нужно перечитать /map/style
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
   /map/tiles/{z}/{x}/{y}.pbf:
     get:
       tags: [map]
@@ -989,6 +1031,48 @@ components:
             distance_m: { type: number, minimum: 0 }
             minutes: { type: number, minimum: 0, nullable: true }
             mode: { type: string, enum: [graph, straight] }
+
+    MapRenderScene:
+      type: object
+      required: [region_id, version, bbox, features, truncated, eligible_count]
+      properties:
+        region_id: { type: string }
+        version: { type: string, nullable: true }
+        bbox: { $ref: "#/components/schemas/BBox" }
+        truncated: { type: boolean }
+        eligible_count: { type: integer, minimum: 0 }
+        features:
+          type: array
+          items: { $ref: "#/components/schemas/MapRenderBuilding" }
+
+    MapRenderBuilding:
+      type: object
+      required: [type, id, geometry, properties]
+      properties:
+        type: { type: string, enum: [Feature] }
+        id: { type: string }
+        geometry:
+          type: object
+          required: [type, coordinates]
+          properties:
+            type: { type: string, enum: [Polygon, MultiPolygon] }
+            coordinates: { type: array, items: {} }
+        properties:
+          type: object
+          required: [building_id, hotel_id, class, class_source, height_m, levels, height_source, render_height_m, height_estimated, min_height_m, ground_elevation_m, ground_source]
+          properties:
+            building_id: { type: string }
+            hotel_id: { type: string, nullable: true }
+            class: { type: string }
+            class_source: { type: string }
+            height_m: { type: number, nullable: true }
+            levels: { type: integer, nullable: true }
+            height_source: { type: string }
+            render_height_m: { type: number, minimum: 0 }
+            height_estimated: { type: boolean }
+            min_height_m: { type: number, minimum: 0 }
+            ground_elevation_m: { type: number, nullable: true }
+            ground_source: { type: string, nullable: true }
 
     MapStyleManifest:
       type: object
