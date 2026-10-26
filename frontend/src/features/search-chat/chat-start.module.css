@@ -4,7 +4,7 @@
   gap: var(--space-40);
   inline-size: 100%;
   min-block-size: 100%;
-  padding-block-start: var(--space-96);
+  padding-block-start: var(--space-80);
   text-align: start;
   animation: var(--motion-fade-in);
 }
@@ -15,12 +15,12 @@
   inset-inline-start: var(--space-40);
   display: flex;
   align-items: center;
-  gap: var(--space-16);
+  gap: var(--space-12);
 }
 
 .lockup > :first-child {
-  inline-size: var(--space-96);
-  block-size: var(--space-96);
+  inline-size: var(--space-64);
+  block-size: var(--space-64);
 }
 
 .word {
