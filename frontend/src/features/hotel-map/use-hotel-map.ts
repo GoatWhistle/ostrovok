@@ -5,6 +5,7 @@ import { renderBasemap } from "@/shared/geo/basemap"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
+import { animateSurf, renderSurf } from "@/shared/geo/surf"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "@/shared/geo/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
@@ -110,6 +111,7 @@ export function useHotelMap({
       .getContainer()
       .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
     renderBasemap(map, scene)
+    renderSurf(map, scene.hillHighlight)
     const hasRoute = renderHighlights(map, highlightData, colors)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
@@ -130,6 +132,11 @@ export function useHotelMap({
     sun,
   })
   useRouteDraw(instance, ready ? route : undefined, colors, reduced)
+  useEffect(() => {
+    const map = instance.current
+    if (!ready || !map || reduced) return
+    return animateSurf(map, motionMs("--dur-press"))
+  }, [instance, ready, reduced])
   const view = useRef<ViewApply | null>(null)
   useEffect(() => {
     const map = instance.current

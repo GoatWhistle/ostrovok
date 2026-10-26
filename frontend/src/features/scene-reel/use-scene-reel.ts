@@ -1,6 +1,7 @@
 import { Map as MapLibreMap } from "maplibre-gl"
 import { useEffect, useRef, useState } from "react"
 import { renderBasemap } from "@/shared/geo/basemap"
+import { animateSurf, renderSurf } from "@/shared/geo/surf"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "@/shared/geo/terrain"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, useReducedMotion } from "@/shared/motion"
@@ -77,6 +78,7 @@ function paintScene(map: MapLibreMap, colors: MapColors, sun: SunPosition) {
   const scene = tintForTime(colors, mode)
   renderTerrain(map, scene, sun)
   renderBasemap(map, scene)
+  renderSurf(map, scene.hillHighlight)
   for (const layer of ROAD_LAYERS) map.setLayerZoomRange(layer, ROAD_MIN_ZOOM, 24)
   const { sky, horizon } = scenePalette(colors, mode)
   map.setPaintProperty("canvas", "background-color", horizon)
@@ -104,6 +106,11 @@ export function useSceneReel() {
     const map = instance.current
     if (ready && map) paintScene(map, colors, sun.current)
   }, [instance, ready, colors])
+  useEffect(() => {
+    const map = instance.current
+    if (!ready || !map || reduced) return
+    return animateSurf(map, motionMs("--dur-press"))
+  }, [instance, ready, reduced])
   useEffect(() => {
     const map = instance.current
     const shot = SHOTS[index]

@@ -6,6 +6,8 @@ const TINTED = [
   "land",
   "park",
   "rock",
+  "snow",
+  "meadow",
   "sand",
   "building",
   "buildingLine",
