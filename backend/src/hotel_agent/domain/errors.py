@@ -13,6 +13,10 @@ class NotFound(DomainError):
     message = "Not found"
 
 
+class TerrainNotFound(NotFound):
+    message = "Terrain tile not found"
+
+
 class HotelNotFound(NotFound):
     message = "Hotel not found"
 

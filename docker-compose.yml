@@ -43,10 +43,12 @@ services:
     environment:
       CHARACTERISTICS_DIR: /srv/characteristics
       SEED_DIR: /srv/data/seed
+      TERRAIN_CACHE_DIR: /srv/cache/terrain
       DATABASE_URL: postgresql://${POSTGRES_USER:-hotel}:${POSTGRES_PASSWORD:-hotel}@db:5432/${POSTGRES_DB:-hotel}
     volumes:
       - ./characteristics:/srv/characteristics:ro
       - ./data:/srv/data:ro
+      - terrain-cache:/srv/cache
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -80,3 +82,4 @@ services:
 
 volumes:
   db-data:
+  terrain-cache:

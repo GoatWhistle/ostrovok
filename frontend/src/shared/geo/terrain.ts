@@ -27,7 +27,8 @@ export interface TerrainColors {
 
 export type LightMode = "day" | "dusk" | "night"
 
-const DEM_TILES = "/api/v1/map/terrain/{z}/{x}/{y}.png"
+export const TERRAIN_TILE_VERSION = "2"
+const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
 const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
 

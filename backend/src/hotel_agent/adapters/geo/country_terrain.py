@@ -6,29 +6,32 @@ from typing import cast
 import httpx
 import numpy as np
 import rasterio
-from rasterio.enums import Resampling
 from rasterio.io import MemoryFile
-from rasterio.windows import Window
 
+from hotel_agent.adapters.geo.terrain_cache import TerrainSourceCache
+from hotel_agent.adapters.geo.terrain_resampling import enlarge_window
 from hotel_agent.adapters.geo.terrain_sampling import sample_points
 from hotel_agent.adapters.geo.terrain_tiles import (
     CopernicusTerrainTiles,
     encode_relief,
     encode_terrain,
 )
+from hotel_agent.domain.errors import TerrainNotFound
 
 MAPTERHORN_URL = "https://tiles.mapterhorn.com/{z}/{x}/{y}.webp"
 MAX_SOURCE_ZOOM = 12
 
 
 class CountryTerrainTiles:
-    def __init__(self, local_dem: Path) -> None:
+    def __init__(self, local_dem: Path, cache_dir: Path | None = None) -> None:
         self._dem_path = local_dem
         self._local = CopernicusTerrainTiles(local_dem)
         self._client = httpx.Client(
-            timeout=10,
+            timeout=httpx.Timeout(6, connect=2),
             limits=httpx.Limits(max_connections=32, max_keepalive_connections=32),
         )
+        self._sources = TerrainSourceCache(self._client, cache_dir)
+        self._parents = lru_cache(maxsize=64)(self._decode_parent)
         self._heights = lru_cache(maxsize=256)(self._fetch_heights)
         if local_dem.is_file():
             with rasterio.open(local_dem) as source:
@@ -49,6 +52,8 @@ class CountryTerrainTiles:
     def close(self) -> None:
         self._client.close()
         self._heights.cache_clear()
+        self._parents.cache_clear()
+        self._sources.close()
 
     def sample_points(self, points: Mapping[str, tuple[float, float]]) -> dict[str, float]:
         return sample_points(points, self._dem_path, self._heights)
@@ -70,19 +75,16 @@ class CountryTerrainTiles:
     def _fetch_heights(self, z: int, x: int, y: int) -> np.ndarray:
         source_z = min(z, MAX_SOURCE_ZOOM)
         shift = z - source_z
-        parent_x = x >> shift
-        parent_y = y >> shift
-        response = self._client.get(MAPTERHORN_URL.format(z=source_z, x=parent_x, y=parent_y))
-        response.raise_for_status()
-        with MemoryFile(response.content) as memory, memory.open() as source:
-            tile_size = source.width / 2**shift
-            window = Window(
-                (x % 2**shift) * tile_size, (y % 2**shift) * tile_size, tile_size, tile_size
-            )
-            rgb = source.read(
-                [1, 2, 3],
-                window=window,
-                out_shape=(3, 256, 256),
-                resampling=Resampling.bilinear,
-            ).astype(np.float32)
+        parent = self._parents(source_z, x >> shift, y >> shift)
+        return enlarge_window(parent, x % 2**shift, y % 2**shift, 2**shift)
+
+    def _decode_parent(self, z: int, x: int, y: int) -> np.ndarray:
+        try:
+            data = self._sources.get(MAPTERHORN_URL.format(z=z, x=x, y=y), z, x, y)
+        except httpx.HTTPStatusError as error:
+            if error.response.status_code == 404:
+                raise TerrainNotFound() from error
+            raise
+        with MemoryFile(data) as memory, memory.open() as source:
+            rgb = source.read([1, 2, 3]).astype(np.float32)
         return cast(np.ndarray, rgb[0] * 256 + rgb[1] + rgb[2] / 256 - 32768)

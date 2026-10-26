@@ -1,3 +1,13 @@
 export function warmCache(urls: readonly string[]) {
-  for (const url of urls) void fetch(url, { priority: "low" }).catch(() => undefined)
+  const controller = new AbortController()
+  const pending = [...urls]
+  const worker = async () => {
+    while (pending.length && !controller.signal.aborted) {
+      const url = pending.shift()
+      if (url)
+        await fetch(url, { priority: "low", signal: controller.signal }).catch(() => undefined)
+    }
+  }
+  void Promise.all([worker(), worker()])
+  return () => controller.abort()
 }

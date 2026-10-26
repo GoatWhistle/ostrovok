@@ -113,18 +113,19 @@ export function useSceneReel() {
     let placed: ReelMark[] = []
     let next = 0
     let fallback = 0
+    let cancelPrefetch: (() => void) | undefined
     const reveal = () => {
       window.clearTimeout(fallback)
       map.off("idle", reveal)
       setShown(true)
+      const upcoming = SHOTS[(index + 1) % SHOTS.length]
+      if (upcoming) cancelPrefetch = prefetchShot(upcoming)
       placed = placeMarks(map, shot)
       setMarks((current) => [...current, ...placed])
       if (!reduced)
         map.easeTo({ ...cameraOptions(shot.to), duration: life + fade, easing: (t) => t })
       next = window.setTimeout(() => setIndex((current) => (current + 1) % SHOTS.length), life)
     }
-    const upcoming = SHOTS[(index + 1) % SHOTS.length]
-    if (upcoming) prefetchShot(upcoming)
     setShown(false)
     const start = window.setTimeout(
       () => {
@@ -138,6 +139,7 @@ export function useSceneReel() {
       index === 0 && !map.isMoving() ? 0 : fade,
     )
     return () => {
+      cancelPrefetch?.()
       window.clearTimeout(start)
       window.clearTimeout(next)
       window.clearTimeout(fallback)

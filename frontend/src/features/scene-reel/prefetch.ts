@@ -1,11 +1,12 @@
 import { warmCache } from "@/shared/api"
+import { TERRAIN_TILE_VERSION } from "@/shared/geo/terrain"
 import type { Shot } from "./shots"
 
 const DEM_PATH = "/api/v1/map/terrain"
 const DEM_MAX_ZOOM = 14
 const DEM_MIN_ZOOM = 8
 const SPREAD = 1
-const DEPTH = 2
+const DEPTH = 0
 
 function tileOf(lon: number, lat: number, zoom: number) {
   const scale = 2 ** zoom
@@ -25,12 +26,13 @@ export function shotTiles(shot: Shot): string[] {
       for (let dy = -SPREAD; dy <= SPREAD; dy += 1) {
         const x = (center.x + dx + center.scale) % center.scale
         const y = center.y + dy
-        if (y >= 0 && y < center.scale) urls.push(`${DEM_PATH}/${zoom}/${x}/${y}.png`)
+        if (y >= 0 && y < center.scale)
+          urls.push(`${DEM_PATH}/${zoom}/${x}/${y}.png?v=${TERRAIN_TILE_VERSION}`)
       }
   }
   return urls
 }
 
 export function prefetchShot(shot: Shot) {
-  warmCache(shotTiles(shot))
+  return warmCache(shotTiles(shot))
 }

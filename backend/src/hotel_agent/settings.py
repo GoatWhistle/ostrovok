@@ -26,6 +26,7 @@ class Settings:
     llm_timeout_s: float = 30.0
     characteristics_dir: Path = Path("characteristics")
     seed_dir: Path = Path("data/seed")
+    terrain_cache_dir: Path | None = None
     database_url: str = DEFAULT_DATABASE_URL
     etg_key_id: str | None = None
     etg_api_key: str | None = None
@@ -38,6 +39,7 @@ class Settings:
 
 def load_settings(env: Mapping[str, str]) -> Settings:
     return Settings(
+        terrain_cache_dir=Path(env["TERRAIN_CACHE_DIR"]) if env.get("TERRAIN_CACHE_DIR") else None,
         llm_provider=_choice(env, "LLM_PROVIDER", LLMProvider, LLMProvider.FAKE),
         llm_api_key=env.get("LLM_API_KEY") or None,
         llm_base_url=env.get("LLM_BASE_URL") or None,

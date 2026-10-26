@@ -7,6 +7,8 @@ import httpx
 import numpy as np
 import rasterio
 
+from hotel_agent.domain.errors import TerrainNotFound
+
 
 def sample_points(
     points: Mapping[str, tuple[float, float]],
@@ -42,7 +44,7 @@ def sample_points(
     def read(tile: tuple[int, int]) -> dict[str, float]:
         try:
             array = heights(z, *tile)
-        except (httpx.HTTPError, rasterio.errors.RasterioError, ValueError):
+        except (httpx.HTTPError, rasterio.errors.RasterioError, ValueError, TerrainNotFound):
             return {}
         return {
             key: float(array[y, x]) for key, x, y in groups[tile] if isfinite(float(array[y, x]))

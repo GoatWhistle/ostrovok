@@ -6,7 +6,7 @@ FROM ${UV_IMAGE} AS uv
 
 FROM ${PYTHON_IMAGE} AS base
 RUN apt-get update && apt-get install -y --no-install-recommends libexpat1 && rm -rf /var/lib/apt/lists/*
-RUN useradd --create-home --uid 1000 app
+RUN useradd --create-home --uid 1000 app && mkdir -p /srv/cache && chown app:app /srv/cache
 ENV UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy \
     UV_PYTHON_DOWNLOADS=never \
