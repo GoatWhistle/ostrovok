@@ -9,13 +9,12 @@ from hotel_agent.domain.errors import FactNotFound
 from hotel_agent.interfaces.http.hotel_schemas import (
     FactDetailSchema,
     HotelCardSchema,
-    HotelOffersSchema,
     HotelSceneSchema,
     fact_schema,
     hotel_card_schema,
-    hotel_offers_schema,
     hotel_scene_schema,
 )
+from hotel_agent.interfaces.http.offer_schemas import HotelOffersSchema, hotel_offers_schema
 
 
 def build_router(

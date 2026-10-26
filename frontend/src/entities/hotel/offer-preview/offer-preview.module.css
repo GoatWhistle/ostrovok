@@ -1,0 +1,11 @@
+.preview {
+  display: grid;
+  gap: var(--space-4);
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.price {
+  composes: subheadingText from "../../../shared/styles/compose.module.css";
+  font-variant-numeric: var(--font-numeric);
+}

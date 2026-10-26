@@ -1,0 +1,55 @@
+.catalog,
+.gallery {
+  display: grid;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.list {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-16);
+}
+
+.card {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.title {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.photo,
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--surface-raised);
+  border-radius: var(--radius-md);
+}
+
+.thumbnail {
+  object-fit: cover;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.empty {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.amenities {
+  padding-inline-start: var(--space-20);
+}

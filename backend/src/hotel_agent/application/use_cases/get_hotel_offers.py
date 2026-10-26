@@ -9,6 +9,7 @@ from hotel_agent.application.ports.hotel_offers import (
     HotelOffersPort,
     OfferProviderFailure,
     RoomOffer,
+    SupplierRoom,
 )
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
@@ -35,6 +36,11 @@ class HotelOffers:
     sandbox: bool
     checked_at: datetime | None
     offers: tuple[RoomOffer, ...]
+    facilities: tuple[str, ...] = ()
+    room_categories: tuple[str, ...] = ()
+    photo_url: str | None = None
+    room_groups: tuple[SupplierRoom, ...] = ()
+    rates_complete: bool = False
 
 
 class GetHotelOffers:
@@ -76,6 +82,7 @@ class GetHotelOffers:
                 if self._provider is not None
                 else None
             )
+        content = None
         status = OfferStatus.HOTEL_UNMAPPED
         source = None
         checked_at = None
@@ -113,6 +120,7 @@ class GetHotelOffers:
                     residency.lower(),
                 )
                 if result is not None:
+                    content = result
                     checked_at, offers = result.checked_at, result.offers
                     status = OfferStatus.AVAILABLE if offers else OfferStatus.NO_OFFERS
             except OfferProviderFailure:
@@ -141,4 +149,9 @@ class GetHotelOffers:
             sandbox=sandbox,
             checked_at=checked_at,
             offers=offers,
+            facilities=content.facilities if content else (),
+            room_categories=content.room_categories if content else (),
+            photo_url=content.photo_url if content else None,
+            room_groups=content.room_groups if content else (),
+            rates_complete=content.rates_complete if content else False,
         )

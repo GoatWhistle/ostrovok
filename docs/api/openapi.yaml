@@ -1035,6 +1035,13 @@ components:
         source: { type: string, nullable: true }
         sandbox: { type: boolean }
         checked_at: { type: string, format: date-time, nullable: true }
+        facilities: { type: array, items: { type: string }, description: Supplier facility codes; not necessarily included in the rate }
+        room_categories: { type: array, items: { type: string }, description: Catalog categories; availability is only represented by offers }
+        photo_url: { type: string, nullable: true }
+        rates_complete: { type: boolean, description: Full hotel-page rate response loaded }
+        room_groups:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierRoom" }
         offers:
           type: array
           items: { $ref: "#/components/schemas/RoomOffer" }
@@ -1051,6 +1058,20 @@ components:
         meal: { type: string, nullable: true }
         amenities: { type: array, items: { type: string } }
         floor_number: { type: integer, nullable: true }
+        room_group_id: { type: string, nullable: true }
+        free_cancellation_before: { type: string, format: date-time, nullable: true }
+
+    SupplierRoom:
+      type: object
+      required: [id, name, photos, amenities]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        photos: { type: array, items: { type: string } }
+        amenities: { type: array, items: { type: string } }
+        size_sqm: { type: number, nullable: true }
+        bedding: { type: string, nullable: true }
+
 
     ChatRequest:
       type: object

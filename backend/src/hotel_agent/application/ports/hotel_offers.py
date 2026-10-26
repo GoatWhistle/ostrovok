@@ -15,12 +15,29 @@ class RoomOffer:
     meal: str | None
     amenities: tuple[str, ...]
     floor_number: int | None = None
+    room_group_id: str | None = None
+    free_cancellation_before: datetime | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class SupplierRoom:
+    id: str
+    name: str
+    photos: tuple[str, ...]
+    amenities: tuple[str, ...]
+    size_sqm: float | None = None
+    bedding: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
 class OfferLookup:
     offers: tuple[RoomOffer, ...]
     checked_at: datetime
+    facilities: tuple[str, ...] = ()
+    room_categories: tuple[str, ...] = ()
+    photo_url: str | None = None
+    room_groups: tuple[SupplierRoom, ...] = ()
+    rates_complete: bool = False
 
 
 class HotelOffersPort(Protocol):

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { HotelResult } from "@/entities/hotel"
+import { HotelResult, StayFields } from "@/entities/hotel"
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
@@ -82,6 +82,7 @@ export function SearchResults({
           ]}
         />
       </div>
+      <StayFields />
       <div className={styles.list}>
         {ordered(results, order, locale).map((result, index) => (
           <HotelResult

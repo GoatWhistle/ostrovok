@@ -1,0 +1,30 @@
+.section {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+.guests {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.guestIcon {
+  color: var(--text-muted);
+}
+
+.guestLabel {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  flex: 1;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.note {
+  composes: captionText inlineRow from "../../../shared/styles/compose.module.css";
+}

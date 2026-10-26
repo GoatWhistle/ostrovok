@@ -1,6 +1,9 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
+import { useEffect, useState } from "react"
 import { api, unwrap } from "@/shared/api"
 import type { SearchRequest } from "@/shared/api/hotel-types"
+import { motionMs } from "@/shared/motion"
+
 export function useHotelSearch(request: SearchRequest | null) {
   return useInfiniteQuery({
     queryKey: ["search", request],
@@ -38,10 +41,21 @@ export function useHotelOffers(
   checkOut: string,
   adults: number,
 ) {
+  const request = `${checkIn}:${checkOut}:${adults}`
+  const [settled, setSettled] = useState(request)
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSettled(request), motionMs("--delay-offer-input"))
+    return () => window.clearTimeout(timer)
+  }, [request])
   return useQuery({
     queryKey: ["hotel-offers", id, checkIn, checkOut, adults],
     enabled:
-      id !== undefined && checkIn !== "" && checkOut !== "" && checkOut > checkIn && adults > 0,
+      settled === request &&
+      id !== undefined &&
+      checkIn !== "" &&
+      checkOut !== "" &&
+      checkOut > checkIn &&
+      adults > 0,
     staleTime: 60_000,
     queryFn: ({ signal }) =>
       unwrap(

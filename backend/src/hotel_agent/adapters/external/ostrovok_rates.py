@@ -1,4 +1,5 @@
 import math
+from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
@@ -29,19 +30,23 @@ def site_candidate(row: dict[str, Any]) -> HotelCandidate:
     )
 
 
-def site_offers(row: dict[str, Any]) -> tuple[RoomOffer, ...]:
+def site_offers(row: dict[str, Any], *, all_rates: bool = False) -> tuple[RoomOffer, ...]:
     try:
         rates = row["rates"]
         if not isinstance(rates, list):
             raise TypeError("Invalid rates")
-        offers: dict[tuple[str, str, str | None, tuple[str, ...]], RoomOffer] = {}
+        offers: dict[object, RoomOffer] = {}
         for rate in rates:
             if not isinstance(rate, dict):
                 raise TypeError("Invalid rate")
             offer = _offer(rate)
             if offer.available_rooms == 0:
                 continue
-            key = (offer.room_name, offer.price_currency, offer.meal, offer.amenities)
+            key = (
+                offer.id
+                if all_rates
+                else (offer.room_name, offer.price_currency, offer.meal, offer.amenities)
+            )
             if key not in offers or offer.price_amount < offers[key].price_amount:
                 offers[key] = offer
         return tuple(sorted(offers.values(), key=lambda offer: offer.price_amount))
@@ -113,4 +118,20 @@ def _offer(rate: dict[str, Any]) -> RoomOffer:
         available_rooms=available,
         meal=meal,
         amenities=tuple(sorted(amenities)),
+        room_group_id=rooms[0].get("rg_hash")
+        if len(rooms) == 1 and isinstance(rooms[0].get("rg_hash"), str)
+        else None,
+        free_cancellation_before=_cancellation(rate),
     )
+
+
+def _cancellation(rate: dict[str, Any]) -> datetime | None:
+    info = rate.get("cancellation_info")
+    value = info.get("free_cancellation_before") if isinstance(info, dict) else None
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+        return parsed if parsed.tzinfo is not None else None
+    except ValueError:
+        return None

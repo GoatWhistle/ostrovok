@@ -54,6 +54,19 @@ export function OfferCard({ offer }: { readonly offer: Offer }) {
             {t("explore:offers.meal", { value: t(mealKey(offer.meal)) })}
           </li>
         ) : null}
+        {offer.amenities.includes("non-smoking") ? (
+          <li className={styles.metaItem}>{t("explore:offers.nonSmoking")}</li>
+        ) : null}
+        {offer.free_cancellation_before ? (
+          <li className={styles.metaItem}>
+            {t("explore:rooms.freeCancellation", {
+              date: new Intl.DateTimeFormat(locale, {
+                dateStyle: "short",
+                timeStyle: "short",
+              }).format(new Date(offer.free_cancellation_before)),
+            })}
+          </li>
+        ) : null}
         {offer.floor_number != null ? (
           <li className={styles.metaItem}>
             <Icon name="height" size="sm" />

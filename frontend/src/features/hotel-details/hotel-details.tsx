@@ -87,6 +87,7 @@ export function HotelDetails({
           {t("explore:details.staleText")}
         </Banner>
       ) : null}
+      <HotelOffers hotelId={card.hotel.id} stay={stay} />
       {matched.length ? (
         <MatchRows
           matched={matched}
@@ -95,14 +96,15 @@ export function HotelDetails({
           onPreview={onPreview}
         />
       ) : null}
-      <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
-        {rooms.length ? <RoomList rooms={rooms} /> : <p>{t("explore:details.roomsUnavailable")}</p>}
-      </Disclosure>
+      {rooms.length ? (
+        <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
+          <RoomList rooms={rooms} />
+        </Disclosure>
+      ) : null}
       <HotelFacilities
         facilitiesRu={card.facilities_ru ?? []}
         facilitiesEn={card.facilities_en ?? []}
       />
-      <HotelOffers hotelId={card.hotel.id} stay={stay} />
       <FactList facts={card.facts} onFact={onFact} />
     </article>
   )

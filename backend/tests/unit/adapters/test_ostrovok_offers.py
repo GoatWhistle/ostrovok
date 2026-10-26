@@ -30,6 +30,9 @@ def hotel_row() -> dict[str, Any]:
         "static_vm": {
             "name": "Гостиничный Комплекс Жемчужина",
             "address": "улица Черноморская, д.3, Сочи",
+            "serp_filters": ["has_pool", "has_internet"],
+            "room_groups": [{"name_struct": {"main_name": "Стандарт"}}],
+            "images": [{"tmpl": "https://cdn.ostrovok.ru/t/{size}/hotel.jpg"}],
             "longitude": 39.732,
             "latitude": 43.571,
         },
@@ -80,6 +83,9 @@ async def test_real_protocol_preserves_price_meal_and_unknown_floor_and_caches()
         provider = OstrovokHotelOffers(clock, client)
         result = await provider.search(HOTEL, CHECK_IN, CHECK_OUT, 2, "ru")
         assert result is not None
+        assert result.facilities == ("has_pool", "has_internet")
+        assert result.room_categories == ("Стандарт",)
+        assert result.photo_url == "https://cdn.ostrovok.ru/t/640x400/hotel.jpg"
         [offer] = result.offers
         assert offer.price_amount == 12000
         assert offer.price_currency == "RUB"

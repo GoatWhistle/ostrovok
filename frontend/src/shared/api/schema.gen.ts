@@ -860,6 +860,14 @@ export interface components {
             sandbox: boolean;
             /** Format: date-time */
             checked_at?: string | null;
+            /** @description Supplier facility codes; not necessarily included in the rate */
+            facilities?: string[];
+            /** @description Catalog categories; availability is only represented by offers */
+            room_categories?: string[];
+            photo_url?: string | null;
+            /** @description Full hotel-page rate response loaded */
+            rates_complete?: boolean;
+            room_groups?: components["schemas"]["SupplierRoom"][];
             offers: components["schemas"]["RoomOffer"][];
         };
         RoomOffer: {
@@ -871,6 +879,17 @@ export interface components {
             meal?: string | null;
             amenities: string[];
             floor_number?: number | null;
+            room_group_id?: string | null;
+            /** Format: date-time */
+            free_cancellation_before?: string | null;
+        };
+        SupplierRoom: {
+            id: string;
+            name: string;
+            photos: string[];
+            amenities: string[];
+            size_sqm?: number | null;
+            bedding?: string | null;
         };
         ChatRequest: {
             /** Format: uuid */

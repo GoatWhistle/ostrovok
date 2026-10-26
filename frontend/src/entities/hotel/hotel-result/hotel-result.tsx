@@ -6,6 +6,7 @@ import { staggerStyle } from "@/shared/motion"
 import { Button, characteristicHue, characteristicIcon, Icon, type IconName } from "@/shared/ui"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
 import { MatchScore, matchScore } from "../match-score/match-score"
+import { OfferPreview } from "../offer-preview/offer-preview"
 import styles from "./hotel-result.module.css"
 
 export interface HotelResultProps {
@@ -62,6 +63,7 @@ export function HotelResult({
             <span>{result.hotel.address}</span>
           </p>
         ) : null}
+        <OfferPreview hotelId={result.hotel.id} onSelect={onSelect} enabled />
         {result.matched.length ? (
           <ul className={styles.matches}>
             {result.matched.map((property) => (

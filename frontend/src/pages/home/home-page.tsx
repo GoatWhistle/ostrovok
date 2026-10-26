@@ -1,4 +1,5 @@
 import { type CSSProperties, useCallback, useState } from "react"
+import { HotelStayProvider } from "@/entities/hotel"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { type ChatView, SearchChat } from "@/features/search-chat"
@@ -67,99 +68,104 @@ export function HomePage() {
       />
     )
   return (
-    <div className={styles.page}>
-      <div className={styles.tabs}>
-        <Segmented<WorkspaceView>
-          label={t("explore:panel.tabs")}
-          options={[
-            { value: "chat", label: t("explore:panel.chat"), icon: "send" },
-            { value: "hotels", label: t("explore:panel.hotels"), icon: "list" },
-            { value: "map", label: t("explore:panel.map"), icon: "map" },
-          ]}
-          value={state.view}
-          onChange={state.setView}
-        />
+    <HotelStayProvider
+      key={`${state.conversationId}:${state.search?.parsed.check_in}:${state.search?.parsed.check_out}:${state.search?.parsed.adults}`}
+      stay={state.search?.parsed}
+    >
+      <div className={styles.page}>
+        <div className={styles.tabs}>
+          <Segmented<WorkspaceView>
+            label={t("explore:panel.tabs")}
+            options={[
+              { value: "chat", label: t("explore:panel.chat"), icon: "send" },
+              { value: "hotels", label: t("explore:panel.hotels"), icon: "list" },
+              { value: "map", label: t("explore:panel.map"), icon: "map" },
+            ]}
+            value={state.view}
+            onChange={state.setView}
+          />
+        </div>
+        <div className={styles.workspace} data-view={state.view} data-resize-root style={sizes}>
+          <aside className={styles.panel} aria-label={t("explore:panel.title")}>
+            <ResizeHandle
+              label={t("explore:panel.resizePanel")}
+              edge="end"
+              current={panelSize.width ?? panelSize.min}
+              resizable={panelSize}
+            />
+            <Swap swapKey={state.hotelId ? "hotel" : "list"} as="div" className={styles.swap}>
+              {state.hotelId ? (
+                <SelectedHotel state={state} time={sceneTime} />
+              ) : (
+                <ScrollArea className={styles.scroll}>
+                  <SearchResults
+                    response={state.search}
+                    pending={state.sending || state.chatLoading}
+                    hotelId={state.hotelId}
+                    onSelect={state.select}
+                    onProperty={state.property}
+                    onPreview={state.preview}
+                  />
+                </ScrollArea>
+              )}
+            </Swap>
+          </aside>
+          <div className={styles.map}>
+            <HotelMap
+              hotelId={state.hotelId}
+              camera={state.camera}
+              geoRefs={state.geoRefs}
+              focusedFact={state.focusedFact}
+              focusProperty={state.focusProperty}
+              regionId={state.search ? "russia" : "sochi"}
+              results={state.results}
+              bounds={state.bounds}
+              onSelect={state.select}
+              onPlace={state.openPlace}
+              onTimeChange={onTimeChange}
+              bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
+            />
+          </div>
+          <div className={styles.chat}>
+            <ResizeHandle
+              label={t("explore:panel.resizeChat")}
+              edge="start"
+              current={chatSize.width ?? chatSize.min}
+              resizable={chatSize}
+            />
+            <SearchChat
+              messages={state.messages}
+              conversationId={state.conversationId}
+              history={state.history}
+              search={state.search}
+              searchMessageId={state.searchMessageId}
+              outgoing={state.outgoing}
+              selectedHotel={selected?.hotel.name}
+              loading={state.chatLoading}
+              sending={state.sending}
+              failed={state.chatFailed}
+              onSend={state.send}
+              onRetry={state.retry}
+              onShowOnMap={state.showOnMap}
+              onShowList={() => state.setView("hotels")}
+              onReset={() => {
+                setStay(true)
+                state.reset()
+              }}
+              onOpenConversation={state.openConversation}
+              view={chatView}
+              onView={setChatView}
+              onRename={state.renameConversation}
+              onDelete={state.deleteConversation}
+            />
+          </div>
+        </div>
+        {state.view === "hotels" ? (
+          <div className={styles.mobileDock}>
+            <CompareDock ids={state.compared} limit={state.limitReached} />
+          </div>
+        ) : null}
       </div>
-      <div className={styles.workspace} data-view={state.view} data-resize-root style={sizes}>
-        <aside className={styles.panel} aria-label={t("explore:panel.title")}>
-          <ResizeHandle
-            label={t("explore:panel.resizePanel")}
-            edge="end"
-            current={panelSize.width ?? panelSize.min}
-            resizable={panelSize}
-          />
-          <Swap swapKey={state.hotelId ? "hotel" : "list"} as="div" className={styles.swap}>
-            {state.hotelId ? (
-              <SelectedHotel state={state} time={sceneTime} />
-            ) : (
-              <ScrollArea className={styles.scroll}>
-                <SearchResults
-                  response={state.search}
-                  pending={state.sending || state.chatLoading}
-                  hotelId={state.hotelId}
-                  onSelect={state.select}
-                  onProperty={state.property}
-                  onPreview={state.preview}
-                />
-              </ScrollArea>
-            )}
-          </Swap>
-        </aside>
-        <div className={styles.map}>
-          <HotelMap
-            hotelId={state.hotelId}
-            camera={state.camera}
-            geoRefs={state.geoRefs}
-            focusedFact={state.focusedFact}
-            focusProperty={state.focusProperty}
-            regionId={state.search ? "russia" : "sochi"}
-            results={state.results}
-            bounds={state.bounds}
-            onSelect={state.select}
-            onPlace={state.openPlace}
-            onTimeChange={onTimeChange}
-            bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
-          />
-        </div>
-        <div className={styles.chat}>
-          <ResizeHandle
-            label={t("explore:panel.resizeChat")}
-            edge="start"
-            current={chatSize.width ?? chatSize.min}
-            resizable={chatSize}
-          />
-          <SearchChat
-            messages={state.messages}
-            conversationId={state.conversationId}
-            history={state.history}
-            search={state.search}
-            searchMessageId={state.searchMessageId}
-            outgoing={state.outgoing}
-            selectedHotel={selected?.hotel.name}
-            loading={state.chatLoading}
-            sending={state.sending}
-            failed={state.chatFailed}
-            onSend={state.send}
-            onRetry={state.retry}
-            onShowOnMap={state.showOnMap}
-            onShowList={() => state.setView("hotels")}
-            onReset={() => {
-              setStay(true)
-              state.reset()
-            }}
-            onOpenConversation={state.openConversation}
-            view={chatView}
-            onView={setChatView}
-            onRename={state.renameConversation}
-            onDelete={state.deleteConversation}
-          />
-        </div>
-      </div>
-      {state.view === "hotels" ? (
-        <div className={styles.mobileDock}>
-          <CompareDock ids={state.compared} limit={state.limitReached} />
-        </div>
-      ) : null}
-    </div>
+    </HotelStayProvider>
   )
 }

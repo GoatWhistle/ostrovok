@@ -8,7 +8,8 @@ from uuid import uuid4
 
 import httpx
 
-from hotel_agent.application.ports.hotel_offers import OfferProviderFailure
+from hotel_agent.adapters.external.ostrovok_details import OstrovokDetails
+from hotel_agent.application.ports.hotel_offers import OfferLookup, OfferProviderFailure
 from hotel_agent.domain.hotel_identity import HotelIdentity
 
 SITE = "https://ostrovok.ru"
@@ -28,10 +29,16 @@ class OstrovokSite:
     def __init__(self, client: httpx.AsyncClient | None = None) -> None:
         self._client = client or httpx.AsyncClient(timeout=15, headers=HEADERS)
         self._owns_client = client is None
+        self._details = OstrovokDetails(self._client)
 
     async def aclose(self) -> None:
         if self._owns_client:
             await self._client.aclose()
+
+    async def enrich(
+        self, row: dict[str, Any], base: OfferLookup, check_in: date, check_out: date, adults: int
+    ) -> OfferLookup:
+        return await self._details.enrich(row, base, check_in, check_out, adults)
 
     async def search(
         self, hotel: HotelIdentity, check_in: date, check_out: date, adults: int

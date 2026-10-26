@@ -3,7 +3,8 @@ from datetime import date, datetime, timedelta
 
 import httpx
 
-from hotel_agent.adapters.external.ostrovok_rates import site_candidate, site_offers
+from hotel_agent.adapters.external.ostrovok_content import site_content
+from hotel_agent.adapters.external.ostrovok_rates import site_candidate
 from hotel_agent.adapters.external.ostrovok_site import OstrovokSite
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.hotel_offers import OfferLookup, OfferProviderFailure
@@ -54,16 +55,18 @@ class OstrovokHotelOffers:
     async def _lookup(self, key: SearchKey) -> OfferLookup | None:
         hotel, check_in, check_out, adults, _ = key
         try:
-            async with asyncio.timeout(40), self._limit:
+            async with self._limit, asyncio.timeout(65):
                 rows = await self._site.search(hotel, check_in, check_out, adults)
                 accepted = [
                     row for row in rows if assess_identity(hotel, site_candidate(row)).accepted
                 ]
                 result = (
-                    OfferLookup(site_offers(accepted[0]), self._clock.now())
-                    if len(accepted) == 1
-                    else None
+                    site_content(accepted[0], self._clock.now()) if len(accepted) == 1 else None
                 )
+                if result is not None:
+                    result = await self._site.enrich(
+                        accepted[0], result, check_in, check_out, adults
+                    )
         except (TimeoutError, KeyError, TypeError, ValueError) as error:
             raise OfferProviderFailure("Ostrovok website lookup failed") from error
         if len(self._cache) >= 128:
