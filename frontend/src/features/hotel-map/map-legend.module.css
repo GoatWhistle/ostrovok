@@ -1,0 +1,112 @@
+.legend {
+  composes: floatingSurface from "../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: calc(100% + var(--space-8));
+  display: grid;
+  gap: var(--space-12);
+  inline-size: min(var(--map-legend-width), calc(100cqi - var(--space-96)));
+  padding: var(--space-16);
+  border-radius: var(--radius-lg);
+  transform-origin: top right;
+  animation: var(--motion-anchor-in);
+}
+
+.legend[data-state="closed"] {
+  animation: var(--motion-scale-out);
+}
+
+.title {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+  color: var(--text-muted);
+}
+
+.title:not(:first-child) {
+  padding-block-start: var(--space-12);
+  box-shadow: var(--shadow-divider-top);
+}
+
+.items {
+  composes: plainList from "../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+}
+
+.item {
+  composes: bodySmText from "../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-columns: var(--legend-swatch) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-12);
+  color: var(--text-primary);
+}
+
+.swatchCell {
+  display: grid;
+  place-items: center;
+}
+
+.swatch {
+  display: grid;
+  place-items: center;
+  inline-size: var(--legend-swatch);
+  block-size: var(--space-16);
+  border-radius: var(--radius-xs);
+}
+
+.swatch[data-swatch="hotel"],
+.swatch[data-swatch="selected"] {
+  inline-size: var(--pin-dot);
+  block-size: var(--pin-dot);
+  border-radius: var(--radius-sm);
+  background-color: var(--map-hotel);
+  box-shadow: var(--shadow-pin);
+  color: var(--text-primary);
+}
+
+.swatch[data-swatch="selected"] {
+  background-color: var(--map-hotel-selected);
+  color: var(--action-primary-text);
+}
+
+.swatch[data-swatch="fact"] {
+  border: var(--focus-ring-width) solid var(--map-fact-line);
+  background-color: var(--map-fact);
+}
+
+.swatch[data-swatch="route"] {
+  block-size: var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--map-route);
+}
+
+.swatch[data-swatch="relief"] {
+  border-block-end: var(--space-6) solid var(--map-hill-shadow);
+  background-color: var(--map-park);
+  box-shadow: var(--shadow-ring);
+}
+
+.gestures {
+  display: grid;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.gesture {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-12);
+}
+
+.input {
+  composes: smallStrong from "../../shared/styles/compose.module.css";
+  color: var(--text-primary);
+}
+
+.action {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  margin: 0;
+  color: var(--text-secondary);
+  text-align: end;
+}

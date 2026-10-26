@@ -1,9 +1,10 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type MouseEvent, type RefObject, useEffect, useRef, useState } from "react"
 import { useTranslation } from "@/shared/i18n"
-import { motionMs, prefersReducedMotion, usePresence } from "@/shared/motion"
-import { Button, Icon } from "@/shared/ui"
+import { motionMs, prefersReducedMotion } from "@/shared/motion"
+import { Button } from "@/shared/ui"
 import styles from "./map-controls.module.css"
+import { MapLegend } from "./map-legend"
 
 const ROTATE_STEP = 30
 
@@ -183,43 +184,5 @@ export function MapControls({ map, ready, disabled, onOverview }: MapControlsPro
         <MapLegend open={legend} />
       </div>
     </div>
-  )
-}
-
-const ITEMS = [
-  { key: "legendFact", swatch: "fact" },
-  { key: "legendRoute", swatch: "route" },
-  { key: "legendHotel", swatch: "hotel" },
-  { key: "legendSelected", swatch: "selected" },
-  { key: "legendRelief", swatch: "relief" },
-] as const
-
-function MapLegend({ open }: { readonly open: boolean }) {
-  const { t } = useTranslation()
-  const presence = usePresence(open)
-  if (!presence.mounted) return null
-  return (
-    <section
-      className={styles.legend}
-      data-state={presence.state}
-      aria-label={t("explore:map.layers")}
-      onAnimationEnd={presence.onAnimationEnd}
-    >
-      <p className={styles.legendTitle}>{t("explore:map.layers")}</p>
-      <ul className={styles.legendList}>
-        {ITEMS.map((item) => (
-          <li key={item.key} className={styles.legendItem}>
-            <span className={styles.swatch} data-swatch={item.swatch} aria-hidden="true">
-              {item.swatch === "hotel" || item.swatch === "selected" ? (
-                <Icon name="check" size="sm" />
-              ) : null}
-            </span>
-            <span>{t(`explore:map.${item.key}`)}</span>
-          </li>
-        ))}
-      </ul>
-      <p className={styles.legendTitle}>{t("explore:map.controlsTitle")}</p>
-      <p className={styles.hint}>{t("explore:map.controlsHint")}</p>
-    </section>
   )
 }
