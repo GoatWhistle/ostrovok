@@ -8,7 +8,9 @@ from shapely.prepared import prep
 class CountryBoundary:
     def __init__(self, path: Path) -> None:
         self._geometry = (
-            prep(shape(json.loads(path.read_text(encoding="utf-8"))["geometry"])) if path.is_file() else None
+            prep(shape(json.loads(path.read_text(encoding="utf-8"))["geometry"]))
+            if path.is_file()
+            else None
         )
 
     def contains(self, location: tuple[float, float]) -> bool:

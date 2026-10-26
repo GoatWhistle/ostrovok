@@ -52,6 +52,27 @@ async def test_offline_follow_up_recognizes_explicit_sochi(llm: FakeLLM) -> None
     assert "сочи" not in parsed.unmatched_terms
 
 
+@pytest.mark.parametrize(
+    ("message", "place", "word"),
+    [
+        ("Москва", "Москва", "москва"),
+        ("в Москве", "Москва", "москве"),
+        ("Санкт-Петербург", "Санкт-Петербург", "петербург"),
+        ("в Питере", "Санкт-Петербург", "питере"),
+    ],
+)
+async def test_offline_follow_up_recognizes_popular_cities(
+    llm: FakeLLM, message: str, place: str, word: str
+) -> None:
+    query = await llm.contextualize_query("тихий номер", message)
+
+    parsed = await llm.parse_query(query)
+
+    assert parsed.location_hint == place
+    assert word not in parsed.unmatched_terms
+    assert "санкт" not in parsed.unmatched_terms
+
+
 async def test_tools_are_planned_only_for_missing_facts(llm: FakeLLM) -> None:
     parsed = await llm.parse_query("вид на закат недалеко от моря")
 

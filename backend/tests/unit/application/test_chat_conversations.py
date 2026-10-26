@@ -182,7 +182,9 @@ async def test_invalid_title_is_rejected_without_writing() -> None:
         await harness.chat.rename(created.conversation.id, "   ")
 
     assert harness.commits == []
-    assert harness.repository.conversations[created.conversation.id].title == "Сочи: с видом на закат"
+    assert (
+        harness.repository.conversations[created.conversation.id].title == "Сочи: с видом на закат"
+    )
 
 
 async def test_renaming_a_missing_conversation_is_not_found() -> None:
