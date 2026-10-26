@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { type ReactNode, useMemo, useState } from "react"
 import { createPortal } from "react-dom"
 import { useRegions } from "@/entities/catalog"
 import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
@@ -32,6 +32,7 @@ export interface HotelMapProps {
   readonly regionId: string | undefined
   readonly results: readonly SearchResult[]
   readonly bounds: readonly number[] | undefined
+  readonly bottomCenter?: ReactNode
   readonly onSelect: (result: SearchResult) => void
 }
 
@@ -77,6 +78,7 @@ export function HotelMap({
   results,
   bounds,
   onSelect,
+  bottomCenter,
 }: HotelMapProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
@@ -219,6 +221,7 @@ export function HotelMap({
               />
             ) : null}
           </div>
+          <div className={styles.bottomCenter}>{bottomCenter}</div>
           <div className={styles.meta}>
             <MapScale map={map.instance} ready={map.ready} />
             <MapLegendToggle notes={mapNotes(invalid, missingHeight, map.textureStatus)} />

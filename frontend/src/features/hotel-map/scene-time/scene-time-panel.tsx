@@ -1,11 +1,11 @@
-import { useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Icon } from "@/shared/ui"
+import { Button, Popover } from "@/shared/ui"
 import { zoneHour } from "./scene-time"
 import { DateStepper, HourStepper } from "./scene-time-fields"
 import styles from "./scene-time-panel.module.css"
 import { SunFacts, weatherText } from "./scene-time-sun"
+import { weatherIcon } from "./weather-icon"
 
 type Weather = components["schemas"]["Weather"]
 
@@ -36,50 +36,42 @@ export function SceneTimePanel({
   onDate,
   onHour,
 }: SceneTimePanelProps) {
-  const [expanded, setExpanded] = useState(false)
   const { t } = useTranslation()
   const { locale } = useLocale()
   const sunsetHour = zoneHour(sunset)
   return (
-    <div className={styles.shell}>
-      <section
-        className={styles.panel}
-        data-expanded={expanded}
-        aria-label={t("explore:weather.scene")}
-      >
-        <div className={styles.body} inert={!expanded}>
-          <div className={styles.fields}>
-            <DateStepper date={date} minDate={minDate} maxDate={maxDate} onDate={onDate} />
-            <HourStepper hour={hour} onHour={onHour} />
-          </div>
-          <SunFacts altitude={altitude} azimuth={azimuth} sunset={sunset} />
-          {sunsetHour === null ? null : (
-            <Button
-              variant="secondary"
-              icon="sunset"
-              className={styles.sunset}
-              disabled={sunsetHour === hour}
-              onClick={() => onHour(sunsetHour)}
-            >
-              {t("explore:weather.atSunset")}
-            </Button>
-          )}
+    <Popover
+      label={`${t("explore:weather.scene")}: ${weatherText(weather, weatherPending, locale)}`}
+      icon={weatherIcon(
+        weather?.status === "available" ? weather.weather_code : undefined,
+        altitude,
+      )}
+      summary={
+        weather?.status === "available" && typeof weather.temperature_c === "number"
+          ? t("explore:weather.compact", { value: Math.round(weather.temperature_c) })
+          : undefined
+      }
+    >
+      <div className={styles.body}>
+        <strong>{t("explore:weather.scene")}</strong>
+        <span>{weatherText(weather, weatherPending, locale)}</span>
+        <div className={styles.fields}>
+          <DateStepper date={date} minDate={minDate} maxDate={maxDate} onDate={onDate} />
+          <HourStepper hour={hour} onHour={onHour} />
         </div>
-        <Button
-          variant="ghost"
-          icon="sunset"
-          align="start"
-          className={styles.toggle}
-          aria-expanded={expanded}
-          onClick={() => setExpanded((current) => !current)}
-        >
-          <span className={styles.row}>
-            <span className={styles.title}>{t("explore:weather.scene")}</span>
-            <span className={styles.summary}>{weatherText(weather, weatherPending, locale)}</span>
-            <Icon name="chevron-down" size="sm" className={styles.chevron} />
-          </span>
-        </Button>
-      </section>
-    </div>
+        <SunFacts altitude={altitude} azimuth={azimuth} sunset={sunset} />
+        {sunsetHour === null ? null : (
+          <Button
+            variant="secondary"
+            icon="sunset"
+            className={styles.sunset}
+            disabled={sunsetHour === hour}
+            onClick={() => onHour(sunsetHour)}
+          >
+            {t("explore:weather.atSunset")}
+          </Button>
+        )}
+      </div>
+    </Popover>
   )
 }

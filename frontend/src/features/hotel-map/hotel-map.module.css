@@ -38,11 +38,15 @@
 
 .bottom {
   inset-block-end: var(--space-16);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end;
   gap: var(--space-8);
+}
+
+.bottomCenter {
+  min-inline-size: 0;
+  justify-self: center;
 }
 
 .bottomStart {
@@ -150,7 +154,13 @@
 }
 
 @container map (max-width: 29.99rem) {
+  .bottomCenter {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
   .meta {
+    grid-column: 3;
     flex-direction: column;
     align-items: flex-end;
     gap: 0;

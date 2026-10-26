@@ -37,6 +37,7 @@ export {
   type SettingsMenuProps,
   SettingsRow,
 } from "./layout/settings-menu/settings-menu"
+export { Popover, type PopoverProps } from "./overlays/popover/popover"
 export {
   Button,
   type ButtonProps,

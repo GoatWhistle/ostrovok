@@ -1,78 +1,6 @@
-.shell {
-  filter: var(--filter-float);
-}
-
-.panel {
-  display: grid;
-  inline-size: min(var(--map-time-panel), 100cqi - var(--space-32));
-  border-radius: var(--radius-md);
-  background-color: var(--surface-overlay);
-  color: var(--text-primary);
-  clip-path: inset(calc(100% - var(--control-height)) 0 0 0 round var(--radius-md));
-  transition: var(--transition-clip-out);
-}
-
-.panel[data-expanded="true"] {
-  clip-path: inset(0 0 0 0 round var(--radius-md));
-  transition: var(--transition-clip);
-}
-
 .body {
   display: grid;
   gap: var(--space-12);
-  padding: var(--space-12) var(--space-12) var(--space-8);
-  opacity: 0;
-  transition: var(--transition-fade);
-}
-
-.panel[data-expanded="true"] .body {
-  opacity: 1;
-}
-
-.toggle {
-  inline-size: 100%;
-}
-
-.toggle > :first-child {
-  justify-self: stretch;
-  inline-size: 100%;
-}
-
-.toggle > :first-child > :last-child {
-  display: flex;
-  flex: 1;
-  min-inline-size: 0;
-}
-
-.row {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  gap: var(--space-8);
-  min-inline-size: 0;
-}
-
-.title {
-  flex: none;
-}
-
-.summary {
-  composes: captionText truncateText from "../../../shared/styles/compose.module.css";
-  flex: 1;
-  color: var(--text-secondary);
-  font-variant-numeric: var(--font-numeric);
-  text-align: end;
-}
-
-.chevron {
-  flex: none;
-  color: var(--text-secondary);
-  transform: rotate(180deg);
-  transition: var(--transition-layer);
-}
-
-.panel[data-expanded="true"] .chevron {
-  transform: none;
 }
 
 .fields {
@@ -171,10 +99,4 @@
 
 .sunset {
   inline-size: 100%;
-}
-
-@container map (max-width: 29.99rem) {
-  .summary {
-    display: none;
-  }
 }

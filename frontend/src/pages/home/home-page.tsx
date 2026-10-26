@@ -7,8 +7,9 @@ import { type ChatView, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { Swap, usePresence, withViewTransition } from "@/shared/motion"
-import { Button, ButtonLink, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
+import { Swap, withViewTransition } from "@/shared/motion"
+import { Button, ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
+import { CompareDock } from "./compare-dock"
 import styles from "./home-page.module.css"
 import { Landing } from "./landing"
 import { useFreshStart } from "./use-fresh-start"
@@ -24,9 +25,6 @@ export function HomePage() {
     state.reset()
   })
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
-  const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
-  const compareDock = usePresence(state.compared.length >= 2)
-  const limitDock = usePresence(state.limitReached)
   const panelSize = useResizable({
     storageKey: "factmap-panel-width",
     edge: "end",
@@ -117,6 +115,7 @@ export function HomePage() {
             results={state.results}
             bounds={state.bounds}
             onSelect={state.select}
+            bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
           />
         </div>
         <div className={styles.chat}>
@@ -152,26 +151,10 @@ export function HomePage() {
           />
         </div>
       </div>
-      {compareDock.mounted ? (
-        <div
-          className={styles.compare}
-          data-state={compareDock.state}
-          onAnimationEnd={compareDock.onAnimationEnd}
-        >
-          <ButtonLink to={`/compare?${compareQuery}`} icon="compare">
-            {t("explore:navigation.compare")} ({state.compared.length})
-          </ButtonLink>
+      {state.view === "hotels" ? (
+        <div className={styles.mobileDock}>
+          <CompareDock ids={state.compared} limit={state.limitReached} />
         </div>
-      ) : null}
-      {limitDock.mounted ? (
-        <p
-          className={styles.status}
-          role="status"
-          data-state={limitDock.state}
-          onAnimationEnd={limitDock.onAnimationEnd}
-        >
-          {t("explore:results.selectionLimit")}
-        </p>
       ) : null}
     </div>
   )
