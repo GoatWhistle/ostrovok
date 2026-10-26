@@ -117,6 +117,16 @@
   color: var(--text-primary);
 }
 
+.scaleTrack {
+  display: flex;
+  inline-size: var(--scale-track);
+}
+
+.scaleLabel {
+  min-inline-size: 7ch;
+  text-align: end;
+}
+
 .scaleBar {
   inline-size: var(--scale-width);
   block-size: var(--space-6);
