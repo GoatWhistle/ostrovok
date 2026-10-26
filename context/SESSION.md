@@ -171,6 +171,8 @@ Updated: 2026-10-26, Europe/Moscow
 
 - Window-view work stopped at user request. Remaining actions and Onega fallback-loss reproduction: [handoff](../work/window-views/remaining-actions.md). No more tests until resumed. All task code merged/pushed2d2fd12; handoff48575ae committed/pushed. Stand left running.
 
+- «Запросы не идут» checked: not the provider — one llm_request_retry (ReadTimeout, recovered) in the whole container log. «отель рядом с The бык в Казани» hit the 180s wish limit after 16 web searches; no such place in the Kazan OSM slice («Голодный бык» resolves in 12.5s). Added find_nearby over map data and a per-wish tool budget (web 8, pages 10, embeddings 8, expansions 3), pushed as b143c3c, stand on named-nearby-20261027b.
+
 - Named place nearby no longer replaced by its category (user report: Вкусвилл, шаверма): name from the query is matched over OSM name/brand/operator/cuisine by word stems, found objects are listed in the explanation, source quote is shown in the card, planner context is compacted, a timed-out check is named as unfinished. Live: Вкусвилл 36.4s/20 hotels, шаверма 31.0s/20 hotels, regression round4 kept every earlier positive and added «Ямской посад». Pushed as ccf36c8; stand runs hotel-agent-backend:named-nearby-20261027.
 
 - Previous round committed and pushed as deeeb60 on feat/hotel-agent-mvp. Stand runs hotel-agent-backend:research-feedback-20261026, built from this tree and byte-identical to backend/src (healthy; Trump query returns The Carlton Moscow in 51s over HTTP, poet repeat timed out empty in 243s). Frontend and db untouched. Docs of other sessions left dirty on purpose.
