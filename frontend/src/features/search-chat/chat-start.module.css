@@ -28,7 +28,7 @@
 }
 
 .lockup .word {
-  font-size: calc(var(--font-size-display-sm) * 1.25);
+  font-size: var(--font-size-wordmark);
   line-height: var(--line-height-display);
 }
 
