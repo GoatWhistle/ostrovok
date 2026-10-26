@@ -17,6 +17,7 @@ class PathBuildings:
     buildings: Mapping[str, tuple[SceneBuilding, ...]]
     truncated: bool
     coverage_sources: Mapping[str, str] = field(default_factory=dict)
+    complete_paths: frozenset[str] = frozenset()
 
 
 class ViewSceneRepository(Protocol):

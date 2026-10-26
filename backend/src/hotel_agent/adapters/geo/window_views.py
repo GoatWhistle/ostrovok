@@ -94,7 +94,7 @@ class WindowViews:
                 else None,
             )
             loaded = [area for cell in cell_sets[ray.id] if (area := areas.get(cell)) is not None]
-            complete = not buildings.truncated and (
+            complete = (not buildings.truncated or ray.id in buildings.complete_paths) and (
                 ray.id in buildings.coverage_sources
                 or (
                     bool(cell_sets[ray.id])
