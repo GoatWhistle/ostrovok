@@ -128,7 +128,8 @@ class OSMViewGeometry:
                 refreshed = await self._context.area(bbox)
                 if refreshed is not None and refreshed.complete:
                     self._areas[key] = refreshed
-                return refreshed if refreshed is not None else cached
+                if refreshed is not None or cached is not None:
+                    return refreshed if refreshed is not None else cached
             return await self._area(bbox)
 
     async def _area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea | None:

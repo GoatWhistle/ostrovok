@@ -124,3 +124,24 @@ async def test_all_cached_relations_are_recovered_beyond_download_limit(
     assert result is not None and result.complete is cached
     assert len(result.buildings) == (12 if cached else 0)
     assert len(requests) == (0 if cached else 8)
+
+
+async def test_unavailable_context_uses_osm_map_source(tmp_path: Path) -> None:
+    class Context:
+        async def area(
+            self, bbox: tuple[float, float, float, float], region: str = "russia"
+        ) -> PhysicalArea | None:
+            return None
+
+    calls: list[str] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        calls.append(request.url.path)
+        return httpx.Response(200, content=XML)
+
+    source = OSMViewGeometry(tmp_path, httpx.MockTransport(handle), context=Context())
+    result = await source.area((39, 43, 39.01, 43.01))
+    await source.aclose()
+    assert result is not None and result.complete
+    assert [building.id for building in result.buildings] == ["r100"]
+    assert calls == ["/api/0.6/map"]
