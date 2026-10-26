@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from "react"
 import type { MessageKey } from "@/shared/i18n"
 import { useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
-import { Button, Icon } from "@/shared/ui"
+import { Banner, Button, Icon } from "@/shared/ui"
 import styles from "./map-legend.module.css"
 
 const ITEMS: readonly { readonly label: MessageKey; readonly swatch: string }[] = [
@@ -40,6 +40,15 @@ function MapLegend({
       aria-label={t("explore:map.layers")}
       onAnimationEnd={presence.onAnimationEnd}
     >
+      {notes.length ? (
+        <Banner tone="warning" title={t("explore:map.approximateTitle")} className={styles.notice}>
+          <ul className={styles.notes}>
+            {notes.map((note) => (
+              <li key={note}>{t(note)}</li>
+            ))}
+          </ul>
+        </Banner>
+      ) : null}
       <p className={styles.title}>{t("explore:map.layers")}</p>
       <ul className={styles.items}>
         {ITEMS.map((item) => (
@@ -55,19 +64,6 @@ function MapLegend({
           </li>
         ))}
       </ul>
-      {notes.length ? (
-        <>
-          <p className={styles.title}>{t("explore:map.approximateTitle")}</p>
-          <ul className={styles.notes}>
-            {notes.map((note) => (
-              <li key={note} className={styles.note}>
-                <Icon name="partial" size="sm" className={styles.noteIcon} />
-                <span>{t(note)}</span>
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : null}
       <p className={styles.title}>{t("explore:map.controlsTitle")}</p>
       <dl className={styles.gestures}>
         {GESTURES.map((gesture) => (

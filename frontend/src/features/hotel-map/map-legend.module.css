@@ -45,7 +45,7 @@
   color: var(--text-muted);
 }
 
-.title:not(:first-child) {
+.items + .title {
   padding-block-start: var(--space-12);
   box-shadow: var(--shadow-divider-top);
 }
@@ -135,22 +135,13 @@
   text-align: end;
 }
 
-.notes {
-  composes: plainList from "../../shared/styles/compose.module.css";
-  display: grid;
+.legend .notice {
   gap: var(--space-8);
+  padding: var(--space-12);
 }
 
-.note {
-  composes: captionText from "../../shared/styles/compose.module.css";
+.notes {
+  composes: plainList captionText from "../../shared/styles/compose.module.css";
   display: grid;
-  grid-template-columns: var(--legend-swatch) minmax(0, 1fr);
-  align-items: start;
-  gap: var(--space-12);
-  color: var(--text-secondary);
-}
-
-.noteIcon {
-  justify-self: center;
-  color: var(--text-warning);
+  gap: var(--space-2);
 }
