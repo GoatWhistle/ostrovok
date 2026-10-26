@@ -1,0 +1,801 @@
+[
+ {
+  "step": "list questions",
+  "method": "GET",
+  "path": "/hotelier/n10058556917/questions",
+  "status": 200,
+  "body": {
+   "items": [
+    {
+     "id": "q_n10058556917_double_room",
+     "hotel_id": "n10058556917",
+     "characteristic_key": "double_room",
+     "text": "Есть ли в отеле Островок номер для двух гостей?",
+     "reason": "missing",
+     "status": "open",
+     "created_at": "2026-10-26T17:11:25.257155Z"
+    },
+    {
+     "id": "q_n10058556917_pets_policy",
+     "hotel_id": "n10058556917",
+     "characteristic_key": "pets_policy",
+     "text": "Можно ли заселяться с питомцами в Островок? Есть ли ограничения по весу и плата за ночь?",
+     "reason": "missing",
+     "status": "open",
+     "created_at": "2026-10-26T17:11:25.257155Z"
+    },
+    {
+     "id": "q_n10058556917_room_capacity",
+     "hotel_id": "n10058556917",
+     "characteristic_key": "room_capacity",
+     "text": "Сколько взрослых можно разместить в одном номере отеля Островок?",
+     "reason": "missing",
+     "status": "open",
+     "created_at": "2026-10-26T17:11:25.257155Z"
+    }
+   ]
+  }
+ },
+ {
+  "step": "unclear answer",
+  "method": "POST",
+  "path": "/hotelier/questions/q_n10058556917_pets_policy/answer",
+  "status": 200,
+  "body": {
+   "question_id": "q_n10058556917_pets_policy",
+   "extracted": [],
+   "conflicts": [],
+   "follow_up": {
+    "id": "q_n10058556917_pets_policy",
+    "hotel_id": "n10058556917",
+    "characteristic_key": "pets_policy",
+    "text": "Можно ли заселяться с питомцами в Островок? Есть ли ограничения по весу и плата за ночь?",
+    "reason": "missing",
+    "status": "open",
+    "created_at": "2026-10-26T17:11:25.257155Z"
+   }
+  }
+ },
+ {
+  "step": "recognized answer",
+  "method": "POST",
+  "path": "/hotelier/questions/q_n10058556917_pets_policy/answer",
+  "status": 200,
+  "body": {
+   "question_id": "q_n10058556917_pets_policy",
+   "extracted": [
+    {
+     "fact_id": "f_d162e30c65d2459ba7391f5e58301253",
+     "characteristic_key": "pets_policy",
+     "value": {
+      "allowed": true,
+      "max_weight_kg": 10.0,
+      "fee_rub": 1500.0
+     },
+     "unit": null,
+     "label": "pets_policy: {'allowed': True, 'max_weight_kg': 10.0, 'fee_rub': 1500.0}",
+     "confidence": 1.0,
+     "source_type": "hotelier",
+     "status": "confirmed_by_hotelier",
+     "geo_refs": [],
+     "subject": "hotel:n10058556917",
+     "qualifiers": {
+      "max_weight_kg": 10.0,
+      "fee_rub": 1500.0
+     },
+     "explanation": "С собаками до 10 кг можно, 1500 ₽ в сутки",
+     "provenance": {
+      "source_type": "hotelier",
+      "source_ref": "q_n10058556917_pets_policy",
+      "source_url": null,
+      "evidence": [
+       {
+        "kind": "quote",
+        "text": "С собаками до 10 кг можно"
+       },
+       {
+        "kind": "quote",
+        "text": "до 10 кг"
+       },
+       {
+        "kind": "quote",
+        "text": "1500 ₽ в сутки"
+       }
+      ],
+      "method": "hotelier_answer@1",
+      "confidence": 1.0,
+      "observed_at": "2026-10-26T17:12:06.200084Z",
+      "computed_at": "2026-10-26T17:12:06.200084Z",
+      "valid_until": "2027-04-24T17:12:06.200084Z"
+     }
+    }
+   ],
+   "conflicts": []
+  }
+ },
+ {
+  "step": "repeat answer",
+  "method": "POST",
+  "path": "/hotelier/questions/q_n10058556917_pets_policy/answer",
+  "status": 422,
+  "body": {
+   "code": "invalid_value",
+   "message": "Question has already been answered"
+  }
+ },
+ {
+  "step": "card after answer",
+  "method": "GET",
+  "path": "/hotels/n10058556917",
+  "status": 200,
+  "body": {
+   "hotel": {
+    "id": "n10058556917",
+    "name": "Островок",
+    "address": null,
+    "location": [
+     39.9153879,
+     43.428439
+    ],
+    "stars": null,
+    "building_id": "w53284172",
+    "height_m": 16.0,
+    "levels": 5
+   },
+   "rooms": [],
+   "facilities_ru": [],
+   "facilities_en": [],
+   "facts": [
+    {
+     "fact_id": "f_height_n10058556917",
+     "characteristic_key": "building_height",
+     "value": 16.0,
+     "unit": "m",
+     "label": "building_height: 16 m",
+     "confidence": 0.7,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [],
+     "subject": "hotel:n10058556917",
+     "qualifiers": {},
+     "explanation": "Высота по тегу OSM или оценке этажности здания",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": "w53284172",
+      "source_url": null,
+      "evidence": [],
+      "method": "building_height@1",
+      "confidence": 0.7,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:12:52.063821Z",
+      "valid_until": "2028-10-25T07:12:52.063821Z"
+     }
+    },
+    {
+     "fact_id": "f_sea_n10058556917",
+     "characteristic_key": "distance_to_sea",
+     "value": 3.7,
+     "unit": "min",
+     "label": "distance_to_sea: 3.7 min",
+     "confidence": 0.8,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_route_n10058556917"
+     ],
+     "subject": "hotel:n10058556917",
+     "qualifiers": {
+      "meters": 296.8,
+      "elevation_delta_m": 7.0
+     },
+     "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "distance_to_sea@1",
+      "confidence": 0.8,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:12.788399Z",
+      "valid_until": "2027-10-26T07:13:12.788399Z"
+     }
+    },
+    {
+     "fact_id": "f_d162e30c65d2459ba7391f5e58301253",
+     "characteristic_key": "pets_policy",
+     "value": {
+      "allowed": true,
+      "fee_rub": 1500.0,
+      "max_weight_kg": 10.0
+     },
+     "unit": null,
+     "label": "pets_policy: {'allowed': True, 'fee_rub': 1500.0, 'max_weight_kg': 10.0}",
+     "confidence": 1.0,
+     "source_type": "hotelier",
+     "status": "confirmed_by_hotelier",
+     "geo_refs": [],
+     "subject": "hotel:n10058556917",
+     "qualifiers": {
+      "fee_rub": 1500.0,
+      "max_weight_kg": 10.0
+     },
+     "explanation": "С собаками до 10 кг можно, 1500 ₽ в сутки",
+     "provenance": {
+      "source_type": "hotelier",
+      "source_ref": "q_n10058556917_pets_policy",
+      "source_url": null,
+      "evidence": [
+       {
+        "kind": "quote",
+        "text": "С собаками до 10 кг можно"
+       },
+       {
+        "kind": "quote",
+        "text": "до 10 кг"
+       },
+       {
+        "kind": "quote",
+        "text": "1500 ₽ в сутки"
+       }
+      ],
+      "method": "hotelier_answer@1",
+      "confidence": 1.0,
+      "observed_at": "2026-10-26T17:12:06.200084Z",
+      "computed_at": "2026-10-26T17:12:06.200084Z",
+      "valid_until": "2027-04-24T17:12:06.200084Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_1",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_1"
+     ],
+     "subject": "facade:n10058556917:229",
+     "qualifiers": {
+      "facade_azimuth": 229.1
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_2",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_2"
+     ],
+     "subject": "facade:n10058556917:139",
+     "qualifiers": {
+      "facade_azimuth": 139.3
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_3",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_3"
+     ],
+     "subject": "facade:n10058556917:102",
+     "qualifiers": {
+      "facade_azimuth": 101.9
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_4",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_4"
+     ],
+     "subject": "facade:n10058556917:48",
+     "qualifiers": {
+      "facade_azimuth": 48.1
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_5",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_5"
+     ],
+     "subject": "facade:n10058556917:49",
+     "qualifiers": {
+      "facade_azimuth": 48.7
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_6",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_6"
+     ],
+     "subject": "facade:n10058556917:48",
+     "qualifiers": {
+      "facade_azimuth": 48.1
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_7",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_7"
+     ],
+     "subject": "facade:n10058556917:355",
+     "qualifiers": {
+      "facade_azimuth": 355.3
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_8",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_8"
+     ],
+     "subject": "facade:n10058556917:322",
+     "qualifiers": {
+      "facade_azimuth": 321.7
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    },
+    {
+     "fact_id": "f_noise_fc_n10058556917_9",
+     "characteristic_key": "noise_level",
+     "value": 0.0,
+     "unit": "score",
+     "label": "noise_level: 0.0 score",
+     "confidence": 0.6,
+     "source_type": "computed",
+     "status": "active",
+     "geo_refs": [
+      "g_fc_n10058556917_9"
+     ],
+     "subject": "facade:n10058556917:292",
+     "qualifiers": {
+      "facade_azimuth": 291.5
+     },
+     "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+     "provenance": {
+      "source_type": "computed",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [],
+      "method": "noise_level@1",
+      "confidence": 0.6,
+      "observed_at": null,
+      "computed_at": "2026-10-26T07:13:18.263365Z",
+      "valid_until": "2027-04-24T07:13:18.263365Z"
+     }
+    }
+   ],
+   "conflicts": [],
+   "stale_count": 0,
+   "open_questions": 2,
+   "camera": {
+    "center": [
+     39.9153879,
+     43.428439
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  }
+ },
+ {
+  "step": "answer fact detail",
+  "method": "GET",
+  "path": "/hotels/n10058556917/facts/f_d162e30c65d2459ba7391f5e58301253",
+  "status": 200,
+  "body": {
+   "fact_id": "f_d162e30c65d2459ba7391f5e58301253",
+   "characteristic_key": "pets_policy",
+   "value": {
+    "allowed": true,
+    "fee_rub": 1500.0,
+    "max_weight_kg": 10.0
+   },
+   "unit": null,
+   "label": "pets_policy: {'allowed': True, 'fee_rub': 1500.0, 'max_weight_kg': 10.0}",
+   "confidence": 1.0,
+   "source_type": "hotelier",
+   "status": "confirmed_by_hotelier",
+   "geo_refs": [],
+   "subject": "hotel:n10058556917",
+   "qualifiers": {
+    "fee_rub": 1500.0,
+    "max_weight_kg": 10.0
+   },
+   "explanation": "С собаками до 10 кг можно, 1500 ₽ в сутки",
+   "provenance": {
+    "source_type": "hotelier",
+    "source_ref": "q_n10058556917_pets_policy",
+    "source_url": null,
+    "evidence": [
+     {
+      "kind": "quote",
+      "text": "С собаками до 10 кг можно"
+     },
+     {
+      "kind": "quote",
+      "text": "до 10 кг"
+     },
+     {
+      "kind": "quote",
+      "text": "1500 ₽ в сутки"
+     }
+    ],
+    "method": "hotelier_answer@1",
+    "confidence": 1.0,
+    "observed_at": "2026-10-26T17:12:06.200084Z",
+    "computed_at": "2026-10-26T17:12:06.200084Z",
+    "valid_until": "2027-04-24T17:12:06.200084Z"
+   },
+   "history": [],
+   "conflicts": []
+  }
+ },
+ {
+  "step": "confirm height",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/confirm",
+  "status": 200,
+  "body": {
+   "fact_id": "f_height_n10058556917",
+   "characteristic_key": "building_height",
+   "value": 16.0,
+   "unit": "m",
+   "label": "building_height: 16 m",
+   "confidence": 0.7,
+   "source_type": "computed",
+   "status": "confirmed_by_hotelier",
+   "geo_refs": [],
+   "subject": "hotel:n10058556917",
+   "qualifiers": {},
+   "explanation": "Высота по тегу OSM или оценке этажности здания",
+   "provenance": {
+    "source_type": "computed",
+    "source_ref": "w53284172",
+    "source_url": null,
+    "evidence": [],
+    "method": "building_height@1",
+    "confidence": 0.7,
+    "observed_at": null,
+    "computed_at": "2026-10-26T17:12:06.262910Z",
+    "valid_until": "2028-10-25T17:12:06.262910Z"
+   }
+  }
+ },
+ {
+  "step": "confirm height again",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/confirm",
+  "status": 200,
+  "body": {
+   "fact_id": "f_height_n10058556917",
+   "characteristic_key": "building_height",
+   "value": 16.0,
+   "unit": "m",
+   "label": "building_height: 16 m",
+   "confidence": 0.7,
+   "source_type": "computed",
+   "status": "confirmed_by_hotelier",
+   "geo_refs": [],
+   "subject": "hotel:n10058556917",
+   "qualifiers": {},
+   "explanation": "Высота по тегу OSM или оценке этажности здания",
+   "provenance": {
+    "source_type": "computed",
+    "source_ref": "w53284172",
+    "source_url": null,
+    "evidence": [],
+    "method": "building_height@1",
+    "confidence": 0.7,
+    "observed_at": null,
+    "computed_at": "2026-10-26T17:12:06.262910Z",
+    "valid_until": "2028-10-25T17:12:06.262910Z"
+   }
+  }
+ },
+ {
+  "step": "invalid correction",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/correct",
+  "status": 422,
+  "body": {
+   "code": "invalid_value",
+   "message": "Value must have type number"
+  }
+ },
+ {
+  "step": "missing value",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/correct",
+  "status": 422,
+  "body": {
+   "code": "validation_error",
+   "message": "Invalid request: body.value"
+  }
+ },
+ {
+  "step": "correct height",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/correct",
+  "status": 200,
+  "body": {
+   "fact_id": "f_d216fcf2a7e049daa1c2ef8ffa452dbb",
+   "characteristic_key": "building_height",
+   "value": 0.0,
+   "unit": "m",
+   "label": "building_height: 0.0 m",
+   "confidence": 1.0,
+   "source_type": "hotelier",
+   "status": "confirmed_by_hotelier",
+   "geo_refs": [],
+   "subject": "hotel:n10058556917",
+   "qualifiers": {},
+   "explanation": "проверка",
+   "provenance": {
+    "source_type": "hotelier",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [
+     {
+      "kind": "quote",
+      "text": "проверка"
+     }
+    ],
+    "method": "hotelier_correction@1",
+    "confidence": 1.0,
+    "observed_at": "2026-10-26T17:12:06.297968Z",
+    "computed_at": "2026-10-26T17:12:06.297968Z",
+    "valid_until": "2028-10-25T17:12:06.297968Z"
+   }
+  }
+ },
+ {
+  "step": "old height detail",
+  "method": "GET",
+  "path": "/hotels/n10058556917/facts/f_height_n10058556917",
+  "status": 200,
+  "body": {
+   "fact_id": "f_height_n10058556917",
+   "characteristic_key": "building_height",
+   "value": 16.0,
+   "unit": "m",
+   "label": "building_height: 16 m",
+   "confidence": 0.7,
+   "source_type": "computed",
+   "status": "superseded",
+   "geo_refs": [],
+   "subject": "hotel:n10058556917",
+   "qualifiers": {},
+   "explanation": "Высота по тегу OSM или оценке этажности здания",
+   "provenance": {
+    "source_type": "computed",
+    "source_ref": "w53284172",
+    "source_url": null,
+    "evidence": [],
+    "method": "building_height@1",
+    "confidence": 0.7,
+    "observed_at": null,
+    "computed_at": "2026-10-26T17:12:06.262910Z",
+    "valid_until": "2028-10-25T17:12:06.262910Z"
+   },
+   "history": [
+    {
+     "fact_id": "f_d216fcf2a7e049daa1c2ef8ffa452dbb",
+     "characteristic_key": "building_height",
+     "value": 0.0,
+     "unit": "m",
+     "label": "building_height: 0.0 m",
+     "confidence": 1.0,
+     "source_type": "hotelier",
+     "status": "confirmed_by_hotelier",
+     "geo_refs": [],
+     "subject": "hotel:n10058556917",
+     "qualifiers": {},
+     "explanation": "проверка",
+     "provenance": {
+      "source_type": "hotelier",
+      "source_ref": null,
+      "source_url": null,
+      "evidence": [
+       {
+        "kind": "quote",
+        "text": "проверка"
+       }
+      ],
+      "method": "hotelier_correction@1",
+      "confidence": 1.0,
+      "observed_at": "2026-10-26T17:12:06.297968Z",
+      "computed_at": "2026-10-26T17:12:06.297968Z",
+      "valid_until": "2028-10-25T17:12:06.297968Z"
+     }
+    }
+   ],
+   "conflicts": []
+  }
+ },
+ {
+  "step": "correct superseded",
+  "method": "POST",
+  "path": "/facts/f_height_n10058556917/correct",
+  "status": 422,
+  "body": {
+   "code": "invalid_value",
+   "message": "Correct the current fact instead of a superseded fact"
+  }
+ },
+ {
+  "step": "fact of another hotel",
+  "method": "GET",
+  "path": "/hotels/n10058760244/facts/f_d216fcf2a7e049daa1c2ef8ffa452dbb",
+  "status": 404,
+  "body": {
+   "code": "not_found",
+   "message": "Fact not found"
+  }
+ },
+ {
+  "step": "missing question",
+  "method": "POST",
+  "path": "/hotelier/questions/missing/answer",
+  "status": 404,
+  "body": {
+   "code": "not_found",
+   "message": "Question not found"
+  }
+ },
+ {
+  "step": "missing hotel queue",
+  "method": "GET",
+  "path": "/hotelier/missing/questions",
+  "status": 404,
+  "body": {
+   "code": "not_found",
+   "message": "Hotel not found"
+  }
+ }
+]
