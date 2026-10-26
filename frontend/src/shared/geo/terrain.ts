@@ -31,8 +31,11 @@ export type LightMode = "day" | "dusk" | "night"
 
 export const TERRAIN_TILE_VERSION = "2"
 const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
-const DEM_MAX_ZOOM = 12
-const SNOW_LINE = 3400
+const DEM_MAX_ZOOM = 14
+const ROCK_LINE = 4600
+const SNOW_LINE = 5400
+const TERRAIN_MIN_ZOOM = 6
+const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
 const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
 
@@ -66,6 +69,8 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
     900,
     colors.park,
     2200,
+    colors.rock,
+    ROCK_LINE,
     colors.rock,
     SNOW_LINE,
     colors.snow,
@@ -105,7 +110,17 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
       "hillshade-accent-color": colors.hillShadow,
     },
   })
-  map.setTerrain({ source: "sochi-dem", exaggeration: 1.15 })
+}
+
+export function followTerrainZoom(map: MapLibreMap): () => void {
+  const sync = () => {
+    const wanted = map.getZoom() >= TERRAIN_MIN_ZOOM
+    if (wanted && !map.getTerrain()) map.setTerrain(TERRAIN)
+    if (!wanted && map.getTerrain()) map.setTerrain(null)
+  }
+  sync()
+  map.on("zoomend", sync)
+  return () => map.off("zoomend", sync)
 }
 
 export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunPosition) {

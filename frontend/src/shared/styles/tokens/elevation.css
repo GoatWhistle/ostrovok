@@ -18,6 +18,9 @@
   --shadow-raised: 0 1px 2px var(--shadow-color);
   --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
   --backdrop-glass: blur(14px) saturate(1.4);
+  --shadow-sun:
+    0 0 0 6px color-mix(in oklab, var(--map-sunlight) 40%, transparent),
+    0 0 56px 20px color-mix(in oklab, var(--hue-sunset) 45%, transparent);
   --filter-float: drop-shadow(0 0 var(--hairline) var(--border-strong))
     drop-shadow(0 4px 12px var(--shadow-color));
   --shadow-overlay:
