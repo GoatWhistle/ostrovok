@@ -921,6 +921,11 @@ components:
             label: { type: string, nullable: true, example: "480 м, 6 мин, −22 м" }
             osm_ref: { type: string, nullable: true }
             style_hint: { type: string, nullable: true }
+            place_id: { type: string }
+            hotel_id: { type: string }
+            distance_m: { type: number, minimum: 0 }
+            minutes: { type: number, minimum: 0, nullable: true }
+            mode: { type: string, enum: [graph, straight] }
 
     GeoFeatureCollection:
       type: object

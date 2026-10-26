@@ -15,6 +15,7 @@ from hotel_agent.adapters.db.regions import PostgresRegionRepository
 from hotel_agent.adapters.db.search import PostgresSearchRepository
 from hotel_agent.adapters.db.search_documents import PostgresSearchDocuments
 from hotel_agent.adapters.db.view_scenes import PostgresViewScenes
+from hotel_agent.adapters.db.walk_router import PostgresWalkRouter, WalkRouteCache
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
@@ -28,6 +29,7 @@ from hotel_agent.application.ports.repositories import (
 )
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
 from hotel_agent.application.ports.view_scenes import ViewSceneRepository
+from hotel_agent.application.ports.walk import WalkRouterPort
 
 
 class PostgresUnitOfWorkFactory:
@@ -36,6 +38,7 @@ class PostgresUnitOfWorkFactory:
             database_url, min_size=1, max_size=5, open=False
         )
         self._open_lock = asyncio.Lock()
+        self.walk_cache = WalkRouteCache()
 
     def __call__(self) -> "PostgresUnitOfWork":
         return PostgresUnitOfWork(self)
@@ -59,6 +62,7 @@ class PostgresUnitOfWork:
     def __init__(self, factory: PostgresUnitOfWorkFactory) -> None:
         self._factory = factory
         self._connection: AsyncConnection[tuple[object, ...]] | None = None
+        self.walk: WalkRouterPort
         self.regions: RegionRepository
         self.search: SearchRepository
         self.geo_features: GeoFeatureRepository
@@ -73,6 +77,7 @@ class PostgresUnitOfWork:
 
     async def __aenter__(self) -> Self:
         self._connection = await self._factory.connection()
+        self.walk = PostgresWalkRouter(self._connection, self._factory.walk_cache)
         self.regions = PostgresRegionRepository(self._connection)
         self.search = PostgresSearchRepository(self._connection)
         self.geo_features = PostgresGeoFeatureRepository(self._connection)

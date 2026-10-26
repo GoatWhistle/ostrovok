@@ -98,6 +98,7 @@ class GeoFeatureRecord:
     label: str | None
     osm_ref: str | None
     style_hint: str | None
+    properties: dict[str, object] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

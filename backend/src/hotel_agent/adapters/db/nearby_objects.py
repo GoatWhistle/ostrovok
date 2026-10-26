@@ -14,7 +14,7 @@ NEARBY = """WITH objects AS MATERIALIZED (
                           (%(bbox)s::double precision[])[3], (%(bbox)s::double precision[])[4],
                           4326)::geography, %(radius_m)s))
 )
-SELECT h.id, COALESCE(array_agg(p.id ORDER BY p.id)
+SELECT h.id, COALESCE(array_agg(p.id ORDER BY p.location <-> h.location, p.id)
     FILTER (WHERE p.id IS NOT NULL), ARRAY[]::text[])
 FROM hotels h LEFT JOIN objects p
  ON ST_DWithin(p.location::geography, h.location::geography, %(radius_m)s)

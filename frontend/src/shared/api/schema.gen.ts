@@ -774,6 +774,12 @@ export interface components {
                 label?: string | null;
                 osm_ref?: string | null;
                 style_hint?: string | null;
+                place_id?: string;
+                hotel_id?: string;
+                distance_m?: number;
+                minutes?: number | null;
+                /** @enum {string} */
+                mode?: "graph" | "straight";
             };
         };
         GeoFeatureCollection: {
