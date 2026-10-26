@@ -42,7 +42,10 @@ class WindowViews:
     async def evaluate(
         self, prepared: PreparedViews, buildings: PathBuildings, now: datetime
     ) -> WindowEvidence:
-        cell_sets = {ray.id: corridor_cells(ray) for ray in prepared.rays}
+        cell_sets = {
+            ray.id: () if ray.id in buildings.coverage_sources else corridor_cells(ray)
+            for ray in prepared.rays
+        }
         all_cells = tuple(dict.fromkeys(cell for cells in cell_sets.values() for cell in cells))
 
         async def load(
@@ -91,10 +94,13 @@ class WindowViews:
                 else None,
             )
             loaded = [area for cell in cell_sets[ray.id] if (area := areas.get(cell)) is not None]
-            complete = (
-                not buildings.truncated
-                and len(loaded) == len(cell_sets[ray.id])
-                and all(area.complete for area in loaded)
+            complete = not buildings.truncated and (
+                ray.id in buildings.coverage_sources
+                or (
+                    bool(cell_sets[ray.id])
+                    and len(loaded) == len(cell_sets[ray.id])
+                    and all(area.complete for area in loaded)
+                )
             )
             missing = [] if complete else ["неполное покрытие контуров зданий вдоль линии"]
             if ray.target_height.maximum_m is None:
@@ -135,6 +141,11 @@ class WindowViews:
                             ray.target.source_url,
                             "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
                             *(area.source_url for area in loaded),
+                            *(
+                                (buildings.coverage_sources[ray.id],)
+                                if ray.id in buildings.coverage_sources
+                                else ()
+                            ),
                         ]
                     )
                 )

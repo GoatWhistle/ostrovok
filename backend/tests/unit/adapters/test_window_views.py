@@ -40,6 +40,7 @@ class FlatTerrain:
 class Geometry:
     def __init__(self, blocker_height: str | None = "30", complete: bool = True) -> None:
         self.complete = complete
+        self.area_calls = 0
         self.target = PhysicalObject(
             "n20",
             {"name": "Башня", "height": "40", "man_made": "tower"},
@@ -57,6 +58,7 @@ class Geometry:
         return self.target if identifier == self.target.id else None
 
     async def area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea:
+        self.area_calls += 1
         return PhysicalArea(bbox, (self.blocker,), self.complete, "https://www.openstreetmap.org")
 
 
@@ -218,3 +220,31 @@ async def test_unknown_target_height_is_explained_as_missing_data() -> None:
     fact = evidence.facts[0]
     assert fact.value is None
     assert "высота ориентира или его выбранной части" in fact.qualifiers["visibility"]["missing"]
+
+
+@pytest.mark.parametrize("truncated,visible", [(False, True), (True, False)])
+async def test_verified_corridor_avoids_unavailable_surrounding_cells(
+    truncated: bool, visible: bool
+) -> None:
+    geometry = Geometry(complete=False)
+    engine = WindowViews(FlatTerrain(), geometry)
+    prepared = await engine.prepare(
+        (hotel(),),
+        request(20),
+        {"h1": NamedPlaceRecord(id="n20", name="Башня", location=(39.01, 43))},
+        {},
+    )
+    rows = (
+        SceneBuilding(
+            geometry.blocker.id, geometry.blocker.geometry, geometry.blocker.tags, 30, None
+        ),
+    )
+    buildings = PathBuildings(
+        {ray.id: rows for ray in prepared.rays},
+        truncated,
+        {ray.id: "https://example.org/verified-extract" for ray in prepared.rays},
+    )
+    result = await engine.evaluate(prepared, buildings, datetime(2026, 10, 26, tzinfo=UTC))
+    assert (result.facts[0].value is True) is visible
+    assert result.facts[0].qualifiers["visibility"]["complete_coverage"] is visible
+    assert geometry.area_calls == 0

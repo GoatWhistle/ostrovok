@@ -1,5 +1,5 @@
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Protocol
 
 
@@ -16,6 +16,7 @@ class SceneBuilding:
 class PathBuildings:
     buildings: Mapping[str, tuple[SceneBuilding, ...]]
     truncated: bool
+    coverage_sources: Mapping[str, str] = field(default_factory=dict)
 
 
 class ViewSceneRepository(Protocol):

@@ -22,6 +22,18 @@ FROM segments s JOIN buildings b
 ORDER BY s.id,b.id LIMIT 20001"""
 
 
+PATH_COVERAGE = """WITH paths AS (
+ SELECT key AS id,ST_Buffer(ST_Segmentize(
+   ST_SetSRID(ST_GeomFromGeoJSON(value),4326)::geography,500),30)::geometry AS corridor
+ FROM jsonb_each(%(paths)s::jsonb)
+)
+SELECT p.id,c.source_url FROM paths p JOIN LATERAL (
+ SELECT source_url FROM geography_coverage
+ WHERE complete AND valid_until>statement_timestamp() AND ST_Covers(bbox,p.corridor)
+ ORDER BY fetched_at DESC LIMIT 1
+) c ON true"""
+
+
 class PostgresViewScenes:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
@@ -49,8 +61,13 @@ class PostgresViewScenes:
         grouped: dict[str, list[SceneBuilding]] = {key: [] for key in paths}
         for row in rows[:20000]:
             grouped[str(row[0])].append(_building(row))
+        coverage = await (
+            await self._connection.execute(PATH_COVERAGE, {"paths": Jsonb(geometries)})
+        ).fetchall()
         return PathBuildings(
-            {key: tuple(values) for key, values in grouped.items()}, len(rows) > 20000
+            {key: tuple(values) for key, values in grouped.items()},
+            len(rows) > 20000,
+            {str(row[0]): str(row[1]) for row in coverage},
         )
 
 
