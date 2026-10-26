@@ -1,19 +1,43 @@
+.anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.anchor .toggle {
+  --button-surface: var(--surface-glass);
+  --button-radius: var(--radius-pill);
+
+  box-shadow: var(--shadow-float);
+  backdrop-filter: var(--backdrop-glass);
+}
+
+.toggle[data-notes]::after {
+  content: "";
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+  inline-size: var(--space-8);
+  block-size: var(--space-8);
+  border-radius: var(--radius-pill);
+  background-color: var(--status-warning);
+}
+
 .legend {
   composes: floatingSurface from "../../shared/styles/compose.module.css";
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: calc(100% + var(--space-8));
+  inset-block-end: calc(100% + var(--space-8));
+  inset-inline-end: 0;
   display: grid;
   gap: var(--space-12);
   inline-size: min(var(--map-legend-width), calc(100cqi - var(--space-96)));
   padding: var(--space-16);
   border-radius: var(--radius-lg);
-  transform-origin: top right;
-  animation: var(--motion-anchor-in);
+  transform-origin: bottom right;
+  animation: var(--motion-rise-in);
 }
 
 .legend[data-state="closed"] {
-  animation: var(--motion-scale-out);
+  animation: var(--motion-fade-out);
 }
 
 .title {

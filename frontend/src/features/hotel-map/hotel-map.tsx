@@ -11,6 +11,7 @@ import { motionMs } from "@/shared/motion"
 import { ErrorState, MapAttribution } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
+import { MapLegendToggle } from "./map-legend"
 import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
 import { MapFocus, MapStatus, mapNotes } from "./map-status"
@@ -212,6 +213,7 @@ export function HotelMap({
           </div>
           <div className={styles.meta}>
             <MapScale map={map.instance} ready={map.ready} />
+            <MapLegendToggle notes={mapNotes(invalid, missingHeight, map.textureStatus)} />
             <MapAttribution
               label={t("explore:map.attributionTitle")}
               osm={t("explore:map.attribution")}
@@ -225,7 +227,6 @@ export function HotelMap({
         ready={map.ready}
         disabled={!selectedCamera || map.failed || !map.ready}
         onOverview={showOverview}
-        notes={mapNotes(invalid, missingHeight, map.textureStatus)}
       />
     </section>
   )

@@ -1,10 +1,9 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type MouseEvent, type RefObject, useEffect, useRef, useState } from "react"
-import { type MessageKey, useTranslation } from "@/shared/i18n"
+import { useTranslation } from "@/shared/i18n"
 import { motionMs, prefersReducedMotion } from "@/shared/motion"
 import { Button } from "@/shared/ui"
 import styles from "./map-controls.module.css"
-import { MapLegend } from "./map-legend"
 
 const ROTATE_STEP = 30
 
@@ -13,7 +12,6 @@ export interface MapControlsProps {
   readonly ready: boolean
   readonly disabled: boolean
   readonly onOverview: (instant: boolean) => void
-  readonly notes: readonly MessageKey[]
 }
 
 function duration(event: MouseEvent<HTMLButtonElement>): number {
@@ -51,22 +49,10 @@ function useFlat(map: RefObject<MapLibreMap | null>, ready: boolean) {
   return flat
 }
 
-export function MapControls({ map, ready, disabled, onOverview, notes }: MapControlsProps) {
+export function MapControls({ map, ready, disabled, onOverview }: MapControlsProps) {
   const { t } = useTranslation()
-  const [legend, setLegend] = useState(false)
   const compass = useBearing(map, ready)
   const flat = useFlat(map, ready)
-  const layers = useRef<HTMLButtonElement>(null)
-  useEffect(() => {
-    if (!legend) return
-    const close = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return
-      setLegend(false)
-      layers.current?.focus()
-    }
-    document.addEventListener("keydown", close)
-    return () => document.removeEventListener("keydown", close)
-  }, [legend])
   return (
     <div className={styles.controls}>
       <div className={styles.group}>
@@ -165,25 +151,6 @@ export function MapControls({ map, ready, disabled, onOverview, notes }: MapCont
         >
           {t("explore:map.overview")}
         </Button>
-      </div>
-      <div className={styles.legendAnchor}>
-        <div className={styles.group}>
-          <Button
-            ref={layers}
-            variant="ghost"
-            iconOnly
-            icon="layers"
-            className={styles.control}
-            title={t("explore:map.layers")}
-            aria-expanded={legend}
-            aria-pressed={legend}
-            data-notes={notes.length > 0 || undefined}
-            onClick={() => setLegend((current) => !current)}
-          >
-            {t("explore:map.layers")}
-          </Button>
-        </div>
-        <MapLegend open={legend} notes={notes} />
       </div>
     </div>
   )
