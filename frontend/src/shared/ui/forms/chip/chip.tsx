@@ -30,9 +30,7 @@ export function Chip({
         data-pressed={pressed}
         style={{ ...style, "--chip-hue": hue } as CSSProperties}
       >
-        <span className={styles.dot}>
-          <Icon name={icon} size="sm" />
-        </span>
+        <Icon name={icon} size="sm" className={styles.icon} />
         <span className={styles.text}>{label}</span>
       </span>
     )
@@ -44,9 +42,7 @@ export function Chip({
       className={clsx(styles.chip, size === "large" && styles.large, className)}
       style={{ ...style, "--chip-hue": hue } as CSSProperties}
     >
-      <span className={styles.dot}>
-        <Icon name={icon} size="sm" />
-      </span>
+      <Icon name={icon} size="sm" className={styles.icon} />
       <span className={styles.text}>{label}</span>
     </button>
   )

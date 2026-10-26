@@ -93,3 +93,19 @@ def test_terrain_enlargement_does_not_create_spikes_at_rgb_byte_boundaries(tmp_p
             assert float(heights.min()) >= -1.01
             assert float(heights.max()) <= 0.01
         terrain.close()
+
+
+def test_source_download_survives_one_transport_timeout(tmp_path: Path) -> None:
+    calls = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        calls.append(request.url.path)
+        if len(calls) == 1:
+            raise httpx.ConnectTimeout("handshake timed out", request=request)
+        return httpx.Response(200, content=b"source tile")
+
+    client = httpx.Client(transport=httpx.MockTransport(handle))
+    cache = TerrainSourceCache(client, tmp_path / "cache")
+    assert cache.get("https://example.org/tile.webp", 12, 10, 20) == b"source tile"
+    assert len(calls) == 2
+    client.close()

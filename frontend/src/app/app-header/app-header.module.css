@@ -8,7 +8,7 @@
   min-block-size: var(--header-height);
   padding: var(--space-8) var(--space-page);
   background-color: var(--surface-base);
-  box-shadow: var(--shadow-ring-subtle);
+  box-shadow: var(--shadow-divider-bottom);
 }
 
 .brand {
@@ -22,48 +22,6 @@
 
 .word {
   composes: headingText from "../../shared/styles/compose.module.css";
-}
-
-.navigation {
-  display: flex;
-  gap: var(--space-4);
-}
-
-.link {
-  composes: controlText pressable from "../../shared/styles/compose.module.css";
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  min-block-size: var(--control-height);
-  padding-inline: var(--space-12);
-  border-radius: var(--radius-md);
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-
-.link svg {
-  color: var(--text-muted);
-}
-
-.link[aria-current="page"] {
-  background-color: var(--surface-raised);
-  box-shadow: var(--shadow-ring);
-  color: var(--text-primary);
-}
-
-.link[aria-current="page"] svg {
-  color: var(--text-accent);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .link:hover:not([aria-current="page"]) {
-    background-color: var(--action-ghost-hover);
-    color: var(--text-primary);
-  }
-}
-
-.link:active {
-  scale: var(--press-scale);
 }
 
 .controls {
@@ -92,16 +50,6 @@
 
   .word {
     font-size: var(--font-size-subheading);
-  }
-
-  .navigation {
-    order: 3;
-    inline-size: 100%;
-  }
-
-  .link {
-    flex: 1;
-    justify-content: center;
   }
 }
 

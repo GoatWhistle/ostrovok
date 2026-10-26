@@ -1,12 +1,13 @@
 .thumb {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   align-self: start;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: var(--radius-md);
-  background-color: var(--map-land);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-sunken);
 }
 
 .photo {

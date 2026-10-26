@@ -13,7 +13,7 @@ class PostgresChatRepository:
     async def get(self, conversation_id: str) -> ConversationRecord | None:
         row = await (
             await self._connection.execute(
-                """SELECT id, region_id, effective_query, search_snapshot
+                """SELECT id, region_id, effective_query, search_snapshot, title, updated_at
                 FROM chat_conversations WHERE id = %(id)s""",
                 {"id": conversation_id},
             )
@@ -42,6 +42,8 @@ class PostgresChatRepository:
             effective_query=str(row[2]) if row[2] is not None else None,
             messages=tuple(messages),
             search_snapshot=row[3] if isinstance(row[3], dict) else None,
+            title=str(row[4]) if row[4] is not None else None,
+            updated_at=row[5] if isinstance(row[5], datetime) else None,
         )
 
     async def save(
@@ -54,10 +56,12 @@ class PostgresChatRepository:
         answer_id: str,
         answer: str,
         search_snapshot: dict[str, object],
+        title: str | None = None,
     ) -> None:
         await self._connection.execute(
-            """INSERT INTO chat_conversations (id, region_id, effective_query, search_snapshot)
-            VALUES (%(id)s, %(region)s, %(query)s, %(snapshot)s)
+            """INSERT INTO chat_conversations
+            (id, region_id, effective_query, search_snapshot, title)
+            VALUES (%(id)s, %(region)s, %(query)s, %(snapshot)s, %(title)s)
             ON CONFLICT (id) DO UPDATE SET effective_query = EXCLUDED.effective_query,
             search_snapshot = EXCLUDED.search_snapshot, updated_at = now()""",
             {
@@ -65,6 +69,7 @@ class PostgresChatRepository:
                 "region": region_id,
                 "query": effective_query,
                 "snapshot": Jsonb(search_snapshot),
+                "title": title,
             },
         )
         async with self._connection.cursor() as cursor:
@@ -95,3 +100,22 @@ class PostgresChatRepository:
             WHERE id = %(id)s AND search_snapshot IS NULL""",
             {"id": conversation_id, "snapshot": Jsonb(search_snapshot)},
         )
+
+    async def rename(self, conversation_id: str, title: str) -> bool:
+        row = await (
+            await self._connection.execute(
+                """UPDATE chat_conversations SET title = %(title)s, updated_at = now()
+                WHERE id = %(id)s RETURNING id""",
+                {"id": conversation_id, "title": title},
+            )
+        ).fetchone()
+        return row is not None
+
+    async def delete(self, conversation_id: str) -> bool:
+        row = await (
+            await self._connection.execute(
+                "DELETE FROM chat_conversations WHERE id = %(id)s RETURNING id",
+                {"id": conversation_id},
+            )
+        ).fetchone()
+        return row is not None

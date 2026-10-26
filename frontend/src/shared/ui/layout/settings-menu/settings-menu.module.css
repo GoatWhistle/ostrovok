@@ -10,17 +10,9 @@
 }
 
 .panel {
-  composes: floatingSurface from "../../../styles/compose.module.css";
-  position: absolute;
-  inset-block-start: calc(100% + var(--space-8));
-  inset-inline-end: 0;
-  z-index: var(--layer-popover);
-  display: grid;
+  composes: popoverPanel from "../../../styles/compose.module.css";
   min-inline-size: var(--select-layer-min);
   padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  transform-origin: top right;
-  animation: var(--motion-scale-in);
 }
 
 .panel[data-state="closed"] {

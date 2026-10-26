@@ -1,46 +1,78 @@
+.shell {
+  filter: var(--filter-float);
+}
+
 .panel {
-  composes: floatingSurface from "../../../shared/styles/compose.module.css";
   display: grid;
   inline-size: min(var(--map-time-panel), 100cqi - var(--space-32));
+  border-radius: var(--radius-md);
+  background-color: var(--surface-overlay);
   color: var(--text-primary);
+  clip-path: inset(calc(100% - var(--control-height)) 0 0 0 round var(--radius-md));
+  transition: var(--transition-clip-out);
 }
 
-.panel[data-expanded="false"] {
-  inline-size: auto;
-}
-
-.heading {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  min-inline-size: 0;
-  padding-inline-end: var(--space-12);
-}
-
-.toggle {
-  flex: none;
-}
-
-.summary {
-  composes: captionText from "../../../shared/styles/compose.module.css";
-  min-inline-size: 0;
-  overflow: hidden;
-  color: var(--text-secondary);
-  font-variant-numeric: var(--font-numeric);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.panel[data-expanded="true"] {
+  clip-path: inset(0 0 0 0 round var(--radius-md));
+  transition: var(--transition-clip);
 }
 
 .body {
   display: grid;
-  gap: var(--space-16);
-  padding: var(--space-4) var(--space-16) var(--space-16);
-  transform-origin: bottom left;
-  animation: var(--motion-anchor-in);
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-12) var(--space-8);
+  opacity: 0;
+  transition: var(--transition-fade);
 }
 
-.body[data-state="closed"] {
-  animation: var(--motion-fade-out);
+.panel[data-expanded="true"] .body {
+  opacity: 1;
+}
+
+.toggle {
+  inline-size: 100%;
+}
+
+.toggle > :first-child {
+  justify-self: stretch;
+  inline-size: 100%;
+}
+
+.toggle > :first-child > :last-child {
+  display: flex;
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.title {
+  flex: none;
+}
+
+.summary {
+  composes: captionText truncateText from "../../../shared/styles/compose.module.css";
+  flex: 1;
+  color: var(--text-secondary);
+  font-variant-numeric: var(--font-numeric);
+  text-align: end;
+}
+
+.chevron {
+  flex: none;
+  color: var(--text-secondary);
+  transform: rotate(180deg);
+  transition: var(--transition-layer);
+}
+
+.panel[data-expanded="true"] .chevron {
+  transform: none;
 }
 
 .fields {
@@ -53,10 +85,6 @@
   display: grid;
   gap: var(--space-8);
   min-inline-size: 0;
-}
-
-.fieldLabel {
-  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .stepper {
@@ -80,6 +108,8 @@
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: var(--space-16);
+  padding-block-start: var(--space-12);
+  box-shadow: var(--shadow-divider-top);
 }
 
 .compass {
@@ -130,6 +160,7 @@
 
 .statLabel {
   composes: captionText from "../../../shared/styles/compose.module.css";
+  color: var(--text-muted);
 }
 
 .statValue {
@@ -138,12 +169,8 @@
   font-variant-numeric: var(--font-numeric);
 }
 
-.footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
+.sunset {
+  inline-size: 100%;
 }
 
 @container map (max-width: 29.99rem) {

@@ -22,10 +22,10 @@
 }
 
 .copy {
-  align-self: center;
+  display: grid;
   justify-self: center;
   inline-size: min(100%, var(--landing-copy) + var(--space-page-wide) * 2);
-  padding: var(--space-64) var(--space-page-wide);
+  padding: var(--space-48) var(--space-page-wide);
 }
 
 .visual {

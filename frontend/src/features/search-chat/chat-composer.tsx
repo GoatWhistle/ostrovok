@@ -50,7 +50,7 @@ export function ChatComposer({ pending, selectedHotel, placeholder, onSend }: Ch
           </Button>
         }
       />
-      <p id={hint} className={styles.hint}>
+      <p id={hint} className="visually-hidden">
         {t("explore:chat.hint")}
       </p>
     </form>

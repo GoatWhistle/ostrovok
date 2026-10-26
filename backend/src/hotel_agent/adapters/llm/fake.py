@@ -1,13 +1,38 @@
+import re
 from collections.abc import Mapping, Sequence
 
 from hotel_agent.adapters.llm.extraction import extract
-from hotel_agent.adapters.llm.text import WORD, normalize, terms_outside
+from hotel_agent.adapters.llm.text import normalize, terms_outside
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.domain.characteristics import Characteristic, Matcher
 from hotel_agent.domain.query import Intent, ParsedQuery
+
+PLACES = (
+    (re.compile(r"\bсочи\b|\bsochi\b"), "Сочи"),
+    (re.compile(r"\bмоскв[аеуы]\b|\bmoscow\b"), "Москва"),
+    (
+        re.compile(
+            r"\b(?:санкт[- ]?)?петербург[аеу]?\b|\bпитер[аеу]?\b|\b(?:saint |st\.? )?petersburg\b"
+        ),
+        "Санкт-Петербург",
+    ),
+)
+
+
+def _place(text: str) -> tuple[str, int, int] | None:
+    found = [
+        (match.start(), match.end(), name)
+        for pattern, name in PLACES
+        for match in [pattern.search(text)]
+        if match is not None
+    ]
+    if not found:
+        return None
+    start, end, name = min(found)
+    return name, start, end
 
 
 class FakeLLM:
@@ -38,14 +63,14 @@ class FakeLLM:
             matcher, at = best
             spans.append((at, at + len(matcher.phrase)))
             found.append((at, _intent(characteristic, matcher)))
-        city_at = next((item.start() for item in WORD.finditer(text) if item.group() == "сочи"), -1)
-        if city_at >= 0:
-            spans.append((city_at, city_at + len("сочи")))
+        place = _place(text)
+        if place is not None:
+            spans.append((place[1], place[2]))
         found.sort(key=lambda item: item[0])
         return ParsedQuery(
             intents=tuple(intent for _, intent in found),
             unmatched_terms=terms_outside(text, spans),
-            location_hint="Сочи" if city_at >= 0 else None,
+            location_hint=place[0] if place is not None else None,
             normalized_query=text,
         )
 

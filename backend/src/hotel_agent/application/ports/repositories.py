@@ -103,11 +103,16 @@ class ChatRepository(Protocol):
         answer_id: str,
         answer: str,
         search_snapshot: dict[str, object],
+        title: str | None = None,
     ) -> None: ...
 
     async def save_search_snapshot(
         self, conversation_id: str, search_snapshot: dict[str, object]
     ) -> None: ...
+
+    async def rename(self, conversation_id: str, title: str) -> bool: ...
+
+    async def delete(self, conversation_id: str) -> bool: ...
 
 
 class UnitOfWork(Protocol):

@@ -24,8 +24,14 @@ class ChatMessageSchema(BaseModel):
     created_at: datetime
 
 
+class ConversationTitleSchema(BaseModel):
+    title: str
+
+
 class ConversationSchema(BaseModel):
     id: UUID
+    title: str | None = None
+    updated_at: datetime | None = None
     messages: list[ChatMessageSchema]
     effective_query: str | None = None
     search: SearchResponseSchema | None = None
@@ -37,6 +43,8 @@ def conversation_schema(
     conversation = outcome.conversation
     return ConversationSchema(
         id=UUID(conversation.id),
+        title=conversation.title,
+        updated_at=conversation.updated_at,
         messages=[
             ChatMessageSchema(
                 id=UUID(item.id),

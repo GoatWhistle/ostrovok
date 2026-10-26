@@ -59,6 +59,8 @@
     clip-path var(--dur-exit) var(--ease-out), opacity var(--dur-exit) var(--ease-out);
   --transition-press: scale var(--dur-press) var(--ease-out);
   --transition-reel: opacity var(--dur-reveal) var(--ease-out);
+  --transition-clip: clip-path var(--dur-panel) var(--ease-out);
+  --transition-clip-out: clip-path var(--dur-panel-exit) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
@@ -79,8 +81,6 @@
   --motion-lost-pin: kf-pin-drop var(--dur-base) var(--ease-out)
     calc(var(--dur-slow) + var(--dur-draw)) both;
   --motion-fact-ping: kf-fact-ping var(--dur-draw) var(--ease-out) 2;
-  --motion-state-ping: kf-fact-ping var(--dur-draw) var(--ease-out) var(--dur-base) both;
-  --motion-state-in: kf-scale-in var(--dur-base) var(--ease-out) both;
   --motion-unfold-side: kf-unfold-side var(--dur-fold) var(--ease-fold) both;
   --motion-unfold-mid: kf-unfold-mid var(--dur-fold) var(--ease-fold) both;
   --motion-fold-left: kf-fold-left var(--dur-breathe) var(--ease-fold) infinite;
@@ -121,8 +121,6 @@
     --motion-spin: none;
     --motion-lost-draw: none;
     --motion-lost-pin: kf-fade-in var(--reduced-fade) var(--ease-out) both;
-    --motion-state-ping: none;
-    --motion-state-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
     --motion-fold-left: none;
     --motion-fold-mid: none;

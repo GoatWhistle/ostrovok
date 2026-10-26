@@ -1,17 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { api, isApiError, unwrap } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale } from "@/shared/i18n"
 import {
+  forgetSaved,
   readActiveConversation,
   readConversationHistory,
-  rememberConversation,
+  renameSaved,
+  type SavedConversation,
   saveActiveConversation,
   saveConversationHistory,
+  syncConversation,
 } from "./conversation-history"
 
 export type Conversation = components["schemas"]["Conversation"]
+
+function serverEntry(data: Conversation) {
+  return {
+    id: data.id,
+    title: data.title,
+    updatedAt: data.updated_at,
+    firstMessage: data.messages.find((item) => item.role === "user")?.content ?? "",
+  }
+}
 
 export function useConversation(
   selectedHotel: string | undefined,
@@ -22,6 +34,15 @@ export function useConversation(
   const [conversationId, setConversationId] = useState<string | null>(readActiveConversation)
   const [history, setHistory] = useState(readConversationHistory)
   const [outgoing, setOutgoing] = useState<string>()
+  const updateHistory = useCallback(
+    (change: (previous: SavedConversation[]) => SavedConversation[]) =>
+      setHistory((previous) => {
+        const next = change(previous)
+        saveConversationHistory(next)
+        return next
+      }),
+    [],
+  )
   const conversation = useQuery({
     queryKey: ["conversation", conversationId],
     enabled: conversationId !== null,
@@ -38,27 +59,14 @@ export function useConversation(
     if (!isApiError(conversation.error, "not_found")) return
     saveActiveConversation(null)
     setConversationId(null)
-    if (conversationId) {
-      setHistory((previous) => {
-        const next = previous.filter((item) => item.id !== conversationId)
-        saveConversationHistory(next)
-        return next
-      })
-    }
-  }, [conversation.error, conversationId])
+    if (conversationId) updateHistory((previous) => forgetSaved(previous, conversationId))
+  }, [conversation.error, conversationId, updateHistory])
   useEffect(() => {
     const data = conversation.data
     if (!data) return
-    const firstMessage = data.messages.find((item) => item.role === "user")?.content
-    if (!firstMessage) return
-    setHistory((previous) => {
-      const existing = previous.find((item) => item.id === data.id)
-      if (existing?.title) return previous
-      const next = rememberConversation(previous, data.id, firstMessage)
-      saveConversationHistory(next)
-      return next
-    })
-  }, [conversation.data])
+    if (!data.messages.some((item) => item.role === "user")) return
+    updateHistory((previous) => syncConversation(previous, serverEntry(data)))
+  }, [conversation.data, updateHistory])
   const sendMessage = useMutation({
     mutationFn: (message: string) =>
       unwrap(
@@ -74,16 +82,42 @@ export function useConversation(
       ),
     onSuccess: (data: Conversation) => {
       saveActiveConversation(data.id)
-      const firstMessage = data.messages.find((item) => item.role === "user")?.content ?? ""
-      setHistory((previous) => {
-        const next = rememberConversation(previous, data.id, firstMessage)
-        saveConversationHistory(next)
-        return next
-      })
+      updateHistory((previous) => syncConversation(previous, serverEntry(data)))
       cache.setQueryData(["conversation", data.id], data)
       setConversationId(data.id)
       setOutgoing(undefined)
       onAnswer(data)
+    },
+  })
+  const renameMutation = useMutation({
+    mutationFn: ({ id, title }: { readonly id: string; readonly title: string }) =>
+      unwrap(
+        api.PATCH("/chat/conversations/{conversation_id}", {
+          params: { path: { conversation_id: id } },
+          body: { title },
+        }),
+      ),
+    onSuccess: (data: Conversation) => {
+      cache.setQueryData(["conversation", data.id], data)
+      updateHistory((previous) => renameSaved(previous, data.id, data.title ?? ""))
+    },
+  })
+  const removeMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error, response } = await api.DELETE("/chat/conversations/{conversation_id}", {
+        params: { path: { conversation_id: id } },
+      })
+      if (error && response.status !== 404) throw error
+      return id
+    },
+    onSuccess: (id: string) => {
+      cache.removeQueries({ queryKey: ["conversation", id] })
+      updateHistory((previous) => forgetSaved(previous, id))
+      if (id === conversationId) {
+        saveActiveConversation(null)
+        setConversationId(null)
+        setOutgoing(undefined)
+      }
     },
   })
   function send(message: string) {
@@ -111,6 +145,8 @@ export function useConversation(
       setOutgoing(undefined)
       sendMessage.reset()
     },
+    rename: (id: string, title: string) => renameMutation.mutateAsync({ id, title }),
+    remove: (id: string) => removeMutation.mutateAsync(id),
     loading: conversation.isPending && conversationId !== null,
     sending: sendMessage.isPending,
     failed: sendMessage.isError || (conversation.isError && !conversation.data),

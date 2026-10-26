@@ -56,10 +56,7 @@
   --pin-dot: 20px;
   --thumb-size: 96px;
   --workspace-detail: 400px;
-  --chip-dot: 26px;
-  --chip-dot-large: 32px;
   --chip-static-height: 30px;
-  --chip-static-dot: 18px;
   --workspace-panel: 400px;
   --workspace-panel-compact: 360px;
   --workspace-chat: 400px;
@@ -70,7 +67,7 @@
   --chat-avatar: 32px;
   --landing-copy: 34rem;
   --landing-visual-compact: 46dvh;
-  --thumb-panel: 84px;
+  --thumb-panel: 56px;
   --select-layer-min: 200px;
   --map-contour-width: 1px;
   --map-sand-width: 6px;
@@ -88,6 +85,8 @@
   --lost-pin-dash: 4px 3px;
   --chat-bubble-offset: 15%;
   --composer-max: 9.5rem;
-  --map-legend-width: 260px;
+  --map-legend-width: 300px;
+  --chat-history-width: 300px;
+  --chat-history-height: 360px;
   --legend-swatch: 22px;
 }

@@ -1,9 +1,9 @@
-import type { CSSProperties } from "react"
+import { type CSSProperties, useState } from "react"
 import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import { SearchChat } from "@/features/search-chat"
+import { type ChatView, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
@@ -17,7 +17,12 @@ export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
-  useFreshStart(state.reset)
+  const [stay, setStay] = useState(false)
+  const [chatView, setChatView] = useState<ChatView>("chat")
+  useFreshStart(() => {
+    setStay(false)
+    state.reset()
+  })
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
   const compareDock = usePresence(state.compared.length >= 2)
@@ -39,13 +44,29 @@ export function HomePage() {
     variable: "--chat-width",
   })
   const start =
-    state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
+    !stay && state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
   const send = (message: string) => void withViewTransition("layout", () => state.send(message))
   const sizes = {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
     ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
   } as CSSProperties
-  if (start) return <Landing pending={state.sending} onSend={send} />
+  if (start)
+    return (
+      <Landing
+        pending={state.sending}
+        recent={state.history}
+        onSend={send}
+        onOpen={(id) => {
+          setStay(true)
+          setChatView("chat")
+          state.openConversation(id)
+        }}
+        onHistory={() => {
+          setStay(true)
+          setChatView("history")
+        }}
+      />
+    )
   return (
     <div className={styles.page}>
       <div className={styles.tabs}>
@@ -119,8 +140,15 @@ export function HomePage() {
             onRetry={state.retry}
             onShowOnMap={state.showOnMap}
             onShowList={() => state.setView("hotels")}
-            onReset={state.reset}
+            onReset={() => {
+              setStay(true)
+              state.reset()
+            }}
             onOpenConversation={state.openConversation}
+            view={chatView}
+            onView={setChatView}
+            onRename={state.renameConversation}
+            onDelete={state.deleteConversation}
           />
         </div>
       </div>

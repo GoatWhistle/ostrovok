@@ -11,6 +11,7 @@ setWorkerUrl(workerUrl)
 const MAX_PIXEL_RATIO = 1.25
 const ROTATE_SPEED = 0.35
 const PITCH_SPEED = -0.25
+const MIN_ZOOM = 2
 
 function isFatalMapError(event: ErrorEvent, started: boolean): boolean {
   if (event.error instanceof GPUInitializationError) return true
@@ -32,6 +33,7 @@ export function useMapInstance(hasCamera: boolean) {
         style: { version: 8, sources: {}, layers: [], transition: { duration: 0, delay: 0 } },
         attributionControl: false,
         maxPitch: 75,
+        minZoom: MIN_ZOOM,
         pixelRatio: Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO),
         rotateSpeed: ROTATE_SPEED,
         pitchSpeed: PITCH_SPEED,
@@ -56,6 +58,7 @@ export function useMapInstance(hasCamera: boolean) {
       let visible = false
       const resize = new ResizeObserver(([entry]) => {
         map.resize()
+        map.redraw()
         const shown = (entry?.contentRect.width ?? 0) > 0 && (entry?.contentRect.height ?? 0) > 0
         if (shown && !visible) setRevealed((count) => count + 1)
         visible = shown

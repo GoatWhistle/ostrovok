@@ -1,7 +1,13 @@
 import { Map as MapLibreMap } from "maplibre-gl"
 import { useEffect, useRef, useState } from "react"
 import { renderBasemap } from "@/shared/geo/basemap"
-import { lightMode, renderTerrain, type SunPosition, scenePalette } from "@/shared/geo/terrain"
+import {
+  followTerrainZoom,
+  lightMode,
+  renderTerrain,
+  type SunPosition,
+  scenePalette,
+} from "@/shared/geo/terrain"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, useReducedMotion } from "@/shared/motion"
 import { type MapColors, useMapColors } from "@/shared/theme"
@@ -106,6 +112,11 @@ export function useSceneReel() {
   }, [instance, ready, colors])
   useEffect(() => {
     const map = instance.current
+    if (!ready || !map) return
+    return followTerrainZoom(map)
+  }, [instance, ready])
+  useEffect(() => {
+    const map = instance.current
     const shot = SHOTS[index]
     if (!ready || !map || !shot) return
     const life = motionMs("--reel-life")
@@ -151,5 +162,5 @@ export function useSceneReel() {
       }, fade)
     }
   }, [instance, ready, index, reduced])
-  return { container, failed, index, shown, ready, marks }
+  return { container, instance, failed, index, shown, ready, marks }
 }

@@ -9,8 +9,7 @@
 }
 
 .item[aria-current="true"] {
-  background-color: var(--surface-raised);
-  box-shadow: var(--shadow-ring);
+  background-color: var(--surface-selected);
 }
 
 .text {

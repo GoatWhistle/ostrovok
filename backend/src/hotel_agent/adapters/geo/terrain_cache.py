@@ -44,10 +44,16 @@ class TerrainSourceCache:
         path = self._directory / f"{key}.webp" if self._directory else None
         if path is not None and path.is_file():
             return path.read_bytes()
-        response = self._client.get(url)
+        response = self._fetch(url)
         response.raise_for_status()
         if path is not None:
             temporary = path.with_suffix(".tmp")
             temporary.write_bytes(response.content)
             temporary.replace(path)
         return response.content
+
+    def _fetch(self, url: str) -> httpx.Response:
+        try:
+            return self._client.get(url)
+        except httpx.TransportError:
+            return self._client.get(url)

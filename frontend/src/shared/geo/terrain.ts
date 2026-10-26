@@ -1,4 +1,6 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { retryingTileUrl } from "./dem-protocol"
+import { addSnowLayers, paintSnow } from "./snow"
 
 export interface SunPosition {
   readonly azimuth: number
@@ -23,12 +25,18 @@ export interface TerrainColors {
   readonly hillHighlight: string
   readonly sunlight: string
   readonly rock: string
+  readonly snow: string
+  readonly meadow: string
 }
 
 export type LightMode = "day" | "dusk" | "night"
 
 export const TERRAIN_TILE_VERSION = "2"
 const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
+const DEM_MAX_ZOOM = 14
+const FALLBACK_MAX_ZOOM = 6
+const TERRAIN_MIN_ZOOM = 6
+const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
 const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
 
@@ -55,9 +63,9 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
     sea,
     0.6,
     colors.sand,
-    6,
-    colors.land,
-    260,
+    8,
+    colors.meadow,
+    300,
     colors.land,
     900,
     colors.park,
@@ -66,22 +74,29 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
   ]
 }
 
-function demSource(map: MapLibreMap, id: string) {
+function demSource(map: MapLibreMap, id: string, maxzoom = DEM_MAX_ZOOM) {
   if (map.getSource(id)) return
   map.addSource(id, {
     type: "raster-dem",
-    tiles: [`${window.location.origin}${DEM_TILES}`],
+    tiles: [retryingTileUrl(`${window.location.origin}${DEM_TILES}`)],
     tileSize: 256,
-    minzoom: 8,
-    maxzoom: 14,
+    minzoom: 0,
+    maxzoom,
     encoding: "mapbox",
   })
 }
 
 function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) {
   if (map.getLayer("sochi-relief")) return
+  demSource(map, "sochi-dem-fallback", FALLBACK_MAX_ZOOM)
   demSource(map, "sochi-dem")
   demSource(map, "sochi-dem-shade")
+  map.addLayer({
+    id: "sochi-relief-fallback",
+    type: "color-relief",
+    source: "sochi-dem-fallback",
+    paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
+  })
   map.addLayer({
     id: "sochi-relief",
     type: "color-relief",
@@ -99,15 +114,29 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
       "hillshade-accent-color": colors.hillShadow,
     },
   })
-  map.setTerrain({ source: "sochi-dem", exaggeration: 1.15 })
+  addSnowLayers(map, "sochi-dem-shade", colors.snow, "sochi-hillshade")
+}
+
+export function followTerrainZoom(map: MapLibreMap): () => void {
+  const sync = () => {
+    const wanted = map.getZoom() >= TERRAIN_MIN_ZOOM
+    if (wanted && !map.getTerrain()) map.setTerrain(TERRAIN)
+    if (!wanted && map.getTerrain()) map.setTerrain(null)
+  }
+  sync()
+  map.on("zoomend", sync)
+  return () => map.off("zoomend", sync)
 }
 
 export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunPosition) {
   const mode = lightMode(sun.altitude)
-  const { sea, sky, horizon } = scenePalette(colors, mode)
+  const { sea, sky } = scenePalette(colors, mode)
   addTerrainLayers(map, colors, sea)
-  map.setPaintProperty("sochi-relief", "color-relief-color", reliefRamp(colors, sea))
+  const ramp = reliefRamp(colors, sea)
+  map.setPaintProperty("sochi-relief-fallback", "color-relief-color", ramp)
+  map.setPaintProperty("sochi-relief", "color-relief-color", ramp)
   map.setPaintProperty("sochi-relief", "color-relief-opacity", RELIEF_OPACITY[mode])
+  paintSnow(map, colors.snow)
   map.setPaintProperty("sochi-hillshade", "hillshade-shadow-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-highlight-color", colors.hillHighlight)
   map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
@@ -121,7 +150,7 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   })
   map.setSky({
     "sky-color": sky,
-    "horizon-color": horizon,
+    "horizon-color": sea,
     "fog-color": sea,
     "sky-horizon-blend": 0.55,
     "horizon-fog-blend": 0.7,

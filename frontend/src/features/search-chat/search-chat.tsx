@@ -1,22 +1,24 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
-import { useTranslation } from "@/shared/i18n"
+import { useFormatters, useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
 import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
 import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
-import { ChatHistory } from "./chat-history"
+import { ChatHistory, type HistoryEntry } from "./chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
 
 export type ChatMessage = components["schemas"]["ChatMessage"]
+export type ChatView = "chat" | "history"
 
 export interface SearchChatProps {
   readonly messages: readonly ChatMessage[]
   readonly conversationId: string | null
-  readonly history: readonly { readonly id: string; readonly title: string }[]
+  readonly history: readonly HistoryEntry[]
+  readonly view: ChatView
   readonly search: SearchResponse | undefined
   readonly outgoing: string | undefined
   readonly selectedHotel?: string | undefined
@@ -29,6 +31,9 @@ export interface SearchChatProps {
   readonly onShowList: () => void
   readonly onReset: () => void
   readonly onOpenConversation: (id: string) => void
+  readonly onView: (view: ChatView) => void
+  readonly onRename: (id: string, title: string) => Promise<unknown>
+  readonly onDelete: (id: string) => Promise<unknown>
 }
 
 function useFollow() {
@@ -63,85 +68,99 @@ export function SearchChat({
   onShowList,
   onReset,
   onOpenConversation,
+  view,
+  onView,
+  onRename,
+  onDelete,
 }: SearchChatProps) {
   const { t } = useTranslation()
-  const [historyOpen, setHistoryOpen] = useState(false)
+  const format = useFormatters()
   const { log, list } = useFollow()
   const lastAssistant = messages.findLast((message) => message.role === "assistant")?.id
+  const title =
+    history.find((item) => item.id === conversationId)?.title ||
+    (conversationId ? t("explore:chat.untitled") : t("explore:chat.newSearch"))
   return (
     <section className={styles.chat} aria-labelledby="chat-title">
       <header className={styles.header}>
-        <p id="chat-title" className={styles.title}>
-          {t("explore:chat.title")}
+        <p id="chat-title" className={styles.title} title={title}>
+          {title}
         </p>
         <div className={styles.actions}>
           <Button
             variant="ghost"
-            size="compact"
+            iconOnly
             icon="history"
-            title={t("explore:chat.history")}
-            aria-expanded={historyOpen}
-            aria-controls="chat-history"
-            disabled={history.length === 0}
-            onClick={() => setHistoryOpen((open) => !open)}
+            className={styles.toggle}
+            title={t("explore:chat.historyShort")}
+            aria-pressed={view === "history"}
+            disabled={history.length === 0 && view === "chat"}
+            onClick={() => onView(view === "history" ? "chat" : "history")}
           >
-            {t("explore:chat.history")}
+            {t("explore:chat.historyShort")}
           </Button>
           <Button
-            variant="ghost"
-            size="compact"
             iconOnly
-            icon="new-search"
+            icon="plus"
+            className={styles.create}
             title={t("explore:chat.newSearch")}
             disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
             onClick={() => {
+              onView("chat")
               onReset()
-              setHistoryOpen(false)
             }}
           >
             {t("explore:chat.newSearch")}
           </Button>
         </div>
       </header>
-      <ChatHistory
-        id="chat-history"
-        activeId={conversationId}
-        conversations={history}
-        hidden={!historyOpen}
-        pending={sending}
-        onOpen={(id) => {
-          onOpenConversation(id)
-          setHistoryOpen(false)
-        }}
-      />
-      <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
-        <ol ref={list} className={styles.messages}>
-          {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
-          {loading ? <AgentThinking /> : null}
-          {messages.map((message) =>
-            message.role === "user" ? (
-              <UserBubble key={message.id}>{message.content}</UserBubble>
-            ) : (
-              <AgentReply
-                key={message.id}
-                content={message.content}
-                search={message.id === lastAssistant ? search : undefined}
-                onShowOnMap={onShowOnMap}
-                onShowList={onShowList}
-              />
-            ),
-          )}
-          {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
-          {sending ? <AgentThinking /> : null}
-          {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
-        </ol>
-      </ScrollArea>
-      <ChatComposer
-        key={conversationId ?? "new"}
-        pending={sending}
-        selectedHotel={selectedHotel}
-        onSend={onSend}
-      />
+      {view === "history" ? (
+        <ChatHistory
+          activeId={conversationId}
+          conversations={history}
+          pending={sending}
+          onOpen={(id) => {
+            onOpenConversation(id)
+            onView("chat")
+          }}
+          onRename={onRename}
+          onDelete={onDelete}
+        />
+      ) : null}
+      <div className={styles.body} hidden={view === "history"}>
+        <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
+          <ol ref={list} className={styles.messages}>
+            {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
+            {loading ? <AgentThinking /> : null}
+            {messages.map((message) =>
+              message.role === "user" ? (
+                <UserBubble key={message.id} time={format.time(message.created_at)}>
+                  {message.content}
+                </UserBubble>
+              ) : (
+                <AgentReply
+                  key={message.id}
+                  content={message.content}
+                  time={format.time(message.created_at)}
+                  search={message.id === lastAssistant ? search : undefined}
+                  onShowOnMap={onShowOnMap}
+                  onShowList={onShowList}
+                  onSend={onSend}
+                />
+              ),
+            )}
+            {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
+            {sending ? <AgentThinking /> : null}
+            {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
+          </ol>
+        </ScrollArea>
+        <ChatComposer
+          key={conversationId ?? "new"}
+          pending={sending}
+          selectedHotel={selectedHotel}
+          onSend={onSend}
+        />
+      </div>
     </section>
   )
 }

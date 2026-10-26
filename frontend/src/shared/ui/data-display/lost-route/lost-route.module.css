@@ -1,9 +1,8 @@
 .art {
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   background-color: var(--map-land);
-  box-shadow: var(--shadow-ring);
 }
 
 .svg {

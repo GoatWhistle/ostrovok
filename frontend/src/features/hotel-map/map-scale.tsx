@@ -65,10 +65,17 @@ export function MapScale({
   return (
     <span
       className={styles.scale}
-      style={{ "--scale-width": `${scale.pixels}px` } as CSSProperties}
+      style={
+        {
+          "--scale-width": `${scale.pixels}px`,
+          "--scale-track": `${MAX_PIXELS}px`,
+        } as CSSProperties
+      }
     >
-      <span className={styles.scaleBar} aria-hidden="true" />
-      <span>{scaleLabel(scale.meters, locale)}</span>
+      <span className={styles.scaleTrack} aria-hidden="true">
+        <span className={styles.scaleBar} />
+      </span>
+      <span className={styles.scaleLabel}>{scaleLabel(scale.meters, locale)}</span>
     </span>
   )
 }

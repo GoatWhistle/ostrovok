@@ -88,16 +88,16 @@ components:
     textColor: '{colors.neutral-950}'
     rounded: '{rounded.md}'
   chip:
-    rounded: '{rounded.pill}'
+    rounded: '{rounded.md}'
     height: 36px
   hotel-card:
-    rounded: '{rounded.lg}'
+    rounded: '{rounded.md}'
     padding: 12px
   chat-bubble:
     rounded: '{rounded.lg}'
     padding: 12px 16px
   composer:
-    rounded: '{rounded.xl}'
+    rounded: '{rounded.lg}'
     height: 56px
 ---
 
@@ -116,13 +116,13 @@ sources read first.
 
 - Calm neutral grounds with a faint green cast, one cobalt action colour, one lime fact colour.
 - Manrope for every role, with heavy weights for headings; JetBrains Mono only for values and codes.
-- Rings instead of borders, soft floating shadows only for layers above the map.
+- Flat surfaces separated by tone; hairline rings only on fields, shadows only for floating layers.
 - Honest states: unknown, computing, conflict and missing are visibly different from "no".
 
 ## Colors
 
 - **Cobalt** (`--action-primary`, `--focus-ring`, `--map-route`, `--map-hotel-selected`): primary
-  buttons, the user's chat bubble, selection rings, walking routes.
+  buttons, the user's chat bubble, the selected hotel ring, walking routes.
 - **Lime** (`--action-fact`, `--surface-highlight`, `--map-fact`): the fact. Used for complete match
   badges, "Показать на карте", text selection and fact geometry. Never for decoration.
 - **Neutrals**: `--surface-base` page, `--surface-raised` cards and bubbles, `--surface-sunken`
@@ -130,7 +130,8 @@ sources read first.
 - **Status**: success green, danger red, warning amber, conflict violet, info cobalt, neutral grey;
   each has a surface and a text pair and always comes with an icon.
 - **Characteristic hues** (`--hue-*`): sea, sunset, quiet, nightlife, dark, pets, height, walk. They
-  colour the icon of a wish in chips, match rows and fact tiles.
+  colour the icon of a wish in chips, match rows and fact tiles. They carry meaning, so they colour
+  the icon only and never sit behind it as a pastel disc.
 - **Map** (`--map-*`): land, water, parks, sand, buildings, roads, labels, sky and terrain shading for
   both themes, plus hotel pins, fact and route colours.
 
@@ -149,24 +150,32 @@ Other pages use the page shell with 24px gutters (32px from 75rem) and full widt
 
 ## Elevation & Depth
 
-Resting surfaces use hairline rings (`--shadow-ring`, `--shadow-ring-subtle`). Hover strengthens
-the ring, selection uses the cobalt ring. Floating map controls and panels use `--shadow-float`;
-menus and dialogs `--shadow-overlay`; map pins `--shadow-pin`.
+Resting surfaces are flat: `--surface-raised` panels and cards sit on `--surface-base` without a
+ring or shadow, and hover moves to `--surface-raised-hover`. The header and panel edges use a single
+hairline divider. Hairline rings (`--shadow-ring`) stay only on fields (inputs, select, composer),
+where they mark the editable area; the selected hotel keeps the cobalt ring. The Segmented track is a
+sunken tone with a raised, unringed indicator. Shadows and glass are reserved for layers that float
+over the map or the page: map controls and overlays use `--shadow-float`, menus and popovers
+`--shadow-float` or `--shadow-overlay`, map pins `--shadow-pin`.
 
 ## Shapes
 
-Radius scale 4 / 8 / 12 / 16 / 24 / pill. Controls use 12px (8px compact), cards and bubbles 16px,
-the composer and large overlays 24px, chips and pills fully round. Bubbles cut one corner to 4px
+Radius scale 4 / 8 / 12 / 16 / 24 / pill. Controls, chips, cards and panels use 12px (8px compact
+controls and thumbnails), bubbles and the composer 16px. Fully round shapes are kept for map pins,
+the scale and attribution pills over the map and the scrollbar thumb. Bubbles cut one corner to 4px
 towards their author.
 
 ## Components
 
 - **Button**: primary, secondary, outline, ghost, fact (lime), confirm, reject; regular 44px,
   compact 36px with a 44px hit area, hero 56px; icon-only variant with a tooltip.
-- **Chip**: wish chip with a hue dot; pressed state fills the dot and rings the chip in the hue;
-  a static variant shows how a request was understood.
-- **Hotel card**: 84px square thumb, bold name, match score badge (lime when all wishes match),
-  address with a pin, rows of wishes with hue icon and status glyph.
+- **Chip**: wish chip on a neutral translucent fill with the wish icon in its hue; the pressed and
+  static variants take a light tint of the hue. A static variant shows how a request was understood.
+- **Hotel card**: flat raised surface, bold name, match score badge (lime when all wishes match),
+  address with a pin, rows of wishes with hue icon and status glyph. A 56px thumb appears only when
+  the hotel has a photo; there is no placeholder tile in the list.
+- **EmptyState / ErrorState**: a 48px icon in the tone colour without a tile, title, text and an
+  action; the panel fades in as one piece.
 - **Chat**: agent bubbles with the mark as avatar, user bubbles in cobalt, result replies with
   understood wishes, corrections, unknown terms, pending work and the lime "show on map" action;
   composer with an auto-growing field and a cobalt send button.

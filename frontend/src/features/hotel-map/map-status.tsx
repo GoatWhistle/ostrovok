@@ -1,6 +1,6 @@
-import { useTranslation } from "@/shared/i18n"
+import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { useLatched, usePresence } from "@/shared/motion"
-import { EmptyState, ErrorState, Icon, JourneyLoader, StatusBadge } from "@/shared/ui"
+import { EmptyState, ErrorState, Icon, JourneyLoader } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import type { HotelTextureStatus } from "./texture/use-textured-hotel"
 
@@ -64,44 +64,17 @@ export function MapStatus({ hasCamera, sceneError, failed, ready, onRetry }: Map
   return <MapLoading loading={!ready} />
 }
 
-export function MapWarning({
-  invalid,
-  missingHeight,
-  textureStatus,
-}: {
-  readonly invalid: boolean
-  readonly missingHeight: boolean
-  readonly textureStatus: HotelTextureStatus
-}) {
-  const { t } = useTranslation()
-  const quality = invalid
-    ? t("explore:map.geodataInvalid")
-    : missingHeight
-      ? t("explore:map.noHeight")
-      : undefined
-  if (textureStatus !== "none")
-    return (
-      <>
-        <StatusBadge tone="warning" className={styles.warning}>
-          {t(
-            textureStatus === "ready"
-              ? "explore:map.textureApproximate"
-              : "explore:map.textureUnavailable",
-          )}
-        </StatusBadge>
-        {quality ? (
-          <StatusBadge tone="warning" className={styles.warning}>
-            {quality}
-          </StatusBadge>
-        ) : null}
-      </>
-    )
-  if (!invalid && !missingHeight) return null
-  return (
-    <StatusBadge tone="warning" className={styles.warning}>
-      {invalid ? t("explore:map.geodataInvalid") : t("explore:map.noHeight")}
-    </StatusBadge>
-  )
+export function mapNotes(
+  invalid: boolean,
+  missingHeight: boolean,
+  textureStatus: HotelTextureStatus,
+): MessageKey[] {
+  const notes: MessageKey[] = []
+  if (textureStatus === "ready") notes.push("explore:map.textureApproximate")
+  if (textureStatus === "unavailable") notes.push("explore:map.textureUnavailable")
+  if (invalid) notes.push("explore:map.geodataInvalid")
+  else if (missingHeight) notes.push("explore:map.noHeight")
+  return notes
 }
 
 export interface MapFocusProps {

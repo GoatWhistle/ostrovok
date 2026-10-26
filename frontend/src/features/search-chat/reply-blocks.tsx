@@ -1,7 +1,7 @@
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { characteristicTitle } from "@/shared/geo/fact-label"
-import { useLocale, useTranslation } from "@/shared/i18n"
+import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import {
   Banner,
   Button,
@@ -14,6 +14,38 @@ import styles from "./agent-reply.module.css"
 
 export type SearchResponse = components["schemas"]["SearchResponse"]
 type Parsed = SearchResponse["parsed"]
+
+const POPULAR_CITIES: readonly MessageKey[] = [
+  "explore:chat.citySochi",
+  "explore:chat.cityMoscow",
+  "explore:chat.citySpb",
+]
+
+export function needsCity(parsed: Parsed) {
+  return Boolean(parsed.needs_clarification && !parsed.location_hint)
+}
+
+export function CityChoice({ onSend }: { readonly onSend: (message: string) => void }) {
+  const { t } = useTranslation()
+  return (
+    <div className={styles.group}>
+      <p className={styles.caption}>{t("explore:chat.cityPrompt")}</p>
+      <div className={styles.chips}>
+        {POPULAR_CITIES.map((key) => (
+          <Button
+            key={key}
+            variant="outline"
+            size="compact"
+            icon="pin"
+            onClick={() => onSend(t(key))}
+          >
+            {t(key)}
+          </Button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function ReplyIntents({ parsed }: { readonly parsed: Parsed }) {
   const { t } = useTranslation()
@@ -61,13 +93,9 @@ export function ReplyNotices({
           {t("explore:results.correction", item)}
         </Banner>
       ))}
-      {parsed.needs_clarification ? (
+      {parsed.needs_clarification && parsed.location_hint ? (
         <Banner tone="warning" title={t("explore:chat.clarify")}>
-          {t(
-            parsed.location_hint
-              ? "explore:results.clarification"
-              : "explore:results.clarificationCity",
-          )}
+          {t("explore:results.clarification")}
         </Banner>
       ) : null}
       {parsed.unsupported_region ? (

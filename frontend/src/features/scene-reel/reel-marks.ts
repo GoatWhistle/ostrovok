@@ -15,7 +15,9 @@ export function placeMarks(map: MapLibreMap, shot: Shot): ReelMark[] {
     const element = document.createElement("div")
     element.setAttribute("aria-hidden", "true")
     element.style.setProperty("--mark-step", String(step))
-    const marker = new Marker({ element, anchor: "bottom" }).setLngLat(at).addTo(map)
+    const marker = new Marker({ element, anchor: "bottom", opacityWhenCovered: 1 })
+      .setLngLat(at)
+      .addTo(map)
     return {
       key: `${shot.id}-${step}`,
       element,

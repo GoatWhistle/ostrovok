@@ -85,7 +85,6 @@
   --map-road: var(--map-light-road);
   --map-road-casing: var(--map-light-road-casing);
   --map-rail: var(--map-light-rail);
-  --map-label: var(--map-light-label);
   --map-road-major: var(--map-light-road-major);
   --map-contour: color-mix(in oklab, var(--neutral-600) 18%, transparent);
   --map-sea: var(--map-light-water);
@@ -101,7 +100,8 @@
   --map-hill-highlight: var(--map-light-hill-highlight);
   --map-sunlight: var(--map-light-sunlight);
   --map-rock: var(--map-light-rock);
-  --map-beach: var(--map-light-sand);
+  --map-snow: var(--map-light-snow);
+  --map-meadow: var(--map-light-meadow);
   --map-coast: var(--map-light-water-line);
   --map-highlight: var(--map-fact-line);
   --map-label-halo: var(--neutral-50);
@@ -209,7 +209,6 @@
   --map-road: var(--map-dark-road);
   --map-road-casing: var(--map-dark-road-casing);
   --map-rail: var(--map-dark-rail);
-  --map-label: var(--map-dark-label);
   --map-road-major: var(--map-dark-road-major);
   --map-contour: color-mix(in oklab, var(--map-dark-contour) 12%, transparent);
   --map-sea: var(--map-dark-water);
@@ -225,7 +224,8 @@
   --map-hill-highlight: var(--map-dark-hill-highlight);
   --map-sunlight: var(--map-dark-sunlight);
   --map-rock: var(--map-dark-rock);
-  --map-beach: var(--map-dark-sand);
+  --map-snow: var(--map-dark-snow);
+  --map-meadow: var(--map-dark-meadow);
   --map-coast: var(--map-dark-water-line);
   --map-highlight: var(--map-fact-line);
   --map-label-halo: var(--neutral-950);

@@ -82,10 +82,12 @@ export interface paths {
         get: operations["getConversation"];
         put?: never;
         post?: never;
-        delete?: never;
+        /** Удалить диалог вместе с сообщениями */
+        delete: operations["deleteConversation"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** Переименовать диалог */
+        patch: operations["renameConversation"];
         trace?: never;
     };
     "/chat/messages": {
@@ -797,9 +799,17 @@ export interface components {
             /** Format: date-time */
             created_at: string;
         };
+        ConversationTitle: {
+            /** @description 1–80 символов после обрезки пробелов */
+            title: string;
+        };
         Conversation: {
             /** Format: uuid */
             id: string;
+            /** @description Название из распознанного запроса или заданное пользователем */
+            title: string | null;
+            /** Format: date-time */
+            updated_at: string | null;
             messages: components["schemas"]["ChatMessage"][];
             effective_query?: string | null;
             search?: components["schemas"]["SearchResponse"];
@@ -960,6 +970,63 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+        };
+    };
+    deleteConversation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Удалено */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    renameConversation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConversationTitle"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            /** @description Название пустое или длиннее 80 символов после обрезки пробелов */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     sendChatMessage: {

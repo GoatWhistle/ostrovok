@@ -8,6 +8,7 @@ export interface Formatters {
   readonly percent: (ratio: number, fractionDigits?: number) => string
   readonly money: (value: number, currency: string) => string
   readonly date: (value: DateInput) => string
+  readonly shortDate: (value: DateInput) => string
   readonly time: (value: DateInput) => string
   readonly dateTime: (value: DateInput) => string
   readonly relative: (value: number, unit: Intl.RelativeTimeFormatUnit) => string
@@ -36,6 +37,7 @@ export function createFormatters(locale: Locale, timeZone?: string): Formatters 
   const numberFormat = numberFormatCache(tag)
   const dateFormat = new Intl.DateTimeFormat(tag, { dateStyle: "long", ...zone })
   const timeFormat = new Intl.DateTimeFormat(tag, { timeStyle: "short", ...zone })
+  const shortDateFormat = new Intl.DateTimeFormat(tag, { day: "numeric", month: "short", ...zone })
   const dateTimeFormat = new Intl.DateTimeFormat(tag, {
     dateStyle: "medium",
     timeStyle: "short",
@@ -51,6 +53,7 @@ export function createFormatters(locale: Locale, timeZone?: string): Formatters 
       numberFormat({ style: "percent", ...digits(fractionDigits) }).format(ratio),
     money: (value, currency) => numberFormat({ style: "currency", currency }).format(value),
     date: (value) => dateFormat.format(new Date(value)),
+    shortDate: (value) => shortDateFormat.format(new Date(value)),
     time: (value) => timeFormat.format(new Date(value)),
     dateTime: (value) => dateTimeFormat.format(new Date(value)),
     relative: (value, unit) => relativeFormat.format(value, unit),

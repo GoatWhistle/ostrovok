@@ -1,16 +1,8 @@
 import { NavLink } from "react-router"
 import { useHealth } from "@/entities/health"
-import { LocaleSwitch } from "@/features/locale-switch"
-import { ThemeChoice } from "@/features/theme-switch"
+import { SiteSettings } from "@/pages/home/site-settings"
 import { useTranslation } from "@/shared/i18n"
-import {
-  BrandMark,
-  Icon,
-  SettingsMenu,
-  SettingsRow,
-  StatusBadge,
-  type StatusTone,
-} from "@/shared/ui"
+import { BrandMark, StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./app-header.module.css"
 
 export function AppHeader() {
@@ -24,16 +16,6 @@ export function AppHeader() {
         <span className={styles.word}>{t("common:app.wordmark")}</span>
         <span className="visually-hidden">{t("common:app.tagline")}</span>
       </NavLink>
-      <nav className={styles.navigation} aria-label={t("explore:navigation.search")}>
-        <NavLink to="/" end viewTransition className={styles.link ?? ""}>
-          <Icon name="search" size="sm" />
-          {t("explore:navigation.search")}
-        </NavLink>
-        <NavLink to="/hotelier" viewTransition className={styles.link ?? ""}>
-          <Icon name="hotelier" size="sm" />
-          {t("explore:navigation.hotelier")}
-        </NavLink>
-      </nav>
       <div className={styles.controls}>
         {health.isSuccess ? null : (
           <span className={styles.service} role="status">
@@ -42,14 +24,7 @@ export function AppHeader() {
             </StatusBadge>
           </span>
         )}
-        <SettingsMenu label={t("explore:landing.settings")}>
-          <SettingsRow label={t("explore:landing.language")}>
-            <LocaleSwitch />
-          </SettingsRow>
-          <SettingsRow label={t("explore:landing.theme")}>
-            <ThemeChoice />
-          </SettingsRow>
-        </SettingsMenu>
+        <SiteSettings />
       </div>
     </header>
   )

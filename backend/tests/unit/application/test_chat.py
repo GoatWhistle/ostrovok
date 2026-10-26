@@ -9,6 +9,7 @@ from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.exploration_requests import apply_exploration
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.search_hotels import (
@@ -27,6 +28,7 @@ def chat(search: Any = None, uow: Any = None) -> Chat:
         cast(UnitOfWorkFactory, uow),
         cast(SearchHotels, search),
         lambda outcome: {"query_id": outcome.query_id},
+        cast(CharacteristicRegistryPort, SimpleNamespace()),
     )
 
 

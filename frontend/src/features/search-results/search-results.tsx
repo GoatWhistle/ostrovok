@@ -47,7 +47,6 @@ export function SearchResults({
       <div className={styles.loading} role="status" aria-label={t("common:state.loading")}>
         {["first", "second", "third"].map((key) => (
           <div key={key} className={styles.ghost}>
-            <Skeleton shape="block" className={styles.ghostThumb} />
             <Skeleton lines={3} />
           </div>
         ))}

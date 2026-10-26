@@ -3,11 +3,15 @@
   position: relative;
   display: grid;
   grid-template-columns: var(--thumb-panel) minmax(0, 1fr);
-  gap: var(--space-16);
+  gap: var(--space-12);
   padding: var(--space-12);
-  animation: var(--motion-rise-in);
+  animation: var(--motion-fade-in);
   animation-delay: calc(var(--i, 0) * var(--stagger));
   transition: var(--transition-press);
+}
+
+.hotel[data-photo="false"] {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .hotel[data-selected="true"] {
@@ -20,7 +24,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .hotel:hover:not([data-selected="true"]) {
-    box-shadow: var(--shadow-ring-strong);
+    background-color: var(--surface-raised-hover);
   }
 }
 
@@ -53,7 +57,7 @@
 
 .hotel .name::before {
   inset: 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
 }
 
 .hotel .name:active {

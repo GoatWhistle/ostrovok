@@ -17,3 +17,5 @@ class ConversationRecord:
     effective_query: str | None
     messages: tuple[ChatMessageRecord, ...]
     search_snapshot: dict[str, object] | None = None
+    title: str | None = None
+    updated_at: datetime | None = None

@@ -8,6 +8,11 @@
   overflow-wrap: anywhere;
 }
 
+.question {
+  composes: subheadingText from "../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
 .group {
   display: grid;
   gap: var(--space-8);

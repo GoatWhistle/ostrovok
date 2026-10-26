@@ -4,14 +4,14 @@
   gap: var(--space-12);
   min-block-size: var(--control-height-hero);
   padding: var(--space-8) var(--space-8) var(--space-8) var(--space-16);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   background-color: var(--surface-raised);
-  box-shadow: var(--shadow-float);
+  box-shadow: var(--shadow-ring);
   transition: var(--transition-control);
 }
 
 .box:focus-within {
-  box-shadow: var(--shadow-float-focus);
+  box-shadow: var(--shadow-ring-focus);
 }
 
 .field {

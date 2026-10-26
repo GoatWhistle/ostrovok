@@ -38,6 +38,8 @@ import {
   Share2,
   SquarePen,
   Sun,
+  Trash2,
+  X,
   ZoomIn,
   ZoomOut,
 } from "lucide-react"
@@ -129,6 +131,8 @@ export const ICONS = {
   "theme-light": Sun,
   "theme-dark": Moon,
   settings: Settings,
+  delete: Trash2,
+  close: X,
 } as const satisfies Record<string, ComponentType<GlyphProps>>
 
 export type IconName = keyof typeof ICONS

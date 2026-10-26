@@ -4,7 +4,7 @@ import type { Shot } from "./shots"
 
 const DEM_PATH = "/api/v1/map/terrain"
 const DEM_MAX_ZOOM = 14
-const DEM_MIN_ZOOM = 8
+const DEM_MIN_ZOOM = 0
 const SPREAD = 1
 const DEPTH = 0
 

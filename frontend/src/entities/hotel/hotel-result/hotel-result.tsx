@@ -39,9 +39,10 @@ export function HotelResult({
     <article
       className={styles.hotel}
       data-selected={selected}
+      data-photo={Boolean(result.hotel.thumbnail_url)}
       style={index === undefined ? undefined : staggerStyle(index)}
     >
-      <HotelThumb src={result.hotel.thumbnail_url} />
+      {result.hotel.thumbnail_url ? <HotelThumb src={result.hotel.thumbnail_url} /> : null}
       <div className={styles.body}>
         <div className={styles.top}>
           <Button

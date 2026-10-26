@@ -1,0 +1,17 @@
+.sun {
+  position: absolute;
+  inset: 0 auto auto 0;
+  inline-size: var(--space-40);
+  block-size: var(--space-40);
+  border-radius: var(--radius-pill);
+  background-color: var(--map-sunlight);
+  box-shadow: var(--shadow-sun);
+  opacity: var(--sun-opacity, 0);
+  translate: calc(var(--sun-x, 0) - 50%) calc(var(--sun-y, 0) - 50%);
+  transition: var(--transition-fade);
+  pointer-events: none;
+}
+
+.sun[data-visible="true"] {
+  --sun-opacity: 1;
+}

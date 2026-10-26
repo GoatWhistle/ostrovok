@@ -7,9 +7,11 @@
 
 .userText {
   composes: bodySmText from "../../shared/styles/compose.module.css";
+  position: relative;
   margin-inline-start: var(--chat-bubble-offset);
-  padding: var(--space-12) var(--space-16);
-  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-xs) var(--radius-lg);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-sm);
   background-color: var(--action-primary);
   color: var(--action-primary-text);
   font-weight: var(--weight-medium);
@@ -18,11 +20,21 @@
   overflow-wrap: anywhere;
 }
 
+.userText .time {
+  display: block;
+  margin-block-start: var(--space-2);
+  color: var(--action-primary-text);
+  font-size: var(--font-size-caption);
+  font-weight: var(--weight-medium);
+  text-align: end;
+  opacity: 0.75;
+}
+
 .agent {
   display: grid;
   grid-template-columns: var(--chat-avatar) minmax(0, 1fr);
   align-items: end;
-  gap: var(--space-8);
+  gap: var(--space-12);
   animation: var(--motion-anchor-in);
   transform-origin: 0 100%;
 }
@@ -41,6 +53,14 @@
   display: grid;
   gap: var(--space-12);
   min-inline-size: 0;
+  position: relative;
   padding: var(--space-12) var(--space-16);
-  border-end-start-radius: var(--radius-xs);
+  border-end-start-radius: var(--radius-sm);
+}
+
+.agentTime {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  justify-self: end;
+  margin-block-start: calc(var(--space-6) * -1);
+  color: var(--text-muted);
 }

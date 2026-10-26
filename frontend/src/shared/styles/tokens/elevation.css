@@ -15,9 +15,13 @@
   --shadow-ring-focus: inset 0 0 0 var(--focus-ring-width) var(--focus-ring);
   --shadow-ring-selected: inset 0 0 0 var(--focus-ring-width) var(--action-primary);
   --shadow-ring-danger: inset 0 0 0 var(--focus-ring-width) var(--status-danger);
-  --shadow-raised: 0 1px 2px var(--shadow-color);
   --shadow-float: 0 0 0 var(--hairline) var(--border-subtle), 0 4px 14px var(--shadow-color);
   --backdrop-glass: blur(14px) saturate(1.4);
+  --shadow-sun:
+    0 0 0 6px color-mix(in oklab, var(--map-sunlight) 40%, transparent),
+    0 0 56px 20px color-mix(in oklab, var(--hue-sunset) 45%, transparent);
+  --filter-float: drop-shadow(0 0 var(--hairline) var(--border-strong))
+    drop-shadow(0 4px 12px var(--shadow-color));
   --shadow-overlay:
     0 0 0 var(--hairline) var(--border-subtle), 0 16px 48px var(--shadow-color-strong);
   --shadow-divider-top: inset 0 var(--hairline) 0 var(--border-subtle);
@@ -25,8 +29,6 @@
   --shadow-divider-start: inset var(--hairline) 0 0 var(--border-subtle);
   --shadow-divider-end: inset calc(var(--hairline) * -1) 0 0 var(--border-subtle);
   --shadow-ring-current: inset 0 0 0 var(--focus-ring-width) currentColor;
-  --shadow-float-focus: var(--shadow-float), var(--shadow-ring-focus);
-  --shadow-raised-ring: var(--shadow-raised), var(--shadow-ring-subtle);
   --shadow-pin: 0 0 0 var(--hairline) var(--border-default), 0 3px 10px var(--shadow-color);
 
   --opacity-stale: 0.55;

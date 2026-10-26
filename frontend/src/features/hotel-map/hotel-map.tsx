@@ -11,11 +11,13 @@ import { motionMs } from "@/shared/motion"
 import { ErrorState, MapAttribution } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
+import { MapLegendToggle } from "./map-legend"
 import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
-import { MapFocus, MapStatus, MapWarning } from "./map-status"
-import { regionOverview, sceneData, sceneQuality } from "./scene-data"
-import { forecastEnd, sceneToday, sunScene } from "./scene-time/scene-time"
+import { MapFocus, MapStatus, mapNotes } from "./map-status"
+import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
+import { SceneSun } from "./scene-time/scene-sun"
+import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
 import { useHotelMap } from "./use-hotel-map"
 import { expandCluster } from "./use-result-pins"
@@ -100,9 +102,10 @@ export function HotelMap({
     () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
     [hotelId, scene.data, hotel],
   )
-  const [lon, lat] = sceneLocation(hotel, selectedCamera)
+  const place = hotel ?? results[0]
+  const [lon, lat] = sceneLocation(place, selectedCamera)
   const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
-  const weather = useWeather(lon, lat, date, hour, selectedCamera !== undefined)
+  const weather = useWeather(lon, lat, date, hour, place !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)
   const focusFeatures = geoRefs.length ? (geometry.data?.features ?? []) : []
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
@@ -116,10 +119,16 @@ export function HotelMap({
     hotelId,
     focusFeatures,
     focusLabel: focus.label,
-    sun: sun.position,
+    sun: place ? sun.position : OVERVIEW_SUN,
   })
   const overview = scene.data?.cameras.overview ?? selectedCamera
   const showOverview = (instant: boolean) => {
+    const corners = hotelId ? undefined : resultCorners(results)
+    const duration = instant ? 0 : motionMs("--dur-draw")
+    if (corners) {
+      map.instance.current?.fitBounds(corners, { duration, padding: 64, maxZoom: 15 })
+      return
+    }
     if (!overview) return
     const options = {
       center: [overview.center[0] ?? 0, overview.center[1] ?? 0] as [number, number],
@@ -137,6 +146,14 @@ export function HotelMap({
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
+      {place ? (
+        <SceneSun
+          map={map.instance}
+          ready={map.ready}
+          azimuth={sun.position.azimuth}
+          altitude={sun.position.altitude}
+        />
+      ) : null}
       {map.markers.map((view) =>
         createPortal(
           <MapPin
@@ -184,29 +201,27 @@ export function HotelMap({
       {selectedCamera ? (
         <div className={styles.bottom}>
           <div className={styles.bottomStart}>
-            <MapWarning
-              invalid={invalid}
-              missingHeight={missingHeight}
-              textureStatus={map.textureStatus}
-            />
-            <SceneTimePanel
-              date={date}
-              minDate={today}
-              maxDate={forecastEnd(today)}
-              hour={hour}
-              altitude={sun.position.altitude}
-              azimuth={sun.position.azimuth}
-              sunset={sun.times.sunset}
-              weather={weather.data}
-              weatherPending={weather.isPending || weather.isFetching}
-              onDate={setDate}
-              onHour={(value) => {
-                if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
-              }}
-            />
+            {place ? (
+              <SceneTimePanel
+                date={date}
+                minDate={today}
+                maxDate={forecastEnd(today)}
+                hour={hour}
+                altitude={sun.position.altitude}
+                azimuth={sun.position.azimuth}
+                sunset={sun.times.sunset}
+                weather={weather.data}
+                weatherPending={weather.isPending || weather.isFetching}
+                onDate={setDate}
+                onHour={(value) => {
+                  if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
+                }}
+              />
+            ) : null}
           </div>
           <div className={styles.meta}>
             <MapScale map={map.instance} ready={map.ready} />
+            <MapLegendToggle notes={mapNotes(invalid, missingHeight, map.textureStatus)} />
             <MapAttribution
               label={t("explore:map.attributionTitle")}
               osm={t("explore:map.attribution")}

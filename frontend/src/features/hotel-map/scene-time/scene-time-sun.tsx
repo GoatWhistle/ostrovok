@@ -3,7 +3,7 @@ import type { components } from "@/shared/api/schema.gen"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { i18n } from "@/shared/i18n/instance"
-import { Icon, NoValue, StatusBadge } from "@/shared/ui"
+import { Icon, NoValue } from "@/shared/ui"
 import { localClock, weatherDescription } from "./scene-time"
 import styles from "./scene-time-panel.module.css"
 
@@ -30,24 +30,6 @@ export function weatherText(weather: Weather | undefined, pending: boolean, loca
   return i18n.t(pending ? "explore:weather.loading" : "explore:weather.unavailable", {
     lng: locale,
   })
-}
-
-export function WeatherBadge({
-  weather,
-  pending,
-}: {
-  readonly weather: Weather | undefined
-  readonly pending: boolean
-}) {
-  const { locale } = useLocale()
-  const text = weatherText(weather, pending, locale)
-  if (available(weather))
-    return (
-      <StatusBadge tone="neutral" icon="theme-light">
-        {text}
-      </StatusBadge>
-    )
-  return <StatusBadge tone={pending ? "info" : "stale"}>{text}</StatusBadge>
 }
 
 export function SunFacts({
@@ -79,9 +61,7 @@ export function SunFacts({
       </div>
       <dl className={styles.stats} aria-live="polite">
         <div className={styles.stat}>
-          <dt className={styles.statLabel}>
-            {altitude >= 0 ? t("explore:weather.altitude") : t("explore:weather.sunBelow")}
-          </dt>
+          <dt className={styles.statLabel}>{t("explore:weather.altitude")}</dt>
           <dd className={styles.statValue}>
             {t("explore:weather.degrees", { value: Math.round(altitude) })}
           </dd>

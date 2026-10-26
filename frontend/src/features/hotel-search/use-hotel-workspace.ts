@@ -101,6 +101,14 @@ export function useHotelWorkspace() {
       chat.reset()
       setView("chat")
     },
+    renameConversation: chat.rename,
+    deleteConversation: (id: string) => {
+      if (id === chat.conversationId) {
+        clearSelection()
+        setCompared([])
+      }
+      return chat.remove(id)
+    },
     openConversation: (id: string) => {
       clearSelection()
       setCompared([])

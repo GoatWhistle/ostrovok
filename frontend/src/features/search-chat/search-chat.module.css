@@ -16,11 +16,35 @@
   box-shadow: var(--shadow-divider-bottom);
 }
 
+.toggle[aria-pressed="true"] {
+  --button-surface: var(--surface-selected);
+  --button-surface-hover: var(--surface-selected);
+  --button-text: var(--text-accent);
+}
+
+.create {
+  border-radius: var(--radius-pill);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+.body[hidden] {
+  display: none;
+}
+
 .title {
-  composes: subheadingText from "../../shared/styles/compose.module.css";
+  composes: subheadingText truncateText from "../../shared/styles/compose.module.css";
+  flex: 1;
+  min-inline-size: 0;
 }
 
 .actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-4);
