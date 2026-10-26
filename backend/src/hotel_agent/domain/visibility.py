@@ -26,6 +26,7 @@ class RayObstacle:
     elevation: ElevationRange | None
     bottom: ElevationRange | None = None
     geometry_model: str | None = None
+    shared_target_ground_span_m: float = 0
 
 
 @dataclass(frozen=True, slots=True)
@@ -72,11 +73,26 @@ def sightline(
         if obstacle.elevation is None:
             unknown += 1
             continue
+        shared = obstacle.shared_target_ground_span_m
+        if (
+            not isfinite(shared)
+            or shared < 0
+            or (
+                shared > 0
+                and (
+                    target.maximum_m is None
+                    or obstacle.elevation.maximum_m is None
+                    or shared > target.maximum_m - target.minimum_m + 1e-8
+                    or shared > obstacle.elevation.maximum_m - obstacle.elevation.minimum_m + 1e-8
+                )
+            )
+        ):
+            raise ValueError("Shared ground uncertainty must fit both elevation intervals")
         ratio = d / distance_m
         bulge = curvature_coefficient * d * (distance_m - d) / (2 * EARTH_RADIUS_M)
-        lowest_line = observer.minimum_m * (1 - ratio) + target.minimum_m * ratio
+        lowest_line = observer.minimum_m * (1 - ratio) + (target.minimum_m + shared) * ratio
         highest_line = (
-            observer.maximum_m * (1 - ratio) + target.maximum_m * ratio
+            observer.maximum_m * (1 - ratio) + (target.maximum_m - shared) * ratio
             if observer.maximum_m is not None and target.maximum_m is not None
             else None
         )
@@ -94,7 +110,8 @@ def sightline(
             clearance = lowest_line - maximum - bulge
             margin = min(margin, clearance)
             required = max(
-                required, (maximum + bulge + clearance_m - target.minimum_m * ratio) / (1 - ratio)
+                required,
+                (maximum + bulge + clearance_m - (target.minimum_m + shared) * ratio) / (1 - ratio),
             )
         confirmed = False
         if highest_line is not None:

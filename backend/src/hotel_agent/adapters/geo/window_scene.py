@@ -152,7 +152,12 @@ def base_elevation(heights: dict[str, float], keys: tuple[str, ...]) -> Elevatio
     return ElevationRange(min(values) - 1, min(values) + 3)
 
 
-def obstacles(samples: SceneSamples, heights: dict[str, float]) -> tuple[RayObstacle, ...]:
+def obstacles(
+    samples: SceneSamples,
+    heights: dict[str, float],
+    target_id: str | None = None,
+    target_base: ElevationRange | None = None,
+) -> tuple[RayObstacle, ...]:
     result = [
         RayObstacle(
             key,
@@ -163,7 +168,8 @@ def obstacles(samples: SceneSamples, heights: dict[str, float]) -> tuple[RayObst
         for key, distance in samples.terrain
     ]
     for building, distances, ground_keys in samples.buildings:
-        base = base_elevation(heights, ground_keys)
+        shared_base = target_base if building.id == target_id else None
+        base = shared_base or base_elevation(heights, ground_keys)
         dimensions = building_dimensions(building.tags, building.height_m, building.levels)
         height = dimensions.height
         top = (
@@ -197,7 +203,18 @@ def obstacles(samples: SceneSamples, heights: dict[str, float]) -> tuple[RayObst
             )
             result.append(
                 RayObstacle(
-                    building.id, "building", sample.distance_m, roof_top, bottom, sample.model
+                    building.id,
+                    "building",
+                    sample.distance_m,
+                    roof_top,
+                    bottom,
+                    sample.model,
+                    shared_base.maximum_m - shared_base.minimum_m
+                    if shared_base is not None
+                    and shared_base.maximum_m is not None
+                    and roof_top is not None
+                    and roof_top.maximum_m is not None
+                    else 0,
                 )
             )
     return tuple(result)
