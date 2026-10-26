@@ -39,7 +39,7 @@ async function setHour(page, hour) {
     await page.goto(`${base}/`, { waitUntil: "domcontentloaded" })
     const sections = page.getByRole("group", { name: copy.panel.tabs })
     if (width === 375) await sections.getByRole("radio", { name: copy.panel.hotels, exact: true }).check()
-    await page.getByRole("button", { name: "Green Club", exact: true }).first().click()
+    await page.getByRole("button", { name: process.env.HOTEL_NAME ?? "Green Club", exact: true }).first().click()
     if (width === 375) await sections.getByRole("radio", { name: copy.panel.map, exact: true }).check()
     await page.waitForTimeout(6000)
     for (const hour of [13, 21]) {
