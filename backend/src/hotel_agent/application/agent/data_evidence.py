@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from hotel_agent.application.agent.data_records import DataCriterion, ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.record_filters import compare
+from hotel_agent.application.agent.wish_evidence import wish_intent
 from hotel_agent.application.dto import SearchFactRecord
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent
@@ -17,7 +18,9 @@ def materialize(
     now: datetime,
     question: str | None,
 ) -> ExplorationOutcome:
-    intents, facts, resolved = [], [], []
+    intents: list[Intent] = []
+    facts: list[SearchFactRecord] = []
+    resolved: list[str] = []
     normalized = _normalize(query)
     for criterion in criteria:
         term = _normalize(criterion.term)
@@ -34,6 +37,17 @@ def materialize(
                 for check in criterion.checks
             )
         ):
+            continue
+        geometry = tuple(
+            row
+            for row in tools.native_facts.get(criterion.term, ())
+            if row.method == "window_visibility@1"
+        )
+        if geometry:
+            intents.append(wish_intent(criterion.term, criterion.required))
+            facts.extend(geometry)
+            if any(row.value is True for row in geometry):
+                resolved.append(criterion.term)
             continue
         identity = repr((criterion.term, criterion.checks))
         key = f"derived:{hashlib.sha256(identity.encode()).hexdigest()[:12]}"
