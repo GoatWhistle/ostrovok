@@ -115,13 +115,13 @@ def spatial_request(raw: Mapping[str, object], query: str) -> SpatialRequest | N
     ):
         return None
     default = (
-        1500 if kind in {"city_center", "sea_view"} else 2000 if kind == "landmark_view" else 500
+        100000 if kind in {"landmark_view", "sea_view"} else 1500 if kind == "city_center" else 500
     )
     radius = int(number(raw, "radius_m") or default)
     return SpatialRequest(
         kind=kind,
         target=target.strip() if target else None,
-        radius_m=max(100, min(200000 if kind == "landmark_view" else 50000, radius)),
+        radius_m=max(100, min(200000 if kind in {"landmark_view", "sea_view"} else 50000, radius)),
         source_text=source,
         required=flag(raw, "required"),
         floor_min=_floor(raw.get("floor_min")),
