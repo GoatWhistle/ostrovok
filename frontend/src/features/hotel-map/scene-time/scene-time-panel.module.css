@@ -34,7 +34,14 @@
 }
 
 .toggle > :first-child {
+  justify-self: stretch;
   inline-size: 100%;
+}
+
+.toggle > :first-child > :last-child {
+  display: flex;
+  flex: 1;
+  min-inline-size: 0;
 }
 
 .row {
