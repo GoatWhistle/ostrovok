@@ -57,6 +57,7 @@ function ClusterPin({ view, onExpand }: { view: ClusterView; onExpand: MapPinPro
       size="compact"
       className={styles.pin}
       data-kind="cluster"
+      data-size={view.count < 10 ? "small" : view.count < 100 ? "medium" : "large"}
       aria-label={t("explore:map.cluster", { count: view.count })}
       onClick={(event) => onExpand(view, event.detail === 0)}
     >

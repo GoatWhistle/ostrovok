@@ -25,8 +25,31 @@
 
 .pin[data-kind="cluster"] {
   --button-radius: var(--radius-pill);
-  --button-surface: var(--surface-inverse);
-  --button-text: var(--text-on-inverse);
+  --button-surface: var(--map-hotel-selected);
+  --button-surface-hover: var(--action-primary-hover);
+  --button-text: var(--action-primary-text);
+  --button-height: var(--space-32);
+
+  min-inline-size: var(--button-height);
+  border: var(--focus-ring-width) solid var(--action-primary-text);
+}
+
+.pin[data-kind="cluster"][data-size="medium"] {
+  --button-height: var(--space-40);
+}
+
+.pin[data-kind="cluster"][data-size="large"] {
+  --button-height: var(--space-48);
+}
+
+.pin[data-kind="cluster"]::after {
+  content: "";
+  position: absolute;
+  inset: var(--space-4) calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) var(--space-6);
+  z-index: var(--layer-behind);
+  border-radius: var(--radius-pill);
+  border: var(--focus-ring-width) solid var(--action-primary-text);
+  background-color: var(--map-hotel-selected);
 }
 
 .pin[data-state="nodata"] {

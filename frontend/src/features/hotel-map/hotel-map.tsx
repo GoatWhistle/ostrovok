@@ -1,5 +1,4 @@
 import { type ReactNode, useMemo, useState } from "react"
-import { createPortal } from "react-dom"
 import { useRegions } from "@/entities/catalog"
 import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
@@ -13,15 +12,14 @@ import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
 import { MapFocus } from "./map-focus"
 import { MapLegendToggle } from "./map-legend"
-import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
 import { MapStatus, mapNotes } from "./map-status"
+import { MapPins } from "./markers/map-pins"
 import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
 import { useHotelMap } from "./use-hotel-map"
-import { expandCluster } from "./use-result-pins"
 import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
@@ -157,27 +155,7 @@ export function HotelMap({
           altitude={sun.position.altitude}
         />
       ) : null}
-      {map.markers.map((view) =>
-        createPortal(
-          <MapPin
-            view={view}
-            onSelect={onSelect}
-            onExpand={(cluster, keyboard) => {
-              const instance = map.instance.current
-              if (instance)
-                void expandCluster(
-                  instance,
-                  cluster.clusterId,
-                  cluster.position,
-                  keyboard,
-                  motionMs("--dur-panel"),
-                )
-            }}
-          />,
-          view.element,
-          view.key,
-        ),
-      )}
+      <MapPins views={map.markers} map={map.instance} onSelect={onSelect} />
       <MapStatus
         hasCamera={selectedCamera !== undefined}
         sceneError={scene.isError}

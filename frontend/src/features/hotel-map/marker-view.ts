@@ -20,6 +20,7 @@ export interface HotelView extends ViewBase {
 export interface ClusterView extends ViewBase {
   readonly kind: "cluster"
   readonly count: number
+  readonly onSpread?: () => void
   readonly clusterId: number
   readonly position: [number, number]
 }

@@ -9,6 +9,7 @@ import {
   type MarkerView,
   removeMarkers,
 } from "./marker-view"
+import { stackViews } from "./markers/spiderfy"
 
 const SOURCE = "hotel-results"
 
@@ -37,8 +38,8 @@ function ensureSource(map: MapLibreMap, data: FeatureCollection) {
     type: "geojson",
     data,
     cluster: true,
-    clusterRadius: 56,
-    clusterMaxZoom: 17,
+    clusterRadius: 40,
+    clusterMaxZoom: 15,
   })
   map.addLayer({
     id: SOURCE,
@@ -128,17 +129,33 @@ export function useResultPins(
     ensureSource(map, JSON.parse(key) as FeatureCollection)
     const markers = new Map<string, Marker>()
     let last = ""
+    let expanded: string | undefined
     const sync = () => {
-      const next = collect(map, markers, latest.current)
+      const next = stackViews(
+        map,
+        markers,
+        collect(map, markers, latest.current),
+        expanded,
+        (key) => {
+          expanded = key
+          sync()
+        },
+      )
       const current = signature(next)
       if (current === last) return
       last = current
       setViews(next)
     }
+    const collapse = () => {
+      expanded = undefined
+      sync()
+    }
+    map.on("movestart", collapse)
     map.on("idle", sync)
     map.on("moveend", sync)
     sync()
     return () => {
+      map.off("movestart", collapse)
       map.off("idle", sync)
       map.off("moveend", sync)
       removeMarkers(markers.values())
@@ -166,6 +183,22 @@ export async function expandCluster(
   const source = map.getSource<GeoJSONSource>(SOURCE)
   if (!source) return
   const zoom = await source.getClusterExpansionZoom(clusterId)
+  if (zoom > 16) {
+    const leaves = await source.getClusterLeaves(clusterId, 1000, 0)
+    const points = leaves.map((item) => (item.geometry as Point).coordinates)
+    const longitudes = points.map((point) => point[0] ?? position[0])
+    const latitudes = points.map((point) => point[1] ?? position[1])
+    if (points.length) {
+      map.fitBounds(
+        [
+          [Math.min(...longitudes), Math.min(...latitudes)],
+          [Math.max(...longitudes), Math.max(...latitudes)],
+        ],
+        { padding: 48, maxZoom: map.getMaxZoom(), duration: instant ? 0 : duration },
+      )
+      return
+    }
+  }
   map.easeTo({
     center: position,
     zoom: Math.min(zoom, map.getMaxZoom()),
