@@ -19,3 +19,8 @@ conflicts were detected. All76 files match after sync. Future root builds includ
 Scripts/patches/manifests preserve the exact operation; no credentials captured.
 
 Deployment/full50 remains next. Use immutable-image guard to detect runtime replacement.
+
+Deployed d335a31 as window-integrated-20261026d. Backend image
+sha256:5ebea97d7b5925488e665551a24e1fd6e84f29607a57d718cdb7b7cec9359004;
+frontend27a77efb, serves index--3cQvo5k.js. Both healthy and proxy health200.
+Full50 round4 started with expected-image guard; exec88733. Dataset/conditions unchanged.

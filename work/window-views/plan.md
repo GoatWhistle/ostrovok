@@ -256,3 +256,13 @@ reproduced it. Verification now uses standardtemperature0/4000, Anthropic budget
 live4-candidate check approves4/4 with actual visibility qualifiers quoted. Both settings
 and candidate set changed; do not attribute success solely to temperature. Details/raw
 artifacts in review-probe/. No main deployment or full50 completed this turn.
+
+## Root reconciliation and round4
+
+Merged current root delta into stand (d335a31), retaining new chat/height/geography/provider
+and frontend changes.737 backend checks (715unit+7contract+15integration) and328 frontend
+checks pass;36frontend rules and backend static/import checks pass. Synced76 verified
+agent files back to root with before/after byte checks; future root builds keep these fixes.
+Main deploy healthy, frontend updated. Round4 frozen at backend5ebea97d/source d335a31,
+exec88733 with900s timeout and image guard. This turn is progress: integration/root sync,
+checks, actual deployment and start of protected full run. Goal remains incomplete.

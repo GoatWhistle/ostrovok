@@ -116,9 +116,9 @@ Updated: 2026-10-26, Europe/Moscow
 
 ## Current state
 
-- Worktree `/Users/savelij/projects/o-hack-stand`, branch `fix/stand-agent-integration`, HEAD680cdae plus verifier fix.640 unit tests pass. Eligibility/rejection diagnostics are local, not on main.
-- Round3 ended:4 HTTP200,46 gateway502 after concurrent container recreation changed5b9158cc to51e66040 under the same tag. Current main healthy, root-source build lacks semantic_review.py. Root source preserved.
-- No active test process. Full50 not verified. Runner fingerprint guard added/tested; use --expected-image. Current4 positive rays independently pass; filtered/temp0 review accepts4/4. Main integration/full50 pending. [View plan](../work/window-views/plan.md).
+- Stand worktree `fix/stand-agent-integration`/d335a31. Current root snapshot merged;76 verified delta files synced back to root without resetting/staging its prior work.737 backend checks (including integration),328 frontend tests/36 rules pass.
+- Main :8080 healthy on `window-integrated-20261026d`, backend image5ebea97d, frontend index--3cQvo5k.js. New loop, stable verifier, candidate eligibility, chat consultation, height/geography updates integrated. [Refresh](../work/stand-refresh/README.md).
+- Full50 round4 running exec88733; immutable-image guard enabled,900s observation timeout. Read round4/run.json and poll handle; do not restart while running. Prior round3 invalidated by container replacement. Goal incomplete.
 
 ## Next actions and pitfalls
 
