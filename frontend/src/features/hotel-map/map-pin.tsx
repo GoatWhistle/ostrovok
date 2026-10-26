@@ -24,8 +24,6 @@ function HotelPin({ view, onSelect }: { view: HotelView; onSelect: MapPinProps["
       data-kind="hotel"
       data-state={state}
       data-selected={view.selected}
-      data-edge={view.edge}
-      data-below={view.below}
       aria-pressed={view.selected}
       aria-label={
         total === 0
@@ -43,7 +41,9 @@ function HotelPin({ view, onSelect }: { view: HotelView; onSelect: MapPinProps["
             <span>{t("explore:results.score", { full, total })}</span>
           </>
         )}
-        <span className={`${styles.bubble} ${styles.label}`}>{name}</span>
+        <span data-map-label className={`${styles.bubble} ${styles.label}`}>
+          {name}
+        </span>
       </span>
     </Button>
   )
@@ -68,9 +68,9 @@ function ClusterPin({ view, onExpand }: { view: ClusterView; onExpand: MapPinPro
 
 function PlacePin({ view }: { view: PlaceView }) {
   return (
-    <span className={styles.place} data-kind={view.kind}>
+    <span role="img" className={styles.place} data-kind={view.kind} aria-label={view.label}>
       <span className={styles.placeDot} aria-hidden="true" />
-      <span className={`${styles.bubble} ${styles.placeLabel}`}>
+      <span data-map-label className={`${styles.bubble} ${styles.placeLabel}`}>
         {view.kind === "route" ? <Icon name="walk" size="sm" className={styles.routeIcon} /> : null}
         <span>{view.label}</span>
       </span>

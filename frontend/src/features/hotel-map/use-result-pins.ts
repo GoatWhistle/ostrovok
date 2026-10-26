@@ -2,13 +2,7 @@ import type { FeatureCollection, Point } from "geojson"
 import type { GeoJSONSource, MapGeoJSONFeature, Map as MapLibreMap, Marker } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
-import {
-  createMarker,
-  hotelPosition,
-  labelPlacement,
-  type MarkerView,
-  removeMarkers,
-} from "./marker-view"
+import { createMarker, hotelPosition, type MarkerView, removeMarkers } from "./marker-view"
 import { stackViews } from "./markers/spiderfy"
 
 const SOURCE = "hotel-results"
@@ -50,7 +44,6 @@ function ensureSource(map: MapLibreMap, data: FeatureCollection) {
 }
 
 function viewFor(
-  map: MapLibreMap,
   feature: MapGeoJSONFeature,
   marker: Marker,
   result: SearchResult | undefined,
@@ -68,7 +61,7 @@ function viewFor(
       position: (feature.geometry as Point).coordinates as [number, number],
     }
   if (!result) return null
-  return { key, element, kind: "hotel", result, selected: false, ...labelPlacement(map, marker) }
+  return { key, element, kind: "hotel", result, selected: false }
 }
 
 function featureKey(feature: MapGeoJSONFeature) {
@@ -100,7 +93,7 @@ function collect(
     const position = (feature.geometry as Point).coordinates as [number, number]
     const marker = markers.get(key) ?? createMarker(map, position, "bottom").marker
     markers.set(key, marker)
-    const view = viewFor(map, feature, marker, result)
+    const view = viewFor(feature, marker, result)
     if (view) views.push(view)
   }
   prune(markers, seen)
@@ -108,9 +101,7 @@ function collect(
 }
 
 function signature(views: readonly MarkerView[]) {
-  return views
-    .map((view) => (view.kind === "hotel" ? `${view.key}:${view.edge}:${view.below}` : view.key))
-    .join("|")
+  return views.map((view) => view.key).join("|")
 }
 
 export function useResultPins(

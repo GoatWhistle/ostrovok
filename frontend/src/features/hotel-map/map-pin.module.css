@@ -101,6 +101,7 @@
 .bubble {
   composes: floatingSurface labelText from "../../shared/styles/compose.module.css";
   position: absolute;
+  visibility: hidden;
   display: flex;
   align-items: center;
   gap: var(--space-8);
@@ -115,41 +116,37 @@
 }
 
 .label {
-  inset-block-end: calc(100% + var(--space-8));
-  inset-inline-start: 50%;
-  display: none;
-  translate: -50% 0;
-  transform-origin: center bottom;
+  visibility: hidden;
   animation: var(--motion-anchor-in);
 }
 
-.pin[data-edge="start"] .label {
-  inset-inline-start: 0;
-  translate: none;
+.host[data-placement="start"] .bubble {
+  inset: 50% calc(100% + var(--space-8)) auto auto;
+  translate: 0 -50%;
 }
 
-.pin[data-edge="end"] .label {
-  inset-inline: auto 0;
-  translate: none;
+.host[data-placement="end"] .bubble {
+  inset: 50% auto auto calc(100% + var(--space-8));
+  translate: 0 -50%;
 }
 
-.pin[data-below="true"] .label {
-  inset-block: calc(100% + var(--space-8)) auto;
-  transform-origin: center top;
+.host[data-placement="top"] .bubble {
+  inset: auto auto calc(100% + var(--space-8)) 50%;
+  translate: -50% 0;
 }
 
-.pin[data-selected="true"] .label,
-.pin:focus-visible .label {
-  display: flex;
+.host[data-placement="bottom"] .bubble {
+  inset: calc(100% + var(--space-8)) auto auto 50%;
+  translate: -50% 0;
+}
+
+.host[data-placement]:not([data-placement="hidden"]) .bubble {
+  visibility: visible;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .host:hover {
     z-index: var(--layer-raised);
-  }
-
-  .pin:hover .label {
-    display: flex;
   }
 
   .pin[data-kind="hotel"]:not([data-state="nodata"]):hover {

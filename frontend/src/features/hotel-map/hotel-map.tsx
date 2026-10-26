@@ -2,7 +2,7 @@ import { type ReactNode, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useGeoFeatures, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
-import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
+import { factLabel, matchedExplanation, matchedTitle, matchedValue } from "@/shared/geo/fact-label"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import type { Locale } from "@/shared/i18n"
 import { useLocale, useTranslation } from "@/shared/i18n"
@@ -119,7 +119,7 @@ export function HotelMap({
     results,
     hotelId,
     focusFeatures,
-    focusLabel: focus.label,
+    focusLabel: matchedValue(focusProperty?.fact ?? focusedFact, locale),
     sun: place ? sun.position : OVERVIEW_SUN,
   })
   const overview = scene.data?.cameras.overview ?? selectedCamera
@@ -163,7 +163,7 @@ export function HotelMap({
         ready={map.ready}
         onRetry={() => void scene.refetch()}
       />
-      <div className={styles.topStart}>
+      <div className={styles.topStart} data-map-obstacle>
         <MapFocus
           label={focus.label}
           explanation={focus.explanation}
@@ -183,7 +183,7 @@ export function HotelMap({
 
       {selectedCamera ? (
         <div className={styles.bottom}>
-          <div className={styles.bottomStart}>
+          <div className={styles.bottomStart} data-map-obstacle>
             {place ? (
               <SceneTimePanel
                 date={date}
@@ -202,8 +202,10 @@ export function HotelMap({
               />
             ) : null}
           </div>
-          <div className={styles.bottomCenter}>{bottomCenter}</div>
-          <div className={styles.meta}>
+          <div className={styles.bottomCenter} data-map-obstacle>
+            {bottomCenter}
+          </div>
+          <div className={styles.meta} data-map-obstacle>
             <MapScale map={map.instance} ready={map.ready} />
             <MapLegendToggle notes={mapNotes(invalid, missingHeight, map.textureStatus)} />
             <MapAttribution

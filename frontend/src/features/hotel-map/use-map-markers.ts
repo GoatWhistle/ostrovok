@@ -6,11 +6,11 @@ import {
   createMarker,
   type HotelView,
   hotelPosition,
-  labelPlacement,
   type MarkerView,
   type PlaceView,
   removeMarkers,
 } from "./marker-view"
+import { useMarkerLabels } from "./markers/use-marker-labels"
 import { useResultPins } from "./use-result-pins"
 
 interface MarkerData {
@@ -81,18 +81,8 @@ function useSelectedPin(
     const map = mapRef.current
     if (!ready || !map || !id || lon === undefined || lat === undefined) return
     const { element, marker } = createMarker(map, [lon, lat], "bottom", true)
-    const place = () => {
-      const placement = labelPlacement(map, marker)
-      setView((current) =>
-        current && current.edge === placement.edge && current.below === placement.below
-          ? current
-          : { key: id, element, kind: "hotel", selected: true, ...placement },
-      )
-    }
-    place()
-    map.on("moveend", place)
+    setView({ key: id, element, kind: "hotel", selected: true })
     return () => {
-      map.off("moveend", place)
       marker.remove()
       setView(undefined)
     }
@@ -118,8 +108,10 @@ export function useMapMarkers({
     ready,
     results.find((item) => item.hotel.id === hotelId),
   )
-  return useMemo(
+  const views = useMemo(
     () => [...pins, ...places, ...(selected ? [selected] : [])],
     [pins, places, selected],
   )
+  useMarkerLabels(mapRef, ready, views)
+  return views
 }
