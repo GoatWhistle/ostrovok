@@ -119,7 +119,7 @@ Updated: 2026-10-26, Europe/Moscow
 - `/Users/savelij/projects/o-hack-stand`, `fix/stand-agent-integration`, code `3abcbf7` after integration `0bb2ea1`. Main Compose :8080 runs pinned `agent-loop-stand-20261026b`, Yandex DeepSeek, free hotel-data mode. Original root source remains uncommitted and preserved.
 - New loop/reviewer verified in container by module hashes. Live quiet-Sochi chat:20 hotels/52.15s; chat reload/card/fact/scene200. Cold scene18.29s remains slow. 649 backend checks (11 integrations),324 frontend/36 rules passed. [Restart record and raw evidence](../work/stand-restart/README.md).
 
-- Shore ordering92e58f1 deployed `window-shore-20261026`. Replay session52049; cache bypass fixed locally,635 unit tests. See view plan.
+- Code429743a deployed `window-cache-20261026`;635 unit tests. Ready replay session77112 running; audit key filter changed. See view plan.
 
 ## Next actions and pitfalls
 

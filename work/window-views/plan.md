@@ -163,3 +163,16 @@ OSMViewGeometry.area immediately delegated to new geography context and bypassed
 previous disk/memory cache. A regression using the real XML parser failed (None instead
 of cached PhysicalArea); cache-first ordering fixes it without treating missing coverage
 as complete.635 unit tests pass; Ruff/mypy pass. Cache correction not yet deployed.
+
+Cache fix429743a deployed as window-cache-20261026 (image
+sha256:a85aed3924d48f1beb53421d5f19240fee2d22b7f420fa88e58cb86b6372942f).
+Runtime osm_geometry SHA256ab9f39174933af3734ac0246f2db0314d760acf32fd8e2d8d21d9f08c35d0c3c
+matches local. Both services healthy. shore-replay Isaac timed out180.14s; Samara was
+manually cancelled for deploying the diagnosed correction and is explicitly not a pass.
+cache-replay contains two premature502 probes before startup finished; cache-replay-ready
+is the actual after-readiness replay (session77112). Logs now confirm native Isaac view
+matched in one tool call; final response still pending at this checkpoint.
+Harness corrections: cancelled runs cannot pass; derived wish keys now inspected by
+provenance method instead of filtering only spatial: keys (agent relabels native facts).
+The currently running ready replay loaded the old key filter; re-audit its saved responses
+without extra model calls before interpreting its geometric-evidence verdict.

@@ -106,7 +106,7 @@ async def check(client, case, output):
             hotel_report = {"id": result["hotel"]["id"], "name": result["hotel"]["name"], "views": []}
             for item in result.get("matched", []):
                 fact = item.get("fact")
-                if not fact or not item["characteristic_key"].startswith("spatial:"):
+                if not fact:
                     continue
                 detail_response = await client.get(f"/api/v1/hotels/{hotel_report['id']}/facts/{fact['fact_id']}")
                 if detail_response.status_code != 200:
@@ -151,6 +151,9 @@ async def check(client, case, output):
         report["calculated_rays"] = calculated
         if calculated == 0 and case["id"] not in SPECIAL:
             report["errors"].append("no_geometric_target_evidence")
+    except asyncio.CancelledError:
+        report["errors"].append("cancelled_before_completion")
+        raise
     except (httpx.HTTPError, ValueError, KeyError, TypeError) as error:
         report["errors"].append(type(error).__name__ + ": " + str(error))
     finally:
