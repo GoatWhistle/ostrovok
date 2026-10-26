@@ -1,4 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { addSnowLayers, paintSnow } from "./snow"
 
 export interface SunPosition {
   readonly azimuth: number
@@ -32,10 +33,6 @@ export type LightMode = "day" | "dusk" | "night"
 export const TERRAIN_TILE_VERSION = "2"
 const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
 const DEM_MAX_ZOOM = 14
-const GLACIERS = "/data/glaciers.geojson"
-const PEAK_ROCK = 5200
-const PEAK_SNOW = 5800
-const GLACIER_OPACITY = 0.92
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
@@ -72,10 +69,6 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
     colors.park,
     2200,
     colors.rock,
-    PEAK_ROCK,
-    colors.rock,
-    PEAK_SNOW,
-    colors.snow,
   ]
 }
 
@@ -101,13 +94,6 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
     source: "sochi-dem-shade",
     paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
   })
-  map.addSource("glaciers", { type: "geojson", data: `${window.location.origin}${GLACIERS}` })
-  map.addLayer({
-    id: "glaciers",
-    type: "fill",
-    source: "glaciers",
-    paint: { "fill-color": colors.snow, "fill-opacity": GLACIER_OPACITY, "fill-antialias": true },
-  })
   map.addLayer({
     id: "sochi-hillshade",
     type: "hillshade",
@@ -119,6 +105,7 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
       "hillshade-accent-color": colors.hillShadow,
     },
   })
+  addSnowLayers(map, "sochi-dem-shade", colors.snow, "sochi-hillshade")
 }
 
 export function followTerrainZoom(map: MapLibreMap): () => void {
@@ -138,7 +125,7 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   addTerrainLayers(map, colors, sea)
   map.setPaintProperty("sochi-relief", "color-relief-color", reliefRamp(colors, sea))
   map.setPaintProperty("sochi-relief", "color-relief-opacity", RELIEF_OPACITY[mode])
-  map.setPaintProperty("glaciers", "fill-color", colors.snow)
+  paintSnow(map, colors.snow)
   map.setPaintProperty("sochi-hillshade", "hillshade-shadow-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-highlight-color", colors.hillHighlight)
   map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
