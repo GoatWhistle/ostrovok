@@ -2,8 +2,22 @@ import json
 from datetime import datetime
 from typing import Any
 
+KEPT_IN_FULL = 2
+OLDER_TEXT_LIMIT = 700
+TRUNCATED = "… обрезано; перечитай страницу или записи, если нужен полный текст"
+
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.wish_ledger import WishLedger
+
+
+def compact(value: Any) -> Any:
+    if isinstance(value, str):
+        return value[:OLDER_TEXT_LIMIT] + TRUNCATED if len(value) > OLDER_TEXT_LIMIT else value
+    if isinstance(value, dict):
+        return {key: compact(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [compact(item) for item in value]
+    return value
 
 
 def wish_context(
@@ -31,7 +45,10 @@ def wish_context(
             "available_sources": tools.sources,
             "checked_sources": sorted(ledger.checked),
             "pending_pages": ledger.pending_pages,
-            "observations": observations,
+            "observations": [
+                *(compact(row) for row in observations[:-KEPT_IN_FULL]),
+                *observations[-KEPT_IN_FULL:],
+            ],
         },
         ensure_ascii=False,
     )

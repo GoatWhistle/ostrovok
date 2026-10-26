@@ -48,6 +48,7 @@ def search(
             regions=regions,
             search=hotels,
             nearby_objects=SimpleNamespace(),
+            geo_features=SimpleNamespace(get_batch=AsyncMock(return_value=())),
             named_places=SimpleNamespace(geographic_name=AsyncMock(return_value=None)),
         )
     )

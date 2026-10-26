@@ -74,8 +74,17 @@ class RequestedTools:
                 )
             for request in nearby:
                 matches = await uow.nearby_objects.list_matches(self._region, request, bbox)
+                found = {item for ids in matches.values() for item in ids}
+                named = (
+                    await uow.geo_features.get_batch(sorted(f"g_poi_{item}" for item in found))
+                    if found
+                    else ()
+                )
+                names = {str(row.osm_ref): row.name for row in named if row.osm_ref and row.name}
                 records.extend(
-                    nearby_record(h.id, nearby_key(request), request, matches.get(h.id, ()), now)
+                    nearby_record(
+                        h.id, nearby_key(request), request, matches.get(h.id, ()), now, names
+                    )
                     for h in hotels
                 )
             targets = await resolve_spatial_requests(uow, spatial, self._city, bbox, hotels)

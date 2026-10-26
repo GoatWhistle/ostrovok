@@ -164,7 +164,7 @@ async def test_cosmetically_different_quote_is_still_rejected_but_counted() -> N
     result = await review.check(
         "где жил поэт",
         "recommendation_scope",
-        [ReviewClaim("h1", "{}", 'Гостиница «Англетер» в Петербурге')],
+        [ReviewClaim("h1", "{}", "Гостиница «Англетер» в Петербурге")],
     )
 
     assert result.accepted_ids == ()

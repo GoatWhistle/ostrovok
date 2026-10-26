@@ -19,6 +19,7 @@ OSM_OBJECT_KEYS = (
     "railway",
     "aeroway",
     "sport",
+    "cuisine",
 )
 
 
@@ -41,6 +42,7 @@ class NearbyObjectRequest:
     source_text: str
     avoid: bool = False
     required: bool = False
+    name: str = ""
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

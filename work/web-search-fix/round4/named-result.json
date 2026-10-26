@@ -1,0 +1,2727 @@
+{
+  "id": "named",
+  "query": "хочу отель в Казани рядом с Пятёрочкой",
+  "check": "Only hotels with a real Пятёрочка nearby; named objects listed.",
+  "seconds": 29.3,
+  "http_status": 200,
+  "response": {
+    "id": "dfafa64f-09f2-4c92-919b-8bfd193fd1e8",
+    "title": "Казань: рядом с Пятёрочкой",
+    "updated_at": "2026-10-26T22:36:09.082192Z",
+    "messages": [
+      {
+        "id": "957da5ac-aea2-4766-b24c-e48cb8df7011",
+        "role": "user",
+        "content": "хочу отель в Казани рядом с Пятёрочкой",
+        "created_at": "2026-10-26T22:36:09.082192Z"
+      },
+      {
+        "id": "690ad352-eedd-4ba7-8325-aa963b968200",
+        "role": "assistant",
+        "content": "Показываю 20 отелей. Первые в подборке: 84, Alfa best house, Amati. Выберите отель, чтобы изучить его и окружение. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+        "created_at": "2026-10-26T22:36:09.082192Z"
+      }
+    ],
+    "effective_query": "отель в Казани рядом с Пятёрочкой",
+    "search": {
+      "query_id": "4bf320e9f78c97f8",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:91ec481c3391",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с Пятёрочкой"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Казань",
+        "anywhere": false,
+        "normalized_query": "отель в Казани рядом с Пятёрочкой",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [
+        {
+          "hotel": {
+            "id": "n12272572531",
+            "name": "84",
+            "address": null,
+            "location": [
+              49.0554031,
+              55.8338301
+            ],
+            "stars": null,
+            "building_id": "w539291212",
+            "height_m": null,
+            "levels": 4
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n12272572531",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n3659060223",
+                  "g_poi_n10969975806",
+                  "g_poi_n3663308846",
+                  "g_walk_n12272572531_n3659060223",
+                  "g_walk_n12272572531_n10969975806",
+                  "g_walk_n12272572531_n3663308846"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n3659060223",
+                "g_poi_n10969975806",
+                "g_poi_n3663308846",
+                "g_walk_n12272572531_n3659060223",
+                "g_walk_n12272572531_n10969975806",
+                "g_walk_n12272572531_n3663308846"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.0554031,
+              55.8338301
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w539291212",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.0553114,
+                      55.8338427
+                    ],
+                    [
+                      49.0554594,
+                      55.8336695
+                    ],
+                    [
+                      49.0554945,
+                      55.833679
+                    ],
+                    [
+                      49.0555251,
+                      55.8336432
+                    ],
+                    [
+                      49.0558536,
+                      55.8337317
+                    ],
+                    [
+                      49.0556718,
+                      55.8339444
+                    ],
+                    [
+                      49.0556278,
+                      55.8339326
+                    ],
+                    [
+                      49.0555779,
+                      55.833991
+                    ],
+                    [
+                      49.0554276,
+                      55.8339505
+                    ],
+                    [
+                      49.0554807,
+                      55.8338884
+                    ],
+                    [
+                      49.0553114,
+                      55.8338427
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w539291212",
+              "hotel_id": "n12272572531",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 4,
+              "height_fact_id": "f_height_n12272572531"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n13142525356",
+            "name": "Alfa best house",
+            "address": null,
+            "location": [
+              49.1035569,
+              55.7873457
+            ],
+            "stars": null,
+            "building_id": "w81559980",
+            "height_m": 12.0,
+            "levels": 4
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n13142525356",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n12219091357",
+                  "g_poi_n4450372789",
+                  "g_walk_n13142525356_n12219091357",
+                  "g_walk_n13142525356_n4450372789"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n12219091357",
+                "g_poi_n4450372789",
+                "g_walk_n13142525356_n12219091357",
+                "g_walk_n13142525356_n4450372789"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1035569,
+              55.7873457
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w81559980",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1022007,
+                      55.7872833
+                    ],
+                    [
+                      49.1022494,
+                      55.7871435
+                    ],
+                    [
+                      49.1023302,
+                      55.7871212
+                    ],
+                    [
+                      49.1026463,
+                      55.7871538
+                    ],
+                    [
+                      49.1028831,
+                      55.7872869
+                    ],
+                    [
+                      49.1028071,
+                      55.7873299
+                    ],
+                    [
+                      49.1030352,
+                      55.7874577
+                    ],
+                    [
+                      49.1030955,
+                      55.7874237
+                    ],
+                    [
+                      49.103077,
+                      55.7874134
+                    ],
+                    [
+                      49.1031266,
+                      55.7873854
+                    ],
+                    [
+                      49.103145,
+                      55.7873957
+                    ],
+                    [
+                      49.1031665,
+                      55.7873836
+                    ],
+                    [
+                      49.1031401,
+                      55.7873689
+                    ],
+                    [
+                      49.1031863,
+                      55.7873428
+                    ],
+                    [
+                      49.1032126,
+                      55.7873576
+                    ],
+                    [
+                      49.1034101,
+                      55.7872462
+                    ],
+                    [
+                      49.10334,
+                      55.7872069
+                    ],
+                    [
+                      49.1034899,
+                      55.7871223
+                    ],
+                    [
+                      49.10356,
+                      55.7871616
+                    ],
+                    [
+                      49.1036574,
+                      55.7871066
+                    ],
+                    [
+                      49.1038755,
+                      55.7872289
+                    ],
+                    [
+                      49.1030247,
+                      55.7877089
+                    ],
+                    [
+                      49.1022831,
+                      55.7872859
+                    ],
+                    [
+                      49.1022007,
+                      55.7872833
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w81559980",
+              "hotel_id": "n13142525356",
+              "is_hotel": true,
+              "height_m": 12.0,
+              "min_height_m": 0,
+              "levels": 4,
+              "height_fact_id": "f_height_n13142525356"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n12484773914",
+            "name": "Amati",
+            "address": null,
+            "location": [
+              49.1097598,
+              55.7907551
+            ],
+            "stars": null,
+            "building_id": "w1054782583",
+            "height_m": null,
+            "levels": 3
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n12484773914",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4450372789",
+                  "g_walk_n12484773914_n4450372789"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4450372789",
+                "g_walk_n12484773914_n4450372789"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1097598,
+              55.7907551
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w1054782583",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1097105,
+                      55.7907653
+                    ],
+                    [
+                      49.1099261,
+                      55.790578
+                    ],
+                    [
+                      49.1099945,
+                      55.790584
+                    ],
+                    [
+                      49.1103097,
+                      55.7908055
+                    ],
+                    [
+                      49.109979,
+                      55.7909353
+                    ],
+                    [
+                      49.1097105,
+                      55.7907653
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w1054782583",
+              "hotel_id": "n12484773914",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 3,
+              "height_fact_id": "f_height_n12484773914"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n10004372105",
+            "name": "Amsterdam",
+            "address": null,
+            "location": [
+              49.1081917,
+              55.7895804
+            ],
+            "stars": null,
+            "building_id": "w90155378",
+            "height_m": null,
+            "levels": 4
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n10004372105",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4450372789",
+                  "g_walk_n10004372105_n4450372789"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4450372789",
+                "g_walk_n10004372105_n4450372789"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1081917,
+              55.7895804
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w90155378",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1073594,
+                      55.78953
+                    ],
+                    [
+                      49.1078058,
+                      55.7891883
+                    ],
+                    [
+                      49.108023,
+                      55.7891853
+                    ],
+                    [
+                      49.1085702,
+                      55.7895834
+                    ],
+                    [
+                      49.108066,
+                      55.7898504
+                    ],
+                    [
+                      49.1077969,
+                      55.7897034
+                    ],
+                    [
+                      49.1079721,
+                      55.7896319
+                    ],
+                    [
+                      49.1080738,
+                      55.7895904
+                    ],
+                    [
+                      49.1081412,
+                      55.7895628
+                    ],
+                    [
+                      49.1080892,
+                      55.7895226
+                    ],
+                    [
+                      49.1080315,
+                      55.7894779
+                    ],
+                    [
+                      49.1078429,
+                      55.7894755
+                    ],
+                    [
+                      49.1076157,
+                      55.7896326
+                    ],
+                    [
+                      49.1073594,
+                      55.78953
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w90155378",
+              "hotel_id": "n10004372105",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 4,
+              "height_fact_id": "f_height_n10004372105"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "w143056765",
+            "name": "Azimut отель Бауман Казань",
+            "address": "Право-Булачная улица 43/1",
+            "location": [
+              49.1139929,
+              55.7883235
+            ],
+            "stars": 3,
+            "building_id": "w143056765",
+            "height_m": null,
+            "levels": 6
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_w143056765",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9781250335",
+                  "g_poi_n4450372789",
+                  "g_walk_w143056765_n9781250335",
+                  "g_walk_w143056765_n4450372789"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9781250335",
+                "g_poi_n4450372789",
+                "g_walk_w143056765_n9781250335",
+                "g_walk_w143056765_n4450372789"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1139929,
+              55.7883235
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w143056765",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1134644,
+                      55.788354
+                    ],
+                    [
+                      49.1140085,
+                      55.7880654
+                    ],
+                    [
+                      49.1144215,
+                      55.7883115
+                    ],
+                    [
+                      49.1144601,
+                      55.7883345
+                    ],
+                    [
+                      49.1142919,
+                      55.7884237
+                    ],
+                    [
+                      49.1142499,
+                      55.7883987
+                    ],
+                    [
+                      49.1139758,
+                      55.7882353
+                    ],
+                    [
+                      49.1135998,
+                      55.7884347
+                    ],
+                    [
+                      49.1134644,
+                      55.788354
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w143056765",
+              "hotel_id": "w143056765",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 6,
+              "height_fact_id": "f_height_w143056765"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n11280925757",
+            "name": "Bilyar inn",
+            "address": null,
+            "location": [
+              49.046131,
+              55.8244007
+            ],
+            "stars": 3,
+            "building_id": "w1033575682",
+            "height_m": null,
+            "levels": 7
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n11280925757",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n10974150813",
+                  "g_poi_n10974144991",
+                  "g_poi_n8142255718",
+                  "g_poi_n2387372512",
+                  "g_walk_n11280925757_n10974150813",
+                  "g_walk_n11280925757_n10974144991",
+                  "g_walk_n11280925757_n8142255718",
+                  "g_walk_n11280925757_n2387372512"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n10974150813",
+                "g_poi_n10974144991",
+                "g_poi_n8142255718",
+                "g_poi_n2387372512",
+                "g_walk_n11280925757_n10974150813",
+                "g_walk_n11280925757_n10974144991",
+                "g_walk_n11280925757_n8142255718",
+                "g_walk_n11280925757_n2387372512"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.046131,
+              55.8244007
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w1033575682",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.045802,
+                      55.8243384
+                    ],
+                    [
+                      49.0460292,
+                      55.8242402
+                    ],
+                    [
+                      49.0461765,
+                      55.8243497
+                    ],
+                    [
+                      49.0461327,
+                      55.8243708
+                    ],
+                    [
+                      49.0463443,
+                      55.8245191
+                    ],
+                    [
+                      49.0461688,
+                      55.8245927
+                    ],
+                    [
+                      49.045802,
+                      55.8243384
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w1033575682",
+              "hotel_id": "n11280925757",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 7,
+              "height_fact_id": "f_height_n11280925757"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n2016092412",
+            "name": "Bilyar Palace",
+            "address": null,
+            "location": [
+              49.1248863,
+              55.7840826
+            ],
+            "stars": 4,
+            "building_id": "w220383031",
+            "height_m": null,
+            "levels": 8
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n2016092412",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9156264212",
+                  "g_walk_n2016092412_n9156264212"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9156264212",
+                "g_walk_n2016092412_n9156264212"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1248863,
+              55.7840826
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w220383031",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1245932,
+                      55.7841824
+                    ],
+                    [
+                      49.124807,
+                      55.7840707
+                    ],
+                    [
+                      49.1249453,
+                      55.7839985
+                    ],
+                    [
+                      49.125214,
+                      55.7838582
+                    ],
+                    [
+                      49.1253905,
+                      55.7839651
+                    ],
+                    [
+                      49.1251218,
+                      55.7841054
+                    ],
+                    [
+                      49.1249835,
+                      55.7841776
+                    ],
+                    [
+                      49.1251252,
+                      55.7842634
+                    ],
+                    [
+                      49.1249539,
+                      55.7843528
+                    ],
+                    [
+                      49.1248307,
+                      55.7842782
+                    ],
+                    [
+                      49.1248134,
+                      55.7842873
+                    ],
+                    [
+                      49.1247329,
+                      55.7842385
+                    ],
+                    [
+                      49.1247076,
+                      55.7842517
+                    ],
+                    [
+                      49.1245932,
+                      55.7841824
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w220383031",
+              "hotel_id": "n2016092412",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 8,
+              "height_fact_id": "f_height_n2016092412"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "w99325913",
+            "name": "Bon Ami",
+            "address": "улица Островского 31",
+            "location": [
+              49.1174764,
+              55.7879957
+            ],
+            "stars": 4,
+            "building_id": "w99325913",
+            "height_m": null,
+            "levels": 5
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_w99325913",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9781250335",
+                  "g_walk_w99325913_n9781250335"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9781250335",
+                "g_walk_w99325913_n9781250335"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1174764,
+              55.7879957
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w99325913",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1171222,
+                      55.7879187
+                    ],
+                    [
+                      49.1175447,
+                      55.7877117
+                    ],
+                    [
+                      49.1180428,
+                      55.7880317
+                    ],
+                    [
+                      49.1176162,
+                      55.7882416
+                    ],
+                    [
+                      49.1174588,
+                      55.7881405
+                    ],
+                    [
+                      49.1176453,
+                      55.7880488
+                    ],
+                    [
+                      49.1174595,
+                      55.7879294
+                    ],
+                    [
+                      49.1172762,
+                      55.7880205
+                    ],
+                    [
+                      49.1171222,
+                      55.7879187
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w99325913",
+              "hotel_id": "w99325913",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 5,
+              "height_fact_id": "f_height_w99325913"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n10834208551",
+            "name": "Botanika",
+            "address": null,
+            "location": [
+              49.1805964,
+              55.7334359
+            ],
+            "stars": null,
+            "building_id": "r16397409",
+            "height_m": null,
+            "levels": 19
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n10834208551",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4267646358",
+                  "g_poi_n6078327489",
+                  "g_poi_n10969951201",
+                  "g_poi_n10972215573",
+                  "g_poi_n10138461500",
+                  "g_walk_n10834208551_n4267646358",
+                  "g_walk_n10834208551_n6078327489",
+                  "g_walk_n10834208551_n10969951201",
+                  "g_walk_n10834208551_n10972215573",
+                  "g_walk_n10834208551_n10138461500"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4267646358",
+                "g_poi_n6078327489",
+                "g_poi_n10969951201",
+                "g_poi_n10972215573",
+                "g_poi_n10138461500",
+                "g_walk_n10834208551_n4267646358",
+                "g_walk_n10834208551_n6078327489",
+                "g_walk_n10834208551_n10969951201",
+                "g_walk_n10834208551_n10972215573",
+                "g_walk_n10834208551_n10138461500"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1805964,
+              55.7334359
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "r16397409",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1784335,
+                      55.7330006
+                    ],
+                    [
+                      49.1787711,
+                      55.732876
+                    ],
+                    [
+                      49.1789086,
+                      55.7329941
+                    ],
+                    [
+                      49.1788553,
+                      55.7330138
+                    ],
+                    [
+                      49.178802,
+                      55.7330334
+                    ],
+                    [
+                      49.1789291,
+                      55.7331426
+                    ],
+                    [
+                      49.1790944,
+                      55.7332305
+                    ],
+                    [
+                      49.1792597,
+                      55.7333184
+                    ],
+                    [
+                      49.1794728,
+                      55.7333709
+                    ],
+                    [
+                      49.1796858,
+                      55.7334233
+                    ],
+                    [
+                      49.1799019,
+                      55.7334247
+                    ],
+                    [
+                      49.1801179,
+                      55.7334261
+                    ],
+                    [
+                      49.1803369,
+                      55.7333796
+                    ],
+                    [
+                      49.1805558,
+                      55.733333
+                    ],
+                    [
+                      49.1806274,
+                      55.7333084
+                    ],
+                    [
+                      49.1806989,
+                      55.7332837
+                    ],
+                    [
+                      49.180649,
+                      55.7332378
+                    ],
+                    [
+                      49.1805753,
+                      55.7331698
+                    ],
+                    [
+                      49.1808025,
+                      55.7330916
+                    ],
+                    [
+                      49.1810575,
+                      55.7333266
+                    ],
+                    [
+                      49.180909,
+                      55.7333777
+                    ],
+                    [
+                      49.1806872,
+                      55.733454
+                    ],
+                    [
+                      49.1804347,
+                      55.7335139
+                    ],
+                    [
+                      49.1801774,
+                      55.7335706
+                    ],
+                    [
+                      49.1798981,
+                      55.7335688
+                    ],
+                    [
+                      49.1796187,
+                      55.733567
+                    ],
+                    [
+                      49.179375,
+                      55.7335078
+                    ],
+                    [
+                      49.1790971,
+                      55.7334394
+                    ],
+                    [
+                      49.1789044,
+                      55.733337
+                    ],
+                    [
+                      49.1786982,
+                      55.7332279
+                    ],
+                    [
+                      49.1784335,
+                      55.7330006
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "r16397409",
+              "hotel_id": "n10834208551",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 19,
+              "height_fact_id": "f_height_n10834208551"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n9775123423",
+            "name": "Butlerov",
+            "address": null,
+            "location": [
+              49.1315281,
+              55.7883446
+            ],
+            "stars": null,
+            "building_id": "w367846128",
+            "height_m": null,
+            "levels": 9
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n9775123423",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9978776598",
+                  "g_poi_n9781250333",
+                  "g_poi_n9156264212",
+                  "g_poi_n9781250332",
+                  "g_walk_n9775123423_n9978776598",
+                  "g_walk_n9775123423_n9781250333",
+                  "g_walk_n9775123423_n9156264212",
+                  "g_walk_n9775123423_n9781250332"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9978776598",
+                "g_poi_n9781250333",
+                "g_poi_n9156264212",
+                "g_poi_n9781250332",
+                "g_walk_n9775123423_n9978776598",
+                "g_walk_n9775123423_n9781250333",
+                "g_walk_n9775123423_n9156264212",
+                "g_walk_n9775123423_n9781250332"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1315281,
+              55.7883446
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w367846128",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.131362,
+                      55.7884961
+                    ],
+                    [
+                      49.1315959,
+                      55.7882158
+                    ],
+                    [
+                      49.1317996,
+                      55.7882659
+                    ],
+                    [
+                      49.1316963,
+                      55.7883949
+                    ],
+                    [
+                      49.1316793,
+                      55.7884162
+                    ],
+                    [
+                      49.1315742,
+                      55.7885479
+                    ],
+                    [
+                      49.131362,
+                      55.7884961
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w367846128",
+              "hotel_id": "n9775123423",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 9,
+              "height_fact_id": "f_height_n9775123423"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n9398058622",
+            "name": "CapsLock",
+            "address": null,
+            "location": [
+              49.1038978,
+              55.8299505
+            ],
+            "stars": null,
+            "building_id": "w1018924773",
+            "height_m": null,
+            "levels": 2
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n9398058622",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n5753676160",
+                  "g_walk_n9398058622_n5753676160"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n5753676160",
+                "g_walk_n9398058622_n5753676160"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1038978,
+              55.8299505
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w1018924773",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1020459,
+                      55.8297723
+                    ],
+                    [
+                      49.1032359,
+                      55.8297651
+                    ],
+                    [
+                      49.1032384,
+                      55.8298988
+                    ],
+                    [
+                      49.1034729,
+                      55.8298973
+                    ],
+                    [
+                      49.1034716,
+                      55.8298344
+                    ],
+                    [
+                      49.1035671,
+                      55.8298339
+                    ],
+                    [
+                      49.1035661,
+                      55.8297798
+                    ],
+                    [
+                      49.1036587,
+                      55.8297793
+                    ],
+                    [
+                      49.1036578,
+                      55.8297299
+                    ],
+                    [
+                      49.1040273,
+                      55.8297277
+                    ],
+                    [
+                      49.1040284,
+                      55.8297821
+                    ],
+                    [
+                      49.1041247,
+                      55.8297815
+                    ],
+                    [
+                      49.1041256,
+                      55.8298307
+                    ],
+                    [
+                      49.1042283,
+                      55.8298301
+                    ],
+                    [
+                      49.1042302,
+                      55.8299274
+                    ],
+                    [
+                      49.1042323,
+                      55.8300377
+                    ],
+                    [
+                      49.1041246,
+                      55.8300384
+                    ],
+                    [
+                      49.1041257,
+                      55.8300942
+                    ],
+                    [
+                      49.1040467,
+                      55.8300947
+                    ],
+                    [
+                      49.1040476,
+                      55.8301449
+                    ],
+                    [
+                      49.1036709,
+                      55.8301472
+                    ],
+                    [
+                      49.1036698,
+                      55.8300908
+                    ],
+                    [
+                      49.1035757,
+                      55.8300914
+                    ],
+                    [
+                      49.1035749,
+                      55.8300485
+                    ],
+                    [
+                      49.1034773,
+                      55.8300491
+                    ],
+                    [
+                      49.1034758,
+                      55.8299739
+                    ],
+                    [
+                      49.1032252,
+                      55.8299754
+                    ],
+                    [
+                      49.1032276,
+                      55.8301009
+                    ],
+                    [
+                      49.1020523,
+                      55.830108
+                    ],
+                    [
+                      49.102049,
+                      55.8299372
+                    ],
+                    [
+                      49.1020459,
+                      55.8297723
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w1018924773",
+              "hotel_id": "n9398058622",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 2,
+              "height_fact_id": "f_height_n9398058622"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n12990512272",
+            "name": "Cho",
+            "address": null,
+            "location": [
+              49.1295062,
+              55.7961549
+            ],
+            "stars": null,
+            "building_id": "w1089854564",
+            "height_m": null,
+            "levels": 2
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n12990512272",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4318054724",
+                  "g_walk_n12990512272_n4318054724"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4318054724",
+                "g_walk_n12990512272_n4318054724"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1295062,
+              55.7961549
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w1089854564",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1293013,
+                      55.7960906
+                    ],
+                    [
+                      49.1295164,
+                      55.7960676
+                    ],
+                    [
+                      49.1295758,
+                      55.7962429
+                    ],
+                    [
+                      49.1294346,
+                      55.796258
+                    ],
+                    [
+                      49.1294147,
+                      55.7961995
+                    ],
+                    [
+                      49.1293433,
+                      55.7962072
+                    ],
+                    [
+                      49.1293228,
+                      55.7961467
+                    ],
+                    [
+                      49.1294019,
+                      55.7961383
+                    ],
+                    [
+                      49.1293911,
+                      55.7961065
+                    ],
+                    [
+                      49.1293096,
+                      55.7961152
+                    ],
+                    [
+                      49.1293013,
+                      55.7960906
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w1089854564",
+              "hotel_id": "n12990512272",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 2,
+              "height_fact_id": "f_height_n12990512272"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "w94874741",
+            "name": "Cosmos",
+            "address": "улица Лесгафта 7",
+            "location": [
+              49.1424735,
+              55.7871654
+            ],
+            "stars": 4,
+            "building_id": "w94874741",
+            "height_m": null,
+            "levels": 9
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_w94874741",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n10832844723",
+                  "g_poi_n5153602147",
+                  "g_poi_n10973628489",
+                  "g_walk_w94874741_n10832844723",
+                  "g_walk_w94874741_n5153602147",
+                  "g_walk_w94874741_n10973628489"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n10832844723",
+                "g_poi_n5153602147",
+                "g_poi_n10973628489",
+                "g_walk_w94874741_n10832844723",
+                "g_walk_w94874741_n5153602147",
+                "g_walk_w94874741_n10973628489"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1424735,
+              55.7871654
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w94874741",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1422857,
+                      55.7873372
+                    ],
+                    [
+                      49.1422945,
+                      55.787039
+                    ],
+                    [
+                      49.1422947,
+                      55.7870319
+                    ],
+                    [
+                      49.1425487,
+                      55.7870342
+                    ],
+                    [
+                      49.142807,
+                      55.7870366
+                    ],
+                    [
+                      49.142798,
+                      55.787342
+                    ],
+                    [
+                      49.1422857,
+                      55.7873372
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w94874741",
+              "hotel_id": "w94874741",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 9,
+              "height_fact_id": "f_height_w94874741"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n2558990266",
+            "name": "Davidov",
+            "address": null,
+            "location": [
+              49.1387099,
+              55.7710696
+            ],
+            "stars": 3,
+            "building_id": "w96668923",
+            "height_m": null,
+            "levels": 10
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n2558990266",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4367926105",
+                  "g_poi_n4295722951",
+                  "g_walk_n2558990266_n4367926105",
+                  "g_walk_n2558990266_n4295722951"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4367926105",
+                "g_poi_n4295722951",
+                "g_walk_n2558990266_n4367926105",
+                "g_walk_n2558990266_n4295722951"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1387099,
+              55.7710696
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w96668923",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1383645,
+                      55.7710649
+                    ],
+                    [
+                      49.1386083,
+                      55.7709434
+                    ],
+                    [
+                      49.1386744,
+                      55.7709855
+                    ],
+                    [
+                      49.1386632,
+                      55.770991
+                    ],
+                    [
+                      49.138749,
+                      55.7710457
+                    ],
+                    [
+                      49.1388326,
+                      55.7710991
+                    ],
+                    [
+                      49.1388437,
+                      55.7710936
+                    ],
+                    [
+                      49.1389098,
+                      55.7711357
+                    ],
+                    [
+                      49.138666,
+                      55.7712571
+                    ],
+                    [
+                      49.1385999,
+                      55.7712151
+                    ],
+                    [
+                      49.1386128,
+                      55.7712086
+                    ],
+                    [
+                      49.1385766,
+                      55.7711854
+                    ],
+                    [
+                      49.1385666,
+                      55.7711904
+                    ],
+                    [
+                      49.1384655,
+                      55.7711255
+                    ],
+                    [
+                      49.1384752,
+                      55.7711207
+                    ],
+                    [
+                      49.138439,
+                      55.7710975
+                    ],
+                    [
+                      49.1384261,
+                      55.7711039
+                    ],
+                    [
+                      49.1383645,
+                      55.7710649
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w96668923",
+              "hotel_id": "n2558990266",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 10,
+              "height_fact_id": "f_height_n2558990266"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n12714521765",
+            "name": "Dion inn",
+            "address": null,
+            "location": [
+              49.1414034,
+              55.8148497
+            ],
+            "stars": null,
+            "building_id": "w856858879",
+            "height_m": null,
+            "levels": 17
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n12714521765",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n2635577440",
+                  "g_walk_n12714521765_n2635577440"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n2635577440",
+                "g_walk_n12714521765_n2635577440"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1414034,
+              55.8148497
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w856858879",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.140203,
+                      55.8144254
+                    ],
+                    [
+                      49.1414395,
+                      55.8144231
+                    ],
+                    [
+                      49.1416753,
+                      55.8141994
+                    ],
+                    [
+                      49.1417478,
+                      55.8141994
+                    ],
+                    [
+                      49.1418229,
+                      55.8141475
+                    ],
+                    [
+                      49.1419007,
+                      55.814149
+                    ],
+                    [
+                      49.1419396,
+                      55.8142002
+                    ],
+                    [
+                      49.142079,
+                      55.8142009
+                    ],
+                    [
+                      49.1414742,
+                      55.8148167
+                    ],
+                    [
+                      49.1417008,
+                      55.8150345
+                    ],
+                    [
+                      49.1415788,
+                      55.8150314
+                    ],
+                    [
+                      49.1415145,
+                      55.8150857
+                    ],
+                    [
+                      49.1414367,
+                      55.8150872
+                    ],
+                    [
+                      49.1413764,
+                      55.8150345
+                    ],
+                    [
+                      49.1412932,
+                      55.8150337
+                    ],
+                    [
+                      49.140856,
+                      55.8146215
+                    ],
+                    [
+                      49.1404067,
+                      55.8146222
+                    ],
+                    [
+                      49.140203,
+                      55.8144254
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w856858879",
+              "hotel_id": "n12714521765",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 17,
+              "height_fact_id": "f_height_n12714521765"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n7920807933",
+            "name": "For rest",
+            "address": null,
+            "location": [
+              49.1086356,
+              55.788005
+            ],
+            "stars": null,
+            "building_id": "w92033647",
+            "height_m": null,
+            "levels": 2
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n7920807933",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4450372789",
+                  "g_poi_n12219091357",
+                  "g_walk_n7920807933_n4450372789",
+                  "g_walk_n7920807933_n12219091357"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4450372789",
+                "g_poi_n12219091357",
+                "g_walk_n7920807933_n4450372789",
+                "g_walk_n7920807933_n12219091357"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1086356,
+              55.788005
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w92033647",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1081562,
+                      55.7877289
+                    ],
+                    [
+                      49.1082661,
+                      55.7876909
+                    ],
+                    [
+                      49.1082915,
+                      55.7877083
+                    ],
+                    [
+                      49.1084551,
+                      55.7876465
+                    ],
+                    [
+                      49.1085623,
+                      55.7877115
+                    ],
+                    [
+                      49.1084523,
+                      55.7877654
+                    ],
+                    [
+                      49.1086335,
+                      55.7878849
+                    ],
+                    [
+                      49.1088046,
+                      55.7879978
+                    ],
+                    [
+                      49.1087088,
+                      55.788074
+                    ],
+                    [
+                      49.1084399,
+                      55.7879142
+                    ],
+                    [
+                      49.1082802,
+                      55.7878193
+                    ],
+                    [
+                      49.1081562,
+                      55.7877289
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w92033647",
+              "hotel_id": "n7920807933",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 2,
+              "height_fact_id": "f_height_n7920807933"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n1471086034",
+            "name": "FortePiano",
+            "address": null,
+            "location": [
+              49.2249823,
+              55.7829644
+            ],
+            "stars": null,
+            "building_id": "w133657002",
+            "height_m": null,
+            "levels": null
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n1471086034",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9781250342",
+                  "g_poi_n10974144960",
+                  "g_poi_n8071227921",
+                  "g_walk_n1471086034_n9781250342",
+                  "g_walk_n1471086034_n10974144960",
+                  "g_walk_n1471086034_n8071227921"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9781250342",
+                "g_poi_n10974144960",
+                "g_poi_n8071227921",
+                "g_walk_n1471086034_n9781250342",
+                "g_walk_n1471086034_n10974144960",
+                "g_walk_n1471086034_n8071227921"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.2249823,
+              55.7829644
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w133657002",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.2245821,
+                      55.7830006
+                    ],
+                    [
+                      49.2245856,
+                      55.7828571
+                    ],
+                    [
+                      49.225343,
+                      55.782863
+                    ],
+                    [
+                      49.2253395,
+                      55.7830066
+                    ],
+                    [
+                      49.2245821,
+                      55.7830006
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w133657002",
+              "hotel_id": "n1471086034",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n1471086034"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n6565450987",
+            "name": "Friendly Hostel",
+            "address": null,
+            "location": [
+              49.1159405,
+              55.7978018
+            ],
+            "stars": null,
+            "building_id": "w91856585",
+            "height_m": null,
+            "levels": 2
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n6565450987",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n6918259585",
+                  "g_walk_n6565450987_n6918259585"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n6918259585",
+                "g_walk_n6565450987_n6918259585"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1159405,
+              55.7978018
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w91856585",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.1158392,
+                      55.7976748
+                    ],
+                    [
+                      49.1160933,
+                      55.7976614
+                    ],
+                    [
+                      49.1161453,
+                      55.7979746
+                    ],
+                    [
+                      49.1158911,
+                      55.7979879
+                    ],
+                    [
+                      49.1158885,
+                      55.797972
+                    ],
+                    [
+                      49.1158392,
+                      55.7976748
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w91856585",
+              "hotel_id": "n6565450987",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 2,
+              "height_fact_id": "f_height_n6565450987"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n4948970932",
+            "name": "Gamak",
+            "address": "улица Горького 6 к1",
+            "location": [
+              49.1270385,
+              55.793895
+            ],
+            "stars": null,
+            "building_id": "w103455139",
+            "height_m": null,
+            "levels": 2
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n4948970932",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n4318054724",
+                  "g_poi_n9781250333",
+                  "g_walk_n4948970932_n4318054724",
+                  "g_walk_n4948970932_n9781250333"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n4318054724",
+                "g_poi_n9781250333",
+                "g_walk_n4948970932_n4318054724",
+                "g_walk_n4948970932_n9781250333"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.1270385,
+              55.793895
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w103455139",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.126997,
+                      55.7939364
+                    ],
+                    [
+                      49.1270048,
+                      55.7937777
+                    ],
+                    [
+                      49.1270315,
+                      55.7937781
+                    ],
+                    [
+                      49.12716,
+                      55.7937781
+                    ],
+                    [
+                      49.1271535,
+                      55.7939112
+                    ],
+                    [
+                      49.1270847,
+                      55.7939101
+                    ],
+                    [
+                      49.1270834,
+                      55.7939377
+                    ],
+                    [
+                      49.126997,
+                      55.7939364
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w103455139",
+              "hotel_id": "n4948970932",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 2,
+              "height_fact_id": "f_height_n4948970932"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n9846873467",
+            "name": "Game",
+            "address": null,
+            "location": [
+              49.0792403,
+              55.8260794
+            ],
+            "stars": null,
+            "building_id": "w61424538",
+            "height_m": null,
+            "levels": 10
+          },
+          "score": 0.7,
+          "matched": [
+            {
+              "characteristic_key": "derived:91ec481c3391",
+              "match": "full",
+              "label": "рядом с Пятёрочкой",
+              "explanation": "Объекты OpenStreetMap «Пятёрочка» в радиусе 500 м: «Пятёрочка»",
+              "fact": {
+                "fact_id": "f_wish_91ec481c3391_n9846873467",
+                "characteristic_key": "derived:91ec481c3391",
+                "value": true,
+                "unit": null,
+                "label": "рядом с Пятёрочкой",
+                "confidence": 0.7,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_poi_n9299190021",
+                  "g_poi_n9614906344",
+                  "g_poi_n9191368405",
+                  "g_poi_n4253869861",
+                  "g_poi_n11003342990",
+                  "g_poi_n1753107135",
+                  "g_poi_n1681751937",
+                  "g_poi_n8941151892",
+                  "g_poi_n11964628355",
+                  "g_walk_n9846873467_n9299190021",
+                  "g_walk_n9846873467_n9614906344",
+                  "g_walk_n9846873467_n9191368405",
+                  "g_walk_n9846873467_n4253869861",
+                  "g_walk_n9846873467_n11003342990"
+                ]
+              },
+              "geo_refs": [
+                "g_poi_n9299190021",
+                "g_poi_n9614906344",
+                "g_poi_n9191368405",
+                "g_poi_n4253869861",
+                "g_poi_n11003342990",
+                "g_poi_n1753107135",
+                "g_poi_n1681751937",
+                "g_poi_n8941151892",
+                "g_poi_n11964628355",
+                "g_walk_n9846873467_n9299190021",
+                "g_walk_n9846873467_n9614906344",
+                "g_walk_n9846873467_n9191368405",
+                "g_walk_n9846873467_n4253869861",
+                "g_walk_n9846873467_n11003342990"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              49.0792403,
+              55.8260794
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w61424538",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      49.0789753,
+                      55.8258784
+                    ],
+                    [
+                      49.0792797,
+                      55.8258684
+                    ],
+                    [
+                      49.0792887,
+                      55.825954
+                    ],
+                    [
+                      49.0793139,
+                      55.8261962
+                    ],
+                    [
+                      49.0793498,
+                      55.8265399
+                    ],
+                    [
+                      49.0793825,
+                      55.826854
+                    ],
+                    [
+                      49.0794079,
+                      55.8270973
+                    ],
+                    [
+                      49.0794203,
+                      55.8272164
+                    ],
+                    [
+                      49.0794301,
+                      55.82731
+                    ],
+                    [
+                      49.0791256,
+                      55.82732
+                    ],
+                    [
+                      49.0791158,
+                      55.8272264
+                    ],
+                    [
+                      49.0789753,
+                      55.8258784
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w61424538",
+              "hotel_id": "n9846873467",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": 10,
+              "height_fact_id": "f_height_n9846873467"
+            }
+          }
+        }
+      ],
+      "viewport": {
+        "bbox": [
+          49.046131,
+          55.7334359,
+          49.2249823,
+          55.8338301
+        ],
+        "camera": {
+          "center": [
+            49.0554031,
+            55.8338301
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        }
+      },
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "690ad352-eedd-4ba7-8325-aa963b968200"
+  }
+}

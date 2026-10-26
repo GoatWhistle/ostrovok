@@ -1,0 +1,37 @@
+[
+ {
+  "id": "original",
+  "query": "хочу отель в Москве, в котором останавливался сам трамп",
+  "check": "Confirmed historical stay, same real hotel; a meeting or allegation alone is insufficient."
+ },
+ {
+  "id": "poet",
+  "query": "Найди гостиницу в Петербурге, где жил Есенин",
+  "check": "Historical residence established by a page and tied to catalogue identity."
+ },
+ {
+  "id": "museum",
+  "query": "Ищу отель в Переславле-Залесском рядом с музеем чайников",
+  "check": "Resolve actual museum and measure hotel proximity."
+ },
+ {
+  "id": "animals",
+  "query": "Хочу отель в Костроме недалеко от лосиной фермы",
+  "check": "Resolve farm and measure proximity; state distance and actual geography."
+ },
+ {
+  "id": "architecture",
+  "query": "Найди гостиницу в Казани в здании дореволюционного особняка",
+  "check": "Building history and current hotel identity verified, not stylistic imitation."
+ },
+ {
+  "id": "reuse",
+  "query": "Найди отель в Петербурге в бывшей тюрьме",
+  "check": "Historic building use and real current accommodation, no invented match."
+ },
+ {
+  "id": "named",
+  "query": "хочу отель в Казани рядом с Пятёрочкой",
+  "check": "Only hotels with a real Пятёрочка nearby; named objects listed."
+ }
+]

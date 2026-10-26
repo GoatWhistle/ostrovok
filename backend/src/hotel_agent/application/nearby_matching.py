@@ -1,5 +1,5 @@
 import hashlib
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from datetime import datetime, timedelta
 
 from hotel_agent.application.dto import SearchFactRecord
@@ -10,7 +10,8 @@ from hotel_agent.domain.query import Intent, NearbyObjectRequest
 
 def nearby_key(request: NearbyObjectRequest) -> str:
     base = (
-        f"nearby:{request.osm_key}:{request.osm_value}:{int(request.open_24h)}:{request.radius_m}"
+        f"nearby:{request.osm_key}:{request.osm_value}:{request.name.casefold()}"
+        f":{int(request.open_24h)}:{request.radius_m}"
     )
     return f"{base}:avoid" if request.avoid else base
 
@@ -32,7 +33,10 @@ def nearby_record(
     request: NearbyObjectRequest,
     ids: Sequence[str],
     now: datetime,
+    names: Mapping[str, str] | None = None,
 ) -> SearchFactRecord:
+    labels = names or {}
+    found = tuple(dict.fromkeys(labels[item] for item in ids if labels.get(item)))
     digest = hashlib.sha256(key.encode()).hexdigest()[:10]
     return SearchFactRecord(
         hotel_id=hotel_id,
@@ -43,6 +47,7 @@ def nearby_record(
         qualifiers={
             "source_text": request.source_text,
             **({"estimated_absence": True} if request.avoid else {}),
+            **({"nearby_names": list(found[:8])} if found else {}),
         },
         source_type="computed",
         source_id=None,
@@ -59,8 +64,19 @@ def nearby_record(
             f"По неполным данным OpenStreetMap в радиусе {request.radius_m} м найдено "
             f"{len(ids)} объектов; отсутствие не гарантировано."
             if request.avoid
-            else f"Объекты OpenStreetMap в радиусе {request.radius_m} м"
+            else (
+                f"Объекты OpenStreetMap «{request.name}» в радиусе {request.radius_m} м"
+                if request.name
+                else f"Объекты OpenStreetMap в радиусе {request.radius_m} м"
+            )
             + (" с тегом opening_hours=24/7" if request.open_24h else "")
+            + (
+                ": "
+                + ", ".join(f"«{name}»" for name in found[:5])
+                + (f" и ещё {len(found) - 5}" if len(found) > 5 else "")
+                if found
+                else "; названий у найденных объектов в данных нет"
+            )
         ),
         facade_azimuth=None,
     )

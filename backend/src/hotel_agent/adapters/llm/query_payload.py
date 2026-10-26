@@ -45,6 +45,7 @@ def nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest 
     ):
         return None
     radius = number(raw, "radius_m")
+    name = (optional_text(raw, "name") or "").strip()
     return NearbyObjectRequest(
         osm_key=key,
         osm_value=value,
@@ -53,7 +54,14 @@ def nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest 
         required=flag(raw, "required"),
         radius_m=max(100, min(50000, int(radius or 500))),
         source_text=source,
+        name=name if quoted_name(name, query) else "",
     )
+
+
+def quoted_name(name: str, query: str) -> bool:
+    asked = normalize(query)
+    words = [word for word in normalize(name).split() if len(word) >= 3]
+    return bool(words) and all(word[: max(4, len(word) - 2)] in asked for word in words)
 
 
 def query_correction(raw: Mapping[str, object], query: str) -> QueryCorrection | None:

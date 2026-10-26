@@ -113,6 +113,7 @@ async def test_verified_page_fact_carries_catalogue_identity_for_the_final_revie
         "гостиница, где жил поэт", (term,), "Москва", "russia", [hotel("city")], None, False
     )
 
+    assert quote[:300] in result.facts[0].explanation
     identity = result.facts[0].qualifiers["catalogue_identity"]
     assert "wikipedia=ru:Ритц-Карлтон Москва" in identity
     assert "name=The Carlton" in identity

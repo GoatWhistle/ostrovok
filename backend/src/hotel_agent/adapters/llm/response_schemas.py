@@ -59,6 +59,7 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
                     {
                         "osm_key": {"type": "string", "enum": list(OSM_OBJECT_KEYS)},
                         "osm_value": {"type": "string"},
+                        "name": {"type": "string"},
                         "open_24h": {"type": "boolean"},
                         "avoid": {"type": "boolean"},
                         "required": {"type": "boolean"},

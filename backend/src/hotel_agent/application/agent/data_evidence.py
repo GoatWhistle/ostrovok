@@ -91,8 +91,10 @@ def materialize(
                     )
                 )
             )
-            if quotes and any(check.field.startswith("event") for check in criterion.checks):
-                explanation += " " + " ".join(quotes)
+            if quotes:
+                explanation += " Цитаты источника: " + " ".join(
+                    f"«{quote[:300]}»" for quote in quotes[:2]
+                )
             if urls:
                 explanation += " Источники: " + ", ".join(urls)
             if "scope.distance_m" in metrics:

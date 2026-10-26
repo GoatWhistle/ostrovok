@@ -8,6 +8,7 @@ import pytest
 
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview, safe_answer
 from hotel_agent.application.agent.semantic_review import ReviewResult, SemanticReview
+from hotel_agent.application.agent.wish_records import WishResult, WishStatus
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
@@ -87,3 +88,19 @@ def test_unavailable_recommendation_verification_does_not_claim_hotel_absence(lo
     answer = safe_answer(outcome, locale)
     assert ("закончить проверку" in answer) if locale == "ru" else ("finish verifying" in answer)
     assert "not find" not in answer and "не нашёл" not in answer
+
+
+def test_timed_out_check_is_not_reported_as_verified_absence() -> None:
+    search = SearchOutcome(
+        query_id="q",
+        parsed=ParsedQuery(intents=(), unmatched_terms=(), location_hint="Москва"),
+        results=(),
+        wish_results=(
+            WishResult("рядом с Вкусвилл", WishStatus.INCOMPLETE, "не успели", 12, (), ()),
+        ),
+    )
+
+    answer = safe_answer(search, "ru")
+
+    assert "Не успел закончить проверку" in answer
+    assert "рядом с Вкусвилл" in answer

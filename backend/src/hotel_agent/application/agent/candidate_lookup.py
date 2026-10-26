@@ -18,8 +18,7 @@ def identity_tags(tags: Mapping[str, Any]) -> dict[str, Any]:
     return {
         key: value
         for key, value in tags.items()
-        if key.split(":")[0] in IDENTITY_KEYS
-        or key in {"website", "contact:website", "wikidata"}
+        if key.split(":")[0] in IDENTITY_KEYS or key in {"website", "contact:website", "wikidata"}
     }
 
 

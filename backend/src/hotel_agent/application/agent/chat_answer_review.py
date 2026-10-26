@@ -2,6 +2,7 @@ import json
 
 from hotel_agent.application.agent.recommendation_review import recommendation_claim
 from hotel_agent.application.agent.semantic_review import ReviewClaim, SemanticReview
+from hotel_agent.application.agent.wish_records import WishStatus
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
 
 
@@ -45,8 +46,23 @@ class ChatAnswerReview:
         return "answer" in report.accepted_ids
 
 
+UNFINISHED = {WishStatus.INCOMPLETE, WishStatus.UNAVAILABLE}
+
+
 def safe_answer(search: SearchOutcome, locale: str) -> str:
     count = len(search.results)
+    unfinished = [row.term for row in search.wish_results if row.status in UNFINISHED]
+    if not count and unfinished:
+        terms = "; ".join(unfinished[:4])
+        return (
+            f"I did not finish checking in the time available: {terms}."
+            " This is not a verified absence of suitable hotels; repeat the search"
+            " or narrow the condition."
+            if locale == "en"
+            else f"Не успел закончить проверку за отведённое время: {terms}."
+            " Это не проверенное отсутствие подходящих отелей; повторите поиск"
+            " или сузьте условие."
+        )
     if count:
         return (
             f"Showing {count} hotels. The cards mark verified and unknown conditions."
