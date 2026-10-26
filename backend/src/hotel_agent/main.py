@@ -2,6 +2,7 @@ import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
+from uuid import uuid4
 
 from fastapi import FastAPI
 
@@ -30,10 +31,13 @@ from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.ports.place_research import PlaceResearchPort
+from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
+from hotel_agent.application.use_cases.change_facts import ChangeFacts
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.ensure_geography import EnsureGeography
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
+from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
@@ -43,6 +47,7 @@ from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
+from hotel_agent.application.use_cases.hotelier_questions import ListHotelierQuestions
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
 from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
@@ -161,13 +166,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     mode="json"
                 ),
                 providers.registry,
-                GetHotelCard(providers.uow),
+                GetHotelCard(providers.uow, providers.clock),
                 providers.clock,
                 review=ChatAnswerReview(semantic_review),
             ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),
-            get_hotel_card=GetHotelCard(providers.uow),
+            get_hotel_card=GetHotelCard(providers.uow, providers.clock),
             get_place=GetPlace(providers.uow, providers.clock),
             compare_hotels=CompareHotels(providers.uow, providers.registry, providers.clock),
             get_hotel_offers=get_hotel_offers,
@@ -180,6 +185,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             ),
             get_terrain_tile=GetTerrainTile(terrain_tiles),
             get_weather=GetWeather(conditions),
+            get_fact=GetFact(providers.uow),
+            list_hotelier_questions=ListHotelierQuestions(providers.uow),
+            answer_hotelier_question=AnswerHotelierQuestion(
+                providers.uow, providers.registry, providers.llm, providers.clock, new_id
+            ),
+            change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),
         )
     )
     return app
+
+
+def new_id(prefix: str) -> str:
+    return f"{prefix}_{uuid4().hex}"

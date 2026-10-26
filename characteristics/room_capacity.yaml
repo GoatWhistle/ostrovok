@@ -36,6 +36,11 @@ matchers:
     value: 4
     weight: 1.0
     required: true
-fields: []
+fields:
+  - name: adults
+    kind: number
+    units: [взрослых, взрослого, гостей, гостя, человек]
+    positive: []
+    negative: []
 
 compare: { group: room }

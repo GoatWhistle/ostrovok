@@ -3,7 +3,13 @@ from pydantic import BaseModel, Field
 from hotel_agent.application.dto import BuildingRecord, SearchHotelRecord
 from hotel_agent.application.use_cases.get_hotel_card import HotelCard
 from hotel_agent.application.use_cases.get_hotel_scene import HotelScene
-from hotel_agent.interfaces.http.fact_schemas import FactDetailSchema, FactSchema, fact_schema
+from hotel_agent.interfaces.http.fact_schemas import (
+    ConflictSchema,
+    FactDetailSchema,
+    FactSchema,
+    conflict_schema,
+    fact_schema,
+)
 from hotel_agent.interfaces.http.schemas import CameraSchema
 from hotel_agent.interfaces.http.search_schemas import (
     BuildingFeatureSchema,
@@ -20,7 +26,7 @@ class HotelCardSchema(BaseModel):
     facilities_ru: list[str] = Field(default_factory=list)
     facilities_en: list[str] = Field(default_factory=list)
     facts: list[FactSchema]
-    conflicts: list[dict[str, object]] = Field(default_factory=list)
+    conflicts: list[ConflictSchema] = Field(default_factory=list)
     stale_count: int = 0
     open_questions: int = 0
     camera: CameraSchema
@@ -87,6 +93,9 @@ def hotel_card_schema(card: HotelCard) -> HotelCardSchema:
         facilities_ru=list(card.supplier_content.facilities_ru) if card.supplier_content else [],
         facilities_en=list(card.supplier_content.facilities_en) if card.supplier_content else [],
         facts=[fact_schema(fact) for fact in card.facts],
+        conflicts=[conflict_schema(item) for item in card.conflicts],
+        stale_count=card.stale_count,
+        open_questions=card.open_questions,
         camera=_camera(hotel.location, 0),
     )
 

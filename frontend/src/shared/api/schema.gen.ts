@@ -352,6 +352,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
+        /** @description Повторное подтверждение возвращает тот же факт; superseded и computing дают 422 */
         post: operations["confirmFact"];
         delete?: never;
         options?: never;
@@ -589,14 +590,14 @@ export interface components {
             conflicts?: components["schemas"]["Conflict"][];
         };
         Conflict: {
-            id?: string;
-            characteristic_key?: string;
-            fact_ids?: string[];
+            id: string;
+            characteristic_key: string;
+            fact_ids: string[];
             /** @enum {string} */
-            resolution?: "pending" | "resolved_by_rule" | "resolved_by_hotelier";
+            resolution: "pending" | "resolved_by_rule" | "resolved_by_hotelier";
             winner_fact_id?: string | null;
             /** @example hotelier > fresh_computed > osm_tag */
-            rule?: string;
+            rule: string;
         };
         SearchRequest: {
             query: string;
@@ -934,22 +935,40 @@ export interface components {
             search?: components["schemas"]["SearchResponse"] | null;
         };
         HotelierQuestion: {
-            id?: string;
-            hotel_id?: string;
-            characteristic_key?: string;
+            id: string;
+            hotel_id: string;
+            characteristic_key: string;
             /** @example Какие номера выходят окнами на запад? */
-            text?: string;
+            text: string;
             /** @enum {string} */
-            reason?: "missing" | "conflict" | "stale" | "low_confidence";
+            reason: "missing" | "conflict" | "stale" | "low_confidence";
             /** @enum {string} */
-            status?: "open" | "answered" | "skipped";
+            status: "open" | "answered" | "skipped";
             /** Format: date-time */
-            created_at?: string;
+            created_at: string;
         };
     };
     responses: {
         /** @description Не найдено */
         NotFound: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Значение или переход состояния недопустимы */
+        InvalidInput: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Языковая модель недоступна, состояние не изменено */
+        ModelUnavailable: {
             headers: {
                 [name: string]: unknown;
             };
@@ -1279,6 +1298,7 @@ export interface operations {
                     "application/json": components["schemas"]["FactDetail"];
                 };
             };
+            404: components["responses"]["NotFound"];
         };
     };
     getGeoFeatures: {
@@ -1528,6 +1548,7 @@ export interface operations {
                     };
                 };
             };
+            404: components["responses"]["NotFound"];
         };
     };
     answerHotelierQuestion: {
@@ -1566,6 +1587,9 @@ export interface operations {
                     };
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+            503: components["responses"]["ModelUnavailable"];
         };
     };
     confirmFact: {
@@ -1588,6 +1612,8 @@ export interface operations {
                     "application/json": components["schemas"]["Fact"];
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
         };
     };
     correctFact: {
@@ -1602,7 +1628,8 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": {
-                    value?: unknown;
+                    /** @description Значение типа из реестра; false и 0 допустимы */
+                    value: unknown;
                     comment?: string;
                 };
             };
@@ -1617,6 +1644,8 @@ export interface operations {
                     "application/json": components["schemas"]["Fact"];
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
         };
     };
 }

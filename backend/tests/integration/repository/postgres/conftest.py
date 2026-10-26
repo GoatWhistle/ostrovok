@@ -2,7 +2,7 @@ import asyncio
 import os
 import shutil
 import subprocess
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Iterator
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from uuid import uuid4
@@ -11,6 +11,8 @@ import psycopg
 import pytest
 from psycopg import sql
 from psycopg_pool import AsyncConnectionPool
+
+MIGRATIONS = Path(__file__).resolve().parents[4] / "migrations" / "postgres"
 
 
 @pytest.fixture
@@ -57,3 +59,40 @@ async def catalog_pool() -> AsyncIterator[
             await admin.execute(sql.SQL("DROP DATABASE {}").format(sql.Identifier(database)))
     finally:
         await admin.close()
+
+
+@pytest.fixture(scope="session")
+def disposable_database() -> Iterator[str]:
+    base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+        "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+    )
+    dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+    if dbmate is None:
+        pytest.fail(
+            "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+        )
+    name = f"hotel_it_{uuid4().hex[:12]}"
+    url = urlunsplit(urlsplit(base)._replace(path=f"/{name}"))
+    with psycopg.connect(base, autocommit=True) as admin:
+        admin.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(name)))
+    try:
+        subprocess.run(
+            [
+                dbmate,
+                "--url",
+                f"{url}?sslmode=disable",
+                "--migrations-dir",
+                str(MIGRATIONS),
+                "--no-dump-schema",
+                "up",
+                "--strict",
+            ],
+            check=True,
+            capture_output=True,
+        )
+        yield url
+    finally:
+        with psycopg.connect(base, autocommit=True) as admin:
+            admin.execute(
+                sql.SQL("DROP DATABASE IF EXISTS {} WITH (FORCE)").format(sql.Identifier(name))
+            )

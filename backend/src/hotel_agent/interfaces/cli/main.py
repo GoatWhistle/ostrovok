@@ -42,6 +42,11 @@ def build_parser() -> ArgumentParser:
     )
     geometry.add_argument("--region", default="russia")
 
+    questions = commands.add_parser(
+        "plan-questions", help="Queue hotelier questions for characteristics without facts"
+    )
+    questions.add_argument("--region", default="sochi")
+
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)
     catalog.add_argument("--supplier-id", required=True)

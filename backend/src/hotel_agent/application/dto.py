@@ -87,6 +87,41 @@ class SearchFactRecord:
     geo_refs: tuple[str, ...]
     explanation: str
     facade_azimuth: float | None
+    subject_id: str | None = None
+    source_url: str | None = None
+    observed_at: datetime | None = None
+    evidence: tuple[tuple[str, str], ...] = ()
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class ConflictRecord:
+    id: str
+    subject_type: str
+    subject_id: str
+    characteristic_key: str
+    fact_ids: tuple[str, ...]
+    resolution: str
+    rule: str
+    winner_fact_id: str | None
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class QuestionRecord:
+    id: str
+    hotel_id: str
+    characteristic_key: str
+    text: str
+    reason: str
+    status: str
+    created_at: datetime
+    answer_text: str | None = None
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class QuestionCandidate:
+    hotel_id: str
+    hotel_name: str
+    characteristic_key: str
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

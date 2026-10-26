@@ -35,6 +35,11 @@ matchers:
     value: true
     weight: 1.0
     required: false
-fields: []
+fields:
+  - name: present
+    kind: bool
+    units: []
+    positive: [есть, имеются, бывают, доступны]
+    negative: [нет, отсутствуют, не бывает]
 
 compare: { group: room }

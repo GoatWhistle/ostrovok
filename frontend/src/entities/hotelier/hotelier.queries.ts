@@ -26,7 +26,7 @@ export function useHotelierAnswer() {
       ),
     onSuccess: async () => {
       await Promise.all(
-        ["questions", "hotel", "fact", "search", "scene", "geometry"].map((key) =>
+        ["questions", "hotel", "fact", "search", "compare", "scene", "geometry"].map((key) =>
           cache.invalidateQueries({ queryKey: [key] }),
         ),
       )

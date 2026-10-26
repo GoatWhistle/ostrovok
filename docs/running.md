@@ -32,7 +32,8 @@ make seed && make precompute
 |---|---|---|
 | `make up` | `docker buildx bake`, затем `docker compose up -d --wait`; миграции dbmate применяются до старта бэкенда | Для сборки образов |
 | `make seed` | Загружает срез `data/seed/sochi` в PostGIS; повторный запуск обновляет те же записи без дублей | Нет |
-| `make precompute` | Считает по загруженному срезу факты: высоту здания, уровень шума, пеший маршрут до моря, фасады | Нет |
+| `make precompute` | Считает по загруженному срезу факты: высоту здания, уровень шума, пеший маршрут до моря, фасады; затем ставит вопросы отельерам | Нет |
+| `make plan-questions` | Ставит вопросы отельерам по характеристикам реестра, для которых у отеля нет факта; повторный запуск новых вопросов не добавляет. На уже запущенном стенде: `docker compose exec backend python -m hotel_agent.cli plan-questions --region sochi` | Нет |
 | `make down` | Останавливает стенд, том с базой `db-data` остаётся | Нет |
 | `make logs` | Логи всех сервисов | Нет |
 | `make build` | Только сборка образов через `docker-bake.hcl` | Да |
@@ -175,9 +176,11 @@ make check
 
 `make check` запускает `ruff check`, `ruff format --check`, `mypy` в режиме `strict`,
 `lint-imports`, затем `pytest tests/unit` и `pytest tests/contract`. Обе группы тестов работают без
-базы и сети. `make test-integration` требует запущенный стенд с загруженным срезом: в
-`tests/integration` один тест `test_seeded_search_and_geo_features`. Число процессов pytest-xdist
-выбирается автоматически.
+базы и сети. `make test-integration` требует PostgreSQL с PostGIS и бинарь `dbmate`
+(`DBMATE_BIN`, если его нет в `PATH`). Часть тестов читает загруженный срез стенда по
+`DATABASE_URL`; тесты отельера и каталога создают отдельную временную базу на том же сервере,
+применяют к ней все миграции и удаляют её после прогона. Число процессов pytest-xdist выбирается
+автоматически.
 
 `lint-imports` проверяет правило зависимостей слоёв по контрактам из `backend/pyproject.toml`, то же
 правило независимо проверяет `tests/unit/architecture/`. `tests/contract` проверяет, что

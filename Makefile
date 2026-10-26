@@ -5,7 +5,7 @@ BACKEND := uv run --directory backend
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute plan-questions llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -52,6 +52,10 @@ ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-spa
 precompute: ## Compute characteristic facts from the loaded region
 	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
+
+plan-questions: ## Queue hotelier questions for registry characteristics without facts
+	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent plan-questions --region sochi
 
 llm-check: ## Call the configured LLM provider for real (manual, spends quota)
 	set -a; . ./.env; set +a; LLM_PROVIDER=openai_compat $(LOCAL_DATA) $(BACKEND) python scripts/llm_check.py

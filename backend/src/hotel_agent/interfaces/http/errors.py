@@ -11,6 +11,7 @@ from hotel_agent.domain.errors import (
     DomainError,
     InvalidQuery,
     InvalidRegistry,
+    InvalidValue,
     ModelFailure,
     NotFound,
     UnknownCharacteristic,
@@ -19,6 +20,7 @@ from hotel_agent.domain.errors import (
 STATUS_BY_ERROR: dict[type[DomainError], HTTPStatus] = {
     NotFound: HTTPStatus.NOT_FOUND,
     InvalidQuery: HTTPStatus.UNPROCESSABLE_ENTITY,
+    InvalidValue: HTTPStatus.UNPROCESSABLE_ENTITY,
     UnknownCharacteristic: HTTPStatus.UNPROCESSABLE_ENTITY,
     InvalidRegistry: HTTPStatus.INTERNAL_SERVER_ERROR,
     ModelFailure: HTTPStatus.SERVICE_UNAVAILABLE,

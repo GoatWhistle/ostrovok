@@ -4,7 +4,8 @@ from hotel_agent.application.dto import SearchFactRecord
 
 FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
     f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
-    f.status, f.geo_refs, f.explanation, NULL::double precision
+    f.status, f.geo_refs, f.explanation, NULL::double precision, f.subject_id,
+    f.source_url, f.observed_at, f.evidence
 FROM facts f JOIN hotels h ON h.id = f.subject_id
 WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
   AND (%(hotel_id)s::text IS NULL OR h.id = %(hotel_id)s) AND f.subject_type = 'hotel'
@@ -15,7 +16,8 @@ WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
 UNION ALL
 SELECT fa.hotel_id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
     f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
-    f.status, f.geo_refs, f.explanation, fa.azimuth_deg
+    f.status, f.geo_refs, f.explanation, fa.azimuth_deg, f.subject_id,
+    f.source_url, f.observed_at, f.evidence
 FROM facts f JOIN facades fa ON fa.id = f.subject_id
 JOIN hotels h ON h.id = fa.hotel_id
 WHERE (%(region)s::text IS NULL OR h.region_id = %(region)s)
@@ -46,4 +48,18 @@ def fact_record(row: tuple[object, ...]) -> SearchFactRecord:
         geo_refs=tuple(str(ref) for ref in row[13]) if isinstance(row[13], list | tuple) else (),
         explanation=str(row[14]),
         facade_azimuth=float(str(row[15])) if row[15] is not None else None,
+        subject_id=str(row[16]) if row[16] is not None else None,
+        source_url=str(row[17]) if row[17] is not None else None,
+        observed_at=row[18] if isinstance(row[18], datetime) else None,
+        evidence=_evidence(row[19]),
+    )
+
+
+def _evidence(raw: object) -> tuple[tuple[str, str], ...]:
+    if not isinstance(raw, list):
+        return ()
+    return tuple(
+        (str(item.get("kind", "quote")), str(item["text"]))
+        for item in raw
+        if isinstance(item, dict) and item.get("text")
     )

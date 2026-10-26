@@ -18,7 +18,7 @@ export function useFactMutation(factId: string) {
           ),
     onSuccess: async () => {
       await Promise.all(
-        ["hotel", "fact", "search", "scene", "geometry"].map((key) =>
+        ["hotel", "fact", "questions", "search", "compare", "scene", "geometry"].map((key) =>
           cache.invalidateQueries({ queryKey: [key] }),
         ),
       )
