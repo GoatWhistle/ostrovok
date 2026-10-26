@@ -29,6 +29,7 @@ class WindowCandidates:
         rays: list[WindowRay] = []
         reasons: dict[str, str] = {}
         rejected: list[str] = []
+        unchecked: list[str] = []
         physical: dict[str, tuple[PhysicalObject, ...]] = {}
 
         def proximity(hotel: SearchHotelRecord) -> float:
@@ -41,6 +42,7 @@ class WindowCandidates:
         selected = sorted(hotels, key=proximity)
         for candidate_index, hotel in enumerate(selected):
             if candidate_index >= 64:
+                unchecked.append(hotel.id)
                 reasons[hotel.id] = (
                     "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска."
                 )
@@ -100,6 +102,7 @@ class WindowCandidates:
                 )
                 continue
             if len(rays) >= 216:
+                unchecked.append(hotel.id)
                 reasons[hotel.id] = (
                     "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска."
                 )
@@ -139,11 +142,6 @@ class WindowCandidates:
             if not objectives:
                 reasons[hotel.id] = (
                     "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием."
-                )
-                continue
-            if request.target_part == "whole":
-                reasons[hotel.id] = (
-                    "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя."
                 )
                 continue
             nearest = min(
@@ -188,4 +186,6 @@ class WindowCandidates:
                 reasons[hotel.id] = (
                     "С запрошенной стороны здания ориентир не попадает в поле зрения окна."
                 )
-        return PreparedViews(request, tuple(hotels), tuple(rays), reasons, tuple(rejected))
+        return PreparedViews(
+            request, tuple(hotels), tuple(rays), reasons, tuple(rejected), tuple(unchecked)
+        )

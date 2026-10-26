@@ -10,8 +10,12 @@ def search_rank(hotel: SearchHotelRecord, scored: Scored) -> tuple[float, int, b
         if match.fact is None:
             continue
         visibility = match.fact.qualifiers.get("visibility")
-        if isinstance(visibility, Mapping) and visibility.get("target_location"):
-            computed_views += 1
+        if isinstance(visibility, Mapping):
+            computed_views += (
+                2
+                if visibility.get("target_location")
+                else int(visibility.get("calculation_attempted") is True)
+            )
     return (
         -scored.score,
         -computed_views,
@@ -19,3 +23,17 @@ def search_rank(hotel: SearchHotelRecord, scored: Scored) -> tuple[float, int, b
         hotel.name.startswith("#"),
         hotel.name.casefold(),
     )
+
+
+def view_eligible(scored: Scored) -> bool:
+    views: list[bool] = []
+    for match in scored.matches:
+        if match.fact is None or not match.fact.provenance.method.startswith("window_visibility@"):
+            continue
+        visibility = match.fact.qualifiers.get("visibility")
+        if isinstance(visibility, Mapping):
+            attempted = visibility.get("calculation_attempted") is not False
+            if match.intent.required and not attempted:
+                return False
+            views.append(attempted)
+    return not views or any(views)

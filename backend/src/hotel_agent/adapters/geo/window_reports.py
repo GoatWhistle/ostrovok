@@ -31,6 +31,7 @@ def window_evidence(
     report: WindowReport | None,
     reason: str | None,
     rejected: bool = False,
+    evaluated: bool = True,
 ) -> tuple[SearchFactRecord, tuple[GeoFeatureRecord, ...]]:
     key = spatial_key(request)
     identity = f"{hotel_id}_{key.removeprefix('spatial:')}"
@@ -40,6 +41,7 @@ def window_evidence(
         "status": "blocked" if rejected else "unknown",
         "reason": reason,
         "bookable_room_confirmed": False,
+        "calculation_attempted": evaluated,
     }
     explanation = reason or "Недостаточно данных для проверки вида из окна."
     value = False if rejected else None
@@ -47,15 +49,27 @@ def window_evidence(
     if report is not None:
         ray, result = report.ray, report.result
         azimuth = ray.observer.azimuth_deg
+        condition_status = (
+            "unknown"
+            if request.target_part == "whole" and result.status == "visible"
+            else result.status
+        )
         value = (
-            True if result.status == "visible" else False if result.status == "blocked" else None
+            True
+            if condition_status == "visible"
+            else False
+            if condition_status == "blocked"
+            else None
         )
         name = ray.target.tags.get("name", request.target or "Море")
         visibility.update(
             {
-                "status": result.status,
+                "status": condition_status,
+                "sampled_line_status": result.status,
                 "target_id": ray.target.tags.get("view:parent", ray.target.id),
                 "target_part_id": ray.target.id,
+                "requested_target_scope": request.target_part,
+                "entire_target_verified": False,
                 "target_tags": {
                     key.removeprefix("view:parent:"): value
                     for key, value in ray.target.tags.items()
@@ -109,6 +123,10 @@ def window_evidence(
             explanation += f"{obstacle_label}: {kind}, {round(confirmed.distance_m)} м от окна. "
         if report.missing:
             explanation += "Не хватает данных: " + "; ".join(report.missing) + ". "
+        if request.target_part == "whole":
+            explanation += (
+                "Проверена линия к части ориентира; полный обзор всего объекта не подтверждён. "
+            )
         explanation += (
             "Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля."
         )

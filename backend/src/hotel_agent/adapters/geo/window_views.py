@@ -159,6 +159,7 @@ class WindowViews:
                 reports.get(hotel.id),
                 reasons.get(hotel.id),
                 hotel.id in prepared.rejected,
+                hotel.id not in prepared.unchecked,
             )
             facts.append(fact)
             features.extend(geometry)

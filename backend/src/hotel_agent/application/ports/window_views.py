@@ -35,6 +35,7 @@ class PreparedViews:
     rays: tuple[WindowRay, ...]
     reasons: Mapping[str, str]
     rejected: tuple[str, ...] = ()
+    unchecked: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)

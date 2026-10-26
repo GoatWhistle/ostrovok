@@ -17,7 +17,7 @@ from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import best_facts, save_search_evidence
-from hotel_agent.application.search_ranking import search_rank
+from hotel_agent.application.search_ranking import search_rank, view_eligible
 from hotel_agent.application.spatial_matching import spatial_fact, spatial_intent
 from hotel_agent.application.spatial_resolution import resolve_spatial_requests
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
@@ -208,7 +208,11 @@ class SearchHotels:
             for hotel in hotels
         ]
         if parsed.intents:
-            ranked = [item for item in ranked if not item.scored.disqualified]
+            ranked = [
+                item
+                for item in ranked
+                if not item.scored.disqualified and view_eligible(item.scored)
+            ]
             ranked.sort(key=lambda item: search_rank(item.hotel, item.scored))
         else:
             ranked.sort(

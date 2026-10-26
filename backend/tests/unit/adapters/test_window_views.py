@@ -1,4 +1,5 @@
 from collections.abc import Mapping
+from dataclasses import replace
 from datetime import UTC, datetime
 from typing import Any
 
@@ -170,3 +171,24 @@ async def test_missing_observer_or_target_dem_preserves_the_specific_source_fail
     assert fact.qualifiers["visibility"]["status"] == "unknown"
     assert "рельефа" in fact.qualifiers["visibility"]["reason"]
     assert result.features == ()
+
+
+async def test_whole_object_request_still_computes_partial_evidence_without_promising_full_view() -> (
+    None
+):
+    wanted = replace(request(15), target_part="whole")
+    result = await compute(wanted)
+    fact = result.facts[0]
+    assert fact.value is None
+    assert fact.qualifiers["visibility"]["status"] == "unknown"
+    assert fact.qualifiers["visibility"]["sampled_line_status"] == "visible"
+    assert fact.qualifiers["visibility"]["entire_target_verified"] is False
+    assert fact.qualifiers["visibility"]["requested_target_scope"] == "whole"
+    assert "полный обзор всего объекта не подтверждён" in fact.explanation
+    assert result.features
+    assert (
+        match(
+            spatial_intent(wanted), fact_from_record(fact), datetime(2026, 10, 26, tzinfo=UTC)
+        ).quality
+        is MatchQuality.UNKNOWN
+    )
