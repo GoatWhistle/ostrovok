@@ -1,0 +1,16 @@
+key: hotel
+layer: volume
+match:
+- tag: building
+  values:
+  - hotel
+- tag: tourism
+  values:
+  - hotel
+  - motel
+  - hostel
+  - guest_house
+priority: 70
+min_zoom: 14
+style:
+  fill: --map-class-hotel

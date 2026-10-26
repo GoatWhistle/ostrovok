@@ -1,0 +1,10 @@
+key: parking
+layer: ground
+match:
+- tag: amenity
+  values:
+  - parking
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-parking

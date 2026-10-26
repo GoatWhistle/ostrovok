@@ -1,0 +1,10 @@
+key: cemetery
+layer: ground
+match:
+- tag: landuse
+  values:
+  - cemetery
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-cemetery

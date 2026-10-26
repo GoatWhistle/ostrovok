@@ -1,0 +1,11 @@
+key: poi_transport
+layer: poi
+match:
+- tag: public_transport
+  values:
+  - platform
+  - station
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_transport

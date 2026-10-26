@@ -271,6 +271,24 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/GeoFeatureCollection" }
 
+  /map/catalog:
+    get:
+      summary: Read OSM rendering classes and classification rules
+      operationId: getMapCatalog
+      responses:
+        '200':
+          description: Versioned rendering catalog
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [version, classes]
+                properties:
+                  version: { type: string }
+                  classes:
+                    type: array
+                    items: { $ref: '#/components/schemas/MapClass' }
+
   /map/tiles/{z}/{x}/{y}.pbf:
     get:
       tags: [map]
@@ -926,6 +944,39 @@ components:
             distance_m: { type: number, minimum: 0 }
             minutes: { type: number, minimum: 0, nullable: true }
             mode: { type: string, enum: [graph, straight] }
+
+    MapCatalog:
+      type: object
+      required: [version, classes]
+      properties:
+        version: { type: string }
+        classes:
+          type: array
+          items: { $ref: '#/components/schemas/MapClass' }
+
+    MapClass:
+      type: object
+      required: [key, layer, match, priority, min_zoom, style]
+      properties:
+        key: { type: string }
+        layer: { type: string, enum: [ground, volume, prop, poi] }
+        match:
+          type: array
+          items:
+            type: object
+            required: [tag, values]
+            properties:
+              tag: { type: string }
+              values: { type: array, items: { type: string } }
+        priority: { type: integer }
+        min_zoom: { type: integer, minimum: 0, maximum: 22 }
+        style:
+          type: object
+          additionalProperties: { type: string }
+        props:
+          type: object
+          nullable: true
+          additionalProperties: {}
 
     GeoFeatureCollection:
       type: object

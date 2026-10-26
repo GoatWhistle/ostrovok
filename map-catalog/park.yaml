@@ -1,0 +1,14 @@
+key: park
+layer: ground
+match:
+- tag: leisure
+  values:
+  - park
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-park
+props:
+  model: tree-oak
+  scatter_per_1000_m2: 4
+  min_zoom: 15

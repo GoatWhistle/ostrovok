@@ -1,0 +1,11 @@
+key: grass
+layer: ground
+match:
+- tag: landuse
+  values:
+  - grass
+  - meadow
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-grass

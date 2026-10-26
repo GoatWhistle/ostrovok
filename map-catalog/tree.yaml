@@ -1,0 +1,14 @@
+key: tree
+layer: prop
+match:
+- tag: natural
+  values:
+  - tree
+priority: 60
+min_zoom: 15
+style:
+  fill: --map-class-tree
+props:
+  model: tree-pine
+  scatter_per_1000_m2: 4
+  min_zoom: 15

@@ -1,0 +1,11 @@
+key: road_secondary
+layer: ground
+match:
+- tag: highway
+  values:
+  - secondary
+  - secondary_link
+priority: 77
+min_zoom: 10
+style:
+  fill: --map-class-road_secondary

@@ -1,0 +1,10 @@
+key: residential
+layer: ground
+match:
+- tag: landuse
+  values:
+  - residential
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-residential

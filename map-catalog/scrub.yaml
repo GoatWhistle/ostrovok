@@ -1,0 +1,15 @@
+key: scrub
+layer: ground
+match:
+- tag: natural
+  values:
+  - scrub
+  - grassland
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-scrub
+props:
+  model: bush
+  scatter_per_1000_m2: 4
+  min_zoom: 15

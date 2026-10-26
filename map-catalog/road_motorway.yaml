@@ -1,0 +1,11 @@
+key: road_motorway
+layer: ground
+match:
+- tag: highway
+  values:
+  - motorway
+  - motorway_link
+priority: 80
+min_zoom: 10
+style:
+  fill: --map-class-road_motorway

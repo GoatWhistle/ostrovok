@@ -1,0 +1,11 @@
+key: commercial
+layer: ground
+match:
+- tag: landuse
+  values:
+  - commercial
+  - retail
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-commercial

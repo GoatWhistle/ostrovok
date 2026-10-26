@@ -1,0 +1,14 @@
+key: fountain
+layer: prop
+match:
+- tag: amenity
+  values:
+  - fountain
+priority: 60
+min_zoom: 15
+style:
+  fill: --map-class-fountain
+props:
+  model: fountain
+  scatter_per_1000_m2: 4
+  min_zoom: 15

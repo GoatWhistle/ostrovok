@@ -1,0 +1,12 @@
+key: poi_nightlife
+layer: poi
+match:
+- tag: amenity
+  values:
+  - bar
+  - pub
+  - nightclub
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_nightlife

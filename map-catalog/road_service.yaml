@@ -1,0 +1,11 @@
+key: road_service
+layer: ground
+match:
+- tag: highway
+  values:
+  - service
+  - service_link
+priority: 74
+min_zoom: 14
+style:
+  fill: --map-class-road_service

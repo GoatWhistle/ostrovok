@@ -1,0 +1,10 @@
+key: pool
+layer: ground
+match:
+- tag: leisure
+  values:
+  - swimming_pool
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-pool

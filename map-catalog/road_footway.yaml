@@ -1,0 +1,11 @@
+key: road_footway
+layer: ground
+match:
+- tag: highway
+  values:
+  - footway
+  - footway_link
+priority: 73
+min_zoom: 14
+style:
+  fill: --map-class-road_footway

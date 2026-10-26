@@ -1,0 +1,10 @@
+key: building_work
+layer: volume
+match:
+- tag: building
+  values:
+  - construction
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-building_work

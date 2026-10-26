@@ -1,0 +1,13 @@
+key: railway
+layer: ground
+match:
+- tag: railway
+  values:
+  - rail
+  - light_rail
+  - tram
+  - narrow_gauge
+priority: 85
+min_zoom: 10
+style:
+  fill: --map-class-railway

@@ -1,0 +1,11 @@
+key: poi_sport
+layer: poi
+match:
+- tag: leisure
+  values:
+  - stadium
+  - fitness_centre
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_sport

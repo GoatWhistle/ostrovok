@@ -192,6 +192,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read OSM rendering classes and classification rules */
+        get: operations["getMapCatalog"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/map/tiles/{z}/{x}/{y}.pbf": {
         parameters: {
             query?: never;
@@ -782,6 +799,27 @@ export interface components {
                 mode?: "graph" | "straight";
             };
         };
+        MapCatalog: {
+            version: string;
+            classes: components["schemas"]["MapClass"][];
+        };
+        MapClass: {
+            key: string;
+            /** @enum {string} */
+            layer: "ground" | "volume" | "prop" | "poi";
+            match: {
+                tag: string;
+                values: string[];
+            }[];
+            priority: number;
+            min_zoom: number;
+            style: {
+                [key: string]: string;
+            };
+            props?: {
+                [key: string]: unknown;
+            } | null;
+        };
         GeoFeatureCollection: {
             /** @enum {string} */
             type?: "FeatureCollection";
@@ -1249,6 +1287,29 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GeoFeatureCollection"];
+                };
+            };
+        };
+    };
+    getMapCatalog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Versioned rendering catalog */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        version: string;
+                        classes: components["schemas"]["MapClass"][];
+                    };
                 };
             };
         };

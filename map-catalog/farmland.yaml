@@ -1,0 +1,13 @@
+key: farmland
+layer: ground
+match:
+- tag: landuse
+  values:
+  - farmland
+  - farmyard
+  - orchard
+  - vineyard
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-farmland

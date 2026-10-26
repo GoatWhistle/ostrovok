@@ -1,0 +1,12 @@
+key: poi_health
+layer: poi
+match:
+- tag: amenity
+  values:
+  - pharmacy
+  - hospital
+  - clinic
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_health

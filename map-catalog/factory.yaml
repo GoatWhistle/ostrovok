@@ -1,0 +1,14 @@
+key: factory
+layer: volume
+match:
+- tag: building
+  values:
+  - industrial
+  - manufacture
+- tag: landuse
+  values:
+  - industrial
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-factory

@@ -1,0 +1,14 @@
+key: pier
+layer: ground
+match:
+- tag: man_made
+  values:
+  - pier
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-pier
+props:
+  model: boat
+  scatter_per_1000_m2: 4
+  min_zoom: 15

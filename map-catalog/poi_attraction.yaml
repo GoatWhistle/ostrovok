@@ -1,0 +1,12 @@
+key: poi_attraction
+layer: poi
+match:
+- tag: tourism
+  values:
+  - attraction
+  - museum
+  - viewpoint
+priority: 40
+min_zoom: 15
+style:
+  fill: --map-class-poi_attraction

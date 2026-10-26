@@ -1,0 +1,10 @@
+key: industrial
+layer: ground
+match:
+- tag: landuse
+  values:
+  - industrial
+priority: 50
+min_zoom: 10
+style:
+  fill: --map-class-industrial

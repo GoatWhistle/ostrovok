@@ -1,0 +1,17 @@
+key: worship
+layer: volume
+match:
+- tag: building
+  values:
+  - church
+  - cathedral
+  - chapel
+  - mosque
+  - temple
+- tag: amenity
+  values:
+  - place_of_worship
+priority: 50
+min_zoom: 14
+style:
+  fill: --map-class-worship
