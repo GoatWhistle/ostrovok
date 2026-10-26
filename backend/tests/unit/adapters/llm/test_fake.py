@@ -59,6 +59,8 @@ async def test_offline_follow_up_recognizes_explicit_sochi(llm: FakeLLM) -> None
         ("в Москве", "Москва", "москве"),
         ("Санкт-Петербург", "Санкт-Петербург", "петербург"),
         ("в Питере", "Санкт-Петербург", "питере"),
+        ("Saint Petersburg", "Санкт-Петербург", "petersburg"),
+        ("Moscow", "Москва", "moscow"),
     ],
 )
 async def test_offline_follow_up_recognizes_popular_cities(

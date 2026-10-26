@@ -11,9 +11,14 @@ from hotel_agent.domain.characteristics import Characteristic, Matcher
 from hotel_agent.domain.query import Intent, ParsedQuery
 
 PLACES = (
-    (re.compile(r"\bсочи\b"), "Сочи"),
-    (re.compile(r"\bмоскв[аеуы]\b"), "Москва"),
-    (re.compile(r"\b(?:санкт[- ]?)?петербург[аеу]?\b|\bпитер[аеу]?\b"), "Санкт-Петербург"),
+    (re.compile(r"\bсочи\b|\bsochi\b"), "Сочи"),
+    (re.compile(r"\bмоскв[аеуы]\b|\bmoscow\b"), "Москва"),
+    (
+        re.compile(
+            r"\b(?:санкт[- ]?)?петербург[аеу]?\b|\bпитер[аеу]?\b|\b(?:saint |st\.? )?petersburg\b"
+        ),
+        "Санкт-Петербург",
+    ),
 )
 
 

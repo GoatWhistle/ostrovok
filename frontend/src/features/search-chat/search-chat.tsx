@@ -145,6 +145,7 @@ export function SearchChat({
                   search={message.id === lastAssistant ? search : undefined}
                   onShowOnMap={onShowOnMap}
                   onShowList={onShowList}
+                  onSend={onSend}
                 />
               ),
             )}

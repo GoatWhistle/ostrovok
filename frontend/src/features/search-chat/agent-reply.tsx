@@ -3,7 +3,14 @@ import { useTranslation } from "@/shared/i18n"
 import { ErrorState, Skeleton } from "@/shared/ui"
 import styles from "./agent-reply.module.css"
 import { AgentBubble } from "./chat-bubble"
-import { ReplyActions, ReplyIntents, ReplyNotices, type SearchResponse } from "./reply-blocks"
+import {
+  CityChoice,
+  needsCity,
+  ReplyActions,
+  ReplyIntents,
+  ReplyNotices,
+  type SearchResponse,
+} from "./reply-blocks"
 
 function leading(results: readonly SearchResult[]): SearchResult | undefined {
   return (
@@ -19,14 +26,24 @@ export interface AgentReplyProps {
   readonly search?: SearchResponse | undefined
   readonly onShowOnMap: (result: SearchResult | undefined) => void
   readonly onShowList: () => void
+  readonly onSend: (message: string) => void
 }
 
-export function AgentReply({ content, time, search, onShowOnMap, onShowList }: AgentReplyProps) {
+export function AgentReply({
+  content,
+  time,
+  search,
+  onShowOnMap,
+  onShowList,
+  onSend,
+}: AgentReplyProps) {
+  const asksCity = search ? needsCity(search.parsed) : false
   return (
     <AgentBubble time={time}>
-      <p className={styles.text}>{content}</p>
+      <p className={asksCity ? styles.question : styles.text}>{content}</p>
       {search ? (
         <>
+          {asksCity ? <CityChoice onSend={onSend} /> : null}
           <ReplyIntents parsed={search.parsed} />
           <ReplyNotices parsed={search.parsed} pending={Boolean(search.pending?.length)} />
           {search.results.length ? (
