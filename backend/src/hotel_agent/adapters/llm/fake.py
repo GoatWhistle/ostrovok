@@ -3,6 +3,7 @@ import re
 from collections.abc import Mapping, Sequence
 
 from hotel_agent.adapters.llm.extraction import extract
+from hotel_agent.adapters.llm.offline_review import review_typed_recommendations
 from hotel_agent.adapters.llm.text import normalize, terms_outside
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
@@ -132,7 +133,7 @@ class FakeLLM:
         return None
 
     async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]:
-        return ()
+        return review_typed_recommendations(context)
 
 
 def _best_matcher(characteristic: Characteristic, text: str) -> tuple[Matcher, int] | None:

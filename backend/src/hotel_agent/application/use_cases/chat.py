@@ -2,6 +2,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from uuid import uuid4
 
+from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview, safe_answer
 from hotel_agent.application.agent.wish_response import wish_response
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, validated_title
@@ -28,12 +29,14 @@ class Chat:
         search: SearchHotels,
         serialize_search: Callable[[SearchOutcome], dict[str, object]],
         registry: CharacteristicRegistryPort,
+        review: ChatAnswerReview | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
         self._search = search
         self._serialize_search = serialize_search
         self._registry = registry
+        self._review = review
 
     async def get(self, conversation_id: str) -> ConversationOutcome:
         async with self._uow() as uow:
@@ -103,6 +106,10 @@ class Chat:
         search = await self._search(effective_query, region_id, None, 20)
         snapshot = self._serialize_search(search)
         answer = self._answer(search, selected_hotel_id, locale)
+        if self._review is not None and not await self._review.accepts(
+            effective_query, answer, search
+        ):
+            answer = safe_answer(search, locale)
         identifier = conversation_id or str(uuid4())
         title = (
             None
@@ -136,6 +143,8 @@ class Chat:
             if locale == "en":
                 return f"I could not locate {search.parsed.unsupported_region} in the hotel data. Please clarify the city."
             return f"Не нашёл город «{search.parsed.unsupported_region}» в данных об отелях. Уточните название города."
+        if search.review and search.review.unavailable:
+            return self._room_question(search, safe_answer(search, locale), locale)
         if search.question:
             return self._room_question(search, search.question, locale)
         if search.parsed.needs_clarification:

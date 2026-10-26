@@ -19,7 +19,10 @@ from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
 from hotel_agent.adapters.weather.destination_conditions import OpenMeteoConditions
 from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
+from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.agent.explore_data import DataExplorer
+from hotel_agent.application.agent.recommendation_review import RecommendationReview
+from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
@@ -80,6 +83,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
     get_hotel_offers = GetHotelOffers(providers.uow, providers.hotel_offers, providers.clock)
+    semantic_review = SemanticReview(providers.llm, logger)
     search_hotels = SearchHotels(
         providers.llm,
         providers.uow,
@@ -106,6 +110,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
         EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
+        RecommendationReview(semantic_review),
     )
     app.include_router(
         api_router_v1(
@@ -121,6 +126,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     mode="json"
                 ),
                 providers.registry,
+                ChatAnswerReview(semantic_review),
             ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),

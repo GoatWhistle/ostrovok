@@ -4,7 +4,9 @@ from dataclasses import dataclass, replace
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
+from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.requested_tools import RequestedTools
+from hotel_agent.application.agent.semantic_review import ReviewResult
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
@@ -39,6 +41,7 @@ class SearchOutcome:
     results: Sequence[SearchResult]
     question: str | None = None
     wish_results: tuple[WishResult, ...] = ()
+    review: ReviewResult | None = None
 
 
 class SearchHotels:
@@ -52,6 +55,7 @@ class SearchHotels:
         areas: SearchAreasPort | None = None,
         semantic: SemanticSearchPort | None = None,
         window_views: EvaluateWindowViews | None = None,
+        review: RecommendationReview | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
@@ -61,6 +65,7 @@ class SearchHotels:
         self._areas = areas
         self._semantic = semantic
         self._window_views = window_views
+        self._review = review
 
     async def __call__(
         self, query: str, region: str, bbox: tuple[float, float, float, float] | None, limit: int
@@ -152,6 +157,12 @@ class SearchHotels:
             ranked = [item for item in ranked if item.scored.score > 0]
         if explored.question:
             ranked = [item for item in ranked if item.scored.score > 0]
+        report = None
+        if self._review is not None:
+            report = await self._review.check(
+                query, parsed, [(item.hotel, item.scored) for item in ranked], limit
+            )
+            ranked = [item for item in ranked if item.hotel.id in report.accepted_ids]
         selected = ranked[:limit]
         await save_search_evidence(
             self._uow, explored.facts, [item.hotel.id for item in selected], explored.features
@@ -163,6 +174,7 @@ class SearchHotels:
             results=selected,
             question=explored.question,
             wish_results=explored.wish_results,
+            review=report,
         )
 
 

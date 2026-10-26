@@ -54,7 +54,4 @@ def test_seeded_search_and_geo_features() -> None:
         )
         assert unsupported.status_code == 200, unsupported.text
         assert unsupported.json()["parsed"]["intents"]
-        assert unsupported.json()["results"]
-        assert all(
-            item["match"] == "unknown" for item in unsupported.json()["results"][0]["matched"]
-        )
+        assert unsupported.json()["results"] == []
