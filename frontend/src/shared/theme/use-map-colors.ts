@@ -32,6 +32,7 @@ const TOKENS = {
   hillShadow: "--map-hill-shadow",
   hillHighlight: "--map-hill-highlight",
   sunlight: "--map-sunlight",
+  moonlight: "--map-moonlight",
   rock: "--map-rock",
   snow: "--map-snow",
   meadow: "--map-meadow",

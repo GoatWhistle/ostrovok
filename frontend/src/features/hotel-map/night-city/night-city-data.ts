@@ -1,3 +1,4 @@
+import type { FeatureCollection } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
 import type { MapRenderScene } from "@/entities/map-data"
 import type { WindowBuilding } from "@/shared/geo/night-city/window-mesh"
@@ -37,26 +38,57 @@ function polygons(geometry: { readonly type: string; readonly coordinates: unkno
   return []
 }
 
+export function sceneCollection(scene: MapRenderScene): FeatureCollection {
+  return { type: "FeatureCollection", features: scene.features } as unknown as FeatureCollection
+}
+
+export interface DrawnVolume {
+  readonly height: number
+  readonly base: number
+}
+
 export function windowBuildings(
   map: MapLibreMap,
   scene: MapRenderScene,
-  excluded: ReadonlySet<string>,
+  drawn: ReadonlyMap<string, DrawnVolume>,
+  textured: ReadonlySet<string>,
 ): WindowBuilding[] {
   return scene.features.flatMap((feature) => {
-    if (excluded.has(feature.properties.building_id)) return []
+    const id = feature.properties.building_id
+    if (textured.has(id)) return []
     const rings = polygons(feature.geometry).flat()
     const [lon, lat] = rings[0]?.[0] ?? []
     if (lon === undefined || lat === undefined) return []
+    const volume = drawn.get(id)
     return [
       {
         id: feature.id,
         rings,
         ground: map.queryTerrainElevation([lon, lat]) ?? 0,
-        base: feature.properties.min_height_m,
-        height: feature.properties.render_height_m,
+        base: volume?.base ?? feature.properties.min_height_m,
+        height: volume?.height ?? feature.properties.render_height_m,
       },
     ]
   })
+}
+
+function metres(value: unknown): number {
+  const number = Number(value)
+  return Number.isFinite(number) ? Math.max(0, number) : 0
+}
+
+export function drawnVolumes(features: readonly unknown[]): ReadonlyMap<string, DrawnVolume> {
+  const volumes = new Map<string, DrawnVolume>()
+  for (const feature of features) {
+    const properties = (feature as { readonly properties?: Record<string, unknown> }).properties
+    const [id] = buildingIds([feature])
+    if (id)
+      volumes.set(id, {
+        height: metres(properties?.height_m),
+        base: metres(properties?.min_height_m),
+      })
+  }
+  return volumes
 }
 
 export function buildingIds(features: readonly unknown[]): string[] {

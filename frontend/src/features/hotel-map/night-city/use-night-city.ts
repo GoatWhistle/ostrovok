@@ -1,4 +1,3 @@
-import type { FeatureCollection } from "geojson"
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useMapScene, useTileVersions } from "@/entities/map-data"
@@ -9,18 +8,27 @@ import {
   renderSceneVolumes,
   windowFade,
 } from "@/shared/geo/night-city/night-layers"
+import { watchTerrainData } from "@/shared/geo/night-city/terrain-watch"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
 import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewport"
 import type { SunPosition } from "@/shared/geo/terrain"
 import type { MapColors } from "@/shared/theme"
-import { type RegionBox, regionFor, rgb, windowBuildings } from "./night-city-data"
+import {
+  type DrawnVolume,
+  type RegionBox,
+  regionFor,
+  rgb,
+  sceneCollection,
+  windowBuildings,
+} from "./night-city-data"
 
 export interface NightCityInput {
   readonly mapRef: RefObject<MapLibreMap | null>
   readonly ready: boolean
   readonly regions: readonly RegionBox[]
-  readonly excluded: readonly string[]
+  readonly drawn: ReadonlyMap<string, DrawnVolume>
+  readonly textured: ReadonlySet<string>
   readonly colors: MapColors
   readonly volumeColor: ExpressionSpecification | string
   readonly sun: SunPosition
@@ -51,7 +59,8 @@ export function useNightCity({
   mapRef,
   ready,
   regions,
-  excluded,
+  drawn,
+  textured,
   colors,
   volumeColor,
   sun,
@@ -74,18 +83,30 @@ export function useNightCity({
     [viewport, regionId, versions],
   )
   const scene = useMapScene(request)
-  const hidden = useMemo(() => new Set(excluded), [excluded])
+  const excluded = useMemo(() => [...drawn.keys()], [drawn])
   useEffect(() => {
     const map = mapRef.current
     const data = scene.data
     if (!ready || !map || !data) return
-    renderSceneVolumes(map, data as unknown as FeatureCollection, volumeColor, excluded)
+    renderSceneVolumes(map, sceneCollection(data), volumeColor, excluded)
+  }, [mapRef, ready, scene.data, volumeColor, excluded])
+  useEffect(() => {
+    const map = mapRef.current
+    const data = scene.data
+    if (!ready || !map || !data) return
     const [west, south, east, north] = data.bbox
     const origin = [((west ?? 0) + (east ?? 0)) / 2, ((south ?? 0) + (north ?? 0)) / 2] as const
-    void builder.current
-      ?.build(windowBuildings(map, data, hidden), origin)
-      .then((mesh) => layer.current?.setMesh(mesh))
-  }, [mapRef, ready, scene.data, volumeColor, excluded, hidden, builder, layer])
+    let grounds: string | undefined
+    const build = () => {
+      const buildings = windowBuildings(map, data, drawn, textured)
+      const next = buildings.map((item) => Math.round(item.ground)).join(",")
+      if (next === grounds) return
+      grounds = next
+      void builder.current?.build(buildings, origin).then((mesh) => layer.current?.setMesh(mesh))
+    }
+    build()
+    return watchTerrainData(map, build)
+  }, [mapRef, ready, scene.data, drawn, textured, builder, layer])
   const night = nightFactor(sun.altitude)
   useEffect(() => {
     const map = mapRef.current

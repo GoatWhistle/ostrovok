@@ -24,6 +24,7 @@ export interface TerrainColors {
   readonly hillShadow: string
   readonly hillHighlight: string
   readonly sunlight: string
+  readonly moonlight: string
   readonly rock: string
   readonly snow: string
   readonly meadow: string
@@ -38,12 +39,17 @@ const FALLBACK_MAX_ZOOM = 6
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
-const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.7, night: 0.15 }
+const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.6, night: 0.45 }
 
 export function lightMode(altitude: number): LightMode {
   if (altitude < -6) return "night"
   if (altitude < 8) return "dusk"
   return "day"
+}
+
+function lightColor(colors: TerrainColors, mode: LightMode) {
+  if (mode === "night") return colors.moonlight
+  return mode === "dusk" ? colors.horizonDusk : colors.sunlight
 }
 
 export function scenePalette(colors: TerrainColors, mode: LightMode) {
@@ -145,7 +151,7 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   map.setLight({
     anchor: "map",
     position: [1.15, sun.azimuth, Math.max(5, Math.min(110, 90 - sun.altitude))],
-    color: mode === "dusk" ? colors.horizonDusk : colors.sunlight,
+    color: lightColor(colors, mode),
     intensity: LIGHT_INTENSITY[mode],
   })
   map.setSky({

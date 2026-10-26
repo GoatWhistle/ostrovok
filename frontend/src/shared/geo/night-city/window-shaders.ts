@@ -31,8 +31,10 @@ void main() {
   if (pane < 0.5) discard;
   float chance = hash(cell);
   float lit = step(1.0 - mix(0.1, 0.5, u_night), chance);
-  vec3 tint = mix(u_cool, u_warm, step(0.42, fract(chance * 7.31)));
-  float alpha = u_fade * mix(0.1, mix(0.18, 0.92, u_night), lit);
+  float warm = step(0.42, fract(chance * 7.31));
+  vec3 glow = mix(u_cool, mix(u_cool, u_warm, warm), u_night);
+  vec3 color = mix(u_cool * 0.22, glow, lit);
+  float alpha = u_fade * mix(0.08, mix(0.16, 0.92, u_night), lit);
   if (alpha < 0.02) discard;
-  fragColor = vec4(tint * mix(0.32, 1.0, lit) * alpha, alpha);
+  fragColor = vec4(color * alpha, alpha);
 }`

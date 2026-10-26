@@ -46,3 +46,26 @@ describe("buildWindowMesh", () => {
     expect(seedOf("w123")).toBeLessThan(1)
   })
 })
+
+describe("window wall offset", () => {
+  it("puts the middle of every window quad just outside its wall for either ring direction", () => {
+    const ring = square(20)
+    const width = 20 * Math.cos((43.44 * Math.PI) / 180)
+    for (const rings of [[ring], [[...ring].reverse()]]) {
+      const mesh = buildWindowMesh(
+        [{ id: "b", rings, ground: 0, base: 0, height: 9 }],
+        [39.9, 43.44],
+      )
+      const quad = 4 * WINDOW_STRIDE
+      for (let start = 0; start < mesh.vertices.length; start += quad) {
+        const x =
+          ((mesh.vertices[start] ?? 0) + (mesh.vertices[start + 2 * WINDOW_STRIDE] ?? 0)) / 2
+        const y =
+          ((mesh.vertices[start + 1] ?? 0) + (mesh.vertices[start + 2 * WINDOW_STRIDE + 1] ?? 0)) /
+          2
+        const inside = x > 0 && x < width && y < 0 && y > -20
+        expect(inside).toBe(false)
+      }
+    }
+  })
+})

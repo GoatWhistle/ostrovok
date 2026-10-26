@@ -94,7 +94,7 @@ function pushRing(
   vertices: number[],
   indices: number[],
 ) {
-  const outward = signedArea(points) > 0 ? -1 : 1
+  const outward = signedArea(points) > 0 ? 1 : -1
   let along = 0
   for (let index = 0; index + 1 < points.length; index += 1) {
     const from = points[index] ?? [0, 0]
