@@ -49,7 +49,10 @@ class LandmarkResolver:
             )
         if not candidates:
             return LandmarkResolution(fallback)
-        if len(candidates) == 1:
+        if len(candidates) == 1 and (
+            candidates[0].name.casefold().replace("ё", "е")
+            == (request.target or "").casefold().replace("ё", "е")
+        ):
             return LandmarkResolution(candidates[0])
         if self._areas is not None:
             candidates = tuple(

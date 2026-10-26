@@ -75,16 +75,25 @@ FROM ranked r JOIN candidates c ON c.id=r.id
 ORDER BY r.score DESC,canonical DESC,c.id LIMIT 2"""
 
 
-CANDIDATE_LOOKUP = """SELECT id,tags->>'name',ST_X(location),ST_Y(location),tags
+CANDIDATE_LOOKUP = """WITH candidates AS (
+SELECT id,tags,location,(SELECT count(*) FROM
+ regexp_split_to_table(%(name)s,'[^[:alpha:]]+') token
+ WHERE length(token)>=5 AND to_tsvector('russian',concat_ws(' ',
+ tags->>'name',tags->>'name:ru',tags->>'alt_name')) @@ plainto_tsquery('russian',token)
+) AS matched_tokens
 FROM pois WHERE location && ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326)
  AND tags ? 'name'
  AND (%(target_key)s::text IS NULL OR (tags ? %(target_key)s AND
    (cardinality(%(target_values)s::text[])=0 OR tags->>%(target_key)s=ANY(%(target_values)s::text[]))))
  AND (%(target_key)s::text IS NOT NULL OR tags ?| ARRAY['historic','natural','waterway']
+   OR tags->>'man_made' IN ('tower','lighthouse')
    OR tags->>'tourism' IN ('attraction','museum') OR tags->>'amenity' IN ('place_of_worship','theatre'))
- AND EXISTS (SELECT 1 FROM unnest(ARRAY[tags->>'name',tags->>'name:ru',tags->>'alt_name']) value
-   WHERE strpos(translate(lower(value),'ё','е'),%(fragment)s)>0)
-ORDER BY CASE WHEN id ~ '^[rw][0-9]+$' THEN 0 ELSE 1 END,
+)
+SELECT id,tags->>'name',ST_X(location),ST_Y(location),tags FROM candidates
+WHERE matched_tokens>0 OR EXISTS (
+ SELECT 1 FROM unnest(ARRAY[tags->>'name',tags->>'name:ru',tags->>'alt_name']) value
+ WHERE strpos(translate(lower(value),'ё','е'),%(fragment)s)>0)
+ORDER BY matched_tokens DESC,CASE WHEN id ~ '^[rw][0-9]+$' THEN 0 ELSE 1 END,
  length(tags->>'name'),id LIMIT 16"""
 
 
@@ -104,6 +113,7 @@ class PostgresNamedPlaceRepository:
             return ()
         params = _params(bbox) | {
             "fragment": fragment,
+            "name": name,
             "target_key": target_key,
             "target_values": list(target_values),
         }

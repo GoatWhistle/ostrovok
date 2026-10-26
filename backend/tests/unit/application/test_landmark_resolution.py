@@ -41,3 +41,24 @@ async def test_identity_review_overrides_exact_name_and_preserves_ambiguity(
     assert result.ambiguous == (accepted != ("museum",))
     assert await resolver(request, "Санкт-Петербург", (29, 59, 31, 61), pavilion) == result
     review.check.assert_awaited_once()
+
+
+async def test_single_lexical_candidate_requires_semantic_confirmation() -> None:
+    candidate = NamedPlaceRecord(
+        id="tower", name="Останкинская телевизионная башня", location=(37.61, 55.82)
+    )
+    uow = MagicMock()
+    uow.__aenter__ = AsyncMock(return_value=uow)
+    uow.__aexit__ = AsyncMock(return_value=False)
+    uow.named_places.candidates = AsyncMock(return_value=(candidate,))
+    review = MagicMock(spec=SemanticReview)
+    review.check = AsyncMock(return_value=ReviewResult(accepted_ids=()))
+    request = SpatialRequest(
+        kind="landmark_view",
+        target="Останкинская телебашня",
+        radius_m=10000,
+        source_text="вид на Останкинскую телебашню",
+    )
+    result = await LandmarkResolver(lambda: uow, review)(request, "Москва", (37, 55, 38, 56), None)
+    assert result.place is None
+    review.check.assert_awaited_once()
