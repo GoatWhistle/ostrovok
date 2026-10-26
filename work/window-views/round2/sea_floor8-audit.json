@@ -1,0 +1,101 @@
+{
+  "id": "sea_floor8",
+  "query": "В Сочи хочу вид на море с восьмого этажа",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n12084515064",
+      "name": "Panoramapart",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_floor8-n12084515064-f_window_n12084515064_44b5a0229e2e.json"
+        }
+      ]
+    },
+    {
+      "id": "n8847798717",
+      "name": "PinkFloyd Apartment",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_floor8-n8847798717-f_window_n8847798717_44b5a0229e2e.json"
+        }
+      ]
+    },
+    {
+      "id": "n4986725623",
+      "name": "Апартаменты в Маяке",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_floor8-n4986725623-f_window_n4986725623_44b5a0229e2e.json"
+        }
+      ]
+    },
+    {
+      "id": "n7115085741",
+      "name": "El Paraiso",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_floor8-n7115085741-f_window_n7115085741_44b5a0229e2e.json"
+        }
+      ]
+    },
+    {
+      "id": "w51106908",
+      "name": "Версаль",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_floor8-w51106908-f_window_w51106908_44b5a0229e2e.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:44b5a0229e2e",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "вид на море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "В Сочи хочу вид на море с восьмого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 5.17,
+  "passed_automatic_audit": true
+}

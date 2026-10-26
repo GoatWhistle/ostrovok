@@ -1,0 +1,550 @@
+{
+  "query_id": "6a5c3438575ed883",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:85dc9aa4c85e",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "вид на море с пятого этажа"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Анапа",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Анапе, вид на море с пятого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w960110442",
+        "name": "Пальма Сонета",
+        "address": "Золотистый проезд 14",
+        "location": [
+          37.3040919,
+          44.9412249
+        ],
+        "building_id": "w960110442"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "match": "partial",
+          "label": "вид на море с пятого этажа",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 311 м, этаж 5, направление окон 239°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w960110442_85dc9aa4c85e",
+            "characteristic_key": "spatial:85dc9aa4c85e",
+            "value": true,
+            "label": "вид на море с пятого этажа",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w960110442_85dc9aa4c85e_ray",
+              "g_window_w960110442_85dc9aa4c85e_target",
+              "g_window_w960110442_85dc9aa4c85e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w960110442_85dc9aa4c85e_ray",
+            "g_window_w960110442_85dc9aa4c85e_target",
+            "g_window_w960110442_85dc9aa4c85e_observer"
+          ],
+          "camera": {
+            "center": [
+              37.3040919,
+              44.9412249
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 59.0,
+            "focus_facade_id": "window_w960110442_85dc9aa4c85e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.3040919,
+          44.9412249
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 59.0,
+        "focus_facade_id": "window_w960110442_85dc9aa4c85e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w960110442",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.3041442,
+                  44.941367
+                ],
+                [
+                  37.3043306,
+                  44.9411449
+                ],
+                [
+                  37.3041192,
+                  44.941056
+                ],
+                [
+                  37.3039328,
+                  44.9412782
+                ],
+                [
+                  37.3041442,
+                  44.941367
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w960110442",
+          "hotel_id": "w960110442",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w960110442"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w223948933",
+        "name": "Анапа Апарт-отель",
+        "address": "проспект Революции 8А",
+        "location": [
+          37.3010701,
+          44.8938803
+        ],
+        "building_id": "w223948933"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "match": "unknown",
+          "label": "вид на море с пятого этажа",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 296 м, этаж 5, направление окон 328°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 89 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w223948933_85dc9aa4c85e",
+            "characteristic_key": "spatial:85dc9aa4c85e",
+            "label": "вид на море с пятого этажа",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w223948933_85dc9aa4c85e_ray",
+              "g_window_w223948933_85dc9aa4c85e_target",
+              "g_window_w223948933_85dc9aa4c85e_observer",
+              "g_window_w223948933_85dc9aa4c85e_blocker_0",
+              "g_window_w223948933_85dc9aa4c85e_blocker_1",
+              "g_window_w223948933_85dc9aa4c85e_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w223948933_85dc9aa4c85e_ray",
+            "g_window_w223948933_85dc9aa4c85e_target",
+            "g_window_w223948933_85dc9aa4c85e_observer",
+            "g_window_w223948933_85dc9aa4c85e_blocker_0",
+            "g_window_w223948933_85dc9aa4c85e_blocker_1",
+            "g_window_w223948933_85dc9aa4c85e_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.3010701,
+              44.8938803
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 148.0,
+            "focus_facade_id": "window_w223948933_85dc9aa4c85e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.3010701,
+          44.8938803
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 148.0,
+        "focus_facade_id": "window_w223948933_85dc9aa4c85e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w223948933",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.3009159,
+                  44.8939197
+                ],
+                [
+                  37.3011321,
+                  44.8940147
+                ],
+                [
+                  37.3013015,
+                  44.8938211
+                ],
+                [
+                  37.3010853,
+                  44.8937261
+                ],
+                [
+                  37.3009159,
+                  44.8939197
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w223948933",
+          "hotel_id": "w223948933",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w223948933"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w74463980",
+        "name": "Корпус № 5",
+        "address": "Гребенская улица 3",
+        "location": [
+          37.3182275,
+          44.8996764
+        ],
+        "building_id": "w74463980"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "match": "unknown",
+          "label": "вид на море с пятого этажа",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 345 м, этаж 5, направление окон 324°. Проверены рельеф и здания на всём пути. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w74463980_85dc9aa4c85e",
+            "characteristic_key": "spatial:85dc9aa4c85e",
+            "label": "вид на море с пятого этажа",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w74463980_85dc9aa4c85e_ray",
+              "g_window_w74463980_85dc9aa4c85e_target",
+              "g_window_w74463980_85dc9aa4c85e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w74463980_85dc9aa4c85e_ray",
+            "g_window_w74463980_85dc9aa4c85e_target",
+            "g_window_w74463980_85dc9aa4c85e_observer"
+          ],
+          "camera": {
+            "center": [
+              37.3182275,
+              44.8996764
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 144.0,
+            "focus_facade_id": "window_w74463980_85dc9aa4c85e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.3182275,
+          44.8996764
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 144.0,
+        "focus_facade_id": "window_w74463980_85dc9aa4c85e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w74463980",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.3180185,
+                  44.8997952
+                ],
+                [
+                  37.3181863,
+                  44.8998823
+                ],
+                [
+                  37.3185299,
+                  44.8995504
+                ],
+                [
+                  37.3183621,
+                  44.8994633
+                ],
+                [
+                  37.3182498,
+                  44.8995718
+                ],
+                [
+                  37.3180185,
+                  44.8997952
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w74463980",
+          "hotel_id": "w74463980",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w74463980"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w591351418",
+        "name": "93hotel.ru",
+        "location": [
+          37.2500428,
+          44.9865884
+        ],
+        "building_id": "w591351418"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "match": "unknown",
+          "label": "вид на море с пятого этажа",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w591351418_85dc9aa4c85e",
+            "characteristic_key": "spatial:85dc9aa4c85e",
+            "label": "вид на море с пятого этажа",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          37.2500428,
+          44.9865884
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w591351418",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.2498757,
+                  44.986506
+                ],
+                [
+                  37.2499663,
+                  44.9864495
+                ],
+                [
+                  37.2502935,
+                  44.9867121
+                ],
+                [
+                  37.2502029,
+                  44.9867686
+                ],
+                [
+                  37.2498757,
+                  44.986506
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w591351418",
+          "hotel_id": "w591351418",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w591351418"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w178542520",
+        "name": "Apriori",
+        "address": "Крепостная улица 68",
+        "location": [
+          37.3105865,
+          44.8937805
+        ],
+        "building_id": "w178542520"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "match": "unknown",
+          "label": "вид на море с пятого этажа",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w178542520_85dc9aa4c85e",
+            "characteristic_key": "spatial:85dc9aa4c85e",
+            "label": "вид на море с пятого этажа",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          37.3105865,
+          44.8937805
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w178542520",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.3107019,
+                  44.8938612
+                ],
+                [
+                  37.3108036,
+                  44.8937539
+                ],
+                [
+                  37.3107102,
+                  44.8937128
+                ],
+                [
+                  37.3106593,
+                  44.8937071
+                ],
+                [
+                  37.3105922,
+                  44.8937071
+                ],
+                [
+                  37.3105305,
+                  44.8937185
+                ],
+                [
+                  37.3104666,
+                  44.8937454
+                ],
+                [
+                  37.3103948,
+                  44.8938005
+                ],
+                [
+                  37.3105054,
+                  44.8938706
+                ],
+                [
+                  37.3105976,
+                  44.8938401
+                ],
+                [
+                  37.3106811,
+                  44.893848
+                ],
+                [
+                  37.3107019,
+                  44.8938612
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w178542520",
+          "hotel_id": "w178542520",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w178542520"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      37.2500428,
+      44.8937805,
+      37.3182275,
+      44.9865884
+    ],
+    "camera": {
+      "center": [
+        37.3040919,
+        44.9412249
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 59.0,
+      "focus_facade_id": "window_w960110442_85dc9aa4c85e_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 6285
+}

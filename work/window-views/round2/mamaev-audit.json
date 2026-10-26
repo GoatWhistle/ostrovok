@@ -1,0 +1,114 @@
+{
+  "id": "mamaev",
+  "query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n9356801048",
+      "name": "Сталинград",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Родина-мать зовёт!",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "mamaev-n9356801048-f_window_n9356801048_44a46cdb8f2d.json"
+        }
+      ]
+    },
+    {
+      "id": "n3298084824",
+      "name": "Frant Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Родина-мать зовёт!",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "mamaev-n3298084824-f_window_n3298084824_44a46cdb8f2d.json"
+        }
+      ]
+    },
+    {
+      "id": "n4834155959",
+      "name": "Hilton Garden Inn Volgograd",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Родина-мать зовёт!",
+          "floor": 5,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "mamaev-n4834155959-f_window_n4834155959_44a46cdb8f2d.json"
+        }
+      ]
+    },
+    {
+      "id": "n4349811096",
+      "name": "Достоевский",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Родина-мать зовёт!",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "mamaev-n4349811096-f_window_n4349811096_44a46cdb8f2d.json"
+        }
+      ]
+    },
+    {
+      "id": "w121183634",
+      "name": "Ламберт",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Родина-мать зовёт!",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "mamaev-w121183634-f_window_w121183634_44a46cdb8f2d.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:44a46cdb8f2d",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видна скульптура Родина-мать на Мамаевом кургане"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Волгоград",
+    "anywhere": false,
+    "normalized_query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 9.71,
+  "passed_automatic_audit": true
+}

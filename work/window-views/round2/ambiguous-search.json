@@ -1,0 +1,31 @@
+{
+  "query_id": "86498b796e54887a",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:6482438d51cc",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видна Белая река"
+      }
+    ],
+    "unmatched_terms": [],
+    "anywhere": false,
+    "normalized_query": "Хочу отель, из окна которого видна Белая река",
+    "corrections": [
+      {
+        "original": "Белая река",
+        "corrected": "река Белая",
+        "reason": "Название реки неоднозначно: реки с названием Белая есть в нескольких регионах (Башкортостан, Адыгея, Камчатка и др.), поэтому невозможно однозначно определить место поиска"
+      }
+    ],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 7167
+}

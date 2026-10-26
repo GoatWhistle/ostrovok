@@ -1,0 +1,103 @@
+{
+  "id": "onega",
+  "query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "n14102451276",
+      "name": "13 стульев",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "onega-n14102451276-f_window_n14102451276_a9fb8d6b6b09.json"
+        }
+      ]
+    },
+    {
+      "id": "n10002810594",
+      "name": "1774",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "onega-n10002810594-f_window_n10002810594_a9fb8d6b6b09.json"
+        }
+      ]
+    },
+    {
+      "id": "n8996710817",
+      "name": "Best friends",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "onega-n8996710817-f_window_n8996710817_a9fb8d6b6b09.json"
+        }
+      ]
+    },
+    {
+      "id": "n4950369421",
+      "name": "Brusnika",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "onega-n4950369421-f_window_n4950369421_a9fb8d6b6b09.json"
+        }
+      ]
+    },
+    {
+      "id": "w42079213",
+      "name": "Cosmos Petrozavodsk",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "onega-w42079213-f_window_w42079213_a9fb8d6b6b09.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:a9fb8d6b6b09",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с видом на Онежское озеро"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Петрозаводск",
+    "anywhere": false,
+    "normalized_query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 6.43,
+  "passed_automatic_audit": false
+}

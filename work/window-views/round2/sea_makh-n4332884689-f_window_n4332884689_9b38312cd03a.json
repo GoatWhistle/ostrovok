@@ -1,0 +1,139 @@
+{
+  "fact_id": "f_window_n4332884689_9b38312cd03a",
+  "characteristic_key": "spatial:9b38312cd03a",
+  "value": true,
+  "unit": null,
+  "label": "номер с видом на Каспийское море",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n4332884689_9b38312cd03a_ray",
+    "g_window_n4332884689_9b38312cd03a_target",
+    "g_window_n4332884689_9b38312cd03a_observer"
+  ],
+  "subject": "hotel:n4332884689",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "visible",
+      "missing": [
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": -20.5,
+            "minimum_m": -22.5
+          },
+          "distance_m": 45.66616118618419
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": -24.875,
+            "minimum_m": -26.875
+          },
+          "distance_m": 68.49924177927629
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": -27.0,
+            "minimum_m": -29.0
+          },
+          "distance_m": 91.33232237236838
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": -27.0,
+            "minimum_m": -29.0
+          },
+          "distance_m": 114.16540296546047
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": -27.0,
+            "minimum_m": -29.0
+          },
+          "distance_m": 136.99848355855258
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=47.460000%2C43.055000%2C47.465000%2C43.060000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=47.465000%2C43.055000%2C47.470000%2C43.060000"
+      ],
+      "blockers": [],
+      "target_id": "coastline",
+      "distance_m": 182.7,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        47.464543358935295,
+        43.0567418189197
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        47.46231918735884,
+        43.05695005523838
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 93.69,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": 4.305829151992888,
+      "observer_elevation_m": {
+        "maximum_m": -16.825,
+        "minimum_m": -21.425
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": -26.899438869323856
+    },
+    "source_text": "номер с видом на Каспийское море",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Море», 183 м, этаж 1, направление окон 94°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:46:23.109796Z",
+    "valid_until": "2026-11-02T09:46:23.109796Z"
+  },
+  "history": [],
+  "conflicts": []
+}

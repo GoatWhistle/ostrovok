@@ -1,0 +1,506 @@
+{
+  "query_id": "34d5474de536de9a",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:a9fb8d6b6b09",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с видом на Онежское озеро"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Петрозаводск",
+    "anywhere": false,
+    "normalized_query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n14102451276",
+        "name": "13 стульев",
+        "address": "Неглинская набережная 13",
+        "location": [
+          34.3684643,
+          61.7955529
+        ],
+        "building_id": "w42081538"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "match": "unknown",
+          "label": "номер с видом на Онежское озеро",
+          "explanation": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "fact": {
+            "fact_id": "f_window_n14102451276_a9fb8d6b6b09",
+            "characteristic_key": "spatial:a9fb8d6b6b09",
+            "label": "номер с видом на Онежское озеро",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          34.3684643,
+          61.7955529
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w42081538",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  34.3682674,
+                  61.7955755
+                ],
+                [
+                  34.3685024,
+                  61.795647
+                ],
+                [
+                  34.3686613,
+                  61.7955304
+                ],
+                [
+                  34.3684263,
+                  61.7954588
+                ],
+                [
+                  34.3682674,
+                  61.7955755
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w42081538",
+          "hotel_id": "n14102451276",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n14102451276"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n10002810594",
+        "name": "1774",
+        "location": [
+          34.3706528,
+          61.7850789
+        ],
+        "building_id": "w471790390"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "match": "unknown",
+          "label": "номер с видом на Онежское озеро",
+          "explanation": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "fact": {
+            "fact_id": "f_window_n10002810594_a9fb8d6b6b09",
+            "characteristic_key": "spatial:a9fb8d6b6b09",
+            "label": "номер с видом на Онежское озеро",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          34.3706528,
+          61.7850789
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w471790390",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  34.3695127,
+                  61.7844325
+                ],
+                [
+                  34.3693213,
+                  61.7845735
+                ],
+                [
+                  34.3696713,
+                  61.7846796
+                ],
+                [
+                  34.3694808,
+                  61.7848201
+                ],
+                [
+                  34.3704377,
+                  61.7851088
+                ],
+                [
+                  34.3706236,
+                  61.7851665
+                ],
+                [
+                  34.3708193,
+                  61.7850222
+                ],
+                [
+                  34.3706402,
+                  61.7849656
+                ],
+                [
+                  34.3698313,
+                  61.7847228
+                ],
+                [
+                  34.3699559,
+                  61.784631
+                ],
+                [
+                  34.36958,
+                  61.784517
+                ],
+                [
+                  34.3696416,
+                  61.7844715
+                ],
+                [
+                  34.3695127,
+                  61.7844325
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w471790390",
+          "hotel_id": "n10002810594",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n10002810594"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n8996710817",
+        "name": "Best friends",
+        "location": [
+          34.3574987,
+          61.8000202
+        ],
+        "building_id": "w34273020"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "match": "unknown",
+          "label": "номер с видом на Онежское озеро",
+          "explanation": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "fact": {
+            "fact_id": "f_window_n8996710817_a9fb8d6b6b09",
+            "characteristic_key": "spatial:a9fb8d6b6b09",
+            "label": "номер с видом на Онежское озеро",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          34.3574987,
+          61.8000202
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w34273020",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  34.357414,
+                  61.800061
+                ],
+                [
+                  34.3566915,
+                  61.7995842
+                ],
+                [
+                  34.3569234,
+                  61.7995068
+                ],
+                [
+                  34.3574923,
+                  61.7998875
+                ],
+                [
+                  34.3576492,
+                  61.7999836
+                ],
+                [
+                  34.357414,
+                  61.800061
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w34273020",
+          "hotel_id": "n8996710817",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n8996710817"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4950369421",
+        "name": "Brusnika",
+        "address": "улица Антикайнена 34",
+        "location": [
+          34.353179,
+          61.7885507
+        ]
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "match": "unknown",
+          "label": "номер с видом на Онежское озеро",
+          "explanation": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "fact": {
+            "fact_id": "f_window_n4950369421_a9fb8d6b6b09",
+            "characteristic_key": "spatial:a9fb8d6b6b09",
+            "label": "номер с видом на Онежское озеро",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          34.353179,
+          61.7885507
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      }
+    },
+    {
+      "hotel": {
+        "id": "w42079213",
+        "name": "Cosmos Petrozavodsk",
+        "address": "улица Куйбышева 26",
+        "location": [
+          34.3723775,
+          61.7956996
+        ],
+        "stars": 4,
+        "building_id": "w42079213"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "match": "unknown",
+          "label": "номер с видом на Онежское озеро",
+          "explanation": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "fact": {
+            "fact_id": "f_window_w42079213_a9fb8d6b6b09",
+            "characteristic_key": "spatial:a9fb8d6b6b09",
+            "label": "номер с видом на Онежское озеро",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          34.3723775,
+          61.7956996
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w42079213",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  34.3719749,
+                  61.7954993
+                ],
+                [
+                  34.3719329,
+                  61.7954833
+                ],
+                [
+                  34.3718299,
+                  61.7954833
+                ],
+                [
+                  34.3717879,
+                  61.7954993
+                ],
+                [
+                  34.3717609,
+                  61.7955293
+                ],
+                [
+                  34.3717609,
+                  61.7955713
+                ],
+                [
+                  34.3717879,
+                  61.7955903
+                ],
+                [
+                  34.3718299,
+                  61.7955903
+                ],
+                [
+                  34.3721049,
+                  61.7958913
+                ],
+                [
+                  34.3723829,
+                  61.7959793
+                ],
+                [
+                  34.3728329,
+                  61.7959333
+                ],
+                [
+                  34.3729329,
+                  61.7959604
+                ],
+                [
+                  34.3729909,
+                  61.7959773
+                ],
+                [
+                  34.3730741,
+                  61.7959105
+                ],
+                [
+                  34.3731509,
+                  61.7958489
+                ],
+                [
+                  34.3731,
+                  61.7958295
+                ],
+                [
+                  34.3730358,
+                  61.7957966
+                ],
+                [
+                  34.3728979,
+                  61.7955903
+                ],
+                [
+                  34.3726199,
+                  61.7954993
+                ],
+                [
+                  34.3719749,
+                  61.7954993
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w42079213",
+          "hotel_id": "w42079213",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w42079213"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      34.353179,
+      61.7850789,
+      34.3723775,
+      61.8000202
+    ],
+    "camera": {
+      "center": [
+        34.3684643,
+        61.7955529
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 6382
+}

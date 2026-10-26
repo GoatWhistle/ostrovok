@@ -1,0 +1,103 @@
+{
+  "id": "kulsharif_low",
+  "query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "n12272572531",
+      "name": "84",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "kulsharif_low-n12272572531-f_window_n12272572531_f9a9f0e12fcb.json"
+        }
+      ]
+    },
+    {
+      "id": "n13142525356",
+      "name": "Alfa best house",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "kulsharif_low-n13142525356-f_window_n13142525356_f9a9f0e12fcb.json"
+        }
+      ]
+    },
+    {
+      "id": "n12484773914",
+      "name": "Amati",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "kulsharif_low-n12484773914-f_window_n12484773914_f9a9f0e12fcb.json"
+        }
+      ]
+    },
+    {
+      "id": "n10004372105",
+      "name": "Amsterdam",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+          "artifact": "kulsharif_low-n10004372105-f_window_n10004372105_f9a9f0e12fcb.json"
+        }
+      ]
+    },
+    {
+      "id": "n14118698146",
+      "name": "Amsterdam",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "kulsharif_low-n14118698146-f_window_n14118698146_f9a9f0e12fcb.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:f9a9f0e12fcb",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "откуда видна мечеть Кул-Шариф"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 6.57,
+  "passed_automatic_audit": false
+}

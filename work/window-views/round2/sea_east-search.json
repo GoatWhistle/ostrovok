@@ -1,0 +1,525 @@
+{
+  "query_id": "2df5245ad99b8179",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:c19b25ead9f1",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "прямой вид на море из этих окон"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "В Сочи нужны окна строго на восток и прямой вид на море из этих окон",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n2514339345",
+        "name": "Балтийский",
+        "address": "Балтийская улица 40",
+        "location": [
+          39.651574,
+          43.6507656
+        ],
+        "building_id": "w97211067",
+        "height_m": 9.6
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "match": "unknown",
+          "label": "прямой вид на море из этих окон",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 179 м, этаж 1, направление окон 116°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 45 м от окна. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n2514339345_c19b25ead9f1",
+            "characteristic_key": "spatial:c19b25ead9f1",
+            "label": "прямой вид на море из этих окон",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n2514339345_c19b25ead9f1_ray",
+              "g_window_n2514339345_c19b25ead9f1_target",
+              "g_window_n2514339345_c19b25ead9f1_observer",
+              "g_window_n2514339345_c19b25ead9f1_blocker_0",
+              "g_window_n2514339345_c19b25ead9f1_blocker_1",
+              "g_window_n2514339345_c19b25ead9f1_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n2514339345_c19b25ead9f1_ray",
+            "g_window_n2514339345_c19b25ead9f1_target",
+            "g_window_n2514339345_c19b25ead9f1_observer",
+            "g_window_n2514339345_c19b25ead9f1_blocker_0",
+            "g_window_n2514339345_c19b25ead9f1_blocker_1",
+            "g_window_n2514339345_c19b25ead9f1_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              39.651574,
+              43.6507656
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 296.0,
+            "focus_facade_id": "window_n2514339345_c19b25ead9f1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          39.651574,
+          43.6507656
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 296.0,
+        "focus_facade_id": "window_n2514339345_c19b25ead9f1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w97211067",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  39.6514583,
+                  43.6507367
+                ],
+                [
+                  39.6515841,
+                  43.6506918
+                ],
+                [
+                  39.6516503,
+                  43.6507891
+                ],
+                [
+                  39.6516058,
+                  43.650805
+                ],
+                [
+                  39.6516842,
+                  43.6509203
+                ],
+                [
+                  39.651603,
+                  43.6509492
+                ],
+                [
+                  39.6514583,
+                  43.6507367
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w97211067",
+          "hotel_id": "n2514339345",
+          "is_hotel": true,
+          "height_m": 9.6,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n2514339345"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w739663665",
+        "name": "\"Море и Лес\"",
+        "address": "улица Володарского 44/2",
+        "location": [
+          39.8819443,
+          43.5331068
+        ],
+        "building_id": "w739663665",
+        "height_m": 9.6
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "match": "unknown",
+          "label": "прямой вид на море из этих окон",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w739663665_c19b25ead9f1",
+            "characteristic_key": "spatial:c19b25ead9f1",
+            "label": "прямой вид на море из этих окон",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          39.8819443,
+          43.5331068
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w739663665",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  39.8818853,
+                  43.533103
+                ],
+                [
+                  39.8819754,
+                  43.5330548
+                ],
+                [
+                  39.8820349,
+                  43.5331132
+                ],
+                [
+                  39.8819408,
+                  43.53316
+                ],
+                [
+                  39.8818853,
+                  43.533103
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w739663665",
+          "hotel_id": "w739663665",
+          "is_hotel": true,
+          "height_m": 9.6,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w739663665"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6276321485",
+        "name": "\"У Тёмы\"",
+        "address": "Енисейская улица 541",
+        "location": [
+          39.6077381,
+          43.6866181
+        ],
+        "building_id": "w690523843",
+        "height_m": 9.6
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "match": "unknown",
+          "label": "прямой вид на море из этих окон",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n6276321485_c19b25ead9f1",
+            "characteristic_key": "spatial:c19b25ead9f1",
+            "label": "прямой вид на море из этих окон",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          39.6077381,
+          43.6866181
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w690523843",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  39.6076745,
+                  43.6866672
+                ],
+                [
+                  39.607786,
+                  43.6865504
+                ],
+                [
+                  39.6079148,
+                  43.6866148
+                ],
+                [
+                  39.6078033,
+                  43.6867315
+                ],
+                [
+                  39.6076745,
+                  43.6866672
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w690523843",
+          "hotel_id": "n6276321485",
+          "is_hotel": true,
+          "height_m": 9.6,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6276321485"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w54437496",
+        "name": "777",
+        "address": "Орбитовская улица 9",
+        "location": [
+          39.9047123,
+          43.4634661
+        ],
+        "building_id": "w54437496",
+        "height_m": 9.6
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "match": "unknown",
+          "label": "прямой вид на море из этих окон",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_w54437496_c19b25ead9f1",
+            "characteristic_key": "spatial:c19b25ead9f1",
+            "label": "прямой вид на море из этих окон",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          39.9047123,
+          43.4634661
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w54437496",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  39.9045767,
+                  43.4634214
+                ],
+                [
+                  39.9047069,
+                  43.4633912
+                ],
+                [
+                  39.9047276,
+                  43.4634383
+                ],
+                [
+                  39.9047468,
+                  43.4634339
+                ],
+                [
+                  39.9047735,
+                  43.4634411
+                ],
+                [
+                  39.904786,
+                  43.4634688
+                ],
+                [
+                  39.9047732,
+                  43.4634888
+                ],
+                [
+                  39.9047492,
+                  43.4634943
+                ],
+                [
+                  39.9047732,
+                  43.4635491
+                ],
+                [
+                  39.9046458,
+                  43.4635786
+                ],
+                [
+                  39.9045767,
+                  43.4634214
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w54437496",
+          "hotel_id": "w54437496",
+          "is_hotel": true,
+          "height_m": 9.6,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w54437496"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4712092442",
+        "name": "Abris",
+        "location": [
+          39.9668263,
+          43.3989565
+        ],
+        "building_id": "w374921439",
+        "height_m": 3.2,
+        "levels": 1
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "match": "unknown",
+          "label": "прямой вид на море из этих окон",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n4712092442_c19b25ead9f1",
+            "characteristic_key": "spatial:c19b25ead9f1",
+            "label": "прямой вид на море из этих окон",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          39.9668263,
+          43.3989565
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w374921439",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  39.9665586,
+                  43.3989753
+                ],
+                [
+                  39.9667803,
+                  43.3988975
+                ],
+                [
+                  39.9667555,
+                  43.3988602
+                ],
+                [
+                  39.9669443,
+                  43.398794
+                ],
+                [
+                  39.9670258,
+                  43.3989166
+                ],
+                [
+                  39.9666153,
+                  43.3990607
+                ],
+                [
+                  39.9665586,
+                  43.3989753
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w374921439",
+          "hotel_id": "n4712092442",
+          "is_hotel": true,
+          "height_m": 3.2,
+          "min_height_m": 0,
+          "levels": 1,
+          "height_fact_id": "f_height_n4712092442"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      39.6077381,
+      43.3989565,
+      39.9668263,
+      43.6866181
+    ],
+    "camera": {
+      "center": [
+        39.651574,
+        43.6507656
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 296.0,
+      "focus_facade_id": "window_n2514339345_c19b25ead9f1_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 6466
+}

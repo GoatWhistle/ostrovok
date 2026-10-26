@@ -1,0 +1,889 @@
+{
+  "fact_id": "f_window_n9965493646_d589b2fd6105",
+  "characteristic_key": "spatial:d589b2fd6105",
+  "value": false,
+  "unit": null,
+  "label": "с видом на Енисей из окна",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n9965493646_d589b2fd6105_ray",
+    "g_window_n9965493646_d589b2fd6105_target",
+    "g_window_n9965493646_d589b2fd6105_observer",
+    "g_window_n9965493646_d589b2fd6105_blocker_0",
+    "g_window_n9965493646_d589b2fd6105_blocker_1",
+    "g_window_n9965493646_d589b2fd6105_blocker_2"
+  ],
+  "subject": "hotel:n9965493646",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "blocked",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 161.0,
+            "minimum_m": 159.0
+          },
+          "distance_m": 49.01423188454189
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 156.375,
+            "minimum_m": 154.375
+          },
+          "distance_m": 98.02846376908379
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 155.75,
+            "minimum_m": 153.75
+          },
+          "distance_m": 122.53557971135474
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 159.0,
+            "minimum_m": 157.0
+          },
+          "distance_m": 196.05692753816757
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 161.0,
+            "minimum_m": 159.0
+          },
+          "distance_m": 220.56404348043853
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 159.75,
+            "minimum_m": 157.75
+          },
+          "distance_m": 269.5782753649804
+        },
+        {
+          "id": "terrain:12",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 162.0,
+            "minimum_m": 160.0
+          },
+          "distance_m": 294.08539130725137
+        },
+        {
+          "id": "terrain:13",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 161.75,
+            "minimum_m": 159.75
+          },
+          "distance_m": 318.5925072495223
+        },
+        {
+          "id": "terrain:16",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 157.625,
+            "minimum_m": 155.625
+          },
+          "distance_m": 392.11385507633514
+        },
+        {
+          "id": "terrain:18",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 156.0,
+            "minimum_m": 154.0
+          },
+          "distance_m": 441.12808696087706
+        },
+        {
+          "id": "terrain:19",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 156.375,
+            "minimum_m": 154.375
+          },
+          "distance_m": 465.635202903148
+        },
+        {
+          "id": "terrain:22",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 158.25,
+            "minimum_m": 156.25
+          },
+          "distance_m": 539.1565507299608
+        },
+        {
+          "id": "terrain:23",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 158.75,
+            "minimum_m": 156.75
+          },
+          "distance_m": 563.6636666722318
+        },
+        {
+          "id": "terrain:25",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 160.125,
+            "minimum_m": 158.125
+          },
+          "distance_m": 612.6778985567737
+        },
+        {
+          "id": "terrain:26",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 159.75,
+            "minimum_m": 157.75
+          },
+          "distance_m": 637.1850144990447
+        },
+        {
+          "id": "terrain:28",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 157.875,
+            "minimum_m": 155.875
+          },
+          "distance_m": 686.1992463835866
+        },
+        {
+          "id": "terrain:29",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 156.375,
+            "minimum_m": 154.375
+          },
+          "distance_m": 710.7063623258575
+        },
+        {
+          "id": "terrain:30",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 155.5,
+            "minimum_m": 153.5
+          },
+          "distance_m": 735.2134782681284
+        },
+        {
+          "id": "terrain:31",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 154.375,
+            "minimum_m": 152.375
+          },
+          "distance_m": 759.7205942103993
+        },
+        {
+          "id": "terrain:32",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 151.875,
+            "minimum_m": 149.875
+          },
+          "distance_m": 784.2277101526703
+        },
+        {
+          "id": "terrain:33",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 150.75,
+            "minimum_m": 148.75
+          },
+          "distance_m": 808.7348260949414
+        },
+        {
+          "id": "terrain:34",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 149.0,
+            "minimum_m": 147.0
+          },
+          "distance_m": 833.2419420372123
+        },
+        {
+          "id": "terrain:35",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 145.5,
+            "minimum_m": 143.5
+          },
+          "distance_m": 857.7490579794832
+        },
+        {
+          "id": "w169404767",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.75,
+            "minimum_m": 169.75
+          },
+          "distance_m": 295.1926919794235
+        },
+        {
+          "id": "w169404767",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.75,
+            "minimum_m": 169.75
+          },
+          "distance_m": 306.7261160285739
+        },
+        {
+          "id": "w169404767",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.75,
+            "minimum_m": 169.75
+          },
+          "distance_m": 318.25954007772435
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.25,
+            "minimum_m": 169.25
+          },
+          "distance_m": 614.3661054703732
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.25,
+            "minimum_m": 169.25
+          },
+          "distance_m": 620.8439402945246
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 185.25,
+            "minimum_m": 169.25
+          },
+          "distance_m": 627.321775118676
+        },
+        {
+          "id": "w172746546",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 179.375,
+            "minimum_m": 163.375
+          },
+          "distance_m": 739.5681757013845
+        },
+        {
+          "id": "w172746546",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 179.375,
+            "minimum_m": 163.375
+          },
+          "distance_m": 746.2376795785258
+        },
+        {
+          "id": "w172746546",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 179.375,
+            "minimum_m": 163.375
+          },
+          "distance_m": 752.9071834556671
+        },
+        {
+          "id": "w172746549",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.0,
+            "minimum_m": 160.4
+          },
+          "distance_m": 653.0284440673746
+        },
+        {
+          "id": "w172746549",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.0,
+            "minimum_m": 160.4
+          },
+          "distance_m": 659.6359643134601
+        },
+        {
+          "id": "w172746549",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.0,
+            "minimum_m": 160.4
+          },
+          "distance_m": 666.2434845595457
+        },
+        {
+          "id": "w274482872",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.125,
+            "minimum_m": 158.325
+          },
+          "distance_m": 362.0371108607003
+        },
+        {
+          "id": "w274482872",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.125,
+            "minimum_m": 158.325
+          },
+          "distance_m": 367.76731162293197
+        },
+        {
+          "id": "w274482872",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.125,
+            "minimum_m": 158.325
+          },
+          "distance_m": 373.4975123851636
+        },
+        {
+          "id": "w318189417",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 187.75,
+            "minimum_m": 169.95
+          },
+          "distance_m": 56.526523083257274
+        },
+        {
+          "id": "w318189417",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 187.75,
+            "minimum_m": 169.95
+          },
+          "distance_m": 71.40682914209832
+        },
+        {
+          "id": "w318189417",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 187.75,
+            "minimum_m": 169.95
+          },
+          "distance_m": 86.28713520093936
+        },
+        {
+          "id": "w318189418",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 86.38713520093935
+        },
+        {
+          "id": "w318189418",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 91.95959672540904
+        },
+        {
+          "id": "w318189418",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 97.53205824987873
+        },
+        {
+          "id": "w319100895",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 163.0,
+            "minimum_m": 152.4
+          },
+          "distance_m": 793.4136223915033
+        },
+        {
+          "id": "w319100895",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 163.0,
+            "minimum_m": 152.4
+          },
+          "distance_m": 797.4096030805094
+        },
+        {
+          "id": "w319100895",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 163.0,
+            "minimum_m": 152.4
+          },
+          "distance_m": 801.4055837695157
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 505.22338550435535
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 512.3603593023995
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 519.4973331004438
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 579.2518575089831
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 585.228872114948
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 188.0,
+            "minimum_m": 170.2
+          },
+          "distance_m": 591.2058867209128
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 219.0,
+            "minimum_m": 188.6
+          },
+          "distance_m": 397.1735415344613
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 219.0,
+            "minimum_m": 188.6
+          },
+          "distance_m": 408.3060496122306
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 219.0,
+            "minimum_m": 188.6
+          },
+          "distance_m": 419.4385576899999
+        },
+        {
+          "id": "w60220736",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.25,
+            "minimum_m": 160.65
+          },
+          "distance_m": 234.59499566250682
+        },
+        {
+          "id": "w60220736",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.25,
+            "minimum_m": 160.65
+          },
+          "distance_m": 241.7823436143937
+        },
+        {
+          "id": "w60220736",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.25,
+            "minimum_m": 160.65
+          },
+          "distance_m": 248.9696915662806
+        },
+        {
+          "id": "w60431153",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 169.875,
+            "minimum_m": 159.275
+          },
+          "distance_m": 470.8651404469008
+        },
+        {
+          "id": "w60431153",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 169.875,
+            "minimum_m": 159.275
+          },
+          "distance_m": 485.3438013057928
+        },
+        {
+          "id": "w60431153",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 169.875,
+            "minimum_m": 159.275
+          },
+          "distance_m": 499.8224621646848
+        },
+        {
+          "id": "w60431158",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 175.75,
+            "minimum_m": 163.35
+          },
+          "distance_m": 337.6224135419198
+        },
+        {
+          "id": "w60431158",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 175.75,
+            "minimum_m": 163.35
+          },
+          "distance_m": 346.258427246493
+        },
+        {
+          "id": "w60431158",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 175.75,
+            "minimum_m": 163.35
+          },
+          "distance_m": 354.8944409510662
+        },
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 228.625,
+            "minimum_m": 194.625
+          },
+          "distance_m": 201.5330358458337
+        },
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 228.625,
+            "minimum_m": 194.625
+          },
+          "distance_m": 210.10815414467828
+        },
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 228.625,
+            "minimum_m": 194.625
+          },
+          "distance_m": 218.6832724435229
+        },
+        {
+          "id": "w61718117",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 170.125,
+            "minimum_m": 159.525
+          },
+          "distance_m": 140.75151505973378
+        },
+        {
+          "id": "w61718117",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 170.125,
+            "minimum_m": 159.525
+          },
+          "distance_m": 166.1810273661239
+        },
+        {
+          "id": "w61718117",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 170.125,
+            "minimum_m": 159.525
+          },
+          "distance_m": 191.61053967251405
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/relation/934925",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+      ],
+      "blockers": [
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 218.6832724435229,
+          "penetration_m": 38.997754251178236
+        },
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 210.10815414467828,
+          "penetration_m": 38.79013724974146
+        },
+        {
+          "id": "w60431167",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 201.5330358458337,
+          "penetration_m": 38.582510355367646
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 419.4385576899999,
+          "penetration_m": 37.83052619976726
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 408.3060496122306,
+          "penetration_m": 37.56128956436777
+        },
+        {
+          "id": "w319411865",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 397.1735415344613,
+          "penetration_m": 37.29203625530437
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 591.2058867209128,
+          "penetration_m": 23.58255830865457
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 627.321775118676,
+          "penetration_m": 23.505061702348883
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 585.228872114948,
+          "penetration_m": 23.438146057098663
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 620.8439402945246,
+          "penetration_m": 23.34858025659949
+        },
+        {
+          "id": "w319220670",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 579.2518575089831,
+          "penetration_m": 23.293728999212163
+        },
+        {
+          "id": "w170843839",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 614.3661054703732,
+          "penetration_m": 23.19209316531976
+        }
+      ],
+      "target_id": "r934925",
+      "distance_m": 906.8,
+      "target_name": "Енисей",
+      "target_tags": {
+        "name": "Енисей",
+        "water": "river",
+        "name:ru": "Енисей",
+        "natural": "water",
+        "int_name": "Yenisei"
+      },
+      "target_part_id": "r934925",
+      "terrain_step_m": 25,
+      "target_location": [
+        92.87883485669957,
+        56.006877378828385
+      ],
+      "target_part_tags": {
+        "name": "Енисей",
+        "water": "river",
+        "name:ru": "Енисей",
+        "natural": "water",
+        "int_name": "Yenisei"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        92.87762129602113,
+        56.01499289693046
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 172.89,
+      "target_elevation_m": {
+        "maximum_m": 139.0,
+        "minimum_m": 135.0
+      },
+      "minimum_clearance_m": -77.4530528004989,
+      "observer_elevation_m": {
+        "maximum_m": 160.925,
+        "minimum_m": 156.325
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на Енисей из окна",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора перекрыта: «Енисей», 907 м, этаж 1, направление окон 173°. Проверены рельеф и здания на всём пути. Препятствие: здание, 219 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/934925",
+    "source_url": "https://www.openstreetmap.org/relation/934925",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:48:55.581300Z",
+    "valid_until": "2026-11-02T09:48:55.581300Z"
+  },
+  "history": [],
+  "conflicts": []
+}

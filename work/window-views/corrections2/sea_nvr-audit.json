@@ -1,0 +1,113 @@
+{
+  "id": "sea_nvr",
+  "query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w232313703",
+      "name": "База отдыха \"Прибой\"",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-w232313703-f_window_w232313703_e01dd8fe3033.json"
+        }
+      ]
+    },
+    {
+      "id": "n10969671905",
+      "name": "\"Novoross-apart\" квартира с видом на море",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 3,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-n10969671905-f_window_n10969671905_e01dd8fe3033.json"
+        }
+      ]
+    },
+    {
+      "id": "n5515698692",
+      "name": "Hilton Garden Inn Novorossiysk",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-n5515698692-f_window_n5515698692_e01dd8fe3033.json"
+        }
+      ]
+    },
+    {
+      "id": "n11067209483",
+      "name": "Pomido`r",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-n11067209483-f_window_n11067209483_e01dd8fe3033.json"
+        }
+      ]
+    },
+    {
+      "id": "n6167595730",
+      "name": "Velia",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_nvr-n6167595730-f_window_n6167595730_e01dd8fe3033.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:e01dd8fe3033",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море, чтобы соседний дом его не закрывал"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Новороссийск",
+    "anywhere": false,
+    "normalized_query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 10.03,
+  "passed_automatic_audit": true
+}

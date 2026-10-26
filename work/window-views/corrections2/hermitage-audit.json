@@ -1,0 +1,109 @@
+{
+  "id": "hermitage",
+  "query": "Отель в Петербурге с видом на Эрмитаж, без здания перед окнами",
+  "errors": [
+    "no_geometric_target_evidence"
+  ],
+  "hotels": [
+    {
+      "id": "n14062456889",
+      "name": "+Питер Хостел",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "hermitage-n14062456889-f_window_n14062456889_58d7374868cd.json"
+        }
+      ]
+    },
+    {
+      "id": "n7934321885",
+      "name": "1,5kapart",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "hermitage-n7934321885-f_window_n7934321885_58d7374868cd.json"
+        }
+      ]
+    },
+    {
+      "id": "n8516947532",
+      "name": "1001 ночь",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "hermitage-n8516947532-f_window_n8516947532_58d7374868cd.json"
+        }
+      ]
+    },
+    {
+      "id": "n11805430895",
+      "name": "16/8",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "hermitage-n11805430895-f_window_n11805430895_58d7374868cd.json"
+        }
+      ]
+    },
+    {
+      "id": "n9749740416",
+      "name": "1715 Duplex Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "hermitage-n9749740416-f_window_n9749740416_58d7374868cd.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:58d7374868cd",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Эрмитаж, без здания перед окнами"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге с видом на Эрмитаж, без здания перед окнами",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Нормализация общеупотребительного сокращённого названия города"
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 9.79,
+  "passed_automatic_audit": false
+}

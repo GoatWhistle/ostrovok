@@ -1,0 +1,697 @@
+{
+  "query_id": "7e4fa7cbfeb37b6b",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:44a46cdb8f2d",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видна скульптура Родина-мать на Мамаевом кургане"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Волгоград",
+    "anywhere": false,
+    "normalized_query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n9356801048",
+        "name": "Сталинград",
+        "location": [
+          44.5324352,
+          48.7411341
+        ],
+        "building_id": "w152128667"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "match": "partial",
+          "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+          "explanation": "Линия обзора свободна в расчётной модели: «Родина-мать зовёт!», 336 м, этаж 1, направление окон 89°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n9356801048_44a46cdb8f2d",
+            "characteristic_key": "spatial:44a46cdb8f2d",
+            "value": true,
+            "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9356801048_44a46cdb8f2d_ray",
+              "g_window_n9356801048_44a46cdb8f2d_target",
+              "g_window_n9356801048_44a46cdb8f2d_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n9356801048_44a46cdb8f2d_ray",
+            "g_window_n9356801048_44a46cdb8f2d_target",
+            "g_window_n9356801048_44a46cdb8f2d_observer"
+          ],
+          "camera": {
+            "center": [
+              44.5324352,
+              48.7411341
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 269.0,
+            "focus_facade_id": "window_n9356801048_44a46cdb8f2d_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5324352,
+          48.7411341
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 269.0,
+        "focus_facade_id": "window_n9356801048_44a46cdb8f2d_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w152128667",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5322758,
+                  48.7412239
+                ],
+                [
+                  44.5327216,
+                  48.741227
+                ],
+                [
+                  44.5327232,
+                  48.7411231
+                ],
+                [
+                  44.5324845,
+                  48.7411215
+                ],
+                [
+                  44.5324849,
+                  48.7410928
+                ],
+                [
+                  44.532359,
+                  48.7410919
+                ],
+                [
+                  44.5323585,
+                  48.7411202
+                ],
+                [
+                  44.5322775,
+                  48.7411197
+                ],
+                [
+                  44.5322758,
+                  48.7412239
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w152128667",
+          "hotel_id": "n9356801048",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9356801048"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n3298084824",
+        "name": "Frant Hotel",
+        "location": [
+          44.5218313,
+          48.7274639
+        ],
+        "building_id": "w115799554"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "match": "unknown",
+          "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+          "explanation": "Свободный обзор подтвердить не удалось: «Родина-мать зовёт!», 1990 м, этаж 1, направление окон 46°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 102 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n3298084824_44a46cdb8f2d",
+            "characteristic_key": "spatial:44a46cdb8f2d",
+            "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n3298084824_44a46cdb8f2d_ray",
+              "g_window_n3298084824_44a46cdb8f2d_target",
+              "g_window_n3298084824_44a46cdb8f2d_observer",
+              "g_window_n3298084824_44a46cdb8f2d_blocker_0",
+              "g_window_n3298084824_44a46cdb8f2d_blocker_1",
+              "g_window_n3298084824_44a46cdb8f2d_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n3298084824_44a46cdb8f2d_ray",
+            "g_window_n3298084824_44a46cdb8f2d_target",
+            "g_window_n3298084824_44a46cdb8f2d_observer",
+            "g_window_n3298084824_44a46cdb8f2d_blocker_0",
+            "g_window_n3298084824_44a46cdb8f2d_blocker_1",
+            "g_window_n3298084824_44a46cdb8f2d_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.5218313,
+              48.7274639
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 226.0,
+            "focus_facade_id": "window_n3298084824_44a46cdb8f2d_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5218313,
+          48.7274639
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 226.0,
+        "focus_facade_id": "window_n3298084824_44a46cdb8f2d_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w115799554",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5211378,
+                  48.7278019
+                ],
+                [
+                  44.5210927,
+                  48.7277734
+                ],
+                [
+                  44.5210221,
+                  48.7277286
+                ],
+                [
+                  44.520977,
+                  48.7277602
+                ],
+                [
+                  44.5210504,
+                  48.7278078
+                ],
+                [
+                  44.5212167,
+                  48.7279155
+                ],
+                [
+                  44.522477,
+                  48.7270538
+                ],
+                [
+                  44.5223141,
+                  48.72702
+                ],
+                [
+                  44.5211378,
+                  48.7278019
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w115799554",
+          "hotel_id": "n3298084824",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n3298084824"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4834155959",
+        "name": "Hilton Garden Inn Volgograd",
+        "address": "проспект Ленина 56А",
+        "location": [
+          44.5388179,
+          48.7272194
+        ],
+        "stars": 4,
+        "building_id": "w152809468"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "match": "unknown",
+          "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+          "explanation": "Свободный обзор подтвердить не удалось: «Родина-мать зовёт!», 1657 м, этаж 5, направление окон 27°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 251 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4834155959_44a46cdb8f2d",
+            "characteristic_key": "spatial:44a46cdb8f2d",
+            "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4834155959_44a46cdb8f2d_ray",
+              "g_window_n4834155959_44a46cdb8f2d_target",
+              "g_window_n4834155959_44a46cdb8f2d_observer",
+              "g_window_n4834155959_44a46cdb8f2d_blocker_0",
+              "g_window_n4834155959_44a46cdb8f2d_blocker_1",
+              "g_window_n4834155959_44a46cdb8f2d_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4834155959_44a46cdb8f2d_ray",
+            "g_window_n4834155959_44a46cdb8f2d_target",
+            "g_window_n4834155959_44a46cdb8f2d_observer",
+            "g_window_n4834155959_44a46cdb8f2d_blocker_0",
+            "g_window_n4834155959_44a46cdb8f2d_blocker_1",
+            "g_window_n4834155959_44a46cdb8f2d_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.5388179,
+              48.7272194
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 207.0,
+            "focus_facade_id": "window_n4834155959_44a46cdb8f2d_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5388179,
+          48.7272194
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 207.0,
+        "focus_facade_id": "window_n4834155959_44a46cdb8f2d_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w152809468",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.538734,
+                  48.7274083
+                ],
+                [
+                  44.5387197,
+                  48.7273437
+                ],
+                [
+                  44.5386298,
+                  48.7272256
+                ],
+                [
+                  44.5387339,
+                  48.7271911
+                ],
+                [
+                  44.53872,
+                  48.7271729
+                ],
+                [
+                  44.5387994,
+                  48.7271467
+                ],
+                [
+                  44.5388192,
+                  48.7271727
+                ],
+                [
+                  44.5390931,
+                  48.7270821
+                ],
+                [
+                  44.5390786,
+                  48.727063
+                ],
+                [
+                  44.5393427,
+                  48.7269757
+                ],
+                [
+                  44.5393882,
+                  48.7270356
+                ],
+                [
+                  44.5396589,
+                  48.7269461
+                ],
+                [
+                  44.5399787,
+                  48.727367
+                ],
+                [
+                  44.539724,
+                  48.7274512
+                ],
+                [
+                  44.5394929,
+                  48.7271471
+                ],
+                [
+                  44.538954,
+                  48.7273253
+                ],
+                [
+                  44.538985,
+                  48.7273661
+                ],
+                [
+                  44.5389097,
+                  48.727391
+                ],
+                [
+                  44.5388849,
+                  48.7273584
+                ],
+                [
+                  44.538734,
+                  48.7274083
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w152809468",
+          "hotel_id": "n4834155959",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4834155959"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4349811096",
+        "name": "Достоевский",
+        "location": [
+          44.532685,
+          48.7308017
+        ],
+        "building_id": "w168674566"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "match": "unknown",
+          "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+          "explanation": "Свободный обзор подтвердить не удалось: «Родина-мать зовёт!», 1305 м, этаж 1, направление окон 354°. Проверены рельеф и здания на всём пути. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4349811096_44a46cdb8f2d",
+            "characteristic_key": "spatial:44a46cdb8f2d",
+            "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4349811096_44a46cdb8f2d_ray",
+              "g_window_n4349811096_44a46cdb8f2d_target",
+              "g_window_n4349811096_44a46cdb8f2d_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4349811096_44a46cdb8f2d_ray",
+            "g_window_n4349811096_44a46cdb8f2d_target",
+            "g_window_n4349811096_44a46cdb8f2d_observer"
+          ],
+          "camera": {
+            "center": [
+              44.532685,
+              48.7308017
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 174.0,
+            "focus_facade_id": "window_n4349811096_44a46cdb8f2d_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.532685,
+          48.7308017
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 174.0,
+        "focus_facade_id": "window_n4349811096_44a46cdb8f2d_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w168674566",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5327437,
+                  48.7308941
+                ],
+                [
+                  44.5325882,
+                  48.7308074
+                ],
+                [
+                  44.5325318,
+                  48.7307048
+                ],
+                [
+                  44.5325875,
+                  48.7306411
+                ],
+                [
+                  44.5327592,
+                  48.730627
+                ],
+                [
+                  44.5328561,
+                  48.7306871
+                ],
+                [
+                  44.532953,
+                  48.7307473
+                ],
+                [
+                  44.5330059,
+                  48.7308269
+                ],
+                [
+                  44.5329074,
+                  48.7309047
+                ],
+                [
+                  44.5327437,
+                  48.7308941
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w168674566",
+          "hotel_id": "n4349811096",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4349811096"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w121183634",
+        "name": "Ламберт",
+        "address": "улица Качинцев 94А",
+        "location": [
+          44.510991,
+          48.7386942
+        ],
+        "building_id": "w121183634"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "match": "unknown",
+          "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+          "explanation": "Свободный обзор подтвердить не удалось: «Родина-мать зовёт!», 1944 м, этаж 1, направление окон 109°. Проверены рельеф и здания на всём пути. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w121183634_44a46cdb8f2d",
+            "characteristic_key": "spatial:44a46cdb8f2d",
+            "label": "из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w121183634_44a46cdb8f2d_ray",
+              "g_window_w121183634_44a46cdb8f2d_target",
+              "g_window_w121183634_44a46cdb8f2d_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w121183634_44a46cdb8f2d_ray",
+            "g_window_w121183634_44a46cdb8f2d_target",
+            "g_window_w121183634_44a46cdb8f2d_observer"
+          ],
+          "camera": {
+            "center": [
+              44.510991,
+              48.7386942
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 289.0,
+            "focus_facade_id": "window_w121183634_44a46cdb8f2d_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.510991,
+          48.7386942
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 289.0,
+        "focus_facade_id": "window_w121183634_44a46cdb8f2d_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w121183634",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5108797,
+                  48.7386557
+                ],
+                [
+                  44.511047,
+                  48.7386175
+                ],
+                [
+                  44.5110686,
+                  48.7386586
+                ],
+                [
+                  44.5111086,
+                  48.7386495
+                ],
+                [
+                  44.5111338,
+                  48.7386977
+                ],
+                [
+                  44.5110941,
+                  48.7387067
+                ],
+                [
+                  44.511111,
+                  48.7387388
+                ],
+                [
+                  44.51088,
+                  48.7387915
+                ],
+                [
+                  44.5108381,
+                  48.7387116
+                ],
+                [
+                  44.5109015,
+                  48.7386972
+                ],
+                [
+                  44.5108797,
+                  48.7386557
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w121183634",
+          "hotel_id": "w121183634",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w121183634"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      44.510991,
+      48.7272194,
+      44.5388179,
+      48.7411341
+    ],
+    "camera": {
+      "center": [
+        44.5324352,
+        48.7411341
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 269.0,
+      "focus_facade_id": "window_n9356801048_44a46cdb8f2d_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 9671
+}

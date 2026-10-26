@@ -1,0 +1,117 @@
+{
+  "id": "basil",
+  "query": "Москва: хочу видеть из номера храм Василия Блаженного",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n11663276873",
+      "name": "5Nebo",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Собор Василия Блаженного",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "basil-n11663276873-f_window_n11663276873_00006bb5cf92.json"
+        }
+      ]
+    },
+    {
+      "id": "n13790279331",
+      "name": "7 Слонов",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Собор Василия Блаженного",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "basil-n13790279331-f_window_n13790279331_00006bb5cf92.json"
+        }
+      ]
+    },
+    {
+      "id": "r6210564",
+      "name": "Ararat Park Hyatt Moscow",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Собор Василия Блаженного",
+          "floor": 3,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "basil-r6210564-f_window_r6210564_00006bb5cf92.json"
+        }
+      ]
+    },
+    {
+      "id": "n6754312610",
+      "name": "Balchug Viewpoint",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Собор Василия Блаженного",
+          "floor": 2,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "basil-n6754312610-f_window_n6754312610_00006bb5cf92.json"
+        }
+      ]
+    },
+    {
+      "id": "n6487683842",
+      "name": "Barin Residence Balchug",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Собор Василия Блаженного",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "basil-n6487683842-f_window_n6487683842_00006bb5cf92.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:00006bb5cf92",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "хочу видеть из номера храм Василия Блаженного"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Москва: хочу видеть из номера храм Василия Блаженного",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 26.65,
+  "passed_automatic_audit": true
+}

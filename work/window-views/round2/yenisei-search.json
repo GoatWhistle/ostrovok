@@ -1,0 +1,740 @@
+{
+  "query_id": "f0411170bd20ac5e",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:d589b2fd6105",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Енисей из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Красноярск",
+    "anywhere": false,
+    "normalized_query": "В Красноярске нужен отель с видом на Енисей из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n9965493646",
+        "name": "Hovel Hostel Krasnoyarsk",
+        "address": "улица Ленина 52",
+        "location": [
+          92.8778992,
+          56.01511
+        ],
+        "building_id": "w318189416"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "match": "none",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Линия обзора перекрыта: «Енисей», 907 м, этаж 1, направление окон 173°. Проверены рельеф и здания на всём пути. Препятствие: здание, 219 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n9965493646_d589b2fd6105",
+            "characteristic_key": "spatial:d589b2fd6105",
+            "value": false,
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9965493646_d589b2fd6105_ray",
+              "g_window_n9965493646_d589b2fd6105_target",
+              "g_window_n9965493646_d589b2fd6105_observer",
+              "g_window_n9965493646_d589b2fd6105_blocker_0",
+              "g_window_n9965493646_d589b2fd6105_blocker_1",
+              "g_window_n9965493646_d589b2fd6105_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n9965493646_d589b2fd6105_ray",
+            "g_window_n9965493646_d589b2fd6105_target",
+            "g_window_n9965493646_d589b2fd6105_observer",
+            "g_window_n9965493646_d589b2fd6105_blocker_0",
+            "g_window_n9965493646_d589b2fd6105_blocker_1",
+            "g_window_n9965493646_d589b2fd6105_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              92.8778992,
+              56.01511
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 353.0,
+            "focus_facade_id": "window_n9965493646_d589b2fd6105_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8778992,
+          56.01511
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 353.0,
+        "focus_facade_id": "window_n9965493646_d589b2fd6105_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w318189416",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8775726,
+                  56.0151177
+                ],
+                [
+                  92.877956,
+                  56.0151446
+                ],
+                [
+                  92.8779425,
+                  56.0152048
+                ],
+                [
+                  92.8782634,
+                  56.0152265
+                ],
+                [
+                  92.8783012,
+                  56.0150576
+                ],
+                [
+                  92.8782089,
+                  56.015052
+                ],
+                [
+                  92.8783432,
+                  56.0144536
+                ],
+                [
+                  92.8780158,
+                  56.0144307
+                ],
+                [
+                  92.8780114,
+                  56.0144502
+                ],
+                [
+                  92.8779312,
+                  56.0144454
+                ],
+                [
+                  92.8779169,
+                  56.0145028
+                ],
+                [
+                  92.8780088,
+                  56.0145072
+                ],
+                [
+                  92.8778894,
+                  56.0150446
+                ],
+                [
+                  92.8778477,
+                  56.0150416
+                ],
+                [
+                  92.8778501,
+                  56.015031
+                ],
+                [
+                  92.8776776,
+                  56.0150189
+                ],
+                [
+                  92.877682,
+                  56.0149994
+                ],
+                [
+                  92.8776004,
+                  56.0149937
+                ],
+                [
+                  92.8775726,
+                  56.0151177
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w318189416",
+          "hotel_id": "n9965493646",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9965493646"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n3825714006",
+        "name": "Ibis",
+        "location": [
+          92.8683539,
+          56.0100766
+        ],
+        "stars": 3,
+        "building_id": "w333737362"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Свободный обзор подтвердить не удалось: «Енисей», 375 м, этаж 6, направление окон 169°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 105 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n3825714006_d589b2fd6105",
+            "characteristic_key": "spatial:d589b2fd6105",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n3825714006_d589b2fd6105_ray",
+              "g_window_n3825714006_d589b2fd6105_target",
+              "g_window_n3825714006_d589b2fd6105_observer",
+              "g_window_n3825714006_d589b2fd6105_blocker_0",
+              "g_window_n3825714006_d589b2fd6105_blocker_1",
+              "g_window_n3825714006_d589b2fd6105_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n3825714006_d589b2fd6105_ray",
+            "g_window_n3825714006_d589b2fd6105_target",
+            "g_window_n3825714006_d589b2fd6105_observer",
+            "g_window_n3825714006_d589b2fd6105_blocker_0",
+            "g_window_n3825714006_d589b2fd6105_blocker_1",
+            "g_window_n3825714006_d589b2fd6105_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              92.8683539,
+              56.0100766
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 349.0,
+            "focus_facade_id": "window_n3825714006_d589b2fd6105_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8683539,
+          56.0100766
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 349.0,
+        "focus_facade_id": "window_n3825714006_d589b2fd6105_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w333737362",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8680762,
+                  56.0095828
+                ],
+                [
+                  92.8680825,
+                  56.0095362
+                ],
+                [
+                  92.8682573,
+                  56.0094659
+                ],
+                [
+                  92.8685973,
+                  56.009329
+                ],
+                [
+                  92.8686917,
+                  56.0093392
+                ],
+                [
+                  92.8687156,
+                  56.009389
+                ],
+                [
+                  92.8687945,
+                  56.0095535
+                ],
+                [
+                  92.8687176,
+                  56.0101181
+                ],
+                [
+                  92.8685725,
+                  56.0101119
+                ],
+                [
+                  92.8681252,
+                  56.0100929
+                ],
+                [
+                  92.8680076,
+                  56.0100879
+                ],
+                [
+                  92.8680457,
+                  56.0098073
+                ],
+                [
+                  92.8680762,
+                  56.0095828
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w333737362",
+          "hotel_id": "n3825714006",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n3825714006"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n5017251821",
+        "name": "Inwood",
+        "location": [
+          92.88912,
+          56.0144724
+        ],
+        "building_id": "w318717602"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "match": "none",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Линия обзора перекрыта: «Енисей», 565 м, этаж 1, направление окон 174°. Проверены рельеф и здания на всём пути. Препятствие: здание, 295 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n5017251821_d589b2fd6105",
+            "characteristic_key": "spatial:d589b2fd6105",
+            "value": false,
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n5017251821_d589b2fd6105_ray",
+              "g_window_n5017251821_d589b2fd6105_target",
+              "g_window_n5017251821_d589b2fd6105_observer",
+              "g_window_n5017251821_d589b2fd6105_blocker_0",
+              "g_window_n5017251821_d589b2fd6105_blocker_1",
+              "g_window_n5017251821_d589b2fd6105_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n5017251821_d589b2fd6105_ray",
+            "g_window_n5017251821_d589b2fd6105_target",
+            "g_window_n5017251821_d589b2fd6105_observer",
+            "g_window_n5017251821_d589b2fd6105_blocker_0",
+            "g_window_n5017251821_d589b2fd6105_blocker_1",
+            "g_window_n5017251821_d589b2fd6105_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              92.88912,
+              56.0144724
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 354.0,
+            "focus_facade_id": "window_n5017251821_d589b2fd6105_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          92.88912,
+          56.0144724
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 354.0,
+        "focus_facade_id": "window_n5017251821_d589b2fd6105_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w318717602",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.888849,
+                  56.0142481
+                ],
+                [
+                  92.8890759,
+                  56.0142613
+                ],
+                [
+                  92.8892195,
+                  56.0144115
+                ],
+                [
+                  92.8892239,
+                  56.0144392
+                ],
+                [
+                  92.8892732,
+                  56.014543
+                ],
+                [
+                  92.8892187,
+                  56.0145643
+                ],
+                [
+                  92.8887772,
+                  56.0145427
+                ],
+                [
+                  92.8887982,
+                  56.0144079
+                ],
+                [
+                  92.888849,
+                  56.0142481
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w318717602",
+          "hotel_id": "n5017251821",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n5017251821"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n3825714007",
+        "name": "Novotel",
+        "location": [
+          92.868366,
+          56.0095053
+        ],
+        "building_id": "w333737362"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "match": "unknown",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Свободный обзор подтвердить не удалось: «Енисей», 375 м, этаж 6, направление окон 169°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 105 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n3825714007_d589b2fd6105",
+            "characteristic_key": "spatial:d589b2fd6105",
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n3825714007_d589b2fd6105_ray",
+              "g_window_n3825714007_d589b2fd6105_target",
+              "g_window_n3825714007_d589b2fd6105_observer",
+              "g_window_n3825714007_d589b2fd6105_blocker_0",
+              "g_window_n3825714007_d589b2fd6105_blocker_1",
+              "g_window_n3825714007_d589b2fd6105_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n3825714007_d589b2fd6105_ray",
+            "g_window_n3825714007_d589b2fd6105_target",
+            "g_window_n3825714007_d589b2fd6105_observer",
+            "g_window_n3825714007_d589b2fd6105_blocker_0",
+            "g_window_n3825714007_d589b2fd6105_blocker_1",
+            "g_window_n3825714007_d589b2fd6105_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              92.868366,
+              56.0095053
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 349.0,
+            "focus_facade_id": "window_n3825714007_d589b2fd6105_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          92.868366,
+          56.0095053
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 349.0,
+        "focus_facade_id": "window_n3825714007_d589b2fd6105_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w333737362",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8680762,
+                  56.0095828
+                ],
+                [
+                  92.8680825,
+                  56.0095362
+                ],
+                [
+                  92.8682573,
+                  56.0094659
+                ],
+                [
+                  92.8685973,
+                  56.009329
+                ],
+                [
+                  92.8686917,
+                  56.0093392
+                ],
+                [
+                  92.8687156,
+                  56.009389
+                ],
+                [
+                  92.8687945,
+                  56.0095535
+                ],
+                [
+                  92.8687176,
+                  56.0101181
+                ],
+                [
+                  92.8685725,
+                  56.0101119
+                ],
+                [
+                  92.8681252,
+                  56.0100929
+                ],
+                [
+                  92.8680076,
+                  56.0100879
+                ],
+                [
+                  92.8680457,
+                  56.0098073
+                ],
+                [
+                  92.8680762,
+                  56.0095828
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w333737362",
+          "hotel_id": "n3825714007",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n3825714007"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11878725808",
+        "name": "Аляска",
+        "location": [
+          92.8345759,
+          56.0075925
+        ],
+        "building_id": "w123922010"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "match": "none",
+          "label": "с видом на Енисей из окна",
+          "explanation": "Линия обзора перекрыта: «Енисей», 961 м, этаж 1, направление окон 174°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 665 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11878725808_d589b2fd6105",
+            "characteristic_key": "spatial:d589b2fd6105",
+            "value": false,
+            "label": "с видом на Енисей из окна",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11878725808_d589b2fd6105_ray",
+              "g_window_n11878725808_d589b2fd6105_target",
+              "g_window_n11878725808_d589b2fd6105_observer",
+              "g_window_n11878725808_d589b2fd6105_blocker_0",
+              "g_window_n11878725808_d589b2fd6105_blocker_1",
+              "g_window_n11878725808_d589b2fd6105_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11878725808_d589b2fd6105_ray",
+            "g_window_n11878725808_d589b2fd6105_target",
+            "g_window_n11878725808_d589b2fd6105_observer",
+            "g_window_n11878725808_d589b2fd6105_blocker_0",
+            "g_window_n11878725808_d589b2fd6105_blocker_1",
+            "g_window_n11878725808_d589b2fd6105_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              92.8345759,
+              56.0075925
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 354.0,
+            "focus_facade_id": "window_n11878725808_d589b2fd6105_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          92.8345759,
+          56.0075925
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 354.0,
+        "focus_facade_id": "window_n11878725808_d589b2fd6105_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w123922010",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  92.8343665,
+                  56.0078344
+                ],
+                [
+                  92.8344169,
+                  56.0078371
+                ],
+                [
+                  92.8345687,
+                  56.0078453
+                ],
+                [
+                  92.8345885,
+                  56.0077304
+                ],
+                [
+                  92.8346119,
+                  56.0075949
+                ],
+                [
+                  92.8346158,
+                  56.0075721
+                ],
+                [
+                  92.8346382,
+                  56.0074425
+                ],
+                [
+                  92.8346643,
+                  56.0072911
+                ],
+                [
+                  92.8346811,
+                  56.0071932
+                ],
+                [
+                  92.8344789,
+                  56.0071823
+                ],
+                [
+                  92.8343665,
+                  56.0078344
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w123922010",
+          "hotel_id": "n11878725808",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11878725808"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      92.8345759,
+      56.0075925,
+      92.88912,
+      56.01511
+    ],
+    "camera": {
+      "center": [
+        92.8778992,
+        56.01511
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 353.0,
+      "focus_facade_id": "window_n9965493646_d589b2fd6105_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 12162
+}

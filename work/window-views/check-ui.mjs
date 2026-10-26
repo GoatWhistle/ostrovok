@@ -7,6 +7,7 @@ const {chromium}=require('@playwright/test')
 const conversation=JSON.parse(readFileSync('work/window-views/ui-conversation.json'))
 const browser=await chromium.launch({headless:true})
 const reports=[]
+const run=process.argv[2]??'ui'
 try{
  for(const width of [1440,375])for(const theme of ['light','dark'])for(const locale of ['ru','en']){
   const page=await browser.newPage({viewport:{width,height:1000},reducedMotion:'reduce'})
@@ -35,17 +36,17 @@ try{
   if(width<1024)await page.getByRole('radio',{name:copy.panel.map,exact:true}).check()
   await page.waitForSelector('canvas.maplibregl-canvas')
   await page.waitForTimeout(600)
-  const screenshot=`work/window-views/ui-${width}-${theme}-${locale}.png`
+  const screenshot=`work/window-views/${run}-${width}-${theme}-${locale}.png`
   await page.screenshot({path:screenshot})
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)
+  reports.push({width,theme,locale,errors,overflow,geo:geo.map(r=>({status:r.status,features:r.body.features.length})),screenshot})
   assert.equal(overflow,false)
   assert.deepEqual(errors,[])
   assert(geo.some(r=>r.status===200&&r.body.features.some(f=>f.properties.kind==='line')))
-  reports.push({width,theme,locale,errors,overflow,geo:geo.map(r=>({status:r.status,features:r.body.features.length})),screenshot})
   console.log('PASS',width,theme,locale)
   await page.close()
  }
 }finally{
- writeFileSync('work/window-views/ui-check.json',JSON.stringify(reports,null,2))
+ writeFileSync(`work/window-views/${run}-check.json`,JSON.stringify(reports,null,2))
  await browser.close()
 }

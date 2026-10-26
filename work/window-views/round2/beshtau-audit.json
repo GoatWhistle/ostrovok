@@ -1,0 +1,104 @@
+{
+  "id": "beshtau",
+  "query": "В Пятигорске нужен отель с видом из номера на Бештау",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n10603605164",
+      "name": "Орлиные скалы",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Бештау",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "beshtau-n10603605164-f_window_n10603605164_757b12563d56.json"
+        }
+      ]
+    },
+    {
+      "id": "n9723066817",
+      "name": "Central City Hotel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "artifact": "beshtau-n9723066817-f_window_n9723066817_757b12563d56.json"
+        }
+      ]
+    },
+    {
+      "id": "n11622221334",
+      "name": "Chill House",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "artifact": "beshtau-n11622221334-f_window_n11622221334_757b12563d56.json"
+        }
+      ]
+    },
+    {
+      "id": "n10603605116",
+      "name": "Dallas",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "artifact": "beshtau-n10603605116-f_window_n10603605116_757b12563d56.json"
+        }
+      ]
+    },
+    {
+      "id": "w218861087",
+      "name": "Daniel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "artifact": "beshtau-w218861087-f_window_w218861087_757b12563d56.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:757b12563d56",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом из номера на Бештау"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Пятигорск",
+    "anywhere": false,
+    "normalized_query": "В Пятигорске нужен отель с видом из номера на Бештау",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 7.53,
+  "passed_automatic_audit": true
+}

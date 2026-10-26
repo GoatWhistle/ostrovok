@@ -1,0 +1,4872 @@
+[
+  {
+    "id": "isaac",
+    "query": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "r21187261",
+        "name": "Four Seasons Hotel Lion Palace",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac-r21187261-f_window_r21187261_41fa3c6550a2.json"
+          }
+        ]
+      },
+      {
+        "id": "w499303839",
+        "name": "Lotte",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac-w499303839-f_window_w499303839_41fa3c6550a2.json"
+          }
+        ]
+      },
+      {
+        "id": "w508887500",
+        "name": "SO/",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 4,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac-w508887500-f_window_w508887500_41fa3c6550a2.json"
+          }
+        ]
+      },
+      {
+        "id": "w49861780",
+        "name": "Англетер",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac-w49861780-f_window_w49861780_41fa3c6550a2.json"
+          }
+        ]
+      },
+      {
+        "id": "r3107676",
+        "name": "Астория",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac-r3107676-f_window_r3107676_41fa3c6550a2.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:41fa3c6550a2",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом из окна на Исаакиевский собор"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Санкт-Петербурге с видом из окна на Исаакиевский собор",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 11.07,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "isaac_floor1",
+    "query": "Отель в Петербурге, из номера на первом этаже должен быть виден Исаакиевский собор",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "r21187261",
+        "name": "Four Seasons Hotel Lion Palace",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac_floor1-r21187261-f_window_r21187261_115a402aaddc.json"
+          }
+        ]
+      },
+      {
+        "id": "w499303839",
+        "name": "Lotte",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac_floor1-w499303839-f_window_w499303839_115a402aaddc.json"
+          }
+        ]
+      },
+      {
+        "id": "w49861780",
+        "name": "Англетер",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_floor1-w49861780-f_window_w49861780_115a402aaddc.json"
+          }
+        ]
+      },
+      {
+        "id": "r3107676",
+        "name": "Астория",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_floor1-r3107676-f_window_r3107676_115a402aaddc.json"
+          }
+        ]
+      },
+      {
+        "id": "n8456704276",
+        "name": "Adagio",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "isaac_floor1-n8456704276-f_window_n8456704276_115a402aaddc.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:115a402aaddc",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": true,
+          "source_text": "из номера на первом этаже должен быть виден Исаакиевский собор"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Отель в Санкт-Петербурге, из номера на первом этаже должен быть виден Исаакиевский собор",
+      "corrections": [
+        {
+          "original": "Петербурге",
+          "corrected": "Санкт-Петербурге",
+          "reason": "Нормализация общеупотребительного сокращения названия города"
+        }
+      ],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 9.33,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "isaac_floor7",
+    "query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w508887500",
+        "name": "SO/",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Исаакиевский собор",
+            "floor": 7,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_floor7-w508887500-f_window_w508887500_dad163dbaebe.json"
+          }
+        ]
+      },
+      {
+        "id": "r3107676",
+        "name": "Астория",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Исаакиевский собор",
+            "floor": 7,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_floor7-r3107676-f_window_r3107676_dad163dbaebe.json"
+          }
+        ]
+      },
+      {
+        "id": "r1258391",
+        "name": "Петро Палас",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Исаакиевский собор",
+            "floor": 7,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_floor7-r1258391-f_window_r1258391_dad163dbaebe.json"
+          }
+        ]
+      },
+      {
+        "id": "n14062456889",
+        "name": "+Питер Хостел",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "isaac_floor7-n14062456889-f_window_n14062456889_dad163dbaebe.json"
+          }
+        ]
+      },
+      {
+        "id": "n7934321885",
+        "name": "1,5kapart",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "isaac_floor7-n7934321885-f_window_n7934321885_dad163dbaebe.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:dad163dbaebe",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на купол Исаакиевского собора"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Отель в Санкт-Петербурге с видом на купол Исаакиевского собора с седьмого этажа",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 3,
+    "seconds": 6.76,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "isaac_west",
+    "query": "В Петербурге хочу западные окна и чтобы из них был виден Исаакиевский собор",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "r21187261",
+        "name": "Four Seasons Hotel Lion Palace",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac_west-r21187261-f_window_r21187261_83d706d65ff0.json"
+          }
+        ]
+      },
+      {
+        "id": "w499303839",
+        "name": "Lotte",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "isaac_west-w499303839-f_window_w499303839_83d706d65ff0.json"
+          }
+        ]
+      },
+      {
+        "id": "w508887500",
+        "name": "SO/",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 4,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_west-w508887500-f_window_w508887500_83d706d65ff0.json"
+          }
+        ]
+      },
+      {
+        "id": "w49861780",
+        "name": "Англетер",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_west-w49861780-f_window_w49861780_83d706d65ff0.json"
+          }
+        ]
+      },
+      {
+        "id": "r3107676",
+        "name": "Астория",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "isaac_west-r3107676-f_window_r3107676_83d706d65ff0.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:83d706d65ff0",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "чтобы из них был виден Исаакиевский собор"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "В Санкт-Петербурге хочу западные окна и чтобы из них был виден Исаакиевский собор",
+      "corrections": [
+        {
+          "original": "Петербурге",
+          "corrected": "Санкт-Петербурге",
+          "reason": "Нормализация общеупотребительного сокращения названия города"
+        }
+      ],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 9.21,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "hermitage",
+    "query": "Отель в Петербурге с видом на Эрмитаж, без здания перед окнами",
+    "errors": [
+      "no_geometric_target_evidence",
+      "no_results_for_resolvable_target"
+    ],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:746d9b23495d",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Эрмитаж"
+        }
+      ],
+      "unmatched_terms": [
+        "без здания перед окнами"
+      ],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Отель в Санкт-Петербурге с видом на Эрмитаж, без здания перед окнами",
+      "corrections": [
+        {
+          "original": "Петербурге",
+          "corrected": "Санкт-Петербурге",
+          "reason": "Нормализация общеупотребительного сокращённого названия города"
+        }
+      ],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 45.05,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "peterpaul",
+    "query": "В Санкт-Петербурге нужен вид из окна на Петропавловскую крепость",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n9749740416",
+        "name": "1715 Duplex Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Петропавловская крепость",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "peterpaul-n9749740416-f_window_n9749740416_f7373acae70d.json"
+          }
+        ]
+      },
+      {
+        "id": "n11787343512",
+        "name": "338",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Петропавловская крепость",
+            "floor": 2,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "peterpaul-n11787343512-f_window_n11787343512_f7373acae70d.json"
+          }
+        ]
+      },
+      {
+        "id": "n9057050339",
+        "name": "338 Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Петропавловская крепость",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "peterpaul-n9057050339-f_window_n9057050339_f7373acae70d.json"
+          }
+        ]
+      },
+      {
+        "id": "n9565742233",
+        "name": "Art Hermitage",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Петропавловская крепость",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "peterpaul-n9565742233-f_window_n9565742233_f7373acae70d.json"
+          }
+        ]
+      },
+      {
+        "id": "n10011300640",
+        "name": "Directs Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Петропавловская крепость",
+            "floor": 2,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "peterpaul-n10011300640-f_window_n10011300640_f7373acae70d.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:f7373acae70d",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "вид из окна на Петропавловскую крепость"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "В Санкт-Петербурге нужен вид из окна на Петропавловскую крепость",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 9.22,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "aurora",
+    "query": "Хочу в Петербурге отель, из окна которого видно крейсер Аврора",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n12058933812",
+        "name": "Sokroma «Сканди классик»",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Крейсер \"Аврора\"",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "aurora-n12058933812-f_window_n12058933812_96319f206014.json"
+          }
+        ]
+      },
+      {
+        "id": "r3288249",
+        "name": "Санкт-Петербург",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Крейсер \"Аврора\"",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "aurora-r3288249-f_window_r3288249_96319f206014.json"
+          }
+        ]
+      },
+      {
+        "id": "n11787343512",
+        "name": "338",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Крейсер \"Аврора\"",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "aurora-n11787343512-f_window_n11787343512_96319f206014.json"
+          }
+        ]
+      },
+      {
+        "id": "n9057050339",
+        "name": "338 Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Крейсер \"Аврора\"",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "aurora-n9057050339-f_window_n9057050339_96319f206014.json"
+          }
+        ]
+      },
+      {
+        "id": "n10164191784",
+        "name": "Clever hostel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Крейсер \"Аврора\"",
+            "floor": 3,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "aurora-n10164191784-f_window_n10164191784_96319f206014.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:96319f206014",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из окна которого видно крейсер Аврора"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Хочу в Санкт-Петербурге отель, из окна которого видно крейсер Аврора",
+      "corrections": [
+        {
+          "original": "Петербурге",
+          "corrected": "Санкт-Петербурге",
+          "reason": "Очевидное сокращение названия города нормализовано"
+        }
+      ],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 16.24,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "neva",
+    "query": "В Петербурге нужен номер с видом на Неву, а не просто рядом с рекой",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w154151448",
+        "name": "Невская жемчужина",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Нева",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "neva-w154151448-f_window_w154151448_b07e2b8002ba.json"
+          }
+        ]
+      },
+      {
+        "id": "n4263075683",
+        "name": "Abri",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Нева",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "neva-n4263075683-f_window_n4263075683_b07e2b8002ba.json"
+          }
+        ]
+      },
+      {
+        "id": "w34269369",
+        "name": "Art Deco Nevsky",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Нева",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "neva-w34269369-f_window_w34269369_b07e2b8002ba.json"
+          }
+        ]
+      },
+      {
+        "id": "n4264596393",
+        "name": "AvetPark",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Нева",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "neva-n4264596393-f_window_n4264596393_b07e2b8002ba.json"
+          }
+        ]
+      },
+      {
+        "id": "n11940359453",
+        "name": "Hihao Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Нева",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "neva-n11940359453-f_window_n11940359453_b07e2b8002ba.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "номер с видом на Неву"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "В Санкт-Петербурге нужен номер с видом на Неву, а не просто рядом с рекой",
+      "corrections": [
+        {
+          "original": "Петербурге",
+          "corrected": "Санкт-Петербурге",
+          "reason": "Нормализация общеупотребительного сокращения названия города"
+        }
+      ],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 12.3,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "kazan",
+    "query": "Хочу отель в Казани с видом на Казанский кремль",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n2742617903",
+        "name": "Hostel Kremlin",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Казанский кремль",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "kazan-n2742617903-f_window_n2742617903_091684495884.json"
+          }
+        ]
+      },
+      {
+        "id": "n9980208078",
+        "name": "Upset old city",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Казанский кремль",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "kazan-n9980208078-f_window_n9980208078_091684495884.json"
+          }
+        ]
+      },
+      {
+        "id": "w154197885",
+        "name": "Courtyard by Marriott Kazan Kremlin",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Казанский кремль",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "kazan-w154197885-f_window_w154197885_091684495884.json"
+          }
+        ]
+      },
+      {
+        "id": "n4026238730",
+        "name": "DoubleTree",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Казанский кремль",
+            "floor": 2,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "kazan-n4026238730-f_window_n4026238730_091684495884.json"
+          }
+        ]
+      },
+      {
+        "id": "n6565450987",
+        "name": "Friendly Hostel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Казанский кремль",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "kazan-n6565450987-f_window_n6565450987_091684495884.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:091684495884",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Казанский кремль"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Казань",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Казани с видом на Казанский кремль",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 8.84,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "kulsharif",
+    "query": "В Казани отель с видом из окна на мечеть Кул-Шариф",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n12272572531",
+        "name": "84",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif-n12272572531-f_window_n12272572531_d633cfe070ea.json"
+          }
+        ]
+      },
+      {
+        "id": "n13142525356",
+        "name": "Alfa best house",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif-n13142525356-f_window_n13142525356_d633cfe070ea.json"
+          }
+        ]
+      },
+      {
+        "id": "n12484773914",
+        "name": "Amati",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif-n12484773914-f_window_n12484773914_d633cfe070ea.json"
+          }
+        ]
+      },
+      {
+        "id": "n10004372105",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif-n10004372105-f_window_n10004372105_d633cfe070ea.json"
+          }
+        ]
+      },
+      {
+        "id": "n14118698146",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif-n14118698146-f_window_n14118698146_d633cfe070ea.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:d633cfe070ea",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом из окна на мечеть Кул-Шариф"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Казань",
+      "anywhere": false,
+      "normalized_query": "В Казани отель с видом из окна на мечеть Кул-Шариф",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 5.03,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "kulsharif_low",
+    "query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n12272572531",
+        "name": "84",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif_low-n12272572531-f_window_n12272572531_f9a9f0e12fcb.json"
+          }
+        ]
+      },
+      {
+        "id": "n13142525356",
+        "name": "Alfa best house",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif_low-n13142525356-f_window_n13142525356_f9a9f0e12fcb.json"
+          }
+        ]
+      },
+      {
+        "id": "n12484773914",
+        "name": "Amati",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif_low-n12484773914-f_window_n12484773914_f9a9f0e12fcb.json"
+          }
+        ]
+      },
+      {
+        "id": "n10004372105",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "kulsharif_low-n10004372105-f_window_n10004372105_f9a9f0e12fcb.json"
+          }
+        ]
+      },
+      {
+        "id": "n14118698146",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif_low-n14118698146-f_window_n14118698146_f9a9f0e12fcb.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "откуда видна мечеть Кул-Шариф"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Казань",
+      "anywhere": false,
+      "normalized_query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.57,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "kulsharif_high",
+    "query": "Казань, отель с видом на Кул-Шариф, этаж не ниже десятого",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n12272572531",
+        "name": "84",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif_high-n12272572531-f_window_n12272572531_720d7131ca69.json"
+          }
+        ]
+      },
+      {
+        "id": "n13142525356",
+        "name": "Alfa best house",
+        "views": [
+          {
+            "status": "blocked",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+            "artifact": "kulsharif_high-n13142525356-f_window_n13142525356_720d7131ca69.json"
+          }
+        ]
+      },
+      {
+        "id": "n12484773914",
+        "name": "Amati",
+        "views": [
+          {
+            "status": "blocked",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+            "artifact": "kulsharif_high-n12484773914-f_window_n12484773914_720d7131ca69.json"
+          }
+        ]
+      },
+      {
+        "id": "n10004372105",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "blocked",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошенный этаж отсутствует в известных данных об этажности здания.",
+            "artifact": "kulsharif_high-n10004372105-f_window_n10004372105_720d7131ca69.json"
+          }
+        ]
+      },
+      {
+        "id": "n14118698146",
+        "name": "Amsterdam",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "kulsharif_high-n14118698146-f_window_n14118698146_720d7131ca69.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:720d7131ca69",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Кул-Шариф"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Казань",
+      "anywhere": false,
+      "normalized_query": "Казань, отель с видом на Кул-Шариф, этаж не ниже десятого",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.51,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "kremlin",
+    "query": "Хочу отель в Москве с видом на Московский Кремль",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n2519755766",
+        "name": "3 пингвина",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Московский Кремль",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "kremlin-n2519755766-f_window_n2519755766_205041ecaf10.json"
+          }
+        ]
+      },
+      {
+        "id": "n2519815976",
+        "name": "ABC",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Московский Кремль",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "kremlin-n2519815976-f_window_n2519815976_205041ecaf10.json"
+          }
+        ]
+      },
+      {
+        "id": "n6754312610",
+        "name": "Balchug Viewpoint",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Московский Кремль",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "kremlin-n6754312610-f_window_n6754312610_205041ecaf10.json"
+          }
+        ]
+      },
+      {
+        "id": "n6487683842",
+        "name": "Barin Residence Balchug",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Московский Кремль",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "kremlin-n6487683842-f_window_n6487683842_205041ecaf10.json"
+          }
+        ]
+      },
+      {
+        "id": "n5416334435",
+        "name": "Boxtel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Московский Кремль",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "kremlin-n5416334435-f_window_n5416334435_205041ecaf10.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:205041ecaf10",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Московский Кремль"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Москве с видом на Московский Кремль",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 21.53,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "basil",
+    "query": "Москва: хочу видеть из номера храм Василия Блаженного",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n8825725921",
+        "name": "1 Арт Отель",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "basil-n8825725921-f_window_n8825725921_00006bb5cf92.json"
+          }
+        ]
+      },
+      {
+        "id": "n3189991362",
+        "name": "123hostel.ru",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "basil-n3189991362-f_window_n3189991362_00006bb5cf92.json"
+          }
+        ]
+      },
+      {
+        "id": "n13587400888",
+        "name": "1905",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "basil-n13587400888-f_window_n13587400888_00006bb5cf92.json"
+          }
+        ]
+      },
+      {
+        "id": "n4208531789",
+        "name": "1st Arbat Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "basil-n4208531789-f_window_n4208531789_00006bb5cf92.json"
+          }
+        ]
+      },
+      {
+        "id": "n11283323869",
+        "name": "21 Семеновская",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "basil-n11283323869-f_window_n11283323869_00006bb5cf92.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "хочу видеть из номера храм Василия Блаженного"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "Москва: хочу видеть из номера храм Василия Блаженного",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 7.93,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "ostankino",
+    "query": "Нужен отель в Москве, чтобы из окна была видна Останкинская телебашня",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n5223762331",
+        "name": "Гипноз",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Останкинская телевизионная башня",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "ostankino-n5223762331-f_window_n5223762331_8d0657d5a936.json"
+          }
+        ]
+      },
+      {
+        "id": "w40430897",
+        "name": "ДобролюбовЪ",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Останкинская телевизионная башня",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "ostankino-w40430897-f_window_w40430897_8d0657d5a936.json"
+          }
+        ]
+      },
+      {
+        "id": "n941766731",
+        "name": "Звёздная",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Останкинская телевизионная башня",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "ostankino-n941766731-f_window_n941766731_8d0657d5a936.json"
+          }
+        ]
+      },
+      {
+        "id": "n8254943649",
+        "name": "Искра",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Останкинская телевизионная башня",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "ostankino-n8254943649-f_window_n8254943649_8d0657d5a936.json"
+          }
+        ]
+      },
+      {
+        "id": "w28847418",
+        "name": "Калибр",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Останкинская телевизионная башня",
+            "floor": 4,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "ostankino-w28847418-f_window_w28847418_8d0657d5a936.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:8d0657d5a936",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "чтобы из окна была видна Останкинская телебашня"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "Нужен отель в Москве, чтобы из окна была видна Останкинская телебашня",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 13.89,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "ostankino_far",
+    "query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n8825725921",
+        "name": "1 Арт Отель",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "ostankino_far-n8825725921-f_window_n8825725921_dea6df04ffb9.json"
+          }
+        ]
+      },
+      {
+        "id": "n3189991362",
+        "name": "123hostel.ru",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "ostankino_far-n3189991362-f_window_n3189991362_dea6df04ffb9.json"
+          }
+        ]
+      },
+      {
+        "id": "n13587400888",
+        "name": "1905",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "ostankino_far-n13587400888-f_window_n13587400888_dea6df04ffb9.json"
+          }
+        ]
+      },
+      {
+        "id": "n4208531789",
+        "name": "1st Arbat Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "ostankino_far-n4208531789-f_window_n4208531789_dea6df04ffb9.json"
+          }
+        ]
+      },
+      {
+        "id": "n11283323869",
+        "name": "21 Семеновская",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "ostankino_far-n11283323869-f_window_n11283323869_dea6df04ffb9.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "Останкинская башня должна быть видна из окна"
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "op": "gte",
+          "value": 3000.0,
+          "weight": 1.0,
+          "required": true,
+          "source_text": "расстояние не ближе трёх километров"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 9.35,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "moscowcity",
+    "query": "Отель в Москве с панорамой Москва-Сити из номера",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n13587400888",
+        "name": "1905",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Москва-Сити",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "moscowcity-n13587400888-f_window_n13587400888_7033939a8515.json"
+          }
+        ]
+      },
+      {
+        "id": "n8154400360",
+        "name": "47nebo",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Москва-Сити",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "moscowcity-n8154400360-f_window_n8154400360_7033939a8515.json"
+          }
+        ]
+      },
+      {
+        "id": "n4018013247",
+        "name": "Cocktail Rooms",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Москва-Сити",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "moscowcity-n4018013247-f_window_n4018013247_7033939a8515.json"
+          }
+        ]
+      },
+      {
+        "id": "n10537328752",
+        "name": "Diamond Apartments",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Москва-Сити",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "moscowcity-n10537328752-f_window_n10537328752_7033939a8515.json"
+          }
+        ]
+      },
+      {
+        "id": "n7242438525",
+        "name": "Fili House",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Москва-Сити",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "moscowcity-n7242438525-f_window_n7242438525_7033939a8515.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:7033939a8515",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с панорамой Москва-Сити из номера"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "Отель в Москве с панорамой Москва-Сити из номера",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 10.06,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "seamoon",
+    "query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w124781620",
+        "name": "Kavkaz",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "seamoon-w124781620-f_window_w124781620_d6bbd59c8154.json"
+          }
+        ]
+      },
+      {
+        "id": "n12749552601",
+        "name": "Marina Yacht by Stellar",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "seamoon-n12749552601-f_window_n12749552601_d6bbd59c8154.json"
+          }
+        ]
+      },
+      {
+        "id": "n12084515064",
+        "name": "Panoramapart",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "seamoon-n12084515064-f_window_n12084515064_d6bbd59c8154.json"
+          }
+        ]
+      },
+      {
+        "id": "n8847798717",
+        "name": "PinkFloyd Apartment",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 6,
+            "missing": [],
+            "reason": null,
+            "artifact": "seamoon-n8847798717-f_window_n8847798717_d6bbd59c8154.json"
+          }
+        ]
+      },
+      {
+        "id": "w228736311",
+        "name": "Sanremo",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "seamoon-w228736311-f_window_w228736311_d6bbd59c8154.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:d6bbd59c8154",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с настоящим видом на море"
+        },
+        {
+          "characteristic_key": "derived:d4269fc4b727",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": true,
+          "source_text": "номер с настоящим видом на море"
+        }
+      ],
+      "unmatched_terms": [
+        "не в пяти минутах ходьбы от него"
+      ],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 79.02,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_floor1",
+    "query": "Хочу в Сочи номер на первом этаже с открытым видом на море",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n11866202895",
+        "name": "Cascade",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor1-n11866202895-f_window_n11866202895_b618b54763b1.json"
+          }
+        ]
+      },
+      {
+        "id": "n11331531334",
+        "name": "Cosmos Adler Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor1-n11331531334-f_window_n11331531334_b618b54763b1.json"
+          }
+        ]
+      },
+      {
+        "id": "w218836911",
+        "name": "Dolphin resort Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_floor1-w218836911-f_window_w218836911_b618b54763b1.json"
+          }
+        ]
+      },
+      {
+        "id": "n7115085741",
+        "name": "El Paraiso",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Море",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor1-n7115085741-f_window_n7115085741_b618b54763b1.json"
+          }
+        ]
+      },
+      {
+        "id": "n10759614195",
+        "name": "Golden Tennis Club",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "sea_floor1-n10759614195-f_window_n10759614195_b618b54763b1.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:b618b54763b1",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с открытым видом на море"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "Хочу в Сочи номер на первом этаже с открытым видом на море",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 7.47,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_floor8",
+    "query": "В Сочи хочу вид на море с восьмого этажа",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n12084515064",
+        "name": "Panoramapart",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 8,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor8-n12084515064-f_window_n12084515064_44b5a0229e2e.json"
+          }
+        ]
+      },
+      {
+        "id": "n8847798717",
+        "name": "PinkFloyd Apartment",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 8,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor8-n8847798717-f_window_n8847798717_44b5a0229e2e.json"
+          }
+        ]
+      },
+      {
+        "id": "n4986725623",
+        "name": "Апартаменты в Маяке",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 8,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor8-n4986725623-f_window_n4986725623_44b5a0229e2e.json"
+          }
+        ]
+      },
+      {
+        "id": "n7115085741",
+        "name": "El Paraiso",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 8,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor8-n7115085741-f_window_n7115085741_44b5a0229e2e.json"
+          }
+        ]
+      },
+      {
+        "id": "w51106908",
+        "name": "Версаль",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 8,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_floor8-w51106908-f_window_w51106908_44b5a0229e2e.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:44b5a0229e2e",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "вид на море"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "В Сочи хочу вид на море с восьмого этажа",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 5.17,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_east",
+    "query": "В Сочи нужны окна строго на восток и прямой вид на море из этих окон",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n2514339345",
+        "name": "Балтийский",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_east-n2514339345-f_window_n2514339345_c19b25ead9f1.json"
+          }
+        ]
+      },
+      {
+        "id": "w739663665",
+        "name": "\"Море и Лес\"",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_east-w739663665-f_window_w739663665_c19b25ead9f1.json"
+          }
+        ]
+      },
+      {
+        "id": "n6276321485",
+        "name": "\"У Тёмы\"",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_east-n6276321485-f_window_n6276321485_c19b25ead9f1.json"
+          }
+        ]
+      },
+      {
+        "id": "w54437496",
+        "name": "777",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_east-w54437496-f_window_w54437496_c19b25ead9f1.json"
+          }
+        ]
+      },
+      {
+        "id": "n4712092442",
+        "name": "Abris",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_east-n4712092442-f_window_n4712092442_c19b25ead9f1.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:c19b25ead9f1",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "прямой вид на море из этих окон"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "В Сочи нужны окна строго на восток и прямой вид на море из этих окон",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 1,
+    "seconds": 6.49,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_west",
+    "query": "Сочи, западные окна, море должно быть видно из окна без зданий впереди",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w124781620",
+        "name": "Kavkaz",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 4,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_west-w124781620-f_window_w124781620_1c446449ac88.json"
+          },
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+            "artifact": "sea_west-w124781620-f_window_w124781620_f8d6ebafcfd6.json"
+          }
+        ]
+      },
+      {
+        "id": "n12749552601",
+        "name": "Marina Yacht by Stellar",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_west-n12749552601-f_window_n12749552601_1c446449ac88.json"
+          },
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+            "artifact": "sea_west-n12749552601-f_window_n12749552601_f8d6ebafcfd6.json"
+          }
+        ]
+      },
+      {
+        "id": "n12084515064",
+        "name": "Panoramapart",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 6,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_west-n12084515064-f_window_n12084515064_1c446449ac88.json"
+          },
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+            "artifact": "sea_west-n12084515064-f_window_n12084515064_f8d6ebafcfd6.json"
+          }
+        ]
+      },
+      {
+        "id": "n8847798717",
+        "name": "PinkFloyd Apartment",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_west-n8847798717-f_window_n8847798717_1c446449ac88.json"
+          },
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+            "artifact": "sea_west-n8847798717-f_window_n8847798717_f8d6ebafcfd6.json"
+          }
+        ]
+      },
+      {
+        "id": "w228736311",
+        "name": "Sanremo",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_west-w228736311-f_window_w228736311_1c446449ac88.json"
+          },
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+            "artifact": "sea_west-w228736311-f_window_w228736311_f8d6ebafcfd6.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:1c446449ac88",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": true,
+          "source_text": "море должно быть видно из окна"
+        },
+        {
+          "characteristic_key": "spatial:f8d6ebafcfd6",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "без зданий впереди"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "Сочи, западные окна, море должно быть видно из окна без зданий впереди",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 7.67,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_adler",
+    "query": "В Адлере нужен отель с видом на море со второго этажа",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n12749552601",
+        "name": "Marina Yacht by Stellar",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_adler-n12749552601-f_window_n12749552601_ac52d3bbc20f.json"
+          }
+        ]
+      },
+      {
+        "id": "n11866202895",
+        "name": "Cascade",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_adler-n11866202895-f_window_n11866202895_ac52d3bbc20f.json"
+          }
+        ]
+      },
+      {
+        "id": "n11331531334",
+        "name": "Cosmos Adler Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_adler-n11331531334-f_window_n11331531334_ac52d3bbc20f.json"
+          }
+        ]
+      },
+      {
+        "id": "n7115085741",
+        "name": "El Paraiso",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 2,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_adler-n7115085741-f_window_n7115085741_ac52d3bbc20f.json"
+          }
+        ]
+      },
+      {
+        "id": "n10759614195",
+        "name": "Golden Tennis Club",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 2,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "sea_adler-n10759614195-f_window_n10759614195_ac52d3bbc20f.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:ac52d3bbc20f",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на море"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "В Адлере нужен отель с видом на море со второго этажа",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 5.37,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_nvr",
+    "query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "errors": [
+      "no_geometric_target_evidence",
+      "no_results_for_resolvable_target"
+    ],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:5745a44d5c64",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на море"
+        }
+      ],
+      "unmatched_terms": [
+        "чтобы соседний дом его не закрывал"
+      ],
+      "location_hint": "Новороссийск",
+      "anywhere": false,
+      "normalized_query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 71.56,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "sea_gel",
+    "query": "В Геленджике хочу видеть море из номера на третьем этаже",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w173348798",
+        "name": "Hotel Savoy",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_gel-w173348798-f_window_w173348798_6bd69b521548.json"
+          }
+        ]
+      },
+      {
+        "id": "n494319456",
+        "name": "Music Hall",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_gel-n494319456-f_window_n494319456_6bd69b521548.json"
+          }
+        ]
+      },
+      {
+        "id": "n6542008186",
+        "name": "Апартаменты Афродита на берегу моря",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_gel-n6542008186-f_window_n6542008186_6bd69b521548.json"
+          }
+        ]
+      },
+      {
+        "id": "w105825202",
+        "name": "Бригантина",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_gel-w105825202-f_window_w105825202_6bd69b521548.json"
+          }
+        ]
+      },
+      {
+        "id": "w105825148",
+        "name": "Гостиничный комплекс \"Мария\"",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 3,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_gel-w105825148-f_window_w105825148_6bd69b521548.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "видеть море из номера"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Геленджик",
+      "anywhere": false,
+      "normalized_query": "В Геленджике хочу видеть море из номера на третьем этаже",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 8.23,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_anapa",
+    "query": "Хочу отель в Анапе, вид на море с пятого этажа",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w960110442",
+        "name": "Пальма Сонета",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 5,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_anapa-w960110442-f_window_w960110442_85dc9aa4c85e.json"
+          }
+        ]
+      },
+      {
+        "id": "w223948933",
+        "name": "Анапа Апарт-отель",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 5,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_anapa-w223948933-f_window_w223948933_85dc9aa4c85e.json"
+          }
+        ]
+      },
+      {
+        "id": "w74463980",
+        "name": "Корпус № 5",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Море",
+            "floor": 5,
+            "missing": [
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "sea_anapa-w74463980-f_window_w74463980_85dc9aa4c85e.json"
+          }
+        ]
+      },
+      {
+        "id": "w591351418",
+        "name": "93hotel.ru",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_anapa-w591351418-f_window_w591351418_85dc9aa4c85e.json"
+          }
+        ]
+      },
+      {
+        "id": "w178542520",
+        "name": "Apriori",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "sea_anapa-w178542520-f_window_w178542520_85dc9aa4c85e.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:85dc9aa4c85e",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "вид на море с пятого этажа"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Анапа",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Анапе, вид на море с пятого этажа",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 3,
+    "seconds": 6.31,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_vlad",
+    "query": "Во Владивостоке хочу номер с видом на море",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n12141353901",
+        "name": "marine wave",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 14,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_vlad-n12141353901-f_window_n12141353901_9f1957e8a297.json"
+          }
+        ]
+      },
+      {
+        "id": "w471302910",
+        "name": "Арбат-Владивосток",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 6,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_vlad-w471302910-f_window_w471302910_9f1957e8a297.json"
+          }
+        ]
+      },
+      {
+        "id": "n9740504717",
+        "name": "Комплекс апартаментов “МОРЕ»",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 14,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_vlad-n9740504717-f_window_n9740504717_9f1957e8a297.json"
+          }
+        ]
+      },
+      {
+        "id": "n13142068062",
+        "name": "Орфей",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 4,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_vlad-n13142068062-f_window_n13142068062_9f1957e8a297.json"
+          }
+        ]
+      },
+      {
+        "id": "n13142068061",
+        "name": "Ясон",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 5,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_vlad-n13142068061-f_window_n13142068061_9f1957e8a297.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:9f1957e8a297",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "номер с видом на море"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Владивосток",
+      "anywhere": false,
+      "normalized_query": "Во Владивостоке хочу номер с видом на море",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 16.41,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "sea_makh",
+    "query": "В Махачкале хочу номер с видом на Каспийское море",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w226887647",
+        "name": "AZIMUT отель Каспийск",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_makh-w226887647-f_window_w226887647_9b38312cd03a.json"
+          }
+        ]
+      },
+      {
+        "id": "n4332884689",
+        "name": "База отдыха «Маяк»",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_makh-n4332884689-f_window_n4332884689_9b38312cd03a.json"
+          }
+        ]
+      },
+      {
+        "id": "n4084796572",
+        "name": "Гостиночный комплекс Раде",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_makh-n4084796572-f_window_n4084796572_9b38312cd03a.json"
+          }
+        ]
+      },
+      {
+        "id": "n2480707663",
+        "name": "Дельфин 1 б/о",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "sea_makh-n2480707663-f_window_n2480707663_9b38312cd03a.json"
+          }
+        ]
+      },
+      {
+        "id": "w709725473",
+        "name": "Каспий",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Море",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "sea_makh-w709725473-f_window_w709725473_9b38312cd03a.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:9b38312cd03a",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "номер с видом на Каспийское море"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Махачкала",
+      "anywhere": false,
+      "normalized_query": "В Махачкале хочу номер с видом на Каспийское море",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 14.66,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "elbrus",
+    "query": "Отель в Кисловодске, из окна которого видно Эльбрус",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n13943863401",
+        "name": "Apartshirokaya33",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Эльбрус Западный",
+            "floor": 3,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "elbrus-n13943863401-f_window_n13943863401_6f46d9ac1910.json"
+          }
+        ]
+      },
+      {
+        "id": "n4924840721",
+        "name": "ARK Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus-n4924840721-f_window_n4924840721_6f46d9ac1910.json"
+          }
+        ]
+      },
+      {
+        "id": "w489431614",
+        "name": "De Luxe",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus-w489431614-f_window_w489431614_6f46d9ac1910.json"
+          }
+        ]
+      },
+      {
+        "id": "n12011787720",
+        "name": "Goldyssun",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus-n12011787720-f_window_n12011787720_6f46d9ac1910.json"
+          }
+        ]
+      },
+      {
+        "id": "n10255173309",
+        "name": "Green Resort Hotel & Spa",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus-n10255173309-f_window_n10255173309_6f46d9ac1910.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:6f46d9ac1910",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из окна которого видно Эльбрус"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Кисловодск",
+      "anywhere": false,
+      "normalized_query": "Отель в Кисловодске, из окна которого видно Эльбрус",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 15.91,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "elbrus_low",
+    "query": "Кисловодск, первый этаж с видом на Эльбрус, если горы по пути его не закрывают",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n13943863401",
+        "name": "Apartshirokaya33",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "elbrus_low-n13943863401-f_window_n13943863401_7301f4a8dfea.json"
+          }
+        ]
+      },
+      {
+        "id": "n4924840721",
+        "name": "ARK Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus_low-n4924840721-f_window_n4924840721_7301f4a8dfea.json"
+          }
+        ]
+      },
+      {
+        "id": "w489431614",
+        "name": "De Luxe",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus_low-w489431614-f_window_w489431614_7301f4a8dfea.json"
+          }
+        ]
+      },
+      {
+        "id": "n12011787720",
+        "name": "Goldyssun",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus_low-n12011787720-f_window_n12011787720_7301f4a8dfea.json"
+          }
+        ]
+      },
+      {
+        "id": "n10255173309",
+        "name": "Green Resort Hotel & Spa",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Эльбрус Западный",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "elbrus_low-n10255173309-f_window_n10255173309_7301f4a8dfea.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:7301f4a8dfea",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Эльбрус"
+        }
+      ],
+      "unmatched_terms": [
+        "если горы по пути его не закрывают"
+      ],
+      "location_hint": "Кисловодск",
+      "anywhere": false,
+      "normalized_query": "Кисловодск, первый этаж с видом на Эльбрус, если горы по пути его не закрывают",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 46.99,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "mashuk",
+    "query": "Отель в Пятигорске с видом на Машук из окна",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n9723066817",
+        "name": "Central City Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Машук",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mashuk-n9723066817-f_window_n9723066817_f0042c0e2fba.json"
+          }
+        ]
+      },
+      {
+        "id": "w272522328",
+        "name": "Бристоль",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Машук",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mashuk-w272522328-f_window_w272522328_f0042c0e2fba.json"
+          }
+        ]
+      },
+      {
+        "id": "n4866793521",
+        "name": "Гостиничный комплекс \"Парк Родник\"",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Машук",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mashuk-n4866793521-f_window_n4866793521_f0042c0e2fba.json"
+          }
+        ]
+      },
+      {
+        "id": "n6618696610",
+        "name": "Жить просто",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Машук",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mashuk-n6618696610-f_window_n6618696610_f0042c0e2fba.json"
+          }
+        ]
+      },
+      {
+        "id": "n10603576493",
+        "name": "Затерянный рай у Машука",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Машук",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mashuk-n10603576493-f_window_n10603576493_f0042c0e2fba.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:f0042c0e2fba",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Машук из окна"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Пятигорск",
+      "anywhere": false,
+      "normalized_query": "Отель в Пятигорске с видом на Машук из окна",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 8.4,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "beshtau",
+    "query": "В Пятигорске нужен отель с видом из номера на Бештау",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n10603605164",
+        "name": "Орлиные скалы",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Бештау",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "beshtau-n10603605164-f_window_n10603605164_757b12563d56.json"
+          }
+        ]
+      },
+      {
+        "id": "n9723066817",
+        "name": "Central City Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+            "artifact": "beshtau-n9723066817-f_window_n9723066817_757b12563d56.json"
+          }
+        ]
+      },
+      {
+        "id": "n11622221334",
+        "name": "Chill House",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+            "artifact": "beshtau-n11622221334-f_window_n11622221334_757b12563d56.json"
+          }
+        ]
+      },
+      {
+        "id": "n10603605116",
+        "name": "Dallas",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+            "artifact": "beshtau-n10603605116-f_window_n10603605116_757b12563d56.json"
+          }
+        ]
+      },
+      {
+        "id": "w218861087",
+        "name": "Daniel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+            "artifact": "beshtau-w218861087-f_window_w218861087_757b12563d56.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:757b12563d56",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом из номера на Бештау"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Пятигорск",
+      "anywhere": false,
+      "normalized_query": "В Пятигорске нужен отель с видом из номера на Бештау",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 1,
+    "seconds": 7.53,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "klyuchevskaya",
+    "query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n4348990289",
+        "name": "Marys Cottages",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Ключевская Сопка",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "klyuchevskaya-n4348990289-f_window_n4348990289_01701f00858c.json"
+          }
+        ]
+      },
+      {
+        "id": "n4386361190",
+        "name": "Вулканолог",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Ключевская Сопка",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "klyuchevskaya-n4386361190-f_window_n4386361190_01701f00858c.json"
+          }
+        ]
+      },
+      {
+        "id": "n6611378585",
+        "name": "Гостиница, кафе",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Ключевская Сопка",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "klyuchevskaya-n6611378585-f_window_n6611378585_01701f00858c.json"
+          }
+        ]
+      },
+      {
+        "id": "w520041167",
+        "name": "Мария",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Ключевская Сопка",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "klyuchevskaya-w520041167-f_window_w520041167_01701f00858c.json"
+          }
+        ]
+      },
+      {
+        "id": "w377746970",
+        "name": "Светлана",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Ключевская Сопка",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "klyuchevskaya-w377746970-f_window_w377746970_01701f00858c.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:01701f00858c",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из окна была видна Ключевская сопка"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Камчатский край",
+      "anywhere": false,
+      "normalized_query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 18.28,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "avacha",
+    "query": "В Петропавловске-Камчатском хочу отель с видом на Авачинскую сопку",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "w886993743",
+        "name": "Bay House",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "avacha-w886993743-f_window_w886993743_a7f9365e0604.json"
+          }
+        ]
+      },
+      {
+        "id": "n11166229886",
+        "name": "FRIENDS",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "avacha-n11166229886-f_window_n11166229886_a7f9365e0604.json"
+          }
+        ]
+      },
+      {
+        "id": "n4168042791",
+        "name": "Hostel Fiesta",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "avacha-n4168042791-f_window_n4168042791_a7f9365e0604.json"
+          }
+        ]
+      },
+      {
+        "id": "w515851698",
+        "name": "The House",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "avacha-w515851698-f_window_w515851698_a7f9365e0604.json"
+          }
+        ]
+      },
+      {
+        "id": "w94412874",
+        "name": "Авача",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "avacha-w94412874-f_window_w94412874_a7f9365e0604.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:a7f9365e0604",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Авачинскую сопку"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Петропавловск-Камчатский",
+      "anywhere": false,
+      "normalized_query": "В Петропавловске-Камчатском хочу отель с видом на Авачинскую сопку",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.63,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "volga_nizhny",
+    "query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n12176628301",
+        "name": "515",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "volga_nizhny-n12176628301-f_window_n12176628301_9b8b72b5f031.json"
+          }
+        ]
+      },
+      {
+        "id": "n12737618501",
+        "name": "bobo st.art.hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "volga_nizhny-n12737618501-f_window_n12737618501_9b8b72b5f031.json"
+          }
+        ]
+      },
+      {
+        "id": "n5646475373",
+        "name": "Courtyard Nizhny Novgorod City Center",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_nizhny-n5646475373-f_window_n5646475373_9b8b72b5f031.json"
+          }
+        ]
+      },
+      {
+        "id": "n4863093721",
+        "name": "Gorky",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_nizhny-n4863093721-f_window_n4863093721_9b8b72b5f031.json"
+          }
+        ]
+      },
+      {
+        "id": "r12291293",
+        "name": "Hampton by Hilton Nizhny Novgorod",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "volga_nizhny-r12291293-f_window_r12291293_9b8b72b5f031.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:9b8b72b5f031",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Волгу из окна"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Нижний Новгород",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 13.31,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "volga_samara",
+    "query": "В Самаре хочу видеть Волгу из номера на втором этаже",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "w916568173",
+        "name": "7terrass",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Неизвестна этажность здания: запрошенный этаж подтвердить невозможно.",
+            "artifact": "volga_samara-w916568173-f_window_w916568173_ca75c429a229.json"
+          }
+        ]
+      },
+      {
+        "id": "w236680978",
+        "name": "Amadeus",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Неизвестна этажность здания: запрошенный этаж подтвердить невозможно.",
+            "artifact": "volga_samara-w236680978-f_window_w236680978_ca75c429a229.json"
+          }
+        ]
+      },
+      {
+        "id": "n1498506837",
+        "name": "Angel hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Неизвестна этажность здания: запрошенный этаж подтвердить невозможно.",
+            "artifact": "volga_samara-n1498506837-f_window_n1498506837_ca75c429a229.json"
+          }
+        ]
+      },
+      {
+        "id": "n10697406241",
+        "name": "Dom55",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+            "artifact": "volga_samara-n10697406241-f_window_n10697406241_ca75c429a229.json"
+          }
+        ]
+      },
+      {
+        "id": "n11594121946",
+        "name": "Аля Русъ",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Неизвестна этажность здания: запрошенный этаж подтвердить невозможно.",
+            "artifact": "volga_samara-n11594121946-f_window_n11594121946_ca75c429a229.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:ca75c429a229",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "видеть Волгу из номера"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Самара",
+      "anywhere": false,
+      "normalized_query": "В Самаре хочу видеть Волгу из номера на втором этаже",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.34,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "volga_volgograd",
+    "query": "В Волгограде хочу номер с открытым видом на Волгу",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "w124297695",
+        "name": "Bank Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_volgograd-w124297695-f_window_w124297695_9fbd5a08c57b.json"
+          }
+        ]
+      },
+      {
+        "id": "n6732871384",
+        "name": "Bravo",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_volgograd-n6732871384-f_window_n6732871384_9fbd5a08c57b.json"
+          }
+        ]
+      },
+      {
+        "id": "n7088203238",
+        "name": "Centre",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_volgograd-n7088203238-f_window_n7088203238_9fbd5a08c57b.json"
+          }
+        ]
+      },
+      {
+        "id": "n6806328377",
+        "name": "Cosmos",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_volgograd-n6806328377-f_window_n6806328377_9fbd5a08c57b.json"
+          }
+        ]
+      },
+      {
+        "id": "w361104751",
+        "name": "Cosmos Volgograd Hotel",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Волга",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "volga_volgograd-w361104751-f_window_w361104751_9fbd5a08c57b.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с открытым видом на Волгу"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Волгоград",
+      "anywhere": false,
+      "normalized_query": "В Волгограде хочу номер с открытым видом на Волгу",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 12.99,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "yenisei",
+    "query": "В Красноярске нужен отель с видом на Енисей из окна",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n9965493646",
+        "name": "Hovel Hostel Krasnoyarsk",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Енисей",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "yenisei-n9965493646-f_window_n9965493646_d589b2fd6105.json"
+          }
+        ]
+      },
+      {
+        "id": "n3825714006",
+        "name": "Ibis",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Енисей",
+            "floor": 6,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "yenisei-n3825714006-f_window_n3825714006_d589b2fd6105.json"
+          }
+        ]
+      },
+      {
+        "id": "n5017251821",
+        "name": "Inwood",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Енисей",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "yenisei-n5017251821-f_window_n5017251821_d589b2fd6105.json"
+          }
+        ]
+      },
+      {
+        "id": "n3825714007",
+        "name": "Novotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Енисей",
+            "floor": 6,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "yenisei-n3825714007-f_window_n3825714007_d589b2fd6105.json"
+          }
+        ]
+      },
+      {
+        "id": "n11878725808",
+        "name": "Аляска",
+        "views": [
+          {
+            "status": "blocked",
+            "target": "Енисей",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "yenisei-n11878725808-f_window_n11878725808_d589b2fd6105.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:d589b2fd6105",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Енисей из окна"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Красноярск",
+      "anywhere": false,
+      "normalized_query": "В Красноярске нужен отель с видом на Енисей из окна",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 12.19,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "teletskoye",
+    "query": "Хочу отель у Телецкого озера, чтобы озеро было видно из номера",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n12630455467",
+        "name": "11 Гор Алтая - глэмпинг в Белокурихе",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "teletskoye-n12630455467-f_window_n12630455467_fd6d5d750ec0.json"
+          }
+        ]
+      },
+      {
+        "id": "n1789542466",
+        "name": "18 Карат",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "teletskoye-n1789542466-f_window_n1789542466_fd6d5d750ec0.json"
+          }
+        ]
+      },
+      {
+        "id": "n8578969881",
+        "name": "22-HOTEL",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "teletskoye-n8578969881-f_window_n8578969881_fd6d5d750ec0.json"
+          }
+        ]
+      },
+      {
+        "id": "n6053360951",
+        "name": "22RUS",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "teletskoye-n6053360951-f_window_n6053360951_fd6d5d750ec0.json"
+          }
+        ]
+      },
+      {
+        "id": "w441018744",
+        "name": "333 Бобра",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "teletskoye-w441018744-f_window_w441018744_fd6d5d750ec0.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:fd6d5d750ec0",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "чтобы озеро было видно из номера"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Республика Алтай",
+      "anywhere": false,
+      "normalized_query": "Хочу отель у Телецкого озера, чтобы озеро было видно из номера",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 8.19,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "onega",
+    "query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "n14102451276",
+        "name": "13 стульев",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "onega-n14102451276-f_window_n14102451276_a9fb8d6b6b09.json"
+          }
+        ]
+      },
+      {
+        "id": "n10002810594",
+        "name": "1774",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "onega-n10002810594-f_window_n10002810594_a9fb8d6b6b09.json"
+          }
+        ]
+      },
+      {
+        "id": "n8996710817",
+        "name": "Best friends",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "onega-n8996710817-f_window_n8996710817_a9fb8d6b6b09.json"
+          }
+        ]
+      },
+      {
+        "id": "n4950369421",
+        "name": "Brusnika",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "onega-n4950369421-f_window_n4950369421_a9fb8d6b6b09.json"
+          }
+        ]
+      },
+      {
+        "id": "w42079213",
+        "name": "Cosmos Petrozavodsk",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не найден сам ориентир для проверки вида. Уточните его название или место.",
+            "artifact": "onega-w42079213-f_window_w42079213_a9fb8d6b6b09.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:a9fb8d6b6b09",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "номер с видом на Онежское озеро"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Петрозаводск",
+      "anywhere": false,
+      "normalized_query": "В Петрозаводске хочу номер с видом на Онежское озеро",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.43,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "mamaev",
+    "query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n9356801048",
+        "name": "Сталинград",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Родина-мать зовёт!",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mamaev-n9356801048-f_window_n9356801048_44a46cdb8f2d.json"
+          }
+        ]
+      },
+      {
+        "id": "n3298084824",
+        "name": "Frant Hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Родина-мать зовёт!",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "mamaev-n3298084824-f_window_n3298084824_44a46cdb8f2d.json"
+          }
+        ]
+      },
+      {
+        "id": "n4834155959",
+        "name": "Hilton Garden Inn Volgograd",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Родина-мать зовёт!",
+            "floor": 5,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии"
+            ],
+            "reason": null,
+            "artifact": "mamaev-n4834155959-f_window_n4834155959_44a46cdb8f2d.json"
+          }
+        ]
+      },
+      {
+        "id": "n4349811096",
+        "name": "Достоевский",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Родина-мать зовёт!",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа"
+            ],
+            "reason": null,
+            "artifact": "mamaev-n4349811096-f_window_n4349811096_44a46cdb8f2d.json"
+          }
+        ]
+      },
+      {
+        "id": "w121183634",
+        "name": "Ламберт",
+        "views": [
+          {
+            "status": "unknown",
+            "target": "Родина-мать зовёт!",
+            "floor": 1,
+            "missing": [
+              "неполное покрытие контуров зданий вдоль линии",
+              "высоты части препятствий или участки рельефа",
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "mamaev-w121183634-f_window_w121183634_44a46cdb8f2d.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:44a46cdb8f2d",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из окна которого видна скульптура Родина-мать на Мамаевом кургане"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Волгоград",
+      "anywhere": false,
+      "normalized_query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 9.71,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "goldenbridge",
+    "query": "Во Владивостоке нужен номер с видом на Золотой мост",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "w107943102",
+        "name": "Amur Bay",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "goldenbridge-w107943102-f_window_w107943102_567a55172fc0.json"
+          }
+        ]
+      },
+      {
+        "id": "n9967715857",
+        "name": "Bay garden",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "goldenbridge-n9967715857-f_window_n9967715857_567a55172fc0.json"
+          }
+        ]
+      },
+      {
+        "id": "n4325561089",
+        "name": "Busse Mini-hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+            "artifact": "goldenbridge-n4325561089-f_window_n4325561089_567a55172fc0.json"
+          }
+        ]
+      },
+      {
+        "id": "n13952880401",
+        "name": "Cape River 7",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "goldenbridge-n13952880401-f_window_n13952880401_567a55172fc0.json"
+          }
+        ]
+      },
+      {
+        "id": "n7295769686",
+        "name": "Capsule Hotel ALOHA",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+            "artifact": "goldenbridge-n7295769686-f_window_n7295769686_567a55172fc0.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:567a55172fc0",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Золотой мост"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Владивосток",
+      "anywhere": false,
+      "normalized_query": "Во Владивостоке нужен номер с видом на Золотой мост",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 5.91,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "russianbridge",
+    "query": "Хочу во Владивостоке видеть Русский мост из номера",
+    "errors": [
+      "no_geometric_target_evidence"
+    ],
+    "hotels": [
+      {
+        "id": "w107943102",
+        "name": "Amur Bay",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+            "artifact": "russianbridge-w107943102-f_window_w107943102_4af12a0a4db9.json"
+          }
+        ]
+      },
+      {
+        "id": "n9967715857",
+        "name": "Bay garden",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "russianbridge-n9967715857-f_window_n9967715857_4af12a0a4db9.json"
+          }
+        ]
+      },
+      {
+        "id": "n4325561089",
+        "name": "Busse Mini-hotel",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Не получена геометрия ориентира из источника: вид нельзя заменить расстоянием.",
+            "artifact": "russianbridge-n4325561089-f_window_n4325561089_4af12a0a4db9.json"
+          }
+        ]
+      },
+      {
+        "id": "n13952880401",
+        "name": "Cape River 7",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "russianbridge-n13952880401-f_window_n13952880401_4af12a0a4db9.json"
+          }
+        ]
+      },
+      {
+        "id": "n7295769686",
+        "name": "Capsule Hotel ALOHA",
+        "views": [
+          {
+            "status": "unknown",
+            "target": null,
+            "floor": null,
+            "missing": null,
+            "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+            "artifact": "russianbridge-n7295769686-f_window_n7295769686_4af12a0a4db9.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "видеть Русский мост из номера"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Владивосток",
+      "anywhere": false,
+      "normalized_query": "Хочу во Владивостоке видеть Русский мост из номера",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 6.15,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "nevyan",
+    "query": "В Невьянске нужен отель с видом на Невьянскую башню",
+    "errors": [
+      "no_geometric_target_evidence",
+      "no_results_for_resolvable_target"
+    ],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:ac4f109599d7",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Невьянскую башню"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Невьянск",
+      "anywhere": false,
+      "normalized_query": "В Невьянске нужен отель с видом на Невьянскую башню",
+      "corrections": [],
+      "unsupported_region": "Невьянск",
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 13.37,
+    "passed_automatic_audit": false
+  },
+  {
+    "id": "no_city",
+    "query": "Хочу отель с видом на море",
+    "errors": [],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:5745a44d5c64",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на море"
+        }
+      ],
+      "unmatched_terms": [],
+      "anywhere": false,
+      "normalized_query": "Хочу отель с видом на море",
+      "corrections": [],
+      "needs_clarification": true,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "clarification": true,
+    "seconds": 4.16,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "ambiguous",
+    "query": "Хочу отель, из окна которого видна Белая река",
+    "errors": [],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:6482438d51cc",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из окна которого видна Белая река"
+        }
+      ],
+      "unmatched_terms": [],
+      "anywhere": false,
+      "normalized_query": "Хочу отель, из окна которого видна Белая река",
+      "corrections": [
+        {
+          "original": "Белая река",
+          "corrected": "река Белая",
+          "reason": "Название реки неоднозначно: реки с названием Белая есть в нескольких регионах (Башкортостан, Адыгея, Камчатка и др.), поэтому невозможно однозначно определить место поиска"
+        }
+      ],
+      "needs_clarification": true,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "clarification": true,
+    "seconds": 7.18,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "impossible_floor",
+    "query": "В Казани ищу одноэтажный отель, номер на сотом этаже с видом на Кремль",
+    "errors": [],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:8d04f35bafc7",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "с видом на Кремль"
+        }
+      ],
+      "unmatched_terms": [
+        "одноэтажный отель",
+        "номер на сотом этаже"
+      ],
+      "location_hint": "Казань",
+      "anywhere": false,
+      "normalized_query": "В Казани ищу одноэтажный отель, номер на сотом этаже с видом на Кремль",
+      "corrections": [
+        {
+          "original": "одноэтажный отель, номер на сотом этаже",
+          "corrected": "одноэтажный отель, номер на сотом этаже",
+          "reason": "Противоречие: одноэтажное здание не может иметь номер на сотом этаже"
+        }
+      ],
+      "needs_clarification": true,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "clarification": true,
+    "seconds": 7.31,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "fictional",
+    "query": "В Москве хочу номер с видом на летающий замок Хаула",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "n8825725921",
+        "name": "1 Арт Отель",
+        "views": []
+      },
+      {
+        "id": "n3189991362",
+        "name": "123hostel.ru",
+        "views": []
+      },
+      {
+        "id": "n13587400888",
+        "name": "1905",
+        "views": []
+      },
+      {
+        "id": "n4208531789",
+        "name": "1st Arbat Hotel",
+        "views": []
+      },
+      {
+        "id": "n11283323869",
+        "name": "21 Семеновская",
+        "views": []
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [],
+      "unmatched_terms": [
+        "вид на летающий замок Хаула"
+      ],
+      "location_hint": "Москва",
+      "anywhere": false,
+      "normalized_query": "В Москве хочу номер с видом на летающий замок Хаула",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 0,
+    "seconds": 12.77,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "opposite",
+    "query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+    "errors": [],
+    "hotels": [],
+    "http_status": 200,
+    "parsed": {
+      "intents": [],
+      "unmatched_terms": [
+        "с северными и южными окнами одного номера",
+        "с обеих сторон было видно одно и то же море"
+      ],
+      "location_hint": "Сочи",
+      "anywhere": false,
+      "normalized_query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+      "corrections": [],
+      "needs_clarification": true,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "clarification": true,
+    "seconds": 5.09,
+    "passed_automatic_audit": true
+  },
+  {
+    "id": "named_without_city",
+    "query": "Хочу из номера видеть Исаакиевский собор, город сам определи",
+    "errors": [],
+    "hotels": [
+      {
+        "id": "r21187261",
+        "name": "Four Seasons Hotel Lion Palace",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "named_without_city-r21187261-f_window_r21187261_d844b45b4b0e.json"
+          }
+        ]
+      },
+      {
+        "id": "w499303839",
+        "name": "Lotte",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [
+              "этажность отеля; рассчитано условное окно первого этажа"
+            ],
+            "reason": null,
+            "artifact": "named_without_city-w499303839-f_window_w499303839_d844b45b4b0e.json"
+          }
+        ]
+      },
+      {
+        "id": "w508887500",
+        "name": "SO/",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 4,
+            "missing": [],
+            "reason": null,
+            "artifact": "named_without_city-w508887500-f_window_w508887500_d844b45b4b0e.json"
+          }
+        ]
+      },
+      {
+        "id": "w49861780",
+        "name": "Англетер",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "named_without_city-w49861780-f_window_w49861780_d844b45b4b0e.json"
+          }
+        ]
+      },
+      {
+        "id": "r3107676",
+        "name": "Астория",
+        "views": [
+          {
+            "status": "visible",
+            "target": "Исаакиевский собор",
+            "floor": 1,
+            "missing": [],
+            "reason": null,
+            "artifact": "named_without_city-r3107676-f_window_r3107676_d844b45b4b0e.json"
+          }
+        ]
+      }
+    ],
+    "http_status": 200,
+    "parsed": {
+      "intents": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "op": "eq",
+          "value": true,
+          "weight": 1.0,
+          "required": false,
+          "source_text": "из номера видеть Исаакиевский собор"
+        }
+      ],
+      "unmatched_terms": [],
+      "location_hint": "Санкт-Петербург",
+      "anywhere": false,
+      "normalized_query": "Хочу из номера видеть Исаакиевский собор, город сам определи",
+      "corrections": [],
+      "needs_clarification": false,
+      "wants_room": true,
+      "room_preferences_unrestricted": false
+    },
+    "calculated_rays": 5,
+    "seconds": 10.17,
+    "passed_automatic_audit": true
+  }
+]

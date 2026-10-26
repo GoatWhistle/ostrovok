@@ -1,0 +1,806 @@
+{
+  "fact_id": "f_window_n11961568777_4af12a0a4db9",
+  "characteristic_key": "spatial:4af12a0a4db9",
+  "value": null,
+  "unit": null,
+  "label": "видеть Русский мост из номера",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n11961568777_4af12a0a4db9_ray",
+    "g_window_n11961568777_4af12a0a4db9_target",
+    "g_window_n11961568777_4af12a0a4db9_observer",
+    "g_window_n11961568777_4af12a0a4db9_blocker_0",
+    "g_window_n11961568777_4af12a0a4db9_blocker_1",
+    "g_window_n11961568777_4af12a0a4db9_blocker_2"
+  ],
+  "subject": "hotel:n11961568777",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии",
+        "высоты части препятствий или участки рельефа",
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 2.25,
+            "minimum_m": 0.25
+          },
+          "distance_m": 49.406194986298374
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.125,
+            "minimum_m": -0.875
+          },
+          "distance_m": 74.10929247944755
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 98.81238997259675
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 123.51548746574593
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 148.2185849588951
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 172.92168245204428
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 197.6247799451935
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 222.32787743834268
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 247.03097493149187
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 271.73407242464106
+        },
+        {
+          "id": "terrain:12",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 296.4371699177902
+        },
+        {
+          "id": "terrain:13",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 321.1402674109394
+        },
+        {
+          "id": "terrain:14",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 345.84336490408856
+        },
+        {
+          "id": "terrain:15",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 370.5464623972378
+        },
+        {
+          "id": "terrain:16",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 395.249559890387
+        },
+        {
+          "id": "terrain:17",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.75,
+            "minimum_m": -0.25
+          },
+          "distance_m": 419.9526573835362
+        },
+        {
+          "id": "terrain:18",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.75,
+            "minimum_m": -0.25
+          },
+          "distance_m": 444.65575487668536
+        },
+        {
+          "id": "terrain:19",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.75,
+            "minimum_m": -0.25
+          },
+          "distance_m": 469.35885236983455
+        },
+        {
+          "id": "terrain:20",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.375,
+            "minimum_m": 1.375
+          },
+          "distance_m": 494.06194986298374
+        },
+        {
+          "id": "terrain:21",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.375,
+            "minimum_m": 1.375
+          },
+          "distance_m": 518.7650473561329
+        },
+        {
+          "id": "terrain:22",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.75,
+            "minimum_m": 1.75
+          },
+          "distance_m": 543.4681448492821
+        },
+        {
+          "id": "terrain:23",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 6.5,
+            "minimum_m": 4.5
+          },
+          "distance_m": 568.1712423424312
+        },
+        {
+          "id": "terrain:24",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 7.875,
+            "minimum_m": 5.875
+          },
+          "distance_m": 592.8743398355804
+        },
+        {
+          "id": "terrain:25",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 9.75,
+            "minimum_m": 7.75
+          },
+          "distance_m": 617.5774373287296
+        },
+        {
+          "id": "terrain:27",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 15.75,
+            "minimum_m": 13.75
+          },
+          "distance_m": 666.983632315028
+        },
+        {
+          "id": "terrain:28",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 17.0,
+            "minimum_m": 15.0
+          },
+          "distance_m": 691.6867298081771
+        },
+        {
+          "id": "terrain:29",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 22.5,
+            "minimum_m": 20.5
+          },
+          "distance_m": 716.3898273013265
+        },
+        {
+          "id": "terrain:30",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 24.125,
+            "minimum_m": 22.125
+          },
+          "distance_m": 741.0929247944756
+        },
+        {
+          "id": "terrain:31",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 24.25,
+            "minimum_m": 22.25
+          },
+          "distance_m": 765.7960222876249
+        },
+        {
+          "id": "terrain:32",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.875,
+            "minimum_m": 26.875
+          },
+          "distance_m": 790.499119780774
+        },
+        {
+          "id": "terrain:33",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.125,
+            "minimum_m": 26.125
+          },
+          "distance_m": 815.2022172739231
+        },
+        {
+          "id": "terrain:34",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.25,
+            "minimum_m": 26.25
+          },
+          "distance_m": 839.9053147670724
+        },
+        {
+          "id": "terrain:35",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 33.75,
+            "minimum_m": 31.75
+          },
+          "distance_m": 864.6084122602215
+        },
+        {
+          "id": "terrain:36",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 29.25,
+            "minimum_m": 27.25
+          },
+          "distance_m": 889.3115097533707
+        },
+        {
+          "id": "terrain:37",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 26.25,
+            "minimum_m": 24.25
+          },
+          "distance_m": 914.0146072465199
+        },
+        {
+          "id": "terrain:38",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 29.25,
+            "minimum_m": 27.25
+          },
+          "distance_m": 938.7177047396691
+        },
+        {
+          "id": "terrain:39",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 27.25,
+            "minimum_m": 25.25
+          },
+          "distance_m": 963.4208022328182
+        },
+        {
+          "id": "terrain:40",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 24.875,
+            "minimum_m": 22.875
+          },
+          "distance_m": 988.1238997259675
+        },
+        {
+          "id": "terrain:41",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.25,
+            "minimum_m": 26.25
+          },
+          "distance_m": 1012.8269972191166
+        },
+        {
+          "id": "terrain:42",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.75,
+            "minimum_m": 26.75
+          },
+          "distance_m": 1037.5300947122657
+        },
+        {
+          "id": "terrain:43",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 28.75,
+            "minimum_m": 26.75
+          },
+          "distance_m": 1062.233192205415
+        },
+        {
+          "id": "terrain:44",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 35.0,
+            "minimum_m": 33.0
+          },
+          "distance_m": 1086.9362896985642
+        },
+        {
+          "id": "terrain:45",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 36.0,
+            "minimum_m": 34.0
+          },
+          "distance_m": 1111.6393871917132
+        },
+        {
+          "id": "terrain:46",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 36.875,
+            "minimum_m": 34.875
+          },
+          "distance_m": 1136.3424846848625
+        },
+        {
+          "id": "terrain:47",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 40.75,
+            "minimum_m": 38.75
+          },
+          "distance_m": 1161.0455821780117
+        },
+        {
+          "id": "terrain:48",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 40.125,
+            "minimum_m": 38.125
+          },
+          "distance_m": 1185.7486796711607
+        },
+        {
+          "id": "terrain:49",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 40.125,
+            "minimum_m": 38.125
+          },
+          "distance_m": 1210.45177716431
+        },
+        {
+          "id": "terrain:50",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 44.5,
+            "minimum_m": 42.5
+          },
+          "distance_m": 1235.1548746574592
+        },
+        {
+          "id": "terrain:51",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 43.25,
+            "minimum_m": 41.25
+          },
+          "distance_m": 1259.8579721506085
+        },
+        {
+          "id": "terrain:52",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 42.875,
+            "minimum_m": 40.875
+          },
+          "distance_m": 1284.5610696437575
+        },
+        {
+          "id": "terrain:53",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 42.25,
+            "minimum_m": 40.25
+          },
+          "distance_m": 1309.2641671369067
+        },
+        {
+          "id": "terrain:54",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 42.25,
+            "minimum_m": 40.25
+          },
+          "distance_m": 1333.967264630056
+        },
+        {
+          "id": "terrain:55",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 38.625,
+            "minimum_m": 36.625
+          },
+          "distance_m": 1358.6703621232055
+        },
+        {
+          "id": "terrain:56",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 39.5,
+            "minimum_m": 37.5
+          },
+          "distance_m": 1383.3734596163542
+        },
+        {
+          "id": "terrain:57",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 37.0,
+            "minimum_m": 35.0
+          },
+          "distance_m": 1408.0765571095037
+        },
+        {
+          "id": "w462479763",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 546.9645982592256
+        },
+        {
+          "id": "w462479763",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 547.1530803200922
+        },
+        {
+          "id": "w462479763",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 547.3415623809586
+        },
+        {
+          "id": "w462479853",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 634.6073289323333
+        },
+        {
+          "id": "w462479853",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 642.9739938347627
+        },
+        {
+          "id": "w462479853",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 651.340658737192
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/way/389544114",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=131.925000%2C43.070000%2C131.930000%2C43.075000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=131.930000%2C43.070000%2C131.935000%2C43.075000"
+      ],
+      "blockers": [
+        {
+          "id": "terrain:50",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1235.1548746574592,
+          "penetration_m": 22.53457439368092
+        },
+        {
+          "id": "terrain:51",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1259.8579721506085,
+          "penetration_m": 20.892172309027764
+        },
+        {
+          "id": "terrain:52",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1284.5610696437575,
+          "penetration_m": 20.124688123491204
+        },
+        {
+          "id": "terrain:47",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1161.0455821780117,
+          "penetration_m": 19.961288042339973
+        },
+        {
+          "id": "terrain:53",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1309.2641671369067,
+          "penetration_m": 19.10712183707124
+        },
+        {
+          "id": "terrain:48",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1185.7486796711607,
+          "penetration_m": 18.94413226033703
+        },
+        {
+          "id": "terrain:54",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1333.967264630056,
+          "penetration_m": 18.714473449767876
+        },
+        {
+          "id": "terrain:49",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1210.45177716431,
+          "penetration_m": 18.551894377450676
+        },
+        {
+          "id": "terrain:35",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 864.6084122602215,
+          "penetration_m": 17.66075355746992
+        },
+        {
+          "id": "terrain:46",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1136.3424846848625,
+          "penetration_m": 16.47836172345952
+        },
+        {
+          "id": "terrain:45",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1111.6393871917132,
+          "penetration_m": 15.995353303695662
+        },
+        {
+          "id": "terrain:44",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 1086.9362896985642,
+          "penetration_m": 15.387262783048396
+        }
+      ],
+      "target_id": "w389544114",
+      "distance_m": 1457.5,
+      "target_name": "Русский мост",
+      "target_tags": {
+        "name": "Русский мост",
+        "image": "http://commons.wikimedia.org/wiki/Category:Russki_Island_bridge",
+        "layer": "1",
+        "name:ca": "Pont de Russki",
+        "name:de": "Russki-Brücke",
+        "name:en": "Russky Bridge",
+        "name:es": "Puente de la isla Russki",
+        "name:fr": "Pont de l'île Rousski",
+        "name:it": "Ponte dell'isola Russkij",
+        "name:pt": "Ponte da ilha Russky",
+        "name:ru": "Русский мост",
+        "name:uk": "Руський міст",
+        "website": "http://www.rusmost.ru/",
+        "end_date": "2012",
+        "man_made": "bridge",
+        "wikidata": "Q209710",
+        "wikipedia": "ru:Русский мост",
+        "start_date": "2009",
+        "alt_name:en": "Russian Bridge",
+        "bridge:structure": "cable-stayed"
+      },
+      "target_part_id": "w389544114",
+      "terrain_step_m": 25,
+      "target_location": [
+        131.9173002,
+        43.069307
+      ],
+      "target_part_tags": {
+        "name": "Русский мост",
+        "image": "http://commons.wikimedia.org/wiki/Category:Russki_Island_bridge",
+        "layer": "1",
+        "name:ca": "Pont de Russki",
+        "name:de": "Russki-Brücke",
+        "name:en": "Russky Bridge",
+        "name:es": "Puente de la isla Russki",
+        "name:fr": "Pont de l'île Rousski",
+        "name:it": "Ponte dell'isola Russkij",
+        "name:pt": "Ponte da ilha Russky",
+        "name:ru": "Русский мост",
+        "name:uk": "Руський міст",
+        "website": "http://www.rusmost.ru/",
+        "end_date": "2012",
+        "man_made": "bridge",
+        "wikidata": "Q209710",
+        "wikipedia": "ru:Русский мост",
+        "start_date": "2009",
+        "alt_name:en": "Russian Bridge",
+        "bridge:structure": "cable-stayed"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        131.93384866674702,
+        43.07429993131049
+      ],
+      "unknown_obstacles": 6,
+      "facade_azimuth_deg": 265.06,
+      "target_elevation_m": {
+        "maximum_m": null,
+        "minimum_m": 25.5
+      },
+      "minimum_clearance_m": -22.534574393680924,
+      "observer_elevation_m": {
+        "maximum_m": 7.05,
+        "minimum_m": 2.45
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "horizontal_field_of_view_deg": 120,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "видеть Русский мост из номера",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Русский мост», 1457 м, этаж 1, направление окон 265°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 1235 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/way/389544114",
+    "source_url": "https://www.openstreetmap.org/way/389544114",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:59:17.314609Z",
+    "valid_until": "2026-11-02T09:59:17.314609Z"
+  },
+  "history": [],
+  "conflicts": []
+}

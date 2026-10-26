@@ -1,0 +1,597 @@
+{
+  "query_id": "2c10bcc322a1ae10",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:6bd69b521548",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть море из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Геленджик",
+    "anywhere": false,
+    "normalized_query": "В Геленджике хочу видеть море из номера на третьем этаже",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w173348798",
+        "name": "Hotel Savoy",
+        "address": "Революционная улица 29А",
+        "location": [
+          38.0711326,
+          44.5551462
+        ],
+        "building_id": "w173348798"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 184 м, этаж 3, направление окон 344°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w173348798_6bd69b521548",
+            "characteristic_key": "spatial:6bd69b521548",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w173348798_6bd69b521548_ray",
+              "g_window_w173348798_6bd69b521548_target",
+              "g_window_w173348798_6bd69b521548_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w173348798_6bd69b521548_ray",
+            "g_window_w173348798_6bd69b521548_target",
+            "g_window_w173348798_6bd69b521548_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0711326,
+              44.5551462
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 164.0,
+            "focus_facade_id": "window_w173348798_6bd69b521548_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0711326,
+          44.5551462
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 164.0,
+        "focus_facade_id": "window_w173348798_6bd69b521548_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w173348798",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0710024,
+                  44.5551877
+                ],
+                [
+                  38.071264,
+                  44.5552415
+                ],
+                [
+                  38.0713279,
+                  44.5550839
+                ],
+                [
+                  38.0710663,
+                  44.5550301
+                ],
+                [
+                  38.0710024,
+                  44.5551877
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w173348798",
+          "hotel_id": "w173348798",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w173348798"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n494319456",
+        "name": "Music Hall",
+        "location": [
+          38.0730317,
+          44.5558691
+        ],
+        "building_id": "w105825148"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 171 м, этаж 3, направление окон 346°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n494319456_6bd69b521548",
+            "characteristic_key": "spatial:6bd69b521548",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n494319456_6bd69b521548_ray",
+              "g_window_n494319456_6bd69b521548_target",
+              "g_window_n494319456_6bd69b521548_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n494319456_6bd69b521548_ray",
+            "g_window_n494319456_6bd69b521548_target",
+            "g_window_n494319456_6bd69b521548_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0730317,
+              44.5558691
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 166.0,
+            "focus_facade_id": "window_n494319456_6bd69b521548_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0730317,
+          44.5558691
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 166.0,
+        "focus_facade_id": "window_n494319456_6bd69b521548_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w105825148",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0728319,
+                  44.5557484
+                ],
+                [
+                  38.072746,
+                  44.5559877
+                ],
+                [
+                  38.0730365,
+                  44.5560407
+                ],
+                [
+                  38.0731224,
+                  44.5558015
+                ],
+                [
+                  38.0728319,
+                  44.5557484
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w105825148",
+          "hotel_id": "n494319456",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n494319456"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6542008186",
+        "name": "Апартаменты Афродита на берегу моря",
+        "location": [
+          38.0666894,
+          44.5542138
+        ],
+        "building_id": "w500723422"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 203 м, этаж 3, направление окон 25°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6542008186_6bd69b521548",
+            "characteristic_key": "spatial:6bd69b521548",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6542008186_6bd69b521548_ray",
+              "g_window_n6542008186_6bd69b521548_target",
+              "g_window_n6542008186_6bd69b521548_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6542008186_6bd69b521548_ray",
+            "g_window_n6542008186_6bd69b521548_target",
+            "g_window_n6542008186_6bd69b521548_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0666894,
+              44.5542138
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 205.0,
+            "focus_facade_id": "window_n6542008186_6bd69b521548_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0666894,
+          44.5542138
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 205.0,
+        "focus_facade_id": "window_n6542008186_6bd69b521548_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w500723422",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0663623,
+                  44.5539008
+                ],
+                [
+                  38.066432,
+                  44.5538626
+                ],
+                [
+                  38.0665004,
+                  44.5538425
+                ],
+                [
+                  38.0665554,
+                  44.5538732
+                ],
+                [
+                  38.066672,
+                  44.553856
+                ],
+                [
+                  38.0667579,
+                  44.5538903
+                ],
+                [
+                  38.0667901,
+                  44.5539591
+                ],
+                [
+                  38.0667767,
+                  44.5543471
+                ],
+                [
+                  38.0666909,
+                  44.5543758
+                ],
+                [
+                  38.0666073,
+                  44.5543098
+                ],
+                [
+                  38.0664554,
+                  44.55419
+                ],
+                [
+                  38.0663422,
+                  44.5541006
+                ],
+                [
+                  38.0662912,
+                  44.5540432
+                ],
+                [
+                  38.066314,
+                  44.5539945
+                ],
+                [
+                  38.0663971,
+                  44.5539305
+                ],
+                [
+                  38.0663623,
+                  44.5539008
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w500723422",
+          "hotel_id": "n6542008186",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6542008186"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w105825202",
+        "name": "Бригантина",
+        "address": "Революционная улица 37",
+        "location": [
+          38.0703075,
+          44.554891
+        ],
+        "building_id": "w105825202"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 206 м, этаж 3, направление окон 343°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w105825202_6bd69b521548",
+            "characteristic_key": "spatial:6bd69b521548",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w105825202_6bd69b521548_ray",
+              "g_window_w105825202_6bd69b521548_target",
+              "g_window_w105825202_6bd69b521548_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w105825202_6bd69b521548_ray",
+            "g_window_w105825202_6bd69b521548_target",
+            "g_window_w105825202_6bd69b521548_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0703075,
+              44.554891
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 163.0,
+            "focus_facade_id": "window_w105825202_6bd69b521548_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0703075,
+          44.554891
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 163.0,
+        "focus_facade_id": "window_w105825202_6bd69b521548_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w105825202",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0703266,
+                  44.5546696
+                ],
+                [
+                  38.070176,
+                  44.5550121
+                ],
+                [
+                  38.0703542,
+                  44.5550519
+                ],
+                [
+                  38.0705049,
+                  44.5547094
+                ],
+                [
+                  38.0703266,
+                  44.5546696
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w105825202",
+          "hotel_id": "w105825202",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w105825202"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w105825148",
+        "name": "Гостиничный комплекс \"Мария\"",
+        "address": "Революционная улица 6",
+        "location": [
+          38.0728966,
+          44.5559132
+        ],
+        "building_id": "w105825148"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:6bd69b521548",
+          "match": "partial",
+          "label": "видеть море из номера",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 170 м, этаж 3, направление окон 346°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w105825148_6bd69b521548",
+            "characteristic_key": "spatial:6bd69b521548",
+            "value": true,
+            "label": "видеть море из номера",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w105825148_6bd69b521548_ray",
+              "g_window_w105825148_6bd69b521548_target",
+              "g_window_w105825148_6bd69b521548_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w105825148_6bd69b521548_ray",
+            "g_window_w105825148_6bd69b521548_target",
+            "g_window_w105825148_6bd69b521548_observer"
+          ],
+          "camera": {
+            "center": [
+              38.0728966,
+              44.5559132
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 166.0,
+            "focus_facade_id": "window_w105825148_6bd69b521548_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          38.0728966,
+          44.5559132
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 166.0,
+        "focus_facade_id": "window_w105825148_6bd69b521548_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w105825148",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  38.0728319,
+                  44.5557484
+                ],
+                [
+                  38.072746,
+                  44.5559877
+                ],
+                [
+                  38.0730365,
+                  44.5560407
+                ],
+                [
+                  38.0731224,
+                  44.5558015
+                ],
+                [
+                  38.0728319,
+                  44.5557484
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w105825148",
+          "hotel_id": "w105825148",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w105825148"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      38.0666894,
+      44.5542138,
+      38.0730317,
+      44.5559132
+    ],
+    "camera": {
+      "center": [
+        38.0711326,
+        44.5551462
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 164.0,
+      "focus_facade_id": "window_w173348798_6bd69b521548_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 8198
+}

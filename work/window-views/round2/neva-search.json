@@ -1,0 +1,743 @@
+{
+  "query_id": "68ffe6efa91918dd",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:b07e2b8002ba",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с видом на Неву"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "В Санкт-Петербурге нужен номер с видом на Неву, а не просто рядом с рекой",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Нормализация общеупотребительного сокращения названия города"
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w154151448",
+        "name": "Невская жемчужина",
+        "address": "проспект Обуховской Обороны 26",
+        "location": [
+          30.4149612,
+          59.9085031
+        ],
+        "building_id": "w154151448"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "match": "partial",
+          "label": "номер с видом на Неву",
+          "explanation": "Линия обзора свободна в расчётной модели: «Нева», 59 м, этаж 1, направление окон 49°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w154151448_b07e2b8002ba",
+            "characteristic_key": "spatial:b07e2b8002ba",
+            "value": true,
+            "label": "номер с видом на Неву",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w154151448_b07e2b8002ba_ray",
+              "g_window_w154151448_b07e2b8002ba_target",
+              "g_window_w154151448_b07e2b8002ba_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w154151448_b07e2b8002ba_ray",
+            "g_window_w154151448_b07e2b8002ba_target",
+            "g_window_w154151448_b07e2b8002ba_observer"
+          ],
+          "camera": {
+            "center": [
+              30.4149612,
+              59.9085031
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 229.0,
+            "focus_facade_id": "window_w154151448_b07e2b8002ba_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.4149612,
+          59.9085031
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 229.0,
+        "focus_facade_id": "window_w154151448_b07e2b8002ba_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w154151448",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.414687,
+                  59.9084898
+                ],
+                [
+                  30.4149318,
+                  59.9085946
+                ],
+                [
+                  30.4150274,
+                  59.9085384
+                ],
+                [
+                  30.4150661,
+                  59.9085549
+                ],
+                [
+                  30.4151074,
+                  59.9085306
+                ],
+                [
+                  30.4150688,
+                  59.9085141
+                ],
+                [
+                  30.4151602,
+                  59.9084604
+                ],
+                [
+                  30.4149154,
+                  59.9083556
+                ],
+                [
+                  30.414687,
+                  59.9084898
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w154151448",
+          "hotel_id": "w154151448",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w154151448"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4263075683",
+        "name": "Abri",
+        "location": [
+          30.5797766,
+          59.8116005
+        ],
+        "building_id": "w37107423"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "match": "none",
+          "label": "номер с видом на Неву",
+          "explanation": "Линия обзора перекрыта: «Нева», 677 м, этаж 1, направление окон 37°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 629 м от окна. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4263075683_b07e2b8002ba",
+            "characteristic_key": "spatial:b07e2b8002ba",
+            "value": false,
+            "label": "номер с видом на Неву",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4263075683_b07e2b8002ba_ray",
+              "g_window_n4263075683_b07e2b8002ba_target",
+              "g_window_n4263075683_b07e2b8002ba_observer",
+              "g_window_n4263075683_b07e2b8002ba_blocker_0",
+              "g_window_n4263075683_b07e2b8002ba_blocker_1",
+              "g_window_n4263075683_b07e2b8002ba_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4263075683_b07e2b8002ba_ray",
+            "g_window_n4263075683_b07e2b8002ba_target",
+            "g_window_n4263075683_b07e2b8002ba_observer",
+            "g_window_n4263075683_b07e2b8002ba_blocker_0",
+            "g_window_n4263075683_b07e2b8002ba_blocker_1",
+            "g_window_n4263075683_b07e2b8002ba_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.5797766,
+              59.8116005
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 217.0,
+            "focus_facade_id": "window_n4263075683_b07e2b8002ba_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.5797766,
+          59.8116005
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 217.0,
+        "focus_facade_id": "window_n4263075683_b07e2b8002ba_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w37107423",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.5798613,
+                  59.8116945
+                ],
+                [
+                  30.5800575,
+                  59.8116191
+                ],
+                [
+                  30.579933,
+                  59.8115372
+                ],
+                [
+                  30.5797534,
+                  59.8114191
+                ],
+                [
+                  30.5795688,
+                  59.8112977
+                ],
+                [
+                  30.5793913,
+                  59.811181
+                ],
+                [
+                  30.5791545,
+                  59.8110253
+                ],
+                [
+                  30.5789727,
+                  59.8109057
+                ],
+                [
+                  30.5787882,
+                  59.8107844
+                ],
+                [
+                  30.5786104,
+                  59.8106675
+                ],
+                [
+                  30.5784842,
+                  59.8105844
+                ],
+                [
+                  30.5782879,
+                  59.8106599
+                ],
+                [
+                  30.5798613,
+                  59.8116945
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w37107423",
+          "hotel_id": "n4263075683",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4263075683"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w34269369",
+        "name": "Art Deco Nevsky",
+        "address": "проспект Обуховской Обороны 11 литБ",
+        "location": [
+          30.3985837,
+          59.9176625
+        ],
+        "building_id": "w34269369"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "match": "unknown",
+          "label": "номер с видом на Неву",
+          "explanation": "Свободный обзор подтвердить не удалось: «Нева», 180 м, этаж 1, направление окон 28°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 67 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w34269369_b07e2b8002ba",
+            "characteristic_key": "spatial:b07e2b8002ba",
+            "label": "номер с видом на Неву",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w34269369_b07e2b8002ba_ray",
+              "g_window_w34269369_b07e2b8002ba_target",
+              "g_window_w34269369_b07e2b8002ba_observer",
+              "g_window_w34269369_b07e2b8002ba_blocker_0",
+              "g_window_w34269369_b07e2b8002ba_blocker_1",
+              "g_window_w34269369_b07e2b8002ba_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w34269369_b07e2b8002ba_ray",
+            "g_window_w34269369_b07e2b8002ba_target",
+            "g_window_w34269369_b07e2b8002ba_observer",
+            "g_window_w34269369_b07e2b8002ba_blocker_0",
+            "g_window_w34269369_b07e2b8002ba_blocker_1",
+            "g_window_w34269369_b07e2b8002ba_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.3985837,
+              59.9176625
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 208.0,
+            "focus_facade_id": "window_w34269369_b07e2b8002ba_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3985837,
+          59.9176625
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 208.0,
+        "focus_facade_id": "window_w34269369_b07e2b8002ba_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w34269369",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3982096,
+                  59.9176745
+                ],
+                [
+                  30.3989681,
+                  59.9174754
+                ],
+                [
+                  30.3991449,
+                  59.9176446
+                ],
+                [
+                  30.3983864,
+                  59.9178437
+                ],
+                [
+                  30.3982096,
+                  59.9176745
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w34269369",
+          "hotel_id": "w34269369",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w34269369"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4264596393",
+        "name": "AvetPark",
+        "location": [
+          30.4207635,
+          59.9009017
+        ],
+        "building_id": "w51731807"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "match": "none",
+          "label": "номер с видом на Неву",
+          "explanation": "Линия обзора перекрыта: «Нева», 600 м, этаж 1, направление окон 22°. Проверены рельеф и здания на всём пути. Препятствие: здание, 559 м от окна. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4264596393_b07e2b8002ba",
+            "characteristic_key": "spatial:b07e2b8002ba",
+            "value": false,
+            "label": "номер с видом на Неву",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4264596393_b07e2b8002ba_ray",
+              "g_window_n4264596393_b07e2b8002ba_target",
+              "g_window_n4264596393_b07e2b8002ba_observer",
+              "g_window_n4264596393_b07e2b8002ba_blocker_0",
+              "g_window_n4264596393_b07e2b8002ba_blocker_1",
+              "g_window_n4264596393_b07e2b8002ba_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4264596393_b07e2b8002ba_ray",
+            "g_window_n4264596393_b07e2b8002ba_target",
+            "g_window_n4264596393_b07e2b8002ba_observer",
+            "g_window_n4264596393_b07e2b8002ba_blocker_0",
+            "g_window_n4264596393_b07e2b8002ba_blocker_1",
+            "g_window_n4264596393_b07e2b8002ba_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.4207635,
+              59.9009017
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 202.0,
+            "focus_facade_id": "window_n4264596393_b07e2b8002ba_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.4207635,
+          59.9009017
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 202.0,
+        "focus_facade_id": "window_n4264596393_b07e2b8002ba_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w51731807",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.4207571,
+                  59.9011454
+                ],
+                [
+                  30.4208693,
+                  59.9011089
+                ],
+                [
+                  30.420999,
+                  59.9010696
+                ],
+                [
+                  30.420782,
+                  59.9008963
+                ],
+                [
+                  30.4205757,
+                  59.9007316
+                ],
+                [
+                  30.4203237,
+                  59.9008102
+                ],
+                [
+                  30.4204408,
+                  59.9009007
+                ],
+                [
+                  30.420458,
+                  59.9008951
+                ],
+                [
+                  30.4205316,
+                  59.900952
+                ],
+                [
+                  30.4205174,
+                  59.900959
+                ],
+                [
+                  30.4205096,
+                  59.9009681
+                ],
+                [
+                  30.4205093,
+                  59.900978
+                ],
+                [
+                  30.4205166,
+                  59.9009872
+                ],
+                [
+                  30.4205304,
+                  59.9009943
+                ],
+                [
+                  30.4205486,
+                  59.9009982
+                ],
+                [
+                  30.4205684,
+                  59.9009984
+                ],
+                [
+                  30.4205868,
+                  59.9009947
+                ],
+                [
+                  30.4206642,
+                  59.9010546
+                ],
+                [
+                  30.420647,
+                  59.9010602
+                ],
+                [
+                  30.4207571,
+                  59.9011454
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w51731807",
+          "hotel_id": "n4264596393",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4264596393"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11940359453",
+        "name": "Hihao Hotel",
+        "address": "Таллинская улица 11",
+        "location": [
+          30.4147924,
+          59.9240394
+        ],
+        "stars": 4,
+        "building_id": "w599158524"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:b07e2b8002ba",
+          "match": "none",
+          "label": "номер с видом на Неву",
+          "explanation": "Линия обзора перекрыта: «Нева», 567 м, этаж 1, направление окон 235°. Проверены рельеф и здания на всём пути. Препятствие: здание, 320 м от окна. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11940359453_b07e2b8002ba",
+            "characteristic_key": "spatial:b07e2b8002ba",
+            "value": false,
+            "label": "номер с видом на Неву",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11940359453_b07e2b8002ba_ray",
+              "g_window_n11940359453_b07e2b8002ba_target",
+              "g_window_n11940359453_b07e2b8002ba_observer",
+              "g_window_n11940359453_b07e2b8002ba_blocker_0",
+              "g_window_n11940359453_b07e2b8002ba_blocker_1",
+              "g_window_n11940359453_b07e2b8002ba_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11940359453_b07e2b8002ba_ray",
+            "g_window_n11940359453_b07e2b8002ba_target",
+            "g_window_n11940359453_b07e2b8002ba_observer",
+            "g_window_n11940359453_b07e2b8002ba_blocker_0",
+            "g_window_n11940359453_b07e2b8002ba_blocker_1",
+            "g_window_n11940359453_b07e2b8002ba_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              30.4147924,
+              59.9240394
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 55.0,
+            "focus_facade_id": "window_n11940359453_b07e2b8002ba_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.4147924,
+          59.9240394
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 55.0,
+        "focus_facade_id": "window_n11940359453_b07e2b8002ba_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w599158524",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.4145775,
+                  59.9237104
+                ],
+                [
+                  30.41446,
+                  59.9237956
+                ],
+                [
+                  30.4143864,
+                  59.9237711
+                ],
+                [
+                  30.4142271,
+                  59.923893
+                ],
+                [
+                  30.4142733,
+                  59.9239083
+                ],
+                [
+                  30.4142419,
+                  59.9239321
+                ],
+                [
+                  30.4146249,
+                  59.9240587
+                ],
+                [
+                  30.4146054,
+                  59.9240735
+                ],
+                [
+                  30.4147049,
+                  59.9241077
+                ],
+                [
+                  30.4147998,
+                  59.9241404
+                ],
+                [
+                  30.4148164,
+                  59.924128
+                ],
+                [
+                  30.4151498,
+                  59.9242403
+                ],
+                [
+                  30.4151839,
+                  59.9242149
+                ],
+                [
+                  30.4152232,
+                  59.9242282
+                ],
+                [
+                  30.4153892,
+                  59.9241021
+                ],
+                [
+                  30.4153163,
+                  59.9240781
+                ],
+                [
+                  30.4154302,
+                  59.9239913
+                ],
+                [
+                  30.4145775,
+                  59.9237104
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w599158524",
+          "hotel_id": "n11940359453",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11940359453"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      30.3985837,
+      59.8116005,
+      30.5797766,
+      59.9240394
+    ],
+    "camera": {
+      "center": [
+        30.4149612,
+        59.9085031
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 229.0,
+      "focus_facade_id": "window_w154151448_b07e2b8002ba_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 12273
+}

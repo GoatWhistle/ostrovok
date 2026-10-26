@@ -1,0 +1,855 @@
+{
+  "query_id": "3a7ff9930de3e6c2",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:f9a9f0e12fcb",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "откуда видна мечеть Кул-Шариф"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n9740178195",
+        "name": "People",
+        "location": [
+          49.1055853,
+          55.7931706
+        ],
+        "building_id": "w90155380"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "match": "partial",
+          "label": "откуда видна мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 573 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n9740178195_f9a9f0e12fcb",
+            "characteristic_key": "spatial:f9a9f0e12fcb",
+            "value": true,
+            "label": "откуда видна мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9740178195_f9a9f0e12fcb_ray",
+              "g_window_n9740178195_f9a9f0e12fcb_target",
+              "g_window_n9740178195_f9a9f0e12fcb_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n9740178195_f9a9f0e12fcb_ray",
+            "g_window_n9740178195_f9a9f0e12fcb_target",
+            "g_window_n9740178195_f9a9f0e12fcb_observer"
+          ],
+          "camera": {
+            "center": [
+              49.1055853,
+              55.7931706
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 148.0,
+            "focus_facade_id": "window_n9740178195_f9a9f0e12fcb_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1055853,
+          55.7931706
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 148.0,
+        "focus_facade_id": "window_n9740178195_f9a9f0e12fcb_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n9740178195",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9740178195"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n10303934709",
+        "name": "Капсульный отель",
+        "location": [
+          49.1057854,
+          55.7929862
+        ],
+        "building_id": "w90155380"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "match": "partial",
+          "label": "откуда видна мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 573 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n10303934709_f9a9f0e12fcb",
+            "characteristic_key": "spatial:f9a9f0e12fcb",
+            "value": true,
+            "label": "откуда видна мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n10303934709_f9a9f0e12fcb_ray",
+              "g_window_n10303934709_f9a9f0e12fcb_target",
+              "g_window_n10303934709_f9a9f0e12fcb_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n10303934709_f9a9f0e12fcb_ray",
+            "g_window_n10303934709_f9a9f0e12fcb_target",
+            "g_window_n10303934709_f9a9f0e12fcb_observer"
+          ],
+          "camera": {
+            "center": [
+              49.1057854,
+              55.7929862
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 148.0,
+            "focus_facade_id": "window_n10303934709_f9a9f0e12fcb_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1057854,
+          55.7929862
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 148.0,
+        "focus_facade_id": "window_n10303934709_f9a9f0e12fcb_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n10303934709",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n10303934709"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9740178181",
+        "name": "Купе",
+        "location": [
+          49.1059087,
+          55.7928734
+        ],
+        "building_id": "w90155380"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "match": "partial",
+          "label": "откуда видна мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 573 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n9740178181_f9a9f0e12fcb",
+            "characteristic_key": "spatial:f9a9f0e12fcb",
+            "value": true,
+            "label": "откуда видна мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9740178181_f9a9f0e12fcb_ray",
+              "g_window_n9740178181_f9a9f0e12fcb_target",
+              "g_window_n9740178181_f9a9f0e12fcb_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n9740178181_f9a9f0e12fcb_ray",
+            "g_window_n9740178181_f9a9f0e12fcb_target",
+            "g_window_n9740178181_f9a9f0e12fcb_observer"
+          ],
+          "camera": {
+            "center": [
+              49.1059087,
+              55.7928734
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 148.0,
+            "focus_facade_id": "window_n9740178181_f9a9f0e12fcb_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1059087,
+          55.7928734
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 148.0,
+        "focus_facade_id": "window_n9740178181_f9a9f0e12fcb_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n9740178181",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9740178181"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w154197885",
+        "name": "Courtyard by Marriott Kazan Kremlin",
+        "address": "улица Карла Маркса 6",
+        "location": [
+          49.1111463,
+          55.7972501
+        ],
+        "stars": 4,
+        "building_id": "w154197885"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "match": "unknown",
+          "label": "откуда видна мечеть Кул-Шариф",
+          "explanation": "Свободный обзор подтвердить не удалось: «Кул-Шариф», 389 м, этаж 1, направление окон 279°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w154197885_f9a9f0e12fcb",
+            "characteristic_key": "spatial:f9a9f0e12fcb",
+            "label": "откуда видна мечеть Кул-Шариф",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w154197885_f9a9f0e12fcb_ray",
+              "g_window_w154197885_f9a9f0e12fcb_target",
+              "g_window_w154197885_f9a9f0e12fcb_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w154197885_f9a9f0e12fcb_ray",
+            "g_window_w154197885_f9a9f0e12fcb_target",
+            "g_window_w154197885_f9a9f0e12fcb_observer"
+          ],
+          "camera": {
+            "center": [
+              49.1111463,
+              55.7972501
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 99.0,
+            "focus_facade_id": "window_w154197885_f9a9f0e12fcb_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1111463,
+          55.7972501
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 99.0,
+        "focus_facade_id": "window_w154197885_f9a9f0e12fcb_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w154197885",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1115306,
+                  55.7971201
+                ],
+                [
+                  49.111556,
+                  55.7972091
+                ],
+                [
+                  49.1115708,
+                  55.7972079
+                ],
+                [
+                  49.1115743,
+                  55.7972203
+                ],
+                [
+                  49.1115597,
+                  55.7972216
+                ],
+                [
+                  49.1115669,
+                  55.7972469
+                ],
+                [
+                  49.111582,
+                  55.7972455
+                ],
+                [
+                  49.1115851,
+                  55.797256
+                ],
+                [
+                  49.1115698,
+                  55.7972574
+                ],
+                [
+                  49.1115916,
+                  55.7973335
+                ],
+                [
+                  49.1113737,
+                  55.7973533
+                ],
+                [
+                  49.1113771,
+                  55.7973653
+                ],
+                [
+                  49.1113157,
+                  55.7973721
+                ],
+                [
+                  49.1112578,
+                  55.7973761
+                ],
+                [
+                  49.1112545,
+                  55.7973643
+                ],
+                [
+                  49.110646,
+                  55.7974193
+                ],
+                [
+                  49.1106147,
+                  55.7974221
+                ],
+                [
+                  49.1106074,
+                  55.7973966
+                ],
+                [
+                  49.1105656,
+                  55.7974004
+                ],
+                [
+                  49.1105481,
+                  55.797339
+                ],
+                [
+                  49.1105899,
+                  55.7973352
+                ],
+                [
+                  49.1105712,
+                  55.79727
+                ],
+                [
+                  49.1105999,
+                  55.7972674
+                ],
+                [
+                  49.1109323,
+                  55.7972372
+                ],
+                [
+                  49.1109281,
+                  55.7972228
+                ],
+                [
+                  49.1109769,
+                  55.7972184
+                ],
+                [
+                  49.1109811,
+                  55.7972328
+                ],
+                [
+                  49.1110099,
+                  55.7972301
+                ],
+                [
+                  49.111004,
+                  55.7972098
+                ],
+                [
+                  49.1110394,
+                  55.7972066
+                ],
+                [
+                  49.1110452,
+                  55.797227
+                ],
+                [
+                  49.1113179,
+                  55.7972022
+                ],
+                [
+                  49.1113091,
+                  55.7971714
+                ],
+                [
+                  49.1112225,
+                  55.7971793
+                ],
+                [
+                  49.1112249,
+                  55.7971877
+                ],
+                [
+                  49.1111642,
+                  55.7971932
+                ],
+                [
+                  49.111148,
+                  55.7971365
+                ],
+                [
+                  49.1111963,
+                  55.7971321
+                ],
+                [
+                  49.1112032,
+                  55.7971564
+                ],
+                [
+                  49.1112544,
+                  55.7971518
+                ],
+                [
+                  49.1112565,
+                  55.797159
+                ],
+                [
+                  49.1112631,
+                  55.7971597
+                ],
+                [
+                  49.1112781,
+                  55.7971584
+                ],
+                [
+                  49.1112738,
+                  55.7971434
+                ],
+                [
+                  49.1115306,
+                  55.7971201
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w154197885",
+          "hotel_id": "w154197885",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w154197885"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4026238730",
+        "name": "DoubleTree",
+        "address": "улица Чернышевского 21",
+        "location": [
+          49.1096524,
+          55.7918229
+        ],
+        "stars": 4,
+        "building_id": "w271086819"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:f9a9f0e12fcb",
+          "match": "none",
+          "label": "откуда видна мечеть Кул-Шариф",
+          "explanation": "Линия обзора перекрыта: «Кул-Шариф», 745 м, этаж 1, направление окон 314°. Проверены рельеф и здания на всём пути. Препятствие: здание, 56 м от окна. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n4026238730_f9a9f0e12fcb",
+            "characteristic_key": "spatial:f9a9f0e12fcb",
+            "value": false,
+            "label": "откуда видна мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4026238730_f9a9f0e12fcb_ray",
+              "g_window_n4026238730_f9a9f0e12fcb_target",
+              "g_window_n4026238730_f9a9f0e12fcb_observer",
+              "g_window_n4026238730_f9a9f0e12fcb_blocker_0",
+              "g_window_n4026238730_f9a9f0e12fcb_blocker_1",
+              "g_window_n4026238730_f9a9f0e12fcb_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n4026238730_f9a9f0e12fcb_ray",
+            "g_window_n4026238730_f9a9f0e12fcb_target",
+            "g_window_n4026238730_f9a9f0e12fcb_observer",
+            "g_window_n4026238730_f9a9f0e12fcb_blocker_0",
+            "g_window_n4026238730_f9a9f0e12fcb_blocker_1",
+            "g_window_n4026238730_f9a9f0e12fcb_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              49.1096524,
+              55.7918229
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 134.0,
+            "focus_facade_id": "window_n4026238730_f9a9f0e12fcb_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1096524,
+          55.7918229
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 134.0,
+        "focus_facade_id": "window_n4026238730_f9a9f0e12fcb_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w271086819",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1097783,
+                  55.7916033
+                ],
+                [
+                  49.1099954,
+                  55.79175
+                ],
+                [
+                  49.1095415,
+                  55.7919637
+                ],
+                [
+                  49.1093842,
+                  55.7920456
+                ],
+                [
+                  49.1091341,
+                  55.7918999
+                ],
+                [
+                  49.1091662,
+                  55.7918851
+                ],
+                [
+                  49.1091878,
+                  55.7918751
+                ],
+                [
+                  49.1092575,
+                  55.791843
+                ],
+                [
+                  49.1092934,
+                  55.7918265
+                ],
+                [
+                  49.109375,
+                  55.791789
+                ],
+                [
+                  49.1095529,
+                  55.791707
+                ],
+                [
+                  49.1097783,
+                  55.7916033
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w271086819",
+          "hotel_id": "n4026238730",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4026238730"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      49.1055853,
+      55.7918229,
+      49.1111463,
+      55.7972501
+    ],
+    "camera": {
+      "center": [
+        49.1055853,
+        55.7931706
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 148.0,
+      "focus_facade_id": "window_n9740178195_f9a9f0e12fcb_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 10463
+}

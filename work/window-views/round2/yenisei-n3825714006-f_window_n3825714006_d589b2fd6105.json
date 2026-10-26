@@ -1,0 +1,329 @@
+{
+  "fact_id": "f_window_n3825714006_d589b2fd6105",
+  "characteristic_key": "spatial:d589b2fd6105",
+  "value": null,
+  "unit": null,
+  "label": "с видом на Енисей из окна",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n3825714006_d589b2fd6105_ray",
+    "g_window_n3825714006_d589b2fd6105_target",
+    "g_window_n3825714006_d589b2fd6105_observer",
+    "g_window_n3825714006_d589b2fd6105_blocker_0",
+    "g_window_n3825714006_d589b2fd6105_blocker_1",
+    "g_window_n3825714006_d589b2fd6105_blocker_2"
+  ],
+  "subject": "hotel:n3825714006",
+  "qualifiers": {
+    "visibility": {
+      "floor": 6,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии"
+      ],
+      "profile": [
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 163.0,
+            "minimum_m": 161.0
+          },
+          "distance_m": 117.20303107846954
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 158.125,
+            "minimum_m": 156.125
+          },
+          "distance_m": 164.08424350985734
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 155.75,
+            "minimum_m": 153.75
+          },
+          "distance_m": 187.52484972555126
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 154.25,
+            "minimum_m": 152.25
+          },
+          "distance_m": 210.96545594124518
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 154.0,
+            "minimum_m": 152.0
+          },
+          "distance_m": 234.40606215693907
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 154.25,
+            "minimum_m": 152.25
+          },
+          "distance_m": 257.84666837263296
+        },
+        {
+          "id": "terrain:12",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 153.0,
+            "minimum_m": 151.0
+          },
+          "distance_m": 281.2872745883269
+        },
+        {
+          "id": "terrain:13",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 150.25,
+            "minimum_m": 148.25
+          },
+          "distance_m": 304.7278808040208
+        },
+        {
+          "id": "terrain:14",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 146.5,
+            "minimum_m": 144.5
+          },
+          "distance_m": 328.1684870197147
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 137.4641060102574
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 150.48802058769792
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 165.25,
+            "minimum_m": 156.45
+          },
+          "distance_m": 163.51193516513845
+        },
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 182.75,
+            "minimum_m": 168.55
+          },
+          "distance_m": 42.43207544149194
+        },
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 182.75,
+            "minimum_m": 168.55
+          },
+          "distance_m": 73.86372939530082
+        },
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 182.75,
+            "minimum_m": 168.55
+          },
+          "distance_m": 105.29538334910971
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/relation/934925",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+      ],
+      "blockers": [
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 105.29538334910971,
+          "penetration_m": 23.0329204652069
+        },
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 73.86372939530082,
+          "penetration_m": 20.239650106584037
+        },
+        {
+          "id": "w172602508",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 42.43207544149194,
+          "penetration_m": 17.44624683128444
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 163.51193516513845,
+          "penetration_m": 10.706161868890177
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 150.48802058769792,
+          "penetration_m": 9.548869878390462
+        },
+        {
+          "id": "terrain:12",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 281.2872745883269,
+          "penetration_m": 8.920524164664812
+        },
+        {
+          "id": "w1074766502",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 137.4641060102574,
+          "penetration_m": 8.391555067236936
+        },
+        {
+          "id": "terrain:13",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 304.7278808040208,
+          "penetration_m": 8.253004008790157
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 257.84666837263296,
+          "penetration_m": 8.087970397011759
+        },
+        {
+          "id": "terrain:14",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 328.1684870197147,
+          "penetration_m": 6.585409929387794
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 234.40606215693907,
+          "penetration_m": 5.755342705831026
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 117.20303107846954,
+          "penetration_m": 4.34109539701177
+        }
+      ],
+      "target_id": "r934925",
+      "distance_m": 375.0,
+      "target_name": "Енисей",
+      "target_tags": {
+        "name": "Енисей",
+        "water": "river",
+        "name:ru": "Енисей",
+        "natural": "water",
+        "int_name": "Yenisei"
+      },
+      "target_part_id": "r934925",
+      "terrain_step_m": 25,
+      "target_location": [
+        92.86875981232755,
+        56.00596638212095
+      ],
+      "target_part_tags": {
+        "name": "Енисей",
+        "water": "river",
+        "name:ru": "Енисей",
+        "natural": "water",
+        "int_name": "Yenisei"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        92.86866885898611,
+        56.009334445302876
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 169.08,
+      "target_elevation_m": {
+        "maximum_m": 139.75,
+        "minimum_m": 135.75
+      },
+      "minimum_clearance_m": -23.032920465206903,
+      "observer_elevation_m": {
+        "maximum_m": 186.425,
+        "minimum_m": 169.075
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на Енисей из окна",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Енисей», 375 м, этаж 6, направление окон 169°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 105 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/934925",
+    "source_url": "https://www.openstreetmap.org/relation/934925",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:48:55.581300Z",
+    "valid_until": "2026-11-02T09:48:55.581300Z"
+  },
+  "history": [],
+  "conflicts": []
+}

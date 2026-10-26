@@ -1,0 +1,149 @@
+{
+  "id": "sea_west",
+  "query": "Сочи, западные окна, море должно быть видно из окна без зданий впереди",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w124781620",
+      "name": "Kavkaz",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 4,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_west-w124781620-f_window_w124781620_1c446449ac88.json"
+        },
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+          "artifact": "sea_west-w124781620-f_window_w124781620_f8d6ebafcfd6.json"
+        }
+      ]
+    },
+    {
+      "id": "n12749552601",
+      "name": "Marina Yacht by Stellar",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 2,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_west-n12749552601-f_window_n12749552601_1c446449ac88.json"
+        },
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+          "artifact": "sea_west-n12749552601-f_window_n12749552601_f8d6ebafcfd6.json"
+        }
+      ]
+    },
+    {
+      "id": "n12084515064",
+      "name": "Panoramapart",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 6,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_west-n12084515064-f_window_n12084515064_1c446449ac88.json"
+        },
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+          "artifact": "sea_west-n12084515064-f_window_n12084515064_f8d6ebafcfd6.json"
+        }
+      ]
+    },
+    {
+      "id": "n8847798717",
+      "name": "PinkFloyd Apartment",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_west-n8847798717-f_window_n8847798717_1c446449ac88.json"
+        },
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+          "artifact": "sea_west-n8847798717-f_window_n8847798717_f8d6ebafcfd6.json"
+        }
+      ]
+    },
+    {
+      "id": "w228736311",
+      "name": "Sanremo",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_west-w228736311-f_window_w228736311_1c446449ac88.json"
+        },
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Запрошен вид на весь объект: пока рассчитаны только отдельные линии обзора. Полный обзор подтвердить нельзя.",
+          "artifact": "sea_west-w228736311-f_window_w228736311_f8d6ebafcfd6.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:1c446449ac88",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "море должно быть видно из окна"
+      },
+      {
+        "characteristic_key": "spatial:f8d6ebafcfd6",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "без зданий впереди"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Сочи, западные окна, море должно быть видно из окна без зданий впереди",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 7.67,
+  "passed_automatic_audit": true
+}

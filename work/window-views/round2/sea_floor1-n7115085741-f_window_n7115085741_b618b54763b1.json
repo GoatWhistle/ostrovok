@@ -1,0 +1,258 @@
+{
+  "fact_id": "f_window_n7115085741_b618b54763b1",
+  "characteristic_key": "spatial:b618b54763b1",
+  "value": false,
+  "unit": null,
+  "label": "с открытым видом на море",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n7115085741_b618b54763b1_ray",
+    "g_window_n7115085741_b618b54763b1_target",
+    "g_window_n7115085741_b618b54763b1_observer",
+    "g_window_n7115085741_b618b54763b1_blocker_0",
+    "g_window_n7115085741_b618b54763b1_blocker_1",
+    "g_window_n7115085741_b618b54763b1_blocker_2"
+  ],
+  "subject": "hotel:n7115085741",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "blocked",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 5.284577369689941,
+            "minimum_m": 3.2845773696899414
+          },
+          "distance_m": 46.16839451414065
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 92.3367890282813
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 115.42098628535162
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 138.50518354242195
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 161.58938079949226
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 58.07362958953024
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 63.413504121798084
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 68.75337865406593
+        },
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 68.85337865406592
+        },
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 74.1359030172625
+        },
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 19.5,
+            "minimum_m": 7.100000000000001
+          },
+          "distance_m": 79.41842738045908
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.910000%2C43.420000%2C39.915000%2C43.425000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.910000%2C43.425000%2C39.915000%2C43.430000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.915000%2C43.425000%2C39.920000%2C43.430000"
+      ],
+      "blockers": [
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 79.41842738045908,
+          "penetration_m": 1.4232376441849146
+        },
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 74.1359030172625,
+          "penetration_m": 1.2101115251295287
+        },
+        {
+          "id": "w1251290765",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 68.85337865406592,
+          "penetration_m": 0.9969816517823613
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 68.75337865406593,
+          "penetration_m": 0.9929469938920361
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 63.413504121798084,
+          "penetration_m": 0.777499370695681
+        },
+        {
+          "id": "w1251290764",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 58.07362958953024,
+          "penetration_m": 0.5620479112474746
+        },
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 46.16839451414065,
+          "penetration_m": 2.0662630543487697
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 161.58938079949226,
+          "penetration_m": 0.4379829445193968
+        }
+      ],
+      "target_id": "coastline",
+      "distance_m": 207.8,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        39.913223916424585,
+        43.42469799517665
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        39.9151183114564,
+        43.42595911874022
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 232.93,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": -17.04708535270968,
+      "observer_elevation_m": {
+        "maximum_m": 8.881335067749024,
+        "minimum_m": 4.281335067749024
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": 32.2011908347355
+    },
+    "source_text": "с открытым видом на море",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора перекрыта: «Море», 208 м, этаж 1, направление окон 233°. Проверены рельеф и здания на всём пути. Препятствие: здание, 79 м от окна. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:44:09.384747Z",
+    "valid_until": "2026-11-02T09:44:09.384747Z"
+  },
+  "history": [],
+  "conflicts": []
+}

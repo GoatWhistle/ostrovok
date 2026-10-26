@@ -1,0 +1,39 @@
+{
+  "id": "impossible_floor",
+  "query": "В Казани ищу одноэтажный отель, номер на сотом этаже с видом на Кремль",
+  "errors": [],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:8d04f35bafc7",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Кремль"
+      }
+    ],
+    "unmatched_terms": [
+      "одноэтажный отель",
+      "номер на сотом этаже"
+    ],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "В Казани ищу одноэтажный отель, номер на сотом этаже с видом на Кремль",
+    "corrections": [
+      {
+        "original": "одноэтажный отель, номер на сотом этаже",
+        "corrected": "одноэтажный отель, номер на сотом этаже",
+        "reason": "Противоречие: одноэтажное здание не может иметь номер на сотом этаже"
+      }
+    ],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "clarification": true,
+  "seconds": 7.31,
+  "passed_automatic_audit": true
+}

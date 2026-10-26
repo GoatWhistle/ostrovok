@@ -1,0 +1,187 @@
+{
+  "fact_id": "f_window_w960110442_85dc9aa4c85e",
+  "characteristic_key": "spatial:85dc9aa4c85e",
+  "value": true,
+  "unit": null,
+  "label": "вид на море с пятого этажа",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w960110442_85dc9aa4c85e_ray",
+    "g_window_w960110442_85dc9aa4c85e_target",
+    "g_window_w960110442_85dc9aa4c85e_observer"
+  ],
+  "subject": "hotel:w960110442",
+  "qualifiers": {
+    "visibility": {
+      "floor": 5,
+      "reason": null,
+      "status": "visible",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.25,
+            "minimum_m": 1.25
+          },
+          "distance_m": 47.83484096339214
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.5,
+            "minimum_m": 1.5
+          },
+          "distance_m": 71.75226144508821
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 4.0,
+            "minimum_m": 2.0
+          },
+          "distance_m": 95.66968192678428
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 4.0,
+            "minimum_m": 2.0
+          },
+          "distance_m": 119.58710240848035
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.75,
+            "minimum_m": 1.75
+          },
+          "distance_m": 143.50452289017642
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 2.625,
+            "minimum_m": 0.625
+          },
+          "distance_m": 167.4219433718725
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.125,
+            "minimum_m": -0.875
+          },
+          "distance_m": 191.33936385356856
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.125,
+            "minimum_m": -0.875
+          },
+          "distance_m": 215.25678433526463
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 239.1742048169607
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 263.09162529865677
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.300000%2C44.935000%2C37.305000%2C44.940000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.300000%2C44.940000%2C37.305000%2C44.945000"
+      ],
+      "blockers": [],
+      "target_id": "coastline",
+      "distance_m": 310.9,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        37.30160298760493,
+        44.93892907450392
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        37.3040698790223,
+        44.94111039860022
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 239.21,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": 0.35080177483789915,
+      "observer_elevation_m": {
+        "maximum_m": 26.764285714285716,
+        "minimum_m": 11.535714285714286
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": 10.55550274926794
+    },
+    "source_text": "вид на море с пятого этажа",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Море», 311 м, этаж 5, направление окон 239°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:46:00.360316Z",
+    "valid_until": "2026-11-02T09:46:00.360316Z"
+  },
+  "history": [],
+  "conflicts": []
+}

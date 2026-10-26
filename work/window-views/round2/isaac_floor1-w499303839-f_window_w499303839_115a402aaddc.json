@@ -1,0 +1,231 @@
+{
+  "fact_id": "f_window_w499303839_115a402aaddc",
+  "characteristic_key": "spatial:115a402aaddc",
+  "value": true,
+  "unit": null,
+  "label": "из номера на первом этаже должен быть виден Исаакиевский собор",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w499303839_115a402aaddc_ray",
+    "g_window_w499303839_115a402aaddc_target",
+    "g_window_w499303839_115a402aaddc_observer"
+  ],
+  "subject": "hotel:w499303839",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "visible",
+      "missing": [
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 6.875,
+            "minimum_m": 4.875
+          },
+          "distance_m": 47.74385692237513
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 10.75,
+            "minimum_m": 8.75
+          },
+          "distance_m": 71.6157853835627
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 12.25,
+            "minimum_m": 10.25
+          },
+          "distance_m": 95.48771384475026
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 8.75,
+            "minimum_m": 6.75
+          },
+          "distance_m": 119.35964230593783
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 9.5,
+            "minimum_m": 7.5
+          },
+          "distance_m": 143.2315707671254
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 5.0,
+            "minimum_m": 3.0
+          },
+          "distance_m": 167.10349922831296
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.25,
+            "minimum_m": -0.75
+          },
+          "distance_m": 190.97542768950052
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.75,
+            "minimum_m": 1.75
+          },
+          "distance_m": 214.84735615068809
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 5.75,
+            "minimum_m": 3.75
+          },
+          "distance_m": 238.71928461187565
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 8.0,
+            "minimum_m": 6.0
+          },
+          "distance_m": 262.5912130730632
+        }
+      ],
+      "sources": [
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.305000%2C59.930000%2C30.310000%2C59.935000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.310000%2C59.930000%2C30.315000%2C59.935000"
+      ],
+      "blockers": [],
+      "target_id": "r3229838",
+      "distance_m": 310.3,
+      "target_name": "Исаакиевский собор",
+      "target_tags": {
+        "fee": "yes",
+        "name": "Исаакиевский собор",
+        "amenity": "place_of_worship",
+        "name:ar": "كاتدرائية القديس إسحاق",
+        "name:ca": "Catedral de Sant Isaac",
+        "name:cs": "Katedrála svatého Izáka",
+        "name:de": "Isaakskathedrale",
+        "name:en": "St Isaac's Cathedral",
+        "name:es": "Catedral de San Isaac",
+        "name:fa": "کلیسای جامع سنت اسحاق",
+        "name:fi": "Iisakinkirkko",
+        "name:fr": "Cathédrale Saint-Isaac",
+        "name:ja": "イサク聖堂",
+        "name:ru": "Исаакиевский собор",
+        "name:zh": "聖以薩主教座堂",
+        "tourism": "museum",
+        "alt_name": "Собор Исаакия Далматского",
+        "building": "cathedral",
+        "operator": "Государственный музей-памятник \"Исаакиевский собор\"",
+        "religion": "christian",
+        "wikidata": "Q215423",
+        "panoramax": "9bbe1873-7d60-4098-ad83-2da59c780b40",
+        "wikipedia": "ru:Исаакиевский собор",
+        "contact:vk": "isaac_cathedral",
+        "start_date": "1818..1858",
+        "wheelchair": "limited",
+        "addr:street": "Исаакиевская площадь",
+        "denomination": "russian_orthodox",
+        "payment:cash": "yes",
+        "payment:visa": "yes",
+        "addr:postcode": "190031",
+        "contact:phone": "+7 812 315-97-32",
+        "opening_hours": "10:00-18:00; May-Sep 10:00-21:00",
+        "ref:sobory.ru": "01555",
+        "building:parts": "mixed",
+        "contact:website": "https://cathedral.ru",
+        "payment:maestro": "yes",
+        "addr:housenumber": "4",
+        "payment:mastercard": "yes",
+        "building:architecture": "neoclassicism",
+        "payment:visa_electron": "yes",
+        "name:etymology:wikidata": "Q705202"
+      },
+      "target_part_id": "r3229927",
+      "terrain_step_m": 25,
+      "target_location": [
+        30.3068349,
+        59.9338985
+      ],
+      "target_part_tags": {
+        "name": "Исаакиевский собор",
+        "height": "45",
+        "roof:shape": "gabled",
+        "roof:height": "5",
+        "building:part": "yes",
+        "roof:orientation": "across"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        30.310131775709984,
+        59.931657665635974
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 338.7,
+      "target_elevation_m": {
+        "maximum_m": 51.625,
+        "minimum_m": 47.625
+      },
+      "minimum_clearance_m": 3.5661576567376136,
+      "observer_elevation_m": {
+        "maximum_m": 8.925,
+        "minimum_m": 4.325
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": -0.0510049537588996
+    },
+    "source_text": "из номера на первом этаже должен быть виден Исаакиевский собор",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 310 м, этаж 1, направление окон 339°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=30.305007%2C59.933445%2C30.307305%2C59.934722",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:39:33.917720Z",
+    "valid_until": "2026-11-02T09:39:33.917720Z"
+  },
+  "history": [],
+  "conflicts": []
+}

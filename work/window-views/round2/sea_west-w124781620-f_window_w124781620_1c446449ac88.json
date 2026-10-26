@@ -1,0 +1,137 @@
+{
+  "fact_id": "f_window_w124781620_1c446449ac88",
+  "characteristic_key": "spatial:1c446449ac88",
+  "value": true,
+  "unit": null,
+  "label": "море должно быть видно из окна",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w124781620_1c446449ac88_ray",
+    "g_window_w124781620_1c446449ac88_target",
+    "g_window_w124781620_1c446449ac88_observer"
+  ],
+  "subject": "hotel:w124781620",
+  "qualifiers": {
+    "visibility": {
+      "floor": 4,
+      "reason": null,
+      "status": "visible",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.493671029806137,
+            "minimum_m": -0.5063289701938629
+          },
+          "distance_m": 48.60293765049923
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.493671029806137,
+            "minimum_m": -0.5063289701938629
+          },
+          "distance_m": 72.90440647574884
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 97.20587530099846
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 121.50734412624807
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 145.80881295149769
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.970000%2C43.390000%2C39.975000%2C43.395000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.970000%2C43.395000%2C39.975000%2C43.400000"
+      ],
+      "blockers": [],
+      "target_id": "coastline",
+      "distance_m": 194.4,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        39.970839435163874,
+        43.39460615532767
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        39.97172381375078,
+        43.396232857240484
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 248.01,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": 0.6126472773365034,
+      "observer_elevation_m": {
+        "maximum_m": 20.952495980262757,
+        "minimum_m": 7.952495980262758
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": 6.301906870916744
+    },
+    "source_text": "море должно быть видно из окна",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Море», 194 м, этаж 4, направление окон 248°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:44:29.027279Z",
+    "valid_until": "2026-11-02T09:44:29.027279Z"
+  },
+  "history": [],
+  "conflicts": []
+}

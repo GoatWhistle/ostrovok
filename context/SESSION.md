@@ -94,17 +94,16 @@ Updated: 2026-10-26, Europe/Moscow
 - 2026-10-26, дословно: «так же дай агенту способность в интернет выходить, если текущих данных мало».
 - 2026-10-26, дословно: «добавь агенту инструменты, чтобы он вообще абсолютно все знал и мог что то найти».
 
+- 2026-10-26, дословно: «напиши адаптер под llm антропиков».
+
 ## Current state
 
-- `feat/hotel-agent-mvp`, product `0c3732d`; view goal active, not complete. Search now computes facades/floors, whole-path DEM/buildings/curvature and persists map evidence. :8080 deployed; backend/frontend refresh with merged frontend/chat updates underway.
-- Main fixed 50-case round1: 49 HTTP200, one500; initial audit 26/50 was too weak (Elbrus resort mistaken for mountain), not semantic accuracy. Sources/review: `work/window-views/plan.md`, raw `round1/`. Local type filter now resolves actual volcano/river/castle.
-- 400 backend tests/gates, 324 frontend tests/36 rules/build passed after merge. 8 old-UI variants inspected; merged UI needs recheck. `work/window-views/ui-check.json`.
-- Env displayed as requested, keys outside Git. Unrelated accidental root Ruff edits fully reverted.
+- View goal active, incomplete. Main `feat/hotel-agent-mvp` 8e229bc pushed/deployed :8080. Follow-up isolated in `/Users/savelij/projects/o-hack-window-views`, branch `fix/window-view-recommendations`, HEAD d16948d (base 8e229bc). Original root has concurrent Anthropic work; preserve it.
+- Two fixed 50-case main runs: round1 49HTTP200/26 initial audit (too weak, wrong Elbrus resort); round2 50HTTP200/36 strengthened audit. corrections2 fixed 9/14; 5 remain: Hermitage, Kul-Sharif>=10, Samara floor2, Onega, Nevyansk. Raw evidence and next investigations: `work/window-views/plan.md`.
+- Main gates 402 backend, 324 frontend/36 rules. Merged UI 8/8 functional checks, 2/8 newest captures inspected. Local follow-up: 404 backend gates passed; skips unchecked view candidates and retains partial-object rays without claiming whole view. Not main-tested/deployed.
 
 ## Next actions and pitfalls
 
-- Finish refresh, replay failures and all 50 with stronger identity audit; inspect remaining UI and source geometry; commit/push and update evidence. No goal completion yet. corrections1 passed 4/7; details in plan.
-- Zero-score unchecked alphabetical hotels hid computed views: sorting deployed. North azimuth rounded to360: reproduced/fixed; Teletskoye now HTTP200, still lacks geometry proof.
-- Unique typed name variants and parent tags corrected after first replays; full round2 required. EN generic explanation loses status; observer label can overlap hotel.
-- Missing OSM relations/parts/heights remain unknown; cathedral parts not rendered in 3D proof. Whole-object panorama unsupported. Data read-only, cache `/srv/cache` writable.
+- Finish local follow-up gates/commit, resolve remaining source/city/floor cases, render 3D target/obstacles, merge safely, re-run all50 and UI. Do not mark goal complete yet.
+- Large-water candidate order uses centroid; inspect actual shape instead. OSM type guesses can be too strict; use real candidate tags. Wikidata often403. Incomplete heights/coverage stay unknown. No available-room promise.
 - Preserve protected instructions despite SESSION target overflow.

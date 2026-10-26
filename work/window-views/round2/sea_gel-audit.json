@@ -1,0 +1,101 @@
+{
+  "id": "sea_gel",
+  "query": "В Геленджике хочу видеть море из номера на третьем этаже",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w173348798",
+      "name": "Hotel Savoy",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_gel-w173348798-f_window_w173348798_6bd69b521548.json"
+        }
+      ]
+    },
+    {
+      "id": "n494319456",
+      "name": "Music Hall",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_gel-n494319456-f_window_n494319456_6bd69b521548.json"
+        }
+      ]
+    },
+    {
+      "id": "n6542008186",
+      "name": "Апартаменты Афродита на берегу моря",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_gel-n6542008186-f_window_n6542008186_6bd69b521548.json"
+        }
+      ]
+    },
+    {
+      "id": "w105825202",
+      "name": "Бригантина",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_gel-w105825202-f_window_w105825202_6bd69b521548.json"
+        }
+      ]
+    },
+    {
+      "id": "w105825148",
+      "name": "Гостиничный комплекс \"Мария\"",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_gel-w105825148-f_window_w105825148_6bd69b521548.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:6bd69b521548",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть море из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Геленджик",
+    "anywhere": false,
+    "normalized_query": "В Геленджике хочу видеть море из номера на третьем этаже",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 8.23,
+  "passed_automatic_audit": true
+}

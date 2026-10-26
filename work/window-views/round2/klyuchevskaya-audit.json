@@ -1,0 +1,118 @@
+{
+  "id": "klyuchevskaya",
+  "query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n4348990289",
+      "name": "Marys Cottages",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Ключевская Сопка",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "klyuchevskaya-n4348990289-f_window_n4348990289_01701f00858c.json"
+        }
+      ]
+    },
+    {
+      "id": "n4386361190",
+      "name": "Вулканолог",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Ключевская Сопка",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "klyuchevskaya-n4386361190-f_window_n4386361190_01701f00858c.json"
+        }
+      ]
+    },
+    {
+      "id": "n6611378585",
+      "name": "Гостиница, кафе",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Ключевская Сопка",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "klyuchevskaya-n6611378585-f_window_n6611378585_01701f00858c.json"
+        }
+      ]
+    },
+    {
+      "id": "w520041167",
+      "name": "Мария",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Ключевская Сопка",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "klyuchevskaya-w520041167-f_window_w520041167_01701f00858c.json"
+        }
+      ]
+    },
+    {
+      "id": "w377746970",
+      "name": "Светлана",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Ключевская Сопка",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "klyuchevskaya-w377746970-f_window_w377746970_01701f00858c.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:01701f00858c",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна была видна Ключевская сопка"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Камчатский край",
+    "anywhere": false,
+    "normalized_query": "Нужен отель, чтобы из окна была видна Ключевская сопка",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 18.28,
+  "passed_automatic_audit": true
+}

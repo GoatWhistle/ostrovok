@@ -1,0 +1,113 @@
+{
+  "id": "ostankino",
+  "query": "Нужен отель в Москве, чтобы из окна была видна Останкинская телебашня",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n5223762331",
+      "name": "Гипноз",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino-n5223762331-f_window_n5223762331_8d0657d5a936.json"
+        }
+      ]
+    },
+    {
+      "id": "w40430897",
+      "name": "ДобролюбовЪ",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino-w40430897-f_window_w40430897_8d0657d5a936.json"
+        }
+      ]
+    },
+    {
+      "id": "n941766731",
+      "name": "Звёздная",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino-n941766731-f_window_n941766731_8d0657d5a936.json"
+        }
+      ]
+    },
+    {
+      "id": "n8254943649",
+      "name": "Искра",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino-n8254943649-f_window_n8254943649_8d0657d5a936.json"
+        }
+      ]
+    },
+    {
+      "id": "w28847418",
+      "name": "Калибр",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 4,
+          "missing": [
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino-w28847418-f_window_w28847418_8d0657d5a936.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:8d0657d5a936",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "чтобы из окна была видна Останкинская телебашня"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Нужен отель в Москве, чтобы из окна была видна Останкинская телебашня",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 13.89,
+  "passed_automatic_audit": true
+}

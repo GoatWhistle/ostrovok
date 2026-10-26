@@ -1,0 +1,24 @@
+{
+  "id": "opposite",
+  "query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+  "errors": [],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [],
+    "unmatched_terms": [
+      "с северными и южными окнами одного номера",
+      "с обеих сторон было видно одно и то же море"
+    ],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+    "corrections": [],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "clarification": true,
+  "seconds": 5.09,
+  "passed_automatic_audit": true
+}

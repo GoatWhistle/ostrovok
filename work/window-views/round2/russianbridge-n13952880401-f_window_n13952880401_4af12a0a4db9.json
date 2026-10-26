@@ -1,0 +1,34 @@
+{
+  "fact_id": "f_window_n13952880401_4af12a0a4db9",
+  "characteristic_key": "spatial:4af12a0a4db9",
+  "value": null,
+  "unit": null,
+  "label": "видеть Русский мост из номера",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [],
+  "subject": "hotel:n13952880401",
+  "qualifiers": {
+    "visibility": {
+      "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+      "status": "unknown",
+      "bookable_room_confirmed": false
+    },
+    "source_text": "видеть Русский мост из номера",
+    "estimated_view": true
+  },
+  "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": null,
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:49:36.940509Z",
+    "valid_until": "2026-11-02T09:49:36.940509Z"
+  },
+  "history": [],
+  "conflicts": []
+}

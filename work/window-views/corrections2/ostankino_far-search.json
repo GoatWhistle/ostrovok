@@ -1,0 +1,633 @@
+{
+  "query_id": "9d44353aeadaef27",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:dea6df04ffb9",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "Останкинская башня должна быть видна из окна"
+      },
+      {
+        "characteristic_key": "spatial:0a6c4b3966b6",
+        "op": "gte",
+        "value": 3000.0,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "расстояние не ближе трёх километров"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n10711177867",
+        "name": "Hostel-city",
+        "location": [
+          37.5657776,
+          55.8106155
+        ],
+        "building_id": "w28191062"
+      },
+      "score": 0.265,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "match": "unknown",
+          "label": "Останкинская башня должна быть видна из окна",
+          "explanation": "Свободный обзор подтвердить не удалось: «Останкинская телевизионная башня», 3014 м, этаж 1, направление окон 66°. Проверены рельеф и здания на всём пути. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n10711177867_dea6df04ffb9",
+            "characteristic_key": "spatial:dea6df04ffb9",
+            "label": "Останкинская башня должна быть видна из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n10711177867_dea6df04ffb9_ray",
+              "g_window_n10711177867_dea6df04ffb9_target",
+              "g_window_n10711177867_dea6df04ffb9_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n10711177867_dea6df04ffb9_ray",
+            "g_window_n10711177867_dea6df04ffb9_target",
+            "g_window_n10711177867_dea6df04ffb9_observer"
+          ],
+          "camera": {
+            "center": [
+              37.5657776,
+              55.8106155
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 246.0,
+            "focus_facade_id": "window_n10711177867_dea6df04ffb9_ray"
+          }
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "match": "full",
+          "label": "расстояние не ближе трёх километров",
+          "explanation": "До ориентира «Останкинская телевизионная башня» 3039 м по прямой. Минимальное расстояние в запросе — 3000 м.",
+          "fact": {
+            "fact_id": "f_spatial_n10711177867_0a6c4b3966b6",
+            "characteristic_key": "spatial:0a6c4b3966b6",
+            "value": 3039.0,
+            "unit": "м",
+            "label": "расстояние не ближе трёх километров",
+            "confidence": 0.5298262683012563,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r3440930"
+            ]
+          },
+          "geo_refs": [
+            "g_poi_r3440930"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          37.5657776,
+          55.8106155
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 246.0,
+        "focus_facade_id": "window_n10711177867_dea6df04ffb9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w28191062",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.5655687,
+                  55.8109746
+                ],
+                [
+                  37.5653763,
+                  55.8109265
+                ],
+                [
+                  37.5654351,
+                  55.8108523
+                ],
+                [
+                  37.5655457,
+                  55.8107127
+                ],
+                [
+                  37.5656407,
+                  55.8105928
+                ],
+                [
+                  37.5657397,
+                  55.8104678
+                ],
+                [
+                  37.5658145,
+                  55.8103734
+                ],
+                [
+                  37.5660068,
+                  55.8104215
+                ],
+                [
+                  37.5655687,
+                  55.8109746
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w28191062",
+          "hotel_id": "n10711177867",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n10711177867"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n13938754188",
+        "name": "Soluxe hotel Moscow",
+        "location": [
+          37.634688,
+          55.8447873
+        ]
+      },
+      "score": 0.261,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "match": "unknown",
+          "label": "Останкинская башня должна быть видна из окна",
+          "explanation": "Неизвестен контур здания отеля: невозможно определить положение окна.",
+          "fact": {
+            "fact_id": "f_window_n13938754188_dea6df04ffb9",
+            "characteristic_key": "spatial:dea6df04ffb9",
+            "label": "Останкинская башня должна быть видна из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "match": "full",
+          "label": "расстояние не ближе трёх километров",
+          "explanation": "До ориентира «Останкинская телевизионная башня» 3136 м по прямой. Минимальное расстояние в запросе — 3000 м.",
+          "fact": {
+            "fact_id": "f_spatial_n13938754188_0a6c4b3966b6",
+            "characteristic_key": "spatial:0a6c4b3966b6",
+            "value": 3136.0,
+            "unit": "м",
+            "label": "расстояние не ближе трёх километров",
+            "confidence": 0.5212381710761379,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r3440930"
+            ]
+          },
+          "geo_refs": [
+            "g_poi_r3440930"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          37.634688,
+          55.8447873
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      }
+    },
+    {
+      "hotel": {
+        "id": "n3743271115",
+        "name": "Вежлиый лось",
+        "location": [
+          37.5851323,
+          55.795434
+        ],
+        "building_id": "w577853477"
+      },
+      "score": 0.259,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "match": "unknown",
+          "label": "Останкинская башня должна быть видна из окна",
+          "explanation": "Свободный обзор подтвердить не удалось: «Останкинская телевизионная башня», 3124 м, этаж 1, направление окон 355°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 92 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n3743271115_dea6df04ffb9",
+            "characteristic_key": "spatial:dea6df04ffb9",
+            "label": "Останкинская башня должна быть видна из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n3743271115_dea6df04ffb9_ray",
+              "g_window_n3743271115_dea6df04ffb9_target",
+              "g_window_n3743271115_dea6df04ffb9_observer",
+              "g_window_n3743271115_dea6df04ffb9_blocker_0",
+              "g_window_n3743271115_dea6df04ffb9_blocker_1",
+              "g_window_n3743271115_dea6df04ffb9_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n3743271115_dea6df04ffb9_ray",
+            "g_window_n3743271115_dea6df04ffb9_target",
+            "g_window_n3743271115_dea6df04ffb9_observer",
+            "g_window_n3743271115_dea6df04ffb9_blocker_0",
+            "g_window_n3743271115_dea6df04ffb9_blocker_1",
+            "g_window_n3743271115_dea6df04ffb9_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.5851323,
+              55.795434
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 175.0,
+            "focus_facade_id": "window_n3743271115_dea6df04ffb9_ray"
+          }
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "match": "full",
+          "label": "расстояние не ближе трёх километров",
+          "explanation": "До ориентира «Останкинская телевизионная башня» 3169 м по прямой. Минимальное расстояние в запросе — 3000 м.",
+          "fact": {
+            "fact_id": "f_spatial_n3743271115_0a6c4b3966b6",
+            "characteristic_key": "spatial:0a6c4b3966b6",
+            "value": 3169.0,
+            "unit": "м",
+            "label": "расстояние не ближе трёх километров",
+            "confidence": 0.5183138458392954,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r3440930"
+            ]
+          },
+          "geo_refs": [
+            "g_poi_r3440930"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          37.5851323,
+          55.795434
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 175.0,
+        "focus_facade_id": "window_n3743271115_dea6df04ffb9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w577853477",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.5859051,
+                  55.7954242
+                ],
+                [
+                  37.5850916,
+                  55.7953859
+                ],
+                [
+                  37.585076,
+                  55.7954906
+                ],
+                [
+                  37.5849456,
+                  55.7954845
+                ],
+                [
+                  37.5848445,
+                  55.7961634
+                ],
+                [
+                  37.5849845,
+                  55.79617
+                ],
+                [
+                  37.5849686,
+                  55.7962764
+                ],
+                [
+                  37.5851372,
+                  55.7962843
+                ],
+                [
+                  37.5858931,
+                  55.7963199
+                ],
+                [
+                  37.585909,
+                  55.7962135
+                ],
+                [
+                  37.5857977,
+                  55.7962083
+                ],
+                [
+                  37.5855025,
+                  55.7961944
+                ],
+                [
+                  37.5852072,
+                  55.7961804
+                ],
+                [
+                  37.5851531,
+                  55.7961779
+                ],
+                [
+                  37.5850417,
+                  55.7961727
+                ],
+                [
+                  37.5851428,
+                  55.7954937
+                ],
+                [
+                  37.5858895,
+                  55.7955289
+                ],
+                [
+                  37.5859051,
+                  55.7954242
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w577853477",
+          "hotel_id": "n3743271115",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n3743271115"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w30426150",
+        "name": "Максима Ирбис отель",
+        "address": "Гостиничная улица 1",
+        "location": [
+          37.5795184,
+          55.8419347
+        ],
+        "stars": 3,
+        "building_id": "w30426150"
+      },
+      "score": 0.259,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "match": "unknown",
+          "label": "Останкинская башня должна быть видна из окна",
+          "explanation": "Свободный обзор подтвердить не удалось: «Останкинская телевизионная башня», 3138 м, этаж 1, направление окон 181°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 248 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w30426150_dea6df04ffb9",
+            "characteristic_key": "spatial:dea6df04ffb9",
+            "label": "Останкинская башня должна быть видна из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w30426150_dea6df04ffb9_ray",
+              "g_window_w30426150_dea6df04ffb9_target",
+              "g_window_w30426150_dea6df04ffb9_observer",
+              "g_window_w30426150_dea6df04ffb9_blocker_0",
+              "g_window_w30426150_dea6df04ffb9_blocker_1",
+              "g_window_w30426150_dea6df04ffb9_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w30426150_dea6df04ffb9_ray",
+            "g_window_w30426150_dea6df04ffb9_target",
+            "g_window_w30426150_dea6df04ffb9_observer",
+            "g_window_w30426150_dea6df04ffb9_blocker_0",
+            "g_window_w30426150_dea6df04ffb9_blocker_1",
+            "g_window_w30426150_dea6df04ffb9_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.5795184,
+              55.8419347
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 1.0,
+            "focus_facade_id": "window_w30426150_dea6df04ffb9_ray"
+          }
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "match": "full",
+          "label": "расстояние не ближе трёх километров",
+          "explanation": "До ориентира «Останкинская телевизионная башня» 3182 м по прямой. Минимальное расстояние в запросе — 3000 м.",
+          "fact": {
+            "fact_id": "f_spatial_w30426150_0a6c4b3966b6",
+            "characteristic_key": "spatial:0a6c4b3966b6",
+            "value": 3182.0,
+            "unit": "м",
+            "label": "расстояние не ближе трёх километров",
+            "confidence": 0.5171984194119084,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r3440930"
+            ]
+          },
+          "geo_refs": [
+            "g_poi_r3440930"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          37.5795184,
+          55.8419347
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 1.0,
+        "focus_facade_id": "window_w30426150_dea6df04ffb9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w30426150",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.5798461,
+                  55.8422373
+                ],
+                [
+                  37.5795948,
+                  55.8422405
+                ],
+                [
+                  37.5795819,
+                  55.8419191
+                ],
+                [
+                  37.5792431,
+                  55.8419234
+                ],
+                [
+                  37.5792378,
+                  55.8417922
+                ],
+                [
+                  37.5795775,
+                  55.8417879
+                ],
+                [
+                  37.579828,
+                  55.8417848
+                ],
+                [
+                  37.5798461,
+                  55.8422373
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w30426150",
+          "hotel_id": "w30426150",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w30426150"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11470380092",
+        "name": "Уютное местечко",
+        "location": [
+          37.5720794,
+          55.8011536
+        ]
+      },
+      "score": 0.257,
+      "matched": [
+        {
+          "characteristic_key": "spatial:dea6df04ffb9",
+          "match": "unknown",
+          "label": "Останкинская башня должна быть видна из окна",
+          "explanation": "Неизвестен контур здания отеля: невозможно определить положение окна.",
+          "fact": {
+            "fact_id": "f_window_n11470380092_dea6df04ffb9",
+            "characteristic_key": "spatial:dea6df04ffb9",
+            "label": "Останкинская башня должна быть видна из окна",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        },
+        {
+          "characteristic_key": "spatial:0a6c4b3966b6",
+          "match": "full",
+          "label": "расстояние не ближе трёх километров",
+          "explanation": "До ориентира «Останкинская телевизионная башня» 3221 м по прямой. Минимальное расстояние в запросе — 3000 м.",
+          "fact": {
+            "fact_id": "f_spatial_n11470380092_0a6c4b3966b6",
+            "characteristic_key": "spatial:0a6c4b3966b6",
+            "value": 3221.0,
+            "unit": "м",
+            "label": "расстояние не ближе трёх километров",
+            "confidence": 0.5136506958960875,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r3440930"
+            ]
+          },
+          "geo_refs": [
+            "g_poi_r3440930"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          37.5720794,
+          55.8011536
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      37.5657776,
+      55.795434,
+      37.634688,
+      55.8447873
+    ],
+    "camera": {
+      "center": [
+        37.5657776,
+        55.8106155
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 246.0,
+      "focus_facade_id": "window_n10711177867_dea6df04ffb9_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 34572
+}

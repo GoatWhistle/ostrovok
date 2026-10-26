@@ -1,0 +1,531 @@
+{
+  "query_id": "cd1d3043f0f091ea",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:e01dd8fe3033",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море, чтобы соседний дом его не закрывал"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Новороссийск",
+    "anywhere": false,
+    "normalized_query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w232313703",
+        "name": "База отдыха \"Прибой\"",
+        "location": [
+          37.678714,
+          44.6642643
+        ]
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:e01dd8fe3033",
+          "match": "partial",
+          "label": "с видом на море, чтобы соседний дом его не закрывал",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 197 м, этаж 1, направление окон 217°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w232313703_e01dd8fe3033",
+            "characteristic_key": "spatial:e01dd8fe3033",
+            "value": true,
+            "label": "с видом на море, чтобы соседний дом его не закрывал",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w232313703_e01dd8fe3033_ray",
+              "g_window_w232313703_e01dd8fe3033_target",
+              "g_window_w232313703_e01dd8fe3033_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w232313703_e01dd8fe3033_ray",
+            "g_window_w232313703_e01dd8fe3033_target",
+            "g_window_w232313703_e01dd8fe3033_observer"
+          ],
+          "camera": {
+            "center": [
+              37.678714,
+              44.6642643
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 37.0,
+            "focus_facade_id": "window_w232313703_e01dd8fe3033_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.678714,
+          44.6642643
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 37.0,
+        "focus_facade_id": "window_w232313703_e01dd8fe3033_ray"
+      }
+    },
+    {
+      "hotel": {
+        "id": "n10969671905",
+        "name": "\"Novoross-apart\" квартира с видом на море",
+        "address": "20А",
+        "location": [
+          37.7830242,
+          44.6930738
+        ],
+        "building_id": "w254763403"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:e01dd8fe3033",
+          "match": "unknown",
+          "label": "с видом на море, чтобы соседний дом его не закрывал",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 781 м, этаж 3, направление окон 90°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 271 м от окна. Не хватает данных: высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n10969671905_e01dd8fe3033",
+            "characteristic_key": "spatial:e01dd8fe3033",
+            "label": "с видом на море, чтобы соседний дом его не закрывал",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n10969671905_e01dd8fe3033_ray",
+              "g_window_n10969671905_e01dd8fe3033_target",
+              "g_window_n10969671905_e01dd8fe3033_observer",
+              "g_window_n10969671905_e01dd8fe3033_blocker_0",
+              "g_window_n10969671905_e01dd8fe3033_blocker_1",
+              "g_window_n10969671905_e01dd8fe3033_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n10969671905_e01dd8fe3033_ray",
+            "g_window_n10969671905_e01dd8fe3033_target",
+            "g_window_n10969671905_e01dd8fe3033_observer",
+            "g_window_n10969671905_e01dd8fe3033_blocker_0",
+            "g_window_n10969671905_e01dd8fe3033_blocker_1",
+            "g_window_n10969671905_e01dd8fe3033_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.7830242,
+              44.6930738
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 270.0,
+            "focus_facade_id": "window_n10969671905_e01dd8fe3033_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.7830242,
+          44.6930738
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 270.0,
+        "focus_facade_id": "window_n10969671905_e01dd8fe3033_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w254763403",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.7826734,
+                  44.6929364
+                ],
+                [
+                  37.7826722,
+                  44.6931646
+                ],
+                [
+                  37.7831136,
+                  44.6931658
+                ],
+                [
+                  37.7831147,
+                  44.6929376
+                ],
+                [
+                  37.7826734,
+                  44.6929364
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w254763403",
+          "hotel_id": "n10969671905",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n10969671905"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n5515698692",
+        "name": "Hilton Garden Inn Novorossiysk",
+        "address": "улица набережная Адмирала Серебрякова 29Г",
+        "location": [
+          37.7858567,
+          44.7089174
+        ],
+        "stars": 4,
+        "building_id": "w574676870"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:e01dd8fe3033",
+          "match": "unknown",
+          "label": "с видом на море, чтобы соседний дом его не закрывал",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 214 м, этаж 1, направление окон 47°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 71 м от окна. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n5515698692_e01dd8fe3033",
+            "characteristic_key": "spatial:e01dd8fe3033",
+            "label": "с видом на море, чтобы соседний дом его не закрывал",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n5515698692_e01dd8fe3033_ray",
+              "g_window_n5515698692_e01dd8fe3033_target",
+              "g_window_n5515698692_e01dd8fe3033_observer",
+              "g_window_n5515698692_e01dd8fe3033_blocker_0",
+              "g_window_n5515698692_e01dd8fe3033_blocker_1",
+              "g_window_n5515698692_e01dd8fe3033_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n5515698692_e01dd8fe3033_ray",
+            "g_window_n5515698692_e01dd8fe3033_target",
+            "g_window_n5515698692_e01dd8fe3033_observer",
+            "g_window_n5515698692_e01dd8fe3033_blocker_0",
+            "g_window_n5515698692_e01dd8fe3033_blocker_1",
+            "g_window_n5515698692_e01dd8fe3033_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.7858567,
+              44.7089174
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 227.0,
+            "focus_facade_id": "window_n5515698692_e01dd8fe3033_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.7858567,
+          44.7089174
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 227.0,
+        "focus_facade_id": "window_n5515698692_e01dd8fe3033_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w574676870",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.7857722,
+                  44.7091519
+                ],
+                [
+                  37.785599,
+                  44.7090394
+                ],
+                [
+                  37.7861278,
+                  44.7086282
+                ],
+                [
+                  37.786301,
+                  44.7087407
+                ],
+                [
+                  37.7857722,
+                  44.7091519
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w574676870",
+          "hotel_id": "n5515698692",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n5515698692"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11067209483",
+        "name": "Pomido`r",
+        "location": [
+          37.7957689,
+          44.6752183
+        ],
+        "building_id": "w667962370"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:e01dd8fe3033",
+          "match": "unknown",
+          "label": "с видом на море, чтобы соседний дом его не закрывал",
+          "explanation": "Свободный обзор подтвердить не удалось: «Море», 316 м, этаж 1, направление окон 92°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 49 м от окна. Не хватает данных: высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11067209483_e01dd8fe3033",
+            "characteristic_key": "spatial:e01dd8fe3033",
+            "label": "с видом на море, чтобы соседний дом его не закрывал",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11067209483_e01dd8fe3033_ray",
+              "g_window_n11067209483_e01dd8fe3033_target",
+              "g_window_n11067209483_e01dd8fe3033_observer",
+              "g_window_n11067209483_e01dd8fe3033_blocker_0",
+              "g_window_n11067209483_e01dd8fe3033_blocker_1",
+              "g_window_n11067209483_e01dd8fe3033_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11067209483_e01dd8fe3033_ray",
+            "g_window_n11067209483_e01dd8fe3033_target",
+            "g_window_n11067209483_e01dd8fe3033_observer",
+            "g_window_n11067209483_e01dd8fe3033_blocker_0",
+            "g_window_n11067209483_e01dd8fe3033_blocker_1",
+            "g_window_n11067209483_e01dd8fe3033_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.7957689,
+              44.6752183
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 272.0,
+            "focus_facade_id": "window_n11067209483_e01dd8fe3033_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.7957689,
+          44.6752183
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 272.0,
+        "focus_facade_id": "window_n11067209483_e01dd8fe3033_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w667962370",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.795712,
+                  44.6753175
+                ],
+                [
+                  37.7957058,
+                  44.6751564
+                ],
+                [
+                  37.796111,
+                  44.6751485
+                ],
+                [
+                  37.7961173,
+                  44.6753096
+                ],
+                [
+                  37.795712,
+                  44.6753175
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w667962370",
+          "hotel_id": "n11067209483",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11067209483"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6167595730",
+        "name": "Velia",
+        "location": [
+          37.7713864,
+          44.7105936
+        ],
+        "building_id": "w254305589"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:e01dd8fe3033",
+          "match": "none",
+          "label": "с видом на море, чтобы соседний дом его не закрывал",
+          "explanation": "Линия обзора перекрыта: «Море», 1392 м, этаж 1, направление окон 34°. Проверены рельеф и здания на всём пути. Препятствие: здание, 1136 м от окна. Не хватает данных: высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6167595730_e01dd8fe3033",
+            "characteristic_key": "spatial:e01dd8fe3033",
+            "value": false,
+            "label": "с видом на море, чтобы соседний дом его не закрывал",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6167595730_e01dd8fe3033_ray",
+              "g_window_n6167595730_e01dd8fe3033_target",
+              "g_window_n6167595730_e01dd8fe3033_observer",
+              "g_window_n6167595730_e01dd8fe3033_blocker_0",
+              "g_window_n6167595730_e01dd8fe3033_blocker_1",
+              "g_window_n6167595730_e01dd8fe3033_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6167595730_e01dd8fe3033_ray",
+            "g_window_n6167595730_e01dd8fe3033_target",
+            "g_window_n6167595730_e01dd8fe3033_observer",
+            "g_window_n6167595730_e01dd8fe3033_blocker_0",
+            "g_window_n6167595730_e01dd8fe3033_blocker_1",
+            "g_window_n6167595730_e01dd8fe3033_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.7713864,
+              44.7105936
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 214.0,
+            "focus_facade_id": "window_n6167595730_e01dd8fe3033_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.7713864,
+          44.7105936
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 214.0,
+        "focus_facade_id": "window_n6167595730_e01dd8fe3033_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w254305589",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.7713205,
+                  44.7106143
+                ],
+                [
+                  37.7713941,
+                  44.7106916
+                ],
+                [
+                  37.7715071,
+                  44.7106372
+                ],
+                [
+                  37.7714335,
+                  44.71056
+                ],
+                [
+                  37.7713205,
+                  44.7106143
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w254305589",
+          "hotel_id": "n6167595730",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6167595730"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      37.678714,
+      44.6642643,
+      37.7957689,
+      44.7105936
+    ],
+    "camera": {
+      "center": [
+        37.678714,
+        44.6642643
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 37.0,
+      "focus_facade_id": "window_w232313703_e01dd8fe3033_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 9974
+}

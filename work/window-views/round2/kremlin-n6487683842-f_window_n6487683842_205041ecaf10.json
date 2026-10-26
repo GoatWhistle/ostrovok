@@ -1,0 +1,452 @@
+{
+  "fact_id": "f_window_n6487683842_205041ecaf10",
+  "characteristic_key": "spatial:205041ecaf10",
+  "value": null,
+  "unit": null,
+  "label": "с видом на Московский Кремль",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n6487683842_205041ecaf10_ray",
+    "g_window_n6487683842_205041ecaf10_target",
+    "g_window_n6487683842_205041ecaf10_observer",
+    "g_window_n6487683842_205041ecaf10_blocker_0",
+    "g_window_n6487683842_205041ecaf10_blocker_1",
+    "g_window_n6487683842_205041ecaf10_blocker_2"
+  ],
+  "subject": "hotel:n6487683842",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии"
+      ],
+      "profile": [
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 124.5,
+            "minimum_m": 122.5
+          },
+          "distance_m": 164.0291565095543
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 124.0,
+            "minimum_m": 122.0
+          },
+          "distance_m": 187.46189315377632
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 122.0,
+            "minimum_m": 120.0
+          },
+          "distance_m": 210.89462979799836
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 121.0,
+            "minimum_m": 119.0
+          },
+          "distance_m": 234.3273664422204
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 121.125,
+            "minimum_m": 119.125
+          },
+          "distance_m": 257.7601030864424
+        },
+        {
+          "id": "terrain:12",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 121.125,
+            "minimum_m": 119.125
+          },
+          "distance_m": 281.1928397306645
+        },
+        {
+          "id": "terrain:13",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 123.5,
+            "minimum_m": 121.5
+          },
+          "distance_m": 304.6255763748866
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.5,
+            "minimum_m": 144.3
+          },
+          "distance_m": 91.35056515651335
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.5,
+            "minimum_m": 144.3
+          },
+          "distance_m": 119.46006041526152
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 167.5,
+            "minimum_m": 144.3
+          },
+          "distance_m": 147.56955567400968
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 151.75,
+            "minimum_m": 137.55
+          },
+          "distance_m": 45.628689693142356
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 151.75,
+            "minimum_m": 137.55
+          },
+          "distance_m": 60.967898902107464
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 151.75,
+            "minimum_m": 137.55
+          },
+          "distance_m": 76.30710811107257
+        },
+        {
+          "id": "r16265009",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 148.5,
+            "minimum_m": 144.5
+          },
+          "elevation": {
+            "maximum_m": 149.8,
+            "minimum_m": 145.8
+          },
+          "distance_m": 350.9242318899533
+        },
+        {
+          "id": "r1360651",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.7,
+            "minimum_m": 167.7
+          },
+          "distance_m": 350.4673278094918
+        },
+        {
+          "id": "r1360651",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 171.7,
+            "minimum_m": 167.7
+          },
+          "distance_m": 350.95418873694143
+        },
+        {
+          "id": "r3229749",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 138.5,
+            "minimum_m": 134.5
+          },
+          "distance_m": 350.4673278094918
+        },
+        {
+          "id": "r3229749",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 138.5,
+            "minimum_m": 134.5
+          },
+          "distance_m": 350.95418873694143
+        },
+        {
+          "id": "r3229748",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 149.8,
+            "minimum_m": 145.8
+          },
+          "elevation": {
+            "maximum_m": 150.7,
+            "minimum_m": 146.7
+          },
+          "distance_m": 350.9242318899533
+        },
+        {
+          "id": "r9969078",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 147.0,
+            "minimum_m": 134.6
+          },
+          "distance_m": 2.9347792980981136
+        },
+        {
+          "id": "r9969078",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 147.0,
+            "minimum_m": 134.6
+          },
+          "distance_m": 5.819558596196227
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/relation/1360641",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.620000%2C55.745000%2C37.625000%2C55.750000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.620000%2C55.750000%2C37.625000%2C55.755000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.625000%2C55.745000%2C37.630000%2C55.750000"
+      ],
+      "blockers": [
+        {
+          "id": "r1360651",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 350.95418873694143,
+          "penetration_m": 50.19054290909992
+        },
+        {
+          "id": "r1360651",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 350.4673278094918,
+          "penetration_m": 50.181966561260296
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 147.56955567400968,
+          "penetration_m": 42.40502442163991
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 119.46006041526152,
+          "penetration_m": 41.90903737820767
+        },
+        {
+          "id": "w44185735",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 91.35056515651335,
+          "penetration_m": 41.41294403040982
+        },
+        {
+          "id": "r3229748",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 350.9242318899533,
+          "penetration_m": 29.19001520215697
+        },
+        {
+          "id": "r16265009",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 350.9242318899533,
+          "penetration_m": 28.290015202156994
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 76.30710811107257,
+          "penetration_m": 25.397404346656742
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 60.967898902107464,
+          "penetration_m": 25.126612841133394
+        },
+        {
+          "id": "w79418764",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 45.628689693142356,
+          "penetration_m": 24.855789679981115
+        },
+        {
+          "id": "r9969078",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 5.819558596196227,
+          "penetration_m": 19.40278733363445
+        },
+        {
+          "id": "r9969078",
+          "kind": "building",
+          "confirmed": false,
+          "distance_m": 2.9347792980981136,
+          "penetration_m": 19.351835796165716
+        }
+      ],
+      "target_id": "r1360641",
+      "distance_m": 351.5,
+      "target_name": "Московский Кремль",
+      "target_tags": {
+        "name": "Московский Кремль",
+        "office": "government",
+        "name:ba": "Мәскәү Кремле",
+        "name:be": "Маскоўскі Крэмль",
+        "name:br": "Kremlin Moskov",
+        "name:ca": "Kremlin de Moscou",
+        "name:cv": "Мускав Кремлӗ",
+        "name:de": "Moskauer Kreml",
+        "name:en": "Moscow Kremlin",
+        "name:eo": "La Moskva Kremlo",
+        "name:fr": "Kremlin de Moscou",
+        "name:hr": "Moskovski kremlj",
+        "name:is": "Kreml",
+        "name:it": "Cremlino di Mosca",
+        "name:kk": "Мәскеу Кремлі",
+        "name:ml": "മോസ്കോ ക്രെംലിൻ",
+        "name:pl": "Kreml moskiewski",
+        "name:ru": "Московский Кремль",
+        "name:sl": "Kremelj",
+        "name:zh": "克里姆林宫",
+        "ref:whc": "545",
+        "tourism": "attraction",
+        "heritage": "1",
+        "historic": "castle",
+        "int_name": "The Kremlin",
+        "wikidata": "Q133274",
+        "wikipedia": "ru:Московский Кремль",
+        "government": "presidency",
+        "castle_type": "kremlin",
+        "whc:criteria": "(i)(ii)(iv)(vi)",
+        "heritage:operator": "whc",
+        "whc:inscription_date": "1990"
+      },
+      "target_part_id": "r1360641",
+      "terrain_step_m": 25,
+      "target_location": [
+        37.6232626,
+        55.7497126
+      ],
+      "target_part_tags": {
+        "name": "Московский Кремль",
+        "office": "government",
+        "name:ba": "Мәскәү Кремле",
+        "name:be": "Маскоўскі Крэмль",
+        "name:br": "Kremlin Moskov",
+        "name:ca": "Kremlin de Moscou",
+        "name:cv": "Мускав Кремлӗ",
+        "name:de": "Moskauer Kreml",
+        "name:en": "Moscow Kremlin",
+        "name:eo": "La Moskva Kremlo",
+        "name:fr": "Kremlin de Moscou",
+        "name:hr": "Moskovski kremlj",
+        "name:is": "Kreml",
+        "name:it": "Cremlino di Mosca",
+        "name:kk": "Мәскеу Кремлі",
+        "name:ml": "മോസ്കോ ക്രെംലിൻ",
+        "name:pl": "Kreml moskiewski",
+        "name:ru": "Московский Кремль",
+        "name:sl": "Kremelj",
+        "name:zh": "克里姆林宫",
+        "ref:whc": "545",
+        "tourism": "attraction",
+        "heritage": "1",
+        "historic": "castle",
+        "int_name": "The Kremlin",
+        "wikidata": "Q133274",
+        "wikipedia": "ru:Московский Кремль",
+        "government": "presidency",
+        "castle_type": "kremlin",
+        "whc:criteria": "(i)(ii)(iv)(vi)",
+        "heritage:operator": "whc",
+        "whc:inscription_date": "1990"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        37.62750207347346,
+        55.74765131101339
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 283.15,
+      "target_elevation_m": {
+        "maximum_m": null,
+        "minimum_m": 121.5
+      },
+      "minimum_clearance_m": -50.190542909099925,
+      "observer_elevation_m": {
+        "maximum_m": 132.3,
+        "minimum_m": 127.7
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на Московский Кремль",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Московский Кремль», 351 м, этаж 1, направление окон 283°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 351 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/1360641",
+    "source_url": "https://www.openstreetmap.org/relation/1360641",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:41:47.796010Z",
+    "valid_until": "2026-11-02T09:41:47.796010Z"
+  },
+  "history": [],
+  "conflicts": []
+}

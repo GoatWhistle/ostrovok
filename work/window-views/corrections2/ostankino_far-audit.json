@@ -1,0 +1,118 @@
+{
+  "id": "ostankino_far",
+  "query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n10711177867",
+      "name": "Hostel-city",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino_far-n10711177867-f_window_n10711177867_dea6df04ffb9.json"
+        }
+      ]
+    },
+    {
+      "id": "n13938754188",
+      "name": "Soluxe hotel Moscow",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Неизвестен контур здания отеля: невозможно определить положение окна.",
+          "artifact": "ostankino_far-n13938754188-f_window_n13938754188_dea6df04ffb9.json"
+        }
+      ]
+    },
+    {
+      "id": "n3743271115",
+      "name": "Вежлиый лось",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino_far-n3743271115-f_window_n3743271115_dea6df04ffb9.json"
+        }
+      ]
+    },
+    {
+      "id": "w30426150",
+      "name": "Максима Ирбис отель",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Останкинская телевизионная башня",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "ostankino_far-w30426150-f_window_w30426150_dea6df04ffb9.json"
+        }
+      ]
+    },
+    {
+      "id": "n11470380092",
+      "name": "Уютное местечко",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Неизвестен контур здания отеля: невозможно определить положение окна.",
+          "artifact": "ostankino_far-n11470380092-f_window_n11470380092_dea6df04ffb9.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:dea6df04ffb9",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "Останкинская башня должна быть видна из окна"
+      },
+      {
+        "characteristic_key": "spatial:0a6c4b3966b6",
+        "op": "gte",
+        "value": 3000.0,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "расстояние не ближе трёх километров"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Москва, Останкинская башня должна быть видна из окна, расстояние не ближе трёх километров",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 3,
+  "seconds": 34.65,
+  "passed_automatic_audit": true
+}

@@ -1,0 +1,29 @@
+{
+  "id": "no_city",
+  "query": "Хочу отель с видом на море",
+  "errors": [],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:5745a44d5c64",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море"
+      }
+    ],
+    "unmatched_terms": [],
+    "anywhere": false,
+    "normalized_query": "Хочу отель с видом на море",
+    "corrections": [],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "clarification": true,
+  "seconds": 4.16,
+  "passed_automatic_audit": true
+}

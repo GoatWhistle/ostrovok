@@ -1,0 +1,132 @@
+{
+  "fact_id": "f_window_n8513537945_fd6d5d750ec0",
+  "characteristic_key": "spatial:fd6d5d750ec0",
+  "value": null,
+  "unit": null,
+  "label": "чтобы озеро было видно из номера",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n8513537945_fd6d5d750ec0_ray",
+    "g_window_n8513537945_fd6d5d750ec0_target",
+    "g_window_n8513537945_fd6d5d750ec0_observer"
+  ],
+  "subject": "hotel:n8513537945",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии",
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [],
+      "sources": [
+        "https://www.openstreetmap.org/relation/1292452",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+      ],
+      "blockers": [],
+      "target_id": "r1292452",
+      "distance_m": 56.8,
+      "target_name": "Телецкое озеро",
+      "target_tags": {
+        "ele": "435",
+        "name": "Телецкое озеро",
+        "water": "lake",
+        "status": "озеро",
+        "leisure": "nature_reserve",
+        "name:ca": "Llac Telétskoie",
+        "name:de": "Telezker See",
+        "name:en": "Lake Teletskoye",
+        "name:hr": "Telecko jezero",
+        "name:lt": "Teleckojės ežeras",
+        "name:mn": "ᠠᠯᠲᠠᠨ ᠨᠠᠭᠤᠷ",
+        "name:ru": "Телецкое озеро",
+        "name:zh": "捷列茨科耶湖",
+        "natural": "water",
+        "gvr:code": "13010100111115100000030",
+        "int_name": "Lake Teletskoye",
+        "name:alt": "Алтын кӧл",
+        "name:bxr": "Алтан нуур",
+        "name:khk": "Алтан нуур",
+        "wikidata": "Q217109",
+        "status:en": "lake",
+        "status:ru": "озеро",
+        "wikipedia": "ru:Телецкое",
+        "status:alt": "кӧл",
+        "alt_name:ru": "Алтын-Куль;Алтын-Коль;Тёлёс-Коль"
+      },
+      "target_part_id": "r1292452",
+      "terrain_step_m": 25,
+      "target_location": [
+        87.26048707795309,
+        51.79198581575773
+      ],
+      "target_part_tags": {
+        "ele": "435",
+        "name": "Телецкое озеро",
+        "water": "lake",
+        "status": "озеро",
+        "leisure": "nature_reserve",
+        "name:ca": "Llac Telétskoie",
+        "name:de": "Telezker See",
+        "name:en": "Lake Teletskoye",
+        "name:hr": "Telecko jezero",
+        "name:lt": "Teleckojės ežeras",
+        "name:mn": "ᠠᠯᠲᠠᠨ ᠨᠠᠭᠤᠷ",
+        "name:ru": "Телецкое озеро",
+        "name:zh": "捷列茨科耶湖",
+        "natural": "water",
+        "gvr:code": "13010100111115100000030",
+        "int_name": "Lake Teletskoye",
+        "name:alt": "Алтын кӧл",
+        "name:bxr": "Алтан нуур",
+        "name:khk": "Алтан нуур",
+        "wikidata": "Q217109",
+        "status:en": "lake",
+        "status:ru": "озеро",
+        "wikipedia": "ru:Телецкое",
+        "status:alt": "кӧл",
+        "alt_name:ru": "Алтын-Куль;Алтын-Коль;Тёлёс-Коль"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        87.26038091266895,
+        51.79249213072849
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 158.76,
+      "target_elevation_m": {
+        "maximum_m": 436.5,
+        "minimum_m": 432.5
+      },
+      "minimum_clearance_m": null,
+      "observer_elevation_m": {
+        "maximum_m": 440.8,
+        "minimum_m": 436.2
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "horizontal_field_of_view_deg": 120,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "чтобы озеро было видно из номера",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Телецкое озеро», 57 м, этаж 1, направление окон 159°. Проверены рельеф и здания на всём пути. Не хватает данных: неполное покрытие контуров зданий вдоль линии; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/1292452",
+    "source_url": "https://www.openstreetmap.org/relation/1292452",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:58:47.289335Z",
+    "valid_until": "2026-11-02T09:58:47.289335Z"
+  },
+  "history": [],
+  "conflicts": []
+}

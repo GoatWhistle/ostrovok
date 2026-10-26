@@ -1,0 +1,659 @@
+{
+  "query_id": "9b182773d5bc0897",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:9fbd5a08c57b",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с открытым видом на Волгу"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Волгоград",
+    "anywhere": false,
+    "normalized_query": "В Волгограде хочу номер с открытым видом на Волгу",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w124297695",
+        "name": "Bank Hotel",
+        "address": "Коммунистическая улица 40",
+        "location": [
+          44.52693,
+          48.7175985
+        ],
+        "building_id": "w124062626"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "match": "none",
+          "label": "с открытым видом на Волгу",
+          "explanation": "Линия обзора перекрыта: «Волга», 1467 м, этаж 1, направление окон 211°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 1044 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w124297695_9fbd5a08c57b",
+            "characteristic_key": "spatial:9fbd5a08c57b",
+            "value": false,
+            "label": "с открытым видом на Волгу",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w124297695_9fbd5a08c57b_ray",
+              "g_window_w124297695_9fbd5a08c57b_target",
+              "g_window_w124297695_9fbd5a08c57b_observer",
+              "g_window_w124297695_9fbd5a08c57b_blocker_0",
+              "g_window_w124297695_9fbd5a08c57b_blocker_1",
+              "g_window_w124297695_9fbd5a08c57b_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w124297695_9fbd5a08c57b_ray",
+            "g_window_w124297695_9fbd5a08c57b_target",
+            "g_window_w124297695_9fbd5a08c57b_observer",
+            "g_window_w124297695_9fbd5a08c57b_blocker_0",
+            "g_window_w124297695_9fbd5a08c57b_blocker_1",
+            "g_window_w124297695_9fbd5a08c57b_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.52693,
+              48.7175985
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 31.0,
+            "focus_facade_id": "window_w124297695_9fbd5a08c57b_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.52693,
+          48.7175985
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 31.0,
+        "focus_facade_id": "window_w124297695_9fbd5a08c57b_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w124062626",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5266503,
+                  48.7178459
+                ],
+                [
+                  44.5263329,
+                  48.7174973
+                ],
+                [
+                  44.5263765,
+                  48.71748
+                ],
+                [
+                  44.5268623,
+                  48.7172874
+                ],
+                [
+                  44.5269092,
+                  48.7173396
+                ],
+                [
+                  44.5271062,
+                  48.717556
+                ],
+                [
+                  44.5271382,
+                  48.7175433
+                ],
+                [
+                  44.527164,
+                  48.7175711
+                ],
+                [
+                  44.5272106,
+                  48.7176242
+                ],
+                [
+                  44.5269973,
+                  48.7177074
+                ],
+                [
+                  44.52673,
+                  48.7178149
+                ],
+                [
+                  44.5266503,
+                  48.7178459
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w124062626",
+          "hotel_id": "w124297695",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w124297695"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6732871384",
+        "name": "Bravo",
+        "location": [
+          44.4276706,
+          48.5734515
+        ],
+        "building_id": "w149173163"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "match": "none",
+          "label": "с открытым видом на Волгу",
+          "explanation": "Линия обзора перекрыта: «Волга», 1842 м, этаж 1, направление окон 59°. Проверены рельеф и здания на всём пути. Препятствие: рельеф, 1767 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6732871384_9fbd5a08c57b",
+            "characteristic_key": "spatial:9fbd5a08c57b",
+            "value": false,
+            "label": "с открытым видом на Волгу",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6732871384_9fbd5a08c57b_ray",
+              "g_window_n6732871384_9fbd5a08c57b_target",
+              "g_window_n6732871384_9fbd5a08c57b_observer",
+              "g_window_n6732871384_9fbd5a08c57b_blocker_0",
+              "g_window_n6732871384_9fbd5a08c57b_blocker_1",
+              "g_window_n6732871384_9fbd5a08c57b_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6732871384_9fbd5a08c57b_ray",
+            "g_window_n6732871384_9fbd5a08c57b_target",
+            "g_window_n6732871384_9fbd5a08c57b_observer",
+            "g_window_n6732871384_9fbd5a08c57b_blocker_0",
+            "g_window_n6732871384_9fbd5a08c57b_blocker_1",
+            "g_window_n6732871384_9fbd5a08c57b_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.4276706,
+              48.5734515
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 239.0,
+            "focus_facade_id": "window_n6732871384_9fbd5a08c57b_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.4276706,
+          48.5734515
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 239.0,
+        "focus_facade_id": "window_n6732871384_9fbd5a08c57b_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w149173163",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.4276199,
+                  48.5734625
+                ],
+                [
+                  44.4277738,
+                  48.5732941
+                ],
+                [
+                  44.4279592,
+                  48.5733683
+                ],
+                [
+                  44.4279016,
+                  48.5734313
+                ],
+                [
+                  44.427854,
+                  48.5734123
+                ],
+                [
+                  44.4277577,
+                  48.5735177
+                ],
+                [
+                  44.4276199,
+                  48.5734625
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w149173163",
+          "hotel_id": "n6732871384",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6732871384"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n7088203238",
+        "name": "Centre",
+        "location": [
+          44.5124361,
+          48.7052125
+        ],
+        "building_id": "w151980980"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "match": "none",
+          "label": "с открытым видом на Волгу",
+          "explanation": "Линия обзора перекрыта: «Волга», 744 м, этаж 1, направление окон 133°. Проверены рельеф и здания на всём пути. Препятствие: здание, 248 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n7088203238_9fbd5a08c57b",
+            "characteristic_key": "spatial:9fbd5a08c57b",
+            "value": false,
+            "label": "с открытым видом на Волгу",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n7088203238_9fbd5a08c57b_ray",
+              "g_window_n7088203238_9fbd5a08c57b_target",
+              "g_window_n7088203238_9fbd5a08c57b_observer",
+              "g_window_n7088203238_9fbd5a08c57b_blocker_0",
+              "g_window_n7088203238_9fbd5a08c57b_blocker_1",
+              "g_window_n7088203238_9fbd5a08c57b_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n7088203238_9fbd5a08c57b_ray",
+            "g_window_n7088203238_9fbd5a08c57b_target",
+            "g_window_n7088203238_9fbd5a08c57b_observer",
+            "g_window_n7088203238_9fbd5a08c57b_blocker_0",
+            "g_window_n7088203238_9fbd5a08c57b_blocker_1",
+            "g_window_n7088203238_9fbd5a08c57b_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.5124361,
+              48.7052125
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 313.0,
+            "focus_facade_id": "window_n7088203238_9fbd5a08c57b_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5124361,
+          48.7052125
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 313.0,
+        "focus_facade_id": "window_n7088203238_9fbd5a08c57b_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w151980980",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.5124309,
+                  48.7053163
+                ],
+                [
+                  44.512286,
+                  48.7051979
+                ],
+                [
+                  44.5124358,
+                  48.7051093
+                ],
+                [
+                  44.5125829,
+                  48.7052131
+                ],
+                [
+                  44.5125822,
+                  48.7052356
+                ],
+                [
+                  44.5126091,
+                  48.7052545
+                ],
+                [
+                  44.5125335,
+                  48.7053007
+                ],
+                [
+                  44.5125018,
+                  48.7052807
+                ],
+                [
+                  44.5124309,
+                  48.7053163
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w151980980",
+          "hotel_id": "n7088203238",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n7088203238"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6806328377",
+        "name": "Cosmos",
+        "address": "улица Михаила Балонина 7",
+        "location": [
+          44.5109738,
+          48.7132847
+        ],
+        "building_id": "w361104751"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "match": "none",
+          "label": "с открытым видом на Волгу",
+          "explanation": "Линия обзора перекрыта: «Волга», 1581 м, этаж 1, направление окон 145°. Проверены рельеф и здания на всём пути. Препятствие: здание, 1038 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6806328377_9fbd5a08c57b",
+            "characteristic_key": "spatial:9fbd5a08c57b",
+            "value": false,
+            "label": "с открытым видом на Волгу",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6806328377_9fbd5a08c57b_ray",
+              "g_window_n6806328377_9fbd5a08c57b_target",
+              "g_window_n6806328377_9fbd5a08c57b_observer",
+              "g_window_n6806328377_9fbd5a08c57b_blocker_0",
+              "g_window_n6806328377_9fbd5a08c57b_blocker_1",
+              "g_window_n6806328377_9fbd5a08c57b_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6806328377_9fbd5a08c57b_ray",
+            "g_window_n6806328377_9fbd5a08c57b_target",
+            "g_window_n6806328377_9fbd5a08c57b_observer",
+            "g_window_n6806328377_9fbd5a08c57b_blocker_0",
+            "g_window_n6806328377_9fbd5a08c57b_blocker_1",
+            "g_window_n6806328377_9fbd5a08c57b_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.5109738,
+              48.7132847
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 325.0,
+            "focus_facade_id": "window_n6806328377_9fbd5a08c57b_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5109738,
+          48.7132847
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 325.0,
+        "focus_facade_id": "window_n6806328377_9fbd5a08c57b_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w361104751",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.510661,
+                  48.7132755
+                ],
+                [
+                  44.5110979,
+                  48.7134774
+                ],
+                [
+                  44.5112309,
+                  48.7133521
+                ],
+                [
+                  44.5112903,
+                  48.7132962
+                ],
+                [
+                  44.5110703,
+                  48.7131943
+                ],
+                [
+                  44.5108537,
+                  48.713094
+                ],
+                [
+                  44.5107941,
+                  48.7131502
+                ],
+                [
+                  44.510661,
+                  48.7132755
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w361104751",
+          "hotel_id": "n6806328377",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6806328377"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w361104751",
+        "name": "Cosmos Volgograd Hotel",
+        "address": "улица Михаила Балонина 7",
+        "location": [
+          44.5109574,
+          48.7132644
+        ],
+        "building_id": "w361104751"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:9fbd5a08c57b",
+          "match": "none",
+          "label": "с открытым видом на Волгу",
+          "explanation": "Линия обзора перекрыта: «Волга», 1581 м, этаж 1, направление окон 145°. Проверены рельеф и здания на всём пути. Препятствие: здание, 1038 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w361104751_9fbd5a08c57b",
+            "characteristic_key": "spatial:9fbd5a08c57b",
+            "value": false,
+            "label": "с открытым видом на Волгу",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w361104751_9fbd5a08c57b_ray",
+              "g_window_w361104751_9fbd5a08c57b_target",
+              "g_window_w361104751_9fbd5a08c57b_observer",
+              "g_window_w361104751_9fbd5a08c57b_blocker_0",
+              "g_window_w361104751_9fbd5a08c57b_blocker_1",
+              "g_window_w361104751_9fbd5a08c57b_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w361104751_9fbd5a08c57b_ray",
+            "g_window_w361104751_9fbd5a08c57b_target",
+            "g_window_w361104751_9fbd5a08c57b_observer",
+            "g_window_w361104751_9fbd5a08c57b_blocker_0",
+            "g_window_w361104751_9fbd5a08c57b_blocker_1",
+            "g_window_w361104751_9fbd5a08c57b_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              44.5109574,
+              48.7132644
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 325.0,
+            "focus_facade_id": "window_w361104751_9fbd5a08c57b_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          44.5109574,
+          48.7132644
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 325.0,
+        "focus_facade_id": "window_w361104751_9fbd5a08c57b_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w361104751",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  44.510661,
+                  48.7132755
+                ],
+                [
+                  44.5110979,
+                  48.7134774
+                ],
+                [
+                  44.5112309,
+                  48.7133521
+                ],
+                [
+                  44.5112903,
+                  48.7132962
+                ],
+                [
+                  44.5110703,
+                  48.7131943
+                ],
+                [
+                  44.5108537,
+                  48.713094
+                ],
+                [
+                  44.5107941,
+                  48.7131502
+                ],
+                [
+                  44.510661,
+                  48.7132755
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w361104751",
+          "hotel_id": "w361104751",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w361104751"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      44.4276706,
+      48.5734515,
+      44.52693,
+      48.7175985
+    ],
+    "camera": {
+      "center": [
+        44.52693,
+        48.7175985
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 31.0,
+      "focus_facade_id": "window_w124297695_9fbd5a08c57b_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 12947
+}

@@ -101,3 +101,42 @@ Ostankino local repository now resolves r3440930. These latest corrections need 
 Remaining UI findings: actual cathedral parts absent from the 3D explanation; observer label
 can overlap the selected hotel; EN generic fact explanation loses the visibility status.
 Do not mistake passed overflow/navigation assertions for completion of these issues.
+
+## Second full run and isolated follow-up
+
+Round2: all 50 main-stand queries returned HTTP200; strengthened automatic audit passed 36/50.
+Median 9.025 s, maximum 79.02 s, 50 sequential queries. This is evidence validation, not a
+measured accuracy of actual room views. corrections2 re-ran the 14 failures after rare-term
+name resolution: 9 passed, 5 remain (Hermitage, Kul-Sharif floor>=10, Samara floor2, Onega,
+Nevyansk). These sets do not replace a final full run of the final implementation.
+
+Main `feat/hotel-agent-mvp` through 8e229bc is pushed and deployed with updated frontend/chat
+work, rare-term landmark resolution, the long chat-title overflow fix and EN visibility status.
+402 backend tests and 324 frontend tests/36 rules passed. Merged UI matrix passed 8/8 hover,
+fact, map and overflow checks; two latest captures inspected, six still need visual review.
+PNG screenshots are ignored by repository policy and remain local artifacts. One original
+pre-merge desktop RU PNG was overwritten by the first failed merged check; the failed merged
+capture is preserved as ui-merged-overflow-1440-light-ru.png.
+
+Concurrent Anthropic work appeared in the original root and owns its LLM/composition/config/docs
+files and SESSION state. Do not revert/stage/deploy those unfinished edits as window-view work.
+Window follow-up moved to `/Users/savelij/projects/o-hack-window-views`, branch
+`fix/window-view-recommendations`, based on 8e229bc. Six uncommitted window-only patches were
+copied there and reversed in the original root; unrelated changes were preserved.
+
+Follow-up removes budget-skipped hotels from view recommendations and ranks specifically
+attempted unknowns above unchecked hotels. Whole-object requests now retain calculated part
+rays, but a clear sampled ray is UNKNOWN for the whole object and never claims complete view.
+These follow-up changes pass 404 backend tests plus Ruff/format/mypy/import gates locally, not yet main-stand tested. Commit d16948d.
+
+Next investigations:
+- rank large water-body candidates by actual geometry/nearest boundary, not its remote centroid;
+  current candidate budget is applied to centroid order (especially Samara/Volga);
+- unresolved Onega and Nevyansk need actual source/city/candidate discovery; examine observed
+  source tags and provider results rather than relaxing type checks or substituting a namesake;
+- expose candidate data to the model or add a cached public geocoder fallback if local names
+  cannot resolve an object/city (Wikidata often returns403); no new fallback implemented yet;
+- source cathedral/nearby building parts still absent from the 3D proof on the map; observer
+  marker can overlap the selected hotel; full-object visibility remains unverified;
+- merge follow-up with the main branch while preserving concurrent Anthropic work, deploy and
+  replay all 50 on final version; independently inspect real targets and source profiles.

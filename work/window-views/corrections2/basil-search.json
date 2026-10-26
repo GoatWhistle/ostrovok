@@ -1,0 +1,570 @@
+{
+  "query_id": "4b9ebd25cf030fd1",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:00006bb5cf92",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "хочу видеть из номера храм Василия Блаженного"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Москва: хочу видеть из номера храм Василия Блаженного",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n11663276873",
+        "name": "5Nebo",
+        "location": [
+          37.6326571,
+          55.7577088
+        ],
+        "building_id": "w379723673"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "match": "none",
+          "label": "хочу видеть из номера храм Василия Блаженного",
+          "explanation": "Линия обзора перекрыта: «Собор Василия Блаженного», 787 м, этаж 1, направление окон 251°. Проверены рельеф и здания на всём пути. Препятствие: здание, 1 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11663276873_00006bb5cf92",
+            "characteristic_key": "spatial:00006bb5cf92",
+            "value": false,
+            "label": "хочу видеть из номера храм Василия Блаженного",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11663276873_00006bb5cf92_ray",
+              "g_window_n11663276873_00006bb5cf92_target",
+              "g_window_n11663276873_00006bb5cf92_observer",
+              "g_window_n11663276873_00006bb5cf92_blocker_0",
+              "g_window_n11663276873_00006bb5cf92_blocker_1",
+              "g_window_n11663276873_00006bb5cf92_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11663276873_00006bb5cf92_ray",
+            "g_window_n11663276873_00006bb5cf92_target",
+            "g_window_n11663276873_00006bb5cf92_observer",
+            "g_window_n11663276873_00006bb5cf92_blocker_0",
+            "g_window_n11663276873_00006bb5cf92_blocker_1",
+            "g_window_n11663276873_00006bb5cf92_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.6326571,
+              55.7577088
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 71.0,
+            "focus_facade_id": "window_n11663276873_00006bb5cf92_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.6326571,
+          55.7577088
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 71.0,
+        "focus_facade_id": "window_n11663276873_00006bb5cf92_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w379723673",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.6324371,
+                  55.7574853
+                ],
+                [
+                  37.6324525,
+                  55.7574883
+                ],
+                [
+                  37.6324639,
+                  55.7575012
+                ],
+                [
+                  37.6324529,
+                  55.7575196
+                ],
+                [
+                  37.6324204,
+                  55.7575133
+                ],
+                [
+                  37.6324371,
+                  55.7574853
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w379723673",
+          "hotel_id": "n11663276873",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11663276873"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n13790279331",
+        "name": "7 Слонов",
+        "location": [
+          37.6326363,
+          55.7577565
+        ],
+        "building_id": "w379723673"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "match": "none",
+          "label": "хочу видеть из номера храм Василия Блаженного",
+          "explanation": "Линия обзора перекрыта: «Собор Василия Блаженного», 787 м, этаж 1, направление окон 251°. Проверены рельеф и здания на всём пути. Препятствие: здание, 1 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n13790279331_00006bb5cf92",
+            "characteristic_key": "spatial:00006bb5cf92",
+            "value": false,
+            "label": "хочу видеть из номера храм Василия Блаженного",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n13790279331_00006bb5cf92_ray",
+              "g_window_n13790279331_00006bb5cf92_target",
+              "g_window_n13790279331_00006bb5cf92_observer",
+              "g_window_n13790279331_00006bb5cf92_blocker_0",
+              "g_window_n13790279331_00006bb5cf92_blocker_1",
+              "g_window_n13790279331_00006bb5cf92_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n13790279331_00006bb5cf92_ray",
+            "g_window_n13790279331_00006bb5cf92_target",
+            "g_window_n13790279331_00006bb5cf92_observer",
+            "g_window_n13790279331_00006bb5cf92_blocker_0",
+            "g_window_n13790279331_00006bb5cf92_blocker_1",
+            "g_window_n13790279331_00006bb5cf92_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.6326363,
+              55.7577565
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 71.0,
+            "focus_facade_id": "window_n13790279331_00006bb5cf92_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.6326363,
+          55.7577565
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 71.0,
+        "focus_facade_id": "window_n13790279331_00006bb5cf92_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w379723673",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.6324371,
+                  55.7574853
+                ],
+                [
+                  37.6324525,
+                  55.7574883
+                ],
+                [
+                  37.6324639,
+                  55.7575012
+                ],
+                [
+                  37.6324529,
+                  55.7575196
+                ],
+                [
+                  37.6324204,
+                  55.7575133
+                ],
+                [
+                  37.6324371,
+                  55.7574853
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w379723673",
+          "hotel_id": "n13790279331",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n13790279331"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "r6210564",
+        "name": "Ararat Park Hyatt Moscow",
+        "address": "Неглинная улица 4",
+        "location": [
+          37.6217998,
+          55.7599702
+        ],
+        "stars": 5
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "match": "unknown",
+          "label": "хочу видеть из номера храм Василия Блаженного",
+          "explanation": "Свободный обзор подтвердить не удалось: «Собор Василия Блаженного», 778 м, этаж 3, направление окон 165°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 14 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_r6210564_00006bb5cf92",
+            "characteristic_key": "spatial:00006bb5cf92",
+            "label": "хочу видеть из номера храм Василия Блаженного",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r6210564_00006bb5cf92_ray",
+              "g_window_r6210564_00006bb5cf92_target",
+              "g_window_r6210564_00006bb5cf92_observer",
+              "g_window_r6210564_00006bb5cf92_blocker_0",
+              "g_window_r6210564_00006bb5cf92_blocker_1",
+              "g_window_r6210564_00006bb5cf92_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_r6210564_00006bb5cf92_ray",
+            "g_window_r6210564_00006bb5cf92_target",
+            "g_window_r6210564_00006bb5cf92_observer",
+            "g_window_r6210564_00006bb5cf92_blocker_0",
+            "g_window_r6210564_00006bb5cf92_blocker_1",
+            "g_window_r6210564_00006bb5cf92_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.6217998,
+              55.7599702
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 345.0,
+            "focus_facade_id": "window_r6210564_00006bb5cf92_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.6217998,
+          55.7599702
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 345.0,
+        "focus_facade_id": "window_r6210564_00006bb5cf92_ray"
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6754312610",
+        "name": "Balchug Viewpoint",
+        "location": [
+          37.6285041,
+          55.7465277
+        ],
+        "building_id": "w131888476"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "match": "unknown",
+          "label": "хочу видеть из номера храм Василия Блаженного",
+          "explanation": "Свободный обзор подтвердить не удалось: «Собор Василия Блаженного», 736 м, этаж 2, направление окон 4°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 21 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6754312610_00006bb5cf92",
+            "characteristic_key": "spatial:00006bb5cf92",
+            "label": "хочу видеть из номера храм Василия Блаженного",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6754312610_00006bb5cf92_ray",
+              "g_window_n6754312610_00006bb5cf92_target",
+              "g_window_n6754312610_00006bb5cf92_observer",
+              "g_window_n6754312610_00006bb5cf92_blocker_0",
+              "g_window_n6754312610_00006bb5cf92_blocker_1",
+              "g_window_n6754312610_00006bb5cf92_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6754312610_00006bb5cf92_ray",
+            "g_window_n6754312610_00006bb5cf92_target",
+            "g_window_n6754312610_00006bb5cf92_observer",
+            "g_window_n6754312610_00006bb5cf92_blocker_0",
+            "g_window_n6754312610_00006bb5cf92_blocker_1",
+            "g_window_n6754312610_00006bb5cf92_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.6285041,
+              55.7465277
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 184.0,
+            "focus_facade_id": "window_n6754312610_00006bb5cf92_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.6285041,
+          55.7465277
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 184.0,
+        "focus_facade_id": "window_n6754312610_00006bb5cf92_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w131888476",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.6288404,
+                  55.746327
+                ],
+                [
+                  37.6288624,
+                  55.7466369
+                ],
+                [
+                  37.6293052,
+                  55.7466195
+                ],
+                [
+                  37.6292369,
+                  55.7462805
+                ],
+                [
+                  37.6288404,
+                  55.746327
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w131888476",
+          "hotel_id": "n6754312610",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6754312610"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n6487683842",
+        "name": "Barin Residence Balchug",
+        "address": "Садовническая улица 8",
+        "location": [
+          37.6275309,
+          55.7475452
+        ],
+        "stars": 4,
+        "building_id": "w53854183"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:00006bb5cf92",
+          "match": "unknown",
+          "label": "хочу видеть из номера храм Василия Блаженного",
+          "explanation": "Свободный обзор подтвердить не удалось: «Собор Василия Блаженного», 590 м, этаж 1, направление окон 18°. Проверены рельеф и здания на всём пути. Возможное препятствие: здание, 38 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n6487683842_00006bb5cf92",
+            "characteristic_key": "spatial:00006bb5cf92",
+            "label": "хочу видеть из номера храм Василия Блаженного",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n6487683842_00006bb5cf92_ray",
+              "g_window_n6487683842_00006bb5cf92_target",
+              "g_window_n6487683842_00006bb5cf92_observer",
+              "g_window_n6487683842_00006bb5cf92_blocker_0",
+              "g_window_n6487683842_00006bb5cf92_blocker_1",
+              "g_window_n6487683842_00006bb5cf92_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n6487683842_00006bb5cf92_ray",
+            "g_window_n6487683842_00006bb5cf92_target",
+            "g_window_n6487683842_00006bb5cf92_observer",
+            "g_window_n6487683842_00006bb5cf92_blocker_0",
+            "g_window_n6487683842_00006bb5cf92_blocker_1",
+            "g_window_n6487683842_00006bb5cf92_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              37.6275309,
+              55.7475452
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 198.0,
+            "focus_facade_id": "window_n6487683842_00006bb5cf92_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          37.6275309,
+          55.7475452
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 198.0,
+        "focus_facade_id": "window_n6487683842_00006bb5cf92_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w53854183",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  37.6277804,
+                  55.7476136
+                ],
+                [
+                  37.6277239,
+                  55.7475361
+                ],
+                [
+                  37.6276976,
+                  55.7475414
+                ],
+                [
+                  37.6275752,
+                  55.7475663
+                ],
+                [
+                  37.6275093,
+                  55.7473705
+                ],
+                [
+                  37.6274114,
+                  55.7473765
+                ],
+                [
+                  37.6274791,
+                  55.747586
+                ],
+                [
+                  37.6275149,
+                  55.7476724
+                ],
+                [
+                  37.6277604,
+                  55.7476275
+                ],
+                [
+                  37.627787,
+                  55.7476227
+                ],
+                [
+                  37.6277804,
+                  55.7476136
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w53854183",
+          "hotel_id": "n6487683842",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n6487683842"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      37.6217998,
+      55.7465277,
+      37.6326571,
+      55.7599702
+    ],
+    "camera": {
+      "center": [
+        37.6326571,
+        55.7577088
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 71.0,
+      "focus_facade_id": "window_n11663276873_00006bb5cf92_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 26594
+}

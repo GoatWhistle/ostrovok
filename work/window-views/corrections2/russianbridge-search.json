@@ -1,0 +1,666 @@
+{
+  "query_id": "4a2669d2f530e80e",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:4af12a0a4db9",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть Русский мост из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Хочу во Владивостоке видеть Русский мост из номера",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n11961568777",
+        "name": "Парис",
+        "location": [
+          131.9340155,
+          43.0742601
+        ],
+        "building_id": "w510393362"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "match": "unknown",
+          "label": "видеть Русский мост из номера",
+          "explanation": "Свободный обзор подтвердить не удалось: «Русский мост», 1457 м, этаж 1, направление окон 265°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 1235 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11961568777_4af12a0a4db9",
+            "characteristic_key": "spatial:4af12a0a4db9",
+            "label": "видеть Русский мост из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11961568777_4af12a0a4db9_ray",
+              "g_window_n11961568777_4af12a0a4db9_target",
+              "g_window_n11961568777_4af12a0a4db9_observer",
+              "g_window_n11961568777_4af12a0a4db9_blocker_0",
+              "g_window_n11961568777_4af12a0a4db9_blocker_1",
+              "g_window_n11961568777_4af12a0a4db9_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11961568777_4af12a0a4db9_ray",
+            "g_window_n11961568777_4af12a0a4db9_target",
+            "g_window_n11961568777_4af12a0a4db9_observer",
+            "g_window_n11961568777_4af12a0a4db9_blocker_0",
+            "g_window_n11961568777_4af12a0a4db9_blocker_1",
+            "g_window_n11961568777_4af12a0a4db9_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              131.9340155,
+              43.0742601
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 85.0,
+            "focus_facade_id": "window_n11961568777_4af12a0a4db9_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.9340155,
+          43.0742601
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 85.0,
+        "focus_facade_id": "window_n11961568777_4af12a0a4db9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w510393362",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.9338033,
+                  43.0740967
+                ],
+                [
+                  131.9339221,
+                  43.0741768
+                ],
+                [
+                  131.9339229,
+                  43.0742422
+                ],
+                [
+                  131.9338526,
+                  43.0742927
+                ],
+                [
+                  131.9338491,
+                  43.0743224
+                ],
+                [
+                  131.9338657,
+                  43.0743411
+                ],
+                [
+                  131.9338943,
+                  43.0743514
+                ],
+                [
+                  131.9339346,
+                  43.0743485
+                ],
+                [
+                  131.9341632,
+                  43.074223
+                ],
+                [
+                  131.9338719,
+                  43.0740407
+                ],
+                [
+                  131.9338033,
+                  43.0740967
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w510393362",
+          "hotel_id": "n11961568777",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11961568777"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n7080556685",
+        "name": "Русалочка",
+        "location": [
+          131.9041758,
+          43.0799629
+        ],
+        "building_id": "w106481542"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "match": "unknown",
+          "label": "видеть Русский мост из номера",
+          "explanation": "Свободный обзор подтвердить не удалось: «Русский мост», 1588 м, этаж 1, направление окон 153°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 1539 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n7080556685_4af12a0a4db9",
+            "characteristic_key": "spatial:4af12a0a4db9",
+            "label": "видеть Русский мост из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n7080556685_4af12a0a4db9_ray",
+              "g_window_n7080556685_4af12a0a4db9_target",
+              "g_window_n7080556685_4af12a0a4db9_observer",
+              "g_window_n7080556685_4af12a0a4db9_blocker_0",
+              "g_window_n7080556685_4af12a0a4db9_blocker_1",
+              "g_window_n7080556685_4af12a0a4db9_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n7080556685_4af12a0a4db9_ray",
+            "g_window_n7080556685_4af12a0a4db9_target",
+            "g_window_n7080556685_4af12a0a4db9_observer",
+            "g_window_n7080556685_4af12a0a4db9_blocker_0",
+            "g_window_n7080556685_4af12a0a4db9_blocker_1",
+            "g_window_n7080556685_4af12a0a4db9_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              131.9041758,
+              43.0799629
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 333.0,
+            "focus_facade_id": "window_n7080556685_4af12a0a4db9_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.9041758,
+          43.0799629
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 333.0,
+        "focus_facade_id": "window_n7080556685_4af12a0a4db9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w106481542",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.9043041,
+                  43.0801006
+                ],
+                [
+                  131.904376,
+                  43.0799969
+                ],
+                [
+                  131.9043171,
+                  43.0799751
+                ],
+                [
+                  131.9040893,
+                  43.079891
+                ],
+                [
+                  131.904112,
+                  43.0798583
+                ],
+                [
+                  131.90403,
+                  43.079828
+                ],
+                [
+                  131.9040469,
+                  43.0798036
+                ],
+                [
+                  131.9039397,
+                  43.079764
+                ],
+                [
+                  131.9039,
+                  43.0798213
+                ],
+                [
+                  131.9040057,
+                  43.0798603
+                ],
+                [
+                  131.9039636,
+                  43.0799212
+                ],
+                [
+                  131.9040151,
+                  43.0799402
+                ],
+                [
+                  131.9039855,
+                  43.0799829
+                ],
+                [
+                  131.9043041,
+                  43.0801006
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w106481542",
+          "hotel_id": "n7080556685",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n7080556685"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n11961568789",
+        "name": "Улисс",
+        "address": "улица Коммунаров 47",
+        "location": [
+          131.9263979,
+          43.085393
+        ],
+        "building_id": "w81952609"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "match": "unknown",
+          "label": "видеть Русский мост из номера",
+          "explanation": "Свободный обзор подтвердить не удалось: «Русский мост», 1917 м, этаж 1, направление окон 181°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 1842 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; высоты части препятствий или участки рельефа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_n11961568789_4af12a0a4db9",
+            "characteristic_key": "spatial:4af12a0a4db9",
+            "label": "видеть Русский мост из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11961568789_4af12a0a4db9_ray",
+              "g_window_n11961568789_4af12a0a4db9_target",
+              "g_window_n11961568789_4af12a0a4db9_observer",
+              "g_window_n11961568789_4af12a0a4db9_blocker_0",
+              "g_window_n11961568789_4af12a0a4db9_blocker_1",
+              "g_window_n11961568789_4af12a0a4db9_blocker_2"
+            ]
+          },
+          "geo_refs": [
+            "g_window_n11961568789_4af12a0a4db9_ray",
+            "g_window_n11961568789_4af12a0a4db9_target",
+            "g_window_n11961568789_4af12a0a4db9_observer",
+            "g_window_n11961568789_4af12a0a4db9_blocker_0",
+            "g_window_n11961568789_4af12a0a4db9_blocker_1",
+            "g_window_n11961568789_4af12a0a4db9_blocker_2"
+          ],
+          "camera": {
+            "center": [
+              131.9263979,
+              43.085393
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 1.0,
+            "focus_facade_id": "window_n11961568789_4af12a0a4db9_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.9263979,
+          43.085393
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 1.0,
+        "focus_facade_id": "window_n11961568789_4af12a0a4db9_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w81952609",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.9263687,
+                  43.0853324
+                ],
+                [
+                  131.9263712,
+                  43.0854565
+                ],
+                [
+                  131.9263732,
+                  43.0855548
+                ],
+                [
+                  131.9263645,
+                  43.0855549
+                ],
+                [
+                  131.9263563,
+                  43.0855549
+                ],
+                [
+                  131.9263569,
+                  43.0855876
+                ],
+                [
+                  131.9263745,
+                  43.0855875
+                ],
+                [
+                  131.9265285,
+                  43.0855858
+                ],
+                [
+                  131.9265228,
+                  43.0853081
+                ],
+                [
+                  131.9264761,
+                  43.0853086
+                ],
+                [
+                  131.9264766,
+                  43.0853312
+                ],
+                [
+                  131.9263687,
+                  43.0853324
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w81952609",
+          "hotel_id": "n11961568789",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n11961568789"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w107943102",
+        "name": "Amur Bay",
+        "location": [
+          131.8726046,
+          43.1123908
+        ],
+        "building_id": "w601910960"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "match": "unknown",
+          "label": "видеть Русский мост из номера",
+          "explanation": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "fact": {
+            "fact_id": "f_window_w107943102_4af12a0a4db9",
+            "characteristic_key": "spatial:4af12a0a4db9",
+            "label": "видеть Русский мост из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8726046,
+          43.1123908
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w601910960",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8728907,
+                  43.1123047
+                ],
+                [
+                  131.8728569,
+                  43.112351
+                ],
+                [
+                  131.872963,
+                  43.1123924
+                ],
+                [
+                  131.8729969,
+                  43.1123462
+                ],
+                [
+                  131.8728907,
+                  43.1123047
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w601910960",
+          "hotel_id": "w107943102",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w107943102"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9967715857",
+        "name": "Bay garden",
+        "location": [
+          131.9031305,
+          43.1679803
+        ],
+        "building_id": "w483156703"
+      },
+      "score": 0.0,
+      "matched": [
+        {
+          "characteristic_key": "spatial:4af12a0a4db9",
+          "match": "unknown",
+          "label": "видеть Русский мост из номера",
+          "explanation": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "fact": {
+            "fact_id": "f_window_n9967715857_4af12a0a4db9",
+            "characteristic_key": "spatial:4af12a0a4db9",
+            "label": "видеть Русский мост из номера",
+            "confidence": 0.3,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": []
+          },
+          "geo_refs": []
+        }
+      ],
+      "camera": {
+        "center": [
+          131.9031305,
+          43.1679803
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w483156703",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.9031833,
+                  43.1680665
+                ],
+                [
+                  131.9031864,
+                  43.1680273
+                ],
+                [
+                  131.9031924,
+                  43.1679537
+                ],
+                [
+                  131.9031969,
+                  43.167898
+                ],
+                [
+                  131.9031829,
+                  43.1678974
+                ],
+                [
+                  131.9031853,
+                  43.1678666
+                ],
+                [
+                  131.9031897,
+                  43.1678122
+                ],
+                [
+                  131.9031926,
+                  43.1677762
+                ],
+                [
+                  131.9030558,
+                  43.1677703
+                ],
+                [
+                  131.9029993,
+                  43.1677681
+                ],
+                [
+                  131.9029302,
+                  43.1677651
+                ],
+                [
+                  131.9029118,
+                  43.1679936
+                ],
+                [
+                  131.9028958,
+                  43.1679929
+                ],
+                [
+                  131.9028937,
+                  43.168018
+                ],
+                [
+                  131.9028917,
+                  43.1680437
+                ],
+                [
+                  131.9030997,
+                  43.1680526
+                ],
+                [
+                  131.9030989,
+                  43.1680628
+                ],
+                [
+                  131.9031833,
+                  43.1680665
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w483156703",
+          "hotel_id": "n9967715857",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9967715857"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      131.8726046,
+      43.0742601,
+      131.9340155,
+      43.1679803
+    ],
+    "camera": {
+      "center": [
+        131.9340155,
+        43.0742601
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 85.0,
+      "focus_facade_id": "window_n11961568777_4af12a0a4db9_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 8758
+}

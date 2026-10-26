@@ -1,0 +1,112 @@
+{
+  "id": "russianbridge",
+  "query": "Хочу во Владивостоке видеть Русский мост из номера",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n11961568777",
+      "name": "Парис",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Русский мост",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "russianbridge-n11961568777-f_window_n11961568777_4af12a0a4db9.json"
+        }
+      ]
+    },
+    {
+      "id": "n7080556685",
+      "name": "Русалочка",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Русский мост",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "russianbridge-n7080556685-f_window_n7080556685_4af12a0a4db9.json"
+        }
+      ]
+    },
+    {
+      "id": "n11961568789",
+      "name": "Улисс",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Русский мост",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "russianbridge-n11961568789-f_window_n11961568789_4af12a0a4db9.json"
+        }
+      ]
+    },
+    {
+      "id": "w107943102",
+      "name": "Amur Bay",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Ориентир находится за пределами запрошенной области проверки вида.",
+          "artifact": "russianbridge-w107943102-f_window_w107943102_4af12a0a4db9.json"
+        }
+      ]
+    },
+    {
+      "id": "n9967715857",
+      "name": "Bay garden",
+      "views": [
+        {
+          "status": "unknown",
+          "target": null,
+          "floor": null,
+          "missing": null,
+          "reason": "Этот кандидат ещё не проверен: достигнут лимит геометрических расчётов поиска.",
+          "artifact": "russianbridge-n9967715857-f_window_n9967715857_4af12a0a4db9.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:4af12a0a4db9",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть Русский мост из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Хочу во Владивостоке видеть Русский мост из номера",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 3,
+  "seconds": 8.8,
+  "passed_automatic_audit": true
+}

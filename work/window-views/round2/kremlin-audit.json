@@ -1,0 +1,112 @@
+{
+  "id": "kremlin",
+  "query": "Хочу отель в Москве с видом на Московский Кремль",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n2519755766",
+      "name": "3 пингвина",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Московский Кремль",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "kremlin-n2519755766-f_window_n2519755766_205041ecaf10.json"
+        }
+      ]
+    },
+    {
+      "id": "n2519815976",
+      "name": "ABC",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Московский Кремль",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "kremlin-n2519815976-f_window_n2519815976_205041ecaf10.json"
+        }
+      ]
+    },
+    {
+      "id": "n6754312610",
+      "name": "Balchug Viewpoint",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Московский Кремль",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "kremlin-n6754312610-f_window_n6754312610_205041ecaf10.json"
+        }
+      ]
+    },
+    {
+      "id": "n6487683842",
+      "name": "Barin Residence Balchug",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Московский Кремль",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "kremlin-n6487683842-f_window_n6487683842_205041ecaf10.json"
+        }
+      ]
+    },
+    {
+      "id": "n5416334435",
+      "name": "Boxtel",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Московский Кремль",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии"
+          ],
+          "reason": null,
+          "artifact": "kremlin-n5416334435-f_window_n5416334435_205041ecaf10.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:205041ecaf10",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Московский Кремль"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Москве с видом на Московский Кремль",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 21.53,
+  "passed_automatic_audit": true
+}

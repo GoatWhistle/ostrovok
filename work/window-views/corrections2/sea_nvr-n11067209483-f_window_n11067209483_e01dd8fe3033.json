@@ -1,0 +1,274 @@
+{
+  "fact_id": "f_window_n11067209483_e01dd8fe3033",
+  "characteristic_key": "spatial:e01dd8fe3033",
+  "value": null,
+  "unit": null,
+  "label": "с видом на море, чтобы соседний дом его не закрывал",
+  "confidence": 0.3,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n11067209483_e01dd8fe3033_ray",
+    "g_window_n11067209483_e01dd8fe3033_target",
+    "g_window_n11067209483_e01dd8fe3033_observer",
+    "g_window_n11067209483_e01dd8fe3033_blocker_0",
+    "g_window_n11067209483_e01dd8fe3033_blocker_1",
+    "g_window_n11067209483_e01dd8fe3033_blocker_2"
+  ],
+  "subject": "hotel:n11067209483",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "unknown",
+      "missing": [
+        "высоты части препятствий или участки рельефа",
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 15.0,
+            "minimum_m": 13.0
+          },
+          "distance_m": 48.57129048105794
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 13.875,
+            "minimum_m": 11.875
+          },
+          "distance_m": 72.85693572158691
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 12.0,
+            "minimum_m": 10.0
+          },
+          "distance_m": 97.14258096211589
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 10.25,
+            "minimum_m": 8.25
+          },
+          "distance_m": 121.42822620264486
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 7.625,
+            "minimum_m": 5.625
+          },
+          "distance_m": 145.71387144317382
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 6.125,
+            "minimum_m": 4.125
+          },
+          "distance_m": 169.9995166837028
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 4.0,
+            "minimum_m": 2.0
+          },
+          "distance_m": 194.28516192423177
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.25,
+            "minimum_m": -0.75
+          },
+          "distance_m": 218.57080716476074
+        },
+        {
+          "id": "terrain:10",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.25,
+            "minimum_m": -0.75
+          },
+          "distance_m": 242.85645240528973
+        },
+        {
+          "id": "terrain:11",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 267.1420976458187
+        },
+        {
+          "id": "w1320049403",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 180.5835556016534
+        },
+        {
+          "id": "w1320049403",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 182.581576306425
+        },
+        {
+          "id": "w1320049403",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 184.57959701119665
+        },
+        {
+          "id": "w342089386",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 37.49573444129702
+        },
+        {
+          "id": "w342089386",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 41.10514133223525
+        },
+        {
+          "id": "w342089386",
+          "kind": "building",
+          "bottom": null,
+          "elevation": null,
+          "distance_m": 44.71454822317348
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.795000%2C44.670000%2C37.800000%2C44.675000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.795000%2C44.675000%2C37.800000%2C44.680000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.800000%2C44.670000%2C37.805000%2C44.675000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=37.800000%2C44.675000%2C37.805000%2C44.680000"
+      ],
+      "blockers": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 48.57129048105794,
+          "penetration_m": 3.69702669086327
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 72.85693572158691,
+          "penetration_m": 3.645421012016346
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 97.14258096211589,
+          "penetration_m": 2.8437359836503866
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 121.42822620264486,
+          "penetration_m": 2.1669716057653847
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 145.71387144317382,
+          "penetration_m": 0.6151278783613474
+        }
+      ],
+      "target_id": "coastline",
+      "distance_m": 315.7,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        37.80005028265663,
+        44.67475286814712
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        37.796115726711356,
+        44.67518871225058
+      ],
+      "unknown_obstacles": 6,
+      "facade_azimuth_deg": 91.6,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": -3.6970266908632703,
+      "observer_elevation_m": {
+        "maximum_m": 18.05,
+        "minimum_m": 13.45
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "horizontal_field_of_view_deg": 120,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на море, чтобы соседний дом его не закрывал",
+    "estimated_view": true
+  },
+  "explanation": "Свободный обзор подтвердить не удалось: «Море», 316 м, этаж 1, направление окон 92°. Проверены рельеф и здания на всём пути. Возможное препятствие: рельеф, 49 м от окна. Не хватает данных: высоты части препятствий или участки рельефа; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.3,
+    "computed_at": "2026-10-26T09:58:06.657021Z",
+    "valid_until": "2026-11-02T09:58:06.657021Z"
+  },
+  "history": [],
+  "conflicts": []
+}

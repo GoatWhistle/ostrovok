@@ -1,0 +1,119 @@
+{
+  "id": "elbrus",
+  "query": "Отель в Кисловодске, из окна которого видно Эльбрус",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n13943863401",
+      "name": "Apartshirokaya33",
+      "views": [
+        {
+          "status": "unknown",
+          "target": "Эльбрус Западный",
+          "floor": 3,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа"
+          ],
+          "reason": null,
+          "artifact": "elbrus-n13943863401-f_window_n13943863401_6f46d9ac1910.json"
+        }
+      ]
+    },
+    {
+      "id": "n4924840721",
+      "name": "ARK Hotel",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Эльбрус Западный",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "elbrus-n4924840721-f_window_n4924840721_6f46d9ac1910.json"
+        }
+      ]
+    },
+    {
+      "id": "w489431614",
+      "name": "De Luxe",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Эльбрус Западный",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "elbrus-w489431614-f_window_w489431614_6f46d9ac1910.json"
+        }
+      ]
+    },
+    {
+      "id": "n12011787720",
+      "name": "Goldyssun",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Эльбрус Западный",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "elbrus-n12011787720-f_window_n12011787720_6f46d9ac1910.json"
+        }
+      ]
+    },
+    {
+      "id": "n10255173309",
+      "name": "Green Resort Hotel & Spa",
+      "views": [
+        {
+          "status": "blocked",
+          "target": "Эльбрус Западный",
+          "floor": 1,
+          "missing": [
+            "неполное покрытие контуров зданий вдоль линии",
+            "высоты части препятствий или участки рельефа",
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "elbrus-n10255173309-f_window_n10255173309_6f46d9ac1910.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:6f46d9ac1910",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видно Эльбрус"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Кисловодск",
+    "anywhere": false,
+    "normalized_query": "Отель в Кисловодске, из окна которого видно Эльбрус",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 15.91,
+  "passed_automatic_audit": true
+}

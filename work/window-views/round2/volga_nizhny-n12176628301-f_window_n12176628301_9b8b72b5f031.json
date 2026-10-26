@@ -1,0 +1,219 @@
+{
+  "fact_id": "f_window_n12176628301_9b8b72b5f031",
+  "characteristic_key": "spatial:9b8b72b5f031",
+  "value": false,
+  "unit": null,
+  "label": "с видом на Волгу из окна",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_n12176628301_9b8b72b5f031_ray",
+    "g_window_n12176628301_9b8b72b5f031_target",
+    "g_window_n12176628301_9b8b72b5f031_observer",
+    "g_window_n12176628301_9b8b72b5f031_blocker_0",
+    "g_window_n12176628301_9b8b72b5f031_blocker_1",
+    "g_window_n12176628301_9b8b72b5f031_blocker_2"
+  ],
+  "subject": "hotel:n12176628301",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "blocked",
+      "missing": [
+        "неполное покрытие контуров зданий вдоль линии",
+        "этажность отеля; рассчитано условное окно первого этажа"
+      ],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 82.25,
+            "minimum_m": 80.25
+          },
+          "distance_m": 46.96990148244129
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 81.75,
+            "minimum_m": 79.75
+          },
+          "distance_m": 70.45485222366193
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 79.0,
+            "minimum_m": 77.0
+          },
+          "distance_m": 117.42475370610322
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 76.5,
+            "minimum_m": 74.5
+          },
+          "distance_m": 140.90970444732386
+        },
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 99.5,
+            "minimum_m": 85.3
+          },
+          "distance_m": 91.39387819141085
+        },
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 99.5,
+            "minimum_m": 85.3
+          },
+          "distance_m": 98.249230914625
+        },
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 99.5,
+            "minimum_m": 85.3
+          },
+          "distance_m": 105.10458363783917
+        }
+      ],
+      "sources": [
+        "https://www.openstreetmap.org/relation/373460",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+      ],
+      "blockers": [
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 105.10458363783917,
+          "penetration_m": 10.46706023742675
+        },
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 98.249230914625,
+          "penetration_m": 9.735482796031476
+        },
+        {
+          "id": "w215298935",
+          "kind": "building",
+          "confirmed": true,
+          "distance_m": 91.39387819141085,
+          "penetration_m": 9.0038990319065
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "confirmed": true,
+          "distance_m": 140.90970444732386,
+          "penetration_m": 3.487945220920281
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "confirmed": true,
+          "distance_m": 117.42475370610322,
+          "penetration_m": 3.4818065261503506
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "confirmed": true,
+          "distance_m": 70.45485222366193,
+          "penetration_m": 1.2193065261503477
+        },
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "confirmed": false,
+          "distance_m": 46.96990148244129,
+          "penetration_m": 5.662945220920278
+        }
+      ],
+      "target_id": "r373460",
+      "distance_m": 187.9,
+      "target_name": "Волга",
+      "target_tags": {
+        "name": "Волга",
+        "water": "river",
+        "name:de": "Wolga",
+        "name:en": "Volga",
+        "name:ru": "Волга",
+        "natural": "water",
+        "int_name": "Volga"
+      },
+      "target_part_id": "r373460",
+      "terrain_step_m": 25,
+      "target_location": [
+        43.998359486525246,
+        56.33198120988417
+      ],
+      "target_part_tags": {
+        "name": "Волга",
+        "water": "river",
+        "name:de": "Wolga",
+        "name:en": "Volga",
+        "name:ru": "Волга",
+        "natural": "water",
+        "int_name": "Volga"
+      },
+      "complete_coverage": false,
+      "observer_location": [
+        43.99847651080132,
+        56.33029514117216
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 344.74,
+      "target_elevation_m": {
+        "maximum_m": 66.0,
+        "minimum_m": 62.0
+      },
+      "minimum_clearance_m": -28.931405125363764,
+      "observer_elevation_m": {
+        "maximum_m": 86.05,
+        "minimum_m": 81.45
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "unknown",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": null
+    },
+    "source_text": "с видом на Волгу из окна",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора перекрыта: «Волга», 188 м, этаж 1, направление окон 345°. Проверены рельеф и здания на всём пути. Препятствие: здание, 105 м от окна. Не хватает данных: неполное покрытие контуров зданий вдоль линии; этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://www.openstreetmap.org/relation/373460",
+    "source_url": "https://www.openstreetmap.org/relation/373460",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:48:22.803944Z",
+    "valid_until": "2026-11-02T09:48:22.803944Z"
+  },
+  "history": [],
+  "conflicts": []
+}

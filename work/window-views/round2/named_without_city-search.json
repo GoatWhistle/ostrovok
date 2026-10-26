@@ -1,0 +1,628 @@
+{
+  "query_id": "787f779c51634c3b",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:d844b45b4b0e",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из номера видеть Исаакиевский собор"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Хочу из номера видеть Исаакиевский собор, город сам определи",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "r21187261",
+        "name": "Four Seasons Hotel Lion Palace",
+        "location": [
+          30.3077885,
+          59.9349658
+        ],
+        "stars": 5
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "match": "partial",
+          "label": "из номера видеть Исаакиевский собор",
+          "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 51 м, этаж 1, направление окон 232°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_r21187261_d844b45b4b0e",
+            "characteristic_key": "spatial:d844b45b4b0e",
+            "value": true,
+            "label": "из номера видеть Исаакиевский собор",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r21187261_d844b45b4b0e_ray",
+              "g_window_r21187261_d844b45b4b0e_target",
+              "g_window_r21187261_d844b45b4b0e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_r21187261_d844b45b4b0e_ray",
+            "g_window_r21187261_d844b45b4b0e_target",
+            "g_window_r21187261_d844b45b4b0e_observer"
+          ],
+          "camera": {
+            "center": [
+              30.3077885,
+              59.9349658
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 52.0,
+            "focus_facade_id": "window_r21187261_d844b45b4b0e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3077885,
+          59.9349658
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 52.0,
+        "focus_facade_id": "window_r21187261_d844b45b4b0e_ray"
+      }
+    },
+    {
+      "hotel": {
+        "id": "w499303839",
+        "name": "Lotte",
+        "location": [
+          30.3108473,
+          59.9314905
+        ],
+        "building_id": "w66339281"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "match": "partial",
+          "label": "из номера видеть Исаакиевский собор",
+          "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 310 м, этаж 1, направление окон 339°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w499303839_d844b45b4b0e",
+            "characteristic_key": "spatial:d844b45b4b0e",
+            "value": true,
+            "label": "из номера видеть Исаакиевский собор",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w499303839_d844b45b4b0e_ray",
+              "g_window_w499303839_d844b45b4b0e_target",
+              "g_window_w499303839_d844b45b4b0e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w499303839_d844b45b4b0e_ray",
+            "g_window_w499303839_d844b45b4b0e_target",
+            "g_window_w499303839_d844b45b4b0e_observer"
+          ],
+          "camera": {
+            "center": [
+              30.3108473,
+              59.9314905
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 159.0,
+            "focus_facade_id": "window_w499303839_d844b45b4b0e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3108473,
+          59.9314905
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 159.0,
+        "focus_facade_id": "window_w499303839_d844b45b4b0e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w66339281",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3112681,
+                  59.9312233
+                ],
+                [
+                  30.3106154,
+                  59.9310808
+                ],
+                [
+                  30.3100812,
+                  59.9316227
+                ],
+                [
+                  30.310109,
+                  59.9316508
+                ],
+                [
+                  30.3102066,
+                  59.9316699
+                ],
+                [
+                  30.3109198,
+                  59.9318097
+                ],
+                [
+                  30.3109945,
+                  59.9317347
+                ],
+                [
+                  30.3110977,
+                  59.9316301
+                ],
+                [
+                  30.3113119,
+                  59.9314067
+                ],
+                [
+                  30.3113785,
+                  59.9313468
+                ],
+                [
+                  30.3114635,
+                  59.9312677
+                ],
+                [
+                  30.3112681,
+                  59.9312233
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w66339281",
+          "hotel_id": "w499303839",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w499303839"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w508887500",
+        "name": "SO/",
+        "location": [
+          30.3090209,
+          59.9349901
+        ],
+        "building_id": "w66067677"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "match": "partial",
+          "label": "из номера видеть Исаакиевский собор",
+          "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 107 м, этаж 4, направление окон 272°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w508887500_d844b45b4b0e",
+            "characteristic_key": "spatial:d844b45b4b0e",
+            "value": true,
+            "label": "из номера видеть Исаакиевский собор",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w508887500_d844b45b4b0e_ray",
+              "g_window_w508887500_d844b45b4b0e_target",
+              "g_window_w508887500_d844b45b4b0e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w508887500_d844b45b4b0e_ray",
+            "g_window_w508887500_d844b45b4b0e_target",
+            "g_window_w508887500_d844b45b4b0e_observer"
+          ],
+          "camera": {
+            "center": [
+              30.3090209,
+              59.9349901
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 92.0,
+            "focus_facade_id": "window_w508887500_d844b45b4b0e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3090209,
+          59.9349901
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 92.0,
+        "focus_facade_id": "window_w508887500_d844b45b4b0e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w66067677",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3086464,
+                  59.934714
+                ],
+                [
+                  30.3086481,
+                  59.9347464
+                ],
+                [
+                  30.3086549,
+                  59.9348787
+                ],
+                [
+                  30.3086638,
+                  59.9350533
+                ],
+                [
+                  30.3089096,
+                  59.9350564
+                ],
+                [
+                  30.3090517,
+                  59.9351028
+                ],
+                [
+                  30.3090008,
+                  59.9351411
+                ],
+                [
+                  30.3090021,
+                  59.9351558
+                ],
+                [
+                  30.3091939,
+                  59.935219
+                ],
+                [
+                  30.3093179,
+                  59.9352053
+                ],
+                [
+                  30.3093355,
+                  59.9351931
+                ],
+                [
+                  30.3093823,
+                  59.9351607
+                ],
+                [
+                  30.3095982,
+                  59.9350114
+                ],
+                [
+                  30.3094661,
+                  59.9349623
+                ],
+                [
+                  30.3093588,
+                  59.9350315
+                ],
+                [
+                  30.3090061,
+                  59.9349106
+                ],
+                [
+                  30.3090128,
+                  59.9348293
+                ],
+                [
+                  30.3090472,
+                  59.9348042
+                ],
+                [
+                  30.30879,
+                  59.9347138
+                ],
+                [
+                  30.3086464,
+                  59.934714
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w66067677",
+          "hotel_id": "w508887500",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w508887500"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w49861780",
+        "name": "Англетер",
+        "address": "Малая Морская улица 24",
+        "location": [
+          30.3091487,
+          59.9336636
+        ],
+        "stars": 5,
+        "building_id": "w49861780"
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "match": "partial",
+          "label": "из номера видеть Исаакиевский собор",
+          "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 90 м, этаж 1, направление окон 271°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_w49861780_d844b45b4b0e",
+            "characteristic_key": "spatial:d844b45b4b0e",
+            "value": true,
+            "label": "из номера видеть Исаакиевский собор",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w49861780_d844b45b4b0e_ray",
+              "g_window_w49861780_d844b45b4b0e_target",
+              "g_window_w49861780_d844b45b4b0e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_w49861780_d844b45b4b0e_ray",
+            "g_window_w49861780_d844b45b4b0e_target",
+            "g_window_w49861780_d844b45b4b0e_observer"
+          ],
+          "camera": {
+            "center": [
+              30.3091487,
+              59.9336636
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 91.0,
+            "focus_facade_id": "window_w49861780_d844b45b4b0e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3091487,
+          59.9336636
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 91.0,
+        "focus_facade_id": "window_w49861780_d844b45b4b0e_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w49861780",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3088858,
+                  59.9340317
+                ],
+                [
+                  30.3090321,
+                  59.9339274
+                ],
+                [
+                  30.3088883,
+                  59.9338751
+                ],
+                [
+                  30.3088731,
+                  59.933585
+                ],
+                [
+                  30.3089093,
+                  59.9335877
+                ],
+                [
+                  30.3088917,
+                  59.9334586
+                ],
+                [
+                  30.3097111,
+                  59.9337578
+                ],
+                [
+                  30.30987,
+                  59.9338171
+                ],
+                [
+                  30.3100496,
+                  59.9338849
+                ],
+                [
+                  30.310155,
+                  59.9338031
+                ],
+                [
+                  30.3100357,
+                  59.9337594
+                ],
+                [
+                  30.3096524,
+                  59.9336193
+                ],
+                [
+                  30.3095149,
+                  59.9335696
+                ],
+                [
+                  30.3091597,
+                  59.9334412
+                ],
+                [
+                  30.3090669,
+                  59.9334077
+                ],
+                [
+                  30.3089145,
+                  59.9333687
+                ],
+                [
+                  30.3088163,
+                  59.9333595
+                ],
+                [
+                  30.3086272,
+                  59.9333213
+                ],
+                [
+                  30.3086352,
+                  59.9335474
+                ],
+                [
+                  30.3086467,
+                  59.9338709
+                ],
+                [
+                  30.3086493,
+                  59.9339457
+                ],
+                [
+                  30.3088079,
+                  59.9340034
+                ],
+                [
+                  30.3088858,
+                  59.9340317
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w49861780",
+          "hotel_id": "w49861780",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w49861780"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "r3107676",
+        "name": "Астория",
+        "address": "Большая Морская улица 39",
+        "location": [
+          30.3089239,
+          59.9329815
+        ]
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "spatial:d844b45b4b0e",
+          "match": "partial",
+          "label": "из номера видеть Исаакиевский собор",
+          "explanation": "Линия обзора свободна в расчётной модели: «Исаакиевский собор», 124 м, этаж 1, направление окон 270°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_window_r3107676_d844b45b4b0e",
+            "characteristic_key": "spatial:d844b45b4b0e",
+            "value": true,
+            "label": "из номера видеть Исаакиевский собор",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r3107676_d844b45b4b0e_ray",
+              "g_window_r3107676_d844b45b4b0e_target",
+              "g_window_r3107676_d844b45b4b0e_observer"
+            ]
+          },
+          "geo_refs": [
+            "g_window_r3107676_d844b45b4b0e_ray",
+            "g_window_r3107676_d844b45b4b0e_target",
+            "g_window_r3107676_d844b45b4b0e_observer"
+          ],
+          "camera": {
+            "center": [
+              30.3089239,
+              59.9329815
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 90.0,
+            "focus_facade_id": "window_r3107676_d844b45b4b0e_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3089239,
+          59.9329815
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 90.0,
+        "focus_facade_id": "window_r3107676_d844b45b4b0e_ray"
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      30.3077885,
+      59.9314905,
+      30.3108473,
+      59.9349901
+    ],
+    "camera": {
+      "center": [
+        30.3077885,
+        59.9349658
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 52.0,
+      "focus_facade_id": "window_r21187261_d844b45b4b0e_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 10116
+}

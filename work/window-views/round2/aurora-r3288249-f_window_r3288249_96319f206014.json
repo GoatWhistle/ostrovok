@@ -1,0 +1,316 @@
+{
+  "fact_id": "f_window_r3288249_96319f206014",
+  "characteristic_key": "spatial:96319f206014",
+  "value": true,
+  "unit": null,
+  "label": "из окна которого видно крейсер Аврора",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_r3288249_96319f206014_ray",
+    "g_window_r3288249_96319f206014_target",
+    "g_window_r3288249_96319f206014_observer"
+  ],
+  "subject": "hotel:r3288249",
+  "qualifiers": {
+    "visibility": {
+      "floor": 1,
+      "reason": null,
+      "status": "visible",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 4.0,
+            "minimum_m": 2.0
+          },
+          "distance_m": 48.947169768448184
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 3.625,
+            "minimum_m": 1.625
+          },
+          "distance_m": 73.42075465267227
+        },
+        {
+          "id": "terrain:4",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 2.5,
+            "minimum_m": 0.5
+          },
+          "distance_m": 97.89433953689637
+        },
+        {
+          "id": "terrain:5",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.125,
+            "minimum_m": -0.875
+          },
+          "distance_m": 122.36792442112046
+        },
+        {
+          "id": "terrain:6",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 146.84150930534454
+        },
+        {
+          "id": "terrain:7",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 171.31509418956864
+        },
+        {
+          "id": "terrain:8",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 195.78867907379274
+        },
+        {
+          "id": "terrain:9",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 220.26226395801686
+        },
+        {
+          "id": "w242363989",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 27.5,
+            "minimum_m": 23.5
+          },
+          "elevation": {
+            "maximum_m": 29.5,
+            "minimum_m": 25.5
+          },
+          "distance_m": 268.4786332799068
+        },
+        {
+          "id": "r3288106",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "elevation": {
+            "maximum_m": 18.0,
+            "minimum_m": 14.0
+          },
+          "distance_m": 267.0186019246241
+        },
+        {
+          "id": "r3288106",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "elevation": {
+            "maximum_m": 18.0,
+            "minimum_m": 14.0
+          },
+          "distance_m": 268.0890178240411
+        },
+        {
+          "id": "r3288111",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 10.0,
+            "minimum_m": 6.0
+          },
+          "elevation": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "distance_m": 265.9712461533998
+        },
+        {
+          "id": "r3288111",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 10.0,
+            "minimum_m": 6.0
+          },
+          "elevation": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "distance_m": 267.565339938429
+        },
+        {
+          "id": "r3278516",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 13.0,
+            "minimum_m": 9.0
+          },
+          "elevation": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "distance_m": 261.6572396087095
+        },
+        {
+          "id": "r3278516",
+          "kind": "building",
+          "bottom": {
+            "maximum_m": 13.0,
+            "minimum_m": 9.0
+          },
+          "elevation": {
+            "maximum_m": 15.0,
+            "minimum_m": 11.0
+          },
+          "distance_m": 265.40833666608387
+        },
+        {
+          "id": "r3278393",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 10.0,
+            "minimum_m": 6.0
+          },
+          "distance_m": 262.45042655819265
+        },
+        {
+          "id": "r3278393",
+          "kind": "building",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 10.0,
+            "minimum_m": 6.0
+          },
+          "distance_m": 265.8049301408254
+        }
+      ],
+      "sources": [
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.337143%2C59.954714%2C30.338474%2C59.956116",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.950000%2C30.340000%2C59.955000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.955000%2C30.340000%2C59.960000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.340000%2C59.950000%2C30.345000%2C59.955000",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=30.340000%2C59.955000%2C30.345000%2C59.960000"
+      ],
+      "blockers": [],
+      "target_id": "r3272566",
+      "distance_m": 269.2,
+      "target_name": "Крейсер \"Аврора\"",
+      "target_tags": {
+        "fee": "yes",
+        "name": "Крейсер \"Аврора\"",
+        "email": "navalmuseum_dm@mil.ru",
+        "phone": "+7 812 6074922;+7 812 3038513",
+        "museum": "military",
+        "name:ca": "Creuer Aurora",
+        "name:cs": "Křižník Aurora",
+        "name:de": "Aurora",
+        "name:en": "Aurora cruiser",
+        "name:fi": "Aurora",
+        "name:fr": "Croiseur Aurore",
+        "name:ru": "Крейсер \"Аврора\"",
+        "name:sk": "cruiser Aurora",
+        "name:zh": "阿芙乐尔号巡洋舰",
+        "tourism": "museum",
+        "website": "https://navalmuseum.ru/filials/cruiser_aurora",
+        "building": "ship",
+        "historic": "ship",
+        "operator": "Центральный военно-морской музей имени императора Петра Великого",
+        "wikidata": "Q168713",
+        "full_name": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+        "ship:type": "protected_cruiser",
+        "wikipedia": "ru:Аврора (крейсер)",
+        "start_date": "1900",
+        "wheelchair": "no",
+        "description": "Судно представляет собой бронепалубный крейсер 1900 года и является в наши дни музейный объектом. Одновременно \"Аврора\" является и самым старым судном Российского флота, находящимся в строю.",
+        "full_name:en": "The Central Naval Museum, Cruiser \"Aurora\"",
+        "full_name:ru": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+        "full_name:zh": "曙光女神阿芙乐尔号巡洋舰博物馆",
+        "opening_hours": "We-Su 11:00-18:00",
+        "operator:type": "public",
+        "building:parts": "mixed",
+        "description:en": "The ship is a 1900 Russian protected cruiser, currently preserved as a museum ship. In the same time Aurora stands today as the oldest commissioned ship of the Russian Navy.",
+        "operator:ref:inn": "7801018179"
+      },
+      "target_part_id": "w242363990",
+      "terrain_step_m": 25,
+      "target_location": [
+        30.338018,
+        59.9551848
+      ],
+      "target_part_tags": {
+        "name": "Крейсер \"Аврора\"",
+        "height": "40",
+        "min_height": "27",
+        "roof:shape": "flat",
+        "roof:height": "0",
+        "building:part": "yes",
+        "roof:material": "wood",
+        "building:material": "wood"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        30.34243929296644,
+        59.956145071549834
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 251.06,
+      "target_elevation_m": {
+        "maximum_m": 43.0,
+        "minimum_m": 39.0
+      },
+      "minimum_clearance_m": 5.606092940241219,
+      "observer_elevation_m": {
+        "maximum_m": 7.675,
+        "minimum_m": 3.075
+      },
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "bookable_room_confirmed": false,
+      "required_observer_elevation_m": -3.5324469269614918
+    },
+    "source_text": "из окна которого видно крейсер Аврора",
+    "estimated_view": true
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Крейсер \"Аврора\"», 269 м, этаж 1, направление окон 251°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "https://api.openstreetmap.org/api/0.6/map?bbox=30.337143%2C59.954714%2C30.338474%2C59.956116",
+    "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=30.337143%2C59.954714%2C30.338474%2C59.956116",
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "computed_at": "2026-10-26T09:40:51.905710Z",
+    "valid_until": "2026-11-02T09:40:51.905710Z"
+  },
+  "history": [],
+  "conflicts": []
+}

@@ -1,0 +1,28 @@
+{
+  "query_id": "cd1d3043f0f091ea",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:5745a44d5c64",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море"
+      }
+    ],
+    "unmatched_terms": [
+      "чтобы соседний дом его не закрывал"
+    ],
+    "location_hint": "Новороссийск",
+    "anywhere": false,
+    "normalized_query": "Отель в Новороссийске с видом на море, чтобы соседний дом его не закрывал",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 71551
+}
