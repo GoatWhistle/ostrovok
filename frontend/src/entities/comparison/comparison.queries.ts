@@ -1,6 +1,16 @@
-import { useQueries, useQuery } from "@tanstack/react-query"
+import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query"
 import { api, unwrap } from "@/shared/api"
+import type { components } from "@/shared/api/schema.gen"
 export function useComparison(ids: readonly string[]) {
+  const cache = useQueryClient()
+  const searches = cache.getQueriesData<components["schemas"]["Conversation"]>({
+    queryKey: ["conversation"],
+  })
+  const matches = new Map(
+    searches.flatMap(
+      ([, data]) => data?.search?.results?.map((item) => [item.hotel.id, item] as const) ?? [],
+    ),
+  )
   const unique = [...new Set(ids)]
   const comparison = useQuery({
     queryKey: ["compare", unique],
@@ -19,6 +29,8 @@ export function useComparison(ids: readonly string[]) {
   })
   return {
     comparison,
+    hotels,
+    matches,
     names: new Map(
       hotels.flatMap((hotel) =>
         hotel.data ? [[hotel.data.hotel.id, hotel.data.hotel.name] as const] : [],

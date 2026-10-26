@@ -1,35 +1,48 @@
+import { useState } from "react"
 import { useCharacteristics } from "@/entities/catalog"
 import { useComparison } from "@/entities/comparison"
-import { HueIcon, StatusGlyph } from "@/entities/evidence"
-import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
+import { characteristicTitle } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import {
-  ButtonLink,
-  EmptyState,
-  ErrorState,
-  Icon,
-  NoValue,
-  ScrollArea,
-  Skeleton,
-} from "@/shared/ui"
+import { Button, ButtonLink, EmptyState, ErrorState, Skeleton, TextField } from "@/shared/ui"
+import { CompareCards } from "./compare-cards"
+import { comparisonFields } from "./compare-diff"
 import styles from "./hotel-comparison.module.css"
 
 export interface HotelComparisonProps {
   readonly ids: readonly string[]
+  readonly onRemove: (id: string) => void
+  readonly onFact: (hotelId: string, factId: string) => void
 }
 
-export function HotelComparison({ ids }: HotelComparisonProps) {
+export function HotelComparison({ ids, onRemove, onFact }: HotelComparisonProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const registry = useCharacteristics()
-  const { comparison, names } = useComparison(ids)
+  const data = useComparison(ids)
+  const { comparison } = data
+  const [filter, setFilter] = useState<boolean>()
+  const [checkIn, setCheckIn] = useState("")
+  const [checkOut, setCheckOut] = useState("")
+  const fields = comparisonFields(
+    comparison.data?.characteristic_keys ?? [],
+    comparison.data?.rows ?? [],
+    registry.data?.items ?? [],
+  )
+  const different = fields.filter((field) => field.different).length
+  const onlyDifferences = filter ?? fields.length - different > 3
+  const visible = fields.filter((field) => !onlyDifferences || field.different)
+  const title = (key: string) =>
+    characteristicTitle(
+      key,
+      locale,
+      registry.data?.items?.find((item) => item.key === key)?.title ?? key,
+    )
   if (ids.length < 2 || ids.length > 5)
     return (
       <EmptyState
         icon="compare"
         title={t("explore:compare.empty")}
         description={t("explore:compare.emptyText")}
-        className={styles.state}
         action={
           <ButtonLink to="/" icon="search">
             {t("explore:compare.back")}
@@ -37,85 +50,63 @@ export function HotelComparison({ ids }: HotelComparisonProps) {
         }
       />
     )
-  if (comparison.isPending)
-    return (
-      <div className={styles.skeleton} aria-hidden="true">
-        <Skeleton lines={1} />
-        <Skeleton shape="block" />
-        <Skeleton lines={3} />
-      </div>
-    )
-  if (comparison.isError)
-    return (
-      <ErrorState
-        title={t("explore:compare.error")}
-        onRetry={() => void comparison.refetch()}
-        retryPending={comparison.isFetching}
-        className={styles.state}
-      />
-    )
-  const rows = comparison.data.rows ?? []
-  const keys = comparison.data.characteristic_keys ?? []
-  const title = (key: string) => {
-    const local = characteristicTitle(key, locale)
-    if (local !== key) return local
-    return registry.data?.items?.find((item) => item.key === key)?.title ?? key
-  }
   return (
-    <ScrollArea className={styles.frame}>
-      <table className={styles.table}>
-        <caption className="visually-hidden">{t("explore:compare.description")}</caption>
-        <thead>
-          <tr>
-            <th scope="col" className={styles.corner}>
-              {t("explore:compare.characteristic")}
-            </th>
-            {rows.map((row) => (
-              <th scope="col" key={row.hotel_id} className={styles.hotel}>
-                <span className={styles.hotelName} lang="ru">
-                  <Icon name="building" size="sm" className={styles.hotelIcon} />
-                  {names.get(row.hotel_id ?? "") ?? row.hotel_id}
-                </span>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {keys.map((key) => (
-            <tr key={key}>
-              <th scope="row">
-                <span className={styles.characteristic}>
-                  <HueIcon characteristicKey={key} />
-                  {title(key)}
-                </span>
-              </th>
-              {rows.map((row) => {
-                const cell = row.cells?.[key]
-                return (
-                  <td key={row.hotel_id}>
-                    {cell ? (
-                      <span className={styles.cell}>
-                        <span className={styles.value}>
-                          <StatusGlyph status={cell.status} />
-                          {factLabel(cell, locale)}
-                        </span>
-                        <span className={styles.source}>
-                          {t(`explore:source.${cell.source_type}`)}
-                        </span>
-                      </span>
-                    ) : (
-                      <span className={styles.value}>
-                        <Icon name="unknown" size="sm" className={styles.unknown} />
-                        <NoValue />
-                      </span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </ScrollArea>
+    <section className={styles.comparison}>
+      <div className={styles.toolbar}>
+        <p className={styles.summary} role="status">
+          {t("explore:compare.summary", { different, total: fields.length })}
+        </p>
+        <Button
+          variant={onlyDifferences ? "fact" : "secondary"}
+          aria-pressed={onlyDifferences}
+          onClick={() => setFilter(!onlyDifferences)}
+        >
+          {t("explore:compare.onlyDifferences")}
+        </Button>
+        <fieldset className={styles.dates}>
+          <legend className="visually-hidden">{t("explore:compare.priceDates")}</legend>
+          <TextField
+            type="date"
+            label={t("explore:offers.checkIn")}
+            value={checkIn}
+            onChange={(event) => setCheckIn(event.target.value)}
+          />
+          <TextField
+            type="date"
+            label={t("explore:offers.checkOut")}
+            value={checkOut}
+            min={checkIn}
+            onChange={(event) => setCheckOut(event.target.value)}
+          />
+        </fieldset>
+      </div>
+      {comparison.isPending ? <Skeleton lines={3} /> : null}
+      {comparison.isError ? (
+        <ErrorState
+          title={t("explore:compare.error")}
+          onRetry={() => void comparison.refetch()}
+          retryPending={comparison.isFetching}
+        />
+      ) : null}
+      {registry.isError ? (
+        <ErrorState
+          title={t("explore:compare.registryError")}
+          onRetry={() => void registry.refetch()}
+        />
+      ) : null}
+      {!comparison.isPending && !comparison.isError && !visible.length ? (
+        <p>{t("explore:compare.emptyDifference")}</p>
+      ) : null}
+      <CompareCards
+        ids={ids}
+        data={data}
+        fields={visible}
+        title={title}
+        onRemove={onRemove}
+        onFact={onFact}
+        checkIn={checkIn}
+        checkOut={checkOut}
+      />
+    </section>
   )
 }

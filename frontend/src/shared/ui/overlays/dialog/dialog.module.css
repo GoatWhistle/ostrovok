@@ -1,0 +1,25 @@
+.dialog {
+  composes: floatingSurface from "../../../styles/compose.module.css";
+  inline-size: min(var(--field-max-width), calc(100% - var(--space-32)));
+  max-block-size: calc(100dvh - var(--space-32));
+  padding: var(--space-20);
+  border: 0;
+  color: var(--text-primary);
+}
+
+.dialog::backdrop {
+  background-color: var(--surface-scrim);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  margin-block-end: var(--space-16);
+}
+
+.title {
+  composes: bodyStrong from "../../../styles/compose.module.css";
+  margin: 0;
+}
