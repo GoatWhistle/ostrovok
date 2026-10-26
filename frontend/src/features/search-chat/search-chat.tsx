@@ -77,43 +77,34 @@ export function SearchChat({
   const format = useFormatters()
   const { log, list } = useFollow()
   const lastAssistant = messages.findLast((message) => message.role === "assistant")?.id
+  const title =
+    history.find((item) => item.id === conversationId)?.title ||
+    (conversationId ? t("explore:chat.untitled") : t("explore:chat.newSearch"))
   return (
     <section className={styles.chat} aria-labelledby="chat-title">
       <header className={styles.header}>
-        {view === "history" ? (
-          <Button
-            variant="ghost"
-            size="compact"
-            icon="chevron-left"
-            className={styles.back}
-            onClick={() => onView("chat")}
-          >
-            {t("explore:chat.backToChat")}
-          </Button>
-        ) : null}
-        <p id="chat-title" className={styles.title}>
-          {view === "history" ? t("explore:chat.historyShort") : t("explore:chat.title")}
+        <p id="chat-title" className={styles.title} title={title}>
+          {title}
         </p>
         <div className={styles.actions}>
-          {view === "chat" ? (
-            <Button
-              variant="ghost"
-              size="compact"
-              icon="history"
-              disabled={history.length === 0}
-              onClick={() => onView("history")}
-            >
-              {t("explore:chat.historyShort")}
-            </Button>
-          ) : null}
           <Button
             variant="ghost"
-            size="compact"
-            icon="new-search"
-            disabled={
-              sending ||
-              (view === "chat" && conversationId === null && messages.length === 0 && !outgoing)
-            }
+            iconOnly
+            icon="history"
+            className={styles.toggle}
+            title={t("explore:chat.historyShort")}
+            aria-pressed={view === "history"}
+            disabled={history.length === 0 && view === "chat"}
+            onClick={() => onView(view === "history" ? "chat" : "history")}
+          >
+            {t("explore:chat.historyShort")}
+          </Button>
+          <Button
+            iconOnly
+            icon="plus"
+            className={styles.create}
+            title={t("explore:chat.newSearch")}
+            disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
             onClick={() => {
               onView("chat")
               onReset()

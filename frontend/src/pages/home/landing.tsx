@@ -1,7 +1,7 @@
 import { SceneReel } from "@/features/scene-reel"
 import { ChatStart, type ChatStartProps } from "@/features/search-chat"
 import styles from "./landing.module.css"
-import { LandingSettings } from "./landing-settings"
+import { SiteSettings } from "./site-settings"
 
 export interface LandingProps {
   readonly pending: boolean
@@ -15,7 +15,7 @@ export function Landing({ pending, recent, onSend, onOpen, onHistory }: LandingP
   return (
     <div className={styles.landing} data-chrome="bare">
       <div className={styles.corner}>
-        <LandingSettings />
+        <SiteSettings surface="glass" />
       </div>
       <div className={styles.stage}>
         <div className={styles.copy}>

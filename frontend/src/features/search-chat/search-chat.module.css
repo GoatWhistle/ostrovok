@@ -16,9 +16,14 @@
   box-shadow: var(--shadow-divider-bottom);
 }
 
-.back {
-  flex: none;
-  margin-inline-start: calc(var(--space-8) * -1);
+.toggle[aria-pressed="true"] {
+  --button-surface: var(--surface-selected);
+  --button-surface-hover: var(--surface-selected);
+  --button-text: var(--text-accent);
+}
+
+.create {
+  border-radius: var(--radius-pill);
 }
 
 .body {
@@ -33,7 +38,7 @@
 }
 
 .title {
-  composes: subheadingText from "../../shared/styles/compose.module.css";
+  composes: subheadingText truncateText from "../../shared/styles/compose.module.css";
   flex: 1;
   min-inline-size: 0;
 }
