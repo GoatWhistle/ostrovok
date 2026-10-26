@@ -20,10 +20,14 @@ SOURCES = {
     "measure_terrain": "geography",
     "measure_geometry": "geography",
     "find_hotels": "geography",
+    "find_nearby": "geography",
     "assess_view": "geography",
     "get_weather": "environment",
     "calculate_sun": "environment",
 }
+
+
+BUDGET = {"search_web": 8, "find_hotels": 3, "search_documents": 8, "read_web_page": 10}
 
 
 @dataclass
@@ -35,6 +39,10 @@ class WishLedger:
     calls: dict[str, dict[str, Any]] = field(default_factory=dict)
     duplicates: int = 0
     finishes: Counter[str] = field(default_factory=Counter)
+    used: Counter[str] = field(default_factory=Counter)
+
+    def exhausted(self, action: str) -> bool:
+        return self.used[action] >= BUDGET.get(action, 0) > 0
 
     def repeated_finish(self, signature: str) -> bool:
         self.finishes[signature] += 1
@@ -45,6 +53,7 @@ class WishLedger:
 
     def observe(self, action: str, arguments: dict[str, Any], result: dict[str, Any]) -> None:
         self.calls[self.identity(action, arguments)] = result
+        self.used[action] += 1
         dataset = str(arguments.get("dataset", ""))
         source = (
             "embeddings"

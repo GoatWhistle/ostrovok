@@ -12,6 +12,7 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.semantic_search import SearchDocument, SemanticSearchPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
+from hotel_agent.application.ports.web_research import WebResearchPort
 from hotel_agent.domain.errors import ModelFailure
 from tests.unit.application.test_data_explorer import NOW, QUERY, build, criterion, hotel
 
@@ -198,3 +199,32 @@ async def test_embedding_similarity_without_a_supported_quote_stays_unknown() ->
     )
     assert result.facts[0].value is None
     assert not result.resolved_terms
+
+
+async def test_repeated_web_search_runs_out_of_budget_before_the_time_limit() -> None:
+    steps = [
+        DataStep(action="search_web", arguments={"query": f"вопрос {index}"}) for index in range(12)
+    ]
+    steps.extend(
+        DataStep(
+            action="finish", arguments={}, reason="Подтверждения в источниках нет", criteria=()
+        )
+        for _ in range(8)
+    )
+    explorer, _, _ = build(steps)
+    explorer._web = cast(
+        WebResearchPort, SimpleNamespace(search=AsyncMock(return_value=()), read=AsyncMock())
+    )
+
+    result = await explorer(
+        "отель рядом с заведением",
+        ("рядом с заведением",),
+        "Казань",
+        "russia",
+        [hotel("city")],
+        None,
+        False,
+    )
+
+    assert cast(AsyncMock, explorer._web.search).await_count == 8
+    assert result.wish_results[0].status is not WishStatus.MATCHED

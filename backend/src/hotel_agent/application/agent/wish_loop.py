@@ -155,6 +155,18 @@ class WishLoop:
                             WishStatus.UNAVAILABLE if ledger.unavailable else WishStatus.EXHAUSTED
                         )
                         return completion.finish(status, step.reason, retained, None)
+                    if ledger.exhausted(step.action):
+                        observations.append(
+                            {
+                                "tool": step.action,
+                                "result": {
+                                    "error": f"Budget for {step.action} in this wish is used up."
+                                    " Use a different source or finish with what is established.",
+                                    "used": ledger.used[step.action],
+                                },
+                            }
+                        )
+                        continue
                     identity = ledger.identity(step.action, step.arguments)
                     if identity in ledger.calls:
                         ledger.duplicates += 1

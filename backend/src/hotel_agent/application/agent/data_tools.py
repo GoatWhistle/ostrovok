@@ -10,6 +10,7 @@ from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.document_search import search_documents
 from hotel_agent.application.agent.event_discovery import search_events
 from hotel_agent.application.agent.event_venues import event_providers
+from hotel_agent.application.agent.place_proximity import PlaceProximity
 from hotel_agent.application.agent.place_tools import ACTIONS, PlaceTools
 from hotel_agent.application.agent.provider_content import ProviderContent
 from hotel_agent.application.agent.record_reader import RecordReader
@@ -124,6 +125,15 @@ class DataTools:
         self.coast = CoastMeasurements(
             uow, lambda: self.hotels, self.metrics, self.descriptions, self.geo_refs
         )
+        self.nearby = PlaceProximity(
+            uow,
+            region,
+            lambda: self.hotels,
+            lambda: self.bbox,
+            self.metrics,
+            self.descriptions,
+            self.geo_refs,
+        )
         self.provider = ProviderContent(catalog, uow, lambda: self.hotels)
         self.room_web = RoomWebFallback(self.research, lambda: self.hotels, city, web is not None)
 
@@ -229,6 +239,8 @@ class DataTools:
                 ),
                 len(self.hotels),
             )
+        if action == "find_nearby":
+            return await self.nearby.find(arguments)
         if action == "find_hotels":
             return await self.candidates.find_hotels(float(arguments.get("radius_m", 30000)))
         if action == "read_records":
