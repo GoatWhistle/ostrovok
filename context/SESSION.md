@@ -108,10 +108,12 @@ Updated: 2026-10-26, Europe/Moscow
 
 - 2026-10-26, дословно: «еще если по апишке нет данных по отелю, то попытайся найти в интернете информацию по номерам этого отеля».
 
+- 2026-10-26, дословно: «валидируй ответ по смыслу».
+
 ## Current state
 
-- Isolated `/Users/savelij/projects/o-hack-window-views`, branch `feat/per-wish-agent-loop`, code fa4fd16 (base e47c3f2). Implemented per-wish loops and provider-room web fallback; details and merge cautions: [plan](../work/per-wish-agent/plan.md).
-- Verified locally: 448 backend checks including 7 PostgreSQL integrations; 324 frontend tests, 36 rules, build. Twenty scripted wish cases test orchestration, not live-model quality. No paid calls or stand restart.
+- Isolated `/Users/savelij/projects/o-hack-window-views`, branch `feat/per-wish-agent-loop`, code 5b37603 (base e47c3f2). Implemented per-wish loops, web fallback and final semantic review; details and merge cautions: [plan](../work/per-wish-agent/plan.md).
+- Verified locally: 475 backend checks including 8 PostgreSQL integrations; 324 frontend tests, 36 rules, build. Twenty scripted wish cases test orchestration, not live-model quality. No paid calls or stand restart.
 - Original root `feat/hotel-agent-mvp` 8e229bc has separate uncommitted Claude/free-source work; preserve it. Claude must not run. Window goal remains incomplete; [prior session](../work/per-wish-agent/session-before.md).
 
 ## Next actions and pitfalls

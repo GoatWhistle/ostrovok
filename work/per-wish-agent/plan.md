@@ -49,3 +49,17 @@ Provider content must follow the existing free-mode guard. Live-model validation
 until the user explicitly authorizes a launch. Earlier window-view goal remains incomplete.
 
 Code commit: fa4fd16, feat/per-wish-agent-loop. Full checks repeated after the final code change: 448 passed; pre-commit unit-only gate: 436 passed.
+
+Follow-up user instruction, verbatim: «валидируй ответ по смыслу».
+
+Implemented in 5b37603: SemanticReview on existing LLMPort.verify_evidence, final recommendation
+checks before fact persistence, full chat answer check before history persistence. Candidate
+review compares all room conditions jointly; rejected candidates are skipped and subsequent
+ranked candidates examined (60 max, batches of 12, 30 seconds each). Model failure never
+authorizes a claim or establishes hotel absence. Chat rejection produces a mechanical answer
+without reattaching the rejected questions. Duplicate/missing/ungrounded verdicts fail closed.
+
+Validation: 475 tests (462 unit, 5 contract, 8 PostgreSQL integration), Ruff/format/mypy and
+3 import contracts. 26 unit cases and one real-DB chat round trip added. No live model/source
+calls, no restart, no frontend changes. Live semantic accuracy remains unmeasured. Original
+root's uncommitted Claude/free-source changes remain intact and separate.

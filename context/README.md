@@ -8,7 +8,7 @@ Factmap: поиск отелей по пожеланиям с объяснени
 
 | Topic | Status | Evidence |
 |---|---|---|
-| Цикл по каждому пожеланию и поиск номеров в интернете | implemented, locally tested | [Механизм](../docs/wish-agent.md), [448 backend checks](../docs/evidence.md#цикл-по-каждому-пожеланию-26-октября-2026) |
+| Цикл пожеланий, поиск номеров и смысловая проверка ответа | implemented, locally tested | [Механизм](../docs/wish-agent.md), [475 backend checks](../docs/evidence.md#смысловая-проверка-ответа-26-октября-2026) |
 | Основной стенд :8080 | previous verified version | [Прежние измерения](../docs/evidence.md); новый цикл не развёрнут, Claude не запускать |
 | Данные и карта | previous verified state | [Полные прежние факты](../work/per-wish-agent/context-before.md) |
 
