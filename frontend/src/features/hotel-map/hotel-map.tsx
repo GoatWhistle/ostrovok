@@ -14,7 +14,7 @@ import { MapControls } from "./map-controls"
 import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
 import { MapFocus, MapStatus, MapWarning } from "./map-status"
-import { regionOverview, sceneData, sceneQuality } from "./scene-data"
+import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
 import { forecastEnd, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
 import { useHotelMap } from "./use-hotel-map"
@@ -117,6 +117,12 @@ export function HotelMap({
   })
   const overview = scene.data?.cameras.overview ?? selectedCamera
   const showOverview = (instant: boolean) => {
+    const corners = hotelId ? undefined : resultCorners(results)
+    const duration = instant ? 0 : motionMs("--dur-draw")
+    if (corners) {
+      map.instance.current?.fitBounds(corners, { duration, padding: 64, maxZoom: 15 })
+      return
+    }
     if (!overview) return
     const options = {
       center: [overview.center[0] ?? 0, overview.center[1] ?? 0] as [number, number],

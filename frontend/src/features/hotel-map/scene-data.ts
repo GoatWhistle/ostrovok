@@ -75,3 +75,18 @@ export function sceneQuality(
     ),
   }
 }
+
+export function resultCorners(
+  results: readonly SearchResult[],
+): [[number, number], [number, number]] | undefined {
+  const points = results
+    .map((result) => result.hotel.location)
+    .filter((point) => point.length >= 2 && point.every(Number.isFinite))
+  if (!points.length) return undefined
+  const lons = points.map((point) => point[0] ?? 0)
+  const lats = points.map((point) => point[1] ?? 0)
+  return [
+    [Math.min(...lons), Math.min(...lats)],
+    [Math.max(...lons), Math.max(...lats)],
+  ]
+}
