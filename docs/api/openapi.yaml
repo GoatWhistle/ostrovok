@@ -334,7 +334,7 @@ paths:
         - { name: hour, in: query, schema: { type: integer, minimum: 0, maximum: 23, default: 18 } }
       responses:
         "200":
-          description: Прогноз Open-Meteo или явная недоступность
+          description: Прогноз MET Norway (CC BY 4.0), время Europe/Moscow, или явная недоступность
           content:
             application/json:
               schema: { $ref: "#/components/schemas/Weather" }

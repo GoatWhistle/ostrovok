@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime
 from typing import Any
 
@@ -7,11 +7,13 @@ from hotel_agent.application.agent.coast_measurements import CoastMeasurements
 from hotel_agent.application.agent.data_profile import profile_data
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
 from hotel_agent.application.agent.document_search import search_documents
+from hotel_agent.application.agent.place_tools import ACTIONS, PlaceTools
 from hotel_agent.application.agent.provider_content import ProviderContent
 from hotel_agent.application.agent.record_reader import RecordReader
 from hotel_agent.application.agent.research_tools import ResearchTools
 from hotel_agent.application.agent.room_offer_tools import RoomOfferTools
 from hotel_agent.application.agent.room_web_fallback import RoomWebFallback
+from hotel_agent.application.agent.source_records import DATASETS, SourceRecords
 from hotel_agent.application.agent.web_evidence import read_page_evidence
 from hotel_agent.application.agent.wish_evidence import native_facts
 from hotel_agent.application.dto import GeoFeatureRecord, SearchFactRecord, SearchHotelRecord
@@ -21,6 +23,7 @@ from hotel_agent.application.ports.data_exploration import (
 )
 from hotel_agent.application.ports.destination_conditions import DestinationConditionsPort
 from hotel_agent.application.ports.hotel_catalog import HotelCatalogSource
+from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.requested_evidence import RequestedEvidencePort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
@@ -28,8 +31,6 @@ from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
 from hotel_agent.application.ports.web_research import WebResearchPort
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
-
-DATASETS = ("hotels", "rooms", "facilities", "documents", "onsite_objects")
 
 
 class DataTools:
@@ -55,6 +56,7 @@ class DataTools:
         native: RequestedEvidencePort | None = None,
         catalog: HotelCatalogSource | None = None,
         parsed: ParsedQuery | None = None,
+        places: Mapping[str, PlaceResearchPort] | None = None,
     ) -> None:
         self._uow = uow
         self._terms = terms
@@ -65,8 +67,6 @@ class DataTools:
         self.native_facts: dict[str, tuple[SearchFactRecord, ...]] = {}
         self.native_features: list[GeoFeatureRecord] = []
         self.native_required: dict[str, bool] = {}
-        self._retrieved: list[dict[str, Any]] = []
-        self._cache: dict[tuple[str, tuple[str, ...]], Sequence[dict[str, Any]]] = {}
         self.sources = {
             "database": True,
             "embeddings": semantic is not None,
@@ -92,6 +92,16 @@ class DataTools:
             self.metrics,
             self.descriptions,
         )
+        self.records = SourceRecords(
+            uow,
+            lambda: self.hotels,
+            {
+                "web_documents": lambda: self.research.pages,
+                "provider_hotels": lambda: self.provider.hotels,
+                "provider_rooms": lambda: self.provider.rooms + self.room_offers.records,
+                "events": lambda: self.places.events,
+            },
+        )
         self.reader = RecordReader(self._records, self.metrics, self.descriptions, evidence)
         self.research = ResearchTools(
             lambda: self.hotels,
@@ -112,6 +122,18 @@ class DataTools:
         self.provider = ProviderContent(catalog, uow, lambda: self.hotels)
         self.room_web = RoomWebFallback(self.research, lambda: self.hotels, city, web is not None)
 
+        self.places = PlaceTools(
+            places or {},
+            lambda: self.hotels,
+            self.metrics,
+            self.descriptions,
+            self.research.sources,
+            self.research.geo_refs,
+            self.reader,
+            terms,
+            self._now,
+        )
+
     @property
     def hotels(self) -> tuple[SearchHotelRecord, ...]:
         return self.candidates.hotels
@@ -125,6 +147,8 @@ class DataTools:
         return self.candidates.bbox
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if action in ACTIONS:
+            return await self.places.execute(action, arguments)
         if action == "check_requested":
             term = str(arguments.get("term") or self._terms[0])
             if self._native is None:
@@ -164,26 +188,7 @@ class DataTools:
                 self.research, self.reader, self._terms, arguments, self.hotels, self._records
             )
         if action == "get_room_offers":
-            if self._parsed is not None:
-                supplied = {
-                    "check_in": self._parsed.check_in,
-                    "check_out": self._parsed.check_out,
-                    "adults": self._parsed.adults,
-                }
-                missing = [key for key, value in supplied.items() if value is None]
-                if missing:
-                    return {
-                        "needs_input": missing,
-                        "note": "Ask the user for missing stay details. Never invent them.",
-                    }
-                arguments = {
-                    **arguments,
-                    **{
-                        key: str(value) if key != "adults" else value
-                        for key, value in supplied.items()
-                    },
-                }
-            result = await self.room_offers.execute(arguments)
+            result = await self.room_offers.execute(arguments, self._parsed)
             missing_ids = [
                 row["hotel_id"]
                 for row in result.get("hotels", ())
@@ -202,7 +207,7 @@ class DataTools:
                 str(arguments.get("query", "")),
                 self.discovery_allowed,
             )
-            self._retrieved = [dict(item) for item in observation.get("hits", ())]
+            self.records.retrieved = [dict(item) for item in observation.get("hits", ())]
             return observation
         if action == "inspect_data":
             return await profile_data(
@@ -233,18 +238,4 @@ class DataTools:
         return await self.research.execute(action, arguments)
 
     async def _records(self, dataset: str) -> Sequence[dict[str, Any]]:
-        if dataset == "web_documents":
-            return self.research.pages
-        if dataset == "retrieved_documents":
-            return self._retrieved
-        if dataset == "provider_hotels":
-            return self.provider.hotels
-        if dataset == "provider_rooms":
-            return self.provider.rooms + self.room_offers.records
-        if dataset not in DATASETS:
-            raise ValueError("Dataset is unavailable; inspect_data lists stored datasets")
-        identity = (dataset, tuple(hotel.id for hotel in self.hotels))
-        if identity not in self._cache:
-            async with self._uow() as uow:
-                self._cache[identity] = await uow.data.records(dataset, identity[1])
-        return self._cache[identity]
+        return await self.records.read(dataset)

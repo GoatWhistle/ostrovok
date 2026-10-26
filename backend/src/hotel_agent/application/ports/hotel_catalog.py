@@ -1,6 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
+from hotel_agent.application.ports.hotel_discovery import (
+    CatalogProviderFailure,
+)
+from hotel_agent.domain.hotel_identity import HotelIdentity
+
 
 @dataclass(frozen=True, slots=True)
 class CatalogRoom:
@@ -19,6 +24,7 @@ class CatalogHotel:
     facilities_ru: tuple[str, ...] = ()
     facilities_en: tuple[str, ...] = ()
     details: dict[str, Any] = field(default_factory=dict)
+    identity: HotelIdentity | None = None
 
 
 class HotelCatalogSource(Protocol):
@@ -29,5 +35,15 @@ class HotelCatalogStore(Protocol):
     async def save(self, hotel_id: str, hotel: CatalogHotel) -> int: ...
 
 
-class CatalogProviderFailure(ValueError):
+class CatalogMappingConflict(Exception):
     pass
+
+
+__all__ = [
+    "CatalogHotel",
+    "CatalogMappingConflict",
+    "CatalogProviderFailure",
+    "CatalogRoom",
+    "HotelCatalogSource",
+    "HotelCatalogStore",
+]

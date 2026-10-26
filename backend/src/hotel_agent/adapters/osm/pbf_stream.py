@@ -25,7 +25,9 @@ def iter_region_batches(
     geojson = osmium.geom.GeoJSONFactory()
     kept = 0
     seen = 0
-    assemble_areas = bool(selected_layers & {"hotels", "pois"})
+    assemble_areas = bool(selected_layers & {"hotels", "pois", "beaches"}) or (
+        "buildings" in selected_layers and building_nearby is None
+    )
     node_locations = None
     if selected_layers == {"buildings"} and building_nearby:
         node_locations = _nearby_nodes(path, bbox, building_nearby, logger)

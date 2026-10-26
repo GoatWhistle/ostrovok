@@ -5,6 +5,10 @@ from dataclasses import dataclass, field
 from typing import Any
 
 SOURCES = {
+    "search_events": "web",
+    "read_event_page": "web",
+    "observe_wildlife": "geography",
+    "measure_landcover": "geography",
     "check_requested": "database",
     "read_records": "database",
     "inspect_data": "database",

@@ -1,10 +1,8 @@
 import httpx
 
-from hotel_agent.application.ports.hotel_catalog import (
-    CatalogHotel,
-    CatalogProviderFailure,
-    CatalogRoom,
-)
+from hotel_agent.adapters.external.nuitee_identity import hotel_identity
+from hotel_agent.application.ports.hotel_catalog import CatalogHotel, CatalogRoom
+from hotel_agent.application.ports.hotel_discovery import CatalogProviderFailure
 
 URL = "https://api.liteapi.travel/v3.0/data/hotel"
 
@@ -18,7 +16,7 @@ class NuiteeCatalog:
         try:
             return await self._get_hotel(supplier_id)
         except (httpx.HTTPError, KeyError, TypeError, ValueError) as error:
-            raise CatalogProviderFailure(type(error).__name__) from error
+            raise CatalogProviderFailure("Nuitee hotel details failed") from error
 
     async def _get_hotel(self, supplier_id: str) -> CatalogHotel:
         params = {"hotelId": supplier_id, "language": "ru"}
@@ -29,9 +27,18 @@ class NuiteeCatalog:
         else:
             response = await self._client.get(URL, params=params, headers=headers)
         response.raise_for_status()
-        hotel = response.json()["data"]
+        body = response.json()
+        if (
+            not isinstance(body, dict)
+            or body.get("error")
+            or not isinstance(body.get("data"), dict)
+        ):
+            raise ValueError("Invalid hotel detail response")
+        hotel = body["data"]
         if hotel.get("id") != supplier_id:
             raise ValueError("Supplier hotel ID mismatch")
+        if not isinstance(hotel.get("name"), str) or not hotel["name"].strip():
+            raise ValueError("Hotel name is required")
         rooms = tuple(
             CatalogRoom(
                 supplier_id=str(room["id"]),
@@ -65,6 +72,10 @@ class NuiteeCatalog:
                 if isinstance(item, str) and item.strip()
             )
         )
+        try:
+            identity = hotel_identity(hotel)
+        except (ValueError, TypeError):
+            identity = None
         return CatalogHotel(
             supplier_id=supplier_id,
             name=str(hotel["name"]),
@@ -72,4 +83,5 @@ class NuiteeCatalog:
             facilities_ru=facilities_ru,
             facilities_en=facilities_en,
             details=dict(hotel),
+            identity=identity,
         )

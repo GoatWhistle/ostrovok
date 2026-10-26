@@ -12,6 +12,11 @@ class LLMProvider(StrEnum):
     OPENAI_COMPAT = "openai_compat"
 
 
+class HotelDataMode(StrEnum):
+    FREE = "free"
+    PARTNER = "partner"
+
+
 class ConfigError(Exception):
     pass
 
@@ -32,6 +37,10 @@ class Settings:
     etg_api_key: str | None = None
     etg_environment: str = "sandbox"
     nuitee_api_key: str | None = None
+    hotel_data_mode: HotelDataMode = HotelDataMode.FREE
+    ostrovok_site_enabled: bool = True
+    public_data_user_agent: str = "HotelAgent/0.1 (https://github.com/GoatWhistle/o-hack)"
+    geography_api_url: str = "https://overpass.private.coffee/api/interpreter"
     embedding_api_key: str | None = None
     embedding_model: str = "qwen/qwen3-embedding-8b"
     embedding_base_url: str = "https://polza.ai/api/v1"
@@ -39,6 +48,10 @@ class Settings:
 
 def load_settings(env: Mapping[str, str]) -> Settings:
     return Settings(
+        geography_api_url=env.get("GEOGRAPHY_API_URL")
+        or "https://overpass.private.coffee/api/interpreter",
+        public_data_user_agent=env.get("PUBLIC_DATA_USER_AGENT")
+        or "HotelAgent/0.1 (https://github.com/GoatWhistle/o-hack)",
         terrain_cache_dir=Path(env["TERRAIN_CACHE_DIR"]) if env.get("TERRAIN_CACHE_DIR") else None,
         llm_provider=_choice(env, "LLM_PROVIDER", LLMProvider, LLMProvider.FAKE),
         llm_api_key=env.get("LLM_API_KEY") or None,
@@ -53,6 +66,8 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         etg_api_key=env.get("ETG_API_KEY") or None,
         etg_environment=_etg_environment(env),
         nuitee_api_key=env.get("NUITEE_API_KEY") or None,
+        hotel_data_mode=_choice(env, "HOTEL_DATA_MODE", HotelDataMode, HotelDataMode.FREE),
+        ostrovok_site_enabled=_ostrovok_site_enabled(env),
         embedding_api_key=env.get("EMBEDDING_API_KEY") or None,
         embedding_model=env.get("EMBEDDING_MODEL") or "qwen/qwen3-embedding-8b",
         embedding_base_url=env.get("EMBEDDING_BASE_URL") or "https://polza.ai/api/v1",
@@ -66,6 +81,13 @@ def _etg_environment(env: Mapping[str, str]) -> str:
     if bool(env.get("ETG_KEY_ID")) != bool(env.get("ETG_API_KEY")):
         raise ConfigError("ETG_KEY_ID and ETG_API_KEY must be configured together")
     return value
+
+
+def _ostrovok_site_enabled(env: Mapping[str, str]) -> bool:
+    value = env.get("OSTROVOK_SITE") or "on"
+    if value not in {"on", "off"}:
+        raise ConfigError("OSTROVOK_SITE must be on or off")
+    return value == "on"
 
 
 def _choice[E: StrEnum](env: Mapping[str, str], name: str, kind: type[E], default: E) -> E:

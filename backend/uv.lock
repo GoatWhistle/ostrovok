@@ -404,6 +404,7 @@ source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "httpx" },
+    { name = "jsonschema" },
     { name = "osmium" },
     { name = "psycopg", extra = ["binary"] },
     { name = "psycopg-pool" },
@@ -417,7 +418,6 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "import-linter" },
-    { name = "jsonschema" },
     { name = "mypy" },
     { name = "openapi-spec-validator" },
     { name = "pytest" },
@@ -432,6 +432,7 @@ dev = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.143.1" },
     { name = "httpx", specifier = ">=0.28.1" },
+    { name = "jsonschema", specifier = ">=4.26.0" },
     { name = "osmium", specifier = ">=4.3.2" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2,<4" },
     { name = "psycopg-pool", specifier = ">=3.2,<4" },
@@ -445,7 +446,6 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "import-linter", specifier = ">=2.3" },
-    { name = "jsonschema", specifier = ">=4.26.0" },
     { name = "mypy", specifier = ">=1.18" },
     { name = "openapi-spec-validator", specifier = ">=0.9.0" },
     { name = "pytest", specifier = ">=8.4" },

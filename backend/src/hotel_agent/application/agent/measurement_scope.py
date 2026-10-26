@@ -8,7 +8,7 @@ from hotel_agent.application.ports.llm import LLMPort
 
 def needs_scope_check(criteria: tuple[DataCriterion, ...]) -> bool:
     return any(
-        check.field.startswith(("env", "view", "offers", "r"))
+        check.field.startswith(("env", "view", "offers", "r", "place", "event"))
         for criterion in criteria
         for check in criterion.checks
     )
@@ -27,7 +27,7 @@ async def verify_measurement_scope(
         if needs_scope_check((criterion,))
         and all(check.field in tools.descriptions for check in criterion.checks)
         and any(
-            check.field.startswith(("env", "view", "offers"))
+            check.field.startswith(("env", "view", "offers", "place", "event"))
             or (
                 check.field.startswith("r")
                 and tools.reader.verified_terms.get(check.field) != criterion.term

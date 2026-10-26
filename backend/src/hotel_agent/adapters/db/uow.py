@@ -8,6 +8,7 @@ from hotel_agent.adapters.db.chat import PostgresChatRepository
 from hotel_agent.adapters.db.coastlines import PostgresCoastlineRepository
 from hotel_agent.adapters.db.data_exploration import PostgresDataRepository
 from hotel_agent.adapters.db.geo_features import PostgresGeoFeatureRepository
+from hotel_agent.adapters.db.geography import PostgresGeography
 from hotel_agent.adapters.db.map_tiles import PostgresMapTileRepository
 from hotel_agent.adapters.db.named_places import PostgresNamedPlaceRepository
 from hotel_agent.adapters.db.nearby_objects import PostgresNearbyObjectRepository
@@ -16,6 +17,7 @@ from hotel_agent.adapters.db.search import PostgresSearchRepository
 from hotel_agent.adapters.db.search_documents import PostgresSearchDocuments
 from hotel_agent.adapters.db.view_scenes import PostgresViewScenes
 from hotel_agent.application.ports.data_exploration import DataRepository
+from hotel_agent.application.ports.geography import GeographyRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
     CoastlineRepository,
@@ -39,6 +41,10 @@ class PostgresUnitOfWorkFactory:
 
     def __call__(self) -> "PostgresUnitOfWork":
         return PostgresUnitOfWork(self)
+
+    @property
+    def pool(self) -> AsyncConnectionPool[AsyncConnection[tuple[object, ...]]]:
+        return self._pool
 
     async def connection(self) -> AsyncConnection[tuple[object, ...]]:
         if self._pool.closed:
@@ -70,6 +76,7 @@ class PostgresUnitOfWork:
         self.chat: ChatRepository
         self.documents: SearchDocumentsPort
         self.view_scenes: ViewSceneRepository
+        self.geography: GeographyRepository
 
     async def __aenter__(self) -> Self:
         self._connection = await self._factory.connection()
@@ -84,6 +91,7 @@ class PostgresUnitOfWork:
         self.chat = PostgresChatRepository(self._connection)
         self.documents = PostgresSearchDocuments(self._connection)
         self.view_scenes = PostgresViewScenes(self._connection)
+        self.geography = PostgresGeography(self._connection)
         return self
 
     async def __aexit__(self, *exc: object) -> None:

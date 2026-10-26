@@ -5,6 +5,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.143.1",
     "httpx>=0.28.1",
+    "jsonschema>=4.26.0",
     "osmium>=4.3.2",
     "psycopg-pool>=3.2,<4",
     "psycopg[binary]>=3.2,<4",
@@ -21,7 +22,6 @@ hotel-agent = "hotel_agent.cli:main"
 [dependency-groups]
 dev = [
     "import-linter>=2.3",
-    "jsonschema>=4.26.0",
     "mypy>=1.18",
     "openapi-spec-validator>=0.9.0",
     "pytest>=8.4",

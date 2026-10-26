@@ -39,3 +39,9 @@ def test_a_broken_bbox_is_refused(raw: str, message: str) -> None:
 def test_a_command_is_required() -> None:
     with pytest.raises(SystemExit):
         build_parser().parse_args([])
+
+
+def test_catalog_match_does_not_write_unless_apply_is_requested() -> None:
+    parser = build_parser()
+    assert not parser.parse_args(["match-nuitee", "--hotel-id", "osm-1"]).apply
+    assert parser.parse_args(["match-nuitee", "--hotel-id", "osm-1", "--apply"]).apply

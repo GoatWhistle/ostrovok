@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from hotel_agent.adapters.llm.anthropic import AnthropicLLM
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
@@ -60,9 +61,34 @@ def test_an_endpoint_without_its_settings_fails_loudly(settings: Settings, missi
         build_providers(configured(settings, without=missing), SilentLogger())
 
 
-def test_anthropic_is_still_unimplemented(settings: Settings) -> None:
-    with pytest.raises(ConfigError, match="LLM_PROVIDER=anthropic"):
-        build_providers(replace(settings, llm_provider=LLMProvider.ANTHROPIC), SilentLogger())
+async def test_anthropic_uses_its_default_endpoint(settings: Settings) -> None:
+    providers = build_providers(
+        replace(
+            settings,
+            llm_provider=LLMProvider.ANTHROPIC,
+            llm_api_key="secret",
+            llm_model="claude-sonnet-4-6",
+        ),
+        SilentLogger(),
+    )
+    assert isinstance(providers.llm, AnthropicLLM)
+    assert providers.llm.provider == "anthropic"
+    await providers.aclose()
+
+
+@pytest.mark.parametrize("missing", ["llm_api_key", "llm_model"])
+def test_anthropic_names_its_missing_configuration(settings: Settings, missing: str) -> None:
+    values = {"llm_api_key": "secret", "llm_model": "claude-sonnet-4-6", missing: None}
+    with pytest.raises(ConfigError, match=f"LLM_PROVIDER=anthropic needs {missing.upper()}"):
+        build_providers(
+            replace(
+                settings,
+                llm_provider=LLMProvider.ANTHROPIC,
+                llm_api_key=values["llm_api_key"],
+                llm_model=values["llm_model"],
+            ),
+            SilentLogger(),
+        )
 
 
 def test_missing_registry_fails_at_startup() -> None:

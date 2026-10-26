@@ -1,10 +1,9 @@
 import asyncio
-from collections.abc import Mapping
 from typing import Any
 
 import httpx
 
-from hotel_agent.adapters.llm.payload import as_mapping, content_of
+from hotel_agent.adapters.llm.payload import content_of
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
 
@@ -39,24 +38,12 @@ class OpenAICompletion:
     async def aclose(self) -> None:
         await self._client.aclose()
 
-    async def _complete(
-        self, *, system: str, user: str, schema: dict[str, Any]
-    ) -> Mapping[str, object]:
-        body = await self._post(system=system, user=user, response_format=schema)
-        return as_mapping(body)
-
-    async def _complete_text(self, *, system: str, user: str) -> str:
-        text = await self._post(system=system, user=user, response_format=None)
-        if not text.strip():
-            raise ModelFailure("Language model returned an empty answer")
-        return text.strip()
-
-    async def _post(
+    async def complete(
         self,
         *,
         system: str,
         user: str,
-        response_format: dict[str, Any] | None,
+        schema: dict[str, Any] | None = None,
         planning: bool = False,
     ) -> str:
         request: dict[str, Any] = {
@@ -71,8 +58,8 @@ class OpenAICompletion:
         }
         if planning:
             request.update(reasoning_effort="none", temperature=1, max_tokens=2000)
-        if response_format is not None:
-            request["response_format"] = response_format
+        if schema is not None:
+            request["response_format"] = schema
         models = (self._model, self._fallback_model or self._model)
         for attempt, model in enumerate(models):
             request["model"] = model
@@ -96,7 +83,7 @@ class OpenAICompletion:
                         provider=self.provider,
                         cause=type(error).__name__,
                         fallback=bool(self._fallback_model),
-                        response="structured" if response_format is not None else "text",
+                        response="structured" if schema is not None else "text",
                     )
                     await asyncio.sleep(0.2)
                     continue

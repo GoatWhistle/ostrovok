@@ -1,5 +1,5 @@
 import asyncio
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
@@ -15,6 +15,7 @@ from hotel_agent.application.ports.destination_conditions import DestinationCond
 from hotel_agent.application.ports.hotel_catalog import HotelCatalogSource
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
+from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.requested_evidence import RequestedEvidencePort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
@@ -39,6 +40,7 @@ class DataExplorer:
         view: ViewAssessmentPort | None = None,
         offers: GetHotelOffers | None = None,
         catalog: HotelCatalogSource | None = None,
+        places: Mapping[str, PlaceResearchPort] | None = None,
     ) -> None:
         self._llm, self._uow, self._terrain = llm, uow, terrain
         self._clock, self._logger = clock, logger
@@ -46,6 +48,7 @@ class DataExplorer:
         self._semantic = semantic
         self._web, self._conditions, self._view = web, conditions, view
         self._offers, self._catalog = offers, catalog
+        self._places = places
 
     async def __call__(
         self,
@@ -87,6 +90,7 @@ class DataExplorer:
                 native,
                 self._catalog,
                 parsed,
+                places=self._places,
             )
             remaining = max(0, deadline - asyncio.get_running_loop().time())
             loop = WishLoop(self._llm, self._clock, self._logger, timeout_s=min(180, remaining))

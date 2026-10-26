@@ -5,12 +5,15 @@ from zoneinfo import ZoneInfo
 
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.hotel_offers import (
+    HotelOfferSearchPort,
     HotelOffersPort,
     OfferProviderFailure,
     RoomOffer,
 )
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.domain.errors import HotelNotFound, InvalidQuery
+from hotel_agent.domain.hotel_identity import HotelIdentity
 
 
 class OfferStatus(StrEnum):
@@ -36,15 +39,23 @@ class HotelOffers:
 
 class GetHotelOffers:
     def __init__(
-        self, uow: UnitOfWorkFactory, provider: HotelOffersPort | None, clock: ClockPort
+        self,
+        uow: UnitOfWorkFactory,
+        provider: HotelOffersPort | None,
+        clock: ClockPort,
+        catalog_matcher: MatchHotelCatalog | None = None,
+        *,
+        search_provider: HotelOfferSearchPort | None = None,
     ) -> None:
         self._uow = uow
         self._provider = provider
         self._clock = clock
+        self._catalog_matcher = catalog_matcher
+        self._search_provider = search_provider
 
     @property
     def configured(self) -> bool:
-        return self._provider is not None
+        return self._provider is not None or self._search_provider is not None
 
     async def __call__(
         self, hotel_id: str, check_in: date, check_out: date, adults: int, residency: str
@@ -69,7 +80,44 @@ class GetHotelOffers:
         source = None
         checked_at = None
         offers: tuple[RoomOffer, ...] = ()
-        if self._provider is None:
+        if (
+            self._provider is not None
+            and self._provider.supplier == "nuitee"
+            and supplier_id is None
+            and self._catalog_matcher is not None
+        ):
+            match = await self._catalog_matcher(hotel_id, persist=True)
+            supplier_id = match.supplier_id
+            if match.status == "provider_error":
+                return HotelOffers(
+                    hotel_id=hotel_id,
+                    check_in=check_in,
+                    check_out=check_out,
+                    adults=adults,
+                    status=OfferStatus.PROVIDER_ERROR,
+                    source=self._provider.source,
+                    sandbox=self._provider.sandbox,
+                    checked_at=None,
+                    offers=(),
+                )
+        sandbox = self._provider.sandbox if self._provider is not None else False
+        if self._provider is None and self._search_provider is not None:
+            source = self._search_provider.source
+            sandbox = self._search_provider.sandbox
+            try:
+                result = await self._search_provider.search(
+                    HotelIdentity(name=hotel.name, address=hotel.address, location=hotel.location),
+                    check_in,
+                    check_out,
+                    adults,
+                    residency.lower(),
+                )
+                if result is not None:
+                    checked_at, offers = result.checked_at, result.offers
+                    status = OfferStatus.AVAILABLE if offers else OfferStatus.NO_OFFERS
+            except OfferProviderFailure:
+                status = OfferStatus.PROVIDER_ERROR
+        elif self._provider is None:
             status = OfferStatus.PROVIDER_UNAVAILABLE
         elif supplier_id is not None:
             source = self._provider.source
@@ -90,7 +138,7 @@ class GetHotelOffers:
             adults=adults,
             status=status,
             source=source,
-            sandbox=self._provider.sandbox if self._provider is not None else False,
+            sandbox=sandbox,
             checked_at=checked_at,
             offers=offers,
         )

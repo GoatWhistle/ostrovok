@@ -39,6 +39,13 @@ def build_parser() -> ArgumentParser:
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)
     catalog.add_argument("--supplier-id", required=True)
+    matching = commands.add_parser(
+        "match-nuitee", help="Match one hotel by name, address and coordinates"
+    )
+    matching.add_argument("--hotel-id", required=True)
+    matching.add_argument(
+        "--apply", action="store_true", help="Import only a unique verified match"
+    )
     return parser
 
 

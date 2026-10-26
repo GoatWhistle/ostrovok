@@ -38,7 +38,7 @@ def build_router(get_weather: GetWeather) -> APIRouter:
             temperature_c=snapshot.temperature_c,
             cloud_cover_pct=snapshot.cloud_cover_pct,
             weather_code=snapshot.weather_code,
-            source="Open-Meteo forecast",
+            source=snapshot.source,
         )
 
     return router

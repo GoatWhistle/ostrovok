@@ -1285,7 +1285,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Прогноз Open-Meteo или явная недоступность */
+            /** @description Прогноз MET Norway (CC BY 4.0), время Europe/Moscow, или явная недоступность */
             200: {
                 headers: {
                     [name: string]: unknown;

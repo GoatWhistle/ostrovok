@@ -14,6 +14,9 @@ FIELDS = {
 
 
 class OpenMeteoConditions:
+    source = "https://open-meteo.com/en/docs"
+    attribution = "Open-Meteo"
+
     def __init__(self, transport: httpx.AsyncBaseTransport | None = None) -> None:
         self._client = httpx.AsyncClient(timeout=8, transport=transport)
 

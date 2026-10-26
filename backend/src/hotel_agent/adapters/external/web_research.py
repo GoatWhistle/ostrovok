@@ -8,6 +8,8 @@ from xml.etree import ElementTree
 
 import httpx
 
+from hotel_agent.adapters.external.event_records import EVENT_FIELDS, EVENT_TYPES
+from hotel_agent.adapters.external.hotel_metadata import HotelMetadata
 from hotel_agent.adapters.external.web_pages import PageText
 from hotel_agent.application.ports.web_research import WebPage
 
@@ -114,6 +116,10 @@ class PublicWebResearch:
                     text = body.decode(response.encoding or "utf-8", errors="replace")
                     parser = PageText()
                     parser.feed(text)
+                    metadata = HotelMetadata()
+                    metadata.feed(text)
+                    events = HotelMetadata(EVENT_TYPES, EVENT_FIELDS)
+                    events.feed(text)
                     links = "\n".join(
                         f"{label}: {urljoin(url, href)}"
                         for href, label in parser.links[:40]
@@ -123,7 +129,9 @@ class PublicWebResearch:
                         url=url,
                         title=" ".join(parser.title)[:300],
                         text="\n".join(parser.parts)[:34000]
+                        + metadata.evidence()
                         + ("\nСсылки на странице:\n" + links[:6000] if links else ""),
                         retrieved_at=datetime.now(UTC),
+                        events=tuple(events.records),
                     )
         raise ValueError("Too many page redirects")

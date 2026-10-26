@@ -22,7 +22,7 @@ class DocumentEvidence:
             values = [
                 str(item.get("value", ""))
                 for item in filters
-                if item.get("field") not in {"source_url", "hotel_id"}
+                if item.get("field") not in {"source_url", "hotel_id", "record_kind"}
             ]
             start = min(
                 (

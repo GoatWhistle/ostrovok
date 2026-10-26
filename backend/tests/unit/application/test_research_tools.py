@@ -67,7 +67,11 @@ def test_solar_matches_suncalc_reference_including_polar_day_and_timezones(
 
 
 async def test_forecast_metric_is_bound_to_datetime_source_and_hotel() -> None:
-    provider = SimpleNamespace(forecast=AsyncMock(return_value={"h1": {"temperature_c": 23.0}}))
+    provider = SimpleNamespace(
+        source="https://open-meteo.com/en/docs",
+        attribution="Open-Meteo",
+        forecast=AsyncMock(return_value={"h1": {"temperature_c": 23.0}}),
+    )
     instance = tools(conditions=cast(DestinationConditionsPort, provider))
     result = await instance.execute("get_weather", {"at": NOW.isoformat()})
     field = next(iter(result["fields"]))

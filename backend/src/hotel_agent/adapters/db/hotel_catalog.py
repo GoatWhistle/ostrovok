@@ -1,9 +1,10 @@
 from datetime import UTC, datetime
 
+from psycopg.errors import UniqueViolation
 from psycopg.types.json import Jsonb
 from psycopg_pool import AsyncConnectionPool
 
-from hotel_agent.application.ports.hotel_catalog import CatalogHotel
+from hotel_agent.application.ports.hotel_catalog import CatalogHotel, CatalogMappingConflict
 
 
 class PostgresHotelCatalog:
@@ -11,10 +12,23 @@ class PostgresHotelCatalog:
         self._pool = pool
 
     async def save(self, hotel_id: str, hotel: CatalogHotel) -> int:
+        try:
+            return await self._save(hotel_id, hotel)
+        except UniqueViolation as error:
+            raise CatalogMappingConflict("Supplier hotel is already mapped") from error
+
+    async def _save(self, hotel_id: str, hotel: CatalogHotel) -> int:
         async with self._pool.connection() as db:
-            exists = await db.execute("SELECT 1 FROM hotels WHERE id = %s", (hotel_id,))
+            exists = await db.execute("SELECT 1 FROM hotels WHERE id = %s FOR UPDATE", (hotel_id,))
             if await exists.fetchone() is None:
                 raise ValueError(f"Unknown hotel ID: {hotel_id}")
+            refs = await db.execute(
+                "SELECT supplier_id FROM hotel_supplier_refs WHERE hotel_id = %s AND supplier = 'nuitee'",
+                (hotel_id,),
+            )
+            existing = await refs.fetchone()
+            if existing is not None and existing[0] != hotel.supplier_id:
+                raise CatalogMappingConflict("Local hotel already has a different supplier ID")
             await db.execute(
                 """INSERT INTO hotel_supplier_refs (hotel_id, supplier, supplier_id, verified_at)
                 VALUES (%s, 'nuitee', %s, %s)

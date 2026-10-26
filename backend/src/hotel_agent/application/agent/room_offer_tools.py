@@ -5,6 +5,7 @@ from typing import Any
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.errors import InvalidQuery
+from hotel_agent.domain.query import ParsedQuery
 
 
 class RoomOfferTools:
@@ -20,7 +21,27 @@ class RoomOfferTools:
         self._calls = 0
         self.records: list[dict[str, Any]] = []
 
-    async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:
+    async def execute(
+        self, arguments: dict[str, Any], parsed: ParsedQuery | None = None
+    ) -> dict[str, Any]:
+        if parsed is not None:
+            supplied = {
+                "check_in": parsed.check_in,
+                "check_out": parsed.check_out,
+                "adults": parsed.adults,
+            }
+            missing = [key for key, value in supplied.items() if value is None]
+            if missing:
+                return {
+                    "needs_input": missing,
+                    "note": "Ask the user for missing stay details. Never invent them.",
+                }
+            arguments = {
+                **arguments,
+                **{
+                    key: str(value) if key != "adults" else value for key, value in supplied.items()
+                },
+            }
         if self._offers is None:
             return {"error": "Live room offers are unavailable"}
         if not all(arguments.get(key) for key in ("check_in", "check_out", "adults")):

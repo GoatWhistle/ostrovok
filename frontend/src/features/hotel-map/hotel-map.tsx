@@ -226,6 +226,13 @@ export function HotelMap({
               label={t("explore:map.attributionTitle")}
               osm={t("explore:map.attribution")}
               terrain={t("explore:map.terrainAttribution")}
+              sources={{
+                weather: t("explore:map.weatherAttribution"),
+                landcover: t("explore:map.landcoverAttribution"),
+                biodiversity: t("explore:map.biodiversityAttribution"),
+                events: t("explore:map.eventsAttribution"),
+                license: t("explore:map.dataLicense"),
+              }}
             />
           </div>
         </div>

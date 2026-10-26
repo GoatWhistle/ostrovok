@@ -1,9 +1,11 @@
 import asyncio
+import json
 import os
 import shutil
 import sys
 from argparse import Namespace
 from collections.abc import Mapping, Sequence
+from dataclasses import asdict
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -14,8 +16,10 @@ from hotel_agent.adapters.db.facades import PostgresFacadeStore
 from hotel_agent.adapters.db.hotel_catalog import PostgresHotelCatalog
 from hotel_agent.adapters.db.precompute import PostgresPrecompute
 from hotel_agent.adapters.db.seed import PostgresSeedWriter
+from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.db.walk import PostgresWalkStore
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
+from hotel_agent.adapters.external.nuitee_discovery import NuiteeDiscovery
 from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
@@ -28,17 +32,25 @@ from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
+from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
-from hotel_agent.settings import load_settings
+from hotel_agent.settings import HotelDataMode, load_settings
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     settings = load_settings(os.environ)
+    if (
+        args.command in {"sync-nuitee", "match-nuitee"}
+        and settings.hotel_data_mode is HotelDataMode.FREE
+    ):
+        raise SystemExit(
+            "HOTEL_DATA_MODE=free disables commercial hotel APIs; use OSM and public hotel websites"
+        )
     logger = StdlibLogger("hotel_agent.cli")
     if args.command == "build-seed":
         out = Path(args.out)
@@ -64,6 +76,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                 args.hotel_id, args.supplier_id, settings.database_url, settings.nuitee_api_key
             )
         )
+    if args.command == "match-nuitee":
+        if not settings.nuitee_api_key:
+            raise SystemExit("NUITEE_API_KEY is required for match-nuitee")
+        return asyncio.run(_match_nuitee(args, settings.database_url, settings.nuitee_api_key))
     return 1
 
 
@@ -157,6 +173,18 @@ async def _sync_nuitee(hotel_id: str, supplier_id: str, database_url: str, api_k
         )
     print(f"Imported {count} room categories for hotel {hotel_id}")
     return 0
+
+
+async def _match_nuitee(args: Namespace, database_url: str, api_key: str) -> int:
+    uow = PostgresUnitOfWorkFactory(database_url)
+    try:
+        result = await MatchHotelCatalog(
+            uow, NuiteeDiscovery(api_key), NuiteeCatalog(api_key), PostgresHotelCatalog(uow.pool)
+        )(args.hotel_id, persist=args.apply)
+        print(json.dumps(asdict(result), ensure_ascii=False, indent=2))
+        return 0 if result.supplier_id is not None else 2
+    finally:
+        await uow.aclose()
 
 
 if __name__ == "__main__":

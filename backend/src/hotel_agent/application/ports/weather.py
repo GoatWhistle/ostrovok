@@ -10,6 +10,7 @@ class WeatherSnapshot:
     temperature_c: float
     cloud_cover_pct: int
     weather_code: int
+    source: str = "Open-Meteo forecast"
 
 
 class WeatherPort(Protocol):

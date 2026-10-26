@@ -4,7 +4,10 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.event_sources import PublicEvents
+from hotel_agent.adapters.external.gbif import GBIFObservations
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
+from hotel_agent.adapters.external.overpass_geography import OverpassGeography
 from hotel_agent.adapters.external.web_research import PublicWebResearch
 from hotel_agent.adapters.geo.country_scope import CountryBoundary
 from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
@@ -13,17 +16,19 @@ from hotel_agent.adapters.geo.search_areas import SearchAreas
 from hotel_agent.adapters.geo.terrain_measurements import TerrainMeasurements
 from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
 from hotel_agent.adapters.geo.window_views import WindowViews
+from hotel_agent.adapters.geo.worldcover import WorldCover
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
-from hotel_agent.adapters.weather.destination_conditions import OpenMeteoConditions
-from hotel_agent.adapters.weather.open_meteo import OpenMeteoWeather
+from hotel_agent.adapters.weather.met_norway import MetNorwayConditions
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.semantic_review import SemanticReview
+from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.application.use_cases.ensure_geography import EnsureGeography
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
@@ -50,9 +55,21 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         config.seed_dir / "sochi" / "dem.tif", config.terrain_cache_dir
     )
     web_research = PublicWebResearch()
-    conditions = OpenMeteoConditions()
+    conditions = MetNorwayConditions(config.public_data_user_agent)
+    events = PublicEvents(web_research)
+    biodiversity = GBIFObservations()
+    landcover = WorldCover()
+    places: dict[str, PlaceResearchPort] = {
+        "search_events": events,
+        "read_event_page": events,
+        "observe_wildlife": biodiversity,
+        "measure_landcover": landcover,
+    }
+    geography_source = OverpassGeography(config.geography_api_url)
+    geography = EnsureGeography(providers.uow, geography_source, providers.clock, logger)
     view_geometry = OSMViewGeometry(
-        config.terrain_cache_dir.parent / "view-geometry" if config.terrain_cache_dir else None
+        config.terrain_cache_dir.parent / "view-geometry" if config.terrain_cache_dir else None,
+        context=geography,
     )
     embedder = (
         PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
@@ -76,13 +93,22 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 await embedder.aclose()
             await web_research.aclose()
             await conditions.aclose()
+            await geography_source.aclose()
+            await events.aclose()
+            await biodiversity.aclose()
             await view_geometry.aclose()
             terrain_tiles.close()
             await providers.aclose()
 
     app = FastAPI(title="Hotel Agent API", version="0.1.0", lifespan=lifespan)
     ErrorHandlers(logger).register(app)
-    get_hotel_offers = GetHotelOffers(providers.uow, providers.hotel_offers, providers.clock)
+    get_hotel_offers = GetHotelOffers(
+        providers.uow,
+        providers.hotel_offers,
+        providers.clock,
+        providers.catalog_matcher,
+        search_provider=providers.hotel_offer_search,
+    )
     semantic_review = SemanticReview(providers.llm, logger)
     search_hotels = SearchHotels(
         providers.llm,
@@ -106,6 +132,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             and providers.hotel_offers is not None
             and providers.hotel_offers.supplier == "nuitee"
             else None,
+            places=places,
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
@@ -132,10 +159,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             get_geo_features=GetGeoFeatures(providers.uow),
             get_hotel_card=GetHotelCard(providers.uow),
             get_hotel_offers=get_hotel_offers,
-            get_hotel_scene=GetHotelScene(providers.uow),
-            get_map_tile=GetMapTile(providers.uow),
+            get_hotel_scene=GetHotelScene(providers.uow, geography),
+            get_map_tile=GetMapTile(providers.uow, geography),
             get_terrain_tile=GetTerrainTile(terrain_tiles),
-            get_weather=GetWeather(OpenMeteoWeather()),
+            get_weather=GetWeather(conditions),
         )
     )
     return app

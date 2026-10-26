@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Protocol
+from typing import Any, Protocol
 
 
 @dataclass(frozen=True, slots=True)
@@ -10,6 +10,7 @@ class WebPage:
     title: str
     text: str
     retrieved_at: datetime
+    events: tuple[dict[str, Any], ...] = ()
 
 
 class WebResearchPort(Protocol):

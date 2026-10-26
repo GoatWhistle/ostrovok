@@ -96,7 +96,7 @@ class ResearchTools:
                     await self._conditions.forecast({h.id: h.location for h in hotels}, at)
                 ).items()
             }
-            source = "https://open-meteo.com/en/docs"
+            source = self._conditions.source
         prefix = f"env{self._calls}"
         for hotel_id, values in measured.items():
             for key, value in values.items():
@@ -118,6 +118,9 @@ class ResearchTools:
                 if any(k in row for row in measured.values())
             },
             "measurements": measured,
+            "attribution": self._conditions.attribution
+            if action == "get_weather" and self._conditions
+            else None,
             "limit": 12,
             "note": "Forecast and astronomical position only. Room sunlight/view requires facade, floor and obstruction data. Missing values are unknown.",
         }

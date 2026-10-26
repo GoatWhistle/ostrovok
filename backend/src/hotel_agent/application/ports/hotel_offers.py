@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from typing import Protocol
 
+from hotel_agent.domain.hotel_identity import HotelIdentity
+
 
 @dataclass(frozen=True, slots=True)
 class RoomOffer:
@@ -29,6 +31,17 @@ class HotelOffersPort(Protocol):
     async def fetch(
         self, supplier_id: str, check_in: date, check_out: date, adults: int, residency: str
     ) -> OfferLookup: ...
+
+
+class HotelOfferSearchPort(Protocol):
+    source: str
+    sandbox: bool
+
+    async def search(
+        self, hotel: HotelIdentity, check_in: date, check_out: date, adults: int, residency: str
+    ) -> OfferLookup | None: ...
+
+    async def aclose(self) -> None: ...
 
 
 class OfferProviderFailure(Exception):

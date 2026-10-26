@@ -99,13 +99,13 @@ class RecordReader:
                 for item in filters
             )
         ]
-        textual = any(isinstance(item.get("value"), str) for item in filters)
+        textual = dataset == "events" or any(isinstance(item.get("value"), str) for item in filters)
         if textual:
             matched = await self._evidence.verify(term, matched, filters) if self._evidence else []
             coverage = {str(row["hotel_id"]) for row in matched}
         counts = Counter(str(row["hotel_id"]) for row in matched)
         self._reads += 1
-        field = f"r{self._reads}.match_count"
+        field = f"{'event' if dataset == 'events' else 'r'}{self._reads}.match_count"
         for hotel_id in coverage:
             self._metrics.setdefault(hotel_id, {})[field] = float(counts[hotel_id])
             quotes = tuple(
@@ -131,7 +131,9 @@ class RecordReader:
             {"dataset": dataset, "filters": filters}, ensure_ascii=False
         )
         self._descriptions[field] = (
-            "Объектов внутри здания отеля"
+            "Проверенных событий: " + "; ".join(str(r.get("text", ""))[:1800] for r in matched[:4])
+            if dataset == "events"
+            else "Объектов внутри здания отеля"
             if dataset == "onsite_objects"
             else "Подтверждений в данных источника"
         )

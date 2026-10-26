@@ -9,6 +9,7 @@ from xml.etree import ElementTree
 import httpx
 import osmium
 
+from hotel_agent.application.ports.geography import GeographyContextPort
 from hotel_agent.application.ports.view_geometry import PhysicalArea, PhysicalObject
 
 OSM_ID = re.compile(r"([nwr])(\d+)$")
@@ -46,8 +47,12 @@ def physical_objects(payload: bytes) -> dict[str, tuple[dict[str, str], dict[str
 
 class OSMViewGeometry:
     def __init__(
-        self, cache_dir: Path | None = None, transport: httpx.AsyncBaseTransport | None = None
+        self,
+        cache_dir: Path | None = None,
+        transport: httpx.AsyncBaseTransport | None = None,
+        context: GeographyContextPort | None = None,
     ) -> None:
+        self._context = context
         self._cache = cache_dir
         if cache_dir is not None:
             cache_dir.mkdir(parents=True, exist_ok=True)
@@ -110,6 +115,8 @@ class OSMViewGeometry:
             return result
 
     async def area(self, bbox: tuple[float, float, float, float]) -> PhysicalArea | None:
+        if self._context is not None:
+            return await self._context.area(bbox)
         async with self._area_locks[hash(bbox) % len(self._area_locks)]:
             return await self._area(bbox)
 
