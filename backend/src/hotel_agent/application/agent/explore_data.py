@@ -4,6 +4,7 @@ from collections.abc import Mapping, Sequence
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
+from hotel_agent.application.agent.view_consistency import reconcile_views
 from hotel_agent.application.agent.wish_loop import WishLoop
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
@@ -98,6 +99,7 @@ class DataExplorer:
             outcomes.append(outcome)
             candidates = tuple({h.id: h for h in (*candidates, *outcome.hotels)}.values())
             bbox = outcome.bbox
+        outcomes = reconcile_views(outcomes)
         questions = tuple(dict.fromkeys(item.question for item in outcomes if item.question))
         return ExplorationOutcome(
             hotels=candidates,
