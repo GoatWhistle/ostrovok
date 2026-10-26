@@ -47,6 +47,20 @@ export function matchedTitle(item: MatchedProperty, locale: Locale): string {
     : characteristicTitle(item.characteristic_key, locale)
 }
 
+function windowExplanation(fact: FactBrief | undefined, locale: Locale): string | undefined {
+  if (!fact?.characteristic_key.startsWith("spatial:")) return undefined
+  if (typeof fact.value !== "boolean" && fact.value !== null && fact.value !== undefined)
+    return undefined
+  return i18n.t(
+    fact.value === true
+      ? "explore:map.viewVisible"
+      : fact.value === false
+        ? "explore:map.viewBlocked"
+        : "explore:map.viewUnknown",
+    { lng: locale },
+  )
+}
+
 export function matchedExplanation(item: MatchedProperty, locale: Locale): string | undefined {
   if (item.characteristic_key.startsWith("facility:"))
     return locale === "ru"
@@ -62,6 +76,8 @@ export function matchedExplanation(item: MatchedProperty, locale: Locale): strin
     })
   }
   if (locale === "ru") return item.explanation ?? undefined
+  const view = windowExplanation(item.fact ?? undefined, locale)
+  if (view) return view
   if (!item.fact) return i18n.t("explore:map.noEvidence", { lng: locale })
   if (item.characteristic_key === "distance_to_sea")
     return i18n.t("explore:map.walkEvidence", { lng: locale })
@@ -81,6 +97,8 @@ export function factExplanation(fact: Fact, locale: Locale): string | undefined 
   if (fact.characteristic_key === "noise_level")
     return i18n.t("explore:facts.noiseExplanation", { lng: locale })
   if (locale === "ru") return fact.explanation ?? undefined
+  const view = windowExplanation(fact, locale)
+  if (view) return view
   return i18n.t(
     fact.characteristic_key === "distance_to_sea"
       ? "explore:map.walkEvidence"
