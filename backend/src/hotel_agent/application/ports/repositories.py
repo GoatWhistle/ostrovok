@@ -27,6 +27,14 @@ class RegionRepository(Protocol):
 
 
 class NamedPlaceRepository(Protocol):
+    async def candidates(
+        self,
+        name: str,
+        bbox: tuple[float, float, float, float],
+        target_key: str | None = None,
+        target_values: Sequence[str] = (),
+    ) -> Sequence[NamedPlaceRecord]: ...
+
     async def geographic_name(self, name: str) -> NamedPlaceRecord | None: ...
 
     async def by_name(

@@ -43,6 +43,7 @@ class NamedPlaceRecord:
     id: str
     name: str
     location: tuple[float, float]
+    tags: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

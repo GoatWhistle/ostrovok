@@ -138,6 +138,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         semantic,
         EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
         RecommendationReview(semantic_review),
+        landmark_review=semantic_review,
     )
     app.include_router(
         api_router_v1(

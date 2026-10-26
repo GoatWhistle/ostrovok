@@ -1,6 +1,12 @@
 from collections.abc import Sequence
 
-from hotel_agent.application.dto import GeoFeatureRecord, SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.dto import (
+    GeoFeatureRecord,
+    NamedPlaceRecord,
+    SearchFactRecord,
+    SearchHotelRecord,
+)
+from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_key, nearby_record
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.place_lookup import PlaceLookupPort
@@ -22,8 +28,10 @@ class RequestedTools:
         clock: ClockPort,
         place: PlaceLookupPort | None,
         windows: EvaluateWindowViews | None,
+        landmarks: LandmarkResolver | None = None,
     ) -> None:
         self._parsed, self._city, self._region = parsed, city, region
+        self._landmarks = landmarks
         self._uow, self._clock, self._place, self._windows = uow, clock, place, windows
 
     async def check(
@@ -73,8 +81,18 @@ class RequestedTools:
                 else {}
             )
         for spatial_request, target in targets:
+            ambiguous = False
+            if self._landmarks and spatial_bbox and spatial_request.kind == "landmark_view":
+                resolution = await self._landmarks(
+                    spatial_request,
+                    self._city,
+                    spatial_bbox,
+                    target if isinstance(target, NamedPlaceRecord) else None,
+                )
+                target, ambiguous = resolution.place, resolution.ambiguous
             if (
                 target is None
+                and not ambiguous
                 and spatial_request.kind not in {"city_center", "sea_view"}
                 and self._place is not None
                 and spatial_bbox is not None

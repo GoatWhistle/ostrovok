@@ -75,9 +75,50 @@ FROM ranked r JOIN candidates c ON c.id=r.id
 ORDER BY r.score DESC,canonical DESC,c.id LIMIT 2"""
 
 
+CANDIDATE_LOOKUP = """SELECT id,tags->>'name',ST_X(location),ST_Y(location),tags
+FROM pois WHERE location && ST_MakeEnvelope(%(west)s,%(south)s,%(east)s,%(north)s,4326)
+ AND tags ? 'name'
+ AND (%(target_key)s::text IS NULL OR (tags ? %(target_key)s AND
+   (cardinality(%(target_values)s::text[])=0 OR tags->>%(target_key)s=ANY(%(target_values)s::text[]))))
+ AND (%(target_key)s::text IS NOT NULL OR tags ?| ARRAY['historic','natural','waterway']
+   OR tags->>'tourism' IN ('attraction','museum') OR tags->>'amenity' IN ('place_of_worship','theatre'))
+ AND EXISTS (SELECT 1 FROM unnest(ARRAY[tags->>'name',tags->>'name:ru',tags->>'alt_name']) value
+   WHERE strpos(translate(lower(value),'ё','е'),%(fragment)s)>0)
+ORDER BY CASE WHEN id ~ '^[rw][0-9]+$' THEN 0 ELSE 1 END,
+ length(tags->>'name'),id LIMIT 16"""
+
+
 class PostgresNamedPlaceRepository:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
+
+    async def candidates(
+        self,
+        name: str,
+        bbox: tuple[float, float, float, float],
+        target_key: str | None = None,
+        target_values: Sequence[str] = (),
+    ) -> tuple[NamedPlaceRecord, ...]:
+        fragment = _fragment(name)
+        if len(fragment) < 3:
+            return ()
+        params = _params(bbox) | {
+            "fragment": fragment,
+            "target_key": target_key,
+            "target_values": list(target_values),
+        }
+        rows = await (await self._connection.execute(CANDIDATE_LOOKUP, params)).fetchall()
+        return tuple(
+            NamedPlaceRecord(
+                id=str(row[0]),
+                name=str(row[1]),
+                location=(float(str(row[2])), float(str(row[3]))),
+                tags={str(k): str(v) for k, v in row[4].items()}
+                if isinstance(row[4], dict)
+                else {},
+            )
+            for row in rows
+        )
 
     async def geographic_name(self, name: str) -> NamedPlaceRecord | None:
         rows = await (await self._connection.execute(GEOGRAPHIC_NAME, {"name": name})).fetchall()

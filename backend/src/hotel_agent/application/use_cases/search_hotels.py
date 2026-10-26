@@ -6,11 +6,12 @@ from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
 from hotel_agent.application.agent.requested_tools import RequestedTools
-from hotel_agent.application.agent.semantic_review import ReviewResult
+from hotel_agent.application.agent.semantic_review import ReviewResult, SemanticReview
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.exploration_requests import apply_exploration, exploration_terms
 from hotel_agent.application.facility_matching import facility_intent
+from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_intent
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -56,6 +57,7 @@ class SearchHotels:
         semantic: SemanticSearchPort | None = None,
         window_views: EvaluateWindowViews | None = None,
         review: RecommendationReview | None = None,
+        landmark_review: SemanticReview | None = None,
     ) -> None:
         self._llm = llm
         self._uow = uow
@@ -66,6 +68,7 @@ class SearchHotels:
         self._semantic = semantic
         self._window_views = window_views
         self._review = review
+        self._landmark_review = landmark_review
 
     async def __call__(
         self, query: str, region: str, bbox: tuple[float, float, float, float] | None, limit: int
@@ -114,6 +117,7 @@ class SearchHotels:
             self._clock,
             self._place_lookup,
             self._window_views,
+            LandmarkResolver(self._uow, self._landmark_review) if self._landmark_review else None,
         )
         terms = exploration_terms(parsed)
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
