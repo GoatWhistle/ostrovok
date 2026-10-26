@@ -5,7 +5,7 @@ import { renderBasemap } from "@/shared/geo/basemap"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
-import { lightMode, renderTerrain, type SunPosition } from "@/shared/geo/terrain"
+import { lightMode, renderTerrain, type SunPosition, scenePalette } from "@/shared/geo/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
@@ -103,8 +103,12 @@ export function useHotelMap({
     if (!ready || !map) return
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
-    const scene = tintForTime(colors, lightMode(sun.altitude))
+    const mode = lightMode(sun.altitude)
+    const scene = tintForTime(colors, mode)
     renderTerrain(map, scene, sun)
+    map
+      .getContainer()
+      .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
     renderBasemap(map, scene)
     const hasRoute = renderHighlights(map, highlightData, colors)
     setRoute(

@@ -5,7 +5,7 @@
   min-block-size: 0;
   block-size: 100%;
   overflow: clip;
-  background-color: var(--map-land);
+  background-color: var(--map-backdrop, var(--map-sea));
 }
 
 .canvas {
