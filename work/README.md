@@ -7,6 +7,7 @@ that owns each one. Scrubbed at submission.
 | Path | Written by | What |
 |---|---|---|
 | `per-wish-agent/` | agent loop implementation | Plan, verification and preserved session before per-wish search |
+| `stand-restart/` | stand integration | Pinned deployment, source hashes, live before/after smoke and preserved root snapshot |
 | `plan.md` | план работ | Задачи до готового MVP, критерии готовности, риски |
 | `naming.md` | `naming` | Name candidates, scores, finalists, taglines, name origin |
 | `brand/` | `brand-identity` | Logo gallery and the chosen mark's rationale |

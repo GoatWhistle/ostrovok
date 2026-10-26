@@ -110,13 +110,16 @@ Updated: 2026-10-26, Europe/Moscow
 
 - 2026-10-26, дословно: «валидируй ответ по смыслу».
 
+- 2026-10-26, дословно: «запусти опять на дипсике из яндекса». This later instruction supersedes the historical no-start instruction.
+
+- 2026-10-26, дословно: «перезапусти стенд».
+
 ## Current state
 
-- Isolated `/Users/savelij/projects/o-hack-window-views`, branch `feat/per-wish-agent-loop`, code 5b37603 (base e47c3f2). Implemented per-wish loops, web fallback and final semantic review; details and merge cautions: [plan](../work/per-wish-agent/plan.md).
-- Verified locally: 475 backend checks including 8 PostgreSQL integrations; 324 frontend tests, 36 rules, build. Twenty scripted wish cases test orchestration, not live-model quality. No paid calls or stand restart.
-- Original root `feat/hotel-agent-mvp` 8e229bc has separate uncommitted Claude/free-source work; preserve it. Claude must not run. Window goal remains incomplete; [prior session](../work/per-wish-agent/session-before.md).
+- `/Users/savelij/projects/o-hack-stand`, `fix/stand-agent-integration`, code `3abcbf7` after integration `0bb2ea1`. Main Compose :8080 runs pinned `agent-loop-stand-20261026b`, Yandex DeepSeek, free hotel-data mode. Original root source remains uncommitted and preserved.
+- New loop/reviewer verified in container by module hashes. Live quiet-Sochi chat:20 hotels/52.15s; chat reload/card/fact/scene200. Cold scene18.29s remains slow. 649 backend checks (11 integrations),324 frontend/36 rules passed. [Restart record and raw evidence](../work/stand-restart/README.md).
 
 ## Next actions and pitfalls
 
-- Merge with original root only after preserving its uncommitted work; unify catalog exceptions and keep the free-mode guard. Live-model tests await explicit launch authorization.
-- Protected instructions exceed SESSION target; retain verbatim.
+- Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
+- Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.

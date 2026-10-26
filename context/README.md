@@ -8,8 +8,8 @@ Factmap: поиск отелей по пожеланиям с объяснени
 
 | Topic | Status | Evidence |
 |---|---|---|
-| Цикл пожеланий, поиск номеров и смысловая проверка ответа | implemented, locally tested | [Механизм](../docs/wish-agent.md), [475 backend checks](../docs/evidence.md#смысловая-проверка-ответа-26-октября-2026) |
-| Основной стенд :8080 | previous verified version | [Прежние измерения](../docs/evidence.md); новый цикл не развёрнут, Claude не запускать |
+| Цикл пожеланий, поиск номеров и смысловая проверка ответа | implemented, locally tested | [Механизм](../docs/wish-agent.md), [649 backend checks](../docs/evidence.md#запуск-агентского-цикла-и-смысловой-проверки-26-октября-2026) |
+| Основной стенд :8080 | verified, 2026-10-26 | Новый цикл и проверка ответа; Yandex DeepSeek, `agent-loop-stand-20261026b`. [Запуск](../work/stand-restart/README.md) |
 | Данные и карта | previous verified state | [Полные прежние факты](../work/per-wish-agent/context-before.md) |
 
 [Документация](../docs/README.md), [рабочие материалы](../work/README.md),

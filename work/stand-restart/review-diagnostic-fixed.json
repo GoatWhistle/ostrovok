@@ -1,0 +1,64 @@
+{
+  "claim": {
+    "id": "n10118233110",
+    "answer": "{\"recommended_hotel_id\": \"n10118233110\", \"matches\": [{\"wish\": \"тихий отель\", \"quality\": \"partial\", \"explanation\": \"Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука\", \"guaranteed\": false}], \"all_conditions_verified\": false}",
+    "evidence": {
+      "hotel": {
+        "id": "n10118233110",
+        "name": "Swissotel Resort Сочи Камелия",
+        "region_id": "sochi",
+        "location": [
+          39.7566382,
+          43.5626775
+        ],
+        "address": null,
+        "stars": null,
+        "height_m": 22.4,
+        "levels": 7
+      },
+      "facts": [
+        {
+          "wish": "тихий отель",
+          "quality": "partial",
+          "fact": {
+            "id": "f_wish_4087cd925502_n10118233110",
+            "value": true,
+            "unit": null,
+            "qualifiers": {
+              "source_text": "тихий отель",
+              "native_characteristic_key": "noise_level",
+              "native_value": 3.8,
+              "native_unit": "score",
+              "native_op": "lte",
+              "native_threshold": 3,
+              "estimated_match": true,
+              "facade_azimuth": 227.8
+            },
+            "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука",
+            "source_type": "computed",
+            "source_id": null,
+            "method": "noise_level@1",
+            "confidence": 0.6,
+            "computed_at": "2026-10-25T00:05:40.513568+00:00",
+            "valid_until": "2027-04-23T00:05:40.513568+00:00"
+          }
+        }
+      ],
+      "unverified_wishes": [],
+      "stay": {
+        "check_in": null,
+        "check_out": null,
+        "adults": null,
+        "budget": null
+      }
+    }
+  },
+  "verdicts": [
+    {
+      "id": "n10118233110",
+      "supported": true,
+      "quote": "\"native_characteristic_key\": \"noise_level\", \"native_value\": 3.8, \"native_unit\": \"score\", \"native_op\": \"lte\", \"native_threshold\": 3",
+      "grounded": true
+    }
+  ]
+}

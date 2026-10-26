@@ -1,0 +1,82 @@
+{
+  "/": {
+    "status": 200,
+    "scripts": [
+      "/assets/index-BhRqcKIn.js",
+      "/assets/rolldown-runtime-CbXtAM7H.js",
+      "/assets/ui-CDnPvZ_a.js"
+    ]
+  },
+  "/api/v1/health": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "llm_provider": "openai_compat"
+    }
+  },
+  "chat": {
+    "status": 200,
+    "elapsed_s": 122.73,
+    "response": {
+      "id": "537c5fc2-a49c-4617-994b-127f8f2544d6",
+      "title": "Сочи: тихий отель, в Сочи",
+      "updated_at": "2026-10-26T13:09:26.146115Z",
+      "messages": [
+        {
+          "id": "6872b09f-6c5f-4d02-a1ff-a7ae56f45f9d",
+          "role": "user",
+          "content": "Нужен тихий отель в Сочи",
+          "created_at": "2026-10-26T13:09:26.146115Z"
+        },
+        {
+          "id": "4734b94a-4a0a-4547-867b-bb91f9abfd14",
+          "role": "assistant",
+          "content": "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+          "created_at": "2026-10-26T13:09:26.146115Z"
+        }
+      ],
+      "effective_query": "Нужен тихий отель в Сочи",
+      "search": {
+        "query_id": "e2069f706ca0d58d",
+        "parsed": {
+          "intents": [
+            {
+              "characteristic_key": "derived:4087cd925502",
+              "op": "eq",
+              "value": true,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "тихий отель"
+            },
+            {
+              "characteristic_key": "derived:3e72be5e7a7f",
+              "op": "eq",
+              "value": true,
+              "weight": 1.0,
+              "required": false,
+              "source_text": "в Сочи"
+            }
+          ],
+          "unmatched_terms": [],
+          "location_hint": "Сочи",
+          "anywhere": false,
+          "normalized_query": "Нужен тихий отель в Сочи",
+          "corrections": [],
+          "unsupported_region": null,
+          "needs_clarification": false,
+          "wants_room": true,
+          "room_preferences_unrestricted": false,
+          "budget": null,
+          "check_in": null,
+          "check_out": null,
+          "adults": null
+        },
+        "results": [],
+        "viewport": null,
+        "pending": [],
+        "next_cursor": null,
+        "took_ms": 0
+      }
+    }
+  }
+}
