@@ -96,14 +96,25 @@ Updated: 2026-10-26, Europe/Moscow
 
 - 2026-10-26, дословно: «напиши адаптер под llm антропиков».
 
+- 2026-10-26, дословно (ключ опущен): «пока что поставь клода как ллм, но не запускай». Ключ сохранён только в локальном `.env`; не запускать/не перезапускать стенд и не вызывать модель.
+
+- 2026-10-26, дословно: «твоя задача найти дополнительных провайдеров для иноформации по всем отелям, либо сопоставить по существующим. Уже есть апишка, надо как нибудь по адрессу обращаться и искать информацию у конкретного отеля. Либо найти другое/дополнительное апи, в котором будут все отели России».
+
+- 2026-10-26, дословно: «все должно быть бесплатно».
+
+- 2026-10-26, дословно: «поищи пока еще полезные источники, которые бы помогли в поиске отеля на любой запрос пользователя».
+
+- 2026-10-26, дословно: «Твоя задача сейчас сделать агентский цикл, на каждую хотелку пользователь агент должен ходить и вызывать инструменты до тех пор, пока либо не поймет, что ничего найти не может, либо не найдет. Он должен по смыслу сопоставить описание человеком его желание с данными из бд, эмбедингов, данных отеля из провайдера».
+
+- 2026-10-26, дословно: «еще если по апишке нет данных по отелю, то попытайся найти в интернете информацию по номерам этого отеля».
+
 ## Current state
 
-- View goal active, incomplete. Main `feat/hotel-agent-mvp` 8e229bc pushed/deployed :8080. Follow-up isolated in `/Users/savelij/projects/o-hack-window-views`, branch `fix/window-view-recommendations`, HEAD d16948d (base 8e229bc). Original root has concurrent Anthropic work; preserve it.
-- Two fixed 50-case main runs: round1 49HTTP200/26 initial audit (too weak, wrong Elbrus resort); round2 50HTTP200/36 strengthened audit. corrections2 fixed 9/14; 5 remain: Hermitage, Kul-Sharif>=10, Samara floor2, Onega, Nevyansk. Raw evidence and next investigations: `work/window-views/plan.md`.
-- Main gates 402 backend, 324 frontend/36 rules. Merged UI 8/8 functional checks, 2/8 newest captures inspected. Local follow-up: 404 backend gates passed; skips unchecked view candidates and retains partial-object rays without claiming whole view. Not main-tested/deployed.
+- Isolated `/Users/savelij/projects/o-hack-window-views`, branch `feat/per-wish-agent-loop`, code fa4fd16 (base e47c3f2). Implemented per-wish loops and provider-room web fallback; details and merge cautions: [plan](../work/per-wish-agent/plan.md).
+- Verified locally: 448 backend checks including 7 PostgreSQL integrations; 324 frontend tests, 36 rules, build. Twenty scripted wish cases test orchestration, not live-model quality. No paid calls or stand restart.
+- Original root `feat/hotel-agent-mvp` 8e229bc has separate uncommitted Claude/free-source work; preserve it. Claude must not run. Window goal remains incomplete; [prior session](../work/per-wish-agent/session-before.md).
 
 ## Next actions and pitfalls
 
-- Finish local follow-up gates/commit, resolve remaining source/city/floor cases, render 3D target/obstacles, merge safely, re-run all50 and UI. Do not mark goal complete yet.
-- Large-water candidate order uses centroid; inspect actual shape instead. OSM type guesses can be too strict; use real candidate tags. Wikidata often403. Incomplete heights/coverage stay unknown. No available-room promise.
-- Preserve protected instructions despite SESSION target overflow.
+- Merge with original root only after preserving its uncommitted work; unify catalog exceptions and keep the free-mode guard. Live-model tests await explicit launch authorization.
+- Protected instructions exceed SESSION target; retain verbatim.
