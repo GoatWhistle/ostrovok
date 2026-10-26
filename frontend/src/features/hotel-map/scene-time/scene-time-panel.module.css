@@ -57,15 +57,11 @@
 }
 
 .summary {
-  composes: captionText from "../../../shared/styles/compose.module.css";
+  composes: captionText truncateText from "../../../shared/styles/compose.module.css";
   flex: 1;
-  min-inline-size: 0;
-  overflow: hidden;
   color: var(--text-secondary);
   font-variant-numeric: var(--font-numeric);
   text-align: end;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .chevron {

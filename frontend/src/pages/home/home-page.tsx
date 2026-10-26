@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react"
+import { type CSSProperties, useState } from "react"
 import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
@@ -17,7 +17,11 @@ export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
-  useFreshStart(state.reset)
+  const [stay, setStay] = useState(false)
+  useFreshStart(() => {
+    setStay(false)
+    state.reset()
+  })
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const compareQuery = new URLSearchParams(state.compared.map((id) => ["hotel", id])).toString()
   const compareDock = usePresence(state.compared.length >= 2)
@@ -39,7 +43,7 @@ export function HomePage() {
     variable: "--chat-width",
   })
   const start =
-    state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
+    !stay && state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
   const send = (message: string) => void withViewTransition("layout", () => state.send(message))
   const sizes = {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
@@ -119,7 +123,10 @@ export function HomePage() {
             onRetry={state.retry}
             onShowOnMap={state.showOnMap}
             onShowList={() => state.setView("hotels")}
-            onReset={state.reset}
+            onReset={() => {
+              setStay(true)
+              state.reset()
+            }}
             onOpenConversation={state.openConversation}
           />
         </div>

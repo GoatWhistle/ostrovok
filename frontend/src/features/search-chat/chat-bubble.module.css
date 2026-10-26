@@ -7,15 +7,47 @@
 
 .userText {
   composes: bodySmText from "../../shared/styles/compose.module.css";
-  margin-inline-start: var(--chat-bubble-offset);
-  padding: var(--space-12) var(--space-16);
-  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-xs) var(--radius-lg);
+  position: relative;
+  margin-inline: var(--chat-bubble-offset) var(--space-8);
+  padding: var(--space-8) var(--space-12) var(--space-8) var(--space-16);
+  border-radius: var(--radius-lg);
   background-color: var(--action-primary);
   color: var(--action-primary-text);
   font-weight: var(--weight-medium);
   line-height: var(--line-height-body);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.userText::before,
+.userText::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  block-size: var(--space-20);
+}
+
+.userText::before {
+  inset-inline-end: calc(var(--space-6) * -1);
+  inline-size: var(--space-20);
+  border-end-start-radius: var(--radius-lg) var(--radius-md);
+  background-color: var(--action-primary);
+}
+
+.userText::after {
+  inset-inline-end: calc(var(--space-24) * -1);
+  inline-size: var(--space-24);
+  border-end-start-radius: var(--radius-md);
+  background-color: var(--surface-base);
+}
+
+.time {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  display: block;
+  margin-block-start: var(--space-2);
+  color: inherit;
+  text-align: end;
+  opacity: 0.72;
 }
 
 .agent {
@@ -43,4 +75,11 @@
   min-inline-size: 0;
   padding: var(--space-12) var(--space-16);
   border-end-start-radius: var(--radius-xs);
+}
+
+.agentTime {
+  composes: captionText from "../../shared/styles/compose.module.css";
+  justify-self: end;
+  margin-block-start: calc(var(--space-6) * -1);
+  color: var(--text-muted);
 }

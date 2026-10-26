@@ -1,40 +1,57 @@
-.history {
-  flex: none;
-  box-shadow: var(--shadow-divider-bottom);
-  transform-origin: top center;
-  transition: var(--transition-layer);
+.panel {
+  composes: popoverPanel from "../../shared/styles/compose.module.css";
+  gap: var(--space-4);
+  inline-size: var(--chat-history-width);
+  padding: var(--space-8);
 }
 
-.history[data-state="closed"] {
-  opacity: 0;
-  transform: translateY(calc(var(--shift-anchor) * -1));
-  transition-duration: var(--dur-exit);
+.panel[data-state="closed"] {
+  animation: var(--motion-scale-out);
 }
 
-@starting-style {
-  .history[data-state="open"] {
-    opacity: 0;
-    transform: translateY(calc(var(--shift-anchor) * -1));
-  }
+.caption {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+  padding: var(--space-4) var(--space-8);
+  color: var(--text-muted);
 }
 
 .scroll {
-  max-block-size: min(38vh, 20rem);
+  max-block-size: var(--chat-history-height);
 }
 
 .list {
+  composes: plainList from "../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-4);
-  margin: 0;
-  padding: var(--space-8);
-  list-style: none;
+  gap: var(--space-2);
 }
 
 .item {
   inline-size: 100%;
-  min-block-size: var(--control-height);
+}
+
+.item > :first-child {
+  justify-self: stretch;
+  inline-size: 100%;
+}
+
+.item > :first-child > :last-child {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.itemTitle {
+  composes: truncateText from "../../shared/styles/compose.module.css";
+  flex: 1;
 }
 
 .item[aria-current="true"] {
   background-color: var(--surface-wash);
+}
+
+.check {
+  flex: none;
+  color: var(--text-accent);
 }

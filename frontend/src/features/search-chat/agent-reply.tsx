@@ -15,14 +15,15 @@ function leading(results: readonly SearchResult[]): SearchResult | undefined {
 
 export interface AgentReplyProps {
   readonly content: string
+  readonly time?: string | undefined
   readonly search?: SearchResponse | undefined
   readonly onShowOnMap: (result: SearchResult | undefined) => void
   readonly onShowList: () => void
 }
 
-export function AgentReply({ content, search, onShowOnMap, onShowList }: AgentReplyProps) {
+export function AgentReply({ content, time, search, onShowOnMap, onShowList }: AgentReplyProps) {
   return (
-    <AgentBubble>
+    <AgentBubble time={time}>
       <p className={styles.text}>{content}</p>
       {search ? (
         <>

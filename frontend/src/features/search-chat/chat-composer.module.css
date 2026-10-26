@@ -6,11 +6,6 @@
   box-shadow: var(--shadow-divider-top);
 }
 
-.hint {
-  composes: captionText from "../../shared/styles/compose.module.css";
-  padding-inline: var(--space-8);
-}
-
 .context {
   justify-self: start;
   max-inline-size: 100%;

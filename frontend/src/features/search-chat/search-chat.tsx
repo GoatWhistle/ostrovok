@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
-import { useTranslation } from "@/shared/i18n"
+import { useFormatters, useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
 import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
 import { UserBubble } from "./chat-bubble"
@@ -65,7 +65,7 @@ export function SearchChat({
   onOpenConversation,
 }: SearchChatProps) {
   const { t } = useTranslation()
-  const [historyOpen, setHistoryOpen] = useState(false)
+  const format = useFormatters()
   const { log, list } = useFollow()
   const lastAssistant = messages.findLast((message) => message.role === "assistant")?.id
   return (
@@ -75,56 +75,37 @@ export function SearchChat({
           {t("explore:chat.title")}
         </p>
         <div className={styles.actions}>
+          <ChatHistory
+            activeId={conversationId}
+            conversations={history}
+            pending={sending}
+            onOpen={onOpenConversation}
+          />
           <Button
             variant="ghost"
             size="compact"
-            icon="history"
-            title={t("explore:chat.history")}
-            aria-expanded={historyOpen}
-            aria-controls="chat-history"
-            disabled={history.length === 0}
-            onClick={() => setHistoryOpen((open) => !open)}
-          >
-            {t("explore:chat.history")}
-          </Button>
-          <Button
-            variant="ghost"
-            size="compact"
-            iconOnly
             icon="new-search"
-            title={t("explore:chat.newSearch")}
             disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
-            onClick={() => {
-              onReset()
-              setHistoryOpen(false)
-            }}
+            onClick={onReset}
           >
             {t("explore:chat.newSearch")}
           </Button>
         </div>
       </header>
-      <ChatHistory
-        id="chat-history"
-        activeId={conversationId}
-        conversations={history}
-        hidden={!historyOpen}
-        pending={sending}
-        onOpen={(id) => {
-          onOpenConversation(id)
-          setHistoryOpen(false)
-        }}
-      />
       <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
         <ol ref={list} className={styles.messages}>
           {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
           {loading ? <AgentThinking /> : null}
           {messages.map((message) =>
             message.role === "user" ? (
-              <UserBubble key={message.id}>{message.content}</UserBubble>
+              <UserBubble key={message.id} time={format.time(message.created_at)}>
+                {message.content}
+              </UserBubble>
             ) : (
               <AgentReply
                 key={message.id}
                 content={message.content}
+                time={format.time(message.created_at)}
                 search={message.id === lastAssistant ? search : undefined}
                 onShowOnMap={onShowOnMap}
                 onShowList={onShowList}
