@@ -29,6 +29,10 @@ def parse_query_schema(registry: Sequence[Characteristic]) -> dict[str, Any]:
             },
             "wishes": {"type": "array", "items": {"type": "string"}},
             "unmatched_terms": {"type": "array", "items": {"type": "string"}},
+            "location_source_text": {
+                "type": ["string", "null"],
+                "description": "Exact query fragment specifying only the city or region (optionally with generic hotel/room words). Exclude centre, proximity, view, named view targets and other hotel preferences. Null when location is inferred from a landmark.",
+            },
             "location_hint": {"type": ["string", "null"]},
             "anywhere": {"type": "boolean"},
             "normalized_query": {"type": "string"},

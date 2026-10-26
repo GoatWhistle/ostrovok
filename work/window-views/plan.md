@@ -176,3 +176,13 @@ Harness corrections: cancelled runs cannot pass; derived wish keys now inspected
 provenance method instead of filtering only spatial: keys (agent relabels native facts).
 The currently running ready replay loaded the old key filter; re-audit its saved responses
 without extra model calls before interpreting its geometric-evidence verdict.
+
+## Location-only wish regression
+
+Ready replay Isaac still exceeded180s: logs show native view matched in one tool, then
+11 extra steps researching «отель в Санкт-Петербурге». Schema now asks the model for
+location_source_text; exact matches are removed from free wishes only when location_hint
+exists. Two parser regressions cover dropping city-only and preserving location-unknown
+wishes; centre and view remain.637 unit tests/Ruff/mypy pass. Not deployed at this checkpoint.
+Samara native evidence remains unresolved and agent is researching additional sources;
+current live run session77112 must be polled before restarting.

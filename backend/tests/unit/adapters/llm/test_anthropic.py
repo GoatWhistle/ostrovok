@@ -26,6 +26,7 @@ def parsed_answer(weight: float = 0.8) -> dict[str, Any]:
         ],
         "unmatched_terms": [],
         "location_hint": "Сочи",
+        "location_source_text": "отель в Сочи",
         "anywhere": False,
         "normalized_query": "тихий отель в Сочи",
         "needs_clarification": False,

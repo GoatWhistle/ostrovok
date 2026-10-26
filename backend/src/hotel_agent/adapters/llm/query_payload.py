@@ -167,14 +167,28 @@ def parse_payload(
         else:
             valid_raw.append(raw)
     intents = tuple(intent for raw in valid_raw if (intent := parse_intent(raw, query)) is not None)
+    location_source = optional_text(payload, "location_source_text")
+    location_fragment = (
+        normalize(location_source)
+        if location_source
+        and optional_text(payload, "location_hint")
+        and normalize(location_source) in normalize(query)
+        else None
+    )
     return ParsedQuery(
         wishes=tuple(
             item.strip()
             for item in strings(payload, "wishes")
-            if item.strip() and normalize(item) in normalize(query)
+            if item.strip()
+            and normalize(item) in normalize(query)
+            and normalize(item) != location_fragment
         ),
         intents=intents,
-        unmatched_terms=tuple(dict.fromkeys((*strings(payload, "unmatched_terms"), *unit_terms))),
+        unmatched_terms=tuple(
+            item
+            for item in dict.fromkeys((*strings(payload, "unmatched_terms"), *unit_terms))
+            if normalize(item) != location_fragment
+        ),
         location_hint=optional_text(payload, "location_hint"),
         anywhere=flag(payload, "anywhere"),
         nearby_objects=tuple(
