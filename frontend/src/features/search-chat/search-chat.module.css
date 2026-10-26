@@ -16,8 +16,26 @@
   box-shadow: var(--shadow-divider-bottom);
 }
 
+.back {
+  flex: none;
+  margin-inline-start: calc(var(--space-8) * -1);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+.body[hidden] {
+  display: none;
+}
+
 .title {
   composes: subheadingText from "../../shared/styles/compose.module.css";
+  flex: 1;
+  min-inline-size: 0;
 }
 
 .actions {

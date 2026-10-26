@@ -81,6 +81,45 @@
   padding-block-start: var(--space-4);
 }
 
+.recent {
+  display: grid;
+  gap: var(--space-4);
+  inline-size: 100%;
+  padding-block-start: var(--space-12);
+  box-shadow: var(--shadow-divider-top);
+}
+
+.recentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.recentTitle {
+  composes: captionStrong from "../../shared/styles/compose.module.css";
+  color: var(--text-muted);
+}
+
+.recentList {
+  composes: plainList from "../../shared/styles/compose.module.css";
+  display: grid;
+}
+
+.recentItem {
+  inline-size: 100%;
+}
+
+.recentItem > :first-child {
+  justify-self: stretch;
+  min-inline-size: 0;
+}
+
+.recentLabel {
+  composes: truncateText from "../../shared/styles/compose.module.css";
+  display: block;
+}
+
 @media (max-width: 47.99rem) {
   .card {
     gap: var(--space-12);

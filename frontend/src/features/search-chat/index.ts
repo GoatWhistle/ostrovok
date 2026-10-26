@@ -1,2 +1,7 @@
 export { ChatStart, type ChatStartProps } from "./chat-start"
-export { type ChatMessage, SearchChat, type SearchChatProps } from "./search-chat"
+export {
+  type ChatMessage,
+  type ChatView,
+  SearchChat,
+  type SearchChatProps,
+} from "./search-chat"

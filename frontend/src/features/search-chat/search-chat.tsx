@@ -7,16 +7,18 @@ import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
 import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
-import { ChatHistory } from "./chat-history"
+import { ChatHistory, type HistoryEntry } from "./chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
 
 export type ChatMessage = components["schemas"]["ChatMessage"]
+export type ChatView = "chat" | "history"
 
 export interface SearchChatProps {
   readonly messages: readonly ChatMessage[]
   readonly conversationId: string | null
-  readonly history: readonly { readonly id: string; readonly title: string }[]
+  readonly history: readonly HistoryEntry[]
+  readonly view: ChatView
   readonly search: SearchResponse | undefined
   readonly outgoing: string | undefined
   readonly selectedHotel?: string | undefined
@@ -29,6 +31,9 @@ export interface SearchChatProps {
   readonly onShowList: () => void
   readonly onReset: () => void
   readonly onOpenConversation: (id: string) => void
+  readonly onView: (view: ChatView) => void
+  readonly onRename: (id: string, title: string) => Promise<unknown>
+  readonly onDelete: (id: string) => Promise<unknown>
 }
 
 function useFollow() {
@@ -63,6 +68,10 @@ export function SearchChat({
   onShowList,
   onReset,
   onOpenConversation,
+  view,
+  onView,
+  onRename,
+  onDelete,
 }: SearchChatProps) {
   const { t } = useTranslation()
   const format = useFormatters()
@@ -71,58 +80,95 @@ export function SearchChat({
   return (
     <section className={styles.chat} aria-labelledby="chat-title">
       <header className={styles.header}>
+        {view === "history" ? (
+          <Button
+            variant="ghost"
+            size="compact"
+            icon="chevron-left"
+            className={styles.back}
+            onClick={() => onView("chat")}
+          >
+            {t("explore:chat.backToChat")}
+          </Button>
+        ) : null}
         <p id="chat-title" className={styles.title}>
-          {t("explore:chat.title")}
+          {view === "history" ? t("explore:chat.historyShort") : t("explore:chat.title")}
         </p>
         <div className={styles.actions}>
-          <ChatHistory
-            activeId={conversationId}
-            conversations={history}
-            pending={sending}
-            onOpen={onOpenConversation}
-          />
+          {view === "chat" ? (
+            <Button
+              variant="ghost"
+              size="compact"
+              icon="history"
+              disabled={history.length === 0}
+              onClick={() => onView("history")}
+            >
+              {t("explore:chat.historyShort")}
+            </Button>
+          ) : null}
           <Button
             variant="ghost"
             size="compact"
             icon="new-search"
-            disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
-            onClick={onReset}
+            disabled={
+              sending ||
+              (view === "chat" && conversationId === null && messages.length === 0 && !outgoing)
+            }
+            onClick={() => {
+              onView("chat")
+              onReset()
+            }}
           >
             {t("explore:chat.newSearch")}
           </Button>
         </div>
       </header>
-      <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
-        <ol ref={list} className={styles.messages}>
-          {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
-          {loading ? <AgentThinking /> : null}
-          {messages.map((message) =>
-            message.role === "user" ? (
-              <UserBubble key={message.id} time={format.time(message.created_at)}>
-                {message.content}
-              </UserBubble>
-            ) : (
-              <AgentReply
-                key={message.id}
-                content={message.content}
-                time={format.time(message.created_at)}
-                search={message.id === lastAssistant ? search : undefined}
-                onShowOnMap={onShowOnMap}
-                onShowList={onShowList}
-              />
-            ),
-          )}
-          {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
-          {sending ? <AgentThinking /> : null}
-          {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
-        </ol>
-      </ScrollArea>
-      <ChatComposer
-        key={conversationId ?? "new"}
-        pending={sending}
-        selectedHotel={selectedHotel}
-        onSend={onSend}
-      />
+      {view === "history" ? (
+        <ChatHistory
+          activeId={conversationId}
+          conversations={history}
+          pending={sending}
+          onOpen={(id) => {
+            onOpenConversation(id)
+            onView("chat")
+          }}
+          onRename={onRename}
+          onDelete={onDelete}
+        />
+      ) : null}
+      <div className={styles.body} hidden={view === "history"}>
+        <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
+          <ol ref={list} className={styles.messages}>
+            {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
+            {loading ? <AgentThinking /> : null}
+            {messages.map((message) =>
+              message.role === "user" ? (
+                <UserBubble key={message.id} time={format.time(message.created_at)}>
+                  {message.content}
+                </UserBubble>
+              ) : (
+                <AgentReply
+                  key={message.id}
+                  content={message.content}
+                  time={format.time(message.created_at)}
+                  search={message.id === lastAssistant ? search : undefined}
+                  onShowOnMap={onShowOnMap}
+                  onShowList={onShowList}
+                />
+              ),
+            )}
+            {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
+            {sending ? <AgentThinking /> : null}
+            {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
+          </ol>
+        </ScrollArea>
+        <ChatComposer
+          key={conversationId ?? "new"}
+          pending={sending}
+          selectedHotel={selectedHotel}
+          onSend={onSend}
+        />
+      </div>
     </section>
   )
 }

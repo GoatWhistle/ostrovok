@@ -1,90 +1,91 @@
-import { useEffect, useId, useRef, useState } from "react"
-import { useTranslation } from "@/shared/i18n"
-import { usePresence } from "@/shared/motion"
-import { Button, Icon, ScrollArea } from "@/shared/ui"
+import { useState } from "react"
+import { useFormatters, useTranslation } from "@/shared/i18n"
+import { EmptyState, ScrollArea, TextField } from "@/shared/ui"
 import styles from "./chat-history.module.css"
+import { HistoryRow } from "./history-row"
+
+export interface HistoryEntry {
+  readonly id: string
+  readonly title: string
+  readonly updatedAt?: string
+}
 
 export interface ChatHistoryProps {
   readonly activeId: string | null
-  readonly conversations: readonly { readonly id: string; readonly title: string }[]
+  readonly conversations: readonly HistoryEntry[]
   readonly pending: boolean
   readonly onOpen: (id: string) => void
+  readonly onRename: (id: string, title: string) => Promise<unknown>
+  readonly onDelete: (id: string) => Promise<unknown>
 }
 
-export function ChatHistory({ activeId, conversations, pending, onOpen }: ChatHistoryProps) {
+function isToday(value: string) {
+  return new Date(value).toDateString() === new Date().toDateString()
+}
+
+export function ChatHistory({
+  activeId,
+  conversations,
+  pending,
+  onOpen,
+  onRename,
+  onDelete,
+}: ChatHistoryProps) {
   const { t } = useTranslation()
-  const id = useId()
-  const root = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(false)
-  const presence = usePresence(open)
-  useEffect(() => {
-    if (!open) return
-    const close = (event: PointerEvent) => {
-      if (!root.current?.contains(event.target as Node)) setOpen(false)
-    }
-    const dismiss = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false)
-    }
-    document.addEventListener("pointerdown", close)
-    document.addEventListener("keydown", dismiss)
-    return () => {
-      document.removeEventListener("pointerdown", close)
-      document.removeEventListener("keydown", dismiss)
-    }
-  }, [open])
+  const format = useFormatters()
+  const [query, setQuery] = useState("")
+  const needle = query.trim().toLocaleLowerCase()
+  const visible = needle
+    ? conversations.filter((item) => item.title.toLocaleLowerCase().includes(needle))
+    : conversations
+  if (conversations.length === 0)
+    return (
+      <div className={styles.empty}>
+        <EmptyState
+          icon="history"
+          title={t("explore:chat.historyEmpty")}
+          description={t("explore:chat.historyEmptyText")}
+        />
+      </div>
+    )
   return (
-    <div ref={root}>
-      <Button
-        variant="ghost"
-        size="compact"
-        iconOnly
-        icon="history"
-        title={t("explore:chat.history")}
-        aria-expanded={open}
-        aria-controls={id}
-        disabled={conversations.length === 0}
-        onClick={() => setOpen((current) => !current)}
-      >
-        {t("explore:chat.history")}
-      </Button>
-      {presence.mounted ? (
-        <nav
-          id={id}
-          className={styles.panel}
-          aria-label={t("explore:chat.history")}
-          data-state={presence.state}
-          onAnimationEnd={presence.onAnimationEnd}
-        >
-          <p className={styles.caption}>{t("explore:chat.history")}</p>
-          <ScrollArea className={styles.scroll}>
-            <ul className={styles.list}>
-              {conversations.map((conversation) => {
-                const current = conversation.id === activeId
-                return (
-                  <li key={conversation.id}>
-                    <Button
-                      variant="ghost"
-                      align="start"
-                      className={styles.item}
-                      aria-current={current ? "true" : undefined}
-                      disabled={pending}
-                      onClick={() => {
-                        onOpen(conversation.id)
-                        setOpen(false)
-                      }}
-                    >
-                      <span className={styles.itemTitle}>
-                        {conversation.title || t("explore:chat.untitled")}
-                      </span>
-                      {current ? <Icon name="check" size="sm" className={styles.check} /> : null}
-                    </Button>
-                  </li>
-                )
-              })}
-            </ul>
-          </ScrollArea>
-        </nav>
-      ) : null}
+    <div className={styles.history}>
+      <div className={styles.search}>
+        <TextField
+          label={t("explore:chat.searchHistory")}
+          labelHidden
+          type="search"
+          placeholder={t("explore:chat.searchHistory")}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+      </div>
+      <ScrollArea className={styles.scroll} aria-label={t("explore:chat.history")}>
+        {visible.length ? (
+          <ul className={styles.list}>
+            {visible.map((item) => (
+              <HistoryRow
+                key={item.id}
+                title={item.title || t("explore:chat.untitled")}
+                date={
+                  item.updatedAt
+                    ? isToday(item.updatedAt)
+                      ? format.time(item.updatedAt)
+                      : format.date(item.updatedAt)
+                    : undefined
+                }
+                current={item.id === activeId}
+                pending={pending}
+                onOpen={() => onOpen(item.id)}
+                onRename={(title) => onRename(item.id, title)}
+                onDelete={() => onDelete(item.id)}
+              />
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.noMatches}>{t("explore:chat.noMatches")}</p>
+        )}
+      </ScrollArea>
     </div>
   )
 }

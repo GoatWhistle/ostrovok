@@ -3,7 +3,7 @@ import { FactDetails } from "@/features/fact-details"
 import { HotelDetails } from "@/features/hotel-details"
 import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import { SearchChat } from "@/features/search-chat"
+import { type ChatView, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
 import { useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
@@ -18,6 +18,7 @@ export function HomePage() {
   useDocumentTitle(null)
   const state = useHotelWorkspace()
   const [stay, setStay] = useState(false)
+  const [chatView, setChatView] = useState<ChatView>("chat")
   useFreshStart(() => {
     setStay(false)
     state.reset()
@@ -49,7 +50,23 @@ export function HomePage() {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
     ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
   } as CSSProperties
-  if (start) return <Landing pending={state.sending} onSend={send} />
+  if (start)
+    return (
+      <Landing
+        pending={state.sending}
+        recent={state.history}
+        onSend={send}
+        onOpen={(id) => {
+          setStay(true)
+          setChatView("chat")
+          state.openConversation(id)
+        }}
+        onHistory={() => {
+          setStay(true)
+          setChatView("history")
+        }}
+      />
+    )
   return (
     <div className={styles.page}>
       <div className={styles.tabs}>
@@ -128,6 +145,10 @@ export function HomePage() {
               state.reset()
             }}
             onOpenConversation={state.openConversation}
+            view={chatView}
+            onView={setChatView}
+            onRename={state.renameConversation}
+            onDelete={state.deleteConversation}
           />
         </div>
       </div>

@@ -5,10 +5,13 @@ import { LandingSettings } from "./landing-settings"
 
 export interface LandingProps {
   readonly pending: boolean
+  readonly recent: readonly { readonly id: string; readonly title: string }[]
   readonly onSend: (message: string) => void
+  readonly onOpen: (id: string) => void
+  readonly onHistory: () => void
 }
 
-export function Landing({ pending, onSend }: LandingProps) {
+export function Landing({ pending, recent, onSend, onOpen, onHistory }: LandingProps) {
   return (
     <div className={styles.landing} data-chrome="bare">
       <div className={styles.corner}>
@@ -16,7 +19,13 @@ export function Landing({ pending, onSend }: LandingProps) {
       </div>
       <div className={styles.stage}>
         <div className={styles.copy}>
-          <ChatStart pending={pending} onSend={onSend} />
+          <ChatStart
+            pending={pending}
+            recent={recent}
+            onSend={onSend}
+            onOpen={onOpen}
+            onHistory={onHistory}
+          />
         </div>
         <div className={styles.visual}>
           <SceneReel />
