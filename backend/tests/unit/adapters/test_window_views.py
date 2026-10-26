@@ -192,3 +192,20 @@ async def test_whole_object_request_still_computes_partial_evidence_without_prom
         ).quality
         is MatchQuality.UNKNOWN
     )
+
+
+@pytest.mark.parametrize("height, expected", [("1", True), ("1500", False), (None, None)])
+async def test_long_view_loads_entire_corridor_without_exhausting_cell_budget(
+    height: str | None, expected: bool | None
+) -> None:
+    geometry = Geometry(blocker_height=height)
+    geometry.target = PhysicalObject(
+        "n20",
+        {"name": "Дальний ориентир", "height": "1000"},
+        {"type": "Point", "coordinates": [39.9, 43]},
+        "test:distant",
+    )
+    result = await compute(replace(request(15), radius_m=100000), geometry)
+    visibility = result.facts[0].qualifiers["visibility"]
+    assert visibility["complete_coverage"] is True
+    assert result.facts[0].value is expected

@@ -14,7 +14,7 @@ from hotel_agent.application.ports.window_views import WindowRay
 from hotel_agent.domain.visibility import ElevationRange, RayObstacle
 
 GEOD = Geod(ellps="WGS84")
-CELL_DEGREES = 0.005
+CELL_SIZES = (0.005, 0.01, 0.02, 0.03)
 
 
 @dataclass(frozen=True, slots=True)
@@ -27,6 +27,8 @@ class SceneSamples:
 
 def corridor_cells(ray: WindowRay) -> tuple[tuple[float, float, float, float], ...]:
     start, end = ray.observer.location, ray.target_location
+    span = abs(end[0] - start[0]) + abs(end[1] - start[1])
+    cell_size = next((size for size in CELL_SIZES if span / size <= 48), CELL_SIZES[-1])
     _, _, length = GEOD.inv(*start, *end)
     points = [start, *GEOD.npts(*start, *end, max(1, ceil(length / 150))), end]
     cells = set()
@@ -35,14 +37,14 @@ def corridor_cells(ray: WindowRay) -> tuple[tuple[float, float, float, float], .
         dx, dy = 40 / (111200 * max(cos(radians(lat)), 0.1)), 40 / 111200
         west, east = min(first[0], second[0]) - dx, max(first[0], second[0]) + dx
         south, north = min(first[1], second[1]) - dy, max(first[1], second[1]) + dy
-        for x in range(floor(west / CELL_DEGREES), floor(east / CELL_DEGREES) + 1):
-            for y in range(floor(south / CELL_DEGREES), floor(north / CELL_DEGREES) + 1):
+        for x in range(floor(west / cell_size), floor(east / cell_size) + 1):
+            for y in range(floor(south / cell_size), floor(north / cell_size) + 1):
                 cells.add(
                     (
-                        x * CELL_DEGREES,
-                        y * CELL_DEGREES,
-                        (x + 1) * CELL_DEGREES,
-                        (y + 1) * CELL_DEGREES,
+                        x * cell_size,
+                        y * cell_size,
+                        (x + 1) * cell_size,
+                        (y + 1) * cell_size,
                     )
                 )
     return tuple(sorted(cells))
