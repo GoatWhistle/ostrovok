@@ -11,10 +11,11 @@ import { motionMs } from "@/shared/motion"
 import { ErrorState, MapAttribution } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
+import { MapFocus } from "./map-focus"
 import { MapLegendToggle } from "./map-legend"
 import { MapPin } from "./map-pin"
 import { MapScale } from "./map-scale"
-import { MapFocus, MapStatus, mapNotes } from "./map-status"
+import { MapStatus, mapNotes } from "./map-status"
 import { regionOverview, resultCorners, sceneData, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
@@ -188,6 +189,8 @@ export function HotelMap({
         <MapFocus
           label={focus.label}
           explanation={focus.explanation}
+          fact={focusedFact}
+          property={focusProperty}
           route={hasLine(focusFeatures)}
         />
         {geometry.isError ? (

@@ -1,6 +1,6 @@
 import { type MessageKey, useTranslation } from "@/shared/i18n"
-import { useLatched, usePresence } from "@/shared/motion"
-import { EmptyState, ErrorState, Icon, JourneyLoader } from "@/shared/ui"
+import { usePresence } from "@/shared/motion"
+import { EmptyState, ErrorState, JourneyLoader } from "@/shared/ui"
 import styles from "./hotel-map.module.css"
 import type { HotelTextureStatus } from "./texture/use-textured-hotel"
 
@@ -75,40 +75,4 @@ export function mapNotes(
   if (invalid) notes.push("explore:map.geodataInvalid")
   else if (missingHeight) notes.push("explore:map.noHeight")
   return notes
-}
-
-export interface MapFocusProps {
-  readonly label: string | undefined
-  readonly explanation: string | undefined
-  readonly route: boolean
-}
-
-export function MapFocus({ label, explanation, route }: MapFocusProps) {
-  const open = label !== undefined
-  const presence = usePresence(open)
-  const content = {
-    label: useLatched(label, open),
-    explanation: useLatched(explanation, open),
-    route: useLatched(route, open),
-  }
-  if (!presence.mounted || !content.label) return null
-  return (
-    <div
-      className={styles.focus}
-      role="status"
-      data-state={presence.state}
-      data-route={content.route}
-      onAnimationEnd={presence.onAnimationEnd}
-    >
-      <span className={styles.focusIcon} aria-hidden="true">
-        <Icon name={content.route ? "walk" : "map"} size="sm" />
-      </span>
-      <span className={styles.focusText}>
-        <strong className={styles.focusTitle}>{content.label}</strong>
-        {content.explanation ? (
-          <span className={styles.focusNote}>{content.explanation}</span>
-        ) : null}
-      </span>
-    </div>
-  )
 }

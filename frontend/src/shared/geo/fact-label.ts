@@ -17,6 +17,14 @@ function noiseLabel(value: unknown, locale: Locale): string {
   return i18n.t("explore:facts.noiseLoud", { lng: locale })
 }
 
+export function matchedValue(fact: FactBrief | undefined, locale: Locale): string {
+  const value = number(fact?.value, locale)
+  if (fact?.characteristic_key === "distance_to_sea" && value !== null)
+    return i18n.t("explore:map.walkShort", { value, lng: locale })
+  if (fact?.characteristic_key.startsWith("nearby:") && value !== null) return value
+  return i18n.t("explore:map.focusDetails", { lng: locale })
+}
+
 export function factLabel(fact: FactBrief, locale: Locale): string {
   const value = number(fact.value, locale)
   if (fact.characteristic_key === "building_height" && value)
