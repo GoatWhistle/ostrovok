@@ -42,16 +42,6 @@
   --button-height: var(--space-48);
 }
 
-.pin[data-kind="cluster"]::after {
-  content: "";
-  position: absolute;
-  inset: var(--space-4) calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) var(--space-6);
-  z-index: var(--layer-behind);
-  border-radius: var(--radius-pill);
-  border: var(--focus-ring-width) solid var(--action-primary-text);
-  background-color: var(--map-hotel-selected);
-}
-
 .pin[data-state="nodata"] {
   --button-height: var(--space-12);
   --button-padding: 0;
