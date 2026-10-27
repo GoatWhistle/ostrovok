@@ -1,0 +1,861 @@
+{
+  "query_id": "bbd5ace46abba145",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:f21dabc2dc9a",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с видом на Золотой мост"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Во Владивостоке нужен номер с видом на Золотой мост",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n11572398348",
+        "name": "Elements Apart",
+        "location": [
+          131.8938249,
+          43.1026436
+        ],
+        "building_id": "w747461223",
+        "levels": 23,
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:f21dabc2dc9a",
+          "match": "partial",
+          "label": "номер с видом на Золотой мост",
+          "explanation": "Линия обзора свободна в расчётной модели: «Золотой мост», 125 м, этаж 1, направление окон 100°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_f21dabc2dc9a_n11572398348",
+            "characteristic_key": "derived:f21dabc2dc9a",
+            "value": true,
+            "label": "номер с видом на Золотой мост",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n11572398348_93623b4e3807_ray",
+              "g_window_n11572398348_93623b4e3807_target",
+              "g_window_n11572398348_93623b4e3807_observer"
+            ],
+            "subject": "facade:n11572398348:100",
+            "qualifiers": {
+              "source_text": "номер с видом на Золотой мост",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "w100936933",
+                "target_part_id": "w100936933",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_part_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_name": "Золотой мост",
+                "target_location": [
+                  131.8950966,
+                  43.1019825
+                ],
+                "observer_location": [
+                  131.89372122340228,
+                  43.10248090512891
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": 34.825,
+                  "maximum_m": 39.425
+                },
+                "target_elevation_m": {
+                  "minimum_m": 106.125,
+                  "maximum_m": 110.125
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 100.11,
+                "distance_m": 124.9,
+                "minimum_clearance_m": 18.71974811794162,
+                "required_observer_elevation_m": 3.958753136763976,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [],
+                "sources": [
+                  "https://www.openstreetmap.org/way/100936933",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "osm:building:levels",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 49.96265199223844,
+                    "elevation": {
+                      "minimum_m": 42.625,
+                      "maximum_m": 44.625
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 74.94397798835766,
+                    "elevation": {
+                      "minimum_m": 43.625,
+                      "maximum_m": 45.625
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:93623b4e3807",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 100.11
+            }
+          },
+          "geo_refs": [
+            "g_window_n11572398348_93623b4e3807_ray",
+            "g_window_n11572398348_93623b4e3807_target",
+            "g_window_n11572398348_93623b4e3807_observer"
+          ],
+          "camera": {
+            "center": [
+              131.8938249,
+              43.1026436
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 280.0,
+            "focus_facade_id": "window_n11572398348_93623b4e3807_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8938249,
+          43.1026436
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 280.0,
+        "focus_facade_id": "window_n11572398348_93623b4e3807_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w747461223",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.893588,
+                  43.1024907
+                ],
+                [
+                  131.8937164,
+                  43.1024739
+                ],
+                [
+                  131.8937236,
+                  43.1025035
+                ],
+                [
+                  131.8937799,
+                  43.1024962
+                ],
+                [
+                  131.8937879,
+                  43.1025288
+                ],
+                [
+                  131.8938877,
+                  43.1025158
+                ],
+                [
+                  131.8939015,
+                  43.1025722
+                ],
+                [
+                  131.8938635,
+                  43.1025771
+                ],
+                [
+                  131.8938668,
+                  43.1025906
+                ],
+                [
+                  131.893852,
+                  43.1025926
+                ],
+                [
+                  131.8938722,
+                  43.1026752
+                ],
+                [
+                  131.8937735,
+                  43.1026881
+                ],
+                [
+                  131.8937657,
+                  43.1026563
+                ],
+                [
+                  131.8937439,
+                  43.1026591
+                ],
+                [
+                  131.8937395,
+                  43.1026411
+                ],
+                [
+                  131.893709,
+                  43.1026451
+                ],
+                [
+                  131.893704,
+                  43.102625
+                ],
+                [
+                  131.8936818,
+                  43.1026279
+                ],
+                [
+                  131.8936743,
+                  43.1025973
+                ],
+                [
+                  131.8936421,
+                  43.1026015
+                ],
+                [
+                  131.8936285,
+                  43.102546
+                ],
+                [
+                  131.8936023,
+                  43.1025494
+                ],
+                [
+                  131.893588,
+                  43.1024907
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w747461223",
+          "hotel_id": "n11572398348",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 23,
+          "height_fact_id": "f_height_n11572398348"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n12254628703",
+        "name": "Золотой Мост",
+        "location": [
+          131.8979985,
+          43.1027611
+        ],
+        "building_id": "w376356348",
+        "levels": 2,
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:f21dabc2dc9a",
+          "match": "partial",
+          "label": "номер с видом на Золотой мост",
+          "explanation": "Линия обзора свободна в расчётной модели: «Золотой мост», 75 м, этаж 1, направление окон 237°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_f21dabc2dc9a_n12254628703",
+            "characteristic_key": "derived:f21dabc2dc9a",
+            "value": true,
+            "label": "номер с видом на Золотой мост",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n12254628703_93623b4e3807_ray",
+              "g_window_n12254628703_93623b4e3807_target",
+              "g_window_n12254628703_93623b4e3807_observer"
+            ],
+            "subject": "facade:n12254628703:237",
+            "qualifiers": {
+              "source_text": "номер с видом на Золотой мост",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "w100936933",
+                "target_part_id": "w100936933",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_part_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_name": "Золотой мост",
+                "target_location": [
+                  131.8976591,
+                  43.1021126
+                ],
+                "observer_location": [
+                  131.89797858989522,
+                  43.10274431017049
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": 32.575,
+                  "maximum_m": 37.175
+                },
+                "target_elevation_m": {
+                  "minimum_m": 106.875,
+                  "maximum_m": 110.875
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 237.33,
+                "distance_m": 74.8,
+                "minimum_clearance_m": null,
+                "required_observer_elevation_m": null,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [],
+                "sources": [
+                  "https://www.openstreetmap.org/way/100936933",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "osm:building:levels",
+                "profile": [],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:93623b4e3807",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 237.33
+            }
+          },
+          "geo_refs": [
+            "g_window_n12254628703_93623b4e3807_ray",
+            "g_window_n12254628703_93623b4e3807_target",
+            "g_window_n12254628703_93623b4e3807_observer"
+          ],
+          "camera": {
+            "center": [
+              131.8979985,
+              43.1027611
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 57.0,
+            "focus_facade_id": "window_n12254628703_93623b4e3807_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8979985,
+          43.1027611
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 57.0,
+        "focus_facade_id": "window_n12254628703_93623b4e3807_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w376356348",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8978123,
+                  43.1029573
+                ],
+                [
+                  131.8979571,
+                  43.1027919
+                ],
+                [
+                  131.8979454,
+                  43.1027864
+                ],
+                [
+                  131.8979931,
+                  43.1027319
+                ],
+                [
+                  131.8980606,
+                  43.1027635
+                ],
+                [
+                  131.8980171,
+                  43.1028132
+                ],
+                [
+                  131.898089,
+                  43.1028467
+                ],
+                [
+                  131.8980575,
+                  43.1028827
+                ],
+                [
+                  131.8979506,
+                  43.1030047
+                ],
+                [
+                  131.897867,
+                  43.1029657
+                ],
+                [
+                  131.8978564,
+                  43.1029779
+                ],
+                [
+                  131.8978123,
+                  43.1029573
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w376356348",
+          "hotel_id": "n12254628703",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 2,
+          "height_fact_id": "f_height_n12254628703"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n1297077125",
+        "name": "Меридиан",
+        "location": [
+          131.8992546,
+          43.1015132
+        ],
+        "stars": 3,
+        "building_id": "w35334418",
+        "levels": 9,
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:f21dabc2dc9a",
+          "match": "partial",
+          "label": "номер с видом на Золотой мост",
+          "explanation": "Линия обзора свободна в расчётной модели: «Золотой мост», 113 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_f21dabc2dc9a_n1297077125",
+            "characteristic_key": "derived:f21dabc2dc9a",
+            "value": true,
+            "label": "номер с видом на Золотой мост",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n1297077125_93623b4e3807_ray",
+              "g_window_n1297077125_93623b4e3807_target",
+              "g_window_n1297077125_93623b4e3807_observer"
+            ],
+            "subject": "facade:n1297077125:328",
+            "qualifiers": {
+              "source_text": "номер с видом на Золотой мост",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "w100936933",
+                "target_part_id": "w100936933",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_part_tags": {
+                  "bridge:structure": "cable-stayed",
+                  "height": "66",
+                  "image": "http://commons.wikimedia.org/wiki/Category:Zolotoy_Rog_bridge",
+                  "layer": "1",
+                  "man_made": "bridge",
+                  "min_height": "64",
+                  "name": "Золотой мост",
+                  "name:de": "Solotoi-Brücke",
+                  "name:en": "Zolotoy Bridge",
+                  "name:ru": "Золотой мост",
+                  "name:uk": "Золотий міст",
+                  "name:zh": "金桥",
+                  "name:zh-Hans": "金桥",
+                  "name:zh-Hant": "金橋",
+                  "note": "для 3D просмотрщика glosm - http://forum.openstreetmap.org/viewtopic.php?id=10818&p=6",
+                  "wikidata": "Q209832",
+                  "wikipedia": "ru:Золотой мост"
+                },
+                "target_name": "Золотой мост",
+                "target_location": [
+                  131.8976532,
+                  43.1020324
+                ],
+                "observer_location": [
+                  131.89877656627542,
+                  43.10142996686725
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": 58.325,
+                  "maximum_m": 62.925
+                },
+                "target_elevation_m": {
+                  "minimum_m": 106.875,
+                  "maximum_m": 110.875
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 328.41,
+                "distance_m": 113.3,
+                "minimum_clearance_m": 20.61979266861439,
+                "required_observer_elevation_m": 24.292012218976023,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [],
+                "sources": [
+                  "https://www.openstreetmap.org/way/100936933",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "osm:building:levels",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 45.32933947052457,
+                    "elevation": {
+                      "minimum_m": 55.125,
+                      "maximum_m": 57.125
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 67.99400920578685,
+                    "elevation": {
+                      "minimum_m": 51.5,
+                      "maximum_m": 53.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:93623b4e3807",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 328.41
+            }
+          },
+          "geo_refs": [
+            "g_window_n1297077125_93623b4e3807_ray",
+            "g_window_n1297077125_93623b4e3807_target",
+            "g_window_n1297077125_93623b4e3807_observer"
+          ],
+          "camera": {
+            "center": [
+              131.8992546,
+              43.1015132
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 148.0,
+            "focus_facade_id": "window_n1297077125_93623b4e3807_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8992546,
+          43.1015132
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 148.0,
+        "focus_facade_id": "window_n1297077125_93623b4e3807_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w35334418",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8987683,
+                  43.1014236
+                ],
+                [
+                  131.898919,
+                  43.1012458
+                ],
+                [
+                  131.8989714,
+                  43.1012695
+                ],
+                [
+                  131.8990691,
+                  43.1011543
+                ],
+                [
+                  131.8990949,
+                  43.1011238
+                ],
+                [
+                  131.899366,
+                  43.1012464
+                ],
+                [
+                  131.8992574,
+                  43.1013745
+                ],
+                [
+                  131.9000168,
+                  43.1017176
+                ],
+                [
+                  131.8999322,
+                  43.1018174
+                ],
+                [
+                  131.8999107,
+                  43.1018429
+                ],
+                [
+                  131.8992809,
+                  43.1015583
+                ],
+                [
+                  131.89919,
+                  43.1015172
+                ],
+                [
+                  131.8991306,
+                  43.1015873
+                ],
+                [
+                  131.898978,
+                  43.1015184
+                ],
+                [
+                  131.8988078,
+                  43.1014414
+                ],
+                [
+                  131.8987683,
+                  43.1014236
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w35334418",
+          "hotel_id": "n1297077125",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 9,
+          "height_fact_id": "f_height_n1297077125"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      131.8938249,
+      43.1015132,
+      131.8992546,
+      43.1027611
+    ],
+    "camera": {
+      "center": [
+        131.8938249,
+        43.1026436
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 280.0,
+      "focus_facade_id": "window_n11572398348_93623b4e3807_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 13987
+}

@@ -1,0 +1,45 @@
+{
+  "id": "sea_anapa",
+  "query": "Хочу отель в Анапе, вид на море с пятого этажа",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w960110442",
+      "name": "Пальма Сонета",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 5,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_anapa-w960110442-f_wish_d98478478515_w960110442.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:d98478478515",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "вид на море с пятого этажа"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Анапа",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Анапе, вид на море с пятого этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 6.84,
+  "passed_automatic_audit": true
+}

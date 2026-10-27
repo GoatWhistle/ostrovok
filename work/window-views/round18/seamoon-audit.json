@@ -1,0 +1,87 @@
+{
+  "id": "seamoon",
+  "query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w124781620",
+      "name": "Kavkaz",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "seamoon-w124781620-f_wish_4206f9ec4758_w124781620.json"
+        }
+      ]
+    },
+    {
+      "id": "n12749552601",
+      "name": "Marina Yacht by Stellar",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 2,
+          "missing": [],
+          "reason": null,
+          "artifact": "seamoon-n12749552601-f_wish_4206f9ec4758_n12749552601.json"
+        }
+      ]
+    },
+    {
+      "id": "n12084515064",
+      "name": "Panoramapart",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "seamoon-n12084515064-f_wish_4206f9ec4758_n12084515064.json"
+        }
+      ]
+    },
+    {
+      "id": "n8847798717",
+      "name": "PinkFloyd Apartment",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 6,
+          "missing": [],
+          "reason": null,
+          "artifact": "seamoon-n8847798717-f_wish_4206f9ec4758_n8847798717.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:4206f9ec4758",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с настоящим видом на море, а не в пяти минутах ходьбы от него"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "В Сочи ищу номер с настоящим видом на море, а не в пяти минутах ходьбы от него",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 4,
+  "seconds": 11.3,
+  "passed_automatic_audit": true
+}

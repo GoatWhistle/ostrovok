@@ -1,0 +1,26 @@
+{
+  "query_id": "1e9c0907ca03c716",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:86ebe736dcd4",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с панорамой Москва-Сити из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Отель в Москве с панорамой Москва-Сити из номера",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 90575
+}

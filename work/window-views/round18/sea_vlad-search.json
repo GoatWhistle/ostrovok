@@ -1,0 +1,1881 @@
+{
+  "query_id": "b09b04581e94f203",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:76a5825cb939",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "номер с видом на море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Во Владивостоке хочу номер с видом на море",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w107943102",
+        "name": "Amur Bay",
+        "location": [
+          131.8726046,
+          43.1123908
+        ],
+        "building_id": "r3292482",
+        "levels": 7,
+        "photos": []
+      },
+      "score": 0.367,
+      "matched": [
+        {
+          "characteristic_key": "derived:76a5825cb939",
+          "match": "partial",
+          "label": "номер с видом на море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 185 м, этаж 7, направление окон 323°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_76a5825cb939_w107943102",
+            "characteristic_key": "derived:76a5825cb939",
+            "value": true,
+            "label": "номер с видом на море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w107943102_9f1957e8a297_ray",
+              "g_window_w107943102_9f1957e8a297_target",
+              "g_window_w107943102_9f1957e8a297_observer"
+            ],
+            "subject": "hotel:w107943102",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 7,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 14.625,
+                      "minimum_m": 12.625
+                    },
+                    "distance_m": 46.17552729199662,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.5,
+                      "minimum_m": 8.5
+                    },
+                    "distance_m": 69.26329093799494,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.5,
+                      "minimum_m": -0.5
+                    },
+                    "distance_m": 92.35105458399325,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.5,
+                      "minimum_m": -0.5
+                    },
+                    "distance_m": 115.43881822999155,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.0,
+                      "minimum_m": 0.0
+                    },
+                    "distance_m": 138.52658187598988,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.870000%2C43.110000%2C131.875000%2C43.115000"
+                ],
+                "blockers": [],
+                "target_id": "coastline",
+                "distance_m": 184.7,
+                "target_name": "Море",
+                "target_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "target_part_id": "coastline",
+                "terrain_step_m": 25,
+                "target_location": [
+                  131.8712047013221,
+                  43.11400458561205
+                ],
+                "target_part_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  131.87253105934147,
+                  43.11265556272629
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 322.6,
+                "target_elevation_m": {
+                  "maximum_m": 0.5,
+                  "minimum_m": -0.5
+                },
+                "minimum_clearance_m": 0.4022482826786457,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 40.74642857142857,
+                  "minimum_m": 20.20357142857143
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 19.93390705166657
+              },
+              "native_unit": null,
+              "source_text": "номер с видом на море",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:9f1957e8a297"
+            }
+          },
+          "geo_refs": [
+            "g_window_w107943102_9f1957e8a297_ray",
+            "g_window_w107943102_9f1957e8a297_target",
+            "g_window_w107943102_9f1957e8a297_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8726046,
+          43.1123908
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "r3292482",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8714295,
+                  43.1128896
+                ],
+                [
+                  131.8714599,
+                  43.112881
+                ],
+                [
+                  131.871452,
+                  43.1128333
+                ],
+                [
+                  131.8715204,
+                  43.1128156
+                ],
+                [
+                  131.8720927,
+                  43.1126675
+                ],
+                [
+                  131.8723299,
+                  43.1124918
+                ],
+                [
+                  131.8724986,
+                  43.1123209
+                ],
+                [
+                  131.8728676,
+                  43.1117916
+                ],
+                [
+                  131.8730265,
+                  43.1115757
+                ],
+                [
+                  131.8731106,
+                  43.1115661
+                ],
+                [
+                  131.8735844,
+                  43.1116398
+                ],
+                [
+                  131.873535,
+                  43.111723
+                ],
+                [
+                  131.8731447,
+                  43.1116697
+                ],
+                [
+                  131.8731023,
+                  43.1117335
+                ],
+                [
+                  131.8733491,
+                  43.111813
+                ],
+                [
+                  131.8732294,
+                  43.11199
+                ],
+                [
+                  131.8735801,
+                  43.1121414
+                ],
+                [
+                  131.873719,
+                  43.1122041
+                ],
+                [
+                  131.8734899,
+                  43.1125081
+                ],
+                [
+                  131.8733548,
+                  43.1124507
+                ],
+                [
+                  131.872891,
+                  43.1122603
+                ],
+                [
+                  131.8728691,
+                  43.1123023
+                ],
+                [
+                  131.8728354,
+                  43.1123609
+                ],
+                [
+                  131.8729138,
+                  43.1123874
+                ],
+                [
+                  131.8728324,
+                  43.1125172
+                ],
+                [
+                  131.8726663,
+                  43.1126577
+                ],
+                [
+                  131.8726216,
+                  43.1126409
+                ],
+                [
+                  131.8725826,
+                  43.1126816
+                ],
+                [
+                  131.8723839,
+                  43.1125703
+                ],
+                [
+                  131.8722327,
+                  43.1126911
+                ],
+                [
+                  131.8722772,
+                  43.1127268
+                ],
+                [
+                  131.872217,
+                  43.1127708
+                ],
+                [
+                  131.8721851,
+                  43.112787
+                ],
+                [
+                  131.8721548,
+                  43.1127548
+                ],
+                [
+                  131.871946,
+                  43.1128191
+                ],
+                [
+                  131.8714554,
+                  43.1129371
+                ],
+                [
+                  131.8714295,
+                  43.1128896
+                ]
+              ],
+              [
+                [
+                  131.8732166,
+                  43.1122434
+                ],
+                [
+                  131.8734178,
+                  43.1123246
+                ],
+                [
+                  131.8734982,
+                  43.1122066
+                ],
+                [
+                  131.8732889,
+                  43.1121333
+                ],
+                [
+                  131.8732166,
+                  43.1122434
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "r3292482",
+          "hotel_id": "w107943102",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 7,
+          "height_fact_id": "f_height_w107943102"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n12141353901",
+        "name": "marine wave",
+        "location": [
+          131.8792781,
+          43.1161671
+        ],
+        "building_id": "w45060950",
+        "levels": 14,
+        "photos": []
+      },
+      "score": 0.367,
+      "matched": [
+        {
+          "characteristic_key": "derived:76a5825cb939",
+          "match": "partial",
+          "label": "номер с видом на море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 327 м, этаж 14, направление окон 285°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_76a5825cb939_n12141353901",
+            "characteristic_key": "derived:76a5825cb939",
+            "value": true,
+            "label": "номер с видом на море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n12141353901_9f1957e8a297_ray",
+              "g_window_n12141353901_9f1957e8a297_target",
+              "g_window_n12141353901_9f1957e8a297_observer"
+            ],
+            "subject": "hotel:n12141353901",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 14,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 21.375,
+                      "minimum_m": 19.375
+                    },
+                    "distance_m": 116.63870232168298,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 20.0,
+                      "minimum_m": 18.0
+                    },
+                    "distance_m": 139.9664427860196,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 15.875,
+                      "minimum_m": 13.875
+                    },
+                    "distance_m": 163.29418325035618,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 13.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 186.62192371469277,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.375,
+                      "minimum_m": 0.375
+                    },
+                    "distance_m": 209.94966417902938,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.125,
+                      "minimum_m": -0.875
+                    },
+                    "distance_m": 233.27740464336597,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 256.6051451077026,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 279.9328855720392,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 23.64194186139912,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 40.360159394536495,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 57.07837692767388,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 34.375,
+                      "minimum_m": 21.975
+                    },
+                    "distance_m": 83.40434626727087,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 34.375,
+                      "minimum_m": 21.975
+                    },
+                    "distance_m": 96.13561292169666,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 34.375,
+                      "minimum_m": 21.975
+                    },
+                    "distance_m": 108.86687957612246,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 59.68192829021686,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 66.05526273400564,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 72.42859717779442,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.875000%2C43.115000%2C131.880000%2C43.120000"
+                ],
+                "blockers": [],
+                "target_id": "coastline",
+                "distance_m": 326.6,
+                "target_name": "Море",
+                "target_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "target_part_id": "coastline",
+                "terrain_step_m": 25,
+                "target_location": [
+                  131.87644342129855,
+                  43.1184020148632
+                ],
+                "target_part_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  131.87931073068893,
+                  43.11634537631079
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 284.84,
+                "target_elevation_m": {
+                  "maximum_m": 0.5,
+                  "minimum_m": -0.5
+                },
+                "minimum_clearance_m": 2.180992619633658,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 94.33571428571427,
+                  "minimum_m": 60.76428571428573
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 58.36374707480501
+              },
+              "native_unit": null,
+              "source_text": "номер с видом на море",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:9f1957e8a297"
+            }
+          },
+          "geo_refs": [
+            "g_window_n12141353901_9f1957e8a297_ray",
+            "g_window_n12141353901_9f1957e8a297_target",
+            "g_window_n12141353901_9f1957e8a297_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8792781,
+          43.1161671
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w45060950",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8792323,
+                  43.1161193
+                ],
+                [
+                  131.8793839,
+                  43.1160901
+                ],
+                [
+                  131.8794868,
+                  43.1160703
+                ],
+                [
+                  131.8795813,
+                  43.1163324
+                ],
+                [
+                  131.8795016,
+                  43.1163478
+                ],
+                [
+                  131.8794513,
+                  43.1163574
+                ],
+                [
+                  131.8793269,
+                  43.1163813
+                ],
+                [
+                  131.8793005,
+                  43.1163083
+                ],
+                [
+                  131.8792323,
+                  43.1161193
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w45060950",
+          "hotel_id": "n12141353901",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 14,
+          "height_fact_id": "f_height_n12141353901"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "r3292482",
+        "name": "Азимут \"Амурский залив\"",
+        "address": "Набережная улица 9",
+        "location": [
+          131.8726907,
+          43.1123717
+        ],
+        "building_id": "r3292482",
+        "levels": 7,
+        "photos": []
+      },
+      "score": 0.367,
+      "matched": [
+        {
+          "characteristic_key": "derived:76a5825cb939",
+          "match": "partial",
+          "label": "номер с видом на море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 186 м, этаж 7, направление окон 323°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_76a5825cb939_r3292482",
+            "characteristic_key": "derived:76a5825cb939",
+            "value": true,
+            "label": "номер с видом на море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r3292482_9f1957e8a297_ray",
+              "g_window_r3292482_9f1957e8a297_target",
+              "g_window_r3292482_9f1957e8a297_observer"
+            ],
+            "subject": "hotel:r3292482",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 7,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 14.625,
+                      "minimum_m": 12.625
+                    },
+                    "distance_m": 46.495143092607364,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.5,
+                      "minimum_m": 8.5
+                    },
+                    "distance_m": 69.74271463891105,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.5,
+                      "minimum_m": -0.5
+                    },
+                    "distance_m": 92.99028618521473,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.375,
+                      "minimum_m": -0.625
+                    },
+                    "distance_m": 116.2378577315184,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.0,
+                      "minimum_m": 0.0
+                    },
+                    "distance_m": 139.4854292778221,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.870000%2C43.110000%2C131.875000%2C43.115000"
+                ],
+                "blockers": [],
+                "target_id": "coastline",
+                "distance_m": 186.0,
+                "target_name": "Море",
+                "target_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "target_part_id": "coastline",
+                "terrain_step_m": 25,
+                "target_location": [
+                  131.87124437733007,
+                  43.1140390030444
+                ],
+                "target_part_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  131.87253105934147,
+                  43.112655562726296
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 322.6,
+                "target_elevation_m": {
+                  "maximum_m": 0.5,
+                  "minimum_m": -0.5
+                },
+                "minimum_clearance_m": 0.4022423053544676,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 40.74642857142857,
+                  "minimum_m": 20.20357142857143
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 19.93391502143214
+              },
+              "native_unit": null,
+              "source_text": "номер с видом на море",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:9f1957e8a297"
+            }
+          },
+          "geo_refs": [
+            "g_window_r3292482_9f1957e8a297_ray",
+            "g_window_r3292482_9f1957e8a297_target",
+            "g_window_r3292482_9f1957e8a297_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8726907,
+          43.1123717
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "r3292482",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8714295,
+                  43.1128896
+                ],
+                [
+                  131.8714599,
+                  43.112881
+                ],
+                [
+                  131.871452,
+                  43.1128333
+                ],
+                [
+                  131.8715204,
+                  43.1128156
+                ],
+                [
+                  131.8720927,
+                  43.1126675
+                ],
+                [
+                  131.8723299,
+                  43.1124918
+                ],
+                [
+                  131.8724986,
+                  43.1123209
+                ],
+                [
+                  131.8728676,
+                  43.1117916
+                ],
+                [
+                  131.8730265,
+                  43.1115757
+                ],
+                [
+                  131.8731106,
+                  43.1115661
+                ],
+                [
+                  131.8735844,
+                  43.1116398
+                ],
+                [
+                  131.873535,
+                  43.111723
+                ],
+                [
+                  131.8731447,
+                  43.1116697
+                ],
+                [
+                  131.8731023,
+                  43.1117335
+                ],
+                [
+                  131.8733491,
+                  43.111813
+                ],
+                [
+                  131.8732294,
+                  43.11199
+                ],
+                [
+                  131.8735801,
+                  43.1121414
+                ],
+                [
+                  131.873719,
+                  43.1122041
+                ],
+                [
+                  131.8734899,
+                  43.1125081
+                ],
+                [
+                  131.8733548,
+                  43.1124507
+                ],
+                [
+                  131.872891,
+                  43.1122603
+                ],
+                [
+                  131.8728691,
+                  43.1123023
+                ],
+                [
+                  131.8728354,
+                  43.1123609
+                ],
+                [
+                  131.8729138,
+                  43.1123874
+                ],
+                [
+                  131.8728324,
+                  43.1125172
+                ],
+                [
+                  131.8726663,
+                  43.1126577
+                ],
+                [
+                  131.8726216,
+                  43.1126409
+                ],
+                [
+                  131.8725826,
+                  43.1126816
+                ],
+                [
+                  131.8723839,
+                  43.1125703
+                ],
+                [
+                  131.8722327,
+                  43.1126911
+                ],
+                [
+                  131.8722772,
+                  43.1127268
+                ],
+                [
+                  131.872217,
+                  43.1127708
+                ],
+                [
+                  131.8721851,
+                  43.112787
+                ],
+                [
+                  131.8721548,
+                  43.1127548
+                ],
+                [
+                  131.871946,
+                  43.1128191
+                ],
+                [
+                  131.8714554,
+                  43.1129371
+                ],
+                [
+                  131.8714295,
+                  43.1128896
+                ]
+              ],
+              [
+                [
+                  131.8732166,
+                  43.1122434
+                ],
+                [
+                  131.8734178,
+                  43.1123246
+                ],
+                [
+                  131.8734982,
+                  43.1122066
+                ],
+                [
+                  131.8732889,
+                  43.1121333
+                ],
+                [
+                  131.8732166,
+                  43.1122434
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "r3292482",
+          "hotel_id": "r3292482",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 7,
+          "height_fact_id": "f_height_r3292482"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w471302910",
+        "name": "Арбат-Владивосток",
+        "address": "Пограничная улица 4",
+        "location": [
+          131.8799962,
+          43.1175676
+        ],
+        "building_id": "w471302910",
+        "levels": 7,
+        "photos": []
+      },
+      "score": 0.367,
+      "matched": [
+        {
+          "characteristic_key": "derived:76a5825cb939",
+          "match": "partial",
+          "label": "номер с видом на море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 297 м, этаж 6, направление окон 285°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_76a5825cb939_w471302910",
+            "characteristic_key": "derived:76a5825cb939",
+            "value": true,
+            "label": "номер с видом на море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w471302910_9f1957e8a297_ray",
+              "g_window_w471302910_9f1957e8a297_target",
+              "g_window_w471302910_9f1957e8a297_observer"
+            ],
+            "subject": "hotel:w471302910",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 6,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 15.75,
+                      "minimum_m": 13.75
+                    },
+                    "distance_m": 49.5192434605541,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 15.625,
+                      "minimum_m": 13.625
+                    },
+                    "distance_m": 74.27886519083116,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.375,
+                      "minimum_m": 8.375
+                    },
+                    "distance_m": 99.0384869211082,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 6.875,
+                      "minimum_m": 4.875
+                    },
+                    "distance_m": 123.79810865138525,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.125,
+                      "minimum_m": 0.125
+                    },
+                    "distance_m": 148.5577303816623,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.375,
+                      "minimum_m": -0.625
+                    },
+                    "distance_m": 173.31735211193936,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 198.0769738422164,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 222.83659557249348,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 247.5962173027705,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.875000%2C43.115000%2C131.880000%2C43.120000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.880000%2C43.115000%2C131.885000%2C43.120000"
+                ],
+                "blockers": [],
+                "target_id": "coastline",
+                "distance_m": 297.1,
+                "target_name": "Море",
+                "target_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "target_part_id": "coastline",
+                "terrain_step_m": 25,
+                "target_location": [
+                  131.87619333767924,
+                  43.11829416435166
+                ],
+                "target_part_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  131.87971848211623,
+                  43.117598680644676
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 284.95,
+                "target_elevation_m": {
+                  "maximum_m": 0.5,
+                  "minimum_m": -0.5
+                },
+                "minimum_clearance_m": 1.260493702945526,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 40.56785714285714,
+                  "minimum_m": 22.68214285714286
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 21.26815125321549
+              },
+              "native_unit": null,
+              "source_text": "номер с видом на море",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:9f1957e8a297"
+            }
+          },
+          "geo_refs": [
+            "g_window_w471302910_9f1957e8a297_ray",
+            "g_window_w471302910_9f1957e8a297_target",
+            "g_window_w471302910_9f1957e8a297_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8799962,
+          43.1175676
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w471302910",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8796765,
+                  43.1174748
+                ],
+                [
+                  131.8799678,
+                  43.1174182
+                ],
+                [
+                  131.8801348,
+                  43.1173857
+                ],
+                [
+                  131.880163,
+                  43.1174631
+                ],
+                [
+                  131.8801955,
+                  43.1175522
+                ],
+                [
+                  131.8802142,
+                  43.1176035
+                ],
+                [
+                  131.8801492,
+                  43.1176162
+                ],
+                [
+                  131.8801398,
+                  43.1175904
+                ],
+                [
+                  131.8800137,
+                  43.1176149
+                ],
+                [
+                  131.880025,
+                  43.1176457
+                ],
+                [
+                  131.8800337,
+                  43.1176695
+                ],
+                [
+                  131.8797909,
+                  43.1177167
+                ],
+                [
+                  131.8797664,
+                  43.1177214
+                ],
+                [
+                  131.8796765,
+                  43.1174748
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w471302910",
+          "hotel_id": "w471302910",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 7,
+          "height_fact_id": "f_height_w471302910"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9740504717",
+        "name": "Комплекс апартаментов “МОРЕ»",
+        "location": [
+          131.8792542,
+          43.1161405
+        ],
+        "building_id": "w45060950",
+        "levels": 14,
+        "photos": []
+      },
+      "score": 0.367,
+      "matched": [
+        {
+          "characteristic_key": "derived:76a5825cb939",
+          "match": "partial",
+          "label": "номер с видом на море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 326 м, этаж 14, направление окон 285°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_76a5825cb939_n9740504717",
+            "characteristic_key": "derived:76a5825cb939",
+            "value": true,
+            "label": "номер с видом на море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9740504717_9f1957e8a297_ray",
+              "g_window_n9740504717_9f1957e8a297_target",
+              "g_window_n9740504717_9f1957e8a297_observer"
+            ],
+            "subject": "hotel:n9740504717",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 14,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 21.375,
+                      "minimum_m": 19.375
+                    },
+                    "distance_m": 116.55472777856654,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 20.0,
+                      "minimum_m": 18.0
+                    },
+                    "distance_m": 139.86567333427985,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 15.875,
+                      "minimum_m": 13.875
+                    },
+                    "distance_m": 163.17661888999314,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 13.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 186.48756444570648,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.375,
+                      "minimum_m": 0.375
+                    },
+                    "distance_m": 209.7985100014198,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.125,
+                      "minimum_m": -0.875
+                    },
+                    "distance_m": 233.1094555571331,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 256.4204011128464,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 279.7313466685597,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 23.65954652972873,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 40.39017831487739,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w107940592",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 47.875,
+                      "minimum_m": 33.675
+                    },
+                    "distance_m": 57.120810100026056,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 39.875,
+                      "minimum_m": 27.475
+                    },
+                    "distance_m": 83.46603808323492,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 39.875,
+                      "minimum_m": 27.475
+                    },
+                    "distance_m": 96.20685131178939,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w108437131",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 39.875,
+                      "minimum_m": 27.475
+                    },
+                    "distance_m": 108.94766454034387,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 59.72578671038891,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 66.10381674946677,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w469002175",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 41.125,
+                      "minimum_m": 28.725
+                    },
+                    "distance_m": 72.48184678854463,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=131.875000%2C43.115000%2C131.880000%2C43.120000"
+                ],
+                "blockers": [],
+                "target_id": "coastline",
+                "distance_m": 326.4,
+                "target_name": "Море",
+                "target_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "target_part_id": "coastline",
+                "terrain_step_m": 25,
+                "target_location": [
+                  131.876449165946,
+                  43.11840328423242
+                ],
+                "target_part_tags": {
+                  "name": "Море",
+                  "water": "sea",
+                  "natural": "water"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  131.87931073068893,
+                  43.1163453763108
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 284.84,
+                "target_elevation_m": {
+                  "maximum_m": 0.5,
+                  "minimum_m": -0.5
+                },
+                "minimum_clearance_m": 0.4356175369125624,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 94.33571428571427,
+                  "minimum_m": 60.76428571428573
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 60.41059401768695
+              },
+              "native_unit": null,
+              "source_text": "номер с видом на море",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:9f1957e8a297"
+            }
+          },
+          "geo_refs": [
+            "g_window_n9740504717_9f1957e8a297_ray",
+            "g_window_n9740504717_9f1957e8a297_target",
+            "g_window_n9740504717_9f1957e8a297_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          131.8792542,
+          43.1161405
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w45060950",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  131.8792323,
+                  43.1161193
+                ],
+                [
+                  131.8793839,
+                  43.1160901
+                ],
+                [
+                  131.8794868,
+                  43.1160703
+                ],
+                [
+                  131.8795813,
+                  43.1163324
+                ],
+                [
+                  131.8795016,
+                  43.1163478
+                ],
+                [
+                  131.8794513,
+                  43.1163574
+                ],
+                [
+                  131.8793269,
+                  43.1163813
+                ],
+                [
+                  131.8793005,
+                  43.1163083
+                ],
+                [
+                  131.8792323,
+                  43.1161193
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w45060950",
+          "hotel_id": "n9740504717",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 14,
+          "height_fact_id": "f_height_n9740504717"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      131.8726046,
+      43.1123717,
+      131.8799962,
+      43.1175676
+    ],
+    "camera": {
+      "center": [
+        131.8726046,
+        43.1123908
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 9351
+}

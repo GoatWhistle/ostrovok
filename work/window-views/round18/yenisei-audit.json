@@ -1,0 +1,45 @@
+{
+  "id": "yenisei",
+  "query": "В Красноярске нужен отель с видом на Енисей из окна",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n687010194",
+      "name": "Сибирский сафари клуб",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Енисей",
+          "floor": 1,
+          "missing": [],
+          "reason": null,
+          "artifact": "yenisei-n687010194-f_wish_1200cc151cfb_n687010194.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:1200cc151cfb",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Енисей из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Красноярск",
+    "anywhere": false,
+    "normalized_query": "В Красноярске нужен отель с видом на Енисей из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 16.28,
+  "passed_automatic_audit": true
+}

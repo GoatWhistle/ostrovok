@@ -1,0 +1,26 @@
+{
+  "query_id": "4a2669d2f530e80e",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:1f2ce7b9c1c7",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть Русский мост из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Владивосток",
+    "anywhere": false,
+    "normalized_query": "Хочу во Владивостоке видеть Русский мост из номера",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 39393
+}

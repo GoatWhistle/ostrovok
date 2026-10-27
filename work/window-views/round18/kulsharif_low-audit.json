@@ -1,0 +1,45 @@
+{
+  "id": "kulsharif_low",
+  "query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w154197885",
+      "name": "Courtyard by Marriott Kazan Kremlin",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Кул-Шариф",
+          "floor": 1,
+          "missing": [],
+          "reason": null,
+          "artifact": "kulsharif_low-w154197885-f_wish_5d02a0107467_w154197885.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:5d02a0107467",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "нужен первый этаж, откуда видна мечеть Кул-Шариф"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "В Казани нужен первый этаж, откуда видна мечеть Кул-Шариф",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 7.8,
+  "passed_automatic_audit": true
+}

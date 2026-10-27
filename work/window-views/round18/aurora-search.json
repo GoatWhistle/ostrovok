@@ -1,0 +1,1404 @@
+{
+  "query_id": "bfdb6ed7b59831cb",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:762af3cc43a5",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видно крейсер Аврора"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Хочу в Санкт-Петербурге отель, из окна которого видно крейсер Аврора",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Очевидное сокращение: Петербург — это Санкт-Петербург."
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "n12058933812",
+        "name": "Sokroma «Сканди классик»",
+        "location": [
+          30.3349084,
+          59.9577065
+        ],
+        "building_id": "w95030847",
+        "levels": 4,
+        "photos": []
+      },
+      "score": 0.366,
+      "matched": [
+        {
+          "characteristic_key": "derived:762af3cc43a5",
+          "match": "partial",
+          "label": "из окна которого видно крейсер Аврора",
+          "explanation": "Линия обзора свободна в расчётной модели: «Крейсер \"Аврора\"», 320 м, этаж 1, направление окон 168°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_762af3cc43a5_n12058933812",
+            "characteristic_key": "derived:762af3cc43a5",
+            "value": true,
+            "label": "из окна которого видно крейсер Аврора",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n12058933812_96319f206014_ray",
+              "g_window_n12058933812_96319f206014_target",
+              "g_window_n12058933812_96319f206014_observer"
+            ],
+            "subject": "hotel:n12058933812",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.5,
+                      "minimum_m": -0.5
+                    },
+                    "distance_m": 49.21202229435119,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 73.8180334415268,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.5,
+                      "minimum_m": -0.5
+                    },
+                    "distance_m": 98.42404458870239,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 123.030055735878,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 147.6360668830536,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 172.24207803022915,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 196.84808917740477,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 221.4541003245804,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.75,
+                      "minimum_m": -0.25
+                    },
+                    "distance_m": 246.060111471756,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 313.79669735201054,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 313.85856583853285,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 313.9204343250552,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 316.71068484374007,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 316.75795414356196,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3272789",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 28.0,
+                      "minimum_m": 24.0
+                    },
+                    "distance_m": 316.80522344338385,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278393",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "distance_m": 269.17615412453404,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278393",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "distance_m": 294.50214951943906,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278472",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 22.75,
+                      "minimum_m": 18.75
+                    },
+                    "elevation": {
+                      "maximum_m": 23.0,
+                      "minimum_m": 19.0
+                    },
+                    "distance_m": 263.77918354869644,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278472",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 22.75,
+                      "minimum_m": 18.75
+                    },
+                    "elevation": {
+                      "maximum_m": 23.0,
+                      "minimum_m": 19.0
+                    },
+                    "distance_m": 263.8813486190944,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278472",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 22.75,
+                      "minimum_m": 18.75
+                    },
+                    "elevation": {
+                      "maximum_m": 23.0,
+                      "minimum_m": 19.0
+                    },
+                    "distance_m": 263.9835136894924,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278473",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 10.2,
+                      "minimum_m": 6.2
+                    },
+                    "distance_m": 262.79131314384165,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278473",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 10.2,
+                      "minimum_m": 6.2
+                    },
+                    "distance_m": 262.8502316402412,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278473",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 10.2,
+                      "minimum_m": 6.2
+                    },
+                    "distance_m": 262.9091501366408,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3278516",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 13.0,
+                      "minimum_m": 9.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 319.1506415386778,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3288106",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "elevation": {
+                      "maximum_m": 18.0,
+                      "minimum_m": 14.0
+                    },
+                    "distance_m": 319.1506415386778,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3288108",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "elevation": {
+                      "maximum_m": 12.5,
+                      "minimum_m": 8.5
+                    },
+                    "distance_m": 273.76267016039225,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3288108",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "elevation": {
+                      "maximum_m": 12.5,
+                      "minimum_m": 8.5
+                    },
+                    "distance_m": 273.8890621101623,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3288108",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "elevation": {
+                      "maximum_m": 12.5,
+                      "minimum_m": 8.5
+                    },
+                    "distance_m": 274.0154540599324,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r3288111",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 319.1506415386778,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w242376328",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "distance_m": 274.3057419142148,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w242376328",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "distance_m": 274.48326396721944,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "w242376328",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 11.0,
+                      "minimum_m": 7.0
+                    },
+                    "distance_m": 274.66078602022407,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.337143%2C59.954714%2C30.338474%2C59.956116",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.330000%2C59.955000%2C30.335000%2C59.960000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.950000%2C30.340000%2C59.955000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.955000%2C30.340000%2C59.960000"
+                ],
+                "blockers": [],
+                "target_id": "r3272566",
+                "distance_m": 319.9,
+                "target_name": "Крейсер \"Аврора\"",
+                "target_tags": {
+                  "fee": "yes",
+                  "name": "Крейсер \"Аврора\"",
+                  "email": "navalmuseum_dm@mil.ru",
+                  "phone": "+7 812 6074922;+7 812 3038513",
+                  "museum": "military",
+                  "name:ca": "Creuer Aurora",
+                  "name:cs": "Křižník Aurora",
+                  "name:de": "Aurora",
+                  "name:en": "Aurora cruiser",
+                  "name:fi": "Aurora",
+                  "name:fr": "Croiseur Aurore",
+                  "name:ru": "Крейсер \"Аврора\"",
+                  "name:sk": "cruiser Aurora",
+                  "name:zh": "阿芙乐尔号巡洋舰",
+                  "tourism": "museum",
+                  "website": "https://navalmuseum.ru/filials/cruiser_aurora",
+                  "building": "ship",
+                  "historic": "ship",
+                  "operator": "Центральный военно-морской музей имени императора Петра Великого",
+                  "wikidata": "Q168713",
+                  "full_name": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+                  "ship:type": "protected_cruiser",
+                  "wikipedia": "ru:Аврора (крейсер)",
+                  "start_date": "1900",
+                  "wheelchair": "no",
+                  "description": "Судно представляет собой бронепалубный крейсер 1900 года и является в наши дни музейный объектом. Одновременно \"Аврора\" является и самым старым судном Российского флота, находящимся в строю.",
+                  "full_name:en": "The Central Naval Museum, Cruiser \"Aurora\"",
+                  "full_name:ru": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+                  "full_name:zh": "曙光女神阿芙乐尔号巡洋舰博物馆",
+                  "opening_hours": "We-Su 11:00-18:00",
+                  "operator:type": "public",
+                  "building:parts": "mixed",
+                  "description:en": "The ship is a 1900 Russian protected cruiser, currently preserved as a museum ship. In the same time Aurora stands today as the oldest commissioned ship of the Russian Navy.",
+                  "operator:ref:inn": "7801018179"
+                },
+                "target_part_id": "w242363990",
+                "terrain_step_m": 25,
+                "target_location": [
+                  30.3380131,
+                  59.9551847
+                ],
+                "target_part_tags": {
+                  "name": "Крейсер \"Аврора\"",
+                  "height": "40",
+                  "min_height": "27",
+                  "roof:shape": "flat",
+                  "roof:height": "0",
+                  "building:part": "yes",
+                  "roof:material": "wood",
+                  "building:material": "wood"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  30.33499494094193,
+                  59.95762445359259
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 168.19,
+                "target_elevation_m": {
+                  "maximum_m": 43.0,
+                  "minimum_m": 39.0
+                },
+                "minimum_clearance_m": 4.6683347442383525,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 4.8,
+                  "minimum_m": 0.19999999999999996
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": -5.080759243190781
+              },
+              "native_unit": null,
+              "source_text": "из окна которого видно крейсер Аврора",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:96319f206014"
+            }
+          },
+          "geo_refs": [
+            "g_window_n12058933812_96319f206014_ray",
+            "g_window_n12058933812_96319f206014_target",
+            "g_window_n12058933812_96319f206014_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3349084,
+          59.9577065
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w95030847",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3336265,
+                  59.957618
+                ],
+                [
+                  30.3337128,
+                  59.9574985
+                ],
+                [
+                  30.3340308,
+                  59.9570438
+                ],
+                [
+                  30.3340509,
+                  59.9570104
+                ],
+                [
+                  30.3341032,
+                  59.9570034
+                ],
+                [
+                  30.334178,
+                  59.9570166
+                ],
+                [
+                  30.3341653,
+                  59.9570452
+                ],
+                [
+                  30.3352341,
+                  59.95716
+                ],
+                [
+                  30.3351883,
+                  59.9572583
+                ],
+                [
+                  30.3351334,
+                  59.9573763
+                ],
+                [
+                  30.3348941,
+                  59.9573495
+                ],
+                [
+                  30.3349461,
+                  59.9572316
+                ],
+                [
+                  30.3349647,
+                  59.9571893
+                ],
+                [
+                  30.3341195,
+                  59.9571032
+                ],
+                [
+                  30.3340601,
+                  59.9572325
+                ],
+                [
+                  30.3340116,
+                  59.9572249
+                ],
+                [
+                  30.3340019,
+                  59.9572505
+                ],
+                [
+                  30.3340277,
+                  59.9572607
+                ],
+                [
+                  30.3339448,
+                  59.9574839
+                ],
+                [
+                  30.3339218,
+                  59.9574979
+                ],
+                [
+                  30.3338043,
+                  59.9574879
+                ],
+                [
+                  30.3337994,
+                  59.9575147
+                ],
+                [
+                  30.3343747,
+                  59.9575735
+                ],
+                [
+                  30.3346693,
+                  59.9576068
+                ],
+                [
+                  30.3346628,
+                  59.9576198
+                ],
+                [
+                  30.3348072,
+                  59.9576344
+                ],
+                [
+                  30.3348176,
+                  59.9576083
+                ],
+                [
+                  30.3349125,
+                  59.9576181
+                ],
+                [
+                  30.3350212,
+                  59.9576295
+                ],
+                [
+                  30.3349579,
+                  59.9577769
+                ],
+                [
+                  30.3347839,
+                  59.9577608
+                ],
+                [
+                  30.3346113,
+                  59.9577448
+                ],
+                [
+                  30.3345859,
+                  59.9577411
+                ],
+                [
+                  30.3343262,
+                  59.9577027
+                ],
+                [
+                  30.3343197,
+                  59.9577174
+                ],
+                [
+                  30.3341535,
+                  59.9576997
+                ],
+                [
+                  30.3339908,
+                  59.9576823
+                ],
+                [
+                  30.3338353,
+                  59.9576657
+                ],
+                [
+                  30.3337948,
+                  59.9576614
+                ],
+                [
+                  30.3337554,
+                  59.9576512
+                ],
+                [
+                  30.3336265,
+                  59.957618
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w95030847",
+          "hotel_id": "n12058933812",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 4,
+          "height_fact_id": "f_height_n12058933812"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "r3288249",
+        "name": "Санкт-Петербург",
+        "address": "Пироговская набережная 5/2",
+        "location": [
+          30.3423217,
+          59.9565232
+        ],
+        "stars": 3,
+        "building_id": "r3288249",
+        "levels": 13,
+        "photos": []
+      },
+      "score": 0.366,
+      "matched": [
+        {
+          "characteristic_key": "derived:762af3cc43a5",
+          "match": "partial",
+          "label": "из окна которого видно крейсер Аврора",
+          "explanation": "Линия обзора свободна в расчётной модели: «Крейсер \"Аврора\"», 269 м, этаж 1, направление окон 251°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_762af3cc43a5_r3288249",
+            "characteristic_key": "derived:762af3cc43a5",
+            "value": true,
+            "label": "из окна которого видно крейсер Аврора",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_r3288249_96319f206014_ray",
+              "g_window_r3288249_96319f206014_target",
+              "g_window_r3288249_96319f206014_observer"
+            ],
+            "subject": "hotel:r3288249",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 4.0,
+                      "minimum_m": 2.0
+                    },
+                    "distance_m": 48.947169768448184,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 3.625,
+                      "minimum_m": 1.625
+                    },
+                    "distance_m": 73.42075465267227,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 2.5,
+                      "minimum_m": 0.5
+                    },
+                    "distance_m": 97.89433953689637,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.125,
+                      "minimum_m": -0.875
+                    },
+                    "distance_m": 122.36792442112046,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 146.84150930534454,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 171.31509418956864,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 195.78867907379274,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 1.0,
+                      "minimum_m": -1.0
+                    },
+                    "distance_m": 220.26226395801686,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3278393",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "distance_m": 262.45042655819265,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3278393",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "distance_m": 265.8049301408254,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3278516",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 13.0,
+                      "minimum_m": 9.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 261.6572396087095,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3278516",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 13.0,
+                      "minimum_m": 9.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 265.40833666608387,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3288106",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "elevation": {
+                      "maximum_m": 18.0,
+                      "minimum_m": 14.0
+                    },
+                    "distance_m": 267.0186019246241,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3288106",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "elevation": {
+                      "maximum_m": 18.0,
+                      "minimum_m": 14.0
+                    },
+                    "distance_m": 268.0890178240411,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3288111",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 265.9712461533998,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "r3288111",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 10.0,
+                      "minimum_m": 6.0
+                    },
+                    "elevation": {
+                      "maximum_m": 15.0,
+                      "minimum_m": 11.0
+                    },
+                    "distance_m": 267.565339938429,
+                    "geometry_model": null
+                  },
+                  {
+                    "id": "w242363989",
+                    "kind": "building",
+                    "bottom": {
+                      "maximum_m": 27.5,
+                      "minimum_m": 23.5
+                    },
+                    "elevation": {
+                      "maximum_m": 29.5,
+                      "minimum_m": 25.5
+                    },
+                    "distance_m": 268.4786332799068,
+                    "geometry_model": null
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.337143%2C59.954714%2C30.338474%2C59.956116",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.950000%2C30.340000%2C59.955000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.335000%2C59.955000%2C30.340000%2C59.960000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.340000%2C59.950000%2C30.345000%2C59.955000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=30.340000%2C59.955000%2C30.345000%2C59.960000"
+                ],
+                "blockers": [],
+                "target_id": "r3272566",
+                "distance_m": 269.2,
+                "target_name": "Крейсер \"Аврора\"",
+                "target_tags": {
+                  "fee": "yes",
+                  "name": "Крейсер \"Аврора\"",
+                  "email": "navalmuseum_dm@mil.ru",
+                  "phone": "+7 812 6074922;+7 812 3038513",
+                  "museum": "military",
+                  "name:ca": "Creuer Aurora",
+                  "name:cs": "Křižník Aurora",
+                  "name:de": "Aurora",
+                  "name:en": "Aurora cruiser",
+                  "name:fi": "Aurora",
+                  "name:fr": "Croiseur Aurore",
+                  "name:ru": "Крейсер \"Аврора\"",
+                  "name:sk": "cruiser Aurora",
+                  "name:zh": "阿芙乐尔号巡洋舰",
+                  "tourism": "museum",
+                  "website": "https://navalmuseum.ru/filials/cruiser_aurora",
+                  "building": "ship",
+                  "historic": "ship",
+                  "operator": "Центральный военно-морской музей имени императора Петра Великого",
+                  "wikidata": "Q168713",
+                  "full_name": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+                  "ship:type": "protected_cruiser",
+                  "wikipedia": "ru:Аврора (крейсер)",
+                  "start_date": "1900",
+                  "wheelchair": "no",
+                  "description": "Судно представляет собой бронепалубный крейсер 1900 года и является в наши дни музейный объектом. Одновременно \"Аврора\" является и самым старым судном Российского флота, находящимся в строю.",
+                  "full_name:en": "The Central Naval Museum, Cruiser \"Aurora\"",
+                  "full_name:ru": "Центральный военно-морской музей, Крейсер \"Аврора\"",
+                  "full_name:zh": "曙光女神阿芙乐尔号巡洋舰博物馆",
+                  "opening_hours": "We-Su 11:00-18:00",
+                  "operator:type": "public",
+                  "building:parts": "mixed",
+                  "description:en": "The ship is a 1900 Russian protected cruiser, currently preserved as a museum ship. In the same time Aurora stands today as the oldest commissioned ship of the Russian Navy.",
+                  "operator:ref:inn": "7801018179"
+                },
+                "target_part_id": "w242363990",
+                "terrain_step_m": 25,
+                "target_location": [
+                  30.338018,
+                  59.9551848
+                ],
+                "target_part_tags": {
+                  "name": "Крейсер \"Аврора\"",
+                  "height": "40",
+                  "min_height": "27",
+                  "roof:shape": "flat",
+                  "roof:height": "0",
+                  "building:part": "yes",
+                  "roof:material": "wood",
+                  "building:material": "wood"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  30.34243929296644,
+                  59.956145071549834
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 251.06,
+                "target_elevation_m": {
+                  "maximum_m": 43.0,
+                  "minimum_m": 39.0
+                },
+                "minimum_clearance_m": 5.606092940241219,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 7.675,
+                  "minimum_m": 3.075
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": -3.5324469269614918
+              },
+              "native_unit": null,
+              "source_text": "из окна которого видно крейсер Аврора",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:96319f206014"
+            }
+          },
+          "geo_refs": [
+            "g_window_r3288249_96319f206014_ray",
+            "g_window_r3288249_96319f206014_target",
+            "g_window_r3288249_96319f206014_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          30.3423217,
+          59.9565232
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "r3288249",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  30.3401916,
+                  59.9577907
+                ],
+                [
+                  30.3406185,
+                  59.9569679
+                ],
+                [
+                  30.3426658,
+                  59.9565774
+                ],
+                [
+                  30.3426844,
+                  59.9563762
+                ],
+                [
+                  30.3426209,
+                  59.9563656
+                ],
+                [
+                  30.3425628,
+                  59.956349
+                ],
+                [
+                  30.3425118,
+                  59.9563268
+                ],
+                [
+                  30.3424704,
+                  59.9563001
+                ],
+                [
+                  30.3424404,
+                  59.9562698
+                ],
+                [
+                  30.3424228,
+                  59.9562371
+                ],
+                [
+                  30.3424183,
+                  59.9562033
+                ],
+                [
+                  30.3424271,
+                  59.9561698
+                ],
+                [
+                  30.342449,
+                  59.9561378
+                ],
+                [
+                  30.3424829,
+                  59.9561085
+                ],
+                [
+                  30.3425276,
+                  59.9560832
+                ],
+                [
+                  30.3425815,
+                  59.9560627
+                ],
+                [
+                  30.3426422,
+                  59.9560479
+                ],
+                [
+                  30.3427076,
+                  59.9560394
+                ],
+                [
+                  30.3427751,
+                  59.9560375
+                ],
+                [
+                  30.342842,
+                  59.9560422
+                ],
+                [
+                  30.3429054,
+                  59.9560533
+                ],
+                [
+                  30.3429632,
+                  59.9560704
+                ],
+                [
+                  30.3430133,
+                  59.9560928
+                ],
+                [
+                  30.3430536,
+                  59.9561197
+                ],
+                [
+                  30.3430828,
+                  59.95615
+                ],
+                [
+                  30.3430995,
+                  59.9561825
+                ],
+                [
+                  30.3431033,
+                  59.9562161
+                ],
+                [
+                  30.3431698,
+                  59.956205
+                ],
+                [
+                  30.3432156,
+                  59.9562652
+                ],
+                [
+                  30.3435035,
+                  59.9566435
+                ],
+                [
+                  30.3429256,
+                  59.9567537
+                ],
+                [
+                  30.3427271,
+                  59.9567916
+                ],
+                [
+                  30.3420065,
+                  59.956929
+                ],
+                [
+                  30.3420302,
+                  59.9569601
+                ],
+                [
+                  30.3415905,
+                  59.9570439
+                ],
+                [
+                  30.3415669,
+                  59.9570128
+                ],
+                [
+                  30.3410278,
+                  59.9571132
+                ],
+                [
+                  30.3410134,
+                  59.9572678
+                ],
+                [
+                  30.3409972,
+                  59.9574422
+                ],
+                [
+                  30.3409589,
+                  59.9578545
+                ],
+                [
+                  30.3401916,
+                  59.9577907
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "r3288249",
+          "hotel_id": "r3288249",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 13,
+          "height_fact_id": "f_height_r3288249"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      30.3349084,
+      59.9565232,
+      30.3423217,
+      59.9577065
+    ],
+    "camera": {
+      "center": [
+        30.3349084,
+        59.9577065
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 10422
+}

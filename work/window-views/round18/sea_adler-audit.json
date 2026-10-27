@@ -1,0 +1,45 @@
+{
+  "id": "sea_adler",
+  "query": "В Адлере нужен отель с видом на море со второго этажа",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n12749552601",
+      "name": "Marina Yacht by Stellar",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 2,
+          "missing": [],
+          "reason": null,
+          "artifact": "sea_adler-n12749552601-f_wish_b1ff17f840b0_n12749552601.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:b1ff17f840b0",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на море со второго этажа"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "В Адлере нужен отель с видом на море со второго этажа",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 7.55,
+  "passed_automatic_audit": true
+}

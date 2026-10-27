@@ -1,0 +1,3008 @@
+{
+  "query_id": "8502eea969e6dfa7",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:abdb817dd957",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом из окна на мечеть Кул-Шариф"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Казань",
+    "anywhere": false,
+    "normalized_query": "В Казани отель с видом из окна на мечеть Кул-Шариф",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w154197885",
+        "name": "Courtyard by Marriott Kazan Kremlin",
+        "address": "улица Карла Маркса 6",
+        "location": [
+          49.1111463,
+          55.7972501
+        ],
+        "stars": 4,
+        "building_id": "w154197885",
+        "levels": 5,
+        "photos": []
+      },
+      "score": 0.369,
+      "matched": [
+        {
+          "characteristic_key": "derived:abdb817dd957",
+          "match": "partial",
+          "label": "с видом из окна на мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 381 м, этаж 1, направление окон 279°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_abdb817dd957_w154197885",
+            "characteristic_key": "derived:abdb817dd957",
+            "value": true,
+            "label": "с видом из окна на мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w154197885_d633cfe070ea_ray",
+              "g_window_w154197885_d633cfe070ea_target",
+              "g_window_w154197885_d633cfe070ea_observer"
+            ],
+            "subject": "hotel:w154197885",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 72.0,
+                      "minimum_m": 70.0
+                    },
+                    "distance_m": 47.65424271561787,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 70.75,
+                      "minimum_m": 68.75
+                    },
+                    "distance_m": 71.4813640734268,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.125,
+                      "minimum_m": 69.125
+                    },
+                    "distance_m": 95.30848543123574,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.875,
+                      "minimum_m": 69.875
+                    },
+                    "distance_m": 119.13560678904467,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 72.125,
+                      "minimum_m": 70.125
+                    },
+                    "distance_m": 142.9627281468536,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 75.5,
+                      "minimum_m": 73.5
+                    },
+                    "distance_m": 166.78984950466253,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 78.125,
+                      "minimum_m": 76.125
+                    },
+                    "distance_m": 190.61697086247148,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 83.25,
+                      "minimum_m": 81.25
+                    },
+                    "distance_m": 214.44409222028042,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 86.125,
+                      "minimum_m": 84.125
+                    },
+                    "distance_m": 238.27121357808934,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 85.75,
+                      "minimum_m": 83.75
+                    },
+                    "distance_m": 285.9254562937072,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:14",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.875,
+                      "minimum_m": 78.875
+                    },
+                    "distance_m": 333.57969900932505,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110304",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 85.75,
+                      "minimum_m": 81.75
+                    },
+                    "distance_m": 195.82661586227462,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110304",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 85.75,
+                      "minimum_m": 81.75
+                    },
+                    "distance_m": 199.89676226062312,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110304",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 85.75,
+                      "minimum_m": 81.75
+                    },
+                    "distance_m": 203.9669086589716,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303303",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 99.375,
+                      "minimum_m": 86.975
+                    },
+                    "distance_m": 309.1088514045072,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303303",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 99.375,
+                      "minimum_m": 86.975
+                    },
+                    "distance_m": 321.1025766555454,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303303",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 99.375,
+                      "minimum_m": 86.975
+                    },
+                    "distance_m": 333.0963019065836,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303320",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 95.375,
+                      "minimum_m": 84.775
+                    },
+                    "distance_m": 246.07495322250918,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303320",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 95.375,
+                      "minimum_m": 84.775
+                    },
+                    "distance_m": 259.3744288272917,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r6303320",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 95.375,
+                      "minimum_m": 84.775
+                    },
+                    "distance_m": 272.67390443207427,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.104613%2C55.797956%2C49.105707%2C55.798741",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.795000%2C49.105000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.795000%2C49.110000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.110000%2C55.795000%2C49.115000%2C55.800000"
+                ],
+                "blockers": [],
+                "target_id": "w230132591",
+                "distance_m": 381.2,
+                "target_name": "Кул-Шариф",
+                "target_tags": {
+                  "name": "Кул-Шариф",
+                  "phone": "+7 843 5678077",
+                  "height": "8",
+                  "amenity": "place_of_worship",
+                  "name:de": "Kul-Scharif-Moschee",
+                  "name:en": "Kul-Sharif mosque",
+                  "name:ru": "Кул-Шариф",
+                  "name:tt": "Колшәриф мәчете",
+                  "name:zh": "庫爾謝里夫清真寺",
+                  "tourism": "attraction",
+                  "website": "https://www.kul-sharif.com/",
+                  "alt_name": "Кул Шариф",
+                  "building": "mosque",
+                  "religion": "muslim",
+                  "wikidata": "Q121198",
+                  "addr:city": "Казань",
+                  "wikipedia": "ru:Кул-Шариф",
+                  "start_date": "2005",
+                  "addr:street": "Кремль",
+                  "roof:colour": "#7C5A51",
+                  "denomination": "sunni",
+                  "addr:postcode": "420111",
+                  "addr:housenumber": "13"
+                },
+                "target_part_id": "w230132596",
+                "terrain_step_m": 25,
+                "target_location": [
+                  49.1054028,
+                  55.7983031
+                ],
+                "target_part_tags": {
+                  "name": "Кул-Шариф",
+                  "height": "35 m",
+                  "roof:shape": "pyramidal",
+                  "roof:colour": "#3FA4B6",
+                  "roof:height": "3",
+                  "building:part": "mosque"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  49.11125303751665,
+                  55.7973734994286
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 278.95,
+                "target_elevation_m": {
+                  "maximum_m": 112.25,
+                  "minimum_m": 108.25
+                },
+                "minimum_clearance_m": 0.2248937847685375,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 77.175,
+                  "minimum_m": 72.575
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 72.50478376209446
+              },
+              "native_unit": null,
+              "source_text": "с видом из окна на мечеть Кул-Шариф",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:d633cfe070ea"
+            }
+          },
+          "geo_refs": [
+            "g_window_w154197885_d633cfe070ea_ray",
+            "g_window_w154197885_d633cfe070ea_target",
+            "g_window_w154197885_d633cfe070ea_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1111463,
+          55.7972501
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w154197885",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1105481,
+                  55.797339
+                ],
+                [
+                  49.1105899,
+                  55.7973352
+                ],
+                [
+                  49.1105712,
+                  55.79727
+                ],
+                [
+                  49.1105999,
+                  55.7972674
+                ],
+                [
+                  49.1109323,
+                  55.7972372
+                ],
+                [
+                  49.1109281,
+                  55.7972228
+                ],
+                [
+                  49.1109769,
+                  55.7972184
+                ],
+                [
+                  49.1109811,
+                  55.7972328
+                ],
+                [
+                  49.1110099,
+                  55.7972301
+                ],
+                [
+                  49.111004,
+                  55.7972098
+                ],
+                [
+                  49.1110394,
+                  55.7972066
+                ],
+                [
+                  49.1110452,
+                  55.797227
+                ],
+                [
+                  49.1113179,
+                  55.7972022
+                ],
+                [
+                  49.1113091,
+                  55.7971714
+                ],
+                [
+                  49.1112225,
+                  55.7971793
+                ],
+                [
+                  49.1112249,
+                  55.7971877
+                ],
+                [
+                  49.1111642,
+                  55.7971932
+                ],
+                [
+                  49.111148,
+                  55.7971365
+                ],
+                [
+                  49.1111963,
+                  55.7971321
+                ],
+                [
+                  49.1112032,
+                  55.7971564
+                ],
+                [
+                  49.1112544,
+                  55.7971518
+                ],
+                [
+                  49.1112565,
+                  55.797159
+                ],
+                [
+                  49.1112631,
+                  55.7971597
+                ],
+                [
+                  49.1112781,
+                  55.7971584
+                ],
+                [
+                  49.1112738,
+                  55.7971434
+                ],
+                [
+                  49.1115306,
+                  55.7971201
+                ],
+                [
+                  49.111556,
+                  55.7972091
+                ],
+                [
+                  49.1115708,
+                  55.7972079
+                ],
+                [
+                  49.1115743,
+                  55.7972203
+                ],
+                [
+                  49.1115597,
+                  55.7972216
+                ],
+                [
+                  49.1115669,
+                  55.7972469
+                ],
+                [
+                  49.111582,
+                  55.7972455
+                ],
+                [
+                  49.1115851,
+                  55.797256
+                ],
+                [
+                  49.1115698,
+                  55.7972574
+                ],
+                [
+                  49.1115916,
+                  55.7973335
+                ],
+                [
+                  49.1113737,
+                  55.7973533
+                ],
+                [
+                  49.1113771,
+                  55.7973653
+                ],
+                [
+                  49.1113157,
+                  55.7973721
+                ],
+                [
+                  49.1112578,
+                  55.7973761
+                ],
+                [
+                  49.1112545,
+                  55.7973643
+                ],
+                [
+                  49.110646,
+                  55.7974193
+                ],
+                [
+                  49.1106147,
+                  55.7974221
+                ],
+                [
+                  49.1106074,
+                  55.7973966
+                ],
+                [
+                  49.1105656,
+                  55.7974004
+                ],
+                [
+                  49.1105481,
+                  55.797339
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w154197885",
+          "hotel_id": "w154197885",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 5,
+          "height_fact_id": "f_height_w154197885"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9740178195",
+        "name": "People",
+        "location": [
+          49.1055853,
+          55.7931706
+        ],
+        "building_id": "w90155380",
+        "levels": 6,
+        "photos": []
+      },
+      "score": 0.369,
+      "matched": [
+        {
+          "characteristic_key": "derived:abdb817dd957",
+          "match": "partial",
+          "label": "с видом из окна на мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 574 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_abdb817dd957_n9740178195",
+            "characteristic_key": "derived:abdb817dd957",
+            "value": true,
+            "label": "с видом из окна на мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9740178195_d633cfe070ea_ray",
+              "g_window_n9740178195_d633cfe070ea_target",
+              "g_window_n9740178195_d633cfe070ea_observer"
+            ],
+            "subject": "hotel:n9740178195",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.75,
+                      "minimum_m": 55.75
+                    },
+                    "distance_m": 49.955395971130436,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.875,
+                      "minimum_m": 54.875
+                    },
+                    "distance_m": 74.93309395669566,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.25,
+                      "minimum_m": 54.25
+                    },
+                    "distance_m": 99.91079194226087,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.75,
+                      "minimum_m": 53.75
+                    },
+                    "distance_m": 124.8884899278261,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.125,
+                      "minimum_m": 53.125
+                    },
+                    "distance_m": 149.86618791339131,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.625,
+                      "minimum_m": 53.625
+                    },
+                    "distance_m": 174.84388589895653,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.75,
+                      "minimum_m": 54.75
+                    },
+                    "distance_m": 199.82158388452174,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.125,
+                      "minimum_m": 55.125
+                    },
+                    "distance_m": 224.799281870087,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 58.0,
+                      "minimum_m": 56.0
+                    },
+                    "distance_m": 249.7769798556522,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 59.25,
+                      "minimum_m": 57.25
+                    },
+                    "distance_m": 274.7546778412174,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 60.5,
+                      "minimum_m": 58.5
+                    },
+                    "distance_m": 299.73237582678263,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:13",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 61.125,
+                      "minimum_m": 59.125
+                    },
+                    "distance_m": 324.71007381234784,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:14",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 62.75,
+                      "minimum_m": 60.75
+                    },
+                    "distance_m": 349.68777179791306,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:15",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 64.5,
+                      "minimum_m": 62.5
+                    },
+                    "distance_m": 374.66546978347833,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:16",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 66.25,
+                      "minimum_m": 64.25
+                    },
+                    "distance_m": 399.6431677690435,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:17",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 68.25,
+                      "minimum_m": 66.25
+                    },
+                    "distance_m": 424.6208657546087,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:18",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 70.0,
+                      "minimum_m": 68.0
+                    },
+                    "distance_m": 449.598563740174,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:19",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.625,
+                      "minimum_m": 69.625
+                    },
+                    "distance_m": 474.5762617257392,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:20",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 73.125,
+                      "minimum_m": 71.125
+                    },
+                    "distance_m": 499.5539597113044,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:21",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 76.0,
+                      "minimum_m": 74.0
+                    },
+                    "distance_m": 524.5316576968696,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 479.467981279211,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 484.3209114815718,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 489.1738416839325,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.104613%2C55.797956%2C49.105707%2C55.798741",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.790000%2C49.105000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.795000%2C49.105000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.790000%2C49.110000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.795000%2C49.110000%2C55.800000"
+                ],
+                "blockers": [],
+                "target_id": "w230132591",
+                "distance_m": 574.5,
+                "target_name": "Кул-Шариф",
+                "target_tags": {
+                  "name": "Кул-Шариф",
+                  "phone": "+7 843 5678077",
+                  "height": "8",
+                  "amenity": "place_of_worship",
+                  "name:de": "Kul-Scharif-Moschee",
+                  "name:en": "Kul-Sharif mosque",
+                  "name:ru": "Кул-Шариф",
+                  "name:tt": "Колшәриф мәчете",
+                  "name:zh": "庫爾謝里夫清真寺",
+                  "tourism": "attraction",
+                  "website": "https://www.kul-sharif.com/",
+                  "alt_name": "Кул Шариф",
+                  "building": "mosque",
+                  "religion": "muslim",
+                  "wikidata": "Q121198",
+                  "addr:city": "Казань",
+                  "wikipedia": "ru:Кул-Шариф",
+                  "start_date": "2005",
+                  "addr:street": "Кремль",
+                  "roof:colour": "#7C5A51",
+                  "denomination": "sunni",
+                  "addr:postcode": "420111",
+                  "addr:housenumber": "13"
+                },
+                "target_part_id": "w230132596",
+                "terrain_step_m": 25,
+                "target_location": [
+                  49.1053719,
+                  55.7982846
+                ],
+                "target_part_tags": {
+                  "name": "Кул-Шариф",
+                  "height": "35 m",
+                  "roof:shape": "pyramidal",
+                  "roof:colour": "#3FA4B6",
+                  "roof:height": "3",
+                  "building:part": "mosque"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  49.10533646218402,
+                  55.79312479663849
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 327.6,
+                "target_elevation_m": {
+                  "maximum_m": 112.25,
+                  "minimum_m": 108.25
+                },
+                "minimum_clearance_m": 2.403672120290632,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 60.175,
+                  "minimum_m": 55.575
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 53.161454344443605
+              },
+              "native_unit": null,
+              "source_text": "с видом из окна на мечеть Кул-Шариф",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:d633cfe070ea"
+            }
+          },
+          "geo_refs": [
+            "g_window_n9740178195_d633cfe070ea_ray",
+            "g_window_n9740178195_d633cfe070ea_target",
+            "g_window_n9740178195_d633cfe070ea_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1055853,
+          55.7931706
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n9740178195",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 6,
+          "height_fact_id": "f_height_n9740178195"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n10303934709",
+        "name": "Капсульный отель",
+        "location": [
+          49.1057854,
+          55.7929862
+        ],
+        "building_id": "w90155380",
+        "levels": 6,
+        "photos": []
+      },
+      "score": 0.369,
+      "matched": [
+        {
+          "characteristic_key": "derived:abdb817dd957",
+          "match": "partial",
+          "label": "с видом из окна на мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 574 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_abdb817dd957_n10303934709",
+            "characteristic_key": "derived:abdb817dd957",
+            "value": true,
+            "label": "с видом из окна на мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n10303934709_d633cfe070ea_ray",
+              "g_window_n10303934709_d633cfe070ea_target",
+              "g_window_n10303934709_d633cfe070ea_observer"
+            ],
+            "subject": "hotel:n10303934709",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.75,
+                      "minimum_m": 55.75
+                    },
+                    "distance_m": 49.95539597128418,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.875,
+                      "minimum_m": 54.875
+                    },
+                    "distance_m": 74.93309395692627,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.25,
+                      "minimum_m": 54.25
+                    },
+                    "distance_m": 99.91079194256837,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.75,
+                      "minimum_m": 53.75
+                    },
+                    "distance_m": 124.88848992821046,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.125,
+                      "minimum_m": 53.125
+                    },
+                    "distance_m": 149.86618791385254,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.625,
+                      "minimum_m": 53.625
+                    },
+                    "distance_m": 174.84388589949464,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.75,
+                      "minimum_m": 54.75
+                    },
+                    "distance_m": 199.82158388513673,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.125,
+                      "minimum_m": 55.125
+                    },
+                    "distance_m": 224.79928187077883,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 58.0,
+                      "minimum_m": 56.0
+                    },
+                    "distance_m": 249.77697985642092,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 59.25,
+                      "minimum_m": 57.25
+                    },
+                    "distance_m": 274.754677842063,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 60.5,
+                      "minimum_m": 58.5
+                    },
+                    "distance_m": 299.7323758277051,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:13",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 61.125,
+                      "minimum_m": 59.125
+                    },
+                    "distance_m": 324.7100738133472,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:14",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 62.75,
+                      "minimum_m": 60.75
+                    },
+                    "distance_m": 349.6877717989893,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:15",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 64.5,
+                      "minimum_m": 62.5
+                    },
+                    "distance_m": 374.6654697846314,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:16",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 66.25,
+                      "minimum_m": 64.25
+                    },
+                    "distance_m": 399.64316777027346,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:17",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 68.25,
+                      "minimum_m": 66.25
+                    },
+                    "distance_m": 424.62086575591553,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:18",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 70.0,
+                      "minimum_m": 68.0
+                    },
+                    "distance_m": 449.59856374155765,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:19",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.625,
+                      "minimum_m": 69.625
+                    },
+                    "distance_m": 474.5762617271998,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:20",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 73.125,
+                      "minimum_m": 71.125
+                    },
+                    "distance_m": 499.55395971284184,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:21",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 76.0,
+                      "minimum_m": 74.0
+                    },
+                    "distance_m": 524.5316576984839,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 479.467981279211,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 484.3209114815718,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 489.1738416839325,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.104613%2C55.797956%2C49.105707%2C55.798741",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.790000%2C49.105000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.795000%2C49.105000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.790000%2C49.110000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.795000%2C49.110000%2C55.800000"
+                ],
+                "blockers": [],
+                "target_id": "w230132591",
+                "distance_m": 574.5,
+                "target_name": "Кул-Шариф",
+                "target_tags": {
+                  "name": "Кул-Шариф",
+                  "phone": "+7 843 5678077",
+                  "height": "8",
+                  "amenity": "place_of_worship",
+                  "name:de": "Kul-Scharif-Moschee",
+                  "name:en": "Kul-Sharif mosque",
+                  "name:ru": "Кул-Шариф",
+                  "name:tt": "Колшәриф мәчете",
+                  "name:zh": "庫爾謝里夫清真寺",
+                  "tourism": "attraction",
+                  "website": "https://www.kul-sharif.com/",
+                  "alt_name": "Кул Шариф",
+                  "building": "mosque",
+                  "religion": "muslim",
+                  "wikidata": "Q121198",
+                  "addr:city": "Казань",
+                  "wikipedia": "ru:Кул-Шариф",
+                  "start_date": "2005",
+                  "addr:street": "Кремль",
+                  "roof:colour": "#7C5A51",
+                  "denomination": "sunni",
+                  "addr:postcode": "420111",
+                  "addr:housenumber": "13"
+                },
+                "target_part_id": "w230132596",
+                "terrain_step_m": 25,
+                "target_location": [
+                  49.1053719,
+                  55.7982846
+                ],
+                "target_part_tags": {
+                  "name": "Кул-Шариф",
+                  "height": "35 m",
+                  "roof:shape": "pyramidal",
+                  "roof:colour": "#3FA4B6",
+                  "roof:height": "3",
+                  "building:part": "mosque"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  49.10533646218403,
+                  55.79312479663847
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 327.6,
+                "target_elevation_m": {
+                  "maximum_m": 112.25,
+                  "minimum_m": 108.25
+                },
+                "minimum_clearance_m": 2.4036721202906213,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 60.175,
+                  "minimum_m": 55.575
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 53.16145434444361
+              },
+              "native_unit": null,
+              "source_text": "с видом из окна на мечеть Кул-Шариф",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:d633cfe070ea"
+            }
+          },
+          "geo_refs": [
+            "g_window_n10303934709_d633cfe070ea_ray",
+            "g_window_n10303934709_d633cfe070ea_target",
+            "g_window_n10303934709_d633cfe070ea_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1057854,
+          55.7929862
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n10303934709",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 6,
+          "height_fact_id": "f_height_n10303934709"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9740178181",
+        "name": "Купе",
+        "location": [
+          49.1059087,
+          55.7928734
+        ],
+        "building_id": "w90155380",
+        "levels": 6,
+        "photos": []
+      },
+      "score": 0.369,
+      "matched": [
+        {
+          "characteristic_key": "derived:abdb817dd957",
+          "match": "partial",
+          "label": "с видом из окна на мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 574 м, этаж 1, направление окон 328°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_abdb817dd957_n9740178181",
+            "characteristic_key": "derived:abdb817dd957",
+            "value": true,
+            "label": "с видом из окна на мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9740178181_d633cfe070ea_ray",
+              "g_window_n9740178181_d633cfe070ea_target",
+              "g_window_n9740178181_d633cfe070ea_observer"
+            ],
+            "subject": "hotel:n9740178181",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.75,
+                      "minimum_m": 55.75
+                    },
+                    "distance_m": 49.95539597128418,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.875,
+                      "minimum_m": 54.875
+                    },
+                    "distance_m": 74.93309395692627,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.25,
+                      "minimum_m": 54.25
+                    },
+                    "distance_m": 99.91079194256837,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.75,
+                      "minimum_m": 53.75
+                    },
+                    "distance_m": 124.88848992821046,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.125,
+                      "minimum_m": 53.125
+                    },
+                    "distance_m": 149.86618791385254,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 55.625,
+                      "minimum_m": 53.625
+                    },
+                    "distance_m": 174.84388589949464,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.75,
+                      "minimum_m": 54.75
+                    },
+                    "distance_m": 199.82158388513673,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.125,
+                      "minimum_m": 55.125
+                    },
+                    "distance_m": 224.79928187077883,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 58.0,
+                      "minimum_m": 56.0
+                    },
+                    "distance_m": 249.77697985642092,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 59.25,
+                      "minimum_m": 57.25
+                    },
+                    "distance_m": 274.754677842063,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 60.5,
+                      "minimum_m": 58.5
+                    },
+                    "distance_m": 299.7323758277051,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:13",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 61.125,
+                      "minimum_m": 59.125
+                    },
+                    "distance_m": 324.7100738133472,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:14",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 62.75,
+                      "minimum_m": 60.75
+                    },
+                    "distance_m": 349.6877717989893,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:15",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 64.5,
+                      "minimum_m": 62.5
+                    },
+                    "distance_m": 374.6654697846314,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:16",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 66.25,
+                      "minimum_m": 64.25
+                    },
+                    "distance_m": 399.64316777027346,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:17",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 68.25,
+                      "minimum_m": 66.25
+                    },
+                    "distance_m": 424.62086575591553,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:18",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 70.0,
+                      "minimum_m": 68.0
+                    },
+                    "distance_m": 449.59856374155765,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:19",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.625,
+                      "minimum_m": 69.625
+                    },
+                    "distance_m": 474.5762617271998,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:20",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 73.125,
+                      "minimum_m": 71.125
+                    },
+                    "distance_m": 499.55395971284184,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:21",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 76.0,
+                      "minimum_m": 74.0
+                    },
+                    "distance_m": 524.5316576984839,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 479.467981279211,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 484.3209114815718,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110514",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 80.25,
+                      "minimum_m": 76.25
+                    },
+                    "distance_m": 489.1738416839325,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.104613%2C55.797956%2C49.105707%2C55.798741",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.790000%2C49.105000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.795000%2C49.105000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.790000%2C49.110000%2C55.795000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.795000%2C49.110000%2C55.800000"
+                ],
+                "blockers": [],
+                "target_id": "w230132591",
+                "distance_m": 574.5,
+                "target_name": "Кул-Шариф",
+                "target_tags": {
+                  "name": "Кул-Шариф",
+                  "phone": "+7 843 5678077",
+                  "height": "8",
+                  "amenity": "place_of_worship",
+                  "name:de": "Kul-Scharif-Moschee",
+                  "name:en": "Kul-Sharif mosque",
+                  "name:ru": "Кул-Шариф",
+                  "name:tt": "Колшәриф мәчете",
+                  "name:zh": "庫爾謝里夫清真寺",
+                  "tourism": "attraction",
+                  "website": "https://www.kul-sharif.com/",
+                  "alt_name": "Кул Шариф",
+                  "building": "mosque",
+                  "religion": "muslim",
+                  "wikidata": "Q121198",
+                  "addr:city": "Казань",
+                  "wikipedia": "ru:Кул-Шариф",
+                  "start_date": "2005",
+                  "addr:street": "Кремль",
+                  "roof:colour": "#7C5A51",
+                  "denomination": "sunni",
+                  "addr:postcode": "420111",
+                  "addr:housenumber": "13"
+                },
+                "target_part_id": "w230132596",
+                "terrain_step_m": 25,
+                "target_location": [
+                  49.1053719,
+                  55.7982846
+                ],
+                "target_part_tags": {
+                  "name": "Кул-Шариф",
+                  "height": "35 m",
+                  "roof:shape": "pyramidal",
+                  "roof:colour": "#3FA4B6",
+                  "roof:height": "3",
+                  "building:part": "mosque"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  49.10533646218403,
+                  55.79312479663847
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 327.6,
+                "target_elevation_m": {
+                  "maximum_m": 112.25,
+                  "minimum_m": 108.25
+                },
+                "minimum_clearance_m": 2.4036721202906213,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 60.175,
+                  "minimum_m": 55.575
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "osm:building:levels",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 53.16145434444361
+              },
+              "native_unit": null,
+              "source_text": "с видом из окна на мечеть Кул-Шариф",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:d633cfe070ea"
+            }
+          },
+          "geo_refs": [
+            "g_window_n9740178181_d633cfe070ea_ray",
+            "g_window_n9740178181_d633cfe070ea_target",
+            "g_window_n9740178181_d633cfe070ea_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          49.1059087,
+          55.7928734
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w90155380",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.1045391,
+                  55.792837
+                ],
+                [
+                  49.1046626,
+                  55.7927278
+                ],
+                [
+                  49.1047873,
+                  55.7927724
+                ],
+                [
+                  49.105044,
+                  55.7928642
+                ],
+                [
+                  49.1053746,
+                  55.7929824
+                ],
+                [
+                  49.1055112,
+                  55.7930313
+                ],
+                [
+                  49.1055578,
+                  55.7929901
+                ],
+                [
+                  49.1057503,
+                  55.79282
+                ],
+                [
+                  49.1058024,
+                  55.7927739
+                ],
+                [
+                  49.1060199,
+                  55.7928516
+                ],
+                [
+                  49.1059248,
+                  55.7929356
+                ],
+                [
+                  49.1057292,
+                  55.7931085
+                ],
+                [
+                  49.1056051,
+                  55.7932182
+                ],
+                [
+                  49.1045391,
+                  55.792837
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w90155380",
+          "hotel_id": "n9740178181",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": 6,
+          "height_fact_id": "f_height_n9740178181"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n9599414026",
+        "name": "Ташаяк",
+        "location": [
+          49.098671,
+          55.7958734
+        ],
+        "building_id": "r1953489",
+        "photos": []
+      },
+      "score": 0.369,
+      "matched": [
+        {
+          "characteristic_key": "derived:abdb817dd957",
+          "match": "partial",
+          "label": "с видом из окна на мечеть Кул-Шариф",
+          "explanation": "Линия обзора свободна в расчётной модели: «Кул-Шариф», 388 м, этаж 1, направление окон 85°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_abdb817dd957_n9599414026",
+            "characteristic_key": "derived:abdb817dd957",
+            "value": true,
+            "label": "с видом из окна на мечеть Кул-Шариф",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n9599414026_d633cfe070ea_ray",
+              "g_window_n9599414026_d633cfe070ea_target",
+              "g_window_n9599414026_d633cfe070ea_observer"
+            ],
+            "subject": "hotel:n9599414026",
+            "qualifiers": {
+              "native_op": "eq",
+              "tool_calls": 0,
+              "visibility": {
+                "floor": 1,
+                "reason": null,
+                "status": "visible",
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 59.5,
+                      "minimum_m": 57.5
+                    },
+                    "distance_m": 48.56243047166731,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 58.0,
+                      "minimum_m": 56.0
+                    },
+                    "distance_m": 72.84364570750097,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.125,
+                      "minimum_m": 55.125
+                    },
+                    "distance_m": 97.12486094333462,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.0,
+                      "minimum_m": 55.0
+                    },
+                    "distance_m": 121.40607617916828,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.625,
+                      "minimum_m": 54.625
+                    },
+                    "distance_m": 145.68729141500194,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.125,
+                      "minimum_m": 54.125
+                    },
+                    "distance_m": 169.9685066508356,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.0,
+                      "minimum_m": 54.0
+                    },
+                    "distance_m": 194.24972188666925,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.0,
+                      "minimum_m": 54.0
+                    },
+                    "distance_m": 218.5309371225029,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 56.625,
+                      "minimum_m": 54.625
+                    },
+                    "distance_m": 242.81215235833656,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:11",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 57.375,
+                      "minimum_m": 55.375
+                    },
+                    "distance_m": 267.0933675941702,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:12",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 59.375,
+                      "minimum_m": 57.375
+                    },
+                    "distance_m": 291.3745828300039,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:13",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 66.625,
+                      "minimum_m": 64.625
+                    },
+                    "distance_m": 315.65579806583753,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:14",
+                    "kind": "terrain",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 71.5,
+                      "minimum_m": 69.5
+                    },
+                    "distance_m": 339.9370133016712,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110513",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 78.75,
+                      "minimum_m": 74.75
+                    },
+                    "distance_m": 353.4006048724043,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110513",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 78.75,
+                      "minimum_m": 74.75
+                    },
+                    "distance_m": 355.3168082599004,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "r18110513",
+                    "kind": "building",
+                    "bottom": null,
+                    "elevation": {
+                      "maximum_m": 78.75,
+                      "minimum_m": 74.75
+                    },
+                    "distance_m": 357.23301164739655,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "sources": [
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.104613%2C55.797956%2C49.105707%2C55.798741",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.095000%2C55.795000%2C49.100000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.100000%2C55.795000%2C49.105000%2C55.800000",
+                  "https://api.openstreetmap.org/api/0.6/map?bbox=49.105000%2C55.795000%2C49.110000%2C55.800000"
+                ],
+                "blockers": [],
+                "target_id": "w230132591",
+                "distance_m": 388.5,
+                "target_name": "Кул-Шариф",
+                "target_tags": {
+                  "name": "Кул-Шариф",
+                  "phone": "+7 843 5678077",
+                  "height": "8",
+                  "amenity": "place_of_worship",
+                  "name:de": "Kul-Scharif-Moschee",
+                  "name:en": "Kul-Sharif mosque",
+                  "name:ru": "Кул-Шариф",
+                  "name:tt": "Колшәриф мәчете",
+                  "name:zh": "庫爾謝里夫清真寺",
+                  "tourism": "attraction",
+                  "website": "https://www.kul-sharif.com/",
+                  "alt_name": "Кул Шариф",
+                  "building": "mosque",
+                  "religion": "muslim",
+                  "wikidata": "Q121198",
+                  "addr:city": "Казань",
+                  "wikipedia": "ru:Кул-Шариф",
+                  "start_date": "2005",
+                  "addr:street": "Кремль",
+                  "roof:colour": "#7C5A51",
+                  "denomination": "sunni",
+                  "addr:postcode": "420111",
+                  "addr:housenumber": "13"
+                },
+                "target_part_id": "w230132594",
+                "terrain_step_m": 25,
+                "target_location": [
+                  49.104918,
+                  55.7983933
+                ],
+                "target_part_tags": {
+                  "name": "Кул-Шариф",
+                  "height": "35 m",
+                  "building:part": "yes"
+                },
+                "complete_coverage": true,
+                "observer_location": [
+                  49.09878039555651,
+                  55.79792174814554
+                ],
+                "unknown_obstacles": 0,
+                "facade_azimuth_deg": 84.94,
+                "target_elevation_m": {
+                  "maximum_m": 109.75,
+                  "minimum_m": 105.75
+                },
+                "minimum_clearance_m": 2.2363895119780843,
+                "sampled_line_status": "visible",
+                "observer_elevation_m": {
+                  "maximum_m": 60.05,
+                  "minimum_m": 55.45
+                },
+                "calculation_attempted": true,
+                "curvature_coefficient": 0.8571428571428571,
+                "building_height_source": "unknown",
+                "entire_target_verified": false,
+                "requested_target_scope": "any",
+                "bookable_room_confirmed": false,
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "horizontal_field_of_view_deg": 120,
+                "required_observer_elevation_m": 53.12269770059648
+              },
+              "native_unit": null,
+              "source_text": "с видом из окна на мечеть Кул-Шариф",
+              "wish_status": "matched",
+              "native_value": true,
+              "estimated_view": true,
+              "checked_sources": [],
+              "estimated_match": true,
+              "native_threshold": true,
+              "native_characteristic_key": "spatial:d633cfe070ea"
+            }
+          },
+          "geo_refs": [
+            "g_window_n9599414026_d633cfe070ea_ray",
+            "g_window_n9599414026_d633cfe070ea_target",
+            "g_window_n9599414026_d633cfe070ea_observer"
+          ]
+        }
+      ],
+      "camera": {
+        "center": [
+          49.098671,
+          55.7958734
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 0.0
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "r1953489",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  49.097327,
+                  55.7968737
+                ],
+                [
+                  49.0973357,
+                  55.7967121
+                ],
+                [
+                  49.0973627,
+                  55.7965824
+                ],
+                [
+                  49.0973981,
+                  55.7964745
+                ],
+                [
+                  49.0974175,
+                  55.7964748
+                ],
+                [
+                  49.0974198,
+                  55.7964585
+                ],
+                [
+                  49.0974268,
+                  55.7964588
+                ],
+                [
+                  49.0974277,
+                  55.7964376
+                ],
+                [
+                  49.0974357,
+                  55.7964378
+                ],
+                [
+                  49.0974385,
+                  55.7964146
+                ],
+                [
+                  49.0974479,
+                  55.7964148
+                ],
+                [
+                  49.0974468,
+                  55.7964052
+                ],
+                [
+                  49.0975029,
+                  55.7964052
+                ],
+                [
+                  49.0975032,
+                  55.7963983
+                ],
+                [
+                  49.0975128,
+                  55.7963984
+                ],
+                [
+                  49.0975149,
+                  55.7963409
+                ],
+                [
+                  49.0976582,
+                  55.7961501
+                ],
+                [
+                  49.0978636,
+                  55.7959756
+                ],
+                [
+                  49.0978464,
+                  55.7959684
+                ],
+                [
+                  49.0980963,
+                  55.7958242
+                ],
+                [
+                  49.0982647,
+                  55.7957588
+                ],
+                [
+                  49.0982762,
+                  55.7957706
+                ],
+                [
+                  49.0984,
+                  55.7957321
+                ],
+                [
+                  49.0986108,
+                  55.7956894
+                ],
+                [
+                  49.0988212,
+                  55.7956686
+                ],
+                [
+                  49.0989736,
+                  55.7956632
+                ],
+                [
+                  49.0989737,
+                  55.7957527
+                ],
+                [
+                  49.0991212,
+                  55.7957662
+                ],
+                [
+                  49.0991203,
+                  55.7957879
+                ],
+                [
+                  49.0993083,
+                  55.795812
+                ],
+                [
+                  49.0994437,
+                  55.7958426
+                ],
+                [
+                  49.0996036,
+                  55.7958908
+                ],
+                [
+                  49.0996166,
+                  55.7958802
+                ],
+                [
+                  49.0996251,
+                  55.7958835
+                ],
+                [
+                  49.0996375,
+                  55.7958741
+                ],
+                [
+                  49.099716,
+                  55.7959059
+                ],
+                [
+                  49.09985,
+                  55.7959771
+                ],
+                [
+                  49.0999921,
+                  55.7960885
+                ],
+                [
+                  49.0999748,
+                  55.7960949
+                ],
+                [
+                  49.0999797,
+                  55.7960999
+                ],
+                [
+                  49.0999601,
+                  55.7961064
+                ],
+                [
+                  49.1000106,
+                  55.7961685
+                ],
+                [
+                  49.100077,
+                  55.7962966
+                ],
+                [
+                  49.1000969,
+                  55.7964013
+                ],
+                [
+                  49.1000947,
+                  55.7964704
+                ],
+                [
+                  49.1001218,
+                  55.7964704
+                ],
+                [
+                  49.1001205,
+                  55.7964915
+                ],
+                [
+                  49.100144,
+                  55.7964922
+                ],
+                [
+                  49.1000901,
+                  55.7971867
+                ],
+                [
+                  49.1000667,
+                  55.7971865
+                ],
+                [
+                  49.1000655,
+                  55.7972077
+                ],
+                [
+                  49.1000395,
+                  55.7972071
+                ],
+                [
+                  49.1000257,
+                  55.7972737
+                ],
+                [
+                  49.099979,
+                  55.7973941
+                ],
+                [
+                  49.0998938,
+                  55.7975111
+                ],
+                [
+                  49.0998467,
+                  55.7975556
+                ],
+                [
+                  49.0998652,
+                  55.7975633
+                ],
+                [
+                  49.0998591,
+                  55.7975679
+                ],
+                [
+                  49.0998754,
+                  55.7975752
+                ],
+                [
+                  49.0997601,
+                  55.7976528
+                ],
+                [
+                  49.0996545,
+                  55.7977089
+                ],
+                [
+                  49.0994794,
+                  55.7977777
+                ],
+                [
+                  49.0994685,
+                  55.7977677
+                ],
+                [
+                  49.0994596,
+                  55.7977706
+                ],
+                [
+                  49.0994476,
+                  55.7977597
+                ],
+                [
+                  49.0992842,
+                  55.7977959
+                ],
+                [
+                  49.0991089,
+                  55.7978242
+                ],
+                [
+                  49.098957,
+                  55.7978331
+                ],
+                [
+                  49.098954,
+                  55.7978574
+                ],
+                [
+                  49.0987873,
+                  55.7978524
+                ],
+                [
+                  49.0987728,
+                  55.7979446
+                ],
+                [
+                  49.0986585,
+                  55.7979358
+                ],
+                [
+                  49.0984679,
+                  55.7979058
+                ],
+                [
+                  49.0982636,
+                  55.797856
+                ],
+                [
+                  49.0981119,
+                  55.7978046
+                ],
+                [
+                  49.0980964,
+                  55.7978181
+                ],
+                [
+                  49.0978598,
+                  55.7976982
+                ],
+                [
+                  49.0977108,
+                  55.7975834
+                ],
+                [
+                  49.0977295,
+                  55.7975769
+                ],
+                [
+                  49.0976696,
+                  55.7975217
+                ],
+                [
+                  49.0975213,
+                  55.7973481
+                ],
+                [
+                  49.0974449,
+                  55.7971917
+                ],
+                [
+                  49.0974485,
+                  55.7971401
+                ],
+                [
+                  49.0974367,
+                  55.7971396
+                ],
+                [
+                  49.0974374,
+                  55.7971331
+                ],
+                [
+                  49.0973891,
+                  55.7971313
+                ],
+                [
+                  49.0973904,
+                  55.7971205
+                ],
+                [
+                  49.0973808,
+                  55.7971202
+                ],
+                [
+                  49.0973832,
+                  55.7970978
+                ],
+                [
+                  49.0973757,
+                  55.7970974
+                ],
+                [
+                  49.0973716,
+                  55.7970633
+                ],
+                [
+                  49.0973503,
+                  55.7970627
+                ],
+                [
+                  49.0973371,
+                  55.7970153
+                ],
+                [
+                  49.097327,
+                  55.7968737
+                ]
+              ],
+              [
+                [
+                  49.0981314,
+                  55.797283
+                ],
+                [
+                  49.0981851,
+                  55.7973701
+                ],
+                [
+                  49.0982593,
+                  55.7974263
+                ],
+                [
+                  49.0983598,
+                  55.7974985
+                ],
+                [
+                  49.0984556,
+                  55.7975468
+                ],
+                [
+                  49.0985942,
+                  55.7975895
+                ],
+                [
+                  49.0987526,
+                  55.7976173
+                ],
+                [
+                  49.098954,
+                  55.7976358
+                ],
+                [
+                  49.0991323,
+                  55.7976247
+                ],
+                [
+                  49.0992874,
+                  55.7975913
+                ],
+                [
+                  49.0993996,
+                  55.7975542
+                ],
+                [
+                  49.0994788,
+                  55.7975189
+                ],
+                [
+                  49.0995746,
+                  55.7974633
+                ],
+                [
+                  49.0996637,
+                  55.7973909
+                ],
+                [
+                  49.0997165,
+                  55.7973241
+                ],
+                [
+                  49.0998023,
+                  55.7963667
+                ],
+                [
+                  49.0997792,
+                  55.7962702
+                ],
+                [
+                  49.0997132,
+                  55.7962034
+                ],
+                [
+                  49.0996208,
+                  55.7961217
+                ],
+                [
+                  49.0994656,
+                  55.7960494
+                ],
+                [
+                  49.0993171,
+                  55.7959974
+                ],
+                [
+                  49.0990926,
+                  55.7959659
+                ],
+                [
+                  49.098888,
+                  55.7959733
+                ],
+                [
+                  49.0987031,
+                  55.7959955
+                ],
+                [
+                  49.0985579,
+                  55.7960364
+                ],
+                [
+                  49.0984325,
+                  55.796105
+                ],
+                [
+                  49.0983169,
+                  55.7962052
+                ],
+                [
+                  49.0982443,
+                  55.7962943
+                ],
+                [
+                  49.0982245,
+                  55.7963852
+                ],
+                [
+                  49.0981314,
+                  55.797283
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "r1953489",
+          "hotel_id": "n9599414026",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n9599414026"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      49.098671,
+      55.7928734,
+      49.1111463,
+      55.7972501
+    ],
+    "camera": {
+      "center": [
+        49.1111463,
+        55.7972501
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 0.0
+    }
+  },
+  "pending": [],
+  "took_ms": 14076
+}

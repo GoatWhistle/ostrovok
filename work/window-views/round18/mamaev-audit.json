@@ -1,0 +1,61 @@
+{
+  "id": "mamaev",
+  "query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n3298084824",
+      "name": "Frant Hotel",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Родина-мать зовёт!",
+          "floor": 8,
+          "missing": [],
+          "reason": null,
+          "artifact": "mamaev-n3298084824-f_wish_7deb15da0eb8_n3298084824.json"
+        }
+      ]
+    },
+    {
+      "id": "n9356801048",
+      "name": "Сталинград",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Родина-мать зовёт!",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "mamaev-n9356801048-f_wish_7deb15da0eb8_n9356801048.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:7deb15da0eb8",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видна скульптура Родина-мать на Мамаевом кургане"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Волгоград",
+    "anywhere": false,
+    "normalized_query": "Отель в Волгограде, из окна которого видна скульптура Родина-мать на Мамаевом кургане",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 2,
+  "seconds": 10.11,
+  "passed_automatic_audit": true
+}

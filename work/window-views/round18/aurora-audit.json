@@ -1,0 +1,65 @@
+{
+  "id": "aurora",
+  "query": "Хочу в Петербурге отель, из окна которого видно крейсер Аврора",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n12058933812",
+      "name": "Sokroma «Сканди классик»",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Крейсер \"Аврора\"",
+          "floor": 1,
+          "missing": [],
+          "reason": null,
+          "artifact": "aurora-n12058933812-f_wish_762af3cc43a5_n12058933812.json"
+        }
+      ]
+    },
+    {
+      "id": "r3288249",
+      "name": "Санкт-Петербург",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Крейсер \"Аврора\"",
+          "floor": 1,
+          "missing": [],
+          "reason": null,
+          "artifact": "aurora-r3288249-f_wish_762af3cc43a5_r3288249.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:762af3cc43a5",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видно крейсер Аврора"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Хочу в Санкт-Петербурге отель, из окна которого видно крейсер Аврора",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Очевидное сокращение: Петербург — это Санкт-Петербург."
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 2,
+  "seconds": 10.45,
+  "passed_automatic_audit": true
+}

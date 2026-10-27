@@ -1,0 +1,26 @@
+{
+  "query_id": "116c99b1a58d2de5",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:96b41650fb5a",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "с видом на Волгу из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Нижний Новгород",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Нижнем Новгороде с видом на Волгу из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 71899
+}

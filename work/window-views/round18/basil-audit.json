@@ -1,0 +1,33 @@
+{
+  "id": "basil",
+  "query": "Москва: хочу видеть из номера храм Василия Блаженного",
+  "errors": [
+    "no_geometric_target_evidence",
+    "no_results_for_resolvable_target"
+  ],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:e6a93c9f939b",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "видеть из номера храм Василия Блаженного"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Москва: хочу видеть из номера храм Василия Блаженного",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 0,
+  "seconds": 153.85,
+  "passed_automatic_audit": false
+}
