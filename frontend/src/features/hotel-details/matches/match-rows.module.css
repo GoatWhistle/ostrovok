@@ -1,8 +1,3 @@
-.caption {
-  composes: bodySmText from "../../../shared/styles/compose.module.css";
-  color: var(--text-secondary);
-}
-
 .list {
   composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;

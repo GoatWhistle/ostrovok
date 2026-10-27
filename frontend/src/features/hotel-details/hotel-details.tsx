@@ -109,7 +109,12 @@ export function HotelDetails({
           onPreview={onPreview}
         />
       ) : (
-        <FactList facts={card.facts.filter(isAvailableFact)} onFact={onFact} />
+        <FactList
+          facts={card.facts.filter(
+            (fact) => isAvailableFact(fact) && !fact.characteristic_key.startsWith("derived:"),
+          )}
+          onFact={onFact}
+        />
       )}
       <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
       {rooms.length ? (
