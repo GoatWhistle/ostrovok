@@ -15,6 +15,7 @@ export interface FactDetailsProps {
   readonly factId: string
   readonly onBack: () => void
   readonly review?: boolean
+  readonly backLabel?: string
   readonly className?: string | undefined
 }
 
@@ -23,6 +24,7 @@ export function FactDetails({
   factId,
   onBack,
   review = false,
+  backLabel,
   className,
 }: FactDetailsProps) {
   const { t } = useTranslation()
@@ -40,7 +42,7 @@ export function FactDetails({
         onClick={onBack}
         className={styles.back}
       >
-        {t("explore:details.back")}
+        {backLabel ?? t("explore:details.back")}
       </Button>
       {query.isPending ? (
         <div className={styles.skeleton} aria-hidden="true">

@@ -55,6 +55,7 @@ export function FactList({ facts, onFact, title: heading }: FactListProps) {
                   leadingAlign="start"
                   leading={<FactTile characteristicKey={fact.characteristic_key} size="sm" />}
                   trailing={<Icon name="chevron-right" size="sm" className={styles.chevron} />}
+                  data-fact-trigger={fact.fact_id}
                   onClick={() => onFact(fact)}
                 >
                   <span className={styles.value}>{factLabel(fact, locale)}</span>

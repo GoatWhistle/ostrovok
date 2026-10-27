@@ -1,6 +1,7 @@
-import { useId } from "react"
+import { useEffect, useId, useRef } from "react"
 import type { Fact } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
+import { useInputModality, usePresence } from "@/shared/motion"
 import { Banner, Button } from "@/shared/ui"
 import { CorrectionInput } from "./correction-input"
 import styles from "./fact-correction.module.css"
@@ -13,11 +14,32 @@ export interface FactCorrectionProps {
 export function FactCorrection({ fact }: FactCorrectionProps) {
   const { t } = useTranslation()
   const headingId = useId()
+  const editorId = useId()
+  const trigger = useRef<HTMLButtonElement>(null)
+  const editor = useRef<HTMLFormElement>(null)
+  const modality = useInputModality()
   const form = useFactCorrection(fact)
   const { atRisk, editing, setEditing, mutation, submit } = form
+  const presence = usePresence(editing, "--dur-exit", modality.instant)
+  const wasEditing = useRef(editing)
+  useEffect(() => {
+    if (editing) editor.current?.querySelector<HTMLElement>("input, textarea")?.focus()
+    else if (wasEditing.current && document.activeElement === document.body)
+      trigger.current?.focus({ preventScroll: true })
+    wasEditing.current = editing
+  }, [editing])
+  const collapse = () => {
+    setEditing(false)
+    trigger.current?.focus({ preventScroll: true })
+  }
   const editable = form.structured || typeof fact.value === "string"
   return (
-    <section className={styles.review} aria-labelledby={headingId}>
+    <section
+      className={styles.review}
+      aria-labelledby={headingId}
+      onKeyDown={modality.onKeyDown}
+      onPointerDown={modality.onPointerDown}
+    >
       <div className={styles.head}>
         <p id={headingId} className={styles.title}>
           {t("explore:details.reviewTitle")}
@@ -36,24 +58,49 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
         </Button>
         {editable ? (
           <Button
+            ref={trigger}
             icon="edit"
             variant="reject"
             aria-expanded={editing}
+            aria-controls={editorId}
             disabled={mutation.isPending}
             onClick={() => setEditing((current) => !current)}
           >
-            {t("explore:details.wrong")}
+            {t(editing ? "explore:details.collapse" : "explore:details.wrong")}
           </Button>
         ) : null}
       </div>
-      {editing ? (
-        <form className={styles.edit} onSubmit={submit}>
+      {presence.mounted ? (
+        <form
+          ref={editor}
+          id={editorId}
+          className={styles.edit}
+          inert={!editing}
+          data-state={presence.state}
+          data-instant={modality.instant}
+          onTransitionEnd={presence.onTransitionEnd}
+          onSubmit={submit}
+          onKeyDown={(event) => {
+            if (event.key !== "Escape" || event.defaultPrevented) return
+            event.preventDefault()
+            event.stopPropagation()
+            collapse()
+          }}
+        >
           <CorrectionInput fact={fact} form={form} />
           <div className={styles.actions}>
             <Button icon="send" type="submit" pending={mutation.isPending}>
               {t("explore:details.save")}
             </Button>
-            <Button variant="ghost" disabled={mutation.isPending} onClick={() => setEditing(false)}>
+            <Button
+              variant="ghost"
+              icon="close"
+              disabled={mutation.isPending}
+              onClick={() => {
+                form.cancel()
+                trigger.current?.focus({ preventScroll: true })
+              }}
+            >
               {t("explore:details.cancel")}
             </Button>
           </div>

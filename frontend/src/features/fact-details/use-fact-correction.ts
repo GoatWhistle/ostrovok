@@ -84,5 +84,11 @@ export function useFactCorrection(fact: Fact) {
     missing,
     mutation,
     submit,
+    cancel: () => {
+      setValue(initial)
+      setAttempted(false)
+      setMissing(false)
+      setEditing(false)
+    },
   }
 }

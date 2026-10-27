@@ -48,6 +48,7 @@ function LinkedFact({
         size="compact"
         variant="secondary"
         icon="edit"
+        data-fact-trigger={`answer:${current.fact_id}`}
         onClick={() => onEdit(current.fact_id)}
       >
         {t("explore:hotelier.edit")}

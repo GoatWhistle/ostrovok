@@ -121,13 +121,34 @@ export function HotelierAnswer({ hotelId, onEditFact }: HotelierAnswerProps) {
     )
   return (
     <div className={styles.workspace} data-view={mobile.view}>
-      <aside className={styles.queue} aria-label={t("explore:hotelier.queue")}>
+      <aside
+        ref={mobile.queue}
+        className={styles.queue}
+        aria-label={t("explore:hotelier.queue")}
+        onKeyDown={(event) => {
+          if (!mobile.narrow || event.key !== "Escape" || event.defaultPrevented) return
+          event.preventDefault()
+          event.stopPropagation()
+          mobile.closeQueue()
+        }}
+      >
+        {mobile.narrow && mobile.view === "queue" ? (
+          <Button variant="ghost" icon="chevron-left" onClick={mobile.closeQueue}>
+            {t("explore:hotelier.backToQuestion")}
+          </Button>
+        ) : null}
         {loading ? <QueueSkeleton /> : null}
         {items.length ? <QueueTabs queue={queue} onSelect={mobile.choose} /> : null}
       </aside>
       <div className={styles.main}>
         {mobile.narrow && items.length ? (
-          <Button variant="ghost" icon="list" className={styles.all} onClick={mobile.openQueue}>
+          <Button
+            ref={mobile.trigger}
+            variant="ghost"
+            icon="list"
+            className={styles.all}
+            onClick={mobile.openQueue}
+          >
             {t("explore:hotelier.allQuestions", { count: items.length })}
           </Button>
         ) : null}

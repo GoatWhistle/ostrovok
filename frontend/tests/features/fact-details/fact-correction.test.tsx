@@ -149,3 +149,31 @@ describe("typed corrections", () => {
     expect(screen.queryByRole("radio", { name: copy.match.full })).toBeNull()
   })
 })
+
+describe("correction dismissal", () => {
+  it("keeps a collapsed draft and discards a cancelled draft", async () => {
+    mount()
+    const edit = screen.getByRole("button", { name: copy.details.wrong })
+    await userEvent.click(edit)
+    const field = screen.getByRole("textbox", { name: copy.details.correction })
+    await userEvent.clear(field)
+    await userEvent.type(field, "19")
+    await userEvent.keyboard("{Escape}")
+    await waitFor(() =>
+      expect(screen.queryByRole("textbox", { name: copy.details.correction })).toBeNull(),
+    )
+    expect(document.activeElement).toBe(edit)
+    await userEvent.click(edit)
+    expect(
+      (screen.getByRole("textbox", { name: copy.details.correction }) as HTMLInputElement).value,
+    ).toBe("19")
+    await userEvent.click(screen.getByRole("button", { name: copy.details.cancel }))
+    await waitFor(() =>
+      expect(screen.queryByRole("textbox", { name: copy.details.correction })).toBeNull(),
+    )
+    await userEvent.click(edit)
+    expect(
+      (screen.getByRole("textbox", { name: copy.details.correction }) as HTMLInputElement).value,
+    ).toBe("12")
+  })
+})

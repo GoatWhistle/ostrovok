@@ -13,7 +13,8 @@ export interface DisclosureProps {
 export function Disclosure({ title, icon, defaultOpen = false, children }: DisclosureProps) {
   const id = useId()
   const [open, setOpen] = useState(defaultOpen)
-  const presence = usePresence(open)
+  const [instant, setInstant] = useState(false)
+  const presence = usePresence(open, "--dur-exit", instant)
   return (
     <div className={styles.disclosure}>
       <button
@@ -21,7 +22,11 @@ export function Disclosure({ title, icon, defaultOpen = false, children }: Discl
         className={styles.trigger}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((value) => !value)}
+        data-instant={instant}
+        onClick={(event) => {
+          setInstant(event.detail === 0)
+          setOpen((value) => !value)
+        }}
       >
         {icon ? <Icon name={icon} size="sm" className={styles.icon} /> : null}
         <span>{title}</span>
@@ -32,6 +37,8 @@ export function Disclosure({ title, icon, defaultOpen = false, children }: Discl
           id={id}
           className={styles.panel}
           data-state={presence.state}
+          data-instant={instant}
+          inert={!open}
           onTransitionEnd={presence.onTransitionEnd}
         >
           {children}
