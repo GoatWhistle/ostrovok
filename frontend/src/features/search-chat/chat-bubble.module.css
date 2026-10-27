@@ -12,8 +12,8 @@
   padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-lg);
   border-end-end-radius: var(--radius-sm);
-  background-color: var(--action-primary);
-  color: var(--action-primary-text);
+  background-color: var(--action-ghost-press);
+  color: var(--text-primary);
   font-weight: var(--weight-medium);
   line-height: var(--line-height-body);
   white-space: pre-wrap;
@@ -23,7 +23,7 @@
 .userText .time {
   display: block;
   margin-block-start: var(--space-2);
-  color: var(--action-primary-text);
+  color: var(--text-secondary);
   font-size: var(--font-size-caption);
   font-weight: var(--weight-medium);
   text-align: end;
