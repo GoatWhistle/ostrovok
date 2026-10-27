@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSearchParams } from "react-router"
 import { FactDetails } from "@/features/fact-details"
 import { HotelComparison } from "@/features/hotel-comparison"
+import { readActiveConversation } from "@/features/hotel-search/conversation-history"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { ButtonLink, Dialog, PageHeader } from "@/shared/ui"
 import styles from "./compare-page.module.css"
@@ -9,6 +10,7 @@ export function ComparePage() {
   const { t } = useTranslation()
   const [params, setParams] = useSearchParams()
   const [fact, setFact] = useState<{ hotelId: string; factId: string }>()
+  const [conversationId] = useState(readActiveConversation)
   useDocumentTitle(t("explore:compare.title"))
   return (
     <div className={styles.page}>
@@ -24,6 +26,7 @@ export function ComparePage() {
       <HotelComparison
         key={params.toString()}
         ids={[...new Set(params.getAll("hotel"))]}
+        conversationId={conversationId}
         onFact={(hotelId, factId) => setFact({ hotelId, factId })}
         onRemove={(id) => {
           const next = new URLSearchParams(params)
