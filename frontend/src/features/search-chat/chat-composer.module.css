@@ -6,6 +6,12 @@
   box-shadow: var(--shadow-divider-top);
 }
 
+.flat {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .context {
   justify-self: start;
   max-inline-size: 100%;

@@ -1,18 +1,20 @@
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useFormatters, useTranslation } from "@/shared/i18n"
-import { Button, ScrollArea } from "@/shared/ui"
+import { ScrollArea } from "@/shared/ui"
 import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
 import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
-import { ChatHistory, type HistoryEntry } from "./chat-history"
+import { ChatHeader } from "./chat-header"
+import type { ChatView } from "./chat-view"
+import { ChatHistory, type HistoryEntry } from "./history/chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
 import { useChatFollow } from "./use-chat-follow"
 
 export type ChatMessage = components["schemas"]["ChatMessage"]
-export type ChatView = "chat" | "history"
+export type { ChatView }
 
 export interface SearchChatProps {
   readonly draftKey?: string | undefined
@@ -34,6 +36,7 @@ export interface SearchChatProps {
   readonly onReset: () => void
   readonly onOpenConversation: (id: string) => void
   readonly onView: (view: ChatView) => void
+  readonly onCollapse?: (() => void) | undefined
   readonly onRename: (id: string, title: string) => Promise<unknown>
   readonly onDelete: (id: string) => Promise<unknown>
 }
@@ -58,6 +61,7 @@ export function SearchChat({
   onOpenConversation,
   view,
   onView,
+  onCollapse,
   onRename,
   onDelete,
 }: SearchChatProps) {
@@ -73,40 +77,15 @@ export function SearchChat({
     (conversationId ? t("explore:chat.untitled") : t("explore:chat.newSearch"))
   return (
     <section className={styles.chat} aria-labelledby="chat-title">
-      <header className={styles.header}>
-        <p id="chat-title" className={styles.title} title={title}>
-          {title}
-        </p>
-        <div className={styles.actions}>
-          <Button
-            variant="ghost"
-            iconOnly
-            icon="history"
-            className={styles.toggle}
-            title={t("explore:chat.historyShort")}
-            aria-pressed={view === "history"}
-            disabled={history.length === 0 && view === "chat"}
-            onClick={() => onView(view === "history" ? "chat" : "history")}
-          >
-            {t("explore:chat.historyShort")}
-          </Button>
-          <Button
-            iconOnly
-            icon="plus"
-            className={styles.create}
-            title={t("explore:chat.newSearch")}
-            disabled={
-              view === "chat" && conversationId === null && messages.length === 0 && !outgoing
-            }
-            onClick={() => {
-              onView("chat")
-              onReset()
-            }}
-          >
-            {t("explore:chat.newSearch")}
-          </Button>
-        </div>
-      </header>
+      <ChatHeader
+        title={title}
+        view={view}
+        historyCount={history.length}
+        emptyChat={conversationId === null && messages.length === 0 && !outgoing}
+        onView={onView}
+        onReset={onReset}
+        onCollapse={onCollapse}
+      />
       {view === "history" ? (
         <ChatHistory
           activeId={conversationId}

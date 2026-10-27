@@ -1,3 +1,4 @@
+import { clsx } from "clsx"
 import { type FormEvent, useId } from "react"
 import { useSessionDraft } from "@/shared/hooks"
 import { useTranslation } from "@/shared/i18n"
@@ -11,6 +12,7 @@ export interface ChatComposerProps {
   readonly pending: boolean
   readonly selectedHotel?: string | undefined
   readonly placeholder?: string | undefined
+  readonly flat?: boolean
   readonly onSend: (query: string) => void
 }
 
@@ -22,6 +24,7 @@ export function ChatComposer({
   draftKey = "chat:entry",
   onInteraction,
   autoFocus = false,
+  flat = false,
 }: ChatComposerProps) {
   const { t } = useTranslation()
   const hint = useId()
@@ -34,7 +37,7 @@ export function ChatComposer({
     setValue("")
   }
   return (
-    <form className={styles.composer} onSubmit={submit}>
+    <form className={clsx(styles.composer, flat && styles.flat)} onSubmit={submit}>
       {selectedHotel ? (
         <StatusBadge tone="info" icon="building" className={styles.context}>
           {t("explore:chat.selected", { name: selectedHotel })}

@@ -1,0 +1,45 @@
+.dock {
+  position: absolute;
+  inset-block-end: var(--space-64);
+  inset-inline: var(--space-16);
+  display: grid;
+  justify-items: center;
+  z-index: var(--layer-sticky);
+  pointer-events: none;
+}
+
+.bar,
+.panel {
+  inline-size: 100%;
+  max-inline-size: var(--prose-measure);
+  background-color: var(--surface-overlay);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  pointer-events: auto;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-12);
+  animation: var(--motion-anchor-in);
+}
+
+.bar > form {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.panel {
+  display: grid;
+  min-block-size: 0;
+  max-block-size: min(60dvh, 40rem);
+  overflow: hidden;
+  transform-origin: bottom center;
+  animation: var(--motion-anchor-in);
+}
+
+.panel[data-state="closed"] {
+  animation: var(--motion-fade-out);
+}
