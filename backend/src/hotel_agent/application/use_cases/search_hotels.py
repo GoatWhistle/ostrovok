@@ -96,6 +96,7 @@ class SearchHotels:
         location = parsed.location_hint.strip() if parsed.location_hint else None
         if location and location.casefold() in {"россия", "russia"}:
             location = None
+        progress.step("parsed", **_understood(parsed, location))
         if parsed.needs_clarification or (not location and not parsed.anywhere):
             return _empty(
                 query,
@@ -215,6 +216,20 @@ class SearchHotels:
         return await select_candidates(
             query, parsed, explored, self._clock.now(), self._review, limit
         )
+
+
+def _understood(parsed: ParsedQuery, location: str | None) -> dict[str, object]:
+    return {
+        "location": location,
+        "intents": [
+            {"term": intent.source_text.strip(), "key": intent.characteristic_key}
+            for intent in parsed.intents
+            if intent.source_text.strip()
+        ],
+        "check_in": parsed.check_in.isoformat() if parsed.check_in else None,
+        "check_out": parsed.check_out.isoformat() if parsed.check_out else None,
+        "adults": parsed.adults,
+    }
 
 
 def _empty(

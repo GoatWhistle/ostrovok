@@ -3,6 +3,7 @@ from types import SimpleNamespace
 from typing import cast
 from unittest.mock import AsyncMock, MagicMock
 
+from hotel_agent.application import progress
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -220,3 +221,42 @@ async def test_geographic_object_can_supply_region_when_it_is_not_a_city() -> No
     assert not result.unsupported
     assert result.bbox is not None and result.bbox[0] < 87.60 < result.bbox[2]
     hotels.list_hotels.assert_awaited_once()
+
+
+async def test_the_understood_request_is_reported_before_hotels_are_read() -> None:
+    parsed = ParsedQuery(
+        intents=(
+            Intent(
+                characteristic_key="noise_level",
+                op=Op.LTE,
+                value=3,
+                weight=1.0,
+                required=True,
+                source_text=" тихий ",
+            ),
+        ),
+        unmatched_terms=(),
+        location_hint=None,
+        adults=2,
+    )
+    use_case, _, _, _ = search(parsed)
+    reported: list[tuple[str, dict[str, object]]] = []
+    token = progress.listen(lambda stage, fields: reported.append((stage, fields)))
+    try:
+        await use_case("тихий номер", "russia", None, 20)
+    finally:
+        progress.release(token)
+
+    assert reported == [
+        ("parsing", {}),
+        (
+            "parsed",
+            {
+                "location": None,
+                "intents": [{"term": "тихий", "key": "noise_level"}],
+                "check_in": None,
+                "check_out": None,
+                "adults": 2,
+            },
+        ),
+    ]
