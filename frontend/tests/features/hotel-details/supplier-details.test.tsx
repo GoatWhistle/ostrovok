@@ -94,14 +94,12 @@ function show(details: Details) {
 }
 
 describe("supplier details", () => {
-  it("shows the published photos, facts and the register record", () => {
+  it("shows the building facts and the register record without repeating the cover", () => {
     show(DETAILS)
-    expect(screen.getByRole("img").getAttribute("src")).toContain("a.jpg")
-    expect(screen.getByLabelText(ru.supplier.photos)).toBeTruthy()
+    expect(screen.queryByRole("img")).toBeNull()
     expect(screen.getByText("19")).toBeTruthy()
-    expect(screen.getByText("881")).toBeTruthy()
     expect(screen.getByText("1973")).toBeTruthy()
-    expect(screen.getByText("15:00")).toBeTruthy()
+    expect(screen.queryByText("15:00")).toBeNull()
     expect(screen.getByText(ru.supplier.registryLink).getAttribute("href")).toBe(
       DETAILS.facts.registry?.link,
     )

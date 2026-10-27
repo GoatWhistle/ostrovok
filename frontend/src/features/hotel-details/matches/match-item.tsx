@@ -1,12 +1,13 @@
-import { FactStatusBadge, HueIcon, MatchGlyph, RowButton } from "@/entities/evidence"
+import { MatchGlyph, RowButton, StatusGlyph } from "@/entities/evidence"
 import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { factScope } from "@/shared/geo/facts/scope"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
 import type { MatchRowsProps } from "./match-rows"
 import styles from "./match-rows.module.css"
+import { wishVerdict } from "./wish-verdict"
 
 interface MatchItemProps extends Omit<MatchRowsProps, "matched"> {
   readonly item: MatchedProperty
@@ -18,35 +19,31 @@ export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProp
   const fact = item.fact
   const current = isCurrentFact(fact)
   const hasMap = (item.geo_refs?.length ?? fact?.geo_refs?.length ?? 0) > 0
+  const verdict = wishVerdict(item, locale)
+  const status = fact && !current ? t(`explore:status.${fact.status}`) : undefined
+  const note = [status, ...(fact ? factScope(fact, locale) : []), item.explanation]
+    .filter(Boolean)
+    .join("; ")
+  const glyph =
+    fact && !current ? <StatusGlyph status={fact.status} /> : <MatchGlyph match={item.match} />
   const body = (
     <>
       <span className={styles.label}>{matchedTitle(item, locale)}</span>
-      <span className={styles.caption}>
-        {fact && !current ? t(`explore:status.${fact.status}`) : t(`explore:match.${item.match}`)}
-      </span>
-      {fact
-        ? factScope(fact, locale).map((text) => (
-            <span key={text} className={styles.caption}>
-              {text}
-            </span>
-          ))
-        : null}
-      {item.explanation ? (
-        <span className={styles.caption} lang="ru">
-          {item.explanation}
+      {verdict ? <span className={styles.verdict}>{verdict}</span> : null}
+      {note ? (
+        <span className={styles.note} lang="ru">
+          {note}
         </span>
       ) : null}
     </>
   )
-  const trailing =
-    fact && !current ? <FactStatusBadge status={fact.status} /> : <MatchGlyph match={item.match} />
   return (
     <li className={styles.item}>
       {fact ? (
         <RowButton
           leadingAlign="start"
-          leading={<HueIcon characteristicKey={item.characteristic_key} />}
-          trailing={trailing}
+          leading={glyph}
+          trailing={<Icon name="chevron-right" size="sm" className={styles.more} />}
           onClick={() => onFact(fact)}
           onPointerEnter={() => onPreview?.(item)}
           onPointerLeave={() => onPreview?.(undefined)}
@@ -57,21 +54,13 @@ export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProp
         </RowButton>
       ) : (
         <div className={styles.static}>
-          <HueIcon characteristicKey={item.characteristic_key} />
+          {glyph}
           <span className={styles.body}>{body}</span>
-          {trailing}
         </div>
       )}
       {hasMap && onProperty ? (
-        <Button
-          variant="ghost"
-          size="compact"
-          icon="map"
-          iconOnly
-          title={t("explore:details.showOnMap")}
-          onClick={() => onProperty(item)}
-        >
-          {t("explore:details.showOnMap")}
+        <Button variant="ghost" size="compact" icon="map" onClick={() => onProperty(item)}>
+          {t("explore:wish.onMap")}
         </Button>
       ) : null}
     </li>

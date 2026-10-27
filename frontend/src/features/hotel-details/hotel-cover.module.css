@@ -1,0 +1,43 @@
+.cover {
+  position: relative;
+  margin: 0;
+}
+
+.photo {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background-color: var(--surface-sunken);
+  animation: var(--motion-fade-in);
+}
+
+.previous,
+.next {
+  position: absolute;
+  inset-block-start: 50%;
+  translate: 0 -50%;
+}
+
+.previous {
+  inset-inline-start: var(--space-8);
+}
+
+.next {
+  inset-inline-end: var(--space-8);
+}
+
+.previous:disabled,
+.next:disabled {
+  opacity: 0;
+}
+
+.count {
+  composes: captionStrong glassSurface from "../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-end: var(--space-8);
+  inset-inline-end: var(--space-8);
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-pill);
+}

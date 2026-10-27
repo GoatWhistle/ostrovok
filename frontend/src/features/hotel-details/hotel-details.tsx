@@ -1,6 +1,6 @@
 import { clsx } from "clsx"
 import { useId } from "react"
-import { useHotel } from "@/entities/hotel"
+import { useHotel, useHotelDetails } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { isAvailableFact } from "@/shared/geo/facts/matching"
@@ -13,7 +13,7 @@ import { HotelHero } from "./hotel-hero"
 import { HotelOffers } from "./hotel-offers"
 import { MatchRows } from "./matches/match-rows"
 import { RoomList } from "./room-list"
-import { HotelPhotos } from "./rooms/hotel-photos"
+import { SupplierDetails } from "./supplier/supplier-details"
 
 export interface HotelDetailsProps {
   readonly hotelId: string | undefined
@@ -47,6 +47,8 @@ export function HotelDetails({
   const { t } = useTranslation()
   const titleId = useId()
   const hotel = useHotel(hotelId)
+  const catalog = useHotelDetails(hotelId)
+  const supplier = catalog.data?.details ?? undefined
   if (!hotelId)
     return (
       <EmptyState
@@ -80,12 +82,17 @@ export function HotelDetails({
     >
       <HotelHero
         hotel={card.hotel}
+        supplier={supplier}
         titleId={titleId}
-        onRooms={() => {
-          const section = document.getElementById(`${card.hotel.id}-rooms`)
-          section?.scrollIntoView({ block: "start" })
-          section?.focus({ preventScroll: true })
-        }}
+        onRooms={
+          catalog.data?.status === "available"
+            ? () => {
+                const section = document.getElementById(`${card.hotel.id}-rooms`)
+                section?.scrollIntoView({ block: "start" })
+                section?.focus({ preventScroll: true })
+              }
+            : undefined
+        }
       />
       {matched.length ? (
         <MatchRows
@@ -106,7 +113,7 @@ export function HotelDetails({
       {views.length ? (
         <FactList title={t("explore:cards.views")} facts={views} onFact={onFact} />
       ) : null}
-      <HotelPhotos hotel={card.hotel} />
+      {supplier ? <SupplierDetails details={supplier} source={catalog.data?.source} /> : null}
       <HotelFacilities
         hotelId={card.hotel.id}
         facilitiesRu={card.facilities_ru ?? []}

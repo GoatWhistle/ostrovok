@@ -262,7 +262,6 @@
     "roomIncluded": "Room amenities: {{value}}",
     "roomIncludedUnknown": "Included services unavailable",
     "yourRequest": "Your search",
-    "showOnMap": "Show on map",
     "empty": "Get to know the place",
     "emptyText": "Choose a hotel in the results to explore its properties, rooms and sources.",
     "error": "Hotel details are unavailable",
@@ -522,17 +521,9 @@
     "kind": "Place type"
   },
   "supplier": {
-    "photos": "Hotel photos",
-    "noPhotos": "No hotel photos received",
     "floors": "Floors",
-    "rooms": "Rooms in total",
-    "stars": "Stars",
     "built": "Built",
     "renovated": "Renovated",
-    "checkIn": "Check-in from",
-    "checkOut": "Check-out until",
-    "rating": "Guest score",
-    "ratingValue": "{{score}} out of 10, reviews: {{count}}",
     "registry": "National accommodation register: {{record}}",
     "registryLink": "Open the register record",
     "amenities": "Services and equipment: {{count}}",
@@ -631,8 +622,6 @@
     "unresolvedWishes": "Need clarification: {{count}}",
     "moreWishes": "Other wishes: {{count}}",
     "moreFacilities": "More facilities: {{count}}",
-    "hotelPhotos": "Hotel photos",
-    "photoViewNote": "Hotel photos do not confirm the view from your selected room.",
     "allEvidence": "All facts and sources",
     "views": "Views and surroundings",
     "catalogPrice": "Catalog price, dates not checked: {{amount, number}} {{currency}}",
@@ -697,5 +686,36 @@
       "text": "up to {{value}} adults"
     },
     "missing": "Enter a value"
+  },
+  "wish": {
+    "sea": "{{minutes}} min walk to the sea",
+    "seaMeters": "{{walk}} ({{value}} m)",
+    "quiet": "Quiet: noise {{score}} of 10",
+    "moderate": "Some noise: {{score}} of 10",
+    "loud": "Noisy: {{score}} of 10",
+    "height": "Building {{value}} m tall",
+    "nearby_one": "{{count, number}} place nearby",
+    "nearby_few": "{{count, number}} places nearby",
+    "nearby_many": "{{count, number}} places nearby",
+    "nearby_other": "{{count, number}} places nearby",
+    "sunset": "Sunset visible from the windows",
+    "noSunset": "No sunset view from the windows",
+    "computing": "Still checking",
+    "incomplete": "We did not finish checking",
+    "noData": "No data to check this",
+    "onMap": "On map"
+  },
+  "hotelCover": {
+    "photos": "Hotel photos",
+    "rating_one": "{{score}}/10, {{count, number}} review",
+    "rating_few": "{{score}}/10, {{count, number}} reviews",
+    "rating_many": "{{score}}/10, {{count, number}} reviews",
+    "rating_other": "{{score}}/10, {{count, number}} reviews",
+    "checkIn": "Check-in from {{time}}",
+    "checkOut": "Check-out until {{time}}",
+    "rooms_one": "{{count, number}} room",
+    "rooms_few": "{{count, number}} rooms",
+    "rooms_many": "{{count, number}} rooms",
+    "rooms_other": "{{count, number}} rooms"
   }
 }

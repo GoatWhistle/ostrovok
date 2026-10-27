@@ -1,10 +1,11 @@
 .caption {
   composes: bodySmText from "../../../shared/styles/compose.module.css";
+  color: var(--text-secondary);
 }
 
 .list {
+  composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-8);
 }
 
 .item {
@@ -14,10 +15,14 @@
   gap: var(--space-4);
 }
 
+.item + .item {
+  box-shadow: var(--shadow-divider-top);
+}
+
 .static {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
   gap: var(--space-12);
   min-block-size: var(--target-min);
   padding: var(--space-8) var(--space-12);
@@ -25,10 +30,28 @@
 
 .body {
   display: grid;
-  gap: var(--space-8);
+  gap: var(--space-2);
   min-inline-size: 0;
 }
 
 .label {
   composes: bodyStrong from "../../../shared/styles/compose.module.css";
+}
+
+.verdict {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  color: var(--text-primary);
+}
+
+.note {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.more {
+  color: var(--text-muted);
 }

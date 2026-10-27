@@ -262,7 +262,6 @@
     "roomIncluded": "Оснащение номера: {{value}}",
     "roomIncludedUnknown": "Что включено, не указано",
     "yourRequest": "По вашему запросу",
-    "showOnMap": "Показать на карте",
     "empty": "Узнайте место ближе",
     "emptyText": "Выберите отель в результатах. Здесь будут свойства, номера и источники данных.",
     "error": "Карточка пока недоступна",
@@ -522,17 +521,9 @@
     "kind": "Тип места"
   },
   "supplier": {
-    "photos": "Фотографии отеля",
-    "noPhotos": "Фотографии отеля не получены",
     "floors": "Этажей",
-    "rooms": "Номеров всего",
-    "stars": "Звёзд",
     "built": "Построен",
     "renovated": "Реконструкция",
-    "checkIn": "Заезд с",
-    "checkOut": "Выезд до",
-    "rating": "Оценка гостей",
-    "ratingValue": "{{score}} из 10, отзывов: {{count}}",
     "registry": "Реестр классифицированных объектов: {{record}}",
     "registryLink": "Открыть запись реестра",
     "amenities": "Услуги и оснащение: {{count}}",
@@ -631,8 +622,6 @@
     "unresolvedWishes": "Нуждаются в уточнении: {{count}}",
     "moreWishes": "Остальные пожелания: {{count}}",
     "moreFacilities": "Ещё удобства: {{count}}",
-    "hotelPhotos": "Фотографии отеля",
-    "photoViewNote": "Фотографии отеля не подтверждают вид из выбранного номера.",
     "allEvidence": "Все факты и источники",
     "views": "Виды и расположение",
     "catalogPrice": "Справочная цена без проверки дат: {{amount, number}} {{currency}}",
@@ -697,5 +686,36 @@
       "text": "до {{value}} взрослых"
     },
     "missing": "Укажите значение"
+  },
+  "wish": {
+    "sea": "{{minutes}} мин пешком до моря",
+    "seaMeters": "{{walk}} ({{value}} м)",
+    "quiet": "Тихо: шум {{score}} из 10",
+    "moderate": "Умеренный шум: {{score}} из 10",
+    "loud": "Шумно: {{score}} из 10",
+    "height": "Здание {{value}} м",
+    "nearby_one": "{{count, number}} место рядом",
+    "nearby_few": "{{count, number}} места рядом",
+    "nearby_many": "{{count, number}} мест рядом",
+    "nearby_other": "{{count, number}} места рядом",
+    "sunset": "Из окон виден закат",
+    "noSunset": "Закат из окон не виден",
+    "computing": "Ещё проверяем",
+    "incomplete": "Не успели проверить",
+    "noData": "Нет данных, чтобы проверить",
+    "onMap": "На карте"
+  },
+  "hotelCover": {
+    "photos": "Фотографии отеля",
+    "rating_one": "{{score}} из 10, {{count, number}} отзыв",
+    "rating_few": "{{score}} из 10, {{count, number}} отзыва",
+    "rating_many": "{{score}} из 10, {{count, number}} отзывов",
+    "rating_other": "{{score}} из 10, {{count, number}} отзыва",
+    "checkIn": "Заезд с {{time}}",
+    "checkOut": "Выезд до {{time}}",
+    "rooms_one": "{{count, number}} номер",
+    "rooms_few": "{{count, number}} номера",
+    "rooms_many": "{{count, number}} номеров",
+    "rooms_other": "{{count, number}} номера"
   }
 }
