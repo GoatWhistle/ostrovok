@@ -37,7 +37,7 @@ export function RoomsScreen({
   }, [])
   const checked = offers.current?.checked_at
   return (
-    <section className={styles.screen} aria-labelledby={`${hotelId}-rooms-title`}>
+    <section className={styles.screen} data-rooms-screen aria-labelledby={`${hotelId}-rooms-title`}>
       <div className={styles.screenHead}>
         <Button ref={back} variant="ghost" size="compact" icon="chevron-left" onClick={onBack}>
           {t("explore:roomsScreen.back")}

@@ -235,6 +235,10 @@
   .detailScroll {
     padding-block-end: 0;
   }
+
+  .swap:has([data-rooms-screen]) > .bar {
+    display: none;
+  }
 }
 @media (max-width: 63.99rem) and (pointer: coarse) {
   .page:has(textarea:focus) > nav {
