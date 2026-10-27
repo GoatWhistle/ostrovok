@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest"
 import { QualityGovernor, type QualityLevel, windowDensity } from "@/shared/geo/map-quality"
 
-const WINDOW = 120
+function framesPerWindow(frameMs: number) {
+  return Math.min(120, Math.max(8, Math.ceil(1000 / frameMs)))
+}
 
 function feed(governor: QualityGovernor, frameMs: number, windows: number) {
-  for (let index = 0; index < WINDOW * windows; index += 1) governor.sample(frameMs)
+  const frames = framesPerWindow(frameMs) * windows
+  for (let index = 0; index < frames; index += 1) governor.sample(frameMs)
 }
 
 describe("QualityGovernor", () => {
@@ -32,10 +35,47 @@ describe("QualityGovernor", () => {
     expect(changes).toEqual([1, 0])
   })
 
-  it("ignores stalls longer than a quarter second and middling frame rates", () => {
+  it("ignores isolated pauses and middling frame rates", () => {
     const governor = new QualityGovernor(() => undefined)
-    feed(governor, 900, 4)
+    governor.sample(900)
     feed(governor, 20, 4)
+    expect(governor.level).toBe(0)
+  })
+})
+
+describe("adaptation speed", () => {
+  it("reacts to a slow device within about two seconds of movement", () => {
+    const changes: QualityLevel[] = []
+    const governor = new QualityGovernor((level) => changes.push(level))
+    for (let index = 0; index < 13; index += 1) governor.sample(80)
+    expect(changes).toEqual([])
+    for (let index = 0; index < 13; index += 1) governor.sample(80)
+    expect(changes).toEqual([1])
+  })
+
+  it("still waits for a full window on a fast device", () => {
+    const governor = new QualityGovernor(() => undefined)
+    for (let index = 0; index < 50; index += 1) governor.sample(16)
+    expect(governor.level).toBe(0)
+  })
+})
+
+describe("sustained rendering stalls", () => {
+  it("degrades when every moving frame takes almost a second", () => {
+    const changes: QualityLevel[] = []
+    const governor = new QualityGovernor((level) => changes.push(level))
+    for (let index = 0; index < 8; index += 1) governor.sample(900)
+    expect(changes).toEqual([1])
+    for (let index = 0; index < 16; index += 1) governor.sample(900)
+    expect(changes).toEqual([1, 2, 3])
+  })
+
+  it("does not mistake isolated loading pauses for sustained stutter", () => {
+    const governor = new QualityGovernor(() => undefined)
+    for (let index = 0; index < 10; index += 1) {
+      governor.sample(900)
+      governor.sample(16)
+    }
     expect(governor.level).toBe(0)
   })
 })

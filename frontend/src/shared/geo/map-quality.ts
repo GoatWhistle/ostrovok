@@ -5,11 +5,14 @@ export type QualityLevel = 0 | 1 | 2 | 3
 export const FULL_PIXEL_RATIO = 2
 const REDUCED_PIXEL_RATIO = 1.5
 const WINDOW_FRAMES = 120
+const WINDOW_MS = 1000
+const MIN_WINDOW_FRAMES = 8
 const LOW_FPS = 40
 const HIGH_FPS = 55
 const WINDOWS_TO_DROP = 2
 const WINDOWS_TO_RAISE = 4
 const MAX_FRAME_MS = 250
+const STALLED_FRAMES = 8
 const MAX_LEVEL: QualityLevel = 3
 
 export function windowDensity(level: QualityLevel): number {
@@ -27,6 +30,8 @@ export class QualityGovernor {
   private frames: number[] = []
   private slow = 0
   private fast = 0
+  private stalled = 0
+  private elapsed = 0
   private readonly onChange: (level: QualityLevel) => void
 
   constructor(onChange: (level: QualityLevel) => void) {
@@ -34,11 +39,21 @@ export class QualityGovernor {
   }
 
   sample(frameMs: number) {
-    if (!(frameMs > 0) || frameMs > MAX_FRAME_MS) return
+    if (!(frameMs > 0) || !Number.isFinite(frameMs)) return
+    if (frameMs > MAX_FRAME_MS) {
+      this.sampleStall()
+      return
+    }
+    this.stalled = 0
     this.frames.push(frameMs)
-    if (this.frames.length < WINDOW_FRAMES) return
+    this.elapsed += frameMs
+    const filled =
+      this.frames.length >= WINDOW_FRAMES ||
+      (this.elapsed >= WINDOW_MS && this.frames.length >= MIN_WINDOW_FRAMES)
+    if (!filled) return
     const fps = 1000 / median(this.frames)
     this.frames = []
+    this.elapsed = 0
     if (fps < LOW_FPS) {
       this.slow += 1
       this.fast = 0
@@ -53,7 +68,15 @@ export class QualityGovernor {
     }
   }
 
+  private sampleStall() {
+    this.stalled += 1
+    if (this.stalled >= STALLED_FRAMES && this.level < MAX_LEVEL) this.shift(1)
+  }
+
   private shift(step: 1 | -1) {
+    this.frames = []
+    this.elapsed = 0
+    this.stalled = 0
     this.level = (this.level + step) as QualityLevel
     this.slow = 0
     this.fast = 0
