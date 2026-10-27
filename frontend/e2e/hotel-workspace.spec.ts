@@ -88,7 +88,6 @@ test("new search starts a separate chat and saved chats reopen", async ({ page }
   await send.click()
   await expect(log.getByText(/^Second request/)).toBeVisible()
   await expect(log.getByText(/^First request/)).toBeHidden()
-  await page.getByRole("button", { name: copy.chat.historyShort, exact: true }).click()
   await page
     .getByLabel(copy.chat.history, { exact: true })
     .getByRole("button", { name: "First request" })
@@ -100,7 +99,6 @@ test("new search starts a separate chat and saved chats reopen", async ({ page }
   await expect.poll(() => requests).toEqual([null, null, firstId])
   await page.reload()
   await expect(log.getByText(/^First request/)).toBeVisible()
-  await page.getByRole("button", { name: copy.chat.historyShort, exact: true }).click()
   await expect(
     page
       .getByLabel(copy.chat.history, { exact: true })

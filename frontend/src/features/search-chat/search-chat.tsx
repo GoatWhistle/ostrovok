@@ -8,21 +8,18 @@ import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
 import { ChatHeader } from "./chat-header"
-import type { ChatView } from "./chat-view"
-import { ChatHistory, type HistoryEntry } from "./history/chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
+import type { HistoryEntry } from "./sidebar/history-groups"
 import { useChatFollow } from "./use-chat-follow"
 
 export type ChatMessage = components["schemas"]["ChatMessage"]
-export type { ChatView }
 
 export interface SearchChatProps {
   readonly draftKey?: string | undefined
   readonly messages: readonly ChatMessage[]
   readonly conversationId: string | null
   readonly history: readonly HistoryEntry[]
-  readonly view: ChatView
   readonly search: SearchResponse | undefined
   readonly searchMessageId?: string | null | undefined
   readonly outgoing: string | undefined
@@ -36,11 +33,8 @@ export interface SearchChatProps {
   readonly onShowOnMap: (result: SearchResult | undefined) => void
   readonly onShowList: () => void
   readonly onReset: () => void
-  readonly onOpenConversation: (id: string) => void
-  readonly onView: (view: ChatView) => void
+  readonly onOpenChats?: (() => void) | undefined
   readonly onCollapse?: (() => void) | undefined
-  readonly onRename: (id: string, title: string) => Promise<unknown>
-  readonly onDelete: (id: string) => Promise<unknown>
 }
 
 export function SearchChat({
@@ -61,12 +55,8 @@ export function SearchChat({
   onShowOnMap,
   onShowList,
   onReset,
-  onOpenConversation,
-  view,
-  onView,
+  onOpenChats,
   onCollapse,
-  onRename,
-  onDelete,
 }: SearchChatProps) {
   const { t } = useTranslation()
   const format = useFormatters()
@@ -82,27 +72,12 @@ export function SearchChat({
     <section className={styles.chat} aria-labelledby="chat-title">
       <ChatHeader
         title={title}
-        view={view}
-        historyCount={history.length}
         emptyChat={conversationId === null && messages.length === 0 && !outgoing}
-        onView={onView}
         onReset={onReset}
+        onOpenChats={onOpenChats}
         onCollapse={onCollapse}
       />
-      {view === "history" ? (
-        <ChatHistory
-          activeId={conversationId}
-          conversations={history}
-          pending={false}
-          onOpen={(id) => {
-            onOpenConversation(id)
-            onView("chat")
-          }}
-          onRename={onRename}
-          onDelete={onDelete}
-        />
-      ) : null}
-      <div className={styles.body} hidden={view === "history"}>
+      <div className={styles.body}>
         <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
           <ol ref={list} className={styles.messages}>
             {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}

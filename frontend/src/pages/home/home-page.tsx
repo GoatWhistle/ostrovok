@@ -1,7 +1,7 @@
 import { type CSSProperties, useCallback, useRef, useState } from "react"
 import { HotelStayProvider } from "@/entities/hotel"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import type { ChatView } from "@/features/search-chat"
+import { useChatSidebar } from "@/features/search-chat"
 import { useMediaQuery, useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { useInputModality, withViewTransition } from "@/shared/motion"
@@ -17,6 +17,7 @@ import { useSurfaceScroll } from "./use-surface-scroll"
 import { WorkspaceChat } from "./workspace-chat"
 import { WorkspaceMap } from "./workspace-map"
 import { WorkspacePanel } from "./workspace-panel"
+import { WorkspaceSidebar } from "./workspace-sidebar"
 
 function useMapVisible(
   surface: ReturnType<typeof useHotelWorkspace>["surface"],
@@ -47,7 +48,7 @@ export function HomePage() {
   const modality = useInputModality(true)
   const mapMounted = useRef(false)
   if (["workspace", "hotel-panel", "map"].includes(state.surface)) mapMounted.current = true
-  const [chatView, setChatView] = useState<ChatView>("chat")
+  const chats = useChatSidebar(modality.instant, state.surface === "conversation")
   const [dockOpen, setDockOpen] = useState(false)
   useFreshStart(state.clearTransient)
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
@@ -90,13 +91,10 @@ export function HomePage() {
           draftKey={`chat:${state.navigation.scopeKey}`}
           recent={state.history}
           onSend={send}
-          onOpen={(id) => {
-            setChatView("chat")
-            state.openConversation(id)
-          }}
+          onOpen={state.openConversation}
           onHistory={() => {
             state.navigation.begin()
-            setChatView("history")
+            chats.reveal()
           }}
         />
       ) : null}
@@ -107,6 +105,7 @@ export function HomePage() {
         data-chrome={standalone ? "bare" : undefined}
         hidden={start}
       >
+        {start || standalone ? null : <WorkspaceSidebar state={state} sidebar={chats} />}
         <div className={styles.tabs}>
           <Segmented<WorkspaceView>
             label={t("explore:panel.tabs")}
@@ -185,11 +184,7 @@ export function HomePage() {
                 onShowOnMap: state.showOnMap,
                 onShowList: () => state.setView("hotels"),
                 onReset: () => state.reset(),
-                onOpenConversation: state.openConversation,
-                view: chatView,
-                onView: setChatView,
-                onRename: state.renameConversation,
-                onDelete: state.deleteConversation,
+                onOpenChats: chats.openChats,
               }}
             />
           )}

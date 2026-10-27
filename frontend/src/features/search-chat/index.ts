@@ -1,8 +1,6 @@
 export { ChatComposer } from "./chat-composer"
 export { ChatStart, type ChatStartProps } from "./chat-start"
-export {
-  type ChatMessage,
-  type ChatView,
-  SearchChat,
-  type SearchChatProps,
-} from "./search-chat"
+export { type ChatMessage, SearchChat, type SearchChatProps } from "./search-chat"
+export { ChatSidebar, type ChatSidebarProps } from "./sidebar/chat-sidebar"
+export { ChatsDrawer, type ChatsDrawerProps } from "./sidebar/chats-drawer"
+export { type ChatSidebarState, useChatSidebar } from "./sidebar/use-chat-sidebar"

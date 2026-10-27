@@ -1,13 +1,11 @@
 import { type FormEvent, useState } from "react"
 import { useTranslation } from "@/shared/i18n"
-import { Button, Icon, TextField } from "@/shared/ui"
-import styles from "./chat-history.module.css"
+import { Button, TextField } from "@/shared/ui"
+import styles from "./conversation-list.module.css"
 
 export interface HistoryRowProps {
   readonly title: string
-  readonly date: string | undefined
   readonly current: boolean
-  readonly pending: boolean
   readonly onOpen: () => void
   readonly onRename: (title: string) => Promise<unknown>
   readonly onDelete: () => Promise<unknown>
@@ -17,15 +15,7 @@ type Mode = "idle" | "rename" | "confirm"
 
 const TITLE_LIMIT = 80
 
-export function HistoryRow({
-  title,
-  date,
-  current,
-  pending,
-  onOpen,
-  onRename,
-  onDelete,
-}: HistoryRowProps) {
+export function HistoryRow({ title, current, onOpen, onRename, onDelete }: HistoryRowProps) {
   const { t } = useTranslation()
   const [mode, setMode] = useState<Mode>("idle")
   const [draft, setDraft] = useState(title)
@@ -92,18 +82,17 @@ export function HistoryRow({
       </li>
     )
   return (
-    <li className={styles.row} aria-current={current ? "true" : undefined}>
+    <li className={styles.row} data-current={current}>
       <Button
         variant="ghost"
         align="start"
         className={styles.open}
-        disabled={pending}
+        title={title}
+        aria-current={current ? "page" : undefined}
         onClick={onOpen}
       >
         <span className={styles.itemTitle}>{title}</span>
-        {date ? <span className={styles.date}>{date}</span> : null}
       </Button>
-      {current ? <Icon name="check" size="sm" className={styles.check} /> : null}
       <span className={styles.rowActions}>
         <Button
           variant="ghost"
