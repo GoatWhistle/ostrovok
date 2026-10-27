@@ -4,8 +4,13 @@ from fastapi import APIRouter, Query
 
 from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
+from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
+from hotel_agent.interfaces.http.details_schemas import (
+    HotelDetailsSchema,
+    hotel_details_schema,
+)
 from hotel_agent.interfaces.http.hotel_schemas import (
     FactDetailSchema,
     HotelCardSchema,
@@ -22,6 +27,7 @@ def build_router(
     get_scene: GetHotelScene,
     get_offers: GetHotelOffers,
     get_fact: GetFact,
+    get_details: GetHotelDetails,
 ) -> APIRouter:
     router = APIRouter(tags=["hotels"])
 
@@ -40,6 +46,10 @@ def build_router(
         return hotel_offers_schema(
             await get_offers(hotel_id, check_in, check_out, adults, residency)
         )
+
+    @router.get("/hotels/{hotel_id}/details", response_model=HotelDetailsSchema)
+    async def details(hotel_id: str) -> HotelDetailsSchema:
+        return hotel_details_schema(await get_details(hotel_id))
 
     @router.get("/hotels/{hotel_id}/scene", response_model=HotelSceneSchema)
     async def scene(

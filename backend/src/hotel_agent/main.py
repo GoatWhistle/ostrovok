@@ -187,6 +187,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             get_place=GetPlace(providers.uow, providers.clock),
             compare_hotels=CompareHotels(providers.uow, providers.registry, providers.clock),
             get_hotel_offers=get_hotel_offers,
+            get_hotel_details=get_hotel_details,
             get_hotel_scene=GetHotelScene(providers.uow, geography),
             get_map_tile=GetMapTile(providers.uow, geography),
             get_map_catalog=GetMapCatalog(

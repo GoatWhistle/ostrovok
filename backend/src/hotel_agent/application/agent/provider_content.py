@@ -4,9 +4,9 @@ from typing import Any
 from hotel_agent.application.agent import catalog_records, supplier_records
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.hotel_catalog import CatalogProviderFailure, HotelCatalogSource
-from hotel_agent.application.ports.hotel_offers import OfferProviderFailure
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
-from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
+from hotel_agent.application.ports.supplier_details import SupplierHotel
+from hotel_agent.application.use_cases.get_hotel_details import DetailsStatus, GetHotelDetails
 
 NOTE = (
     "Read provider_hotels/provider_rooms with match_records. "
@@ -56,14 +56,14 @@ class ProviderContent:
         if self._details is None:
             return None
         source = self._details.source or "provider"
-        try:
-            found = await self._details(hotel.id)
-        except OfferProviderFailure:
+        found = await self._details(hotel.id)
+        if found.status == DetailsStatus.PROVIDER_ERROR:
             return "unavailable"
-        if found is None:
+        if found.details is None:
             return None
-        self.hotels.append(supplier_records.hotel_record(hotel, found, source))
-        self.rooms.extend(supplier_records.room_records(hotel, found, source))
+        supplier = SupplierHotel(details=found.details, rooms=found.rooms)
+        self.hotels.append(supplier_records.hotel_record(hotel, supplier, source))
+        self.rooms.extend(supplier_records.room_records(hotel, supplier, source))
         return "available"
 
     async def _catalog(self, hotel: SearchHotelRecord) -> str:

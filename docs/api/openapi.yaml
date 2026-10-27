@@ -211,6 +211,21 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/Error" }
 
+  /hotels/{hotel_id}/details:
+    get:
+      tags: [hotels]
+      operationId: getHotelDetails
+      summary: "Сведения отеля у поставщика без дат: фотографии, факты, категории номеров"
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      responses:
+        "200":
+          description: Сведения отеля или честный статус отсутствия данных
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelDetails" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
   /hotels/{hotel_id}/scene:
     get:
       tags: [hotels, geo]
@@ -1254,6 +1269,25 @@ components:
         stale_count: { type: integer }
         open_questions: { type: integer }
         camera: { $ref: "#/components/schemas/Camera" }
+
+    HotelDetails:
+      type: object
+      required: [hotel_id, status, sandbox, room_groups]
+      properties:
+        hotel_id: { type: string }
+        status:
+          type: string
+          enum: [provider_unavailable, hotel_unmapped, provider_error, available]
+        source: { type: string, nullable: true }
+        sandbox: { type: boolean }
+        details:
+          allOf: [{ $ref: "#/components/schemas/SupplierDetails" }]
+          nullable: true
+          description: Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам
+        room_groups:
+          type: array
+          description: Категории номеров поставщика без привязки к датам и тарифам
+          items: { $ref: "#/components/schemas/SupplierRoom" }
 
     HotelOffers:
       type: object

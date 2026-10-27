@@ -3,7 +3,7 @@ from typing import cast
 
 from hotel_agent.application.agent.provider_content import ProviderContent
 from hotel_agent.application.dto import SearchHotelRecord
-from hotel_agent.application.ports.hotel_offers import OfferProviderFailure, SupplierRoom
+from hotel_agent.application.ports.hotel_offers import SupplierRoom
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.supplier_details import (
     SupplierAmenity,
@@ -17,7 +17,11 @@ from hotel_agent.application.ports.supplier_details import (
     SupplierRegistry,
     SupplierRegistryCategory,
 )
-from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
+from hotel_agent.application.use_cases.get_hotel_details import (
+    DetailsStatus,
+    GetHotelDetails,
+    HotelDetails,
+)
 
 HOTEL = SearchHotelRecord(
     id="w51847429",
@@ -75,11 +79,23 @@ class Details:
         self.calls: list[str] = []
         self.configured = True
 
-    async def __call__(self, hotel_id: str) -> SupplierHotel | None:
+    async def __call__(self, hotel_id: str) -> HotelDetails:
         self.calls.append(hotel_id)
         if self._fails:
-            raise OfferProviderFailure("site down")
-        return self._result
+            return HotelDetails(
+                hotel_id=hotel_id, status=DetailsStatus.PROVIDER_ERROR, source=self.source
+            )
+        if self._result is None:
+            return HotelDetails(
+                hotel_id=hotel_id, status=DetailsStatus.HOTEL_UNMAPPED, source=self.source
+            )
+        return HotelDetails(
+            hotel_id=hotel_id,
+            status=DetailsStatus.AVAILABLE,
+            source=self.source,
+            details=self._result.details,
+            rooms=self._result.rooms,
+        )
 
 
 def content(details: Details) -> ProviderContent:

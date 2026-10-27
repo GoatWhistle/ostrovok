@@ -5,7 +5,9 @@ from pydantic import BaseModel
 from hotel_agent.application.use_cases.get_hotel_offers import HotelOffers, OfferStatus
 from hotel_agent.interfaces.http.supplier_schemas import (
     SupplierDetailsSchema,
+    SupplierRoomSchema,
     supplier_details_schema,
+    supplier_room_schema,
 )
 
 
@@ -20,15 +22,6 @@ class RoomOfferSchema(BaseModel):
     floor_number: int | None
     room_group_id: str | None
     free_cancellation_before: datetime | None
-
-
-class SupplierRoomSchema(BaseModel):
-    id: str
-    name: str
-    photos: list[str]
-    amenities: list[str]
-    size_sqm: float | None
-    bedding: str | None
 
 
 class HotelOffersSchema(BaseModel):
@@ -64,17 +57,7 @@ def hotel_offers_schema(result: HotelOffers) -> HotelOffersSchema:
         photo_url=result.photo_url,
         rates_complete=result.rates_complete,
         details=supplier_details_schema(result.details) if result.details else None,
-        room_groups=[
-            SupplierRoomSchema(
-                id=r.id,
-                name=r.name,
-                photos=list(r.photos),
-                amenities=list(r.amenities),
-                size_sqm=r.size_sqm,
-                bedding=r.bedding,
-            )
-            for r in result.room_groups
-        ],
+        room_groups=[supplier_room_schema(room) for room in result.room_groups],
         offers=[
             RoomOfferSchema(
                 id=item.id,

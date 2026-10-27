@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from hotel_agent.application.ports.supplier_details import SupplierDetails
+from hotel_agent.application.ports.supplier_details import SupplierDetails, SupplierRoom
 
 
 class SupplierPhotoSchema(BaseModel):
@@ -82,6 +82,26 @@ class SupplierDetailsSchema(BaseModel):
     check_out_until: str | None
     email: str | None
     phone: str | None
+
+
+class SupplierRoomSchema(BaseModel):
+    id: str
+    name: str
+    photos: list[str]
+    amenities: list[str]
+    size_sqm: float | None
+    bedding: str | None
+
+
+def supplier_room_schema(room: SupplierRoom) -> SupplierRoomSchema:
+    return SupplierRoomSchema(
+        id=room.id,
+        name=room.name,
+        photos=list(room.photos),
+        amenities=list(room.amenities),
+        size_sqm=room.size_sqm,
+        bedding=room.bedding,
+    )
 
 
 def supplier_details_schema(details: SupplierDetails) -> SupplierDetailsSchema:

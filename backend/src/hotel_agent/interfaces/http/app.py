@@ -8,6 +8,7 @@ from hotel_agent.application.use_cases.compare_hotels import CompareHotels
 from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
+from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
@@ -57,6 +58,7 @@ def api_router_v1(
     get_place: GetPlace,
     compare_hotels: CompareHotels,
     get_hotel_offers: GetHotelOffers,
+    get_hotel_details: GetHotelDetails,
     get_hotel_scene: GetHotelScene,
     get_map_tile: GetMapTile,
     get_map_catalog: GetMapCatalog,
@@ -80,7 +82,9 @@ def api_router_v1(
     router.include_router(chat.build_router(chat_service, registry))
     router.include_router(geo.build_router(get_geo_features))
     router.include_router(
-        hotels.build_router(get_hotel_card, get_hotel_scene, get_hotel_offers, get_fact)
+        hotels.build_router(
+            get_hotel_card, get_hotel_scene, get_hotel_offers, get_fact, get_hotel_details
+        )
     )
     router.include_router(
         hotelier.build_router(
