@@ -193,6 +193,8 @@ Updated: 2026-10-27, Europe/Moscow
 
 ## Next actions and pitfalls
 
+- Разбор и критика решения на живом стенде 2026-10-27: [work/task-coverage/review-2026-10-27.md](../work/task-coverage/review-2026-10-27.md) (+ PDF). Главное: выдача ранжируется вырожденно (все отели с одной оценкой, порядок алфавитный), на стенде 0 вопросов отельеру и 0 конфликтов, `source_url` пуст у всех 12 544 фактов, 1 453 факта просрочены, `took_ms` в чате всегда 0.
+
 - ТЗ трека записано дословно в `brief/TASK.md`, требования R1–R9 и O1–O5 в `brief/requirements.md` (2026-10-27). Текущая очередь работ: [work/task-coverage/plan.md](../work/task-coverage/plan.md) — P0: прогон из чистого клона с замером (R7/R8), расчёт вида на закат, актуализация `docs/requirements-map.md`, закрытие цели по виду из окна.
 
 - Evolution plan has no open items. Known follow-ups: 375 px chat tab after leaving the full map shows no composer (not investigated); panning cost in dense center. Untracked `work/hotelier-demo/`, `work/map-neon/night*` belong to other work, keep out of commits. Protected user instructions exceed the SESSION target and remain verbatim.
