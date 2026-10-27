@@ -22,7 +22,7 @@
 .token > span {
   overflow: hidden;
   text-overflow: ellipsis;
-  text-wrap-mode: nowrap;
+  text-wrap: nowrap;
 }
 
 .composer .send {
