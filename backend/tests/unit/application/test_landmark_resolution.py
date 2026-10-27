@@ -62,3 +62,42 @@ async def test_single_lexical_candidate_requires_semantic_confirmation() -> None
     result = await LandmarkResolver(lambda: uow, review)(request, "Москва", (37, 55, 38, 56), None)
     assert result.place is None
     review.check.assert_awaited_once()
+
+
+async def test_an_object_found_outside_the_city_still_reaches_the_review() -> None:
+    lake = NamedPlaceRecord(
+        id="r1308279",
+        name="Онежское озеро",
+        location=(35.0277084, 62.1861201),
+        tags={"wikidata": "Q179732"},
+    )
+    inside = [
+        NamedPlaceRecord(id="n1", name="Долгое озеро", location=(34.3, 61.8), tags={}),
+        NamedPlaceRecord(id="n2", name="озеро Угольная Ламба", location=(34.4, 61.8), tags={}),
+    ]
+    uow = MagicMock()
+    uow.__aenter__ = AsyncMock(return_value=uow)
+    uow.__aexit__ = AsyncMock(return_value=False)
+    uow.named_places.candidates = AsyncMock(return_value=tuple(inside))
+    review = MagicMock(spec=SemanticReview)
+    seen: list[tuple[str, ...]] = []
+
+    async def check(query: str, mode: str, claims: object) -> ReviewResult:
+        assert isinstance(claims, tuple)
+        seen.append(tuple(claim.id for claim in claims))
+        return ReviewResult(accepted_ids=("r1308279",))
+
+    review.check = AsyncMock(side_effect=check)
+    resolver = LandmarkResolver(lambda: uow, review)
+    request = SpatialRequest(
+        kind="landmark_view",
+        target="Онежское озеро",
+        radius_m=5000,
+        source_text="вид на Онежское озеро",
+    )
+
+    result = await resolver(request, "Петрозаводск", (34.18, 61.70, 34.54, 61.86), lake)
+
+    assert seen == [("n1", "n2", "r1308279")]
+    assert result.place == lake
+    assert result.ambiguous is False
