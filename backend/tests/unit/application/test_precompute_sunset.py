@@ -73,6 +73,7 @@ async def test_an_open_western_facade_sees_the_sunset_from_a_low_floor() -> None
     assert fact.qualifiers["from_floor"] == 2
     assert fact.qualifiers["facades_facing_sunset"] == 1
     assert "апрель — август" in fact.explanation
+    assert (fact.qualifiers["season_from_month"], fact.qualifiers["season_to_month"]) == (4, 8)
 
 
 async def test_a_ridge_above_the_building_leaves_the_sunset_unreachable() -> None:

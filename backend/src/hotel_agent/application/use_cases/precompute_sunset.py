@@ -93,6 +93,8 @@ class PrecomputeSunset:
                 "sunset_azimuth_to_deg": round(arc[1], 1),
                 "checked_azimuth_deg": round(azimuth, 1),
                 "months": MONTHS,
+                "season_from_month": SEASON[0],
+                "season_to_month": SEASON[1],
                 "facades_facing_sunset": facing,
                 "facades_total": facades,
                 **({"from_floor": floor} if floor is not None else {}),
