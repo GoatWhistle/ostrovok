@@ -1,0 +1,16 @@
+
+> app-frontend@0.1.0 e2e
+> playwright test e2e/hotelier-recovery.spec.ts --workers=2
+
+
+Running 3 tests using 2 workers
+
+(node:67687) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › e2e/hotelier-recovery.spec.ts:19:1 › hotelier error retains the answer and retry distinguishes follow up and conflict (2.9s)
+  ✓  3 [chromium] › e2e/hotelier-recovery.spec.ts:56:1 › correction collapse and cancel preserve different values and restore focus (2.2s)
+  ✓  1 [chromium] › e2e/hotelier-recovery.spec.ts:5:1 › hotelier draft survives hotel changes and reload (7.3s)
+
+  3 passed (8.3s)
