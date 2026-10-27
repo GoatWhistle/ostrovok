@@ -1,6 +1,7 @@
 import { convertFilter } from "@maplibre/maplibre-gl-style-spec"
 import { layers, namedFlavor } from "@protomaps/basemaps"
 import type {
+  DataDrivenPropertyValueSpecification,
   ExpressionSpecification,
   FilterSpecification,
   LayerSpecification,
@@ -24,12 +25,16 @@ export interface LabelColors {
 
 const PREFIX = "basemap-"
 const SKIPPED = ["pois", "shield"]
+const PLACES = ["places_country", "places_region", "places_locality"]
+export const BASEMAP_PLACES_FROM = 7
 
 function absolute(path: string): string {
   return new URL(path, window.location.origin).href.replaceAll("%7B", "{").replaceAll("%7D", "}")
 }
 
-function outside(bboxes: readonly (readonly number[])[]): ExpressionSpecification | undefined {
+export function outside(
+  bboxes: readonly (readonly number[])[],
+): ExpressionSpecification | undefined {
   const rings = bboxes.flatMap(([west, south, east, north]) =>
     west === undefined || south === undefined || east === undefined || north === undefined
       ? []
@@ -55,6 +60,22 @@ function withExclusion(layer: LayerSpecification, exclusion: ExpressionSpecifica
   return { ...layer, filter }
 }
 
+function singleName(layer: LayerSpecification, lang: string): LayerSpecification {
+  if (layer.type !== "symbol" || layer.layout?.["text-field"] === undefined) return layer
+  if (layer.id.includes("address")) return layer
+  const name: DataDrivenPropertyValueSpecification<string> = [
+    "coalesce",
+    ["get", `name:${lang}`],
+    ["get", "name"],
+  ]
+  return { ...layer, layout: { ...layer.layout, "text-field": name } }
+}
+
+function laterPlaces(layer: LayerSpecification): LayerSpecification {
+  if (!PLACES.some((part) => layer.id.endsWith(part))) return layer
+  return { ...layer, minzoom: Math.max(layer.minzoom ?? 0, BASEMAP_PLACES_FROM) }
+}
+
 function labelLayers(
   source: string,
   lang: string,
@@ -63,7 +84,12 @@ function labelLayers(
   return layers(source, namedFlavor("black"), { lang, labelsOnly: true })
     .filter((layer) => !SKIPPED.some((part) => layer.id.includes(part)))
     .map((layer) =>
-      withExclusion({ ...layer, id: `${source}-${layer.id}`, metadata: { lang } }, exclusion),
+      withExclusion(
+        laterPlaces(
+          singleName({ ...layer, id: `${source}-${layer.id}`, metadata: { lang } }, lang),
+        ),
+        exclusion,
+      ),
     )
 }
 

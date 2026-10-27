@@ -1,9 +1,10 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { renderBasemap } from "../basemap"
-import { type BasemapAssets, renderBasemapLabels } from "../basemap-labels"
+import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
 import { tintForTime } from "../time-tint"
+import { renderPlaceLabels } from "../world/place-labels"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
@@ -100,6 +101,7 @@ export class MapAppearanceController {
     renderBasemap(map, tinted)
     renderCatalogLayers(map, classes, scene.excluded)
     renderBasemapLabels(map, scene.assets, colors, scene.locale)
+    renderPlaceLabels(map, colors, scene.locale, outside(scene.assets.map((asset) => asset.bbox)))
     this.refreshRoofs()
     if (this.profile === "mini") applyMiniProfile(map, APPEARANCES[this.appearance])
     const materials = APPEARANCES[this.appearance].materials
