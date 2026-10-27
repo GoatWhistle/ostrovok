@@ -6,7 +6,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.agent.data_tools import DataTools
-from hotel_agent.application.agent.wish_loop import WishLoop, time_notice
+from hotel_agent.application.agent.wish_loop import WishLoop
+from hotel_agent.application.agent.wish_notices import time_notice
 from hotel_agent.application.agent.wish_records import WishStatus
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
