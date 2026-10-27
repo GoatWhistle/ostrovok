@@ -29,7 +29,7 @@ from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
 
 WISHES_AT_ONCE = 3
-WISH_TIMEOUT_S = 180.0
+WISH_TIMEOUT_S = 90.0
 
 
 class DataExplorer:

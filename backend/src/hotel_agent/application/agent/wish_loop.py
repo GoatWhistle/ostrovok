@@ -22,8 +22,8 @@ from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
 
-STALL_NOTICE = 6
-STALL_LIMIT = 10
+STALL_NOTICES = (6, 11)
+STALL_LIMIT = 16
 UNFINISHED = "Поиск пожелания не завершён; это не означает отсутствие подходящих отелей."
 
 
@@ -219,7 +219,7 @@ class WishLoop:
                     "Источники не дали ничего нового по этому пожеланию; проверка остановлена,"
                     " это не доказывает отсутствие свойства."
                 )
-            if barren == STALL_NOTICE:
+            if barren in STALL_NOTICES:
                 observations.append(stall_notice(barren))
         return None, reason
 
