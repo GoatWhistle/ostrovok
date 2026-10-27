@@ -6,9 +6,13 @@ import styles from "./rooms.module.css"
 export function RoomGallery({
   photos,
   name,
+  label,
+  emptyText,
 }: {
   readonly photos: readonly string[]
   readonly name: string
+  readonly label?: string
+  readonly emptyText?: string
 }) {
   const { t } = useTranslation()
   const [index, setIndex] = useState(0)
@@ -18,9 +22,9 @@ export function RoomGallery({
     setIndex(value)
     setFailed(false)
   }
-  if (!src) return <p>{t("explore:rooms.noPhotos")}</p>
+  if (!src) return <p>{emptyText ?? t("explore:rooms.noPhotos")}</p>
   return (
-    <section className={styles.gallery} aria-label={t("explore:rooms.photos")}>
+    <section className={styles.gallery} aria-label={label ?? t("explore:rooms.photos")}>
       {failed ? (
         <div className={styles.empty} role="status">
           <p>{t("explore:rooms.photoError")}</p>

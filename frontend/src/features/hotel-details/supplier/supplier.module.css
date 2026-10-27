@@ -1,0 +1,86 @@
+.block {
+  display: grid;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.grid {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-8);
+}
+
+.fact {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-12);
+  min-width: 0;
+}
+
+.label {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
+.value {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+  font-variant-numeric: var(--font-numeric);
+  overflow-wrap: anywhere;
+}
+
+.group {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.groupName {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
+.items {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+}
+
+.item {
+  composes: inlineRow from "../../../shared/styles/compose.module.css";
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.places {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-4);
+}
+
+.place {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.distance {
+  flex: none;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.prose {
+  display: grid;
+  gap: var(--space-8);
+  max-inline-size: var(--prose-measure);
+}
+
+.proseTitle {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+}
+
+.link {
+  composes: inlineRow from "../../../shared/styles/compose.module.css";
+  color: var(--action-primary);
+  overflow-wrap: anywhere;
+}

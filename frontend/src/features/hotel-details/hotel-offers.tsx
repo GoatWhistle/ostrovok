@@ -4,7 +4,7 @@ import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Icon, Skeleton } from "@/shared/ui"
 import styles from "./hotel-offers.module.css"
 import { RoomCatalog } from "./rooms/room-catalog"
-import { SupplierContent } from "./supplier-content"
+import { SupplierDetails } from "./supplier/supplier-details"
 
 const STATUS: Readonly<Record<string, MessageKey>> = {
   provider_unavailable: "explore:offers.providerUnavailable",
@@ -61,7 +61,12 @@ export function HotelOffers({
       {result.data ? (
         <RoomCatalog key={`${hotelId}:${checkIn}:${checkOut}:${adults}`} content={result.data} />
       ) : null}
-      {result.data ? <SupplierContent content={result.data} /> : null}
+      {result.data?.status === "available" ? (
+        <p role="status">{t("explore:offers.available")}</p>
+      ) : null}
+      {result.data?.details ? (
+        <SupplierDetails details={result.data.details} source={result.data.source} />
+      ) : null}
       {result.data?.checked_at ? (
         <p className={styles.note}>
           <Icon name="source" size="sm" />

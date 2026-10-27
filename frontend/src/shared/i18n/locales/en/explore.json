@@ -205,27 +205,9 @@
     "fromPrice": "From {{price}}",
     "available": "Offers available for these dates",
     "provider": "Source: {{source}}",
-    "hotelPhoto": "Hotel photo from the supplier",
-    "facilitiesTitle": "Hotel facilities on Ostrovok",
-    "facilitiesNote": "Hotel facilities are not necessarily included in the room rate.",
     "categoriesTitle": "Room categories on Ostrovok",
     "categoriesNote": "Catalog categories. Availability and prices are shown only for offers on your selected dates.",
-    "nonSmoking": "Non-smoking",
-    "facilities": {
-      "internet": "Internet",
-      "transfer": "Transfer",
-      "parking": "Parking",
-      "kids": "Facilities for children",
-      "pool": "Pool",
-      "fitness": "Fitness",
-      "meal": "Dining",
-      "business": "Business facilities",
-      "spa": "Spa",
-      "beach": "Beach",
-      "airConditioning": "Air conditioning",
-      "pets": "Pets allowed",
-      "accessibility": "Accessibility"
-    }
+    "nonSmoking": "Non-smoking"
   },
   "details": {
     "summaryStars": "Category: {{count}} stars",
@@ -493,6 +475,29 @@
       "website": "Website"
     },
     "kind": "Place type"
+  },
+  "supplier": {
+    "photos": "Hotel photos",
+    "noPhotos": "No hotel photos received",
+    "floors": "Floors",
+    "rooms": "Rooms in total",
+    "stars": "Stars",
+    "built": "Built",
+    "renovated": "Renovated",
+    "checkIn": "Check-in from",
+    "checkOut": "Check-out until",
+    "rating": "Guest score",
+    "ratingValue": "{{score}} out of 10, reviews: {{count}}",
+    "registry": "National accommodation register: {{record}}",
+    "registryLink": "Open the register record",
+    "amenities": "Services and equipment: {{count}}",
+    "amenitiesNote": "The supplier list. Ticked entries are declared free; confirm other terms with the hotel.",
+    "nearby": "Near the hotel: {{count}}",
+    "nearbyNote": "Distances reported by the supplier, not measured by us on the map.",
+    "metres": "{{value}} m",
+    "kilometres": "{{value}} km",
+    "about": "About the hotel",
+    "page": "Hotel page: {{source}}"
   },
   "rooms": {
     "noPhotos": "No photos received for this room",

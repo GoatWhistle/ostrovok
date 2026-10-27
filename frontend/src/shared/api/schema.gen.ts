@@ -868,6 +868,8 @@ export interface components {
             /** @description Full hotel-page rate response loaded */
             rates_complete?: boolean;
             room_groups?: components["schemas"]["SupplierRoom"][];
+            /** @description Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам */
+            details?: components["schemas"]["SupplierDetails"] | null;
             offers: components["schemas"]["RoomOffer"][];
         };
         RoomOffer: {
@@ -890,6 +892,83 @@ export interface components {
             amenities: string[];
             size_sqm?: number | null;
             bedding?: string | null;
+        };
+        SupplierPhoto: {
+            url: string;
+            category?: string | null;
+        };
+        SupplierAmenity: {
+            name: string;
+            /** @description Поставщик отметил услугу бесплатной */
+            free: boolean;
+        };
+        SupplierAmenityGroup: {
+            name: string;
+            amenities: components["schemas"]["SupplierAmenity"][];
+        };
+        SupplierDescriptionSection: {
+            title: string;
+            paragraphs: string[];
+        };
+        SupplierNearbyPlace: {
+            name: string;
+            /** @description Расстояние по данным поставщика */
+            distance_m: number;
+            kind?: string | null;
+        };
+        SupplierRegistryCategory: {
+            category: string;
+            rooms: number;
+        };
+        /** @description Запись в реестре классифицированных объектов размещения */
+        SupplierRegistry: {
+            record: string;
+            name?: string | null;
+            address?: string | null;
+            link?: string | null;
+            categories: components["schemas"]["SupplierRegistryCategory"][];
+        };
+        /** @description Опубликованные поставщиком факты об отеле; отсутствующее поле означает неизвестность */
+        SupplierFacts: {
+            floors_number?: number | null;
+            rooms_number?: number | null;
+            star_rating?: number | null;
+            year_built?: number | null;
+            year_renovated?: number | null;
+            kind?: string | null;
+            hotel_wifi?: boolean | null;
+            room_wifi?: boolean | null;
+            registry?: components["schemas"]["SupplierRegistry"] | null;
+        };
+        SupplierRatingScore: {
+            name: string;
+            score: number;
+        };
+        SupplierRating: {
+            /** @description Оценка по десятибалльной шкале */
+            total?: number | null;
+            reviews_count?: number | null;
+            detailed: components["schemas"]["SupplierRatingScore"][];
+        };
+        SupplierDetails: {
+            supplier_id: string;
+            /** @description Страница отеля у поставщика */
+            page_url: string;
+            name: string;
+            address?: string | null;
+            city?: string | null;
+            /** @description [долгота, широта] по данным поставщика */
+            location?: number[] | null;
+            photos: components["schemas"]["SupplierPhoto"][];
+            facts: components["schemas"]["SupplierFacts"];
+            amenity_groups: components["schemas"]["SupplierAmenityGroup"][];
+            description: components["schemas"]["SupplierDescriptionSection"][];
+            nearby: components["schemas"]["SupplierNearbyPlace"][];
+            rating?: components["schemas"]["SupplierRating"] | null;
+            check_in_from?: string | null;
+            check_out_until?: string | null;
+            email?: string | null;
+            phone?: string | null;
         };
         ChatRequest: {
             /** Format: uuid */
