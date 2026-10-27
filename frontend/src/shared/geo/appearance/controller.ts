@@ -10,7 +10,7 @@ import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
 import { renderAppearanceRoofs, roofPaint } from "./roofs"
-import { renderGroundShadows } from "./shadows"
+import { renderGroundShadows, renderTreeShadows } from "./shadows"
 import type { MapAppearance } from "./types"
 
 const OVERVIEW_ALTITUDE = 45
@@ -88,12 +88,11 @@ export class MapAppearanceController {
     const edge = style.getPropertyValue(palette.buildingLine).trim()
     paintRoofForms(this.map, colors, edge ? tintHex(edge, sky, altitude) : undefined)
     const sun = this.scene?.sun
-    renderGroundShadows(
-      this.map,
-      materials.shadowToken ? style.getPropertyValue(materials.shadowToken).trim() : undefined,
-      sun?.azimuth ?? 0,
-      sun?.altitude ?? 0,
-    )
+    const shadow = materials.shadowToken
+      ? style.getPropertyValue(materials.shadowToken).trim()
+      : undefined
+    renderGroundShadows(this.map, shadow, sun?.azimuth ?? 0, sun?.altitude ?? 0)
+    renderTreeShadows(this.map, shadow, sun?.azimuth ?? 0, sun?.altitude ?? 0)
   }
 
   private paint() {
