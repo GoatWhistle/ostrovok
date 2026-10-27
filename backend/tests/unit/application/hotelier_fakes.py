@@ -161,8 +161,26 @@ class FakeQuestions:
         )
         return replace(record, answer_fact_ids=tuple(fact_id for _, fact_id in linked))
 
+    async def prune(self, region: str) -> int:
+        shown = {
+            item.hotel_id
+            for item in self._store.facts.values()
+            if item.method in {"wish_agent@1", "data_agent_tools@1"}
+            or item.characteristic_key.startswith("derived:")
+        }
+        skipped = 0
+        for key, item in list(self._view().items()):
+            if item.status == "open" and item.hotel_id not in shown:
+                self._store.questions[key] = replace(item, status="skipped")
+                skipped += 1
+        return skipped
+
     async def candidates(
-        self, region: str, characteristic_keys: Sequence[str]
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        hotels: int = 200,
+        allow_unseen: bool = True,
     ) -> Sequence[QuestionCandidate]:
         taken = {(item.hotel_id, item.characteristic_key) for item in self._view().values()}
         known = {
@@ -172,7 +190,7 @@ class FakeQuestions:
         }
         return [
             QuestionCandidate(hotel_id=hotel, hotel_name=f"Hotel {hotel}", characteristic_key=key)
-            for hotel in sorted(self._store.hotels)
+            for hotel in sorted(self._store.hotels)[:hotels]
             for key in characteristic_keys
             if (hotel, key) not in taken | known
         ]

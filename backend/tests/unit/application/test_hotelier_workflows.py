@@ -10,6 +10,7 @@ from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.hotelier_questions import (
     ListHotelierQuestions,
     PlanHotelierQuestions,
+    PruneHotelierQuestions,
 )
 from hotel_agent.domain.entities import FactStatus, QuestionStatus, Resolution
 from hotel_agent.domain.errors import FactNotFound, HotelNotFound, InvalidValue, QuestionNotFound
@@ -221,3 +222,24 @@ async def test_a_correction_records_the_conflict_with_the_resolution_rule(
     assert conflict.rule == RULE
     assert conflict.resolution == Resolution.RESOLVED_BY_RULE.value
     assert "f1" in conflict.fact_ids
+
+
+async def test_planning_asks_only_about_the_most_shown_hotels(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    store = Store(hotels={"h1", "h2", "h3"})
+    plan = PlanHotelierQuestions(factory(store), registry, FixedClock())
+
+    added = await plan("sochi", hotels=1)
+
+    assert added == 3
+    assert {item.hotel_id for item in store.questions.values()} == {"h1"}
+
+
+async def test_pruning_skips_questions_for_hotels_that_never_reached_results() -> None:
+    store = Store(questions={"q1": question("q1", "h1", "pets_policy")})
+
+    skipped = await PruneHotelierQuestions(factory(store))("sochi")
+
+    assert skipped == 1
+    assert store.questions["q1"].status == "skipped"

@@ -21,14 +21,44 @@ WHERE id = %(id)s"""
 
 SET_STATUS = "UPDATE hotelier_questions SET status = %(status)s WHERE id = %(id)s"
 
-CANDIDATES = """SELECT h.id, h.name, k.key
-FROM hotels h CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
-WHERE h.region_id = %(region)s AND h.name <> h.id
-  AND NOT EXISTS (SELECT 1 FROM facts f WHERE f.subject_type = 'hotel'
-      AND f.subject_id = h.id AND f.characteristic_key = k.key AND f.status <> 'superseded')
+CANDIDATES = """WITH shown AS (
+    SELECT f.subject_id AS hotel_id, COUNT(*) AS times
+    FROM facts f
+    WHERE f.subject_type = 'hotel'
+      AND (f.method IN ('wish_agent@1', 'data_agent_tools@1')
+           OR f.characteristic_key LIKE 'derived:%%')
+    GROUP BY 1),
+known AS (
+    SELECT f.subject_id AS hotel_id, COUNT(*) AS facts
+    FROM facts f
+    WHERE f.subject_type = 'hotel' AND f.status <> 'superseded'
+    GROUP BY 1),
+ranked AS (
+    SELECT h.id, h.name,
+        COALESCE(shown.times, 0) AS times,
+        COALESCE(known.facts, 0) AS facts
+    FROM hotels h
+    LEFT JOIN shown ON shown.hotel_id = h.id
+    LEFT JOIN known ON known.hotel_id = h.id
+    WHERE h.region_id = %(region)s AND h.name <> h.id
+      AND (shown.hotel_id IS NOT NULL OR %(allow_unseen)s)
+    ORDER BY COALESCE(shown.times, 0) DESC, COALESCE(known.facts, 0) DESC, h.id
+    LIMIT %(hotels)s)
+SELECT ranked.id, ranked.name, k.key
+FROM ranked CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
+WHERE NOT EXISTS (SELECT 1 FROM facts f WHERE f.subject_type = 'hotel'
+      AND f.subject_id = ranked.id AND f.characteristic_key = k.key AND f.status <> 'superseded')
   AND NOT EXISTS (SELECT 1 FROM hotelier_questions q
-      WHERE q.hotel_id = h.id AND q.characteristic_key = k.key)
-ORDER BY h.id, k.key"""
+      WHERE q.hotel_id = ranked.id AND q.characteristic_key = k.key)
+ORDER BY ranked.times DESC, ranked.facts DESC, ranked.id, k.key"""
+
+PRUNE = """UPDATE hotelier_questions q SET status = 'skipped'
+FROM hotels h
+WHERE h.id = q.hotel_id AND h.region_id = %(region)s AND q.status = 'open'
+  AND NOT EXISTS (SELECT 1 FROM facts f WHERE f.subject_type = 'hotel'
+      AND f.subject_id = q.hotel_id
+      AND (f.method IN ('wish_agent@1', 'data_agent_tools@1')
+           OR f.characteristic_key LIKE 'derived:%%'))"""
 
 ADD_QUESTIONS = """INSERT INTO hotelier_questions
     (id, hotel_id, characteristic_key, text, reason, status, created_at)
@@ -63,11 +93,25 @@ class PostgresQuestionStore:
     async def set_status(self, question_id: str, status: str) -> None:
         await self._connection.execute(SET_STATUS, {"id": question_id, "status": status})
 
+    async def prune(self, region: str) -> int:
+        cursor = await self._connection.execute(PRUNE, {"region": region})
+        return cursor.rowcount
+
     async def candidates(
-        self, region: str, characteristic_keys: Sequence[str]
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        hotels: int = 200,
+        allow_unseen: bool = True,
     ) -> Sequence[QuestionCandidate]:
         cursor = await self._connection.execute(
-            CANDIDATES, {"region": region, "keys": list(characteristic_keys)}
+            CANDIDATES,
+            {
+                "region": region,
+                "keys": list(characteristic_keys),
+                "hotels": hotels,
+                "allow_unseen": allow_unseen,
+            },
         )
         return [
             QuestionCandidate(

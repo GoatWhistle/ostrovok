@@ -37,7 +37,10 @@ from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.quality_metrics import overall_coverage, overall_hotelier_share
 from hotel_agent.application.use_cases.build_seed import BuildSeed
-from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
+from hotel_agent.application.use_cases.hotelier_questions import (
+    PlanHotelierQuestions,
+    PruneHotelierQuestions,
+)
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
 from hotel_agent.application.use_cases.ingest_polygons import IngestPolygons
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
@@ -84,9 +87,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
         return code or asyncio.run(_plan_questions(args.region, settings))
     if args.command == "plan-questions":
-        return asyncio.run(_plan_questions(args.region, settings))
+        return asyncio.run(_plan_questions(args.region, settings, args.hotels))
     if args.command == "metrics":
         return asyncio.run(_metrics(args.region, settings))
+    if args.command == "prune-questions":
+        return asyncio.run(_prune_questions(args.region, settings))
     if args.command == "refresh-facts":
         return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
@@ -310,14 +315,24 @@ async def _refresh_geography(region: str, database_url: str) -> int:
         await uow.aclose()
 
 
-async def _plan_questions(region: str, settings: Settings) -> int:
+async def _prune_questions(region: str, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url)
+    try:
+        skipped = await PruneHotelierQuestions(uow)(region)
+    finally:
+        await uow.aclose()
+    print(f"skipped: {skipped}")
+    return 0
+
+
+async def _plan_questions(region: str, settings: Settings, hotels: int = 200) -> int:
     uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
     try:
         added = await PlanHotelierQuestions(
             uow,
             YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
             SystemClock(),
-        )(region)
+        )(region, hotels)
     finally:
         await uow.aclose()
     print(f"hotelier_questions: {added}")

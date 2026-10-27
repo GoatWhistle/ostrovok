@@ -45,7 +45,7 @@ class PlanHotelierQuestions:
     ) -> None:
         self._uow, self._registry, self._clock = uow, registry, clock
 
-    async def __call__(self, region: str) -> int:
+    async def __call__(self, region: str, hotels: int = 200) -> int:
         askable = {
             item.key: item
             for item in self._registry.all()
@@ -55,7 +55,7 @@ class PlanHotelierQuestions:
             return 0
         now = self._clock.now()
         async with self._uow() as uow:
-            candidates = await uow.questions.candidates(region, sorted(askable))
+            candidates = await uow.questions.candidates(region, sorted(askable), hotels)
             questions = [
                 HotelierQuestion(
                     id=QuestionId(f"q_{item.hotel_id}_{item.characteristic_key}"),
@@ -73,3 +73,14 @@ class PlanHotelierQuestions:
             added = await uow.questions.add([question_to_record(item) for item in questions])
             await uow.commit()
         return added
+
+
+class PruneHotelierQuestions:
+    def __init__(self, uow: UnitOfWorkFactory) -> None:
+        self._uow = uow
+
+    async def __call__(self, region: str) -> int:
+        async with self._uow() as uow:
+            skipped = await uow.questions.prune(region)
+            await uow.commit()
+        return skipped

@@ -6,7 +6,7 @@ LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/d
 DOTENV := set -a; [ -f .env ] && . ./.env || true; set +a;
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute refresh-facts metrics plan-questions llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute refresh-facts metrics prune-questions plan-questions llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -63,6 +63,10 @@ metrics: ## Report characteristic coverage and the share answered by hoteliers
 refresh-facts: ## Recheck facts whose validity expired and record what changed
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(LOCAL_DATA) $(BACKEND) hotel-agent refresh-facts --region sochi --from $(CURDIR)/data/seed/sochi
+
+prune-questions: ## Skip open questions for hotels that never reached search results
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent prune-questions --region sochi
 
 plan-questions: ## Queue hotelier questions for registry characteristics without facts
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \

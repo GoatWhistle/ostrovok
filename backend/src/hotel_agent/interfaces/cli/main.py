@@ -53,6 +53,12 @@ def build_parser() -> ArgumentParser:
         "plan-questions", help="Queue hotelier questions for characteristics without facts"
     )
     questions.add_argument("--region", default="sochi")
+    questions.add_argument("--hotels", type=int, default=200)
+
+    prune = commands.add_parser(
+        "prune-questions", help="Skip open questions for hotels that never reached results"
+    )
+    prune.add_argument("--region", default="sochi")
 
     refresh = commands.add_parser(
         "refresh-facts", help="Recheck facts whose validity has expired and record disagreements"
