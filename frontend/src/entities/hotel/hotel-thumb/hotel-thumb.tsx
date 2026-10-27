@@ -32,7 +32,11 @@ export function HotelThumb({
   const current = candidates.find((url) => !failed.includes(url))
   if (!current && !placeholder) return null
   return (
-    <div className={clsx(styles.thumb, className)} data-hotel-photo>
+    <div
+      className={clsx(styles.thumb, className)}
+      data-hotel-photo
+      data-empty={!current || undefined}
+    >
       {current ? (
         <img
           key={current}
@@ -44,7 +48,7 @@ export function HotelThumb({
           onError={() => setFailed((values) => [...values, current])}
         />
       ) : (
-        <Icon name="building" size="lg" className={styles.empty} />
+        <Icon name="building" className={styles.empty} />
       )}
     </div>
   )

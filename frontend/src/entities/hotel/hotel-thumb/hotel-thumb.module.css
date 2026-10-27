@@ -17,6 +17,10 @@
   animation: var(--motion-fade-in);
 }
 
+.thumb[data-empty] {
+  background-color: var(--surface-raised-hover);
+}
+
 .empty {
-  color: var(--text-muted);
+  color: var(--text-disabled);
 }

@@ -27,6 +27,7 @@ function seaVerdict(minutes: number | undefined, meters: number | undefined, loc
 
 function noiseVerdict(score: number | undefined, locale: Locale) {
   if (score === undefined) return undefined
+  if (score === 0) return i18n.t("explore:wish.silent", { lng: locale })
   const key =
     score < QUIET_BELOW
       ? "explore:wish.quiet"
