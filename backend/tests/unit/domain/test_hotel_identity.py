@@ -212,7 +212,10 @@ def test_exact_name_without_an_address_is_accepted_within_a_city_block() -> None
     remote = HotelCandidate(
         supplier_id="7122074",
         identity=replace(
-            local, name="Отель Centeral Hotel", address="ул Петровка, д. 20/1", location=(39.7215, 43.58)
+            local,
+            name="Отель Centeral Hotel",
+            address="ул Петровка, д. 20/1",
+            location=(39.7215, 43.58),
         ),
     )
     assert assess_identity(local, remote).accepted
