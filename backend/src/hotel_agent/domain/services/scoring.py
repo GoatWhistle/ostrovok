@@ -59,7 +59,7 @@ def match(intent: Intent, fact: Fact | None, now: datetime) -> PropertyMatch:
     if fact.status is FactStatus.COMPUTING:
         return PropertyMatch(intent=intent, fact=fact, quality=MatchQuality.COMPUTING)
     quality = _quality(intent, fact.value)
-    if quality is MatchQuality.FULL and fact.is_restricted():
+    if quality is MatchQuality.FULL and (fact.is_restricted() or fact.is_stale_at(now)):
         quality = MatchQuality.PARTIAL
     return PropertyMatch(intent=intent, fact=fact, quality=quality)
 

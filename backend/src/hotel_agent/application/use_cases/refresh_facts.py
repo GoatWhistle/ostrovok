@@ -19,6 +19,7 @@ KEYS = (KEY,)
 
 @dataclass(frozen=True, slots=True, kw_only=True)
 class RefreshReport:
+    retired: int = 0
     checked: int = 0
     recomputed: int = 0
     changed: int = 0
@@ -39,6 +40,9 @@ class RefreshStaleFacts:
     async def __call__(self, region: str, limit: int = 500) -> RefreshReport:
         now = self._clock.now()
         async with self._uow() as uow:
+            retired = await uow.facts.retire_expired(region, now)
+            await uow.commit()
+        async with self._uow() as uow:
             stale = await uow.search.stale_facts(region, KEYS, now, limit)
             hotels = await uow.search.by_ids([row.hotel_id for row in stale])
         known = {hotel.id: hotel for hotel in hotels}
@@ -57,7 +61,11 @@ class RefreshStaleFacts:
             changed += 1
             conflicts += await self._settle(replace(fresh, id=self._version(fresh, now)))
         return RefreshReport(
-            checked=len(stale), recomputed=recomputed, changed=changed, conflicts=conflicts
+            retired=retired,
+            checked=len(stale),
+            recomputed=recomputed,
+            changed=changed,
+            conflicts=conflicts,
         )
 
     @staticmethod
