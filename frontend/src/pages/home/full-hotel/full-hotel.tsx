@@ -30,7 +30,8 @@ export function FullHotel({
   useDocumentTitle(hotel.data?.hotel.name ?? t("explore:details.title"))
   const back = useRef<HTMLButtonElement>(null)
   useEffect(() => {
-    back.current?.focus({ preventScroll: true })
+    if (!globalThis.matchMedia?.("(pointer: coarse)").matches)
+      back.current?.focus({ preventScroll: true })
   }, [])
   const page = useHotelSection(state.hotelId, state.navigation.route.section, restoreScroll)
 

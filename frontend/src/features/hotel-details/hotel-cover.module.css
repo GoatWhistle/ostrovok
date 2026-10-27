@@ -76,3 +76,22 @@
   color: var(--text-on-media);
   font-variant-numeric: tabular-nums;
 }
+
+@media (max-width: 47.99rem) {
+  .cover {
+    margin-block-start: calc(-1 * var(--space-16));
+    margin-inline: calc(-1 * var(--space-16));
+    touch-action: pan-y;
+  }
+
+  .photo,
+  .skeleton > span {
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+  }
+
+  .previous,
+  .next {
+    display: none;
+  }
+}

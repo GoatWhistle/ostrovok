@@ -5,7 +5,7 @@ import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { isAvailableFact } from "@/shared/geo/facts/matching"
 import { useTranslation } from "@/shared/i18n"
-import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
+import { Banner, Button, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import { ConflictValues } from "./conflict-values"
 import { HotelFacilities } from "./facilities/hotel-facilities"
 import { FactList } from "./fact-list"
@@ -34,6 +34,24 @@ function DetailsSkeleton() {
       <Skeleton shape="block" className={styles.skeletonThumb} />
       <Skeleton lines={3} />
       <Skeleton lines={4} className={styles.skeletonWide} />
+    </div>
+  )
+}
+
+function RoomsDock({
+  available,
+  onOpen,
+}: {
+  readonly available: boolean
+  readonly onOpen: () => void
+}) {
+  const { t } = useTranslation()
+  if (!available) return null
+  return (
+    <div className={styles.dock}>
+      <Button icon="calendar" onClick={onOpen}>
+        {t("explore:offers.viewRooms")}
+      </Button>
     </div>
   )
 }
@@ -150,6 +168,7 @@ export function HotelDetails({
         ) : null}
         <FactList facts={card.facts} onFact={onFact} />
       </Disclosure>
+      <RoomsDock available={catalog.data?.status === "available"} onOpen={roomsScreen.show} />
     </article>
   )
 }

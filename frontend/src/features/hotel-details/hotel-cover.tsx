@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { type PointerEvent, useEffect, useRef, useState } from "react"
 import { useTranslation } from "@/shared/i18n"
 import { Button, Skeleton, Spinner } from "@/shared/ui"
 import styles from "./hotel-cover.module.css"
 
 const PRELOAD_AROUND = 1
+const SWIPE = 40
 
 function usePreload(urls: readonly string[], current: number) {
   useEffect(() => {
@@ -12,6 +13,24 @@ function usePreload(urls: readonly string[], current: number) {
       if (offset !== 0 && url) new Image().src = url
     }
   }, [urls, current])
+}
+
+function useSwipe(onStep: (direction: 1 | -1) => void) {
+  const origin = useRef<number | null>(null)
+  return {
+    onPointerDown(event: PointerEvent<HTMLElement>) {
+      origin.current = event.pointerType === "mouse" ? null : event.clientX
+    },
+    onPointerUp(event: PointerEvent<HTMLElement>) {
+      const start = origin.current
+      origin.current = null
+      if (start === null || Math.abs(event.clientX - start) < SWIPE) return
+      onStep(event.clientX < start ? 1 : -1)
+    },
+    onPointerCancel() {
+      origin.current = null
+    },
+  }
 }
 
 export function HotelCover({
@@ -29,10 +48,13 @@ export function HotelCover({
   const current = Math.min(index, visible.length - 1)
   const src = visible[current]
   usePreload(visible, current)
+  const swipe = useSwipe((direction) =>
+    setIndex(Math.min(visible.length - 1, Math.max(0, current + direction))),
+  )
   if (!src) return null
   const ready = loaded.has(src)
   return (
-    <figure className={styles.cover} aria-label={t("explore:hotelCover.photos")}>
+    <figure className={styles.cover} aria-label={t("explore:hotelCover.photos")} {...swipe}>
       <img
         key={src}
         className={styles.photo}

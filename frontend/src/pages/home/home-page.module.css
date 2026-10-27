@@ -231,6 +231,11 @@
     display: grid;
   }
 }
+@media (max-width: 47.99rem) {
+  .detailScroll {
+    padding-block-end: 0;
+  }
+}
 @media (max-width: 63.99rem) and (pointer: coarse) {
   .page:has(textarea:focus) > nav {
     display: none;

@@ -22,3 +22,20 @@
 .skeletonWide {
   grid-column: 1 / -1;
 }
+
+.dock {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .dock {
+    position: sticky;
+    inset-block-end: 0;
+    z-index: var(--layer-sticky);
+    display: grid;
+    margin-inline: calc(-1 * var(--space-16));
+    padding: var(--space-12) var(--space-16);
+    background-color: var(--surface-base);
+    box-shadow: var(--shadow-divider-top);
+  }
+}
