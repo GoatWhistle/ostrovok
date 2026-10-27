@@ -20,7 +20,7 @@ logs: ## Follow the stand logs
 	$(COMPOSE) logs -f
 
 build: ## Build the service images
-	docker buildx bake
+	set -a; [ -f .env ] && . ./.env || true; set +a; docker buildx bake
 
 api: ## Run the API locally with reload against the compose database
 	$(LOCAL_DATA) $(BACKEND) uvicorn hotel_agent.main:create_app --factory --reload --port 8000
