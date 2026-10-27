@@ -88,11 +88,11 @@ export class MapAppearanceController {
     const map = this.map
     if (!scene || !this.visible) return
     const colors = readAppearanceColors(this.appearance)
-    const classes = appearanceClasses(this.appearance, scene.catalog, colors)
-    if (!map.getLayer("canvas"))
-      map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
     const mode = lightMode(scene.sun.altitude)
-    const tinted = tintForTime(colors, mode)
+    const tinted = tintForTime(colors, mode, scene.sun.altitude)
+    const classes = appearanceClasses(this.appearance, scene.catalog, tinted)
+    if (!map.getLayer("canvas"))
+      map.addLayer({ id: "canvas", type: "background", paint: { "background-color": tinted.sea } })
     renderTerrain(map, tinted, scene.sun)
     map
       .getContainer()

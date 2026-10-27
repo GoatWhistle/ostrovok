@@ -40,13 +40,6 @@
   justify-self: center;
 }
 
-.bottomStart {
-  display: grid;
-  justify-items: start;
-  gap: var(--space-8);
-  min-inline-size: 0;
-}
-
 .stateCard {
   composes: floatingSurface from "../../shared/styles/compose.module.css";
   max-inline-size: var(--field-max-width);

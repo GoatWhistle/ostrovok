@@ -103,7 +103,7 @@ export function useHotelMap({
   }, [instance, active, highlightData, colors])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
-    () => tintForTime(colors, lightMode(sun.altitude)),
+    () => tintForTime(colors, lightMode(sun.altitude), sun.altitude),
     [colors, sun.altitude],
   )
   const textureStatus = useTexturedHotel({

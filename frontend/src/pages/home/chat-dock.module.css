@@ -3,7 +3,7 @@
   inset-block-end: var(--space-64);
   inset-inline: var(--space-16);
   display: grid;
-  justify-items: end;
+  justify-items: center;
   z-index: var(--layer-sticky);
   pointer-events: none;
 }

@@ -5,6 +5,7 @@ import { zoneHour } from "./scene-time"
 import { DateStepper, HourStepper } from "./scene-time-fields"
 import styles from "./scene-time-panel.module.css"
 import { SunFacts, weatherText } from "./scene-time-sun"
+import { SunArc } from "./sun-arc"
 import { weatherIcon } from "./weather-icon"
 
 type Weather = components["schemas"]["Weather"]
@@ -17,6 +18,7 @@ interface SceneTimePanelProps {
   readonly altitude: number
   readonly azimuth: number
   readonly sunset: Date | null
+  readonly sunrise: Date | null
   readonly weather: Weather | undefined
   readonly weatherPending: boolean
   readonly onDate: (value: string) => void
@@ -31,6 +33,7 @@ export function SceneTimePanel({
   altitude,
   azimuth,
   sunset,
+  sunrise,
   weather,
   weatherPending,
   onDate,
@@ -39,6 +42,7 @@ export function SceneTimePanel({
   const { t } = useTranslation()
   const { locale } = useLocale()
   const sunsetHour = zoneHour(sunset)
+  const sunriseHour = zoneHour(sunrise)
   return (
     <Popover
       label={`${t("explore:weather.scene")}: ${weatherText(weather, weatherPending, locale)}`}
@@ -55,6 +59,14 @@ export function SceneTimePanel({
       <div className={styles.body}>
         <strong>{t("explore:weather.scene")}</strong>
         <span>{weatherText(weather, weatherPending, locale)}</span>
+        <SunArc
+          hour={hour}
+          sunrise={sunriseHour ?? 0}
+          sunset={sunsetHour ?? 23}
+          label={t("explore:weather.arc")}
+          clock={t("explore:weather.hour", { value: hour })}
+          onHour={onHour}
+        />
         <div className={styles.fields}>
           <DateStepper date={date} minDate={minDate} maxDate={maxDate} onDate={onDate} />
           <HourStepper hour={hour} onHour={onHour} />

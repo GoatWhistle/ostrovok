@@ -1,6 +1,9 @@
 import type { LightMode } from "./terrain"
 
-const STRENGTH: Readonly<Record<LightMode, number>> = { day: 0, dusk: 0.12, night: 0.22 }
+const DAY_ALTITUDE = 12
+const NIGHT_ALTITUDE = -8
+const DUSK_STRENGTH = 0.4
+const NIGHT_STRENGTH = 0.62
 
 const TINTED = [
   "land",
@@ -9,11 +12,15 @@ const TINTED = [
   "snow",
   "meadow",
   "sand",
+  "water",
+  "coast",
   "building",
   "buildingLine",
   "buildingVolume",
+  "hotelVolume",
   "road",
   "roadCasing",
+  "roadLight",
 ] as const
 
 interface TintSource {
@@ -41,10 +48,19 @@ export function mixHex(from: string, to: string, amount: number): string {
     .join("")}`
 }
 
+export function tintStrength(altitude: number): number {
+  if (altitude >= DAY_ALTITUDE) return 0
+  if (altitude <= NIGHT_ALTITUDE) return NIGHT_STRENGTH
+  if (altitude >= 0) return (1 - altitude / DAY_ALTITUDE) * DUSK_STRENGTH
+  const depth = altitude / NIGHT_ALTITUDE
+  return DUSK_STRENGTH + (NIGHT_STRENGTH - DUSK_STRENGTH) * depth
+}
+
 export function tintForTime<
   T extends TintSource & Partial<Record<(typeof TINTED)[number], string>>,
->(colors: T, mode: LightMode): T {
-  const amount = STRENGTH[mode]
+>(colors: T, mode: LightMode, altitude?: number): T {
+  const amount =
+    altitude === undefined ? (mode === "day" ? 0 : DUSK_STRENGTH) : tintStrength(altitude)
   if (amount === 0) return colors
   const target = mode === "night" ? colors.horizonNight : colors.horizonDusk
   const next: Partial<Record<(typeof TINTED)[number], string>> = {}

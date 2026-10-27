@@ -1,0 +1,57 @@
+.arc {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: stretch;
+}
+
+.canvas {
+  display: grid;
+  inline-size: 100%;
+  touch-action: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+.figure {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.canvas:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--space-2);
+}
+
+.path {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.track {
+  composes: path;
+  stroke: var(--border-default);
+}
+
+.travelled {
+  composes: path;
+  stroke: var(--action-primary);
+}
+
+.horizon {
+  stroke: var(--border-subtle);
+  stroke-width: 1;
+}
+
+.sun {
+  fill: var(--status-warning);
+  stroke: var(--surface-raised);
+  stroke-width: 2;
+}
+
+.ends {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+}

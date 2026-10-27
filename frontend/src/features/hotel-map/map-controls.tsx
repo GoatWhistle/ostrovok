@@ -1,4 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
+import type { ReactNode } from "react"
 import { type MouseEvent, type RefObject, useEffect, useRef, useState } from "react"
 import type { MapAppearance } from "@/shared/geo/appearance/types"
 import { useTranslation } from "@/shared/i18n"
@@ -17,6 +18,7 @@ export interface MapControlsProps {
   readonly disabled: boolean
   readonly onAppearance: (id: MapAppearance) => void
   readonly onOverview: (instant: boolean) => void
+  readonly sun?: ReactNode
 }
 
 function duration(event: MouseEvent<HTMLButtonElement>): number {
@@ -62,6 +64,7 @@ export function MapControls({
   onAppearance,
   onExpand,
   fullMap,
+  sun,
 }: MapControlsProps) {
   const { t } = useTranslation()
   const compass = useBearing(map, ready)
@@ -181,6 +184,7 @@ export function MapControls({
           {t("explore:map.overview")}
         </Button>
       </div>
+      {sun ? <div className={styles.sun}>{sun}</div> : null}
     </div>
   )
 }

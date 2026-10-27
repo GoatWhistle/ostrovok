@@ -170,35 +170,18 @@ export function HotelMap({
       />
 
       {selectedCamera ? (
-        <div className={styles.bottom}>
-          <div className={styles.bottomStart} data-map-obstacle>
-            {place ? (
-              <SceneTimePanel
-                date={date}
-                minDate={today}
-                maxDate={forecastEnd(today)}
-                hour={hour}
-                altitude={sun.position.altitude}
-                azimuth={sun.position.azimuth}
-                sunset={sun.times.sunset}
-                weather={weather.data}
-                weatherPending={weather.isPending || weather.isFetching}
-                onDate={setDate}
-                onHour={(value) => {
-                  if (isSceneHour(value)) setHour(value)
-                }}
-              />
-            ) : null}
+        <>
+          <div className={styles.bottom}>
+            <div className={styles.bottomCenter} data-map-obstacle>
+              {bottomCenter}
+            </div>
+            <MapMeta
+              map={map.instance}
+              ready={map.ready}
+              notes={mapNotes(invalid, missingHeight, map.textureStatus)}
+            />
           </div>
-          <div className={styles.bottomCenter} data-map-obstacle>
-            {bottomCenter}
-          </div>
-          <MapMeta
-            map={map.instance}
-            ready={map.ready}
-            notes={mapNotes(invalid, missingHeight, map.textureStatus)}
-          />
-        </div>
+        </>
       ) : null}
       {hotelCard ? (
         <div ref={insets.card} className={styles.hotelCard} data-map-obstacle>
@@ -215,6 +198,26 @@ export function HotelMap({
           showMapOverview(map.instance.current, overview, hotelId, results, instant)
         }
         onAppearance={onAppearance}
+        sun={
+          selectedCamera && place ? (
+            <SceneTimePanel
+              date={date}
+              minDate={today}
+              maxDate={forecastEnd(today)}
+              hour={hour}
+              altitude={sun.position.altitude}
+              azimuth={sun.position.azimuth}
+              sunset={sun.times.sunset}
+              sunrise={sun.times.sunrise}
+              weather={weather.data}
+              weatherPending={weather.isPending || weather.isFetching}
+              onDate={setDate}
+              onHour={(value) => {
+                if (isSceneHour(value)) setHour(value)
+              }}
+            />
+          ) : undefined
+        }
       />
     </section>
   )
