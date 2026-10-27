@@ -191,3 +191,22 @@ def test_unusable_coordinates_are_unknown(location: dict[str, Any]) -> None:
 def test_missing_name_is_refused() -> None:
     with pytest.raises(ValueError):
         details(page(name="  "), "https://ostrovok.ru/hotel/x/", "1")
+
+
+def test_ranking_keeps_a_near_identical_name_without_shared_tokens() -> None:
+    hotel = HotelIdentity(name="Lism", address="улица Ленина 122А", location=(35.25, 44.96))
+    found = suggestions(
+        {
+            "hotels": [
+                row(
+                    master_id=3,
+                    hotel_name="Lis Mini Hotel",
+                    hotel_address="Kerchenskoe shosse, 44-i",
+                    region_name="Feodosiya",
+                    slug="russia/feodosiya",
+                ),
+                row(master_id=4, hotel_name="Отель Лесной", hotel_address="улица Лесная, д.8"),
+            ]
+        }
+    )
+    assert [item.master_id for item in rank_suggestions(hotel, found)] == [3]

@@ -1,6 +1,7 @@
 import asyncio
 import re
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 
 import httpx
 
@@ -29,6 +30,7 @@ PAGE_HEADERS = {"Accept": "text/html", "Accept-Language": "ru-RU,ru;q=0.9"}
 NOISE = re.compile(r"[\"«»()\[\]]+")
 CANDIDATE_LIMIT = 5
 SAME_BUILDING_M = 100
+NAME_RATIO = 0.7
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -62,6 +64,7 @@ def rank_suggestions(
     hotel: HotelIdentity, found: tuple[CatalogSuggestion, ...]
 ) -> tuple[CatalogSuggestion, ...]:
     local_name = name_parts(hotel.name)
+    local_key = name_key(hotel.name)
     local_street, local_house = address_parts(hotel.address)
     city = frozenset(tokens(hotel.city or ""))
     scored = []
@@ -71,9 +74,16 @@ def rank_suggestions(
         same_street = bool(local_street) and local_street <= street
         same_house = bool(local_house) and bool(local_house & house)
         same_city = bool(city) and bool(city & frozenset(tokens(suggestion.city or "")))
-        if not shared_name and not same_street:
+        similarity = SequenceMatcher(None, local_key, name_key(suggestion.name)).ratio()
+        if not shared_name and not same_street and similarity < NAME_RATIO:
             continue
-        score = 2 * (same_street and same_house) + same_street + same_city + len(shared_name) / 10
+        score = (
+            2 * (same_street and same_house)
+            + same_street
+            + same_city
+            + len(shared_name) / 10
+            + similarity / 10
+        )
         scored.append((score, suggestion))
     scored.sort(key=lambda row: row[0], reverse=True)
     return tuple(suggestion for _, suggestion in scored[:CANDIDATE_LIMIT])
