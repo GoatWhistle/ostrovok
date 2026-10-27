@@ -3,11 +3,11 @@ import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { factScope } from "@/shared/geo/facts/scope"
+import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
 import type { MatchRowsProps } from "./match-rows"
 import styles from "./match-rows.module.css"
-import { wishVerdict } from "./wish-verdict"
 
 interface MatchItemProps extends Omit<MatchRowsProps, "matched"> {
   readonly item: MatchedProperty
