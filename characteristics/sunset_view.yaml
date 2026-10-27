@@ -7,7 +7,7 @@ scope: facade
 conflict_tolerance: 0
 tool: sunset_view
 ttl_days: 365
-precompute: false
+precompute: true
 ask_hotelier_if_missing: false
 question_template: null
 source_kinds: [dem, osm, computed]

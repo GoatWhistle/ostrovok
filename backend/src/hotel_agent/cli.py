@@ -21,8 +21,10 @@ from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.db.walk import PostgresWalkStore
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.nuitee_discovery import NuiteeDiscovery
+from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
 from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
+from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
@@ -40,6 +42,7 @@ from hotel_agent.application.use_cases.ingest_seed import IngestSeed
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
+from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
@@ -228,11 +231,20 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
         facades = await PrecomputeFacades(FootprintFacadeExtractor(), PostgresFacadeStore(pool))(
             region
         )
+    uow = PostgresUnitOfWorkFactory(database_url)
+    try:
+        terrain = CountryTerrainTiles(directory / "dem.tif", None)
+        sunset = await PrecomputeSunset(uow, NearbyViewAssessment(terrain, uow), SystemClock())(
+            region
+        )
+    finally:
+        await uow.aclose()
     for name, count in counts.items():
         print(f"{name}: {count}")
     print(f"distance_to_sea: {routes}")
     for name, count in facades.items():
         print(f"{name}: {count}")
+    print(f"sunset_view: {sunset}")
     return 0
 
 
