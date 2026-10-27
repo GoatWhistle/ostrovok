@@ -1,15 +1,76 @@
+import asyncio
+import json
+from collections.abc import AsyncIterator
+from http import HTTPStatus
 from uuid import UUID
 
 from fastapi import APIRouter, Response, status
+from fastapi.responses import StreamingResponse
 
+from hotel_agent.application import progress
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.chat import Chat
+from hotel_agent.domain.errors import DomainError
 from hotel_agent.interfaces.http.chat_schemas import (
     ChatRequestSchema,
     ConversationSchema,
     ConversationTitleSchema,
     conversation_schema,
 )
+from hotel_agent.interfaces.http.errors import STATUS_BY_ERROR
+
+Event = tuple[str, dict[str, object]]
+
+
+def frame(event: str, payload: dict[str, object]) -> str:
+    return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+
+def failure(error: DomainError) -> dict[str, object]:
+    mapped = next(
+        (STATUS_BY_ERROR[kind] for kind in type(error).__mro__ if kind in STATUS_BY_ERROR), None
+    )
+    if mapped is None or mapped >= HTTPStatus.INTERNAL_SERVER_ERROR:
+        return {"code": error.code, "message": type(error).message}
+    return {"code": error.code, "message": error.message}
+
+
+async def conversation_events(
+    chat: Chat, registry: CharacteristicRegistryPort, request: ChatRequestSchema
+) -> AsyncIterator[str]:
+    queue: asyncio.Queue[Event | None] = asyncio.Queue()
+
+    async def run() -> ConversationSchema:
+        token = progress.listen(lambda stage, fields: queue.put_nowait((stage, fields)))
+        try:
+            return conversation_schema(
+                await chat.send(
+                    str(request.conversation_id) if request.conversation_id else None,
+                    request.message,
+                    request.region_id,
+                    request.selected_hotel_id,
+                    request.locale,
+                ),
+                registry,
+            )
+        finally:
+            progress.release(token)
+            queue.put_nowait(None)
+
+    answer = asyncio.create_task(run())
+    while True:
+        item = await queue.get()
+        if item is None:
+            break
+        stage, fields = item
+        yield frame("progress", {"stage": stage, **fields})
+    try:
+        yield frame("result", (await answer).model_dump(mode="json"))
+    except DomainError as error:
+        yield frame("error", failure(error))
+    except Exception:
+        yield frame("error", {"code": "internal_error", "message": "Internal error"})
+        raise
 
 
 def build_router(chat: Chat, registry: CharacteristicRegistryPort) -> APIRouter:
@@ -45,6 +106,14 @@ def build_router(chat: Chat, registry: CharacteristicRegistryPort) -> APIRouter:
                 request.locale,
             ),
             registry,
+        )
+
+    @router.post("/chat/messages/stream", response_class=StreamingResponse)
+    async def stream_message(request: ChatRequestSchema) -> StreamingResponse:
+        return StreamingResponse(
+            conversation_events(chat, registry, request),
+            media_type="text/event-stream",
+            headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"},
         )
 
     return router

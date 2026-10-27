@@ -1,6 +1,7 @@
 import asyncio
 from collections.abc import Mapping, Sequence
 
+from hotel_agent.application import progress
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
@@ -116,7 +117,15 @@ class DataExplorer:
                     self._logger,
                     timeout_s=max(1.0, WISH_TIMEOUT_S - spent),
                 )
-                return await loop.run(query, term, tools, note)
+                outcome = await loop.run(query, term, tools, note)
+                progress.step(
+                    "wish",
+                    term=term,
+                    status=str(outcome.wish_results[0].status)
+                    if outcome.wish_results
+                    else "incomplete",
+                )
+                return outcome
 
         outcomes = list(await asyncio.gather(*(explore(term, t) for term, t in prepared)))
         candidates = tuple(

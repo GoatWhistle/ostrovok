@@ -2,6 +2,7 @@ import hashlib
 from collections.abc import Sequence
 from dataclasses import dataclass, replace
 
+from hotel_agent.application import progress
 from hotel_agent.application.agent.data_records import ExplorationOutcome
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
@@ -83,6 +84,7 @@ class SearchHotels:
     ) -> SearchOutcome:
         if not query.strip():
             raise InvalidQuery("Search query is empty")
+        progress.step("parsing")
         parsed = await self._llm.parse_query(query)
         parsed = replace(
             parsed,
@@ -131,6 +133,7 @@ class SearchHotels:
             location = candidates.location_hint
             parsed = replace(parsed, location_hint=location)
         region, bbox, hotels = candidates.region, candidates.bbox, candidates.hotels
+        progress.step("candidates", found=len(hotels), region=region)
         if candidates.unsupported:
             return _empty(query, region, bbox, replace(parsed, unsupported_region=location))
         native = RequestedTools(
@@ -168,6 +171,7 @@ class SearchHotels:
                 feedback=feedback,
             )
 
+        progress.step("research", wishes=len(terms))
         if explorer is not None and terms:
             explored = await explore(())
             parsed = apply_exploration(parsed, explored, plan.duplicates)
@@ -179,6 +183,7 @@ class SearchHotels:
                 facts=tuple(row for item in collected for row in item.facts),
                 features=tuple(feature for item in collected for feature in item.features),
             )
+        progress.step("review", candidates=len(explored.hotels))
         selection = await self._selection(query, parsed, explored, limit)
         feedback = rejection_feedback(selection.ranked, selection.report)
         if feedback and explorer is not None and terms and not explored.question:

@@ -162,6 +162,28 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/Conversation" }
 
+  /chat/messages/stream:
+    post:
+      tags: [chat]
+      operationId: streamChatMessage
+      summary: Тот же ответ, но событиями по мере готовности
+      description: >-
+        Поток Server-Sent Events. Событие progress несёт стадию поиска
+        (parsing, candidates, research, wish, review) и её поля; событие result —
+        тот же Conversation, что возвращает /chat/messages; событие error — конверт ошибки.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChatRequest" }
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                type: string
+
   /hotels/{hotel_id}:
     get:
       tags: [hotels]
