@@ -47,8 +47,9 @@ class CommonsPhotos:
             },
         )
         failure = payload.get("error")
-        if isinstance(failure, dict):
-            raise ValueError(f"Commons is unavailable: {failure.get('code', 'unknown')}")
+        code = str(failure.get("code", "unknown")) if isinstance(failure, dict) else "unknown"
+        if failure is not None:
+            raise ValueError(f"Commons is unavailable: {code}")
         records = [
             row
             for page in payload.get("query", {}).get("pages", [])

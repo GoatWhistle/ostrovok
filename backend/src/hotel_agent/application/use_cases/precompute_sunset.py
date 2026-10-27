@@ -12,6 +12,8 @@ from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
+from hotel_agent.application.room_floors import confirms_floor, with_known_floor
+from hotel_agent.application.room_records import RoomRecord
 
 KEY = "sunset_view"
 METHOD = "sunset_view@1"
@@ -27,8 +29,16 @@ class PrecomputeSunset:
     async def __call__(self, region: str) -> int:
         async with self._uow() as uow:
             hotels = await uow.search.list_hotels(region, None)
+            kept = await uow.search.list_facts(
+                None, hotel_ids=[hotel.id for hotel in hotels], characteristic_keys=[KEY]
+            )
+        rechecked = {row.hotel_id for row in kept if row.id != f"f_{KEY}_{row.hotel_id}"}
         now = self._clock.now()
-        records = [row for hotel in hotels if (row := await self.fact(hotel, now)) is not None]
+        records = [
+            row
+            for hotel in hotels
+            if hotel.id not in rechecked and (row := await self.fact(hotel, now)) is not None
+        ]
         if records:
             async with self._uow() as uow:
                 await uow.facts.save(records)
@@ -41,19 +51,22 @@ class PrecomputeSunset:
             return None
         async with self._uow() as uow:
             facades = await uow.search.list_facades(hotel.id)
+            rooms = await uow.search.list_rooms(hotel.id)
         facing = tuple(item for item in facades if faces_arc(item.azimuth_deg, arc))
         if not facades:
             return None
         azimuth = arc_middle(arc)
         if not facing:
-            return self._fact(hotel, arc, azimuth, now, False, None, 0, len(facades))
+            return self._fact(hotel, arc, azimuth, now, False, None, 0, len(facades), ())
         measured = (
             await self._views.assess({hotel.id: hotel.location}, azimuth, OBSERVER_M, RADIUS_M)
         ).get(hotel.id)
         if measured is None:
             return None
         floor = minimum_floor(measured["ground_elevation_m"], measured["skyline_elevation_m"])
-        return self._fact(hotel, arc, azimuth, now, None, floor, len(facing), len(facades))
+        return self._fact(
+            hotel, arc, azimuth, now, None, floor, len(facing), len(facades), tuple(rooms)
+        )
 
     def _fact(
         self,
@@ -65,6 +78,7 @@ class PrecomputeSunset:
         floor: int | None,
         facing: int,
         facades: int,
+        rooms: tuple[RoomRecord, ...],
     ) -> SearchFactRecord:
         reach = _reachable(hotel)
         settled = value if floor is None else (None if reach is None else floor <= reach)
@@ -82,6 +96,8 @@ class PrecomputeSunset:
                 "facades_facing_sunset": facing,
                 "facades_total": facades,
                 **({"from_floor": floor} if floor is not None else {}),
+                "bookable_room_confirmed": floor is not None and confirms_floor(rooms, floor),
+                "rooms_with_known_floor": with_known_floor(rooms),
                 **({"floors_known": reach} if reach is not None else {}),
             },
             source_type="computed",
