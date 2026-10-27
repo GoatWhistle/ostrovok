@@ -4,10 +4,10 @@ from typing import cast
 from unittest.mock import AsyncMock, MagicMock
 
 from hotel_agent.application.dto import FacadeRecord, SearchFactRecord, SearchHotelRecord
-from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
+from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 
 NOW = datetime(2026, 10, 27, tzinfo=UTC)
@@ -36,6 +36,7 @@ def build(
     measured: dict[str, dict[str, float]],
     levels: int | None = 9,
     rooms: list[RoomRecord] | None = None,
+    rechecked: list[SearchFactRecord] | None = None,
 ) -> tuple[PrecomputeSunset, list[SearchFactRecord]]:
     saved: list[SearchFactRecord] = []
     scope = MagicMock()
@@ -43,7 +44,7 @@ def build(
         return_value=SimpleNamespace(
             search=SimpleNamespace(
                 list_hotels=AsyncMock(return_value=[hotel(levels)]),
-                list_facts=AsyncMock(return_value=[]),
+                list_facts=AsyncMock(return_value=rechecked or []),
                 list_facades=AsyncMock(return_value=facades),
                 list_rooms=AsyncMock(return_value=rooms or []),
             ),
@@ -149,32 +150,29 @@ async def test_a_room_without_a_floor_leaves_the_estimate_unconfirmed() -> None:
 
 
 async def test_a_hotel_with_a_rechecked_version_is_left_alone() -> None:
-    use_case, saved = build(
-        [facade(290.0)], {"h1": {"ground_elevation_m": 12.0, "skyline_elevation_m": 14.0}}
+    version = SearchFactRecord(
+        hotel_id="h1",
+        id="f_sunset_view_h1_r20261027204806",
+        characteristic_key="sunset_view",
+        value=True,
+        unit=None,
+        qualifiers={},
+        source_type="computed",
+        source_id=None,
+        method="sunset_view@1",
+        confidence=0.75,
+        computed_at=NOW,
+        valid_until=None,
+        status="active",
+        geo_refs=(),
+        explanation="",
+        facade_azimuth=None,
+        subject_id="h1",
     )
-    scope = use_case._uow()
-    scope.__aenter__.return_value.search.list_facts = AsyncMock(
-        return_value=[
-            SearchFactRecord(
-                hotel_id="h1",
-                id="f_sunset_view_h1_r20261027204806",
-                characteristic_key="sunset_view",
-                value=True,
-                unit=None,
-                qualifiers={},
-                source_type="computed",
-                source_id=None,
-                method="sunset_view@1",
-                confidence=0.75,
-                computed_at=NOW,
-                valid_until=None,
-                status="active",
-                geo_refs=(),
-                explanation="",
-                facade_azimuth=None,
-                subject_id="h1",
-            )
-        ]
+    use_case, saved = build(
+        [facade(290.0)],
+        {"h1": {"ground_elevation_m": 12.0, "skyline_elevation_m": 14.0}},
+        rechecked=[version],
     )
 
     assert await use_case("sochi") == 0
