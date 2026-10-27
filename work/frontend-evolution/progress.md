@@ -30,9 +30,9 @@ push только после завершения всех E00–E18/H01–H07. 
 | H07 | verified | `e041b58`: [Отчёт](evidence/h07.md): 15 находок, 22 контрола, 5 реальных мутаций, 45 integration и 3 e2e |
 | E13 | verified | `33337b7`: [Отчёт](evidence/e13.md): 27 операций/42 схемы совпали с runtime, геометрия пакетами по 200 ID, фильтры подписей, карточка места на большой карте |
 | E14 | verified | `e0333ce`: [Отчёт](evidence/e14.md), [аудит 5](../audits/frontend-5.md): 110 состояний, 70 axe-аудитов, 2 P1 исправлены |
-| E15 | verified | `b96bc34`: [Отчёт](evidence/e15.md): настоящий GPU; смена оформления p95 54/125 мс (было 575–720), 10 циклов без накопления, скрытая карта 0 render; **панорамирование p95 ≤33 мс не достигнуто** в центре (167/100) и на берегу (50) |
-| E16 | verified | `fab60cb`, `116a75d`: [Отчёт](evidence/e16.md): цепочки на GPU, слабой сети и без WebGL, кабинет с ошибкой и повтором, регрессия 12/12, e2e 23/23, 537 тестов; мобильный вид пропущен по решению пользователя |
-| E17 | in_progress | Итог и push |
+| E15 | verified | `0881852`: [Отчёт](evidence/e15.md): настоящий GPU; смена оформления p95 54/125 мс (было 575–720), 10 циклов без накопления, скрытая карта 0 render; **панорамирование p95 ≤33 мс не достигнуто** в центре (167/100) и на берегу (50) |
+| E16 | verified | `307eabb`, `b69a63c`, `849cf10`: [Отчёт](evidence/e16.md): цепочки на GPU, слабой сети и без WebGL, кабинет с ошибкой и повтором, регрессия 12/12, e2e 23/23, 537 тестов; мобильный вид пропущен по решению пользователя |
+| E17 | verified | [Итог](result.md): требования R1–R7, сценарии A/AH/AL/AG, проверки на итоговом коде и ограничения |
 
 Подложка России скачана и проверена (13 315 380 122 байта, basemap-e9827062f2ba); исходник Protomaps 20261026,
 bbox 19.6,41.1,180,82, zoom до 14. Файлы /mnt/e/o-hack-data/raw и /basemaps.
@@ -72,3 +72,15 @@ bbox 19.6,41.1,180,82, zoom до 14. Файлы /mnt/e/o-hack-data/raw и /basem
 | `718af8b` | `e041b58` | test(frontend): cover hotelier recovery and navigation |
 | `9febc6f` | `33337b7` | fix(frontend): complete map contract consumers |
 | `d258689` | `e0333ce` | fix(frontend): refine workspace accessibility |
+
+Второй rebase, 2026-10-27: 5 локальных коммитов переставлены поверх `1d48e8f` (12 коммитов
+напарника: данные поставщика, геометрия видов) и опубликованы по просьбе пользователя
+(`1d48e8f..849cf10`). Конфликтов не было; после rebase `npm run verify` — 541 тест.
+
+| До | После | Коммит |
+|---|---|---|
+| `b96bc34` | `0881852` | perf(frontend): bound map rendering across views |
+| `fab60cb` | `307eabb` | fix(frontend): keep failed photo the size of the photo |
+| `116a75d` | `b69a63c` | test(frontend): cover chat map and hotel journeys |
+| `affb97d` | `7bf6d67` | docs: draft frontend evolution result |
+| `70fc050` | `849cf10` | docs(frontend): record end-to-end journey validation |

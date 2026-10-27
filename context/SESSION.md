@@ -169,13 +169,16 @@ Updated: 2026-10-27, Europe/Moscow
 - 2026-10-27, дословно: «я его остановил . доделай работу его сам»
 - 2026-10-27, дословно: «сделай тогда пуш текущих комитов». Push of the committed work authorized for this moment; fetch and rebase over the teammate first.
 - 2026-10-27, дословно: «влей в agent-mvp».
+- 2026-10-27, дословно: «забей на то как выглядит на телефоне скипни это»
+- 2026-10-27, дословно: «главное сделай комит и пуш что есть . и доделывай уже спеку несчастную»
+- 2026-10-27, дословно: «пуш проверь еще раз». gh HTTPS token invalid; fetch/push go through `git@github.com:GoatWhistle/o-hack.git`, remote config unchanged.
 
 ## Current state
 
 - Main/origin2d2fd12; backend view-corridor-20261026 image14de83d8 healthy200. Only3geometrymodules overlaid on independentfdcd62b4 runtime; TAGpersisted,frontendunchanged.817clean/833root unitcontract+12DBtests passed.
 - NativeOstankino now2positive rays, independentaudit0errors; 40535terminal3/3pass;15672+22504stoppedSIGINTbyuser.18801terminal dueindependentdeploy;Onega/russianbridge/nevyan resumed. Goal incomplete:50processed acrossversions27auto18review5special. [Evidence](../../o-hack-stand/work/window-views/review-probe/README.md).
 - Moscow-City complex absent locally; externalidentity+geometryneeded. Independent event/web workdirty,preserved. Priorstate:[archive](../work/window-views/session-before-round15.md). Protectedverbatimquotes exceedSESSIONtarget.
-- Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, rebased onto origin `85bcd18` on 2026-10-27 and pushed at user request. [Progress](../work/frontend-evolution/progress.md). E00–E14/E18/H01–H07 committed (Codex continued H05 fix, H06, H07, E13, E14 and was stopped by the user). Remaining: E15, E16, E17. Codex E15/E16 work in progress is kept in stash `codex-e15-e16-wip` (map quality stall handling, updated e2e); restore it before continuing.
+- Frontend evolution plan complete on `feat/hotel-agent-mvp`: E00–E18 and H01–H07 verified, [result](../work/frontend-evolution/result.md), [progress](../work/frontend-evolution/progress.md). Rebased onto teammate `1d48e8f` and pushed `1d48e8f..849cf10` at user request; final E17 document commit follows. Mobile layout skipped by user; panning p95 ≤33 ms missed in center/shore (E15).
 - Isolated FakeLLM/PostGIS Compose `hotel-evolution`, API :18085, DB :15435, frontend :5179 (`API_URL=:18085 MAP_ASSET_URL=:18082 npx vite --host 127.0.0.1 --port 5179`; restarted 2026-10-27 after it stopped). Node24 `/tmp/hotel-node24/bin`. Russia basemap complete and verified: 13,315,380,122 bytes, basemap-e9827062f2ba; root work/russia-download. Synthetic hotelier region bbox corrected to fixture extent.
 
 ## Historical state
@@ -184,7 +187,7 @@ Updated: 2026-10-27, Europe/Moscow
 
 ## Next actions and pitfalls
 
-- Continue evolution plan from its progress document. Do not mix unrelated map-reference files into commits. Full verification, browser checks and local commits per completed item; no intermediate push. Existing window-view evaluation below is historical separate work, not a replacement for this task. Protected user instructions exceed the SESSION target and remain verbatim.
+- Evolution plan has no open items. Known follow-ups: 375 px chat tab after leaving the full map shows no composer (not investigated); panning cost in dense center. Untracked `work/hotelier-demo/`, `work/map-neon/night*` belong to other work, keep out of commits. Protected user instructions exceed the SESSION target and remain verbatim.
 
 - Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
 - Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.
