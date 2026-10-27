@@ -81,7 +81,7 @@ class PrecomputeSunset:
                 "months": MONTHS,
                 "facades_facing_sunset": facing,
                 "facades_total": facades,
-                **({"minimum_floor": floor} if floor is not None else {}),
+                **({"from_floor": floor} if floor is not None else {}),
                 **({"floors_known": reach} if reach is not None else {}),
             },
             source_type="computed",
