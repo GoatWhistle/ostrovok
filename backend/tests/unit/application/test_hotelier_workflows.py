@@ -11,8 +11,9 @@ from hotel_agent.application.use_cases.hotelier_questions import (
     ListHotelierQuestions,
     PlanHotelierQuestions,
 )
-from hotel_agent.domain.entities import FactStatus, QuestionStatus
+from hotel_agent.domain.entities import FactStatus, QuestionStatus, Resolution
 from hotel_agent.domain.errors import FactNotFound, HotelNotFound, InvalidValue, QuestionNotFound
+from hotel_agent.domain.services.conflict_resolver import RULE
 from tests.unit.application.hotelier_fakes import (
     FixedClock,
     Ids,
@@ -204,3 +205,19 @@ async def test_answer_to_missing_or_empty_question_fails(
         await answering(store, registry)("missing", "Можно")
     with pytest.raises(InvalidValue):
         await answering(store, registry)("q1", "   ")
+
+
+async def test_a_correction_records_the_conflict_with_the_resolution_rule(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    store = Store(facts={"f1": computed_fact("f1", "h1", "room_capacity", 4)})
+    change = ChangeFacts(factory(store), registry, FixedClock(), Ids())
+
+    await change.correct("f1", 2, "В номере только двухместное размещение.")
+
+    assert len(store.conflicts) == 1
+    conflict = next(iter(store.conflicts.values()))
+    assert conflict.characteristic_key == "room_capacity"
+    assert conflict.rule == RULE
+    assert conflict.resolution == Resolution.RESOLVED_BY_RULE.value
+    assert "f1" in conflict.fact_ids
