@@ -11,6 +11,7 @@ class WebPage:
     text: str
     retrieved_at: datetime
     events: tuple[dict[str, Any], ...] = ()
+    hotels: tuple[dict[str, Any], ...] = ()
 
 
 class WebResearchPort(Protocol):

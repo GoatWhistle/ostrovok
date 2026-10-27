@@ -193,3 +193,68 @@ async def test_failed_matching_never_fetches_rates_from_a_different_hotel(
     )
     assert result.status is offer_status
     provider.fetch.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_web_card_fills_an_unmatched_hotel_without_claiming_rates() -> None:
+    from hotel_agent.application.ports.hotel_web_card import HotelCardLookupPort
+    from hotel_agent.application.ports.supplier_details import SupplierDetails, SupplierHotel
+
+    details = SupplierDetails(
+        supplier_id="hotelsouz.ru",
+        page_url="https://hotelsouz.ru/",
+        name="Отель Союз",
+        address="Шереметевский проспект 47Б",
+        location=(40.9869, 57.0034),
+    )
+    card = SimpleNamespace(find=AsyncMock(return_value=SupplierHotel(details=details)))
+    search = SimpleNamespace(
+        search=AsyncMock(return_value=None),
+        details=AsyncMock(return_value=None),
+        aclose=AsyncMock(),
+        source="Островок",
+        sandbox=False,
+    )
+    result = await GetHotelOffers(
+        repository(None),
+        None,
+        clock(),
+        search_provider=cast(HotelOfferSearchPort, search),
+        card_lookup=cast(HotelCardLookupPort, card),
+    )("hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru")
+
+    assert result.status is OfferStatus.NO_OFFERS
+    assert result.offers == ()
+    assert result.details is not None
+    assert result.details.page_url == "https://hotelsouz.ru/"
+    assert result.source == "hotelsouz.ru"
+    card.find.assert_awaited_once()
+    assert card.find.await_args is not None
+    assert card.find.await_args.args[0].city == "Сочи"
+
+
+@pytest.mark.asyncio
+async def test_web_card_is_not_consulted_when_the_supplier_matched_the_hotel() -> None:
+    from hotel_agent.application.ports.hotel_web_card import HotelCardLookupPort
+
+    card = SimpleNamespace(find=AsyncMock(return_value=None))
+    search = SimpleNamespace(
+        search=AsyncMock(
+            return_value=OfferLookup(offers=(), checked_at=datetime(2026, 10, 25, tzinfo=UTC))
+        ),
+        details=AsyncMock(return_value=None),
+        aclose=AsyncMock(),
+        source="Островок",
+        sandbox=False,
+    )
+    result = await GetHotelOffers(
+        repository(None),
+        None,
+        clock(),
+        search_provider=cast(HotelOfferSearchPort, search),
+        card_lookup=cast(HotelCardLookupPort, card),
+    )("hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru")
+
+    assert result.status is OfferStatus.NO_OFFERS
+    assert result.source == "Островок"
+    card.find.assert_not_called()

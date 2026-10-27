@@ -13,6 +13,7 @@ import httpx
 
 from hotel_agent.adapters.external.event_records import EVENT_FIELDS, EVENT_TYPES
 from hotel_agent.adapters.external.hotel_metadata import HotelMetadata
+from hotel_agent.adapters.external.microdata import MicrodataHotels
 from hotel_agent.adapters.external.web_pages import PageText
 from hotel_agent.application.ports.web_research import WebPage
 
@@ -258,6 +259,9 @@ class PublicWebResearch:
                     parser.feed(text)
                     metadata = HotelMetadata()
                     metadata.feed(text)
+                    microdata = MicrodataHotels()
+                    microdata.feed(text)
+                    records = microdata.results()
                     events = HotelMetadata(EVENT_TYPES, EVENT_FIELDS)
                     events.feed(text)
                     links = "\n".join(
@@ -270,9 +274,11 @@ class PublicWebResearch:
                         title=" ".join(parser.title)[:300],
                         text="\n".join(parser.parts)[:34000]
                         + metadata.evidence()
+                        + (microdata.evidence() if not metadata.records else "")
                         + ("\nСсылки на странице:\n" + links[:6000] if links else ""),
                         retrieved_at=datetime.now(UTC),
                         events=tuple(events.records),
+                        hotels=tuple(metadata.records) + records,
                     )
         raise ValueError("unreachable: too many page redirects")
 

@@ -8,6 +8,7 @@ from fastapi import FastAPI
 
 from hotel_agent.adapters.external.event_sources import PublicEvents
 from hotel_agent.adapters.external.gbif import GBIFObservations
+from hotel_agent.adapters.external.hotel_web_card import WebHotelCard
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.overpass_geography import OverpassGeography
 from hotel_agent.adapters.external.web_research import PublicWebResearch
@@ -133,6 +134,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         providers.clock,
         providers.catalog_matcher,
         search_provider=providers.hotel_offer_search,
+        card_lookup=WebHotelCard(web_research),
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)
