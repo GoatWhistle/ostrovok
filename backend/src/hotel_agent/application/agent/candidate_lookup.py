@@ -4,6 +4,7 @@ from collections.abc import Mapping, Sequence
 from math import log
 from typing import Any
 
+from hotel_agent.application.agent.catalogue_links import reference_urls
 from hotel_agent.application.dto import SearchHotelRecord
 
 
@@ -52,11 +53,13 @@ def lookup_candidates(
                 "address": h.address,
                 "location": h.location,
                 "identity_tags": metadata.get(h.id, {}),
+                "reference_urls": reference_urls(metadata.get(h.id, {})),
             }
             for h in selected
         ],
         "total": len(matched),
         "next_offset": offset + len(selected) if offset + len(selected) < len(matched) else None,
         "discovery_only": True,
-        "note": "Catalogue identity candidates only, not wish evidence. Compare names, aliases, address and source before attaching a web page. Shared words do not establish identity.",
+        "note": "Catalogue identity candidates only, not wish evidence. Compare names, aliases, address and source before attaching a web page. Shared words do not establish identity."
+        " reference_urls are pages about this exact object: read them with its hotel_id before searching the open web for the name.",
     }

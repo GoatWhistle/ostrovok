@@ -7,10 +7,12 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.hotel_offers import (
     HotelOfferSearchPort,
     HotelOffersPort,
+    OfferLookup,
     OfferProviderFailure,
     RoomOffer,
     SupplierRoom,
 )
+from hotel_agent.application.ports.hotel_web_card import HotelCardLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.supplier_details import SupplierDetails
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
@@ -56,12 +58,14 @@ class GetHotelOffers:
         catalog_matcher: MatchHotelCatalog | None = None,
         *,
         search_provider: HotelOfferSearchPort | None = None,
+        card_lookup: HotelCardLookupPort | None = None,
     ) -> None:
         self._uow = uow
         self._provider = provider
         self._clock = clock
         self._catalog_matcher = catalog_matcher
         self._search_provider = search_provider
+        self._card_lookup = card_lookup
 
     @property
     def configured(self) -> bool:
@@ -87,6 +91,9 @@ class GetHotelOffers:
                 if self._provider is not None
                 else None
             )
+        identity = HotelIdentity(
+            name=hotel.name, address=hotel.address, location=hotel.location, city=city
+        )
         content = None
         status = OfferStatus.HOTEL_UNMAPPED
         source = None
@@ -118,12 +125,7 @@ class GetHotelOffers:
             sandbox = self._search_provider.sandbox
             try:
                 result = await self._search_provider.search(
-                    HotelIdentity(
-                        name=hotel.name,
-                        address=hotel.address,
-                        location=hotel.location,
-                        city=city,
-                    ),
+                    identity,
                     check_in,
                     check_out,
                     adults,
@@ -149,6 +151,19 @@ class GetHotelOffers:
                 checked_at = result.checked_at
                 offers = result.offers
                 status = OfferStatus.AVAILABLE if offers else OfferStatus.NO_OFFERS
+        if status is OfferStatus.HOTEL_UNMAPPED and self._card_lookup is not None:
+            found = await self._card_lookup.find(identity)
+            if found is not None:
+                content = OfferLookup(
+                    offers=(),
+                    checked_at=self._clock.now(),
+                    room_groups=found.rooms,
+                    details=found.details,
+                )
+                status = OfferStatus.NO_OFFERS
+                source = found.details.supplier_id
+                sandbox = False
+                checked_at = content.checked_at
         return HotelOffers(
             hotel_id=hotel_id,
             check_in=check_in,

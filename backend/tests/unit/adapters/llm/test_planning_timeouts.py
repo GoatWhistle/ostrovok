@@ -145,3 +145,22 @@ async def test_unparsable_planning_output_is_asked_again_from_the_main_model() -
     assert step.action == "finish"
     assert [model for model, _ in asked] == ["quick", "main"]
     assert [tokens for _, tokens in asked] == [2000, 4000]
+
+
+async def test_a_judgement_call_never_races_the_spare_model(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(openai_completion, "HEDGE_S", 0.01)
+    asked: list[str] = []
+
+    async def handle(request: httpx.Request) -> httpx.Response:
+        model = str(json.loads(request.content)["model"])
+        asked.append(model)
+        if model == "main":
+            await asyncio.sleep(0.2)
+        return httpx.Response(200, json={"choices": [{"message": {"content": model}}]})
+
+    llm = completion(httpx.MockTransport(handle))
+
+    assert await llm.complete(system="s", user="u", schema={"type": "json_object"}) == "main"
+    assert asked == ["main"]

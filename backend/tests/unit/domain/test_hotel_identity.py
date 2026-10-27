@@ -169,3 +169,55 @@ def test_lodging_kind_words_do_not_make_two_spellings_different_hotels() -> None
         identity=replace(local, name="Меблированные комнаты Мишель", address=None),
     )
     assert assess_identity(local, remote).accepted
+
+
+def test_letter_suffix_in_a_house_number_is_the_same_address() -> None:
+    local = replace(LOCAL, name="Союз", address="Шереметевский проспект 47")
+    remote = HotelCandidate(
+        supplier_id="7180196",
+        identity=replace(local, name="Отель Союз", address="Шереметевский Проспект, д.47б"),
+    )
+    result = assess_identity(local, remote)
+    assert result.address_status == "confirmed"
+    assert result.accepted
+
+
+def test_structure_number_is_read_from_a_long_registry_address() -> None:
+    local = replace(LOCAL, name="SkyPoint", address="Международное шоссе 28Б с3")
+    remote = HotelCandidate(
+        supplier_id="10146118",
+        identity=replace(
+            local,
+            name="Отель Skypoint Gamma Delta Alfa",
+            address=(
+                "141402, г Москва, вн.тер.г. муниципальный округ Молжаниновский, "
+                "ш Международное, д. 28Б, стр. 3"
+            ),
+        ),
+    )
+    assert assess_identity(local, remote).address_status == "confirmed"
+    other_structure = replace(
+        remote,
+        identity=replace(
+            remote.identity,
+            name="Sheraton Skypoint Luxe",
+            address="шоссе Международное, д.28Б, стр.5",
+        ),
+    )
+    assert assess_identity(local, other_structure).reason == "address_conflict"
+
+
+def test_exact_name_without_an_address_is_accepted_within_a_city_block() -> None:
+    local = replace(LOCAL, name="Centeral", address=None)
+    remote = HotelCandidate(
+        supplier_id="7122074",
+        identity=replace(
+            local,
+            name="Отель Centeral Hotel",
+            address="ул Петровка, д. 20/1",
+            location=(39.7215, 43.58),
+        ),
+    )
+    assert assess_identity(local, remote).accepted
+    farther = replace(remote, identity=replace(remote.identity, location=(39.722, 43.58)))
+    assert not assess_identity(local, farther).accepted

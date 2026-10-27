@@ -104,3 +104,14 @@ def test_timed_out_check_is_not_reported_as_verified_absence() -> None:
 
     assert "Не успел закончить проверку" in answer
     assert "рядом с Вкусвилл" in answer
+
+
+def test_a_rejected_answer_still_carries_the_agents_question() -> None:
+    search = SearchOutcome(
+        query_id="q",
+        parsed=ParsedQuery(intents=(), unmatched_terms=(), location_hint="Москва"),
+        results=(),
+        question="Имеете в виду визит 2013 года?",
+    )
+
+    assert safe_answer(search, "ru") == "Имеете в виду визит 2013 года?"

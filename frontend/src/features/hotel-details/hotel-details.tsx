@@ -6,6 +6,7 @@ import type { components } from "@/shared/api/schema.gen"
 import { isAvailableFact } from "@/shared/geo/facts/matching"
 import { useTranslation } from "@/shared/i18n"
 import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
+import { ConflictValues } from "./conflict-values"
 import { HotelFacilities } from "./facilities/hotel-facilities"
 import { FactList } from "./fact-list"
 import styles from "./hotel-details.module.css"
@@ -135,6 +136,7 @@ export function HotelDetails({
         {card.conflicts?.length ? (
           <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
             {t("explore:details.conflictsText")}
+            <ConflictValues conflicts={card.conflicts} facts={card.facts} />
           </Banner>
         ) : null}
         {card.stale_count ? (

@@ -91,6 +91,13 @@ def materialize(
                     )
                 )
             )
+            titles = tuple(
+                dict.fromkeys(
+                    str(page["title"])
+                    for page in tools.research.pages
+                    if str(page.get("source_url", "")) in urls and page.get("title")
+                )
+            )
             if quotes:
                 explanation += " Цитаты источника: " + " ".join(
                     f"«{quote[:300]}»" for quote in quotes[:2]
@@ -124,6 +131,7 @@ def materialize(
                         "source_text": criterion.source_text,
                         "source_quotes": list(quotes),
                         "source_urls": list(urls),
+                        **({"source_titles": list(titles)} if quotes and titles else {}),
                         **(
                             {"catalogue_identity": list(tools.reader.identities[hotel.id])}
                             if quotes and hotel.id in tools.reader.identities

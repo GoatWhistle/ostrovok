@@ -15,22 +15,27 @@ from psycopg_pool import AsyncConnectionPool
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.facades import PostgresFacadeStore
 from hotel_agent.adapters.db.hotel_catalog import PostgresHotelCatalog
+from hotel_agent.adapters.db.metrics import PostgresQualityMetrics
 from hotel_agent.adapters.db.precompute import PostgresPrecompute
 from hotel_agent.adapters.db.seed import PostgresSeedWriter
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.db.walk import PostgresWalkStore
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.nuitee_discovery import NuiteeDiscovery
+from hotel_agent.adapters.geo.country_terrain import CountryTerrainTiles
 from hotel_agent.adapters.geo.dem_rasterio import CopernicusElevationSource
 from hotel_agent.adapters.geo.facades import FootprintFacadeExtractor
+from hotel_agent.adapters.geo.view_assessment import NearbyViewAssessment
 from hotel_agent.adapters.geo.walk_graph import SochiWalkGraph
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
 from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
 from hotel_agent.adapters.osm.pbf_stream import iter_region_batches
+from hotel_agent.adapters.osm.settlements import iter_settlement_batches
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
+from hotel_agent.application.quality_metrics import overall_coverage, overall_hotelier_share
 from hotel_agent.application.use_cases.build_seed import BuildSeed
 from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
@@ -39,7 +44,9 @@ from hotel_agent.application.use_cases.ingest_seed import IngestSeed
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
+from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.refresh_facts import RefreshStaleFacts
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
@@ -71,11 +78,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest(args.region, Path(args.directory), settings.database_url))
     if args.command == "ingest-pbf":
         return asyncio.run(_ingest_pbf(args, settings.database_url, logger))
+    if args.command == "ingest-settlements":
+        return asyncio.run(_ingest_settlements(args, settings.database_url))
     if args.command == "precompute":
         code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
         return code or asyncio.run(_plan_questions(args.region, settings))
     if args.command == "plan-questions":
         return asyncio.run(_plan_questions(args.region, settings))
+    if args.command == "metrics":
+        return asyncio.run(_metrics(args.region, settings))
+    if args.command == "refresh-facts":
+        return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
         return asyncio.run(_refresh_geography(args.region, settings.database_url))
     if args.command == "sync-nuitee":
@@ -179,6 +192,45 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
     return 0
 
 
+async def _ingest_settlements(args: Namespace, database_url: str) -> int:
+    path = Path(args.pbf)
+    if not path.is_file() or not path.with_name(path.name + ".ok").is_file():
+        raise SystemExit(f"Verified PBF and .ok marker are required: {path}")
+    if args.batch_size <= 0:
+        raise SystemExit("batch-size must be positive")
+
+    def on_batch(number: int, counts: Mapping[str, int]) -> None:
+        if number % 10 == 0:
+            print(f"batches={number} counts={counts}", flush=True)
+
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        async with pool.connection() as connection:
+            row = await (
+                await connection.execute(
+                    "SELECT ST_XMin(bbox), ST_YMin(bbox), ST_XMax(bbox), ST_YMax(bbox), built_at"
+                    " FROM regions WHERE id = %s",
+                    (args.region,),
+                )
+            ).fetchone()
+        if row is None:
+            raise SystemExit(f"Region {args.region} is not imported yet")
+        meta: dict[str, object] = {
+            "bbox": [float(str(value)) for value in row[:4]],
+            "built_at": str(row[4]),
+        }
+        async with PostgresSeedWriter(pool) as writer:
+            report = await IngestPbf(writer)(
+                args.region,
+                meta,
+                iter_settlement_batches(path, args.batch_size),
+                frozenset({"pois"}),
+                lambda: None,
+                on_batch,
+            )
+    print(f"region={report.region} batches={report.batches} counts={dict(report.counts)}")
+    return 0
+
+
 async def _precompute(region: str, directory: Path, database_url: str) -> int:
     async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
         counts = await Precompute(PostgresPrecompute(pool))(region)
@@ -186,11 +238,61 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
         facades = await PrecomputeFacades(FootprintFacadeExtractor(), PostgresFacadeStore(pool))(
             region
         )
+    uow = PostgresUnitOfWorkFactory(database_url)
+    try:
+        terrain = CountryTerrainTiles(directory / "dem.tif", None)
+        sunset = await PrecomputeSunset(uow, NearbyViewAssessment(terrain, uow), SystemClock())(
+            region
+        )
+    finally:
+        await uow.aclose()
     for name, count in counts.items():
         print(f"{name}: {count}")
     print(f"distance_to_sea: {routes}")
     for name, count in facades.items():
         print(f"{name}: {count}")
+    print(f"sunset_view: {sunset}")
+    return 0
+
+
+async def _metrics(region: str, settings: Settings) -> int:
+    keys = [
+        item.key
+        for item in YamlCharacteristicRegistry.from_directory(settings.characteristics_dir).all()
+    ]
+    async with (
+        AsyncConnectionPool(settings.database_url, min_size=1, max_size=2, open=False) as pool,
+        pool.connection() as db,
+    ):
+        rows = await PostgresQualityMetrics(db).coverage(region, keys)
+    print(f"{'characteristic':28} {'coverage':>9} {'hotelier':>9} {'open':>8}")
+    for row in rows:
+        print(
+            f"{row.characteristic_key:28} {row.coverage:>8.1%} "
+            f"{row.hotelier_share:>8.1%} {row.open_questions:>8}"
+        )
+    print(f"overall coverage: {overall_coverage(rows):.1%}")
+    print(f"overall hotelier share: {overall_hotelier_share(rows):.1%}")
+    return 0
+
+
+async def _refresh_facts(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url)
+    try:
+        terrain = CountryTerrainTiles(Path(args.directory) / "dem.tif", None)
+        sunset = PrecomputeSunset(uow, NearbyViewAssessment(terrain, uow), SystemClock())
+        report = await RefreshStaleFacts(
+            uow,
+            sunset,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+        )(args.region, args.limit)
+    finally:
+        await uow.aclose()
+    print(f"checked: {report.checked}")
+    print(f"recomputed: {report.recomputed}")
+    print(f"changed: {report.changed}")
+    print(f"conflicts: {report.conflicts}")
     return 0
 
 

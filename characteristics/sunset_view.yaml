@@ -3,11 +3,11 @@ title_ru: Вид на закат
 description: "Азимут заката по месяцам и профиль горизонта по DEM и высотам зданий, с какого этажа закат виден с этого фасада."
 value_type: bool
 unit: null
-scope: facade
+scope: hotel
 conflict_tolerance: 0
 tool: sunset_view
 ttl_days: 365
-precompute: false
+precompute: true
 ask_hotelier_if_missing: false
 question_template: null
 source_kinds: [dem, osm, computed]

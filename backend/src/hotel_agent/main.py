@@ -6,8 +6,10 @@ from uuid import uuid4
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.commons_photos import CommonsPhotos
 from hotel_agent.adapters.external.event_sources import PublicEvents
 from hotel_agent.adapters.external.gbif import GBIFObservations
+from hotel_agent.adapters.external.hotel_web_card import WebHotelCard
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.overpass_geography import OverpassGeography
 from hotel_agent.adapters.external.web_research import PublicWebResearch
@@ -23,6 +25,7 @@ from hotel_agent.adapters.geo.worldcover import WorldCover
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.map_catalog.loader import load_catalog
 from hotel_agent.adapters.map_style.manifest_files import ManifestFiles
+from hotel_agent.adapters.semantic.embedding_cache import CachedEmbeddings
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
@@ -77,11 +80,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     conditions = MetNorwayConditions(config.public_data_user_agent)
     events = PublicEvents(web_research)
     biodiversity = GBIFObservations()
+    photos = CommonsPhotos(config.public_data_user_agent)
     landcover = WorldCover()
     places: dict[str, PlaceResearchPort] = {
         "search_events": events,
         "read_event_page": events,
         "observe_wildlife": biodiversity,
+        "find_photos": photos,
         "measure_landcover": landcover,
     }
     geography_source = OverpassGeography(config.geography_api_url)
@@ -91,7 +96,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         context=geography,
     )
     embedder = (
-        PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
+        CachedEmbeddings(
+            PolzaEmbeddings(
+                config.embedding_api_key, config.embedding_model, config.embedding_base_url
+            )
+        )
         if config.embedding_api_key
         else None
     )
@@ -115,6 +124,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             await geography_source.aclose()
             await events.aclose()
             await biodiversity.aclose()
+            await photos.aclose()
             await view_geometry.aclose()
             terrain_tiles.close()
             await providers.aclose()
@@ -128,6 +138,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         providers.clock,
         providers.catalog_matcher,
         search_provider=providers.hotel_offer_search,
+        card_lookup=WebHotelCard(web_research),
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)

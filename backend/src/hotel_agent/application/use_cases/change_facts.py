@@ -5,7 +5,13 @@ from datetime import datetime, timedelta
 from hotel_agent.application.dto import SearchFactRecord
 from hotel_agent.application.fact_records import FactOwner, fact_from_record, fact_to_record
 from hotel_agent.application.fact_values import checked_value
-from hotel_agent.application.fact_versions import current_versions, retire, settled_by_hotelier
+from hotel_agent.application.fact_versions import (
+    conflict_record,
+    current_versions,
+    retire,
+    settle_answer,
+    settled_by_hotelier,
+)
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWork, UnitOfWorkFactory
@@ -14,6 +20,7 @@ from hotel_agent.domain.entities import Fact, FactStatus, FactValue
 from hotel_agent.domain.errors import FactNotFound, InvalidValue
 from hotel_agent.domain.value_objects import (
     Confidence,
+    ConflictId,
     Evidence,
     EvidenceKind,
     FactId,
@@ -71,9 +78,36 @@ class ChangeFacts:
             checked = _checked(value, characteristic)
             now = self._clock.now()
             new = self._corrected(old, checked, comment, characteristic, now)
-            await self._replace(uow, record, new, (old.superseded_by(new),))
+            await self._settle(uow, record, new, characteristic, now)
             await uow.commit()
             return new
+
+    async def _settle(
+        self,
+        uow: UnitOfWork,
+        record: SearchFactRecord,
+        winner: Fact,
+        characteristic: Characteristic,
+        now: datetime,
+    ) -> None:
+        owner = FactOwner.of(record)
+        versions = await uow.facts.versions(
+            owner.subject_type, owner.subject_id, winner.characteristic_key
+        )
+        settlement = settle_answer(
+            winner,
+            current_versions(versions),
+            now,
+            characteristic.conflict_tolerance,
+            ConflictId(self._next_id("c")),
+        )
+        await uow.facts.save([fact_to_record(item, owner) for item in settlement.writes])
+        replaced = {str(item.id) for item in settlement.writes if item.id != winner.id}
+        pending = await uow.facts.conflicts(owner.hotel_id)
+        records = settled_by_hotelier(pending, replaced, str(winner.id))
+        if settlement.conflict is not None:
+            records = (*records, conflict_record(settlement.conflict, owner))
+        await uow.facts.save_conflicts(records)
 
     async def _replace(
         self,

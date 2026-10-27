@@ -10,6 +10,11 @@ from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
 
 WHITESPACE = re.compile(r"\s+")
+MIN_QUOTE = 12
+
+
+def grounded(quote: str, source: str) -> bool:
+    return quote in source or comparable(quote) in comparable(source)
 
 
 def comparable(text: str) -> str:
@@ -85,14 +90,14 @@ class SemanticReview:
             if counts[verdict.record_id] == 1
             and verdict.supported
             and verdict.record_id in sources
-            and len(verdict.quote.strip()) >= 12
-            and verdict.quote in sources[verdict.record_id]
+            and len(verdict.quote.strip()) >= MIN_QUOTE
+            and grounded(verdict.quote, sources[verdict.record_id])
         )
         rejected = tuple(claim.id for claim in claims if claim.id not in accepted)
         by_id = {verdict.record_id: verdict for verdict in verdicts}
         reasons: Counter[str] = Counter()
         rejections = []
-        cosmetic = 0
+        refused: list[str] = []
         for identifier in rejected:
             verdict = by_id.get(identifier)
             cause = (
@@ -103,12 +108,12 @@ class SemanticReview:
                 else "unsupported"
                 if not verdict.supported
                 else "short_quote"
-                if len(verdict.quote.strip()) < 12
+                if len(verdict.quote.strip()) < MIN_QUOTE
                 else "ungrounded_quote"
             )
             reasons[cause] += 1
-            if cause == "ungrounded_quote" and verdict is not None:
-                cosmetic += comparable(verdict.quote) in comparable(sources[identifier])
+            if cause in {"short_quote", "ungrounded_quote"} and verdict is not None:
+                refused.append(verdict.quote.strip()[:60])
             rejections.append(ReviewRejection(identifier, cause, verdict.reason if verdict else ""))
         self._logger.info(
             "semantic_review_finished",
@@ -116,7 +121,7 @@ class SemanticReview:
             accepted=len(accepted),
             rejected=len(rejected),
             rejection_reasons=json.dumps(reasons, sort_keys=True),
-            cosmetic_quote_mismatches=cosmetic,
+            refused_quotes=json.dumps(refused[:4], ensure_ascii=False),
             rejection_notes=json.dumps(
                 [row.reason for row in rejections if row.reason][:4], ensure_ascii=False
             ),

@@ -72,8 +72,14 @@ class NearbyViewAssessment:
             ]
             if not angles:
                 continue
+            skyline = max(
+                (heights[key] + height for key, _, height in obstacles if key in heights),
+                default=heights["origin"],
+            )
             result[hotel_id] = {
                 "horizon_angle_deg": round(max(angles), 2),
+                "ground_elevation_m": round(heights["origin"], 2),
+                "skyline_elevation_m": round(skyline, 2),
                 "observer_height_m": observer_height_m,
                 "direction_deg": direction_deg,
                 "radius_m": radius_m,

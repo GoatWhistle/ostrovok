@@ -9,6 +9,9 @@ from hotel_agent.domain.place_names import (
     name_tokens,
 )
 
+EXACT_NAME_M = 150.0
+COVERED_NAME_M = 60.0
+
 
 @dataclass(frozen=True, slots=True, kw_only=True)
 class HotelIdentity:
@@ -68,7 +71,7 @@ def assess_identity(local: HotelIdentity, candidate: HotelCandidate) -> Identity
     confirmed = address == "confirmed" and (
         exact or consistent or similarity >= 0.8 or (shared and distance <= 60)
     )
-    nearby = (exact and distance <= 100) or (covered and distance <= 60)
+    nearby = (exact and distance <= EXACT_NAME_M) or (covered and distance <= COVERED_NAME_M)
     reason = "matched"
     if local.country.upper() != remote.country.upper():
         reason = "country_mismatch"

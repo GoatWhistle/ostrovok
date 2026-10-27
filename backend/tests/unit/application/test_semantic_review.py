@@ -141,7 +141,7 @@ async def test_review_logs_semantic_refusal_separately_from_broken_quote() -> No
     assert details == {"unsupported": 1, "ungrounded_quote": 1}
 
 
-async def test_cosmetically_different_quote_is_still_rejected_but_counted() -> None:
+async def test_spacing_in_a_quote_does_not_reject_a_grounded_verdict() -> None:
     logged: list[dict[str, object]] = []
     llm = SimpleNamespace(
         verify_evidence=AsyncMock(
@@ -167,6 +167,5 @@ async def test_cosmetically_different_quote_is_still_rejected_but_counted() -> N
         [ReviewClaim("h1", "{}", "Гостиница «Англетер» в Петербурге")],
     )
 
-    assert result.accepted_ids == ()
-    assert result.rejections[0].cause == "ungrounded_quote"
-    assert logged[-1]["cosmetic_quote_mismatches"] == 1
+    assert result.accepted_ids == ("h1",)
+    assert result.rejected_ids == ()

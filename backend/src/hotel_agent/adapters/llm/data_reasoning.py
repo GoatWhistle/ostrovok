@@ -50,6 +50,7 @@ def schema(known_fields: list[str] | None = None, finish_only: bool = False) -> 
                     "search_events",
                     "read_event_page",
                     "observe_wildlife",
+                    "find_photos",
                     "measure_landcover",
                     "get_room_offers",
                     "calculate_sun",

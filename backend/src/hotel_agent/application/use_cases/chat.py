@@ -14,7 +14,7 @@ from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.search_reply import search_reply
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
-from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery
+from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery, RegionNotFound
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -84,6 +84,7 @@ class Chat:
     ) -> ConversationOutcome:
         if not message.strip():
             raise InvalidQuery("Chat message is empty")
+        await self._known_region(region_id)
         previous = None
         if conversation_id:
             async with self._uow() as uow:
@@ -148,6 +149,12 @@ class Chat:
         return ConversationOutcome(
             conversation=conversation, search=search, search_snapshot=snapshot
         )
+
+    async def _known_region(self, region_id: str) -> None:
+        async with self._uow() as uow:
+            loaded = await uow.regions.list_loaded()
+        if not any(item.id == region_id for item in loaded):
+            raise RegionNotFound()
 
     def _answer(self, search: SearchOutcome, selected_hotel_id: str | None, locale: str) -> str:
         return search_reply(search, selected_hotel_id, locale)

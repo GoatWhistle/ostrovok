@@ -3,9 +3,10 @@ COMPOSE := docker compose
 BACKEND := uv run --directory backend
 # the backend runs with cwd=backend/, so repository data paths are made absolute
 LOCAL_DATA := CHARACTERISTICS_DIR=$(CURDIR)/characteristics SEED_DIR=$(CURDIR)/data/seed
+DOTENV := set -a; [ -f .env ] && . ./.env || true; set +a;
 
 .DEFAULT_GOAL := help
-.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute plan-questions llm-check test test-unit test-contract test-integration lint fmt check
+.PHONY: help up down logs build api fetch-seed fetch-russia build-seed seed ingest-russia precompute refresh-facts metrics plan-questions llm-check test test-unit test-contract test-integration lint fmt check
 
 help:
 	@grep -hE '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t24
@@ -20,10 +21,10 @@ logs: ## Follow the stand logs
 	$(COMPOSE) logs -f
 
 build: ## Build the service images
-	docker buildx bake
+	$(DOTENV) docker buildx bake
 
 api: ## Run the API locally with reload against the compose database
-	$(LOCAL_DATA) $(BACKEND) uvicorn hotel_agent.main:create_app --factory --reload --port 8000
+	$(DOTENV) $(LOCAL_DATA) $(BACKEND) uvicorn hotel_agent.main:create_app --factory --reload --port 8000
 
 fetch-seed: ## Download the raw OSM extract and DEM tiles (manual, needs network)
 	bash scripts/fetch-seed.sh
@@ -39,22 +40,30 @@ build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline
 		--out $(CURDIR)/data/seed/sochi
 
 seed: ## Load the prepared Sochi slice into the running PostGIS database
-	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
-		$(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
 
 ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-space guard
-	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(BACKEND) hotel-agent ingest-pbf --region russia \
 		--pbf $(CURDIR)/data/raw/$${RUSSIA_SNAPSHOT:-russia-261024}.osm.pbf \
 		--layers $${RUSSIA_LAYERS:-hotels pois} --min-free-gib $${RUSSIA_MIN_FREE_GIB:-6} \
 		--building-radius-m $${RUSSIA_BUILDING_RADIUS_M:-0}
 
 precompute: ## Compute characteristic facts from the loaded region
-	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
-		$(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
+
+metrics: ## Report characteristic coverage and the share answered by hoteliers
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent metrics --region sochi
+
+refresh-facts: ## Recheck facts whose validity expired and record what changed
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(LOCAL_DATA) $(BACKEND) hotel-agent refresh-facts --region sochi --from $(CURDIR)/data/seed/sochi
 
 plan-questions: ## Queue hotelier questions for registry characteristics without facts
-	DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(LOCAL_DATA) $(BACKEND) hotel-agent plan-questions --region sochi
 
 llm-check: ## Call the configured LLM provider for real (manual, spends quota)

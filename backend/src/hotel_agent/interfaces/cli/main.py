@@ -33,6 +33,13 @@ def build_parser() -> ArgumentParser:
     pbf.add_argument("--building-radius-m", type=float, default=0.0)
     pbf.add_argument("--workers", type=int, default=1)
 
+    settlements = commands.add_parser(
+        "ingest-settlements", help="Load named settlements from an OSM PBF into PostGIS"
+    )
+    settlements.add_argument("--region", default="russia")
+    settlements.add_argument("--pbf", required=True)
+    settlements.add_argument("--batch-size", type=int, default=5_000)
+
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")
     precompute.add_argument("--from", dest="directory", required=True)
@@ -46,6 +53,18 @@ def build_parser() -> ArgumentParser:
         "plan-questions", help="Queue hotelier questions for characteristics without facts"
     )
     questions.add_argument("--region", default="sochi")
+
+    refresh = commands.add_parser(
+        "refresh-facts", help="Recheck facts whose validity has expired and record disagreements"
+    )
+    refresh.add_argument("--region", default="sochi")
+    refresh.add_argument("--from", dest="directory", default="data/seed/sochi")
+    refresh.add_argument("--limit", type=int, default=500)
+
+    metrics = commands.add_parser(
+        "metrics", help="Report characteristic coverage and the share answered by hoteliers"
+    )
+    metrics.add_argument("--region", default="sochi")
 
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)

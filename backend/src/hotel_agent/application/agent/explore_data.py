@@ -29,7 +29,8 @@ from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
 
 WISHES_AT_ONCE = 3
-WISH_TIMEOUT_S = 180.0
+WISH_TIMEOUT_S = 150.0
+RESEARCH_TIMEOUT_S = 300.0
 
 
 class DataExplorer:
@@ -110,12 +111,12 @@ class DataExplorer:
 
         async def explore(term: str, tools: DataTools) -> ExplorationOutcome:
             async with gate:
-                spent = asyncio.get_running_loop().time() - started
+                left = RESEARCH_TIMEOUT_S - (asyncio.get_running_loop().time() - started)
                 loop = WishLoop(
                     self._llm,
                     self._clock,
                     self._logger,
-                    timeout_s=max(1.0, WISH_TIMEOUT_S - spent),
+                    timeout_s=max(1.0, min(WISH_TIMEOUT_S, left)),
                 )
                 outcome = await loop.run(query, term, tools, note)
                 progress.step(

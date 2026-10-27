@@ -6,7 +6,7 @@ from psycopg import AsyncConnection
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
 from hotel_agent.adapters.db.hotel_media import read_hotel_photos
-from hotel_agent.adapters.db.search_facts import FACTS, fact_record
+from hotel_agent.adapters.db.search_facts import FACTS, STALE_FACTS, fact_record
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -37,6 +37,16 @@ ORDER BY h.id"""
 )
 
 HOTEL_BY_ID = HOTEL_COLUMNS + "WHERE h.id = %(hotel_id)s"
+
+NEARBY_PLACE = """SELECT p.tags->>'name'
+FROM pois p
+WHERE p.tags->>'place' = ANY(%(kinds)s::text[])
+  AND ST_DWithin(p.location::geography,
+      ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography, %(radius)s)
+ORDER BY p.location::geography <-> ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography
+LIMIT 1"""
+
+SETTLEMENT_KINDS = (("city", "town"), ("village", "hamlet", "suburb", "borough"))
 
 NEARBY_CITY = """SELECT h.tags->>'addr:city'
 FROM hotels h
@@ -107,15 +117,14 @@ class PostgresSearchRepository:
         return [_supplier_content(row) for row in rows]
 
     async def nearby_city(self, location: tuple[float, float], radius_m: float) -> str | None:
-        result = await self._connection.execute(
-            NEARBY_CITY,
-            {
-                "lon": location[0],
-                "lat": location[1],
-                "radius": radius_m,
-            },
-        )
-        row = await result.fetchone()
+        params = {"lon": location[0], "lat": location[1], "radius": radius_m}
+        for kinds in SETTLEMENT_KINDS:
+            row = await (
+                await self._connection.execute(NEARBY_PLACE, params | {"kinds": list(kinds)})
+            ).fetchone()
+            if row is not None and row[0]:
+                return str(row[0])
+        row = await (await self._connection.execute(NEARBY_CITY, params)).fetchone()
         return str(row[0]) if row else None
 
     async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None:
@@ -188,6 +197,24 @@ class PostgresSearchRepository:
             )
             for row in rows
         ]
+
+    async def stale_facts(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        now: datetime,
+        limit: int = 500,
+    ) -> Sequence[SearchFactRecord]:
+        result = await self._connection.execute(
+            STALE_FACTS,
+            {
+                "region": region,
+                "characteristic_keys": list(characteristic_keys),
+                "now": now,
+                "limit": limit,
+            },
+        )
+        return [fact_record(row) for row in await result.fetchall()]
 
     async def list_facts(
         self,

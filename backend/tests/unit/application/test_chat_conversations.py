@@ -8,6 +8,7 @@ from typing import Self, cast
 import pytest
 
 from hotel_agent.application.chat_records import ChatMessageRecord, ConversationRecord
+from hotel_agent.application.dto import RegionRecord
 from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
@@ -75,10 +76,25 @@ class FakeChatRepository:
         return self.conversations.pop(conversation_id, None) is not None
 
 
+class FakeRegions:
+    async def list_loaded(self) -> list[RegionRecord]:
+        return [
+            RegionRecord(
+                id=name,
+                name=name,
+                bbox=(19.0, 41.0, 180.0, 82.0),
+                hotels_count=1,
+                data_as_of=NOW.date(),
+            )
+            for name in ("russia", "sochi")
+        ]
+
+
 @dataclass
 class FakeUnitOfWork:
     chat: FakeChatRepository
     commits: list[bool]
+    regions: FakeRegions = field(default_factory=FakeRegions)
 
     async def __aenter__(self) -> Self:
         return self

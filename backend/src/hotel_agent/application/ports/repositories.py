@@ -1,4 +1,5 @@
 from collections.abc import Callable, Mapping, Sequence
+from datetime import datetime
 from typing import Protocol, Self
 
 from hotel_agent.application.chat_records import ConversationRecord
@@ -71,6 +72,14 @@ class SearchRepository(Protocol):
     async def list_hotels(
         self, region: str, bbox: tuple[float, float, float, float] | None
     ) -> Sequence[SearchHotelRecord]: ...
+
+    async def stale_facts(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        now: datetime,
+        limit: int = 500,
+    ) -> Sequence[SearchFactRecord]: ...
 
     async def list_facts(
         self,
