@@ -1,8 +1,10 @@
 import asyncio
+import time
 from typing import Any
 
 import httpx
 
+from hotel_agent.adapters.llm.attempt_budget import AttemptBudget
 from hotel_agent.adapters.llm.payload import content_of
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
@@ -24,6 +26,7 @@ class OpenAICompletion:
         self._model = model
         self._fallback_model = fallback_model
         self._timeout_s = timeout_s
+        self._budget = AttemptBudget(ceiling_s=timeout_s)
         self._client = httpx.AsyncClient(
             base_url=base_url.rstrip("/"),
             headers={"Authorization": f"Bearer {api_key}"},
@@ -60,23 +63,26 @@ class OpenAICompletion:
             request.update(reasoning_effort="none", temperature=1, max_tokens=2000)
         if schema is not None:
             request["response_format"] = schema
-        models = (self._model, self._fallback_model or self._model)
+        models = self._budget.order((self._model, self._fallback_model or self._model))
         for attempt, model in enumerate(models):
             request["model"] = model
+            started = time.monotonic()
             try:
-                timeout = (
+                initial = (
                     min(self._timeout_s, 12)
                     if self._fallback_model and attempt == 0
                     else self._timeout_s
                 )
                 if planning:
-                    timeout = min(timeout, 8 if self._fallback_model and attempt == 0 else 18)
-                response = await self._client.post(
-                    "/chat/completions", json=request, timeout=timeout
-                )
+                    initial = min(initial, 8 if self._fallback_model and attempt == 0 else 18)
+                limit = self._budget.timeout(model, initial=initial)
+                response = await self._client.post("/chat/completions", json=request, timeout=limit)
                 response.raise_for_status()
+                self._budget.answered(model, time.monotonic() - started)
                 return content_of(response.json())
             except (httpx.NetworkError, httpx.TimeoutException) as error:
+                if isinstance(error, httpx.TimeoutException):
+                    self._budget.stalled(model, limit)
                 if attempt == 0:
                     self._logger.warning(
                         "llm_request_retry",
