@@ -38,6 +38,16 @@ ORDER BY h.id"""
 
 HOTEL_BY_ID = HOTEL_COLUMNS + "WHERE h.id = %(hotel_id)s"
 
+NEARBY_PLACE = """SELECT p.tags->>'name'
+FROM pois p
+WHERE p.tags->>'place' = ANY(%(kinds)s::text[])
+  AND ST_DWithin(p.location::geography,
+      ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography, %(radius)s)
+ORDER BY p.location::geography <-> ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography
+LIMIT 1"""
+
+SETTLEMENT_KINDS = (("city", "town"), ("village", "hamlet", "suburb", "borough"))
+
 NEARBY_CITY = """SELECT h.tags->>'addr:city'
 FROM hotels h
 WHERE h.tags ? 'addr:city'
@@ -107,15 +117,14 @@ class PostgresSearchRepository:
         return [_supplier_content(row) for row in rows]
 
     async def nearby_city(self, location: tuple[float, float], radius_m: float) -> str | None:
-        result = await self._connection.execute(
-            NEARBY_CITY,
-            {
-                "lon": location[0],
-                "lat": location[1],
-                "radius": radius_m,
-            },
-        )
-        row = await result.fetchone()
+        params = {"lon": location[0], "lat": location[1], "radius": radius_m}
+        for kinds in SETTLEMENT_KINDS:
+            row = await (
+                await self._connection.execute(NEARBY_PLACE, params | {"kinds": list(kinds)})
+            ).fetchone()
+            if row is not None and row[0]:
+                return str(row[0])
+        row = await (await self._connection.execute(NEARBY_CITY, params)).fetchone()
         return str(row[0]) if row else None
 
     async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None:

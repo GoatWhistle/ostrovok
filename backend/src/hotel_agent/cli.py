@@ -28,6 +28,7 @@ from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
 from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
 from hotel_agent.adapters.osm.pbf_stream import iter_region_batches
+from hotel_agent.adapters.osm.settlements import iter_settlement_batches
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
@@ -71,6 +72,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest(args.region, Path(args.directory), settings.database_url))
     if args.command == "ingest-pbf":
         return asyncio.run(_ingest_pbf(args, settings.database_url, logger))
+    if args.command == "ingest-settlements":
+        return asyncio.run(_ingest_settlements(args, settings.database_url))
     if args.command == "precompute":
         code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
         return code or asyncio.run(_plan_questions(args.region, settings))
@@ -175,6 +178,45 @@ async def _ingest_pbf(args: Namespace, database_url: str, logger: StdlibLogger) 
                     report = await IngestPbf(writer)(
                         args.region, meta, batches, selected, check_capacity, on_batch
                     )
+    print(f"region={report.region} batches={report.batches} counts={dict(report.counts)}")
+    return 0
+
+
+async def _ingest_settlements(args: Namespace, database_url: str) -> int:
+    path = Path(args.pbf)
+    if not path.is_file() or not path.with_name(path.name + ".ok").is_file():
+        raise SystemExit(f"Verified PBF and .ok marker are required: {path}")
+    if args.batch_size <= 0:
+        raise SystemExit("batch-size must be positive")
+
+    def on_batch(number: int, counts: Mapping[str, int]) -> None:
+        if number % 10 == 0:
+            print(f"batches={number} counts={counts}", flush=True)
+
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        async with pool.connection() as connection:
+            row = await (
+                await connection.execute(
+                    "SELECT ST_XMin(bbox), ST_YMin(bbox), ST_XMax(bbox), ST_YMax(bbox), built_at"
+                    " FROM regions WHERE id = %s",
+                    (args.region,),
+                )
+            ).fetchone()
+        if row is None:
+            raise SystemExit(f"Region {args.region} is not imported yet")
+        meta: dict[str, object] = {
+            "bbox": [float(str(value)) for value in row[:4]],
+            "built_at": str(row[4]),
+        }
+        async with PostgresSeedWriter(pool) as writer:
+            report = await IngestPbf(writer)(
+                args.region,
+                meta,
+                iter_settlement_batches(path, args.batch_size),
+                frozenset({"pois"}),
+                lambda: None,
+                on_batch,
+            )
     print(f"region={report.region} batches={report.batches} counts={dict(report.counts)}")
     return 0
 

@@ -33,6 +33,13 @@ def build_parser() -> ArgumentParser:
     pbf.add_argument("--building-radius-m", type=float, default=0.0)
     pbf.add_argument("--workers", type=int, default=1)
 
+    settlements = commands.add_parser(
+        "ingest-settlements", help="Load named settlements from an OSM PBF into PostGIS"
+    )
+    settlements.add_argument("--region", default="russia")
+    settlements.add_argument("--pbf", required=True)
+    settlements.add_argument("--batch-size", type=int, default=5_000)
+
     precompute = commands.add_parser("precompute", help="Compute facts from loaded region data")
     precompute.add_argument("--region", default="sochi")
     precompute.add_argument("--from", dest="directory", required=True)
