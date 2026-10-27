@@ -141,6 +141,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotels/{hotel_id}/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Сведения отеля у поставщика без дат: фотографии, факты, категории номеров */
+        get: operations["getHotelDetails"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotels/{hotel_id}/scene": {
         parameters: {
             query?: never;
@@ -992,6 +1009,17 @@ export interface components {
             open_questions?: number;
             camera?: components["schemas"]["Camera"];
         };
+        HotelDetails: {
+            hotel_id: string;
+            /** @enum {string} */
+            status: "provider_unavailable" | "hotel_unmapped" | "provider_error" | "available";
+            source?: string | null;
+            sandbox: boolean;
+            /** @description Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам */
+            details?: components["schemas"]["SupplierDetails"] | null;
+            /** @description Категории номеров поставщика без привязки к датам и тарифам */
+            room_groups: components["schemas"]["SupplierRoom"][];
+        };
         HotelOffers: {
             hotel_id: string;
             /** Format: date */
@@ -1490,6 +1518,29 @@ export interface operations {
                     "application/json": components["schemas"]["Error"];
                 };
             };
+        };
+    };
+    getHotelDetails: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Сведения отеля или честный статус отсутствия данных */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelDetails"];
+                };
+            };
+            404: components["responses"]["NotFound"];
         };
     };
     getHotelScene: {

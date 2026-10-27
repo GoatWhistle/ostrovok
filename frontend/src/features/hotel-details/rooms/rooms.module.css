@@ -8,6 +8,7 @@
 .list {
   composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: var(--space-16);
 }
 
@@ -32,6 +33,10 @@
   object-fit: contain;
   background: var(--surface-raised);
   border-radius: var(--radius-md);
+}
+
+.photo {
+  max-block-size: min(28rem, 60dvh);
 }
 
 .thumbnail {

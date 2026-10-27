@@ -1,10 +1,16 @@
-import { matchesOfferStay, StayFields, useHotelOffers, useHotelStay } from "@/entities/hotel"
+import {
+  matchesOfferStay,
+  StayFields,
+  useHotelDetails,
+  useHotelOffers,
+  useHotelStay,
+} from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
-import { Banner, Button, Icon, Skeleton } from "@/shared/ui"
+import { Icon } from "@/shared/ui"
 import styles from "./hotel-offers.module.css"
-import { RoomCatalog } from "./rooms/room-catalog"
-import { SupplierDetails } from "./supplier/supplier-details"
+import { OfferState, offerRequest } from "./offer-state"
+import { roomGroups, SupplierSection } from "./supplier/supplier-section"
 
 const STATUS: Readonly<Record<string, MessageKey>> = {
   provider_unavailable: "explore:offers.providerUnavailable",
@@ -26,9 +32,6 @@ function OfferOutcome({ content }: { readonly content: Offers }) {
   return (
     <>
       {content.status === "available" ? <p role="status">{t("explore:offers.available")}</p> : null}
-      {content.details ? (
-        <SupplierDetails details={content.details} source={content.source} />
-      ) : null}
       {content.checked_at ? (
         <p className={styles.note}>
           <Icon name="source" size="sm" />
@@ -54,14 +57,15 @@ export function HotelOffers({
 }) {
   const { t } = useTranslation()
   const control = useHotelStay(stay)
-  const { value } = control
-  const { checkIn, checkOut, adults } = value
+  const { checkIn, checkOut, adults } = control.value
   const result = useHotelOffers(hotelId, checkIn, checkOut, adults)
-  const complete = Boolean(checkIn && checkOut && checkOut > checkIn && adults)
+  const catalog = useHotelDetails(hotelId)
+  const dated = Boolean(checkIn && checkOut && checkOut > checkIn && adults)
   const current = matchesOfferStay(result.data, hotelId, checkIn, checkOut, adults)
     ? result.data
     : undefined
-  const status = statusKey(current?.status)
+  const rated = current?.status === "available" && !current.sandbox
+  const priced = rated ? current : undefined
   return (
     <section
       id={`${hotelId}-rooms`}
@@ -74,26 +78,21 @@ export function HotelOffers({
         {t("explore:offers.title")}
       </p>
       <StayFields control={control} />
-      {result.isPending && complete ? <Skeleton shape="block" /> : null}
-      {result.isError ? <Banner tone="danger" title={t("explore:offers.requestError")} /> : null}
-      {result.isError || current?.status === "provider_error" ? (
-        <Button
-          variant="secondary"
-          size="compact"
-          onClick={() => void result.refetch()}
-          disabled={result.isFetching}
-        >
-          {t("common:action.retry")}
-        </Button>
-      ) : null}
-      {current?.sandbox ? <Banner tone="neutral" title={t("explore:offers.sandbox")} /> : null}
-      {status ? <Banner tone="neutral" title={t(status)} /> : null}
-      {current?.status === "available" && !current.rates_complete ? (
-        <Banner tone="neutral" title={t("explore:rooms.partial")} />
-      ) : null}
-      {current?.status === "available" && !current.sandbox ? (
-        <RoomCatalog key={`${hotelId}:${checkIn}:${checkOut}:${adults}`} content={current} />
-      ) : null}
+      <OfferState
+        request={offerRequest(result, catalog, dated)}
+        status={statusKey(current?.status ?? catalog.data?.status)}
+        sandbox={Boolean(current?.sandbox)}
+        partial={Boolean(priced && !priced.rates_complete)}
+      />
+      <SupplierSection
+        hotelId={hotelId}
+        details={current?.details ?? catalog.data?.details}
+        source={current?.source ?? catalog.data?.source}
+        rooms={roomGroups(priced, catalog.data?.room_groups)}
+        content={priced}
+        stay={`${checkIn}:${checkOut}:${adults}`}
+        dated={dated}
+      />
       {current ? <OfferOutcome content={current} /> : null}
     </section>
   )

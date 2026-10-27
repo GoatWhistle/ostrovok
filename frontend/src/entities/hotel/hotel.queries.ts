@@ -76,6 +76,23 @@ export function useHotelOffers(
     retry: false,
   })
 }
+export function useHotelDetails(id: string | undefined) {
+  return useQuery({
+    queryKey: ["hotel-details", id],
+    enabled: id !== undefined,
+    staleTime: 600_000,
+    queryFn: ({ signal }) =>
+      offerRequests.run(signal, () =>
+        unwrap(
+          api.GET("/hotels/{hotel_id}/details", {
+            signal,
+            params: { path: { hotel_id: id ?? "" } },
+          }),
+        ),
+      ),
+    retry: false,
+  })
+}
 export function useHotelScene(id: string | undefined) {
   return useQuery({
     queryKey: ["scene", id],

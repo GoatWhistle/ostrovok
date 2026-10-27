@@ -8,15 +8,24 @@ import { RoomView } from "./room-view"
 import styles from "./rooms.module.css"
 
 type Offers = components["schemas"]["HotelOffers"]
+type Room = components["schemas"]["SupplierRoom"]
 
-export function RoomCatalog({ content }: { readonly content: Offers }) {
+export function RoomCatalog({
+  hotelId,
+  rooms,
+  content,
+}: {
+  readonly hotelId: string
+  readonly rooms: readonly Room[]
+  readonly content?: Offers | undefined
+}) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const [selected, setSelected] = useHotelRoom(
-    content.hotel_id,
-    content.check_in,
-    content.check_out,
-    content.adults,
+    hotelId,
+    content?.check_in ?? "",
+    content?.check_out ?? "",
+    content?.adults ?? 0,
   )
   const returnTo = useRef<string | undefined>(undefined)
   const buttons = useRef(new Map<string, HTMLButtonElement>())
@@ -26,8 +35,7 @@ export function RoomCatalog({ content }: { readonly content: Offers }) {
       returnTo.current = undefined
     }
   }, [selected])
-  const rooms = content.room_groups ?? []
-  const offers = content.offers ?? []
+  const offers = content?.offers ?? []
   const room = rooms.find((item) => item.id === selected)
   if (room)
     return (
@@ -50,11 +58,12 @@ export function RoomCatalog({ content }: { readonly content: Offers }) {
       <ul className={styles.list}>
         {rooms.map((item) => {
           const rates = offers.filter((offer) => offer.room_group_id === item.id)
-          const prices = minimumOffers({ ...content, offers: rates }).map((offer) =>
-            new Intl.NumberFormat(locale, {
-              style: "currency",
-              currency: offer.price_currency,
-            }).format(offer.price_amount),
+          const prices = (content ? minimumOffers({ ...content, offers: rates }) : []).map(
+            (offer) =>
+              new Intl.NumberFormat(locale, {
+                style: "currency",
+                currency: offer.price_currency,
+              }).format(offer.price_amount),
           )
           return (
             <li key={item.id}>
@@ -64,13 +73,10 @@ export function RoomCatalog({ content }: { readonly content: Offers }) {
                   photos={item.photos.map((url) => ({ url, kind: "room" }))}
                 />
                 {item.bedding ? <p lang="ru">{item.bedding}</p> : null}
-                {prices.length ? (
-                  prices.map((price) => (
-                    <p key={price}>{t("explore:offers.fromPrice", { price })}</p>
-                  ))
-                ) : (
-                  <p>{t("explore:rooms.noRate")}</p>
-                )}
+                {prices.map((price) => (
+                  <p key={price}>{t("explore:offers.fromPrice", { price })}</p>
+                ))}
+                {content && !prices.length ? <p>{t("explore:rooms.noRate")}</p> : null}
                 {prices.length ? <p>{t("explore:offers.stayTotal")}</p> : null}
                 <Button
                   ref={(node) => {

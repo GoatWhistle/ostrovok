@@ -4,6 +4,7 @@ export {
   useFact,
   useGeoFeatures,
   useHotel,
+  useHotelDetails,
   useHotelOffers,
   useHotelScene,
   useHotelSearch,
