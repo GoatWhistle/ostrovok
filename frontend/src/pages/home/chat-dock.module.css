@@ -48,3 +48,10 @@
 .panel[data-state="closed"] {
   animation: var(--motion-fade-out);
 }
+
+@media (min-width: 75rem) {
+  .dock {
+    inset-block-end: var(--space-16);
+    inset-inline: var(--map-dock-inset);
+  }
+}

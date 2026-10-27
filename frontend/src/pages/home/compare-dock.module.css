@@ -13,3 +13,9 @@
 .dock > a {
   box-shadow: var(--shadow-float);
 }
+
+@media (min-width: 75rem) {
+  .dock {
+    margin-block-end: calc(var(--control-height) + var(--space-16));
+  }
+}

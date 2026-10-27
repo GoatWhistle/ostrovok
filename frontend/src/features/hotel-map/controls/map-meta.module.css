@@ -12,3 +12,11 @@
     gap: 0;
   }
 }
+
+@container map (min-width: 30rem) {
+  .meta > :first-child {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+  }
+}
