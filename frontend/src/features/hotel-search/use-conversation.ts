@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useRegions } from "@/entities/catalog"
 import { api, type ChatProgress, streamChatMessage, unwrap, useRecordMutation } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
 import { moveSessionDraft } from "@/shared/hooks"
@@ -29,6 +30,7 @@ export interface ConversationControl {
 
 interface SendInput {
   readonly message: string
+  readonly region: string
   readonly id: string | null
   readonly scope: string
   readonly generation: number
@@ -50,7 +52,7 @@ async function sendRequest(input: SendInput, onProgress: (progress: ChatProgress
     {
       conversation_id: input.id,
       message: input.message,
-      region_id: "russia",
+      region_id: input.region,
       locale: input.locale,
       selected_hotel_id: input.hotel ?? null,
     },
@@ -73,6 +75,11 @@ export function useConversation(
   latest.current = { control, onAnswer }
   const inflight = useRef(0)
   const [progress, setProgress] = useState<ChatProgress | null>(null)
+  const regions = useRegions()
+  const loaded = regions.data?.items ?? []
+  const region = loaded.some((item) => item.id === "russia")
+    ? "russia"
+    : (loaded[0]?.id ?? "russia")
   const active = useRef({ scope: control.scopeKey, generation: 0 })
   if (active.current.scope !== control.scopeKey) {
     active.current = { scope: control.scopeKey, generation: active.current.generation + 1 }
@@ -172,6 +179,7 @@ export function useConversation(
     control.begin()
     sendMessage.mutate({
       message,
+      region,
       id: control.id,
       scope: control.scopeKey,
       generation: active.current.generation,
