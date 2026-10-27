@@ -23,6 +23,7 @@ from hotel_agent.adapters.geo.worldcover import WorldCover
 from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.map_catalog.loader import load_catalog
 from hotel_agent.adapters.map_style.manifest_files import ManifestFiles
+from hotel_agent.adapters.semantic.embedding_cache import CachedEmbeddings
 from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
@@ -91,7 +92,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         context=geography,
     )
     embedder = (
-        PolzaEmbeddings(config.embedding_api_key, config.embedding_model, config.embedding_base_url)
+        CachedEmbeddings(
+            PolzaEmbeddings(
+                config.embedding_api_key, config.embedding_model, config.embedding_base_url
+            )
+        )
         if config.embedding_api_key
         else None
     )
