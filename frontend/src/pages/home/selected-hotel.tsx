@@ -46,10 +46,7 @@ export function SelectedHotel({
         className={styles.detailScroll}
         aria-label={t("explore:details.title")}
       >
-        <Button variant="secondary" icon="building" onClick={onOpenPage}>
-          {t("explore:surfaces.openHotelPage")}
-        </Button>
-        <HotelContent state={state} time={time} />
+        <HotelContent state={state} time={time} onOpenPage={onOpenPage} />
       </ScrollArea>
     </>
   )

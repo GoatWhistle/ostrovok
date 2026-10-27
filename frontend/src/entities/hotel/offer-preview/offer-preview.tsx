@@ -32,9 +32,7 @@ function VisibleOfferPreview({ hotelId, onSelect }: Omit<OfferPreviewProps, "ena
       : "explore:cards.noPrice"
   return (
     <div className={styles.preview}>
-      {!complete ? (
-        <p>{t("explore:cards.chooseDates")}</p>
-      ) : result.isPending ? (
+      {!complete ? null : result.isPending ? (
         <Skeleton lines={1} />
       ) : offers.length ? (
         <>

@@ -4,6 +4,7 @@ import { staggerStyle } from "@/shared/motion"
 import { Button, Icon } from "@/shared/ui"
 import { HotelStars } from "../hotel-stars/hotel-stars"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
+import { MatchScore, matchScore } from "../match-score/match-score"
 import { OfferPreview } from "../offer-preview/offer-preview"
 import { HotelMatches } from "./hotel-matches"
 import styles from "./hotel-result.module.css"
@@ -60,6 +61,7 @@ export function HotelSummaryCard({
           >
             {hotel.name}
           </Button>
+          <MatchScore score={matchScore({ matched })} className={styles.score} />
         </div>
         <HotelStars value={hotel.stars} />
         {hotel.address ? (

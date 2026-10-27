@@ -3,6 +3,8 @@ import { Button, Icon, TextField } from "@/shared/ui"
 import { type StayContext, useHotelStay } from "./hotel-stay"
 import styles from "./stay-fields.module.css"
 
+const DEFAULT_ADULTS = 2
+
 function localDate(value: Date): string {
   const year = value.getFullYear()
   const month = String(value.getMonth() + 1).padStart(2, "0")
@@ -24,6 +26,25 @@ function validCheckout(checkIn: string, checkOut: string): string {
 
 function hasStay(checkIn: string, checkOut: string, adults: number): boolean {
   return Boolean(checkIn && checkOut && adults)
+}
+
+const PRESETS = [
+  { key: "weekend", label: "explore:offers.presetWeekend", nights: 2 },
+  { key: "week", label: "explore:offers.presetWeek", nights: 2 },
+] as const
+
+function nextFriday(from: Date): Date {
+  const date = new Date(from)
+  const ahead = (5 - date.getDay() + 7) % 7 || 7
+  date.setDate(date.getDate() + ahead)
+  return date
+}
+
+function presetRange(key: (typeof PRESETS)[number]["key"], nights: number): [string, string] {
+  const start = key === "weekend" ? nextFriday(new Date()) : new Date()
+  if (key === "week") start.setDate(start.getDate() + 7)
+  const from = localDate(start)
+  return [from, addDays(from, nights)]
 }
 
 export function StayFields({ control }: { readonly control?: StayContext }) {
@@ -91,7 +112,25 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
       </div>
 
       {!hasStay(checkIn, checkOut, adults) ? (
-        <p className={styles.note}>{t("explore:offers.pickDates")}</p>
+        <>
+          <p className={styles.note}>{t("explore:offers.pickDates")}</p>
+          <div className={styles.presets}>
+            {PRESETS.map((preset) => (
+              <Button
+                key={preset.key}
+                variant="secondary"
+                size="compact"
+                icon="calendar"
+                onClick={() => {
+                  const [from, to] = presetRange(preset.key, preset.nights)
+                  update({ checkIn: from, checkOut: to, adults: adults || DEFAULT_ADULTS })
+                }}
+              >
+                {t(preset.label)}
+              </Button>
+            ))}
+          </div>
+        </>
       ) : null}
     </div>
   )

@@ -22,6 +22,7 @@ export interface HotelDetailsProps {
   readonly onProperty?: ((property: MatchedProperty) => void) | undefined
   readonly onFact: (fact: FactBrief) => void
   readonly onPreview?: (property: MatchedProperty | undefined) => void
+  readonly onOpenPage?: (() => void) | undefined
   readonly className?: string | undefined
 }
 
@@ -42,6 +43,7 @@ export function HotelDetails({
   onProperty,
   onFact,
   onPreview,
+  onOpenPage,
   className,
 }: HotelDetailsProps) {
   const { t } = useTranslation()
@@ -81,6 +83,7 @@ export function HotelDetails({
       <HotelHero
         hotel={card.hotel}
         titleId={titleId}
+        onOpenPage={onOpenPage}
         onRooms={() => {
           const section = document.getElementById(`${card.hotel.id}-rooms`)
           section?.scrollIntoView({ block: "start" })

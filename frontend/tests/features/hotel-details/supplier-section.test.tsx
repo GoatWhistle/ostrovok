@@ -55,8 +55,6 @@ function show(content: Offers | undefined, dated: boolean) {
     <LocaleProvider instance={createI18n("ru")}>
       <SupplierSection
         hotelId="w51847429"
-        details={null}
-        source="Ostrovok"
         rooms={ROOMS}
         content={content}
         stay={content ? "2026-11-20:2026-11-23:2" : "::0"}

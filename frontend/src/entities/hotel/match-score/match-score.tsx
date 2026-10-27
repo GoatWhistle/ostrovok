@@ -1,5 +1,5 @@
 import { clsx } from "clsx"
-import type { SearchResult } from "@/shared/api/hotel-types"
+import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
 import { StatusBadge } from "@/shared/ui"
 import styles from "./match-score.module.css"
@@ -9,7 +9,7 @@ export interface Score {
   readonly total: number
 }
 
-export function matchScore(result: Pick<SearchResult, "matched">): Score {
+export function matchScore(result: { readonly matched: readonly MatchedProperty[] }): Score {
   return {
     full: result.matched.filter((property) => property.match === "full").length,
     total: result.matched.length,

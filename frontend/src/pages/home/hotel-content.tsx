@@ -8,9 +8,11 @@ type Workspace = ReturnType<typeof useHotelWorkspace>
 export function HotelContent({
   state,
   time,
+  onOpenPage,
 }: {
   readonly state: Workspace
   readonly time: { date: string; hour: number }
+  readonly onOpenPage?: (() => void) | undefined
 }) {
   const hotelId = state.hotelId
   if (!hotelId) return null
@@ -36,6 +38,7 @@ export function HotelContent({
           onProperty={selected ? (item) => state.property(selected, item) : undefined}
           onFact={state.fact}
           onPreview={(item) => selected && state.preview(selected, item)}
+          onOpenPage={onOpenPage}
         />
       )}
     </Swap>

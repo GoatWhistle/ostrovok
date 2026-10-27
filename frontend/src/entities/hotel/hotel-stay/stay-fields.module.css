@@ -25,6 +25,12 @@
   font-variant-numeric: var(--font-numeric);
 }
 
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
 .note {
   composes: captionText inlineRow from "../../../shared/styles/compose.module.css";
 }

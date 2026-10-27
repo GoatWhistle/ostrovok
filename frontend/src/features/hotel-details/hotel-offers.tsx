@@ -10,6 +10,7 @@ import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
 import styles from "./hotel-offers.module.css"
 import { OfferState, offerRequest } from "./offer-state"
+import { SupplierDetails } from "./supplier/supplier-details"
 import { roomGroups, SupplierSection } from "./supplier/supplier-section"
 
 const STATUS: Readonly<Record<string, MessageKey>> = {
@@ -66,34 +67,40 @@ export function HotelOffers({
     : undefined
   const rated = current?.status === "available" && !current.sandbox
   const priced = rated ? current : undefined
+  const details = current?.details ?? catalog.data?.details
   return (
-    <section
-      id={`${hotelId}-rooms`}
-      tabIndex={-1}
-      className={styles.section}
-      aria-labelledby={`${hotelId}-offers`}
-    >
-      <p id={`${hotelId}-offers`} className={styles.heading}>
-        <Icon name="calendar" size="sm" />
-        {t("explore:offers.title")}
-      </p>
-      <StayFields control={control} />
-      <OfferState
-        request={offerRequest(result, catalog, dated)}
-        status={statusKey(current?.status ?? catalog.data?.status)}
-        sandbox={Boolean(current?.sandbox)}
-        partial={Boolean(priced && !priced.rates_complete)}
-      />
-      <SupplierSection
-        hotelId={hotelId}
-        details={current?.details ?? catalog.data?.details}
-        source={current?.source ?? catalog.data?.source}
-        rooms={roomGroups(priced, catalog.data?.room_groups)}
-        content={priced}
-        stay={`${checkIn}:${checkOut}:${adults}`}
-        dated={dated}
-      />
-      {current ? <OfferOutcome content={current} /> : null}
-    </section>
+    <>
+      {details ? (
+        <section className={styles.section} aria-label={t("explore:details.title")}>
+          <SupplierDetails details={details} source={current?.source ?? catalog.data?.source} />
+        </section>
+      ) : null}
+      <section
+        id={`${hotelId}-rooms`}
+        tabIndex={-1}
+        className={styles.section}
+        aria-labelledby={`${hotelId}-offers`}
+      >
+        <p id={`${hotelId}-offers`} className={styles.heading}>
+          <Icon name="calendar" size="sm" />
+          {t("explore:offers.title")}
+        </p>
+        <StayFields control={control} />
+        <OfferState
+          request={offerRequest(result, catalog, dated)}
+          status={statusKey(current?.status ?? catalog.data?.status)}
+          sandbox={Boolean(current?.sandbox)}
+          partial={Boolean(priced && !priced.rates_complete)}
+        />
+        <SupplierSection
+          hotelId={hotelId}
+          rooms={roomGroups(priced, catalog.data?.room_groups)}
+          content={priced}
+          stay={`${checkIn}:${checkOut}:${adults}`}
+          dated={dated}
+        />
+        {current ? <OfferOutcome content={current} /> : null}
+      </section>
+    </>
   )
 }

@@ -8,9 +8,10 @@ export interface HotelHeroProps {
   readonly hotel: HotelSummary
   readonly titleId: string
   readonly onRooms: () => void
+  readonly onOpenPage?: (() => void) | undefined
 }
 
-export function HotelHero({ hotel, titleId, onRooms }: HotelHeroProps) {
+export function HotelHero({ hotel, titleId, onRooms, onOpenPage }: HotelHeroProps) {
   const { t } = useTranslation()
   return (
     <header className={styles.hero}>
@@ -24,9 +25,16 @@ export function HotelHero({ hotel, titleId, onRooms }: HotelHeroProps) {
           <span lang="ru">{hotel.address}</span>
         </p>
       ) : null}
-      <Button variant="secondary" icon="calendar" onClick={onRooms}>
-        {t("explore:offers.viewRooms")}
-      </Button>
+      <div className={styles.actions}>
+        <Button variant="secondary" icon="calendar" onClick={onRooms}>
+          {t("explore:offers.viewRooms")}
+        </Button>
+        {onOpenPage ? (
+          <Button variant="ghost" icon="building" onClick={onOpenPage}>
+            {t("explore:surfaces.openHotelPage")}
+          </Button>
+        ) : null}
+      </div>
     </header>
   )
 }

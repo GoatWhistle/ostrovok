@@ -54,11 +54,23 @@
   min-block-size: 0;
 }
 
+.measure {
+  inline-size: 100%;
+  max-inline-size: var(--prose-measure);
+  margin-inline: auto;
+}
+
 .messages {
+  composes: measure;
   display: grid;
-  align-content: start;
+  align-content: end;
   gap: var(--space-16);
-  margin: 0;
+  margin-block: 0;
   padding: var(--space-16);
+  min-block-size: 100%;
   list-style: none;
+}
+
+.composerArea {
+  composes: measure;
 }

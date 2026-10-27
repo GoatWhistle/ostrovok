@@ -38,6 +38,7 @@
 
 .photo {
   max-block-size: min(28rem, 60dvh);
+  object-fit: cover;
 }
 
 .thumbnail {

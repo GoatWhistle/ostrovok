@@ -11,6 +11,7 @@ import {
   ReplyNotices,
   type SearchResponse,
 } from "./reply-blocks"
+import { useThinkingClock } from "./thinking-clock"
 
 function leading(results: readonly SearchResult[]): SearchResult | undefined {
   return (
@@ -61,11 +62,14 @@ export function AgentReply({
 
 export function AgentThinking() {
   const { t } = useTranslation()
+  const elapsed = useThinkingClock()
   return (
     <AgentBubble motion="loading" busy>
       <p className={styles.lead} role="status">
         {t("explore:chat.thinking")}
       </p>
+      <p className={styles.text}>{t("explore:chat.thinkingHint")}</p>
+      <p className={styles.elapsed}>{t("explore:chat.elapsed", { value: elapsed })}</p>
       <Skeleton lines={3} className={styles.skeleton} />
     </AgentBubble>
   )

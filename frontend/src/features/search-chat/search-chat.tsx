@@ -147,13 +147,15 @@ export function SearchChat({
             {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
           </ol>
         </ScrollArea>
-        <ChatComposer
-          draftKey={draftKey ?? `chat:${conversationId ?? "new"}`}
-          autoFocus={Boolean(outgoing)}
-          pending={sending}
-          selectedHotel={selectedHotel}
-          onSend={onSend}
-        />
+        <div className={styles.composerArea}>
+          <ChatComposer
+            draftKey={draftKey ?? `chat:${conversationId ?? "new"}`}
+            autoFocus={Boolean(outgoing)}
+            pending={sending}
+            selectedHotel={selectedHotel}
+            onSend={onSend}
+          />
+        </div>
       </div>
     </section>
   )
