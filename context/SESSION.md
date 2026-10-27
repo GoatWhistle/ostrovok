@@ -168,6 +168,7 @@ Updated: 2026-10-27, Europe/Moscow
 - 2026-10-27, дословно: «скажи сколько пунктов из спеки осталось»
 - 2026-10-27, дословно: «я его остановил . доделай работу его сам»
 - 2026-10-27, дословно: «сделай тогда пуш текущих комитов». Push of the committed work authorized for this moment; fetch and rebase over the teammate first.
+- 2026-10-27, дословно: «влей в agent-mvp».
 
 ## Current state
 
@@ -187,3 +188,14 @@ Updated: 2026-10-27, Europe/Moscow
 
 - Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
 - Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.
+- Веб-исследование пожеланий (причины пустых ответов, проба по карте, бюджеты и время, замеры раундов 3–8): [work/web-search-fix/remaining.md](../work/web-search-fix/remaining.md). Стенд собран из этого дерева как hotel-agent-backend:proximity-time-20261027.
+
+
+
+- Сведения об отелях Островка переписаны с поиска по прямоугольнику на каталог сайта: multicomplete по «название + улица/город», проверка кандидата по координатам и адресу его страницы, цены отдельным вызовом hp/search. Пришли фотографии, категории номеров с фото, услуги, описание, окружение с расстояниями, оценка и факты (этажи, число номеров, год постройки, запись реестра со ссылкой). Поле `details` добавлено в `/hotels/{id}/offers` и в openapi; карточка на фронте показывает это новым блоком. `GetHotelDetails` отдаёт то же агенту без дат, поэтому `provider_hotels`/`provider_rooms` перестали отвечать «not configured» в бесплатном режиме. Поиск по bbox удалён вместе с `ostrovok_content.py`/`ostrovok_details.py`.
+- Измерено на тех же отелях: было (worktree на f1472e7) 0/9, 3/25, 4/40 с 10 provider_error; стало 9/9, 10/25, 9/40 без ошибок. Ложных совпадений нет, все принятые в 1–67 м с совпадающим адресом. Разброс источника: два прогона подряд дали 10 и 9 из 40. Подробности work/hotel-data/catalog-match/README.md, числа в docs/evidence.md.
+- Backend 892 unit/contract, ruff, mypy 485, import contracts; frontend verify 36 правил/369 тестов/сборка. Стенд: hotel-agent-backend:supplier-details-20261027c и hotel-agent-frontend:supplier-details-20261027c, оба healthy, `/hotels/w51847429/offers` отдаёт 48 тарифов, 15 категорий и 24 фото.
+- Не сделано: браузерный проход по новому блоку карточки на 375/1440 в двух темах и языках — карточка открывается только после поиска агентом, это платный вызов модели, явного разрешения не было. Блок покрыт четырьмя компонентными тестами на реальном ответе (work/hotel-data/catalog-match/live-card.json).
+- Влито в feat/hotel-agent-mvp: c193540 (бэкенд и openapi), 8df1059 (фронт), 93fcf63 (доки и work/hotel-data/catalog-match) поверх чужих мержей 857c4f4. На объединённом дереве backend 893 unit/contract, ruff, mypy 485, 3 import-контракта; frontend 36 правил, 369 тестов, сборка.
+- Не закоммичены чужие незавершённые правки в docs/architecture.md, docs/running.md, docs/README.md, docs/design-decisions.md, context/README.md, work/README.md: мои строки там вперемешку с чужими. В переписанном другой сессией docs/design-decisions.md мои правила про каталог пропали, а строка про удалённый поиск по прямоугольнику (`test_truncated_search_is_an_error...`) осталась — её надо убрать той сессии или мне после их коммита.
+- Ветки fix/russia-geography-stand и fix/stand-agent-integration влиты в feat/hotel-agent-mvp; поверх них влит origin с фронтовой работой. Конфликты: докам оставлены оба раздела, в `RoomGallery` оставлен проп `label`, ключ `offers.provider` удалён как неиспользуемый, `offers.facilities` восстановлены.
