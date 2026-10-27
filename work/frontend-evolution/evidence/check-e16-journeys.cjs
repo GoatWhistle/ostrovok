@@ -86,6 +86,7 @@ async function conversationJourney(browser, options) {
     await page.locator(`#hotel-result-${hotel}`).click()
     await page.getByRole("button", { name: "Открыть страницу отеля", exact: true }).waitFor()
     record.panelWidth = Math.round((await aside.boundingBox()).width)
+    await page.waitForTimeout(800)
     await shot("panel")
     await page.getByRole("button", { name: "Номера и цены", exact: true }).first().click()
     await page.locator(`[id='${hotel}-rooms']`).waitFor()
