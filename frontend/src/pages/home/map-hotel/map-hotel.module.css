@@ -43,20 +43,26 @@
     transition: none;
   }
   .card[data-snap="full"] {
-    block-size: calc(var(--visual-viewport-height) - var(--header-height) - var(--space-96));
-    max-block-size: none;
+    max-block-size: calc(var(--visual-viewport-height) - var(--header-height) - var(--space-96));
+  }
+  .card:not([data-snap="full"]),
+  .header {
+    touch-action: none;
+  }
+  .card {
+    position: relative;
   }
   .header {
-    position: relative;
-    justify-content: flex-end;
-    min-block-size: var(--target-min);
-    padding-block: 0;
-    touch-action: none;
+    position: absolute;
+    inset-block-start: var(--space-12);
+    inset-inline-end: var(--space-4);
+    z-index: var(--layer-raised);
+    padding: 0;
   }
   .header strong {
     display: none;
   }
-  .header::before {
+  .card::before {
     content: "";
     position: absolute;
     inset-block-start: var(--space-6);
@@ -71,7 +77,10 @@
     display: inline-flex;
   }
   .content {
-    padding-block-start: 0;
+    padding-block-start: var(--space-20);
+  }
+  .content > article > div {
+    padding-inline-end: var(--space-80);
   }
   .card[data-snap="peek"] .content {
     max-block-size: var(--sheet-peek);

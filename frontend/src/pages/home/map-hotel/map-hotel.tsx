@@ -47,8 +47,9 @@ export function MapHotel({
       data-dragging={drag.dragging}
       style={style}
       aria-label={t("explore:map.selectedHotel")}
+      {...drag.handlers}
     >
-      <header className={styles.header} {...drag.handlers}>
+      <header className={styles.header}>
         <strong>{collapsed && hotel ? hotel.name : t("explore:map.selectedHotel")}</strong>
         <div className={styles.actions}>
           <Button

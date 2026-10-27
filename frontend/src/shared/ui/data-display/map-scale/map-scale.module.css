@@ -21,3 +21,17 @@
   border: var(--focus-ring-width) solid var(--text-primary);
   border-block-start: 0;
 }
+
+@media (max-width: 47.99rem) {
+  .scale {
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .scaleTrack {
+    inline-size: auto;
+  }
+
+  .scaleLabel {
+    min-inline-size: 0;
+  }
+}

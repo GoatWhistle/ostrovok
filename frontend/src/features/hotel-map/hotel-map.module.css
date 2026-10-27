@@ -85,5 +85,6 @@
     inset-block-end: 0;
     inset-inline: 0;
     inline-size: auto;
+    z-index: var(--layer-header);
   }
 }
