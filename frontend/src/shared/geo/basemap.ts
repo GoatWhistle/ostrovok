@@ -1,4 +1,7 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { WORLD_WATER_FADE_TO } from "./world/water-layers"
+
+const COAST_FROM = 8
 
 export interface BasemapColors {
   readonly sand: string
@@ -126,6 +129,20 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     type: "line",
     source: "sochi-map",
     "source-layer": "coastline",
-    paint: { "line-color": colors.coast, "line-width": 1.5 },
+    minzoom: COAST_FROM,
+    layout: { "line-cap": "round", "line-join": "round" },
+    paint: {
+      "line-color": colors.coast,
+      "line-width": ["interpolate", ["linear"], ["zoom"], COAST_FROM, 1.2, 13, 1.5],
+      "line-opacity": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        COAST_FROM,
+        0,
+        WORLD_WATER_FADE_TO,
+        0.9,
+      ],
+    },
   })
 }

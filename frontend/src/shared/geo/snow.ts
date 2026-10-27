@@ -9,7 +9,7 @@ const NEAR_FROM = 6.5
 const NEAR_TO = 8.5
 const GLACIER_OPACITY = 0.92
 
-function rgba(hex: string, alpha: number): string {
+export function rgba(hex: string, alpha: number): string {
   const value = Number.parseInt(hex.replace("#", ""), 16)
   if (Number.isNaN(value)) return hex
   return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}, ${alpha})`
