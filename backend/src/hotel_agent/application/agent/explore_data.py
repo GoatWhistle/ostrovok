@@ -27,6 +27,9 @@ from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
 
+WISHES_AT_ONCE = 3
+WISH_TIMEOUT_S = 180.0
+
 
 class DataExplorer:
     def __init__(
@@ -70,16 +73,14 @@ class DataExplorer:
     ) -> ExplorationOutcome:
         if not terms:
             return ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
-        outcomes = []
         note = research_note(feedback)
-        previous_tools: DataTools | None = None
-        candidates = tuple(hotels)
-        deadline = asyncio.get_running_loop().time() + 600
+        started = asyncio.get_running_loop().time()
+        prepared: list[tuple[str, DataTools]] = []
         for term in dict.fromkeys(terms):
             tools = DataTools(
                 self._uow,
                 self._terrain,
-                candidates,
+                tuple(hotels),
                 city,
                 region,
                 bbox,
@@ -101,15 +102,30 @@ class DataExplorer:
                 llm=self._llm,
                 details=self._details,
             )
-            if previous_tools is not None:
-                tools.research.reuse(previous_tools.research)
-            previous_tools = tools
-            remaining = max(0, deadline - asyncio.get_running_loop().time())
-            loop = WishLoop(self._llm, self._clock, self._logger, timeout_s=min(180, remaining))
-            outcome = await loop.run(query, term, tools, note)
-            outcomes.append(outcome)
-            candidates = tuple({h.id: h for h in (*candidates, *outcome.hotels)}.values())
-            bbox = outcome.bbox
+            if prepared:
+                tools.research.share(prepared[0][1].research)
+            prepared.append((term, tools))
+        gate = asyncio.Semaphore(WISHES_AT_ONCE)
+
+        async def explore(term: str, tools: DataTools) -> ExplorationOutcome:
+            async with gate:
+                spent = asyncio.get_running_loop().time() - started
+                loop = WishLoop(
+                    self._llm,
+                    self._clock,
+                    self._logger,
+                    timeout_s=max(1.0, WISH_TIMEOUT_S - spent),
+                )
+                return await loop.run(query, term, tools, note)
+
+        outcomes = list(await asyncio.gather(*(explore(term, t) for term, t in prepared)))
+        candidates = tuple(
+            {
+                hotel.id: hotel
+                for hotel in (*hotels, *(row for item in outcomes for row in item.hotels))
+            }.values()
+        )
+        bbox = widest(bbox, tuple(item.bbox for item in outcomes))
         outcomes = reconcile_views(outcomes)
         questions = tuple(dict.fromkeys(item.question for item in outcomes if item.question))
         return ExplorationOutcome(
@@ -123,3 +139,18 @@ class DataExplorer:
             wish_results=tuple(result for item in outcomes for result in item.wish_results),
             question=" ".join(questions) if questions else None,
         )
+
+
+def widest(
+    initial: tuple[float, float, float, float] | None,
+    boxes: Sequence[tuple[float, float, float, float] | None],
+) -> tuple[float, float, float, float] | None:
+    known = [box for box in (initial, *boxes) if box is not None]
+    if not known:
+        return None
+    return (
+        min(box[0] for box in known),
+        min(box[1] for box in known),
+        max(box[2] for box in known),
+        max(box[3] for box in known),
+    )

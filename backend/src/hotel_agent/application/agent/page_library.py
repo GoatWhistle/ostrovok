@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any
 
 from hotel_agent.application.agent.web_urls import canonical_url, malformed_url
@@ -25,11 +26,28 @@ class PageLibrary:
         self.pages: list[dict[str, Any]] = []
         self._cache: dict[str, WebPage] = {}
         self._failures: dict[str, str] = {}
+        self._reading: dict[str, asyncio.Task[WebPage]] = {}
+
+    def share(self, previous: "PageLibrary") -> None:
+        self.pages = previous.pages
+        self._cache = previous._cache
+        self._failures = previous._failures
+        self._reading = previous._reading
 
     def reuse(self, previous: "PageLibrary", hotel_ids: set[str]) -> None:
         self.pages = [dict(row) for row in previous.pages if row["hotel_id"] in hotel_ids]
         self._cache = dict(previous._cache)
         self._failures = dict(previous._failures)
+
+    async def _once(self, web: WebResearchPort, key: str, url: str) -> WebPage:
+        reading = self._reading.get(key)
+        if reading is None:
+            reading = asyncio.create_task(web.read(url))
+            self._reading[key] = reading
+        try:
+            return await reading
+        finally:
+            self._reading.pop(key, None)
 
     async def read(
         self, url: str, hotel: SearchHotelRecord | None, identity: dict[str, Any], phrase: str
@@ -54,7 +72,7 @@ class PageLibrary:
         page = self._cache.get(key)
         if page is None:
             try:
-                page = await self._web.read(url)
+                page = await self._once(self._web, key, url)
             except ValueError as error:
                 self._failures[key] = str(error)
                 return {"error": str(error), "url": url}

@@ -1,3 +1,4 @@
+import asyncio
 import json
 from collections.abc import Mapping, Sequence
 
@@ -11,6 +12,8 @@ from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import COUNTED_QUALITIES, MatchQuality, Scored
+
+BATCH = 12
 
 
 def fact_evidence(fact: Fact | None) -> dict[str, object] | None:
@@ -109,19 +112,33 @@ class RecommendationReview:
                 )
             else:
                 eligible.append((hotel, scored))
-        candidates = eligible
-        for offset in range(0, min(len(candidates), self._max_candidates), 12):
-            batch = candidates[offset : min(offset + 12, self._max_candidates)]
-            report = await self._review.check(
-                query,
-                "recommendation_scope",
-                [recommendation_claim(hotel, scored, parsed) for hotel, scored in batch],
+        batches = [
+            eligible[offset : min(offset + BATCH, self._max_candidates)]
+            for offset in range(0, min(len(eligible), self._max_candidates), BATCH)
+        ]
+        wave = max(1, -(-limit // BATCH))
+        for start in range(0, len(batches), wave):
+            reports = await asyncio.gather(
+                *(self._batch(query, parsed, batch) for batch in batches[start : start + wave])
             )
-            accepted.extend(report.accepted_ids)
-            rejected.extend(report.rejected_ids)
-            rejections.extend(report.rejections)
-            if report.unavailable or len(accepted) >= limit:
-                return ReviewResult(
-                    tuple(accepted), tuple(rejected), report.unavailable, tuple(rejections)
-                )
+            for report in reports:
+                accepted.extend(report.accepted_ids)
+                rejected.extend(report.rejected_ids)
+                rejections.extend(report.rejections)
+                if report.unavailable or len(accepted) >= limit:
+                    return ReviewResult(
+                        tuple(accepted), tuple(rejected), report.unavailable, tuple(rejections)
+                    )
         return ReviewResult(tuple(accepted), tuple(rejected), rejections=tuple(rejections))
+
+    async def _batch(
+        self,
+        query: str,
+        parsed: ParsedQuery,
+        batch: Sequence[tuple[SearchHotelRecord, Scored]],
+    ) -> ReviewResult:
+        return await self._review.check(
+            query,
+            "recommendation_scope",
+            [recommendation_claim(hotel, scored, parsed) for hotel, scored in batch],
+        )

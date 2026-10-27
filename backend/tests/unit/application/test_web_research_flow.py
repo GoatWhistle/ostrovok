@@ -61,12 +61,11 @@ async def test_verified_paraphrased_wish_is_not_lost_to_literal_query_guard() ->
     assert result.facts[0].value is True
 
 
-async def test_later_wish_rechecks_cached_source_instead_of_restarting_web_discovery() -> None:
+async def test_wishes_explored_together_read_a_shared_source_once() -> None:
     url = "https://example.org/history"
     quote = "The historic tower hotel also has an observatory for guests."
-    explorer, llm, _ = build(
-        [DataStep(action="read_web_page", arguments={"url": url, "hotel_id": "city"})]
-    )
+    step = DataStep(action="read_web_page", arguments={"url": url, "hotel_id": "city"})
+    explorer, llm, _ = build([step, step])
     provider = SimpleNamespace(read=AsyncMock(return_value=WebPage(url, "Hotel", quote, NOW)))
     explorer._web = cast(WebResearchPort, provider)
     llm.verify_evidence.return_value = [EvidenceVerdict(record_id="0", supported=True, quote=quote)]
@@ -80,7 +79,6 @@ async def test_later_wish_rechecks_cached_source_instead_of_restarting_web_disco
         False,
     )
     assert all(wish.status is WishStatus.MATCHED for wish in result.wish_results)
-    assert llm.explore_data.await_count == 1
     assert llm.verify_evidence.await_count == 2
     provider.read.assert_awaited_once_with(url)
 

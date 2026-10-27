@@ -44,6 +44,9 @@ class ResearchTools:
     def pages(self) -> list[dict[str, Any]]:
         return self._library.pages
 
+    def share(self, previous: "ResearchTools") -> None:
+        self._library.share(previous._library)
+
     def reuse(self, previous: "ResearchTools") -> None:
         self._library.reuse(previous._library, {hotel.id for hotel in self._hotels()})
 
