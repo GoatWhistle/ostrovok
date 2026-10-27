@@ -66,7 +66,16 @@ class WishLoop:
                         None,
                     )
                 outcome, reason = await self._walk(
-                    query, term, tools, ledger, completion, observations, retained, started, warned
+                    query,
+                    term,
+                    tools,
+                    ledger,
+                    completion,
+                    observations,
+                    retained,
+                    started,
+                    warned,
+                    note is not None,
                 )
                 if outcome is not None:
                     return outcome
@@ -79,12 +88,12 @@ class WishLoop:
         return completion.finish(status, reason, retained, question)
 
     async def _plan(
-        self, context: str, term: str, index: int, tools: DataTools, note: bool
+        self, context: str, term: str, index: int, tools: DataTools, reviewed: bool
     ) -> DataStep:
         planned_at = asyncio.get_running_loop().time()
         step = (
             DataStep(action="match_records", arguments={"dataset": "web_documents"})
-            if index == 0 and tools.research.pages and not note
+            if index == 0 and tools.research.pages and not reviewed
             else await self._llm.explore_data(context)
         )
         self._logger.info(
@@ -124,9 +133,9 @@ class WishLoop:
         retained: ExplorationOutcome,
         started: float,
         warned: set[int],
+        reviewed: bool,
     ) -> tuple[ExplorationOutcome | None, str]:
         reason = UNFINISHED
-        note = bool(observations)
         barren = 0
         for index in range(self._max_steps):
             spent = (asyncio.get_running_loop().time() - started) / self._timeout
@@ -142,7 +151,7 @@ class WishLoop:
                 self._max_steps - index,
                 self._clock.now(),
             )
-            step = await self._plan(context, term, index, tools, note)
+            step = await self._plan(context, term, index, tools, reviewed)
             if step.action == "finish" and ledger.repeated_finish(repr(step)):
                 return None, "Агент повторяет необоснованное завершение; проверка не завершена."
             if step.criteria:
