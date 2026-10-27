@@ -40,8 +40,8 @@ def build(
             search=SimpleNamespace(
                 list_hotels=AsyncMock(return_value=[hotel(levels)]),
                 list_facades=AsyncMock(return_value=facades),
-                save_facts=AsyncMock(side_effect=lambda rows: saved.extend(rows)),
             ),
+            facts=SimpleNamespace(save=AsyncMock(side_effect=lambda rows: saved.extend(rows))),
             commit=AsyncMock(),
         )
     )

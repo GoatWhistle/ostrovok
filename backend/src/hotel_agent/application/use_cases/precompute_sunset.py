@@ -31,7 +31,7 @@ class PrecomputeSunset:
         records = [row for hotel in hotels if (row := await self._hotel(hotel, now)) is not None]
         if records:
             async with self._uow() as uow:
-                await uow.search.save_facts(records)
+                await uow.facts.save(records)
                 await uow.commit()
         return len(records)
 
