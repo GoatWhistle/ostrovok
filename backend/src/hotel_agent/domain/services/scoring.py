@@ -6,9 +6,10 @@ from enum import StrEnum
 from hotel_agent.domain.characteristics import Op, ScalarValue
 from hotel_agent.domain.entities import Fact, FactStatus, FactValue
 from hotel_agent.domain.query import Intent
-from hotel_agent.domain.services.confidence import effective
+from hotel_agent.domain.services.confidence import aggregate, effective
 
 PARTIAL_SLACK = 1.5
+MARGIN_CAP = 2.0
 
 
 class MatchQuality(StrEnum):
@@ -34,6 +35,7 @@ class PropertyMatch:
     intent: Intent
     fact: Fact | None
     quality: MatchQuality
+    margin: float | None = None
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -41,6 +43,7 @@ class Scored:
     score: float
     matches: tuple[PropertyMatch, ...]
     disqualified: bool
+    confidence: float = 0.0
 
 
 def score(intents: Sequence[Intent], facts: Mapping[str, Fact], now: datetime) -> Scored:
@@ -48,9 +51,14 @@ def score(intents: Sequence[Intent], facts: Mapping[str, Fact], now: datetime) -
     missed = any(item.intent.required and item.quality is MatchQuality.NONE for item in matches)
     total_weight = sum(item.intent.weight for item in matches)
     if missed or total_weight <= 0.0:
-        return Scored(score=0.0, matches=matches, disqualified=missed)
+        return Scored(score=0.0, matches=matches, disqualified=missed, confidence=0.0)
     earned = sum(_contribution(item, now) for item in matches)
-    return Scored(score=earned / total_weight, matches=matches, disqualified=False)
+    return Scored(
+        score=earned / total_weight,
+        matches=matches,
+        disqualified=False,
+        confidence=_confidence(matches, now),
+    )
 
 
 def match(intent: Intent, fact: Fact | None, now: datetime) -> PropertyMatch:
@@ -61,7 +69,39 @@ def match(intent: Intent, fact: Fact | None, now: datetime) -> PropertyMatch:
     quality = _quality(intent, fact.value)
     if quality is MatchQuality.FULL and (fact.is_restricted() or fact.is_stale_at(now)):
         quality = MatchQuality.PARTIAL
-    return PropertyMatch(intent=intent, fact=fact, quality=quality)
+    return PropertyMatch(intent=intent, fact=fact, quality=quality, margin=_margin(intent, fact))
+
+
+def _confidence(matches: Sequence[PropertyMatch], now: datetime) -> float:
+    counted = [
+        effective(item.fact.provenance, now)
+        for item in matches
+        if item.fact is not None and item.quality in COUNTED_QUALITIES
+    ]
+    return aggregate(counted).value if counted else 0.0
+
+
+def _margin(intent: Intent, fact: Fact) -> float | None:
+    direct = _ratio(fact.value, intent.value, intent.op)
+    if direct is not None:
+        return direct
+    return _ratio(
+        fact.qualifiers.get("native_value"),
+        fact.qualifiers.get("native_threshold"),
+        fact.qualifiers.get("native_op"),
+    )
+
+
+def _ratio(value: object, wanted: object, op: object) -> float | None:
+    if isinstance(value, bool) or not isinstance(value, int | float):
+        return None
+    if isinstance(wanted, bool) or not isinstance(wanted, int | float) or wanted <= 0:
+        return None
+    if op in {Op.GTE, str(Op.GTE)} and value > 0:
+        return min(value / wanted, MARGIN_CAP)
+    if op in {Op.LTE, str(Op.LTE)} and value > 0:
+        return min(wanted / value, MARGIN_CAP)
+    return None
 
 
 def _contribution(item: PropertyMatch, now: datetime) -> float:
