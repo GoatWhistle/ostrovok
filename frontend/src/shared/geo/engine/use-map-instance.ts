@@ -7,6 +7,7 @@ import {
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import { useEffect, useRef, useState } from "react"
 import { FULL_PIXEL_RATIO } from "@/shared/geo/map-quality"
+import { watchMapVisibility } from "./watch-map-visibility"
 
 setWorkerUrl(workerUrl)
 const ROTATE_SPEED = 0.35
@@ -24,14 +25,18 @@ export function useMapInstance(hasCamera: boolean) {
   const instance = useRef<MapLibreMap | null>(null)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
-  const [revealed, setRevealed] = useState(0)
+  const [visible, setVisible] = useState(false)
+  const initialized = useRef(false)
+  initialized.current ||= hasCamera
+  const enabled = initialized.current
   useEffect(() => {
-    if (!container.current || !hasCamera) return
+    if (!container.current || !enabled) return
     try {
       const map = new MapLibreMap({
         container: container.current,
         style: { version: 8, sources: {}, layers: [], transition: { duration: 0, delay: 0 } },
         attributionControl: false,
+        trackResize: false,
         maxPitch: 75,
         minZoom: MIN_ZOOM,
         pixelRatio: Math.min(window.devicePixelRatio, FULL_PIXEL_RATIO),
@@ -56,17 +61,9 @@ export function useMapInstance(hasCamera: boolean) {
       map.on("error", error)
       map.on("webglcontextlost", lost)
       map.on("webglcontextrestored", restored)
-      let visible = false
-      const resize = new ResizeObserver(([entry]) => {
-        map.resize()
-        map.redraw()
-        const shown = (entry?.contentRect.width ?? 0) > 0 && (entry?.contentRect.height ?? 0) > 0
-        if (shown && !visible) setRevealed((count) => count + 1)
-        visible = shown
-      })
-      resize.observe(container.current)
+      const unwatch = watchMapVisibility(map, setVisible)
       return () => {
-        resize.disconnect()
+        unwatch()
         map.off("load", loaded)
         map.off("error", error)
         map.off("webglcontextlost", lost)
@@ -79,6 +76,6 @@ export function useMapInstance(hasCamera: boolean) {
       setFailed(true)
     }
     return undefined
-  }, [hasCamera])
-  return { container, instance, ready, failed, revealed }
+  }, [enabled])
+  return { container, instance, ready, failed, active: ready && visible && !failed }
 }

@@ -8,20 +8,24 @@ export function useRouteDraw(
   route: string | undefined,
   colors: HighlightColors,
   reduced: boolean,
+  active: boolean,
 ) {
   const palette = useRef(colors)
   const progress = useRef(1)
+  const drawn = useRef<string | undefined>(undefined)
   useEffect(() => {
     palette.current = colors
     const map = mapRef.current
-    if (map) paintRoute(map, colors, progress.current)
-  }, [mapRef, colors])
+    if (map && active) paintRoute(map, colors, progress.current)
+  }, [mapRef, colors, active])
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !route) return
-    progress.current = reduced ? 1 : 0
+    if (!map || !route || !active) return
+    const instant = reduced || drawn.current === route
+    drawn.current = route
+    progress.current = instant ? 1 : 0
     paintRoute(map, palette.current, progress.current)
-    if (reduced) return
+    if (instant) return
     const effect = new KeyframeEffect(null, null, {
       duration: motionMs("--dur-draw"),
       easing: readEasing("--ease-in-out"),
@@ -41,5 +45,5 @@ export function useRouteDraw(
       animation.cancel()
       progress.current = 1
     }
-  }, [mapRef, route, reduced])
+  }, [mapRef, route, reduced, active])
 }

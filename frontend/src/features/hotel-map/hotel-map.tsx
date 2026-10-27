@@ -33,6 +33,7 @@ import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
+  readonly visible: boolean
   readonly hotelId: string | undefined
   readonly camera: Camera | undefined
   readonly geoRefs: readonly string[]
@@ -49,6 +50,7 @@ export interface HotelMapProps {
 }
 
 export function HotelMap({
+  visible,
   hotelId,
   camera,
   geoRefs,
@@ -96,6 +98,7 @@ export function HotelMap({
   const focusFeatures = geoRefs.length ? (geometry.data?.features ?? []) : []
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
   const map = useHotelMap({
+    visible,
     camera: selectedCamera,
     buildings,
     texturedFootprints: textured.features,
@@ -129,13 +132,14 @@ export function HotelMap({
     <section
       className={styles.stage}
       aria-label={t("explore:map.title")}
+      data-map-active={map.active}
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
     >
       <section ref={map.container} className={styles.canvas} aria-label={t("explore:map.canvas")} />
       {place ? (
         <SceneSun
           map={map.instance}
-          ready={map.ready}
+          ready={map.active}
           azimuth={sun.position.azimuth}
           altitude={sun.position.altitude}
         />

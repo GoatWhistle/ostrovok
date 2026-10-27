@@ -80,7 +80,7 @@ export function useNightCity({
   }, [mapRef, ready])
   const regionIds = useMemo(() => regions.map((item) => item.id), [regions])
   const versions = useTileVersions(regionIds)
-  const regionId = viewport ? regionFor(regions, viewport.center) : undefined
+  const regionId = ready && viewport ? regionFor(regions, viewport.center) : undefined
   const request = useMemo(
     () =>
       viewport && regionId

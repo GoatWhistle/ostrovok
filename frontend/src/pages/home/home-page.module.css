@@ -158,3 +158,7 @@
 .page[data-surface="conversation"] .chat > [role="separator"] {
   display: none;
 }
+
+.page[hidden] {
+  display: none;
+}

@@ -7,6 +7,7 @@ export function useMapRendering(
   instance: RefObject<MapLibreMap | null>,
   ready: boolean,
   scene: MapSceneSnapshot,
+  active: boolean,
 ) {
   const renderer = useRef<MapAppearanceController | null>(null)
   const [failed, setFailed] = useState(false)
@@ -22,6 +23,9 @@ export function useMapRendering(
       renderer.current = null
     }
   }, [instance, ready])
+  useEffect(() => {
+    if (ready) renderer.current?.setVisible(active)
+  }, [active, ready])
   useEffect(() => {
     if (!ready || !renderer.current) return
     try {

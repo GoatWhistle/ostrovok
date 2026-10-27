@@ -1,31 +1,31 @@
-import type { Map as MapLibreMap } from "maplibre-gl"
-import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useBasemaps, useMapCatalog } from "@/entities/map-data"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
 import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import { appearanceClasses } from "@/shared/geo/appearance/palette"
+import { useMapInstance } from "@/shared/geo/engine/use-map-instance"
 import { featureCollection } from "@/shared/geo/geometry"
-import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { renderHighlights } from "@/shared/geo/map-layers"
 import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
 import { followTerrainZoom, lightMode, type SunPosition } from "@/shared/geo/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { useLocale } from "@/shared/i18n"
-import { motionMs, useReducedMotion } from "@/shared/motion"
+import { useReducedMotion } from "@/shared/motion"
 import { useMapAppearance, useMapColors } from "@/shared/theme"
 import { buildingIds, drawnVolumes } from "./night-city/night-city-data"
 import { useNightCity } from "./night-city/use-night-city"
 import { useMapQuality } from "./quality/use-map-quality"
+import { useMapCamera } from "./rendering/use-map-camera"
 import { useMapRendering } from "./rendering/use-map-rendering"
 import { useRouteDraw } from "./rendering/use-route-draw"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
-import { useMapInstance } from "./use-map-instance"
 import { useMapMarkers } from "./use-map-markers"
 
 export interface MapData {
+  readonly visible: boolean
   readonly camera: Camera | undefined
   readonly buildings: readonly unknown[]
   readonly texturedFootprints: readonly TexturedFootprint[]
@@ -38,20 +38,8 @@ export interface MapData {
   readonly sun: SunPosition
 }
 
-type ViewApply = (instant: boolean) => void
-
-function showView(
-  view: RefObject<ViewApply | null>,
-  map: MapLibreMap,
-  reduced: boolean,
-  apply: ViewApply,
-) {
-  view.current = apply
-  map.stop()
-  apply(reduced)
-}
-
 export function useHotelMap({
+  visible,
   camera,
   buildings,
   texturedFootprints,
@@ -63,7 +51,14 @@ export function useHotelMap({
   focusLabel,
   sun,
 }: MapData) {
-  const { container, instance, ready, failed, revealed } = useMapInstance(camera !== undefined)
+  const {
+    container,
+    instance,
+    ready,
+    failed,
+    active: observed,
+  } = useMapInstance(camera !== undefined)
+  const active = observed && visible
   const reduced = useReducedMotion()
   const colors = useMapColors()
   const appearance = useMapAppearance()
@@ -92,16 +87,16 @@ export function useHotelMap({
     }),
     [catalog.data, basemaps, locale, sun, buildings],
   )
-  const rendering = useMapRendering(instance, ready, snapshot)
+  const rendering = useMapRendering(instance, ready, snapshot, active)
   const [route, setRoute] = useState<string>()
   useEffect(() => {
     const map = instance.current
-    if (!ready || !map) return
+    if (!active || !map) return
     const hasRoute = renderHighlights(map, highlightData, colors)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, highlightData, colors])
+  }, [instance, active, highlightData, colors])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
     () => tintForTime(colors, lightMode(sun.altitude)),
@@ -109,7 +104,7 @@ export function useHotelMap({
   )
   const textureStatus = useTexturedHotel({
     mapRef: instance,
-    ready,
+    ready: active,
     hotelId,
     footprints: texturedFootprints,
     buildings: buildingData,
@@ -126,10 +121,10 @@ export function useHotelMap({
   )
   const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
   const textured = useMemo(() => new Set(buildingIds(texturedFootprints)), [texturedFootprints])
-  const quality = useMapQuality(instance, ready)
+  const quality = useMapQuality(instance, active)
   useNightCity({
     mapRef: instance,
-    ready,
+    ready: active,
     regions: regionBoxes,
     drawn,
     textured,
@@ -139,61 +134,28 @@ export function useHotelMap({
     quality,
     effects: APPEARANCES[appearance.id].effects,
   })
-  useRouteDraw(instance, ready ? route : undefined, colors, reduced)
+  useRouteDraw(instance, route, colors, reduced, active)
   useEffect(() => {
     const map = instance.current
-    if (!ready || !map) return
+    if (!active || !map) return
     return followTerrainZoom(map)
-  }, [instance, ready])
-  const view = useRef<ViewApply | null>(null)
-  useEffect(() => {
-    const map = instance.current
-    if (!ready || !map || !camera?.center.every(Number.isFinite)) return
-    const options = {
-      center: [camera.center[0] ?? 0, camera.center[1] ?? 0] as [number, number],
-      zoom: camera.zoom,
-      pitch: camera.pitch,
-      bearing: camera.bearing,
-    }
-    showView(view, map, reduced, (instant) => {
-      if (instant) map.jumpTo(options)
-      else map.flyTo({ ...options, duration: camera.duration_ms ?? motionMs("--dur-draw") })
-    })
-  }, [instance, camera, ready, reduced])
-  useEffect(() => {
-    const map = instance.current
-    if (!ready || !map || !bounds || bounds.length !== 4 || !bounds.every(Number.isFinite)) return
-    const corners: [[number, number], [number, number]] = [
-      [bounds[0] ?? 0, bounds[1] ?? 0],
-      [bounds[2] ?? 0, bounds[3] ?? 0],
-    ]
-    showView(view, map, reduced, (instant) =>
-      map.fitBounds(corners, { duration: instant ? 0 : motionMs("--dur-draw"), padding: 48 }),
-    )
-  }, [instance, bounds, ready, reduced])
-  useEffect(() => {
-    const map = instance.current
-    if (!ready || !map || !hotelId || !focusFeatures.length) return
-    const corners = geometryBounds(featureCollection(focusFeatures), camera?.center)
-    if (!corners) return
-    showView(view, map, reduced, (instant) =>
-      map.fitBounds(corners, {
-        padding: 72,
-        maxZoom: 17,
-        duration: instant ? 0 : motionMs("--dur-draw"),
-      }),
-    )
-  }, [instance, ready, hotelId, focusFeatures, camera?.center, reduced])
-  useEffect(() => {
-    if (revealed > 0) view.current?.(true)
-  }, [revealed])
+  }, [instance, active])
+  useMapCamera({ map: instance, active, reduced, camera, bounds, hotelId, focusFeatures })
   const markers = useMapMarkers({
     mapRef: instance,
-    ready,
+    ready: active,
     results,
     hotelId,
     focusFeatures,
     focusLabel,
   })
-  return { container, instance, ready, failed: failed || rendering.failed, markers, textureStatus }
+  return {
+    container,
+    instance,
+    ready,
+    active,
+    failed: failed || rendering.failed,
+    markers,
+    textureStatus,
+  }
 }

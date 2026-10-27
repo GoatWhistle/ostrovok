@@ -134,6 +134,11 @@ export function useHotelWorkspace() {
     outgoing: chat.outgoing,
     send: chat.send,
     retry: chat.retry,
+    clearTransient: () => {
+      clearEvidence()
+      setCompared([])
+      setLimitReached(false)
+    },
     reset: () => {
       clearEvidence()
       setCompared([])
