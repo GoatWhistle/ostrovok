@@ -176,7 +176,10 @@ async def test_explorer_calls_new_tool_and_verifies_event_scope_before_fact() ->
 
     @asynccontextmanager
     async def uow() -> AsyncIterator[Any]:
-        yield SimpleNamespace(data=SimpleNamespace(records=AsyncMock(return_value=[])))
+        yield SimpleNamespace(
+            data=SimpleNamespace(records=AsyncMock(return_value=[])),
+            search=SimpleNamespace(list_facts=AsyncMock(return_value=[])),
+        )
 
     explorer = DataExplorer(
         cast(LLMPort, llm),

@@ -43,6 +43,7 @@ def tools(matches: dict[str, tuple[str, ...]]) -> DataTools:
         return_value=SimpleNamespace(
             nearby_objects=SimpleNamespace(list_matches=AsyncMock(return_value=matches)),
             data=SimpleNamespace(records=AsyncMock(return_value=[])),
+            search=SimpleNamespace(list_facts=AsyncMock(return_value=[])),
             geo_features=SimpleNamespace(get_batch=AsyncMock(return_value=[feature])),
         )
     )

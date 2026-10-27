@@ -52,6 +52,7 @@ def build(
     *,
     readings: dict[str, dict[str, float]] | None = None,
     rows: dict[str, list[dict[str, Any]]] | None = None,
+    facts: list[Any] | None = None,
 ) -> tuple[DataExplorer, SimpleNamespace, SimpleNamespace]:
     state = SimpleNamespace(active=False)
     llm = SimpleNamespace(
@@ -68,6 +69,7 @@ def build(
     search = SimpleNamespace(
         list_hotels=AsyncMock(return_value=[hotel("city"), hotel("mountain"), hotel("plateau")]),
         get_supplier_id=AsyncMock(return_value="supplier"),
+        list_facts=AsyncMock(return_value=facts or []),
     )
 
     @asynccontextmanager

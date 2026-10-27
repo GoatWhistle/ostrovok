@@ -19,7 +19,7 @@ from hotel_agent.application.agent.room_offer_tools import RoomOfferTools
 from hotel_agent.application.agent.room_web_fallback import RoomWebFallback
 from hotel_agent.application.agent.source_records import DATASETS, SourceRecords
 from hotel_agent.application.agent.web_evidence import read_page_evidence
-from hotel_agent.application.agent.wish_evidence import native_facts
+from hotel_agent.application.agent.wish_evidence import native_facts, wish_key
 from hotel_agent.application.dto import GeoFeatureRecord, SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.ports.data_exploration import (
     GeographicScopePort,
@@ -164,6 +164,20 @@ class DataTools:
     @property
     def bbox(self) -> tuple[float, float, float, float] | None:
         return self.candidates.bbox
+
+    async def remembered(self, term: str) -> tuple[SearchFactRecord, ...]:
+        wanted = [hotel.id for hotel in self.hotels]
+        if not wanted:
+            return ()
+        async with self._uow() as uow:
+            rows = await uow.search.list_facts(
+                None, hotel_ids=wanted, characteristic_keys=[wish_key(term)]
+            )
+        return tuple(
+            row
+            for row in rows
+            if row.value is True and (row.valid_until is None or row.valid_until > self._now)
+        )
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
         if action == "search_events":

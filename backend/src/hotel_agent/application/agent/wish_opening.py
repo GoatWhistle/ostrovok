@@ -22,6 +22,19 @@ async def open_wish(term: str, tools: DataTools, ledger: WishLedger, logger: Log
     observations: list[dict[str, Any]] = []
     retained: ExplorationOutcome | None = None
     matched = False
+    kept = await tools.remembered(term)
+    if kept:
+        logger.info("wish_recalled", wish=term, hotels=len({row.hotel_id for row in kept}))
+        return Opening(
+            (),
+            ExplorationOutcome(
+                hotels=tools.hotels,
+                bbox=tools.bbox,
+                intents=(wish_intent(term, tools.native_required.get(term, False)),),
+                facts=kept,
+            ),
+            True,
+        )
     if tools.has_native:
         result = await tools.execute("check_requested", {"term": term})
         ledger.observe("check_requested", {"term": term}, result)
