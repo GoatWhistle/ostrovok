@@ -100,15 +100,25 @@ export function useNightCity({
     const [west, south, east, north] = data.bbox
     const origin = [((west ?? 0) + (east ?? 0)) / 2, ((south ?? 0) + (north ?? 0)) / 2] as const
     let grounds: string | undefined
+    let disposed = false
+    const currentBuilder = builder.current
+    const currentLayer = layer.current
     const build = () => {
       const buildings = windowBuildings(map, data, drawn, textured)
       const next = buildings.map((item) => Math.round(item.ground)).join(",")
       if (next === grounds) return
       grounds = next
-      void builder.current?.build(buildings, origin).then((mesh) => layer.current?.setMesh(mesh))
+      void currentBuilder?.build(buildings, origin).then((mesh) => {
+        if (!disposed && mesh && layer.current === currentLayer) currentLayer?.setMesh(mesh)
+      })
     }
     build()
-    return watchTerrainData(map, build)
+    const unwatch = watchTerrainData(map, build)
+    return () => {
+      disposed = true
+      currentBuilder?.cancel()
+      unwatch()
+    }
   }, [mapRef, ready, scene.data, drawn, textured, builder, layer])
   const night = nightFactor(sun.altitude)
   useEffect(() => {

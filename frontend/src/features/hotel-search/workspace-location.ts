@@ -1,3 +1,5 @@
+import type { MapAppearance } from "@/shared/geo/appearance/types"
+
 export type WorkspaceSurface =
   | "landing"
   | "conversation"
@@ -6,7 +8,7 @@ export type WorkspaceSurface =
   | "map"
   | "hotel-page"
 export type WorkspaceTab = "chat" | "hotels" | "map"
-export type MapAppearance = "neon" | "toy-town"
+export type { MapAppearance } from "@/shared/geo/appearance/types"
 export type HotelOrigin = "panel" | "map"
 export type HotelSection = "offers" | "rooms" | "views" | "photos" | "facts" | "services"
 

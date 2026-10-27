@@ -3,28 +3,22 @@ import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useBasemaps, useMapCatalog } from "@/entities/map-data"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
-import { renderBasemap } from "@/shared/geo/basemap"
-import { renderBasemapLabels } from "@/shared/geo/basemap-labels"
-import { classColors, renderCatalogLayers } from "@/shared/geo/catalog-layers"
+import { appearanceClasses } from "@/shared/geo/appearance/palette"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
-import { type HighlightColors, paintRoute, renderHighlights } from "@/shared/geo/map-layers"
+import { renderHighlights } from "@/shared/geo/map-layers"
 import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
-import {
-  followTerrainZoom,
-  lightMode,
-  renderTerrain,
-  type SunPosition,
-  scenePalette,
-} from "@/shared/geo/terrain"
+import { followTerrainZoom, lightMode, type SunPosition } from "@/shared/geo/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { tintForTime } from "@/shared/geo/time-tint"
 import { useLocale } from "@/shared/i18n"
-import { motionMs, readEasing, useReducedMotion } from "@/shared/motion"
-import { readTokenColors, useMapColors } from "@/shared/theme"
+import { motionMs, useReducedMotion } from "@/shared/motion"
+import { useMapAppearance, useMapColors } from "@/shared/theme"
 import { buildingIds, drawnVolumes } from "./night-city/night-city-data"
 import { useNightCity } from "./night-city/use-night-city"
 import { useMapQuality } from "./quality/use-map-quality"
+import { useMapRendering } from "./rendering/use-map-rendering"
+import { useRouteDraw } from "./rendering/use-route-draw"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapInstance } from "./use-map-instance"
 import { useMapMarkers } from "./use-map-markers"
@@ -40,47 +34,6 @@ export interface MapData {
   readonly focusFeatures: readonly unknown[]
   readonly focusLabel: string | undefined
   readonly sun: SunPosition
-}
-
-function useRouteDraw(
-  mapRef: RefObject<MapLibreMap | null>,
-  route: string | undefined,
-  colors: HighlightColors,
-  reduced: boolean,
-) {
-  const palette = useRef(colors)
-  const progress = useRef(1)
-  useEffect(() => {
-    palette.current = colors
-    const map = mapRef.current
-    if (map) paintRoute(map, colors, progress.current)
-  }, [mapRef, colors])
-  useEffect(() => {
-    const map = mapRef.current
-    if (!map || !route) return
-    progress.current = reduced ? 1 : 0
-    paintRoute(map, palette.current, progress.current)
-    if (reduced) return
-    const effect = new KeyframeEffect(null, null, {
-      duration: motionMs("--dur-draw"),
-      easing: readEasing("--ease-in-out"),
-      fill: "forwards",
-    })
-    const animation = new Animation(effect, document.timeline)
-    let frame = 0
-    const step = () => {
-      progress.current = effect.getComputedTiming().progress ?? 1
-      paintRoute(map, palette.current, progress.current)
-      if (animation.playState !== "finished") frame = requestAnimationFrame(step)
-    }
-    animation.play()
-    frame = requestAnimationFrame(step)
-    return () => {
-      cancelAnimationFrame(frame)
-      animation.cancel()
-      progress.current = 1
-    }
-  }, [mapRef, route, reduced])
 }
 
 type ViewApply = (instant: boolean) => void
@@ -111,6 +64,7 @@ export function useHotelMap({
   const { container, instance, ready, failed, revealed } = useMapInstance(camera !== undefined)
   const reduced = useReducedMotion()
   const colors = useMapColors()
+  const appearance = useMapAppearance()
   const { locale } = useLocale()
   const regions = useRegions()
   const regionIds = useMemo(
@@ -119,38 +73,32 @@ export function useHotelMap({
   )
   const basemaps = useBasemaps(regionIds)
   const catalog = useMapCatalog()
-  const classes = useMemo(() => {
-    const items = catalog.data?.classes ?? []
-    const tokens = readTokenColors(items.map((item) => item.style.fill ?? ""))
-    return classColors(items, (token) => tokens.get(token), {
-      land: colors.land,
-      building: colors.building,
-      road: colors.road,
-      park: colors.park,
-    })
-  }, [catalog.data, colors])
+  const classes = useMemo(
+    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors),
+    [appearance.id, catalog.data, colors],
+  )
   useEffect(() => retainPmtiles(), [])
   const highlightData = useMemo(() => featureCollection(highlights), [highlights])
+  const snapshot = useMemo(
+    () => ({
+      catalog: catalog.data?.classes ?? [],
+      assets: basemaps,
+      locale,
+      sun,
+      excluded: buildingIds(buildings),
+    }),
+    [catalog.data, basemaps, locale, sun, buildings],
+  )
+  const rendering = useMapRendering(instance, ready, snapshot)
   const [route, setRoute] = useState<string>()
   useEffect(() => {
     const map = instance.current
     if (!ready || !map) return
-    if (!map.getLayer("canvas"))
-      map.addLayer({ id: "canvas", type: "background", paint: { "background-color": colors.sea } })
-    const mode = lightMode(sun.altitude)
-    const scene = tintForTime(colors, mode)
-    renderTerrain(map, scene, sun)
-    map
-      .getContainer()
-      .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
-    renderBasemap(map, scene)
-    renderCatalogLayers(map, classes, buildingIds(buildings))
     const hasRoute = renderHighlights(map, highlightData, colors)
-    renderBasemapLabels(map, basemaps, colors, locale)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, highlightData, colors, sun, basemaps, locale, classes, buildings])
+  }, [instance, ready, highlightData, colors])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
     () => tintForTime(colors, lightMode(sun.altitude)),
@@ -242,5 +190,5 @@ export function useHotelMap({
     focusFeatures,
     focusLabel,
   })
-  return { container, instance, ready, failed, markers, textureStatus }
+  return { container, instance, ready, failed: failed || rendering.failed, markers, textureStatus }
 }
