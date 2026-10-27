@@ -41,7 +41,7 @@ build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline
 
 seed: ## Load the prepared Sochi slice into the running PostGIS database
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
-		$(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
+		$(LOCAL_DATA) $(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
 
 ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-space guard
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
@@ -52,7 +52,7 @@ ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-spa
 
 precompute: ## Compute characteristic facts from the loaded region
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
-		$(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
+		$(LOCAL_DATA) $(BACKEND) hotel-agent precompute --region sochi --from $(CURDIR)/data/seed/sochi
 
 plan-questions: ## Queue hotelier questions for registry characteristics without facts
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
