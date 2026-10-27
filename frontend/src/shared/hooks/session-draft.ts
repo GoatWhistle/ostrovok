@@ -39,6 +39,13 @@ export function clearSessionDraft(key: string, expected: string) {
   for (const listener of listeners) listener()
 }
 
+export function moveSessionDraft(from: string, to: string) {
+  const source = readSessionDraft(from)
+  if (from === to || !source.dirty) return
+  if (!readSessionDraft(to).dirty) writeSessionDraft(to, source.value)
+  clearSessionDraft(from, source.value)
+}
+
 export function subscribeSessionDraft(listener: () => void) {
   listeners.add(listener)
   return () => listeners.delete(listener)

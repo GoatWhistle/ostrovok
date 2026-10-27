@@ -2,7 +2,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { api, unwrap, useRecordMutation } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
+import { moveSessionDraft } from "@/shared/hooks"
 import { useLocale } from "@/shared/i18n"
+import { useInputModality, withViewTransition } from "@/shared/motion"
 import {
   forgetSaved,
   readConversationHistory,
@@ -12,6 +14,7 @@ import {
   saveConversationHistory,
   syncConversation,
 } from "./conversation-history"
+import { hasExpandedWorkspace } from "./use-workspace-expansion"
 
 export type Conversation = components["schemas"]["Conversation"]
 
@@ -64,6 +67,7 @@ export function useConversation(
   control: ConversationControl,
 ) {
   const { locale } = useLocale()
+  const { instant } = useInputModality(true)
   const cache = useQueryClient()
   const [history, setHistory] = useState(readConversationHistory)
   const active = useRef({ scope: control.scopeKey, generation: 0 })
@@ -100,13 +104,22 @@ export function useConversation(
   const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
     mutationFn: sendRequest,
     onSuccess: (data, input) => {
-      cache.setQueryData(["conversation", data.id], data)
-      updateHistory((previous) => syncConversation(previous, serverEntry(data)))
-      if (input.scope !== active.current.scope || input.generation !== active.current.generation)
-        return
-      saveActiveConversation(data.id)
-      control.receive(data.id)
-      onAnswer(data)
+      if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
+      const current =
+        input.scope === active.current.scope && input.generation === active.current.generation
+      const accept = () => {
+        cache.setQueryData(["conversation", data.id], data)
+        updateHistory((previous) => syncConversation(previous, serverEntry(data)))
+        if (!current) return
+        saveActiveConversation(data.id)
+        control.receive(data.id)
+        onAnswer(data)
+      }
+      if (current && !instant && data.search?.results.length && !hasExpandedWorkspace(data.id)) {
+        return withViewTransition("layout", accept)
+      }
+      accept()
+      return undefined
     },
   })
   const renameMutation = useMutation({

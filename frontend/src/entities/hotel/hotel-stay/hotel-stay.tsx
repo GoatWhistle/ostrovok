@@ -17,18 +17,21 @@ function initial(stay: Parsed | undefined): Stay {
 export function HotelStayProvider({
   stay,
   children,
+  scopeKey = "",
 }: {
+  readonly scopeKey?: string
   readonly stay?: Parsed | undefined
   readonly children: ReactNode
 }) {
-  const [value, setValue] = useState(() => initial(stay))
-  return (
-    <Context
-      value={{ value, update: (change) => setValue((current) => ({ ...current, ...change })) }}
-    >
-      {children}
-    </Context>
-  )
+  const source = JSON.stringify([scopeKey, stay?.check_in, stay?.check_out, stay?.adults])
+  const [edit, setEdit] = useState<{ source: string; patch: Partial<Stay> }>()
+  const value = { ...initial(stay), ...(edit?.source === source ? edit.patch : {}) }
+  const update = (change: Partial<Stay>) =>
+    setEdit((current) => ({
+      source,
+      patch: { ...(current?.source === source ? current.patch : {}), ...change },
+    }))
+  return <Context value={{ value, update }}>{children}</Context>
 }
 
 export function useHotelStay(stay?: Parsed) {

@@ -1,9 +1,11 @@
+import { useState } from "react"
 import { SceneReel } from "@/features/scene-reel"
 import { ChatStart, type ChatStartProps } from "@/features/search-chat"
 import styles from "./landing.module.css"
 import { SiteSettings } from "./site-settings"
 
 export interface LandingProps {
+  readonly draftKey: string
   readonly pending: boolean
   readonly recent: ChatStartProps["recent"]
   readonly onSend: (message: string) => void
@@ -11,7 +13,8 @@ export interface LandingProps {
   readonly onHistory: () => void
 }
 
-export function Landing({ pending, recent, onSend, onOpen, onHistory }: LandingProps) {
+export function Landing({ pending, recent, onSend, onOpen, onHistory, draftKey }: LandingProps) {
+  const [paused, setPaused] = useState(false)
   return (
     <div className={styles.landing} data-chrome="bare">
       <div className={styles.corner}>
@@ -21,14 +24,19 @@ export function Landing({ pending, recent, onSend, onOpen, onHistory }: LandingP
         <div className={styles.copy}>
           <ChatStart
             pending={pending}
+            draftKey={draftKey}
             recent={recent}
-            onSend={onSend}
+            onInteraction={() => setPaused(true)}
+            onSend={(message) => {
+              setPaused(true)
+              onSend(message)
+            }}
             onOpen={onOpen}
             onHistory={onHistory}
           />
         </div>
         <div className={styles.visual}>
-          <SceneReel />
+          <SceneReel paused={paused} />
         </div>
       </div>
     </div>

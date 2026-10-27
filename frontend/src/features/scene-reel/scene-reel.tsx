@@ -5,9 +5,9 @@ import { ReelMark } from "./reel-mark"
 import styles from "./scene-reel.module.css"
 import { useSceneReel } from "./use-scene-reel"
 
-export function SceneReel() {
+export function SceneReel({ paused = false }: { readonly paused?: boolean }) {
   const { t } = useTranslation()
-  const reel = useSceneReel()
+  const reel = useSceneReel(paused)
   return (
     <figure className={styles.reel} data-shown={reel.shown} data-failed={reel.failed || undefined}>
       <div ref={reel.container} className={styles.canvas} aria-hidden="true" />

@@ -132,3 +132,29 @@
     background-color: var(--surface-base);
   }
 }
+
+.page[data-surface="conversation"] {
+  grid-template-rows: minmax(0, 1fr);
+  max-block-size: calc(100dvh - var(--header-height));
+}
+
+.page[data-surface="conversation"] .workspace {
+  grid-row: 1;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page[data-surface="conversation"] .tabs,
+.page[data-surface="conversation"] .panel,
+.page[data-surface="conversation"] .map,
+.page[data-surface="conversation"] .mobileDock {
+  display: none;
+}
+
+.page[data-surface="conversation"] .workspace .chat {
+  display: grid;
+  box-shadow: none;
+}
+
+.page[data-surface="conversation"] .chat > [role="separator"] {
+  display: none;
+}

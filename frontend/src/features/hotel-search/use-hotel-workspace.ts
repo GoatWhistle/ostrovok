@@ -3,6 +3,7 @@ import type { FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hote
 import { type Conversation, useConversation } from "./use-conversation"
 import { useHotelSelection } from "./use-hotel-selection"
 import { useListReturn } from "./use-list-return"
+import { useWorkspaceExpansion } from "./use-workspace-expansion"
 import { useWorkspaceNavigation } from "./use-workspace-navigation"
 import { workspaceSurface } from "./workspace-location"
 
@@ -74,6 +75,7 @@ export function useHotelWorkspace() {
   const results = [
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
+  const expanded = useWorkspaceExpansion(navigation.scopeKey, results.length > 0)
   const list = useListReturn(navigation.scopeKey, hotelId, results.length)
   const activeSubject = placeId ?? factId ?? hotelId
   useEffect(() => {
@@ -123,7 +125,7 @@ export function useHotelWorkspace() {
   }
   return {
     navigation,
-    surface: workspaceSurface(navigation.route, navigation.started, results.length > 0),
+    surface: workspaceSurface(navigation.route, navigation.started, expanded),
     messages: ordered(chat.data?.messages ?? []),
     conversationId: chat.conversationId,
     searchMessageId: chat.data?.search_message_id,

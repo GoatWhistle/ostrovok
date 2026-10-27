@@ -1,4 +1,4 @@
-export { clearSessionDraft } from "./session-draft"
+export { clearSessionDraft, moveSessionDraft } from "./session-draft"
 export { useMediaQuery } from "./use-media-query"
 export {
   type Resizable,

@@ -96,9 +96,15 @@ function paintScene(map: MapLibreMap, colors: MapColors, sun: SunPosition) {
   })
 }
 
-export function useSceneReel() {
+export function useSceneReel(paused = false) {
   const { container, instance, ready, failed } = useReelMap()
   const colors = useMapColors()
+  const pausedState = useRef(paused)
+  pausedState.current = paused
+  const stop = useRef<(() => void) | undefined>(undefined)
+  useEffect(() => {
+    if (paused) stop.current?.()
+  }, [paused])
   const reduced = useReducedMotion()
   const [index, setIndex] = useState(0)
   const [shown, setShown] = useState(false)
@@ -126,6 +132,10 @@ export function useSceneReel() {
     let fallback = 0
     let cancelPrefetch: (() => void) | undefined
     const reveal = () => {
+      if (pausedState.current) {
+        setShown(true)
+        return
+      }
       window.clearTimeout(fallback)
       map.off("idle", reveal)
       setShown(true)
@@ -149,7 +159,18 @@ export function useSceneReel() {
       },
       index === 0 && !map.isMoving() ? 0 : fade,
     )
+    stop.current = () => {
+      window.clearTimeout(start)
+      window.clearTimeout(next)
+      window.clearTimeout(fallback)
+      cancelPrefetch?.()
+      map.off("idle", reveal)
+      map.stop()
+      setShown(true)
+    }
+    if (pausedState.current) stop.current()
     return () => {
+      stop.current = undefined
       cancelPrefetch?.()
       window.clearTimeout(start)
       window.clearTimeout(next)
