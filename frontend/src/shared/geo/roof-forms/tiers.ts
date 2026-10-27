@@ -21,6 +21,11 @@ const MAX_AREA = 900
 const MIN_RECTANGULARITY = 0.78
 const PITCH = 0.62
 const MAX_RISE = 4.5
+const MAX_BLOCK_AREA = 6000
+const PARAPET_WIDTH = 0.6
+const PARAPET_HEIGHT = 0.9
+const DECK_HEIGHT = 0.3
+const DECK_GAP = 0.004
 
 function seed(id: string): number {
   let value = 0
@@ -45,15 +50,40 @@ function outerRing(geometry: RoofSource["geometry"]): Position[] | undefined {
   return holes.length === 0 ? ring : undefined
 }
 
+function mutable(ring: readonly Position[]): [number, number][] {
+  return ring.map(([x, y]) => [x, y])
+}
+
+function flatRoof(id: string, ring: Position[], frame: RoofFrame, height: number) {
+  const along = 1 - (2 * PARAPET_WIDTH) / frame.length
+  const across = 1 - (2 * PARAPET_WIDTH) / frame.width
+  if (along <= 0.5 || across <= 0.5) return []
+  const hole = insetRing(ring, frame, along, across)
+  const deck = insetRing(ring, frame, along - DECK_GAP, across - DECK_GAP)
+  const tone = seed(id)
+  const parapet: Feature<Polygon> = {
+    type: "Feature",
+    geometry: { type: "Polygon", coordinates: [mutable(ring), mutable(hole).reverse()] },
+    properties: { building_id: id, tone, edge: true, base: height, top: height + PARAPET_HEIGHT },
+  }
+  const roof: Feature<Polygon> = {
+    type: "Feature",
+    geometry: { type: "Polygon", coordinates: [mutable(deck)] },
+    properties: { building_id: id, tone, base: height, top: height + DECK_HEIGHT },
+  }
+  return [parapet, roof]
+}
+
 export function pitchedRoof(source: RoofSource): Feature<Polygon>[] {
   const { building_id: id, hotel_id: hotel, levels, render_height_m: height } = source.properties
-  if (hotel || height <= 0 || height > MAX_HEIGHT || (levels ?? 0) > MAX_LEVELS) return []
+  if (hotel || height <= 0) return []
   const ring = outerRing(source.geometry)
   if (!ring) return []
   const frame = roofFrame(ring)
   const area = frame ? frame.length * frame.width * frame.rectangularity : 0
-  if (!frame || area < MIN_AREA || area > MAX_AREA) return []
-  if (frame.rectangularity < MIN_RECTANGULARITY) return []
+  if (!frame || area < MIN_AREA || frame.rectangularity < MIN_RECTANGULARITY) return []
+  const tall = height > MAX_HEIGHT || (levels ?? 0) > MAX_LEVELS || area > MAX_AREA
+  if (tall) return area <= MAX_BLOCK_AREA ? flatRoof(id, ring, frame, height) : []
   const shape = roofShape(id, frame)
   const rise = Math.min(MAX_RISE, (frame.width / 2) * PITCH)
   const step = rise / STEPS
@@ -66,7 +96,7 @@ export function pitchedRoof(source: RoofSource): Feature<Polygon>[] {
       type: "Feature",
       geometry: {
         type: "Polygon",
-        coordinates: [insetRing(ring, frame, along, across).map(([x, y]) => [x, y])],
+        coordinates: [mutable(insetRing(ring, frame, along, across))],
       },
       properties: {
         building_id: id,

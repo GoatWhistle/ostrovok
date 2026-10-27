@@ -45,8 +45,15 @@ describe("pitched roofs", () => {
     expect(frame?.width).toBeLessThan(3)
   })
 
-  it("keeps flat roofs on tall blocks, hotels and irregular footprints", () => {
-    expect(pitchedRoof(house(box(20, 10), 30))).toHaveLength(0)
+  it("puts a parapet and a recessed deck on tall blocks", () => {
+    const [parapet, deck] = pitchedRoof(house(box(30, 20), 30))
+    expect(parapet?.properties?.edge).toBe(true)
+    expect(parapet?.geometry.coordinates).toHaveLength(2)
+    expect(parapet?.properties?.top).toBeCloseTo(30.9)
+    expect(deck?.properties?.top).toBeCloseTo(30.3)
+  })
+
+  it("leaves hotels and irregular footprints to the flat cap", () => {
     expect(
       pitchedRoof({
         ...house(box(20, 10)),

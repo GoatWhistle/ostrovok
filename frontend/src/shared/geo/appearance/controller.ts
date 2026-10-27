@@ -85,7 +85,8 @@ export class MapAppearanceController {
       .filter((value) => value.length > 0)
       .map((value) => tintHex(value, sky, altitude))
     renderAppearanceRoofs(this.map, roofPaint(colors))
-    paintRoofForms(this.map, colors)
+    const edge = style.getPropertyValue(palette.buildingLine).trim()
+    paintRoofForms(this.map, colors, edge ? tintHex(edge, sky, altitude) : undefined)
     const sun = this.scene?.sun
     renderGroundShadows(
       this.map,

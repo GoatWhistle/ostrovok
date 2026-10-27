@@ -61,11 +61,11 @@ export function renderRoofForms(
   )
 }
 
-export function paintRoofForms(map: MapLibreMap, colors: readonly string[]) {
-  for (const id of LAYERS) if (map.getLayer(id)) paintLayer(map, id, colors)
+export function paintRoofForms(map: MapLibreMap, colors: readonly string[], edge?: string) {
+  for (const id of LAYERS) if (map.getLayer(id)) paintLayer(map, id, colors, edge)
 }
 
-function paintLayer(map: MapLibreMap, id: string, colors: readonly string[]) {
+function paintLayer(map: MapLibreMap, id: string, colors: readonly string[], edge?: string) {
   const [first] = colors
   map.setLayoutProperty(id, "visibility", first ? "visible" : "none")
   if (!first) return
@@ -78,7 +78,11 @@ function paintLayer(map: MapLibreMap, id: string, colors: readonly string[]) {
           ...colors.flatMap((value, index) => [index, value]),
           first,
         ] as unknown as ExpressionSpecification)
-  map.setPaintProperty(id, "fill-extrusion-color", color)
+  map.setPaintProperty(
+    id,
+    "fill-extrusion-color",
+    edge ? ["case", ["to-boolean", ["get", "edge"]], edge, color] : color,
+  )
 }
 
 function contextSource(feature: Feature): RoofSource | undefined {
