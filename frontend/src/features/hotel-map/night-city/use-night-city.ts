@@ -104,6 +104,7 @@ export function useNightCity({
       excluded,
     )
     renderRoofForms(map, roofs, excluded)
+    if (map.getLayer(WINDOW_LAYER)) map.moveLayer(WINDOW_LAYER, labelAnchor(map))
   }, [mapRef, ready, scene.data, volumeColor, excluded])
   useEffect(() => {
     const map = mapRef.current
@@ -144,6 +145,7 @@ export function useNightCity({
         night,
         fade: windowFade(map.getZoom()),
         density: effects.windows ? windowDensity(quality) : 0,
+        glass: effects.facades ? 1 : 0,
         warm: rgb(colors.windowWarm),
         cool: rgb(colors.windowCool),
       })
@@ -152,5 +154,15 @@ export function useNightCity({
     return () => {
       map.off("zoom", update)
     }
-  }, [mapRef, ready, night, colors, layer, quality, effects.lights, effects.windows])
+  }, [
+    mapRef,
+    ready,
+    night,
+    colors,
+    layer,
+    quality,
+    effects.lights,
+    effects.windows,
+    effects.facades,
+  ])
 }

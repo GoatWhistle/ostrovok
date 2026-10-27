@@ -168,20 +168,17 @@ export function HotelMap({
         failed={geometry.isError}
         onRetry={() => void geometry.refetch()}
       />
-
       {selectedCamera ? (
-        <>
-          <div className={styles.bottom}>
-            <div className={styles.bottomCenter} data-map-obstacle>
-              {bottomCenter}
-            </div>
-            <MapMeta
-              map={map.instance}
-              ready={map.ready}
-              notes={mapNotes(invalid, missingHeight, map.textureStatus)}
-            />
+        <div className={styles.bottom}>
+          <div className={styles.bottomCenter} data-map-obstacle>
+            {bottomCenter}
           </div>
-        </>
+          <MapMeta
+            map={map.instance}
+            ready={map.ready}
+            notes={mapNotes(invalid, missingHeight, map.textureStatus)}
+          />
+        </div>
       ) : null}
       {hotelCard ? (
         <div ref={insets.card} className={styles.hotelCard} data-map-obstacle>

@@ -17,6 +17,7 @@ export interface AppearancePackage {
   }
   readonly effects: {
     readonly windows: boolean
+    readonly facades: boolean
     readonly lights: boolean
     readonly roadGlow: boolean
   }

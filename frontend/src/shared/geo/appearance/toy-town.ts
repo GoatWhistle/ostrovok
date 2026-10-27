@@ -43,10 +43,10 @@ export const TOY_TOWN: AppearancePackage = {
     label: "--map-toy-ink",
     labelStrong: "--map-toy-ink",
     labelHalo: "--map-toy-road",
-    windowWarm: "--map-toy-road",
-    windowCool: "--map-toy-water",
-    lamp: "--map-toy-road",
-    cityGlow: "--map-toy-road",
+    windowWarm: "--map-toy-window",
+    windowCool: "--map-toy-glass",
+    lamp: "--map-toy-lamp",
+    cityGlow: "--map-toy-glow",
   },
   classPrefix: "--map-toy-class-",
   materials: {
@@ -63,6 +63,6 @@ export const TOY_TOWN: AppearancePackage = {
     ],
     shadowToken: "--map-toy-shadow",
   },
-  effects: { windows: false, lights: false, roadGlow: false },
+  effects: { windows: true, facades: true, lights: true, roadGlow: false },
   mini: { terrain: false, volumes: false, lights: false },
 }
