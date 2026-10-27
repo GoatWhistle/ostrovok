@@ -1,0 +1,26 @@
+{
+  "query_id": "8356c767d4bfe18a",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:d72926d5d2de",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "с видом на Машук из окна"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Пятигорск",
+    "anywhere": false,
+    "normalized_query": "Отель в Пятигорске с видом на Машук из окна",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 64618
+}

@@ -1,0 +1,29 @@
+{
+  "id": "ambiguous",
+  "query": "Хочу отель, из окна которого видна Белая река",
+  "errors": [],
+  "hotels": [],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "spatial:2376f1acd064",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "из окна которого видна Белая река"
+      }
+    ],
+    "unmatched_terms": [],
+    "anywhere": false,
+    "normalized_query": "Хочу отель, из окна которого видна Белая река",
+    "corrections": [],
+    "needs_clarification": true,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "clarification": true,
+  "seconds": 3.44,
+  "passed_automatic_audit": true
+}

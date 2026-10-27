@@ -90,14 +90,15 @@ class OpenAICompletion:
 
     async def _chain(self, request: dict[str, Any], models: tuple[str, ...], shape: str) -> str:
         failure: ModelFailure | None = None
-        for attempt, model in enumerate(models):
+        order = (*models, models[0])
+        for attempt, model in enumerate(order):
             try:
                 return await self._ask(request, model)
             except ModelFailure as error:
                 failure = error
                 self._retrying(model, str(error), shape, hedged=False)
-                if attempt == 0:
-                    await asyncio.sleep(0.2)
+                if attempt + 1 < len(order):
+                    await asyncio.sleep(0.2 * (attempt + 1))
         raise failure or ModelFailure("Language model is unreachable")
 
     async def _race(

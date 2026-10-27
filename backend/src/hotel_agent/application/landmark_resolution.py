@@ -49,6 +49,8 @@ class LandmarkResolver:
             )
         if not candidates:
             return LandmarkResolution(fallback)
+        if fallback is not None and all(place.id != fallback.id for place in candidates):
+            candidates = (*candidates, fallback)
         if len(candidates) == 1 and (
             candidates[0].name.casefold().replace("ё", "е")
             == (request.target or "").casefold().replace("ё", "е")

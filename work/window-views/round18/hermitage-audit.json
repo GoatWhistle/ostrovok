@@ -1,0 +1,51 @@
+{
+  "id": "hermitage",
+  "query": "Отель в Петербурге с видом на Эрмитаж, без здания перед окнами",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "n1828899715",
+      "name": "Наука",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Государственный Эрмитаж",
+          "floor": 3,
+          "missing": [],
+          "reason": null,
+          "artifact": "hermitage-n1828899715-f_wish_61571bdc574c_n1828899715.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:61571bdc574c",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Эрмитаж, без здания перед окнами"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Санкт-Петербург",
+    "anywhere": false,
+    "normalized_query": "Отель в Санкт-Петербурге с видом на Эрмитаж, без здания перед окнами",
+    "corrections": [
+      {
+        "original": "Петербурге",
+        "corrected": "Санкт-Петербурге",
+        "reason": "Очевидное сокращение названия города нормализовано до полного официального названия."
+      }
+    ],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 1,
+  "seconds": 9.85,
+  "passed_automatic_audit": true
+}

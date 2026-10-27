@@ -1,0 +1,26 @@
+{
+  "query_id": "a32dbd971d7b620f",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:2460f757255f",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "с видом на Московский Кремль"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Москве с видом на Московский Кремль",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 106559
+}

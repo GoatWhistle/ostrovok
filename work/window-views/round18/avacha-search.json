@@ -1,0 +1,26 @@
+{
+  "query_id": "e2e605093af3ae66",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:2b39d5f5e48d",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Авачинскую сопку"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Петропавловск-Камчатский",
+    "anywhere": false,
+    "normalized_query": "В Петропавловске-Камчатском хочу отель с видом на Авачинскую сопку",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 60589
+}

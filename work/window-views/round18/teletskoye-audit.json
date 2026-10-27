@@ -1,0 +1,99 @@
+{
+  "id": "teletskoye",
+  "query": "Хочу отель у Телецкого озера, чтобы озеро было видно из номера",
+  "errors": [
+    "wrong_location"
+  ],
+  "hotels": [
+    {
+      "id": "n4307981063",
+      "name": "База отдыха \"Жемчужина\"",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Телецкое озеро",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "teletskoye-n4307981063-f_wish_71d5f687ce21_n4307981063.json"
+        }
+      ]
+    },
+    {
+      "id": "n11393484770",
+      "name": "О&К",
+      "views": []
+    },
+    {
+      "id": "n11804452369",
+      "name": "Усадьба",
+      "views": []
+    },
+    {
+      "id": "n8513537945",
+      "name": "Altay Time",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Телецкое озеро",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "teletskoye-n8513537945-f_wish_71d5f687ce21_n8513537945.json"
+        }
+      ]
+    },
+    {
+      "id": "n10137647724",
+      "name": "Газпром",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Телецкое озеро",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "teletskoye-n10137647724-f_wish_71d5f687ce21_n10137647724.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:e8a906e8013b",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "у Телецкого озера"
+      },
+      {
+        "characteristic_key": "derived:71d5f687ce21",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "чтобы озеро было видно из номера"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Телецкое озеро",
+    "anywhere": false,
+    "normalized_query": "Хочу отель у Телецкого озера, чтобы озеро было видно из номера",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 3,
+  "seconds": 19.84,
+  "passed_automatic_audit": false
+}

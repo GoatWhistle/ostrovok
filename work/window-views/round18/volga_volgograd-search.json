@@ -1,0 +1,26 @@
+{
+  "query_id": "2fbdfc42837543bc",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:bc1cc3b40a9f",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с открытым видом на Волгу"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Волгоград",
+    "anywhere": false,
+    "normalized_query": "В Волгограде хочу номер с открытым видом на Волгу",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 60514
+}

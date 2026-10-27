@@ -1,0 +1,111 @@
+{
+  "id": "sea_makh",
+  "query": "В Махачкале хочу номер с видом на Каспийское море",
+  "errors": [],
+  "hotels": [
+    {
+      "id": "w226887647",
+      "name": "AZIMUT отель Каспийск",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_makh-w226887647-f_wish_5405efaa5a64_w226887647.json"
+        }
+      ]
+    },
+    {
+      "id": "w837936594",
+      "name": "«Научно-оздоровительный комплекс Журавли»",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_makh-w837936594-f_wish_5405efaa5a64_w837936594.json"
+        }
+      ]
+    },
+    {
+      "id": "n4332884689",
+      "name": "База отдыха «Маяк»",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_makh-n4332884689-f_wish_5405efaa5a64_n4332884689.json"
+        }
+      ]
+    },
+    {
+      "id": "n4084796572",
+      "name": "Гостиночный комплекс Раде",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_makh-n4084796572-f_wish_5405efaa5a64_n4084796572.json"
+        }
+      ]
+    },
+    {
+      "id": "n2480707663",
+      "name": "Дельфин 1 б/о",
+      "views": [
+        {
+          "status": "visible",
+          "target": "Море",
+          "floor": 1,
+          "missing": [
+            "этажность отеля; рассчитано условное окно первого этажа"
+          ],
+          "reason": null,
+          "artifact": "sea_makh-n2480707663-f_wish_5405efaa5a64_n2480707663.json"
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:5405efaa5a64",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Каспийское море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Махачкала",
+    "anywhere": false,
+    "normalized_query": "В Махачкале хочу номер с видом на Каспийское море",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "calculated_rays": 5,
+  "seconds": 16.05,
+  "passed_automatic_audit": true
+}

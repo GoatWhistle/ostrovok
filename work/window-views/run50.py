@@ -27,9 +27,10 @@ def audit_ray(visibility):
     if not observer or not target or distance <= 0:
         return ["missing_observer_or_target_height"]
     confirmed, uncertain = [], []
+    itself = {visibility.get("target_id"), visibility.get("target_part_id")} - {None}
     for obstacle in visibility.get("profile", []):
         d, top, bottom = obstacle["distance_m"], obstacle["elevation"], obstacle.get("bottom")
-        if not 0 < d < distance:
+        if not 0 < d < distance or obstacle["id"] in itself:
             continue
         ratio = d / distance
         bulge = (6 / 7) * d * (distance - d) / (2 * 6371008.8)

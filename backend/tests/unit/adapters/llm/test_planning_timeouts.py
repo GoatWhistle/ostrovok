@@ -164,3 +164,19 @@ async def test_a_judgement_call_never_races_the_spare_model(
 
     assert await llm.complete(system="s", user="u", schema={"type": "json_object"}) == "main"
     assert asked == ["main"]
+
+
+async def test_a_judgement_call_falls_back_and_then_tries_the_main_model_again() -> None:
+    asked: list[str] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        model = str(json.loads(request.content)["model"])
+        asked.append(model)
+        if len(asked) < 3:
+            raise httpx.ConnectError("provider blip", request=request)
+        return httpx.Response(200, json={"choices": [{"message": {"content": model}}]})
+
+    llm = completion(httpx.MockTransport(handle))
+
+    assert await llm.complete(system="s", user="u", schema={"type": "json_object"}) == "main"
+    assert asked == ["main", "spare", "main"]

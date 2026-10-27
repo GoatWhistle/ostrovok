@@ -1,0 +1,127 @@
+{
+  "fact_id": "f_wish_0072d54bde6c_w228736311",
+  "characteristic_key": "derived:0072d54bde6c",
+  "value": true,
+  "unit": null,
+  "label": "западные окна, море должно быть видно из окна без зданий впереди",
+  "confidence": 0.8,
+  "source_type": "computed",
+  "status": "active",
+  "geo_refs": [
+    "g_window_w228736311_c6a596fcd5b9_ray",
+    "g_window_w228736311_c6a596fcd5b9_target",
+    "g_window_w228736311_c6a596fcd5b9_observer"
+  ],
+  "subject": "hotel:w228736311",
+  "qualifiers": {
+    "native_op": "eq",
+    "tool_calls": 0,
+    "visibility": {
+      "floor": 3,
+      "reason": null,
+      "status": "visible",
+      "missing": [],
+      "profile": [
+        {
+          "id": "terrain:2",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 47.48966095354326,
+          "geometry_model": null,
+          "shared_target_ground_span_m": 0
+        },
+        {
+          "id": "terrain:3",
+          "kind": "terrain",
+          "bottom": null,
+          "elevation": {
+            "maximum_m": 1.0,
+            "minimum_m": -1.0
+          },
+          "distance_m": 71.23449143031488,
+          "geometry_model": null,
+          "shared_target_ground_span_m": 0
+        }
+      ],
+      "sources": [
+        "local:osm-coastline",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "https://api.openstreetmap.org/api/0.6/map?bbox=39.735000%2C43.565000%2C39.740000%2C43.570000"
+      ],
+      "blockers": [],
+      "target_id": "coastline",
+      "distance_m": 118.7,
+      "target_name": "Море",
+      "target_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "target_part_id": "coastline",
+      "terrain_step_m": 25,
+      "target_location": [
+        39.735599582495055,
+        43.56603138158946
+      ],
+      "target_part_tags": {
+        "name": "Море",
+        "water": "sea",
+        "natural": "water"
+      },
+      "complete_coverage": true,
+      "observer_location": [
+        39.73607923678271,
+        43.567041448923355
+      ],
+      "unknown_obstacles": 0,
+      "facade_azimuth_deg": 238.49,
+      "target_elevation_m": {
+        "maximum_m": 0.5,
+        "minimum_m": -0.5
+      },
+      "minimum_clearance_m": 0.37977243555573925,
+      "sampled_line_status": "visible",
+      "observer_elevation_m": {
+        "maximum_m": 15.3,
+        "minimum_m": 4.2
+      },
+      "calculation_attempted": true,
+      "curvature_coefficient": 0.8571428571428571,
+      "building_height_source": "osm:building:levels",
+      "entire_target_verified": false,
+      "requested_target_scope": "any",
+      "bookable_room_confirmed": false,
+      "requested_component_key": null,
+      "requested_component_values": [],
+      "horizontal_field_of_view_deg": 120,
+      "required_observer_elevation_m": 3.750568911110652
+    },
+    "native_unit": null,
+    "source_text": "западные окна, море должно быть видно из окна без зданий впереди",
+    "wish_status": "matched",
+    "native_value": true,
+    "estimated_view": true,
+    "checked_sources": [],
+    "estimated_match": true,
+    "native_threshold": true,
+    "native_characteristic_key": "spatial:c6a596fcd5b9"
+  },
+  "explanation": "Линия обзора свободна в расчётной модели: «Море», 119 м, этаж 3, направление окон 238°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+  "provenance": {
+    "source_type": "computed",
+    "source_ref": "local:osm-coastline",
+    "source_url": null,
+    "evidence": [],
+    "method": "window_visibility@1",
+    "confidence": 0.8,
+    "observed_at": null,
+    "computed_at": "2026-10-26T18:17:40.824510Z",
+    "valid_until": "2026-11-02T18:17:40.824510Z"
+  },
+  "history": [],
+  "conflicts": []
+}

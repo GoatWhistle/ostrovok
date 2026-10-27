@@ -1,0 +1,1434 @@
+{
+  "query_id": "0dcaa421d12ce484",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:5405efaa5a64",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Каспийское море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Махачкала",
+    "anywhere": false,
+    "normalized_query": "В Махачкале хочу номер с видом на Каспийское море",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [
+    {
+      "hotel": {
+        "id": "w226887647",
+        "name": "AZIMUT отель Каспийск",
+        "address": "улица М. Халилова 3",
+        "location": [
+          47.64756,
+          42.8875048
+        ],
+        "building_id": "w226887647",
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:5405efaa5a64",
+          "match": "partial",
+          "label": "с видом на Каспийское море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 262 м, этаж 1, направление окон 43°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_5405efaa5a64_w226887647",
+            "characteristic_key": "derived:5405efaa5a64",
+            "value": true,
+            "label": "с видом на Каспийское море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w226887647_3cd1d19594d1_ray",
+              "g_window_w226887647_3cd1d19594d1_target",
+              "g_window_w226887647_3cd1d19594d1_observer"
+            ],
+            "subject": "facade:w226887647:43",
+            "qualifiers": {
+              "source_text": "с видом на Каспийское море",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "coastline",
+                "target_part_id": "coastline",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_part_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_name": "Море",
+                "target_location": [
+                  47.6488958732312,
+                  42.88979434350519
+                ],
+                "observer_location": [
+                  47.64744413710628,
+                  42.887695896431104
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": -24.05,
+                  "maximum_m": -19.45
+                },
+                "target_elevation_m": {
+                  "minimum_m": -0.5,
+                  "maximum_m": 0.5
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 42.99,
+                "distance_m": 261.5,
+                "minimum_clearance_m": 5.606133632940866,
+                "required_observer_elevation_m": -30.657496662483283,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "unknown",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 47.55415505463891,
+                    "elevation": {
+                      "minimum_m": -27.375,
+                      "maximum_m": -25.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 71.33123258195837,
+                    "elevation": {
+                      "minimum_m": -27.375,
+                      "maximum_m": -25.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "distance_m": 95.10831010927782,
+                    "elevation": {
+                      "minimum_m": -28.5,
+                      "maximum_m": -26.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "distance_m": 118.88538763659727,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "distance_m": 142.66246516391675,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "distance_m": 166.4395426912362,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "distance_m": 190.21662021855565,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "distance_m": 213.99369774587512,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:3cd1d19594d1",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 42.99
+            }
+          },
+          "geo_refs": [
+            "g_window_w226887647_3cd1d19594d1_ray",
+            "g_window_w226887647_3cd1d19594d1_target",
+            "g_window_w226887647_3cd1d19594d1_observer"
+          ],
+          "camera": {
+            "center": [
+              47.64756,
+              42.8875048
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 223.0,
+            "focus_facade_id": "window_w226887647_3cd1d19594d1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          47.64756,
+          42.8875048
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 223.0,
+        "focus_facade_id": "window_w226887647_3cd1d19594d1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w226887647",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  47.6471759,
+                  42.8876651
+                ],
+                [
+                  47.6475738,
+                  42.8873923
+                ],
+                [
+                  47.6477177,
+                  42.8872937
+                ],
+                [
+                  47.6478465,
+                  42.8873946
+                ],
+                [
+                  47.6478617,
+                  42.8874065
+                ],
+                [
+                  47.6478082,
+                  42.8874433
+                ],
+                [
+                  47.64732,
+                  42.8877779
+                ],
+                [
+                  47.6471759,
+                  42.8876651
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w226887647",
+          "hotel_id": "w226887647",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w226887647"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "w837936594",
+        "name": "«Научно-оздоровительный комплекс Журавли»",
+        "address": "улица Энтузиастов 9",
+        "location": [
+          47.4607185,
+          43.0477185
+        ],
+        "building_id": "w837936594",
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:5405efaa5a64",
+          "match": "partial",
+          "label": "с видом на Каспийское море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 269 м, этаж 1, направление окон 46°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_5405efaa5a64_w837936594",
+            "characteristic_key": "derived:5405efaa5a64",
+            "value": true,
+            "label": "с видом на Каспийское море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_w837936594_3cd1d19594d1_ray",
+              "g_window_w837936594_3cd1d19594d1_target",
+              "g_window_w837936594_3cd1d19594d1_observer"
+            ],
+            "subject": "facade:w837936594:46",
+            "qualifiers": {
+              "source_text": "с видом на Каспийское море",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "coastline",
+                "target_part_id": "coastline",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_part_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_name": "Море",
+                "target_location": [
+                  47.46416518084763,
+                  43.048655073277814
+                ],
+                "observer_location": [
+                  47.461239599481274,
+                  43.04752966932797
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": -19.925,
+                  "maximum_m": -15.325
+                },
+                "target_elevation_m": {
+                  "minimum_m": -0.5,
+                  "maximum_m": 0.5
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 45.79,
+                "distance_m": 269.2,
+                "minimum_clearance_m": 1.6060931685482815,
+                "required_observer_elevation_m": -21.643558317114564,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "unknown",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 48.93946484342136,
+                    "elevation": {
+                      "minimum_m": -20.0,
+                      "maximum_m": -18.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 73.40919726513204,
+                    "elevation": {
+                      "minimum_m": -21.25,
+                      "maximum_m": -19.25
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "distance_m": 97.87892968684272,
+                    "elevation": {
+                      "minimum_m": -21.25,
+                      "maximum_m": -19.25
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "distance_m": 122.3486621085534,
+                    "elevation": {
+                      "minimum_m": -23.375,
+                      "maximum_m": -21.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "distance_m": 146.81839453026407,
+                    "elevation": {
+                      "minimum_m": -28.125,
+                      "maximum_m": -26.125
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "distance_m": 171.28812695197476,
+                    "elevation": {
+                      "minimum_m": -28.875,
+                      "maximum_m": -26.875
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "distance_m": 195.75785937368545,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "distance_m": 220.22759179539614,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:3cd1d19594d1",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 45.79
+            }
+          },
+          "geo_refs": [
+            "g_window_w837936594_3cd1d19594d1_ray",
+            "g_window_w837936594_3cd1d19594d1_target",
+            "g_window_w837936594_3cd1d19594d1_observer"
+          ],
+          "camera": {
+            "center": [
+              47.4607185,
+              43.0477185
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 226.0,
+            "focus_facade_id": "window_w837936594_3cd1d19594d1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          47.4607185,
+          43.0477185
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 226.0,
+        "focus_facade_id": "window_w837936594_3cd1d19594d1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w837936594",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  47.46019,
+                  43.0473742
+                ],
+                [
+                  47.4613219,
+                  43.0473585
+                ],
+                [
+                  47.4613219,
+                  43.0474644
+                ],
+                [
+                  47.4609839,
+                  43.0477192
+                ],
+                [
+                  47.4609839,
+                  43.0478015
+                ],
+                [
+                  47.4613396,
+                  43.0480199
+                ],
+                [
+                  47.4613434,
+                  43.0480877
+                ],
+                [
+                  47.4604475,
+                  43.0481112
+                ],
+                [
+                  47.4603939,
+                  43.0480838
+                ],
+                [
+                  47.4603992,
+                  43.0477505
+                ],
+                [
+                  47.460469,
+                  43.0477388
+                ],
+                [
+                  47.460469,
+                  43.0475898
+                ],
+                [
+                  47.4602061,
+                  43.0475859
+                ],
+                [
+                  47.46019,
+                  43.0473742
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w837936594",
+          "hotel_id": "w837936594",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_w837936594"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4332884689",
+        "name": "База отдыха «Маяк»",
+        "address": "Караман 2",
+        "location": [
+          47.4622532,
+          43.057002
+        ],
+        "building_id": "w1145189554",
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:5405efaa5a64",
+          "match": "partial",
+          "label": "с видом на Каспийское море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 183 м, этаж 1, направление окон 94°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_5405efaa5a64_n4332884689",
+            "characteristic_key": "derived:5405efaa5a64",
+            "value": true,
+            "label": "с видом на Каспийское море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4332884689_3cd1d19594d1_ray",
+              "g_window_n4332884689_3cd1d19594d1_target",
+              "g_window_n4332884689_3cd1d19594d1_observer"
+            ],
+            "subject": "facade:n4332884689:94",
+            "qualifiers": {
+              "source_text": "с видом на Каспийское море",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "coastline",
+                "target_part_id": "coastline",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_part_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_name": "Море",
+                "target_location": [
+                  47.464543358935295,
+                  43.0567418189197
+                ],
+                "observer_location": [
+                  47.46231918735884,
+                  43.05695005523838
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": -21.425,
+                  "maximum_m": -16.825
+                },
+                "target_elevation_m": {
+                  "minimum_m": -0.5,
+                  "maximum_m": 0.5
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 93.69,
+                "distance_m": 182.7,
+                "minimum_clearance_m": 4.305829151992888,
+                "required_observer_elevation_m": -26.899438869323856,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "unknown",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 45.66616118618419,
+                    "elevation": {
+                      "minimum_m": -22.5,
+                      "maximum_m": -20.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 68.49924177927629,
+                    "elevation": {
+                      "minimum_m": -26.875,
+                      "maximum_m": -24.875
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "distance_m": 91.33232237236838,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "distance_m": 114.16540296546047,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "distance_m": 136.99848355855258,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:3cd1d19594d1",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 93.69
+            }
+          },
+          "geo_refs": [
+            "g_window_n4332884689_3cd1d19594d1_ray",
+            "g_window_n4332884689_3cd1d19594d1_target",
+            "g_window_n4332884689_3cd1d19594d1_observer"
+          ],
+          "camera": {
+            "center": [
+              47.4622532,
+              43.057002
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 274.0,
+            "focus_facade_id": "window_n4332884689_3cd1d19594d1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          47.4622532,
+          43.057002
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 274.0,
+        "focus_facade_id": "window_n4332884689_3cd1d19594d1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w1145189554",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  47.4617153,
+                  43.0565499
+                ],
+                [
+                  47.4618307,
+                  43.056446
+                ],
+                [
+                  47.4622169,
+                  43.056691
+                ],
+                [
+                  47.4623054,
+                  43.0568282
+                ],
+                [
+                  47.4623483,
+                  43.0573162
+                ],
+                [
+                  47.462182,
+                  43.057326
+                ],
+                [
+                  47.4621338,
+                  43.0568027
+                ],
+                [
+                  47.4617153,
+                  43.0565499
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w1145189554",
+          "hotel_id": "n4332884689",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4332884689"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n4084796572",
+        "name": "Гостиночный комплекс Раде",
+        "location": [
+          47.461087,
+          43.05387
+        ],
+        "building_id": "w1111517610",
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:5405efaa5a64",
+          "match": "partial",
+          "label": "с видом на Каспийское море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 276 м, этаж 1, направление окон 92°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_5405efaa5a64_n4084796572",
+            "characteristic_key": "derived:5405efaa5a64",
+            "value": true,
+            "label": "с видом на Каспийское море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n4084796572_3cd1d19594d1_ray",
+              "g_window_n4084796572_3cd1d19594d1_target",
+              "g_window_n4084796572_3cd1d19594d1_observer"
+            ],
+            "subject": "facade:n4084796572:92",
+            "qualifiers": {
+              "source_text": "с видом на Каспийское море",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "coastline",
+                "target_part_id": "coastline",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_part_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_name": "Море",
+                "target_location": [
+                  47.46429452648125,
+                  43.0538554251062
+                ],
+                "observer_location": [
+                  47.46090826738542,
+                  43.05385536109273
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": -19.55,
+                  "maximum_m": -14.95
+                },
+                "target_elevation_m": {
+                  "minimum_m": -0.5,
+                  "maximum_m": 0.5
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 91.63,
+                "distance_m": 275.9,
+                "minimum_clearance_m": 2.1242889252027743,
+                "required_observer_elevation_m": -21.85914671024333,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "unknown",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 45.97959441178194,
+                    "elevation": {
+                      "minimum_m": -20.5,
+                      "maximum_m": -18.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 68.96939161767291,
+                    "elevation": {
+                      "minimum_m": -20.75,
+                      "maximum_m": -18.75
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "distance_m": 91.95918882356388,
+                    "elevation": {
+                      "minimum_m": -20.5,
+                      "maximum_m": -18.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "distance_m": 114.94898602945484,
+                    "elevation": {
+                      "minimum_m": -21.375,
+                      "maximum_m": -19.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "distance_m": 137.93878323534582,
+                    "elevation": {
+                      "minimum_m": -21.375,
+                      "maximum_m": -19.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:7",
+                    "kind": "terrain",
+                    "distance_m": 160.9285804412368,
+                    "elevation": {
+                      "minimum_m": -25.375,
+                      "maximum_m": -23.375
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:8",
+                    "kind": "terrain",
+                    "distance_m": 183.91837764712776,
+                    "elevation": {
+                      "minimum_m": -28.75,
+                      "maximum_m": -26.75
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:9",
+                    "kind": "terrain",
+                    "distance_m": 206.90817485301875,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:10",
+                    "kind": "terrain",
+                    "distance_m": 229.8979720589097,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:3cd1d19594d1",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 91.63
+            }
+          },
+          "geo_refs": [
+            "g_window_n4084796572_3cd1d19594d1_ray",
+            "g_window_n4084796572_3cd1d19594d1_target",
+            "g_window_n4084796572_3cd1d19594d1_observer"
+          ],
+          "camera": {
+            "center": [
+              47.461087,
+              43.05387
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 272.0,
+            "focus_facade_id": "window_n4084796572_3cd1d19594d1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          47.461087,
+          43.05387
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 272.0,
+        "focus_facade_id": "window_n4084796572_3cd1d19594d1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w1111517610",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  47.4607125,
+                  43.0537663
+                ],
+                [
+                  47.4609016,
+                  43.0537625
+                ],
+                [
+                  47.4609064,
+                  43.0538864
+                ],
+                [
+                  47.4607172,
+                  43.0538903
+                ],
+                [
+                  47.4607125,
+                  43.0537663
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w1111517610",
+          "hotel_id": "n4084796572",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n4084796572"
+        }
+      }
+    },
+    {
+      "hotel": {
+        "id": "n2480707663",
+        "name": "Дельфин 1 б/о",
+        "address": "Трасса Махачкала-Сулак 3.0",
+        "location": [
+          47.4619961,
+          43.0443478
+        ],
+        "building_id": "w1111517618",
+        "photos": []
+      },
+      "score": 0.4,
+      "matched": [
+        {
+          "characteristic_key": "derived:5405efaa5a64",
+          "match": "partial",
+          "label": "с видом на Каспийское море",
+          "explanation": "Линия обзора свободна в расчётной модели: «Море», 187 м, этаж 1, направление окон 93°. Проверены рельеф и здания на всём пути. Не хватает данных: этажность отеля; рассчитано условное окно первого этажа. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+          "fact": {
+            "fact_id": "f_wish_5405efaa5a64_n2480707663",
+            "characteristic_key": "derived:5405efaa5a64",
+            "value": true,
+            "label": "с видом на Каспийское море",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_window_n2480707663_3cd1d19594d1_ray",
+              "g_window_n2480707663_3cd1d19594d1_target",
+              "g_window_n2480707663_3cd1d19594d1_observer"
+            ],
+            "subject": "facade:n2480707663:93",
+            "qualifiers": {
+              "source_text": "с видом на Каспийское море",
+              "estimated_view": true,
+              "visibility": {
+                "status": "visible",
+                "reason": null,
+                "bookable_room_confirmed": false,
+                "calculation_attempted": true,
+                "sampled_line_status": "visible",
+                "target_id": "coastline",
+                "target_part_id": "coastline",
+                "requested_target_scope": "any",
+                "requested_component_key": null,
+                "requested_component_values": [],
+                "entire_target_verified": false,
+                "target_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_part_tags": {
+                  "natural": "water",
+                  "water": "sea",
+                  "name": "Море"
+                },
+                "target_name": "Море",
+                "target_location": [
+                  47.46434212736225,
+                  43.04433855978294
+                ],
+                "observer_location": [
+                  47.46207301407623,
+                  43.044076259357084
+                ],
+                "observer_elevation_m": {
+                  "minimum_m": -21.8,
+                  "maximum_m": -17.2
+                },
+                "target_elevation_m": {
+                  "minimum_m": -0.5,
+                  "maximum_m": 0.5
+                },
+                "floor": 1,
+                "facade_azimuth_deg": 92.95,
+                "distance_m": 187.2,
+                "minimum_clearance_m": 4.024558111350045,
+                "required_observer_elevation_m": -26.899410815133393,
+                "complete_coverage": true,
+                "unknown_obstacles": 0,
+                "blockers": [],
+                "missing": [
+                  "этажность отеля; рассчитано условное окно первого этажа"
+                ],
+                "sources": [
+                  "local:osm-coastline",
+                  "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+                  "https://download.geofabrik.de/russia-261024.osm.pbf"
+                ],
+                "building_height_source": "unknown",
+                "profile": [
+                  {
+                    "id": "terrain:2",
+                    "kind": "terrain",
+                    "distance_m": 46.79379747875818,
+                    "elevation": {
+                      "minimum_m": -22.5,
+                      "maximum_m": -20.5
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:3",
+                    "kind": "terrain",
+                    "distance_m": 70.19069621813728,
+                    "elevation": {
+                      "minimum_m": -26.875,
+                      "maximum_m": -24.875
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:4",
+                    "kind": "terrain",
+                    "distance_m": 93.58759495751636,
+                    "elevation": {
+                      "minimum_m": -28.875,
+                      "maximum_m": -26.875
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:5",
+                    "kind": "terrain",
+                    "distance_m": 116.98449369689544,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  },
+                  {
+                    "id": "terrain:6",
+                    "kind": "terrain",
+                    "distance_m": 140.38139243627455,
+                    "elevation": {
+                      "minimum_m": -29.0,
+                      "maximum_m": -27.0
+                    },
+                    "bottom": null,
+                    "geometry_model": null,
+                    "shared_target_ground_span_m": 0
+                  }
+                ],
+                "curvature_coefficient": 0.8571428571428571,
+                "terrain_step_m": 25,
+                "horizontal_field_of_view_deg": 120
+              },
+              "native_characteristic_key": "spatial:3cd1d19594d1",
+              "native_value": true,
+              "native_unit": null,
+              "native_op": "eq",
+              "native_threshold": true,
+              "estimated_match": true,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1,
+              "facade_azimuth": 92.95
+            }
+          },
+          "geo_refs": [
+            "g_window_n2480707663_3cd1d19594d1_ray",
+            "g_window_n2480707663_3cd1d19594d1_target",
+            "g_window_n2480707663_3cd1d19594d1_observer"
+          ],
+          "camera": {
+            "center": [
+              47.4619961,
+              43.0443478
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 273.0,
+            "focus_facade_id": "window_n2480707663_3cd1d19594d1_ray"
+          }
+        }
+      ],
+      "camera": {
+        "center": [
+          47.4619961,
+          43.0443478
+        ],
+        "zoom": 17.0,
+        "pitch": 60.0,
+        "bearing": 273.0,
+        "focus_facade_id": "window_n2480707663_3cd1d19594d1_ray"
+      },
+      "footprint": {
+        "type": "Feature",
+        "id": "w1111517618",
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  47.4617678,
+                  43.0439484
+                ],
+                [
+                  47.4620602,
+                  43.0439374
+                ],
+                [
+                  47.4620732,
+                  43.0441227
+                ],
+                [
+                  47.4617809,
+                  43.0441337
+                ],
+                [
+                  47.4617678,
+                  43.0439484
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "building_id": "w1111517618",
+          "hotel_id": "n2480707663",
+          "is_hotel": true,
+          "height_m": null,
+          "min_height_m": 0,
+          "levels": null,
+          "height_fact_id": "f_height_n2480707663"
+        }
+      }
+    }
+  ],
+  "viewport": {
+    "bbox": [
+      47.4607185,
+      42.8875048,
+      47.64756,
+      43.057002
+    ],
+    "camera": {
+      "center": [
+        47.64756,
+        42.8875048
+      ],
+      "zoom": 17.0,
+      "pitch": 60.0,
+      "bearing": 223.0,
+      "focus_facade_id": "window_w226887647_3cd1d19594d1_ray"
+    }
+  },
+  "pending": [],
+  "took_ms": 15988
+}

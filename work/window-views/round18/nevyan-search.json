@@ -1,0 +1,26 @@
+{
+  "query_id": "19a133b7a6b8e7ef",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:eda54e4ac0bb",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с видом на Невьянскую башню"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Невьянск",
+    "anywhere": false,
+    "normalized_query": "В Невьянске нужен отель с видом на Невьянскую башню",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 69707
+}

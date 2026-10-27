@@ -59,7 +59,8 @@
 }
 
 .text {
-  composes: bodySmText from "../../shared/styles/compose.module.css";
+  composes: bodySmText accentUnderline from "../../shared/styles/compose.module.css";
+  text-decoration-line: none;
   color: var(--text-primary);
   font-weight: var(--weight-regular);
   font-variant-numeric: var(--font-numeric);
@@ -68,10 +69,8 @@
 
 .text[data-best="true"] {
   font-weight: var(--weight-bold);
-  text-decoration-line: underline;
   text-decoration-color: var(--text-accent);
-  text-decoration-thickness: var(--hairline);
-  text-underline-offset: var(--space-4);
+  text-decoration-line: underline;
 }
 
 @media (min-width: 48rem) and (max-width: 63.99rem) {

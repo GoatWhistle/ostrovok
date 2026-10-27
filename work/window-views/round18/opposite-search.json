@@ -1,0 +1,34 @@
+{
+  "query_id": "1129e912b5799329",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:a4d35bb02d13",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "с северными и южными окнами одного номера"
+      },
+      {
+        "characteristic_key": "derived:ec370efe1767",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "чтобы с обеих сторон было видно одно и то же море"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Хочу отель в Сочи с северными и южными окнами одного номера, чтобы с обеих сторон было видно одно и то же море",
+    "corrections": [],
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false
+  },
+  "results": [],
+  "pending": [],
+  "took_ms": 35839
+}
