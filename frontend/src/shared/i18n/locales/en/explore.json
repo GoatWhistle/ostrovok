@@ -278,7 +278,6 @@
     "conflictRule": "Selection rule",
     "wrong": "Wrong, correct it",
     "cancel": "Cancel",
-    "invalidNumber": "Enter a number of 0 or more, for example 12.5. An empty value is not zero.",
     "reviewTitle": "Check the value",
     "reviewText": "A confirmation or correction becomes a fact with the source \"hotelier\"."
   },
@@ -313,7 +312,6 @@
     "open": "Open questions",
     "empty": "No open questions",
     "error": "Questions are unavailable",
-    "placeholder": "Include room categories, conditions and restrictions",
     "send": "Save answer",
     "saved": "Answer saved",
     "failed": "Could not save the answer",
@@ -333,13 +331,7 @@
       "skipped": "Skipped"
     },
     "why": "Every traveller will see the answer. It becomes a fact with the source \"hotelier\" and replaces the calculation.",
-    "yes": "Yes, there is",
-    "no": "No",
-    "unknown": "I don't know",
-    "yesText": "Yes",
-    "noText": "No",
     "draftAtRisk": "This draft will be lost when you close the tab. Save your answer before leaving.",
-    "detailed": "Or answer in your own words",
     "current": "Now in search: {{value}}",
     "currentText": "Source: {{source}}. Your answer will replace this value.",
     "currentNone": "Now in search: no data",
@@ -347,7 +339,8 @@
     "extracted": "New facts from your answer",
     "conflicts": "Your answer disagrees with other sources",
     "conflictsText": "The hotelier's answer wins in search.",
-    "hotelCard": "Hotel card"
+    "hotelCard": "Hotel card",
+    "next": "Next question"
   },
   "compare": {
     "title": "Compare what matters",
@@ -589,5 +582,49 @@
     "unavailableText": "The address and hotel details remain available above.",
     "geometryError": "The selected map explanation could not be loaded.",
     "backToHotel": "Back to hotel"
+  },
+  "answerFields": {
+    "yes": "Yes",
+    "no": "No",
+    "unknown": "Don't know",
+    "yesText": "yes",
+    "noText": "no",
+    "number": "{{value}} {{unit}}",
+    "numberLabel": "{{label}}, {{unit}}",
+    "invalidNumber": "Enter a non-negative number such as 12 or 12.5",
+    "note": "Explanation and conditions",
+    "notePlaceholder": "For example: dogs only, by prior arrangement",
+    "correctionNote": "Correction comment",
+    "preview": "Will be sent",
+    "previewEmpty": "Choose a value or write an explanation: an empty answer is not sent.",
+    "allowed": {
+      "label": "Are pets allowed",
+      "yes": "Allowed",
+      "no": "Not allowed",
+      "yesText": "pets are allowed",
+      "noText": "pets are not allowed"
+    },
+    "present": {
+      "label": "Availability",
+      "yes": "Available",
+      "no": "Not available",
+      "yesText": "available",
+      "noText": "not available"
+    },
+    "max_weight_kg": {
+      "label": "Maximum pet weight",
+      "unit": "kg",
+      "text": "weight up to {{value}} kg"
+    },
+    "fee_rub": {
+      "label": "Surcharge",
+      "unit": "₽",
+      "text": "surcharge {{value}} ₽"
+    },
+    "adults": {
+      "label": "Adults per room",
+      "text": "up to {{value}} adults"
+    },
+    "missing": "Enter a value"
   }
 }

@@ -743,6 +743,18 @@ components:
         source_kinds:
           type: array
           items: { $ref: "#/components/schemas/SourceType" }
+        answer_fields:
+          type: array
+          description: >-
+            Поля, из которых складывается ответ отельера и исправление значения, в порядке реестра.
+            unit — каноническая единица поля для подписи и текста ответа; null, если единицы нет.
+          items:
+            type: object
+            required: [name, kind, unit]
+            properties:
+              name: { type: string, example: max_weight_kg }
+              kind: { type: string, enum: [bool, number] }
+              unit: { type: string, nullable: true, example: кг }
         display:
           type: object
           properties:

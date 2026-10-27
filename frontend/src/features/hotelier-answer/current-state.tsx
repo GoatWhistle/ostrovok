@@ -3,6 +3,13 @@ import { factLabel } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Banner } from "@/shared/ui"
 
+const RANK: Readonly<Record<string, number>> = {
+  confirmed_by_hotelier: 0,
+  active: 1,
+  conflicted: 2,
+  stale: 3,
+}
+
 export interface CurrentStateProps {
   readonly hotelId: string
   readonly characteristicKey: string | undefined
@@ -14,11 +21,13 @@ export function CurrentState({ hotelId, characteristicKey }: CurrentStateProps) 
   const hotel = useHotel(hotelId)
   if (!hotel.isSuccess || !characteristicKey) return null
   const current = hotel.data.facts
-    .filter((fact) => fact.characteristic_key === characteristicKey)
-    .reduce<(typeof hotel.data.facts)[number] | undefined>(
-      (best, fact) => (best && best.confidence >= fact.confidence ? best : fact),
-      undefined,
-    )
+    .filter((fact) => fact.characteristic_key === characteristicKey && fact.status in RANK)
+    .sort(
+      (a, b) =>
+        (RANK[a.status] ?? 0) - (RANK[b.status] ?? 0) ||
+        (b.provenance?.computed_at ?? "").localeCompare(a.provenance?.computed_at ?? "") ||
+        b.confidence - a.confidence,
+    )[0]
   if (!current)
     return (
       <Banner tone="info" title={t("explore:hotelier.currentNone")}>

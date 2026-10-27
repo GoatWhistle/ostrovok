@@ -1,16 +1,24 @@
 import { type FormEvent, useId, useState } from "react"
+import {
+  AnswerFields,
+  answerFields,
+  composeAnswer,
+  invalidFields,
+  readDraft,
+  useAnswerCopy,
+  useCharacteristic,
+  writeDraft,
+} from "@/entities/catalog"
 import { HueIcon } from "@/entities/evidence"
 import { useHotelierAnswer } from "@/entities/hotelier"
 import type { components } from "@/shared/api/schema.gen"
 import { characteristicTitle } from "@/shared/geo/fact-label"
 import { useSessionDraft } from "@/shared/hooks"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Banner, Button, TextArea } from "@/shared/ui"
+import { Banner, Button, Skeleton } from "@/shared/ui"
 import { AnswerResult } from "./answer-result"
 import { CurrentState } from "./current-state"
 import styles from "./question-answer.module.css"
-
-type Quick = "yes" | "no" | "text"
 
 export interface QuestionAnswerProps {
   readonly hotelId: string
@@ -22,84 +30,68 @@ export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProp
   const { t } = useTranslation()
   const { locale } = useLocale()
   const titleId = useId()
-  const {
-    value: text,
-    setValue: setText,
-    atRisk,
-  } = useSessionDraft(`question:${hotelId}:${question.id ?? ""}`)
-  const [sent, setSent] = useState<Quick>()
-  const answer = useHotelierAnswer(hotelId, question.id ?? "")
-  const open = (question.status ?? "open") === "open"
   const key = question.characteristic_key
-  function send(kind: Quick, value: string) {
-    if (!question.id || !value.trim() || answer.isPending) return
-    setSent(kind)
-    answer.mutate({ text: value.trim(), draft: text })
-  }
+  const { characteristic, pending } = useCharacteristic(key)
+  const fields = answerFields(characteristic)
+  const copy = useAnswerCopy(key)
+  const { value: stored, setValue, atRisk } = useSessionDraft(`question:${hotelId}:${question.id}`)
+  const draft = readDraft(stored)
+  const [attempted, setAttempted] = useState(false)
+  const answer = useHotelierAnswer(hotelId, question.id)
+  const open = question.status === "open"
+  const text = composeAnswer(fields, draft, copy.phrases)
+  const invalid = invalidFields(fields, draft)
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    send("text", text)
+    if (answer.isPending) return
+    if (invalid.length) {
+      setAttempted(true)
+      event.currentTarget.querySelector<HTMLElement>("[aria-invalid='true']")?.focus()
+      return
+    }
+    if (!text) return
+    answer.mutate({ text, draft: stored })
   }
   return (
     <section className={styles.answer} aria-labelledby={titleId} data-motion="fade">
-      {key ? (
-        <p className={styles.topic}>
-          <HueIcon characteristicKey={key} />
-          {characteristicTitle(key, locale)}
-        </p>
-      ) : null}
+      <p className={styles.topic}>
+        <HueIcon characteristicKey={key} />
+        {characteristicTitle(key, locale)}
+      </p>
       <p id={titleId} className={styles.question} lang="ru">
         {question.text}
       </p>
       <p className={styles.why}>{t("explore:hotelier.why")}</p>
       {open ? (
-        <>
-          <div className={styles.actions}>
-            <Button
-              variant="confirm"
-              icon="check"
-              pending={answer.isPending && sent === "yes"}
+        <form className={styles.form} onSubmit={submit} noValidate>
+          {pending ? (
+            <Skeleton lines={2} />
+          ) : (
+            <AnswerFields
+              characteristicKey={key}
+              fields={fields}
+              draft={draft}
+              onChange={(next) => setValue(writeDraft(next))}
               disabled={answer.isPending}
-              onClick={() => send("yes", t("explore:hotelier.yesText"))}
-            >
-              {t("explore:hotelier.yes")}
-            </Button>
-            <Button
-              variant="reject"
-              icon="rejected"
-              pending={answer.isPending && sent === "no"}
-              disabled={answer.isPending}
-              onClick={() => send("no", t("explore:hotelier.noText"))}
-            >
-              {t("explore:hotelier.no")}
-            </Button>
-            {onSkip ? (
-              <Button variant="ghost" icon="next" onClick={onSkip} disabled={answer.isPending}>
-                {t("explore:hotelier.unknown")}
-              </Button>
-            ) : null}
-          </div>
-          <form className={styles.form} onSubmit={submit}>
-            <TextArea
-              label={t("explore:hotelier.detailed")}
-              placeholder={t("explore:hotelier.placeholder")}
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              maxLength={10000}
-              required
-              disabled={answer.isPending}
+              attempted={attempted}
             />
+          )}
+          <div className={styles.actions}>
             <Button
               type="submit"
               icon="send"
-              pending={answer.isPending && sent === "text"}
-              disabled={answer.isPending || !text.trim() || !question.id}
-              className={styles.submit}
+              pending={answer.isPending}
+              disabled={answer.isPending || (!text && !invalid.length)}
             >
               {t("explore:hotelier.send")}
             </Button>
-          </form>
-        </>
+            {onSkip ? (
+              <Button variant="ghost" icon="next" onClick={onSkip} disabled={answer.isPending}>
+                {t("explore:hotelier.next")}
+              </Button>
+            ) : null}
+          </div>
+        </form>
       ) : null}
       {atRisk ? <Banner tone="warning" title={t("explore:hotelier.draftAtRisk")} /> : null}
       <CurrentState hotelId={hotelId} characteristicKey={key} />

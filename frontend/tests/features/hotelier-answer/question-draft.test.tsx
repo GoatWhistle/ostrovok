@@ -1,9 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { QueryClientProvider } from "@tanstack/react-query"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { QuestionAnswer } from "@/features/hotelier-answer/question-answer"
 import { LocaleProvider } from "@/shared/i18n"
 import copy from "@/shared/i18n/locales/ru/explore.json"
+import { registryClient } from "./registry"
 
 vi.mock("@/features/hotelier-answer/current-state", () => ({ CurrentState: () => null }))
 
@@ -23,7 +24,7 @@ beforeEach(() => sessionStorage.clear())
 
 describe("hotel question drafts", () => {
   it("restores the original draft after switching questions and remounting", () => {
-    const client = new QueryClient()
+    const client = registryClient()
     function Form({ id }: { readonly id: string }) {
       return (
         <QueryClientProvider client={client}>
@@ -35,7 +36,7 @@ describe("hotel question drafts", () => {
     }
     const view = render(<Form id="q_a" />)
     const field = () =>
-      screen.getByRole("textbox", { name: copy.hotelier.detailed }) as HTMLTextAreaElement
+      screen.getByRole("textbox", { name: copy.answerFields.note }) as HTMLTextAreaElement
     fireEvent.change(field(), { target: { value: "A room with conditions" } })
     view.rerender(<Form id="q_b" />)
     expect(field().value).toBe("")

@@ -15,7 +15,7 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
   const headingId = useId()
   const form = useFactCorrection(fact)
   const { atRisk, editing, setEditing, mutation, submit } = form
-  const editable = ["string", "number", "boolean"].includes(typeof fact.value)
+  const editable = form.structured || typeof fact.value === "string"
   return (
     <section className={styles.review} aria-labelledby={headingId}>
       <div className={styles.head}>

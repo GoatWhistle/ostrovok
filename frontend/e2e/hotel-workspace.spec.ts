@@ -139,7 +139,7 @@ test("hotelier answer, confirmation and correction use real contract mutations",
   const calls = await installHotelContract(page)
   await page.goto("/hotelier/h_test_a")
   await page
-    .getByRole("textbox", { name: copy.hotelier.detailed, exact: true })
+    .getByRole("textbox", { name: copy.answerFields.note, exact: true })
     .fill("West-facing rooms from floor five")
   await page.getByRole("button", { name: copy.hotelier.send, exact: true }).click()
   await expect.poll(() => calls.answers).toBe(1)

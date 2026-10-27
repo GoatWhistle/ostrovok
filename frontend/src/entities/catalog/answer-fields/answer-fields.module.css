@@ -1,0 +1,45 @@
+.fields {
+  display: grid;
+  gap: var(--space-16);
+  min-inline-size: 0;
+}
+
+.choice {
+  display: grid;
+  gap: var(--space-8);
+  justify-items: start;
+}
+
+.label {
+  composes: labelText from "../../../shared/styles/compose.module.css";
+}
+
+.number {
+  display: grid;
+  gap: var(--space-4);
+  max-inline-size: var(--field-max-width);
+}
+
+.error {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  color: var(--text-danger);
+}
+
+.preview {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-16);
+}
+
+.previewLabel {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
+.previewText {
+  overflow-wrap: anywhere;
+}
+
+.previewEmpty {
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
+}

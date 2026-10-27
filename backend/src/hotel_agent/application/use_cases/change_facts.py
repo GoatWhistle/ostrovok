@@ -144,7 +144,9 @@ def _checked(value: object, characteristic: Characteristic) -> FactValue:
             if key not in rules:
                 raise InvalidValue("Unknown characteristic field")
             if item is not None:
-                checked_value(item, ValueType(rules[key].kind.value))
+                nested = checked_value(item, ValueType(rules[key].kind.value))
+                if isinstance(nested, float) and nested < 0:
+                    raise InvalidValue("Value must be nonnegative")
     if isinstance(checked, float) and checked < 0:
         raise InvalidValue("Value must be nonnegative")
     return checked

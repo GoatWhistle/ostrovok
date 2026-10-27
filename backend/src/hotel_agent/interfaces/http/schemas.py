@@ -7,6 +7,7 @@ from hotel_agent.domain.characteristics import (
     BetterDirection,
     Characteristic,
     CompareGroup,
+    FieldKind,
     GeoStyle,
     Scope,
     SourceType,
@@ -35,6 +36,12 @@ class CompareHintSchema(BaseModel):
     better: BetterDirection | None = None
 
 
+class AnswerFieldSchema(BaseModel):
+    name: str
+    kind: FieldKind
+    unit: str | None
+
+
 class CharacteristicSchema(BaseModel):
     key: str
     title: str
@@ -44,6 +51,7 @@ class CharacteristicSchema(BaseModel):
     scope: Scope
     ttl_days: int
     source_kinds: list[SourceType]
+    answer_fields: list[AnswerFieldSchema] = Field(default_factory=list)
     display: DisplaySchema
     compare: CompareHintSchema | None = None
 
@@ -101,6 +109,14 @@ def characteristic_schema(characteristic: Characteristic) -> CharacteristicSchem
         scope=characteristic.scope,
         ttl_days=characteristic.ttl_days,
         source_kinds=list(characteristic.source_kinds),
+        answer_fields=[
+            AnswerFieldSchema(
+                name=field.name,
+                kind=field.kind,
+                unit=field.units[0] if field.units else None,
+            )
+            for field in characteristic.fields
+        ],
         compare=CompareHintSchema(
             group=characteristic.compare.group, better=characteristic.compare.better
         )

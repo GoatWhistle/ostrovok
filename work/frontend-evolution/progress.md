@@ -21,12 +21,15 @@ push только после завершения всех E00–E18/H01–H07. 
 | E10 | verified | `675e6d1`: [Отчёт](evidence/e10.md): 450 тестов, панель 1/3, отдельная страница, Back/Forward, прежний scroll/фокус/камера |
 | E09 | verified | `13a56c6`: [Отчёт](evidence/e09.md): 459 тестов, матрица16, реальный выбор маркера, 10 циклов, камера/стиль/scroll/фокус |
 | E11 | verified | `6b79d11`: [Отчёт](evidence/e11.md): 488 тестов, ревью кода Codex, WebGL-маршрут на мини- и большой карте, 2 контекста, scroll 1200→1200, прямой вход, без WebGL |
-| H02 | verified | [Отчёт](evidence/h02.md): PATCH open/skipped, 409 для answered, сохранённый ответ и факты по provenance; 875 unit/contract + 41 integration, гонки на PostGIS, HTTP на стенде |
-| E13–E17, H03–H07 | planned | Следующие этапы |
+| H02 | verified | `5d4fe0f`: [Отчёт](evidence/h02.md): PATCH open/skipped, 409 для answered, сохранённый ответ и факты по provenance; 875 unit/contract + 41 integration, гонки на PostGIS, HTTP на стенде |
+| H03 | verified | [Отчёт](evidence/h03.md): формы из `answer_fields` реестра, выбор не отправляет, типизированные исправления объектов; 516 тестов, FakeLLM на стенде |
+| E13–E17, H04–H07 | planned | Следующие этапы |
 
 Подложка России скачана и проверена (13 315 380 122 байта, basemap-e9827062f2ba); исходник Protomaps 20261026,
 bbox 19.6,41.1,180,82, zoom до 14. Файлы /mnt/e/o-hack-data/raw и /basemaps.
 Журнал в основном дереве `work/russia-download/`; завершение определяется verify и manifest, не размером preallocated-файла.
 
-Следующие проверки: E13 проверяет карточки мест на большой карте и предупреждения смешанного legacy/expression
+Следующие проверки: E16 должен обновить `e2e/hotel-workspace.spec.ts`: 4 сценария (новый чат,
+мобильная вкладка «Отели», сравнение, длинные тексты на 320 px) падают и на `5d4fe0f`, до H03,
+так как не учитывают навигацию E01–E10. E13 проверяет карточки мест на большой карте и предупреждения смешанного legacy/expression
 filter у подписей Protomaps; E14 проверяет большую карту при увеличении текста.

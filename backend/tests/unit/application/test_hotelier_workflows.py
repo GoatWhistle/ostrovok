@@ -148,6 +148,8 @@ async def test_object_corrections_check_registry_fields(
         await service.correct("f_p", {"allowed": True, "parrots": 2}, "")
     with pytest.raises(InvalidValue):
         await service.correct("f_p", {"allowed": "yes"}, "")
+    with pytest.raises(InvalidValue, match="nonnegative"):
+        await service.correct("f_p", {"allowed": True, "max_weight_kg": -5}, "")
     corrected = await service.correct("f_p", {"allowed": False, "fee_rub": 0}, "")
     assert corrected.value == {"allowed": False, "fee_rub": 0}
 

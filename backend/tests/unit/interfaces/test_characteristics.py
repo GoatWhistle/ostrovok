@@ -83,3 +83,22 @@ def test_a_new_yaml_file_reaches_the_endpoint_without_code_changes(
     assert added["title"] == "Подогреваемый бассейн"
     assert added["display"]["icon"] == "pool"
     assert len(items) == 10
+
+
+def test_answer_fields_follow_the_registry(settings: Settings) -> None:
+    with TestClient(create_app(settings)) as client:
+        items = {
+            item["key"]: item for item in client.get("/api/v1/characteristics").json()["items"]
+        }
+
+    assert items["pets_policy"]["answer_fields"] == [
+        {"name": "allowed", "kind": "bool", "unit": None},
+        {"name": "max_weight_kg", "kind": "number", "unit": "кг"},
+        {"name": "fee_rub", "kind": "number", "unit": "₽"},
+    ]
+    assert items["room_capacity"]["answer_fields"] == [
+        {"name": "adults", "kind": "number", "unit": "взрослых"}
+    ]
+    assert items["double_room"]["answer_fields"] == [
+        {"name": "present", "kind": "bool", "unit": None}
+    ]

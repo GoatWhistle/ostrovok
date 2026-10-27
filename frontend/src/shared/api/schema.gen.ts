@@ -536,6 +536,15 @@ export interface components {
                 better?: "lower" | "higher" | null;
             } | null;
             source_kinds?: components["schemas"]["SourceType"][];
+            /** @description Поля, из которых складывается ответ отельера и исправление значения, в порядке реестра. unit — каноническая единица поля для подписи и текста ответа; null, если единицы нет. */
+            answer_fields?: {
+                /** @example max_weight_kg */
+                name: string;
+                /** @enum {string} */
+                kind: "bool" | "number";
+                /** @example кг */
+                unit: string | null;
+            }[];
             display?: {
                 /** @example waves */
                 icon?: string;

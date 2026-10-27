@@ -14,3 +14,11 @@ export function useCharacteristics() {
     retry: false,
   })
 }
+export function useCharacteristic(key: string | undefined) {
+  const query = useCharacteristics()
+  return {
+    characteristic: query.data?.items?.find((item) => item.key === key),
+    pending: query.isPending,
+    failed: query.isError,
+  }
+}
