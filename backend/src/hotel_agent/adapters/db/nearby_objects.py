@@ -1,3 +1,4 @@
+import re
 from collections.abc import Mapping
 
 from psycopg import AsyncConnection
@@ -27,7 +28,7 @@ NEARBY = """WITH objects AS MATERIALIZED (
       AND (%(name)s::text[] IS NULL OR EXISTS (
             SELECT 1 FROM jsonb_each_text(p.tags) AS tag(key, value)
             WHERE tag.key = ANY(%(name_tags)s::text[])
-              AND translate(lower(tag.value), 'ё', 'е') LIKE ALL(%(name)s::text[])))
+              AND translate(lower(tag.value), 'ё', 'е') ~ ALL(%(name)s::text[])))
       AND (%(bbox)s::double precision[] IS NULL OR ST_DWithin(p.location::geography,
           ST_MakeEnvelope((%(bbox)s::double precision[])[1], (%(bbox)s::double precision[])[2],
                           (%(bbox)s::double precision[])[3], (%(bbox)s::double precision[])[4],
@@ -45,12 +46,11 @@ GROUP BY h.id"""
 
 
 def name_patterns(name: str) -> list[str] | None:
-    words = [
-        word for word in name.casefold().replace("ё", "е").split() if len(word.strip(".,:;")) >= 3
-    ]
-    if not words:
+    words = [word.strip(".,:;«»\"'") for word in name.casefold().replace("ё", "е").split()]
+    stems = [word[: max(4, len(word) - 3)] for word in words if len(word) >= 3]
+    if not stems:
         return None
-    return [f"%{word[:-1] if len(word) >= 5 else word}%" for word in words]
+    return [f"(^|[^[:alnum:]]){re.escape(stem)}" for stem in stems]
 
 
 class PostgresNearbyObjectRepository:

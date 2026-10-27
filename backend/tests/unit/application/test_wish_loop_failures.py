@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 from hotel_agent.application.agent.data_records import DataStep
 from hotel_agent.application.agent.data_tools import DataTools
-from hotel_agent.application.agent.wish_loop import WishLoop
+from hotel_agent.application.agent.wish_loop import WishLoop, time_notice
 from hotel_agent.application.agent.wish_records import WishStatus
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -217,8 +217,8 @@ async def test_repeated_web_search_runs_out_of_budget_before_the_time_limit() ->
     )
 
     result = await explorer(
-        "отель рядом с заведением",
-        ("рядом с заведением",),
+        "отель с телескопом на крыше",
+        ("с телескопом на крыше",),
         "Казань",
         "russia",
         [hotel("city")],
@@ -228,3 +228,46 @@ async def test_repeated_web_search_runs_out_of_budget_before_the_time_limit() ->
 
     assert cast(AsyncMock, explorer._web.search).await_count == 8
     assert result.wish_results[0].status is not WishStatus.MATCHED
+
+
+def test_time_pressure_is_reported_once_per_threshold() -> None:
+    warned: set[int] = set()
+
+    assert time_notice(0.2, 140, warned) is None
+    first = time_notice(0.65, 60, warned)
+    assert first is not None and "Most of the time" in str(first["result"]["error"])
+    assert time_notice(0.7, 50, warned) is None
+    last = time_notice(0.9, 18, warned)
+    assert last is not None and "almost over" in str(last["result"]["error"])
+    assert last["result"]["remaining_seconds"] == 18
+    assert time_notice(0.99, 2, warned) is None
+
+
+async def test_unfinished_check_may_end_early_but_keeps_its_honest_status() -> None:
+    steps = [
+        *(
+            DataStep(action="search_web", arguments={"query": f"попытка {index}"})
+            for index in range(3)
+        ),
+        DataStep(
+            action="finish",
+            arguments={},
+            reason="В проверенных источниках подтверждения нет",
+            criteria=(),
+        ),
+    ]
+    explorer, llm, _ = build(steps)
+    explorer._web = cast(
+        WebResearchPort, SimpleNamespace(search=AsyncMock(return_value=()), read=AsyncMock())
+    )
+    with patch(
+        "hotel_agent.application.agent.wish_loop.time_notice",
+        side_effect=lambda spent, left, warned: warned.add(85) or None,
+    ):
+        result = await explorer(
+            "отель с телескопом", ("с телескопом",), "Сочи", "sochi", [hotel("city")], None, False
+        )
+
+    assert result.wish_results[0].status is WishStatus.INCOMPLETE
+    assert "подтверждения нет" in result.wish_results[0].reason
+    assert llm.explore_data.await_count == 4

@@ -1,0 +1,451 @@
+{
+  "id": "museum",
+  "query": "Ищу отель в Переславле-Залесском рядом с музеем чайников",
+  "check": "Resolve the museum and measure proximity.",
+  "seconds": 24.6,
+  "http_status": 200,
+  "response": {
+    "id": "1ce1f6be-1936-400a-8cd8-e209993906a4",
+    "title": "Переславль-Залесский: рядом с музеем чайников",
+    "updated_at": "2026-10-27T08:57:50.283729Z",
+    "messages": [
+      {
+        "id": "5766d927-53b0-417d-bdd6-9c1da79066c5",
+        "role": "user",
+        "content": "Ищу отель в Переславле-Залесском рядом с музеем чайников",
+        "created_at": "2026-10-27T08:57:50.283729Z"
+      },
+      {
+        "id": "a8901582-c73d-4c7d-a9a8-b1c88de5843f",
+        "role": "assistant",
+        "content": "В подборке 4 отелей. Подтверждённые и неизвестные условия отмечены в карточках.",
+        "created_at": "2026-10-27T08:57:50.283729Z"
+      }
+    ],
+    "effective_query": "отель в Переславле-Залесском рядом с музеем чайников",
+    "search": {
+      "query_id": "46cacdf84f835e03",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:74db43e65879",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с музеем чайников"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Переславль-Залесский",
+        "anywhere": false,
+        "normalized_query": "отель в Переславле-Залесском рядом с музеем чайников",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [
+        {
+          "hotel": {
+            "id": "n12001595538",
+            "name": "Спутник",
+            "address": null,
+            "location": [
+              38.7826315,
+              56.7242617
+            ],
+            "stars": null,
+            "building_id": "w1294808916",
+            "height_m": null,
+            "levels": null
+          },
+          "score": 0.653,
+          "matched": [
+            {
+              "characteristic_key": "derived:74db43e65879",
+              "match": "full",
+              "label": "рядом с музеем чайников",
+              "explanation": "До ближайшей точки контура «Музей чайника» 275 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+              "fact": {
+                "fact_id": "f_wish_74db43e65879_n12001595538",
+                "characteristic_key": "derived:74db43e65879",
+                "value": true,
+                "unit": null,
+                "label": "рядом с музеем чайников",
+                "confidence": 0.6533665276357546,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_boundary_f_spatial_n12001595538_baa02ea415a5"
+                ]
+              },
+              "geo_refs": [
+                "g_boundary_f_spatial_n12001595538_baa02ea415a5"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              38.7826315,
+              56.7242617
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w1294808916",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      38.7825215,
+                      56.7242397
+                    ],
+                    [
+                      38.7827261,
+                      56.7242233
+                    ],
+                    [
+                      38.782761,
+                      56.7243542
+                    ],
+                    [
+                      38.7825564,
+                      56.7243706
+                    ],
+                    [
+                      38.7825215,
+                      56.7242397
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w1294808916",
+              "hotel_id": "n12001595538",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n12001595538"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n913072540",
+            "name": "Surf-point",
+            "address": null,
+            "location": [
+              38.7825518,
+              56.7247173
+            ],
+            "stars": null,
+            "building_id": "w238945469",
+            "height_m": null,
+            "levels": null
+          },
+          "score": 0.649,
+          "matched": [
+            {
+              "characteristic_key": "derived:74db43e65879",
+              "match": "full",
+              "label": "рядом с музеем чайников",
+              "explanation": "До ближайшей точки контура «Музей чайника» 282 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+              "fact": {
+                "fact_id": "f_wish_74db43e65879_n913072540",
+                "characteristic_key": "derived:74db43e65879",
+                "value": true,
+                "unit": null,
+                "label": "рядом с музеем чайников",
+                "confidence": 0.6494811842980607,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_boundary_f_spatial_n913072540_baa02ea415a5"
+                ]
+              },
+              "geo_refs": [
+                "g_boundary_f_spatial_n913072540_baa02ea415a5"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              38.7825518,
+              56.7247173
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w238945469",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      38.7827149,
+                      56.7246559
+                    ],
+                    [
+                      38.782898,
+                      56.7246446
+                    ],
+                    [
+                      38.7829162,
+                      56.7247327
+                    ],
+                    [
+                      38.782733,
+                      56.724744
+                    ],
+                    [
+                      38.7827149,
+                      56.7246559
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w238945469",
+              "hotel_id": "n913072540",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n913072540"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n2681207190",
+            "name": "Постоялый двор",
+            "address": null,
+            "location": [
+              38.7774789,
+              56.7247724
+            ],
+            "stars": null,
+            "building_id": "w238945448",
+            "height_m": null,
+            "levels": null
+          },
+          "score": 0.242,
+          "matched": [
+            {
+              "characteristic_key": "derived:74db43e65879",
+              "match": "partial",
+              "label": "рядом с музеем чайников",
+              "explanation": "До ближайшей точки контура «Музей чайника» 591 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+              "fact": {
+                "fact_id": "f_wish_74db43e65879_n2681207190",
+                "characteristic_key": "derived:74db43e65879",
+                "value": true,
+                "unit": null,
+                "label": "рядом с музеем чайников",
+                "confidence": 0.48490729608625344,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_boundary_f_spatial_n2681207190_baa02ea415a5"
+                ]
+              },
+              "geo_refs": [
+                "g_boundary_f_spatial_n2681207190_baa02ea415a5"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              38.7774789,
+              56.7247724
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w238945448",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      38.7772434,
+                      56.72469
+                    ],
+                    [
+                      38.7775843,
+                      56.7246757
+                    ],
+                    [
+                      38.7776193,
+                      56.7249267
+                    ],
+                    [
+                      38.7772783,
+                      56.724941
+                    ],
+                    [
+                      38.7772434,
+                      56.72469
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w238945448",
+              "hotel_id": "n2681207190",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n2681207190"
+            }
+          }
+        },
+        {
+          "hotel": {
+            "id": "n2467548776",
+            "name": "Ботик",
+            "address": null,
+            "location": [
+              38.7755852,
+              56.7252595
+            ],
+            "stars": null,
+            "building_id": "w238945375",
+            "height_m": null,
+            "levels": null
+          },
+          "score": 0.21,
+          "matched": [
+            {
+              "characteristic_key": "derived:74db43e65879",
+              "match": "partial",
+              "label": "рядом с музеем чайников",
+              "explanation": "До ближайшей точки контура «Музей чайника» 711 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+              "fact": {
+                "fact_id": "f_wish_74db43e65879_n2467548776",
+                "characteristic_key": "derived:74db43e65879",
+                "value": true,
+                "unit": null,
+                "label": "рядом с музеем чайников",
+                "confidence": 0.42053721081467565,
+                "source_type": "computed",
+                "status": "active",
+                "geo_refs": [
+                  "g_boundary_f_spatial_n2467548776_baa02ea415a5"
+                ]
+              },
+              "geo_refs": [
+                "g_boundary_f_spatial_n2467548776_baa02ea415a5"
+              ],
+              "camera": null
+            }
+          ],
+          "camera": {
+            "center": [
+              38.7755852,
+              56.7252595
+            ],
+            "zoom": 17.0,
+            "pitch": 60.0,
+            "bearing": 0.0,
+            "focus_facade_id": null
+          },
+          "footprint": {
+            "type": "Feature",
+            "id": "w238945375",
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [
+                      38.775504,
+                      56.7251894
+                    ],
+                    [
+                      38.7756103,
+                      56.725171
+                    ],
+                    [
+                      38.7756406,
+                      56.7252237
+                    ],
+                    [
+                      38.7755343,
+                      56.7252421
+                    ],
+                    [
+                      38.775504,
+                      56.7251894
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "building_id": "w238945375",
+              "hotel_id": "n2467548776",
+              "is_hotel": true,
+              "height_m": null,
+              "min_height_m": 0,
+              "levels": null,
+              "height_fact_id": "f_height_n2467548776"
+            }
+          }
+        }
+      ],
+      "viewport": {
+        "bbox": [
+          38.7755852,
+          56.7242617,
+          38.7826315,
+          56.7252595
+        ],
+        "camera": {
+          "center": [
+            38.7826315,
+            56.7242617
+          ],
+          "zoom": 17.0,
+          "pitch": 60.0,
+          "bearing": 0.0,
+          "focus_facade_id": null
+        }
+      },
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "a8901582-c73d-4c7d-a9a8-b1c88de5843f"
+  }
+}

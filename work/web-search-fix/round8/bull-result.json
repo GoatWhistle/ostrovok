@@ -1,0 +1,61 @@
+{
+  "id": "bull",
+  "query": "отель рядом с The бык в Казани",
+  "check": "No such place in data: honest and prompt.",
+  "seconds": 163.7,
+  "http_status": 200,
+  "response": {
+    "id": "1af22d48-7737-4d48-8f51-b70fc2687515",
+    "title": "Казань: рядом с The бык",
+    "updated_at": "2026-10-27T09:11:32.737806Z",
+    "messages": [
+      {
+        "id": "325cb2fb-aea8-4530-87ff-beddb5204bad",
+        "role": "user",
+        "content": "отель рядом с The бык в Казани",
+        "created_at": "2026-10-27T09:11:32.737806Z"
+      },
+      {
+        "id": "00998c83-b497-45d9-b629-19be20358aec",
+        "role": "assistant",
+        "content": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска.",
+        "created_at": "2026-10-27T09:11:32.737806Z"
+      }
+    ],
+    "effective_query": "отель рядом с The бык в Казани",
+    "search": {
+      "query_id": "d948eeb6d15496df",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:95237c67f7a5",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с The бык"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Казань",
+        "anywhere": false,
+        "normalized_query": "отель рядом с The бык в Казани",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [],
+      "viewport": null,
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "00998c83-b497-45d9-b629-19be20358aec"
+  }
+}

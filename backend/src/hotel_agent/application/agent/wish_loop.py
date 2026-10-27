@@ -10,6 +10,7 @@ from hotel_agent.application.agent.data_records import (
     ExplorationOutcome,
 )
 from hotel_agent.application.agent.data_tools import DataTools
+from hotel_agent.application.agent.proximity_terms import named_place
 from hotel_agent.application.agent.wish_context import wish_context
 from hotel_agent.application.agent.wish_criteria import evaluate_criteria
 from hotel_agent.application.agent.wish_evidence import relabel_facts, wish_intent
@@ -20,6 +21,27 @@ from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
+
+PRESSED = (
+    "Most of the time for this wish is used. Stop widening the search: either confirm the wish"
+    " with the data you already have or finish honestly with what is established."
+)
+LAST_CALL = (
+    "The time for this wish is almost over. Finish now: name what the sources did and did not"
+    " establish. An unfinished check is not evidence that no hotel matches."
+)
+NOTICES = ((60, PRESSED), (85, LAST_CALL))
+
+
+def time_notice(spent: float, left: float, warned: set[int]) -> dict[str, Any] | None:
+    for share, message in NOTICES:
+        if spent * 100 >= share and share not in warned:
+            warned.add(share)
+            return {
+                "tool": "time_budget",
+                "result": {"error": message, "remaining_seconds": round(left, 1)},
+            }
+    return None
 
 
 class WishLoop:
@@ -41,6 +63,8 @@ class WishLoop:
         tools: DataTools,
         note: dict[str, Any] | None = None,
     ) -> ExplorationOutcome:
+        started = asyncio.get_running_loop().time()
+        warned: set[int] = set()
         ledger = WishLedger(tools.sources)
         completion = WishCompletion(self._clock, self._logger, term, ledger, tools)
         observations: list[dict[str, Any]] = [note] if note else []
@@ -78,7 +102,29 @@ class WishLoop:
                             "result": await tools.execute("inspect_data", {}),
                         }
                     )
+                place = named_place(term)
+                if place:
+                    arguments = {"name": place, "radius_m": 20000}
+                    try:
+                        result = await tools.execute("find_nearby", arguments)
+                    except (ValueError, TypeError, KeyError) as error:
+                        result = {"error": str(error)}
+                    ledger.observe("find_nearby", arguments, result)
+                    observations.append(
+                        {"tool": "find_nearby", "arguments": arguments, "result": result}
+                    )
+                    self._logger.info(
+                        "wish_place_probe",
+                        wish=term,
+                        place=place,
+                        matched=result.get("hotels_with_match", 0),
+                        nearest=(result.get("matches") or [{}])[0].get("nearest_m"),
+                    )
                 for index in range(self._max_steps):
+                    spent = (asyncio.get_running_loop().time() - started) / self._timeout
+                    notice = time_notice(spent, self._timeout * (1 - spent), warned)
+                    if notice is not None:
+                        observations.append(notice)
                     context = wish_context(
                         query,
                         term,
@@ -134,7 +180,8 @@ class WishLoop:
                                 step.question,
                             )
                         missing = ledger.missing(step.irrelevant_sources)
-                        if (
+                        out_of_time = 85 in warned
+                        if not out_of_time and (
                             missing
                             or ledger.pending_pages
                             or len(step.reason.strip()) < 12
@@ -152,9 +199,14 @@ class WishLoop:
                             )
                             continue
                         status = (
-                            WishStatus.UNAVAILABLE if ledger.unavailable else WishStatus.EXHAUSTED
+                            WishStatus.UNAVAILABLE
+                            if ledger.unavailable
+                            else WishStatus.INCOMPLETE
+                            if missing or ledger.pending_pages
+                            else WishStatus.EXHAUSTED
                         )
-                        return completion.finish(status, step.reason, retained, None)
+                        reason = step.reason if len(step.reason.strip()) >= 12 else reason
+                        return completion.finish(status, reason, retained, None)
                     if ledger.exhausted(step.action):
                         observations.append(
                             {

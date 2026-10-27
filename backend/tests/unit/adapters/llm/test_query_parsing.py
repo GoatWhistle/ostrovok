@@ -10,6 +10,6 @@ def test_named_chain_survives_russian_declension_but_invented_name_does_not() ->
 
 
 def test_name_patterns_match_each_word_by_stem() -> None:
-    assert name_patterns("ВкусВилл") == ["%вкусвил%"]
-    assert name_patterns("Додо Пицца") == ["%додо%", "%пицц%"]
+    assert name_patterns("ВкусВилл") == ["(^|[^[:alnum:]])вкусв"]
+    assert name_patterns("Лосиной фермы") == ["(^|[^[:alnum:]])лоси", "(^|[^[:alnum:]])ферм"]
     assert name_patterns(" ") is None

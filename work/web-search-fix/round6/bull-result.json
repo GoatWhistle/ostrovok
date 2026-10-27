@@ -1,0 +1,61 @@
+{
+  "id": "bull",
+  "query": "отель рядом с The бык в Казани",
+  "check": "No such place in data: say so honestly and fast.",
+  "seconds": 192.2,
+  "http_status": 200,
+  "response": {
+    "id": "c6121704-dc0f-4b52-996f-0fb2ecb27663",
+    "title": "Казань: рядом с The бык",
+    "updated_at": "2026-10-27T09:02:46.240336Z",
+    "messages": [
+      {
+        "id": "27c70e72-1741-4d73-9025-a0f2b4af8bcc",
+        "role": "user",
+        "content": "отель рядом с The бык в Казани",
+        "created_at": "2026-10-27T09:02:46.240336Z"
+      },
+      {
+        "id": "7e4f9024-f6d5-41fc-b090-5b429afbe89f",
+        "role": "assistant",
+        "content": "Пока не нашёл отелей с подтверждённым совпадением. Уточните или измените условия. Проверка не завершена: рядом с The бык. Чтобы проверить свободные номера, уточните дату заезда, дату выезда, число взрослых, бюджет за ночь или за всё проживание.",
+        "created_at": "2026-10-27T09:02:46.240336Z"
+      }
+    ],
+    "effective_query": "отель рядом с The бык в Казани",
+    "search": {
+      "query_id": "d9569957b423c57e",
+      "parsed": {
+        "intents": [
+          {
+            "characteristic_key": "derived:95237c67f7a5",
+            "op": "eq",
+            "value": true,
+            "weight": 1.0,
+            "required": false,
+            "source_text": "рядом с The бык"
+          }
+        ],
+        "unmatched_terms": [],
+        "location_hint": "Казань",
+        "anywhere": false,
+        "normalized_query": "отель рядом с The бык в Казани",
+        "corrections": [],
+        "unsupported_region": null,
+        "needs_clarification": false,
+        "wants_room": true,
+        "room_preferences_unrestricted": false,
+        "budget": null,
+        "check_in": null,
+        "check_out": null,
+        "adults": null
+      },
+      "results": [],
+      "viewport": null,
+      "pending": [],
+      "next_cursor": null,
+      "took_ms": 0
+    },
+    "search_message_id": "7e4f9024-f6d5-41fc-b090-5b429afbe89f"
+  }
+}

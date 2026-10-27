@@ -1,0 +1,22 @@
+[
+ {
+  "id": "bull",
+  "query": "отель рядом с The бык в Казани",
+  "check": "No such place in data: honest and prompt."
+ },
+ {
+  "id": "animals",
+  "query": "хочу отель в Костроме недалеко от лосиной фермы",
+  "check": "Resolve the real farm and state the distance."
+ },
+ {
+  "id": "original",
+  "query": "хочу отель в Москве, в котором останавливался сам трамп",
+  "check": "Confirmed historical stay."
+ },
+ {
+  "id": "poet",
+  "query": "Найди гостиницу в Петербурге, где жил Есенин",
+  "check": "Residence, not death, established."
+ }
+]
