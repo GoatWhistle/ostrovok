@@ -1,4 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { renderOverviewBuildings } from "./overview-buildings"
 
 export interface CatalogClass {
   readonly key: string
@@ -74,7 +75,7 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
       type: "fill",
       source: "sochi-map",
       "source-layer": "landcover",
-      minzoom: 10,
+      minzoom: 2,
       paint: { "fill-color": colors.ground, "fill-opacity": 0.9 },
     },
     below,
@@ -85,7 +86,7 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
       type: "fill",
       source: "sochi-map",
       "source-layer": "water",
-      minzoom: 10,
+      minzoom: 2,
       paint: { "fill-color": colors.ground },
     },
     below,
@@ -107,9 +108,14 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
   )
 }
 
-export function renderCatalogLayers(map: MapLibreMap, colors: ClassColors) {
+export function renderCatalogLayers(
+  map: MapLibreMap,
+  colors: ClassColors,
+  excluded: readonly string[] = [],
+) {
   if (!map.getSource("sochi-map")) return
   if (!map.getLayer("base-landcover")) addCatalogLayers(map, colors)
+  renderOverviewBuildings(map, colors.volume, excluded)
   map.setPaintProperty("base-landcover", "fill-color", colors.ground)
   map.setPaintProperty("base-water", "fill-color", colors.ground)
   map.setPaintProperty("base-trees", "circle-color", colors.prop)

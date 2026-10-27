@@ -90,6 +90,8 @@ function setVisible(map: MapLibreMap, layer: string, visible: boolean) {
 export function applyQuality(map: MapLibreMap, level: QualityLevel) {
   setVisible(map, "base-roads-glow", level === 0)
   setVisible(map, "scene-volumes", level < 3)
+  setVisible(map, "overview-volumes", level < 3 && map.getZoom() < 16)
+  setVisible(map, "base-buildings", true)
   setVisible(map, "buildings-volume", level < 3)
   const ratio = Math.min(
     window.devicePixelRatio,

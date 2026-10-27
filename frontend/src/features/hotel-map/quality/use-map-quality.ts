@@ -21,8 +21,10 @@ export function useMapQuality(mapRef: RefObject<MapLibreMap | null>, ready: bool
     const apply = () => applyQuality(map, level)
     apply()
     map.on("styledata", apply)
+    map.on("zoom", apply)
     return () => {
       map.off("styledata", apply)
+      map.off("zoom", apply)
     }
   }, [mapRef, ready, level])
   return level

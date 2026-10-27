@@ -144,13 +144,13 @@ export function useHotelMap({
       .getContainer()
       .parentElement?.style.setProperty("--map-backdrop", scenePalette(scene, mode).sea)
     renderBasemap(map, scene)
-    renderCatalogLayers(map, classes)
+    renderCatalogLayers(map, classes, buildingIds(buildings))
     const hasRoute = renderHighlights(map, highlightData, colors)
     renderBasemapLabels(map, basemaps, colors, locale)
     setRoute(
       hasRoute ? JSON.stringify(highlightData.features.map((item) => item.geometry)) : undefined,
     )
-  }, [instance, ready, highlightData, colors, sun, basemaps, locale, classes])
+  }, [instance, ready, highlightData, colors, sun, basemaps, locale, classes, buildings])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
     () => tintForTime(colors, lightMode(sun.altitude)),

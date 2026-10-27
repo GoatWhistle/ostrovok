@@ -112,7 +112,7 @@ export function renderSceneVolumes(
       id: "scene-volumes",
       type: "fill-extrusion",
       source: "scene-buildings",
-      minzoom: 15.5,
+      minzoom: 16,
       filter,
       paint: {
         "fill-extrusion-color": color,
