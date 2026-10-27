@@ -13,7 +13,7 @@ export const CONTEXT_ROOF_FORMS = "context-roof-forms"
 const LAYERS = [ROOF_FORMS, CONTEXT_ROOF_FORMS] as const
 export const FLAT_ROOF: ExpressionSpecification = ["!", ["to-boolean", ["get", "pitched"]]]
 const MIN_ZOOM = 16
-const CONTEXT_MIN_ZOOM = 14
+const CONTEXT_MIN_ZOOM = 15
 
 export function withRoofForms<T extends RoofSource>(sources: readonly T[]) {
   const roofs = sources.map((source) => pitchedRoof(source))

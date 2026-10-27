@@ -35,7 +35,7 @@ describe("pitched roofs", () => {
 
   it("stacks narrowing tiers from the eaves up to the ridge", () => {
     const tiers = pitchedRoof(house(box(20, 10)))
-    expect(tiers).toHaveLength(4)
+    expect(tiers).toHaveLength(6)
     expect(tiers[0]?.properties?.base).toBe(7)
     const tops = tiers.map((tier) => tier.properties?.top as number)
     expect(tops).toEqual([...tops].sort((a, b) => a - b))

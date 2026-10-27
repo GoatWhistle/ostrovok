@@ -13,7 +13,7 @@ export interface RoofSource {
 
 export type RoofShape = "gable" | "hip"
 
-const STEPS = 4
+const STEPS = 6
 const MAX_HEIGHT = 16
 const MAX_LEVELS = 5
 const MIN_AREA = 25
