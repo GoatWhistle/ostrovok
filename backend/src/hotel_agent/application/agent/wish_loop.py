@@ -169,6 +169,22 @@ class WishLoop:
                                 }
                             )
                             if step.action == "finish":
+                                self._logger.info(
+                                    "wish_finish_rejected",
+                                    wish=term,
+                                    cause="criteria",
+                                    rejected=" ".join(rejected),
+                                    fields=" ".join(
+                                        sorted(
+                                            {
+                                                check.field
+                                                for item in step.criteria
+                                                for check in item.checks
+                                            }
+                                        )
+                                    ),
+                                    intents=len(candidate.intents),
+                                )
                                 continue
                     if step.action == "finish":
                         if step.question:
@@ -196,6 +212,14 @@ class WishLoop:
                                         "pending_pages": ledger.pending_pages,
                                     },
                                 }
+                            )
+                            self._logger.info(
+                                "wish_finish_rejected",
+                                wish=term,
+                                cause="sources",
+                                missing=" ".join(missing),
+                                pending_pages=len(ledger.pending_pages),
+                                reason_length=len(step.reason.strip()),
                             )
                             continue
                         status = (
