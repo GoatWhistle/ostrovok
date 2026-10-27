@@ -146,3 +146,68 @@ async def test_reader_identifies_itself_with_a_contact_and_names_refusal_causes(
     finally:
         await web.aclose()
     assert all("https://github.com/" in agent for agent in seen)
+
+
+DUCKDUCKGO_PAGE = """
+<div class="result results_links">
+  <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fhotelsouz.ru%2F&amp;rut=x">
+    Отель <b>Союз</b>, г. Иваново - официальный сайт</a>
+  <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fhotelsouz.ru%2F">
+    Гостям предлагаются номера с холодильником</a>
+</div>
+<div class="result results_links">
+  <a rel="nofollow" class="result__a" href="https://example.org/other">Совсем другая страница</a>
+  <a class="result__snippet" href="https://example.org/other">Категории номеров в отелях</a>
+</div>
+"""
+
+
+def search_transport(duckduckgo: str, freeserp: object) -> httpx.MockTransport:
+    def handle(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "html.duckduckgo.com":
+            return httpx.Response(200, headers={"content-type": "text/html"}, text=duckduckgo)
+        if request.url.host == "freeserp.ai":
+            return httpx.Response(200, json=freeserp)
+        return httpx.Response(200, headers={"content-type": "application/rss+xml"}, text="<rss/>")
+
+    return httpx.MockTransport(handle)
+
+
+async def test_search_follows_the_redirect_target_and_drops_unrelated_results() -> None:
+    web = PublicWebResearch(search_transport(DUCKDUCKGO_PAGE, {"ok": False}))
+    try:
+        hits = await web.search('"Союз" Иваново номера официальный сайт')
+        assert [hit.url for hit in hits] == ["https://hotelsouz.ru/"]
+        assert "номера с холодильником" in hits[0].text
+    finally:
+        await web.aclose()
+
+
+async def test_search_returns_nothing_when_providers_ignore_the_query() -> None:
+    spam = {
+        "ok": True,
+        "results": [
+            {
+                "title": "Категории номеров в отелях",
+                "url": "https://hotbot.ai/blog/kategorii",
+                "snippet": "стандарт, делюкс и комфорт",
+            }
+        ],
+    }
+    web = PublicWebResearch(search_transport("<html></html>", spam))
+    try:
+        assert await web.search('"Гостиница Кедр" Абаза номера официальный сайт') == ()
+    finally:
+        await web.aclose()
+
+
+async def test_search_reports_an_unavailable_provider_instead_of_empty_results() -> None:
+    def handle(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(503)
+
+    web = PublicWebResearch(httpx.MockTransport(handle))
+    try:
+        with pytest.raises(ValueError, match="unavailable"):
+            await web.search("Отель Союз Иваново")
+    finally:
+        await web.aclose()
