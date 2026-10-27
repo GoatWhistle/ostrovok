@@ -76,7 +76,9 @@ class OpenAICompletion:
         models = self._budget.order(self._candidates(planning))
         if models[0] == models[1]:
             return await self._twice(request, models[0], shape)
-        return await self._race(request, models, planning, shape)
+        if planning:
+            return await self._race(request, models, planning, shape)
+        return await self._chain(request, models, shape)
 
     async def _twice(self, request: dict[str, Any], model: str, shape: str) -> str:
         try:
@@ -85,6 +87,18 @@ class OpenAICompletion:
             self._retrying(model, str(error), shape, hedged=False)
             await asyncio.sleep(0.2)
             return await self._ask(request, model)
+
+    async def _chain(self, request: dict[str, Any], models: tuple[str, ...], shape: str) -> str:
+        failure: ModelFailure | None = None
+        for attempt, model in enumerate(models):
+            try:
+                return await self._ask(request, model)
+            except ModelFailure as error:
+                failure = error
+                self._retrying(model, str(error), shape, hedged=False)
+                if attempt == 0:
+                    await asyncio.sleep(0.2)
+        raise failure or ModelFailure("Language model is unreachable")
 
     async def _race(
         self, request: dict[str, Any], models: tuple[str, ...], planning: bool, shape: str
