@@ -1,48 +1,71 @@
 import { useState } from "react"
 import { useParams } from "react-router"
-import { FactDetails } from "@/features/fact-details"
-import { HotelDetails } from "@/features/hotel-details"
-import { HotelierAnswer } from "@/features/hotelier-answer"
+import { FactDetails, useReviewNavigation } from "@/features/fact-details"
+import { HotelDetails, HotelFacts } from "@/features/hotel-details"
+import { HotelierAnswer, HotelierHeader } from "@/features/hotelier-answer"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { PageHeader, StatusBadge } from "@/shared/ui"
+import { Dialog } from "@/shared/ui"
 import styles from "./hotelier-page.module.css"
 
 export function HotelierPage() {
   const { t } = useTranslation()
   const { hotelId } = useParams()
-  const [selected, setSelected] = useState<{ hotel: string; fact: string }>()
+  const navigation = useReviewNavigation(hotelId)
+  const { selected } = navigation
+  const [preview, setPreview] = useState(false)
   useDocumentTitle(t("explore:navigation.hotelier"))
+  const openFact = navigation.open
   return (
     <div className={styles.page}>
-      <PageHeader
-        title={t("explore:hotelier.title")}
-        description={t("explore:hotelier.description")}
-        actions={
-          <StatusBadge tone="info" icon="hotelier">
-            {t("explore:hotelier.badge")}
-          </StatusBadge>
-        }
-      />
+      <HotelierHeader hotelId={hotelId} onPreview={() => setPreview(true)} />
       <div className={styles.panels} data-detail={hotelId !== undefined}>
-        <HotelierAnswer key={hotelId ?? "none"} hotelId={hotelId} />
+        <HotelierAnswer key={hotelId ?? "none"} hotelId={hotelId} onEditFact={openFact} />
         {hotelId ? (
-          <aside className={styles.detail} aria-label={t("explore:hotelier.hotelCard")}>
+          <aside
+            ref={navigation.detail}
+            tabIndex={-1}
+            className={styles.detail}
+            aria-label={t("explore:hotelier.facts")}
+            onKeyDown={(event) => {
+              if (!selected || event.key !== "Escape" || event.defaultPrevented) return
+              event.preventDefault()
+              event.stopPropagation()
+              navigation.back()
+            }}
+          >
             {selected?.hotel === hotelId ? (
               <FactDetails
                 hotelId={hotelId}
                 factId={selected.fact}
-                onBack={() => setSelected(undefined)}
+                onBack={navigation.back}
+                backLabel={t(
+                  selected.question
+                    ? "explore:hotelier.backToQuestion"
+                    : "explore:hotelier.backToFacts",
+                )}
                 review
               />
             ) : (
-              <HotelDetails
+              <HotelFacts
                 hotelId={hotelId}
-                onFact={(fact) => setSelected({ hotel: hotelId, fact: fact.fact_id })}
+                title={t("explore:hotelier.facts")}
+                onFact={(fact) => openFact(fact.fact_id)}
               />
             )}
           </aside>
         ) : null}
       </div>
+      {preview && hotelId ? (
+        <Dialog title={t("explore:hotelier.preview")} onClose={() => setPreview(false)}>
+          <HotelDetails
+            hotelId={hotelId}
+            onFact={(fact) => {
+              setPreview(false)
+              openFact(fact.fact_id)
+            }}
+          />
+        </Dialog>
+      ) : null}
     </div>
   )
 }

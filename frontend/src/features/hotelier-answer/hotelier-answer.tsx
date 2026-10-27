@@ -1,18 +1,20 @@
-import { type FormEvent, useState } from "react"
-import { useNavigate } from "react-router"
 import { useHotelierQuestions } from "@/entities/hotelier"
-import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
-import { Button, EmptyState, ErrorState, Skeleton, TextField } from "@/shared/ui"
+import { Button, EmptyState, ErrorState, Segmented, Skeleton } from "@/shared/ui"
 import styles from "./hotelier-answer.module.css"
 import { QuestionAnswer } from "./question-answer"
 import { QuestionQueue } from "./question-queue"
-
-type Question = components["schemas"]["HotelierQuestion"]
+import { useMobileQueue } from "./use-mobile-queue"
+import { type QueueTab, useQuestionSelection } from "./use-question-selection"
 
 export interface HotelierAnswerProps {
   readonly hotelId: string | undefined
+  readonly onEditFact: (factId: string) => void
 }
+
+type Queue = ReturnType<typeof useQuestionSelection>
+
+const TABS: readonly QueueTab[] = ["open", "skipped", "answered"]
 
 function QueueSkeleton() {
   return (
@@ -24,78 +26,141 @@ function QueueSkeleton() {
   )
 }
 
-function pick(items: readonly Question[], picked: string | undefined) {
-  const open = items.filter((item) => (item.status ?? "open") === "open")
-  const selected =
-    items.find((item) => item.id !== undefined && item.id === picked) ?? open[0] ?? items[0]
-  const next = open[(open.findIndex((item) => item.id === selected?.id) + 1) % open.length]
-  return { selected, next: next && next.id !== selected?.id ? next.id : undefined }
-}
-
-function LookupForm({ hotelId }: { readonly hotelId: string | undefined }) {
+function TabEmpty({ tab, answered }: { readonly tab: QueueTab; readonly answered: number }) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const [value, setValue] = useState(hotelId ?? "")
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    if (value.trim()) void navigate(`/hotelier/${encodeURIComponent(value.trim())}`)
-  }
+  if (tab === "skipped") return <p className={styles.empty}>{t("explore:hotelier.noSkipped")}</p>
+  if (tab === "answered") return <p className={styles.empty}>{t("explore:hotelier.noAnswered")}</p>
   return (
-    <form className={styles.lookup} onSubmit={submit}>
-      <TextField
-        label={t("explore:hotelier.hotelId")}
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-        required
-      />
-      <Button icon="building" type="submit" variant="secondary" disabled={!value.trim()}>
-        {t("explore:hotelier.open")}
-      </Button>
-    </form>
+    <p className={styles.empty}>
+      {answered ? t("explore:hotelier.allAnsweredText") : t("explore:hotelier.empty")}
+    </p>
   )
 }
 
-export function HotelierAnswer({ hotelId }: HotelierAnswerProps) {
+function QueueTabs({
+  queue,
+  onSelect,
+}: {
+  readonly queue: Queue
+  readonly onSelect: (id: string) => void
+}) {
   const { t } = useTranslation()
-  const [picked, setPicked] = useState<string>()
+  return (
+    <>
+      <div className={styles.tabs}>
+        <Segmented
+          label={t("explore:hotelier.tabsLabel")}
+          value={queue.tab}
+          onChange={queue.changeTab}
+          options={TABS.map((tab) => ({
+            value: tab,
+            label: t("explore:hotelier.tabCount", {
+              label: t(`explore:hotelier.tabs.${tab}`),
+              count: queue.counts[tab],
+            }),
+          }))}
+        />
+      </div>
+      {queue.visible.length ? (
+        <QuestionQueue
+          questions={queue.visible}
+          selectedId={queue.selected?.id}
+          onSelect={onSelect}
+        />
+      ) : (
+        <TabEmpty tab={queue.tab} answered={queue.counts.answered} />
+      )}
+    </>
+  )
+}
+
+function QueueStates({
+  questions,
+  queue,
+}: {
+  readonly questions: ReturnType<typeof useHotelierQuestions>
+  readonly queue: Queue
+}) {
+  const { t } = useTranslation()
+  const items = questions.data?.items ?? []
+  return (
+    <>
+      {questions.isPending ? <QueueSkeleton /> : null}
+      {questions.isError ? (
+        <ErrorState
+          title={t("explore:hotelier.error")}
+          onRetry={() => void questions.refetch()}
+          retryPending={questions.isFetching}
+        />
+      ) : null}
+      {questions.isSuccess && !queue.counts.open && !queue.counts.skipped ? (
+        <EmptyState
+          icon="verified"
+          title={t(items.length ? "explore:hotelier.allAnswered" : "explore:hotelier.empty")}
+        />
+      ) : null}
+    </>
+  )
+}
+
+export function HotelierAnswer({ hotelId, onEditFact }: HotelierAnswerProps) {
+  const { t } = useTranslation()
   const questions = useHotelierQuestions(hotelId)
   const items = questions.data?.items ?? []
-  const { selected, next } = pick(items, picked)
+  const queue = useQuestionSelection(items)
+  const mobile = useMobileQueue(queue.select)
   const loading = hotelId !== undefined && questions.isPending
+  const next = queue.next
+  if (!hotelId)
+    return (
+      <EmptyState
+        icon="hotelier"
+        title={t("explore:hotelier.select")}
+        description={t("explore:hotelier.description")}
+      />
+    )
   return (
-    <div className={styles.workspace}>
-      <aside className={styles.queue} aria-label={t("explore:hotelier.queue")}>
-        <LookupForm hotelId={hotelId} />
-        {loading ? <QueueSkeleton /> : null}
-        {items.length ? (
-          <QuestionQueue questions={items} selectedId={selected?.id} onSelect={setPicked} />
+    <div className={styles.workspace} data-view={mobile.view}>
+      <aside
+        ref={mobile.queue}
+        className={styles.queue}
+        aria-label={t("explore:hotelier.queue")}
+        onKeyDown={(event) => {
+          if (!mobile.narrow || event.key !== "Escape" || event.defaultPrevented) return
+          event.preventDefault()
+          event.stopPropagation()
+          mobile.closeQueue()
+        }}
+      >
+        {mobile.narrow && mobile.view === "queue" ? (
+          <Button variant="ghost" icon="chevron-left" onClick={mobile.closeQueue}>
+            {t("explore:hotelier.backToQuestion")}
+          </Button>
         ) : null}
+        {loading ? <QueueSkeleton /> : null}
+        {items.length ? <QueueTabs queue={queue} onSelect={mobile.choose} /> : null}
       </aside>
       <div className={styles.main}>
-        {hotelId ? null : (
-          <EmptyState
-            icon="hotelier"
-            title={t("explore:hotelier.select")}
-            description={t("explore:hotelier.description")}
-          />
-        )}
-        {loading ? <QueueSkeleton /> : null}
-        {questions.isError ? (
-          <ErrorState
-            title={t("explore:hotelier.error")}
-            onRetry={() => void questions.refetch()}
-            retryPending={questions.isFetching}
-          />
+        {mobile.narrow && items.length ? (
+          <Button
+            ref={mobile.trigger}
+            variant="ghost"
+            icon="list"
+            className={styles.all}
+            onClick={mobile.openQueue}
+          >
+            {t("explore:hotelier.allQuestions", { count: items.length })}
+          </Button>
         ) : null}
-        {questions.isSuccess && !items.length ? (
-          <EmptyState icon="verified" title={t("explore:hotelier.empty")} />
-        ) : null}
-        {hotelId && selected ? (
+        <QueueStates questions={questions} queue={queue} />
+        {queue.selected ? (
           <QuestionAnswer
-            key={selected.id}
+            key={queue.selected.id}
             hotelId={hotelId}
-            question={selected}
-            onSkip={next ? () => setPicked(next) : undefined}
+            question={queue.selected}
+            focusHeading={mobile.focusId === queue.selected.id}
+            onNext={next ? () => queue.select(next) : undefined}
+            onEditFact={onEditFact}
           />
         ) : null}
       </div>

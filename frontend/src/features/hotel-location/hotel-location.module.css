@@ -1,0 +1,17 @@
+.location {
+  display: grid;
+  gap: var(--space-16);
+  margin-block-start: var(--space-24);
+}
+.address {
+  overflow-wrap: anywhere;
+  font-size: var(--font-size-body);
+}
+.frame {
+  position: relative;
+  block-size: clamp(15rem, 40dvh, 22rem);
+  min-inline-size: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface-sunken);
+}

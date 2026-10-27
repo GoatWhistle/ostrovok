@@ -1,0 +1,333 @@
+[
+  {
+    "name": "center-10",
+    "z": 10,
+    "x": 624,
+    "y": 373,
+    "bytes": 109208,
+    "ms": 218.93,
+    "source_buildings": 27982,
+    "layers": {
+      "roads": 305,
+      "coastline": 61,
+      "beaches": 30,
+      "landcover": 1972,
+      "water": 57
+    }
+  },
+  {
+    "name": "center-12",
+    "z": 12,
+    "x": 2499,
+    "y": 1495,
+    "bytes": 49188,
+    "ms": 76.14,
+    "source_buildings": 8562,
+    "layers": {
+      "roads": 202,
+      "coastline": 5,
+      "beaches": 16,
+      "landcover": 1201,
+      "water": 30
+    }
+  },
+  {
+    "name": "center-13",
+    "z": 13,
+    "x": 4999,
+    "y": 2991,
+    "bytes": 84109,
+    "ms": 60.03,
+    "source_buildings": 2669,
+    "layers": {
+      "roads": 2123,
+      "coastline": 5,
+      "beaches": 2,
+      "landcover": 677,
+      "water": 27
+    }
+  },
+  {
+    "name": "center-14",
+    "z": 14,
+    "x": 9999,
+    "y": 5983,
+    "bytes": 51199,
+    "ms": 16.8,
+    "source_buildings": 882,
+    "layers": {
+      "roads": 1193,
+      "coastline": 5,
+      "beaches": 2,
+      "landcover": 327,
+      "water": 17
+    }
+  },
+  {
+    "name": "center-15",
+    "z": 15,
+    "x": 19999,
+    "y": 11967,
+    "bytes": 39008,
+    "ms": 12.24,
+    "source_buildings": 385,
+    "layers": {
+      "roads": 509,
+      "coastline": 3,
+      "buildings": 385,
+      "landcover": 153,
+      "water": 8,
+      "trees": 3
+    },
+    "firstBuilding": {
+      "class": "default_volume",
+      "class_source": "default",
+      "levels": 1,
+      "height_source": "levels"
+    }
+  },
+  {
+    "name": "center-16",
+    "z": 16,
+    "x": 39999,
+    "y": 23934,
+    "bytes": 12266,
+    "ms": 7.7,
+    "source_buildings": 132,
+    "layers": {
+      "roads": 134,
+      "buildings": 132,
+      "landcover": 35,
+      "trees": 3
+    },
+    "firstBuilding": {
+      "class": "default_volume",
+      "class_source": "default",
+      "height_source": "unknown"
+    }
+  },
+  {
+    "name": "center-17",
+    "z": 17,
+    "x": 79998,
+    "y": 47869,
+    "bytes": 4744,
+    "ms": 6.27,
+    "source_buildings": 20,
+    "layers": {
+      "roads": 73,
+      "buildings": 20,
+      "landcover": 20,
+      "trees": 3
+    },
+    "firstBuilding": {
+      "class": "retail",
+      "class_source": "poi",
+      "levels": 3,
+      "height_source": "levels"
+    }
+  },
+  {
+    "name": "shore-10",
+    "z": 10,
+    "x": 625,
+    "y": 374,
+    "bytes": 298053,
+    "ms": 388.09,
+    "source_buildings": 53031,
+    "layers": {
+      "roads": 1002,
+      "coastline": 17,
+      "beaches": 77,
+      "landcover": 7233,
+      "water": 301
+    }
+  },
+  {
+    "name": "shore-12",
+    "z": 12,
+    "x": 2502,
+    "y": 1498,
+    "bytes": 166201,
+    "ms": 155.06,
+    "source_buildings": 17505,
+    "layers": {
+      "roads": 502,
+      "coastline": 5,
+      "beaches": 15,
+      "landcover": 5180,
+      "water": 54
+    }
+  },
+  {
+    "name": "shore-13",
+    "z": 13,
+    "x": 5005,
+    "y": 2997,
+    "bytes": 172729,
+    "ms": 89.96,
+    "source_buildings": 4519,
+    "layers": {
+      "roads": 2914,
+      "coastline": 1,
+      "beaches": 3,
+      "landcover": 2845,
+      "water": 20
+    }
+  },
+  {
+    "name": "shore-14",
+    "z": 14,
+    "x": 10010,
+    "y": 5995,
+    "bytes": 55507,
+    "ms": 16.11,
+    "source_buildings": 294,
+    "layers": {
+      "roads": 567,
+      "coastline": 1,
+      "beaches": 3,
+      "landcover": 691,
+      "water": 7
+    }
+  },
+  {
+    "name": "shore-15",
+    "z": 15,
+    "x": 20021,
+    "y": 11990,
+    "bytes": 54924,
+    "ms": 17.75,
+    "source_buildings": 246,
+    "layers": {
+      "roads": 346,
+      "coastline": 1,
+      "beaches": 1,
+      "buildings": 246,
+      "landcover": 544,
+      "water": 7,
+      "trees": 170
+    },
+    "firstBuilding": {
+      "class": "retail",
+      "class_source": "poi",
+      "height_source": "unknown"
+    }
+  },
+  {
+    "name": "shore-16",
+    "z": 16,
+    "x": 40043,
+    "y": 23981,
+    "bytes": 12892,
+    "ms": 7.13,
+    "source_buildings": 93,
+    "layers": {
+      "roads": 75,
+      "coastline": 1,
+      "beaches": 1,
+      "buildings": 93,
+      "landcover": 118,
+      "water": 3,
+      "trees": 15
+    },
+    "firstBuilding": {
+      "class": "default_volume",
+      "class_source": "default",
+      "levels": 8,
+      "height_source": "levels"
+    }
+  },
+  {
+    "name": "shore-17",
+    "z": 17,
+    "x": 80087,
+    "y": 47963,
+    "bytes": 3789,
+    "ms": 2.76,
+    "source_buildings": 56,
+    "layers": {
+      "roads": 24,
+      "coastline": 1,
+      "beaches": 1,
+      "buildings": 56,
+      "landcover": 9,
+      "water": 1
+    },
+    "firstBuilding": {
+      "class": "residence",
+      "class_source": "landuse",
+      "height_source": "unknown"
+    }
+  },
+  {
+    "name": "mountain-10",
+    "z": 10,
+    "x": 626,
+    "y": 373,
+    "bytes": 0,
+    "ms": 1.53,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-12",
+    "z": 12,
+    "x": 2506,
+    "y": 1494,
+    "bytes": 0,
+    "ms": 1.87,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-13",
+    "z": 13,
+    "x": 5013,
+    "y": 2989,
+    "bytes": 0,
+    "ms": 1.18,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-14",
+    "z": 14,
+    "x": 10026,
+    "y": 5978,
+    "bytes": 0,
+    "ms": 1.51,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-15",
+    "z": 15,
+    "x": 20053,
+    "y": 11957,
+    "bytes": 0,
+    "ms": 1.12,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-16",
+    "z": 16,
+    "x": 40106,
+    "y": 23914,
+    "bytes": 0,
+    "ms": 1.6,
+    "source_buildings": 0,
+    "layers": {}
+  },
+  {
+    "name": "mountain-17",
+    "z": 17,
+    "x": 80213,
+    "y": 47828,
+    "bytes": 0,
+    "ms": 2.02,
+    "source_buildings": 0,
+    "layers": {}
+  }
+]

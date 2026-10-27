@@ -16,6 +16,7 @@ that owns each one. Scrubbed at submission.
 | `repo.json` | `repo-meta` | GitHub description and topics proposal |
 | `frontend/` | frontend implementation | Integration plan, review verdict and validation |
 | `screens/` | frontend workflows | Screen specifications |
+| `map-neon/` | selected map style | Whole-interface migration to style 5, contract coverage and functional transfer plan; read before implementation |
 | `audits/` | audit workflows | Dated findings and check results |
 | `evals/` | live search evaluation | Fixed query set and full results; latest: `evals/map-fact-geography-review.md` |
 | `building-texture/` | building texture experiment | Satellite references, generation prompt, GLB builder and local preview |

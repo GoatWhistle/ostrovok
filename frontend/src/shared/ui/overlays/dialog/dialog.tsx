@@ -13,10 +13,12 @@ export function Dialog({ title, onClose, children }: DialogProps) {
   const { t } = useTranslation()
   const ref = useRef<HTMLDialogElement>(null)
   const titleId = useId()
+  const titleRef = useRef<HTMLHeadingElement>(null)
   useEffect(() => {
     const dialog = ref.current
     const previous = document.activeElement
     dialog?.showModal()
+    titleRef.current?.focus({ preventScroll: true })
     return () => {
       dialog?.close()
       if (previous instanceof HTMLElement && previous.isConnected) previous.focus()
@@ -33,7 +35,7 @@ export function Dialog({ title, onClose, children }: DialogProps) {
       }}
     >
       <header className={styles.header}>
-        <h2 id={titleId} className={styles.title}>
+        <h2 ref={titleRef} tabIndex={-1} id={titleId} className={styles.title}>
           {title}
         </h2>
         <Button icon="close" iconOnly variant="ghost" onClick={onClose}>

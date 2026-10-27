@@ -56,6 +56,8 @@ var/
 
 # raw downloads for seed building; only the derived slice in data/seed/ is committed
 data/raw/
+# large regional basemaps prepared by make fetch-basemap-russia; mounted read-only
+data/basemaps/
 
 !work/map-styles/shared/models/
 !work/map-styles/shared/models/**

@@ -18,6 +18,7 @@ export interface SegmentedProps<T extends string> {
   readonly options: readonly SegmentedOption<T>[]
   readonly value: T
   readonly onChange: (value: T) => void
+  readonly disabled?: boolean
   readonly display?: SegmentedDisplay
   readonly className?: string | undefined
 }
@@ -52,6 +53,7 @@ export function Segmented<T extends string>({
   value,
   onChange,
   display = "label",
+  disabled = false,
   className,
 }: SegmentedProps<T>) {
   const name = useId()
@@ -63,6 +65,7 @@ export function Segmented<T extends string>({
   return (
     <fieldset
       ref={listRef}
+      disabled={disabled}
       className={clsx(styles.segmented, className)}
       onKeyDown={modality.onKeyDown}
       onPointerDown={modality.onPointerDown}

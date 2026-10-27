@@ -1,0 +1,553 @@
+{
+  "method": "24 unique tiles; first request separated; five warm SQL+MVT requests per tile",
+  "p95_ms": 125.57400000000001,
+  "max_warm_ms": 217.41,
+  "samples": 120,
+  "tiles": [
+    {
+      "name": "center",
+      "z": 2,
+      "x": 2,
+      "y": 1,
+      "bytes": 2393,
+      "gzip_bytes": 926,
+      "first_ms": 120.59,
+      "warm_ms": [
+        68.87,
+        79.13,
+        74.01,
+        77.8,
+        61.52
+      ],
+      "source_buildings": 105983,
+      "layers": {
+        "roads": 62,
+        "coastline": 14,
+        "landcover": 10,
+        "water": 2
+      }
+    },
+    {
+      "name": "center",
+      "z": 6,
+      "x": 39,
+      "y": 23,
+      "bytes": 55448,
+      "gzip_bytes": 21156,
+      "first_ms": 84.56,
+      "warm_ms": [
+        99.58,
+        94.05,
+        105.72,
+        103.28,
+        94.12
+      ],
+      "source_buildings": 105983,
+      "layers": {
+        "roads": 1003,
+        "coastline": 48,
+        "beaches": 22,
+        "landcover": 539,
+        "water": 56
+      }
+    },
+    {
+      "name": "center",
+      "z": 8,
+      "x": 156,
+      "y": 93,
+      "bytes": 115839,
+      "gzip_bytes": 52442,
+      "first_ms": 109.8,
+      "warm_ms": [
+        104.57,
+        117.15,
+        109.15,
+        125.86,
+        97.6
+      ],
+      "source_buildings": 105983,
+      "layers": {
+        "roads": 1492,
+        "coastline": 74,
+        "beaches": 93,
+        "landcover": 961,
+        "water": 221
+      }
+    },
+    {
+      "name": "center",
+      "z": 10,
+      "x": 624,
+      "y": 373,
+      "bytes": 100091,
+      "gzip_bytes": 50724,
+      "first_ms": 66.16,
+      "warm_ms": [
+        62.72,
+        61.49,
+        62.57,
+        58.35,
+        67.06
+      ],
+      "source_buildings": 27982,
+      "layers": {
+        "roads": 428,
+        "coastline": 62,
+        "beaches": 31,
+        "buildings": 1094,
+        "landcover": 192,
+        "water": 68
+      }
+    },
+    {
+      "name": "center",
+      "z": 12,
+      "x": 2499,
+      "y": 1495,
+      "bytes": 515443,
+      "gzip_bytes": 205234,
+      "first_ms": 95.77,
+      "warm_ms": [
+        81.8,
+        72.71,
+        101.59,
+        89.64,
+        91.14
+      ],
+      "source_buildings": 8562,
+      "layers": {
+        "roads": 229,
+        "coastline": 6,
+        "beaches": 17,
+        "buildings": 9170,
+        "landcover": 1332,
+        "water": 31
+      }
+    },
+    {
+      "name": "center",
+      "z": 13,
+      "x": 4999,
+      "y": 2991,
+      "bytes": 244403,
+      "gzip_bytes": 113908,
+      "first_ms": 34.06,
+      "warm_ms": [
+        37.42,
+        38.45,
+        39.23,
+        34.76,
+        36.23
+      ],
+      "source_buildings": 2669,
+      "layers": {
+        "roads": 2290,
+        "coastline": 5,
+        "beaches": 2,
+        "buildings": 2866,
+        "landcover": 734,
+        "water": 28
+      }
+    },
+    {
+      "name": "center",
+      "z": 14,
+      "x": 9999,
+      "y": 5983,
+      "bytes": 109618,
+      "gzip_bytes": 58926,
+      "first_ms": 16.01,
+      "warm_ms": [
+        16.76,
+        15.56,
+        17.58,
+        29.81,
+        21.01
+      ],
+      "source_buildings": 882,
+      "layers": {
+        "roads": 1279,
+        "coastline": 5,
+        "beaches": 2,
+        "buildings": 947,
+        "landcover": 343,
+        "water": 18
+      }
+    },
+    {
+      "name": "center",
+      "z": 15,
+      "x": 19999,
+      "y": 11967,
+      "bytes": 49003,
+      "gzip_bytes": 28130,
+      "first_ms": 9.71,
+      "warm_ms": [
+        9.2,
+        10.29,
+        10.85,
+        8.18,
+        8.97
+      ],
+      "source_buildings": 385,
+      "layers": {
+        "roads": 526,
+        "coastline": 3,
+        "buildings": 411,
+        "landcover": 157,
+        "water": 8,
+        "trees": 3
+      }
+    },
+    {
+      "name": "center",
+      "z": 16,
+      "x": 39999,
+      "y": 23934,
+      "bytes": 15019,
+      "gzip_bytes": 9181,
+      "first_ms": 4.48,
+      "warm_ms": [
+        8.93,
+        7.44,
+        7.02,
+        5.43,
+        8.21
+      ],
+      "source_buildings": 132,
+      "layers": {
+        "roads": 140,
+        "buildings": 138,
+        "landcover": 36,
+        "trees": 3
+      }
+    },
+    {
+      "name": "center",
+      "z": 17,
+      "x": 79998,
+      "y": 47869,
+      "bytes": 5443,
+      "gzip_bytes": 3521,
+      "first_ms": 4.55,
+      "warm_ms": [
+        3.1,
+        3.2,
+        4.15,
+        3.23,
+        4.12
+      ],
+      "source_buildings": 20,
+      "layers": {
+        "roads": 73,
+        "buildings": 23,
+        "landcover": 22,
+        "trees": 3
+      }
+    },
+    {
+      "name": "shore",
+      "z": 10,
+      "x": 625,
+      "y": 374,
+      "bytes": 185968,
+      "gzip_bytes": 92175,
+      "first_ms": 123.43,
+      "warm_ms": [
+        109.71,
+        112.19,
+        110.91,
+        120.14,
+        114.23
+      ],
+      "source_buildings": 53031,
+      "layers": {
+        "roads": 1041,
+        "coastline": 17,
+        "beaches": 78,
+        "buildings": 1636,
+        "landcover": 598,
+        "water": 310
+      }
+    },
+    {
+      "name": "shore",
+      "z": 12,
+      "x": 2502,
+      "y": 1498,
+      "bytes": 1116934,
+      "gzip_bytes": 418604,
+      "first_ms": 175.39,
+      "warm_ms": [
+        161.21,
+        217.41,
+        190.04,
+        184.13,
+        178.05
+      ],
+      "source_buildings": 17505,
+      "layers": {
+        "roads": 517,
+        "coastline": 5,
+        "beaches": 16,
+        "buildings": 17965,
+        "landcover": 5354,
+        "water": 55
+      }
+    },
+    {
+      "name": "shore",
+      "z": 13,
+      "x": 5005,
+      "y": 2997,
+      "bytes": 457588,
+      "gzip_bytes": 204223,
+      "first_ms": 68.98,
+      "warm_ms": [
+        59.31,
+        66.05,
+        69.72,
+        60.63,
+        58.73
+      ],
+      "source_buildings": 4519,
+      "layers": {
+        "roads": 3013,
+        "coastline": 1,
+        "beaches": 3,
+        "buildings": 4710,
+        "landcover": 2918,
+        "water": 21
+      }
+    },
+    {
+      "name": "shore",
+      "z": 14,
+      "x": 10010,
+      "y": 5995,
+      "bytes": 87352,
+      "gzip_bytes": 48924,
+      "first_ms": 15.01,
+      "warm_ms": [
+        14.33,
+        13.59,
+        15.25,
+        13.6,
+        12.78
+      ],
+      "source_buildings": 294,
+      "layers": {
+        "roads": 599,
+        "coastline": 1,
+        "beaches": 3,
+        "buildings": 328,
+        "landcover": 720,
+        "water": 8
+      }
+    },
+    {
+      "name": "shore",
+      "z": 15,
+      "x": 20021,
+      "y": 11990,
+      "bytes": 69160,
+      "gzip_bytes": 39916,
+      "first_ms": 14.02,
+      "warm_ms": [
+        12.61,
+        13.92,
+        10.46,
+        9.86,
+        14.29
+      ],
+      "source_buildings": 246,
+      "layers": {
+        "roads": 355,
+        "coastline": 1,
+        "beaches": 1,
+        "buildings": 264,
+        "landcover": 555,
+        "water": 7,
+        "trees": 175
+      }
+    },
+    {
+      "name": "shore",
+      "z": 16,
+      "x": 40043,
+      "y": 23981,
+      "bytes": 16700,
+      "gzip_bytes": 10355,
+      "first_ms": 6.03,
+      "warm_ms": [
+        5.83,
+        4.0,
+        4.08,
+        4.03,
+        3.22
+      ],
+      "source_buildings": 93,
+      "layers": {
+        "roads": 82,
+        "coastline": 1,
+        "beaches": 1,
+        "buildings": 99,
+        "landcover": 124,
+        "water": 3,
+        "trees": 15
+      }
+    },
+    {
+      "name": "shore",
+      "z": 17,
+      "x": 80087,
+      "y": 47963,
+      "bytes": 4803,
+      "gzip_bytes": 2874,
+      "first_ms": 2.58,
+      "warm_ms": [
+        2.38,
+        2.3,
+        2.75,
+        2.47,
+        1.62
+      ],
+      "source_buildings": 56,
+      "layers": {
+        "roads": 24,
+        "coastline": 1,
+        "beaches": 1,
+        "buildings": 57,
+        "landcover": 10,
+        "water": 1
+      }
+    },
+    {
+      "name": "mountain",
+      "z": 10,
+      "x": 626,
+      "y": 373,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 1.17,
+      "warm_ms": [
+        1.22,
+        0.9,
+        1.14,
+        0.82,
+        0.98
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 12,
+      "x": 2506,
+      "y": 1494,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.87,
+      "warm_ms": [
+        1.06,
+        1.16,
+        1.38,
+        0.82,
+        1.11
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 13,
+      "x": 5013,
+      "y": 2989,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.87,
+      "warm_ms": [
+        0.96,
+        0.8,
+        1.08,
+        1.07,
+        0.79
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 14,
+      "x": 10026,
+      "y": 5978,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.94,
+      "warm_ms": [
+        0.79,
+        0.75,
+        0.77,
+        0.78,
+        0.76
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 15,
+      "x": 20053,
+      "y": 11957,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.85,
+      "warm_ms": [
+        0.93,
+        0.86,
+        0.87,
+        0.87,
+        0.89
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 16,
+      "x": 40106,
+      "y": 23914,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.94,
+      "warm_ms": [
+        1.33,
+        0.87,
+        0.86,
+        0.81,
+        0.8
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    },
+    {
+      "name": "mountain",
+      "z": 17,
+      "x": 80213,
+      "y": 47828,
+      "bytes": 0,
+      "gzip_bytes": 20,
+      "first_ms": 0.92,
+      "warm_ms": [
+        0.96,
+        0.81,
+        0.83,
+        0.76,
+        0.75
+      ],
+      "source_buildings": 0,
+      "layers": {}
+    }
+  ]
+}

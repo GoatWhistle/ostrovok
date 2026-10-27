@@ -18,7 +18,11 @@ export const router = createBrowserRouter([
         path: "compare",
         lazy: lazyPage(() => import("@/pages/compare/compare-page"), "ComparePage"),
       },
-      { index: true, lazy: lazyPage(() => import("@/pages/home/home-page"), "HomePage") },
+      {
+        path: "/",
+        lazy: lazyPage(() => import("@/pages/home/home-page"), "HomePage"),
+        children: [{ index: true }, { path: "hotels/:hotelId" }],
+      },
       {
         path: "*",
         lazy: lazyPage(() => import("@/pages/not-found/not-found-page"), "NotFoundPage"),

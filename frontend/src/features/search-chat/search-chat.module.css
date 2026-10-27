@@ -1,9 +1,7 @@
 .chat {
+  composes: fillAvailable from "../../shared/styles/compose.module.css";
   display: flex;
   flex-direction: column;
-  min-block-size: 0;
-  min-inline-size: 0;
-  block-size: 100%;
   background-color: var(--surface-base);
 }
 

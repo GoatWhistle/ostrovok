@@ -29,12 +29,23 @@ def test_characteristics_match_the_contract(client: TestClient, validate: Any) -
         validate("Characteristic", item)
 
 
-def test_contract_paths_are_served_or_still_missing(
-    client: TestClient, contract: dict[str, Any]
-) -> None:
-    served = {path.removeprefix("/api/v1") for path in client.get("/openapi.json").json()["paths"]}
+def test_every_documented_operation_is_served(client: TestClient, contract: dict[str, Any]) -> None:
+    methods = {"get", "post", "put", "patch", "delete"}
+    served = {
+        (method, path.removeprefix("/api/v1"))
+        for path, item in client.get("/openapi.json").json()["paths"].items()
+        for method in item
+        if method in methods
+    }
+    documented = {
+        (method, path)
+        for path, item in contract["paths"].items()
+        for method in item
+        if method in methods
+    }
 
-    assert served <= set(contract["paths"]), "a served route is absent from the contract"
+    assert served == documented
+    assert len(documented) == 27
 
 
 def test_validator_rejects_a_payload_that_breaks_the_contract(validate: Any) -> None:

@@ -1,11 +1,13 @@
+import { useMutationState } from "@tanstack/react-query"
 import { FactTile, RowButton } from "@/entities/evidence"
 import type { components } from "@/shared/api/schema.gen"
-import { useTranslation } from "@/shared/i18n"
+import { characteristicTitle } from "@/shared/geo/fact-label"
+import { useLocale, useTranslation } from "@/shared/i18n"
 import { StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./question-queue.module.css"
 
 type Question = components["schemas"]["HotelierQuestion"]
-type QuestionStatus = NonNullable<Question["status"]>
+type QuestionStatus = Question["status"]
 
 const STATE_TONE: Readonly<Record<QuestionStatus, StatusTone>> = {
   open: "warning",
@@ -19,40 +21,68 @@ export interface QuestionQueueProps {
   readonly onSelect: (id: string) => void
 }
 
-export function QuestionQueue({ questions, selectedId, onSelect }: QuestionQueueProps) {
+function useFailed(questionId: string) {
+  const states = useMutationState({
+    filters: { mutationKey: ["question-write", questionId] },
+    select: (item) => item.state.status,
+  })
+  return states.at(-1) === "error"
+}
+
+function QueueItem({
+  question,
+  selected,
+  onSelect,
+}: {
+  readonly question: Question
+  readonly selected: boolean
+  readonly onSelect: (id: string) => void
+}) {
   const { t } = useTranslation()
+  const { locale } = useLocale()
+  const failed = useFailed(question.id)
+  const tone =
+    question.status === "open" && question.reason === "conflict"
+      ? "conflict"
+      : STATE_TONE[question.status]
+  return (
+    <li>
+      <RowButton
+        className={styles.item}
+        aria-current={selected ? "true" : undefined}
+        onClick={() => onSelect(question.id)}
+        leadingAlign="start"
+        leading={<FactTile characteristicKey={question.characteristic_key} size="sm" />}
+        trailing={
+          failed ? (
+            <StatusBadge tone="danger">{t("explore:hotelier.queueError")}</StatusBadge>
+          ) : (
+            <StatusBadge tone={tone}>{t(`explore:hotelier.state.${question.status}`)}</StatusBadge>
+          )
+        }
+      >
+        <span className={styles.text}>
+          {characteristicTitle(question.characteristic_key, locale)}
+        </span>
+        {question.status === "answered" ? null : (
+          <span className={styles.reason}>{t(`explore:hotelier.reason.${question.reason}`)}</span>
+        )}
+      </RowButton>
+    </li>
+  )
+}
+
+export function QuestionQueue({ questions, selectedId, onSelect }: QuestionQueueProps) {
   return (
     <ul className={styles.queue}>
-      {questions.map((question, index) => {
-        const status = question.status ?? "open"
-        const tone =
-          status === "open" && question.reason === "conflict" ? "conflict" : STATE_TONE[status]
-        const id = question.id ?? `question-${index}`
-        return (
-          <li key={id}>
-            <RowButton
-              className={styles.item}
-              aria-current={id === selectedId ? "true" : undefined}
-              disabled={!question.id}
-              onClick={() => onSelect(id)}
-              leadingAlign="start"
-              leading={<FactTile characteristicKey={question.characteristic_key ?? ""} size="sm" />}
-              trailing={
-                <StatusBadge tone={tone}>{t(`explore:hotelier.state.${status}`)}</StatusBadge>
-              }
-            >
-              <span className={styles.text} lang="ru">
-                {question.text}
-              </span>
-              {question.reason ? (
-                <span className={styles.reason}>
-                  {t(`explore:hotelier.reason.${question.reason}`)}
-                </span>
-              ) : null}
-            </RowButton>
-          </li>
-        )
-      })}
+      {questions.map((question) => (
+        <QueueItem
+          key={question.id}
+          question={question}
+          selected={question.id === selectedId}
+          onSelect={onSelect}
+        />
+      ))}
     </ul>
   )
 }

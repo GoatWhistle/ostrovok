@@ -41,6 +41,16 @@ class RegionNotFound(NotFound):
     message = "Region not found"
 
 
+class MapVersionChanged(DomainError):
+    code = "map_version_changed"
+    message = "Map data version changed; reload the map style"
+
+
+class QuestionAnswered(DomainError):
+    code = "question_answered"
+    message = "Question has already been answered"
+
+
 class InvalidValue(DomainError):
     code = "invalid_value"
     message = "Value is outside its allowed range"

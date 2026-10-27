@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react"
-import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import type { FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { type Conversation, useConversation } from "./use-conversation"
+import { useHotelSelection } from "./use-hotel-selection"
+import { useListReturn } from "./use-list-return"
+import { useWorkspaceExpansion } from "./use-workspace-expansion"
+import { useWorkspaceNavigation } from "./use-workspace-navigation"
+import { workspaceSurface } from "./workspace-location"
 
 export type WorkspaceView = "chat" | "hotels" | "map"
 
@@ -17,64 +22,92 @@ function ordered(messages: readonly Message[]): readonly Message[] {
 }
 
 export function useHotelWorkspace() {
-  const [hotelId, setHotelId] = useState<string>()
-  const [placeId, setPlaceId] = useState<string>()
-  const [factId, setFactId] = useState<string>()
-  const [camera, setCamera] = useState<Camera>()
-  const [previewRefs, setPreviewRefs] = useState<readonly string[]>()
-  const [previewMatch, setPreviewMatch] = useState<MatchedProperty>()
-  const [geoRefs, setGeoRefs] = useState<readonly string[]>([])
-  const [focusedFact, setFocusedFact] = useState<FactBrief>()
-  const [focusedMatch, setFocusedMatch] = useState<MatchedProperty>()
+  const navigation = useWorkspaceNavigation()
+  const hotelId = navigation.route.hotel
+  const setHotelId = navigation.selectHotel
+  const selection = useHotelSelection(navigation.scopeKey, hotelId)
+  const { placeId, factId, camera, previewRefs, previewMatch, geoRefs, focusedFact, focusedMatch } =
+    selection.state
+  const setPlaceId = (placeId: string | undefined) => selection.update({ placeId })
+  const setFactId = (factId: string | undefined) => selection.update({ factId })
+  const setCamera = (camera: typeof selection.state.camera) => selection.update({ camera })
+  const setGeoRefs = (geoRefs: readonly string[]) => selection.update({ geoRefs })
+  const setFocusedFact = (focusedFact: FactBrief | undefined) => selection.update({ focusedFact })
+  const setFocusedMatch = (focusedMatch: MatchedProperty | undefined) =>
+    selection.update({ focusedMatch })
+  const setPreviewRefs = (previewRefs: readonly string[] | undefined) =>
+    selection.update({ previewRefs })
+  const setPreviewMatch = (previewMatch: MatchedProperty | undefined) =>
+    selection.update({ previewMatch })
   const [compared, setCompared] = useState<readonly string[]>([])
   const [limitReached, setLimitReached] = useState(false)
-  const [view, setView] = useState<WorkspaceView>("chat")
+  const view = navigation.route.tab
+  const setView = navigation.setTab
   const detailRef = useRef<HTMLDivElement>(null)
+  const clearEvidence = selection.clear
   function clearSelection() {
     setHotelId(undefined)
-    setPlaceId(undefined)
-    setFactId(undefined)
-    setCamera(undefined)
-    setGeoRefs([])
-    setFocusedFact(undefined)
-    setPreviewRefs(undefined)
-    setPreviewMatch(undefined)
-    setFocusedMatch(undefined)
   }
-  const chat = useConversation(hotelId, (data: Conversation) => {
-    const answer = data.messages.findLast((item) => item.role === "assistant")
-    if (data.search_message_id !== undefined && data.search_message_id !== answer?.id) return
-    setPlaceId(undefined)
-    setFactId(undefined)
-    setPreviewRefs(undefined)
-    setPreviewMatch(undefined)
-    setFocusedMatch(undefined)
-    if (!data.search?.results.some((item) => item.hotel.id === hotelId)) clearSelection()
-  })
+  const chat = useConversation(
+    hotelId,
+    (data: Conversation) => {
+      const answer = data.messages.findLast((item) => item.role === "assistant")
+      if (data.search_message_id !== undefined && data.search_message_id !== answer?.id) return
+      setPlaceId(undefined)
+      setFactId(undefined)
+      setPreviewRefs(undefined)
+      setPreviewMatch(undefined)
+      setFocusedMatch(undefined)
+      if (hotelId && !data.search?.results.some((item) => item.hotel.id === hotelId))
+        clearSelection()
+    },
+    {
+      id: navigation.route.chat,
+      scopeKey: navigation.scopeKey,
+      begin: navigation.begin,
+      receive: navigation.receiveConversation,
+      open: (id) => navigation.openConversation(id),
+      reset: navigation.reset,
+    },
+  )
   const search = chat.data?.search ?? undefined
   const results = [
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
+  const expanded = useWorkspaceExpansion(navigation.scopeKey, results.length > 0)
+  const list = useListReturn(
+    navigation.scopeKey,
+    hotelId,
+    results.length,
+    !hotelId || navigation.route.hotelPage,
+  )
   const activeSubject = placeId ?? factId ?? hotelId
   useEffect(() => {
     if (activeSubject && view === "hotels" && (placeId || window.matchMedia(NARROW).matches))
       detailRef.current?.focus()
   }, [activeSubject, view, placeId])
   function select(result: SearchResult) {
-    clearSelection()
+    list.capture(result.hotel.id)
+    selection.select(result.hotel.id, result.camera)
     setHotelId(result.hotel.id)
-    setCamera(result.camera)
-    setView((current) => (current === "map" ? "map" : "hotels"))
+    setView(view === "map" ? "map" : "hotels")
   }
   function property(result: SearchResult, item: MatchedProperty) {
+    list.capture(result.hotel.id)
+    selection.update(
+      {
+        camera: item.camera ?? result.camera,
+        placeId: undefined,
+        factId: undefined,
+        geoRefs: item.geo_refs ?? item.fact?.geo_refs ?? [],
+        focusedFact: item.fact ?? undefined,
+        focusedMatch: item,
+        previewMatch: undefined,
+        previewRefs: undefined,
+      },
+      result.hotel.id,
+    )
     setHotelId(result.hotel.id)
-    setCamera(item.camera ?? result.camera)
-    setPlaceId(undefined)
-    setFactId(undefined)
-    setGeoRefs(item.geo_refs ?? item.fact?.geo_refs ?? [])
-    setFocusedFact(item.fact ?? undefined)
-    setFocusedMatch(item)
-    setPreviewMatch(undefined)
     setView("map")
   }
   function fact(item: FactBrief) {
@@ -95,6 +128,8 @@ export function useHotelWorkspace() {
     } else setLimitReached(true)
   }
   return {
+    navigation,
+    surface: workspaceSurface(navigation.route, navigation.started, expanded),
     messages: ordered(chat.data?.messages ?? []),
     conversationId: chat.conversationId,
     searchMessageId: chat.data?.search_message_id,
@@ -103,8 +138,13 @@ export function useHotelWorkspace() {
     outgoing: chat.outgoing,
     send: chat.send,
     retry: chat.retry,
+    clearTransient: () => {
+      clearEvidence()
+      setCompared([])
+      setLimitReached(false)
+    },
     reset: () => {
-      clearSelection()
+      clearEvidence()
       setCompared([])
       chat.reset()
       setView("chat")
@@ -112,13 +152,13 @@ export function useHotelWorkspace() {
     renameConversation: chat.rename,
     deleteConversation: (id: string) => {
       if (id === chat.conversationId) {
-        clearSelection()
+        clearEvidence()
         setCompared([])
       }
       return chat.remove(id)
     },
     openConversation: (id: string) => {
-      clearSelection()
+      clearEvidence()
       setCompared([])
       chat.open(id)
       setView("chat")
@@ -133,6 +173,7 @@ export function useHotelWorkspace() {
     results,
     bounds: hotelId ? undefined : search?.viewport?.bbox,
     detailRef,
+    listRef: list.listRef,
     hotelId,
     placeId,
     openPlace: (id: string) => {
@@ -151,6 +192,7 @@ export function useHotelWorkspace() {
     geoRefs: previewRefs ?? geoRefs,
     focusedFact,
     focusProperty: previewMatch ?? focusedMatch,
+    previewing: previewRefs !== undefined,
     preview: (result: SearchResult, item: MatchedProperty | undefined) => {
       const active = result.hotel.id === hotelId ? item : undefined
       setPreviewRefs(active?.geo_refs ?? active?.fact?.geo_refs)

@@ -209,6 +209,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/map/style": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Версия и локальные адреса картографических ресурсов региона
+         * @description Клиент берёт отсюда адреса подложки PMTiles, глифов, спрайта и собственных тайлов, а не собирает их из констант. Регион без подложки отвечает 200 с available=false.
+         */
+        get: operations["getMapStyle"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/map/scene": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Полные контуры фоновых зданий в ограниченной области для объёмов и окон
+         * @description Здания, пересекающие bbox, возвращаются целиком с отверстиями. Не больше 800 зданий и 100 000 вершин; порядок детерминирован расстоянием до центра и id. Условная высота отделена от измеренной и не создаёт факт.
+         */
+        get: operations["getMapScene"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/map/tiles/{z}/{x}/{y}.pbf": {
         parameters: {
             query?: never;
@@ -216,7 +256,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Локальная векторная подложка карты Сочи из OpenStreetMap */
+        /**
+         * Векторная геометрия импортированного покрытия OpenStreetMap
+         * @description Версия buildings-v2. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=buildings-v2.
+         */
         get: operations["getMapTile"];
         put?: never;
         post?: never;
@@ -343,6 +386,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotelier/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Откладывает открытый вопрос или возвращает отложенный в работу. Повтор уже достигнутого статуса возвращает вопрос без изменений. Отвеченный вопрос этой операцией не меняется: его значение исправляется через связанный факт. Переход не меняет факты и не вызывает модель. */
+        patch: operations["changeHotelierQuestionStatus"];
+        trace?: never;
+    };
     "/facts/{fact_id}/confirm": {
         parameters: {
             query?: never;
@@ -352,6 +412,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
+        /** @description Повторное подтверждение возвращает тот же факт; superseded и computing дают 422 */
         post: operations["confirmFact"];
         delete?: never;
         options?: never;
@@ -475,6 +536,15 @@ export interface components {
                 better?: "lower" | "higher" | null;
             } | null;
             source_kinds?: components["schemas"]["SourceType"][];
+            /** @description Поля, из которых складывается ответ отельера и исправление значения, в порядке реестра. unit — каноническая единица поля для подписи и текста ответа; null, если единицы нет. */
+            answer_fields?: {
+                /** @example max_weight_kg */
+                name: string;
+                /** @enum {string} */
+                kind: "bool" | "number";
+                /** @example кг */
+                unit: string | null;
+            }[];
             display?: {
                 /** @example waves */
                 icon?: string;
@@ -558,6 +628,10 @@ export interface components {
             confidence: number;
             source_type: components["schemas"]["SourceType"];
             status: components["schemas"]["FactStatus"];
+            subject?: string | null;
+            qualifiers?: {
+                [key: string]: unknown;
+            };
             /** @description id геообъектов для подсветки (см. /geo-features:batch) */
             geo_refs?: string[];
         };
@@ -589,14 +663,14 @@ export interface components {
             conflicts?: components["schemas"]["Conflict"][];
         };
         Conflict: {
-            id?: string;
-            characteristic_key?: string;
-            fact_ids?: string[];
+            id: string;
+            characteristic_key: string;
+            fact_ids: string[];
             /** @enum {string} */
-            resolution?: "pending" | "resolved_by_rule" | "resolved_by_hotelier";
+            resolution: "pending" | "resolved_by_rule" | "resolved_by_hotelier";
             winner_fact_id?: string | null;
             /** @example hotelier > fresh_computed > osm_tag */
-            rule?: string;
+            rule: string;
         };
         SearchRequest: {
             query: string;
@@ -666,6 +740,16 @@ export interface components {
             /** @example 9 */
             levels?: number | null;
             thumbnail_url?: string | null;
+            /** @description Stored source photos, independent of availability lookup */
+            photos?: components["schemas"]["HotelPhoto"][];
+        };
+        HotelPhoto: {
+            /** Format: uri */
+            url: string;
+            /** Format: uri */
+            source_url?: string | null;
+            /** @enum {string} */
+            kind: "hotel" | "room" | "surroundings";
         };
         SearchResult: {
             hotel: components["schemas"]["HotelSummary"];
@@ -797,6 +881,67 @@ export interface components {
                 minutes?: number | null;
                 /** @enum {string} */
                 mode?: "graph" | "straight";
+            };
+        };
+        MapRenderScene: {
+            region_id: string;
+            version: string | null;
+            bbox: components["schemas"]["BBox"];
+            truncated: boolean;
+            eligible_count: number;
+            features: components["schemas"]["MapRenderBuilding"][];
+        };
+        MapRenderBuilding: {
+            /** @enum {string} */
+            type: "Feature";
+            id: string;
+            geometry: {
+                /** @enum {string} */
+                type: "Polygon" | "MultiPolygon";
+                coordinates: unknown[];
+            };
+            properties: {
+                building_id: string;
+                hotel_id: string | null;
+                class: string;
+                class_source: string;
+                height_m: number | null;
+                levels: number | null;
+                height_source: string;
+                render_height_m: number;
+                height_estimated: boolean;
+                min_height_m: number;
+                ground_elevation_m: number | null;
+                ground_source: string | null;
+            };
+        };
+        MapStyleManifest: {
+            region_id: string;
+            available: boolean;
+            /** @enum {string|null} */
+            reason: "basemap_missing" | null;
+            bbox: components["schemas"]["BBox"];
+            /** @description Версия подложки; меняется вместе с именем архива */
+            version: string | null;
+            catalog_version: string;
+            tiles_version: string | null;
+            assets: {
+                /** @example /maps/sochi/sochi-basemap-142dbe50d10e.pmtiles */
+                basemap_url: string;
+                /** @example /maps/sochi/fonts/{fontstack}/{range}.pbf */
+                glyphs_url: string;
+                /** @example /maps/sochi/sprites/black */
+                sprite_url: string;
+                /** @example /api/v1/map/tiles/{z}/{x}/{y}.pbf */
+                vector_tiles_url: string;
+                /** @example /api/v1/map/terrain/{z}/{x}/{y}.png */
+                terrain_tiles_url: string | null;
+                min_zoom: number;
+                max_zoom: number;
+            } | null;
+            capabilities: {
+                terrain: boolean;
+                render_scene: boolean;
             };
         };
         MapCatalog: {
@@ -1013,22 +1158,58 @@ export interface components {
             search?: components["schemas"]["SearchResponse"] | null;
         };
         HotelierQuestion: {
-            id?: string;
-            hotel_id?: string;
-            characteristic_key?: string;
+            id: string;
+            hotel_id: string;
+            characteristic_key: string;
             /** @example Какие номера выходят окнами на запад? */
-            text?: string;
+            text: string;
             /** @enum {string} */
-            reason?: "missing" | "conflict" | "stale" | "low_confidence";
+            reason: "missing" | "conflict" | "stale" | "low_confidence";
             /** @enum {string} */
-            status?: "open" | "answered" | "skipped";
+            status: "open" | "answered" | "skipped";
             /** Format: date-time */
-            created_at?: string;
+            created_at: string;
+            /** @description Последний сохранённый текст ответа отельера, в том числе потребовавший уточнения */
+            answer_text?: string | null;
+            /**
+             * Format: date-time
+             * @description Время сохранения этого ответа
+             */
+            answered_at?: string | null;
+            /** @description Факты, созданные из ответа на этот вопрос (по источнику hotelier), в порядке создания. Текущую версию факта даёт его история; пустой массив означает, что связь не сохранена. */
+            answer_fact_ids?: string[];
         };
     };
     responses: {
         /** @description Не найдено */
         NotFound: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Значение или переход состояния недопустимы */
+        InvalidInput: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Языковая модель недоступна, состояние не изменено */
+        ModelUnavailable: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Вопрос уже отвечен; статус не изменён, актуальное состояние читается из списка вопросов */
+        QuestionAnswered: {
             headers: {
                 [name: string]: unknown;
             };
@@ -1358,6 +1539,7 @@ export interface operations {
                     "application/json": components["schemas"]["FactDetail"];
                 };
             };
+            404: components["responses"]["NotFound"];
         };
     };
     getGeoFeatures: {
@@ -1417,9 +1599,74 @@ export interface operations {
             };
         };
     };
+    getMapStyle: {
+        parameters: {
+            query: {
+                region_id: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MapStyleManifest"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+        };
+    };
+    getMapScene: {
+        parameters: {
+            query: {
+                region_id: string;
+                /** @description west,south,east,north в WGS84; площадь не больше 4 км² */
+                bbox: string;
+                zoom: number;
+                /** @description Версия тайлов из /map/style; при расхождении ответ 409 */
+                v?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MapRenderScene"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            /** @description Версия данных изменилась, нужно перечитать /map/style */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            422: components["responses"]["InvalidInput"];
+        };
+    };
     getMapTile: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description buildings-v2; другая версия возвращает 409 */
+                v?: string;
+            };
             header?: never;
             path: {
                 z: number;
@@ -1430,9 +1677,10 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Слои roads, coastline, beaches и buildings в формате Mapbox Vector Tile */
+            /** @description Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile */
             200: {
                 headers: {
+                    "X-Map-Tile-Version"?: "buildings-v2";
                     [name: string]: unknown;
                 };
                 content: {
@@ -1440,6 +1688,13 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+            /** @description Версия тайлов изменилась; перечитайте /map/style */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
     };
     getTerrainTile: {
@@ -1607,6 +1862,7 @@ export interface operations {
                     };
                 };
             };
+            404: components["responses"]["NotFound"];
         };
     };
     answerHotelierQuestion: {
@@ -1645,6 +1901,46 @@ export interface operations {
                     };
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+            503: components["responses"]["ModelUnavailable"];
+        };
+    };
+    changeHotelierQuestionStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "status": "skipped"
+                 *     }
+                 */
+                "application/json": {
+                    /** @enum {string} */
+                    status: "open" | "skipped";
+                };
+            };
+        };
+        responses: {
+            /** @description Актуальное состояние вопроса */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierQuestion"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["QuestionAnswered"];
+            422: components["responses"]["InvalidInput"];
         };
     };
     confirmFact: {
@@ -1667,6 +1963,8 @@ export interface operations {
                     "application/json": components["schemas"]["Fact"];
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
         };
     };
     correctFact: {
@@ -1681,7 +1979,8 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": {
-                    value?: unknown;
+                    /** @description Значение типа из реестра; false и 0 допустимы */
+                    value: unknown;
                     comment?: string;
                 };
             };
@@ -1696,6 +1995,8 @@ export interface operations {
                     "application/json": components["schemas"]["Fact"];
                 };
             };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
         };
     };
 }

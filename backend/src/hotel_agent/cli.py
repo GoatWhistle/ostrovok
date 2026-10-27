@@ -28,9 +28,11 @@ from hotel_agent.adapters.log.stdlib import StdlibLogger
 from hotel_agent.adapters.osm.hotel_proximity import HotelProximity
 from hotel_agent.adapters.osm.pbf_reader import PbfRegionSource
 from hotel_agent.adapters.osm.pbf_stream import iter_region_batches
+from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.use_cases.build_seed import BuildSeed
+from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
 from hotel_agent.application.use_cases.ingest_polygons import IngestPolygons
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
@@ -41,7 +43,7 @@ from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
-from hotel_agent.settings import HotelDataMode, load_settings
+from hotel_agent.settings import HotelDataMode, Settings, load_settings
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -70,7 +72,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "ingest-pbf":
         return asyncio.run(_ingest_pbf(args, settings.database_url, logger))
     if args.command == "precompute":
-        return asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
+        code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
+        return code or asyncio.run(_plan_questions(args.region, settings))
+    if args.command == "plan-questions":
+        return asyncio.run(_plan_questions(args.region, settings))
     if args.command == "refresh-geography":
         return asyncio.run(_refresh_geography(args.region, settings.database_url))
     if args.command == "sync-nuitee":
@@ -200,6 +205,20 @@ async def _refresh_geography(region: str, database_url: str) -> int:
         return 0
     finally:
         await uow.aclose()
+
+
+async def _plan_questions(region: str, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
+    try:
+        added = await PlanHotelierQuestions(
+            uow,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+        )(region)
+    finally:
+        await uow.aclose()
+    print(f"hotelier_questions: {added}")
+    return 0
 
 
 async def _sync_nuitee(hotel_id: str, supplier_id: str, database_url: str, api_key: str) -> int:

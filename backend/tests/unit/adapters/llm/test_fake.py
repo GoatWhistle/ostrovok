@@ -116,3 +116,23 @@ async def test_refusal_is_extracted_as_false(llm: FakeLLM) -> None:
     extraction = await llm.extract_fields("pets_policy", "К сожалению, с животными нельзя")
 
     assert [(field.name, field.value) for field in extraction.fields] == [("allowed", False)]
+
+
+@pytest.mark.parametrize(
+    ("key", "answer", "field", "value"),
+    [
+        ("pets_policy", "Да", "allowed", True),
+        ("double_room", "Нет.", "present", False),
+        ("double_room", "yes", "present", True),
+    ],
+)
+async def test_short_answer_fills_the_first_bool_field(
+    llm: FakeLLM, key: str, answer: str, field: str, value: bool
+) -> None:
+    extraction = await llm.extract_fields(key, answer)
+    assert [(item.name, item.value) for item in extraction.fields] == [(field, value)]
+
+
+async def test_short_answer_needs_a_bool_field_and_a_whole_word(llm: FakeLLM) -> None:
+    assert (await llm.extract_fields("room_capacity", "Да")).fields == ()
+    assert (await llm.extract_fields("double_room", "Когда как")).fields == ()

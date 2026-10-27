@@ -44,12 +44,14 @@ services:
       MAP_CATALOG_DIR: /srv/map-catalog
       CHARACTERISTICS_DIR: /srv/characteristics
       SEED_DIR: /srv/data/seed
+      MAP_BASEMAPS_DIR: /srv/basemaps
       TERRAIN_CACHE_DIR: /srv/cache/terrain
       DATABASE_URL: postgresql://${POSTGRES_USER:-hotel}:${POSTGRES_PASSWORD:-hotel}@db:5432/${POSTGRES_DB:-hotel}
     volumes:
       - ./map-catalog:/srv/map-catalog:ro
       - ./characteristics:/srv/characteristics:ro
       - ./data:/srv/data:ro
+      - ${MAP_BASEMAPS_HOST_DIR:-./data/basemaps}:/srv/basemaps:ro
       - terrain-cache:/srv/cache
     depends_on:
       migrate:
@@ -75,6 +77,9 @@ services:
         required: false
     ports:
       - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    volumes:
+      - ./data/seed/sochi-map/basemap:/usr/share/nginx/maps/sochi:ro
+      - ${MAP_BASEMAPS_HOST_DIR:-./data/basemaps}:/usr/share/nginx/regions:ro
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
       interval: 10s

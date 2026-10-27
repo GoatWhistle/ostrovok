@@ -1,0 +1,404 @@
+{
+  "report": [
+    {
+      "z": 17.2,
+      "pitch": 55.00000000000001,
+      "volumes": [
+        {
+          "id": "overview-volumes",
+          "visibility": "none",
+          "features": []
+        },
+        {
+          "id": "scene-volumes",
+          "visibility": "visible",
+          "features": [
+            {
+              "building_id": "w207638078",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            },
+            {
+              "building_id": "w207638026",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            },
+            {
+              "building_id": "w207637872",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            }
+          ]
+        },
+        {
+          "id": "toy-scene-roofs",
+          "visibility": "visible",
+          "features": [
+            {
+              "building_id": "w207638078",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            },
+            {
+              "building_id": "w207638026",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            },
+            {
+              "building_id": "w207637872",
+              "class": "default_volume",
+              "class_source": "default",
+              "height_source": "unknown",
+              "render_height_m": 6.4,
+              "height_estimated": true,
+              "min_height_m": 0
+            }
+          ]
+        }
+      ],
+      "scene": [
+        {
+          "type": "Feature",
+          "id": "w374921439",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    39.9665586,
+                    43.3989753
+                  ],
+                  [
+                    39.9667803,
+                    43.3988975
+                  ],
+                  [
+                    39.9667555,
+                    43.3988602
+                  ],
+                  [
+                    39.9669443,
+                    43.398794
+                  ],
+                  [
+                    39.9670258,
+                    43.3989166
+                  ],
+                  [
+                    39.9666153,
+                    43.3990607
+                  ],
+                  [
+                    39.9665586,
+                    43.3989753
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w374921439",
+            "hotel_id": null,
+            "class": "hotel",
+            "class_source": "hotel",
+            "height_m": 3.2,
+            "levels": 1,
+            "height_source": "levels",
+            "render_height_m": 3.2,
+            "height_estimated": false,
+            "min_height_m": 0,
+            "ground_elevation_m": null,
+            "ground_source": null
+          }
+        },
+        {
+          "type": "Feature",
+          "id": "w714785936",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    39.967039,
+                    43.3989092
+                  ],
+                  [
+                    39.9670849,
+                    43.3988932
+                  ],
+                  [
+                    39.9671232,
+                    43.3989512
+                  ],
+                  [
+                    39.9670774,
+                    43.3989672
+                  ],
+                  [
+                    39.967039,
+                    43.3989092
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w714785936",
+            "hotel_id": null,
+            "class": "house",
+            "class_source": "tag",
+            "height_m": null,
+            "levels": 1,
+            "height_source": "levels",
+            "render_height_m": 3.2,
+            "height_estimated": true,
+            "min_height_m": 0,
+            "ground_elevation_m": null,
+            "ground_source": null
+          }
+        },
+        {
+          "type": "Feature",
+          "id": "w714785938",
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [
+                [
+                  [
+                    39.9668441,
+                    43.3990532
+                  ],
+                  [
+                    39.9668904,
+                    43.3990356
+                  ],
+                  [
+                    39.9669122,
+                    43.399066
+                  ],
+                  [
+                    39.9668658,
+                    43.3990835
+                  ],
+                  [
+                    39.9668441,
+                    43.3990532
+                  ]
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "building_id": "w714785938",
+            "hotel_id": null,
+            "class": "retail",
+            "class_source": "poi",
+            "height_m": null,
+            "levels": null,
+            "height_source": "unknown",
+            "render_height_m": 6.4,
+            "height_estimated": true,
+            "min_height_m": 0,
+            "ground_elevation_m": null,
+            "ground_source": null
+          }
+        }
+      ],
+      "roofs": [
+        "toy-overview-roofs",
+        "toy-context-roofs",
+        "toy-scene-roofs"
+      ],
+      "glow": "none",
+      "buildings": 84,
+      "source": 253,
+      "layers": [
+        {
+          "id": "canvas"
+        },
+        {
+          "id": "sochi-relief-fallback"
+        },
+        {
+          "id": "sochi-relief"
+        },
+        {
+          "id": "snow-relief"
+        },
+        {
+          "id": "glaciers"
+        },
+        {
+          "id": "sochi-hillshade"
+        },
+        {
+          "id": "base-landcover",
+          "minzoom": 2
+        },
+        {
+          "id": "night-glow",
+          "minzoom": 9,
+          "maxzoom": 15
+        },
+        {
+          "id": "base-water",
+          "minzoom": 2
+        },
+        {
+          "id": "base-beaches"
+        },
+        {
+          "id": "base-buildings",
+          "minzoom": 10
+        },
+        {
+          "id": "base-trees",
+          "minzoom": 15
+        },
+        {
+          "id": "base-roads-glow",
+          "minzoom": 13
+        },
+        {
+          "id": "base-roads-casing"
+        },
+        {
+          "id": "base-roads"
+        },
+        {
+          "id": "night-lamps",
+          "minzoom": 14.5
+        },
+        {
+          "id": "base-roads-light",
+          "minzoom": 13
+        },
+        {
+          "id": "base-coastline"
+        },
+        {
+          "id": "overview-volumes",
+          "minzoom": 14,
+          "maxzoom": 16
+        },
+        {
+          "id": "toy-overview-roofs",
+          "minzoom": 14,
+          "maxzoom": 16
+        },
+        {
+          "id": "highlight-area"
+        },
+        {
+          "id": "highlight-line"
+        },
+        {
+          "id": "route-glow"
+        },
+        {
+          "id": "route-casing"
+        },
+        {
+          "id": "route-line"
+        },
+        {
+          "id": "route-straight"
+        },
+        {
+          "id": "highlight-point"
+        },
+        {
+          "id": "buildings-context"
+        },
+        {
+          "id": "buildings-volume"
+        },
+        {
+          "id": "buildings-outline"
+        },
+        {
+          "id": "hotel-results"
+        },
+        {
+          "id": "toy-context-roofs",
+          "minzoom": 14,
+          "maxzoom": 24
+        },
+        {
+          "id": "scene-volumes",
+          "minzoom": 16
+        },
+        {
+          "id": "toy-scene-roofs",
+          "minzoom": 16,
+          "maxzoom": 24
+        },
+        {
+          "id": "basemap-sochi-address_label",
+          "minzoom": 18
+        },
+        {
+          "id": "basemap-sochi-water_waterway_label",
+          "minzoom": 13
+        },
+        {
+          "id": "basemap-sochi-roads_oneway",
+          "minzoom": 16
+        },
+        {
+          "id": "basemap-sochi-roads_labels_minor",
+          "minzoom": 15
+        },
+        {
+          "id": "basemap-sochi-water_label_ocean"
+        },
+        {
+          "id": "basemap-sochi-earth_label_islands"
+        },
+        {
+          "id": "basemap-sochi-water_label_lakes"
+        },
+        {
+          "id": "basemap-sochi-roads_labels_major",
+          "minzoom": 11
+        },
+        {
+          "id": "basemap-sochi-places_subplace"
+        },
+        {
+          "id": "basemap-sochi-places_region"
+        },
+        {
+          "id": "basemap-sochi-places_locality"
+        },
+        {
+          "id": "basemap-sochi-places_country"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

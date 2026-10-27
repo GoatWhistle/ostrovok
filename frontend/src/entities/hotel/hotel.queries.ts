@@ -2,7 +2,11 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { api, unwrap } from "@/shared/api"
 import type { SearchRequest } from "@/shared/api/hotel-types"
+import { RequestLane } from "@/shared/api/request-lane"
 import { motionMs } from "@/shared/motion"
+
+const offerRequests = new RequestLane(3)
+const geometryRequests = new RequestLane(3)
 
 export function useHotelSearch(request: SearchRequest | null) {
   return useInfiniteQuery({
@@ -48,7 +52,7 @@ export function useHotelOffers(
     return () => window.clearTimeout(timer)
   }, [request])
   return useQuery({
-    queryKey: ["hotel-offers", id, checkIn, checkOut, adults],
+    queryKey: ["hotel-offers", id, checkIn, checkOut, adults, "ru"],
     enabled:
       settled === request &&
       id !== undefined &&
@@ -58,14 +62,16 @@ export function useHotelOffers(
       adults > 0,
     staleTime: 60_000,
     queryFn: ({ signal }) =>
-      unwrap(
-        api.GET("/hotels/{hotel_id}/offers", {
-          signal,
-          params: {
-            path: { hotel_id: id ?? "" },
-            query: { check_in: checkIn, check_out: checkOut, adults, residency: "ru" },
-          },
-        }),
+      offerRequests.run(signal, () =>
+        unwrap(
+          api.GET("/hotels/{hotel_id}/offers", {
+            signal,
+            params: {
+              path: { hotel_id: id ?? "" },
+              query: { check_in: checkIn, check_out: checkOut, adults, residency: "ru" },
+            },
+          }),
+        ),
       ),
     retry: false,
   })
@@ -99,13 +105,26 @@ export function useFact(hotel: string | undefined, fact: string | undefined) {
   })
 }
 export function useGeoFeatures(ids: readonly string[]) {
-  const normalized = [...new Set(ids)].sort().slice(0, 200)
+  const normalized = [...new Set(ids)].sort()
+  const chunks = Array.from({ length: Math.ceil(normalized.length / 200) }, (_, index) =>
+    normalized.slice(index * 200, (index + 1) * 200),
+  )
   return useQuery({
     queryKey: ["geometry", normalized],
     enabled: normalized.length > 0,
     staleTime: Number.POSITIVE_INFINITY,
     queryFn: ({ signal }) =>
-      unwrap(api.POST("/geo-features:batch", { signal, body: { ids: normalized } })),
+      Promise.all(
+        chunks.map((ids) =>
+          geometryRequests.run(signal, () =>
+            unwrap(api.POST("/geo-features:batch", { signal, body: { ids } })),
+          ),
+        ),
+      ),
+    select: (replies) => ({
+      type: "FeatureCollection" as const,
+      features: replies.flatMap((reply) => reply.features ?? []),
+    }),
     retry: false,
   })
 }

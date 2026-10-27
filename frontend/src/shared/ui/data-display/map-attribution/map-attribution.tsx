@@ -1,7 +1,7 @@
 import { clsx } from "clsx"
 import { useId, useState } from "react"
 import { usePresence } from "../../../motion/use-presence"
-import { Button } from "../../primitives/button/button"
+import { Button, type ButtonSize } from "../../primitives/button/button"
 import styles from "./map-attribution.module.css"
 
 export interface MapAttributionProps {
@@ -15,15 +15,25 @@ export interface MapAttributionProps {
     readonly events: string
     readonly license: string
   }
+  readonly placement?: "above" | "below"
+  readonly size?: ButtonSize
   readonly className?: string | undefined
 }
 
-export function MapAttribution({ label, osm, terrain, sources, className }: MapAttributionProps) {
+export function MapAttribution({
+  label,
+  osm,
+  terrain,
+  sources,
+  className,
+  placement = "above",
+  size = "compact",
+}: MapAttributionProps) {
   const id = useId()
   const [open, setOpen] = useState(false)
   const presence = usePresence(open)
   return (
-    <div className={clsx(styles.root, className)}>
+    <div className={clsx(styles.root, className)} data-placement={placement}>
       {presence.mounted ? (
         <ul
           id={id}
@@ -109,7 +119,7 @@ export function MapAttribution({ label, osm, terrain, sources, className }: MapA
       ) : null}
       <Button
         variant="ghost"
-        size="compact"
+        size={size}
         iconOnly
         icon="info"
         className={styles.trigger}

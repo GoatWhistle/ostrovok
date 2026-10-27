@@ -7,6 +7,7 @@ import psycopg
 from fastapi import FastAPI
 from psycopg_pool import AsyncConnectionPool
 
+from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
@@ -38,7 +39,7 @@ async def test_consult_search_and_hotel_advice_preserve_real_conversation(
         cast(SearchHotels, search),
         lambda result: search_schema(result, registry, 0).model_dump(mode="json"),
         registry,
-        GetHotelCard(uow),
+        GetHotelCard(uow, SystemClock()),
     )
     app = FastAPI()
     app.include_router(build_router(chat, registry), prefix="/api/v1")

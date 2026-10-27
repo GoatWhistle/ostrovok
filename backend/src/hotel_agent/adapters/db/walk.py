@@ -15,13 +15,17 @@ ON CONFLICT (id) DO UPDATE SET geometry = EXCLUDED.geometry"""
 FACT_SQL = """INSERT INTO facts
     (id, subject_type, subject_id, characteristic_key, value, unit, qualifiers,
      source_type, method, confidence, computed_at, valid_until, status, geo_refs, explanation)
-VALUES (%(id)s, 'hotel', %(hotel_id)s, 'distance_to_sea', %(minutes)s::jsonb,
+SELECT %(id)s, 'hotel', %(hotel_id)s, 'distance_to_sea', %(minutes)s::jsonb,
     'min', %(qualifiers)s::jsonb, 'computed', 'distance_to_sea@1', 0.8,
     now(), now() + interval '365 days', 'active', %(geo_refs)s,
-    'Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу')
+    'Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу'
+WHERE NOT EXISTS (SELECT 1 FROM facts kept WHERE kept.subject_type = 'hotel'
+    AND kept.subject_id = %(hotel_id)s AND kept.characteristic_key = 'distance_to_sea'
+    AND kept.id <> %(id)s AND kept.status <> 'superseded')
 ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value, qualifiers = EXCLUDED.qualifiers,
     geo_refs = EXCLUDED.geo_refs, computed_at = EXCLUDED.computed_at,
-    valid_until = EXCLUDED.valid_until"""
+    valid_until = EXCLUDED.valid_until
+WHERE facts.status = 'active'"""
 
 
 class PostgresWalkStore:

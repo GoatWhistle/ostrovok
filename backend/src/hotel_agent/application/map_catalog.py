@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 MapLayer = Literal["ground", "volume", "prop", "poi"]
+CATALOG_VERSION = "1"
 
 
 @dataclass(frozen=True, slots=True)

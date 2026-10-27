@@ -1,0 +1,70 @@
+{
+  "desktop": {
+    "errors": [],
+    "requests": [
+      "POST /api/v1/hotelier/questions/q_h_demo_typed_check_double_room/answer",
+      "POST /api/v1/hotelier/questions/q_h_demo_typed_check_room_capacity/answer",
+      "PATCH /api/v1/hotelier/questions/q_h_demo_typed_check_pets_policy",
+      "PATCH /api/v1/hotelier/questions/q_h_demo_typed_check_pets_policy"
+    ],
+    "tabsStart": [
+      "Нужно уточнить: 3",
+      "Отложено: 0",
+      "Готово: 0"
+    ],
+    "automatic": {
+      "id": "q_h_demo_typed_check_double_room",
+      "title": "Ответ сохранён 27 окт. 2026 г., 09:40",
+      "text": "Ответ сохранён 27 окт. 2026 г., 09:40Ваш ответЕсть.Значение в выдачеЕсть двухместный номерПодтверждено отельеромИзменитьСледующий вопрос",
+      "edit": 1,
+      "next": 1
+    },
+    "tabsAfterFirst": [
+      "Нужно уточнить: 2",
+      "Отложено: 0",
+      "Готово: 1"
+    ],
+    "editPanel": 1,
+    "afterNext": "Можно ли заселяться с питомцами в ДЕМО: Проверка форм отельера (тестовые данные)? Есть ли ограничения по весу и плата за ночь?",
+    "manual": {
+      "id": "q_h_demo_typed_check_room_capacity",
+      "title": "Ответ сохранён 27 окт. 2026 г., 09:40",
+      "text": "Ответ сохранён 27 окт. 2026 г., 09:40Ваш ответДо 4 взрослых.Значение в выдачеСледующий вопрос",
+      "edit": 1,
+      "next": 1
+    },
+    "tabsAfterSkip": [
+      "Нужно уточнить: 0",
+      "Отложено: 1",
+      "Готово: 2"
+    ],
+    "tabsAfterReload": [
+      "Нужно уточнить: 0",
+      "Отложено: 1",
+      "Готово: 2"
+    ],
+    "skippedList": [
+      "Можно ли заселяться с питомцами в ДЕМО: Проверка форм отельера (тестовые данные)? Есть ли ограничения по весу и плата за ночь?Не хватает данныхОтложен",
+      "Высота здания: 9 мВысота зданияГеографический расчёт0,90высокая уверенность",
+      "Есть двухместный номерДвухместный номерОтельер1,00высокая уверенностьПодтверждено отельером",
+      "Номер до 4 взрослыхВместимость номераОтельер1,00высокая уверенностьПодтверждено отельером"
+    ],
+    "tabsAfterReopen": [
+      "Нужно уточнить: 1",
+      "Отложено: 0",
+      "Готово: 2"
+    ],
+    "activeTabAfterReopen": true,
+    "tabWidths": [
+      96,
+      96,
+      96
+    ],
+    "overflow": false
+  },
+  "server": {
+    "q_h_demo_typed_check_double_room": "answered",
+    "q_h_demo_typed_check_pets_policy": "open",
+    "q_h_demo_typed_check_room_capacity": "answered"
+  }
+}

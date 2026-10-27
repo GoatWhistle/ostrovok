@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useFormatters, useTranslation } from "@/shared/i18n"
@@ -10,11 +9,13 @@ import { ChatGreeting } from "./chat-greeting"
 import { ChatHistory, type HistoryEntry } from "./chat-history"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
+import { useChatFollow } from "./use-chat-follow"
 
 export type ChatMessage = components["schemas"]["ChatMessage"]
 export type ChatView = "chat" | "history"
 
 export interface SearchChatProps {
+  readonly draftKey?: string | undefined
   readonly messages: readonly ChatMessage[]
   readonly conversationId: string | null
   readonly history: readonly HistoryEntry[]
@@ -37,23 +38,8 @@ export interface SearchChatProps {
   readonly onDelete: (id: string) => Promise<unknown>
 }
 
-function useFollow() {
-  const log = useRef<HTMLDivElement>(null)
-  const list = useRef<HTMLOListElement>(null)
-  useEffect(() => {
-    const scroller = log.current
-    const content = list.current
-    if (!scroller || !content) return
-    const observer = new ResizeObserver(() => {
-      scroller.scrollTop = scroller.scrollHeight
-    })
-    observer.observe(content)
-    return () => observer.disconnect()
-  }, [])
-  return { log, list }
-}
-
 export function SearchChat({
+  draftKey,
   messages,
   conversationId,
   history,
@@ -77,7 +63,7 @@ export function SearchChat({
 }: SearchChatProps) {
   const { t } = useTranslation()
   const format = useFormatters()
-  const { log, list } = useFollow()
+  const { log, list } = useChatFollow(conversationId)
   const lastAssistant =
     searchMessageId === undefined
       ? messages.findLast((message) => message.role === "assistant")?.id
@@ -109,7 +95,7 @@ export function SearchChat({
             icon="plus"
             className={styles.create}
             title={t("explore:chat.newSearch")}
-            disabled={sending || (conversationId === null && messages.length === 0 && !outgoing)}
+            disabled={conversationId === null && messages.length === 0 && !outgoing}
             onClick={() => {
               onView("chat")
               onReset()
@@ -123,7 +109,7 @@ export function SearchChat({
         <ChatHistory
           activeId={conversationId}
           conversations={history}
-          pending={sending}
+          pending={false}
           onOpen={(id) => {
             onOpenConversation(id)
             onView("chat")
@@ -160,7 +146,8 @@ export function SearchChat({
           </ol>
         </ScrollArea>
         <ChatComposer
-          key={conversationId ?? "new"}
+          draftKey={draftKey ?? `chat:${conversationId ?? "new"}`}
+          autoFocus={Boolean(outgoing)}
           pending={sending}
           selectedHotel={selectedHotel}
           onSend={onSend}

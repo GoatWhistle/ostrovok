@@ -31,9 +31,13 @@ SELECT 'f_height_' || x.hotel_id, 'hotel', x.hotel_id, 'building_height',
     x.confidence, now(), now() + interval '730 days', 'active',
     'Высота по тегу OSM или оценке этажности здания'
 FROM heights x
+WHERE NOT EXISTS (SELECT 1 FROM facts kept WHERE kept.subject_type = 'hotel'
+    AND kept.subject_id = x.hotel_id AND kept.characteristic_key = 'building_height'
+    AND kept.id <> 'f_height_' || x.hotel_id AND kept.status <> 'superseded')
 ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value, confidence = EXCLUDED.confidence,
     computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until,
-    explanation = EXCLUDED.explanation"""
+    explanation = EXCLUDED.explanation
+WHERE facts.status = 'active'"""
 
 POI_GEO_FEATURES = """INSERT INTO geo_features
     (id, kind, characteristic_key, geometry, name, osm_ref, style_hint)
@@ -55,9 +59,13 @@ SELECT 'f_double_room_' || r.hotel_id, 'hotel', r.hotel_id, 'double_room',
     'Вместимость проверена по инвентаризации номеров отеля'
 FROM rooms r JOIN hotels h ON h.id = r.hotel_id
 WHERE h.region_id = %(region)s AND NOT r.synthetic
+  AND NOT EXISTS (SELECT 1 FROM facts kept WHERE kept.subject_type = 'hotel'
+    AND kept.subject_id = r.hotel_id AND kept.characteristic_key = 'double_room'
+    AND kept.id <> 'f_double_room_' || r.hotel_id AND kept.status <> 'superseded')
 GROUP BY r.hotel_id
 ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value, computed_at = EXCLUDED.computed_at,
-    valid_until = EXCLUDED.valid_until"""
+    valid_until = EXCLUDED.valid_until
+WHERE facts.status = 'active'"""
 
 
 class PostgresPrecompute:

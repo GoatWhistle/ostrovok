@@ -9,7 +9,7 @@ export function SiteSettings({ surface }: { readonly surface?: "plain" | "glass"
   const { pathname } = useLocation()
   const onHotelier = pathname.startsWith("/hotelier")
   return (
-    <SettingsMenu label={t("explore:landing.settings")} surface={surface ?? "plain"}>
+    <SettingsMenu key={pathname} label={t("explore:landing.settings")} surface={surface ?? "plain"}>
       <SettingsRow label={t("explore:landing.language")}>
         <LocaleSwitch />
       </SettingsRow>

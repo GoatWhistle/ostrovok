@@ -69,6 +69,8 @@
 | i18next | 26.4.3 | MIT | Тексты RU и EN |
 | react-i18next | 17.0.16 | MIT | Тексты RU и EN в компонентах |
 | MapLibre GL JS | 6.15.0 | BSD-3-Clause | Карта, рельеф, 3D-здания |
+| PMTiles | 4.5.0 | BSD-3-Clause | Чтение локального архива подложки по HTTP Range |
+| @protomaps/basemaps | 5.7.2 | BSD-3-Clause | Слои подписей улиц, районов и воды для архива Protomaps |
 | SunCalc | 2.1.1 | BSD-2-Clause | Положение солнца и время заката |
 | Lucide React | 1.55.0 | ISC | Иконки |
 | clsx | 2.1.1 | MIT | Сборка классов |
@@ -93,6 +95,8 @@
 | DeepSeek V4.1 Flash | [Yandex Cloud AI Studio](https://yandex.cloud/ru/docs/ai-studio/), `gpt://<folder_id>/deepseek-v4.1-flash/latest` | Облачный сервис по условиям Yandex Cloud; веса не поставляются | Разбор запроса и сборка актуального запроса диалога при `LLM_PROVIDER=openai_compat` | Нет |
 | OpenStreetMap | [Geofabrik](https://download.geofabrik.de/russia.html), экстракт `south-fed-district-latest.osm.pbf`; срез собран 2026-10-25 | [ODbL 1.0](https://www.openstreetmap.org/copyright) | Отели, здания, улицы, пешеходный граф, берег, пляжи, POI, источники шума | Да: вырезан прямоугольник 39,55–40,0° в. д., 43,35–43,75° с. ш. и разложен по слоям в `data/seed/sochi/` |
 | Copernicus DEM GLO-30 | [Copernicus DEM на AWS](https://copernicus-dem-30m.s3.amazonaws.com/readme.html), тайлы `N43_00_E039_00` и `N43_00_E040_00` | Свободная лицензия Copernicus DEM с обязательной атрибуцией | Тайлы рельефа карты: Terrain RGB и цветной рельеф | Да: тайлы склеены и обрезаны до того же прямоугольника, `dem.tif` 1620×1440 |
+| Подложка Protomaps России | Сборка `20261026`, bbox 19,6–180° в. д., 41,1–82° с. ш., z0–14, около 13 ГБ, готовит `make fetch-basemap-russia` | Данные OSM, ODbL 1.0 | Подписи вне Сочи | Да: вырезан bbox |
+| Подложка Protomaps | Сборка `20261026`, tileset 4.15.2, вырезка bbox Сочи z0–15, `data/seed/sochi-map/basemap/` | Данные OSM, [ODbL 1.0](https://www.openstreetmap.org/copyright); глифы Noto Sans OFL-1.1; спрайт basemaps-assets BSD-3-Clause | Подписи улиц, районов и воды на карте | Да: вырезан bbox; полная SHA-256 в `manifest.json` |
 | Open-Meteo Forecast API | `api.open-meteo.com/v1/forecast`, вызывается из `GET /api/v1/weather` | Данные [CC BY 4.0](https://open-meteo.com/en/licence); бесплатный API только для некоммерческого использования ([условия](https://open-meteo.com/en/terms)) | Погода на выбранную дату и час | Нет |
 | ETG / RateHawk Hotelpage | `api-sandbox.ratehawk.com` или `api.ratehawk.com` | Партнёрский договор с ETG | Предложения на даты; на стенде ключей нет | Нет |
 

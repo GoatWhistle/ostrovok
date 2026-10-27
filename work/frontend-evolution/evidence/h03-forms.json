@@ -1,0 +1,167 @@
+{
+  "typed": {
+    "record": {
+      "errors": [],
+      "posts": [
+        {
+          "path": "/api/v1/hotelier/questions/q_h_demo_typed_check_pets_policy/answer",
+          "body": {
+            "text": "Можно с питомцами. Вес до 10 кг. Доплата 500 ₽. Только собаки"
+          }
+        },
+        {
+          "path": "/api/v1/hotelier/questions/q_h_demo_typed_check_room_capacity/answer",
+          "body": {
+            "text": "До 4 взрослых."
+          }
+        },
+        {
+          "path": "/api/v1/hotelier/questions/q_h_demo_typed_check_double_room/answer",
+          "body": {
+            "text": "Есть."
+          }
+        },
+        {
+          "path": "/api/v1/facts/f_height_h_demo_typed_check/correct",
+          "body": {
+            "value": 15
+          }
+        },
+        {
+          "path": "/api/v1/facts/f_86e7b05645ae4ba690f48141ea2f7981/correct",
+          "body": {
+            "value": {
+              "allowed": false
+            }
+          }
+        }
+      ]
+    },
+    "petsFieldsBefore": 0,
+    "pets": {
+      "choicePosts": 0,
+      "preview": "Можно с питомцами. Вес до 10 кг. Доплата 500 ₽. Только собаки",
+      "sent": {
+        "text": "Можно с питомцами. Вес до 10 кг. Доплата 500 ₽. Только собаки"
+      },
+      "extracted": [
+        {
+          "value": {
+            "allowed": true,
+            "max_weight_kg": 10,
+            "fee_rub": 500
+          },
+          "label": "pets_policy: {'allowed': True, 'max_weight_kg': 10.0, 'fee_rub': 500.0}"
+        }
+      ],
+      "followUp": null
+    },
+    "petsResultText": "Размещение с животнымиМожно ли заселяться с питомцами в ДЕМО: Проверка форм отельера (тестовые данные)? Есть ли ограничения по весу и плата за ночь?Ответ увидят все путешественники. Он станет фактом с источником «отельер» и заменит расчёт.Сейчас в выдаче: С животными можно. До 10 кг. Доплата: 500 ₽. Период оплаты не указанИсточник: Отельер. Ваш ответ заменит это значение.Ответ сохранёнНовые факты из ответаС животными можно. До 10 кг. Доплата: 500 ₽. Период оплаты не указанОтельер",
+    "invalid": {
+      "posts": 0,
+      "ariaInvalid": "true",
+      "focused": false,
+      "alert": "Введите неотрицательное число, например 12 или 12,5"
+    },
+    "capacity": {
+      "choicePosts": 0,
+      "preview": "До 4 взрослых.",
+      "sent": {
+        "text": "До 4 взрослых."
+      },
+      "extracted": [
+        {
+          "value": 4,
+          "label": "room_capacity: 4.0"
+        }
+      ],
+      "followUp": null
+    },
+    "room": {
+      "choicePosts": 0,
+      "preview": "Есть.",
+      "sent": {
+        "text": "Есть."
+      },
+      "extracted": [
+        {
+          "value": true,
+          "label": "double_room: True"
+        }
+      ],
+      "followUp": null
+    },
+    "height": {
+      "sent": {
+        "value": 15
+      }
+    },
+    "petsCorrectionStart": {
+      "allowed": true,
+      "weight": "10"
+    },
+    "petsCorrection": {
+      "sent": {
+        "value": {
+          "allowed": false
+        }
+      }
+    },
+    "cardText": "ДЕМО: Проверка форм отельера (тестовые данные)Номера и ценыФакты об отелеВысота здания: 15 мВысота зданияОтельер1,00высокая уверенностьПодтверждено отельеромЕсть двухместный номерДвухместный номерОтельер1,00высокая уверенностьПодтверждено отельеромС животными нельзяРазмещение с животнымиОтельер1,00высокая уверенностьПодтверждено отельеромНомер до 4 взрослыхВместимость номераОтельер1,00высокая уверенностьПодтверждено отельеромСвободные номера на датыЗаездВыездУкажите число взрослыхМеньшеБольшеУкажите даты заезда, выезда и число взрослых.Фотографии отеляФотографии отеля не подтверждают вид из выбранного номера.Фотографии этого номера не полученыВсе факты и источники"
+  },
+  "english": {
+    "record": {
+      "errors": [],
+      "posts": []
+    },
+    "label": "Adults per room",
+    "layout": {
+      "overflow": false,
+      "preview": true
+    }
+  },
+  "questions": [
+    {
+      "id": "q_h_demo_typed_check_double_room",
+      "status": "answered",
+      "answer_text": "Есть.",
+      "facts": 1
+    },
+    {
+      "id": "q_h_demo_typed_check_pets_policy",
+      "status": "answered",
+      "answer_text": "Можно с питомцами. Вес до 10 кг. Доплата 500 ₽. Только собаки",
+      "facts": 1
+    },
+    {
+      "id": "q_h_demo_typed_check_room_capacity",
+      "status": "answered",
+      "answer_text": "До 4 взрослых.",
+      "facts": 1
+    }
+  ],
+  "facts": [
+    {
+      "key": "building_height",
+      "value": 15,
+      "status": "confirmed_by_hotelier"
+    },
+    {
+      "key": "double_room",
+      "value": true,
+      "status": "confirmed_by_hotelier"
+    },
+    {
+      "key": "pets_policy",
+      "value": {
+        "allowed": false
+      },
+      "status": "confirmed_by_hotelier"
+    },
+    {
+      "key": "room_capacity",
+      "value": 4,
+      "status": "confirmed_by_hotelier"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { createContext, type ReactNode, useContext, useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
+import { HotelRoomProvider } from "./hotel-room"
 
 type Parsed = components["schemas"]["SearchResponse"]["parsed"]
 type Stay = { checkIn: string; checkOut: string; adults: number }
@@ -17,16 +18,23 @@ function initial(stay: Parsed | undefined): Stay {
 export function HotelStayProvider({
   stay,
   children,
+  scopeKey = "",
 }: {
+  readonly scopeKey?: string
   readonly stay?: Parsed | undefined
   readonly children: ReactNode
 }) {
-  const [value, setValue] = useState(() => initial(stay))
+  const source = JSON.stringify([scopeKey, stay?.check_in, stay?.check_out, stay?.adults])
+  const [edit, setEdit] = useState<{ source: string; patch: Partial<Stay> }>()
+  const value = { ...initial(stay), ...(edit?.source === source ? edit.patch : {}) }
+  const update = (change: Partial<Stay>) =>
+    setEdit((current) => ({
+      source,
+      patch: { ...(current?.source === source ? current.patch : {}), ...change },
+    }))
   return (
-    <Context
-      value={{ value, update: (change) => setValue((current) => ({ ...current, ...change })) }}
-    >
-      {children}
+    <Context value={{ value, update }}>
+      <HotelRoomProvider scope={source}>{children}</HotelRoomProvider>
     </Context>
   )
 }

@@ -19,6 +19,7 @@ export async function withViewTransition(
   const owner = latestTransition
   root.dataset.viewTransition = mode
   const transition = document.startViewTransition(() => flushSync(change))
+  transition.ready.catch(() => undefined)
   const limit = window.setTimeout(
     () => transition.skipTransition(),
     motionMs("--view-transition-limit"),

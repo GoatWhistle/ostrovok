@@ -48,7 +48,7 @@ export function usePopover(placement: "top" | "bottom") {
       setOpen(false)
     }
     const dismiss = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return
+      if (event.key !== "Escape" || event.defaultPrevented) return
       event.preventDefault()
       setInstant(true)
       setOpen(false)

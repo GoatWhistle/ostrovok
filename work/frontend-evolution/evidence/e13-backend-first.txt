@@ -1,0 +1,1264 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/ikhail_horokhorin/projects/o-hack-sochi/backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 8/8 workers
+8 workers [921 items]
+
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+........................................................................ [ 39%]
+........................................................................ [ 46%]
+........................................................................ [ 54%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 78%]
+........................................................................ [ 85%]
+........................................................................ [ 93%]
+.............E..EE.EEEEEEEEEE...EEEEEEEEE..EEEE...E.....E                [100%]
+==================================== ERRORS ====================================
+_______ ERROR at setup of test_verified_local_mapping_cannot_be_replaced _______
+[gw3] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_verified_local_mapping_cannot_be_replaced>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_supplier_identity_cannot_be_attached_to_another_local_hotel _
+[gw1] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_supplier_identity_cannot_be_attached_to_another_local_hotel>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_persisted_photos_reach_search_and_detail_without_offers _
+[gw3] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_persisted_photos_reach_search_and_detail_without_offers>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+__________ ERROR at setup of test_overlapping_answers_create_one_fact __________
+[gw1] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_overlapping_answers_create_one_fact>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_______ ERROR at setup of test_overlapping_corrections_leave_one_winner ________
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_overlapping_corrections_leave_one_winner>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+___________ ERROR at setup of test_failure_before_commit_rolls_back ____________
+[gw3] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_failure_before_commit_rolls_back>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_contradicting_answers_wait_for_explicit_confirmation __
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_contradicting_answers_wait_for_explicit_confirmation>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+______ ERROR at setup of test_repeated_precompute_keeps_hotelier_changes _______
+[gw0] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_repeated_precompute_keeps_hotelier_changes>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+___________ ERROR at setup of test_model_call_holds_no_database_lock ___________
+[gw0] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_model_call_holds_no_database_lock>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[11] _
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[11]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+__ ERROR at setup of test_answers_persist_with_quotes_after_a_new_connection ___
+[gw2] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_answers_persist_with_quotes_after_a_new_connection>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+__ ERROR at setup of test_whole_footprints_with_holes_come_back_nearest_first __
+[gw2] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_whole_footprints_with_holes_come_back_nearest_first>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[14] _
+[gw0] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[14]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[13] _
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[13]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[17] _
+[gw2] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[17]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[12] _
+[gw3] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[12]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[15] _
+[gw0] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[15]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[10] _
+[gw1] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[10]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+__ ERROR at setup of test_deferral_survives_reload_and_links_the_saved_answer __
+[gw1] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_deferral_survives_reload_and_links_the_saved_answer>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_building_keeps_identity_and_valid_geometry_at_overview[16] _
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_building_keeps_identity_and_valid_geometry_at_overview[16]>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_deferral_during_the_model_call_blocks_the_late_answer _
+[gw4] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_deferral_during_the_model_call_blocks_the_late_answer>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_tile_border_preserves_both_halves_and_updates_generated_geometry _
+[gw2] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_tile_border_preserves_both_halves_and_updates_generated_geometry>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_low_zoom_uses_real_settlement_polygons_and_empty_area_stays_empty _
+[gw0] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_low_zoom_uses_real_settlement_polygons_and_empty_area_stays_empty>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_simultaneous_answer_and_deferral_leave_one_consistent_outcome _
+[gw2] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_simultaneous_answer_and_deferral_leave_one_consistent_outcome>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_______ ERROR at setup of test_confirmation_and_correction_keep_history ________
+[gw7] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_confirmation_and_correction_keep_history>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:926: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+___ ERROR at setup of test_a_question_without_a_stored_link_reports_no_facts ___
+[gw7] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_a_question_without_a_stored_link_reports_no_facts>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture(scope="session")
+    def disposable_database() -> Iterator[str]:
+        base = os.environ.get("TEST_DATABASE_URL") or os.environ.get(
+            "DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel"
+        )
+        dbmate = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if dbmate is None:
+>           pytest.fail(
+                "dbmate binary is required for disposable databases; install it or set DBMATE_BIN"
+            )
+E           Failed: dbmate binary is required for disposable databases; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:71: Failed
+_ ERROR at setup of test_catalog_import_is_repeatable_and_visible_to_real_queries _
+[gw6] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_catalog_import_is_repeatable_and_visible_to_real_queries>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+_ ERROR at setup of test_consult_search_and_hotel_advice_preserve_real_conversation _
+[gw5] linux -- Python 3.12.12 /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/bin/python
+
+self = <Coroutine test_consult_search_and_hotel_advice_preserve_real_conversation>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @pytest.fixture
+    async def catalog_pool() -> AsyncIterator[
+        AsyncConnectionPool[psycopg.AsyncConnection[tuple[object, ...]]]
+    ]:
+        binary = os.environ.get("DBMATE_BIN") or shutil.which("dbmate")
+        if binary is None:
+>           raise RuntimeError("dbmate is required; install it or set DBMATE_BIN")
+E           RuntimeError: dbmate is required; install it or set DBMATE_BIN
+
+tests/integration/repository/postgres/conftest.py:24: RuntimeError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/unit/adapters/test_geographic_objects.py::test_large_lake_scope_includes_both_ends_and_excludes_distant_inland
+tests/unit/adapters/test_geographic_objects.py::test_shore_distance_is_not_distance_to_lake_center
+tests/unit/application/test_geographic_candidates.py::test_natural_object_search_uses_full_shape_without_selecting_one_region
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/src/hotel_agent/adapters/geo/geographic_objects.py:22: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    self._geometry = transform(self._forward.transform, geometry)
+
+tests/unit/adapters/test_geographic_objects.py::test_large_lake_scope_includes_both_ends_and_excludes_distant_inland
+tests/unit/application/test_geographic_candidates.py::test_natural_object_search_uses_full_shape_without_selecting_one_region
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/src/hotel_agent/adapters/geo/geographic_objects.py:26: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    return AreaBoundary(transform(self._inverse.transform, self._geometry.buffer(radius_m)))
+
+tests/unit/adapters/test_terrain_cache.py::test_children_and_concurrent_callers_share_parent_download
+tests/unit/adapters/test_terrain_cache.py::test_terrain_enlargement_does_not_create_spikes_at_rgb_byte_boundaries
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/lib/python3.12/site-packages/rasterio/io.py:144: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    rd = writer(
+
+tests/unit/adapters/test_terrain_cache.py::test_children_and_concurrent_callers_share_parent_download
+tests/unit/adapters/test_terrain_cache.py::test_terrain_enlargement_does_not_create_spikes_at_rgb_byte_boundaries
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/.venv/lib/python3.12/site-packages/rasterio/io.py:141: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    rd = DatasetReader(mempath, driver=driver, sharing=sharing, thread_safe=thread_safe, **kwargs)
+
+tests/unit/adapters/test_view_assessment.py::test_known_neighbor_obstructs_ray_and_unknown_height_stays_unknown
+tests/unit/adapters/test_view_assessment.py::test_known_neighbor_obstructs_ray_and_unknown_height_stays_unknown
+  /home/ikhail_horokhorin/projects/o-hack-sochi/backend/src/hotel_agent/adapters/geo/view_assessment.py:53: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    polygon: Any = transform(project.transform, shape(building.geometry))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/integration/repository/postgres/test_hotel_catalog.py::test_verified_local_mapping_cannot_be_replaced
+ERROR tests/integration/repository/postgres/test_hotel_catalog.py::test_supplier_identity_cannot_be_attached_to_another_local_hotel
+ERROR tests/integration/repository/postgres/test_hotel_media.py::test_persisted_photos_reach_search_and_detail_without_offers
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_overlapping_answers_create_one_fact
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_overlapping_corrections_leave_one_winner
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_failure_before_commit_rolls_back
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_contradicting_answers_wait_for_explicit_confirmation
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_repeated_precompute_keeps_hotelier_changes
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_model_call_holds_no_database_lock
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[11]
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_answers_persist_with_quotes_after_a_new_connection
+ERROR tests/integration/repository/postgres/test_map_scene.py::test_whole_footprints_with_holes_come_back_nearest_first
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[14]
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[13]
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[17]
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[12]
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[15]
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[10]
+ERROR tests/integration/repository/postgres/test_question_status.py::test_deferral_survives_reload_and_links_the_saved_answer
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_building_keeps_identity_and_valid_geometry_at_overview[16]
+ERROR tests/integration/repository/postgres/test_question_status.py::test_deferral_during_the_model_call_blocks_the_late_answer
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_tile_border_preserves_both_halves_and_updates_generated_geometry
+ERROR tests/integration/repository/postgres/test_map_tile_lod.py::test_low_zoom_uses_real_settlement_polygons_and_empty_area_stays_empty
+ERROR tests/integration/repository/postgres/test_question_status.py::test_simultaneous_answer_and_deferral_leave_one_consistent_outcome
+ERROR tests/integration/repository/postgres/test_hotelier_workflows.py::test_confirmation_and_correction_keep_history
+ERROR tests/integration/repository/postgres/test_question_status.py::test_a_question_without_a_stored_link_reports_no_facts
+ERROR tests/integration/repository/postgres/test_hotel_catalog.py::test_catalog_import_is_repeatable_and_visible_to_real_queries
+ERROR tests/integration/repository/postgres/test_chat_dialogue.py::test_consult_search_and_hotel_advice_preserve_real_conversation
+================= 893 passed, 20 warnings, 28 errors in 7.95s ==================

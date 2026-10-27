@@ -1,9 +1,11 @@
-import { type FormEvent, useId, useState } from "react"
-import { useFactMutation } from "@/entities/hotel"
+import { useEffect, useId, useRef } from "react"
 import type { Fact } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
-import { Banner, Button, Segmented, TextField } from "@/shared/ui"
+import { useInputModality, usePresence } from "@/shared/motion"
+import { Banner, Button } from "@/shared/ui"
+import { CorrectionInput } from "./correction-input"
 import styles from "./fact-correction.module.css"
+import { useFactCorrection } from "./use-fact-correction"
 
 export interface FactCorrectionProps {
   readonly fact: Fact
@@ -12,23 +14,32 @@ export interface FactCorrectionProps {
 export function FactCorrection({ fact }: FactCorrectionProps) {
   const { t } = useTranslation()
   const headingId = useId()
-  const [editing, setEditing] = useState(false)
-  const [value, setValue] = useState(typeof fact.value === "object" ? "" : String(fact.value ?? ""))
-  const mutation = useFactMutation(fact.fact_id)
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const next =
-      typeof fact.value === "number"
-        ? Number(value.replace(",", "."))
-        : typeof fact.value === "boolean"
-          ? value === "true"
-          : value
-    if (typeof next === "number" && !Number.isFinite(next)) return
-    mutation.mutate({ action: "correct", value: next }, { onSuccess: () => setEditing(false) })
+  const editorId = useId()
+  const trigger = useRef<HTMLButtonElement>(null)
+  const editor = useRef<HTMLFormElement>(null)
+  const modality = useInputModality()
+  const form = useFactCorrection(fact)
+  const { atRisk, editing, setEditing, mutation, submit } = form
+  const presence = usePresence(editing, "--dur-exit", modality.instant)
+  const wasEditing = useRef(editing)
+  useEffect(() => {
+    if (editing) editor.current?.querySelector<HTMLElement>("input, textarea")?.focus()
+    else if (wasEditing.current && document.activeElement === document.body)
+      trigger.current?.focus({ preventScroll: true })
+    wasEditing.current = editing
+  }, [editing])
+  const collapse = () => {
+    setEditing(false)
+    trigger.current?.focus({ preventScroll: true })
   }
-  const editable = ["string", "number", "boolean"].includes(typeof fact.value)
+  const editable = form.structured || typeof fact.value === "string"
   return (
-    <section className={styles.review} aria-labelledby={headingId}>
+    <section
+      className={styles.review}
+      aria-labelledby={headingId}
+      onKeyDown={modality.onKeyDown}
+      onPointerDown={modality.onPointerDown}
+    >
       <div className={styles.head}>
         <p id={headingId} className={styles.title}>
           {t("explore:details.reviewTitle")}
@@ -40,53 +51,62 @@ export function FactCorrection({ fact }: FactCorrectionProps) {
           icon="check"
           variant="confirm"
           pending={mutation.isPending && !editing}
-          disabled={mutation.isSuccess}
+          disabled={mutation.isPending || mutation.isSuccess}
           onClick={() => mutation.mutate({ action: "confirm" })}
         >
           {t("explore:details.confirm")}
         </Button>
         {editable ? (
           <Button
+            ref={trigger}
             icon="edit"
             variant="reject"
             aria-expanded={editing}
+            aria-controls={editorId}
+            disabled={mutation.isPending}
             onClick={() => setEditing((current) => !current)}
           >
-            {t("explore:details.wrong")}
+            {t(editing ? "explore:details.collapse" : "explore:details.wrong")}
           </Button>
         ) : null}
       </div>
-      {editing ? (
-        <form className={styles.edit} onSubmit={submit}>
-          {typeof fact.value === "boolean" ? (
-            <Segmented
-              label={t("explore:details.correction")}
-              options={[
-                { value: "true", label: t("explore:match.full"), icon: "check" },
-                { value: "false", label: t("explore:match.none"), icon: "rejected" },
-              ]}
-              value={value}
-              onChange={setValue}
-            />
-          ) : (
-            <TextField
-              label={t("explore:details.correction")}
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              required
-              inputMode={typeof fact.value === "number" ? "decimal" : "text"}
-            />
-          )}
+      {presence.mounted ? (
+        <form
+          ref={editor}
+          id={editorId}
+          className={styles.edit}
+          inert={!editing}
+          data-state={presence.state}
+          data-instant={modality.instant}
+          onTransitionEnd={presence.onTransitionEnd}
+          onSubmit={submit}
+          onKeyDown={(event) => {
+            if (event.key !== "Escape" || event.defaultPrevented) return
+            event.preventDefault()
+            event.stopPropagation()
+            collapse()
+          }}
+        >
+          <CorrectionInput fact={fact} form={form} />
           <div className={styles.actions}>
             <Button icon="send" type="submit" pending={mutation.isPending}>
               {t("explore:details.save")}
             </Button>
-            <Button variant="ghost" onClick={() => setEditing(false)}>
+            <Button
+              variant="ghost"
+              icon="close"
+              disabled={mutation.isPending}
+              onClick={() => {
+                form.cancel()
+                trigger.current?.focus({ preventScroll: true })
+              }}
+            >
               {t("explore:details.cancel")}
             </Button>
           </div>
         </form>
       ) : null}
+      {atRisk ? <Banner tone="warning" title={t("explore:hotelier.draftAtRisk")} /> : null}
       {mutation.isSuccess ? <Banner tone="success" title={t("explore:details.saved")} /> : null}
       {mutation.isError ? <Banner tone="danger" title={t("explore:details.saveError")} /> : null}
     </section>

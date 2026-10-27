@@ -5,6 +5,7 @@ from hotel_agent.application.ports.llm import ExtractedField
 from hotel_agent.domain.characteristics import Characteristic, FieldKind, FieldRule
 
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
+SHORT_ANSWERS = {"да": True, "yes": True, "нет": False, "no": False}
 
 
 def extract(characteristic: Characteristic, answer: str) -> tuple[ExtractedField, ...]:
@@ -16,7 +17,15 @@ def extract(characteristic: Characteristic, answer: str) -> tuple[ExtractedField
         )
         if field is not None:
             fields.append(field)
-    return tuple(fields)
+    return tuple(fields) or _short_answer(characteristic, text)
+
+
+def _short_answer(characteristic: Characteristic, text: str) -> tuple[ExtractedField, ...]:
+    word = text.strip(" .!")
+    rule = next((item for item in characteristic.fields if item.kind is FieldKind.BOOL), None)
+    if rule is None or word not in SHORT_ANSWERS:
+        return ()
+    return (ExtractedField(name=rule.name, value=SHORT_ANSWERS[word], quote=word),)
 
 
 def _bool_field(rule: FieldRule, text: str) -> ExtractedField | None:

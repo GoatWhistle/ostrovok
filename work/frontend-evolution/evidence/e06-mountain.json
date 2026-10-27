@@ -1,0 +1,192 @@
+{
+  "report": [
+    {
+      "z": 14,
+      "pitch": 55.00000000000001,
+      "roofs": [
+        "toy-overview-roofs",
+        "toy-context-roofs"
+      ],
+      "glow": "none",
+      "buildings": 0,
+      "source": 0,
+      "layers": [
+        {
+          "id": "canvas"
+        },
+        {
+          "id": "sochi-relief-fallback"
+        },
+        {
+          "id": "sochi-relief"
+        },
+        {
+          "id": "snow-relief"
+        },
+        {
+          "id": "glaciers"
+        },
+        {
+          "id": "sochi-hillshade"
+        },
+        {
+          "id": "base-landcover",
+          "minzoom": 2
+        },
+        {
+          "id": "night-glow",
+          "minzoom": 9,
+          "maxzoom": 15
+        },
+        {
+          "id": "base-water",
+          "minzoom": 2
+        },
+        {
+          "id": "base-beaches"
+        },
+        {
+          "id": "base-buildings",
+          "minzoom": 10
+        },
+        {
+          "id": "base-trees",
+          "minzoom": 15
+        },
+        {
+          "id": "base-roads-glow",
+          "minzoom": 13
+        },
+        {
+          "id": "base-roads-casing"
+        },
+        {
+          "id": "base-roads"
+        },
+        {
+          "id": "night-lamps",
+          "minzoom": 14.5
+        },
+        {
+          "id": "base-roads-light",
+          "minzoom": 13
+        },
+        {
+          "id": "base-coastline"
+        },
+        {
+          "id": "overview-volumes",
+          "minzoom": 14,
+          "maxzoom": 16
+        },
+        {
+          "id": "toy-overview-roofs",
+          "minzoom": 14,
+          "maxzoom": 16
+        },
+        {
+          "id": "highlight-area"
+        },
+        {
+          "id": "highlight-line"
+        },
+        {
+          "id": "route-glow"
+        },
+        {
+          "id": "route-casing"
+        },
+        {
+          "id": "route-line"
+        },
+        {
+          "id": "route-straight"
+        },
+        {
+          "id": "highlight-point"
+        },
+        {
+          "id": "buildings-context"
+        },
+        {
+          "id": "buildings-volume"
+        },
+        {
+          "id": "buildings-outline"
+        },
+        {
+          "id": "hotel-results"
+        },
+        {
+          "id": "toy-context-roofs",
+          "minzoom": 14,
+          "maxzoom": 24
+        },
+        {
+          "id": "basemap-sochi-address_label",
+          "minzoom": 18
+        },
+        {
+          "id": "basemap-sochi-water_waterway_label",
+          "minzoom": 13
+        },
+        {
+          "id": "basemap-sochi-roads_oneway",
+          "minzoom": 16
+        },
+        {
+          "id": "basemap-sochi-roads_labels_minor",
+          "minzoom": 15
+        },
+        {
+          "id": "basemap-sochi-water_label_ocean"
+        },
+        {
+          "id": "basemap-sochi-earth_label_islands"
+        },
+        {
+          "id": "basemap-sochi-water_label_lakes"
+        },
+        {
+          "id": "basemap-sochi-roads_labels_major",
+          "minzoom": 11
+        },
+        {
+          "id": "basemap-sochi-places_subplace"
+        },
+        {
+          "id": "basemap-sochi-places_region"
+        },
+        {
+          "id": "basemap-sochi-places_locality"
+        },
+        {
+          "id": "basemap-sochi-places_country"
+        }
+      ],
+      "quality": [
+        {
+          "level": 0,
+          "flat": "visible",
+          "glow": "none"
+        },
+        {
+          "level": 1,
+          "flat": "visible",
+          "glow": "none"
+        },
+        {
+          "level": 2,
+          "flat": "visible",
+          "glow": "none"
+        },
+        {
+          "level": 3,
+          "flat": "visible",
+          "glow": "none"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

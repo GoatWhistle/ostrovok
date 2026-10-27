@@ -1,5 +1,6 @@
 import type { Feature, FeatureCollection } from "geojson"
 import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
+import { labelAnchor } from "./basemap-labels"
 
 export interface BuildingColors {
   readonly building: string
@@ -43,42 +44,52 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
 }
 
 export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
+  const before = labelAnchor(map)
   updateSource(map, "buildings", data)
   if (map.getLayer("buildings-volume")) {
     paintBuildings(map, colors)
     return
   }
-  map.addLayer({
-    id: "buildings-context",
-    type: "fill",
-    source: "buildings",
-    filter: POLYGON,
-    paint: {
-      "fill-color": ["case", HOTEL, colors.hotelVolume, colors.building],
-      "fill-outline-color": colors.buildingLine,
-      "fill-opacity": ["case", HOTEL, 0.9, 0.6],
+  map.addLayer(
+    {
+      id: "buildings-context",
+      type: "fill",
+      source: "buildings",
+      filter: POLYGON,
+      paint: {
+        "fill-color": ["case", HOTEL, colors.hotelVolume, colors.building],
+        "fill-outline-color": colors.buildingLine,
+        "fill-opacity": ["case", HOTEL, 0.9, 0.6],
+      },
     },
-  })
-  map.addLayer({
-    id: "buildings-volume",
-    type: "fill-extrusion",
-    source: "buildings",
-    filter: ["all", POLYGON, [">", ["to-number", ["get", "height_m"], 0], 0]],
-    paint: {
-      "fill-extrusion-color": ["case", HOTEL, colors.hotelVolume, colors.buildingVolume],
-      "fill-extrusion-vertical-gradient": true,
-      "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
-      "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
-      "fill-extrusion-opacity": 0.95,
+    before,
+  )
+  map.addLayer(
+    {
+      id: "buildings-volume",
+      type: "fill-extrusion",
+      source: "buildings",
+      filter: ["all", POLYGON, [">", ["to-number", ["get", "height_m"], 0], 0]],
+      paint: {
+        "fill-extrusion-color": ["case", HOTEL, colors.hotelVolume, colors.buildingVolume],
+        "fill-extrusion-vertical-gradient": true,
+        "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
+        "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
+        "fill-extrusion-opacity": 0.95,
+      },
     },
-  })
-  map.addLayer({
-    id: "buildings-outline",
-    type: "line",
-    source: "buildings",
-    filter: HOTEL,
-    paint: { "line-color": colors.hotelSelected, "line-width": 2 },
-  })
+    before,
+  )
+  map.addLayer(
+    {
+      id: "buildings-outline",
+      type: "line",
+      source: "buildings",
+      filter: HOTEL,
+      paint: { "line-color": colors.hotelSelected, "line-width": 2 },
+    },
+    before,
+  )
 }
 
 function isRoute(feature: Feature): boolean {
@@ -94,73 +105,95 @@ export function routeGradient(color: string, progress: number): ExpressionSpecif
 }
 
 function addHighlightLayers(map: MapLibreMap, colors: HighlightColors) {
-  map.addLayer({
-    id: "highlight-area",
-    type: "fill",
-    source: "highlights",
-    filter: POLYGON,
-    paint: { "fill-color": colors.fact, "fill-opacity": 0.45 },
-  })
-  map.addLayer({
-    id: "highlight-line",
-    type: "line",
-    source: "highlights",
-    filter: ["!=", ["geometry-type"], "Point"],
-    layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-color": colors.factLine, "line-width": 2.5 },
-  })
-  map.addLayer({
-    id: "route-glow",
-    filter: ["!=", ["get", "mode"], "straight"],
-    type: "line",
-    source: "routes",
-    layout: { "line-cap": "round", "line-join": "round" },
-    paint: {
-      "line-gradient": routeGradient(colors.routeGlow, 0),
-      "line-width": 14,
-      "line-blur": 8,
-      "line-opacity": 0.55,
+  const before = labelAnchor(map)
+  map.addLayer(
+    {
+      id: "highlight-area",
+      type: "fill",
+      source: "highlights",
+      filter: POLYGON,
+      paint: { "fill-color": colors.fact, "fill-opacity": 0.45 },
     },
-  })
-  map.addLayer({
-    id: "route-casing",
-    filter: ["!=", ["get", "mode"], "straight"],
-    type: "line",
-    source: "routes",
-    layout: { "line-cap": "round", "line-join": "round" },
-    paint: {
-      "line-gradient": routeGradient(colors.land, 0),
-      "line-width": 9,
-      "line-opacity": 0.35,
+    before,
+  )
+  map.addLayer(
+    {
+      id: "highlight-line",
+      type: "line",
+      source: "highlights",
+      filter: ["!=", ["geometry-type"], "Point"],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": colors.factLine, "line-width": 2.5 },
     },
-  })
-  map.addLayer({
-    id: "route-line",
-    filter: ["!=", ["get", "mode"], "straight"],
-    type: "line",
-    source: "routes",
-    layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-gradient": routeGradient(colors.route, 0), "line-width": 4.5 },
-  })
-  map.addLayer({
-    id: "route-straight",
-    type: "line",
-    source: "routes",
-    filter: ["==", ["get", "mode"], "straight"],
-    paint: { "line-color": colors.route, "line-width": 3, "line-dasharray": [2, 2] },
-  })
-  map.addLayer({
-    id: "highlight-point",
-    type: "circle",
-    source: "highlights",
-    filter: ["==", ["geometry-type"], "Point"],
-    paint: {
-      "circle-color": colors.fact,
-      "circle-radius": 6,
-      "circle-stroke-width": 2,
-      "circle-stroke-color": colors.factLine,
+    before,
+  )
+  map.addLayer(
+    {
+      id: "route-glow",
+      filter: ["!=", ["get", "mode"], "straight"],
+      type: "line",
+      source: "routes",
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-gradient": routeGradient(colors.routeGlow, 0),
+        "line-width": 14,
+        "line-blur": 8,
+        "line-opacity": 0.55,
+      },
     },
-  })
+    before,
+  )
+  map.addLayer(
+    {
+      id: "route-casing",
+      filter: ["!=", ["get", "mode"], "straight"],
+      type: "line",
+      source: "routes",
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-gradient": routeGradient(colors.land, 0),
+        "line-width": 9,
+        "line-opacity": 0.35,
+      },
+    },
+    before,
+  )
+  map.addLayer(
+    {
+      id: "route-line",
+      filter: ["!=", ["get", "mode"], "straight"],
+      type: "line",
+      source: "routes",
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-gradient": routeGradient(colors.route, 0), "line-width": 4.5 },
+    },
+    before,
+  )
+  map.addLayer(
+    {
+      id: "route-straight",
+      type: "line",
+      source: "routes",
+      filter: ["==", ["get", "mode"], "straight"],
+      paint: { "line-color": colors.route, "line-width": 3, "line-dasharray": [2, 2] },
+    },
+    before,
+  )
+  map.addLayer(
+    {
+      id: "highlight-point",
+      type: "circle",
+      source: "highlights",
+      filter: ["==", ["geometry-type"], "Point"],
+      paint: {
+        "circle-color": colors.fact,
+        "circle-radius": 6,
+        "circle-stroke-width": 2,
+        "circle-stroke-color": colors.factLine,
+      },
+    },
+    before,
+  )
 }
 
 export function renderHighlights(

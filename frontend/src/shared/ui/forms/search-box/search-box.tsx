@@ -1,8 +1,10 @@
-import type { KeyboardEvent, ReactNode } from "react"
+import { type KeyboardEvent, type ReactNode, useEffect, useRef } from "react"
 import { Icon, type IconName } from "../../primitives/icon/icon"
 import styles from "./search-box.module.css"
 
 export interface SearchBoxProps {
+  readonly autoFocus?: boolean
+  readonly onFocus?: (() => void) | undefined
   readonly label: string
   readonly placeholder: string
   readonly value: string
@@ -20,6 +22,8 @@ function submitOnEnter(event: KeyboardEvent<HTMLTextAreaElement>) {
 }
 
 export function SearchBox({
+  autoFocus = false,
+  onFocus,
   label,
   placeholder,
   value,
@@ -29,12 +33,18 @@ export function SearchBox({
   describedBy,
   actions,
 }: SearchBoxProps) {
+  const input = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    if (autoFocus) input.current?.focus({ preventScroll: true })
+  }, [autoFocus])
   return (
     <div className={styles.box}>
       <label className={styles.field}>
         <span className="visually-hidden">{label}</span>
         {icon === undefined ? null : <Icon name={icon} size="md" className={styles.icon} />}
         <textarea
+          ref={input}
+          onFocus={onFocus}
           className={styles.input}
           placeholder={placeholder}
           value={value}

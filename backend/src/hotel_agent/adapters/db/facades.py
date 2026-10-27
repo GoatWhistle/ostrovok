@@ -48,8 +48,12 @@ SELECT 'f_noise_' || facade_id, 'facade', facade_id, 'noise_level',
     now(), now() + interval '180 days', 'active', ARRAY['g_' || facade_id],
     'Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука'
 FROM levels
+WHERE NOT EXISTS (SELECT 1 FROM facts kept WHERE kept.subject_type = 'facade'
+    AND kept.subject_id = facade_id AND kept.characteristic_key = 'noise_level'
+    AND kept.id <> 'f_noise_' || facade_id AND kept.status <> 'superseded')
 ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value,
-    computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until"""
+    computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until
+WHERE facts.status = 'active'"""
 
 
 class PostgresFacadeStore:

@@ -8,19 +8,24 @@ from psycopg_pool import AsyncConnectionPool
 from hotel_agent.adapters.db.chat import PostgresChatRepository
 from hotel_agent.adapters.db.coastlines import PostgresCoastlineRepository
 from hotel_agent.adapters.db.data_exploration import PostgresDataRepository
+from hotel_agent.adapters.db.fact_store import PostgresFactStore
 from hotel_agent.adapters.db.geo_features import PostgresGeoFeatureRepository
 from hotel_agent.adapters.db.geography import PostgresGeography
+from hotel_agent.adapters.db.map_scene import PostgresMapScene
 from hotel_agent.adapters.db.map_tiles import PostgresMapTileRepository
 from hotel_agent.adapters.db.named_places import PostgresNamedPlaceRepository
 from hotel_agent.adapters.db.nearby_objects import PostgresNearbyObjectRepository
 from hotel_agent.adapters.db.places import PostgresPlaceRepository
+from hotel_agent.adapters.db.questions import PostgresQuestionStore
 from hotel_agent.adapters.db.regions import PostgresRegionRepository
 from hotel_agent.adapters.db.search import PostgresSearchRepository
 from hotel_agent.adapters.db.search_documents import PostgresSearchDocuments
 from hotel_agent.adapters.db.view_scenes import PostgresViewScenes
 from hotel_agent.adapters.db.walk_router import PostgresWalkRouter, WalkRouteCache
 from hotel_agent.application.ports.data_exploration import DataRepository
+from hotel_agent.application.ports.fact_store import FactStore, QuestionStore
 from hotel_agent.application.ports.geography import GeographyRepository
+from hotel_agent.application.ports.map_scene import MapSceneRepository
 from hotel_agent.application.ports.places import PlaceRepository
 from hotel_agent.application.ports.repositories import (
     ChatRepository,
@@ -86,6 +91,9 @@ class PostgresUnitOfWork:
         self.documents: SearchDocumentsPort
         self.view_scenes: ViewSceneRepository
         self.geography: GeographyRepository
+        self.facts: FactStore
+        self.questions: QuestionStore
+        self.map_scene: MapSceneRepository
 
     async def __aenter__(self) -> Self:
         self._connection = await self._factory.connection()
@@ -103,6 +111,9 @@ class PostgresUnitOfWork:
         self.documents = PostgresSearchDocuments(self._connection)
         self.view_scenes = PostgresViewScenes(self._connection)
         self.geography = PostgresGeography(self._connection)
+        self.facts = PostgresFactStore(self._connection)
+        self.questions = PostgresQuestionStore(self._connection)
+        self.map_scene = PostgresMapScene(self._connection)
         return self
 
     async def __aexit__(self, *exc: object) -> None:

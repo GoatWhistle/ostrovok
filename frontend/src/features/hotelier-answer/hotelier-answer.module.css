@@ -14,12 +14,6 @@
   border-inline-end: var(--hairline) solid var(--border-subtle);
 }
 
-.lookup {
-  display: grid;
-  gap: var(--space-8);
-  padding: var(--space-4);
-}
-
 .main {
   display: grid;
   align-content: start;
@@ -34,9 +28,18 @@
   gap: var(--space-16);
 }
 
+.all {
+  justify-self: start;
+}
+
 @media (max-width: 63.99rem) {
   .workspace {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace[data-view="question"] > .queue,
+  .workspace[data-view="queue"] > .main {
+    display: none;
   }
 
   .queue {
@@ -47,4 +50,23 @@
   .main {
     padding: var(--space-16);
   }
+}
+
+.empty {
+  composes: secondaryText from "../../shared/styles/compose.module.css";
+  padding: var(--space-8);
+}
+
+.tabs > fieldset {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  inline-size: 100%;
+}
+
+.tabs > fieldset > label {
+  min-inline-size: 0;
+  padding-block: var(--space-4);
+  padding-inline: var(--space-4);
+  text-align: center;
+  white-space: normal;
 }

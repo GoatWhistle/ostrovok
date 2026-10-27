@@ -2,7 +2,9 @@ import { spawnSync } from "node:child_process"
 import { resolve } from "node:path"
 
 const GENERATOR = "openapi-typescript@7.13.0"
-const source = process.env.API_SCHEMA_URL ?? "http://localhost:8000/openapi.json"
+const source =
+  process.env.API_SCHEMA_URL ??
+  resolve(import.meta.dirname, "..", "..", "docs", "api", "openapi.yaml")
 const target = resolve(import.meta.dirname, "..", "src", "shared", "api", "schema.gen.ts")
 
 const result = spawnSync("npx", ["--yes", GENERATOR, source, "--output", target], {

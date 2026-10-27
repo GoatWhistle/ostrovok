@@ -35,6 +35,8 @@
   max-inline-size: var(--prose-measure);
 }
 
-.submit {
-  justify-self: start;
+.skipped {
+  display: grid;
+  gap: var(--space-16);
+  max-inline-size: var(--prose-measure);
 }

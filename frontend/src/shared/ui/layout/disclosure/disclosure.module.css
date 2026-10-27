@@ -38,6 +38,11 @@
   transition: var(--transition-reveal-out);
 }
 
+.trigger[data-instant="true"] .chevron,
+.panel[data-instant="true"] {
+  transition: none;
+}
+
 @starting-style {
   .panel[data-state="open"] {
     opacity: 0;

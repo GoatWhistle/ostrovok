@@ -4,6 +4,7 @@ import {
   type Map as MapLibreMap,
   MercatorCoordinate,
 } from "maplibre-gl"
+import type { BuildingMaterial } from "../appearance/materials"
 import type { SunPosition } from "../terrain"
 import type { BuildingMesh } from "./geometry"
 import { buildingProgram } from "./material"
@@ -23,12 +24,19 @@ export class TexturedBuildingLayer implements CustomLayerInterface {
   private texture: WebGLTexture | null = null
   readonly hotelId: string
   readonly mesh: BuildingMesh
-  private readonly image: HTMLImageElement
+  private readonly image: HTMLImageElement | null
+  material: BuildingMaterial
 
-  constructor(hotelId: string, mesh: BuildingMesh, image: HTMLImageElement) {
+  constructor(
+    hotelId: string,
+    mesh: BuildingMesh,
+    image: HTMLImageElement | null,
+    material: BuildingMaterial,
+  ) {
     this.hotelId = hotelId
     this.mesh = mesh
     this.image = image
+    this.material = material
   }
 
   onAdd(map: MapLibreMap, gl: WebGL2RenderingContext) {
@@ -53,7 +61,19 @@ export class TexturedBuildingLayer implements CustomLayerInterface {
     gl.bindTexture(gl.TEXTURE_2D, this.texture)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false)
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.image)
+    if (this.image) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.image)
+    else
+      gl.texImage2D(
+        gl.TEXTURE_2D,
+        0,
+        gl.RGBA,
+        1,
+        1,
+        0,
+        gl.RGBA,
+        gl.UNSIGNED_BYTE,
+        new Uint8Array([255, 255, 255, 255]),
+      )
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
@@ -93,6 +113,12 @@ export class TexturedBuildingLayer implements CustomLayerInterface {
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, this.texture)
     gl.uniform1i(gl.getUniformLocation(this.program, "u_texture"), 0)
+    gl.uniform1f(
+      gl.getUniformLocation(this.program, "u_matte"),
+      this.material.mode === "matte" ? 1 : 0,
+    )
+    gl.uniform3f(gl.getUniformLocation(this.program, "u_wall"), ...this.material.wall)
+    gl.uniform3f(gl.getUniformLocation(this.program, "u_roof"), ...this.material.roof)
     gl.enable(gl.DEPTH_TEST)
     gl.depthFunc(gl.LEQUAL)
     gl.depthMask(true)

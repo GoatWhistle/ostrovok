@@ -74,35 +74,47 @@ class PostgresHotelCatalog:
                     """INSERT INTO facts
                     (id, subject_type, subject_id, characteristic_key, value, unit, qualifiers,
                      source_type, method, confidence, computed_at, valid_until, status, explanation)
-                    VALUES (%s, 'hotel', %s, 'double_room', %s::jsonb, NULL,
+                    SELECT %(id)s, 'hotel', %(hotel)s, 'double_room', %(value)s::jsonb, NULL,
                             '{"source":"room_inventory"}'::jsonb, 'computed',
                             'double_room@1', 0.85, now(), now() + interval '90 days',
-                            'active', 'Вместимость проверена по категориям номеров Nuitee')
+                            'active', 'Вместимость проверена по категориям номеров Nuitee'
+                    WHERE NOT EXISTS (SELECT 1 FROM facts kept
+                        WHERE kept.subject_type = 'hotel' AND kept.subject_id = %(hotel)s
+                        AND kept.characteristic_key = 'double_room' AND kept.id <> %(id)s
+                        AND kept.status <> 'superseded')
                     ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value,
                     computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until,
-                    explanation = EXCLUDED.explanation""",
-                    (
-                        f"f_double_room_{hotel_id}",
-                        hotel_id,
-                        "true" if any(room.max_adults == 2 for room in hotel.rooms) else "false",
-                    ),
+                    explanation = EXCLUDED.explanation
+                    WHERE facts.status = 'active'""",
+                    {
+                        "id": f"f_double_room_{hotel_id}",
+                        "hotel": hotel_id,
+                        "value": "true"
+                        if any(room.max_adults == 2 for room in hotel.rooms)
+                        else "false",
+                    },
                 )
                 await db.execute(
                     """INSERT INTO facts
                     (id, subject_type, subject_id, characteristic_key, value, unit, qualifiers,
                      source_type, method, confidence, computed_at, valid_until, status, explanation)
-                    VALUES (%s, 'hotel', %s, 'room_capacity', %s::jsonb, NULL,
+                    SELECT %(id)s, 'hotel', %(hotel)s, 'room_capacity', %(value)s::jsonb, NULL,
                             '{"source":"room_inventory"}'::jsonb, 'computed',
                             'room_capacity@1', 0.85, now(), now() + interval '90 days',
-                            'active', 'Вместимость одной категории номера по каталогу Nuitee')
+                            'active', 'Вместимость одной категории номера по каталогу Nuitee'
+                    WHERE NOT EXISTS (SELECT 1 FROM facts kept
+                        WHERE kept.subject_type = 'hotel' AND kept.subject_id = %(hotel)s
+                        AND kept.characteristic_key = 'room_capacity' AND kept.id <> %(id)s
+                        AND kept.status <> 'superseded')
                     ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value,
                     unit = EXCLUDED.unit,
                     computed_at = EXCLUDED.computed_at, valid_until = EXCLUDED.valid_until,
-                    explanation = EXCLUDED.explanation""",
-                    (
-                        f"f_room_capacity_{hotel_id}",
-                        hotel_id,
-                        str(max(room.max_adults for room in hotel.rooms)),
-                    ),
+                    explanation = EXCLUDED.explanation
+                    WHERE facts.status = 'active'""",
+                    {
+                        "id": f"f_room_capacity_{hotel_id}",
+                        "hotel": hotel_id,
+                        "value": str(max(room.max_adults for room in hotel.rooms)),
+                    },
                 )
         return len(hotel.rooms)

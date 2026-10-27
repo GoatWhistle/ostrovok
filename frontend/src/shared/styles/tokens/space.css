@@ -1,4 +1,8 @@
 :root {
+  --cover-footer: 240px;
+  --cover-footer-compact: 176px;
+  --cover-inset: 160px;
+  --cover-controls: 112px;
   --compare-card-min: 280px;
   --compare-mobile-width: 87%;
   --mark-md: 32px;
@@ -53,6 +57,7 @@
   --prose-measure: 70ch;
   --field-max-width: 480px;
   --field-min: 240px;
+  --date-field-min: 11rem;
   --badge-height: 24px;
   --pin-height: 30px;
   --pin-dot: 20px;

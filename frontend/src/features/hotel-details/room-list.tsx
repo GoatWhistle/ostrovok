@@ -44,7 +44,7 @@ export function RoomList({ rooms }: RoomListProps) {
             ) : null}
             <RoomFact icon="calendar">
               {room.price_amount != null && room.price_currency
-                ? t("explore:details.roomPrice", {
+                ? t("explore:cards.catalogPrice", {
                     amount: room.price_amount,
                     currency: room.price_currency,
                   })
@@ -52,7 +52,7 @@ export function RoomList({ rooms }: RoomListProps) {
             </RoomFact>
             <RoomFact icon="sunset">
               {room.facade_ids?.length
-                ? t("explore:details.roomSide", { value: room.facade_ids.join(", ") })
+                ? t("explore:cards.facadeCount", { count: room.facade_ids.length })
                 : t("explore:details.roomSideUnknown")}
             </RoomFact>
             <RoomFact icon="check">

@@ -1,8 +1,13 @@
 # Session state
 
-Updated: 2026-10-26, Europe/Moscow
+Updated: 2026-10-27, Europe/Moscow
 
 ## Explicit user instructions
+
+- 2026-10-27, дословно: «начинай выполнение плана в ветке хотел мвп .»
+- 2026-10-27, дословно: «и дополни в спеку чтобы после каждого пункта комит . но пуш токо в самом конце когда все будет сделано из пунктов»
+- 2026-10-27, дословно: «а надо еще в фоне запустить скачку карты россии»
+- 2026-10-27, дословно: «посмотри какую спеку в ласт сессии делает кодекс . продолжи ее выполнение сделав пере этим ревью»
 
 - 2026-10-26: «скинь энвы запущенного стенд (можешь ничего не скрывать)».
 
@@ -156,33 +161,29 @@ Updated: 2026-10-26, Europe/Moscow
 - 2026-10-26, дословно: «запиши оставшиеся действия в md и заканчивай».
 - 2026-10-26, дословно: «влей все в agent mvp ветку».
 
-- 2026-10-26, дословно: «запиши оставшиеся действия в md и заканчивай».
-- 2026-10-26, дословно: «влей все в agent mvp ветку».
 
 - 2026-10-27, дословно: «У нас вроде бы как есть способ ходить и забрать инфу об номерах отелях. Об фотках, фактах и тп, но сейчас это не работает, возможно это где то есть в других ветках и просто не смержено, но на текущем стенде такого нет. Надо сделать это, подосмтреть реализацию можно тут https://github.com/LegacyTeam26/ostrovok».
+
+- 2026-10-27, дословно: «агент чтото еще сделал  иди дальше»
+- 2026-10-27, дословно: «скажи сколько пунктов из спеки осталось»
+- 2026-10-27, дословно: «я его остановил . доделай работу его сам»
+- 2026-10-27, дословно: «сделай тогда пуш текущих комитов». Push of the committed work authorized for this moment; fetch and rebase over the teammate first.
 
 ## Current state
 
 - Main/origin2d2fd12; backend view-corridor-20261026 image14de83d8 healthy200. Only3geometrymodules overlaid on independentfdcd62b4 runtime; TAGpersisted,frontendunchanged.817clean/833root unitcontract+12DBtests passed.
 - NativeOstankino now2positive rays, independentaudit0errors; 40535terminal3/3pass;15672+22504stoppedSIGINTbyuser.18801terminal dueindependentdeploy;Onega/russianbridge/nevyan resumed. Goal incomplete:50processed acrossversions27auto18review5special. [Evidence](../../o-hack-stand/work/window-views/review-probe/README.md).
 - Moscow-City complex absent locally; externalidentity+geometryneeded. Independent event/web workdirty,preserved. Priorstate:[archive](../work/window-views/session-before-round15.md). Protectedverbatimquotes exceedSESSIONtarget.
+- Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, rebased onto origin `85bcd18` on 2026-10-27 and pushed at user request. [Progress](../work/frontend-evolution/progress.md). E00–E14/E18/H01–H07 committed (Codex continued H05 fix, H06, H07, E13, E14 and was stopped by the user). Remaining: E15, E16, E17. Codex E15/E16 work in progress is kept in stash `codex-e15-e16-wip` (map quality stall handling, updated e2e); restore it before continuing.
+- Isolated FakeLLM/PostGIS Compose `hotel-evolution`, API :18085, DB :15435, frontend :5179 (`API_URL=:18085 MAP_ASSET_URL=:18082 npx vite --host 127.0.0.1 --port 5179`; restarted 2026-10-27 after it stopped). Node24 `/tmp/hotel-node24/bin`. Russia basemap complete and verified: 13,315,380,122 bytes, basemap-e9827062f2ba; root work/russia-download. Synthetic hotelier region bbox corrected to fixture extent.
 
-- Web research round3 done on feat/hotel-agent-mvp: review rejection fed back into research, catalogue identity passed to the final review, duplicate wish researched once, contact User-Agent and typed page failures. 845 unit/contract, ruff, mypy, import contracts pass.
+## Historical state
 
-- Live run of all 12 cases: no false confirmations, 4 criteria met, 1 partial (poet quote proves death, not residence), 7 misses, four of them at the 180s wish limit. Details work/web-search-fix/round3/README.md; next actions work/web-search-fix/remaining.md.
+- Earlier stand, window-view, web-research and supplier-catalog notes: [archive](../work/session-before-e15-2026-10-27.md).
 
-- Window-view work stopped at user request. Remaining actions and Onega fallback-loss reproduction: [handoff](../work/window-views/remaining-actions.md). No more tests until resumed. All task code merged/pushed2d2fd12; handoff48575ae committed/pushed. Stand left running.
+## Next actions and pitfalls
 
-- Proximity wishes now start from map data: a forced find_nearby probe (20 km, distance to the nearest match), explicit instruction to finish on that distance field, per-tool budgets, time notices at 60/85 percent and an honest early finish. Kostroma moose farm 193s/empty → 65s/2 hotels with 13 km distance; «The Бык» 189 → 164s honest refusal (absent from OSM); Trump 58.8s. A source now must state the asked relation: an event inside a building no longer proves residence. Pushed as cd7e3ba.
+- Continue evolution plan from its progress document. Do not mix unrelated map-reference files into commits. Full verification, browser checks and local commits per completed item; no intermediate push. Existing window-view evaluation below is historical separate work, not a replacement for this task. Protected user instructions exceed the SESSION target and remain verbatim.
 
-- «Запросы не идут» checked: not the provider — one llm_request_retry (ReadTimeout, recovered) in the whole container log. «отель рядом с The бык в Казани» hit the 180s wish limit after 16 web searches; no such place in the Kazan OSM slice («Голодный бык» resolves in 12.5s). Added find_nearby over map data and a per-wish tool budget (web 8, pages 10, embeddings 8, expansions 3), pushed as b143c3c, stand on named-nearby-20261027b.
-
-- Named place nearby no longer replaced by its category (user report: Вкусвилл, шаверма): name from the query is matched over OSM name/brand/operator/cuisine by word stems, found objects are listed in the explanation, source quote is shown in the card, planner context is compacted, a timed-out check is named as unfinished. Live: Вкусвилл 36.4s/20 hotels, шаверма 31.0s/20 hotels, regression round4 kept every earlier positive and added «Ямской посад». Pushed as ccf36c8; stand runs hotel-agent-backend:named-nearby-20261027.
-
-- Previous round committed and pushed as deeeb60 on feat/hotel-agent-mvp. Stand runs hotel-agent-backend:research-feedback-20261026, built from this tree and byte-identical to backend/src (healthy; Trump query returns The Carlton Moscow in 51s over HTTP, poet repeat timed out empty in 243s). Frontend and db untouched. Docs of other sessions left dirty on purpose.
-
-- Сведения об отелях Островка переписаны с поиска по прямоугольнику на каталог сайта: multicomplete по «название + улица/город», проверка кандидата по координатам и адресу его страницы, цены отдельным вызовом hp/search. Пришли фотографии, категории номеров с фото, услуги, описание, окружение с расстояниями, оценка и факты (этажи, число номеров, год постройки, запись реестра со ссылкой). Поле `details` добавлено в `/hotels/{id}/offers` и в openapi; карточка на фронте показывает это новым блоком. `GetHotelDetails` отдаёт то же агенту без дат, поэтому `provider_hotels`/`provider_rooms` перестали отвечать «not configured» в бесплатном режиме. Поиск по bbox удалён вместе с `ostrovok_content.py`/`ostrovok_details.py`.
-- Измерено на тех же отелях: было (worktree на f1472e7) 0/9, 3/25, 4/40 с 10 provider_error; стало 9/9, 10/25, 9/40 без ошибок. Ложных совпадений нет, все принятые в 1–67 м с совпадающим адресом. Разброс источника: два прогона подряд дали 10 и 9 из 40. Подробности work/hotel-data/catalog-match/README.md, числа в docs/evidence.md.
-- Backend 892 unit/contract, ruff, mypy 485, import contracts; frontend verify 36 правил/369 тестов/сборка. Стенд: hotel-agent-backend:supplier-details-20261027c и hotel-agent-frontend:supplier-details-20261027c, оба healthy, `/hotels/w51847429/offers` отдаёт 48 тарифов, 15 категорий и 24 фото.
-- Не сделано: браузерный проход по новому блоку карточки на 375/1440 в двух темах и языках — карточка открывается только после поиска агентом, это платный вызов модели, явного разрешения не было. Блок покрыт четырьмя компонентными тестами на реальном ответе (work/hotel-data/catalog-match/live-card.json).
-- Ничего не коммитил: в этом дереве параллельно работают другие сессии, их правки лежат в тех же docs/*.md. Все изменения в рабочем дереве на feat/hotel-agent-mvp поверх 6e59442.
+- Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
+- Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.

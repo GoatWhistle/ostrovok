@@ -4,16 +4,16 @@
 }
 
 .value {
-  composes: label from "../../entities/evidence/evidence-text.module.css";
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
   font-weight: var(--weight-bold);
 }
 
 .title {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../shared/styles/compose.module.css";
 }
 
 .empty {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../shared/styles/compose.module.css";
 }
 
 .badges {

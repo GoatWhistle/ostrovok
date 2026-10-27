@@ -42,7 +42,7 @@
 | Свободные номера и цены на даты | `adapters/external/etg_offers.py`, `application/use_cases/get_hotel_offers.py` | `backend/tests/unit/adapters/test_etg_offers.py`, `backend/tests/unit/application/test_get_hotel_offers.py` | **код**; на стенде нет ключей ETG и соответствий каталогу, ответ `provider_unavailable` |
 | Номера: вместимость, этаж, сторона, услуги | Поля в карточке и таблица `rooms` | — | **нет**; источника номеров нет, 0 записей; [ограничения](limitations.md#вид-на-закат-номера-и-цены-неизвестны) |
 | Вид на закат | Характеристика `characteristics/sunset_view.yaml` | — | **нет**; расчёта нет, условие всегда неизвестно |
-| Отельер отвечает, подтверждает или исправляет факт | Правило конфликтов в `domain/services/conflict_resolver.py` | `backend/tests/unit/domain/test_conflict_resolver.py` | **нет**; HTTP-методов нет, [ограничения](limitations.md#отельер-и-сравнение-не-работают-на-бэкенде) |
+| Отельер отвечает, подтверждает или исправляет факт | `routers/hotelier.py`, `use_cases/answer_question.py`, `use_cases/change_facts.py` | `test_hotelier_workflows.py` (unit и PostgreSQL), `tests/contract/test_hotelier.py`, [проверка на стенде](evidence.md#ответ-отельера-на-стенде-26-октября-2026) | **стенд**; права не проверяются, [ограничения](limitations.md#ответы-отельера-принимаются-без-входа) |
 | Сравнение выбранных отелей | Страница `frontend/src/pages/compare/` | — | **нет**; `POST /api/v1/compare` отвечает 404 |
 
 ## Где решение отходит от исходной постановки?

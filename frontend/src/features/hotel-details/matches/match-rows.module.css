@@ -1,0 +1,34 @@
+.caption {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+}
+
+.list {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.static {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-12);
+  min-block-size: var(--target-min);
+  padding: var(--space-8) var(--space-12);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.label {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+}

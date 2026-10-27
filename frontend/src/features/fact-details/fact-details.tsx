@@ -15,6 +15,7 @@ export interface FactDetailsProps {
   readonly factId: string
   readonly onBack: () => void
   readonly review?: boolean
+  readonly backLabel?: string
   readonly className?: string | undefined
 }
 
@@ -23,6 +24,7 @@ export function FactDetails({
   factId,
   onBack,
   review = false,
+  backLabel,
   className,
 }: FactDetailsProps) {
   const { t } = useTranslation()
@@ -40,7 +42,7 @@ export function FactDetails({
         onClick={onBack}
         className={styles.back}
       >
-        {t("explore:details.back")}
+        {backLabel ?? t("explore:details.back")}
       </Button>
       {query.isPending ? (
         <div className={styles.skeleton} aria-hidden="true">
@@ -84,8 +86,9 @@ export function FactDetails({
               {t("explore:details.conflictsText")}
             </Banner>
           ) : null}
+          {review ? <FactCorrection fact={fact} /> : null}
           {fact.provenance ? (
-            <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen>
+            <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen={!review}>
               <FactProvenance provenance={fact.provenance} conflicts={conflicts} />
             </Disclosure>
           ) : null}
@@ -94,7 +97,6 @@ export function FactDetails({
               <FactHistory history={fact.history} />
             </Disclosure>
           ) : null}
-          {review ? <FactCorrection fact={fact} /> : null}
         </article>
       ) : null}
     </section>

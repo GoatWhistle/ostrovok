@@ -57,8 +57,9 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
   }
   map.addSource("sochi-map", {
     type: "vector",
-    tiles: [`${window.location.origin}/api/v1/map/tiles/{z}/{x}/{y}.pbf`],
-    minzoom: 8,
+    tiles: [`${window.location.origin}/api/v1/map/tiles/{z}/{x}/{y}.pbf?v=buildings-v2`],
+    minzoom: 2,
+    promoteId: { buildings: "id", landcover: "id" },
     maxzoom: 19,
   })
   map.addLayer({
@@ -73,7 +74,7 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     type: "fill",
     source: "sochi-map",
     "source-layer": "buildings",
-    minzoom: 15,
+    minzoom: 10,
     paint: { "fill-color": colors.building, "fill-outline-color": colors.buildingLine },
   })
   map.addLayer({

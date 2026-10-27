@@ -1,4 +1,6 @@
 import { act, renderHook } from "@testing-library/react"
+import type { ReactNode } from "react"
+import { MemoryRouter } from "react-router"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { Conversation } from "../../../src/features/hotel-search/use-conversation"
 import { useHotelWorkspace } from "../../../src/features/hotel-search/use-hotel-workspace"
@@ -43,12 +45,16 @@ function reply(searchMessageId: string): Conversation {
   }
 }
 
+function Wrapper({ children }: { readonly children: ReactNode }) {
+  return <MemoryRouter>{children}</MemoryRouter>
+}
+
 beforeEach(() => {
   harness.data = undefined
 })
 describe("consultation in the hotel workspace", () => {
   it("keeps the selected hotel and focused map property when advice preserves the search", () => {
-    const state = renderHook(() => useHotelWorkspace())
+    const state = renderHook(() => useHotelWorkspace(), { wrapper: Wrapper })
     act(() => state.result.current.property(result, property))
     expect(state.result.current.hotelId).toBe("h1")
     act(() => harness.answer(reply("old-search-answer")))
@@ -57,7 +63,7 @@ describe("consultation in the hotel workspace", () => {
     expect(state.result.current.geoRefs).toEqual(["g_point"])
   })
   it("updates selection after an actual new search", () => {
-    const state = renderHook(() => useHotelWorkspace())
+    const state = renderHook(() => useHotelWorkspace(), { wrapper: Wrapper })
     act(() => state.result.current.property(result, property))
     const data = reply("new-answer")
     data.search = { query_id: "new", parsed: {}, results: [] }

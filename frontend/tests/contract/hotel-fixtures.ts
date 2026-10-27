@@ -194,9 +194,11 @@ export async function installHotelContract(page: Page) {
               {
                 id: "q_test",
                 hotel_id: "h_test_a",
+                characteristic_key: "sunset_view",
                 text: "Which rooms face west?",
                 reason: "missing",
                 status: "open",
+                created_at: "2026-10-25T00:00:00Z",
               },
             ],
       }),

@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/ikhail_horokhorin/projects/o-hack-sochi/backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 2/2 workers
+2 workers [11 items]
+
+...........                                                              [100%]
+============================== 11 passed in 7.56s ==============================

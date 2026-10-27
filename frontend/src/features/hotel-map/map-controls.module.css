@@ -1,9 +1,10 @@
 .controls {
   position: absolute;
   inset-block-start: var(--space-16);
-  inset-inline-end: var(--space-16);
+  inset-inline-end: calc(var(--space-16) + var(--map-overlay-right, 0px));
   z-index: var(--layer-map-controls);
   display: grid;
+  align-items: start;
   gap: var(--space-8);
 }
 
@@ -27,4 +28,18 @@
 
 .compass svg {
   rotate: var(--map-bearing, 0deg);
+}
+
+@media (max-width: 63.99rem) {
+  .controls[data-full-map="true"] {
+    grid-template-columns: repeat(2, var(--target-min));
+  }
+  .controls[data-full-map="true"] > .group:nth-last-child(2) {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, var(--target-min));
+  }
+}
+
+.group[hidden] {
+  display: none;
 }

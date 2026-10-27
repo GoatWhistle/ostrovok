@@ -1,0 +1,93 @@
+{
+  "errors": [],
+  "cycles": [
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    },
+    {
+      "camera": true,
+      "canvases": 1,
+      "connected": true
+    }
+  ],
+  "sceneRequests": [
+    "http://127.0.0.1:5179/api/v1/map/scene?region_id=sochi&bbox=39.956%2C43.39%2C39.978%2C43.408&zoom=16&v=osm-2026-10-26T13%3A33%3A39Z"
+  ],
+  "hidden": {
+    "before": {
+      "workers": {
+        "active": 0,
+        "created": 11,
+        "post": 23
+      },
+      "renders": 69,
+      "frames": 198
+    },
+    "after": {
+      "workers": {
+        "active": 0,
+        "created": 11,
+        "post": 23
+      },
+      "renders": 69,
+      "frames": 198
+    },
+    "sceneRequests": 0
+  },
+  "contextRestored": {
+    "sameCanvas": true,
+    "count": 1
+  },
+  "offscreen": true,
+  "landing": {
+    "same": true,
+    "contexts": 2
+  },
+  "returned": {
+    "same": true,
+    "camera": true,
+    "contexts": 1
+  }
+}

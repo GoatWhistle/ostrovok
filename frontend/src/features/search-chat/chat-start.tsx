@@ -20,6 +20,8 @@ const START_SUGGESTIONS: readonly { readonly key: string; readonly label: Messag
 ]
 
 export interface ChatStartProps {
+  readonly draftKey?: string | undefined
+  readonly onInteraction?: (() => void) | undefined
   readonly pending: boolean
   readonly recent: readonly HistoryEntry[]
   readonly onSend: (message: string) => void
@@ -27,7 +29,15 @@ export interface ChatStartProps {
   readonly onHistory: () => void
 }
 
-export function ChatStart({ pending, recent, onSend, onOpen, onHistory }: ChatStartProps) {
+export function ChatStart({
+  pending,
+  recent,
+  onSend,
+  onOpen,
+  onHistory,
+  draftKey,
+  onInteraction,
+}: ChatStartProps) {
   const { t } = useTranslation()
   const titleId = useId()
   const firstVisit = useFirstVisit("factmap-start")
@@ -53,6 +63,8 @@ export function ChatStart({ pending, recent, onSend, onOpen, onHistory }: ChatSt
         <div className={styles.composer}>
           <ChatComposer
             pending={pending}
+            draftKey={draftKey}
+            onInteraction={onInteraction}
             placeholder={t("explore:chat.startPlaceholder")}
             onSend={onSend}
           />

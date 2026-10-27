@@ -19,6 +19,10 @@
   animation: var(--motion-scale-out);
 }
 
+.panel[data-instant="true"] {
+  animation: none;
+}
+
 .row {
   display: flex;
   align-items: center;

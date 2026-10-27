@@ -11,7 +11,7 @@ from hotel_agent.domain.entities import (
     Resolution,
     facts_by_characteristic,
 )
-from hotel_agent.domain.errors import InvalidValue
+from hotel_agent.domain.errors import InvalidValue, QuestionAnswered
 from hotel_agent.domain.value_objects import ConflictId, FactId, HotelId, QuestionId, Subject
 from tests.unit.domain.conftest import FactMaker
 
@@ -118,3 +118,18 @@ def test_an_open_question_can_be_answered_or_skipped() -> None:
 def test_a_settled_question_is_not_answered_twice() -> None:
     with pytest.raises(InvalidValue, match="already answered"):
         question().answered().answered()
+
+
+def test_deferral_is_reversible_and_repeatable() -> None:
+    skipped = question().skipped()
+    assert skipped.skipped().status is QuestionStatus.SKIPPED
+    assert skipped.reopened().status is QuestionStatus.OPEN
+    assert question().reopened().status is QuestionStatus.OPEN
+
+
+def test_an_answered_question_cannot_be_deferred_or_reopened() -> None:
+    answered = question().answered()
+    with pytest.raises(QuestionAnswered):
+        answered.skipped()
+    with pytest.raises(QuestionAnswered):
+        answered.reopened()

@@ -2,23 +2,26 @@ from datetime import date
 
 from fastapi import APIRouter, Query
 
+from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
-from hotel_agent.domain.errors import FactNotFound
 from hotel_agent.interfaces.http.hotel_schemas import (
     FactDetailSchema,
     HotelCardSchema,
     HotelSceneSchema,
-    fact_schema,
     hotel_card_schema,
     hotel_scene_schema,
 )
+from hotel_agent.interfaces.http.hotelier_schemas import fact_detail_schema
 from hotel_agent.interfaces.http.offer_schemas import HotelOffersSchema, hotel_offers_schema
 
 
 def build_router(
-    get_card: GetHotelCard, get_scene: GetHotelScene, get_offers: GetHotelOffers
+    get_card: GetHotelCard,
+    get_scene: GetHotelScene,
+    get_offers: GetHotelOffers,
+    get_fact: GetFact,
 ) -> APIRouter:
     router = APIRouter(tags=["hotels"])
 
@@ -46,10 +49,6 @@ def build_router(
 
     @router.get("/hotels/{hotel_id}/facts/{fact_id}", response_model=FactDetailSchema)
     async def fact(hotel_id: str, fact_id: str) -> FactDetailSchema:
-        card = await get_card(hotel_id)
-        found = next((item for item in card.facts if str(item.id) == fact_id), None)
-        if found is None:
-            raise FactNotFound()
-        return FactDetailSchema.model_validate(fact_schema(found).model_dump())
+        return fact_detail_schema(await get_fact(hotel_id, fact_id))
 
     return router

@@ -1,0 +1,32 @@
+{
+  "writes": [
+    {
+      "url": "http://127.0.0.1:5179/api/v1/hotelier/questions/q_h_demo_completion_check_double_room/answer",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5179/api/v1/facts/f_8b73ef34e9bc42b298eaa7dc9c01210d/confirm",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5179/api/v1/facts/f_8b73ef34e9bc42b298eaa7dc9c01210d/correct",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5179/api/v1/hotelier/questions/q_h_demo_completion_check_pets_policy",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5179/api/v1/hotelier/questions/q_h_demo_completion_check_pets_policy",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "draft across questions and reload",
+    "language theme route keep drafts and close settings on navigation",
+    "false answer persisted through real API",
+    "confirm correct and reload read real fact",
+    "skip and reopen persisted with reload"
+  ]
+}

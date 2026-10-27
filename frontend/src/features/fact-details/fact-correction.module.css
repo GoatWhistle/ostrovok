@@ -27,4 +27,21 @@
 .edit {
   display: grid;
   gap: var(--space-12);
+  opacity: 1;
+  transition: var(--transition-reveal-in);
+}
+
+.edit[data-state="closed"] {
+  opacity: 0;
+  transition: var(--transition-reveal-out);
+}
+
+.edit[data-instant="true"] {
+  transition: none;
+}
+
+@starting-style {
+  .edit[data-state="open"] {
+    opacity: 0;
+  }
 }

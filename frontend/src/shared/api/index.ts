@@ -13,4 +13,5 @@ export {
 export { createQueryClient, shouldRetry } from "./query-client"
 export type { components, paths } from "./schema.gen"
 export { fetchWithRetry } from "./tile-retry"
+export { useRecordMutation } from "./use-record-mutation"
 export { warmCache } from "./warm-cache"

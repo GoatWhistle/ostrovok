@@ -1,102 +1,119 @@
-import { type FormEvent, useId, useState } from "react"
+import { useEffect, useId, useRef } from "react"
 import { HueIcon } from "@/entities/evidence"
-import { useHotelierAnswer } from "@/entities/hotelier"
+import { useHotelierAnswer, useQuestionStatus } from "@/entities/hotelier"
 import type { components } from "@/shared/api/schema.gen"
 import { characteristicTitle } from "@/shared/geo/fact-label"
+import { useSessionDraft } from "@/shared/hooks"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Banner, Button, TextArea } from "@/shared/ui"
-import { AnswerResult } from "./answer-result"
-import { CurrentState } from "./current-state"
+import { Banner, Button } from "@/shared/ui"
+import { OpenQuestion } from "./open-question"
 import styles from "./question-answer.module.css"
+import { SavedAnswer } from "./saved-answer"
 
-type Quick = "yes" | "no" | "text"
+type Question = components["schemas"]["HotelierQuestion"]
 
 export interface QuestionAnswerProps {
   readonly hotelId: string
-  readonly question: components["schemas"]["HotelierQuestion"]
-  readonly onSkip: (() => void) | undefined
+  readonly question: Question
+  readonly focusHeading?: boolean
+  readonly onNext: (() => void) | undefined
+  readonly onEditFact: (factId: string) => void
 }
 
-export function QuestionAnswer({ hotelId, question, onSkip }: QuestionAnswerProps) {
+function SkippedQuestion({
+  status,
+  onNext,
+}: {
+  readonly status: ReturnType<typeof useQuestionStatus>
+  readonly onNext: (() => void) | undefined
+}) {
+  const { t } = useTranslation()
+  return (
+    <div className={styles.skipped}>
+      <Banner tone="info" title={t("explore:hotelier.skippedTitle")}>
+        {t("explore:hotelier.skippedText")}
+      </Banner>
+      <div className={styles.actions}>
+        <Button
+          icon="retry"
+          pending={status.isPending}
+          disabled={status.busy}
+          onClick={() => status.mutate("open")}
+        >
+          {t("explore:hotelier.reopen")}
+        </Button>
+        {onNext ? (
+          <Button variant="ghost" icon="next" onClick={onNext} disabled={status.busy}>
+            {t("explore:hotelier.next")}
+          </Button>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function freshFacts(answer: ReturnType<typeof useHotelierAnswer>): readonly string[] {
+  const result = answer.isSuccess ? answer.data : undefined
+  if (!result || result.follow_up) return []
+  return (result.extracted ?? []).map((fact) => fact.fact_id)
+}
+
+export function QuestionAnswer({
+  hotelId,
+  question,
+  focusHeading = false,
+  onNext,
+  onEditFact,
+}: QuestionAnswerProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const titleId = useId()
-  const [text, setText] = useState("")
-  const [sent, setSent] = useState<Quick>()
-  const answer = useHotelierAnswer()
-  const open = (question.status ?? "open") === "open"
-  const key = question.characteristic_key
-  function send(kind: Quick, value: string) {
-    if (!question.id || !value.trim() || answer.isPending) return
-    setSent(kind)
-    answer.mutate({ questionId: question.id, text: value.trim() }, { onSuccess: () => setText("") })
-  }
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    send("text", text)
-  }
+  const heading = useRef<HTMLParagraphElement>(null)
+  useEffect(() => {
+    if (!focusHeading) return
+    heading.current?.focus({ preventScroll: true })
+    heading.current?.scrollIntoView({ block: "start" })
+  }, [focusHeading])
+  const draft = useSessionDraft(`question:${hotelId}:${question.id}`)
+  const answer = useHotelierAnswer(hotelId, question.id)
+  const status = useQuestionStatus(question.id)
+  const fresh = freshFacts(answer)
+  const linked = question.answer_fact_ids ?? []
+  const view = question.status === "answered" || fresh.length ? "saved" : question.status
+  const statusError =
+    status.variables === "open" ? "explore:hotelier.reopenFailed" : "explore:hotelier.skipFailed"
   return (
     <section className={styles.answer} aria-labelledby={titleId} data-motion="fade">
-      {key ? (
-        <p className={styles.topic}>
-          <HueIcon characteristicKey={key} />
-          {characteristicTitle(key, locale)}
-        </p>
-      ) : null}
-      <p id={titleId} className={styles.question} lang="ru">
+      <p className={styles.topic}>
+        <HueIcon characteristicKey={question.characteristic_key} />
+        {characteristicTitle(question.characteristic_key, locale)}
+      </p>
+      <p ref={heading} id={titleId} className={styles.question} lang="ru" tabIndex={-1}>
         {question.text}
       </p>
-      <p className={styles.why}>{t("explore:hotelier.why")}</p>
-      {open ? (
-        <>
-          <div className={styles.actions}>
-            <Button
-              variant="confirm"
-              icon="check"
-              pending={answer.isPending && sent === "yes"}
-              onClick={() => send("yes", t("explore:hotelier.yesText"))}
-            >
-              {t("explore:hotelier.yes")}
-            </Button>
-            <Button
-              variant="reject"
-              icon="rejected"
-              pending={answer.isPending && sent === "no"}
-              onClick={() => send("no", t("explore:hotelier.noText"))}
-            >
-              {t("explore:hotelier.no")}
-            </Button>
-            {onSkip ? (
-              <Button variant="ghost" icon="next" onClick={onSkip}>
-                {t("explore:hotelier.unknown")}
-              </Button>
-            ) : null}
-          </div>
-          <form className={styles.form} onSubmit={submit}>
-            <TextArea
-              label={t("explore:hotelier.detailed")}
-              placeholder={t("explore:hotelier.placeholder")}
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              maxLength={10000}
-              required
-              disabled={answer.isPending}
-            />
-            <Button
-              type="submit"
-              icon="send"
-              pending={answer.isPending && sent === "text"}
-              disabled={!text.trim() || !question.id}
-              className={styles.submit}
-            >
-              {t("explore:hotelier.send")}
-            </Button>
-          </form>
-        </>
+      {view === "saved" ? (
+        <SavedAnswer
+          hotelId={hotelId}
+          question={question}
+          factIds={linked.length ? linked : fresh}
+          conflict={Boolean(answer.data?.conflicts?.length)}
+          next={onNext}
+          onEditFact={onEditFact}
+        />
       ) : null}
-      <CurrentState hotelId={hotelId} characteristicKey={key} />
-      {answer.isSuccess ? <AnswerResult result={answer.data} /> : null}
-      {answer.isError ? <Banner tone="danger" title={t("explore:hotelier.failed")} /> : null}
+      {view === "skipped" ? <SkippedQuestion status={status} onNext={onNext} /> : null}
+      {view === "open" ? (
+        <OpenQuestion
+          hotelId={hotelId}
+          question={question}
+          answer={answer}
+          status={status}
+          draft={draft}
+          onNext={onNext}
+        />
+      ) : null}
+      {status.isError ? <Banner tone="danger" title={t(statusError)} /> : null}
+      {draft.atRisk ? <Banner tone="warning" title={t("explore:hotelier.draftAtRisk")} /> : null}
     </section>
   )
 }

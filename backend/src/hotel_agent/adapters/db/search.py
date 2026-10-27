@@ -5,6 +5,7 @@ from datetime import datetime
 from psycopg import AsyncConnection
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
+from hotel_agent.adapters.db.hotel_media import read_hotel_photos
 from hotel_agent.adapters.db.search_facts import FACTS, fact_record
 from hotel_agent.application.dto import (
     BuildingRecord,
@@ -18,7 +19,11 @@ from hotel_agent.application.room_records import RoomRecord
 HOTEL_COLUMNS = """SELECT h.id, h.name, ST_X(h.location), ST_Y(h.location), h.stars,
     h.building_id, b.height_m, b.levels, ST_AsGeoJSON(b.footprint), h.region_id,
     NULLIF(concat_ws(' ', h.tags->>'addr:street', h.tags->>'addr:housenumber'), ''),
-    h.tags->>'addr:city'
+    h.tags->>'addr:city', h.tags,
+    (SELECT jsonb_agg(jsonb_build_object('photos',c.details->'photos',
+        'hotelImages',c.details->'hotelImages','source_url',c.details->'source_url')
+        ORDER BY c.updated_at DESC,c.supplier)
+     FROM hotel_supplier_content c WHERE c.hotel_id=h.id)
 FROM hotels h LEFT JOIN buildings b ON b.id = h.building_id """
 
 HOTELS = (
@@ -219,6 +224,7 @@ def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:
         region_id=str(row[9]),
         address=str(row[10]) if row[10] is not None else None,
         city=str(row[11]) if row[11] is not None else None,
+        photos=read_hotel_photos(row[12], row[13], str(row[0])),
     )
 
 

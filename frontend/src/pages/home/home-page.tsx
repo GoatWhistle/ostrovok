@@ -1,31 +1,53 @@
-import { type CSSProperties, useCallback, useState } from "react"
+import { type CSSProperties, useCallback, useRef, useState } from "react"
 import { HotelStayProvider } from "@/entities/hotel"
-import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { type ChatView, SearchChat } from "@/features/search-chat"
-import { SearchResults } from "@/features/search-results"
-import { useResizable } from "@/shared/hooks"
+import { useMediaQuery, useResizable } from "@/shared/hooks"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { Swap, withViewTransition } from "@/shared/motion"
-import { ResizeHandle, ScrollArea, Segmented } from "@/shared/ui"
+import { useInputModality, withViewTransition } from "@/shared/motion"
+import { ResizeHandle, Segmented } from "@/shared/ui"
 import { CompareDock } from "./compare-dock"
+import { FullHotel } from "./full-hotel/full-hotel"
 import styles from "./home-page.module.css"
 import { Landing } from "./landing"
-import { SelectedHotel } from "./selected-hotel"
+import { useAppearanceLocation } from "./use-appearance-location"
 import { useFreshStart } from "./use-fresh-start"
+import { useFullMap } from "./use-full-map"
+import { useSurfaceScroll } from "./use-surface-scroll"
+import { WorkspaceMap } from "./workspace-map"
+import { WorkspacePanel } from "./workspace-panel"
+
+function useMapVisible(
+  surface: ReturnType<typeof useHotelWorkspace>["surface"],
+  view: WorkspaceView,
+) {
+  const narrow = useMediaQuery("(max-width: 63.99rem)")
+  return (
+    surface === "map" ||
+    (!["landing", "conversation", "hotel-page"].includes(surface) && (!narrow || view === "map"))
+  )
+}
+
+function isStandalone(state: ReturnType<typeof useHotelWorkspace>) {
+  return (
+    state.surface === "map" ||
+    (state.surface === "hotel-page" &&
+      (state.navigation.route.from !== "panel" || !state.navigation.route.chat))
+  )
+}
 
 export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
+  useAppearanceLocation(state.navigation.route.appearance, state.navigation.setAppearance)
   const [sceneTime, setSceneTime] = useState({ date: "", hour: 16 })
   const onTimeChange = useCallback((date: string, hour: number) => setSceneTime({ date, hour }), [])
-  const [stay, setStay] = useState(false)
+  const modality = useInputModality(true)
+  const mapMounted = useRef(false)
+  if (["workspace", "hotel-panel", "map"].includes(state.surface)) mapMounted.current = true
   const [chatView, setChatView] = useState<ChatView>("chat")
-  useFreshStart(() => {
-    setStay(false)
-    state.reset()
-  })
+  useFreshStart(state.clearTransient)
   const selected = state.results.find((item) => item.hotel.id === state.hotelId)
   const panelSize = useResizable({
     storageKey: "factmap-panel-width",
@@ -43,36 +65,53 @@ export function HomePage() {
     max: "--workspace-panel-max",
     variable: "--chat-width",
   })
-  const start =
-    !stay && state.messages.length === 0 && !state.outgoing && !state.chatLoading && !state.search
-  const send = (message: string) => void withViewTransition("layout", () => state.send(message))
+  const fullHotel = state.surface === "hotel-page"
+  const standalone = isStandalone(state)
+  useFullMap(state.surface === "map", state.navigation.returnFromSurface)
+  const scrollRef = useSurfaceScroll(
+    `${state.navigation.scopeKey}:${state.hotelId}:${fullHotel ? "page" : "panel"}:${state.factId ?? state.placeId ?? "hotel"}`,
+    state.detailRef,
+  )
+  const move = (action: () => void) => {
+    if (modality.instant) action()
+    else void withViewTransition("layout", action)
+  }
+  const select: typeof state.select = (result) => move(() => state.select(result))
+  const start = state.surface === "landing"
+  const mapVisible = useMapVisible(state.surface, state.view)
+  const send = (message: string) => {
+    if (modality.instant) state.send(message)
+    else void withViewTransition("layout", () => state.send(message))
+  }
   const sizes = {
     ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
     ...(chatSize.width ? { "--chat-width": `${chatSize.width}px` } : {}),
   } as CSSProperties
-  if (start)
-    return (
-      <Landing
-        pending={state.sending}
-        recent={state.history}
-        onSend={send}
-        onOpen={(id) => {
-          setStay(true)
-          setChatView("chat")
-          state.openConversation(id)
-        }}
-        onHistory={() => {
-          setStay(true)
-          setChatView("history")
-        }}
-      />
-    )
   return (
-    <HotelStayProvider
-      key={`${state.conversationId}:${state.search?.parsed.check_in}:${state.search?.parsed.check_out}:${state.search?.parsed.adults}`}
-      stay={state.search?.parsed}
-    >
-      <div className={styles.page}>
+    <HotelStayProvider scopeKey={state.navigation.scopeKey} stay={state.search?.parsed}>
+      {start ? (
+        <Landing
+          pending={state.sending}
+          draftKey={`chat:${state.navigation.scopeKey}`}
+          recent={state.history}
+          onSend={send}
+          onOpen={(id) => {
+            setChatView("chat")
+            state.openConversation(id)
+          }}
+          onHistory={() => {
+            state.navigation.begin()
+            setChatView("history")
+          }}
+        />
+      ) : null}
+      <div
+        className={styles.page}
+        data-surface={state.surface}
+        data-standalone={standalone}
+        data-chrome={standalone ? "bare" : undefined}
+        hidden={start}
+      >
         <div className={styles.tabs}>
           <Segmented<WorkspaceView>
             label={t("explore:panel.tabs")}
@@ -85,46 +124,47 @@ export function HomePage() {
             onChange={state.setView}
           />
         </div>
-        <div className={styles.workspace} data-view={state.view} data-resize-root style={sizes}>
-          <aside className={styles.panel} aria-label={t("explore:panel.title")}>
-            <ResizeHandle
-              label={t("explore:panel.resizePanel")}
-              edge="end"
-              current={panelSize.width ?? panelSize.min}
-              resizable={panelSize}
+        <div
+          className={styles.workspace}
+          data-surface={state.surface}
+          data-view={state.view}
+          data-resize-root
+          style={sizes}
+        >
+          {state.surface !== "map" ? (
+            <WorkspacePanel
+              state={state}
+              time={sceneTime}
+              fullHotel={fullHotel}
+              scrollRef={scrollRef}
+              size={panelSize}
+              onSelect={select}
+              onMove={move}
             />
-            <Swap swapKey={state.hotelId ? "hotel" : "list"} as="div" className={styles.swap}>
-              {state.hotelId ? (
-                <SelectedHotel state={state} time={sceneTime} />
-              ) : (
-                <ScrollArea className={styles.scroll}>
-                  <SearchResults
-                    response={state.search}
-                    pending={state.sending || state.chatLoading}
-                    hotelId={state.hotelId}
-                    onSelect={state.select}
-                    onProperty={state.property}
-                    onPreview={state.preview}
-                  />
-                </ScrollArea>
-              )}
-            </Swap>
-          </aside>
+          ) : null}
           <div className={styles.map}>
-            <HotelMap
-              hotelId={state.hotelId}
-              camera={state.camera}
-              geoRefs={state.geoRefs}
-              focusedFact={state.focusedFact}
-              focusProperty={state.focusProperty}
-              regionId={state.search ? "russia" : "sochi"}
-              results={state.results}
-              bounds={state.bounds}
-              onSelect={state.select}
-              onPlace={state.openPlace}
-              onTimeChange={onTimeChange}
-              bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
-            />
+            <div className={styles.mapCanvas} hidden={fullHotel}>
+              {mapMounted.current ? (
+                <WorkspaceMap
+                  state={state}
+                  visible={mapVisible}
+                  onSelect={select}
+                  onTimeChange={onTimeChange}
+                  time={sceneTime}
+                  onMove={move}
+                />
+              ) : null}
+            </div>
+            {fullHotel ? (
+              <FullHotel
+                state={state}
+                time={sceneTime}
+                scrollRef={scrollRef}
+                restoreScroll={scrollRef.restored && state.navigation.restoring}
+                onBack={() => move(state.navigation.returnFromSurface)}
+                onOpenMap={() => move(state.navigation.expandMap)}
+              />
+            ) : null}
           </div>
           <div className={styles.chat}>
             <ResizeHandle
@@ -133,31 +173,33 @@ export function HomePage() {
               current={chatSize.width ?? chatSize.min}
               resizable={chatSize}
             />
-            <SearchChat
-              messages={state.messages}
-              conversationId={state.conversationId}
-              history={state.history}
-              search={state.search}
-              searchMessageId={state.searchMessageId}
-              outgoing={state.outgoing}
-              selectedHotel={selected?.hotel.name}
-              loading={state.chatLoading}
-              sending={state.sending}
-              failed={state.chatFailed}
-              onSend={state.send}
-              onRetry={state.retry}
-              onShowOnMap={state.showOnMap}
-              onShowList={() => state.setView("hotels")}
-              onReset={() => {
-                setStay(true)
-                state.reset()
-              }}
-              onOpenConversation={state.openConversation}
-              view={chatView}
-              onView={setChatView}
-              onRename={state.renameConversation}
-              onDelete={state.deleteConversation}
-            />
+            {!start ? (
+              <SearchChat
+                draftKey={`chat:${state.navigation.scopeKey}`}
+                messages={state.messages}
+                conversationId={state.conversationId}
+                history={state.history}
+                search={state.search}
+                searchMessageId={state.searchMessageId}
+                outgoing={state.outgoing}
+                selectedHotel={selected?.hotel.name}
+                loading={state.chatLoading}
+                sending={state.sending}
+                failed={state.chatFailed}
+                onSend={state.send}
+                onRetry={state.retry}
+                onShowOnMap={state.showOnMap}
+                onShowList={() => state.setView("hotels")}
+                onReset={() => {
+                  state.reset()
+                }}
+                onOpenConversation={state.openConversation}
+                view={chatView}
+                onView={setChatView}
+                onRename={state.renameConversation}
+                onDelete={state.deleteConversation}
+              />
+            ) : null}
           </div>
         </div>
         {state.view === "hotels" ? (

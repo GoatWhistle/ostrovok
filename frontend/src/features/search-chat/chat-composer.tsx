@@ -1,19 +1,31 @@
-import { type FormEvent, useId, useState } from "react"
+import { type FormEvent, useId } from "react"
+import { useSessionDraft } from "@/shared/hooks"
 import { useTranslation } from "@/shared/i18n"
 import { Button, SearchBox, StatusBadge } from "@/shared/ui"
 import styles from "./chat-composer.module.css"
 
 export interface ChatComposerProps {
+  readonly draftKey?: string | undefined
+  readonly onInteraction?: (() => void) | undefined
+  readonly autoFocus?: boolean
   readonly pending: boolean
   readonly selectedHotel?: string | undefined
   readonly placeholder?: string | undefined
   readonly onSend: (query: string) => void
 }
 
-export function ChatComposer({ pending, selectedHotel, placeholder, onSend }: ChatComposerProps) {
+export function ChatComposer({
+  pending,
+  selectedHotel,
+  placeholder,
+  onSend,
+  draftKey = "chat:entry",
+  onInteraction,
+  autoFocus = false,
+}: ChatComposerProps) {
   const { t } = useTranslation()
   const hint = useId()
-  const [value, setValue] = useState("")
+  const { value, setValue } = useSessionDraft(draftKey)
   const query = value.trim()
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -34,7 +46,12 @@ export function ChatComposer({ pending, selectedHotel, placeholder, onSend }: Ch
         value={value}
         maxLength={2000}
         describedBy={hint}
-        onValueChange={setValue}
+        autoFocus={autoFocus}
+        onFocus={onInteraction}
+        onValueChange={(next) => {
+          setValue(next)
+          onInteraction?.()
+        }}
         actions={
           <Button
             type="submit"

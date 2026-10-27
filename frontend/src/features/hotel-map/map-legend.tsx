@@ -1,7 +1,9 @@
 import { useEffect, useId, useRef, useState } from "react"
+import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import type { MessageKey } from "@/shared/i18n"
 import { useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
+import { useMapAppearance } from "@/shared/theme"
 import { Banner, Button, Icon } from "@/shared/ui"
 import styles from "./map-legend.module.css"
 
@@ -11,6 +13,7 @@ const ITEMS: readonly { readonly label: MessageKey; readonly swatch: string }[] 
   { label: "explore:map.legendFact", swatch: "fact" },
   { label: "explore:map.legendRoute", swatch: "route" },
   { label: "explore:map.legendRelief", swatch: "relief" },
+  { label: "explore:map.legendNight", swatch: "night" },
 ]
 
 const GESTURES: readonly { readonly input: MessageKey; readonly action: MessageKey }[] = [
@@ -31,6 +34,10 @@ function MapLegend({
 }) {
   const { t } = useTranslation()
   const presence = usePresence(open)
+  const appearance = useMapAppearance()
+  const items = ITEMS.filter(
+    (item) => item.swatch !== "night" || APPEARANCES[appearance.id].effects.windows,
+  )
   if (!presence.mounted) return null
   return (
     <section
@@ -51,7 +58,7 @@ function MapLegend({
       ) : null}
       <p className={styles.title}>{t("explore:map.layers")}</p>
       <ul className={styles.items}>
-        {ITEMS.map((item) => (
+        {items.map((item) => (
           <li key={item.swatch} className={styles.item}>
             <span className={styles.swatchCell} aria-hidden="true">
               <span className={styles.swatch} data-swatch={item.swatch}>

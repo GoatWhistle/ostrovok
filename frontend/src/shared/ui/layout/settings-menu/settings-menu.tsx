@@ -13,15 +13,22 @@ export interface SettingsMenuProps {
 export function SettingsMenu({ label, surface = "plain", children }: SettingsMenuProps) {
   const id = useId()
   const root = useRef<HTMLDivElement>(null)
+  const trigger = useRef<HTMLButtonElement>(null)
+  const [instant, setInstant] = useState(false)
   const [open, setOpen] = useState(false)
-  const presence = usePresence(open)
+  const presence = usePresence(open, "--dur-exit", instant)
   useEffect(() => {
     if (!open) return
     const close = (event: PointerEvent) => {
       if (!root.current?.contains(event.target as Node)) setOpen(false)
     }
     const dismiss = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false)
+      if (event.key !== "Escape" || event.defaultPrevented) return
+      if (document.querySelector("dialog[open]")) return
+      event.preventDefault()
+      setInstant(true)
+      setOpen(false)
+      trigger.current?.focus({ preventScroll: true })
     }
     document.addEventListener("pointerdown", close)
     document.addEventListener("keydown", dismiss)
@@ -33,13 +40,17 @@ export function SettingsMenu({ label, surface = "plain", children }: SettingsMen
   return (
     <div ref={root} className={styles.root}>
       <Button
+        ref={trigger}
         variant="ghost"
         iconOnly
         icon="settings"
         aria-expanded={open}
         aria-controls={id}
         className={clsx(surface === "glass" && styles.glass)}
-        onClick={() => setOpen((current) => !current)}
+        onClick={(event) => {
+          setInstant(event.detail === 0)
+          setOpen((current) => !current)
+        }}
       >
         {label}
       </Button>
@@ -49,6 +60,8 @@ export function SettingsMenu({ label, surface = "plain", children }: SettingsMen
           className={styles.panel}
           aria-label={label}
           data-state={presence.state}
+          data-instant={instant}
+          inert={!open}
           onAnimationEnd={presence.onAnimationEnd}
         >
           {children}
