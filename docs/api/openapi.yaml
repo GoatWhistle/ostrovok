@@ -397,13 +397,14 @@ paths:
       operationId: getMapTile
       summary: Векторная геометрия импортированного покрытия OpenStreetMap
       description: >-
-        Версия buildings-v2. buildings: стабильный строковый id, class, class_source,
+        Версия lod-v3. buildings: стабильный строковый id, class, class_source,
         height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые,
-        z16–19: полные. На z2–11 landcover содержит фактические жилые, коммерческие
+        z16–19: полные. roads: магистрали с z8, primary с z10, secondary и tertiary
+        с z11, остальные с z13; coastline с z8. На z2–11 landcover содержит фактические жилые, коммерческие
         и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается.
-        Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=buildings-v2.
+        Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v3.
       parameters:
-        - { name: v, in: query, required: false, schema: { type: string }, description: buildings-v2; другая версия возвращает 409 }
+        - { name: v, in: query, required: false, schema: { type: string }, description: lod-v3; другая версия возвращает 409 }
         - { name: z, in: path, required: true, schema: { type: integer, minimum: 0, maximum: 19 } }
         - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
         - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
@@ -411,7 +412,7 @@ paths:
         "200":
           description: Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile
           headers:
-            X-Map-Tile-Version: { schema: { type: string, enum: [buildings-v2] } }
+            X-Map-Tile-Version: { schema: { type: string, enum: [lod-v3] } }
           content:
             application/vnd.mapbox-vector-tile:
               schema: { type: string, format: binary }

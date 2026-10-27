@@ -60,7 +60,7 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
   }
   map.addSource("sochi-map", {
     type: "vector",
-    tiles: [`${window.location.origin}/api/v1/map/tiles/{z}/{x}/{y}.pbf?v=buildings-v2`],
+    tiles: [`${window.location.origin}/api/v1/map/tiles/{z}/{x}/{y}.pbf?v=lod-v3`],
     minzoom: 2,
     promoteId: { buildings: "id", landcover: "id" },
     maxzoom: 19,
