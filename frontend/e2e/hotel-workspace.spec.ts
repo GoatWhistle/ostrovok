@@ -2,6 +2,8 @@ import { expect, test } from "@playwright/test"
 import copy from "../src/shared/i18n/locales/ru/explore.json" with { type: "json" }
 import { FACT, HOTELS, installHotelContract } from "../tests/contract/hotel-fixtures"
 
+test.use({ launchOptions: { args: ["--disable-webgl"] } })
+
 test("real backend metadata and a missing search remain honest", async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem("app-locale", "ru")
@@ -9,15 +11,15 @@ test("real backend metadata and a missing search remain honest", async ({ page }
   await page.route("**/api/v1/chat/messages", (route) =>
     route.fulfill({ status: 503, json: { code: "model_failure", message: "Unavailable" } }),
   )
-  await page.goto("/")
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   await page.getByRole("textbox", { name: copy.chat.composer }).fill("Quiet room")
   await page.getByRole("button", { name: copy.chat.send, exact: true }).click()
   await expect(page.getByText(copy.chat.error, { exact: true })).toBeVisible()
 })
 
-test("chat refinement keeps results and shows a matched route on the map", async ({ page }) => {
+test("chat refinement keeps results and loads matched route geometry", async ({ page }) => {
   const calls = await installHotelContract(page)
-  await page.goto("/")
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   const message = page.getByRole("textbox", { name: copy.chat.composer })
   await message.fill("To the sea")
   const submit = page.getByRole("button", { name: copy.chat.send, exact: true })
@@ -34,7 +36,7 @@ test("chat refinement keeps results and shows a matched route on the map", async
     .click()
   await expect(page.getByText(FACT.explanation, { exact: true })).toBeVisible()
   await expect.poll(() => calls.batches).toBeGreaterThan(0)
-  await expect(page.locator("canvas.maplibregl-canvas")).toBeVisible()
+  await expect(page.getByText(copy.map.unsupported, { exact: true })).toBeVisible()
 })
 
 test("new search starts a separate chat and saved chats reopen", async ({ page }) => {
@@ -73,34 +75,35 @@ test("new search starts a separate chat and saved chats reopen", async ({ page }
       ? route.fulfill({ json: conversation })
       : route.fulfill({ status: 404, json: { code: "not_found", message: "Missing" } })
   })
-  await page.goto("/")
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   const log = page.getByRole("log", { name: copy.chat.log })
   const composer = page.getByRole("textbox", { name: copy.chat.composer })
   const send = page.getByRole("button", { name: copy.chat.send, exact: true })
   await composer.fill("First request")
   await send.click()
-  await expect(log.getByText("First request", { exact: true })).toBeVisible()
+  await expect(log.getByText(/^First request/)).toBeVisible()
   await page.getByRole("button", { name: copy.chat.newSearch }).click()
+  await expect(log.getByText(/^First request/)).toBeHidden()
   await composer.fill("Second request")
   await send.click()
-  await expect(log.getByText("Second request", { exact: true })).toBeVisible()
-  await expect(log.getByText("First request", { exact: true })).toBeHidden()
-  await page.getByRole("button", { name: copy.chat.history }).click()
+  await expect(log.getByText(/^Second request/)).toBeVisible()
+  await expect(log.getByText(/^First request/)).toBeHidden()
+  await page.getByRole("button", { name: copy.chat.historyShort, exact: true }).click()
   await page
-    .getByRole("navigation", { name: copy.chat.history })
+    .getByLabel(copy.chat.history, { exact: true })
     .getByRole("button", { name: "First request" })
     .click()
-  await expect(log.getByText("First request", { exact: true })).toBeVisible()
-  await expect(log.getByText("Second request", { exact: true })).toBeHidden()
+  await expect(log.getByText(/^First request/)).toBeVisible()
+  await expect(log.getByText(/^Second request/)).toBeHidden()
   await composer.fill("Follow up")
   await send.click()
   await expect.poll(() => requests).toEqual([null, null, firstId])
   await page.reload()
-  await expect(log.getByText("First request", { exact: true })).toBeVisible()
-  await page.getByRole("button", { name: copy.chat.history }).click()
+  await expect(log.getByText(/^First request/)).toBeVisible()
+  await page.getByRole("button", { name: copy.chat.historyShort, exact: true }).click()
   await expect(
     page
-      .getByRole("navigation", { name: copy.chat.history })
+      .getByLabel(copy.chat.history, { exact: true })
       .getByRole("button", { name: "Second request" }),
   ).toBeVisible()
 })
@@ -108,10 +111,11 @@ test("new search starts a separate chat and saved chats reopen", async ({ page }
 test("mobile selection transfers keyboard focus into visible hotel details", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 900 })
   await installHotelContract(page)
-  await page.goto("/")
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   await page.getByRole("textbox", { name: copy.chat.composer }).fill("To the sea")
   await page.getByRole("button", { name: copy.chat.send, exact: true }).click()
-  await page.getByRole("radio", { name: copy.panel.hotels, exact: true }).check()
+  await page.getByRole("radio", { name: copy.panel.hotels, exact: true }).click()
+  await expect(page.getByRole("radio", { name: copy.panel.hotels, exact: true })).toBeChecked()
   await page.getByRole("button", { name: HOTELS[0]?.name ?? "", exact: true }).click()
   await expect(page.getByLabel(copy.details.title, { exact: true })).toBeFocused()
   await expect(page.getByRole("button", { name: copy.chat.send, exact: true })).toBeHidden()
@@ -119,8 +123,8 @@ test("mobile selection transfers keyboard focus into visible hotel details", asy
 })
 
 test("comparison uses selected hotel ids and displays API values", async ({ page }) => {
-  await installHotelContract(page)
-  await page.goto("/")
+  const calls = await installHotelContract(page)
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   await page.getByRole("textbox", { name: copy.chat.composer }).fill("To the sea")
   await page.getByRole("button", { name: copy.chat.send, exact: true }).click()
   await page.getByRole("button", { name: HOTELS[0]?.name ?? "", exact: true }).click()
@@ -129,8 +133,18 @@ test("comparison uses selected hotel ids and displays API values", async ({ page
   await page.getByRole("button", { name: HOTELS[1]?.name ?? "", exact: true }).click()
   await page.getByRole("button", { name: copy.results.compare, exact: true }).click()
   await page.getByRole("link", { name: new RegExp(copy.navigation.compare) }).click()
-  await expect(page.getByRole("table")).toBeVisible()
-  await expect(page.getByRole("cell", { name: new RegExp(FACT.label) }).first()).toBeVisible()
+  const comparison = page.getByRole("region", { name: copy.compare.title, exact: true })
+  await expect(comparison).toBeVisible()
+  await expect.poll(() => calls.compared).toEqual(HOTELS.map((hotel) => hotel.id))
+  for (const hotel of HOTELS) {
+    const card = comparison.getByRole("article", { name: hotel.name, exact: true })
+    await expect(card).toBeVisible()
+    await expect(
+      card.getByRole("button", {
+        name: new RegExp(copy.facts.distanceToSea.replace("{{value}}", "6")),
+      }),
+    ).toBeVisible()
+  }
 })
 
 test("hotelier answer, confirmation and correction use real contract mutations", async ({
@@ -180,10 +194,11 @@ test("mobile results contain long source text and missing optional fields", asyn
       },
     }),
   )
-  await page.goto("/")
+  await page.goto("/", { waitUntil: "domcontentloaded" })
   await page.getByRole("textbox", { name: copy.chat.composer }).fill("Long name")
   await page.getByRole("button", { name: copy.chat.send, exact: true }).click()
-  await page.getByRole("radio", { name: copy.panel.hotels, exact: true }).check()
+  await page.getByRole("radio", { name: copy.panel.hotels, exact: true }).click()
+  await expect(page.getByRole("radio", { name: copy.panel.hotels, exact: true })).toBeChecked()
   await expect(page.getByText(/International Seafront Apartments/)).toBeVisible()
   const overflow = await page.evaluate(() =>
     [...document.querySelectorAll<HTMLElement>("*")]

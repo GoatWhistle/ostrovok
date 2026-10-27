@@ -1,0 +1,28 @@
+
+Running 23 tests using 2 workers
+
+  ✓   1 [chromium] › e2e/axe.spec.ts:35:5 › axe light ru (8.8s)
+  ✓   2 [chromium] › e2e/axe.spec.ts:35:5 › axe light en (8.8s)
+  ✓   3 [chromium] › e2e/axe.spec.ts:35:5 › axe dark ru (7.7s)
+  ✓   4 [chromium] › e2e/axe.spec.ts:35:5 › axe dark en (7.7s)
+  ✓   5 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 375 light ru (4.1s)
+  ✓   6 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 375 light en (4.3s)
+  ✓   7 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 375 dark ru (3.9s)
+  ✓   8 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 375 dark en (3.9s)
+  ✓   9 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 1440 light ru (4.0s)
+  ✓  10 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 1440 light en (3.9s)
+  ✓  11 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 1440 dark ru (4.1s)
+  ✓  12 [chromium] › e2e/chat-reveal.spec.ts:12:7 › chat reveals results without losing the input: 1440 dark en (4.0s)
+  ✓  14 [chromium] › e2e/hotel-workspace.spec.ts:7:1 › real backend metadata and a missing search remain honest (2.8s)
+  ✓  13 [chromium] › e2e/chat-reveal.spec.ts:64:1 › first error, retry and empty result keep a full chat (4.9s)
+  ✓  15 [chromium] › e2e/hotel-workspace.spec.ts:20:1 › chat refinement keeps results and loads matched route geometry (4.3s)
+  ✓  17 [chromium] › e2e/hotel-workspace.spec.ts:111:1 › mobile selection transfers keyboard focus into visible hotel details (3.5s)
+  ✓  16 [chromium] › e2e/hotel-workspace.spec.ts:42:1 › new search starts a separate chat and saved chats reopen (6.2s)
+  ✓  19 [chromium] › e2e/hotel-workspace.spec.ts:150:1 › hotelier answer, confirmation and correction use real contract mutations (3.0s)
+  ✓  18 [chromium] › e2e/hotel-workspace.spec.ts:125:1 › comparison uses selected hotel ids and displays API values (5.7s)
+  ✓  20 [chromium] › e2e/hotel-workspace.spec.ts:169:1 › mobile results contain long source text and missing optional fields (3.0s)
+  ✓  22 [chromium] › e2e/hotelier-recovery.spec.ts:19:1 › hotelier error retains the answer and retry distinguishes follow up and conflict (2.9s)
+  ✓  23 [chromium] › e2e/hotelier-recovery.spec.ts:56:1 › correction collapse and cancel preserve different values and restore focus (2.5s)
+  ✓  21 [chromium] › e2e/hotelier-recovery.spec.ts:5:1 › hotelier draft survives hotel changes and reload (7.2s)
+
+  23 passed (1.0m)

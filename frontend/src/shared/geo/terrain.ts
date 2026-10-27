@@ -123,9 +123,9 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
   addSnowLayers(map, "sochi-dem-shade", colors.snow, "sochi-hillshade")
 }
 
-export function followTerrainZoom(map: MapLibreMap): () => void {
+export function followTerrainZoom(map: MapLibreMap, allowed = true): () => void {
   const sync = () => {
-    const wanted = map.getZoom() >= TERRAIN_MIN_ZOOM
+    const wanted = allowed && map.getZoom() >= TERRAIN_MIN_ZOOM
     if (wanted && !map.getTerrain()) map.setTerrain(TERRAIN)
     if (!wanted && map.getTerrain()) map.setTerrain(null)
   }

@@ -72,7 +72,8 @@ export function useNightCity({
   effects,
 }: NightCityInput) {
   const [viewport, setViewport] = useState<SceneViewport>()
-  const { layer, builder } = useWindowLayer(mapRef, ready && effects.windows)
+  const { layer, builder } = useWindowLayer(mapRef, ready)
+  const built = useRef<{ data: unknown; grounds: string } | undefined>(undefined)
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
@@ -103,17 +104,17 @@ export function useNightCity({
     const [west, south, east, north] = data.bbox
     const origin = [((west ?? 0) + (east ?? 0)) / 2, ((south ?? 0) + (north ?? 0)) / 2] as const
     if (!effects.windows) return
-    let grounds: string | undefined
     let disposed = false
     const currentBuilder = builder.current
     const currentLayer = layer.current
     const build = () => {
       const buildings = windowBuildings(map, data, drawn, textured)
       const next = buildings.map((item) => Math.round(item.ground)).join(",")
-      if (next === grounds) return
-      grounds = next
+      if (built.current?.data === data && built.current.grounds === next) return
+      built.current = { data, grounds: next }
       void currentBuilder?.build(buildings, origin).then((mesh) => {
         if (!disposed && mesh && layer.current === currentLayer) currentLayer?.setMesh(mesh)
+        else if (built.current?.data === data) built.current = undefined
       })
     }
     build()
@@ -134,7 +135,7 @@ export function useNightCity({
       layer.current?.setLight({
         night,
         fade: windowFade(map.getZoom()),
-        density: windowDensity(quality),
+        density: effects.windows ? windowDensity(quality) : 0,
         warm: rgb(colors.windowWarm),
         cool: rgb(colors.windowCool),
       })
@@ -143,5 +144,5 @@ export function useNightCity({
     return () => {
       map.off("zoom", update)
     }
-  }, [mapRef, ready, night, colors, layer, quality, effects.lights])
+  }, [mapRef, ready, night, colors, layer, quality, effects.lights, effects.windows])
 }

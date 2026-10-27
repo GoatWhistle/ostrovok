@@ -139,11 +139,12 @@ export function useHotelMap({
     effects: APPEARANCES[appearance.id].effects,
   })
   useRouteDraw(instance, route, colors, reduced, active)
+  const terrain = quality < 3
   useEffect(() => {
     const map = instance.current
     if (!active || !map) return
-    return followTerrainZoom(map)
-  }, [instance, active])
+    return followTerrainZoom(map, terrain)
+  }, [instance, active, terrain])
   useMapCamera({
     map: instance,
     active,

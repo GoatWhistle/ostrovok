@@ -1,0 +1,415 @@
+{
+  "base": "http://127.0.0.1:5181",
+  "panMs": 30000,
+  "runs": [
+    {
+      "mode": "cold",
+      "firstIdleMs": 3330,
+      "pans": [
+        {
+          "site": "center",
+          "loadMs": 508,
+          "frames": 417,
+          "p50": 33.5,
+          "p95All": 233.70000000000073,
+          "p95AfterAdaptation": 167,
+          "over33": 341,
+          "settledFrames": 359,
+          "quality": [
+            {
+              "t": 1001,
+              "glow": true,
+              "volumes": true
+            },
+            {
+              "t": 6001,
+              "glow": false,
+              "volumes": true
+            },
+            {
+              "t": 11003,
+              "glow": false,
+              "volumes": true
+            },
+            {
+              "t": 16001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26003,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30004,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        },
+        {
+          "site": "shore",
+          "loadMs": 12,
+          "frames": 810,
+          "p50": 33.39999999999418,
+          "p95All": 50.10000000000582,
+          "p95AfterAdaptation": 50.10000000000582,
+          "over33": 537,
+          "settledFrames": 589,
+          "quality": [
+            {
+              "t": 1003,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 6002,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 11000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 16000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26005,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30000,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        },
+        {
+          "site": "mountain",
+          "loadMs": 9,
+          "frames": 1425,
+          "p50": 16.69999999999709,
+          "p95All": 33.40000000000873,
+          "p95AfterAdaptation": 33.40000000000873,
+          "over33": 191,
+          "settledFrames": 1004,
+          "quality": [
+            {
+              "t": 1011,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 6000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 11001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 16000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30000,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "appearance": {
+        "warm": [
+          {
+            "frame": 49,
+            "idle": 211
+          },
+          {
+            "frame": 52,
+            "idle": 238
+          }
+        ],
+        "samples": [
+          {
+            "frame": 43,
+            "idle": 235
+          },
+          {
+            "frame": 50,
+            "idle": 246
+          },
+          {
+            "frame": 40,
+            "idle": 228
+          },
+          {
+            "frame": 38,
+            "idle": 241
+          },
+          {
+            "frame": 42,
+            "idle": 240
+          },
+          {
+            "frame": 46,
+            "idle": 241
+          },
+          {
+            "frame": 44,
+            "idle": 243
+          },
+          {
+            "frame": 46,
+            "idle": 255
+          },
+          {
+            "frame": 54,
+            "idle": 227
+          },
+          {
+            "frame": 35,
+            "idle": 223
+          }
+        ],
+        "p95Frame": 54,
+        "p95Idle": 255
+      }
+    },
+    {
+      "mode": "warm",
+      "firstIdleMs": 73,
+      "pans": [
+        {
+          "site": "center",
+          "loadMs": 7,
+          "frames": 604,
+          "p50": 33.40000000002328,
+          "p95All": 116.89999999999418,
+          "p95AfterAdaptation": 100.20000000001164,
+          "over33": 407,
+          "settledFrames": 432,
+          "quality": [
+            {
+              "t": 1000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 6001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 11008,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 16002,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26002,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30000,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        },
+        {
+          "site": "shore",
+          "loadMs": 8,
+          "frames": 835,
+          "p50": 33.39999999999418,
+          "p95All": 50.10000000000582,
+          "p95AfterAdaptation": 50.10000000000582,
+          "over33": 540,
+          "settledFrames": 603,
+          "quality": [
+            {
+              "t": 1000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 6000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 11001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 16001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30001,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        },
+        {
+          "site": "mountain",
+          "loadMs": 7,
+          "frames": 1377,
+          "p50": 16.70000000001164,
+          "p95All": 33.40000000002328,
+          "p95AfterAdaptation": 33.40000000002328,
+          "over33": 226,
+          "settledFrames": 972,
+          "quality": [
+            {
+              "t": 1004,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 6001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 11001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 16007,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 21000,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 26001,
+              "glow": false,
+              "volumes": false
+            },
+            {
+              "t": 30001,
+              "glow": false,
+              "volumes": false
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "appearance": {
+        "warm": [
+          {
+            "frame": 50,
+            "idle": 267
+          },
+          {
+            "frame": 118,
+            "idle": 157
+          }
+        ],
+        "samples": [
+          {
+            "frame": 122,
+            "idle": 155
+          },
+          {
+            "frame": 117,
+            "idle": 152
+          },
+          {
+            "frame": 109,
+            "idle": 148
+          },
+          {
+            "frame": 111,
+            "idle": 142
+          },
+          {
+            "frame": 110,
+            "idle": 150
+          },
+          {
+            "frame": 125,
+            "idle": 161
+          },
+          {
+            "frame": 105,
+            "idle": 151
+          },
+          {
+            "frame": 103,
+            "idle": 136
+          },
+          {
+            "frame": 102,
+            "idle": 132
+          },
+          {
+            "frame": 101,
+            "idle": 128
+          }
+        ],
+        "p95Frame": 125,
+        "p95Idle": 161
+      }
+    }
+  ],
+  "renderer": "ANGLE (Microsoft Corporation, D3D12 (AMD Radeon 780M Graphics), OpenGL 4.6)"
+}
