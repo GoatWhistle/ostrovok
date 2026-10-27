@@ -165,3 +165,46 @@ class BuildingRecord:
     height_m: float | None
     levels: int | None
     height_estimated: bool = False
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class NotificationRecord:
+    id: str
+    hotel_id: str
+    kind: str
+    severity: str
+    created_at: datetime
+    dedup_key: str
+    characteristic_key: str | None = None
+    question_id: str | None = None
+    fact_id: str | None = None
+    conflict_id: str | None = None
+    payload: dict[str, Any] = field(default_factory=dict)
+    read_at: datetime | None = None
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class FeedCursor:
+    created_at: datetime
+    id: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class NotificationPage:
+    items: tuple[NotificationRecord, ...] = ()
+    next_cursor: FeedCursor | None = None
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class NotificationCounters:
+    total: int = 0
+    action: int = 0
+    by_kind: dict[str, int] = field(default_factory=dict)
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class DemandRecord:
+    hotel_id: str
+    characteristic_key: str
+    appearances: int
+    blocked: int
