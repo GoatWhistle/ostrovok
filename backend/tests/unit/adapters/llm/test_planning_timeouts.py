@@ -1,7 +1,11 @@
+import asyncio
 import json
+import time
 
 import httpx
+import pytest
 
+from hotel_agent.adapters.llm import openai_completion
 from hotel_agent.adapters.llm.openai_completion import OpenAICompletion
 from hotel_agent.application.ports.log import LogValue
 
@@ -29,23 +33,37 @@ def completion(handle: httpx.MockTransport) -> OpenAICompletion:
     )
 
 
-async def test_a_planning_timeout_widens_the_next_attempt_for_the_same_model() -> None:
-    attempts: list[tuple[str, float]] = []
+async def test_a_slow_model_is_hedged_with_the_spare_instead_of_waiting(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(openai_completion, "HEDGE_PLANNING_S", 0.05)
+    asked: list[str] = []
+
+    async def handle(request: httpx.Request) -> httpx.Response:
+        model = str(json.loads(request.content)["model"])
+        asked.append(model)
+        if model == "main":
+            await asyncio.sleep(5)
+        return httpx.Response(200, json={"choices": [{"message": {"content": model}}]})
+
+    llm = completion(httpx.MockTransport(handle))
+    started = time.monotonic()
+    assert await llm.complete(system="s", user="u", planning=True) == "spare"
+    assert time.monotonic() - started < 1
+    assert asked == ["main", "spare"]
+
+
+async def test_every_candidate_may_use_the_whole_timeout() -> None:
+    limits: list[float] = []
 
     def handle(request: httpx.Request) -> httpx.Response:
-        model = str(json.loads(request.content)["model"])
-        attempts.append((model, float(request.extensions["timeout"]["read"])))
-        if model == "main":
-            raise httpx.ReadTimeout("provider stalled", request=request)
+        limits.append(float(request.extensions["timeout"]["read"]))
         return httpx.Response(200, json={"choices": [{"message": {"content": "{}"}}]})
 
     llm = completion(httpx.MockTransport(handle))
-    for _ in range(2):
-        assert await llm.complete(system="s", user="u", planning=True) == "{}"
+    assert await llm.complete(system="s", user="u", planning=True) == "{}"
 
-    assert [model for model, _ in attempts] == ["main", "spare", "main", "spare"]
-    assert attempts[0][1] == 8
-    assert attempts[2][1] == 12
+    assert limits == [30]
 
 
 async def test_a_persistently_stalling_model_lets_the_spare_answer_first() -> None:

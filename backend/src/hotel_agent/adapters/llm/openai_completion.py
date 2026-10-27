@@ -9,6 +9,9 @@ from hotel_agent.adapters.llm.payload import content_of
 from hotel_agent.application.ports.log import LoggerPort
 from hotel_agent.domain.errors import ModelFailure
 
+HEDGE_PLANNING_S = 8.0
+HEDGE_S = 12.0
+
 
 class OpenAICompletion:
     def __init__(
@@ -57,7 +60,6 @@ class OpenAICompletion:
         planning: bool = False,
     ) -> str:
         request: dict[str, Any] = {
-            "model": self._model,
             "temperature": 0,
             "reasoning_effort": "none",
             "max_tokens": 4000,
@@ -70,50 +72,86 @@ class OpenAICompletion:
             request.update(reasoning_effort="none", temperature=1, max_tokens=2000)
         if schema is not None:
             request["response_format"] = schema
+        shape = "structured" if schema is not None else "text"
         models = self._budget.order(self._candidates(planning))
-        spare = models[0] != models[1]
-        for attempt, model in enumerate(models):
-            request["model"] = model
-            started = time.monotonic()
-            try:
-                initial = min(self._timeout_s, 12) if spare and attempt == 0 else self._timeout_s
-                if planning:
-                    initial = min(initial, 8 if spare and attempt == 0 else 18)
-                limit = self._budget.timeout(model, initial=initial)
-                response = await self._client.post("/chat/completions", json=request, timeout=limit)
-                response.raise_for_status()
-                self._budget.answered(model, time.monotonic() - started)
-                return content_of(response.json())
-            except (httpx.NetworkError, httpx.TimeoutException) as error:
-                if isinstance(error, httpx.TimeoutException):
-                    self._budget.stalled(model, limit)
-                if attempt == 0:
-                    self._logger.warning(
-                        "llm_request_retry",
-                        provider=self.provider,
-                        cause=type(error).__name__,
-                        fallback=bool(self._fallback_model),
-                        response="structured" if schema is not None else "text",
-                    )
-                    await asyncio.sleep(0.2)
+        if models[0] == models[1]:
+            return await self._twice(request, models[0], shape)
+        return await self._race(request, models, planning, shape)
+
+    async def _twice(self, request: dict[str, Any], model: str, shape: str) -> str:
+        try:
+            return await self._ask(request, model)
+        except ModelFailure as error:
+            self._retrying(model, str(error), shape, hedged=False)
+            await asyncio.sleep(0.2)
+            return await self._ask(request, model)
+
+    async def _race(
+        self, request: dict[str, Any], models: tuple[str, ...], planning: bool, shape: str
+    ) -> str:
+        floor = HEDGE_PLANNING_S if planning else HEDGE_S
+        delay: float | None = self._budget.hedge_after(models[0], floor=floor)
+        attempts = {self._ask_task(request, models[0]): models[0]}
+        running = set(attempts)
+        started = 1
+        failure: ModelFailure | None = None
+        try:
+            while running or started < len(models):
+                if not running:
+                    task = self._ask_task(request, models[started])
+                    attempts[task] = models[started]
+                    running, started, delay = {task}, started + 1, None
+                done, running = await asyncio.wait(
+                    running, timeout=delay, return_when=asyncio.FIRST_COMPLETED
+                )
+                delay = None
+                if not done and started < len(models):
+                    self._retrying(models[0], f"slower than {floor:.0f}s", shape, hedged=True)
+                    task = self._ask_task(request, models[started])
+                    attempts[task] = models[started]
+                    running.add(task)
+                    started += 1
                     continue
-                raise ModelFailure(
-                    f"Language model is unreachable: {type(error).__name__}"
-                ) from error
-            except httpx.HTTPStatusError as error:
-                if attempt == 0 and self._fallback_model and error.response.status_code >= 500:
-                    self._logger.warning(
-                        "llm_request_retry",
-                        provider=self.provider,
-                        cause=f"HTTP {error.response.status_code}",
-                        fallback=True,
-                    )
-                    continue
-                raise ModelFailure(
-                    f"Language model returned HTTP {error.response.status_code}"
-                ) from error
-            except httpx.HTTPError as error:
-                raise ModelFailure(
-                    f"Language model is unreachable: {type(error).__name__}"
-                ) from error
-        raise ModelFailure("Language model is unreachable")
+                for task in done:
+                    error = task.exception()
+                    if error is None:
+                        return task.result()
+                    failure = error if isinstance(error, ModelFailure) else ModelFailure(str(error))
+                    self._retrying(attempts[task], str(failure), shape, hedged=False)
+        finally:
+            for task in running:
+                task.cancel()
+        raise failure or ModelFailure("Language model is unreachable")
+
+    def _ask_task(self, request: dict[str, Any], model: str) -> "asyncio.Task[str]":
+        return asyncio.create_task(self._ask(request, model))
+
+    async def _ask(self, request: dict[str, Any], model: str) -> str:
+        limit = self._budget.timeout(model, initial=self._timeout_s)
+        started = time.monotonic()
+        try:
+            response = await self._client.post(
+                "/chat/completions", json={**request, "model": model}, timeout=limit
+            )
+            response.raise_for_status()
+        except httpx.TimeoutException as error:
+            self._budget.stalled(model, limit)
+            raise ModelFailure(f"Language model is unreachable: {type(error).__name__}") from error
+        except httpx.HTTPStatusError as error:
+            raise ModelFailure(
+                f"Language model returned HTTP {error.response.status_code}"
+            ) from error
+        except httpx.HTTPError as error:
+            raise ModelFailure(f"Language model is unreachable: {type(error).__name__}") from error
+        self._budget.answered(model, time.monotonic() - started)
+        return content_of(response.json())
+
+    def _retrying(self, model: str, cause: str, shape: str, *, hedged: bool) -> None:
+        self._logger.warning(
+            "llm_request_hedged" if hedged else "llm_request_retry",
+            provider=self.provider,
+            model=model,
+            cause=cause,
+            fallback=bool(self._fallback_model),
+            response=shape,
+        )

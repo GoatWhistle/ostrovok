@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 HEADROOM = 1.5
+HEDGE_HEADROOM = 1.15
 SWITCH_AFTER = 3
 
 
@@ -15,6 +16,12 @@ class AttemptBudget:
         if known is None:
             return min(initial, self.ceiling_s)
         return min(self.ceiling_s, max(initial, known * HEADROOM))
+
+    def hedge_after(self, model: str, *, floor: float) -> float:
+        known = self.observed.get(model)
+        if known is None:
+            return min(floor, self.ceiling_s)
+        return min(self.ceiling_s, max(floor, known * HEDGE_HEADROOM))
 
     def answered(self, model: str, spent: float) -> None:
         known = self.observed.get(model)
