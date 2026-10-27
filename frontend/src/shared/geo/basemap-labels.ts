@@ -1,3 +1,4 @@
+import { convertFilter } from "@maplibre/maplibre-gl-style-spec"
 import { layers, namedFlavor } from "@protomaps/basemaps"
 import type {
   ExpressionSpecification,
@@ -49,7 +50,7 @@ function outside(bboxes: readonly (readonly number[])[]): ExpressionSpecificatio
 function withExclusion(layer: LayerSpecification, exclusion: ExpressionSpecification | undefined) {
   if (!exclusion || layer.type !== "symbol") return layer
   const filter = (
-    layer.filter ? ["all", layer.filter, exclusion] : exclusion
+    layer.filter ? ["all", convertFilter(layer.filter), exclusion] : exclusion
   ) as FilterSpecification
   return { ...layer, filter }
 }

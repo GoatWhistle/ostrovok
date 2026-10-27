@@ -12,12 +12,14 @@ export function WorkspaceMap({
   visible,
   onSelect,
   onTimeChange,
+  time,
   onMove,
 }: {
   readonly state: Workspace
   readonly visible: boolean
   readonly onSelect: Workspace["select"]
   readonly onMove: (action: () => void) => void
+  readonly time: { readonly date: string; readonly hour: number }
   readonly onTimeChange: (date: string, hour: number) => void
 }) {
   return (
@@ -34,6 +36,7 @@ export function WorkspaceMap({
               key={state.hotelId}
               onClose={() => onMove(state.closeHotel)}
               state={state}
+              time={time}
               onOpen={(section) => {
                 const id = state.hotelId
                 if (id) onMove(() => state.navigation.openHotelPage(id, section))

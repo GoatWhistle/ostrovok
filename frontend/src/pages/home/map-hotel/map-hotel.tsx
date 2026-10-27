@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { HotelSummaryCard, useHotel } from "@/entities/hotel"
 import type { useHotelWorkspace } from "@/features/hotel-search"
+import { PlaceDetails } from "@/features/place-details"
 import { useTranslation } from "@/shared/i18n"
 import { withViewTransition } from "@/shared/motion"
 import { Button, CloseButton, ErrorState, ScrollArea, Skeleton } from "@/shared/ui"
@@ -9,11 +10,13 @@ import styles from "./map-hotel.module.css"
 type Workspace = ReturnType<typeof useHotelWorkspace>
 export function MapHotel({
   state,
+  time,
   onOpen,
   onClose,
 }: {
   readonly onClose: () => void
   readonly state: Workspace
+  readonly time: { readonly date: string; readonly hour: number }
   readonly onOpen: (section?: "offers") => void
 }) {
   const { t } = useTranslation()
@@ -23,8 +26,12 @@ export function MapHotel({
   const [collapsed, setCollapsed] = useState(false)
   const close = useRef<HTMLButtonElement>(null)
   useEffect(() => close.current?.focus({ preventScroll: true }), [])
+  useEffect(() => {
+    if (state.placeId) close.current?.focus({ preventScroll: true })
+  }, [state.placeId])
   function dismiss() {
-    onClose()
+    if (state.placeId) state.closePlace()
+    else onClose()
     document.querySelector<HTMLElement>(".maplibregl-canvas")?.focus({ preventScroll: true })
   }
   return (
@@ -56,7 +63,16 @@ export function MapHotel({
         </div>
       </header>
       <ScrollArea className={styles.content} id="map-hotel-content">
-        {hotel ? (
+        {state.placeId && state.hotelId ? (
+          <PlaceDetails
+            id={state.placeId}
+            hotelId={state.hotelId}
+            date={time.date}
+            hour={time.hour}
+            onBack={state.closePlace}
+            onRoute={state.placeRoute}
+          />
+        ) : hotel ? (
           <>
             <HotelSummaryCard
               hotel={hotel}

@@ -150,6 +150,7 @@ export function HomePage() {
                   visible={mapVisible}
                   onSelect={select}
                   onTimeChange={onTimeChange}
+                  time={sceneTime}
                   onMove={move}
                 />
               ) : null}

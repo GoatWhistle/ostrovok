@@ -1,0 +1,218 @@
+{
+  "operations": 27,
+  "schemas": 42,
+  "runtime_equal": true,
+  "rows": [
+    {
+      "method": "DELETE",
+      "path": "/chat/conversations/{conversation_id}",
+      "consumers": [
+        "frontend/src/features/hotel-search/use-conversation.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/characteristics",
+      "consumers": [
+        "frontend/src/entities/catalog/catalog.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/chat/conversations/{conversation_id}",
+      "consumers": [
+        "frontend/src/features/hotel-search/use-conversation.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "consumers": [
+        "frontend/src/shared/i18n/resources.ts",
+        "frontend/src/entities/health/index.ts",
+        "frontend/src/entities/health/health.queries.ts",
+        "frontend/src/app/app-header/app-header.tsx",
+        "frontend/src/entities/health/health-card/health-card.tsx"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hotelier/{hotel_id}/questions",
+      "consumers": [
+        "frontend/src/entities/hotelier/hotelier.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hotels/{hotel_id}",
+      "consumers": [
+        "frontend/src/entities/comparison/comparison.queries.ts",
+        "frontend/src/entities/hotel/hotel.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hotels/{hotel_id}/facts/{fact_id}",
+      "consumers": [
+        "frontend/src/entities/hotel/hotel.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hotels/{hotel_id}/offers",
+      "consumers": [
+        "frontend/src/entities/hotel/hotel.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hotels/{hotel_id}/scene",
+      "consumers": [
+        "frontend/src/entities/hotel/hotel.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/map/catalog",
+      "consumers": [
+        "frontend/src/entities/map-data/map-catalog.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/map/relief/{z}/{x}/{y}.png",
+      "consumers": []
+    },
+    {
+      "method": "GET",
+      "path": "/map/scene",
+      "consumers": [
+        "frontend/src/entities/map-data/map-scene.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/map/style",
+      "consumers": [
+        "frontend/src/entities/map-data/map-style.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/map/terrain/{z}/{x}/{y}.png",
+      "consumers": [
+        "frontend/src/shared/geo/terrain.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/map/tiles/{z}/{x}/{y}.pbf",
+      "consumers": [
+        "frontend/src/shared/geo/basemap.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/places/{place_id}",
+      "consumers": [
+        "frontend/src/entities/place/place.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/regions",
+      "consumers": [
+        "frontend/src/entities/catalog/catalog.queries.ts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/weather",
+      "consumers": [
+        "frontend/src/features/hotel-map/use-weather.ts",
+        "frontend/src/features/hotel-map/scene-time/scene-time-panel.tsx"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/chat/conversations/{conversation_id}",
+      "consumers": [
+        "frontend/src/features/hotel-search/use-conversation.ts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/hotelier/questions/{question_id}",
+      "consumers": [
+        "frontend/src/entities/hotelier/hotelier.queries.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/chat/messages",
+      "consumers": [
+        "frontend/src/features/hotel-search/use-conversation.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/compare",
+      "consumers": [
+        "frontend/src/entities/comparison/comparison.queries.ts",
+        "frontend/src/app/router.tsx",
+        "frontend/src/features/hotel-comparison/compare-row.tsx",
+        "frontend/src/features/hotel-comparison/hotel-comparison.tsx",
+        "frontend/src/features/hotel-comparison/compare-card-head.tsx",
+        "frontend/src/features/hotel-comparison/compare-cards.tsx",
+        "frontend/src/pages/home/home-page.tsx",
+        "frontend/src/pages/home/workspace-map.tsx",
+        "frontend/src/pages/home/compare-dock.tsx",
+        "frontend/src/pages/compare/compare-page.tsx"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/facts/{fact_id}/confirm",
+      "consumers": [
+        "frontend/src/entities/hotel/fact.mutations.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/facts/{fact_id}/correct",
+      "consumers": [
+        "frontend/src/entities/hotel/fact.mutations.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/geo-features:batch",
+      "consumers": [
+        "frontend/src/entities/hotel/hotel.queries.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hotelier/questions/{question_id}/answer",
+      "consumers": [
+        "frontend/src/entities/hotelier/hotelier.queries.ts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/search",
+      "consumers": [
+        "frontend/src/features/search-results/index.ts",
+        "frontend/src/features/search-chat/index.ts",
+        "frontend/src/shared/ui/index.ts",
+        "frontend/src/entities/hotel/hotel.queries.ts",
+        "frontend/src/features/search-results/search-results.tsx",
+        "frontend/src/features/search-chat/search-chat.tsx",
+        "frontend/src/shared/ui/forms/search-box/search-box.tsx",
+        "frontend/src/pages/home/home-page.tsx",
+        "frontend/src/pages/home/landing.tsx",
+        "frontend/src/pages/home/workspace-panel.tsx"
+      ]
+    }
+  ]
+}

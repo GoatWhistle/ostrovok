@@ -6,6 +6,7 @@ import { RequestLane } from "@/shared/api/request-lane"
 import { motionMs } from "@/shared/motion"
 
 const offerRequests = new RequestLane(3)
+const geometryRequests = new RequestLane(3)
 
 export function useHotelSearch(request: SearchRequest | null) {
   return useInfiniteQuery({
@@ -104,13 +105,26 @@ export function useFact(hotel: string | undefined, fact: string | undefined) {
   })
 }
 export function useGeoFeatures(ids: readonly string[]) {
-  const normalized = [...new Set(ids)].sort().slice(0, 200)
+  const normalized = [...new Set(ids)].sort()
+  const chunks = Array.from({ length: Math.ceil(normalized.length / 200) }, (_, index) =>
+    normalized.slice(index * 200, (index + 1) * 200),
+  )
   return useQuery({
     queryKey: ["geometry", normalized],
     enabled: normalized.length > 0,
     staleTime: Number.POSITIVE_INFINITY,
     queryFn: ({ signal }) =>
-      unwrap(api.POST("/geo-features:batch", { signal, body: { ids: normalized } })),
+      Promise.all(
+        chunks.map((ids) =>
+          geometryRequests.run(signal, () =>
+            unwrap(api.POST("/geo-features:batch", { signal, body: { ids } })),
+          ),
+        ),
+      ),
+    select: (replies) => ({
+      type: "FeatureCollection" as const,
+      features: replies.flatMap((reply) => reply.features ?? []),
+    }),
     retry: false,
   })
 }
