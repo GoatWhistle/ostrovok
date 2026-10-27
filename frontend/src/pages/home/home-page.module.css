@@ -201,6 +201,9 @@
   grid-row: 1;
   grid-template-columns: minmax(0, 1fr);
 }
+.page[data-standalone="true"] .workspace .map {
+  display: grid;
+}
 .page[data-standalone="true"] .panel,
 .page[data-standalone="true"] .workspace .chat,
 .page[data-standalone="true"] .tabs,

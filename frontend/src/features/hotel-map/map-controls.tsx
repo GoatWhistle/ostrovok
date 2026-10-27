@@ -10,6 +10,8 @@ import styles from "./map-controls.module.css"
 const ROTATE_STEP = 30
 
 export interface MapControlsProps {
+  readonly fullMap?: boolean
+  readonly onExpand?: (() => void) | undefined
   readonly map: RefObject<MapLibreMap | null>
   readonly ready: boolean
   readonly disabled: boolean
@@ -52,12 +54,35 @@ function useFlat(map: RefObject<MapLibreMap | null>, ready: boolean) {
   return flat
 }
 
-export function MapControls({ map, ready, disabled, onOverview, onAppearance }: MapControlsProps) {
+export function MapControls({
+  map,
+  ready,
+  disabled,
+  onOverview,
+  onAppearance,
+  onExpand,
+  fullMap,
+}: MapControlsProps) {
   const { t } = useTranslation()
   const compass = useBearing(map, ready)
   const flat = useFlat(map, ready)
   return (
-    <div className={styles.controls} data-map-obstacle>
+    <div className={styles.controls} data-full-map={fullMap} data-map-obstacle>
+      {onExpand ? (
+        <div className={styles.group} hidden={fullMap}>
+          <Button
+            variant="ghost"
+            iconOnly
+            icon="expand"
+            data-map-expand
+            className={styles.control}
+            title={t("explore:map.fullscreen")}
+            onClick={onExpand}
+          >
+            {t("explore:map.fullscreen")}
+          </Button>
+        </div>
+      ) : null}
       <MapAppearanceControl onChange={onAppearance} />
       <div className={styles.group}>
         <Button

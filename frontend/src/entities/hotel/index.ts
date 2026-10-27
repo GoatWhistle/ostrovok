@@ -7,7 +7,7 @@ export {
   useHotelScene,
   useHotelSearch,
 } from "./hotel.queries"
-export { HotelResult } from "./hotel-result/hotel-result"
+export { HotelResult, HotelSummaryCard } from "./hotel-result/hotel-result"
 export { HotelStars } from "./hotel-stars/hotel-stars"
 export { useHotelRoom } from "./hotel-stay/hotel-room"
 export { HotelStayProvider, useHotelStay } from "./hotel-stay/hotel-stay"

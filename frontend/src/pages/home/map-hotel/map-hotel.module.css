@@ -1,0 +1,42 @@
+.card {
+  composes: floatingSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  max-block-size: calc(100dvh - var(--space-32));
+  animation: var(--motion-scale-in);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+}
+.header strong {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+.actions {
+  display: flex;
+  flex: none;
+}
+.collapse {
+  display: none;
+}
+.content {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-12);
+  min-block-size: 0;
+}
+@media (max-width: 63.99rem) {
+  .card {
+    max-block-size: 45dvh;
+  }
+  .collapse {
+    display: inline-flex;
+  }
+  .card[data-collapsed="true"] .content {
+    display: none;
+  }
+}

@@ -15,7 +15,12 @@ export function useSurfaceScroll(key: string, detail: { current: HTMLDivElement 
       elements.current.set(key, node)
       detail.current = node
       node.scrollTop = positions.current.get(key) ?? 0
-      if (positions.current.has(key)) node.focus({ preventScroll: true })
+      const focused = document.activeElement
+      if (
+        positions.current.has(key) &&
+        (focused === document.body || !focused?.getClientRects().length)
+      )
+        node.focus({ preventScroll: true })
     },
     [key, detail],
   )

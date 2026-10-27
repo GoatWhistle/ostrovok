@@ -46,7 +46,6 @@ export function useHotelWorkspace() {
   const detailRef = useRef<HTMLDivElement>(null)
   const clearEvidence = selection.clear
   function clearSelection() {
-    clearEvidence()
     setHotelId(undefined)
   }
   const chat = useConversation(
@@ -193,6 +192,7 @@ export function useHotelWorkspace() {
     geoRefs: previewRefs ?? geoRefs,
     focusedFact,
     focusProperty: previewMatch ?? focusedMatch,
+    previewing: previewRefs !== undefined,
     preview: (result: SearchResult, item: MatchedProperty | undefined) => {
       const active = result.hotel.id === hotelId ? item : undefined
       setPreviewRefs(active?.geo_refs ?? active?.fact?.geo_refs)

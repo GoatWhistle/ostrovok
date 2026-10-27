@@ -1,4 +1,4 @@
-import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import type { HotelSummary, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { useInViewport } from "@/shared/hooks"
 import { staggerStyle } from "@/shared/motion"
 import { Button, Icon } from "@/shared/ui"
@@ -17,14 +17,28 @@ export interface HotelResultProps {
   readonly onPreview: (property: MatchedProperty | undefined) => void
 }
 
-export function HotelResult({
-  result,
+export function HotelResult({ result, ...props }: HotelResultProps) {
+  return <HotelSummaryCard hotel={result.hotel} matched={result.matched} {...props} />
+}
+
+interface HotelSummaryCardProps extends Omit<HotelResultProps, "result"> {
+  readonly hotel: HotelSummary
+  readonly matched: readonly MatchedProperty[]
+  readonly onRooms?: () => void
+  readonly idPrefix?: string
+}
+
+export function HotelSummaryCard({
+  hotel,
+  matched,
   selected,
   index,
   onSelect,
   onProperty,
   onPreview,
-}: HotelResultProps) {
+  onRooms = onSelect,
+  idPrefix = "hotel-result",
+}: HotelSummaryCardProps) {
   const viewport = useInViewport()
   return (
     <article
@@ -33,29 +47,29 @@ export function HotelResult({
       data-selected={selected}
       style={index === undefined ? undefined : staggerStyle(index)}
     >
-      <HotelThumb src={result.hotel.thumbnail_url} photos={result.hotel.photos} />
+      <HotelThumb src={hotel.thumbnail_url} photos={hotel.photos} />
       <div className={styles.body}>
         <div className={styles.top}>
           <Button
             variant="ghost"
             align="start"
             className={styles.name}
-            id={`hotel-result-${result.hotel.id}`}
+            id={`${idPrefix}-${hotel.id}`}
             aria-pressed={selected}
             onClick={onSelect}
           >
-            {result.hotel.name}
+            {hotel.name}
           </Button>
         </div>
-        <HotelStars value={result.hotel.stars} />
-        {result.hotel.address ? (
+        <HotelStars value={hotel.stars} />
+        {hotel.address ? (
           <p className={styles.meta}>
             <Icon name="pin" size="sm" />
-            <span>{result.hotel.address}</span>
+            <span>{hotel.address}</span>
           </p>
         ) : null}
-        <HotelMatches matched={result.matched} onProperty={onProperty} onPreview={onPreview} />
-        <OfferPreview hotelId={result.hotel.id} onSelect={onSelect} enabled={viewport.visible} />
+        <HotelMatches matched={matched} onProperty={onProperty} onPreview={onPreview} />
+        <OfferPreview hotelId={hotel.id} onSelect={onRooms} enabled={viewport.visible} />
       </div>
     </article>
   )

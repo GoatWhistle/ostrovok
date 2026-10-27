@@ -46,6 +46,7 @@ export {
   type ButtonVariant,
 } from "./primitives/button/button"
 export { ButtonLink, type ButtonLinkProps } from "./primitives/button/button-link"
+export { CloseButton } from "./primitives/button/close-button"
 export { characteristicHue, characteristicIcon } from "./primitives/icon/characteristic-icon"
 export { Icon, type IconName, type IconProps, type IconSize } from "./primitives/icon/icon"
 export { NoValue, type NoValueProps } from "./primitives/no-value/no-value"

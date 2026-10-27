@@ -5,6 +5,7 @@ import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
 import { HotelContent } from "../hotel-content"
 import styles from "./full-hotel.module.css"
+import { useHotelSection } from "./use-hotel-section"
 
 type Workspace = ReturnType<typeof useHotelWorkspace>
 interface FullHotelProps {
@@ -21,20 +22,10 @@ export function FullHotel({ state, time, scrollRef, onBack }: FullHotelProps) {
   useEffect(() => {
     back.current?.focus({ preventScroll: true })
   }, [])
-  useEffect(() => {
-    if (!state.navigation.route.section || !hotel.data) return
-    const id =
-      state.navigation.route.section === "offers" || state.navigation.route.section === "rooms"
-        ? `${state.hotelId}-rooms`
-        : undefined
-    if (id) {
-      const target = document.getElementById(id)
-      target?.scrollIntoView({ block: "start" })
-      target?.focus({ preventScroll: true })
-    }
-  }, [state.hotelId, state.navigation.route.section, hotel.data])
+  const page = useHotelSection(state.hotelId, state.navigation.route.section)
+
   return (
-    <section className={styles.page} aria-label={t("explore:surfaces.hotelPage")}>
+    <section ref={page} className={styles.page} aria-label={t("explore:surfaces.hotelPage")}>
       <div className={styles.bar}>
         <Button ref={back} variant="ghost" icon="chevron-left" onClick={onBack}>
           {t("explore:surfaces.back")}

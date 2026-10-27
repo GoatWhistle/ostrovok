@@ -12,6 +12,7 @@ import styles from "./home-page.module.css"
 import { Landing } from "./landing"
 import { useAppearanceLocation } from "./use-appearance-location"
 import { useFreshStart } from "./use-fresh-start"
+import { useFullMap } from "./use-full-map"
 import { useSurfaceScroll } from "./use-surface-scroll"
 import { WorkspaceMap } from "./workspace-map"
 import { WorkspacePanel } from "./workspace-panel"
@@ -21,7 +22,18 @@ function useMapVisible(
   view: WorkspaceView,
 ) {
   const narrow = useMediaQuery("(max-width: 63.99rem)")
-  return !["landing", "conversation", "hotel-page"].includes(surface) && (!narrow || view === "map")
+  return (
+    surface === "map" ||
+    (!["landing", "conversation", "hotel-page"].includes(surface) && (!narrow || view === "map"))
+  )
+}
+
+function isStandalone(state: ReturnType<typeof useHotelWorkspace>) {
+  return (
+    state.surface === "map" ||
+    (state.surface === "hotel-page" &&
+      (state.navigation.route.from !== "panel" || !state.navigation.route.chat))
+  )
 }
 
 export function HomePage() {
@@ -54,8 +66,8 @@ export function HomePage() {
     variable: "--chat-width",
   })
   const fullHotel = state.surface === "hotel-page"
-  const standalone =
-    fullHotel && (state.navigation.route.from !== "panel" || !state.navigation.route.chat)
+  const standalone = isStandalone(state)
+  useFullMap(state.surface === "map", state.navigation.returnFromSurface)
   const scrollRef = useSurfaceScroll(
     `${state.navigation.scopeKey}:${state.hotelId}:${fullHotel ? "page" : "panel"}:${state.factId ?? state.placeId ?? "hotel"}`,
     state.detailRef,
@@ -119,15 +131,17 @@ export function HomePage() {
           data-resize-root
           style={sizes}
         >
-          <WorkspacePanel
-            state={state}
-            time={sceneTime}
-            fullHotel={fullHotel}
-            scrollRef={scrollRef}
-            size={panelSize}
-            onSelect={select}
-            onMove={move}
-          />
+          {state.surface !== "map" ? (
+            <WorkspacePanel
+              state={state}
+              time={sceneTime}
+              fullHotel={fullHotel}
+              scrollRef={scrollRef}
+              size={panelSize}
+              onSelect={select}
+              onMove={move}
+            />
+          ) : null}
           <div className={styles.map}>
             <div className={styles.mapCanvas} hidden={fullHotel}>
               {mapMounted.current ? (
@@ -136,6 +150,7 @@ export function HomePage() {
                   visible={mapVisible}
                   onSelect={select}
                   onTimeChange={onTimeChange}
+                  onMove={move}
                 />
               ) : null}
             </div>

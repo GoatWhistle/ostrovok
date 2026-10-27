@@ -16,10 +16,14 @@ export function useListReturn(
   }, [scope, hotelId, showList])
   const listRef = useCallback(
     (node: HTMLDivElement | null) => {
+      if (!node && element.current) {
+        const saved = positions.current.get(scope)
+        positions.current.set(scope, { top: element.current.scrollTop, focus: saved?.focus ?? "" })
+      }
       element.current = node
       restore()
     },
-    [restore],
+    [restore, scope],
   )
   useLayoutEffect(() => {
     if (count) restore()

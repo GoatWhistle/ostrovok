@@ -6,26 +6,16 @@ import type { MapAppearance } from "@/shared/geo/appearance/types"
 import { matchedValue } from "@/shared/geo/fact-label"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { motionMs } from "@/shared/motion"
-import { ErrorState, MapAttribution } from "@/shared/ui"
+import { MapHeading } from "./controls/map-heading"
+import { MapMeta } from "./controls/map-meta"
 import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
-import { MapFocus } from "./map-focus"
-import { MapLegendToggle } from "./map-legend"
-import { MapScale } from "./map-scale"
 import { MapStatus, mapNotes } from "./map-status"
 import { MapPins } from "./markers/map-pins"
 import { useFocusGeometry } from "./markers/use-focus-geometry"
-import { WalkSummary } from "./markers/walk-summary"
-import {
-  focusCopy,
-  hasLine,
-  regionOverview,
-  resultCorners,
-  sceneData,
-  sceneLocation,
-  sceneQuality,
-} from "./scene-data"
+import { showMapOverview } from "./rendering/map-overview"
+import { useMapInsets } from "./rendering/use-map-insets"
+import { focusCopy, regionOverview, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
@@ -33,6 +23,11 @@ import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
+  readonly fullMap?: boolean
+  readonly previewing?: boolean
+  readonly hotelCard?: ReactNode
+  readonly onExpand?: () => void
+  readonly onExit?: () => void
   readonly visible: boolean
   readonly hotelId: string | undefined
   readonly camera: Camera | undefined
@@ -49,8 +44,17 @@ export interface HotelMapProps {
   readonly onSelect: (result: SearchResult) => void
 }
 
+function isSceneHour(value: number) {
+  return Number.isInteger(value) && value >= 0 && value <= 23
+}
+
 export function HotelMap({
   visible,
+  fullMap = false,
+  previewing = false,
+  hotelCard,
+  onExpand,
+  onExit,
   hotelId,
   camera,
   geoRefs,
@@ -87,8 +91,13 @@ export function HotelMap({
     results,
   )
   const textured = useMemo(
-    () => selectedFootprints(hotelId, scene.data, hotel ? [hotel] : []),
-    [hotelId, scene.data, hotel],
+    () =>
+      selectedFootprints(
+        hotelId,
+        scene.data,
+        results.filter((item) => item.hotel.id === hotelId),
+      ),
+    [hotelId, scene.data, results],
   )
   const place = hotel ?? results[0]
   const [lon, lat] = sceneLocation(place, selectedCamera)
@@ -99,6 +108,7 @@ export function HotelMap({
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
   const map = useHotelMap({
     visible,
+    previewing,
     camera: selectedCamera,
     buildings,
     texturedFootprints: textured.features,
@@ -110,27 +120,13 @@ export function HotelMap({
     focusLabel: matchedValue(focusProperty?.fact ?? focusedFact, locale),
     sun: place ? sun.position : OVERVIEW_SUN,
   })
+  const insets = useMapInsets(map.instance, map.active, Boolean(hotelCard))
   const overview = scene.data?.cameras.overview ?? selectedCamera
-  const showOverview = (instant: boolean) => {
-    const corners = hotelId ? undefined : resultCorners(results)
-    const duration = instant ? 0 : motionMs("--dur-draw")
-    if (corners) {
-      map.instance.current?.fitBounds(corners, { duration, padding: 64, maxZoom: 15 })
-      return
-    }
-    if (!overview) return
-    const options = {
-      center: [overview.center[0] ?? 0, overview.center[1] ?? 0] as [number, number],
-      zoom: overview.zoom,
-      bearing: overview.bearing,
-      pitch: overview.pitch,
-    }
-    if (instant) map.instance.current?.jumpTo(options)
-    else map.instance.current?.flyTo({ ...options, duration: motionMs("--dur-draw") })
-  }
   return (
     <section
+      ref={insets.stage}
       className={styles.stage}
+      data-full-map={fullMap}
       aria-label={t("explore:map.title")}
       data-map-active={map.active}
       data-textured-hotel={map.textureStatus === "ready" ? hotelId : undefined}
@@ -152,25 +148,16 @@ export function HotelMap({
         ready={map.ready}
         onRetry={() => void scene.refetch()}
       />
-      <div className={styles.topStart} data-map-obstacle>
-        <MapFocus
-          label={focus.label}
-          explanation={focus.explanation}
-          fact={focusedFact}
-          property={focusProperty}
-          route={hasLine(focusFeatures)}
-        >
-          <WalkSummary features={focusFeatures} />
-        </MapFocus>
-        {geometry.isError ? (
-          <div className={styles.notice}>
-            <ErrorState
-              title={t("explore:map.geometryError")}
-              onRetry={() => void geometry.refetch()}
-            />
-          </div>
-        ) : null}
-      </div>
+      <MapHeading
+        fullMap={fullMap}
+        onExit={onExit}
+        focus={focus}
+        fact={focusedFact}
+        property={focusProperty}
+        features={focusFeatures}
+        failed={geometry.isError}
+        onRetry={() => void geometry.refetch()}
+      />
 
       {selectedCamera ? (
         <div className={styles.bottom}>
@@ -188,7 +175,7 @@ export function HotelMap({
                 weatherPending={weather.isPending || weather.isFetching}
                 onDate={setDate}
                 onHour={(value) => {
-                  if (Number.isInteger(value) && value >= 0 && value <= 23) setHour(value)
+                  if (isSceneHour(value)) setHour(value)
                 }}
               />
             ) : null}
@@ -196,29 +183,27 @@ export function HotelMap({
           <div className={styles.bottomCenter} data-map-obstacle>
             {bottomCenter}
           </div>
-          <div className={styles.meta} data-map-obstacle>
-            <MapScale map={map.instance} ready={map.ready} />
-            <MapLegendToggle notes={mapNotes(invalid, missingHeight, map.textureStatus)} />
-            <MapAttribution
-              label={t("explore:map.attributionTitle")}
-              osm={t("explore:map.attribution")}
-              terrain={t("explore:map.terrainAttribution")}
-              sources={{
-                weather: t("explore:map.weatherAttribution"),
-                landcover: t("explore:map.landcoverAttribution"),
-                biodiversity: t("explore:map.biodiversityAttribution"),
-                events: t("explore:map.eventsAttribution"),
-                license: t("explore:map.dataLicense"),
-              }}
-            />
-          </div>
+          <MapMeta
+            map={map.instance}
+            ready={map.ready}
+            notes={mapNotes(invalid, missingHeight, map.textureStatus)}
+          />
+        </div>
+      ) : null}
+      {hotelCard ? (
+        <div ref={insets.card} className={styles.hotelCard} data-map-obstacle>
+          {hotelCard}
         </div>
       ) : null}
       <MapControls
+        fullMap={fullMap}
+        onExpand={onExpand}
         map={map.instance}
         ready={map.ready}
         disabled={!selectedCamera || map.failed || !map.ready}
-        onOverview={showOverview}
+        onOverview={(instant) =>
+          showMapOverview(map.instance.current, overview, hotelId, results, instant)
+        }
         onAppearance={onAppearance}
       />
     </section>

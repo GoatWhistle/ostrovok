@@ -33,3 +33,69 @@ it("preserves a manually moved camera across hidden and visible cycles", () => {
   expect(instance.jumpTo).toHaveBeenLastCalledWith(expect.objectContaining({ zoom: 16 }))
   expect(instance.jumpTo).toHaveBeenCalledTimes(2)
 })
+
+it("keeps the camera after closing a hotel and fits a later search", () => {
+  const instance = { stop: vi.fn(), jumpTo: vi.fn(), fitBounds: vi.fn() }
+  const map = { current: instance as unknown as MapLibreMap }
+  const state = renderHook(
+    ({ hotel, bounds }: { hotel: string | undefined; bounds: number[] | undefined }) =>
+      useMapCamera({
+        map,
+        active: true,
+        reduced: true,
+        camera: { center: [39, 43], zoom: hotel ? 16 : 12, pitch: 30, bearing: 20 },
+        bounds,
+        hotelId: hotel,
+        focusFeatures: [],
+      }),
+    {
+      initialProps: { hotel: undefined, bounds: [39, 43, 40, 44] } as {
+        hotel: string | undefined
+        bounds: number[] | undefined
+      },
+    },
+  )
+  state.rerender({ hotel: "cosmos", bounds: undefined })
+  expect(instance.jumpTo).toHaveBeenCalledTimes(2)
+  state.rerender({ hotel: undefined, bounds: [39, 43, 40, 44] })
+  expect(instance.jumpTo).toHaveBeenCalledTimes(2)
+  expect(instance.fitBounds).toHaveBeenCalledTimes(1)
+  state.rerender({ hotel: undefined, bounds: [30, 50, 31, 51] })
+  expect(instance.fitBounds).toHaveBeenCalledTimes(2)
+})
+
+it("highlights hover geometry without moving the camera until explicitly selected", () => {
+  const instance = { stop: vi.fn(), jumpTo: vi.fn(), fitBounds: vi.fn() }
+  const map = { current: instance as unknown as MapLibreMap }
+  const camera = { center: [39, 43], zoom: 16, pitch: 30, bearing: 20 }
+  const features = [
+    {
+      type: "Feature",
+      properties: { kind: "route" },
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [39, 43],
+          [39.01, 43.01],
+        ],
+      },
+    },
+  ]
+  const state = renderHook(
+    ({ previewing }) =>
+      useMapCamera({
+        map,
+        active: true,
+        reduced: true,
+        camera,
+        bounds: undefined,
+        hotelId: "hotel-a",
+        focusFeatures: features,
+        previewing,
+      }),
+    { initialProps: { previewing: true } },
+  )
+  expect(instance.fitBounds).not.toHaveBeenCalled()
+  state.rerender({ previewing: false })
+  expect(instance.fitBounds).toHaveBeenCalledOnce()
+})

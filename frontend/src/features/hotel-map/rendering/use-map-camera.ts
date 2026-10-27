@@ -7,6 +7,7 @@ import { motionMs } from "@/shared/motion"
 
 interface CameraInput {
   readonly map: RefObject<MapLibreMap | null>
+  readonly previewing?: boolean
   readonly active: boolean
   readonly reduced: boolean
   readonly camera: Camera | undefined
@@ -35,19 +36,32 @@ function useCameraCommand(
   }, [map, active, key, apply])
 }
 
+function useOverviewAllowed(hotelId: string | undefined, bounds: readonly number[] | undefined) {
+  const overview = useRef({ hotelId, bounds: JSON.stringify(bounds), suppressed: false })
+  const boundsKey = JSON.stringify(bounds)
+  if (overview.current.hotelId && !hotelId) overview.current.suppressed = true
+  if (hotelId || (boundsKey && overview.current.bounds && boundsKey !== overview.current.bounds))
+    overview.current.suppressed = false
+  overview.current.hotelId = hotelId
+  if (boundsKey) overview.current.bounds = boundsKey
+  return !overview.current.suppressed
+}
+
 export function useMapCamera({
   map,
   active,
   reduced,
+  previewing = false,
   camera,
   bounds,
   hotelId,
   focusFeatures,
 }: CameraInput) {
+  const overviewAllowed = useOverviewAllowed(hotelId, bounds)
   const validCamera = camera?.center.every(Number.isFinite) ? camera : undefined
   useCameraCommand(
     map,
-    active,
+    active && overviewAllowed,
     validCamera ? JSON.stringify(validCamera) : undefined,
     (instance) => {
       if (!validCamera) return
@@ -65,7 +79,7 @@ export function useMapCamera({
   const validBounds = bounds?.length === 4 && bounds.every(Number.isFinite) ? bounds : undefined
   useCameraCommand(
     map,
-    active,
+    active && overviewAllowed,
     validBounds ? JSON.stringify(validBounds) : undefined,
     (instance) => {
       if (!validBounds) return
@@ -84,7 +98,7 @@ export function useMapCamera({
       : undefined
   useCameraCommand(
     map,
-    active,
+    active && !previewing,
     corners ? JSON.stringify([hotelId, corners, camera?.center]) : undefined,
     (instance) => {
       if (corners)

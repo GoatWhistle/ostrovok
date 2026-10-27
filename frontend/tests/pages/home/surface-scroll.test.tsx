@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { useSurfaceScroll } from "../../../src/pages/home/use-surface-scroll"
 
 describe("hotel surface scroll", () => {
@@ -41,4 +41,24 @@ describe("hotel surface scroll", () => {
     state.result.current(node)
     expect(node.scrollTop).toBe(0)
   })
+})
+
+it("preserves a visible map exit control's focus during panel restoration", () => {
+  const detail = { current: null as HTMLDivElement | null }
+  const state = renderHook(() => useSurfaceScroll("hotel:panel", detail))
+  const panel = document.createElement("div")
+  panel.tabIndex = -1
+  document.body.append(panel)
+  state.result.current(panel)
+  state.result.current(null)
+  const control = document.createElement("button")
+  document.body.append(control)
+  vi.spyOn(control, "getClientRects").mockReturnValue([
+    new DOMRect(0, 0, 44, 44),
+  ] as unknown as DOMRectList)
+  control.focus()
+  state.result.current(panel)
+  expect(document.activeElement).toBe(control)
+  control.remove()
+  panel.remove()
 })

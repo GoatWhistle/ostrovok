@@ -25,6 +25,7 @@ import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapMarkers } from "./use-map-markers"
 
 export interface MapData {
+  readonly previewing: boolean
   readonly visible: boolean
   readonly camera: Camera | undefined
   readonly buildings: readonly unknown[]
@@ -40,6 +41,7 @@ export interface MapData {
 
 export function useHotelMap({
   visible,
+  previewing,
   camera,
   buildings,
   texturedFootprints,
@@ -140,7 +142,16 @@ export function useHotelMap({
     if (!active || !map) return
     return followTerrainZoom(map)
   }, [instance, active])
-  useMapCamera({ map: instance, active, reduced, camera, bounds, hotelId, focusFeatures })
+  useMapCamera({
+    map: instance,
+    active,
+    reduced,
+    camera,
+    bounds,
+    hotelId,
+    focusFeatures,
+    previewing,
+  })
   const markers = useMapMarkers({
     mapRef: instance,
     ready: active,
