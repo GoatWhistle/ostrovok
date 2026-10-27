@@ -102,24 +102,56 @@ function refineRanks(
   })
 }
 
+const SCRIPT: Readonly<Record<Locale, RegExp>> = { ru: /[Ѐ-ӿ]/, en: /^[^Ѐ-ӿ]*$/ }
+
+function localTitle(candidates: readonly (string | undefined)[], locale: Locale): string {
+  const present = candidates.filter((item): item is string => Boolean(item))
+  return present.find((item) => SCRIPT[locale].test(item)) ?? present[0] ?? ""
+}
+
+interface WishLine extends CompareLine {
+  readonly native: string
+}
+
+function mergeLines(lines: readonly WishLine[]): readonly CompareLine[] {
+  const groups = new Map<string, WishLine[]>()
+  for (const line of lines) groups.set(line.native, [...(groups.get(line.native) ?? []), line])
+  return [...groups.values()].map(([first, ...rest]) => {
+    const cells = new Map(first?.cells)
+    for (const line of rest)
+      for (const [id, cell] of line.cells) if (!cells.has(id)) cells.set(id, cell)
+    const { native: _native, ...line } = first as WishLine
+    return { ...line, cells }
+  })
+}
+
 export function wishLines(input: WishInput): readonly CompareLine[] {
-  return wishKeys(input).map((key) => {
+  const lines = wishKeys(input).map((key): WishLine => {
     const cells = input.ids.flatMap((id) => {
       const cell = wishCell(key, id, input)
       return cell ? [cell] : []
     })
     const intent = input.intents.find((item) => item.characteristic_key === key)
+    const native = cells.map((cell) => nativeKey(cell.fact)).find(Boolean) ?? key
     const title =
       intent?.source_text ??
-      cells.map((cell) => sourceText(cell.fact)).find(Boolean) ??
-      cells[0]?.fact?.label ??
-      key
+      localTitle(
+        [
+          ...cells.map((cell) => sourceText(cell.fact)),
+          input.registry.find((item) => item.key === native)?.title,
+          cells[0]?.fact?.label,
+        ],
+        input.locale,
+      )
+    const shown = title || key
     return {
       key,
-      title: title.charAt(0).toLocaleUpperCase(input.locale) + title.slice(1),
+      native,
+      title: shown.charAt(0).toLocaleUpperCase(input.locale) + shown.slice(1),
       userText: true,
       better: "higher",
       cells: new Map(refineRanks(cells, input.registry)),
     }
   })
+  return mergeLines(lines)
 }

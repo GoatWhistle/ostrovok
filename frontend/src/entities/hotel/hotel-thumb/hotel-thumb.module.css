@@ -7,7 +7,7 @@
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  background-color: var(--surface-sunken);
+  background-color: var(--surface-raised-hover);
 }
 
 .photo {
@@ -15,10 +15,6 @@
   inset: 0;
   composes: coverMedia from "../../../shared/styles/compose.module.css";
   animation: var(--motion-fade-in);
-}
-
-.thumb[data-empty] {
-  background-color: var(--surface-raised-hover);
 }
 
 .empty {

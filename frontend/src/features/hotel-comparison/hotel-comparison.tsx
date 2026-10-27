@@ -45,7 +45,7 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
       <section className={styles.comparison}>
         <div className={styles.toolbar}>
           <p className={styles.summary} role="status">
-            {ready
+            {ready && view.different < view.total
               ? t("explore:compare.summary", { different: view.different, total: view.total })
               : null}
           </p>

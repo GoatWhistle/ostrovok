@@ -37,6 +37,7 @@ export function HotelThumb({
       data-hotel-photo
       data-empty={!current || undefined}
     >
+      <Icon name="building" className={styles.empty} />
       {current ? (
         <img
           key={current}
@@ -47,9 +48,7 @@ export function HotelThumb({
           className={styles.photo}
           onError={() => setFailed((values) => [...values, current])}
         />
-      ) : (
-        <Icon name="building" className={styles.empty} />
-      )}
+      ) : null}
     </div>
   )
 }

@@ -46,4 +46,11 @@
   .summary {
     flex: 1 1 100%;
   }
+
+  .stay button {
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    white-space: normal;
+    text-align: start;
+  }
 }
