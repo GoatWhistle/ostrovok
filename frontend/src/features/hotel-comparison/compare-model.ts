@@ -19,6 +19,7 @@ export interface CompareLine {
   readonly title: string
   readonly userText?: boolean
   readonly better?: Better
+  readonly covers?: string
   readonly cells: ReadonlyMap<string, CompareCell>
 }
 

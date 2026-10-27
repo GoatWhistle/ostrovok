@@ -18,14 +18,10 @@
   font-variant-numeric: var(--font-numeric);
 }
 
-.toggle {
-  composes: accentUnderline from "../../shared/styles/compose.module.css";
-  text-decoration-line: none;
-}
-
 .toggle[aria-pressed="true"] {
   color: var(--text-accent);
-  text-decoration-line: underline;
+  text-decoration: underline var(--hairline);
+  text-underline-offset: var(--space-4);
 }
 
 .stay {

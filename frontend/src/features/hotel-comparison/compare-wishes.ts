@@ -112,24 +112,23 @@ function localTitle(candidates: readonly (string | undefined)[], locale: Locale)
   return present.find((item) => SCRIPT[locale].test(item)) ?? present[0] ?? ""
 }
 
-interface WishLine extends CompareLine {
-  readonly native: string
-}
-
-function mergeLines(lines: readonly WishLine[]): readonly CompareLine[] {
-  const groups = new Map<string, WishLine[]>()
-  for (const line of lines) groups.set(line.native, [...(groups.get(line.native) ?? []), line])
-  return [...groups.values()].map(([first, ...rest]) => {
-    const cells = new Map(first?.cells)
+function mergeLines(lines: readonly CompareLine[]): readonly CompareLine[] {
+  const groups = new Map<string, CompareLine[]>()
+  for (const line of lines) {
+    const group = line.covers ?? line.key
+    groups.set(group, [...(groups.get(group) ?? []), line])
+  }
+  return [...groups.values()].flatMap(([first, ...rest]) => {
+    if (!first) return []
+    const cells = new Map(first.cells)
     for (const line of rest)
       for (const [id, cell] of line.cells) if (!cells.has(id)) cells.set(id, cell)
-    const { native: _native, ...line } = first as WishLine
-    return { ...line, cells }
+    return [{ ...first, cells }]
   })
 }
 
 export function wishLines(input: WishInput): readonly CompareLine[] {
-  const lines = wishKeys(input).map((key): WishLine => {
+  const lines = wishKeys(input).map((key): CompareLine => {
     const cells = input.ids.flatMap((id) => {
       const cell = wishCell(key, id, input)
       return cell ? [cell] : []
@@ -149,7 +148,7 @@ export function wishLines(input: WishInput): readonly CompareLine[] {
     const shown = title || key
     return {
       key,
-      native,
+      covers: native,
       title: shown.charAt(0).toLocaleUpperCase(input.locale) + shown.slice(1),
       userText: true,
       better: "higher",

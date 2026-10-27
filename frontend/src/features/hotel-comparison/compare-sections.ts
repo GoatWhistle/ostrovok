@@ -34,18 +34,21 @@ export function comparisonView(
     supplier: (id) => data.details[ids.indexOf(id)]?.data?.details ?? undefined,
     hotel: (id) => data.hotels[ids.indexOf(id)]?.data?.hotel ?? data.matches.get(id)?.hotel,
   }
+  const wishes = wishLines({
+    ids,
+    intents: data.intents,
+    rows,
+    matches: data.matches,
+    registry,
+    locale,
+  })
+  const covered = new Set(wishes.flatMap((line) => [line.key, line.covers ?? line.key]))
+  const fresh = (items: readonly CompareLine[]) => items.filter((line) => !covered.has(line.key))
   const lines: Readonly<Record<SectionId, readonly CompareLine[]>> = {
-    wishes: wishLines({
-      ids,
-      intents: data.intents,
-      rows,
-      matches: data.matches,
-      registry,
-      locale,
-    }),
-    location: facts.location,
-    hotel: [...supplierFactLines(input), ...facts.hotel],
-    facilities: [...facts.facilities, ...amenityLines(input)],
+    wishes,
+    location: fresh(facts.location),
+    hotel: fresh([...supplierFactLines(input), ...facts.hotel]),
+    facilities: fresh([...facts.facilities, ...amenityLines(input)]),
   }
   const every = SECTION_ORDER.flatMap((id) => viewLines(lines[id], ids, false))
   return {
