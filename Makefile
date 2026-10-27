@@ -39,9 +39,11 @@ build-seed: ## Cut the Sochi slice out of data/raw into data/seed/sochi (offline
 		      $(CURDIR)/data/raw/Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif \
 		--out $(CURDIR)/data/seed/sochi
 
-seed: ## Load the prepared Sochi slice into the running PostGIS database
+seed: ## Load the prepared Sochi slice and map layers into the running PostGIS database
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
 		$(LOCAL_DATA) $(BACKEND) hotel-agent ingest --region sochi --from $(CURDIR)/data/seed/sochi
+	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
+		$(BACKEND) python scripts/import_map_layers.py --prepared --root $(CURDIR)
 
 ingest-russia: ## Stream selected Russia OSM layers into PostGIS with a disk-space guard
 	$(DOTENV) DATABASE_URL=postgresql://$${POSTGRES_USER:-hotel}:$${POSTGRES_PASSWORD:-hotel}@localhost:$${POSTGRES_PORT:-5432}/$${POSTGRES_DB:-hotel} \
