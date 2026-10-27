@@ -1,1 +1,1 @@
-TILE_VERSION = "buildings-v2"
+TILE_VERSION = "lod-v3"

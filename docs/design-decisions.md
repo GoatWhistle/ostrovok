@@ -642,6 +642,84 @@ RGB-байтов Terrarium создавала ложные перепады на
 На масштабах меньше 6 3D-рельеф выключается: грубые тайлы давали рубленую сетку и лишнюю
 нагрузку.
 
+## Море и берег издалека, 2026-10-27
+
+Раньше море рисовала шкала рельефа: всё, что не выше 0 м, становилось морем. Поверхность
+Каспия и Прикаспийская низменность лежат на одной высоте, около −28 м, поэтому низменность
+заливалась водой. Береговая линия OSM была импортирована только для европейской части России
+и отдавалась без упрощения, отсюда кривой контур, который обрывался за Уралом.
+
+- **Вода издалека.** До масштаба 8 море, озёра и берег рисуются по полигонам Natural Earth
+  `ne_10m_ocean` и `ne_10m_lakes` (общественное достояние; озёра с `scalerank` ≤ 6). Заливка
+  и линия берега берутся из одних полигонов, поэтому совпадают везде в мире. Цвет моря тот же,
+  что у сцены, включая сумерки и ночь.
+- **Два файла.** `water-far.geojson` (1,1 МБ, упрощение 0,03°) нужен до масштаба 5,5 и грузится
+  сразу. `water-near.geojson` (4 МБ, 0,006°) запрашивается, только когда масштаб попадает в
+  4,5–10,5; пока он не загрузился, дальний файл рисуется на всех масштабах. Один файл с
+  точностью ближнего весил 4,4 МБ и грузился бы у каждого пользователя.
+- **Сетка 15°.** Океан разрезан на ячейки: MapLibre не справлялся с одним полигоном почти на
+  2000 дыр, и на мировом масштабе появлялись горизонтальные полосы, а Борнео заливался морем.
+  Рёбра ячеек и шов по 180° лежат в открытом море. Скрипт кладёт их отдельными линиями `seam`,
+  и клиент закрашивает их цветом моря поверх линии берега. Карта не повторяет мир
+  (`renderWorldCopies: false`), так что шов по 180° совпадает с краем карты.
+- **Рельеф без моря.** Высота не выше 0 м теперь окрашивается в самый низкий цвет суши.
+  Вблизи море снова строится по рельефу отдельным слоем: он проявляется между масштабами
+  7,25 и 7,75, а полигоны Natural Earth гаснут между 7,75 и 8,25. Береговая линия OSM
+  появляется после этого, с 8 до 8,25. Компромисс: вблизи суша ниже уровня моря, например
+  север Прикаспия, снова выглядит морем, а озёра без полигонов OSM пропадают.
+- **Фон.** Пока тайлы рельефа не загрузились, фон карты до масштаба 7,25 цвета суши, с 7,75
+  цвета моря, поэтому издалека в незагруженных местах не просвечивает море.
+- **Тайлы.** Бэкенд отдаёт береговую линию с масштаба 8, дороги — с 8 (магистрали), primary — с
+  10, secondary и tertiary — с 11, остальные — с 13; ниже 13 геометрия упрощается до пикселя тайла.
+  Раньше крупные дороги шли с масштаба 2 и складывались в белое пятно над европейской Россией.
+
+Данные строятся скриптом из исходников в `data/raw/natural-earth/` (вне Git):
+
+```bash
+cd backend
+uv run python -I ../scripts/natural_earth_water.py ../data/raw/natural-earth ../frontend/public/data
+uv run python -I ../scripts/natural_earth_places.py ../data/raw/natural-earth ../frontend/public/data/place-labels.geojson
+```
+
+## Крыши и солнечный свет, 2026-10-27
+
+`fill-extrusion` в MapLibre умеет только призмы с плоским верхом, поэтому крыши собираются
+из тех же призм на клиенте (`shared/geo/roof-forms/`), без своего WebGL-слоя:
+
+- **Скатные крыши.** Дом до 16 м и до 5 этажей, площадью 25–900 м², с почти прямоугольным
+  контуром (заполнение ориентированного прямоугольника не меньше 0,78) получает четыре ступени,
+  сужающиеся поперёк длинной оси: двускатная крыша, а у части домов вальмовая (сужение и с
+  торцов). Ось берётся по главной компоненте вершин. Подъём — 0,62 полуширины, не выше 4,5 м.
+  Выбор формы и цвета детерминирован по id здания. Тегов `roof:shape` в OSM Сочи меньше 1 %,
+  поэтому форма условная и с данными не сверяется.
+- **Плоские крыши.** Высокие прямоугольные корпуса до 6000 м² получают парапет 0,6 × 0,9 м
+  цвета контура стены и утопленную кровлю. Зазор 0,4 % между кровлей и внутренней гранью
+  парапета убирает мерцание совпадающих граней.
+- **Без мерцания.** Здания со своими крышами помечаются `pitched`, и плоская накладка
+  `toy-*-roofs` для них не рисуется: иначе её грани совпадали бы с нижней ступенью.
+  Отели крыш не получают: у выбранного отеля свой текстурированный слой.
+- **Свет непрерывный.** Цвет света, интенсивность, море, небо и горизонт плавно смешиваются по
+  высоте солнца (`shared/geo/sun-light.ts`): тёплый оттенок `sunLow` нарастает от 22° к 1°,
+  ночь — от −1° к −9°. Раньше палитра переключалась тремя режимами, и на −6° был скачок с
+  персикового на сланцевый. Полярный угол света ограничен 26–72°: при солнце у горизонта
+  освещались только стены, а крыши и сами дома становились почти чёрными на светлой земле.
+  Низкое солнце передаётся цветом, а не углом. Тени на земле по-прежнему строятся по
+  настоящей высоте солнца.
+- **Ночь.** Палитра сдвигается к глубокому синему `--map-toy-night` на 66 %. Цвета крыш теперь
+  проходят тот же сдвиг (`tintHex`), раньше красные крыши оставались дневными на ночной карте.
+
+## Подписи стран и городов издалека
+
+Архив Protomaps вырезан вокруг Сочи, поэтому на мелких масштабах в нём есть только тайлы,
+задевающие Сочи: у России и большинства стран не было подписи. Страны и города теперь
+подписываются из `place-labels.geojson`, собранного из Natural Earth `ne_50m_admin_0_countries`
+и `ne_10m_populated_places`. Порог масштаба берётся из `MIN_LABEL` и `MIN_ZOOM`: для городов
+России до 7, для остального мира до 5. Подпись «Россия» перенесена в 96° в. д., 62,5° с. ш.,
+иначе она уходила к Уралу. Слои Protomaps для стран, регионов и населённых пунктов включаются
+с масштаба 7, и с этого же масштаба подписи Natural Earth внутри bbox подложек скрываются,
+поэтому названия не дублируются. Подписи Protomaps печатали название на двух письменностях
+(«Moscow / Москва»); теперь выводится одно имя: `name:<язык>`, а при его отсутствии `name`.
+
 ## Название диалога
 
 Название задаётся один раз, когда первое сообщение создаёт диалог, и строится из того, как
@@ -1041,7 +1119,7 @@ fill-extrusion в MapLibre добавляет каждому каналу ниж
 
 Здания имеют стабильный строковый id и видимы на z10–11, если их площадь достигает четверти экранного пикселя; на z12–13 используются контуры с упрощением 1 м, с z14 — исходные. При меньшем масштабе остаются фактические полигоны землепользования. Расчётный город за пределами загруженных данных не добавляется. Проекции и обзорное упрощение хранятся в generated-колонках PostGIS: изменение footprint/geometry автоматически обновляет их. Это сокращает повторное вычисление при каждом MVT-запросе.
 
-Буфер MVT и область SQL-отбора равны 64/4096 тайла. URL включает версию геометрии buildings-v2; старый cache key не используется новой картой. Тесты декодируют бинарный MVT через mapbox-vector-tile; Any ограничен неоднородным GeoJSON тестового декодера, геометрия и свойства проверяются явно. Канонический OpenAPI проекта служит источником генерации клиентских типов; runtime-имена компонентов FastAPI могут отличаться.
+Буфер MVT и область SQL-отбора равны 64/4096 тайла. URL включает версию геометрии (сейчас lod-v3); при смене состава тайлов версия повышается, иначе браузер сутки показывает старые тайлы из кэша. Тесты декодируют бинарный MVT через mapbox-vector-tile; Any ограничен неоднородным GeoJSON тестового декодера, геометрия и свойства проверяются явно. Канонический OpenAPI проекта служит источником генерации клиентских типов; runtime-имена компонентов FastAPI могут отличаться.
 
 ## Пакеты оформления карты, 2026-10-27
 
@@ -1056,7 +1134,7 @@ WindowBuilder завершает отменённые задания и прин
 
 ### Landing sequence loading and timing
 
-The agreed E18 cover uses the shared map lifecycle and appearance renderer. The two story scenes use one WAAPI clock; camera, route, text and shutters read its time. Cinematic `--story-*` tokens are separate from short UI transition durations. Reduced motion shows the final illustration without starting the clock or creating WebGL. The cover and workspace map load with React lazy boundaries so animation assets do not block the search composer; this is the explicit E18 lazy-loading exception to the general route-only dynamic-import rule. A failed cover chunk leaves its local static fallback and the working search. The saved beach route and generated SVG are illustrative reference assets, never API search results.
+The landing visual is a looping proof reel over one real Sochi hotel scene. Three shots (walk to the sea, sunset, quiet) share one camera path, so shot changes are continuous flights rather than cuts; every shot camera is visited while the map is hidden, and the canvas fades in only after the last idle, so unloaded tiles are never shown. Proof is drawn on the map: the saved walking route with its minutes from the route properties, a sunset cone along azimuth 250, a quiet halo with busy roads briefly highlighted. Labels are single words pinned to geometry. One rAF clock drives camera and overlays and stops when the reel is hidden, off screen, paused or the user starts typing. Overlay transforms are written directly to elements, not through inherited CSS variables. A warm soft-light layer grades the scene towards golden hour without changing the shared map palette. Reduced motion renders one still camera with all three proofs and no clock. Cinematic `--story-*` tokens are separate from short UI durations. The reel loads behind a React lazy boundary (the E18 exception to route-only dynamic imports); a failed chunk leaves a plain sea-coloured figure and the working search. The route, sunset direction and halo are illustrative, never API search results.
 
 ## Фото, цены и пожелания в карточке отеля
 

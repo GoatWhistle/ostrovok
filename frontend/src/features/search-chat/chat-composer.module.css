@@ -12,11 +12,17 @@
   box-shadow: none;
 }
 
-.context {
-  justify-self: start;
-  max-inline-size: 100%;
+.token {
+  flex: 0 1 auto;
+  align-self: center;
+  min-inline-size: 0;
+  padding-inline-end: 0;
+}
+
+.token > span {
   overflow: hidden;
   text-overflow: ellipsis;
+  text-wrap-mode: nowrap;
 }
 
 .composer .send {

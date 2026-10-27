@@ -52,3 +52,59 @@ describe("hotel wish details", () => {
     expect(onFact).toHaveBeenCalledWith(expect.objectContaining({ fact_id: "fourth" }))
   })
 })
+
+function derived(
+  label: string,
+  qualifiers: Record<string, unknown>,
+  state: MatchedProperty["match"] = "full",
+): MatchedProperty {
+  return {
+    characteristic_key: `derived:${label}`,
+    label,
+    match: state,
+    explanation: "method note",
+    fact: {
+      fact_id: label,
+      characteristic_key: `derived:${label}`,
+      label,
+      value: state === "unknown" ? null : true,
+      confidence: 0.8,
+      source_type: "computed",
+      status: "active",
+      qualifiers,
+    },
+  }
+}
+
+describe("wish verdicts", () => {
+  it("turns measured values into short answers and keeps the method as a note", () => {
+    render(
+      <LocaleProvider>
+        <MatchRows
+          matched={[
+            derived("by the sea", {
+              native_characteristic_key: "distance_to_sea",
+              native_value: 3,
+              meters: 242.6,
+            }),
+            derived("quiet", { native_characteristic_key: "noise_level", native_value: 1.8 }),
+            derived("with a dog", { wish_status: "incomplete" }, "unknown"),
+          ]}
+          onFact={vi.fn()}
+          onProperty={undefined}
+          onPreview={undefined}
+        />
+      </LocaleProvider>,
+    )
+    const walk = ru.wish.sea.replace("{{minutes}}", "3")
+    expect(
+      screen.getByText(ru.wish.seaMeters.replace("{{walk}}", walk).replace("{{value}}", "240")),
+    ).toBeTruthy()
+    expect(screen.getByText(ru.wish.quiet.replace("{{score}}", "1,8"))).toBeTruthy()
+    fireEvent.click(
+      screen.getByRole("button", { name: ru.cards.moreWishes.replace("{{count}}", "1") }),
+    )
+    expect(screen.getByText(ru.wish.incomplete)).toBeTruthy()
+    expect(screen.getAllByText("method note").length).toBe(3)
+  })
+})

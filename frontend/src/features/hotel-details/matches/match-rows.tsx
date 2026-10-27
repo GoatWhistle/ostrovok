@@ -17,7 +17,6 @@ export function MatchRows({ matched, ...actions }: MatchRowsProps) {
   const { t } = useTranslation()
   const found = matched.filter(isUsableMatch)
   const remaining = [...found.slice(3), ...matched.filter((item) => !isUsableMatch(item))]
-  const unresolved = matched.length - found.length
   const rows = (items: readonly MatchedProperty[]) => (
     <ul className={styles.list}>
       {items.map((item) => (
@@ -28,11 +27,6 @@ export function MatchRows({ matched, ...actions }: MatchRowsProps) {
   return (
     <DetailsSection title={t("explore:details.yourRequest")}>
       {found.length ? rows(found.slice(0, 3)) : <p>{t("explore:cards.noConfirmedWishes")}</p>}
-      {unresolved > 0 ? (
-        <p className={styles.caption}>
-          {t("explore:cards.unresolvedWishes", { count: unresolved })}
-        </p>
-      ) : null}
       {remaining.length ? (
         <Disclosure title={t("explore:cards.moreWishes", { count: remaining.length })} icon="list">
           {rows(remaining)}

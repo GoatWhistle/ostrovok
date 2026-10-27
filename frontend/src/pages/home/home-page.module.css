@@ -193,6 +193,12 @@
   display: none;
 }
 @media (min-width: 64rem) {
+  .page {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .workspace {
+    grid-column: 2;
+  }
   .workspace[data-surface="hotel-panel"] {
     grid-template-columns: calc(100% / 3) minmax(0, 1fr);
   }

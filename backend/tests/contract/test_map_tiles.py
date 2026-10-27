@@ -21,17 +21,17 @@ def test_versioned_tiles_cache_and_old_versions_do_not_read_storage() -> None:
     app = FastAPI()
     app.include_router(build_router(cast(GetMapTile, tiles)))
     with TestClient(app) as client:
-        response = client.get("/map/tiles/12/2499/1495.pbf?v=buildings-v2")
+        response = client.get("/map/tiles/12/2499/1495.pbf?v=lod-v3")
         assert response.content == b"tile"
         assert response.headers["content-type"] == "application/vnd.mapbox-vector-tile"
-        assert response.headers["x-map-tile-version"] == "buildings-v2"
+        assert response.headers["x-map-tile-version"] == "lod-v3"
         assert response.headers["cache-control"] == "public, max-age=86400"
         assert client.get("/map/tiles/12/2499/1495.pbf?v=old").status_code == 409
         assert tiles.calls == 1
         unversioned = client.get("/map/tiles/12/2499/1495.pbf")
         assert unversioned.status_code == 200
         assert unversioned.headers["cache-control"] == "no-cache"
-        empty = client.get("/map/tiles/0/0/0.pbf?v=buildings-v2")
+        empty = client.get("/map/tiles/0/0/0.pbf?v=lod-v3")
         assert empty.content == b""
         assert empty.headers["cache-control"] == "no-cache"
-        assert client.get("/map/tiles/2/4/4.pbf?v=buildings-v2").status_code == 404
+        assert client.get("/map/tiles/2/4/4.pbf?v=lod-v3").status_code == 404

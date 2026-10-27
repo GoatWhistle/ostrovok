@@ -28,10 +28,6 @@ export function WorkspacePanel({
 }: WorkspacePanelProps) {
   const { t } = useTranslation()
   const detail = Boolean(state.hotelId && !fullHotel)
-  function openPage() {
-    const id = state.hotelId
-    if (id) onMove(() => state.navigation.openHotelPage(id))
-  }
   return (
     <aside className={styles.panel} aria-label={t("explore:panel.title")}>
       {!detail ? (
@@ -49,7 +45,6 @@ export function WorkspacePanel({
             time={time}
             scrollRef={scrollRef}
             onBack={() => onMove(state.closeHotel)}
-            onOpenPage={openPage}
           />
         ) : (
           <ScrollArea ref={state.listRef} className={styles.scroll}>

@@ -1,0 +1,42 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.paths {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+.cone {
+  fill: var(--map-viewshed-line);
+  fill-opacity: 0.32;
+  stroke: none;
+  filter: blur(var(--blur-soft));
+}
+.ray {
+  fill: none;
+  stroke: var(--map-viewshed-line);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.glow {
+  fill: var(--map-viewshed-line);
+  fill-opacity: 0.25;
+  filter: blur(var(--blur-soft));
+}
+.sun {
+  fill: var(--map-viewshed-line);
+}
+.rings {
+  fill: none;
+  stroke: var(--map-hotel-selected);
+  stroke-width: 1.5;
+}
+.ring {
+  fill: var(--map-hotel-selected);
+  fill-opacity: 0.06;
+}

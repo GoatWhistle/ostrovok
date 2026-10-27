@@ -25,3 +25,35 @@
   composes: bodyStrong from "../../../styles/compose.module.css";
   margin: 0;
 }
+
+.start {
+  display: flex;
+  flex-direction: column;
+  inline-size: min(var(--drawer-width), calc(100% - var(--space-48)));
+  block-size: 100dvh;
+  max-block-size: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow: var(--shadow-overlay);
+  animation: var(--motion-drawer-in);
+}
+
+.start[data-state="closed"] {
+  animation: var(--motion-drawer-out);
+}
+
+.start .header {
+  flex: none;
+  margin: 0;
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-16);
+  padding-block-start: max(var(--space-8), env(safe-area-inset-top));
+}
+
+.start::backdrop {
+  animation: var(--motion-fade-in);
+}
+
+.start[data-state="closed"]::backdrop {
+  animation: var(--motion-fade-out);
+}

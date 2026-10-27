@@ -68,3 +68,42 @@ export function renderGroundShadows(
   const offset = shadowOffset(azimuth, altitude)
   for (const shadow of SHADOWS) renderShadow(map, shadow, color, offset)
 }
+
+const TREE_SHADOW = "base-trees-shadow"
+const TREE_SHADOW_SHARE = 0.45
+
+export function renderTreeShadows(
+  map: MapLibreMap,
+  color: string | undefined,
+  azimuth: number,
+  altitude: number,
+) {
+  const [x, y] = shadowOffset(azimuth, altitude)
+  if (!color || !map.getLayer("base-trees") || (x === 0 && y === 0)) {
+    if (map.getLayer(TREE_SHADOW)) map.removeLayer(TREE_SHADOW)
+    return
+  }
+  if (!map.getLayer(TREE_SHADOW))
+    map.addLayer(
+      {
+        id: TREE_SHADOW,
+        type: "circle",
+        source: "sochi-map",
+        "source-layer": "trees",
+        minzoom: 15,
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 15, 1.8, 19, 6],
+          "circle-blur": 0.6,
+          "circle-opacity": 0.3,
+          "circle-pitch-alignment": "map",
+          "circle-translate-anchor": "map",
+        },
+      },
+      "base-trees",
+    )
+  map.setPaintProperty(TREE_SHADOW, "circle-color", color)
+  map.setPaintProperty(TREE_SHADOW, "circle-translate", [
+    x * TREE_SHADOW_SHARE,
+    y * TREE_SHADOW_SHARE,
+  ])
+}

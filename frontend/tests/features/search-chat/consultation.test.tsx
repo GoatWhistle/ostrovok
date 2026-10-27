@@ -20,7 +20,6 @@ const props: SearchChatProps = {
   ],
   conversationId: "conversation",
   history: [],
-  view: "chat",
   outgoing: undefined,
   searchMessageId: "search-answer",
   search: {
@@ -38,10 +37,6 @@ const props: SearchChatProps = {
   onShowOnMap: vi.fn(),
   onShowList: vi.fn(),
   onReset: vi.fn(),
-  onOpenConversation: vi.fn(),
-  onView: vi.fn(),
-  onRename: vi.fn(),
-  onDelete: vi.fn(),
 }
 afterEach(() => vi.unstubAllGlobals())
 it.each(["ru", "en"] as const)(

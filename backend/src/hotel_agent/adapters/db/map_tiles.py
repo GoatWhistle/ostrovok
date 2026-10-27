@@ -6,15 +6,28 @@ WITH bounds AS (
         ST_Transform(ST_TileEnvelope(%(z)s, %(x)s, %(y)s, margin => 0.015625), 4326) AS query,
         40075016.68557849 / power(2, %(z)s) / 4096 AS unit
 ), roads AS (
-    SELECT ST_AsMVTGeom(ST_Transform(w.geometry, 3857), bounds.geom, 4096, 64) AS geom,
+    SELECT ST_AsMVTGeom(
+        CASE WHEN %(z)s < 13
+            THEN ST_Simplify(ST_Transform(w.geometry, 3857), bounds.unit)
+            ELSE ST_Transform(w.geometry, 3857) END,
+        bounds.geom, 4096, 64
+    ) AS geom,
         w.tags->>'highway' AS kind, w.class, w.class_source
     FROM walk_edges w CROSS JOIN bounds
-    WHERE w.geometry && bounds.query
-      AND (%(z)s >= 13 OR w.tags->>'highway' IN
-          ('primary', 'secondary', 'tertiary', 'trunk', 'motorway'))
+    WHERE %(z)s >= 8 AND w.geometry && bounds.query
+      AND (%(z)s >= 13
+          OR (%(z)s >= 11 AND w.tags->>'highway' IN ('secondary', 'tertiary'))
+          OR (%(z)s >= 10 AND w.tags->>'highway' = 'primary')
+          OR w.tags->>'highway' IN ('trunk', 'motorway'))
 ), shore AS (
-    SELECT ST_AsMVTGeom(ST_Transform(c.geometry, 3857), bounds.geom, 4096, 64) AS geom
-    FROM coastline c CROSS JOIN bounds WHERE c.geometry && bounds.query
+    SELECT ST_AsMVTGeom(
+        CASE WHEN %(z)s < 13
+            THEN ST_Simplify(ST_Transform(c.geometry, 3857), bounds.unit)
+            ELSE ST_Transform(c.geometry, 3857) END,
+        bounds.geom, 4096, 64
+    ) AS geom
+    FROM coastline c CROSS JOIN bounds
+    WHERE %(z)s >= 8 AND c.geometry && bounds.query
 ), beach AS (
     SELECT ST_AsMVTGeom(ST_Transform(b.geometry, 3857), bounds.geom, 4096, 64) AS geom
     FROM beaches b CROSS JOIN bounds WHERE b.geometry && bounds.query

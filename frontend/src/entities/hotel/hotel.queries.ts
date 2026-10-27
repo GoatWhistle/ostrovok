@@ -76,9 +76,12 @@ export function useHotelOffers(
     retry: false,
   })
 }
+export function hotelDetailsKey(id: string | undefined) {
+  return ["hotel-details", id] as const
+}
 export function useHotelDetails(id: string | undefined) {
   return useQuery({
-    queryKey: ["hotel-details", id],
+    queryKey: hotelDetailsKey(id),
     enabled: id !== undefined,
     staleTime: 600_000,
     queryFn: ({ signal }) =>

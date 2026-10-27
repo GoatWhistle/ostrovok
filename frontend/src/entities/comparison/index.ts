@@ -1,1 +1,1 @@
-export { useComparison } from "./comparison.queries"
+export { type ComparisonData, useComparison } from "./comparison.queries"

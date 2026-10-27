@@ -1,0 +1,157 @@
+.history {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+.search {
+  padding: var(--space-4) var(--space-8) var(--space-8);
+}
+
+.scroll {
+  flex: 1;
+  min-block-size: 0;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-8) var(--space-8) var(--space-4);
+}
+
+.section:last-child {
+  padding-block-end: var(--space-16);
+}
+
+.groupTitle {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+  margin: 0;
+  padding: var(--space-4) var(--space-8);
+}
+
+.list {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-2);
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--control-height);
+  padding-inline-end: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.row[data-current="true"] {
+  background-color: var(--surface-selected);
+}
+
+.open {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.row .open {
+  --button-surface-hover: transparent;
+}
+
+.open > :first-child > :last-child {
+  flex: 1;
+}
+
+.itemTitle {
+  composes: truncateText bodySmText from "../../../shared/styles/compose.module.css";
+  display: block;
+  text-align: start;
+}
+
+.row[data-current="true"] .itemTitle {
+  font-weight: var(--weight-semibold);
+}
+
+.rowActions {
+  display: flex;
+  flex: none;
+  gap: var(--space-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:not([data-current="true"]):hover {
+    background-color: var(--action-ghost-hover);
+  }
+
+  .rowActions {
+    display: none;
+    transition: var(--transition-fade);
+  }
+
+  .row:hover .rowActions,
+  .row:focus-within .rowActions {
+    display: flex;
+  }
+
+  @starting-style {
+    .row:hover .rowActions,
+    .row:focus-within .rowActions {
+      opacity: 0;
+    }
+  }
+}
+
+@media (hover: none) {
+  .row:not([data-current="true"]) .rowActions {
+    display: none;
+  }
+}
+
+.renameForm {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-2);
+  min-inline-size: 0;
+  padding-inline-start: var(--space-4);
+}
+
+.renameForm > :first-child {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.row[data-mode="confirm"] {
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-12);
+  background-color: var(--status-danger-surface);
+}
+
+.confirm {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  flex: 1 1 100%;
+  min-inline-size: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: var(--weight-semibold);
+}
+
+.confirmActions {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.noMatches {
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
+  padding: var(--space-24) var(--space-16);
+  text-align: center;
+}
+
+.empty {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: var(--space-24) var(--space-16);
+}

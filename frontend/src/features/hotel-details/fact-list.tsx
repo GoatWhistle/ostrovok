@@ -1,9 +1,9 @@
-import { FactStatusBadge, FactTile, RowButton, SourceBadge } from "@/entities/evidence"
+import { FactStatusBadge, HueIcon, RowButton } from "@/entities/evidence"
 import type { Fact, FactBrief } from "@/shared/api/hotel-types"
 import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
 import { factScope } from "@/shared/geo/facts/scope"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Confidence, Icon } from "@/shared/ui"
+import { Icon } from "@/shared/ui"
 import { DetailsSection } from "./details-section"
 import styles from "./fact-list.module.css"
 
@@ -48,35 +48,30 @@ export function FactList({ facts, onFact, title: heading }: FactListProps) {
       {groups.length ? (
         <ul className={styles.list}>
           {groups.map(({ fact, count }) => {
+            const value = factLabel(fact, locale)
             const title = characteristicTitle(fact.characteristic_key, locale)
+            const notes = [
+              title !== fact.characteristic_key && title !== value ? title : undefined,
+              ...factScope(fact, locale),
+              count > 1 ? t("explore:details.facadeValues", { count }) : undefined,
+            ].filter(Boolean)
+            const settled = fact.status === "active" || fact.status === "confirmed_by_hotelier"
             return (
               <li key={fact.characteristic_key}>
                 <RowButton
                   leadingAlign="start"
-                  leading={<FactTile characteristicKey={fact.characteristic_key} size="sm" />}
+                  leading={<HueIcon characteristicKey={fact.characteristic_key} />}
                   trailing={<Icon name="chevron-right" size="sm" className={styles.chevron} />}
                   data-fact-trigger={fact.fact_id}
                   onClick={() => onFact(fact)}
                 >
-                  <span className={styles.value}>{factLabel(fact, locale)}</span>
-                  {title !== fact.characteristic_key ? (
-                    <span className={styles.title}>{title}</span>
-                  ) : null}
-                  {factScope(fact, locale).map((scope) => (
-                    <span key={scope} className={styles.title}>
-                      {scope}
+                  <span className={styles.value}>{value}</span>
+                  {notes.length ? <span className={styles.title}>{notes.join("; ")}</span> : null}
+                  {settled ? null : (
+                    <span className={styles.badges}>
+                      <FactStatusBadge status={fact.status} />
                     </span>
-                  ))}
-                  <span className={styles.badges}>
-                    <SourceBadge source={fact.source_type} />
-                    <Confidence value={fact.confidence} />
-                    <FactStatusBadge status={fact.status} />
-                    {count > 1 ? (
-                      <span className={styles.title}>
-                        {t("explore:details.facadeValues", { count })}
-                      </span>
-                    ) : null}
-                  </span>
+                  )}
                 </RowButton>
               </li>
             )

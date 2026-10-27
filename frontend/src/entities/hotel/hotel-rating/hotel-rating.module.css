@@ -1,0 +1,22 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-inline-size: 0;
+}
+
+.score {
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-xs);
+  background-color: var(--action-primary);
+  color: var(--action-primary-text);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+}
+
+.reviews {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+  white-space: nowrap;
+}

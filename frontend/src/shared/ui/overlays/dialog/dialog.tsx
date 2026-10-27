@@ -1,15 +1,34 @@
-import { type ReactNode, useEffect, useId, useRef } from "react"
+import { clsx } from "clsx"
+import { type AnimationEventHandler, type ReactNode, useEffect, useId, useRef } from "react"
 import { useTranslation } from "../../../i18n"
+import type { PresenceState } from "../../../motion"
 import { Button } from "../../primitives/button/button"
 import styles from "./dialog.module.css"
+
+export type DialogPlacement = "center" | "start"
 
 export interface DialogProps {
   readonly title: string
   readonly onClose: () => void
   readonly children: ReactNode
+  readonly placement?: DialogPlacement
+  readonly state?: PresenceState
+  readonly onAnimationEnd?: AnimationEventHandler<HTMLDialogElement>
 }
 
-export function Dialog({ title, onClose, children }: DialogProps) {
+const PLACEMENT_CLASS: Readonly<Record<DialogPlacement, string | undefined>> = {
+  center: undefined,
+  start: styles.start,
+}
+
+export function Dialog({
+  title,
+  onClose,
+  children,
+  placement = "center",
+  state,
+  onAnimationEnd,
+}: DialogProps) {
   const { t } = useTranslation()
   const ref = useRef<HTMLDialogElement>(null)
   const titleId = useId()
@@ -27,8 +46,10 @@ export function Dialog({ title, onClose, children }: DialogProps) {
   return (
     <dialog
       ref={ref}
-      className={styles.dialog}
+      className={clsx(styles.dialog, PLACEMENT_CLASS[placement])}
+      data-state={state}
       aria-labelledby={titleId}
+      onAnimationEnd={onAnimationEnd}
       onCancel={(event) => {
         event.preventDefault()
         onClose()

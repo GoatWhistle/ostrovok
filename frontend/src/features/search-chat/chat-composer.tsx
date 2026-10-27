@@ -2,7 +2,7 @@ import { clsx } from "clsx"
 import { type FormEvent, useId } from "react"
 import { useSessionDraft } from "@/shared/hooks"
 import { useTranslation } from "@/shared/i18n"
-import { Button, SearchBox, StatusBadge } from "@/shared/ui"
+import { Button, Chip, CloseButton, SearchBox } from "@/shared/ui"
 import styles from "./chat-composer.module.css"
 
 export interface ChatComposerProps {
@@ -11,20 +11,54 @@ export interface ChatComposerProps {
   readonly autoFocus?: boolean
   readonly pending: boolean
   readonly selectedHotel?: string | undefined
+  readonly onClearHotel?: (() => void) | undefined
   readonly placeholder?: string | undefined
   readonly flat?: boolean
+  readonly bare?: boolean
   readonly onSend: (query: string) => void
+}
+
+function HotelToken({
+  name,
+  onClear,
+}: {
+  readonly name: string
+  readonly onClear?: (() => void) | undefined
+}) {
+  const { t } = useTranslation()
+  return (
+    <Chip
+      static
+      pressed
+      icon="building"
+      hue="var(--text-accent)"
+      label={name}
+      title={t("explore:chat.selected", { name })}
+      className={onClear ? styles.token : undefined}
+      trailing={
+        onClear ? (
+          <CloseButton
+            size="compact"
+            label={t("explore:chat.clearHotel", { name })}
+            onClick={onClear}
+          />
+        ) : undefined
+      }
+    />
+  )
 }
 
 export function ChatComposer({
   pending,
   selectedHotel,
+  onClearHotel,
   placeholder,
   onSend,
   draftKey = "chat:entry",
   onInteraction,
   autoFocus = false,
   flat = false,
+  bare = false,
 }: ChatComposerProps) {
   const { t } = useTranslation()
   const hint = useId()
@@ -38,12 +72,8 @@ export function ChatComposer({
   }
   return (
     <form className={clsx(styles.composer, flat && styles.flat)} onSubmit={submit}>
-      {selectedHotel ? (
-        <StatusBadge tone="info" icon="building" className={styles.context}>
-          {t("explore:chat.selected", { name: selectedHotel })}
-        </StatusBadge>
-      ) : null}
       <SearchBox
+        bare={bare}
         label={t("explore:chat.composer")}
         placeholder={placeholder ?? t("explore:chat.placeholder")}
         value={value}
@@ -55,6 +85,9 @@ export function ChatComposer({
           setValue(next)
           onInteraction?.()
         }}
+        leading={
+          selectedHotel ? <HotelToken name={selectedHotel} onClear={onClearHotel} /> : undefined
+        }
         actions={
           <Button
             type="submit"

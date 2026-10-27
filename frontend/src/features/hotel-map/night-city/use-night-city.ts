@@ -13,6 +13,7 @@ import {
 import { watchTerrainData } from "@/shared/geo/night-city/terrain-watch"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
+import { renderRoofForms, withRoofForms } from "@/shared/geo/roof-forms/layer"
 import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewport"
 import type { SunPosition } from "@/shared/geo/terrain"
 import type { MapColors } from "@/shared/theme"
@@ -95,7 +96,14 @@ export function useNightCity({
     const map = mapRef.current
     const data = scene.data
     if (!ready || !map || !data) return
-    renderSceneVolumes(map, sceneCollection(data), volumeColor, excluded)
+    const { buildings, roofs } = withRoofForms(data.features)
+    renderSceneVolumes(
+      map,
+      sceneCollection({ ...data, features: buildings }),
+      volumeColor,
+      excluded,
+    )
+    renderRoofForms(map, roofs, excluded)
   }, [mapRef, ready, scene.data, volumeColor, excluded])
   useEffect(() => {
     const map = mapRef.current

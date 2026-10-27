@@ -3,3 +3,20 @@
   font-weight: var(--weight-bold);
   font-variant-numeric: var(--font-numeric);
 }
+
+.quiet {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.mark {
+  color: var(--status-success);
+}
+
+.quiet[data-complete="false"] .mark {
+  color: var(--status-warning);
+}

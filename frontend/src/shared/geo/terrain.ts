@@ -1,6 +1,9 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { retryingTileUrl } from "./dem-protocol"
-import { addSnowLayers, paintSnow } from "./snow"
+import { addSnowLayers, paintSnow, rgba } from "./snow"
+import { skyPalette, sunLight } from "./sun-light"
+import { renderWorldWater } from "./world/water"
+import { WORLD_WATER_FADE_FROM } from "./world/water-layers"
 
 export interface SunPosition {
   readonly azimuth: number
@@ -12,6 +15,7 @@ export interface TerrainColors {
   readonly park: string
   readonly sand: string
   readonly building: string
+  readonly coast: string
   readonly sea: string
   readonly seaDusk: string
   readonly seaNight: string
@@ -24,6 +28,7 @@ export interface TerrainColors {
   readonly hillShadow: string
   readonly hillHighlight: string
   readonly sunlight: string
+  readonly sunLow: string
   readonly moonlight: string
   readonly rock: string
   readonly snow: string
@@ -38,8 +43,16 @@ const DEM_MAX_ZOOM = 14
 const FALLBACK_MAX_ZOOM = 6
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
-const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
-const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.82, dusk: 0.72, night: 0.55 }
+const SEA_NEAR_FROM = WORLD_WATER_FADE_FROM - 0.5
+const SEA_NEAR: ExpressionSpecification = [
+  "interpolate",
+  ["linear"],
+  ["zoom"],
+  SEA_NEAR_FROM,
+  0,
+  WORLD_WATER_FADE_FROM,
+  1,
+]
 
 export function lightMode(altitude: number): LightMode {
   if (altitude < -6) return "night"
@@ -47,26 +60,15 @@ export function lightMode(altitude: number): LightMode {
   return "day"
 }
 
-function lightColor(colors: TerrainColors, mode: LightMode) {
-  if (mode === "night") return colors.moonlight
-  return mode === "dusk" ? colors.horizonDusk : colors.sunlight
+export function scenePalette(colors: TerrainColors, altitude: number) {
+  return skyPalette(colors, altitude)
 }
 
-export function scenePalette(colors: TerrainColors, mode: LightMode) {
-  if (mode === "night")
-    return { sea: colors.seaNight, sky: colors.skyNight, horizon: colors.horizonNight }
-  if (mode === "dusk")
-    return { sea: colors.seaDusk, sky: colors.skyDusk, horizon: colors.horizonDusk }
-  return { sea: colors.sea, sky: colors.sky, horizon: colors.horizon }
-}
-
-function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification {
+function reliefRamp(colors: TerrainColors): ExpressionSpecification {
   return [
     "interpolate",
     ["linear"],
     ["elevation"],
-    0,
-    sea,
     0.6,
     colors.sand,
     8,
@@ -78,6 +80,44 @@ function reliefRamp(colors: TerrainColors, sea: string): ExpressionSpecification
     2200,
     colors.rock,
   ]
+}
+
+function seaRamp(sea: string): ExpressionSpecification {
+  return ["interpolate", ["linear"], ["elevation"], 0, sea, 0.6, rgba(sea, 0)]
+}
+
+function groundColor(colors: TerrainColors, sea: string): ExpressionSpecification {
+  return [
+    "interpolate",
+    ["linear"],
+    ["zoom"],
+    SEA_NEAR_FROM,
+    colors.land,
+    WORLD_WATER_FADE_FROM,
+    sea,
+  ]
+}
+
+function addRelief(
+  map: MapLibreMap,
+  id: string,
+  source: string,
+  colors: TerrainColors,
+  sea: string,
+) {
+  map.addLayer({
+    id,
+    type: "color-relief",
+    source,
+    paint: { "color-relief-color": reliefRamp(colors), "color-relief-opacity": 1 },
+  })
+  map.addLayer({
+    id: `${id}-sea`,
+    type: "color-relief",
+    source,
+    minzoom: SEA_NEAR_FROM,
+    paint: { "color-relief-color": seaRamp(sea), "color-relief-opacity": SEA_NEAR },
+  })
 }
 
 function demSource(map: MapLibreMap, id: string, maxzoom = DEM_MAX_ZOOM) {
@@ -97,18 +137,8 @@ function addTerrainLayers(map: MapLibreMap, colors: TerrainColors, sea: string) 
   demSource(map, "sochi-dem-fallback", FALLBACK_MAX_ZOOM)
   demSource(map, "sochi-dem")
   demSource(map, "sochi-dem-shade")
-  map.addLayer({
-    id: "sochi-relief-fallback",
-    type: "color-relief",
-    source: "sochi-dem-fallback",
-    paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
-  })
-  map.addLayer({
-    id: "sochi-relief",
-    type: "color-relief",
-    source: "sochi-dem-shade",
-    paint: { "color-relief-color": reliefRamp(colors, sea), "color-relief-opacity": 1 },
-  })
+  addRelief(map, "sochi-relief-fallback", "sochi-dem-fallback", colors, sea)
+  addRelief(map, "sochi-relief", "sochi-dem-shade", colors, sea)
   map.addLayer({
     id: "sochi-hillshade",
     type: "hillshade",
@@ -135,25 +165,20 @@ export function followTerrainZoom(map: MapLibreMap, allowed = true): () => void 
 }
 
 export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunPosition) {
-  const mode = lightMode(sun.altitude)
-  const { sea, sky } = scenePalette(colors, mode)
+  const { sea, sky } = scenePalette(colors, sun.altitude)
   addTerrainLayers(map, colors, sea)
-  const ramp = reliefRamp(colors, sea)
-  map.setPaintProperty("sochi-relief-fallback", "color-relief-color", ramp)
-  map.setPaintProperty("sochi-relief", "color-relief-color", ramp)
-  map.setPaintProperty("sochi-relief", "color-relief-opacity", RELIEF_OPACITY[mode])
+  for (const id of ["sochi-relief-fallback", "sochi-relief"]) {
+    map.setPaintProperty(id, "color-relief-color", reliefRamp(colors))
+    map.setPaintProperty(`${id}-sea`, "color-relief-color", seaRamp(sea))
+  }
+  renderWorldWater(map, sea, colors.coast)
   paintSnow(map, colors.snow)
   map.setPaintProperty("sochi-hillshade", "hillshade-shadow-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-highlight-color", colors.hillHighlight)
   map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-illumination-direction", sun.azimuth)
-  map.setPaintProperty("canvas", "background-color", sea)
-  map.setLight({
-    anchor: "map",
-    position: [1.15, sun.azimuth, Math.max(5, Math.min(110, 90 - sun.altitude))],
-    color: lightColor(colors, mode),
-    intensity: LIGHT_INTENSITY[mode],
-  })
+  map.setPaintProperty("canvas", "background-color", groundColor(colors, sea))
+  map.setLight({ anchor: "map", ...sunLight(colors, sun.azimuth, sun.altitude) })
   map.setSky({
     "sky-color": sky,
     "horizon-color": sea,

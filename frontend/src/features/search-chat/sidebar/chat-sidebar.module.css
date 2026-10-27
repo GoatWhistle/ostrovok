@@ -1,0 +1,49 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  inline-size: var(--chat-sidebar);
+  block-size: 100%;
+  min-block-size: 0;
+  background-color: var(--surface-sunken);
+  box-shadow: var(--shadow-divider-end);
+  view-transition-name: chat-sidebar;
+}
+
+.sidebar[data-collapsed="true"] {
+  inline-size: auto;
+}
+
+.top {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8);
+}
+
+.sidebar[data-collapsed="true"] .top {
+  flex-direction: column;
+}
+
+.create {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.sidebar[data-collapsed="true"] .create {
+  flex: none;
+}
+
+.drawer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-block-size: 0;
+  padding-block-end: env(safe-area-inset-bottom);
+}
+
+.drawerTop {
+  display: flex;
+  flex: none;
+  padding: 0 var(--space-8) var(--space-4);
+}

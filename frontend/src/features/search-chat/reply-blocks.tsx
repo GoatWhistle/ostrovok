@@ -11,6 +11,7 @@ import {
   StatusBadge,
 } from "@/shared/ui"
 import styles from "./agent-reply.module.css"
+import { understoodName } from "./progress/understood-chips"
 
 export type SearchResponse = components["schemas"]["SearchResponse"]
 type Parsed = SearchResponse["parsed"]
@@ -47,7 +48,13 @@ export function CityChoice({ onSend }: { readonly onSend: (message: string) => v
   )
 }
 
-export function ReplyIntents({ parsed }: { readonly parsed: Parsed }) {
+export function ReplyIntents({
+  parsed,
+  named,
+}: {
+  readonly parsed: Parsed
+  readonly named: boolean
+}) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   if (!parsed.intents?.length) return null
@@ -55,11 +62,12 @@ export function ReplyIntents({ parsed }: { readonly parsed: Parsed }) {
     <div className={styles.group}>
       <p className={styles.caption}>{t("explore:chat.understood")}</p>
       <div className={styles.chips}>
-        {parsed.intents.map((intent) => {
+        {parsed.intents.map((intent, index) => {
           const key = intent.characteristic_key ?? ""
           return (
             <Chip
               key={`${key}:${intent.source_text ?? ""}`}
+              style={named ? understoodName(index) : undefined}
               static
               pressed
               icon={characteristicIcon(key)}

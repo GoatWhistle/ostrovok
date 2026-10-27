@@ -29,6 +29,7 @@ export const NEON_TOKENS = {
   hillShadow: "--map-neon-hill-shadow",
   hillHighlight: "--map-neon-hill-highlight",
   sunlight: "--map-neon-sunlight",
+  sunLow: "--map-neon-sun-low",
   moonlight: "--map-neon-moonlight",
   rock: "--map-neon-rock",
   snow: "--map-neon-snow",

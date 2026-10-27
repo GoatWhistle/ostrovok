@@ -1,4 +1,3 @@
-import type { ChatProgress } from "@/shared/api"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
 import { ErrorState, Skeleton } from "@/shared/ui"
@@ -12,7 +11,6 @@ import {
   ReplyNotices,
   type SearchResponse,
 } from "./reply-blocks"
-import { useThinkingClock } from "./thinking-clock"
 
 function leading(results: readonly SearchResult[]): SearchResult | undefined {
   return (
@@ -29,6 +27,7 @@ export interface AgentReplyProps {
   readonly onShowOnMap: (result: SearchResult | undefined) => void
   readonly onShowList: () => void
   readonly onSend: (message: string) => void
+  readonly named?: boolean
 }
 
 export function AgentReply({
@@ -38,6 +37,7 @@ export function AgentReply({
   onShowOnMap,
   onShowList,
   onSend,
+  named = false,
 }: AgentReplyProps) {
   const asksCity = search ? needsCity(search.parsed) : false
   return (
@@ -46,7 +46,7 @@ export function AgentReply({
       {search ? (
         <>
           {asksCity ? <CityChoice onSend={onSend} /> : null}
-          <ReplyIntents parsed={search.parsed} />
+          <ReplyIntents parsed={search.parsed} named={named} />
           <ReplyNotices parsed={search.parsed} pending={Boolean(search.pending?.length)} />
           {search.results.length ? (
             <ReplyActions
@@ -61,37 +61,13 @@ export function AgentReply({
   )
 }
 
-const STAGE_KEYS = {
-  parsing: "explore:chat.stage.parsing",
-  candidates: "explore:chat.stage.candidates",
-  research: "explore:chat.stage.research",
-  wish: "explore:chat.stage.wish",
-  review: "explore:chat.stage.review",
-} as const
-
-type Stage = keyof typeof STAGE_KEYS
-
-function isStage(value: string): value is Stage {
-  return value in STAGE_KEYS
-}
-
-export function AgentThinking({
-  progress,
-}: {
-  readonly progress?: ChatProgress | null | undefined
-}) {
+export function AgentThinking() {
   const { t } = useTranslation()
-  const elapsed = useThinkingClock()
-  const stage = progress && isStage(progress.stage) ? STAGE_KEYS[progress.stage] : null
   return (
     <AgentBubble motion="loading" busy>
       <p className={styles.lead} role="status">
         {t("explore:chat.thinking")}
       </p>
-      <p className={styles.text} aria-live="polite">
-        {stage === null ? t("explore:chat.thinkingHint") : t(stage, { ...progress })}
-      </p>
-      <p className={styles.elapsed}>{t("explore:chat.elapsed", { value: elapsed })}</p>
       <Skeleton lines={3} className={styles.skeleton} />
     </AgentBubble>
   )

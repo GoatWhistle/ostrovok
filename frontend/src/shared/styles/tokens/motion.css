@@ -45,33 +45,13 @@
   --toast-life: 5000ms;
   --toast-life-error: 10000ms;
   --reel-life: 7000ms;
-  --story-sequence: 16400ms;
-  --story-at-window: 8400ms;
-  --story-at-type: 200ms;
-  --story-type-first: 1800ms;
-  --story-type-second: 1000ms;
+  --story-shot: 7000ms;
+  --story-flight: 1800ms;
+  --story-draw: 1400ms;
+  --story-label: 700ms;
   --story-caret: 300ms;
-  --story-at-flight: 400ms;
-  --story-at-arrival: 4500ms;
-  --story-at-selected: 4200ms;
-  --story-selected: 600ms;
-  --story-at-goal: 5000ms;
-  --story-at-route: 5500ms;
-  --story-route: 1200ms;
-  --story-proof: 700ms;
-  --story-request-in: 500ms;
-  --story-at-request-out: 4600ms;
-  --story-request-out: 600ms;
-  --story-swap: 400ms;
-  --story-at-window-arrival: 2900ms;
-  --story-at-dissolve: 2700ms;
-  --story-dissolve: 800ms;
-  --story-at-open: 3300ms;
-  --story-open: 1800ms;
-  --story-at-finish: 5200ms;
-  --story-finish: 700ms;
-  --story-at-drift-end: 6500ms;
-  --story-at-window-request-out: 2500ms;
+  --story-pulse: 2400ms;
+  --story-fade: 600ms;
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
@@ -104,6 +84,8 @@
   --motion-anchor-in: kf-anchor-in var(--dur-base) var(--ease-out) both;
   --motion-toast-in: kf-toast-in var(--dur-panel) var(--ease-out) both;
   --motion-toast-out: kf-toast-out var(--dur-exit) var(--ease-out) both;
+  --motion-drawer-in: kf-drawer-in var(--dur-panel) var(--ease-drawer) both;
+  --motion-drawer-out: kf-drawer-out var(--dur-panel-exit) var(--ease-drawer) both;
   --motion-pin-in: kf-pin-in var(--dur-slow) var(--ease-out) both;
   --motion-draw: kf-draw var(--dur-draw) var(--ease-in-out) both;
   --motion-lost-draw: kf-draw var(--dur-draw) var(--ease-in-out) var(--dur-slow) both;
@@ -151,6 +133,8 @@
     --motion-lost-draw: none;
     --motion-lost-pin: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
+    --motion-drawer-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-drawer-out: kf-fade-out var(--reduced-fade-exit) var(--ease-out) both;
     --motion-fold-left: none;
     --motion-fold-mid: none;
     --motion-fold-right: none;

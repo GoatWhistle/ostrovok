@@ -5,21 +5,35 @@
   block-size: 100%;
   min-block-size: 0;
   overflow: hidden;
-  background: var(--map-sea);
+  background-color: var(--map-sea);
 }
 .canvas {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: var(--transition-reel);
+}
+.reel[data-cover-shown="true"] .canvas {
+  opacity: 1;
+}
+.grade {
+  position: absolute;
+  inset: 0;
+  background-color: var(--map-viewshed-line);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 .controls {
   position: absolute;
-  inset-block-end: var(--space-12);
-  inset-inline-end: var(--space-12);
+  inset-inline-end: var(--space-24);
+  inset-block-end: var(--space-24);
   display: flex;
-  gap: var(--space-4);
+  align-items: center;
+  gap: var(--space-8);
 }
-.attribution {
-  position: absolute;
-  inset-block-start: var(--space-12);
-  inset-inline-start: var(--space-12);
+@media (max-width: 63.99rem) {
+  .controls {
+    inset-inline-end: var(--space-12);
+    inset-block-end: var(--space-12);
+  }
 }

@@ -1,6 +1,6 @@
 import { clsx } from "clsx"
 import { useId } from "react"
-import { useHotel } from "@/entities/hotel"
+import { useHotel, useHotelDetails } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { isAvailableFact } from "@/shared/geo/facts/matching"
@@ -11,10 +11,12 @@ import { HotelFacilities } from "./facilities/hotel-facilities"
 import { FactList } from "./fact-list"
 import styles from "./hotel-details.module.css"
 import { HotelHero } from "./hotel-hero"
-import { HotelOffers } from "./hotel-offers"
 import { MatchRows } from "./matches/match-rows"
 import { RoomList } from "./room-list"
-import { HotelPhotos } from "./rooms/hotel-photos"
+import { RoomsScreen } from "./rooms/rooms-screen"
+import { RoomsTeaser } from "./rooms/rooms-teaser"
+import { useRoomsScreen } from "./rooms/use-rooms-screen"
+import { SupplierDetails } from "./supplier/supplier-details"
 
 export interface HotelDetailsProps {
   readonly hotelId: string | undefined
@@ -23,7 +25,6 @@ export interface HotelDetailsProps {
   readonly onProperty?: ((property: MatchedProperty) => void) | undefined
   readonly onFact: (fact: FactBrief) => void
   readonly onPreview?: (property: MatchedProperty | undefined) => void
-  readonly onOpenPage?: (() => void) | undefined
   readonly className?: string | undefined
 }
 
@@ -44,12 +45,14 @@ export function HotelDetails({
   onProperty,
   onFact,
   onPreview,
-  onOpenPage,
   className,
 }: HotelDetailsProps) {
   const { t } = useTranslation()
   const titleId = useId()
   const hotel = useHotel(hotelId)
+  const catalog = useHotelDetails(hotelId)
+  const supplier = catalog.data?.details ?? undefined
+  const roomsScreen = useRoomsScreen(hotelId)
   if (!hotelId)
     return (
       <EmptyState
@@ -75,21 +78,29 @@ export function HotelDetails({
     (fact) =>
       fact.characteristic_key === "sunset_view" || fact.characteristic_key.startsWith("spatial:"),
   )
+  if (roomsScreen.open)
+    return (
+      <article ref={roomsScreen.top} className={clsx(styles.details, className)}>
+        <RoomsScreen
+          hotelId={card.hotel.id}
+          hotelName={card.hotel.name}
+          stay={stay}
+          onBack={roomsScreen.hide}
+        />
+      </article>
+    )
   return (
     <article
+      ref={roomsScreen.top}
       className={clsx(styles.details, className)}
       aria-labelledby={titleId}
       data-motion="fade"
     >
       <HotelHero
         hotel={card.hotel}
+        supplier={supplier}
         titleId={titleId}
-        onOpenPage={onOpenPage}
-        onRooms={() => {
-          const section = document.getElementById(`${card.hotel.id}-rooms`)
-          section?.scrollIntoView({ block: "start" })
-          section?.focus({ preventScroll: true })
-        }}
+        onRooms={catalog.data?.status === "available" ? roomsScreen.show : undefined}
       />
       {matched.length ? (
         <MatchRows
@@ -99,9 +110,14 @@ export function HotelDetails({
           onPreview={onPreview}
         />
       ) : (
-        <FactList facts={card.facts.filter(isAvailableFact)} onFact={onFact} />
+        <FactList
+          facts={card.facts.filter(
+            (fact) => isAvailableFact(fact) && !fact.characteristic_key.startsWith("derived:"),
+          )}
+          onFact={onFact}
+        />
       )}
-      <HotelOffers hotelId={card.hotel.id} stay={stay} />
+      <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
       {rooms.length ? (
         <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
           <RoomList rooms={rooms} />
@@ -110,7 +126,7 @@ export function HotelDetails({
       {views.length ? (
         <FactList title={t("explore:cards.views")} facts={views} onFact={onFact} />
       ) : null}
-      <HotelPhotos hotel={card.hotel} />
+      {supplier ? <SupplierDetails details={supplier} source={catalog.data?.source} /> : null}
       <HotelFacilities
         hotelId={card.hotel.id}
         facilitiesRu={card.facilities_ru ?? []}

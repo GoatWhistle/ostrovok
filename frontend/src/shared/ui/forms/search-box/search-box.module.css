@@ -14,6 +14,47 @@
   box-shadow: var(--shadow-ring-focus);
 }
 
+.box:has(> .leading) {
+  flex-wrap: wrap;
+  row-gap: 0;
+}
+
+.leading {
+  display: flex;
+  flex-basis: 100%;
+  min-inline-size: 0;
+  padding-block-start: var(--space-4);
+}
+
+.bare,
+.bare:focus-within {
+  min-block-size: var(--control-height);
+  padding-block: 0;
+  padding-inline: 0;
+  gap: var(--space-8);
+  align-items: center;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.bare .input {
+  padding-block: calc((var(--target-min) - 1lh) / 2);
+}
+
+.bare:has(> .leading) {
+  flex-wrap: nowrap;
+}
+
+.bare .leading {
+  flex-basis: auto;
+  flex-shrink: 1;
+  padding-block-start: 0;
+}
+
+.bare .actions {
+  align-self: center;
+}
+
 .field {
   display: flex;
   flex: 1;

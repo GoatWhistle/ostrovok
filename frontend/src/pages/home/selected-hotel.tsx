@@ -12,10 +12,8 @@ export function SelectedHotel({
   time,
   scrollRef,
   onBack,
-  onOpenPage,
 }: {
   readonly onBack: () => void
-  readonly onOpenPage: () => void
   readonly scrollRef: Ref<HTMLDivElement>
   readonly state: Workspace
   readonly time: { date: string; hour: number }
@@ -46,7 +44,7 @@ export function SelectedHotel({
         className={styles.detailScroll}
         aria-label={t("explore:details.title")}
       >
-        <HotelContent state={state} time={time} onOpenPage={onOpenPage} />
+        <HotelContent state={state} time={time} />
       </ScrollArea>
     </>
   )

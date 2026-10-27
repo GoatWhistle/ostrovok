@@ -74,7 +74,7 @@ export function useConversation(
   const latest = useRef({ control, onAnswer })
   latest.current = { control, onAnswer }
   const inflight = useRef(0)
-  const [progress, setProgress] = useState<ChatProgress | null>(null)
+  const [progress, setProgress] = useState<readonly ChatProgress[]>([])
   const regions = useRegions()
   const loaded = regions.data?.items ?? []
   const region = loaded.some((item) => item.id === "russia")
@@ -112,14 +112,15 @@ export function useConversation(
     }
   }, [conversation.data, updateHistory])
   const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
-    mutationFn: (input: SendInput) => sendRequest(input, setProgress),
+    mutationFn: (input: SendInput) =>
+      sendRequest(input, (event) => setProgress((previous) => [...previous, event])),
     onMutate: () => {
       inflight.current += 1
-      setProgress(null)
+      setProgress([])
     },
     onSettled: () => {
       inflight.current -= 1
-      setProgress(null)
+      setProgress([])
     },
     onSuccess: (data, input) => {
       if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
@@ -135,7 +136,7 @@ export function useConversation(
         latest.current.control.receive(data.id)
         latest.current.onAnswer(data)
       }
-      if (current && !instant && data.search?.results.length && !hasExpandedWorkspace(data.id)) {
+      if (current && !instant && !hasExpandedWorkspace(data.id)) {
         return withViewTransition("layout", accept)
       }
       accept()

@@ -275,7 +275,7 @@ export interface paths {
         };
         /**
          * Векторная геометрия импортированного покрытия OpenStreetMap
-         * @description Версия buildings-v2. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=buildings-v2.
+         * @description Версия lod-v3. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. roads: магистрали с z8, primary с z10, secondary и tertiary с z11, остальные с z13; coastline с z8. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v3.
          */
         get: operations["getMapTile"];
         put?: never;
@@ -1715,7 +1715,7 @@ export interface operations {
     getMapTile: {
         parameters: {
             query?: {
-                /** @description buildings-v2; другая версия возвращает 409 */
+                /** @description lod-v3; другая версия возвращает 409 */
                 v?: string;
             };
             header?: never;
@@ -1731,7 +1731,7 @@ export interface operations {
             /** @description Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile */
             200: {
                 headers: {
-                    "X-Map-Tile-Version"?: "buildings-v2";
+                    "X-Map-Tile-Version"?: "lod-v3";
                     [name: string]: unknown;
                 };
                 content: {

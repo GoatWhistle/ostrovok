@@ -67,6 +67,8 @@ export function classColors(
   }
 }
 
+const SETTLEMENT_FROM = 9
+
 function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
   const below = map.getLayer("base-beaches") ? "base-beaches" : undefined
   map.addLayer(
@@ -75,8 +77,19 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
       type: "fill",
       source: "sochi-map",
       "source-layer": "landcover",
-      minzoom: 2,
-      paint: { "fill-color": colors.ground, "fill-opacity": 0.9 },
+      minzoom: SETTLEMENT_FROM,
+      paint: {
+        "fill-color": colors.ground,
+        "fill-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          SETTLEMENT_FROM,
+          0,
+          SETTLEMENT_FROM + 1,
+          0.9,
+        ],
+      },
     },
     below,
   )
@@ -100,8 +113,10 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
       minzoom: 15,
       paint: {
         "circle-color": colors.prop,
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 15, 1.5, 19, 5],
-        "circle-opacity": 0.85,
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 15, 1.6, 19, 5.5],
+        "circle-opacity": 0.92,
+        "circle-pitch-alignment": "map",
+        "circle-blur": 0.15,
       },
     },
     map.getLayer("base-roads-glow") ? "base-roads-glow" : undefined,

@@ -1,0 +1,36 @@
+.anchor {
+  --proof-tone: var(--map-route);
+  position: absolute;
+  inset: 0 auto auto 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.anchor[data-kind="sunset"] {
+  --proof-tone: var(--map-viewshed-line);
+}
+.anchor[data-kind="quiet"] {
+  --proof-tone: var(--map-hotel-selected);
+}
+.ping,
+.dot {
+  composes: mapPointShape from "../../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-start: calc(var(--space-6) * -1);
+  inset-inline-start: calc(var(--space-6) * -1);
+  background-color: var(--proof-tone);
+}
+.ping {
+  box-shadow: none;
+}
+.dot {
+  border: var(--space-2) solid var(--map-label-halo);
+}
+.label {
+  composes: controlText from "../../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-end: var(--space-6);
+  inset-inline-start: var(--space-12);
+  color: var(--map-label-strong);
+  paint-order: stroke fill;
+  -webkit-text-stroke: var(--space-4) var(--map-label-halo);
+}

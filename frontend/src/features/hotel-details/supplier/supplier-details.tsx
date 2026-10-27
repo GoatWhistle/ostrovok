@@ -1,7 +1,6 @@
 import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
 import { Disclosure, Icon } from "@/shared/ui"
-import { RoomGallery } from "../rooms/room-gallery"
 import styles from "./supplier.module.css"
 import { SupplierAmenities } from "./supplier-amenities"
 import { SupplierFacts } from "./supplier-facts"
@@ -17,23 +16,9 @@ export function SupplierDetails({
   readonly source: string | null | undefined
 }) {
   const { t } = useTranslation()
-  const photos = details.photos.map((photo) => photo.url)
   return (
     <div className={styles.block}>
-      {photos.length ? (
-        <RoomGallery
-          photos={photos}
-          name={details.name}
-          label={t("explore:supplier.photos")}
-          emptyText={t("explore:supplier.noPhotos")}
-        />
-      ) : null}
-      <SupplierFacts
-        facts={details.facts}
-        rating={details.rating}
-        checkIn={details.check_in_from}
-        checkOut={details.check_out_until}
-      />
+      <SupplierFacts facts={details.facts} />
       <SupplierAmenities groups={details.amenity_groups} />
       <SupplierNearby places={details.nearby} />
       {details.description.length ? (
