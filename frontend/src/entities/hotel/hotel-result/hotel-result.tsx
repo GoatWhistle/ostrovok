@@ -1,13 +1,15 @@
 import type { HotelSummary, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import { useInViewport } from "@/shared/hooks"
 import { staggerStyle } from "@/shared/motion"
-import { Button, Icon } from "@/shared/ui"
+import { Button } from "@/shared/ui"
+import { HotelRating } from "../hotel-rating/hotel-rating"
 import { HotelStars } from "../hotel-stars/hotel-stars"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
 import { MatchScore, matchScore } from "../match-score/match-score"
 import { OfferPreview } from "../offer-preview/offer-preview"
 import { HotelMatches } from "./hotel-matches"
 import styles from "./hotel-result.module.css"
+import { useHotelPreview } from "./use-hotel-preview"
 
 export interface HotelResultProps {
   readonly result: SearchResult
@@ -41,6 +43,7 @@ export function HotelSummaryCard({
   idPrefix = "hotel-result",
 }: HotelSummaryCardProps) {
   const viewport = useInViewport()
+  const preview = useHotelPreview(hotel.id, viewport.visible)
   return (
     <article
       ref={viewport.ref}
@@ -48,7 +51,13 @@ export function HotelSummaryCard({
       data-selected={selected}
       style={index === undefined ? undefined : staggerStyle(index)}
     >
-      <HotelThumb src={hotel.thumbnail_url} photos={hotel.photos} />
+      <HotelThumb
+        src={hotel.thumbnail_url}
+        photos={hotel.photos}
+        extra={preview.photos}
+        placeholder
+        className={styles.thumb}
+      />
       <div className={styles.body}>
         <div className={styles.top}>
           <Button
@@ -61,17 +70,17 @@ export function HotelSummaryCard({
           >
             {hotel.name}
           </Button>
-          <MatchScore score={matchScore({ matched })} className={styles.score} />
+          <MatchScore score={matchScore({ matched })} quiet />
         </div>
-        <HotelStars value={hotel.stars} />
-        {hotel.address ? (
-          <p className={styles.meta}>
-            <Icon name="pin" size="sm" />
-            <span>{hotel.address}</span>
-          </p>
-        ) : null}
+        <div className={styles.meta}>
+          <HotelStars value={hotel.stars ?? preview.stars} />
+          <HotelRating score={preview.rating} reviews={preview.reviews} />
+        </div>
+        {hotel.address ? <p className={styles.address}>{hotel.address}</p> : null}
         <HotelMatches matched={matched} onProperty={onProperty} onPreview={onPreview} />
-        <OfferPreview hotelId={hotel.id} onSelect={onRooms} enabled={viewport.visible} />
+        <div className={styles.price}>
+          <OfferPreview hotelId={hotel.id} onSelect={onRooms} enabled={viewport.visible} />
+        </div>
       </div>
     </article>
   )

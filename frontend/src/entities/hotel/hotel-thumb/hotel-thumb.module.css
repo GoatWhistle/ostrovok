@@ -14,4 +14,9 @@
   position: absolute;
   inset: 0;
   composes: coverMedia from "../../../shared/styles/compose.module.css";
+  animation: var(--motion-fade-in);
+}
+
+.empty {
+  color: var(--text-muted);
 }

@@ -597,6 +597,15 @@
     "replay": "Повторить анимацию"
   },
   "cards": {
+    "rating_one": "Оценка гостей {{score}} из 10, {{count, number}} отзыв",
+    "rating_few": "Оценка гостей {{score}} из 10, {{count, number}} отзыва",
+    "rating_many": "Оценка гостей {{score}} из 10, {{count, number}} отзывов",
+    "rating_other": "Оценка гостей {{score}} из 10, {{count, number}} отзыва",
+    "reviews_one": "{{count, number}} отзыв",
+    "reviews_few": "{{count, number}} отзыва",
+    "reviews_many": "{{count, number}} отзывов",
+    "reviews_other": "{{count, number}} отзыва",
+    "score": "Совпадает {{full, number}} из {{total, number}} пожеланий",
     "chooseDates": "Укажите даты и гостей, чтобы увидеть цены",
     "noPrice": "Цена на эти даты пока неизвестна",
     "priceBasis": "{{checkIn}} – {{checkOut}}, взрослых: {{count, number}}",

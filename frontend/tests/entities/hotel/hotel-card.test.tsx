@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
+import { HotelRating } from "../../../src/entities/hotel/hotel-rating/hotel-rating"
 import { HotelMatches } from "../../../src/entities/hotel/hotel-result/hotel-matches"
 import { HotelStars } from "../../../src/entities/hotel/hotel-stars/hotel-stars"
 import { HotelThumb } from "../../../src/entities/hotel/hotel-thumb/hotel-thumb"
@@ -25,15 +26,16 @@ function wish(key: string, match: MatchedProperty["match"], status = "active"): 
   }
 }
 describe("hotel list evidence", () => {
-  it("shows only usable full and partial matches while retaining the condition", () => {
+  it("shows at most two usable matches with full matches first", () => {
     const onProperty = vi.fn()
     const partial = { ...wish("partial", "partial"), explanation: "Only from the fourth floor" }
     render(
       <LocaleProvider>
         <HotelMatches
           matched={[
-            wish("found", "full"),
             partial,
+            wish("found", "full"),
+            wish("second", "full"),
             wish("missing", "none"),
             wish("unknown", "unknown"),
             wish("old", "full", "stale"),
@@ -44,11 +46,31 @@ describe("hotel list evidence", () => {
         />
       </LocaleProvider>,
     )
-    expect(screen.getAllByRole("button")).toHaveLength(2)
-    expect(screen.getByText("Only from the fourth floor")).toBeTruthy()
+    const buttons = screen.getAllByRole("button")
+    expect(buttons.map((button) => button.textContent)).toEqual(["found", "second"])
+    expect(screen.queryByText("Only from the fourth floor")).toBeNull()
     expect(screen.queryByText("old")).toBeNull()
     fireEvent.click(screen.getByRole("button", { name: "found" }))
     expect(onProperty).toHaveBeenCalledOnce()
+  })
+  it("answers a wish with its verdict instead of the raw label", () => {
+    const sea = wish("near_sea", "full")
+    const fact = sea.fact as NonNullable<MatchedProperty["fact"]>
+    const item: MatchedProperty = {
+      ...sea,
+      label: "within walking distance of the sea",
+      fact: {
+        ...fact,
+        qualifiers: { native_characteristic_key: "distance_to_sea", native_value: 3 },
+      },
+    }
+    render(
+      <LocaleProvider>
+        <HotelMatches matched={[item]} onProperty={vi.fn()} onPreview={vi.fn()} />
+      </LocaleProvider>,
+    )
+    expect(screen.queryByText("within walking distance of the sea")).toBeNull()
+    expect(screen.getByRole("button").textContent).toContain("3")
   })
   it("tries the next photo then removes the frame when all fail", () => {
     const { container } = render(
@@ -61,6 +83,26 @@ describe("hotel list evidence", () => {
     expect(container.querySelector("img")?.src).toContain("b.jpg")
     fireEvent.error(container.querySelector("img") as HTMLImageElement)
     expect(container.querySelector("[data-hotel-photo]")).toBeNull()
+  })
+  it("keeps a quiet frame when a placeholder is requested and no photo loads", () => {
+    const { container } = render(<HotelThumb src={null} extra={["not a url"]} placeholder />)
+    expect(container.querySelector("img")).toBeNull()
+    expect(container.querySelector("[data-hotel-photo] svg")).toBeTruthy()
+  })
+  it("shows a guest rating with its review count and hides an absent one", () => {
+    const { container, rerender } = render(
+      <LocaleProvider>
+        <HotelRating score={undefined} reviews={0} />
+      </LocaleProvider>,
+    )
+    expect(container.textContent).toBe("")
+    rerender(
+      <LocaleProvider>
+        <HotelRating score={7.4} reviews={128} />
+      </LocaleProvider>,
+    )
+    expect(container.textContent).toContain("128")
+    expect(screen.getByRole("img").getAttribute("aria-label")).toContain("128")
   })
   it("does not turn a review rating into a star category", () => {
     const { rerender } = render(<HotelStars value={4.7} />)

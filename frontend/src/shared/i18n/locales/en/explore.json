@@ -597,6 +597,15 @@
     "replay": "Replay animation"
   },
   "cards": {
+    "rating_one": "Guest rating {{score}} of 10, {{count, number}} review",
+    "rating_few": "Guest rating {{score}} of 10, {{count, number}} reviews",
+    "rating_many": "Guest rating {{score}} of 10, {{count, number}} reviews",
+    "rating_other": "Guest rating {{score}} of 10, {{count, number}} reviews",
+    "reviews_one": "{{count, number}} review",
+    "reviews_few": "{{count, number}} reviews",
+    "reviews_many": "{{count, number}} reviews",
+    "reviews_other": "{{count, number}} reviews",
+    "score": "Matches {{full, number}} of {{total, number}} wishes",
     "chooseDates": "Choose dates and guests to see prices",
     "noPrice": "Price is not available for these dates",
     "priceBasis": "{{checkIn}} – {{checkOut}}, adults: {{count, number}}",
