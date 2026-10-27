@@ -60,8 +60,10 @@ describe("hotelier answer outcomes", () => {
     const questions = questionSet("open", "open")
     hotelierServer(questions)
     const edit = mount()
-    if (manual)
-      await userEvent.click(await within(queue()).findByRole("button", { name: /Question 1/ }))
+    if (manual) {
+      const [first] = await within(queue()).findAllByRole("listitem")
+      await userEvent.click(within(first as HTMLElement).getByRole("button"))
+    }
     await answerYes()
     const saved = await screen.findByText(savedTitle)
     expect(saved.closest("[data-saved-answer]")?.getAttribute("data-saved-answer")).toBe(

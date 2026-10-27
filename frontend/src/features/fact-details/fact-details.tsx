@@ -84,8 +84,9 @@ export function FactDetails({
               {t("explore:details.conflictsText")}
             </Banner>
           ) : null}
+          {review ? <FactCorrection fact={fact} /> : null}
           {fact.provenance ? (
-            <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen>
+            <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen={!review}>
               <FactProvenance provenance={fact.provenance} conflicts={conflicts} />
             </Disclosure>
           ) : null}
@@ -94,7 +95,6 @@ export function FactDetails({
               <FactHistory history={fact.history} />
             </Disclosure>
           ) : null}
-          {review ? <FactCorrection fact={fact} /> : null}
         </article>
       ) : null}
     </section>

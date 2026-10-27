@@ -1,0 +1,14 @@
+.header {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.change {
+  max-inline-size: var(--field-max-width);
+}
+
+.lookup {
+  display: grid;
+  gap: var(--space-8);
+  max-inline-size: var(--field-max-width);
+}

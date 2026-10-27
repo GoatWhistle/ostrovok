@@ -56,7 +56,12 @@ export function hotelierServer(questions: ServerQuestion[], reply: AnswerReply =
       const id = options.params?.path?.fact_id ?? ""
       return ok({ ...fact(id, "double_room"), history: [] })
     }
-    if (path === "/hotels/{hotel_id}") return ok({ hotel: { id: "h1" }, facts: [] })
+    if (path === "/hotels/{hotel_id}")
+      return ok({
+        hotel: { id: "h1", name: "Seaside test hotel", location: [39.7, 43.6] },
+        facts: [],
+        rooms: [],
+      })
     return Promise.reject(new Error(path))
   }) as never)
   vi.spyOn(api, "POST").mockImplementation(((

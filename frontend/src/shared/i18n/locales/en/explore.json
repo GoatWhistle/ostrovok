@@ -306,7 +306,6 @@
     "supplier": "Supplier catalog"
   },
   "hotelier": {
-    "title": "Answer once",
     "description": "Clarify information about your hotel. Your answer becomes a fact with its source and date.",
     "hotelId": "Hotel identifier",
     "open": "Open questions",
@@ -337,7 +336,6 @@
     "currentNone": "Now in search: no data",
     "currentNoneText": "Until you answer, the hotel is left out of searches for this condition.",
     "conflictsText": "The hotelier's answer wins in search.",
-    "hotelCard": "Hotel card",
     "next": "Next question",
     "tabsLabel": "Question status",
     "tabs": {
@@ -366,7 +364,11 @@
     "allAnsweredText": "Saved answers are in the Done tab.",
     "noSkipped": "No deferred questions",
     "noAnswered": "No answered questions yet",
-    "queueError": "Not saved"
+    "queueError": "Not saved",
+    "change": "Change hotel",
+    "preview": "Guest view",
+    "facts": "Hotel information",
+    "allQuestions": "All questions: {{count}}"
   },
   "compare": {
     "title": "Compare what matters",

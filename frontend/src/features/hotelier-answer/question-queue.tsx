@@ -1,7 +1,8 @@
 import { useMutationState } from "@tanstack/react-query"
 import { FactTile, RowButton } from "@/entities/evidence"
 import type { components } from "@/shared/api/schema.gen"
-import { useTranslation } from "@/shared/i18n"
+import { characteristicTitle } from "@/shared/geo/fact-label"
+import { useLocale, useTranslation } from "@/shared/i18n"
 import { StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./question-queue.module.css"
 
@@ -38,6 +39,7 @@ function QueueItem({
   readonly onSelect: (id: string) => void
 }) {
   const { t } = useTranslation()
+  const { locale } = useLocale()
   const failed = useFailed(question.id)
   const tone =
     question.status === "open" && question.reason === "conflict"
@@ -59,8 +61,8 @@ function QueueItem({
           )
         }
       >
-        <span className={styles.text} lang="ru">
-          {question.text}
+        <span className={styles.text}>
+          {characteristicTitle(question.characteristic_key, locale)}
         </span>
         {question.status === "answered" ? null : (
           <span className={styles.reason}>{t(`explore:hotelier.reason.${question.reason}`)}</span>

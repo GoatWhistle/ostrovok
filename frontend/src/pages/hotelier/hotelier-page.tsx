@@ -1,38 +1,28 @@
 import { useState } from "react"
 import { useParams } from "react-router"
 import { FactDetails } from "@/features/fact-details"
-import { HotelDetails } from "@/features/hotel-details"
-import { HotelierAnswer } from "@/features/hotelier-answer"
+import { HotelDetails, HotelFacts } from "@/features/hotel-details"
+import { HotelierAnswer, HotelierHeader } from "@/features/hotelier-answer"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
-import { PageHeader, StatusBadge } from "@/shared/ui"
+import { Dialog } from "@/shared/ui"
 import styles from "./hotelier-page.module.css"
 
 export function HotelierPage() {
   const { t } = useTranslation()
   const { hotelId } = useParams()
   const [selected, setSelected] = useState<{ hotel: string; fact: string }>()
+  const [preview, setPreview] = useState(false)
   useDocumentTitle(t("explore:navigation.hotelier"))
+  const openFact = (fact: string) => {
+    if (hotelId) setSelected({ hotel: hotelId, fact })
+  }
   return (
     <div className={styles.page}>
-      <PageHeader
-        title={t("explore:hotelier.title")}
-        description={t("explore:hotelier.description")}
-        actions={
-          <StatusBadge tone="info" icon="hotelier">
-            {t("explore:hotelier.badge")}
-          </StatusBadge>
-        }
-      />
+      <HotelierHeader hotelId={hotelId} onPreview={() => setPreview(true)} />
       <div className={styles.panels} data-detail={hotelId !== undefined}>
-        <HotelierAnswer
-          key={hotelId ?? "none"}
-          hotelId={hotelId}
-          onEditFact={(fact) => {
-            if (hotelId) setSelected({ hotel: hotelId, fact })
-          }}
-        />
+        <HotelierAnswer key={hotelId ?? "none"} hotelId={hotelId} onEditFact={openFact} />
         {hotelId ? (
-          <aside className={styles.detail} aria-label={t("explore:hotelier.hotelCard")}>
+          <aside className={styles.detail} aria-label={t("explore:hotelier.facts")}>
             {selected?.hotel === hotelId ? (
               <FactDetails
                 hotelId={hotelId}
@@ -41,14 +31,26 @@ export function HotelierPage() {
                 review
               />
             ) : (
-              <HotelDetails
+              <HotelFacts
                 hotelId={hotelId}
-                onFact={(fact) => setSelected({ hotel: hotelId, fact: fact.fact_id })}
+                title={t("explore:hotelier.facts")}
+                onFact={(fact) => openFact(fact.fact_id)}
               />
             )}
           </aside>
         ) : null}
       </div>
+      {preview && hotelId ? (
+        <Dialog title={t("explore:hotelier.preview")} onClose={() => setPreview(false)}>
+          <HotelDetails
+            hotelId={hotelId}
+            onFact={(fact) => {
+              setPreview(false)
+              openFact(fact.fact_id)
+            }}
+          />
+        </Dialog>
+      ) : null}
     </div>
   )
 }
