@@ -4,6 +4,8 @@
   max-block-size: calc(100dvh - var(--space-32));
   padding: var(--space-20);
   border: 0;
+  margin: auto;
+  overscroll-behavior: contain;
   color: var(--text-primary);
 }
 
