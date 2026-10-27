@@ -119,6 +119,31 @@ describe("conversation navigation", () => {
     expect(state.result.current.location.search).toContain("chat=chat-b")
   })
 
+  it("opens the answer that arrives after a return to the landing", async () => {
+    let finish: ((value: never) => void) | undefined
+    const answer = conversation("chat-late", "hotel-late")
+    vi.spyOn(api, "GET").mockResolvedValue({ data: answer, response: new Response("{}") } as never)
+    vi.spyOn(api, "POST").mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve
+        }),
+    )
+    const state = mount("/")
+    act(() => state.result.current.workspace.send("A hotel by the sea"))
+    await waitFor(() => expect(state.result.current.workspace.sending).toBe(true))
+    await act(async () => {
+      await state.result.current.navigate("/", { state: { draftId: "other" } })
+    })
+    expect(state.result.current.workspace.surface).toBe("landing")
+    await act(async () => {
+      finish?.({ data: answer, response: new Response("{}") } as never)
+    })
+    await waitFor(() => expect(state.result.current.workspace.conversationId).toBe("chat-late"))
+    expect(state.result.current.workspace.results[0]?.hotel.id).toBe("hotel-late")
+    expect(state.result.current.location.search).toContain("chat=chat-late")
+  })
+
   it("restores hotel selection with Back without another search", async () => {
     vi.spyOn(api, "GET").mockResolvedValue({
       data: conversation("chat-a", "hotel-a"),

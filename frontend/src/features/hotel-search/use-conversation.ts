@@ -70,6 +70,9 @@ export function useConversation(
   const { instant } = useInputModality(true)
   const cache = useQueryClient()
   const [history, setHistory] = useState(readConversationHistory)
+  const latest = useRef({ control, onAnswer })
+  latest.current = { control, onAnswer }
+  const inflight = useRef(0)
   const active = useRef({ scope: control.scopeKey, generation: 0 })
   if (active.current.scope !== control.scopeKey) {
     active.current = { scope: control.scopeKey, generation: active.current.generation + 1 }
@@ -103,17 +106,25 @@ export function useConversation(
   }, [conversation.data, updateHistory])
   const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
     mutationFn: sendRequest,
+    onMutate: () => {
+      inflight.current += 1
+    },
+    onSettled: () => {
+      inflight.current -= 1
+    },
     onSuccess: (data, input) => {
       if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
-      const current =
+      const started =
         input.scope === active.current.scope && input.generation === active.current.generation
+      const waiting = latest.current.control.id === null && inflight.current <= 1
+      const current = started || waiting
       const accept = () => {
         cache.setQueryData(["conversation", data.id], data)
         updateHistory((previous) => syncConversation(previous, serverEntry(data)))
         if (!current) return
         saveActiveConversation(data.id)
-        control.receive(data.id)
-        onAnswer(data)
+        latest.current.control.receive(data.id)
+        latest.current.onAnswer(data)
       }
       if (current && !instant && data.search?.results.length && !hasExpandedWorkspace(data.id)) {
         return withViewTransition("layout", accept)

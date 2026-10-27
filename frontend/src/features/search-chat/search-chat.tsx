@@ -95,7 +95,9 @@ export function SearchChat({
             icon="plus"
             className={styles.create}
             title={t("explore:chat.newSearch")}
-            disabled={conversationId === null && messages.length === 0 && !outgoing}
+            disabled={
+              view === "chat" && conversationId === null && messages.length === 0 && !outgoing
+            }
             onClick={() => {
               onView("chat")
               onReset()
