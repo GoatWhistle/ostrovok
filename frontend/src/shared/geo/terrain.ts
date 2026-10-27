@@ -164,7 +164,12 @@ export function followTerrainZoom(map: MapLibreMap, allowed = true): () => void 
   return () => map.off("zoomend", sync)
 }
 
-export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunPosition) {
+export function renderTerrain(
+  map: MapLibreMap,
+  colors: TerrainColors,
+  sun: SunPosition,
+  contrast = 1,
+) {
   const { sea, sky } = scenePalette(colors, sun.altitude)
   addTerrainLayers(map, colors, sea)
   for (const id of ["sochi-relief-fallback", "sochi-relief"]) {
@@ -178,7 +183,7 @@ export function renderTerrain(map: MapLibreMap, colors: TerrainColors, sun: SunP
   map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-illumination-direction", sun.azimuth)
   map.setPaintProperty("canvas", "background-color", groundColor(colors, sea))
-  map.setLight({ anchor: "map", ...sunLight(colors, sun.azimuth, sun.altitude) })
+  map.setLight({ anchor: "map", ...sunLight(colors, sun.azimuth, sun.altitude, contrast) })
   map.setSky({
     "sky-color": sky,
     "horizon-color": sea,

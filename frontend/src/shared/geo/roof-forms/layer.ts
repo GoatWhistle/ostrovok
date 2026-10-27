@@ -12,7 +12,7 @@ export const ROOF_FORMS = "scene-roof-forms"
 export const CONTEXT_ROOF_FORMS = "context-roof-forms"
 const LAYERS = [ROOF_FORMS, CONTEXT_ROOF_FORMS] as const
 export const FLAT_ROOF: ExpressionSpecification = ["!", ["to-boolean", ["get", "pitched"]]]
-const MIN_ZOOM = 16
+const MIN_ZOOM = 14
 const CONTEXT_MIN_ZOOM = 15
 
 export function withRoofForms<T extends RoofSource>(sources: readonly T[]) {
@@ -61,23 +61,42 @@ export function renderRoofForms(
   )
 }
 
-export function paintRoofForms(map: MapLibreMap, colors: readonly string[], edge?: string) {
-  for (const id of LAYERS) if (map.getLayer(id)) paintLayer(map, id, colors, edge)
+export function paintRoofForms(
+  map: MapLibreMap,
+  colors: readonly string[],
+  flat: readonly string[],
+  edge?: string,
+) {
+  for (const id of LAYERS) if (map.getLayer(id)) paintLayer(map, id, colors, flat, edge)
 }
 
-function paintLayer(map: MapLibreMap, id: string, colors: readonly string[], edge?: string) {
+function toned(colors: readonly string[]): ExpressionSpecification | string {
+  const [first = "#000000"] = colors
+  if (colors.length <= 1) return first
+  return [
+    "match",
+    ["%", ["get", "tone"], colors.length],
+    ...colors.flatMap((value, index) => [index, value]),
+    first,
+  ] as unknown as ExpressionSpecification
+}
+
+function paintLayer(
+  map: MapLibreMap,
+  id: string,
+  colors: readonly string[],
+  flat: readonly string[],
+  edge?: string,
+) {
   const [first] = colors
   map.setLayoutProperty(id, "visibility", first ? "visible" : "none")
   if (!first) return
-  const color: ExpressionSpecification | string =
-    colors.length === 1
-      ? first
-      : ([
-          "match",
-          ["%", ["get", "tone"], colors.length],
-          ...colors.flatMap((value, index) => [index, value]),
-          first,
-        ] as unknown as ExpressionSpecification)
+  const color: ExpressionSpecification = [
+    "case",
+    ["to-boolean", ["get", "flat"]],
+    toned(flat.length > 0 ? flat : colors),
+    toned(colors),
+  ]
   map.setPaintProperty(
     id,
     "fill-extrusion-color",

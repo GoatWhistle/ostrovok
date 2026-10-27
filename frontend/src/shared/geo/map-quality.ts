@@ -113,9 +113,9 @@ function setVisible(map: MapLibreMap, layer: string, visible: boolean) {
 export function applyQuality(map: MapLibreMap, level: QualityLevel, roadGlow = true) {
   setVisible(map, "base-roads-glow", level === 0 && roadGlow)
   setVisible(map, "scene-volumes", level < 3)
-  setVisible(map, "overview-volumes", level < 3 && map.getZoom() < 16)
+  setVisible(map, "overview-volumes", level < 3)
   setVisible(map, "base-buildings", true)
-  setVisible(map, "toy-overview-roofs", level < 3 && map.getZoom() < 16)
+  setVisible(map, "toy-overview-roofs", level < 3)
   setVisible(map, "toy-scene-roofs", level < 3)
   setVisible(map, "toy-context-roofs", level < 3)
   setVisible(map, "buildings-volume", level < 3)

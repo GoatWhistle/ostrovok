@@ -13,7 +13,10 @@ export interface AppearancePackage {
     readonly verticalGradient: boolean
     readonly roofToken: string | null
     readonly roofTokens?: readonly string[]
+    readonly flatRoofTokens?: readonly string[]
     readonly shadowToken?: string
+    readonly lightContrast?: number
+    readonly duskTint?: number
   }
   readonly effects: {
     readonly windows: boolean

@@ -9,9 +9,9 @@ const ROOFS = [
     source: "sochi-map",
     layer: "buildings",
     min: 14,
-    max: 16,
+    max: 24,
   },
-  { id: "toy-scene-roofs", owner: "scene-volumes", source: "scene-buildings", min: 16, max: 24 },
+  { id: "toy-scene-roofs", owner: "scene-volumes", source: "scene-buildings", min: 14, max: 24 },
   { id: "toy-context-roofs", owner: "buildings-volume", source: "buildings", min: 14, max: 24 },
 ] as const
 

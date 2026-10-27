@@ -69,7 +69,7 @@ function flatRoof(id: string, ring: Position[], frame: RoofFrame, height: number
   const roof: Feature<Polygon> = {
     type: "Feature",
     geometry: { type: "Polygon", coordinates: [mutable(deck)] },
-    properties: { building_id: id, tone, base: height, top: height + DECK_HEIGHT },
+    properties: { building_id: id, tone, flat: true, base: height, top: height + DECK_HEIGHT },
   }
   return [parapet, roof]
 }

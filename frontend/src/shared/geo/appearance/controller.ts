@@ -80,13 +80,21 @@ export class MapAppearanceController {
       horizonNight: style.getPropertyValue(palette.horizonNight).trim(),
     }
     const altitude = this.scene?.sun.altitude ?? OVERVIEW_ALTITUDE
-    const colors = tokens
-      .map((token) => style.getPropertyValue(token).trim())
-      .filter((value) => value.length > 0)
-      .map((value) => tintHex(value, sky, altitude))
-    renderAppearanceRoofs(this.map, roofPaint(colors))
+    const resolve = (list: readonly string[]) =>
+      list
+        .map((token) => style.getPropertyValue(token).trim())
+        .filter((value) => value.length > 0)
+        .map((value) => tintHex(value, sky, altitude, materials.duskTint))
+    const colors = resolve(tokens)
+    const flat = resolve(materials.flatRoofTokens ?? tokens)
+    renderAppearanceRoofs(this.map, roofPaint(flat))
     const edge = style.getPropertyValue(palette.buildingLine).trim()
-    paintRoofForms(this.map, colors, edge ? tintHex(edge, sky, altitude) : undefined)
+    paintRoofForms(
+      this.map,
+      colors,
+      flat,
+      edge ? tintHex(edge, sky, altitude, materials.duskTint) : undefined,
+    )
     const sun = this.scene?.sun
     const shadow = materials.shadowToken
       ? style.getPropertyValue(materials.shadowToken).trim()
@@ -101,11 +109,16 @@ export class MapAppearanceController {
     if (!scene || !this.visible) return
     const colors = readAppearanceColors(this.appearance)
     const mode = lightMode(scene.sun.altitude)
-    const tinted = tintForTime(colors, mode, scene.sun.altitude)
+    const tinted = tintForTime(
+      colors,
+      mode,
+      scene.sun.altitude,
+      APPEARANCES[this.appearance].materials.duskTint,
+    )
     const classes = appearanceClasses(this.appearance, scene.catalog, tinted)
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": tinted.sea } })
-    renderTerrain(map, tinted, scene.sun)
+    renderTerrain(map, tinted, scene.sun, APPEARANCES[this.appearance].materials.lightContrast)
     map
       .getContainer()
       .parentElement?.style.setProperty(

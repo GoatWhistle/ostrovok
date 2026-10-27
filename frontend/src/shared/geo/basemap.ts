@@ -1,4 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import { PATH, roadWidth } from "./road-widths"
 import { WORLD_WATER_FADE_TO } from "./world/water-layers"
 
 const COAST_FROM = 8
@@ -21,26 +22,6 @@ const LIT: ExpressionSpecification = [
   true,
   false,
 ]
-
-const MAJOR: ExpressionSpecification = [
-  "match",
-  ["get", "kind"],
-  ["motorway", "trunk", "primary", "secondary", "tertiary"],
-  true,
-  false,
-]
-
-function roadWidth(minor: [number, number], major: [number, number]): ExpressionSpecification {
-  return [
-    "interpolate",
-    ["linear"],
-    ["zoom"],
-    10,
-    ["case", MAJOR, major[0], minor[0]],
-    17,
-    ["case", MAJOR, major[1], minor[1]],
-  ]
-}
 
 function paintBasemap(map: MapLibreMap, colors: BasemapColors) {
   map.setPaintProperty("base-beaches", "fill-color", colors.sand)
@@ -89,8 +70,8 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     layout: { "line-cap": "round", "line-join": "round" },
     paint: {
       "line-color": colors.roadGlow,
-      "line-width": roadWidth([2, 10], [3, 16]),
-      "line-blur": roadWidth([1.5, 6], [2, 9]),
+      "line-width": roadWidth(8),
+      "line-blur": roadWidth(2),
       "line-opacity": 0.45,
     },
   })
@@ -99,8 +80,9 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     type: "line",
     source: "sochi-map",
     "source-layer": "roads",
+    filter: ["!", PATH],
     layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-color": colors.roadCasing, "line-width": roadWidth([1.2, 6], [2, 10]) },
+    paint: { "line-color": colors.roadCasing, "line-width": roadWidth(2.4) },
   })
   map.addLayer({
     id: "base-roads",
@@ -108,7 +90,7 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     source: "sochi-map",
     "source-layer": "roads",
     layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-color": colors.road, "line-width": roadWidth([0.8, 4.2], [1.4, 7.5]) },
+    paint: { "line-color": colors.road, "line-width": roadWidth() },
   })
   map.addLayer({
     id: "base-roads-light",
@@ -120,7 +102,7 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     layout: { "line-cap": "round", "line-join": "round" },
     paint: {
       "line-color": colors.roadLight,
-      "line-width": roadWidth([0.4, 1.2], [0.6, 1.8]),
+      "line-width": ["interpolate", ["linear"], ["zoom"], 13, 0.4, 18, 1.8],
       "line-opacity": 0.7,
     },
   })

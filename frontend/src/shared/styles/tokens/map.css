@@ -115,7 +115,7 @@
   --map-class-wood: var(--map-neon-class-wood);
   --map-class-worship: var(--map-neon-class-worship);
   --map-toy-class-apartments: var(--map-toy-wall);
-  --map-toy-class-beach: var(--map-toy-earth);
+  --map-toy-class-beach: var(--map-toy-sand);
   --map-toy-class-bench: var(--map-toy-line);
   --map-toy-class-building-work: var(--map-toy-line);
   --map-toy-class-cemetery: var(--map-toy-meadow);
@@ -140,7 +140,7 @@
   --map-toy-class-office: var(--map-toy-steel);
   --map-toy-class-park: var(--map-toy-green);
   --map-toy-class-parking: var(--map-toy-earth);
-  --map-toy-class-pier: var(--map-toy-wall);
+  --map-toy-class-pier: var(--map-toy-paving);
   --map-toy-class-pitch: var(--map-toy-green);
   --map-toy-class-poi-attraction: var(--map-toy-teal);
   --map-toy-class-poi-food: var(--map-toy-teal);
@@ -153,19 +153,19 @@
   --map-toy-class-railway: var(--map-toy-steel);
   --map-toy-class-residence: var(--map-toy-wall);
   --map-toy-class-residential: var(--map-toy-earth);
-  --map-toy-class-retail: var(--map-toy-blush);
-  --map-toy-class-road-cycleway: var(--map-toy-road);
-  --map-toy-class-road-footway: var(--map-toy-road);
-  --map-toy-class-road-motorway: var(--map-toy-road);
-  --map-toy-class-road-path: var(--map-toy-road);
-  --map-toy-class-road-pedestrian: var(--map-toy-road);
-  --map-toy-class-road-primary: var(--map-toy-road);
+  --map-toy-class-retail: var(--map-toy-peach);
+  --map-toy-class-road-cycleway: var(--map-toy-path);
+  --map-toy-class-road-footway: var(--map-toy-path);
+  --map-toy-class-road-motorway: var(--map-toy-road-major);
+  --map-toy-class-road-path: var(--map-toy-path);
+  --map-toy-class-road-pedestrian: var(--map-toy-paving);
+  --map-toy-class-road-primary: var(--map-toy-road-major);
   --map-toy-class-road-residential: var(--map-toy-road);
-  --map-toy-class-road-secondary: var(--map-toy-road);
+  --map-toy-class-road-secondary: var(--map-toy-road-mid);
   --map-toy-class-road-service: var(--map-toy-road);
-  --map-toy-class-road-steps: var(--map-toy-road);
-  --map-toy-class-road-tertiary: var(--map-toy-road);
-  --map-toy-class-road-trunk: var(--map-toy-road);
+  --map-toy-class-road-steps: var(--map-toy-path);
+  --map-toy-class-road-tertiary: var(--map-toy-road-mid);
+  --map-toy-class-road-trunk: var(--map-toy-road-major);
   --map-toy-class-roof: var(--map-toy-wall);
   --map-toy-class-school: var(--map-toy-road);
   --map-toy-class-scrub: var(--map-toy-forest);
@@ -177,7 +177,7 @@
   --map-toy-class-water: var(--map-toy-water);
   --map-toy-class-wetland: var(--map-toy-water);
   --map-toy-class-wood: var(--map-toy-forest);
-  --map-toy-class-worship: var(--map-toy-blush);
+  --map-toy-class-worship: var(--map-toy-peach);
 }
 
 [data-map-appearance="toy-town"] {

@@ -52,7 +52,7 @@ export function skyPalette(colors: SkyColors, altitude: number) {
   }
 }
 
-export function sunLight(colors: SkyColors, azimuth: number, altitude: number) {
+export function sunLight(colors: SkyColors, azimuth: number, altitude: number, contrast = 1) {
   const warm = warmth(altitude)
   const night = darkness(altitude)
   const moon = mixHex(colors.moonlight, colors.horizonNight, MOON_DIM)
@@ -60,7 +60,7 @@ export function sunLight(colors: SkyColors, azimuth: number, altitude: number) {
   const day = DAY_INTENSITY + (LOW_INTENSITY - DAY_INTENSITY) * warm
   return {
     color: blend(colors.sunlight, colors.sunLow, moon, altitude),
-    intensity: day + (NIGHT_INTENSITY - day) * night,
+    intensity: (day + (NIGHT_INTENSITY - day) * night) * contrast,
     position: [1.15, azimuth, polar + (NIGHT_POLAR - polar) * night] as [number, number, number],
   }
 }

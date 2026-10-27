@@ -1,4 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
+import { IN_SCENE } from "../overview-buildings"
 
 const SHADOWS = [
   {
@@ -7,13 +8,14 @@ const SHADOWS = [
     source: "sochi-map",
     layer: "buildings",
     min: 14,
-    max: 16,
+    max: 24,
   },
-  { id: "toy-scene-shadow", owner: "scene-volumes", source: "scene-buildings", min: 16, max: 24 },
+  { id: "toy-scene-shadow", owner: "scene-volumes", source: "scene-buildings", min: 14, max: 24 },
   { id: "toy-context-shadow", owner: "buildings-volume", source: "buildings", min: 14, max: 24 },
 ] as const
 
 const MAX_LENGTH = 34
+const SHADOW_OPACITY = 0.28
 const MIN_ALTITUDE = 4
 
 export function shadowOffset(azimuth: number, altitude: number): [number, number] {
@@ -48,7 +50,11 @@ function renderShadow(
         minzoom: shadow.min,
         maxzoom: shadow.max,
         ...(filter ? { filter } : {}),
-        paint: { "fill-color": color, "fill-opacity": 0.28, "fill-translate-anchor": "map" },
+        paint: {
+          "fill-color": color,
+          "fill-opacity": ["case", IN_SCENE, 0, SHADOW_OPACITY],
+          "fill-translate-anchor": "map",
+        },
       },
       shadow.owner,
     )
