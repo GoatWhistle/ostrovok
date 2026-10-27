@@ -10,7 +10,6 @@ import {
   renderSceneVolumes,
   windowFade,
 } from "@/shared/geo/night-city/night-layers"
-import { watchTerrainData } from "@/shared/geo/night-city/terrain-watch"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
 import { markSceneBuildings } from "@/shared/geo/overview-buildings"
@@ -25,8 +24,8 @@ import {
   regionFor,
   rgb,
   sceneCollection,
-  windowBuildings,
 } from "./night-city-data"
+import { useWindowMesh } from "./use-window-mesh"
 
 export interface NightCityInput {
   readonly mapRef: RefObject<MapLibreMap | null>
@@ -76,7 +75,6 @@ export function useNightCity({
 }: NightCityInput) {
   const [viewport, setViewport] = useState<SceneViewport>()
   const { layer, builder } = useWindowLayer(mapRef, ready)
-  const built = useRef<{ data: unknown; grounds: string } | undefined>(undefined)
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
@@ -112,34 +110,16 @@ export function useNightCity({
     )
     if (map.getLayer(WINDOW_LAYER)) map.moveLayer(WINDOW_LAYER, labelAnchor(map))
   }, [mapRef, ready, scene.data, volumeColor, excluded])
-  useEffect(() => {
-    const map = mapRef.current
-    const data = scene.data
-    if (!ready || !map || !data) return
-    const [west, south, east, north] = data.bbox
-    const origin = [((west ?? 0) + (east ?? 0)) / 2, ((south ?? 0) + (north ?? 0)) / 2] as const
-    if (!effects.windows) return
-    let disposed = false
-    const currentBuilder = builder.current
-    const currentLayer = layer.current
-    const build = () => {
-      const buildings = windowBuildings(map, data, drawn, textured)
-      const next = buildings.map((item) => Math.round(item.ground)).join(",")
-      if (built.current?.data === data && built.current.grounds === next) return
-      built.current = { data, grounds: next }
-      void currentBuilder?.build(buildings, origin).then((mesh) => {
-        if (!disposed && mesh && layer.current === currentLayer) currentLayer?.setMesh(mesh)
-        else if (built.current?.data === data) built.current = undefined
-      })
-    }
-    build()
-    const unwatch = watchTerrainData(map, build)
-    return () => {
-      disposed = true
-      currentBuilder?.cancel()
-      unwatch()
-    }
-  }, [mapRef, ready, scene.data, drawn, textured, builder, layer, effects.windows])
+  useWindowMesh({
+    mapRef,
+    ready,
+    enabled: effects.windows,
+    scene: scene.data,
+    drawn,
+    textured,
+    layer,
+    builder,
+  })
   const night = nightFactor(sun.altitude)
   useEffect(() => {
     const map = mapRef.current
@@ -149,7 +129,7 @@ export function useNightCity({
     const update = () =>
       layer.current?.setLight({
         night,
-        fade: windowFade(map.getZoom()),
+        fade: windowFade(map.getZoom(), night),
         density: effects.windows ? windowDensity(quality) : 0,
         glass: effects.facades ? 1 : 0,
         warm: rgb(colors.windowWarm),

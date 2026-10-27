@@ -51,7 +51,7 @@ export function useRoofMesh(
   useEffect(() => {
     const map = mapRef.current
     const current = layer.current
-    if (!ready || !map || !current) return
+    if (!ready || !map || !current || !enabled) return
     const build = () => {
       if (grow(map) <= 0) return
       const skip = new Set(skipped)

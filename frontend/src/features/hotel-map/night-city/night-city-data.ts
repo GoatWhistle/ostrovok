@@ -57,8 +57,10 @@ export function windowBuildings(
     const id = feature.properties.building_id
     if (textured.has(id)) return []
     const rings = polygons(feature.geometry).flat()
-    const [lon, lat] = rings[0]?.[0] ?? []
-    if (lon === undefined || lat === undefined) return []
+    const outer = rings[0] ?? []
+    if (outer.length === 0) return []
+    const lon = outer.reduce((sum, [x]) => sum + x, 0) / outer.length
+    const lat = outer.reduce((sum, [, y]) => sum + y, 0) / outer.length
     const volume = drawn.get(id)
     return [
       {

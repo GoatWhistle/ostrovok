@@ -30,8 +30,12 @@ export function nightFactor(sunAltitude: number): number {
   return Math.min(1, Math.max(0, amount))
 }
 
-export function windowFade(zoom: number): number {
-  return Math.min(1, Math.max(0, zoom - 16))
+const DAY_WINDOWS_FROM = 16
+const NIGHT_WINDOWS_FROM = 14.6
+
+export function windowFade(zoom: number, night = 0): number {
+  const from = DAY_WINDOWS_FROM + (NIGHT_WINDOWS_FROM - DAY_WINDOWS_FROM) * night
+  return Math.min(1, Math.max(0, zoom - from))
 }
 
 function addNightLayers(map: MapLibreMap, colors: NightColors) {
