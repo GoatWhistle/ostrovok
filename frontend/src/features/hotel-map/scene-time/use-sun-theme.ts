@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react"
+import { revealTransition } from "@/shared/motion"
 import { type Theme, useTheme } from "@/shared/theme"
 
-const DAY_ALTITUDE = 0.05
-const NIGHT_ALTITUDE = -0.11
+const DAY_ALTITUDE = 3
+const NIGHT_ALTITUDE = -6
 
 export function sunTheme(altitude: number, current: Theme): Theme {
   if (altitude >= DAY_ALTITUDE) return "light"
@@ -19,6 +20,7 @@ export function useSunTheme(altitude: number, moment: string): void {
     if (seen.current === moment) return
     seen.current = moment
     const next = sunTheme(altitude, latest.current.theme)
-    if (next !== latest.current.theme) latest.current.setTheme(next)
+    if (next === latest.current.theme) return
+    void revealTransition("dusk", () => latest.current.setTheme(next))
   }, [altitude, moment])
 }

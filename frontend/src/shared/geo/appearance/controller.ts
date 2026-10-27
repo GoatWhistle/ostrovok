@@ -7,7 +7,8 @@ import { tintForTime } from "../time-tint"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
-import { renderAppearanceRoofs } from "./roofs"
+import { renderAppearanceRoofs, roofPaint } from "./roofs"
+import { renderGroundShadows } from "./shadows"
 import type { MapAppearance } from "./types"
 
 export interface MapSceneSnapshot {
@@ -66,11 +67,20 @@ export class MapAppearanceController {
 
   private refreshRoofs = () => {
     if (this.disposed || !this.visible || this.profile === "mini") return
-    const token = APPEARANCES[this.appearance].materials.roofToken
-    const color = token
-      ? getComputedStyle(document.documentElement).getPropertyValue(token).trim()
-      : undefined
-    renderAppearanceRoofs(this.map, color)
+    const materials = APPEARANCES[this.appearance].materials
+    const tokens = materials.roofTokens ?? (materials.roofToken ? [materials.roofToken] : [])
+    const style = getComputedStyle(document.documentElement)
+    const colors = tokens
+      .map((token) => style.getPropertyValue(token).trim())
+      .filter((value) => value.length > 0)
+    renderAppearanceRoofs(this.map, roofPaint(colors))
+    const sun = this.scene?.sun
+    renderGroundShadows(
+      this.map,
+      materials.shadowToken ? style.getPropertyValue(materials.shadowToken).trim() : undefined,
+      sun?.azimuth ?? 0,
+      sun?.altitude ?? 0,
+    )
   }
 
   private paint() {

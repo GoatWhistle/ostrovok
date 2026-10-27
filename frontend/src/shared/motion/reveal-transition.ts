@@ -2,7 +2,7 @@ import { flushSync } from "react-dom"
 import { motionMs, readEasing } from "./css-tokens"
 import { prefersReducedMotion } from "./use-reduced-motion"
 
-export type RevealKind = "theme" | "locale"
+export type RevealKind = "theme" | "locale" | "dusk"
 
 export interface RevealOrigin {
   readonly x: number
@@ -53,6 +53,10 @@ export async function revealTransition(
   try {
     await transition.ready
     window.clearTimeout(limit)
+    if (kind === "dusk") {
+      await transition.finished
+      return
+    }
     root.animate(
       { clipPath: clipFrames(kind, origin) },
       {

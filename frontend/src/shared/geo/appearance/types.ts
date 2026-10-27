@@ -12,6 +12,8 @@ export interface AppearancePackage {
     readonly hotel: "textured" | "matte"
     readonly verticalGradient: boolean
     readonly roofToken: string | null
+    readonly roofTokens?: readonly string[]
+    readonly shadowToken?: string
   }
   readonly effects: {
     readonly windows: boolean

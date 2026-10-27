@@ -39,7 +39,7 @@ const FALLBACK_MAX_ZOOM = 6
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const RELIEF_OPACITY: Readonly<Record<LightMode, number>> = { day: 1, dusk: 1, night: 1 }
-const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.5, dusk: 0.6, night: 0.45 }
+const LIGHT_INTENSITY: Readonly<Record<LightMode, number>> = { day: 0.82, dusk: 0.72, night: 0.55 }
 
 export function lightMode(altitude: number): LightMode {
   if (altitude < -6) return "night"

@@ -14,7 +14,30 @@ const ROOFS = [
   { id: "toy-context-roofs", owner: "buildings-volume", source: "buildings", min: 14, max: 24 },
 ] as const
 
-function renderRoof(map: MapLibreMap, roof: (typeof ROOFS)[number], color: string | undefined) {
+export function roofPaint(colors: readonly string[]): ExpressionSpecification | string | undefined {
+  if (colors.length === 0) return undefined
+  const first = colors[0]
+  if (first === undefined) return undefined
+  if (colors.length === 1) return first
+  const branches = colors.flatMap((color, index) => [index, color])
+  const seed = [
+    "+",
+    ["round", ["*", 10, ["to-number", ["get", "height_m"], 0]]],
+    ["length", ["to-string", ["get", "id"]]],
+  ]
+  return [
+    "match",
+    ["%", seed, colors.length],
+    ...branches,
+    first,
+  ] as unknown as ExpressionSpecification
+}
+
+function renderRoof(
+  map: MapLibreMap,
+  roof: (typeof ROOFS)[number],
+  color: ExpressionSpecification | string | undefined,
+) {
   if (!color) {
     if (map.getLayer(roof.id)) map.removeLayer(roof.id)
     return
@@ -51,6 +74,9 @@ function renderRoof(map: MapLibreMap, roof: (typeof ROOFS)[number], color: strin
     map.setFilter(roof.id, filter ?? null)
 }
 
-export function renderAppearanceRoofs(map: MapLibreMap, color: string | undefined) {
+export function renderAppearanceRoofs(
+  map: MapLibreMap,
+  color: ExpressionSpecification | string | undefined,
+) {
   for (const roof of ROOFS) renderRoof(map, roof, color)
 }

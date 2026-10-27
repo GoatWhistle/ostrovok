@@ -1,6 +1,7 @@
 @import "maplibre-gl/dist/maplibre-gl.css";
 @import "./reset.css";
 @import "./tokens/palette.css";
+@import "./tokens/map-palette.css";
 @import "./tokens/semantic.css";
 @import "./tokens/map.css";
 @import "./tokens/radius.css";
@@ -100,6 +101,12 @@ samp {
 :root[data-view-transition="theme"]::view-transition-new(root),
 :root[data-view-transition="locale"]::view-transition-new(root) {
   z-index: var(--layer-raised);
+}
+
+:root[data-view-transition="dusk"]::view-transition-old(root),
+:root[data-view-transition="dusk"]::view-transition-new(root) {
+  animation-duration: var(--dur-reveal);
+  animation-timing-function: var(--ease-in-out);
 }
 
 html:root[data-switching] *,

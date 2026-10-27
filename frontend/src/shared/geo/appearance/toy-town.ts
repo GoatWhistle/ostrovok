@@ -48,7 +48,20 @@ export const TOY_TOWN: AppearancePackage = {
     cityGlow: "--map-toy-road",
   },
   classPrefix: "--map-toy-class-",
-  materials: { hotel: "matte", verticalGradient: false, roofToken: "--map-toy-roof" },
+  materials: {
+    hotel: "matte",
+    verticalGradient: true,
+    roofToken: "--map-toy-roof",
+    roofTokens: [
+      "--map-toy-roof",
+      "--map-toy-roof-clay",
+      "--map-toy-roof-slate",
+      "--map-toy-roof-sage",
+      "--map-toy-roof-sand",
+      "--map-toy-roof-steel",
+    ],
+    shadowToken: "--map-toy-shadow",
+  },
   effects: { windows: false, lights: false, roadGlow: false },
   mini: { terrain: false, volumes: false, lights: false },
 }
