@@ -137,3 +137,11 @@ html:root[data-switching] *::after {
 ::view-transition-new(search-stage) {
   animation: var(--motion-atlas-in);
 }
+
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select {
+    font-size: var(--font-size-body);
+  }
+}
