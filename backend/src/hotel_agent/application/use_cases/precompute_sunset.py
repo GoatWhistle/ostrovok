@@ -29,8 +29,16 @@ class PrecomputeSunset:
     async def __call__(self, region: str) -> int:
         async with self._uow() as uow:
             hotels = await uow.search.list_hotels(region, None)
+            kept = await uow.search.list_facts(
+                None, hotel_ids=[hotel.id for hotel in hotels], characteristic_keys=[KEY]
+            )
+        rechecked = {row.hotel_id for row in kept if row.id != f"f_{KEY}_{row.hotel_id}"}
         now = self._clock.now()
-        records = [row for hotel in hotels if (row := await self.fact(hotel, now)) is not None]
+        records = [
+            row
+            for hotel in hotels
+            if hotel.id not in rechecked and (row := await self.fact(hotel, now)) is not None
+        ]
         if records:
             async with self._uow() as uow:
                 await uow.facts.save(records)

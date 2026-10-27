@@ -43,6 +43,7 @@ def build(
         return_value=SimpleNamespace(
             search=SimpleNamespace(
                 list_hotels=AsyncMock(return_value=[hotel(levels)]),
+                list_facts=AsyncMock(return_value=[]),
                 list_facades=AsyncMock(return_value=facades),
                 list_rooms=AsyncMock(return_value=rooms or []),
             ),
@@ -145,3 +146,36 @@ async def test_a_room_without_a_floor_leaves_the_estimate_unconfirmed() -> None:
 
     assert saved[0].qualifiers["bookable_room_confirmed"] is False
     assert saved[0].qualifiers["rooms_with_known_floor"] == 0
+
+
+async def test_a_hotel_with_a_rechecked_version_is_left_alone() -> None:
+    use_case, saved = build(
+        [facade(290.0)], {"h1": {"ground_elevation_m": 12.0, "skyline_elevation_m": 14.0}}
+    )
+    scope = use_case._uow()
+    scope.__aenter__.return_value.search.list_facts = AsyncMock(
+        return_value=[
+            SearchFactRecord(
+                hotel_id="h1",
+                id="f_sunset_view_h1_r20261027204806",
+                characteristic_key="sunset_view",
+                value=True,
+                unit=None,
+                qualifiers={},
+                source_type="computed",
+                source_id=None,
+                method="sunset_view@1",
+                confidence=0.75,
+                computed_at=NOW,
+                valid_until=None,
+                status="active",
+                geo_refs=(),
+                explanation="",
+                facade_azimuth=None,
+                subject_id="h1",
+            )
+        ]
+    )
+
+    assert await use_case("sochi") == 0
+    assert saved == []
