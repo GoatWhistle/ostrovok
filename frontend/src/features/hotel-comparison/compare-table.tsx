@@ -31,6 +31,7 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
       className={styles.frame}
       role="region"
       aria-label={t("explore:compare.title")}
+      data-count={ids.length > 2 ? "many" : "pair"}
       tabIndex={0}
     >
       <div className={styles.table} style={{ "--compare-count": ids.length } as CSSProperties}>
@@ -55,6 +56,13 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
                 hotel={hotel?.data?.hotel ?? data.matches.get(id)?.hotel}
                 supplier={data.details[index]?.data?.details ?? undefined}
                 match={data.matches.get(id)}
+                media={
+                  <CompareMedia
+                    compact
+                    hotel={hotel?.data?.hotel ?? data.matches.get(id)?.hotel}
+                    supplier={data.details[index]?.data?.details ?? undefined}
+                  />
+                }
                 pending={hotel?.isPending ?? false}
                 failed={hotel?.isError ?? false}
                 onRetry={() => void hotel?.refetch()}

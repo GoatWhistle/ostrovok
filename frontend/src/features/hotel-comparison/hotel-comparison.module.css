@@ -39,6 +39,10 @@
 }
 
 @media (max-width: 47.99rem) {
+  .toolbar {
+    gap: var(--space-4) var(--space-8);
+  }
+
   .summary {
     flex: 1 1 100%;
   }

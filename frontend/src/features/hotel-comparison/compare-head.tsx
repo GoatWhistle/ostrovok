@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { HotelStars, HotelThumb, useHotelOffers, useHotelStay } from "@/entities/hotel"
 import type { HotelSummary, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
@@ -12,6 +13,7 @@ export interface CompareHeadProps {
   readonly hotel: HotelSummary | undefined
   readonly supplier: Supplier | undefined
   readonly match: SearchResult | undefined
+  readonly media?: ReactNode
   readonly pending: boolean
   readonly failed: boolean
   readonly onRetry: () => void
@@ -68,14 +70,18 @@ function ComparePrice({ id }: { readonly id: string }) {
   return <p className={styles.price}>{t("explore:compare.priceFrom", { price })}</p>
 }
 
-export function CompareMedia({ hotel, supplier }: Pick<CompareHeadProps, "hotel" | "supplier">) {
+export function CompareMedia({
+  hotel,
+  supplier,
+  compact = false,
+}: Pick<CompareHeadProps, "hotel" | "supplier"> & { readonly compact?: boolean }) {
   return (
     <HotelThumb
       src={hotel?.thumbnail_url}
       photos={hotel?.photos}
       extra={supplier?.photos.map((photo) => photo.url)}
       placeholder
-      className={styles.photo}
+      className={compact ? styles.thumb : styles.photo}
     />
   )
 }
@@ -85,6 +91,7 @@ export function CompareHead({
   hotel,
   supplier,
   match,
+  media,
   pending,
   failed,
   onRetry,
@@ -95,6 +102,7 @@ export function CompareHead({
   const stars = hotel?.stars ?? supplier?.facts.star_rating
   return (
     <div className={styles.head}>
+      {media}
       <div className={styles.title}>
         {name ? (
           <p className={styles.name} dir="auto" title={name}>

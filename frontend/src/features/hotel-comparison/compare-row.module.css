@@ -85,11 +85,34 @@
 @media (max-width: 47.99rem) {
   .label {
     grid-column: 1 / -1;
-    padding-block: var(--space-16) 0;
+    padding-block: var(--space-12) var(--space-2);
   }
 
   .title {
     position: sticky;
     inset-inline-start: 0;
+    font-size: var(--font-size-label);
+  }
+
+  .cell {
+    padding-block: 0 var(--space-8);
+  }
+
+  .action {
+    --button-padding: 0;
+
+    margin-inline-start: 0;
+  }
+
+  .static,
+  .empty {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--control-height-compact);
+    padding-block: 0;
+  }
+
+  .empty {
+    font-size: var(--font-size-body-sm);
   }
 }
