@@ -34,3 +34,9 @@
   gap: var(--space-12);
   max-inline-size: var(--prose-measure);
 }
+
+.skipped {
+  display: grid;
+  gap: var(--space-16);
+  max-inline-size: var(--prose-measure);
+}

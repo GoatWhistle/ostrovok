@@ -328,7 +328,7 @@
     "state": {
       "open": "Waiting",
       "answered": "Done",
-      "skipped": "Skipped"
+      "skipped": "Deferred"
     },
     "why": "Every traveller will see the answer. It becomes a fact with the source \"hotelier\" and replaces the calculation.",
     "draftAtRisk": "This draft will be lost when you close the tab. Save your answer before leaving.",
@@ -336,11 +336,37 @@
     "currentText": "Source: {{source}}. Your answer will replace this value.",
     "currentNone": "Now in search: no data",
     "currentNoneText": "Until you answer, the hotel is left out of searches for this condition.",
-    "extracted": "New facts from your answer",
-    "conflicts": "Your answer disagrees with other sources",
     "conflictsText": "The hotelier's answer wins in search.",
     "hotelCard": "Hotel card",
-    "next": "Next question"
+    "next": "Next question",
+    "tabsLabel": "Question status",
+    "tabs": {
+      "open": "Needs an answer",
+      "skipped": "Deferred",
+      "answered": "Done"
+    },
+    "tabCount": "{{label}}: {{count}}",
+    "skip": "Defer",
+    "skipFailed": "The question could not be deferred. Your draft is kept; try again.",
+    "skippedTitle": "Question deferred",
+    "skippedText": "The status is saved on the server. Return the question when you have an answer.",
+    "reopen": "Return to work",
+    "reopenFailed": "The question could not be returned to work",
+    "savedAt": "Answer saved {{date}}",
+    "savedConflict": "Answer saved, but it differs from other sources",
+    "yourAnswer": "Your answer",
+    "savedValue": "Value in search",
+    "edit": "Edit",
+    "noLink": "The answer is not linked to a fact",
+    "noLinkText": "The answer text is saved. Check the value in the hotel card.",
+    "factFailed": "The saved value could not be loaded",
+    "followUpText": "Add details to your answer and save it again.",
+    "previousAnswer": "Sent answer",
+    "allAnswered": "All questions are answered",
+    "allAnsweredText": "Saved answers are in the Done tab.",
+    "noSkipped": "No deferred questions",
+    "noAnswered": "No answered questions yet",
+    "queueError": "Not saved"
   },
   "compare": {
     "title": "Compare what matters",

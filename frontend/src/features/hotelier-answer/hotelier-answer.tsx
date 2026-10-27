@@ -1,18 +1,19 @@
 import { type FormEvent, useState } from "react"
 import { useNavigate } from "react-router"
 import { useHotelierQuestions } from "@/entities/hotelier"
-import type { components } from "@/shared/api/schema.gen"
 import { useTranslation } from "@/shared/i18n"
-import { Button, EmptyState, ErrorState, Skeleton, TextField } from "@/shared/ui"
+import { Button, EmptyState, ErrorState, Segmented, Skeleton, TextField } from "@/shared/ui"
 import styles from "./hotelier-answer.module.css"
 import { QuestionAnswer } from "./question-answer"
 import { QuestionQueue } from "./question-queue"
-
-type Question = components["schemas"]["HotelierQuestion"]
+import { type QueueTab, useQuestionSelection } from "./use-question-selection"
 
 export interface HotelierAnswerProps {
   readonly hotelId: string | undefined
+  readonly onEditFact: (factId: string) => void
 }
+
+const TABS: readonly QueueTab[] = ["open", "skipped", "answered"]
 
 function QueueSkeleton() {
   return (
@@ -22,14 +23,6 @@ function QueueSkeleton() {
       <Skeleton lines={2} />
     </div>
   )
-}
-
-function pick(items: readonly Question[], picked: string | undefined) {
-  const open = items.filter((item) => (item.status ?? "open") === "open")
-  const selected =
-    items.find((item) => item.id !== undefined && item.id === picked) ?? open[0] ?? items[0]
-  const next = open[(open.findIndex((item) => item.id === selected?.id) + 1) % open.length]
-  return { selected, next: next && next.id !== selected?.id ? next.id : undefined }
 }
 
 function LookupForm({ hotelId }: { readonly hotelId: string | undefined }) {
@@ -55,21 +48,61 @@ function LookupForm({ hotelId }: { readonly hotelId: string | undefined }) {
   )
 }
 
-export function HotelierAnswer({ hotelId }: HotelierAnswerProps) {
+function TabEmpty({ tab, answered }: { readonly tab: QueueTab; readonly answered: number }) {
   const { t } = useTranslation()
-  const [picked, setPicked] = useState<string>()
+  if (tab === "skipped") return <p className={styles.empty}>{t("explore:hotelier.noSkipped")}</p>
+  if (tab === "answered") return <p className={styles.empty}>{t("explore:hotelier.noAnswered")}</p>
+  return (
+    <p className={styles.empty}>
+      {answered ? t("explore:hotelier.allAnsweredText") : t("explore:hotelier.empty")}
+    </p>
+  )
+}
+
+function QueueTabs({ queue }: { readonly queue: ReturnType<typeof useQuestionSelection> }) {
+  const { t } = useTranslation()
+  return (
+    <>
+      <div className={styles.tabs}>
+        <Segmented
+          label={t("explore:hotelier.tabsLabel")}
+          value={queue.tab}
+          onChange={queue.changeTab}
+          options={TABS.map((tab) => ({
+            value: tab,
+            label: t("explore:hotelier.tabCount", {
+              label: t(`explore:hotelier.tabs.${tab}`),
+              count: queue.counts[tab],
+            }),
+          }))}
+        />
+      </div>
+      {queue.visible.length ? (
+        <QuestionQueue
+          questions={queue.visible}
+          selectedId={queue.selected?.id}
+          onSelect={queue.select}
+        />
+      ) : (
+        <TabEmpty tab={queue.tab} answered={queue.counts.answered} />
+      )}
+    </>
+  )
+}
+
+export function HotelierAnswer({ hotelId, onEditFact }: HotelierAnswerProps) {
+  const { t } = useTranslation()
   const questions = useHotelierQuestions(hotelId)
   const items = questions.data?.items ?? []
-  const { selected, next } = pick(items, picked)
+  const queue = useQuestionSelection(items)
   const loading = hotelId !== undefined && questions.isPending
+  const next = queue.next
   return (
     <div className={styles.workspace}>
       <aside className={styles.queue} aria-label={t("explore:hotelier.queue")}>
         <LookupForm hotelId={hotelId} />
         {loading ? <QueueSkeleton /> : null}
-        {items.length ? (
-          <QuestionQueue questions={items} selectedId={selected?.id} onSelect={setPicked} />
-        ) : null}
+        {items.length ? <QueueTabs queue={queue} /> : null}
       </aside>
       <div className={styles.main}>
         {hotelId ? null : (
@@ -87,15 +120,19 @@ export function HotelierAnswer({ hotelId }: HotelierAnswerProps) {
             retryPending={questions.isFetching}
           />
         ) : null}
-        {questions.isSuccess && !items.length ? (
-          <EmptyState icon="verified" title={t("explore:hotelier.empty")} />
+        {questions.isSuccess && !queue.counts.open && !queue.counts.skipped ? (
+          <EmptyState
+            icon="verified"
+            title={t(items.length ? "explore:hotelier.allAnswered" : "explore:hotelier.empty")}
+          />
         ) : null}
-        {hotelId && selected ? (
+        {hotelId && queue.selected ? (
           <QuestionAnswer
-            key={selected.id}
+            key={queue.selected.id}
             hotelId={hotelId}
-            question={selected}
-            onSkip={next ? () => setPicked(next) : undefined}
+            question={queue.selected}
+            onNext={next ? () => queue.select(next) : undefined}
+            onEditFact={onEditFact}
           />
         ) : null}
       </div>

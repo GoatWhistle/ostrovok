@@ -29,7 +29,13 @@ describe("hotel question drafts", () => {
       return (
         <QueryClientProvider client={client}>
           <LocaleProvider>
-            <QuestionAnswer key={id} hotelId="h_draft" question={question(id)} onSkip={undefined} />
+            <QuestionAnswer
+              key={id}
+              hotelId="h_draft"
+              question={question(id)}
+              onNext={undefined}
+              onEditFact={() => {}}
+            />
           </LocaleProvider>
         </QueryClientProvider>
       )

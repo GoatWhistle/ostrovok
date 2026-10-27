@@ -24,7 +24,13 @@ export function HotelierPage() {
         }
       />
       <div className={styles.panels} data-detail={hotelId !== undefined}>
-        <HotelierAnswer key={hotelId ?? "none"} hotelId={hotelId} />
+        <HotelierAnswer
+          key={hotelId ?? "none"}
+          hotelId={hotelId}
+          onEditFact={(fact) => {
+            if (hotelId) setSelected({ hotel: hotelId, fact })
+          }}
+        />
         {hotelId ? (
           <aside className={styles.detail} aria-label={t("explore:hotelier.hotelCard")}>
             {selected?.hotel === hotelId ? (

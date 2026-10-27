@@ -26,7 +26,12 @@ function mount(key: string) {
   render(
     <QueryClientProvider client={registryClient()}>
       <LocaleProvider>
-        <QuestionAnswer hotelId="h_typed" question={question} onSkip={undefined} />
+        <QuestionAnswer
+          hotelId="h_typed"
+          question={question}
+          onNext={undefined}
+          onEditFact={() => {}}
+        />
       </LocaleProvider>
     </QueryClientProvider>,
   )

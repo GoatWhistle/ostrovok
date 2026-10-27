@@ -1,1 +1,1 @@
-export { useHotelierAnswer, useHotelierQuestions } from "./hotelier.queries"
+export { useHotelierAnswer, useHotelierQuestions, useQuestionStatus } from "./hotelier.queries"
