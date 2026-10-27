@@ -34,7 +34,6 @@
     "startText": "Write it in plain words. We check each condition against data and show it on the map.",
     "suggestBars": "bars nearby",
     "suggestHigh": "high floor",
-    "historyShort": "History",
     "searchHistory": "Find a chat",
     "rename": "Rename",
     "renameLabel": "Chat name",
@@ -58,7 +57,13 @@
       "research": "Checking conditions against sources: {{wishes, number}}",
       "wish": "Checked the condition: {{term}}",
       "review": "Matching the selection against its sources"
-    }
+    },
+    "chats": "Chats",
+    "sidebarOpen": "Show the chat list",
+    "sidebarClose": "Hide the chat list",
+    "groupToday": "Today",
+    "groupYesterday": "Yesterday",
+    "groupEarlier": "Earlier"
   },
   "navigation": {
     "search": "Find a hotel",
@@ -201,7 +206,6 @@
     "noiseExplanation": "Estimated from nearby OpenStreetMap roads, railway lines, and bars. This is not a room noise measurement."
   },
   "offers": {
-    "title": "Available rooms by date",
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "adults": "Adults: {{count}}",
@@ -230,10 +234,7 @@
     "sandbox": "Supplier test data. Prices and availability are not confirmed for booking.",
     "viewRooms": "Rooms and prices",
     "fromPrice": "From {{price}}",
-    "available": "Offers available for these dates",
     "facilitiesNote": "Hotel facilities are not necessarily included in the room rate.",
-    "categoriesTitle": "Room categories on Ostrovok",
-    "categoriesNote": "Catalog categories. Availability and prices are shown only for offers on your selected dates.",
     "nonSmoking": "Non-smoking",
     "facilities": {
       "internet": "Internet",
@@ -536,19 +537,10 @@
     "page": "Hotel page: {{source}}"
   },
   "rooms": {
-    "noPhotos": "No photos received for this room",
-    "photos": "Room photos",
-    "photoError": "Could not load the photo",
     "photoAlt": "{{name}}, photo {{number}}",
     "previousPhoto": "Previous photo",
     "nextPhoto": "Next photo",
-    "photoCount": "{{current}} of {{total}}",
-    "count": "Categories: {{rooms}}. Rates for your dates: {{rates}}.",
-    "noRate": "No rate received for this category on your dates",
-    "needStay": "Prices appear once the check-in date, check-out date and guests are set",
-    "open": "View room",
     "back": "All rooms",
-    "area": "Area: {{value}} m²",
     "rates": "Rates for your dates",
     "partial": "The full rate list could not be loaded. Showing the offers received.",
     "freeCancellation": "Free cancellation until {{date}}",
@@ -719,5 +711,21 @@
     "rooms_other": "{{count, number}} rooms",
     "count": "{{current}}/{{total}}",
     "loading": "Loading photo"
+  },
+  "roomsScreen": {
+    "title": "Rooms and prices",
+    "back": "Back to hotel",
+    "teaserPriced_one": "{{count, number}} room type, from {{price}}",
+    "teaserPriced_few": "{{count, number}} room types, from {{price}}",
+    "teaserPriced_many": "{{count, number}} room types, from {{price}}",
+    "teaserPriced_other": "{{count, number}} room types, from {{price}}",
+    "teaserDates_one": "{{count, number}} room type, choose dates",
+    "teaserDates_few": "{{count, number}} room types, choose dates",
+    "teaserDates_many": "{{count, number}} room types, choose dates",
+    "teaserDates_other": "{{count, number}} room types, choose dates",
+    "teaserEmpty": "Choose dates to see prices",
+    "unreachable": "Rooms and prices for this hotel are not available yet",
+    "area": "{{value}} m²",
+    "noRate": "No rate for these dates"
   }
 }

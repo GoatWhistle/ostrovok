@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Card } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
+import { HotelCover } from "../hotel-cover"
 import { OfferCard } from "../offer-card"
-import { RoomGallery } from "./room-gallery"
 import styles from "./rooms.module.css"
 
 type Room = components["schemas"]["SupplierRoom"]
@@ -52,27 +52,44 @@ export function RoomView({
 }) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  const title = useRef<HTMLButtonElement>(null)
+  const back = useRef<HTMLButtonElement>(null)
   useEffect(() => {
-    title.current?.focus()
+    back.current?.focus({ preventScroll: true })
   }, [])
   const amenities = room.amenities.flatMap((code) => (AMENITIES[code] ? [AMENITIES[code]] : []))
+  const facts = [
+    room.size_sqm != null
+      ? t("explore:roomsScreen.area", {
+          value: new Intl.NumberFormat(locale).format(room.size_sqm),
+        })
+      : undefined,
+    room.bedding ?? undefined,
+  ].filter((value): value is string => Boolean(value))
   return (
-    <Card className={styles.catalog} title={<span lang="ru">{room.name}</span>}>
-      <Button ref={title} variant="ghost" icon="chevron-left" onClick={onBack}>
+    <section className={styles.room} aria-label={room.name}>
+      <Button ref={back} variant="ghost" size="compact" icon="chevron-left" onClick={onBack}>
         {t("explore:rooms.back")}
       </Button>
-      <RoomGallery photos={room.photos} name={room.name} />
-      {room.size_sqm != null ? (
-        <p>
-          {t("explore:rooms.area", { value: new Intl.NumberFormat(locale).format(room.size_sqm) })}
-        </p>
+      <HotelCover key={room.id} photos={room.photos} name={room.name} />
+      <p className={styles.roomName} lang="ru">
+        {room.name}
+      </p>
+      {facts.length ? (
+        <ul className={styles.tags}>
+          {facts.map((fact) => (
+            <li key={fact} className={styles.tag} lang="ru">
+              {fact}
+            </li>
+          ))}
+        </ul>
       ) : null}
-      {room.bedding ? <p lang="ru">{room.bedding}</p> : null}
       {amenities.length ? (
-        <ul className={styles.amenities}>
+        <ul className={styles.amenityGrid}>
           {amenities.map((key) => (
-            <li key={key}>{t(key)}</li>
+            <li key={key} className={styles.amenity}>
+              <Icon name="check" size="sm" />
+              {t(key)}
+            </li>
           ))}
         </ul>
       ) : null}
@@ -84,8 +101,8 @@ export function RoomView({
           ))}
         </ul>
       ) : (
-        <p>{t("explore:rooms.noRate")}</p>
+        <p className={styles.rowDetails}>{t("explore:roomsScreen.noRate")}</p>
       )}
-    </Card>
+    </section>
   )
 }

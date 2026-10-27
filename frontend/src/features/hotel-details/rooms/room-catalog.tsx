@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react"
-import { HotelThumb, minimumOffers, useHotelRoom } from "@/entities/hotel"
+import { minimumOffers, useHotelRoom } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
-import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Card } from "@/shared/ui"
+import { useLocale } from "@/shared/i18n"
 import { OfferCard } from "../offer-card"
+import { RoomRow } from "./room-row"
 import { RoomView } from "./room-view"
 import styles from "./rooms.module.css"
 
@@ -19,7 +19,6 @@ export function RoomCatalog({
   readonly rooms: readonly Room[]
   readonly content?: Offers | undefined
 }) {
-  const { t } = useTranslation()
   const { locale } = useLocale()
   const [selected, setSelected] = useHotelRoom(
     hotelId,
@@ -50,53 +49,38 @@ export function RoomCatalog({
       />
     )
   const ungrouped = offers.filter((offer) => !rooms.some((item) => item.id === offer.room_group_id))
+  function priceOf(id: string) {
+    if (!content) return undefined
+    const cheapest = minimumOffers({
+      ...content,
+      offers: offers.filter((offer) => offer.room_group_id === id),
+    })[0]
+    return cheapest
+      ? new Intl.NumberFormat(locale, {
+          style: "currency",
+          currency: cheapest.price_currency,
+          maximumFractionDigits: 0,
+        }).format(cheapest.price_amount)
+      : undefined
+  }
   return (
-    <div className={styles.catalog}>
-      <p className={styles.title}>{t("explore:offers.categoriesTitle")}</p>
-      <p>{t("explore:offers.categoriesNote")}</p>
-      <p>{t("explore:rooms.count", { rooms: rooms.length, rates: offers.length })}</p>
-      <ul className={styles.list}>
-        {rooms.map((item) => {
-          const rates = offers.filter((offer) => offer.room_group_id === item.id)
-          const prices = (content ? minimumOffers({ ...content, offers: rates }) : []).map(
-            (offer) =>
-              new Intl.NumberFormat(locale, {
-                style: "currency",
-                currency: offer.price_currency,
-              }).format(offer.price_amount),
-          )
-          return (
-            <li key={item.id}>
-              <Card className={styles.card} title={<span lang="ru">{item.name}</span>}>
-                <HotelThumb
-                  className={styles.thumbnail}
-                  photos={item.photos.map((url) => ({ url, kind: "room" }))}
-                />
-                {item.bedding ? <p lang="ru">{item.bedding}</p> : null}
-                {prices.map((price) => (
-                  <p key={price}>{t("explore:offers.fromPrice", { price })}</p>
-                ))}
-                {content && !prices.length ? <p>{t("explore:rooms.noRate")}</p> : null}
-                {prices.length ? <p>{t("explore:offers.stayTotal")}</p> : null}
-                <Button
-                  ref={(node) => {
-                    if (node) buttons.current.set(item.id, node)
-                    else buttons.current.delete(item.id)
-                  }}
-                  variant="secondary"
-                  icon="room"
-                  onClick={() => setSelected(item.id)}
-                >
-                  {t("explore:rooms.open")}
-                </Button>
-              </Card>
-            </li>
-          )
-        })}
-        {ungrouped.map((offer) => (
-          <OfferCard key={offer.id} offer={offer} />
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.rows}>
+      {rooms.map((item) => (
+        <RoomRow
+          key={item.id}
+          room={item}
+          price={priceOf(item.id)}
+          priced={Boolean(content)}
+          buttonRef={(node) => {
+            if (node) buttons.current.set(item.id, node)
+            else buttons.current.delete(item.id)
+          }}
+          onOpen={() => setSelected(item.id)}
+        />
+      ))}
+      {ungrouped.map((offer) => (
+        <OfferCard key={offer.id} offer={offer} />
+      ))}
+    </ul>
   )
 }

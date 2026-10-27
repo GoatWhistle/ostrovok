@@ -34,7 +34,6 @@
     "startText": "Напишите обычными словами. Каждое условие проверим по данным и покажем на карте.",
     "suggestBars": "бары рядом",
     "suggestHigh": "высокий этаж",
-    "historyShort": "История",
     "searchHistory": "Найти чат",
     "rename": "Переименовать",
     "renameLabel": "Название чата",
@@ -58,7 +57,13 @@
       "research": "Проверяю условия по источникам: {{wishes, number}}",
       "wish": "Проверил условие: {{term}}",
       "review": "Сверяю подборку с источниками"
-    }
+    },
+    "chats": "Чаты",
+    "sidebarOpen": "Показать список чатов",
+    "sidebarClose": "Скрыть список чатов",
+    "groupToday": "Сегодня",
+    "groupYesterday": "Вчера",
+    "groupEarlier": "Ранее"
   },
   "navigation": {
     "search": "Поиск отелей",
@@ -201,7 +206,6 @@
     "noiseExplanation": "Оценка по близости дорог, железной дороги и баров OpenStreetMap. Это не замер шума в номере."
   },
   "offers": {
-    "title": "Свободные номера на даты",
     "checkIn": "Заезд",
     "checkOut": "Выезд",
     "adults": "Взрослых: {{count}}",
@@ -230,10 +234,7 @@
     "sandbox": "Тестовые данные поставщика. Цены и доступность не подтверждены для бронирования.",
     "viewRooms": "Номера и цены",
     "fromPrice": "От {{price}}",
-    "available": "Есть предложения на выбранные даты",
     "facilitiesNote": "Услуги отеля не обязательно включены в стоимость номера.",
-    "categoriesTitle": "Категории номеров на Островке",
-    "categoriesNote": "Категории из каталога. Наличие и стоимость указаны только у предложений на выбранные даты.",
     "nonSmoking": "Для некурящих",
     "facilities": {
       "internet": "Интернет",
@@ -536,19 +537,10 @@
     "page": "Страница отеля: {{source}}"
   },
   "rooms": {
-    "noPhotos": "Фотографии этого номера не получены",
-    "photos": "Фотографии номера",
-    "photoError": "Не удалось загрузить фотографию",
     "photoAlt": "{{name}}, фото {{number}}",
     "previousPhoto": "Предыдущее фото",
     "nextPhoto": "Следующее фото",
-    "photoCount": "{{current}} из {{total}}",
-    "count": "Категорий: {{rooms}}. Тарифов на выбранные даты: {{rates}}.",
-    "noRate": "Тариф на выбранные даты для этой категории не получен",
-    "needStay": "Цены появятся после выбора даты заезда, даты выезда и числа гостей",
-    "open": "Посмотреть номер",
     "back": "Все номера",
-    "area": "Площадь: {{value}} м²",
     "rates": "Тарифы на выбранные даты",
     "partial": "Полный список тарифов не загрузился. Показываем полученные предложения.",
     "freeCancellation": "Бесплатная отмена до {{date}}",
@@ -719,5 +711,21 @@
     "rooms_other": "{{count, number}} номера",
     "count": "{{current}}/{{total}}",
     "loading": "Загружаем фото"
+  },
+  "roomsScreen": {
+    "title": "Номера и цены",
+    "back": "К отелю",
+    "teaserPriced_one": "{{count, number}} категория, от {{price}}",
+    "teaserPriced_few": "{{count, number}} категории, от {{price}}",
+    "teaserPriced_many": "{{count, number}} категорий, от {{price}}",
+    "teaserPriced_other": "{{count, number}} категории, от {{price}}",
+    "teaserDates_one": "{{count, number}} категория, выберите даты",
+    "teaserDates_few": "{{count, number}} категории, выберите даты",
+    "teaserDates_many": "{{count, number}} категорий, выберите даты",
+    "teaserDates_other": "{{count, number}} категории, выберите даты",
+    "teaserEmpty": "Выберите даты, чтобы увидеть цены",
+    "unreachable": "Номера и цены этого отеля пока недоступны",
+    "area": "{{value}} м²",
+    "noRate": "Нет тарифа на эти даты"
   }
 }

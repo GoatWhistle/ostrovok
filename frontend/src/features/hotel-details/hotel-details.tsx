@@ -10,9 +10,11 @@ import { HotelFacilities } from "./facilities/hotel-facilities"
 import { FactList } from "./fact-list"
 import styles from "./hotel-details.module.css"
 import { HotelHero } from "./hotel-hero"
-import { HotelOffers } from "./hotel-offers"
 import { MatchRows } from "./matches/match-rows"
 import { RoomList } from "./room-list"
+import { RoomsScreen } from "./rooms/rooms-screen"
+import { RoomsTeaser } from "./rooms/rooms-teaser"
+import { useRoomsScreen } from "./rooms/use-rooms-screen"
 import { SupplierDetails } from "./supplier/supplier-details"
 
 export interface HotelDetailsProps {
@@ -49,6 +51,7 @@ export function HotelDetails({
   const hotel = useHotel(hotelId)
   const catalog = useHotelDetails(hotelId)
   const supplier = catalog.data?.details ?? undefined
+  const roomsScreen = useRoomsScreen(hotelId)
   if (!hotelId)
     return (
       <EmptyState
@@ -74,8 +77,20 @@ export function HotelDetails({
     (fact) =>
       fact.characteristic_key === "sunset_view" || fact.characteristic_key.startsWith("spatial:"),
   )
+  if (roomsScreen.open)
+    return (
+      <article ref={roomsScreen.top} className={clsx(styles.details, className)}>
+        <RoomsScreen
+          hotelId={card.hotel.id}
+          hotelName={card.hotel.name}
+          stay={stay}
+          onBack={roomsScreen.hide}
+        />
+      </article>
+    )
   return (
     <article
+      ref={roomsScreen.top}
       className={clsx(styles.details, className)}
       aria-labelledby={titleId}
       data-motion="fade"
@@ -84,15 +99,7 @@ export function HotelDetails({
         hotel={card.hotel}
         supplier={supplier}
         titleId={titleId}
-        onRooms={
-          catalog.data?.status === "available"
-            ? () => {
-                const section = document.getElementById(`${card.hotel.id}-rooms`)
-                section?.scrollIntoView({ block: "start" })
-                section?.focus({ preventScroll: true })
-              }
-            : undefined
-        }
+        onRooms={catalog.data?.status === "available" ? roomsScreen.show : undefined}
       />
       {matched.length ? (
         <MatchRows
@@ -104,7 +111,7 @@ export function HotelDetails({
       ) : (
         <FactList facts={card.facts.filter(isAvailableFact)} onFact={onFact} />
       )}
-      <HotelOffers hotelId={card.hotel.id} stay={stay} />
+      <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
       {rooms.length ? (
         <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
           <RoomList rooms={rooms} />

@@ -1,15 +1,3 @@
-.section {
-  display: grid;
-  gap: var(--space-12);
-}
-
-.heading {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
 .offer {
   composes: panelSurface from "../../shared/styles/compose.module.css";
   display: grid;
@@ -43,9 +31,5 @@
 }
 
 .metaItem {
-  composes: bodySmText inlineRow from "../../shared/styles/compose.module.css";
-}
-
-.note {
   composes: bodySmText inlineRow from "../../shared/styles/compose.module.css";
 }
