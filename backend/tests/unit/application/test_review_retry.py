@@ -91,7 +91,10 @@ def build(
     scope = MagicMock()
     scope.__aenter__ = AsyncMock(
         return_value=SimpleNamespace(
-            regions=SimpleNamespace(city_bbox=AsyncMock(return_value=(30.1, 59.8, 30.5, 60.0))),
+            regions=SimpleNamespace(
+                city_bbox=AsyncMock(return_value=(30.1, 59.8, 30.5, 60.0)),
+                local_area=AsyncMock(return_value=None),
+            ),
             search=search,
             nearby_objects=SimpleNamespace(),
             named_places=SimpleNamespace(geographic_name=AsyncMock(return_value=None)),

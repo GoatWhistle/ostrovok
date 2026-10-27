@@ -40,7 +40,9 @@ async def test_natural_object_search_uses_full_shape_without_selecting_one_regio
         return hotels
 
     unit = SimpleNamespace(
-        regions=SimpleNamespace(city_bbox=AsyncMock(return_value=None)),
+        regions=SimpleNamespace(
+            city_bbox=AsyncMock(return_value=None), local_area=AsyncMock(return_value=None)
+        ),
         named_places=SimpleNamespace(
             geographic_name=AsyncMock(
                 return_value=NamedPlaceRecord(id="r1", name="Long Lake", location=(104.5, 53.5))

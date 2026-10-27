@@ -41,6 +41,13 @@ class RegionRecord:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class LocalAreaRecord:
+    region_id: str
+    center: tuple[float, float] | None = None
+    kind: str | None = None
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class NamedPlaceRecord:
     id: str
     name: str

@@ -4,7 +4,8 @@ from math import cos, radians
 
 from psycopg import AsyncConnection
 
-from hotel_agent.application.dto import RegionRecord
+from hotel_agent.adapters.db.local_areas import local_area
+from hotel_agent.application.dto import LocalAreaRecord, RegionRecord
 
 LIST_LOADED = """SELECT r.id, r.name, ST_XMin(r.bbox), ST_YMin(r.bbox),
     ST_XMax(r.bbox), ST_YMax(r.bbox), count(h.id), r.built_at::date
@@ -18,14 +19,14 @@ CITY_EXTENT = """SELECT
     percentile_cont(0.05) WITHIN GROUP (ORDER BY ST_Y(location)),
     percentile_cont(0.95) WITHIN GROUP (ORDER BY ST_Y(location))
 FROM hotels WHERE region_id = 'russia'
-  AND translate(lower(tags->>'addr:city'), 'ё', 'е') =
-      translate(lower(%(city)s), 'ё', 'е')"""
+  AND translate(lower(tags->>'addr:city'), 'ё- ', 'е') =
+      translate(lower(%(city)s), 'ё- ', 'е')"""
 
 CITY_CENTER = """SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY ST_X(location)),
     percentile_cont(0.5) WITHIN GROUP (ORDER BY ST_Y(location))
 FROM hotels WHERE region_id = 'russia'
-  AND translate(lower(tags->>'addr:city'), 'ё', 'е') =
-      translate(lower(%(city)s), 'ё', 'е')"""
+  AND translate(lower(tags->>'addr:city'), 'ё- ', 'е') =
+      translate(lower(%(city)s), 'ё- ', 'е')"""
 
 
 class PostgresRegionRepository:
@@ -72,3 +73,6 @@ class PostgresRegionRepository:
         if row is None or row[0] is None or row[1] is None:
             return None
         return float(str(row[0])), float(str(row[1]))
+
+    async def local_area(self, name: str) -> LocalAreaRecord | None:
+        return await local_area(self._connection, name)

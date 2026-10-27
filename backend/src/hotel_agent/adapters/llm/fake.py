@@ -23,6 +23,19 @@ PLACES = (
         ),
         "Санкт-Петербург",
     ),
+    (re.compile(r"\bадлер(?:а|е|у|ом)?\b|\badler\b"), "Адлер"),
+    (re.compile(r"\bхост(?:а|е|у|ы|ой)\b|\bkhosta\b"), "Хоста"),
+    (re.compile(r"\bлазаревск(?:ое|ом|ого|ому)\b|\blazarevskoye\b"), "Лазаревское"),
+    (re.compile(r"\bдагомыс(?:а|е|у|ом)?\b|\bdagomys\b"), "Дагомыс"),
+    (re.compile(r"\bмацест(?:а|е|у|ы|ой)\b|\bmatsesta\b"), "Мацеста"),
+    (
+        re.compile(r"\bкрасн(?:ая|ой|ую) полян(?:а|е|у|ы|ой)\b|\bkrasnaya polyana\b"),
+        "Красная Поляна",
+    ),
+    (re.compile(r"\bлоо\b|\bloo\b"), "Лоо"),
+    (re.compile(r"\bкудепст(?:а|е|у|ы|ой)\b|\bkudepsta\b"), "Кудепста"),
+    (re.compile(r"\bсириус(?:а|е|у|ом)?\b|\bsirius\b"), "Сириус"),
+    (re.compile(r"\bэсто[- ]?сад(?:ок|ка|ке|ку|ком)\b|\besto[- ]?sadok\b"), "Эсто-Садок"),
 )
 
 

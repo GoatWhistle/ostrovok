@@ -136,3 +136,22 @@ async def test_short_answer_fills_the_first_bool_field(
 async def test_short_answer_needs_a_bool_field_and_a_whole_word(llm: FakeLLM) -> None:
     assert (await llm.extract_fields("room_capacity", "Да")).fields == ()
     assert (await llm.extract_fields("double_room", "Когда как")).fields == ()
+
+
+@pytest.mark.parametrize(
+    ("query", "place"),
+    [
+        ("тихий отель в Хосте недалеко от моря на двоих", "Хоста"),
+        ("отель в Адлере у моря", "Адлер"),
+        ("номер в Лазаревском", "Лазаревское"),
+        ("отель в Красной Поляне", "Красная Поляна"),
+        ("гостиница в Эсто-Садке", "Эсто-Садок"),
+        ("отель в Адлере, Сочи", "Адлер"),
+    ],
+)
+async def test_city_district_is_kept_instead_of_its_city(
+    llm: FakeLLM, query: str, place: str
+) -> None:
+    parsed = await llm.parse_query(query)
+
+    assert parsed.location_hint == place

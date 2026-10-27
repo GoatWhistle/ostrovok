@@ -7,6 +7,7 @@ from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
     GeoFeatureRecord,
+    LocalAreaRecord,
     NamedPlaceRecord,
     RegionRecord,
     SearchFactRecord,
@@ -29,6 +30,7 @@ class RegionRepository(Protocol):
 
     async def city_bbox(self, city: str) -> tuple[float, float, float, float] | None: ...
     async def city_center(self, city: str) -> tuple[float, float] | None: ...
+    async def local_area(self, name: str) -> LocalAreaRecord | None: ...
 
 
 class NamedPlaceRepository(Protocol):

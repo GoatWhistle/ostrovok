@@ -25,7 +25,9 @@ def search(
     semantic: SemanticSearchPort | None = None,
 ) -> tuple[SearchHotels, SimpleNamespace, SimpleNamespace, MagicMock]:
     llm = SimpleNamespace(parse_query=AsyncMock(return_value=parsed))
-    regions = SimpleNamespace(city_bbox=AsyncMock(return_value=city_bbox))
+    regions = SimpleNamespace(
+        city_bbox=AsyncMock(return_value=city_bbox), local_area=AsyncMock(return_value=None)
+    )
     hotel = SearchHotelRecord(
         id="m1",
         region_id="russia",
