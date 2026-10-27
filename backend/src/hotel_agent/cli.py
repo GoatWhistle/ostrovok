@@ -15,6 +15,7 @@ from psycopg_pool import AsyncConnectionPool
 from hotel_agent.adapters.clock.system import SystemClock
 from hotel_agent.adapters.db.facades import PostgresFacadeStore
 from hotel_agent.adapters.db.hotel_catalog import PostgresHotelCatalog
+from hotel_agent.adapters.db.metrics import PostgresQualityMetrics
 from hotel_agent.adapters.db.precompute import PostgresPrecompute
 from hotel_agent.adapters.db.seed import PostgresSeedWriter
 from hotel_agent.adapters.db.uow import PostgresUnitOfWorkFactory
@@ -34,6 +35,7 @@ from hotel_agent.adapters.osm.settlements import iter_settlement_batches
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
+from hotel_agent.application.quality_metrics import overall_coverage, overall_hotelier_share
 from hotel_agent.application.use_cases.build_seed import BuildSeed
 from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
@@ -83,6 +85,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return code or asyncio.run(_plan_questions(args.region, settings))
     if args.command == "plan-questions":
         return asyncio.run(_plan_questions(args.region, settings))
+    if args.command == "metrics":
+        return asyncio.run(_metrics(args.region, settings.database_url))
     if args.command == "refresh-facts":
         return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
@@ -248,6 +252,23 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
     for name, count in facades.items():
         print(f"{name}: {count}")
     print(f"sunset_view: {sunset}")
+    return 0
+
+
+async def _metrics(region: str, database_url: str) -> int:
+    async with (
+        AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
+        pool.connection() as db,
+    ):
+        rows = await PostgresQualityMetrics(db).coverage(region)
+    print(f"{'characteristic':28} {'coverage':>9} {'hotelier':>9} {'open':>8}")
+    for row in rows:
+        print(
+            f"{row.characteristic_key:28} {row.coverage:>8.1%} "
+            f"{row.hotelier_share:>8.1%} {row.open_questions:>8}"
+        )
+    print(f"overall coverage: {overall_coverage(rows):.1%}")
+    print(f"overall hotelier share: {overall_hotelier_share(rows):.1%}")
     return 0
 
 

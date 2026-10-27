@@ -61,6 +61,11 @@ def build_parser() -> ArgumentParser:
     refresh.add_argument("--from", dest="directory", default="data/seed/sochi")
     refresh.add_argument("--limit", type=int, default=500)
 
+    metrics = commands.add_parser(
+        "metrics", help="Report characteristic coverage and the share answered by hoteliers"
+    )
+    metrics.add_argument("--region", default="sochi")
+
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)
     catalog.add_argument("--supplier-id", required=True)
