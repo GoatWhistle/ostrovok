@@ -168,7 +168,10 @@ npm run dev
 | `FRONTEND_PORT` | `8080` | Порт интерфейса на хосте |
 | `API_UPSTREAM` | `http://backend:8000` | Куда nginx фронтенда проксирует `/api/` |
 | `API_URL` | `http://localhost:8000` | Куда проксирует `/api` dev-сервер Vite |
-| `API_SCHEMA_URL` | `http://localhost:8000/openapi.json` | Источник схемы для `npm run api:types` |
+| `MAP_ASSET_URL` | значение `API_URL` | Куда dev-сервер Vite проксирует `/maps`: подложки PMTiles, шрифты и спрайты. Для стенда Compose это адрес фронтенда, например `http://localhost:8080` |
+| `API_SCHEMA_URL` | `docs/api/openapi.yaml` | Источник схемы для `npm run api:types`; можно указать адрес `openapi.json` работающего бэкенда |
+| `E2E_BASE_URL` | пусто | Адрес уже запущенного фронтенда для `npm run e2e`; без него Playwright сам поднимает Vite на порту 5179 |
+| `E2E_BROWSER_EXECUTABLE` | пусто | Путь к своему Chromium для `npm run e2e` |
 | `COMPOSE_PROJECT_NAME` | `hotel-agent` | Имя проекта Compose и префикс образов |
 | `TAG` | `latest` | Тег образов |
 | `SITE_URL` | пусто | Адрес сайта для мета-тегов при сборке фронтенда |
@@ -206,7 +209,10 @@ npm run e2e
 
 `npm run verify` проверяет правила кода, CSS, текстов и движения, типы, Biome, запускает Vitest и
 собирает приложение. `npm run e2e` сам поднимает dev-сервер Vite и запускает Playwright; браузер
-Chromium должен быть установлен (`npx playwright install chromium`).
+Chromium должен быть установлен (`npx playwright install chromium`). Поиск, отели и ответы отельера
+в сценариях подменяются ответами по контракту, а метаданные, карта и погода запрашиваются у
+работающего бэкенда по `API_URL`. Часть сценариев намеренно запускает браузер без WebGL и проверяет
+резервное состояние карты.
 
 ## Что делать, если не запускается?
 

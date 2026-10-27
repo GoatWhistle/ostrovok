@@ -15,6 +15,7 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: true,
+  workers: 2,
   reporter: [["list"]],
   use: {
     baseURL,
@@ -26,6 +27,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: 1440, height: 900 },
+        channel: "chromium",
         ...(executablePath ? { launchOptions: { executablePath } } : {}),
       },
     },

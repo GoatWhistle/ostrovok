@@ -46,7 +46,14 @@ function dynamicKind(path: string): string {
 }
 
 export async function installHotelContract(page: Page) {
-  const calls = { searches: 0, answers: 0, confirmed: 0, corrected: 0, batches: 0 }
+  const calls = {
+    searches: 0,
+    answers: 0,
+    confirmed: 0,
+    corrected: 0,
+    batches: 0,
+    compared: [] as string[],
+  }
   const chatMessages: { id: string; role: string; content: string; created_at: string }[] = []
   await page.addInitScript(() => {
     localStorage.setItem("app-theme", "dark")
@@ -55,7 +62,12 @@ export async function installHotelContract(page: Page) {
   await page.route("**/api/v1/**", async (route) => {
     const path = new URL(route.request().url()).pathname.replace("/api/v1", "")
     const hotel = HOTELS.find((item) => path.includes(item.id)) ?? HOTELS[0]
-    if (path === "/health" || path === "/characteristics") {
+    if (
+      path === "/health" ||
+      path === "/characteristics" ||
+      path.startsWith("/map/") ||
+      path.startsWith("/weather")
+    ) {
       await route.continue()
       return
     }
@@ -171,10 +183,13 @@ export async function installHotelContract(page: Page) {
           ],
         }
       },
-      "/compare": () => ({
-        characteristic_keys: ["distance_to_sea"],
-        rows: HOTELS.map((item) => ({ hotel_id: item.id, cells: { distance_to_sea: FACT } })),
-      }),
+      "/compare": () => {
+        calls.compared = route.request().postDataJSON().hotel_ids
+        return {
+          characteristic_keys: ["distance_to_sea"],
+          rows: HOTELS.map((item) => ({ hotel_id: item.id, cells: { distance_to_sea: FACT } })),
+        }
+      },
       confirm: () => {
         calls.confirmed++
         return { ...FACT, status: "confirmed_by_hotelier" }

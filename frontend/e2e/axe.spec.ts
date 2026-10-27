@@ -1,6 +1,8 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, type Page, test } from "@playwright/test"
 
+test.use({ reducedMotion: "reduce", launchOptions: { args: ["--disable-webgl"] } })
+
 const ROUTES = ["/", "/hotelier", "/compare", "/missing-page"]
 const THEMES = ["light", "dark"] as const
 const LOCALES = ["ru", "en"] as const
@@ -16,7 +18,7 @@ async function settle(page: Page): Promise<void> {
 }
 
 async function audit(page: Page, route: string): Promise<void> {
-  await page.goto(route)
+  await page.goto(route, { waitUntil: "domcontentloaded" })
   await expect(page.locator("#main h1")).toBeVisible()
   await settle(page)
   const result = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze()
