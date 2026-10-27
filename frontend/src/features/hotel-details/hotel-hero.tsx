@@ -12,6 +12,7 @@ type Supplier = components["schemas"]["SupplierDetails"]
 export interface HotelHeroProps {
   readonly hotel: HotelSummary
   readonly supplier: Supplier | undefined
+  readonly source?: string | null | undefined
   readonly titleId: string
   readonly onRooms: (() => void) | undefined
 }
@@ -25,7 +26,7 @@ function coverPhotos(hotel: HotelSummary, supplier: Supplier | undefined): strin
   return [...new Set(urls.flatMap((url) => (sourceUrl(url) ? [sourceUrl(url) as string] : [])))]
 }
 
-function useHeroFacts(supplier: Supplier | undefined) {
+function useHeroFacts(supplier: Supplier | undefined, source: string | null | undefined) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   if (!supplier) return []
@@ -36,7 +37,8 @@ function useHeroFacts(supplier: Supplier | undefined) {
     facts.push({
       key: "rating",
       icon: "star",
-      text: t("explore:hotelCover.rating", {
+      text: t(source ? "explore:hotelCover.sourceRating" : "explore:hotelCover.rating", {
+        source: source ?? "",
         score: new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(score),
         count: supplier.rating?.reviews_count ?? 0,
       }),
@@ -62,24 +64,26 @@ function useHeroFacts(supplier: Supplier | undefined) {
   return facts
 }
 
-export function HotelHero({ hotel, supplier, titleId, onRooms }: HotelHeroProps) {
+export function HotelHero({ hotel, supplier, source, titleId, onRooms }: HotelHeroProps) {
   const { t } = useTranslation()
-  const facts = useHeroFacts(supplier)
+  const facts = useHeroFacts(supplier, source)
   return (
     <header className={styles.hero}>
       <HotelCover key={hotel.id} photos={coverPhotos(hotel, supplier)} name={hotel.name} />
       <div className={styles.title}>
-        <p id={titleId} className={styles.name} lang="ru">
-          {hotel.name}
-        </p>
-        <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+        <div className={styles.naming}>
+          <p id={titleId} className={styles.name} lang="ru">
+            {hotel.name}
+          </p>
+          <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+        </div>
+        {hotel.address ? (
+          <p className={styles.address}>
+            <Icon name="pin" size="sm" className={styles.pin} />
+            <span lang="ru">{hotel.address}</span>
+          </p>
+        ) : null}
       </div>
-      {hotel.address ? (
-        <p className={styles.meta}>
-          <Icon name="pin" size="sm" />
-          <span lang="ru">{hotel.address}</span>
-        </p>
-      ) : null}
       {facts.length ? (
         <ul className={styles.facts}>
           {facts.map((fact) => (

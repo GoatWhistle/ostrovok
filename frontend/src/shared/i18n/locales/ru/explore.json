@@ -716,6 +716,12 @@
     "rooms_one": "{{count, number}} номер",
     "rooms_few": "{{count, number}} номера",
     "rooms_many": "{{count, number}} номеров",
-    "rooms_other": "{{count, number}} номера"
+    "rooms_other": "{{count, number}} номера",
+    "count": "{{current}}/{{total}}",
+    "sourceRating_one": "{{source}}: {{score}} из 10, {{count, number}} отзыв",
+    "sourceRating_few": "{{source}}: {{score}} из 10, {{count, number}} отзыва",
+    "sourceRating_many": "{{source}}: {{score}} из 10, {{count, number}} отзывов",
+    "sourceRating_other": "{{source}}: {{score}} из 10, {{count, number}} отзыва",
+    "loading": "Загружаем фото"
   }
 }

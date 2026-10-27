@@ -716,6 +716,12 @@
     "rooms_one": "{{count, number}} room",
     "rooms_few": "{{count, number}} rooms",
     "rooms_many": "{{count, number}} rooms",
-    "rooms_other": "{{count, number}} rooms"
+    "rooms_other": "{{count, number}} rooms",
+    "count": "{{current}}/{{total}}",
+    "sourceRating_one": "{{source}}: {{score}}/10, {{count, number}} review",
+    "sourceRating_few": "{{source}}: {{score}}/10, {{count, number}} reviews",
+    "sourceRating_many": "{{source}}: {{score}}/10, {{count, number}} reviews",
+    "sourceRating_other": "{{source}}: {{score}}/10, {{count, number}} reviews",
+    "loading": "Loading photo"
   }
 }

@@ -12,6 +12,8 @@
   --surface-highlight: var(--lime-200);
   --surface-skeleton: var(--frost-100);
   --surface-scrim: color-mix(in oklab, var(--night-950) 42%, transparent);
+  --surface-media-scrim: color-mix(in oklab, var(--night-1000) 45%, transparent);
+  --text-on-media: var(--night-50);
   --surface-glass: color-mix(in oklab, var(--frost-0) 70%, transparent);
   --text-primary: var(--night-950);
   --text-secondary: var(--night-650);
@@ -97,6 +99,8 @@
   --surface-highlight: #26341a;
   --surface-skeleton: var(--night-850);
   --surface-scrim: color-mix(in oklab, var(--night-1000) 60%, transparent);
+  --surface-media-scrim: color-mix(in oklab, var(--night-1000) 45%, transparent);
+  --text-on-media: var(--night-50);
   --surface-glass: color-mix(in oklab, var(--night-900) 62%, transparent);
   --text-primary: var(--night-50);
   --text-secondary: var(--night-300);

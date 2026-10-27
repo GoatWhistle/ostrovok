@@ -83,6 +83,7 @@ export function HotelDetails({
       <HotelHero
         hotel={card.hotel}
         supplier={supplier}
+        source={catalog.data?.source}
         titleId={titleId}
         onRooms={
           catalog.data?.status === "available"

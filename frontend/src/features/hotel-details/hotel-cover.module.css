@@ -10,14 +10,46 @@
   border-radius: var(--radius-md);
   object-fit: cover;
   background-color: var(--surface-sunken);
-  animation: var(--motion-fade-in);
+  opacity: 0;
+  transition: var(--transition-fade);
+}
+
+.photo[data-ready="true"] {
+  opacity: 1;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+}
+
+.skeleton > span {
+  block-size: 100%;
+  border-radius: var(--radius-md);
+}
+
+.spinner {
+  position: relative;
+  color: var(--text-muted);
 }
 
 .previous,
 .next {
+  --button-surface: transparent;
+  --button-surface-hover: transparent;
+  --button-surface-press: transparent;
+  --button-text: var(--text-on-media);
   position: absolute;
   inset-block-start: 50%;
   translate: 0 -50%;
+  filter: var(--filter-on-media);
 }
 
 .previous {
@@ -34,10 +66,13 @@
 }
 
 .count {
-  composes: captionStrong glassSurface from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../shared/styles/compose.module.css";
   position: absolute;
   inset-block-end: var(--space-8);
   inset-inline-end: var(--space-8);
   padding: var(--space-2) var(--space-8);
   border-radius: var(--radius-pill);
+  background-color: var(--surface-media-scrim);
+  color: var(--text-on-media);
+  font-variant-numeric: tabular-nums;
 }
