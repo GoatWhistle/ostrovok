@@ -102,7 +102,10 @@ function refineRanks(
   })
 }
 
-const SCRIPT: Readonly<Record<Locale, RegExp>> = { ru: /[Ѐ-ӿ]/, en: /^[^Ѐ-ӿ]*$/ }
+const SCRIPT: Readonly<Record<Locale, RegExp>> = {
+  ru: /\p{Script=Cyrillic}/u,
+  en: /^\P{Script=Cyrillic}*$/u,
+}
 
 function localTitle(candidates: readonly (string | undefined)[], locale: Locale): string {
   const present = candidates.filter((item): item is string => Boolean(item))
