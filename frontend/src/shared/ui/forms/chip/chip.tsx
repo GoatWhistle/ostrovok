@@ -1,5 +1,5 @@
 import { clsx } from "clsx"
-import type { ButtonHTMLAttributes, CSSProperties } from "react"
+import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from "react"
 import { Icon, type IconName } from "../../primitives/icon/icon"
 import styles from "./chip.module.css"
 
@@ -10,6 +10,7 @@ export interface ChipProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>,
   readonly label: string
   readonly static?: boolean
   readonly size?: "regular" | "large"
+  readonly trailing?: ReactNode
 }
 
 export function Chip({
@@ -19,6 +20,7 @@ export function Chip({
   label,
   static: still = false,
   size = "regular",
+  trailing,
   className,
   style,
   ...rest
@@ -32,6 +34,7 @@ export function Chip({
       >
         <Icon name={icon} size="sm" className={styles.icon} />
         <span className={styles.text}>{label}</span>
+        {trailing}
       </span>
     )
   return (
@@ -44,6 +47,7 @@ export function Chip({
     >
       <Icon name={icon} size="sm" className={styles.icon} />
       <span className={styles.text}>{label}</span>
+      {trailing}
     </button>
   )
 }

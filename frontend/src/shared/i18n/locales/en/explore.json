@@ -63,7 +63,31 @@
     "sidebarClose": "Hide the chat list",
     "groupToday": "Today",
     "groupYesterday": "Yesterday",
-    "groupEarlier": "Earlier"
+    "groupEarlier": "Earlier",
+    "progress": {
+      "steps": "Search progress",
+      "stepAria": "{{step}}: {{state}}",
+      "step": {
+        "parse": "Reading the request",
+        "hotels": "Finding hotels",
+        "wishes": "Checking conditions",
+        "answer": "Writing the answer"
+      },
+      "stepState": {
+        "done": "done",
+        "current": "in progress",
+        "todo": "next"
+      },
+      "wish": {
+        "queued": "waiting",
+        "checking": "checking",
+        "verified": "confirmed",
+        "partial": "needs details",
+        "missing": "not found",
+        "unknown": "could not check"
+      },
+      "dates": "{{from}} – {{to}}"
+    }
   },
   "navigation": {
     "search": "Find a hotel",

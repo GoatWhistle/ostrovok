@@ -4,11 +4,22 @@ import type { components } from "./schema.gen"
 type Conversation = components["schemas"]["Conversation"]
 type ChatRequest = components["schemas"]["ChatRequest"]
 
+export interface ChatProgressIntent {
+  readonly term: string
+  readonly key: string
+}
+
 export interface ChatProgress {
   readonly stage: string
   readonly term?: string
+  readonly status?: string
   readonly found?: number
   readonly wishes?: number
+  readonly location?: string | null
+  readonly intents?: readonly ChatProgressIntent[]
+  readonly check_in?: string | null
+  readonly check_out?: string | null
+  readonly adults?: number | null
 }
 
 interface Frame {

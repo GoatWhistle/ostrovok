@@ -63,7 +63,31 @@
     "sidebarClose": "Скрыть список чатов",
     "groupToday": "Сегодня",
     "groupYesterday": "Вчера",
-    "groupEarlier": "Ранее"
+    "groupEarlier": "Ранее",
+    "progress": {
+      "steps": "Ход подбора",
+      "stepAria": "{{step}}: {{state}}",
+      "step": {
+        "parse": "Разбираю запрос",
+        "hotels": "Ищу отели",
+        "wishes": "Проверяю условия",
+        "answer": "Собираю ответ"
+      },
+      "stepState": {
+        "done": "готово",
+        "current": "сейчас",
+        "todo": "впереди"
+      },
+      "wish": {
+        "queued": "ждёт проверки",
+        "checking": "проверяю",
+        "verified": "подтверждено",
+        "partial": "нужно уточнить",
+        "missing": "не нашёл",
+        "unknown": "не удалось проверить"
+      },
+      "dates": "{{from}} – {{to}}"
+    }
   },
   "navigation": {
     "search": "Поиск отелей",

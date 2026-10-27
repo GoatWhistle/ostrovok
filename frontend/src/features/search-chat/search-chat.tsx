@@ -8,6 +8,7 @@ import { UserBubble } from "./chat-bubble"
 import { ChatComposer } from "./chat-composer"
 import { ChatGreeting } from "./chat-greeting"
 import { ChatHeader } from "./chat-header"
+import { AgentProgress } from "./progress/agent-progress"
 import type { SearchResponse } from "./reply-blocks"
 import styles from "./search-chat.module.css"
 import type { HistoryEntry } from "./sidebar/history-groups"
@@ -26,7 +27,7 @@ export interface SearchChatProps {
   readonly selectedHotel?: string | undefined
   readonly loading: boolean
   readonly sending: boolean
-  readonly progress?: ChatProgress | null | undefined
+  readonly progress?: readonly ChatProgress[] | undefined
   readonly failed: boolean
   readonly onSend: (message: string) => void
   readonly onRetry: () => void
@@ -93,6 +94,7 @@ export function SearchChat({
                   content={message.content}
                   time={format.time(message.created_at)}
                   search={message.id === lastAssistant ? search : undefined}
+                  named={message.id === lastAssistant && !sending && !outgoing}
                   onShowOnMap={onShowOnMap}
                   onShowList={onShowList}
                   onSend={onSend}
@@ -100,7 +102,7 @@ export function SearchChat({
               ),
             )}
             {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
-            {sending ? <AgentThinking progress={progress} /> : null}
+            {sending ? <AgentProgress events={progress ?? []} /> : null}
             {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
           </ol>
         </ScrollArea>

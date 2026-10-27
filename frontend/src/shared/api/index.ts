@@ -1,4 +1,4 @@
-export { type ChatProgress, streamChatMessage } from "./chat-stream"
+export { type ChatProgress, type ChatProgressIntent, streamChatMessage } from "./chat-stream"
 export {
   ApiError,
   type ApiErrorKind,
