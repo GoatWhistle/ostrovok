@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import type { useHotelWorkspace } from "@/features/hotel-search"
+import { useMediaQuery } from "@/shared/hooks"
 import { CompareDock } from "./compare-dock"
 import { MapHotel } from "./map-hotel/map-hotel"
 
@@ -22,6 +23,8 @@ export function WorkspaceMap({
   readonly time: { readonly date: string; readonly hour: number }
   readonly onTimeChange: (date: string, hour: number) => void
 }) {
+  const narrow = useMediaQuery("(max-width: 63.99rem)")
+  const sheet = state.surface === "map" || (narrow && state.view === "map")
   return (
     <Suspense fallback={null}>
       <HotelMap
@@ -31,7 +34,7 @@ export function WorkspaceMap({
         onExpand={() => onMove(state.navigation.expandMap)}
         onExit={() => onMove(state.navigation.returnFromSurface)}
         hotelCard={
-          state.surface === "map" && state.hotelId ? (
+          sheet && state.hotelId ? (
             <MapHotel
               key={state.hotelId}
               onClose={() => onMove(state.closeHotel)}

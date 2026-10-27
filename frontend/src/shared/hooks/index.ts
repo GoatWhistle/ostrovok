@@ -9,3 +9,4 @@ export {
   useResizable,
 } from "./use-resizable"
 export { useSessionDraft } from "./use-session-draft"
+export { useVisualViewportHeight } from "./use-visual-viewport"

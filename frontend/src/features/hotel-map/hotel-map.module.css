@@ -82,8 +82,8 @@
 @media (max-width: 63.99rem) {
   .hotelCard {
     inset-block-start: auto;
-    inset-block-end: max(var(--space-16), env(safe-area-inset-bottom));
-    inset-inline: var(--space-16);
+    inset-block-end: 0;
+    inset-inline: 0;
     inline-size: auto;
   }
 }

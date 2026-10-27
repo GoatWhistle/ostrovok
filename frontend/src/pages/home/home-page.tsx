@@ -2,10 +2,9 @@ import { type CSSProperties, useCallback, useRef, useState } from "react"
 import { HotelStayProvider } from "@/entities/hotel"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { useChatSidebar } from "@/features/search-chat"
-import { useMediaQuery, useResizable } from "@/shared/hooks"
-import { useDocumentTitle, useTranslation } from "@/shared/i18n"
+import { useMediaQuery, useResizable, useVisualViewportHeight } from "@/shared/hooks"
+import { useDocumentTitle } from "@/shared/i18n"
 import { useInputModality, withViewTransition } from "@/shared/motion"
-import { Segmented } from "@/shared/ui"
 import { CompareDock } from "./compare-dock"
 import { FullHotel } from "./full-hotel/full-hotel"
 import styles from "./home-page.module.css"
@@ -18,6 +17,7 @@ import { WorkspaceChat } from "./workspace-chat"
 import { WorkspaceMap } from "./workspace-map"
 import { WorkspacePanel } from "./workspace-panel"
 import { WorkspaceSidebar } from "./workspace-sidebar"
+import { WorkspaceTabs } from "./workspace-tabs/workspace-tabs"
 
 function useMapVisible(
   surface: ReturnType<typeof useHotelWorkspace>["surface"],
@@ -38,8 +38,18 @@ function isStandalone(state: ReturnType<typeof useHotelWorkspace>) {
   )
 }
 
+function layoutMove(instant: boolean) {
+  return (action: () => void) => {
+    if (instant) action()
+    else void withViewTransition("layout", action)
+  }
+}
+
+function panelStyle(width: number | null | undefined): CSSProperties {
+  return (width ? { "--panel-width": `${width}px` } : {}) as CSSProperties
+}
+
 export function HomePage() {
-  const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
   useAppearanceLocation(state.navigation.route.appearance, state.navigation.setAppearance)
@@ -47,7 +57,7 @@ export function HomePage() {
   const onTimeChange = useCallback((date: string, hour: number) => setSceneTime({ date, hour }), [])
   const modality = useInputModality(true)
   const mapMounted = useRef(false)
-  if (["workspace", "hotel-panel", "map"].includes(state.surface)) mapMounted.current = true
+  mapMounted.current ||= ["workspace", "hotel-panel", "map"].includes(state.surface)
   const chats = useChatSidebar(modality.instant, state.surface === "conversation")
   const [dockOpen, setDockOpen] = useState(false)
   useFreshStart(state.clearTransient)
@@ -61,28 +71,22 @@ export function HomePage() {
     variable: "--panel-width",
   })
   const wide = useMediaQuery("(min-width: 64rem)")
+  useVisualViewportHeight(!wide)
   const docked = wide && ["workspace", "hotel-panel"].includes(state.surface)
   const fullHotel = state.surface === "hotel-page"
   const standalone = isStandalone(state)
+  const chrome = state.surface !== "landing" && !standalone
   useFullMap(state.surface === "map", state.navigation.returnFromSurface)
   const scrollRef = useSurfaceScroll(
     `${state.navigation.scopeKey}:${state.hotelId}:${fullHotel ? "page" : "panel"}:${state.factId ?? state.placeId ?? "hotel"}`,
     state.detailRef,
   )
-  const move = (action: () => void) => {
-    if (modality.instant) action()
-    else void withViewTransition("layout", action)
-  }
+  const move = layoutMove(modality.instant)
   const select: typeof state.select = (result) => move(() => state.select(result))
   const start = state.surface === "landing"
   const mapVisible = useMapVisible(state.surface, state.view)
-  const send = (message: string) => {
-    if (modality.instant) state.send(message)
-    else void withViewTransition("layout", () => state.send(message))
-  }
-  const sizes = {
-    ...(panelSize.width ? { "--panel-width": `${panelSize.width}px` } : {}),
-  } as CSSProperties
+  const send = (message: string) => move(() => state.send(message))
+  const sizes = panelStyle(panelSize.width)
   return (
     <HotelStayProvider scopeKey={state.navigation.scopeKey} stay={state.search?.parsed}>
       {start ? (
@@ -105,19 +109,7 @@ export function HomePage() {
         data-chrome={standalone ? "bare" : undefined}
         hidden={start}
       >
-        {start || standalone ? null : <WorkspaceSidebar state={state} sidebar={chats} />}
-        <div className={styles.tabs}>
-          <Segmented<WorkspaceView>
-            label={t("explore:panel.tabs")}
-            options={[
-              { value: "chat", label: t("explore:panel.chat"), icon: "send" },
-              { value: "hotels", label: t("explore:panel.hotels"), icon: "list" },
-              { value: "map", label: t("explore:panel.map"), icon: "map" },
-            ]}
-            value={state.view}
-            onChange={state.setView}
-          />
-        </div>
+        {chrome ? <WorkspaceSidebar state={state} sidebar={chats} /> : null}
         <div
           className={styles.workspace}
           data-surface={state.surface}
@@ -190,6 +182,7 @@ export function HomePage() {
             />
           )}
         </div>
+        <WorkspaceTabs surface={state.surface} value={state.view} onChange={state.setView} />
         {state.view === "hotels" ? (
           <div className={styles.mobileDock}>
             <CompareDock ids={state.compared} limit={state.limitReached} />

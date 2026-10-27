@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { HotelSummaryCard, useHotel } from "@/entities/hotel"
 import type { useHotelWorkspace } from "@/features/hotel-search"
 import { PlaceDetails } from "@/features/place-details"
 import { useTranslation } from "@/shared/i18n"
-import { withViewTransition } from "@/shared/motion"
 import { Button, CloseButton, ErrorState, ScrollArea, Skeleton } from "@/shared/ui"
 import styles from "./map-hotel.module.css"
+import { useSheet } from "./use-sheet-drag"
 
 type Workspace = ReturnType<typeof useHotelWorkspace>
 export function MapHotel({
@@ -23,7 +23,8 @@ export function MapHotel({
   const result = state.results.find((item) => item.hotel.id === state.hotelId)
   const detail = useHotel(result ? undefined : state.hotelId)
   const hotel = result?.hotel ?? detail.data?.hotel
-  const [collapsed, setCollapsed] = useState(false)
+  const { snap, drag, full, style, toggle } = useSheet()
+  const collapsed = snap === "peek"
   const close = useRef<HTMLButtonElement>(null)
   useEffect(() => close.current?.focus({ preventScroll: true }), [])
   useEffect(() => {
@@ -39,25 +40,25 @@ export function MapHotel({
       className={styles.card}
       data-map-hotel
       data-collapsed={collapsed}
+      data-snap={snap}
+      data-dragging={drag.dragging}
+      style={style}
       aria-label={t("explore:map.selectedHotel")}
     >
-      <header className={styles.header}>
+      <header className={styles.header} {...drag.handlers}>
         <strong>{collapsed && hotel ? hotel.name : t("explore:map.selectedHotel")}</strong>
         <div className={styles.actions}>
           <Button
             variant="ghost"
             iconOnly
-            icon={collapsed ? "arrow-up" : "chevron-down"}
+            icon={full ? "chevron-down" : "arrow-up"}
             className={styles.collapse}
-            aria-expanded={!collapsed}
+            aria-expanded={full}
             aria-controls="map-hotel-content"
-            title={t(collapsed ? "explore:map.expandCard" : "explore:map.collapseCard")}
-            onClick={(event) => {
-              if (event.detail === 0) setCollapsed(!collapsed)
-              else void withViewTransition("layout", () => setCollapsed(!collapsed))
-            }}
+            title={t(full ? "explore:map.collapseCard" : "explore:map.expandCard")}
+            onClick={(event) => toggle(event.detail === 0)}
           >
-            {t(collapsed ? "explore:map.expandCard" : "explore:map.collapseCard")}
+            {t(full ? "explore:map.collapseCard" : "explore:map.expandCard")}
           </Button>
           <CloseButton ref={close} label={t("explore:map.closeCard")} onClick={dismiss} />
         </div>
