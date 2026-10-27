@@ -93,23 +93,22 @@
 }
 
 .verdict {
-  display: inline-flex;
+  display: contents;
+}
+
+.mark {
   flex: none;
-  color: var(--text-accent);
+  inline-size: var(--space-6);
+  block-size: var(--space-6);
+  border-radius: var(--radius-pill);
+  background-color: var(--text-warning);
   animation: var(--motion-fade-in);
 }
 
-.verdict[data-state="verified"] {
-  color: var(--text-success);
-}
-
-.verdict[data-state="partial"] {
-  color: var(--text-warning);
-}
-
-.verdict[data-state="missing"],
-.verdict[data-state="unknown"] {
-  color: var(--text-muted);
+.item[data-state="partial"] > *,
+.item[data-state="missing"] > *,
+.item[data-state="unknown"] > * {
+  --chip-text: var(--text-secondary);
 }
 
 .skeleton {

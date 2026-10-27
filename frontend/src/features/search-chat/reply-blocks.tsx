@@ -2,14 +2,7 @@ import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { characteristicTitle } from "@/shared/geo/fact-label"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
-import {
-  Banner,
-  Button,
-  Chip,
-  characteristicHue,
-  characteristicIcon,
-  StatusBadge,
-} from "@/shared/ui"
+import { Banner, Button, Chip, StatusBadge } from "@/shared/ui"
 import styles from "./agent-reply.module.css"
 import { understoodName } from "./progress/understood-chips"
 
@@ -69,9 +62,6 @@ export function ReplyIntents({
               key={`${key}:${intent.source_text ?? ""}`}
               style={named ? understoodName(index) : undefined}
               static
-              pressed
-              icon={characteristicIcon(key)}
-              hue={characteristicHue(key)}
               label={intent.source_text ?? characteristicTitle(key, locale)}
             />
           )

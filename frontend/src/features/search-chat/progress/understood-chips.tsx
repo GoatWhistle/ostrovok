@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react"
 import { type MessageKey, useFormatters, useTranslation } from "@/shared/i18n"
 import { staggerStyle } from "@/shared/motion"
-import { Chip, characteristicHue, characteristicIcon, Icon, type IconName } from "@/shared/ui"
+import { Chip } from "@/shared/ui"
 import styles from "./agent-progress.module.css"
 import type { ProgressView, WishState } from "./progress-view"
 
@@ -14,19 +14,10 @@ const WISH_LABEL: Readonly<Record<WishState, MessageKey>> = {
   unknown: "explore:chat.progress.wish.unknown",
 }
 
-const WISH_ICON: Readonly<Record<WishState, IconName | undefined>> = {
-  queued: undefined,
-  checking: "pending",
-  verified: "verified",
-  partial: "partial",
-  missing: "rejected",
-  unknown: "unknown",
-}
+const DOUBTED: ReadonlySet<WishState> = new Set(["partial", "missing", "unknown"])
 
 interface Fact {
   readonly id: string
-  readonly icon: IconName
-  readonly hue: string
   readonly label: string
 }
 
@@ -38,22 +29,16 @@ function useFacts(view: ProgressView): Fact[] {
   const { t } = useTranslation()
   const format = useFormatters()
   const facts: Fact[] = []
-  if (view.location)
-    facts.push({ id: "location", icon: "pin", hue: "var(--hue-sea)", label: view.location })
+  if (view.location) facts.push({ id: "location", label: view.location })
   if (view.checkIn) {
     const from = format.shortDate(view.checkIn)
     const label = view.checkOut
       ? t("explore:chat.progress.dates", { from, to: format.shortDate(view.checkOut) })
       : from
-    facts.push({ id: "dates", icon: "calendar", hue: "var(--hue-sea)", label })
+    facts.push({ id: "dates", label })
   }
   if (view.adults)
-    facts.push({
-      id: "adults",
-      icon: "guests",
-      hue: "var(--hue-pets)",
-      label: t("explore:offers.adults", { count: view.adults }),
-    })
+    facts.push({ id: "adults", label: t("explore:offers.adults", { count: view.adults }) })
   return facts
 }
 
@@ -66,36 +51,30 @@ export function UnderstoodChips({ view }: { readonly view: ProgressView }) {
       <div className={styles.chips}>
         {facts.map((fact, index) => (
           <span key={fact.id} className={styles.item} style={staggerStyle(index) as CSSProperties}>
-            <Chip static icon={fact.icon} hue={fact.hue} label={fact.label} />
+            <Chip static label={fact.label} />
           </span>
         ))}
-        {view.wishes.map((wish, index) => {
-          const icon = WISH_ICON[wish.state]
-          return (
-            <span
-              key={wish.term}
-              className={styles.item}
-              data-state={wish.state}
-              style={
-                { ...staggerStyle(facts.length + index), ...understoodName(index) } as CSSProperties
+        {view.wishes.map((wish, index) => (
+          <span
+            key={wish.term}
+            className={styles.item}
+            data-state={wish.state}
+            style={
+              { ...staggerStyle(facts.length + index), ...understoodName(index) } as CSSProperties
+            }
+          >
+            <Chip
+              static
+              label={wish.term}
+              trailing={
+                <span className={styles.verdict}>
+                  {DOUBTED.has(wish.state) ? <span className={styles.mark} /> : null}
+                  <span className="visually-hidden">{t(WISH_LABEL[wish.state])}</span>
+                </span>
               }
-            >
-              <Chip
-                static
-                pressed={wish.state === "verified"}
-                icon={characteristicIcon(wish.key)}
-                hue={characteristicHue(wish.key)}
-                label={wish.term}
-                trailing={
-                  <span className={styles.verdict} data-state={wish.state}>
-                    {icon ? <Icon key={wish.state} name={icon} size="sm" /> : null}
-                    <span className="visually-hidden">{t(WISH_LABEL[wish.state])}</span>
-                  </span>
-                }
-              />
-            </span>
-          )
-        })}
+            />
+          </span>
+        ))}
       </div>
     </div>
   )

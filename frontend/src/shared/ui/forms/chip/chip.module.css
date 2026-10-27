@@ -1,5 +1,6 @@
 .chip {
   composes: pressable inlineControl from "../../../styles/compose.module.css";
+  --chip-text: var(--text-primary);
   gap: var(--space-6);
   min-block-size: var(--control-height-compact);
   padding-inline: var(--space-8) var(--space-12);
@@ -30,12 +31,16 @@
   inset-block: 0;
 }
 
+.plain {
+  padding-inline: var(--space-12);
+}
+
 .icon {
   flex: none;
 }
 
 .text {
-  color: var(--text-primary);
+  color: var(--chip-text);
 }
 
 .chip[aria-pressed="true"],
