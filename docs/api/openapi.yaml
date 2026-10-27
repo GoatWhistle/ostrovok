@@ -358,17 +358,27 @@ paths:
     get:
       tags: [map]
       operationId: getMapTile
-      summary: Локальная векторная подложка карты Сочи из OpenStreetMap
+      summary: Векторная геометрия импортированного покрытия OpenStreetMap
+      description: >-
+        Версия buildings-v2. buildings: стабильный строковый id, class, class_source,
+        height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые,
+        z16–19: полные. На z2–11 landcover содержит фактические жилые, коммерческие
+        и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается.
+        Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=buildings-v2.
       parameters:
+        - { name: v, in: query, required: false, schema: { type: string }, description: buildings-v2; другая версия возвращает 409 }
         - { name: z, in: path, required: true, schema: { type: integer, minimum: 0, maximum: 19 } }
         - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
         - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
       responses:
         "200":
-          description: Слои roads, coastline, beaches и buildings в формате Mapbox Vector Tile
+          description: Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile
+          headers:
+            X-Map-Tile-Version: { schema: { type: string, enum: [buildings-v2] } }
           content:
             application/vnd.mapbox-vector-tile:
               schema: { type: string, format: binary }
+        "409": { description: Версия тайлов изменилась; перечитайте /map/style }
         "404": { $ref: "#/components/responses/NotFound" }
 
   /map/terrain/{z}/{x}/{y}.png:

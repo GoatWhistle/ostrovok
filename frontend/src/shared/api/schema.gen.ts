@@ -256,7 +256,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Локальная векторная подложка карты Сочи из OpenStreetMap */
+        /**
+         * Векторная геометрия импортированного покрытия OpenStreetMap
+         * @description Версия buildings-v2. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=buildings-v2.
+         */
         get: operations["getMapTile"];
         put?: never;
         post?: never;
@@ -1523,7 +1526,10 @@ export interface operations {
     };
     getMapTile: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description buildings-v2; другая версия возвращает 409 */
+                v?: string;
+            };
             header?: never;
             path: {
                 z: number;
@@ -1534,9 +1540,10 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Слои roads, coastline, beaches и buildings в формате Mapbox Vector Tile */
+            /** @description Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile */
             200: {
                 headers: {
+                    "X-Map-Tile-Version"?: "buildings-v2";
                     [name: string]: unknown;
                 };
                 content: {
@@ -1544,6 +1551,13 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+            /** @description Версия тайлов изменилась; перечитайте /map/style */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
     };
     getTerrainTile: {

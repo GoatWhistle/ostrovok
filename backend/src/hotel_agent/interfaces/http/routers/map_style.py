@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
 
+from hotel_agent.application.map_tiles import TILE_VERSION
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle, MapStyle
 
 API_PREFIX = "/api/v1"
@@ -41,7 +42,7 @@ def map_style_schema(style: MapStyle) -> MapStyleSchema:
             basemap_url=f"{root}/{basemap.archive}",
             glyphs_url=f"{root}/{basemap.glyphs}",
             sprite_url=f"{root}/{basemap.sprite}",
-            vector_tiles_url=f"{API_PREFIX}/map/tiles/{{z}}/{{x}}/{{y}}.pbf",
+            vector_tiles_url=f"{API_PREFIX}/map/tiles/{{z}}/{{x}}/{{y}}.pbf?v={TILE_VERSION}",
             terrain_tiles_url=f"{API_PREFIX}/map/terrain/{{z}}/{{x}}/{{y}}.png"
             if style.terrain
             else None,

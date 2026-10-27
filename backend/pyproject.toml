@@ -22,6 +22,7 @@ hotel-agent = "hotel_agent.cli:main"
 [dependency-groups]
 dev = [
     "import-linter>=2.3",
+    "mapbox-vector-tile>=2.2.0",
     "mypy>=1.18",
     "openapi-spec-validator>=0.9.0",
     "pytest>=8.4",
@@ -63,7 +64,7 @@ files = ["src", "tests"]
 
 # rasterio ships no py.typed marker; its own API is exercised in tests/unit/adapters/geo/
 [[tool.mypy.overrides]]
-module = ["rasterio.*", "shapely.*"]
+module = ["rasterio.*", "shapely.*", "mapbox_vector_tile.*"]
 ignore_missing_imports = true
 
 [tool.importlinter]
