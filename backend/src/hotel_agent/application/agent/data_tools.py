@@ -34,6 +34,7 @@ from hotel_agent.application.ports.requested_evidence import RequestedEvidencePo
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
 from hotel_agent.application.ports.web_research import WebResearchPort
+from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
 
@@ -63,6 +64,7 @@ class DataTools:
         parsed: ParsedQuery | None = None,
         places: Mapping[str, PlaceResearchPort] | None = None,
         llm: LLMPort | None = None,
+        details: GetHotelDetails | None = None,
     ) -> None:
         self._uow = uow
         self._terms = terms
@@ -76,7 +78,9 @@ class DataTools:
         self.sources = {
             "database": True,
             "embeddings": semantic is not None,
-            "provider": catalog is not None or (offers is not None and offers.configured),
+            "provider": catalog is not None
+            or (offers is not None and offers.configured)
+            or (details is not None and details.configured),
             "web": web is not None,
             "geography": True,
             "environment": True,
@@ -134,7 +138,7 @@ class DataTools:
             self.descriptions,
             self.geo_refs,
         )
-        self.provider = ProviderContent(catalog, uow, lambda: self.hotels)
+        self.provider = ProviderContent(catalog, uow, lambda: self.hotels, details)
         self.room_web = RoomWebFallback(self.research, lambda: self.hotels, city, web is not None)
 
         self.places = PlaceTools(

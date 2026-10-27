@@ -4,30 +4,6 @@ from decimal import Decimal, InvalidOperation
 from typing import Any
 
 from hotel_agent.application.ports.hotel_offers import OfferProviderFailure, RoomOffer
-from hotel_agent.domain.hotel_identity import HotelCandidate, HotelIdentity
-
-
-def site_candidate(row: dict[str, Any]) -> HotelCandidate:
-    info = row["static_vm"]
-    name, lon, lat = info["name"], info["longitude"], info["latitude"]
-    if (
-        not isinstance(name, str)
-        or not name.strip()
-        or isinstance(lon, bool)
-        or isinstance(lat, bool)
-        or not isinstance(lon, (float, int))
-        or not isinstance(lat, (float, int))
-    ):
-        raise ValueError("Missing hotel identity")
-    address = info.get("address")
-    return HotelCandidate(
-        supplier_id=str(row["master_id"]),
-        identity=HotelIdentity(
-            name=name,
-            address=address if isinstance(address, str) else None,
-            location=(float(lon), float(lat)),
-        ),
-    )
 
 
 def site_offers(row: dict[str, Any], *, all_rates: bool = False) -> tuple[RoomOffer, ...]:

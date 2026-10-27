@@ -1,103 +1,13 @@
 import math
-import re
-import unicodedata
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 
-TRANSLITERATION = str.maketrans(
-    dict(
-        zip(
-            "абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
-            (
-                "a",
-                "b",
-                "v",
-                "g",
-                "d",
-                "e",
-                "e",
-                "zh",
-                "z",
-                "i",
-                "y",
-                "k",
-                "l",
-                "m",
-                "n",
-                "o",
-                "p",
-                "r",
-                "s",
-                "t",
-                "u",
-                "f",
-                "kh",
-                "ts",
-                "ch",
-                "sh",
-                "shch",
-                "",
-                "y",
-                "",
-                "e",
-                "yu",
-                "ya",
-            ),
-            strict=True,
-        )
-    )
+from hotel_agent.domain.place_names import (
+    NAME_WORDS,
+    address_status,
+    name_key,
+    name_tokens,
 )
-NAME_WORDS = frozenset(
-    (
-        "hotel",
-        "otel",
-        "gostinitsa",
-        "gostinichnyy",
-        "kompleks",
-        "spa",
-        "resort",
-        "hostel",
-        "khostel",
-        "guest",
-        "house",
-        "gostevoy",
-        "dom",
-        "the",
-    )
-)
-ADDRESS_WORDS = frozenset(
-    (
-        "ulitsa",
-        "ul",
-        "street",
-        "st",
-        "str",
-        "prospekt",
-        "pr",
-        "avenue",
-        "pereulok",
-        "per",
-        "lane",
-        "naberezhnaya",
-        "embankment",
-        "shosse",
-        "highway",
-        "proezd",
-        "pr-d",
-        "dom",
-        "d",
-        "russia",
-        "rossiya",
-    )
-)
-STREET_TYPES = {
-    **dict.fromkeys(("ulitsa", "ul", "street", "st", "str"), "street"),
-    **dict.fromkeys(("prospekt", "pr", "avenue"), "avenue"),
-    **dict.fromkeys(("pereulok", "per", "lane"), "lane"),
-    **dict.fromkeys(("naberezhnaya", "embankment"), "embankment"),
-    **dict.fromkeys(("shosse", "highway"), "highway"),
-    **dict.fromkeys(("proezd", "pr-d"), "passage"),
-}
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -106,6 +16,7 @@ class HotelIdentity:
     address: str | None
     location: tuple[float, float]
     country: str = "RU"
+    city: str | None = None
 
     def __post_init__(self) -> None:
         lon, lat = self.location
@@ -134,13 +45,30 @@ class IdentityAssessment:
     reason: str
 
 
+def name_parts(value: str) -> frozenset[str]:
+    return frozenset(token for token in name_tokens(value) if token not in NAME_WORDS)
+
+
+def shared_identity(local: frozenset[str], remote: frozenset[str], place: str | None) -> bool:
+    ignored = frozenset(name_tokens(place or ""))
+    return any(len(token) >= 4 and not token[:1].isdigit() for token in (local & remote) - ignored)
+
+
 def assess_identity(local: HotelIdentity, candidate: HotelCandidate) -> IdentityAssessment:
     remote = candidate.identity
     distance = distance_m(local.location, remote.location)
-    local_name, remote_name = _name(local.name), _name(remote.name)
+    local_name, remote_name = name_key(local.name), name_key(remote.name)
     similarity = SequenceMatcher(None, local_name, remote_name).ratio()
-    address = _address_status(local.address, remote.address)
+    address = address_status(local.address, remote.address)
     exact = bool(local_name) and local_name == remote_name
+    local_parts, remote_parts = name_parts(local.name), name_parts(remote.name)
+    consistent = bool(local_parts) and (local_parts <= remote_parts or remote_parts <= local_parts)
+    covered = len(local_parts) >= 2 and local_parts <= remote_parts
+    shared = shared_identity(local_parts, remote_parts, remote.city)
+    confirmed = address == "confirmed" and (
+        exact or consistent or similarity >= 0.8 or (shared and distance <= 60)
+    )
+    nearby = (exact and distance <= 100) or (covered and distance <= 60)
     reason = "matched"
     if local.country.upper() != remote.country.upper():
         reason = "country_mismatch"
@@ -150,9 +78,7 @@ def assess_identity(local: HotelIdentity, candidate: HotelCandidate) -> Identity
         reason = "generic_name"
     elif address == "conflict":
         reason = "address_conflict"
-    elif address == "confirmed" and (exact or similarity >= 0.9) or exact and distance <= 50:
-        pass
-    else:
+    elif not confirmed and not nearby:
         reason = "insufficient_identity_evidence"
     return IdentityAssessment(
         candidate=candidate,
@@ -171,45 +97,3 @@ def distance_m(left: tuple[float, float], right: tuple[float, float]) -> float:
         + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2
     )
     return 6_371_008.8 * 2 * math.asin(math.sqrt(min(1, max(0, value))))
-
-
-def _tokens(value: str) -> list[str]:
-    ascii_text = unicodedata.normalize("NFKD", value.casefold().translate(TRANSLITERATION))
-    ascii_text = "".join(char for char in ascii_text if not unicodedata.combining(char))
-    return re.findall(r"[a-z0-9]+(?:[/\-][a-z0-9]+)*", ascii_text)
-
-
-def _name(value: str) -> str:
-    return " ".join(sorted(token for token in _tokens(value) if token not in NAME_WORDS))
-
-
-def _address_status(left: str | None, right: str | None) -> str:
-    if not left or not right:
-        return "unknown"
-    left_tokens, right_tokens = set(_tokens(left)), set(_tokens(right))
-    left_types = {STREET_TYPES[token] for token in left_tokens if token in STREET_TYPES}
-    right_types = {STREET_TYPES[token] for token in right_tokens if token in STREET_TYPES}
-    if left_types and right_types and left_types.isdisjoint(right_types):
-        return "conflict"
-    local = left_tokens - ADDRESS_WORDS
-    remote = right_tokens - ADDRESS_WORDS
-    local_numbers = {token for token in local if token[0].isdigit()}
-    remote_numbers = {token for token in remote if token[0].isdigit()}
-    if local_numbers and remote_numbers and not local_numbers <= remote_numbers:
-        return "conflict"
-    local_street = local - local_numbers
-    remote_street = remote - remote_numbers
-    if (
-        local_street
-        and remote_street
-        and not (local_street <= remote_street or remote_street <= local_street)
-    ):
-        return "conflict"
-    if (
-        local_numbers
-        and local_numbers <= remote_numbers
-        and local_street
-        and local_street <= remote_street
-    ):
-        return "confirmed"
-    return "unknown"

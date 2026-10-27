@@ -36,6 +36,7 @@ from hotel_agent.application.use_cases.ensure_geography import EnsureGeography
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.application.use_cases.get_geo_features import GetGeoFeatures
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
+from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.application.use_cases.get_hotel_scene import GetHotelScene
 from hotel_agent.application.use_cases.get_map_catalog import GetMapCatalog
@@ -115,6 +116,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         providers.catalog_matcher,
         search_provider=providers.hotel_offer_search,
     )
+    get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)
     search_hotels = SearchHotels(
         providers.llm,
@@ -139,6 +141,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             and providers.hotel_offers.supplier == "nuitee"
             else None,
             places=places,
+            details=get_hotel_details,
         ),
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,

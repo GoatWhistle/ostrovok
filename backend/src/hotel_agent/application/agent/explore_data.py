@@ -23,6 +23,7 @@ from hotel_agent.application.ports.requested_evidence import RequestedEvidencePo
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
 from hotel_agent.application.ports.web_research import WebResearchPort
+from hotel_agent.application.use_cases.get_hotel_details import GetHotelDetails
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.query import ParsedQuery
 
@@ -43,6 +44,7 @@ class DataExplorer:
         offers: GetHotelOffers | None = None,
         catalog: HotelCatalogSource | None = None,
         places: Mapping[str, PlaceResearchPort] | None = None,
+        details: GetHotelDetails | None = None,
     ) -> None:
         self._llm, self._uow, self._terrain = llm, uow, terrain
         self._clock, self._logger = clock, logger
@@ -50,7 +52,7 @@ class DataExplorer:
         self._semantic = semantic
         self._web, self._conditions, self._view = web, conditions, view
         self._offers, self._catalog = offers, catalog
-        self._places = places
+        self._places, self._details = places, details
 
     async def __call__(
         self,
@@ -97,6 +99,7 @@ class DataExplorer:
                 parsed,
                 places=self._places,
                 llm=self._llm,
+                details=self._details,
             )
             if previous_tools is not None:
                 tools.research.reuse(previous_tools.research)

@@ -58,6 +58,7 @@ class SearchHotelRecord:
     levels: int | None
     footprint: Geometry | None
     address: str | None = None
+    city: str | None = None
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

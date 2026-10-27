@@ -46,7 +46,7 @@ def test_nearby_and_same_brand_are_not_sufficient(changes: IdentityChanges, reas
     assert result.reason == reason
 
 
-def test_exact_name_with_missing_address_requires_50_metre_proximity() -> None:
+def test_exact_name_with_missing_address_requires_close_proximity() -> None:
     local = replace(LOCAL, address=None)
     assert assess_identity(local, candidate(address=None)).accepted
     assert not assess_identity(local, candidate(address=None, location=(39.722, 43.58))).accepted
@@ -78,3 +78,94 @@ def test_generic_name_is_not_an_identity_even_at_the_same_address() -> None:
 def test_invalid_coordinates_are_rejected(location: tuple[float, float]) -> None:
     with pytest.raises(ValueError, match="coordinates"):
         replace(LOCAL, location=location)
+
+
+def test_building_suffix_formatting_is_the_same_address() -> None:
+    local = replace(LOCAL, name="Cosmos", address="улица Горького 56 с1")
+    remote = HotelCandidate(
+        supplier_id="9986868",
+        identity=replace(local, name="Cosmos Сочи Отель", address="улица Горького, д. 56с1, Сочи"),
+    )
+    result = assess_identity(local, remote)
+    assert result.address_status == "confirmed"
+    assert result.accepted
+
+
+def test_supplier_decorations_do_not_hide_a_confirmed_address() -> None:
+    local = replace(LOCAL, name="Azimut Парк Отель Виноградная", address="Виноградная улица 101/1")
+    remote = HotelCandidate(
+        supplier_id="13429040",
+        identity=replace(
+            local,
+            name="AZIMUT Парк Отель Виноградная Сочи 4*",
+            address="Виноградная улица, 101/1, Сочи",
+            city="Сочи",
+        ),
+    )
+    assert assess_identity(local, remote).accepted
+
+
+def test_latin_and_cyrillic_spelling_of_the_same_name_match() -> None:
+    local = replace(LOCAL, name="Karat-apart", address="улица Партизана Железняка 38")
+    remote = HotelCandidate(
+        supplier_id="11339347",
+        identity=replace(
+            local,
+            name="Апарт-отель Карат Апарт",
+            address="улица Партизана Железняка, 38, Красноярск",
+        ),
+    )
+    assert assess_identity(local, remote).accepted
+
+
+def test_shared_name_token_at_a_confirmed_address_is_accepted_only_nearby() -> None:
+    local = replace(LOCAL, name="Four Elements Perm", address="улица Мира 45Б")
+    remote = HotelCandidate(
+        supplier_id="7383160",
+        identity=replace(
+            local, name="Отель Elements Пермь 4", address="улица Мира, д. 45б, Пермь", city="Пермь"
+        ),
+    )
+    assert assess_identity(local, remote).accepted
+    far = replace(remote, identity=replace(remote.identity, location=(39.7225, 43.58)))
+    assert not assess_identity(local, far).accepted
+
+
+def test_city_in_both_names_is_not_identity_evidence() -> None:
+    local = replace(LOCAL, name="Kravt Hotel Kazan Airport", address=None)
+    remote = HotelCandidate(
+        supplier_id="10001647",
+        identity=replace(
+            local, name="Отель Muse of City Казань", address="улица Выставочная 3", city="Казань"
+        ),
+    )
+    assert not assess_identity(local, remote).accepted
+
+
+def test_square_abbreviation_is_the_same_address_type() -> None:
+    local = replace(LOCAL, name="Юбилейная", address="площадь Ленина 1")
+    remote = HotelCandidate(
+        supplier_id="7041209",
+        identity=replace(
+            local,
+            name="Гостиница Юбилейная",
+            address="пл. Ленина, д. 1, Благовещенск",
+            city="Благовещенск",
+        ),
+    )
+    result = assess_identity(local, remote)
+    assert result.address_status == "confirmed"
+    assert result.accepted
+    other_type = replace(
+        remote, identity=replace(remote.identity, address="улица Ленина, д. 1, Благовещенск")
+    )
+    assert assess_identity(local, other_type).reason == "address_conflict"
+
+
+def test_lodging_kind_words_do_not_make_two_spellings_different_hotels() -> None:
+    local = replace(LOCAL, name="Мишель", address=None)
+    remote = HotelCandidate(
+        supplier_id="6415753",
+        identity=replace(local, name="Меблированные комнаты Мишель", address=None),
+    )
+    assert assess_identity(local, remote).accepted

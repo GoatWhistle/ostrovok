@@ -22,10 +22,15 @@ def repository(supplier_id: str | None) -> UnitOfWorkFactory:
     search = SimpleNamespace(
         get_hotel=AsyncMock(
             return_value=SimpleNamespace(
-                id="hotel-1", name="Жемчужина", address="Черноморская 3", location=(39.73, 43.57)
+                id="hotel-1",
+                name="Жемчужина",
+                address="Черноморская 3",
+                location=(39.73, 43.57),
+                city=None,
             )
         ),
         get_supplier_id=AsyncMock(return_value=supplier_id),
+        nearby_city=AsyncMock(return_value="Сочи"),
     )
     scope = MagicMock()
     scope.__aenter__ = AsyncMock(return_value=SimpleNamespace(search=search))

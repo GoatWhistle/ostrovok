@@ -2,6 +2,11 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from typing import Protocol
 
+from hotel_agent.application.ports.supplier_details import (
+    SupplierDetails,
+    SupplierHotel,
+    SupplierRoom,
+)
 from hotel_agent.domain.hotel_identity import HotelIdentity
 
 
@@ -20,16 +25,6 @@ class RoomOffer:
 
 
 @dataclass(frozen=True, slots=True)
-class SupplierRoom:
-    id: str
-    name: str
-    photos: tuple[str, ...]
-    amenities: tuple[str, ...]
-    size_sqm: float | None = None
-    bedding: str | None = None
-
-
-@dataclass(frozen=True, slots=True)
 class OfferLookup:
     offers: tuple[RoomOffer, ...]
     checked_at: datetime
@@ -38,6 +33,7 @@ class OfferLookup:
     photo_url: str | None = None
     room_groups: tuple[SupplierRoom, ...] = ()
     rates_complete: bool = False
+    details: SupplierDetails | None = None
 
 
 class HotelOffersPort(Protocol):
@@ -58,8 +54,22 @@ class HotelOfferSearchPort(Protocol):
         self, hotel: HotelIdentity, check_in: date, check_out: date, adults: int, residency: str
     ) -> OfferLookup | None: ...
 
+    async def details(
+        self, hotel: HotelIdentity, residency: str = "ru"
+    ) -> SupplierHotel | None: ...
+
     async def aclose(self) -> None: ...
 
 
 class OfferProviderFailure(Exception):
     pass
+
+
+__all__ = [
+    "HotelOfferSearchPort",
+    "HotelOffersPort",
+    "OfferLookup",
+    "OfferProviderFailure",
+    "RoomOffer",
+    "SupplierRoom",
+]

@@ -12,9 +12,12 @@ from hotel_agent.application.ports.hotel_offers import (
     SupplierRoom,
 )
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
+from hotel_agent.application.ports.supplier_details import SupplierDetails
 from hotel_agent.application.use_cases.match_hotel_catalog import MatchHotelCatalog
 from hotel_agent.domain.errors import HotelNotFound, InvalidQuery
 from hotel_agent.domain.hotel_identity import HotelIdentity
+
+CITY_RADIUS_M = 25_000
 
 
 class OfferStatus(StrEnum):
@@ -41,6 +44,7 @@ class HotelOffers:
     photo_url: str | None = None
     room_groups: tuple[SupplierRoom, ...] = ()
     rates_complete: bool = False
+    details: SupplierDetails | None = None
 
 
 class GetHotelOffers:
@@ -77,6 +81,7 @@ class GetHotelOffers:
             hotel = await uow.search.get_hotel(hotel_id)
             if hotel is None:
                 raise HotelNotFound()
+            city = hotel.city or await uow.search.nearby_city(hotel.location, CITY_RADIUS_M)
             supplier_id = (
                 await uow.search.get_supplier_id(hotel_id, self._provider.supplier)
                 if self._provider is not None
@@ -113,7 +118,12 @@ class GetHotelOffers:
             sandbox = self._search_provider.sandbox
             try:
                 result = await self._search_provider.search(
-                    HotelIdentity(name=hotel.name, address=hotel.address, location=hotel.location),
+                    HotelIdentity(
+                        name=hotel.name,
+                        address=hotel.address,
+                        location=hotel.location,
+                        city=city,
+                    ),
                     check_in,
                     check_out,
                     adults,
@@ -154,4 +164,5 @@ class GetHotelOffers:
             photo_url=content.photo_url if content else None,
             room_groups=content.room_groups if content else (),
             rates_complete=content.rates_complete if content else False,
+            details=content.details if content else None,
         )

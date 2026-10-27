@@ -1042,6 +1042,10 @@ components:
         room_groups:
           type: array
           items: { $ref: "#/components/schemas/SupplierRoom" }
+        details:
+          allOf: [{ $ref: "#/components/schemas/SupplierDetails" }]
+          nullable: true
+          description: Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам
         offers:
           type: array
           items: { $ref: "#/components/schemas/RoomOffer" }
@@ -1072,6 +1076,134 @@ components:
         size_sqm: { type: number, nullable: true }
         bedding: { type: string, nullable: true }
 
+
+    SupplierPhoto:
+      type: object
+      required: [url]
+      properties:
+        url: { type: string }
+        category: { type: string, nullable: true }
+
+    SupplierAmenity:
+      type: object
+      required: [name, free]
+      properties:
+        name: { type: string }
+        free: { type: boolean, description: Поставщик отметил услугу бесплатной }
+
+    SupplierAmenityGroup:
+      type: object
+      required: [name, amenities]
+      properties:
+        name: { type: string }
+        amenities:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierAmenity" }
+
+    SupplierDescriptionSection:
+      type: object
+      required: [title, paragraphs]
+      properties:
+        title: { type: string }
+        paragraphs: { type: array, items: { type: string } }
+
+    SupplierNearbyPlace:
+      type: object
+      required: [name, distance_m]
+      properties:
+        name: { type: string }
+        distance_m: { type: integer, description: Расстояние по данным поставщика }
+        kind: { type: string, nullable: true }
+
+    SupplierRegistryCategory:
+      type: object
+      required: [category, rooms]
+      properties:
+        category: { type: string }
+        rooms: { type: integer }
+
+    SupplierRegistry:
+      type: object
+      required: [record, categories]
+      description: Запись в реестре классифицированных объектов размещения
+      properties:
+        record: { type: string }
+        name: { type: string, nullable: true }
+        address: { type: string, nullable: true }
+        link: { type: string, nullable: true }
+        categories:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierRegistryCategory" }
+
+    SupplierFacts:
+      type: object
+      description: Опубликованные поставщиком факты об отеле; отсутствующее поле означает неизвестность
+      properties:
+        floors_number: { type: integer, nullable: true }
+        rooms_number: { type: integer, nullable: true }
+        star_rating: { type: integer, nullable: true }
+        year_built: { type: integer, nullable: true }
+        year_renovated: { type: integer, nullable: true }
+        kind: { type: string, nullable: true }
+        hotel_wifi: { type: boolean, nullable: true }
+        room_wifi: { type: boolean, nullable: true }
+        registry:
+          allOf: [{ $ref: "#/components/schemas/SupplierRegistry" }]
+          nullable: true
+
+    SupplierRatingScore:
+      type: object
+      required: [name, score]
+      properties:
+        name: { type: string }
+        score: { type: number }
+
+    SupplierRating:
+      type: object
+      required: [detailed]
+      properties:
+        total: { type: number, nullable: true, description: Оценка по десятибалльной шкале }
+        reviews_count: { type: integer, nullable: true }
+        detailed:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierRatingScore" }
+
+    SupplierDetails:
+      type: object
+      required: [supplier_id, page_url, name, photos, facts, amenity_groups, description, nearby]
+      properties:
+        supplier_id: { type: string }
+        page_url: { type: string, description: Страница отеля у поставщика }
+        name: { type: string }
+        address: { type: string, nullable: true }
+        city: { type: string, nullable: true }
+        location:
+          type: array
+          nullable: true
+          items: { type: number }
+          minItems: 2
+          maxItems: 2
+          description: "[долгота, широта] по данным поставщика"
+        photos:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierPhoto" }
+        facts: { $ref: "#/components/schemas/SupplierFacts" }
+        amenity_groups:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierAmenityGroup" }
+        description:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierDescriptionSection" }
+        nearby:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierNearbyPlace" }
+        rating:
+          allOf: [{ $ref: "#/components/schemas/SupplierRating" }]
+          nullable: true
+        check_in_from: { type: string, nullable: true }
+        check_out_until: { type: string, nullable: true }
+        email: { type: string, nullable: true }
+        phone: { type: string, nullable: true }
 
     ChatRequest:
       type: object

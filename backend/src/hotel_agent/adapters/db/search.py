@@ -17,7 +17,8 @@ from hotel_agent.application.room_records import RoomRecord
 
 HOTEL_COLUMNS = """SELECT h.id, h.name, ST_X(h.location), ST_Y(h.location), h.stars,
     h.building_id, b.height_m, b.levels, ST_AsGeoJSON(b.footprint), h.region_id,
-    NULLIF(concat_ws(' ', h.tags->>'addr:street', h.tags->>'addr:housenumber'), '')
+    NULLIF(concat_ws(' ', h.tags->>'addr:street', h.tags->>'addr:housenumber'), ''),
+    h.tags->>'addr:city'
 FROM hotels h LEFT JOIN buildings b ON b.id = h.building_id """
 
 HOTELS = (
@@ -31,6 +32,14 @@ ORDER BY h.id"""
 )
 
 HOTEL_BY_ID = HOTEL_COLUMNS + "WHERE h.id = %(hotel_id)s"
+
+NEARBY_CITY = """SELECT h.tags->>'addr:city'
+FROM hotels h
+WHERE h.tags ? 'addr:city'
+  AND ST_DWithin(h.location::geography,
+      ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography, %(radius)s)
+ORDER BY h.location::geography <-> ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography
+LIMIT 1"""
 
 FACADES = """SELECT id, azimuth_deg, label, ST_AsGeoJSON(geometry)
 FROM facades WHERE hotel_id = %(hotel_id)s ORDER BY id"""
@@ -91,6 +100,18 @@ class PostgresSearchRepository:
             )
         ).fetchall()
         return [_supplier_content(row) for row in rows]
+
+    async def nearby_city(self, location: tuple[float, float], radius_m: float) -> str | None:
+        result = await self._connection.execute(
+            NEARBY_CITY,
+            {
+                "lon": location[0],
+                "lat": location[1],
+                "radius": radius_m,
+            },
+        )
+        row = await result.fetchone()
+        return str(row[0]) if row else None
 
     async def get_supplier_id(self, hotel_id: str, supplier: str) -> str | None:
         result = await self._connection.execute(
@@ -197,6 +218,7 @@ def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:
         footprint=json.loads(str(row[8])) if row[8] is not None else None,
         region_id=str(row[9]),
         address=str(row[10]) if row[10] is not None else None,
+        city=str(row[11]) if row[11] is not None else None,
     )
 
 
