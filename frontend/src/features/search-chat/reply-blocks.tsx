@@ -36,6 +36,14 @@ export function CityChoice({ onSend }: { readonly onSend: (message: string) => v
             {t(key)}
           </Button>
         ))}
+        <Button
+          variant="ghost"
+          size="compact"
+          icon="compass"
+          onClick={() => onSend(t("explore:chat.cityAnyRequest"))}
+        >
+          {t("explore:chat.cityAny")}
+        </Button>
       </div>
     </div>
   )
