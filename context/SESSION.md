@@ -174,6 +174,7 @@ Updated: 2026-10-27, Europe/Moscow
 - 2026-10-27, дословно: «забей на то как выглядит на телефоне скипни это»
 - 2026-10-27, дословно: «главное сделай комит и пуш что есть . и доделывай уже спеку несчастную»
 - 2026-10-27, дословно: «делай все 6 пунктов». Шесть мер по ускорению поиска: разделение моделей, хеджирование, параллельные пожелания и волны итоговой проверки, повтор только отклонённых пожеланий, кэш ответов модели, выдача частями. Все сделаны.
+- 2026-10-27, дословно: «фикси до самого конца». Доводка после шести мер: разделение wish_loop, остановка блуждания, бюджет пожелания 90 с, нормализация цитаты в итоговых проверках, кэш векторов запроса.
 - 2026-10-27, дословно: «пуш проверь еще раз». gh HTTPS token invalid; fetch/push go through `git@github.com:GoatWhistle/o-hack.git`, remote config unchanged.
 
 ## Current state
@@ -190,11 +191,14 @@ Updated: 2026-10-27, Europe/Moscow
 
 ## Next actions and pitfalls
 
+- ТЗ трека записано дословно в `brief/TASK.md`, требования R1–R9 и O1–O5 в `brief/requirements.md` (2026-10-27). Текущая очередь работ: [work/task-coverage/plan.md](../work/task-coverage/plan.md) — P0: прогон из чистого клона с замером (R7/R8), расчёт вида на закат, актуализация `docs/requirements-map.md`, закрытие цели по виду из окна.
+
 - Evolution plan has no open items. Known follow-ups: 375 px chat tab after leaving the full map shows no composer (not investigated); panning cost in dense center. Untracked `work/hotelier-demo/`, `work/map-neon/night*` belong to other work, keep out of commits. Protected user instructions exceed the SESSION target and remain verbatim.
 
 - Window-view goal remains active/incomplete;50-query post-update evaluation pending. [Prior view plan](../work/window-views/plan.md). Root concurrent chat/geo/provider work may postdate the snapshot; preserve it. Model429/latency observed in other runs; no uncontrolled concurrent paid batches.
 - Build with explicit TAG before replacing pinned images. Root .env model credentials unchanged. Instructions remain verbatim despite SESSION target overflow.
-- Ускорение поиска сделано и замерено: Казань 94→35 с, Трамп 69→41 с, Кострома пусто за 185–203 с → 3 отеля за 28 с. Стенд `faster-search-20261027c`. Главный остаток — число шагов пожелания (25 шагов × 2–5 с в сочинском запросе), не их длительность. Подробности и таблица: [work/web-search-fix/remaining.md](../work/web-search-fix/remaining.md).
+- Ускорение поиска доведено, образ `faster-search-20261027h`: Казань 94→31 с, Сочи 131→64 с, Кострома пусто за 185–203 с → 20 отелей за 39 с, Эрмитаж 36 с. Запрос про Трампа теперь пуст за 54 с: пожелание закрывается, но итоговая проверка справедливо отклоняет цитату «the Ritz» без привязки к объекту — это пункт об идентичности, не о скорости. Таблицы и разбор: [work/web-search-fix/remaining.md](../work/web-search-fix/remaining.md).
+- Прежние замеры ускорения: Казань 94→35 с, Трамп 69→41 с, Кострома пусто за 185–203 с → 3 отеля за 28 с. Стенд `faster-search-20261027c`. Главный остаток — число шагов пожелания (25 шагов × 2–5 с в сочинском запросе), не их длительность. Подробности и таблица: [work/web-search-fix/remaining.md](../work/web-search-fix/remaining.md).
 - Веб-исследование пожеланий (причины пустых ответов, проба по карте, бюджеты и время, замеры раундов 3–8): [work/web-search-fix/remaining.md](../work/web-search-fix/remaining.md). Стенд собран из этого дерева как hotel-agent-backend:proximity-time-20261027.
 
 
