@@ -1,4 +1,5 @@
 export { useFactMutation } from "./fact.mutations"
+export { useHotelGeometry } from "./geometry/use-hotel-geometry"
 export {
   useFact,
   useGeoFeatures,

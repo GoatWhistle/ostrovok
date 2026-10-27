@@ -1,3 +1,4 @@
+export { restoreScrollTop, type ScrollRestoration } from "./scroll-restoration"
 export { clearSessionDraft, moveSessionDraft } from "./session-draft"
 export { useInViewport } from "./use-in-viewport"
 export { useMediaQuery } from "./use-media-query"

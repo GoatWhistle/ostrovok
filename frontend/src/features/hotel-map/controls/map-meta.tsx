@@ -1,9 +1,8 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import type { RefObject } from "react"
 import { type MessageKey, useTranslation } from "@/shared/i18n"
-import { MapAttribution } from "@/shared/ui"
+import { MapAttribution, MapScale } from "@/shared/ui"
 import { MapLegendToggle } from "../map-legend"
-import { MapScale } from "../map-scale"
 import styles from "./map-meta.module.css"
 
 export function MapMeta({

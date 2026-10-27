@@ -4,6 +4,7 @@ import { type BasemapAssets, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
 import { tintForTime } from "../time-tint"
+import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
 import { renderAppearanceRoofs } from "./roofs"
@@ -23,9 +24,11 @@ export class MapAppearanceController {
   private visible = true
   private disposed = false
   private readonly map: MapLibreMap
+  private readonly profile: "main" | "mini"
 
-  constructor(map: MapLibreMap) {
+  constructor(map: MapLibreMap, profile: "main" | "mini" = "main") {
     this.map = map
+    this.profile = profile
     map.on("styledata", this.refreshRoofs)
   }
 
@@ -62,7 +65,7 @@ export class MapAppearanceController {
   }
 
   private refreshRoofs = () => {
-    if (this.disposed || !this.visible) return
+    if (this.disposed || !this.visible || this.profile === "mini") return
     const token = APPEARANCES[this.appearance].materials.roofToken
     const color = token
       ? getComputedStyle(document.documentElement).getPropertyValue(token).trim()
@@ -88,6 +91,7 @@ export class MapAppearanceController {
     renderCatalogLayers(map, classes, scene.excluded)
     renderBasemapLabels(map, scene.assets, colors, scene.locale)
     this.refreshRoofs()
+    if (this.profile === "mini") applyMiniProfile(map, APPEARANCES[this.appearance])
     const materials = APPEARANCES[this.appearance].materials
     for (const id of ["overview-volumes", "scene-volumes", "buildings-volume"]) {
       if (map.getLayer(id))

@@ -1,13 +1,13 @@
 import { useMemo } from "react"
-import { useGeoFeatures } from "@/entities/hotel"
-import type { SearchResult } from "@/shared/api/hotel-types"
+import type { HotelSummary } from "@/shared/api/hotel-types"
 import { featureCollection } from "@/shared/geo/geometry"
+import { useGeoFeatures } from "../hotel.queries"
 
-export function useFocusGeometry(refs: readonly string[], hotel: SearchResult | undefined) {
+export function useHotelGeometry(refs: readonly string[], hotel: HotelSummary | undefined) {
   const base = useGeoFeatures(refs)
   const extraRefs = useMemo(() => {
     if (!hotel || refs.some((ref) => ref.startsWith("g_walk_"))) return []
-    const [lon = 0, lat = 0] = hotel.hotel.location
+    const [lon = 0, lat = 0] = hotel.location
     const scale = Math.cos((lat * Math.PI) / 180)
     return featureCollection(base.data?.features ?? [])
       .features.flatMap((feature) => {
@@ -18,7 +18,7 @@ export function useFocusGeometry(refs: readonly string[], hotel: SearchResult | 
       })
       .sort((a, b) => a.distance - b.distance || a.id.localeCompare(b.id))
       .slice(0, 5)
-      .map(({ id }) => `g_walk_${hotel.hotel.id}_${id}`)
+      .map(({ id }) => `g_walk_${hotel.id}_${id}`)
   }, [refs, hotel, base.data])
   const walks = useGeoFeatures(extraRefs)
   const data = useMemo(

@@ -8,6 +8,7 @@ import styles from "./map-heading.module.css"
 
 export function MapHeading({
   fullMap,
+  returnToHotel,
   onExit,
   focus,
   fact,
@@ -16,6 +17,7 @@ export function MapHeading({
   failed,
   onRetry,
 }: {
+  readonly returnToHotel: boolean
   readonly fullMap: boolean
   readonly onExit: (() => void) | undefined
   readonly focus: ReturnType<typeof focusCopy>
@@ -30,7 +32,7 @@ export function MapHeading({
     <div className={styles.topStart} data-map-obstacle>
       {fullMap ? (
         <Button variant="secondary" icon="back" onClick={onExit}>
-          {t("explore:map.exitFullscreen")}
+          {t(returnToHotel ? "explore:location.backToHotel" : "explore:map.exitFullscreen")}
         </Button>
       ) : null}
       <MapFocus

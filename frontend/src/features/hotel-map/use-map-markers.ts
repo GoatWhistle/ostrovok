@@ -1,11 +1,11 @@
 import type { Map as MapLibreMap, Marker } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useState } from "react"
-import type { SearchResult } from "@/shared/api/hotel-types"
+import type { HotelSummary, SearchResult } from "@/shared/api/hotel-types"
+import { hotelPoint } from "@/shared/geo/hotel-point"
 import { useLocale } from "@/shared/i18n"
 import {
   createMarker,
   type HotelView,
-  hotelPosition,
   type MarkerView,
   type PlaceView,
   removeMarkers,
@@ -18,6 +18,7 @@ interface MarkerData {
   readonly mapRef: RefObject<MapLibreMap | null>
   readonly ready: boolean
   readonly results: readonly SearchResult[]
+  readonly location: HotelSummary | undefined
   readonly hotelId: string | undefined
   readonly focusFeatures: readonly unknown[]
   readonly focusLabel: string | undefined
@@ -54,10 +55,12 @@ function useSelectedPin(
   mapRef: RefObject<MapLibreMap | null>,
   ready: boolean,
   result: SearchResult | undefined,
+  location: HotelSummary | undefined,
 ) {
   const [view, setView] = useState<Omit<HotelView, "result">>()
-  const position = result ? hotelPosition(result) : undefined
-  const id = result?.hotel.id
+  const identity = result?.hotel ?? location
+  const position = hotelPoint(identity?.location)
+  const id = identity?.id
   const lon = position?.[0]
   const lat = position?.[1]
   useEffect(() => {
@@ -70,10 +73,18 @@ function useSelectedPin(
       setView(undefined)
     }
   }, [mapRef, ready, id, lon, lat])
-  return useMemo<HotelView | undefined>(
-    () => (view && result ? { ...view, result } : undefined),
-    [view, result],
-  )
+  return useMemo<HotelView | PlaceView | undefined>(() => {
+    if (!view || !identity) return undefined
+    if (result) return { ...view, result }
+    return {
+      ...view,
+      kind: "place",
+      label: identity.name,
+      ariaLabel: identity.name,
+      placeId: undefined,
+      quiet: false,
+    }
+  }, [view, result, identity])
 }
 
 export function useMapMarkers({
@@ -81,6 +92,7 @@ export function useMapMarkers({
   ready,
   results,
   hotelId,
+  location,
   focusFeatures,
   focusLabel,
 }: MarkerData): readonly MarkerView[] {
@@ -90,6 +102,7 @@ export function useMapMarkers({
     mapRef,
     ready,
     results.find((item) => item.hotel.id === hotelId),
+    location,
   )
   const views = useMemo(
     () => [...pins, ...places, ...(selected ? [selected] : [])],

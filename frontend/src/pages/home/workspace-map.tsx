@@ -25,6 +25,7 @@ export function WorkspaceMap({
       <HotelMap
         visible={visible}
         fullMap={state.surface === "map"}
+        returnToHotel={state.navigation.returnToHotel}
         onExpand={() => onMove(state.navigation.expandMap)}
         onExit={() => onMove(state.navigation.returnFromSurface)}
         hotelCard={

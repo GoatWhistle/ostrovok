@@ -1,5 +1,6 @@
 import { type Ref, useEffect, useRef } from "react"
 import { useHotel } from "@/entities/hotel"
+import { HotelLocation } from "@/features/hotel-location"
 import type { useHotelWorkspace } from "@/features/hotel-search"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
@@ -11,10 +12,19 @@ type Workspace = ReturnType<typeof useHotelWorkspace>
 interface FullHotelProps {
   readonly state: Workspace
   readonly time: { date: string; hour: number }
+  readonly restoreScroll: boolean
   readonly scrollRef: Ref<HTMLDivElement>
+  readonly onOpenMap: () => void
   readonly onBack: () => void
 }
-export function FullHotel({ state, time, scrollRef, onBack }: FullHotelProps) {
+export function FullHotel({
+  state,
+  time,
+  scrollRef,
+  restoreScroll,
+  onBack,
+  onOpenMap,
+}: FullHotelProps) {
   const { t } = useTranslation()
   const hotel = useHotel(state.hotelId)
   useDocumentTitle(hotel.data?.hotel.name ?? t("explore:details.title"))
@@ -22,7 +32,7 @@ export function FullHotel({ state, time, scrollRef, onBack }: FullHotelProps) {
   useEffect(() => {
     back.current?.focus({ preventScroll: true })
   }, [])
-  const page = useHotelSection(state.hotelId, state.navigation.route.section)
+  const page = useHotelSection(state.hotelId, state.navigation.route.section, restoreScroll)
 
   return (
     <section ref={page} className={styles.page} aria-label={t("explore:surfaces.hotelPage")}>
@@ -47,6 +57,9 @@ export function FullHotel({ state, time, scrollRef, onBack }: FullHotelProps) {
       </div>
       <ScrollArea ref={scrollRef} className={styles.content} tabIndex={-1}>
         <HotelContent state={state} time={time} />
+        {state.hotelId && !state.factId && !state.placeId ? (
+          <HotelLocation hotelId={state.hotelId} geoRefs={state.geoRefs} onOpenMap={onOpenMap} />
+        ) : null}
       </ScrollArea>
     </section>
   )

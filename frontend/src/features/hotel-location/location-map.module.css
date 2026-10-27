@@ -1,0 +1,36 @@
+.map {
+  position: relative;
+  block-size: 100%;
+  overflow: hidden;
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+.marker {
+  composes: roundIconShape from "../../shared/styles/compose.module.css";
+  background: var(--map-hotel-selected);
+  color: var(--map-hotel-selected-text);
+  box-shadow: var(--shadow-pin);
+}
+.state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  padding: var(--space-16);
+  background: var(--surface-sunken);
+}
+.notice {
+  position: absolute;
+  inset-block-start: var(--space-8);
+  inset-inline: var(--space-8);
+}
+.meta {
+  position: absolute;
+  inset-block-end: var(--space-8);
+  inset-inline-end: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}

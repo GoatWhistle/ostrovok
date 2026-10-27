@@ -8,13 +8,14 @@ export function useMapRendering(
   ready: boolean,
   scene: MapSceneSnapshot,
   active: boolean,
+  profile: "main" | "mini" = "main",
 ) {
   const renderer = useRef<MapAppearanceController | null>(null)
   const [failed, setFailed] = useState(false)
   useEffect(() => {
     const map = instance.current
     if (!map || !ready) return
-    const controller = new MapAppearanceController(map)
+    const controller = new MapAppearanceController(map, profile)
     const unregister = registerMapAppearance(controller)
     renderer.current = controller
     return () => {
@@ -22,7 +23,7 @@ export function useMapRendering(
       controller.dispose()
       renderer.current = null
     }
-  }, [instance, ready])
+  }, [instance, ready, profile])
   useEffect(() => {
     if (ready) renderer.current?.setVisible(active)
   }, [active, ready])

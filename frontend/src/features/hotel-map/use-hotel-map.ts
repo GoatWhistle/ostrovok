@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useBasemaps, useMapCatalog } from "@/entities/map-data"
-import type { Camera, SearchResult } from "@/shared/api/hotel-types"
+import type { Camera, HotelSummary, SearchResult } from "@/shared/api/hotel-types"
 import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import { appearanceClasses } from "@/shared/geo/appearance/palette"
@@ -33,6 +33,7 @@ export interface MapData {
   readonly highlights: readonly unknown[]
   readonly bounds: readonly number[] | undefined
   readonly results: readonly SearchResult[]
+  readonly location: HotelSummary | undefined
   readonly hotelId: string | undefined
   readonly focusFeatures: readonly unknown[]
   readonly focusLabel: string | undefined
@@ -49,6 +50,7 @@ export function useHotelMap({
   bounds,
   results,
   hotelId,
+  location,
   focusFeatures,
   focusLabel,
   sun,
@@ -157,6 +159,7 @@ export function useHotelMap({
     ready: active,
     results,
     hotelId,
+    location,
     focusFeatures,
     focusLabel,
   })

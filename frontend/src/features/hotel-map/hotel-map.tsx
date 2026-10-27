@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
-import { useHotelScene } from "@/entities/hotel"
+import { useHotelGeometry, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { MapAppearance } from "@/shared/geo/appearance/types"
 import { matchedValue } from "@/shared/geo/fact-label"
@@ -12,10 +12,10 @@ import styles from "./hotel-map.module.css"
 import { MapControls } from "./map-controls"
 import { MapStatus, mapNotes } from "./map-status"
 import { MapPins } from "./markers/map-pins"
-import { useFocusGeometry } from "./markers/use-focus-geometry"
 import { showMapOverview } from "./rendering/map-overview"
+import { identityOverview, useMapIdentity } from "./rendering/use-map-identity"
 import { useMapInsets } from "./rendering/use-map-insets"
-import { focusCopy, regionOverview, sceneData, sceneLocation, sceneQuality } from "./scene-data"
+import { focusCopy, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
@@ -23,6 +23,7 @@ import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
+  readonly returnToHotel?: boolean
   readonly fullMap?: boolean
   readonly previewing?: boolean
   readonly hotelCard?: ReactNode
@@ -51,6 +52,7 @@ function isSceneHour(value: number) {
 export function HotelMap({
   visible,
   fullMap = false,
+  returnToHotel = false,
   previewing = false,
   hotelCard,
   onExpand,
@@ -77,12 +79,16 @@ export function HotelMap({
   const scene = useHotelScene(hotelId)
   const regions = useRegions()
   const hotel = results.find((item) => item.hotel.id === hotelId)
-  const geometry = useFocusGeometry(geoRefs, hotel)
+  const identity = useMapIdentity(hotel, hotelId)
+  const geometry = useHotelGeometry(geoRefs, identity)
   useEffect(() => onTimeChange(date, hour), [onTimeChange, date, hour])
   const region =
     regions.data?.items?.find((item) => item.id === regionId) ?? regions.data?.items?.[0]
   const regionCamera = region?.default_camera
-  const fallbackCamera = useMemo(() => regionOverview(regionCamera), [regionCamera])
+  const fallbackCamera = useMemo(
+    () => identityOverview(identity, regionCamera),
+    [identity, regionCamera],
+  )
   const { selectedCamera, buildings, highlights } = sceneData(
     scene.data,
     camera,
@@ -116,6 +122,7 @@ export function HotelMap({
     bounds,
     results,
     hotelId,
+    location: identity,
     focusFeatures,
     focusLabel: matchedValue(focusProperty?.fact ?? focusedFact, locale),
     sun: place ? sun.position : OVERVIEW_SUN,
@@ -150,6 +157,7 @@ export function HotelMap({
       />
       <MapHeading
         fullMap={fullMap}
+        returnToHotel={returnToHotel}
         onExit={onExit}
         focus={focus}
         fact={focusedFact}

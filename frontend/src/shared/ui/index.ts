@@ -11,6 +11,7 @@ export {
   MapAttribution,
   type MapAttributionProps,
 } from "./data-display/map-attribution/map-attribution"
+export { MapScale } from "./data-display/map-scale/map-scale"
 export {
   StatusBadge,
   type StatusBadgeProps,
@@ -50,6 +51,7 @@ export { CloseButton } from "./primitives/button/close-button"
 export { characteristicHue, characteristicIcon } from "./primitives/icon/characteristic-icon"
 export { Icon, type IconName, type IconProps, type IconSize } from "./primitives/icon/icon"
 export { NoValue, type NoValueProps } from "./primitives/no-value/no-value"
+export { ContentBoundary } from "./states/content-boundary/content-boundary"
 export { EmptyState, type EmptyStateProps } from "./states/empty-state/empty-state"
 export { ErrorState, type ErrorStateProps } from "./states/error-state/error-state"
 export { JourneyLoader } from "./states/journey-loader/journey-loader"

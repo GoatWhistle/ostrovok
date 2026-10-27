@@ -7,6 +7,7 @@ Updated: 2026-10-27, Europe/Moscow
 - 2026-10-27, дословно: «начинай выполнение плана в ветке хотел мвп .»
 - 2026-10-27, дословно: «и дополни в спеку чтобы после каждого пункта комит . но пуш токо в самом конце когда все будет сделано из пунктов»
 - 2026-10-27, дословно: «а надо еще в фоне запустить скачку карты россии»
+- 2026-10-27, дословно: «посмотри какую спеку в ласт сессии делает кодекс . продолжи ее выполнение сделав пере этим ревью»
 
 - 2026-10-26: «скинь энвы запущенного стенд (можешь ничего не скрывать)».
 
@@ -186,6 +187,8 @@ Updated: 2026-10-27, Europe/Moscow
 - Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, baseline `63bef5f`, current Git HEAD `8175edd`. [Progress](../work/frontend-evolution/progress.md). H01/E01–E08/E18/E12 committed. E10 two hotel surfaces verified (450 frontend checks, matrix8, WebGL camera/canvas/draft retained, 352→480→352 width, scroll/focus restored, direct GET/back, shared room category); local commit next. Continue E09→E11→H02–H07→E13–E17. E00 real partial example absent; real photo/offer resolved. No push until all stages complete.
 - Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, baseline `63bef5f`, current Git HEAD `675e6d1`. [Progress](../work/frontend-evolution/progress.md). H01/E01–E08/E18/E12/E10 committed. E09 full viewport map verified: 459 frontend checks/36 rules, matrix16, real WebGL marker selection, 10 desktop/2 mobile cycles, preserved camera/style/focus; local commit next. Continue E11→H02–H07→E13–E17. E00 real partial example absent; real photo/offer resolved. No push until all stages complete.
 - Isolated FakeLLM/PostGIS Compose `hotel-evolution`, API :18085, DB :15435, frontend :5179. Node24 `/tmp/hotel-node24/bin`. Vite MAP_ASSET_URL=:18082 reads existing static map assets only. Russia basemap complete and verified: 13,315,380,122 bytes, basemap-e9827062f2ba; root work/russia-download. Synthetic hotelier region bbox corrected to fixture extent.
+- Current execution: whole frontend evolution plan, branch `feat/hotel-agent-mvp`, baseline `63bef5f`. [Progress](../work/frontend-evolution/progress.md). H01/E01–E10/E12/E18 committed (E09 `13a56c6`). E11 minimap reviewed, fixed and verified ([report](../work/frontend-evolution/evidence/e11.md)): 488 frontend tests/36 rules, WebGL route on mini and large map, scroll restoration defect fixed. Next H02–H07→E13–E17. E00 real partial example absent. No push until all stages complete.
+- Isolated FakeLLM/PostGIS Compose `hotel-evolution`, API :18085, DB :15435, frontend :5179 (`API_URL=:18085 MAP_ASSET_URL=:18082 npx vite --host 127.0.0.1 --port 5179`; restarted 2026-10-27 after it stopped). Node24 `/tmp/hotel-node24/bin`. Russia basemap complete and verified: 13,315,380,122 bytes, basemap-e9827062f2ba; root work/russia-download. Synthetic hotelier region bbox corrected to fixture extent.
 
 ## Historical state from preceding session
 

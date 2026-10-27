@@ -1,5 +1,6 @@
 import { type LngLatLike, type Map as MapLibreMap, Marker } from "maplibre-gl"
 import type { SearchResult } from "@/shared/api/hotel-types"
+import { hotelPoint } from "@/shared/geo/hotel-point"
 import styles from "./map-pin.module.css"
 
 interface ViewBase {
@@ -45,10 +46,7 @@ export function createMarker(
 }
 
 export function hotelPosition(result: SearchResult): [number, number] | undefined {
-  const [lon, lat] = result.hotel.location
-  if (lon === undefined || lat === undefined || !Number.isFinite(lon) || !Number.isFinite(lat))
-    return undefined
-  return [lon, lat]
+  return hotelPoint(result.hotel.location)
 }
 
 export function removeMarkers(markers: Iterable<Marker>) {

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate, useNavigationType } from "react-router"
 import {
   type HotelSection,
   type MapAppearance,
@@ -11,6 +11,7 @@ import {
 } from "./workspace-location"
 
 type NavigationState = {
+  restoreScroll?: boolean
   started?: boolean
   draftId?: string
   returnTo?: string
@@ -21,6 +22,7 @@ function navigationState(value: unknown): NavigationState {
   if (!value || typeof value !== "object") return {}
   const candidate = value as NavigationState
   return {
+    ...(candidate.restoreScroll === true ? { restoreScroll: true } : {}),
     ...(Array.isArray(candidate.returnTrail)
       ? {
           returnTrail: candidate.returnTrail
@@ -41,6 +43,7 @@ function navigationState(value: unknown): NavigationState {
 
 export function useWorkspaceNavigation() {
   const location = useLocation()
+  const navigationType = useNavigationType()
   const navigate = useNavigate()
   const route = readWorkspaceLocation(location.pathname, location.search)
   const current = useRef(route)
@@ -84,6 +87,8 @@ export function useWorkspaceNavigation() {
   }
   return {
     route,
+    restoring: state.restoreScroll === true || navigationType === "POP",
+    returnToHotel: state.returnTo?.startsWith("/hotels/") === true,
     scopeKey,
     started: Boolean(state.started || route.chat || route.hotel || route.fullMap),
     begin: () => change({}, true, { ...state, started: true }),
@@ -115,6 +120,7 @@ export function useWorkspaceNavigation() {
         false,
         {
           ...state,
+          restoreScroll: false,
           returnTo: href,
           returnTrail: trail,
         },
@@ -125,6 +131,7 @@ export function useWorkspaceNavigation() {
         false,
         {
           ...state,
+          restoreScroll: false,
           returnTo: href,
           returnTrail: trail,
         },
@@ -165,7 +172,7 @@ export function useWorkspaceNavigation() {
           ...(route.fullMap ? { hotel: route.hotel } : {}),
         }),
         {
-          state: { ...state, returnTo: parent, returnTrail: trail },
+          state: { ...state, restoreScroll: true, returnTo: parent, returnTrail: trail },
         },
       )
     },

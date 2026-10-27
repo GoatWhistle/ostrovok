@@ -159,7 +159,9 @@ export function HomePage() {
                 state={state}
                 time={sceneTime}
                 scrollRef={scrollRef}
+                restoreScroll={scrollRef.restored && state.navigation.restoring}
                 onBack={() => move(state.navigation.returnFromSurface)}
+                onOpenMap={() => move(state.navigation.expandMap)}
               />
             ) : null}
           </div>

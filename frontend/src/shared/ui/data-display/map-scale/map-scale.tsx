@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type CSSProperties, type RefObject, useEffect, useState } from "react"
 import { useLocale } from "@/shared/i18n"
-import styles from "./hotel-map.module.css"
+import styles from "./map-scale.module.css"
 
 const EQUATOR_METERS = 40075016.686
 const TILE_PIXELS = 512
