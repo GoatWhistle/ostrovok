@@ -107,6 +107,18 @@
   }
 }
 
+@keyframes kf-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes kf-drawer-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 @keyframes kf-pin-in {
   from {
     opacity: 0;

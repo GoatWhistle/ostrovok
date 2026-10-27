@@ -104,6 +104,8 @@
   --motion-anchor-in: kf-anchor-in var(--dur-base) var(--ease-out) both;
   --motion-toast-in: kf-toast-in var(--dur-panel) var(--ease-out) both;
   --motion-toast-out: kf-toast-out var(--dur-exit) var(--ease-out) both;
+  --motion-drawer-in: kf-drawer-in var(--dur-panel) var(--ease-drawer) both;
+  --motion-drawer-out: kf-drawer-out var(--dur-panel-exit) var(--ease-drawer) both;
   --motion-pin-in: kf-pin-in var(--dur-slow) var(--ease-out) both;
   --motion-draw: kf-draw var(--dur-draw) var(--ease-in-out) both;
   --motion-lost-draw: kf-draw var(--dur-draw) var(--ease-in-out) var(--dur-slow) both;
@@ -151,6 +153,8 @@
     --motion-lost-draw: none;
     --motion-lost-pin: kf-fade-in var(--reduced-fade) var(--ease-out) both;
     --motion-shimmer: none;
+    --motion-drawer-in: kf-fade-in var(--reduced-fade) var(--ease-out) both;
+    --motion-drawer-out: kf-fade-out var(--reduced-fade-exit) var(--ease-out) both;
     --motion-fold-left: none;
     --motion-fold-mid: none;
     --motion-fold-right: none;
