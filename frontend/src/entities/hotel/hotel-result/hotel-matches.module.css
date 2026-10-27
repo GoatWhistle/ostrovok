@@ -1,0 +1,30 @@
+.matches {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  position: relative;
+  z-index: var(--layer-raised);
+  display: grid;
+  gap: var(--space-8);
+}
+.matches .match {
+  --button-padding: 0;
+  --button-height: var(--target-min);
+  inline-size: 100%;
+  min-block-size: var(--target-min);
+  padding-block: var(--space-8);
+  white-space: normal;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+}
+.label {
+  overflow-wrap: anywhere;
+}
+.scope,
+.partial {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  color: var(--text-secondary);
+}
+.partial {
+  color: var(--text-warning);
+}

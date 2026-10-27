@@ -2,6 +2,8 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from typing import Any
 
+from hotel_agent.application.hotel_media import HotelPhotoRecord
+
 type Geometry = dict[str, Any]
 
 
@@ -58,6 +60,7 @@ class SearchHotelRecord:
     levels: int | None
     footprint: Geometry | None
     address: str | None = None
+    photos: tuple[HotelPhotoRecord, ...] = ()
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

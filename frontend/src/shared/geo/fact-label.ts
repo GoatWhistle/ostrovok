@@ -1,6 +1,7 @@
 import type { Fact, FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { Locale } from "@/shared/i18n"
 import { i18n } from "@/shared/i18n/instance"
+import { petsLabel } from "./facts/pets"
 import { viewExplanation } from "./view-explanation"
 
 function number(value: unknown, locale: Locale) {
@@ -27,6 +28,7 @@ export function matchedValue(fact: FactBrief | undefined, locale: Locale): strin
 }
 
 export function factLabel(fact: FactBrief, locale: Locale): string {
+  if (fact.characteristic_key === "pets_policy") return petsLabel(fact.value, locale)
   const value = number(fact.value, locale)
   if (fact.characteristic_key === "building_height" && value)
     return i18n.t("explore:facts.buildingHeight", { value, lng: locale })

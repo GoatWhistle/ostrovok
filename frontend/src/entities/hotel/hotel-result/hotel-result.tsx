@@ -1,12 +1,11 @@
-import type { CSSProperties } from "react"
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
-import { matchedTitle } from "@/shared/geo/fact-label"
-import { useLocale, useTranslation } from "@/shared/i18n"
+import { useInViewport } from "@/shared/hooks"
 import { staggerStyle } from "@/shared/motion"
-import { Button, characteristicHue, characteristicIcon, Icon, type IconName } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
+import { HotelStars } from "../hotel-stars/hotel-stars"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
-import { MatchScore, matchScore } from "../match-score/match-score"
 import { OfferPreview } from "../offer-preview/offer-preview"
+import { HotelMatches } from "./hotel-matches"
 import styles from "./hotel-result.module.css"
 
 export interface HotelResultProps {
@@ -18,14 +17,6 @@ export interface HotelResultProps {
   readonly onPreview: (property: MatchedProperty | undefined) => void
 }
 
-const MATCH_ICON: Readonly<Record<MatchedProperty["match"], IconName>> = {
-  full: "success",
-  partial: "partial",
-  none: "rejected",
-  unknown: "unknown",
-  computing: "pending",
-}
-
 export function HotelResult({
   result,
   selected,
@@ -34,16 +25,15 @@ export function HotelResult({
   onProperty,
   onPreview,
 }: HotelResultProps) {
-  const { t } = useTranslation()
-  const { locale } = useLocale()
+  const viewport = useInViewport()
   return (
     <article
+      ref={viewport.ref}
       className={styles.hotel}
       data-selected={selected}
-      data-photo={Boolean(result.hotel.thumbnail_url)}
       style={index === undefined ? undefined : staggerStyle(index)}
     >
-      {result.hotel.thumbnail_url ? <HotelThumb src={result.hotel.thumbnail_url} /> : null}
+      <HotelThumb src={result.hotel.thumbnail_url} photos={result.hotel.photos} />
       <div className={styles.body}>
         <div className={styles.top}>
           <Button
@@ -56,44 +46,16 @@ export function HotelResult({
           >
             {result.hotel.name}
           </Button>
-          <MatchScore score={matchScore(result)} />
         </div>
+        <HotelStars value={result.hotel.stars} />
         {result.hotel.address ? (
           <p className={styles.meta}>
             <Icon name="pin" size="sm" />
             <span>{result.hotel.address}</span>
           </p>
         ) : null}
-        <OfferPreview hotelId={result.hotel.id} onSelect={onSelect} enabled />
-        {result.matched.length ? (
-          <ul className={styles.matches}>
-            {result.matched.map((property) => (
-              <li
-                key={property.characteristic_key}
-                style={{ "--hue": characteristicHue(property.characteristic_key) } as CSSProperties}
-              >
-                <Button
-                  variant="ghost"
-                  size="compact"
-                  align="start"
-                  icon={characteristicIcon(property.characteristic_key)}
-                  className={styles.match}
-                  onClick={() => onProperty(property)}
-                  onPointerEnter={() => onPreview(property)}
-                  onPointerLeave={() => onPreview(undefined)}
-                  onFocus={() => onPreview(property)}
-                  onBlur={() => onPreview(undefined)}
-                >
-                  <span className={styles.label}>{matchedTitle(property, locale)}</span>
-                  <span className={styles.status} data-match={property.match}>
-                    <Icon name={MATCH_ICON[property.match]} size="sm" />
-                    <span className="visually-hidden">{t(`explore:match.${property.match}`)}</span>
-                  </span>
-                </Button>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        <HotelMatches matched={result.matched} onProperty={onProperty} onPreview={onPreview} />
+        <OfferPreview hotelId={result.hotel.id} onSelect={onSelect} enabled={viewport.visible} />
       </div>
     </article>
   )

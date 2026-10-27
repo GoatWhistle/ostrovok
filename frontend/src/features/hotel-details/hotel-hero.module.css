@@ -1,63 +1,17 @@
 .hero {
   display: grid;
-  gap: var(--space-12);
-}
-
-.identity {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-12);
-}
-
-.thumb {
-  flex: none;
-  inline-size: var(--space-80);
-}
-
-.heading {
-  display: grid;
-  flex: 1;
-  gap: var(--space-4);
-  min-inline-size: 0;
-}
-
-.top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   gap: var(--space-8);
 }
-
 .name {
-  composes: subheadingText from "../../shared/styles/compose.module.css";
-  min-inline-size: 0;
+  composes: headingText from "../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
-
-.score {
-  flex: none;
-}
-
 .meta {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../shared/styles/compose.module.css";
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: var(--space-4);
 }
-
 .meta span {
   overflow-wrap: anywhere;
-}
-
-.stats {
-  composes: captionText from "../../shared/styles/compose.module.css";
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-16);
-}
-
-.stats li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
 }

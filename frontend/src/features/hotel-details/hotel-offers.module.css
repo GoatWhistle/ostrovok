@@ -20,6 +20,7 @@
 .offerTop {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-8);
 }
@@ -42,16 +43,9 @@
 }
 
 .metaItem {
-  composes: captionText inlineRow from "../../shared/styles/compose.module.css";
+  composes: bodySmText inlineRow from "../../shared/styles/compose.module.css";
 }
 
 .note {
-  composes: captionText inlineRow from "../../shared/styles/compose.module.css";
-}
-
-.photo {
-  width: 100%;
-  aspect-ratio: 8 / 5;
-  object-fit: cover;
-  border-radius: var(--radius-md);
+  composes: bodySmText inlineRow from "../../shared/styles/compose.module.css";
 }

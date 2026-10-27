@@ -1,5 +1,8 @@
 .preview {
+  position: relative;
+  z-index: var(--layer-raised);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   composes: bodySmText from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
@@ -8,4 +11,8 @@
 .price {
   composes: subheadingText from "../../../shared/styles/compose.module.css";
   font-variant-numeric: var(--font-numeric);
+}
+
+.preview button {
+  white-space: normal;
 }

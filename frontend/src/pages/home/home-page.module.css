@@ -1,5 +1,6 @@
 .page {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   block-size: 100%;
   max-block-size: calc(100dvh - var(--header-height));
@@ -12,6 +13,7 @@
 
 .workspace {
   display: grid;
+  min-inline-size: 0;
   grid-template-columns:
     var(--panel-width, var(--workspace-panel)) minmax(0, 1fr)
     var(--chat-width, var(--workspace-chat));
@@ -29,6 +31,7 @@
 
 .swap {
   display: grid;
+  min-inline-size: 0;
   grid-template-rows: auto minmax(0, 1fr);
   min-block-size: 0;
 }

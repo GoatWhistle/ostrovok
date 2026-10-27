@@ -46,6 +46,7 @@ import {
   Settings,
   Share2,
   SquarePen,
+  Star,
   Sun,
   Trash2,
   X,
@@ -78,6 +79,7 @@ import {
 } from "./own-glyphs"
 
 export const ICONS = {
+  star: Star,
   play: Play,
   pause: Pause,
   cloud: Cloud,

@@ -782,6 +782,8 @@ components:
         confidence: { type: number }
         source_type: { $ref: "#/components/schemas/SourceType" }
         status: { $ref: "#/components/schemas/FactStatus" }
+        subject: { type: string, nullable: true }
+        qualifiers: { type: object, additionalProperties: true }
         geo_refs:
           type: array
           description: id геообъектов для подсветки (см. /geo-features:batch)
@@ -881,6 +883,18 @@ components:
         height_m: { type: number, example: 28.8 }
         levels: { type: integer, nullable: true, example: 9 }
         thumbnail_url: { type: string, nullable: true }
+        photos:
+          type: array
+          description: Stored source photos, independent of availability lookup
+          items: { $ref: "#/components/schemas/HotelPhoto" }
+
+    HotelPhoto:
+      type: object
+      required: [url, kind]
+      properties:
+        url: { type: string, format: uri }
+        source_url: { type: string, nullable: true, format: uri }
+        kind: { type: string, enum: [hotel, room, surroundings] }
 
     SearchResult:
       type: object

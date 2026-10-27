@@ -1042,3 +1042,16 @@ WindowBuilder завершает отменённые задания и прин
 ### Landing sequence loading and timing
 
 The agreed E18 cover uses the shared map lifecycle and appearance renderer. The two story scenes use one WAAPI clock; camera, route, text and shutters read its time. Cinematic `--story-*` tokens are separate from short UI transition durations. Reduced motion shows the final illustration without starting the clock or creating WebGL. The cover and workspace map load with React lazy boundaries so animation assets do not block the search composer; this is the explicit E18 lazy-loading exception to the general route-only dynamic-import rule. A failed cover chunk leaves its local static fallback and the working search. The saved beach route and generated SVG are illustrative reference assets, never API search results.
+
+## Фото, цены и пожелания в карточке отеля
+
+Фотографии читаются из сохранённого каталога или OSM image независимо от текущей
+доступности тарифов. API передаёт URL, источник и вид фотографии; thumbnail_url
+остаётся совместимым первым элементом. Неизвестная категория не выводится.
+Цена относится к конкретным датам и числу взрослых: минимумы разных валют
+выводятся отдельно, sandbox не считается доступным тарифом. Видимые карточки
+делят кэш offers и очередь из трёх запросов с отменой через AbortSignal.
+В списке преимущества требуют одновременно full/partial и актуального факта.
+Ограничения комнаты/фасада остаются рядом; противоречивые и устаревшие сведения
+доступны в подробностях с собственным статусом. Фото окружения не подтверждает
+вид из конкретного номера.

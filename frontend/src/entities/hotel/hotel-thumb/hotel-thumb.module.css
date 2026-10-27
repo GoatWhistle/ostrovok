@@ -15,7 +15,3 @@
   inset: 0;
   composes: coverMedia from "../../../shared/styles/compose.module.css";
 }
-
-.placeholder {
-  color: var(--text-muted);
-}

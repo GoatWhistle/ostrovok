@@ -1,10 +1,10 @@
 .caption {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
 }
 
 .list {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-8);
 }
 
 .item {
@@ -25,10 +25,10 @@
 
 .body {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-8);
   min-inline-size: 0;
 }
 
 .label {
-  composes: label from "../../entities/evidence/evidence-text.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
 }

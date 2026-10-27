@@ -8,6 +8,10 @@ from hotel_agent.application.use_cases.search_hotels import SearchOutcome, Searc
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import UnknownCharacteristic
 from hotel_agent.domain.services.scoring import PropertyMatch
+from hotel_agent.interfaces.http.hotel_identity_schemas import (
+    HotelSummarySchema,
+    hotel_summary_schema,
+)
 from hotel_agent.interfaces.http.query_schemas import (
     ParsedIntentSchema,
     ParsedSchema,
@@ -26,6 +30,8 @@ class FactBriefSchema(BaseModel):
     source_type: str
     status: str
     geo_refs: list[str]
+    subject: str | None = None
+    qualifiers: dict[str, object] = Field(default_factory=dict)
 
 
 class MatchedPropertySchema(BaseModel):
@@ -36,17 +42,6 @@ class MatchedPropertySchema(BaseModel):
     fact: FactBriefSchema | None = None
     geo_refs: list[str] = Field(default_factory=list)
     camera: CameraSchema | None = None
-
-
-class HotelSummarySchema(BaseModel):
-    id: str
-    name: str
-    address: str | None = None
-    location: tuple[float, float]
-    stars: int | None = None
-    building_id: str | None = None
-    height_m: float | None = None
-    levels: int | None = None
 
 
 class BuildingFeatureSchema(BaseModel):
@@ -176,16 +171,7 @@ def _search_result(
             },
         )
     return SearchResultSchema(
-        hotel=HotelSummarySchema(
-            id=hotel.id,
-            name=hotel.name,
-            address=hotel.address,
-            location=hotel.location,
-            stars=hotel.stars,
-            building_id=hotel.building_id,
-            height_m=hotel.height_m,
-            levels=hotel.levels,
-        ),
+        hotel=hotel_summary_schema(hotel),
         score=round(result.scored.score, 3),
         matched=[_matched_schema(match, registry, camera) for match in result.scored.matches],
         camera=camera,
@@ -235,4 +221,6 @@ def _brief(fact: Fact, label: str) -> FactBriefSchema:
         source_type=fact.provenance.source_type,
         status=fact.status,
         geo_refs=[str(ref) for ref in fact.geo_refs],
+        subject=str(fact.subject),
+        qualifiers=dict(fact.qualifiers),
     )

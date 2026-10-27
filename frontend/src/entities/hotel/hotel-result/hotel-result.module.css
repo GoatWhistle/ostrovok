@@ -2,7 +2,7 @@
   composes: panelSurface from "../../../shared/styles/compose.module.css";
   position: relative;
   display: grid;
-  grid-template-columns: var(--thumb-panel) minmax(0, 1fr);
+  grid-template-columns: var(--thumb-size) minmax(0, 1fr);
   gap: var(--space-12);
   padding: var(--space-12);
   animation: var(--motion-fade-in);
@@ -10,7 +10,7 @@
   transition: var(--transition-press);
 }
 
-.hotel[data-photo="false"] {
+.hotel:not(:has([data-hotel-photo])) {
   grid-template-columns: minmax(0, 1fr);
 }
 
@@ -30,6 +30,7 @@
 
 .body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: var(--space-8);
   min-inline-size: 0;
@@ -53,6 +54,9 @@
   flex: 1;
   min-inline-size: 0;
   font: inherit;
+  white-space: normal;
+  font-size: var(--font-size-heading);
+  overflow-wrap: anywhere;
 }
 
 .hotel .name::before {
@@ -69,66 +73,13 @@
 }
 
 .meta {
-  composes: captionText from "../../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
   display: flex;
   align-items: center;
   gap: var(--space-4);
 }
 
-.matches {
-  composes: plainList from "../../../shared/styles/compose.module.css";
-  position: relative;
-  z-index: var(--layer-raised);
-  display: grid;
-  gap: var(--space-2);
-  margin-inline-start: calc(var(--space-8) * -1);
-}
-
-.matches .match {
-  --button-text: var(--text-secondary);
-  --button-height: var(--chip-static-height);
-
-  inline-size: 100%;
-  font-size: var(--font-size-caption);
-  font-weight: var(--weight-medium);
-}
-
-.match svg:first-child {
-  color: var(--hue);
-}
-
-.match > span:first-child > span:last-child {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.label {
-  flex: 1;
+.meta span {
   min-inline-size: 0;
-  color: var(--text-primary);
-  font-weight: var(--weight-semibold);
-}
-
-.status {
-  display: inline-flex;
-  flex: none;
-  color: var(--text-muted);
-}
-
-.status[data-match="full"] {
-  color: var(--status-success);
-}
-
-.status[data-match="partial"] {
-  color: var(--status-warning);
-}
-
-.status[data-match="none"] {
-  color: var(--status-danger);
-}
-
-.status[data-match="computing"] {
-  color: var(--status-info);
+  overflow-wrap: anywhere;
 }

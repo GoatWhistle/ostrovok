@@ -602,6 +602,10 @@ export interface components {
             confidence: number;
             source_type: components["schemas"]["SourceType"];
             status: components["schemas"]["FactStatus"];
+            subject?: string | null;
+            qualifiers?: {
+                [key: string]: unknown;
+            };
             /** @description id геообъектов для подсветки (см. /geo-features:batch) */
             geo_refs?: string[];
         };
@@ -710,6 +714,16 @@ export interface components {
             /** @example 9 */
             levels?: number | null;
             thumbnail_url?: string | null;
+            /** @description Stored source photos, independent of availability lookup */
+            photos?: components["schemas"]["HotelPhoto"][];
+        };
+        HotelPhoto: {
+            /** Format: uri */
+            url: string;
+            /** Format: uri */
+            source_url?: string | null;
+            /** @enum {string} */
+            kind: "hotel" | "room" | "surroundings";
         };
         SearchResult: {
             hotel: components["schemas"]["HotelSummary"];
