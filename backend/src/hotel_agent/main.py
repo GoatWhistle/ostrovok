@@ -6,6 +6,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.commons_photos import CommonsPhotos
 from hotel_agent.adapters.external.event_sources import PublicEvents
 from hotel_agent.adapters.external.gbif import GBIFObservations
 from hotel_agent.adapters.external.hotel_web_card import WebHotelCard
@@ -79,11 +80,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     conditions = MetNorwayConditions(config.public_data_user_agent)
     events = PublicEvents(web_research)
     biodiversity = GBIFObservations()
+    photos = CommonsPhotos(config.public_data_user_agent)
     landcover = WorldCover()
     places: dict[str, PlaceResearchPort] = {
         "search_events": events,
         "read_event_page": events,
         "observe_wildlife": biodiversity,
+        "find_photos": photos,
         "measure_landcover": landcover,
     }
     geography_source = OverpassGeography(config.geography_api_url)
@@ -121,6 +124,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             await geography_source.aclose()
             await events.aclose()
             await biodiversity.aclose()
+            await photos.aclose()
             await view_geometry.aclose()
             terrain_tiles.close()
             await providers.aclose()

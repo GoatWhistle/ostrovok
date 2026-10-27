@@ -8,6 +8,7 @@ SOURCES = {
     "search_events": "web",
     "read_event_page": "web",
     "observe_wildlife": "geography",
+    "find_photos": "web",
     "measure_landcover": "geography",
     "check_requested": "database",
     "read_records": "database",

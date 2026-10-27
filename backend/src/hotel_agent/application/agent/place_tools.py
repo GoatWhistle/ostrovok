@@ -9,7 +9,9 @@ from hotel_agent.application.agent.record_reader import RecordReader
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.place_research import PlaceResearchPort, PlaceResearchRequest
 
-ACTIONS = frozenset({"search_events", "read_event_page", "observe_wildlife", "measure_landcover"})
+ACTIONS = frozenset(
+    {"search_events", "read_event_page", "observe_wildlife", "measure_landcover", "find_photos"}
+)
 
 
 class PlaceTools:
