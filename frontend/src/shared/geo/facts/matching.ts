@@ -6,3 +6,7 @@ export function isCurrentFact(fact: FactBrief | null | undefined): boolean {
 export function isUsableMatch(item: MatchedProperty): boolean {
   return (item.match === "full" || item.match === "partial") && isCurrentFact(item.fact)
 }
+
+export function isAvailableFact(fact: FactBrief): boolean {
+  return isCurrentFact(fact) && fact.value !== null && fact.value !== undefined
+}

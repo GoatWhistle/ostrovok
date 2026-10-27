@@ -76,7 +76,12 @@ export function useHotelWorkspace() {
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
   const expanded = useWorkspaceExpansion(navigation.scopeKey, results.length > 0)
-  const list = useListReturn(navigation.scopeKey, hotelId, results.length)
+  const list = useListReturn(
+    navigation.scopeKey,
+    hotelId,
+    results.length,
+    !hotelId || navigation.route.hotelPage,
+  )
   const activeSubject = placeId ?? factId ?? hotelId
   useEffect(() => {
     if (activeSubject && view === "hotels" && (placeId || window.matchMedia(NARROW).matches))

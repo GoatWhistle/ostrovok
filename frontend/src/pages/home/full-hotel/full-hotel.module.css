@@ -1,0 +1,19 @@
+.page {
+  composes: fillAvailable from "../../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: var(--surface-base);
+}
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-16);
+  box-shadow: var(--shadow-divider-bottom);
+}
+.content {
+  padding: var(--space-24);
+  outline: none;
+}

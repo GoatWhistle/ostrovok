@@ -1,5 +1,6 @@
 import { createContext, type ReactNode, useContext, useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
+import { HotelRoomProvider } from "./hotel-room"
 
 type Parsed = components["schemas"]["SearchResponse"]["parsed"]
 type Stay = { checkIn: string; checkOut: string; adults: number }
@@ -31,7 +32,11 @@ export function HotelStayProvider({
       source,
       patch: { ...(current?.source === source ? current.patch : {}), ...change },
     }))
-  return <Context value={{ value, update }}>{children}</Context>
+  return (
+    <Context value={{ value, update }}>
+      <HotelRoomProvider scope={source}>{children}</HotelRoomProvider>
+    </Context>
+  )
 }
 
 export function useHotelStay(stay?: Parsed) {

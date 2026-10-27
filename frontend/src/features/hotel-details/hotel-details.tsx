@@ -3,6 +3,7 @@ import { useId } from "react"
 import { useHotel } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
+import { isAvailableFact } from "@/shared/geo/facts/matching"
 import { useTranslation } from "@/shared/i18n"
 import { Banner, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import { HotelFacilities } from "./facilities/hotel-facilities"
@@ -18,7 +19,7 @@ export interface HotelDetailsProps {
   readonly hotelId: string | undefined
   readonly matched?: readonly MatchedProperty[]
   readonly stay?: components["schemas"]["SearchResponse"]["parsed"] | undefined
-  readonly onProperty?: (property: MatchedProperty) => void
+  readonly onProperty?: ((property: MatchedProperty) => void) | undefined
   readonly onFact: (fact: FactBrief) => void
   readonly onPreview?: (property: MatchedProperty | undefined) => void
   readonly className?: string | undefined
@@ -94,7 +95,7 @@ export function HotelDetails({
           onPreview={onPreview}
         />
       ) : (
-        <FactList facts={card.facts} onFact={onFact} />
+        <FactList facts={card.facts.filter(isAvailableFact)} onFact={onFact} />
       )}
       <HotelOffers hotelId={card.hotel.id} stay={stay} />
       {rooms.length ? (
@@ -126,7 +127,7 @@ export function HotelDetails({
             {t("explore:details.staleText")}
           </Banner>
         ) : null}
-        {matched.length ? <FactList facts={card.facts} onFact={onFact} /> : null}
+        <FactList facts={card.facts} onFact={onFact} />
       </Disclosure>
     </article>
   )

@@ -1,14 +1,19 @@
 import { useCallback, useLayoutEffect, useRef } from "react"
 
-export function useListReturn(scope: string, hotelId: string | undefined, count: number) {
+export function useListReturn(
+  scope: string,
+  hotelId: string | undefined,
+  count: number,
+  showList = !hotelId,
+) {
   const element = useRef<HTMLDivElement | null>(null)
   const positions = useRef(new Map<string, { top: number; focus: string }>())
   const restore = useCallback(() => {
     const saved = positions.current.get(scope)
-    if (hotelId || !saved || !element.current) return
+    if (!showList || !saved || !element.current) return
     element.current.scrollTop = saved.top
-    document.getElementById(saved.focus)?.focus({ preventScroll: true })
-  }, [scope, hotelId])
+    if (!hotelId) document.getElementById(saved.focus)?.focus({ preventScroll: true })
+  }, [scope, hotelId, showList])
   const listRef = useCallback(
     (node: HTMLDivElement | null) => {
       element.current = node

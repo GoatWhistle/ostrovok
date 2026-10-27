@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react"
-import { HotelThumb, minimumOffers } from "@/entities/hotel"
+import { useEffect, useRef } from "react"
+import { HotelThumb, minimumOffers, useHotelRoom } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Card } from "@/shared/ui"
@@ -12,7 +12,12 @@ type Offers = components["schemas"]["HotelOffers"]
 export function RoomCatalog({ content }: { readonly content: Offers }) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  const [selected, setSelected] = useState<string>()
+  const [selected, setSelected] = useHotelRoom(
+    content.hotel_id,
+    content.check_in,
+    content.check_out,
+    content.adults,
+  )
   const returnTo = useRef<string | undefined>(undefined)
   const buttons = useRef(new Map<string, HTMLButtonElement>())
   useEffect(() => {

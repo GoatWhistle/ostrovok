@@ -10,12 +10,27 @@ import {
   workspaceHref,
 } from "./workspace-location"
 
-type NavigationState = { started?: boolean; draftId?: string; returnTo?: string }
+type NavigationState = {
+  started?: boolean
+  draftId?: string
+  returnTo?: string
+  returnTrail?: readonly string[]
+}
 
 function navigationState(value: unknown): NavigationState {
   if (!value || typeof value !== "object") return {}
   const candidate = value as NavigationState
   return {
+    ...(Array.isArray(candidate.returnTrail)
+      ? {
+          returnTrail: candidate.returnTrail
+            .flatMap((value: unknown) => {
+              const href = safeWorkspaceReturn(value)
+              return href ? [href] : []
+            })
+            .slice(-8),
+        }
+      : {}),
     ...(candidate.started === true ? { started: true } : {}),
     ...(typeof candidate.draftId === "string" ? { draftId: candidate.draftId } : {}),
     ...(safeWorkspaceReturn(candidate.returnTo)
@@ -35,6 +50,10 @@ export function useWorkspaceNavigation() {
   currentState.current = state
   const href = workspaceHref(route)
   const scopeKey = route.chat ?? state.draftId ?? location.key
+  const trail =
+    route.fullMap || route.hotelPage
+      ? [...(state.returnTrail ?? []), ...(state.returnTo ? [state.returnTo] : [])]
+      : []
   useEffect(() => {
     if (location.pathname + location.search !== href) {
       void navigate(href, { replace: true, state: location.state })
@@ -94,15 +113,39 @@ export function useWorkspaceNavigation() {
       change(
         { hotel, hotelPage: true, fullMap: false, from: route.fullMap ? "map" : "panel", section },
         false,
-        { ...state, returnTo: href },
+        {
+          ...state,
+          returnTo: href,
+          returnTrail: trail,
+        },
       ),
     expandMap: () =>
       change(
         { hotelPage: false, fullMap: true, from: undefined, section: undefined, tab: "map" },
         false,
-        { ...state, returnTo: href },
+        {
+          ...state,
+          returnTo: href,
+          returnTrail: trail,
+        },
       ),
     returnFromSurface: () => {
+      if (!state.returnTo && route.hotelPage && !route.from) {
+        change(
+          {
+            chat: null,
+            hotel: undefined,
+            hotelPage: false,
+            fullMap: false,
+            from: undefined,
+            section: undefined,
+            tab: "chat",
+          },
+          false,
+          { draftId: crypto.randomUUID() },
+        )
+        return
+      }
       const fallback = workspaceHref({
         ...route,
         hotelPage: false,
@@ -110,7 +153,21 @@ export function useWorkspaceNavigation() {
         from: undefined,
         section: undefined,
       })
-      void navigate(state.returnTo ?? fallback, { state: { ...state, returnTo: undefined } })
+      const target = state.returnTo ?? fallback
+      const url = new URL(target, window.location.origin)
+      const restored = readWorkspaceLocation(url.pathname, url.search)
+      const trail = [...(state.returnTrail ?? [])]
+      const parent = trail.pop()
+      void navigate(
+        workspaceHref({
+          ...restored,
+          appearance: route.appearance ?? restored.appearance,
+          ...(route.fullMap ? { hotel: route.hotel } : {}),
+        }),
+        {
+          state: { ...state, returnTo: parent, returnTrail: trail },
+        },
+      )
     },
   }
 }
