@@ -26,7 +26,10 @@ export function MapHotel({
   const { snap, drag, full, style, toggle } = useSheet()
   const collapsed = snap === "peek"
   const close = useRef<HTMLButtonElement>(null)
-  useEffect(() => close.current?.focus({ preventScroll: true }), [])
+  useEffect(() => {
+    if (!globalThis.matchMedia?.("(pointer: coarse)").matches)
+      close.current?.focus({ preventScroll: true })
+  }, [])
   useEffect(() => {
     if (state.placeId) close.current?.focus({ preventScroll: true })
   }, [state.placeId])

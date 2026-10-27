@@ -49,6 +49,13 @@
   justify-items: end;
 }
 
+@media (max-width: 47.99rem) {
+  .controls {
+    justify-items: end;
+    gap: var(--space-6);
+  }
+}
+
 @media (max-width: 47.99rem) and (pointer: coarse) {
   .group:has(> :nth-child(2):last-child),
   .group:has(> :nth-child(4)) > :nth-child(odd) {

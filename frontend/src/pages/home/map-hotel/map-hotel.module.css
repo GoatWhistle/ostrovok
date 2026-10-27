@@ -48,9 +48,13 @@
   }
   .header {
     position: relative;
-    min-block-size: var(--control-height-hero);
-    padding-block-start: var(--space-12);
+    justify-content: flex-end;
+    min-block-size: var(--target-min);
+    padding-block: 0;
     touch-action: none;
+  }
+  .header strong {
+    display: none;
   }
   .header::before {
     content: "";
@@ -66,7 +70,19 @@
   .collapse {
     display: inline-flex;
   }
-  .card[data-collapsed="true"] .content {
+  .content {
+    padding-block-start: 0;
+  }
+  .card[data-snap="peek"] .content {
+    max-block-size: var(--sheet-peek);
+    overflow: hidden;
+  }
+  .content article {
+    --thumb-size: var(--mark-lg);
+  }
+  .card[data-snap="peek"] .content > button,
+  .card[data-snap="peek"] .content li + li,
+  .card[data-snap="peek"] .content article p {
     display: none;
   }
 }
