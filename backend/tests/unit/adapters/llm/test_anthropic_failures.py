@@ -148,4 +148,4 @@ async def test_text_blocks_are_joined_and_custom_endpoint_is_respected(
     assert str(anthropic_requests[0].url) == "https://proxy.example/anthropic/v1/messages"
     await llm.aclose()
     with pytest.raises(RuntimeError, match="client has been closed"):
-        await llm.contextualize_query("отель", "море")
+        await llm.contextualize_query("отель", "горы")
