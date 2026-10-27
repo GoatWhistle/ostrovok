@@ -1,4 +1,4 @@
-from hotel_agent.application.agent.catalogue_links import reference_urls
+from hotel_agent.application.agent.catalogue_links import catalogue_names, reference_urls
 
 
 def test_a_russian_wikipedia_tag_becomes_a_readable_article_address() -> None:
@@ -30,3 +30,17 @@ def test_tags_without_a_usable_reference_give_nothing() -> None:
     assert reference_urls({"wikipedia": "Ритц-Карлтон", "wikidata": "18399121"}) == []
     assert reference_urls({"website": "example.org"}) == []
     assert reference_urls({}) == []
+
+
+def test_catalogue_names_keep_the_former_and_article_names() -> None:
+    names = catalogue_names(
+        {
+            "name": "The Carlton Moscow",
+            "old_name": "Ритц-Карлтон Москва",
+            "wikipedia": "ru:Ритц-Карлтон Москва",
+            "wikidata": "Q18399121",
+            "addr:street": "Тверская улица",
+        }
+    )
+
+    assert names == ["The Carlton Moscow", "Ритц-Карлтон Москва"]
