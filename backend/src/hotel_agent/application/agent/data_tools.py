@@ -4,7 +4,6 @@ from typing import Any
 
 from hotel_agent.application.agent.candidate_lookup import lookup_candidates
 from hotel_agent.application.agent.candidate_measurements import CandidateMeasurements
-from hotel_agent.application.agent.catalogue_links import catalogue_names
 from hotel_agent.application.agent.coast_measurements import CoastMeasurements
 from hotel_agent.application.agent.data_profile import profile_data
 from hotel_agent.application.agent.document_evidence import DocumentEvidence
@@ -166,26 +165,7 @@ class DataTools:
     def bbox(self) -> tuple[float, float, float, float] | None:
         return self.candidates.bbox
 
-    async def _named_query(self, arguments: dict[str, Any]) -> str:
-        query = str(arguments.get("query") or "").strip()
-        rows = await self._records("hotels")
-        wanted = str(arguments["hotel_id"])
-        row = next((item for item in rows if str(item.get("hotel_id")) == wanted), None)
-        if row is None:
-            return query
-        tags = row.get("tags")
-        names = catalogue_names(
-            {
-                **({"name": row["name"]} if row.get("name") else {}),
-                **(tags if isinstance(tags, dict) else {}),
-            }
-        )
-        spare = [name for name in names[:3] if name.casefold() not in query.casefold()]
-        return " ".join([query, *(f'"{name}"' for name in spare)]).strip() if spare else query
-
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
-        if action == "search_web" and arguments.get("hotel_id"):
-            arguments = {**arguments, "query": await self._named_query(arguments)}
         if action == "search_events":
             return await search_events(self.places, self.research, self.city, arguments, self._now)
         if action in ACTIONS:
