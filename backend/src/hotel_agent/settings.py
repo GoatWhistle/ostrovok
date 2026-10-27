@@ -28,6 +28,7 @@ class Settings:
     llm_base_url: str | None = None
     llm_model: str | None = None
     llm_fallback_model: str | None = None
+    llm_planning_model: str | None = None
     llm_timeout_s: float = 30.0
     map_catalog_dir: Path | None = None
     map_basemaps_dir: Path | None = None
@@ -62,6 +63,7 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         llm_base_url=env.get("LLM_BASE_URL") or None,
         llm_model=env.get("LLM_MODEL") or None,
         llm_fallback_model=env.get("LLM_FALLBACK_MODEL") or None,
+        llm_planning_model=env.get("LLM_PLANNING_MODEL") or None,
         llm_timeout_s=_positive(env, "LLM_TIMEOUT_S", 30.0),
         characteristics_dir=Path(env.get("CHARACTERISTICS_DIR") or "characteristics"),
         seed_dir=Path(env.get("SEED_DIR") or "data/seed"),

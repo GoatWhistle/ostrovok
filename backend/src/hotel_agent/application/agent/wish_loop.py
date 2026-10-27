@@ -134,20 +134,34 @@ class WishLoop:
                         self._max_steps - index,
                         self._clock.now(),
                     )
+                    planned_at = asyncio.get_running_loop().time()
                     step = (
                         DataStep(action="match_records", arguments={"dataset": "web_documents"})
                         if index == 0 and tools.research.pages and note is None
                         else await self._llm.explore_data(context)
                     )
                     self._logger.info(
-                        "wish_agent_step", wish=term, step=index + 1, action=step.action
+                        "wish_agent_step",
+                        wish=term,
+                        step=index + 1,
+                        action=step.action,
+                        seconds=round(asyncio.get_running_loop().time() - planned_at, 1),
+                        context_chars=len(context),
                     )
                     if step.action == "finish" and ledger.repeated_finish(repr(step)):
                         reason = "Агент повторяет необоснованное завершение; проверка не завершена."
                         break
                     if step.criteria:
+                        checked_at = asyncio.get_running_loop().time()
                         candidate, rejected = await evaluate_criteria(
                             self._llm, query, term, step.criteria, tools, self._clock.now()
+                        )
+                        self._logger.info(
+                            "wish_criteria_checked",
+                            wish=term,
+                            seconds=round(asyncio.get_running_loop().time() - checked_at, 1),
+                            accepted=len(candidate.intents),
+                            rejected=len(rejected),
                         )
                         if candidate.intents:
                             retained = candidate
@@ -259,12 +273,19 @@ class WishLoop:
                             reason = "Агент повторял одинаковые действия и не завершил проверку пожелания."
                             break
                         continue
+                    ran_at = asyncio.get_running_loop().time()
                     try:
                         result = await tools.execute(step.action, step.arguments)
                     except (ValueError, TypeError, KeyError) as error:
                         result = {"error": str(error)}
                     except ModelFailure as error:
                         result = {"unavailable": True, "error": str(error)}
+                    self._logger.info(
+                        "wish_tool_done",
+                        wish=term,
+                        action=step.action,
+                        seconds=round(asyncio.get_running_loop().time() - ran_at, 1),
+                    )
                     ledger.observe(step.action, step.arguments, result)
                     observations.append(
                         {"tool": step.action, "arguments": step.arguments, "result": result}

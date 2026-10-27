@@ -19,12 +19,14 @@ class OpenAICompletion:
         api_key: str,
         model: str,
         fallback_model: str | None = None,
+        planning_model: str | None = None,
         timeout_s: float,
         transport: httpx.AsyncBaseTransport | None = None,
     ) -> None:
         self._logger = logger
         self._model = model
         self._fallback_model = fallback_model
+        self._planning_model = planning_model
         self._timeout_s = timeout_s
         self._budget = AttemptBudget(ceiling_s=timeout_s)
         self._client = httpx.AsyncClient(
@@ -37,6 +39,11 @@ class OpenAICompletion:
     @property
     def provider(self) -> str:
         return "openai_compat"
+
+    def _candidates(self, planning: bool) -> tuple[str, str]:
+        if planning and self._planning_model:
+            return (self._planning_model, self._model)
+        return (self._model, self._fallback_model or self._model)
 
     async def aclose(self) -> None:
         await self._client.aclose()
@@ -63,18 +70,15 @@ class OpenAICompletion:
             request.update(reasoning_effort="none", temperature=1, max_tokens=2000)
         if schema is not None:
             request["response_format"] = schema
-        models = self._budget.order((self._model, self._fallback_model or self._model))
+        models = self._budget.order(self._candidates(planning))
+        spare = models[0] != models[1]
         for attempt, model in enumerate(models):
             request["model"] = model
             started = time.monotonic()
             try:
-                initial = (
-                    min(self._timeout_s, 12)
-                    if self._fallback_model and attempt == 0
-                    else self._timeout_s
-                )
+                initial = min(self._timeout_s, 12) if spare and attempt == 0 else self._timeout_s
                 if planning:
-                    initial = min(initial, 8 if self._fallback_model and attempt == 0 else 18)
+                    initial = min(initial, 8 if spare and attempt == 0 else 18)
                 limit = self._budget.timeout(model, initial=initial)
                 response = await self._client.post("/chat/completions", json=request, timeout=limit)
                 response.raise_for_status()

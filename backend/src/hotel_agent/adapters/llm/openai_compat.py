@@ -16,6 +16,7 @@ class OpenAICompatLLM(StructuredLLM):
         api_key: str,
         model: str,
         fallback_model: str | None = None,
+        planning_model: str | None = None,
         timeout_s: float,
         transport: httpx.AsyncBaseTransport | None = None,
     ) -> None:
@@ -28,6 +29,7 @@ class OpenAICompatLLM(StructuredLLM):
                 api_key=api_key,
                 model=model,
                 fallback_model=fallback_model,
+                planning_model=planning_model,
                 timeout_s=timeout_s,
                 transport=transport,
             ),

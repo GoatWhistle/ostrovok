@@ -64,3 +64,30 @@ async def test_a_persistently_stalling_model_lets_the_spare_answer_first() -> No
 
     assert attempts[-1] == "spare"
     assert attempts.count("main") == 3
+
+
+async def test_a_planning_model_answers_planning_steps_and_the_main_model_the_rest() -> None:
+    used: list[tuple[bool, str]] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        body = json.loads(request.content)
+        used.append(
+            ("response_format" in body and body.get("max_tokens") == 2000, str(body["model"]))
+        )
+        return httpx.Response(200, json={"choices": [{"message": {"content": "{}"}}]})
+
+    llm = OpenAICompletion(
+        logger=SilentLogger(),
+        base_url="https://example.com/v1",
+        api_key="test",
+        model="main",
+        fallback_model="spare",
+        planning_model="quick",
+        timeout_s=30,
+        transport=httpx.MockTransport(handle),
+    )
+
+    await llm.complete(system="s", user="u", planning=True, schema={"type": "json_object"})
+    await llm.complete(system="s", user="u", schema={"type": "json_object"})
+
+    assert used == [(True, "quick"), (False, "main")]
