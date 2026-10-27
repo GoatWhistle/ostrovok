@@ -1037,3 +1037,8 @@ WindowBuilder завершает отменённые задания и прин
 Игрушечный город использует те же контуры и высоты. Матовые стены и отдельные крыши принадлежат оформлению; декоративный слой крыши толщиной 0,25 м не является измеренной высотой. Неизвестная высота остаётся ограничением исходной геометрии. Светящиеся окна, лампы и glow отключаются вместе с соответствующей фоновой работой.
 
 Общий hook shared/geo/engine сохраняет экземпляр после первой камеры. Один ResizeObserver при trackResize=false работает вместе с IntersectionObserver и видимостью документа; скрытые карты не запускают сцену, окна и прорисовку маршрута. Явная видимость экрана предотвращает применение новой камеры в промежутке до уведомления наблюдателя. Повторное раскрытие применяет только новую команду камеры, сохраняя ручной ракурс. Главная очищает временный выбор без второго history-перехода.
+
+
+### Landing sequence loading and timing
+
+The agreed E18 cover uses the shared map lifecycle and appearance renderer. The two story scenes use one WAAPI clock; camera, route, text and shutters read its time. Cinematic `--story-*` tokens are separate from short UI transition durations. Reduced motion shows the final illustration without starting the clock or creating WebGL. The cover and workspace map load with React lazy boundaries so animation assets do not block the search composer; this is the explicit E18 lazy-loading exception to the general route-only dynamic-import rule. A failed cover chunk leaves its local static fallback and the working search. The saved beach route and generated SVG are illustrative reference assets, never API search results.

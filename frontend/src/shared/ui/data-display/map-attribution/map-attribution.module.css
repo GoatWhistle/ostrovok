@@ -50,3 +50,11 @@
     text-decoration: underline;
   }
 }
+
+.root[data-placement="below"] .links {
+  inset-block-end: auto;
+  inset-block-start: calc(100% + var(--space-6));
+  inset-inline-end: auto;
+  inset-inline-start: 0;
+  transform-origin: left top;
+}

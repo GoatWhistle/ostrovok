@@ -31,8 +31,10 @@ import {
   Maximize2,
   Minus,
   Moon,
+  Pause,
   PawPrint,
   Pencil,
+  Play,
   Plus,
   RefreshCw,
   Rotate3d,
@@ -76,6 +78,8 @@ import {
 } from "./own-glyphs"
 
 export const ICONS = {
+  play: Play,
+  pause: Pause,
   cloud: Cloud,
   "cloud-fog": CloudFog,
   "cloud-lightning": CloudLightning,

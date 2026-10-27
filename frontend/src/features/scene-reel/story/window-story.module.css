@@ -1,0 +1,105 @@
+.world {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-sunken);
+  color: var(--text-primary);
+  pointer-events: none;
+}
+.window {
+  position: absolute;
+  inset: var(--space-64) var(--space-32) var(--cover-footer);
+  overflow: hidden;
+  border: var(--space-8) solid var(--border-strong);
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-sm) var(--radius-sm);
+  background: var(--surface-inverse);
+  box-shadow: var(--shadow-overlay);
+}
+.panorama {
+  composes: coverMedia from "../../../shared/styles/compose.module.css";
+}
+.shutter {
+  position: absolute;
+  inset: 0 50% 0 0;
+  background: var(--surface-raised);
+  border: var(--space-4) solid var(--border-default);
+  box-shadow: var(--shadow-cover-shutter);
+}
+.shutter[data-side="right"] {
+  inset: 0 0 0 50%;
+}
+.result {
+  position: absolute;
+  inset-inline: var(--space-32);
+  inset-block-end: var(--space-80);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--cover-inset);
+  align-items: center;
+  gap: var(--space-16);
+}
+.world .copy {
+  padding: 0;
+  gap: 0;
+  background: transparent;
+}
+.copy h2 {
+  margin: 0;
+  font-size: var(--font-size-heading);
+  line-height: var(--line-height-heading);
+}
+.copy p {
+  margin: var(--space-8) 0 0;
+  font-size: var(--font-size-body-sm);
+  color: var(--text-secondary);
+}
+.inset {
+  margin: 0;
+}
+.inset img {
+  inline-size: 100%;
+  aspect-ratio: 1.7;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+.inset figcaption {
+  font-size: var(--font-size-micro);
+  color: var(--text-secondary);
+}
+.disclaimer {
+  position: absolute;
+  inset-inline-start: var(--space-24);
+  inset-inline-end: var(--cover-controls);
+  inset-block-end: var(--space-12);
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--font-size-micro);
+  color: var(--text-secondary);
+}
+@media (max-width: 63.99rem) {
+  .window {
+    inset: var(--space-32) var(--space-16) var(--cover-footer-compact);
+    border-width: var(--space-4);
+  }
+  .result {
+    inset-inline: var(--space-16);
+    inset-block-end: var(--space-64);
+    grid-template-columns: minmax(0, 1fr) var(--thumb-size);
+    gap: var(--space-12);
+  }
+  .world .copy {
+    padding: 0;
+    gap: 0;
+    background: transparent;
+  }
+  .copy h2 {
+    font-size: var(--font-size-body);
+  }
+  .copy p {
+    font-size: var(--font-size-caption);
+    margin-block-start: var(--space-4);
+  }
+  .disclaimer {
+    inset-inline-start: var(--space-12);
+    font-size: var(--font-size-micro);
+  }
+}

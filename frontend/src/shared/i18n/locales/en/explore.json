@@ -423,23 +423,7 @@
   "landing": {
     "settings": "Settings",
     "language": "Language",
-    "theme": "Theme",
-    "places": {
-      "elbrus": "Elbrus",
-      "seaport": "Sochi seaport",
-      "klyuchevskaya": "Klyuchevskaya Sopka",
-      "avachinsky": "Avachinsky volcano",
-      "fisht": "Fisht Stadium",
-      "belukha": "Belukha",
-      "khosta": "Khosta",
-      "khibiny": "Khibiny",
-      "tyatya": "Tyatya volcano",
-      "dombay": "Dombay",
-      "kronotsky": "Kronotsky volcano",
-      "goldenBridge": "Golden Bridge",
-      "ergaki": "Ergaki",
-      "teriberka": "Teriberka"
-    }
+    "theme": "Theme"
   },
   "viewEvidence": {
     "visible": "The sightline is clear in the calculated model",
@@ -548,5 +532,26 @@
       "pillows": "Pillows",
       "view": "With a view"
     }
+  },
+  "cover": {
+    "title": "From a wish to a place",
+    "example": "Example request",
+    "nextExample": "Another example",
+    "beachWish": "I want a hotel within a five-minute walk of the beach",
+    "sunsetWish": "I want a beautiful sunset view",
+    "hotel": "Cosmos Adler Hotel",
+    "beachPath": "Path beside the beach",
+    "why": "Why this hotel fits",
+    "routeTitle": "{{minutes, number}} minutes on foot, about {{meters, number}} m",
+    "routeNote": "An example route along mapped paths. Hotel access has not been verified.",
+    "finalTitle": "See what will be around you",
+    "finalNote": "Get to know the place. Then choose your hotel.",
+    "insetAlt": "Hotel location and a schematic direction towards the sea",
+    "seaDirection": "Towards the sea",
+    "illustration": "Illustration of the surroundings",
+    "disclaimer": "Illustrative panorama. The view from a room is not confirmed.",
+    "pause": "Pause animation",
+    "play": "Play animation",
+    "replay": "Replay animation"
   }
 }

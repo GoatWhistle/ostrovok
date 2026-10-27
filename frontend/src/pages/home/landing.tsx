@@ -14,7 +14,7 @@ export interface LandingProps {
 }
 
 export function Landing({ pending, recent, onSend, onOpen, onHistory, draftKey }: LandingProps) {
-  const [paused, setPaused] = useState(false)
+  const [interruption, interrupt] = useState(0)
   return (
     <div className={styles.landing} data-chrome="bare">
       <div className={styles.corner}>
@@ -26,9 +26,9 @@ export function Landing({ pending, recent, onSend, onOpen, onHistory, draftKey }
             pending={pending}
             draftKey={draftKey}
             recent={recent}
-            onInteraction={() => setPaused(true)}
+            onInteraction={() => interrupt((value) => value + 1)}
             onSend={(message) => {
-              setPaused(true)
+              interrupt((value) => value + 1)
               onSend(message)
             }}
             onOpen={onOpen}
@@ -36,7 +36,7 @@ export function Landing({ pending, recent, onSend, onOpen, onHistory, draftKey }
           />
         </div>
         <div className={styles.visual}>
-          <SceneReel paused={paused} />
+          <SceneReel interruption={interruption} />
         </div>
       </div>
     </div>

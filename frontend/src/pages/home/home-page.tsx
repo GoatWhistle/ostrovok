@@ -1,6 +1,5 @@
-import { type CSSProperties, useCallback, useRef, useState } from "react"
+import { type CSSProperties, lazy, Suspense, useCallback, useRef, useState } from "react"
 import { HotelStayProvider } from "@/entities/hotel"
-import { HotelMap } from "@/features/hotel-map"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
 import { type ChatView, SearchChat } from "@/features/search-chat"
 import { SearchResults } from "@/features/search-results"
@@ -14,6 +13,10 @@ import { Landing } from "./landing"
 import { SelectedHotel } from "./selected-hotel"
 import { useAppearanceLocation } from "./use-appearance-location"
 import { useFreshStart } from "./use-fresh-start"
+
+const HotelMap = lazy(() =>
+  import("@/features/hotel-map").then((module) => ({ default: module.HotelMap })),
+)
 
 function useMapVisible(
   surface: ReturnType<typeof useHotelWorkspace>["surface"],
@@ -126,22 +129,24 @@ export function HomePage() {
           </aside>
           <div className={styles.map}>
             {mapMounted.current ? (
-              <HotelMap
-                visible={mapVisible}
-                onAppearance={state.navigation.setAppearance}
-                hotelId={state.hotelId}
-                camera={state.camera}
-                geoRefs={state.geoRefs}
-                focusedFact={state.focusedFact}
-                focusProperty={state.focusProperty}
-                regionId={state.search ? "russia" : "sochi"}
-                results={state.results}
-                bounds={state.bounds}
-                onSelect={state.select}
-                onPlace={state.openPlace}
-                onTimeChange={onTimeChange}
-                bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
-              />
+              <Suspense fallback={null}>
+                <HotelMap
+                  visible={mapVisible}
+                  onAppearance={state.navigation.setAppearance}
+                  hotelId={state.hotelId}
+                  camera={state.camera}
+                  geoRefs={state.geoRefs}
+                  focusedFact={state.focusedFact}
+                  focusProperty={state.focusProperty}
+                  regionId={state.search ? "russia" : "sochi"}
+                  results={state.results}
+                  bounds={state.bounds}
+                  onSelect={state.select}
+                  onPlace={state.openPlace}
+                  onTimeChange={onTimeChange}
+                  bottomCenter={<CompareDock ids={state.compared} limit={state.limitReached} />}
+                />
+              </Suspense>
             ) : null}
           </div>
           <div className={styles.chat}>

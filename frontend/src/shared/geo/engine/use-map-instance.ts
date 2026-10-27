@@ -2,6 +2,7 @@ import {
   type ErrorEvent,
   GPUInitializationError,
   Map as MapLibreMap,
+  type MapOptions,
   setWorkerUrl,
 } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
@@ -20,7 +21,12 @@ function isFatalMapError(event: ErrorEvent, started: boolean): boolean {
   return !started
 }
 
-export function useMapInstance(hasCamera: boolean) {
+const DEFAULT_OPTIONS = {}
+
+export function useMapInstance(
+  hasCamera: boolean,
+  options: Partial<Omit<MapOptions, "container" | "style">> = DEFAULT_OPTIONS,
+) {
   const container = useRef<HTMLDivElement>(null)
   const instance = useRef<MapLibreMap | null>(null)
   const [ready, setReady] = useState(false)
@@ -45,6 +51,7 @@ export function useMapInstance(hasCamera: boolean) {
         pitchSpeed: PITCH_SPEED,
         fadeDuration: 0,
         renderWorldCopies: false,
+        ...options,
       })
       instance.current = map
       let started = false
@@ -76,6 +83,6 @@ export function useMapInstance(hasCamera: boolean) {
       setFailed(true)
     }
     return undefined
-  }, [enabled])
+  }, [enabled, options])
   return { container, instance, ready, failed, active: ready && visible && !failed }
 }

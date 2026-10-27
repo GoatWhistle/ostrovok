@@ -7,6 +7,7 @@ export {
   readPixels,
   readToken,
 } from "./css-tokens"
+export { motionCurve } from "./motion-curve"
 export { type RevealKind, type RevealOrigin, revealTransition } from "./reveal-transition"
 export { type StaggerStyle, staggerStyle } from "./stagger"
 export { Swap, type SwapPhase, type SwapProps } from "./swap/swap"

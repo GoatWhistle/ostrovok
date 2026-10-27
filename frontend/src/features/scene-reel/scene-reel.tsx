@@ -1,23 +1,34 @@
-import { createPortal } from "react-dom"
-import { useTranslation } from "@/shared/i18n"
-import { MapAttribution } from "@/shared/ui"
-import { ReelMark } from "./reel-mark"
-import styles from "./scene-reel.module.css"
-import { useSceneReel } from "./use-scene-reel"
+import { Component, lazy, type ReactNode, Suspense, useRef } from "react"
+import { useReducedMotion } from "@/shared/motion"
+import { StaticCover } from "./static-cover"
 
-export function SceneReel({ paused = false }: { readonly paused?: boolean }) {
-  const { t } = useTranslation()
-  const reel = useSceneReel(paused)
+const Sequence = lazy(() =>
+  import("./cover-sequence").then((module) => ({ default: module.CoverSequence })),
+)
+
+class CoverBoundary extends Component<
+  { readonly children: ReactNode },
+  { readonly failed: boolean }
+> {
+  override state = { failed: false }
+  static getDerivedStateFromError() {
+    return { failed: true }
+  }
+  override render() {
+    return this.state.failed ? <StaticCover /> : this.props.children
+  }
+}
+
+export function SceneReel({ interruption }: { readonly interruption: number }) {
+  const reduced = useReducedMotion()
+  const interrupted = useRef(false)
+  interrupted.current ||= reduced || interruption > 0
+  if (reduced) return <StaticCover />
   return (
-    <figure className={styles.reel} data-shown={reel.shown} data-failed={reel.failed || undefined}>
-      <div ref={reel.container} className={styles.canvas} aria-hidden="true" />
-      {reel.marks.map((mark) => createPortal(<ReelMark mark={mark} />, mark.element, mark.key))}
-      <MapAttribution
-        className={styles.attribution}
-        label={t("explore:map.attributionTitle")}
-        osm={t("explore:map.attribution")}
-        terrain={t("explore:map.terrainAttribution")}
-      />
-    </figure>
+    <CoverBoundary>
+      <Suspense fallback={<StaticCover />}>
+        <Sequence interruption={interruption + Number(interrupted.current)} />
+      </Suspense>
+    </CoverBoundary>
   )
 }

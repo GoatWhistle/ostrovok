@@ -1,3 +1,9 @@
+.coverMedia {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
 .labelText {
   font-size: var(--font-size-label);
   line-height: var(--line-height-label);

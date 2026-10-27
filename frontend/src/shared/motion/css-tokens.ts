@@ -1,4 +1,5 @@
 export type DurationToken =
+  | `--story-${string}`
   | `--dur-${string}`
   | `--delay-${string}`
   | "--hold-skeleton"
