@@ -10,7 +10,11 @@ from hotel_agent.application.agent.review_feedback import ReviewFeedback, reject
 from hotel_agent.application.agent.semantic_review import ReviewResult, SemanticReview
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchHotelRecord
-from hotel_agent.application.exploration_requests import apply_exploration, exploration_plan
+from hotel_agent.application.exploration_requests import (
+    apply_exploration,
+    exploration_plan,
+    merge_exploration,
+)
 from hotel_agent.application.facility_matching import facility_intent
 from hotel_agent.application.landmark_resolution import LandmarkResolver
 from hotel_agent.application.nearby_matching import nearby_intent
@@ -145,12 +149,14 @@ class SearchHotels:
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         explorer = self._explorer
 
-        async def explore(feedback: tuple[ReviewFeedback, ...]) -> ExplorationOutcome:
+        async def explore(
+            feedback: tuple[ReviewFeedback, ...], wanted: tuple[str, ...] = terms
+        ) -> ExplorationOutcome:
             if explorer is None:
                 return explored
             return await explorer(
                 query,
-                terms,
+                wanted,
                 location or "Россия",
                 region,
                 hotels,
@@ -176,7 +182,8 @@ class SearchHotels:
         selection = await self._selection(query, parsed, explored, limit)
         feedback = rejection_feedback(selection.ranked, selection.report)
         if feedback and explorer is not None and terms and not explored.question:
-            retried = await explore(feedback)
+            doubted = tuple(term for term in terms if any(term in row.wishes for row in feedback))
+            retried = merge_exploration(explored, await explore(feedback, doubted or terms))
             retried_parsed = apply_exploration(parsed, retried, plan.duplicates)
             attempt = await self._selection(query, retried_parsed, retried, limit)
             if attempt.accepted:

@@ -166,3 +166,22 @@ def apply_exploration(
         unmatched_terms=tuple(term for term in parsed.unmatched_terms if term not in covered),
         needs_clarification=False,
     )
+
+
+def merge_exploration(first: ExplorationOutcome, retried: ExplorationOutcome) -> ExplorationOutcome:
+    hotels = {row.id: row for row in (*first.hotels, *retried.hotels)}
+    facts = {(row.hotel_id, row.characteristic_key): row for row in (*first.facts, *retried.facts)}
+    intents = {item.characteristic_key: item for item in (*first.intents, *retried.intents)}
+    features = {row.id: row for row in (*first.features, *retried.features)}
+    wishes = {item.term: item for item in (*first.wish_results, *retried.wish_results)}
+    return ExplorationOutcome(
+        hotels=tuple(hotels.values()),
+        bbox=retried.bbox or first.bbox,
+        intents=tuple(intents.values()),
+        facts=tuple(facts.values()),
+        resolved_terms=tuple(dict.fromkeys((*first.resolved_terms, *retried.resolved_terms))),
+        processed_terms=tuple(dict.fromkeys((*first.processed_terms, *retried.processed_terms))),
+        features=tuple(features.values()),
+        wish_results=tuple(wishes.values()),
+        question=retried.question or first.question,
+    )

@@ -69,10 +69,14 @@ def outcome(url: str, quote: str) -> ExplorationOutcome:
 
 
 def build(
-    outcomes: list[ExplorationOutcome], verdicts: list[list[EvidenceVerdict]]
+    outcomes: list[ExplorationOutcome],
+    verdicts: list[list[EvidenceVerdict]],
+    terms: tuple[str, ...] = (TERM,),
 ) -> tuple[SearchHotels, AsyncMock, AsyncMock]:
     parsed = ParsedQuery(
-        intents=(wish_intent(TERM),), unmatched_terms=(), location_hint="Санкт-Петербург"
+        intents=tuple(wish_intent(item) for item in terms),
+        unmatched_terms=(),
+        location_hint="Санкт-Петербург",
     )
     llm = SimpleNamespace(
         parse_query=AsyncMock(return_value=parsed), verify_evidence=AsyncMock(side_effect=verdicts)
@@ -143,3 +147,39 @@ async def test_unverified_wish_is_not_retried_and_stays_an_honest_empty_answer()
     assert result.results == []
     assert explorer.await_count == 1
     verify.assert_not_awaited()
+
+
+async def test_only_the_doubted_wish_is_explored_again() -> None:
+    other = "с завтраком"
+    first, second = "https://a.example/death", "https://b.example/residence"
+    use_case, explorer, _ = build(
+        [
+            ExplorationOutcome(
+                hotels=(hotel(),),
+                bbox=None,
+                intents=(wish_intent(TERM), wish_intent(other)),
+                facts=(confirmed(first, "Поэт умер в этой гостинице"),),
+                resolved_terms=(TERM, other),
+                processed_terms=(TERM, other),
+            ),
+            outcome(second, "Поэт жил здесь в 1925"),
+        ],
+        [
+            [
+                EvidenceVerdict(
+                    record_id="h1",
+                    supported=False,
+                    quote="",
+                    reason="Источник говорит о смерти, а не о проживании",
+                )
+            ],
+            [EvidenceVerdict(record_id="h1", supported=True, quote='"value": true')],
+        ],
+        terms=(TERM, other),
+    )
+
+    result = await use_case(QUERY, "russia", None, 20)
+
+    assert [item.hotel.id for item in result.results] == ["h1"]
+    assert explorer.await_args_list[0].args[1] == (TERM, other)
+    assert explorer.await_args_list[1].args[1] == (TERM,)
