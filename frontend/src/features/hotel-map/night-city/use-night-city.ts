@@ -14,10 +14,11 @@ import { watchTerrainData } from "@/shared/geo/night-city/terrain-watch"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
 import { markSceneBuildings } from "@/shared/geo/overview-buildings"
-import { renderRoofForms, withRoofForms } from "@/shared/geo/roof-forms/layer"
+import { withRoofForms } from "@/shared/geo/roof-forms/layer"
 import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewport"
 import type { SunPosition } from "@/shared/geo/terrain"
 import type { MapColors } from "@/shared/theme"
+import { useRoofMesh } from "../roof-mesh/use-roof-mesh"
 import {
   type DrawnVolume,
   type RegionBox,
@@ -93,18 +94,18 @@ export function useNightCity({
   )
   const scene = useMapScene(request)
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
+  const roofless = useMemo(() => [...textured], [textured])
+  useRoofMesh(mapRef, ready, scene.data, roofless, effects.roofs)
   useEffect(() => {
     const map = mapRef.current
     const data = scene.data
     if (!ready || !map || !data) return
-    const { buildings, roofs } = withRoofForms(data.features)
     renderSceneVolumes(
       map,
-      sceneCollection({ ...data, features: buildings }),
+      sceneCollection({ ...data, features: withRoofForms(data.features) }),
       volumeColor,
       excluded,
     )
-    renderRoofForms(map, roofs, excluded)
     markSceneBuildings(
       map,
       data.features.map((feature) => feature.properties.building_id),

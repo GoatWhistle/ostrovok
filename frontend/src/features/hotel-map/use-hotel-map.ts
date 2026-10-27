@@ -76,8 +76,8 @@ export function useHotelMap({
   const basemaps = useBasemaps(regionIds)
   const catalog = useMapCatalog()
   const classes = useMemo(
-    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors),
-    [appearance.id, catalog.data, colors],
+    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, sun.altitude),
+    [appearance.id, catalog.data, colors, sun.altitude],
   )
   useEffect(() => retainPmtiles(), [])
   const highlightData = useMemo(() => featureCollection(highlights), [highlights])
