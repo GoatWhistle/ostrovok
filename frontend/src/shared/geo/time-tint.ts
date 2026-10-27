@@ -3,7 +3,8 @@ import type { LightMode } from "./terrain"
 const DAY_ALTITUDE = 12
 const NIGHT_ALTITUDE = -8
 const DUSK_STRENGTH = 0.4
-const NIGHT_STRENGTH = 0.62
+const NIGHT_STRENGTH = 0.66
+const NIGHT_SHARE_FROM = -1
 
 const TINTED = [
   "land",
@@ -14,6 +15,7 @@ const TINTED = [
   "sand",
   "water",
   "coast",
+  "hillHighlight",
   "building",
   "buildingLine",
   "buildingVolume",
@@ -48,6 +50,20 @@ export function mixHex(from: string, to: string, amount: number): string {
     .join("")}`
 }
 
+function nightShare(altitude: number): number {
+  const t = Math.min(
+    1,
+    Math.max(0, (NIGHT_SHARE_FROM - altitude) / (NIGHT_SHARE_FROM - NIGHT_ALTITUDE)),
+  )
+  return t * t * (3 - 2 * t)
+}
+
+export function tintHex(hex: string, colors: TintSource, altitude: number): string {
+  const amount = tintStrength(altitude)
+  if (amount === 0) return hex
+  return mixHex(hex, mixHex(colors.horizonDusk, colors.horizonNight, nightShare(altitude)), amount)
+}
+
 export function tintStrength(altitude: number): number {
   if (altitude >= DAY_ALTITUDE) return 0
   if (altitude <= NIGHT_ALTITUDE) return NIGHT_STRENGTH
@@ -62,7 +78,8 @@ export function tintForTime<
   const amount =
     altitude === undefined ? (mode === "day" ? 0 : DUSK_STRENGTH) : tintStrength(altitude)
   if (amount === 0) return colors
-  const target = mode === "night" ? colors.horizonNight : colors.horizonDusk
+  const night = altitude === undefined ? (mode === "night" ? 1 : 0) : nightShare(altitude)
+  const target = mixHex(colors.horizonDusk, colors.horizonNight, night)
   const next: Partial<Record<(typeof TINTED)[number], string>> = {}
   for (const key of TINTED) {
     const value = colors[key]

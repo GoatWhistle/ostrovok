@@ -3,7 +3,7 @@ import { renderBasemap } from "../basemap"
 import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
-import { tintForTime } from "../time-tint"
+import { tintForTime, tintHex } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
@@ -11,6 +11,8 @@ import { appearanceClasses, readAppearanceColors } from "./palette"
 import { renderAppearanceRoofs, roofPaint } from "./roofs"
 import { renderGroundShadows } from "./shadows"
 import type { MapAppearance } from "./types"
+
+const OVERVIEW_ALTITUDE = 45
 
 export interface MapSceneSnapshot {
   readonly catalog: readonly CatalogClass[]
@@ -71,9 +73,16 @@ export class MapAppearanceController {
     const materials = APPEARANCES[this.appearance].materials
     const tokens = materials.roofTokens ?? (materials.roofToken ? [materials.roofToken] : [])
     const style = getComputedStyle(document.documentElement)
+    const palette = APPEARANCES[this.appearance].palette
+    const sky = {
+      horizonDusk: style.getPropertyValue(palette.horizonDusk).trim(),
+      horizonNight: style.getPropertyValue(palette.horizonNight).trim(),
+    }
+    const altitude = this.scene?.sun.altitude ?? OVERVIEW_ALTITUDE
     const colors = tokens
       .map((token) => style.getPropertyValue(token).trim())
       .filter((value) => value.length > 0)
+      .map((value) => tintHex(value, sky, altitude))
     renderAppearanceRoofs(this.map, roofPaint(colors))
     const sun = this.scene?.sun
     renderGroundShadows(
@@ -97,7 +106,10 @@ export class MapAppearanceController {
     renderTerrain(map, tinted, scene.sun)
     map
       .getContainer()
-      .parentElement?.style.setProperty("--map-backdrop", scenePalette(tinted, mode).sea)
+      .parentElement?.style.setProperty(
+        "--map-backdrop",
+        scenePalette(tinted, scene.sun.altitude).sea,
+      )
     renderBasemap(map, tinted)
     renderCatalogLayers(map, classes, scene.excluded)
     renderBasemapLabels(map, scene.assets, colors, scene.locale)
