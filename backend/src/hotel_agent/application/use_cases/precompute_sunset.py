@@ -93,7 +93,7 @@ class PrecomputeSunset:
             status="active",
             geo_refs=(),
             explanation=_explain(arc, floor, facing, reach),
-            facade_azimuth=azimuth if facing else None,
+            facade_azimuth=None,
         )
 
 
