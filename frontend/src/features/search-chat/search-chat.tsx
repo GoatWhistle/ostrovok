@@ -1,3 +1,4 @@
+import type { ChatProgress } from "@/shared/api"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useFormatters, useTranslation } from "@/shared/i18n"
@@ -28,6 +29,7 @@ export interface SearchChatProps {
   readonly selectedHotel?: string | undefined
   readonly loading: boolean
   readonly sending: boolean
+  readonly progress?: ChatProgress | null | undefined
   readonly failed: boolean
   readonly onSend: (message: string) => void
   readonly onRetry: () => void
@@ -52,6 +54,7 @@ export function SearchChat({
   selectedHotel,
   loading,
   sending,
+  progress,
   failed,
   onSend,
   onRetry,
@@ -122,7 +125,7 @@ export function SearchChat({
               ),
             )}
             {outgoing ? <UserBubble>{outgoing}</UserBubble> : null}
-            {sending ? <AgentThinking /> : null}
+            {sending ? <AgentThinking progress={progress} /> : null}
             {failed && !sending ? <AgentFailure onRetry={onRetry} /> : null}
           </ol>
         </ScrollArea>

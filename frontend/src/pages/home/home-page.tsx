@@ -178,6 +178,7 @@ export function HomePage() {
                 selectedHotel: selected?.hotel.name,
                 loading: state.chatLoading,
                 sending: state.sending,
+                progress: state.progress,
                 failed: state.chatFailed,
                 onSend: state.send,
                 onRetry: state.retry,

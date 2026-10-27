@@ -33,6 +33,28 @@ function conversation(id: string, hotel: string): Conversation {
   }
 }
 
+function deferredChat() {
+  const sent: string[] = []
+  let push: ((data: Conversation) => void) | undefined
+  const send = vi.fn((_url: string, init?: RequestInit) => {
+    sent.push(String((JSON.parse(String(init?.body)) as { message: string }).message))
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        push = (data) => {
+          const frame = `event: result\ndata: ${JSON.stringify(data)}\n\n`
+          controller.enqueue(new TextEncoder().encode(frame))
+          controller.close()
+        }
+      },
+    })
+    return Promise.resolve(
+      new Response(body, { status: 200, headers: { "Content-Type": "text/event-stream" } }),
+    )
+  })
+  vi.stubGlobal("fetch", send)
+  return { sent, send, finish: (data: Conversation) => push?.(data) }
+}
+
 function mount(initial: string) {
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
@@ -80,7 +102,6 @@ describe("conversation navigation", () => {
   })
 
   it("keeps a late answer in its own conversation without replacing the open conversation", async () => {
-    let finish: ((value: never) => void) | undefined
     const first = conversation("chat-a", "hotel-a")
     const second = conversation("chat-b", "hotel-b")
     vi.spyOn(api, "GET").mockImplementation((_path, options) =>
@@ -93,26 +114,19 @@ describe("conversation navigation", () => {
         response: new Response("{}"),
       } as never),
     )
-    const post = vi.spyOn(api, "POST").mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          finish = resolve
-        }),
-    )
+    const chat = deferredChat()
     const state = mount("/?chat=chat-a")
     await waitFor(() => expect(state.result.current.workspace.results[0]?.hotel.id).toBe("hotel-a"))
     act(() => {
       state.result.current.workspace.send("New conditions")
       state.result.current.workspace.send("Accidental duplicate")
     })
-    await waitFor(() => expect(post).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(chat.send).toHaveBeenCalledTimes(1))
     act(() => state.result.current.workspace.openConversation("chat-b"))
     await waitFor(() => expect(state.result.current.workspace.results[0]?.hotel.id).toBe("hotel-b"))
     await act(async () => {
-      finish?.({
-        data: conversation("chat-a", "hotel-late"),
-        response: new Response("{}"),
-      } as never)
+      chat.finish(conversation("chat-a", "hotel-late"))
+      await Promise.resolve()
     })
     expect(state.result.current.workspace.conversationId).toBe("chat-b")
     expect(state.result.current.workspace.results[0]?.hotel.id).toBe("hotel-b")
@@ -120,15 +134,9 @@ describe("conversation navigation", () => {
   })
 
   it("opens the answer that arrives after a return to the landing", async () => {
-    let finish: ((value: never) => void) | undefined
     const answer = conversation("chat-late", "hotel-late")
     vi.spyOn(api, "GET").mockResolvedValue({ data: answer, response: new Response("{}") } as never)
-    vi.spyOn(api, "POST").mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          finish = resolve
-        }),
-    )
+    const chat = deferredChat()
     const state = mount("/")
     act(() => state.result.current.workspace.send("A hotel by the sea"))
     await waitFor(() => expect(state.result.current.workspace.sending).toBe(true))
@@ -137,7 +145,8 @@ describe("conversation navigation", () => {
     })
     expect(state.result.current.workspace.surface).toBe("landing")
     await act(async () => {
-      finish?.({ data: answer, response: new Response("{}") } as never)
+      chat.finish(answer)
+      await Promise.resolve()
     })
     await waitFor(() => expect(state.result.current.workspace.conversationId).toBe("chat-late"))
     expect(state.result.current.workspace.results[0]?.hotel.id).toBe("hotel-late")

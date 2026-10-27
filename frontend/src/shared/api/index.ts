@@ -1,3 +1,4 @@
+export { type ChatProgress, streamChatMessage } from "./chat-stream"
 export {
   ApiError,
   type ApiErrorKind,

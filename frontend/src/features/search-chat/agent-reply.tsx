@@ -1,3 +1,4 @@
+import type { ChatProgress } from "@/shared/api"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
 import { ErrorState, Skeleton } from "@/shared/ui"
@@ -60,15 +61,36 @@ export function AgentReply({
   )
 }
 
-export function AgentThinking() {
+const STAGE_KEYS = {
+  parsing: "explore:chat.stage.parsing",
+  candidates: "explore:chat.stage.candidates",
+  research: "explore:chat.stage.research",
+  wish: "explore:chat.stage.wish",
+  review: "explore:chat.stage.review",
+} as const
+
+type Stage = keyof typeof STAGE_KEYS
+
+function isStage(value: string): value is Stage {
+  return value in STAGE_KEYS
+}
+
+export function AgentThinking({
+  progress,
+}: {
+  readonly progress?: ChatProgress | null | undefined
+}) {
   const { t } = useTranslation()
   const elapsed = useThinkingClock()
+  const stage = progress && isStage(progress.stage) ? STAGE_KEYS[progress.stage] : null
   return (
     <AgentBubble motion="loading" busy>
       <p className={styles.lead} role="status">
         {t("explore:chat.thinking")}
       </p>
-      <p className={styles.text}>{t("explore:chat.thinkingHint")}</p>
+      <p className={styles.text} aria-live="polite">
+        {stage === null ? t("explore:chat.thinkingHint") : t(stage, { ...progress })}
+      </p>
       <p className={styles.elapsed}>{t("explore:chat.elapsed", { value: elapsed })}</p>
       <Skeleton lines={3} className={styles.skeleton} />
     </AgentBubble>

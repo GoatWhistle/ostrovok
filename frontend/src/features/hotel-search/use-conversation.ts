@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { api, unwrap, useRecordMutation } from "@/shared/api"
+import { api, type ChatProgress, streamChatMessage, unwrap, useRecordMutation } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
 import { moveSessionDraft } from "@/shared/hooks"
 import { useLocale } from "@/shared/i18n"
@@ -45,17 +45,16 @@ function serverEntry(data: Conversation) {
   }
 }
 
-async function sendRequest(input: SendInput) {
-  const data = await unwrap(
-    api.POST("/chat/messages", {
-      body: {
-        conversation_id: input.id,
-        message: input.message,
-        region_id: "russia",
-        locale: input.locale,
-        selected_hotel_id: input.hotel ?? null,
-      },
-    }),
+async function sendRequest(input: SendInput, onProgress: (progress: ChatProgress) => void) {
+  const data = await streamChatMessage(
+    {
+      conversation_id: input.id,
+      message: input.message,
+      region_id: "russia",
+      locale: input.locale,
+      selected_hotel_id: input.hotel ?? null,
+    },
+    onProgress,
   )
   if (input.id && data.id !== input.id) throw new Error("Conversation response mismatch")
   return data
@@ -73,6 +72,7 @@ export function useConversation(
   const latest = useRef({ control, onAnswer })
   latest.current = { control, onAnswer }
   const inflight = useRef(0)
+  const [progress, setProgress] = useState<ChatProgress | null>(null)
   const active = useRef({ scope: control.scopeKey, generation: 0 })
   if (active.current.scope !== control.scopeKey) {
     active.current = { scope: control.scopeKey, generation: active.current.generation + 1 }
@@ -105,12 +105,14 @@ export function useConversation(
     }
   }, [conversation.data, updateHistory])
   const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
-    mutationFn: sendRequest,
+    mutationFn: (input: SendInput) => sendRequest(input, setProgress),
     onMutate: () => {
       inflight.current += 1
+      setProgress(null)
     },
     onSettled: () => {
       inflight.current -= 1
+      setProgress(null)
     },
     onSuccess: (data, input) => {
       if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
@@ -196,6 +198,7 @@ export function useConversation(
     remove: (id: string) => removeMutation.mutateAsync(id),
     loading: conversation.isPending && control.id !== null,
     sending: sendMessage.isPending,
+    progress,
     failed: sendMessage.isError || (conversation.isError && !conversation.data),
   }
 }

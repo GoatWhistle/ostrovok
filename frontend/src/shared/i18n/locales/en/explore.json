@@ -51,7 +51,14 @@
     "citySochi": "Sochi",
     "cityMoscow": "Moscow",
     "citySpb": "Saint Petersburg",
-    "startPlaceholder": "For example, a quiet room with a sunset view"
+    "startPlaceholder": "For example, a quiet room with a sunset view",
+    "stage": {
+      "parsing": "Reading the request",
+      "candidates": "Hotels found in this area: {{found, number}}",
+      "research": "Checking conditions against sources: {{wishes, number}}",
+      "wish": "Checked the condition: {{term}}",
+      "review": "Matching the selection against its sources"
+    }
   },
   "navigation": {
     "search": "Find a hotel",

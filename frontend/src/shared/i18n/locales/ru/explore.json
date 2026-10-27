@@ -51,7 +51,14 @@
     "citySochi": "Сочи",
     "cityMoscow": "Москва",
     "citySpb": "Санкт-Петербург",
-    "startPlaceholder": "Например, тихий номер с видом на закат"
+    "startPlaceholder": "Например, тихий номер с видом на закат",
+    "stage": {
+      "parsing": "Разбираю запрос",
+      "candidates": "Нашёл отелей в этом месте: {{found, number}}",
+      "research": "Проверяю условия по источникам: {{wishes, number}}",
+      "wish": "Проверил условие: {{term}}",
+      "review": "Сверяю подборку с источниками"
+    }
   },
   "navigation": {
     "search": "Поиск отелей",

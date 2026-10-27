@@ -165,6 +165,7 @@ export function useHotelWorkspace() {
     },
     chatLoading: chat.loading,
     sending: chat.sending,
+    progress: chat.progress,
     chatFailed: chat.failed,
     showOnMap: (result: SearchResult | undefined) => {
       if (result) select(result)
