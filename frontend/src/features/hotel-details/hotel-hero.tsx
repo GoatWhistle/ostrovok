@@ -12,7 +12,6 @@ type Supplier = components["schemas"]["SupplierDetails"]
 export interface HotelHeroProps {
   readonly hotel: HotelSummary
   readonly supplier: Supplier | undefined
-  readonly source?: string | null | undefined
   readonly titleId: string
   readonly onRooms: (() => void) | undefined
 }
@@ -26,7 +25,7 @@ function coverPhotos(hotel: HotelSummary, supplier: Supplier | undefined): strin
   return [...new Set(urls.flatMap((url) => (sourceUrl(url) ? [sourceUrl(url) as string] : [])))]
 }
 
-function useHeroFacts(supplier: Supplier | undefined, source: string | null | undefined) {
+function useHeroFacts(supplier: Supplier | undefined) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   if (!supplier) return []
@@ -37,8 +36,7 @@ function useHeroFacts(supplier: Supplier | undefined, source: string | null | un
     facts.push({
       key: "rating",
       icon: "star",
-      text: t(source ? "explore:hotelCover.sourceRating" : "explore:hotelCover.rating", {
-        source: source ?? "",
+      text: t("explore:hotelCover.rating", {
         score: new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(score),
         count: supplier.rating?.reviews_count ?? 0,
       }),
@@ -64,9 +62,9 @@ function useHeroFacts(supplier: Supplier | undefined, source: string | null | un
   return facts
 }
 
-export function HotelHero({ hotel, supplier, source, titleId, onRooms }: HotelHeroProps) {
+export function HotelHero({ hotel, supplier, titleId, onRooms }: HotelHeroProps) {
   const { t } = useTranslation()
-  const facts = useHeroFacts(supplier, source)
+  const facts = useHeroFacts(supplier)
   return (
     <header className={styles.hero}>
       <HotelCover key={hotel.id} photos={coverPhotos(hotel, supplier)} name={hotel.name} />
