@@ -12,12 +12,14 @@ import { CompareDock } from "./compare-dock"
 import styles from "./home-page.module.css"
 import { Landing } from "./landing"
 import { SelectedHotel } from "./selected-hotel"
+import { useAppearanceLocation } from "./use-appearance-location"
 import { useFreshStart } from "./use-fresh-start"
 
 export function HomePage() {
   const { t } = useTranslation()
   useDocumentTitle(null)
   const state = useHotelWorkspace()
+  useAppearanceLocation(state.navigation.route.appearance, state.navigation.setAppearance)
   const [sceneTime, setSceneTime] = useState({ date: "", hour: 16 })
   const onTimeChange = useCallback((date: string, hour: number) => setSceneTime({ date, hour }), [])
   const modality = useInputModality(true)
@@ -119,6 +121,7 @@ export function HomePage() {
           <div className={styles.map}>
             {mapMounted.current ? (
               <HotelMap
+                onAppearance={state.navigation.setAppearance}
                 hotelId={state.hotelId}
                 camera={state.camera}
                 geoRefs={state.geoRefs}

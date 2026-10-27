@@ -16,6 +16,7 @@ function storedAppearance(): MapAppearance {
 }
 
 let state = { id: storedAppearance(), failed: false }
+let requested = state.id
 if (typeof document !== "undefined") document.documentElement.dataset.mapAppearance = state.id
 
 function publish(id: MapAppearance, failed: boolean) {
@@ -26,6 +27,7 @@ function publish(id: MapAppearance, failed: boolean) {
 
 export function requestMapAppearance(id: MapAppearance): boolean {
   if (!isMapAppearance(id)) return false
+  requested = id
   if (id === state.id && !state.failed) return true
   const previous = state.id
   try {
@@ -47,6 +49,11 @@ export function requestMapAppearance(id: MapAppearance): boolean {
   }
   publish(id, false)
   return true
+}
+
+export function retryMapAppearance(): MapAppearance | undefined {
+  const id = requested
+  return requestMapAppearance(id) ? id : undefined
 }
 
 export function registerMapAppearance(target: AppearanceTarget): () => void {

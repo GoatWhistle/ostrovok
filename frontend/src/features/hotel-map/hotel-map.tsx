@@ -2,6 +2,7 @@ import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import type { MapAppearance } from "@/shared/geo/appearance/types"
 import { matchedValue } from "@/shared/geo/fact-label"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import { useLocale, useTranslation } from "@/shared/i18n"
@@ -41,6 +42,7 @@ export interface HotelMapProps {
   readonly results: readonly SearchResult[]
   readonly bounds: readonly number[] | undefined
   readonly bottomCenter?: ReactNode
+  readonly onAppearance: (id: MapAppearance) => void
   readonly onPlace: (id: string) => void
   readonly onTimeChange: (date: string, hour: number) => void
   readonly onSelect: (result: SearchResult) => void
@@ -58,6 +60,7 @@ export function HotelMap({
   onSelect,
   onPlace,
   onTimeChange,
+  onAppearance,
   bottomCenter,
 }: HotelMapProps) {
   const { t } = useTranslation()
@@ -212,6 +215,7 @@ export function HotelMap({
         ready={map.ready}
         disabled={!selectedCamera || map.failed || !map.ready}
         onOverview={showOverview}
+        onAppearance={onAppearance}
       />
     </section>
   )
