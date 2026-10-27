@@ -4,6 +4,7 @@ from typing import cast
 from unittest.mock import AsyncMock, MagicMock
 
 from hotel_agent.application.dto import FacadeRecord, SearchFactRecord, SearchHotelRecord
+from hotel_agent.application.room_records import RoomRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.view_assessment import ViewAssessmentPort
@@ -31,7 +32,10 @@ def facade(azimuth: float) -> FacadeRecord:
 
 
 def build(
-    facades: list[FacadeRecord], measured: dict[str, dict[str, float]], levels: int | None = 9
+    facades: list[FacadeRecord],
+    measured: dict[str, dict[str, float]],
+    levels: int | None = 9,
+    rooms: list[RoomRecord] | None = None,
 ) -> tuple[PrecomputeSunset, list[SearchFactRecord]]:
     saved: list[SearchFactRecord] = []
     scope = MagicMock()
@@ -40,6 +44,7 @@ def build(
             search=SimpleNamespace(
                 list_hotels=AsyncMock(return_value=[hotel(levels)]),
                 list_facades=AsyncMock(return_value=facades),
+                list_rooms=AsyncMock(return_value=rooms or []),
             ),
             facts=SimpleNamespace(save=AsyncMock(side_effect=lambda rows: saved.extend(rows))),
             commit=AsyncMock(),
@@ -99,3 +104,44 @@ async def test_an_unknown_height_leaves_the_wish_unknown_with_the_floor_named() 
     assert fact.value is None
     assert fact.qualifiers["from_floor"] == 5
     assert "Этажность здания неизвестна" in fact.explanation
+
+
+def room(floor_min: int | None, floor_max: int | None) -> RoomRecord:
+    return RoomRecord(
+        id="r1",
+        name="Номер с видом",
+        capacity=2,
+        floor_min=floor_min,
+        floor_max=floor_max,
+        facade_ids=(),
+        price_amount=None,
+        price_currency=None,
+        included=(),
+    )
+
+
+async def test_a_room_on_the_required_floor_confirms_the_estimate() -> None:
+    use_case, saved = build(
+        [facade(290.0)],
+        {"h1": {"ground_elevation_m": 12.0, "skyline_elevation_m": 24.0}},
+        rooms=[room(4, 7)],
+    )
+
+    await use_case("sochi")
+
+    assert saved[0].qualifiers["from_floor"] == 5
+    assert saved[0].qualifiers["bookable_room_confirmed"] is True
+    assert saved[0].qualifiers["rooms_with_known_floor"] == 1
+
+
+async def test_a_room_without_a_floor_leaves_the_estimate_unconfirmed() -> None:
+    use_case, saved = build(
+        [facade(290.0)],
+        {"h1": {"ground_elevation_m": 12.0, "skyline_elevation_m": 24.0}},
+        rooms=[room(None, None)],
+    )
+
+    await use_case("sochi")
+
+    assert saved[0].qualifiers["bookable_room_confirmed"] is False
+    assert saved[0].qualifiers["rooms_with_known_floor"] == 0

@@ -53,6 +53,7 @@ def build(
                 stale_facts=AsyncMock(return_value=stale),
                 by_ids=AsyncMock(return_value=[hotel(9)]),
                 list_facades=AsyncMock(return_value=[facade(290.0)]),
+                list_rooms=AsyncMock(return_value=[]),
                 list_hotels=AsyncMock(return_value=[hotel(9)]),
             ),
             facts=SimpleNamespace(
