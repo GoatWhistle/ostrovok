@@ -1,3 +1,4 @@
+import { clsx } from "clsx"
 import { type KeyboardEvent, type ReactNode, useEffect, useRef } from "react"
 import { Icon, type IconName } from "../../primitives/icon/icon"
 import styles from "./search-box.module.css"
@@ -13,6 +14,8 @@ export interface SearchBoxProps {
   readonly icon?: IconName | undefined
   readonly describedBy?: string | undefined
   readonly actions?: ReactNode
+  readonly leading?: ReactNode
+  readonly bare?: boolean
 }
 
 function submitOnEnter(event: KeyboardEvent<HTMLTextAreaElement>) {
@@ -32,13 +35,16 @@ export function SearchBox({
   icon,
   describedBy,
   actions,
+  leading,
+  bare = false,
 }: SearchBoxProps) {
   const input = useRef<HTMLTextAreaElement>(null)
   useEffect(() => {
     if (autoFocus) input.current?.focus({ preventScroll: true })
   }, [autoFocus])
   return (
-    <div className={styles.box}>
+    <div className={clsx(styles.box, bare && styles.bare)}>
+      {leading === undefined ? null : <span className={styles.leading}>{leading}</span>}
       <label className={styles.field}>
         <span className="visually-hidden">{label}</span>
         {icon === undefined ? null : <Icon name={icon} size="md" className={styles.icon} />}

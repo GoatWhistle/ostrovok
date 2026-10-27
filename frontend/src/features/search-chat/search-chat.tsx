@@ -25,6 +25,7 @@ export interface SearchChatProps {
   readonly searchMessageId?: string | null | undefined
   readonly outgoing: string | undefined
   readonly selectedHotel?: string | undefined
+  readonly onClearHotel?: (() => void) | undefined
   readonly loading: boolean
   readonly sending: boolean
   readonly progress?: readonly ChatProgress[] | undefined
@@ -47,6 +48,7 @@ export function SearchChat({
   searchMessageId,
   outgoing,
   selectedHotel,
+  onClearHotel,
   loading,
   sending,
   progress,
@@ -112,6 +114,7 @@ export function SearchChat({
             autoFocus={Boolean(outgoing)}
             pending={sending}
             selectedHotel={selectedHotel}
+            onClearHotel={onClearHotel}
             onSend={onSend}
           />
         </div>

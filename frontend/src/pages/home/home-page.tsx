@@ -175,6 +175,7 @@ export function HomePage() {
                 searchMessageId: state.searchMessageId,
                 outgoing: state.outgoing,
                 selectedHotel: selected?.hotel.name,
+                onClearHotel: () => move(state.closeHotel),
                 loading: state.chatLoading,
                 sending: state.sending,
                 progress: state.progress,

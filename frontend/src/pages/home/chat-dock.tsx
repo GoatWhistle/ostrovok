@@ -39,6 +39,15 @@ export function ChatDock({ open, onOpenChange, chat }: ChatDockProps) {
         </section>
       ) : (
         <div className={styles.bar}>
+          <ChatComposer
+            flat
+            bare
+            draftKey={chat.draftKey}
+            pending={chat.sending}
+            selectedHotel={chat.selectedHotel}
+            onClearHotel={chat.onClearHotel}
+            onSend={chat.onSend}
+          />
           <Button
             ref={toggle}
             variant="ghost"
@@ -50,13 +59,6 @@ export function ChatDock({ open, onOpenChange, chat }: ChatDockProps) {
           >
             {t("explore:chat.openDialog")}
           </Button>
-          <ChatComposer
-            flat
-            draftKey={chat.draftKey}
-            pending={chat.sending}
-            selectedHotel={chat.selectedHotel}
-            onSend={chat.onSend}
-          />
         </div>
       )}
     </div>

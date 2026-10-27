@@ -29,6 +29,7 @@ export function Chip({
     return (
       <span
         className={clsx(styles.chip, styles.still, className)}
+        title={rest.title}
         data-pressed={pressed}
         style={{ ...style, "--chip-hue": hue } as CSSProperties}
       >
