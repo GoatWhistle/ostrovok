@@ -50,6 +50,8 @@ UNFINISHED = {WishStatus.INCOMPLETE, WishStatus.UNAVAILABLE}
 
 
 def safe_answer(search: SearchOutcome, locale: str) -> str:
+    if search.question:
+        return search.question
     count = len(search.results)
     unfinished = [row.term for row in search.wish_results if row.status in UNFINISHED]
     if not count and unfinished:
