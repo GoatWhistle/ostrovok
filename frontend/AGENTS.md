@@ -235,7 +235,9 @@ own version of what the first one already has.
   `:root[data-theme="dark"]`. Map colours in `tokens/map.css` are the same in both themes
   (the selected map style does not follow the UI theme). Components know nothing about the theme. The switch has exactly two
   options, light and dark; there is no "system" option. Until the user picks one, the theme follows
-  the system setting (and its changes); the pick is kept in `localStorage` and wins from then on. The
+  the system setting (and its changes); the pick is kept in `localStorage` and wins from then on.
+  Moving the sun in the scene time control sets the theme from the sun's altitude; it never changes
+  the theme on its own at load. The map keeps its own light palette in both themes. The
   theme is applied before first paint with no flash. A test
   asserts every token exists in both themes.
 - The site uses the full screen width; a narrow centred column is forbidden (AI pattern):

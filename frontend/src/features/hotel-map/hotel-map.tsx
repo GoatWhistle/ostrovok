@@ -19,6 +19,7 @@ import { focusCopy, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
 import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
+import { useSunTheme } from "./scene-time/use-sun-theme"
 import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
 
@@ -108,6 +109,7 @@ export function HotelMap({
   const place = hotel ?? results[0]
   const [lon, lat] = sceneLocation(place, selectedCamera)
   const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
+  useSunTheme(sun.position.altitude, `${date}:${hour}`)
   const weather = useWeather(lon, lat, date, hour, place !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)
   const focusFeatures = geoRefs.length ? (geometry.data?.features ?? []) : []

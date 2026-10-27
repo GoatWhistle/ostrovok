@@ -9,9 +9,9 @@ const targets = new Set<AppearanceTarget>()
 function storedAppearance(): MapAppearance {
   try {
     const value = localStorage.getItem(STORAGE_KEY)
-    return isMapAppearance(value) ? value : "neon"
+    return isMapAppearance(value) ? value : "toy-town"
   } catch {
-    return "neon"
+    return "toy-town"
   }
 }
 

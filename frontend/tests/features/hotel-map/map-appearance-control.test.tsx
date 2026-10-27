@@ -21,6 +21,7 @@ afterEach(() => {
 })
 
 it("retains the working choice on failure and retries the requested appearance", () => {
+  act(() => requestMapAppearance("neon"))
   let fail = true
   const remove = registerMapAppearance({
     applyAppearance: (id) => {
@@ -31,7 +32,7 @@ it("retains the working choice on failure and retries the requested appearance",
     const onChange = vi.fn()
     render(<MapAppearanceControl onChange={onChange} />)
     fireEvent.click(screen.getByRole("button", { name: "Map appearance" }))
-    fireEvent.click(screen.getByRole("radio", { name: "Toy town" }))
+    fireEvent.click(screen.getByRole("radio", { name: "Daylight map" }))
     expect(screen.getByRole("alert").textContent).toContain("previous style is still active")
     expect(screen.getByRole("radio", { name: "Night city" })).toHaveProperty("checked", true)
     expect(onChange).not.toHaveBeenCalled()
@@ -39,7 +40,7 @@ it("retains the working choice on failure and retries the requested appearance",
     fireEvent.click(screen.getByRole("button", { name: "Try again" }))
     expect(onChange).toHaveBeenCalledWith("toy-town")
     expect(screen.queryByRole("alert")).toBeNull()
-    expect(screen.getByRole("radio", { name: "Toy town" })).toHaveProperty("checked", true)
+    expect(screen.getByRole("radio", { name: "Daylight map" })).toHaveProperty("checked", true)
   } finally {
     remove()
   }
@@ -54,7 +55,7 @@ it("applies a choice when local storage rejects writes", () => {
   try {
     render(<MapAppearanceControl onChange={onChange} />)
     fireEvent.click(screen.getByRole("button", { name: "Map appearance" }))
-    fireEvent.click(screen.getByRole("radio", { name: "Toy town" }))
+    fireEvent.click(screen.getByRole("radio", { name: "Daylight map" }))
     expect(onChange).toHaveBeenCalledWith("toy-town")
   } finally {
     storage.mockRestore()

@@ -118,13 +118,15 @@ This file explains what the tokens mean; when they disagree, the tokens win.
 
 ## Overview
 
-**North star: the city after sunset.** The interface follows map style No. 5, "Night neon",
+**North star: the coast in daylight.** The interface is warm paper with a sea-teal action colour; the map is the daylight style by default. The night neon style stays as a choice in the map appearance control. The earlier north star followed map style No. 5, "Night neon",
 chosen by the user on 2026-10-26: deep navy surfaces, one cyan action colour and pink walking
 routes. The mark keeps its folded map of two cobalt sides and a lime middle; lime still means a
 confirmed fact or a complete match. Everything else stays quiet so that facts and their sources
 read first. The reference is `work/map-styles/05-neon.html`.
 
-- Navy grounds in dark, cool frost grounds in light; one cyan action colour, one lime fact colour.
+- Warm paper grounds in light, deep slate in dark; one sea-teal action colour, one lime fact colour.
+- The UI theme follows the sun of the scene: moving the time control to night turns the interface
+  dark, moving it to day turns it light. The map stays light in both themes.
 - Manrope for every role, with heavy weights for headings; JetBrains Mono only for values and codes.
 - Flat surfaces separated by tone; hairline rings only on fields, shadows only for floating layers.
 - Honest states: unknown, computing, conflict and missing are visibly different from "no".
