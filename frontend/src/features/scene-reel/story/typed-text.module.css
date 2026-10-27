@@ -1,0 +1,18 @@
+.text {
+  display: grid;
+}
+.measure,
+.typed {
+  grid-area: 1 / 1;
+}
+.measure {
+  visibility: hidden;
+}
+.caret {
+  display: inline-block;
+  block-size: 1em;
+  inline-size: var(--hairline);
+  margin-inline-start: var(--space-2);
+  background-color: currentColor;
+  vertical-align: text-bottom;
+}
