@@ -1,5 +1,6 @@
-import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
+import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
+import { FLAT_ROOF } from "../roof-forms/layer"
 
 const ROOFS = [
   {
@@ -33,6 +34,14 @@ export function roofPaint(colors: readonly string[]): ExpressionSpecification | 
   ] as unknown as ExpressionSpecification
 }
 
+function roofFilter(
+  roof: (typeof ROOFS)[number],
+  owner: FilterSpecification | null | undefined,
+): FilterSpecification | undefined {
+  if (roof.owner === "overview-volumes") return owner ?? undefined
+  return owner ? (["all", owner, FLAT_ROOF] as FilterSpecification) : FLAT_ROOF
+}
+
 function renderRoof(
   map: MapLibreMap,
   roof: (typeof ROOFS)[number],
@@ -43,7 +52,7 @@ function renderRoof(
     return
   }
   if (!map.getSource(roof.source) || !map.getLayer(roof.owner)) return
-  const filter = map.getFilter(roof.owner)
+  const filter = roofFilter(roof, map.getFilter(roof.owner) || undefined)
   if (!map.getLayer(roof.id)) {
     const height = map.getPaintProperty(roof.owner, "fill-extrusion-height") as
       | ExpressionSpecification

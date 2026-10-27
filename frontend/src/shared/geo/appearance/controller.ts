@@ -2,6 +2,7 @@ import type { Map as MapLibreMap } from "maplibre-gl"
 import { renderBasemap } from "../basemap"
 import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
+import { paintRoofForms } from "../roof-forms/layer"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
 import { tintForTime, tintHex } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
@@ -84,6 +85,7 @@ export class MapAppearanceController {
       .filter((value) => value.length > 0)
       .map((value) => tintHex(value, sky, altitude))
     renderAppearanceRoofs(this.map, roofPaint(colors))
+    paintRoofForms(this.map, colors)
     const sun = this.scene?.sun
     renderGroundShadows(
       this.map,
