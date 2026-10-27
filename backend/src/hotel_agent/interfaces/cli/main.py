@@ -54,6 +54,13 @@ def build_parser() -> ArgumentParser:
     )
     questions.add_argument("--region", default="sochi")
 
+    refresh = commands.add_parser(
+        "refresh-facts", help="Recheck facts whose validity has expired and record disagreements"
+    )
+    refresh.add_argument("--region", default="sochi")
+    refresh.add_argument("--from", dest="directory", default="data/seed/sochi")
+    refresh.add_argument("--limit", type=int, default=500)
+
     catalog = commands.add_parser("sync-nuitee", help="Import a verified hotel and its room types")
     catalog.add_argument("--hotel-id", required=True)
     catalog.add_argument("--supplier-id", required=True)

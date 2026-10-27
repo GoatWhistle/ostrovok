@@ -44,6 +44,7 @@ from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.refresh_facts import RefreshStaleFacts
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
@@ -82,6 +83,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return code or asyncio.run(_plan_questions(args.region, settings))
     if args.command == "plan-questions":
         return asyncio.run(_plan_questions(args.region, settings))
+    if args.command == "refresh-facts":
+        return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
         return asyncio.run(_refresh_geography(args.region, settings.database_url))
     if args.command == "sync-nuitee":
@@ -245,6 +248,26 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
     for name, count in facades.items():
         print(f"{name}: {count}")
     print(f"sunset_view: {sunset}")
+    return 0
+
+
+async def _refresh_facts(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url)
+    try:
+        terrain = CountryTerrainTiles(Path(args.directory) / "dem.tif", None)
+        sunset = PrecomputeSunset(uow, NearbyViewAssessment(terrain, uow), SystemClock())
+        report = await RefreshStaleFacts(
+            uow,
+            sunset,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+        )(args.region, args.limit)
+    finally:
+        await uow.aclose()
+    print(f"checked: {report.checked}")
+    print(f"recomputed: {report.recomputed}")
+    print(f"changed: {report.changed}")
+    print(f"conflicts: {report.conflicts}")
     return 0
 
 

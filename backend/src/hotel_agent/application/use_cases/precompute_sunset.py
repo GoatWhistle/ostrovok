@@ -28,14 +28,14 @@ class PrecomputeSunset:
         async with self._uow() as uow:
             hotels = await uow.search.list_hotels(region, None)
         now = self._clock.now()
-        records = [row for hotel in hotels if (row := await self._hotel(hotel, now)) is not None]
+        records = [row for hotel in hotels if (row := await self.fact(hotel, now)) is not None]
         if records:
             async with self._uow() as uow:
                 await uow.facts.save(records)
                 await uow.commit()
         return len(records)
 
-    async def _hotel(self, hotel: SearchHotelRecord, now: datetime) -> SearchFactRecord | None:
+    async def fact(self, hotel: SearchHotelRecord, now: datetime) -> SearchFactRecord | None:
         arc = sunset_arc(hotel.location[0], hotel.location[1], now.year)
         if arc is None:
             return None

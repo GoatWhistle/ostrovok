@@ -6,7 +6,7 @@ from psycopg import AsyncConnection
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
 from hotel_agent.adapters.db.hotel_media import read_hotel_photos
-from hotel_agent.adapters.db.search_facts import FACTS, fact_record
+from hotel_agent.adapters.db.search_facts import FACTS, STALE_FACTS, fact_record
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -197,6 +197,24 @@ class PostgresSearchRepository:
             )
             for row in rows
         ]
+
+    async def stale_facts(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        now: datetime,
+        limit: int = 500,
+    ) -> Sequence[SearchFactRecord]:
+        result = await self._connection.execute(
+            STALE_FACTS,
+            {
+                "region": region,
+                "characteristic_keys": list(characteristic_keys),
+                "now": now,
+                "limit": limit,
+            },
+        )
+        return [fact_record(row) for row in await result.fetchall()]
 
     async def list_facts(
         self,

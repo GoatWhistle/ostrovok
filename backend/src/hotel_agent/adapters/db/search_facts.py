@@ -63,3 +63,16 @@ def _evidence(raw: object) -> tuple[tuple[str, str], ...]:
         for item in raw
         if isinstance(item, dict) and item.get("text")
     )
+
+
+STALE_FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
+    f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
+    f.status, f.geo_refs, f.explanation, NULL::double precision, f.subject_id,
+    f.source_url, f.observed_at, f.evidence
+FROM facts f JOIN hotels h ON h.id = f.subject_id
+WHERE h.region_id = %(region)s AND f.subject_type = 'hotel'
+  AND f.characteristic_key = ANY(%(characteristic_keys)s::text[])
+  AND f.status IN ('active', 'stale')
+  AND f.valid_until IS NOT NULL AND f.valid_until <= %(now)s
+ORDER BY f.valid_until
+LIMIT %(limit)s"""
