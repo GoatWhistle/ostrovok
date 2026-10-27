@@ -5,7 +5,7 @@ from enum import StrEnum
 from typing import Any
 
 from hotel_agent.domain.characteristics import ScalarValue
-from hotel_agent.domain.errors import InvalidValue
+from hotel_agent.domain.errors import InvalidValue, QuestionAnswered
 from hotel_agent.domain.value_objects import (
     Azimuth,
     BuildingId,
@@ -203,6 +203,9 @@ class HotelierQuestion:
     reason: QuestionReason
     created_at: datetime
     status: QuestionStatus = QuestionStatus.OPEN
+    answer_text: str | None = None
+    answered_at: datetime | None = None
+    answer_fact_ids: tuple[FactId, ...] = ()
 
     def answered(self) -> "HotelierQuestion":
         if self.status is not QuestionStatus.OPEN:
@@ -210,9 +213,15 @@ class HotelierQuestion:
         return replace(self, status=QuestionStatus.ANSWERED)
 
     def skipped(self) -> "HotelierQuestion":
-        if self.status is not QuestionStatus.OPEN:
-            raise InvalidValue(f"Question {self.id} is already {self.status}")
-        return replace(self, status=QuestionStatus.SKIPPED)
+        return self._moved_to(QuestionStatus.SKIPPED)
+
+    def reopened(self) -> "HotelierQuestion":
+        return self._moved_to(QuestionStatus.OPEN)
+
+    def _moved_to(self, status: QuestionStatus) -> "HotelierQuestion":
+        if self.status is QuestionStatus.ANSWERED:
+            raise QuestionAnswered(f"Question {self.id} is already answered")
+        return replace(self, status=status)
 
 
 def facts_by_characteristic(facts: Sequence[Fact]) -> dict[str, list[Fact]]:

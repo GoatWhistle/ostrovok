@@ -5,17 +5,21 @@ from psycopg import AsyncConnection
 
 from hotel_agent.application.dto import QuestionCandidate, QuestionRecord
 
-QUESTION_COLUMNS = """SELECT id, hotel_id, characteristic_key, text, reason, status, created_at,
-    answer_text
-FROM hotelier_questions"""
+QUESTION_COLUMNS = """SELECT q.id, q.hotel_id, q.characteristic_key, q.text, q.reason, q.status,
+    q.created_at, q.answer_text, q.answered_at,
+    ARRAY(SELECT f.id FROM facts f WHERE f.source_type = 'hotelier' AND f.source_id = q.id
+        ORDER BY f.computed_at, f.id) AS answer_fact_ids
+FROM hotelier_questions q"""
 
-HOTEL_QUESTIONS = QUESTION_COLUMNS + " WHERE hotel_id = %(hotel)s ORDER BY created_at, id"
+HOTEL_QUESTIONS = QUESTION_COLUMNS + " WHERE q.hotel_id = %(hotel)s ORDER BY q.created_at, q.id"
 
-GET_QUESTION = QUESTION_COLUMNS + " WHERE id = %(id)s"
+GET_QUESTION = QUESTION_COLUMNS + " WHERE q.id = %(id)s"
 
 RECORD_ANSWER = """UPDATE hotelier_questions
 SET status = %(status)s, answer_text = %(answer)s, answered_at = %(at)s
 WHERE id = %(id)s"""
+
+SET_STATUS = "UPDATE hotelier_questions SET status = %(status)s WHERE id = %(id)s"
 
 CANDIDATES = """SELECT h.id, h.name, k.key
 FROM hotels h CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
@@ -56,6 +60,9 @@ class PostgresQuestionStore:
             {"id": question_id, "status": status, "answer": answer_text, "at": answered_at},
         )
 
+    async def set_status(self, question_id: str, status: str) -> None:
+        await self._connection.execute(SET_STATUS, {"id": question_id, "status": status})
+
     async def candidates(
         self, region: str, characteristic_keys: Sequence[str]
     ) -> Sequence[QuestionCandidate]:
@@ -89,6 +96,8 @@ class PostgresQuestionStore:
 
 def _question(row: tuple[object, ...]) -> QuestionRecord:
     assert isinstance(row[6], datetime)
+    assert row[8] is None or isinstance(row[8], datetime)
+    assert isinstance(row[9], list)
     return QuestionRecord(
         id=str(row[0]),
         hotel_id=str(row[1]),
@@ -98,4 +107,6 @@ def _question(row: tuple[object, ...]) -> QuestionRecord:
         status=str(row[5]),
         created_at=row[6],
         answer_text=str(row[7]) if row[7] is not None else None,
+        answered_at=row[8],
+        answer_fact_ids=tuple(str(item) for item in row[9]),
     )

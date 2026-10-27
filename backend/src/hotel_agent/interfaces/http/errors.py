@@ -15,6 +15,7 @@ from hotel_agent.domain.errors import (
     MapVersionChanged,
     ModelFailure,
     NotFound,
+    QuestionAnswered,
     UnknownCharacteristic,
 )
 
@@ -23,6 +24,7 @@ STATUS_BY_ERROR: dict[type[DomainError], HTTPStatus] = {
     InvalidQuery: HTTPStatus.UNPROCESSABLE_ENTITY,
     InvalidValue: HTTPStatus.UNPROCESSABLE_ENTITY,
     MapVersionChanged: HTTPStatus.CONFLICT,
+    QuestionAnswered: HTTPStatus.CONFLICT,
     UnknownCharacteristic: HTTPStatus.UNPROCESSABLE_ENTITY,
     InvalidRegistry: HTTPStatus.INTERNAL_SERVER_ERROR,
     ModelFailure: HTTPStatus.SERVICE_UNAVAILABLE,

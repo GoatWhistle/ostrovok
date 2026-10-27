@@ -20,8 +20,9 @@ push только после завершения всех E00–E18/H01–H07. 
 | E12 | verified | `8175edd`: [Отчёт](evidence/e12.md): 444 frontend/908 backend, 8 комбинаций и крайние данные |
 | E10 | verified | `675e6d1`: [Отчёт](evidence/e10.md): 450 тестов, панель 1/3, отдельная страница, Back/Forward, прежний scroll/фокус/камера |
 | E09 | verified | `13a56c6`: [Отчёт](evidence/e09.md): 459 тестов, матрица16, реальный выбор маркера, 10 циклов, камера/стиль/scroll/фокус |
-| E11 | verified | [Отчёт](evidence/e11.md): 488 тестов, ревью кода Codex, WebGL-маршрут на мини- и большой карте, 2 контекста, scroll 1200→1200, прямой вход, без WebGL |
-| E13–E17, H02–H07 | planned | Следующие этапы |
+| E11 | verified | `6b79d11`: [Отчёт](evidence/e11.md): 488 тестов, ревью кода Codex, WebGL-маршрут на мини- и большой карте, 2 контекста, scroll 1200→1200, прямой вход, без WebGL |
+| H02 | verified | [Отчёт](evidence/h02.md): PATCH open/skipped, 409 для answered, сохранённый ответ и факты по provenance; 875 unit/contract + 41 integration, гонки на PostGIS, HTTP на стенде |
+| E13–E17, H03–H07 | planned | Следующие этапы |
 
 Подложка России скачана и проверена (13 315 380 122 байта, basemap-e9827062f2ba); исходник Protomaps 20261026,
 bbox 19.6,41.1,180,82, zoom до 14. Файлы /mnt/e/o-hack-data/raw и /basemaps.

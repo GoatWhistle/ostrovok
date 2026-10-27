@@ -550,6 +550,41 @@ paths:
         "422": { $ref: "#/components/responses/InvalidInput" }
         "503": { $ref: "#/components/responses/ModelUnavailable" }
 
+  /hotelier/questions/{question_id}:
+    patch:
+      tags: [hotelier]
+      operationId: changeHotelierQuestionStatus
+      description: >-
+        Откладывает открытый вопрос или возвращает отложенный в работу. Повтор уже достигнутого
+        статуса возвращает вопрос без изменений. Отвеченный вопрос этой операцией не меняется:
+        его значение исправляется через связанный факт. Переход не меняет факты и не вызывает модель.
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              additionalProperties: false
+              properties:
+                status: { type: string, enum: [open, skipped] }
+            example:
+              status: skipped
+      responses:
+        "200":
+          description: Актуальное состояние вопроса
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelierQuestion" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409": { $ref: "#/components/responses/QuestionAnswered" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
   /facts/{fact_id}/confirm:
     post:
       tags: [hotelier]
@@ -617,6 +652,11 @@ components:
           schema: { $ref: "#/components/schemas/Error" }
     ModelUnavailable:
       description: Языковая модель недоступна, состояние не изменено
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    QuestionAnswered:
+      description: Вопрос уже отвечен; статус не изменён, актуальное состояние читается из списка вопросов
       content:
         application/json:
           schema: { $ref: "#/components/schemas/Error" }
@@ -1312,3 +1352,18 @@ components:
         reason: { type: string, enum: [missing, conflict, stale, low_confidence] }
         status: { type: string, enum: [open, answered, skipped] }
         created_at: { type: string, format: date-time }
+        answer_text:
+          type: string
+          nullable: true
+          description: Последний сохранённый текст ответа отельера, в том числе потребовавший уточнения
+        answered_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Время сохранения этого ответа
+        answer_fact_ids:
+          type: array
+          description: >-
+            Факты, созданные из ответа на этот вопрос (по источнику hotelier), в порядке создания.
+            Текущую версию факта даёт его история; пустой массив означает, что связь не сохранена.
+          items: { type: string }

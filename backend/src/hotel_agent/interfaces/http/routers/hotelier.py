@@ -2,13 +2,19 @@ from fastapi import APIRouter
 
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
-from hotel_agent.application.use_cases.hotelier_questions import ListHotelierQuestions
+from hotel_agent.application.use_cases.hotelier_questions import (
+    ChangeQuestionStatus,
+    ListHotelierQuestions,
+)
+from hotel_agent.domain.entities import QuestionStatus
 from hotel_agent.interfaces.http.fact_schemas import FactSchema, fact_schema
 from hotel_agent.interfaces.http.hotelier_schemas import (
     AnswerInput,
     AnswerResponseSchema,
     CorrectionInput,
     QuestionListSchema,
+    QuestionSchema,
+    QuestionStatusInput,
     answer_schema,
     question_schema,
 )
@@ -17,6 +23,7 @@ from hotel_agent.interfaces.http.hotelier_schemas import (
 def build_router(
     list_questions: ListHotelierQuestions,
     answer_question: AnswerHotelierQuestion,
+    change_status: ChangeQuestionStatus,
     change_facts: ChangeFacts,
 ) -> APIRouter:
     router = APIRouter(tags=["hotelier"])
@@ -34,6 +41,10 @@ def build_router(
     )
     async def answer(question_id: str, body: AnswerInput) -> dict[str, object]:
         return answer_schema(await answer_question(question_id, body.text))
+
+    @router.patch("/hotelier/questions/{question_id}", response_model=QuestionSchema)
+    async def status(question_id: str, body: QuestionStatusInput) -> QuestionSchema:
+        return question_schema(await change_status(question_id, QuestionStatus(body.status)))
 
     @router.post("/facts/{fact_id}/confirm", response_model=FactSchema)
     async def confirm(fact_id: str) -> FactSchema:

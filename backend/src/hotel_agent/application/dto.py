@@ -118,6 +118,8 @@ class QuestionRecord:
     status: str
     created_at: datetime
     answer_text: str | None = None
+    answered_at: datetime | None = None
+    answer_fact_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

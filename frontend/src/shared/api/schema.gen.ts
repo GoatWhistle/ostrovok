@@ -386,6 +386,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotelier/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Откладывает открытый вопрос или возвращает отложенный в работу. Повтор уже достигнутого статуса возвращает вопрос без изменений. Отвеченный вопрос этой операцией не меняется: его значение исправляется через связанный факт. Переход не меняет факты и не вызывает модель. */
+        patch: operations["changeHotelierQuestionStatus"];
+        trace?: never;
+    };
     "/facts/{fact_id}/confirm": {
         parameters: {
             query?: never;
@@ -1064,6 +1081,15 @@ export interface components {
             status: "open" | "answered" | "skipped";
             /** Format: date-time */
             created_at: string;
+            /** @description Последний сохранённый текст ответа отельера, в том числе потребовавший уточнения */
+            answer_text?: string | null;
+            /**
+             * Format: date-time
+             * @description Время сохранения этого ответа
+             */
+            answered_at?: string | null;
+            /** @description Факты, созданные из ответа на этот вопрос (по источнику hotelier), в порядке создания. Текущую версию факта даёт его история; пустой массив означает, что связь не сохранена. */
+            answer_fact_ids?: string[];
         };
     };
     responses: {
@@ -1087,6 +1113,15 @@ export interface components {
         };
         /** @description Языковая модель недоступна, состояние не изменено */
         ModelUnavailable: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+        /** @description Вопрос уже отвечен; статус не изменён, актуальное состояние читается из списка вопросов */
+        QuestionAnswered: {
             headers: {
                 [name: string]: unknown;
             };
@@ -1781,6 +1816,43 @@ export interface operations {
             404: components["responses"]["NotFound"];
             422: components["responses"]["InvalidInput"];
             503: components["responses"]["ModelUnavailable"];
+        };
+    };
+    changeHotelierQuestionStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "status": "skipped"
+                 *     }
+                 */
+                "application/json": {
+                    /** @enum {string} */
+                    status: "open" | "skipped";
+                };
+            };
+        };
+        responses: {
+            /** @description Актуальное состояние вопроса */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierQuestion"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["QuestionAnswered"];
+            422: components["responses"]["InvalidInput"];
         };
     };
     confirmFact: {

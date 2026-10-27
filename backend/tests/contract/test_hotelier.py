@@ -12,7 +12,10 @@ from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
 from hotel_agent.application.use_cases.get_fact import GetFact
-from hotel_agent.application.use_cases.hotelier_questions import ListHotelierQuestions
+from hotel_agent.application.use_cases.hotelier_questions import (
+    ChangeQuestionStatus,
+    ListHotelierQuestions,
+)
 from hotel_agent.interfaces.http.errors import ErrorHandlers
 from hotel_agent.interfaces.http.hotelier_schemas import fact_detail_schema
 from hotel_agent.interfaces.http.routers import hotelier
@@ -44,6 +47,7 @@ def client(store: Store, characteristics_dir: Path) -> TestClient:
         hotelier.build_router(
             ListHotelierQuestions(uow),
             AnswerHotelierQuestion(uow, registry, FakeLLM(registry), FixedClock(), Ids()),
+            ChangeQuestionStatus(uow),
             ChangeFacts(uow, registry, FixedClock(), Ids()),
         )
     )
@@ -81,6 +85,28 @@ def test_question_queue_and_answers_match_contract(
     assert answered.json()["extracted"][0]["provenance"]["evidence"][0]["kind"] == "quote"
 
 
+def test_question_deferral_and_saved_answer_match_contract(
+    client: TestClient, validate: Any
+) -> None:
+    skipped = client.patch("/hotelier/questions/q1", json={"status": "skipped"})
+    assert skipped.status_code == 200
+    validate("HotelierQuestion", skipped.json())
+    assert skipped.json()["status"] == "skipped"
+    assert client.get("/hotelier/h1/questions").json()["items"][0]["status"] == "skipped"
+    reopened = client.patch("/hotelier/questions/q1", json={"status": "open"})
+    assert reopened.json()["status"] == "open"
+    client.post("/hotelier/questions/q1/answer", json={"text": "Можно с собакой до 10 кг"})
+    saved = client.get("/hotelier/h1/questions").json()["items"][0]
+    validate("HotelierQuestion", saved)
+    assert saved["status"] == "answered"
+    assert saved["answer_text"] == "Можно с собакой до 10 кг"
+    assert len(saved["answer_fact_ids"]) == 1
+    conflict = client.patch("/hotelier/questions/q1", json={"status": "open"})
+    assert conflict.status_code == 409
+    validate("Error", conflict.json())
+    assert conflict.json()["code"] == "question_answered"
+
+
 def test_confirm_and_correct_return_facts(client: TestClient, validate: Any) -> None:
     confirmed = client.post("/facts/f_h/confirm")
     assert confirmed.status_code == 200
@@ -109,6 +135,9 @@ def test_fact_detail_keeps_history_and_conflicts(store: Store, validate: Any) ->
         ("get", "/hotelier/missing/questions", None, 404, "not_found"),
         ("post", "/hotelier/questions/missing/answer", {"text": "Можно"}, 404, "not_found"),
         ("post", "/hotelier/questions/q1/answer", {"text": ""}, 422, "validation_error"),
+        ("patch", "/hotelier/questions/missing", {"status": "skipped"}, 404, "not_found"),
+        ("patch", "/hotelier/questions/q1", {"status": "answered"}, 422, "validation_error"),
+        ("patch", "/hotelier/questions/q1", {"status": "skipped", "x": 1}, 422, "validation_error"),
         ("post", "/facts/missing/confirm", None, 404, "not_found"),
         ("post", "/facts/f_h/correct", {"comment": "без значения"}, 422, "validation_error"),
         ("post", "/facts/f_h/correct", {"value": "высокий"}, 422, "invalid_value"),

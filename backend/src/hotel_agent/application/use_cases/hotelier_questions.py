@@ -3,8 +3,8 @@ from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.question_records import question_from_record, question_to_record
 from hotel_agent.domain.characteristics import Scope
-from hotel_agent.domain.entities import HotelierQuestion, QuestionReason
-from hotel_agent.domain.errors import HotelNotFound
+from hotel_agent.domain.entities import HotelierQuestion, QuestionReason, QuestionStatus
+from hotel_agent.domain.errors import HotelNotFound, InvalidValue, QuestionNotFound
 from hotel_agent.domain.value_objects import HotelId, QuestionId
 
 
@@ -18,6 +18,25 @@ class ListHotelierQuestions:
                 raise HotelNotFound()
             records = await uow.questions.for_hotel(hotel_id)
         return tuple(question_from_record(record) for record in records)
+
+
+class ChangeQuestionStatus:
+    def __init__(self, uow: UnitOfWorkFactory) -> None:
+        self._uow = uow
+
+    async def __call__(self, question_id: str, status: QuestionStatus) -> HotelierQuestion:
+        if status is QuestionStatus.ANSWERED:
+            raise InvalidValue("A question is answered only through its answer")
+        async with self._uow() as uow:
+            record = await uow.questions.get(question_id, lock=True)
+            if record is None:
+                raise QuestionNotFound()
+            current = question_from_record(record)
+            changed = current.reopened() if status is QuestionStatus.OPEN else current.skipped()
+            if changed.status is not current.status:
+                await uow.questions.set_status(question_id, changed.status.value)
+                await uow.commit()
+        return changed
 
 
 class PlanHotelierQuestions:

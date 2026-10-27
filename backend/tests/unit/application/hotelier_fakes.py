@@ -134,18 +134,32 @@ class FakeQuestions:
         self._store, self._pending = store, pending
 
     async def for_hotel(self, hotel_id: str) -> Sequence[QuestionRecord]:
-        return [item for item in self._view().values() if item.hotel_id == hotel_id]
+        return [self._linked(item) for item in self._view().values() if item.hotel_id == hotel_id]
 
     async def get(self, question_id: str, lock: bool = False) -> QuestionRecord | None:
-        return self._view().get(question_id)
+        found = self._view().get(question_id)
+        return self._linked(found) if found else None
 
     async def record_answer(
         self, question_id: str, status: str, answer_text: str, answered_at: datetime
     ) -> None:
         current = self._view()[question_id]
         self._pending["questions"][question_id] = replace(
-            current, status=status, answer_text=answer_text
+            current, status=status, answer_text=answer_text, answered_at=answered_at
         )
+
+    async def set_status(self, question_id: str, status: str) -> None:
+        current = self._view()[question_id]
+        self._pending["questions"][question_id] = replace(current, status=status)
+
+    def _linked(self, record: QuestionRecord) -> QuestionRecord:
+        facts = {**self._store.facts, **self._pending["facts"]}.values()
+        linked = sorted(
+            (item.computed_at, item.id)
+            for item in facts
+            if item.source_type == "hotelier" and item.source_id == record.id
+        )
+        return replace(record, answer_fact_ids=tuple(fact_id for _, fact_id in linked))
 
     async def candidates(
         self, region: str, characteristic_keys: Sequence[str]

@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from hotel_agent.application.use_cases.answer_question import AnswerResult
 from hotel_agent.application.use_cases.get_fact import FactDetail
@@ -23,6 +23,9 @@ class QuestionSchema(BaseModel):
     reason: Literal["missing", "conflict", "stale", "low_confidence"]
     status: Literal["open", "answered", "skipped"]
     created_at: datetime
+    answer_text: str | None = None
+    answered_at: datetime | None = None
+    answer_fact_ids: list[str] = Field(default_factory=list)
 
 
 class QuestionListSchema(BaseModel):
@@ -31,6 +34,12 @@ class QuestionListSchema(BaseModel):
 
 class AnswerInput(BaseModel):
     text: str = Field(min_length=1, max_length=10_000)
+
+
+class QuestionStatusInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    status: Literal["open", "skipped"]
 
 
 class AnswerResponseSchema(BaseModel):
@@ -54,6 +63,9 @@ def question_schema(question: HotelierQuestion) -> QuestionSchema:
         reason=question.reason.value,
         status=question.status.value,
         created_at=question.created_at,
+        answer_text=question.answer_text,
+        answered_at=question.answered_at,
+        answer_fact_ids=[str(item) for item in question.answer_fact_ids],
     )
 
 
