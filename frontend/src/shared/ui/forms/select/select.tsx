@@ -93,6 +93,7 @@ export function Select<T extends string>({
         ref={trigger}
         type="button"
         role="combobox"
+        aria-label={label}
         className={styles.trigger}
         aria-haspopup="listbox"
         aria-expanded={open}
