@@ -1,13 +1,18 @@
 import asyncio
 import json
 import time
+from pathlib import Path
 
 import httpx
 import pytest
 
 from hotel_agent.adapters.llm import openai_completion
+from hotel_agent.adapters.llm.openai_compat import OpenAICompatLLM
 from hotel_agent.adapters.llm.openai_completion import OpenAICompletion
+from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
 from hotel_agent.application.ports.log import LogValue
+
+CHARACTERISTICS = Path(__file__).resolve().parents[4].parent / "characteristics"
 
 
 class SilentLogger:
@@ -109,3 +114,34 @@ async def test_a_planning_model_answers_planning_steps_and_the_main_model_the_re
     await llm.complete(system="s", user="u", schema={"type": "json_object"})
 
     assert used == [(True, "quick"), (False, "main")]
+
+
+async def test_unparsable_planning_output_is_asked_again_from_the_main_model() -> None:
+    asked: list[tuple[str, int]] = []
+
+    def handle(request: httpx.Request) -> httpx.Response:
+        body = json.loads(request.content)
+        asked.append((str(body["model"]), int(body["max_tokens"])))
+        content = (
+            "Вот мой план действий."
+            if len(asked) == 1
+            else json.dumps({"action": "finish", "arguments": {}, "reason": "Нет подтверждений."})
+        )
+        return httpx.Response(200, json={"choices": [{"message": {"content": content}}]})
+
+    llm = OpenAICompatLLM(
+        registry=YamlCharacteristicRegistry.from_directory(CHARACTERISTICS),
+        logger=SilentLogger(),
+        base_url="https://example.com/v1",
+        api_key="test",
+        model="main",
+        planning_model="quick",
+        timeout_s=30,
+        transport=httpx.MockTransport(handle),
+    )
+
+    step = await llm.explore_data('{"remaining_tool_calls": 4}')
+
+    assert step.action == "finish"
+    assert [model for model, _ in asked] == ["quick", "main"]
+    assert [tokens for _, tokens in asked] == [2000, 4000]

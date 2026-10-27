@@ -110,23 +110,27 @@ class StructuredLLM:
         return await review_view_scopes(self._completion, query, parsed)
 
     async def explore_data(self, context: str) -> DataStep:
-        raw = await self._completion.complete(
-            system=data_reasoning.SYSTEM,
-            user=context,
-            schema=data_reasoning.schema(
-                data_reasoning.observed_fields(context),
-                finish_only=context.startswith("{")
-                and json.loads(context).get("remaining_tool_calls") == 0,
-            ),
-            planning=True,
+        schema = data_reasoning.schema(
+            data_reasoning.observed_fields(context),
+            finish_only=context.startswith("{")
+            and json.loads(context).get("remaining_tool_calls") == 0,
         )
-        try:
-            return data_reasoning.step(as_mapping(raw))
-        except ModelFailure as error:
-            self._logger.warning(
-                "data_agent_invalid_response", detail=str(error), response_length=len(raw)
+        for planning in (True, False):
+            raw = await self._completion.complete(
+                system=data_reasoning.SYSTEM, user=context, schema=schema, planning=planning
             )
-            raise
+            try:
+                return data_reasoning.step(as_mapping(raw))
+            except ModelFailure as error:
+                self._logger.warning(
+                    "data_agent_invalid_response",
+                    detail=str(error),
+                    response_length=len(raw),
+                    planning=planning,
+                )
+                if not planning:
+                    raise
+        raise ModelFailure("Language model returned no usable step")
 
     async def verify_evidence(self, context: str) -> Sequence[EvidenceVerdict]:
         raw = await self._completion.complete(
