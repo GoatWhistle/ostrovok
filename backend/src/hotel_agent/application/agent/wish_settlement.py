@@ -33,8 +33,9 @@ def settle(
     fallback: str,
     logger: LoggerPort,
     term: str,
+    pushed_back: bool = False,
 ) -> Settled | dict[str, Any]:
-    missing = ledger.missing(step.irrelevant_sources)
+    missing = () if out_of_time or pushed_back else ledger.missing(step.irrelevant_sources)
     if not out_of_time and (
         missing
         or ledger.pending_pages
@@ -57,11 +58,12 @@ def settle(
                 "pending_pages": ledger.pending_pages,
             },
         }
+    unchecked = ledger.missing(step.irrelevant_sources)
     status = (
         WishStatus.UNAVAILABLE
         if ledger.unavailable
         else WishStatus.INCOMPLETE
-        if missing or ledger.pending_pages
+        if unchecked or ledger.pending_pages
         else WishStatus.EXHAUSTED
     )
     return Settled(status, step.reason if len(step.reason.strip()) >= MIN_REASON else fallback)

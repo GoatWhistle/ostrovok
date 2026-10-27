@@ -137,6 +137,7 @@ class WishLoop:
     ) -> tuple[ExplorationOutcome | None, str]:
         reason = UNFINISHED
         barren = 0
+        pushed_back = False
         for index in range(self._max_steps):
             spent = (asyncio.get_running_loop().time() - started) / self._timeout
             notice = time_notice(spent, self._timeout * (1 - spent), warned)
@@ -181,12 +182,15 @@ class WishLoop:
                         retained,
                         step.question,
                     ), reason
-                outcome = settle(step, ledger, 85 in warned, reason, self._logger, term)
+                outcome = settle(
+                    step, ledger, 85 in warned, reason, self._logger, term, pushed_back
+                )
                 if isinstance(outcome, Settled):
                     return completion.finish(
                         outcome.status, outcome.reason, retained, None
                     ), outcome.reason
                 observations.append(outcome)
+                pushed_back = True
                 continue
             if ledger.exhausted(step.action):
                 observations.append(budget_notice(step.action, ledger.used[step.action]))
