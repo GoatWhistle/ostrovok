@@ -6,6 +6,7 @@ import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../ter
 import { tintForTime } from "../time-tint"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
+import { renderAppearanceRoofs } from "./roofs"
 import type { MapAppearance } from "./types"
 
 export interface MapSceneSnapshot {
@@ -25,6 +26,7 @@ export class MapAppearanceController {
 
   constructor(map: MapLibreMap) {
     this.map = map
+    map.on("styledata", this.refreshRoofs)
   }
 
   applyAppearance(id: MapAppearance) {
@@ -55,7 +57,17 @@ export class MapAppearanceController {
 
   dispose() {
     this.disposed = true
+    this.map.off("styledata", this.refreshRoofs)
     this.scene = undefined
+  }
+
+  private refreshRoofs = () => {
+    if (this.disposed || !this.visible) return
+    const token = APPEARANCES[this.appearance].materials.roofToken
+    const color = token
+      ? getComputedStyle(document.documentElement).getPropertyValue(token).trim()
+      : undefined
+    renderAppearanceRoofs(this.map, color)
   }
 
   private paint() {
@@ -75,6 +87,7 @@ export class MapAppearanceController {
     renderBasemap(map, tinted)
     renderCatalogLayers(map, classes, scene.excluded)
     renderBasemapLabels(map, scene.assets, colors, scene.locale)
+    this.refreshRoofs()
     const materials = APPEARANCES[this.appearance].materials
     for (const id of ["overview-volumes", "scene-volumes", "buildings-volume"]) {
       if (map.getLayer(id))

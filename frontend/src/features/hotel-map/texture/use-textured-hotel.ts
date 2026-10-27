@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import type { FeatureCollection } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef, useState } from "react"
+import type { BuildingMaterial } from "@/shared/geo/appearance/materials"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { type BuildingColors, renderBuildings } from "@/shared/geo/map-layers"
 import type { SunPosition } from "@/shared/geo/terrain"
@@ -23,6 +24,7 @@ interface TexturedHotelOptions {
   readonly buildings: FeatureCollection
   readonly colors: BuildingColors
   readonly sun: SunPosition
+  readonly material: BuildingMaterial
 }
 
 function loadAlbedo() {
@@ -42,6 +44,7 @@ export function useTexturedHotel({
   buildings,
   colors,
   sun,
+  material,
 }: TexturedHotelOptions) {
   const layer = useRef<TexturedBuildingLayer | null>(null)
   const [status, setStatus] = useState<HotelTextureStatus>("none")
@@ -49,7 +52,7 @@ export function useTexturedHotel({
   const albedo = useQuery({
     queryKey: ["hotel-albedo", HOTEL_ALBEDO],
     queryFn: loadAlbedo,
-    enabled,
+    enabled: enabled && material.mode === "textured",
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   })
@@ -66,10 +69,10 @@ export function useTexturedHotel({
   useEffect(() => {
     const map = mapRef.current
     setStatus("none")
-    if (!map || !ready || !hotelId || !albedo.data) return
+    if (!map || !ready || !hotelId || (material.mode === "textured" && !albedo.data)) return
     const mesh = buildingMesh(footprints)
     if (!mesh) return
-    const current = new TexturedBuildingLayer(hotelId, mesh, albedo.data)
+    const current = new TexturedBuildingLayer(hotelId, mesh, albedo.data ?? null, material)
     const activate = () => {
       if (layer.current !== current) return
       try {
@@ -97,12 +100,12 @@ export function useTexturedHotel({
       if (map.getLayer(current.id)) map.removeLayer(current.id)
       layer.current = null
     }
-  }, [mapRef, ready, hotelId, footprints, albedo.data])
+  }, [mapRef, ready, hotelId, footprints, albedo.data, material])
   useEffect(() => {
     if (status !== "ready" || !layer.current) return
     layer.current.sun = sun
     mapRef.current?.triggerRepaint()
   }, [mapRef, sun, status])
   if (!enabled) return "none"
-  return albedo.isError ? "unavailable" : status
+  return material.mode === "textured" && albedo.isError ? "unavailable" : status
 }

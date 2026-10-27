@@ -6,7 +6,10 @@ import { htmlMeta } from "./scripts/htmlMeta.ts"
 const apiUrl = process.env.API_URL ?? "http://localhost:8000"
 const frontendRoot = fileURLToPath(new URL(".", import.meta.url))
 const sourceRoot = fileURLToPath(new URL("./src", import.meta.url))
-const apiProxy = { "/api": { target: apiUrl, changeOrigin: true } }
+const apiProxy = {
+  "/api": { target: apiUrl, changeOrigin: true },
+  "/maps": { target: process.env.MAP_ASSET_URL ?? apiUrl, changeOrigin: true },
+}
 
 export default defineConfig({
   plugins: [react(), htmlMeta(frontendRoot)],

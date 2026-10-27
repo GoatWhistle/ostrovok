@@ -14,6 +14,10 @@ API_URL=http://127.0.0.1:8000 npm run dev
 ```
 
 `API_URL` задаёт адрес бэкенда для Vite proxy. Клиент обращается к `/api/v1`.
+Для карты задайте `MAP_ASSET_URL` — адрес Nginx из Compose, обслуживающего `/maps/`
+с локальными PMTiles, шрифтами и спрайтами. Например, при фронтенде Compose на порту 8080:
+`API_URL=http://127.0.0.1:8000 MAP_ASSET_URL=http://127.0.0.1:8080 npm run dev`.
+Без `MAP_ASSET_URL` запросы ресурсов идут на `API_URL`; сервер должен обслуживать `/maps/`.
 В production reverse proxy должен направлять этот префикс на бэкенд.
 Никакие платные ключи для интерфейса и MapLibre не нужны.
 

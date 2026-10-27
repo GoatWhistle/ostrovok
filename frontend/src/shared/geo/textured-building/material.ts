@@ -18,6 +18,9 @@ precision highp float;
 uniform sampler2D u_texture;
 uniform vec3 u_sun;
 uniform float u_daylight;
+uniform float u_matte;
+uniform vec3 u_wall;
+uniform vec3 u_roof;
 in vec3 v_normal;
 in vec3 v_uv;
 out vec4 fragColor;
@@ -28,8 +31,9 @@ void main() {
   } else {
     uv = (vec2(3.0, 625.0) + vec2(fract(v_uv.x), -fract(v_uv.y)) * vec2(936.0, 536.0)) / 1254.0;
   }
-  vec3 color = texture(u_texture, uv).rgb;
-  float light = 0.68 + 0.32 * max(dot(normalize(v_normal), u_sun), 0.0);
+  vec3 color = u_matte > 0.5 ? (v_normal.z > 0.5 ? u_roof : u_wall) : texture(u_texture, uv).rgb;
+  float ambient = mix(0.68, 0.76, u_matte);
+  float light = ambient + (1.0 - ambient) * max(dot(normalize(v_normal), u_sun), 0.0);
   fragColor = vec4(color * light * u_daylight, 1.0);
 }`
 

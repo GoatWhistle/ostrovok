@@ -3,6 +3,8 @@ import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useBasemaps, useMapCatalog } from "@/entities/map-data"
 import type { Camera, SearchResult } from "@/shared/api/hotel-types"
+import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
+import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import { appearanceClasses } from "@/shared/geo/appearance/palette"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
@@ -65,6 +67,7 @@ export function useHotelMap({
   const reduced = useReducedMotion()
   const colors = useMapColors()
   const appearance = useMapAppearance()
+  const material = useMemo(() => readBuildingMaterial(appearance.id), [appearance.id])
   const { locale } = useLocale()
   const regions = useRegions()
   const regionIds = useMemo(
@@ -111,6 +114,7 @@ export function useHotelMap({
     footprints: texturedFootprints,
     buildings: buildingData,
     colors: buildingColors,
+    material,
     sun,
   })
   const regionBoxes = useMemo(
@@ -133,6 +137,7 @@ export function useHotelMap({
     volumeColor: classes.volume,
     sun,
     quality,
+    effects: APPEARANCES[appearance.id].effects,
   })
   useRouteDraw(instance, ready ? route : undefined, colors, reduced)
   useEffect(() => {

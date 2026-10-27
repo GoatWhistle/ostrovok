@@ -1,6 +1,7 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useMapScene, useTileVersions } from "@/entities/map-data"
+import type { AppearancePackage } from "@/shared/geo/appearance/types"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { type QualityLevel, windowDensity } from "@/shared/geo/map-quality"
 import {
@@ -34,6 +35,7 @@ export interface NightCityInput {
   readonly volumeColor: ExpressionSpecification | string
   readonly sun: SunPosition
   readonly quality: QualityLevel
+  readonly effects: AppearancePackage["effects"]
 }
 
 function useWindowLayer(mapRef: RefObject<MapLibreMap | null>, ready: boolean) {
@@ -67,9 +69,10 @@ export function useNightCity({
   volumeColor,
   sun,
   quality,
+  effects,
 }: NightCityInput) {
   const [viewport, setViewport] = useState<SceneViewport>()
-  const { layer, builder } = useWindowLayer(mapRef, ready)
+  const { layer, builder } = useWindowLayer(mapRef, ready && effects.windows)
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
@@ -99,6 +102,7 @@ export function useNightCity({
     if (!ready || !map || !data) return
     const [west, south, east, north] = data.bbox
     const origin = [((west ?? 0) + (east ?? 0)) / 2, ((south ?? 0) + (north ?? 0)) / 2] as const
+    if (!effects.windows) return
     let grounds: string | undefined
     let disposed = false
     const currentBuilder = builder.current
@@ -119,12 +123,12 @@ export function useNightCity({
       currentBuilder?.cancel()
       unwatch()
     }
-  }, [mapRef, ready, scene.data, drawn, textured, builder, layer])
+  }, [mapRef, ready, scene.data, drawn, textured, builder, layer, effects.windows])
   const night = nightFactor(sun.altitude)
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
-    const lights = quality >= 2 ? 0 : night
+    const lights = quality >= 2 || !effects.lights ? 0 : night
     renderNightLights(map, lights, { lamp: colors.lamp, cityGlow: colors.cityGlow })
     const update = () =>
       layer.current?.setLight({
@@ -139,5 +143,5 @@ export function useNightCity({
     return () => {
       map.off("zoom", update)
     }
-  }, [mapRef, ready, night, colors, layer, quality])
+  }, [mapRef, ready, night, colors, layer, quality, effects.lights])
 }

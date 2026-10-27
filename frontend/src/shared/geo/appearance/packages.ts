@@ -1,4 +1,5 @@
 import { NEON_TOKENS } from "./palette-tokens"
+import { TOY_TOWN } from "./toy-town"
 import type { AppearancePackage, MapAppearance } from "./types"
 
 const NEON: AppearancePackage = {
@@ -7,14 +8,14 @@ const NEON: AppearancePackage = {
   version: "1",
   palette: NEON_TOKENS,
   classPrefix: "--map-neon-class-",
-  materials: { hotel: "textured", verticalGradient: true },
+  materials: { hotel: "textured", verticalGradient: true, roofToken: null },
   effects: { windows: true, lights: true, roadGlow: true },
   mini: { terrain: false, volumes: false, lights: false },
 }
 
 export const APPEARANCES: Readonly<Record<MapAppearance, AppearancePackage>> = {
   neon: NEON,
-  "toy-town": { ...NEON, id: "toy-town", labelKey: "explore:map.toyTown", version: "pending" },
+  "toy-town": TOY_TOWN,
 }
 
 export function isMapAppearance(value: unknown): value is MapAppearance {
