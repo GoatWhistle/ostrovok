@@ -3,9 +3,9 @@ import { type MessageKey, useFormatters, useTranslation } from "@/shared/i18n"
 import { motionMs, useFirstVisit } from "@/shared/motion"
 import { BrandMark, Button, Chip, characteristicHue, characteristicIcon, Icon } from "@/shared/ui"
 import { ChatComposer } from "./chat-composer"
-import type { HistoryEntry } from "./chat-history"
 import styles from "./chat-start.module.css"
-import { historyStamp } from "./history-stamp"
+import type { HistoryEntry } from "./history/chat-history"
+import { historyStamp } from "./history/history-stamp"
 
 const UNFOLD_COOLDOWN = 2
 const RECENT_LIMIT = 3
@@ -62,6 +62,7 @@ export function ChatStart({
         <p className={styles.text}>{t("explore:chat.startText")}</p>
         <div className={styles.composer}>
           <ChatComposer
+            flat
             pending={pending}
             draftKey={draftKey}
             onInteraction={onInteraction}

@@ -1,3 +1,4 @@
+export { ChatComposer } from "./chat-composer"
 export { ChatStart, type ChatStartProps } from "./chat-start"
 export {
   type ChatMessage,

@@ -14,10 +14,14 @@
 .workspace {
   display: grid;
   min-inline-size: 0;
-  grid-template-columns:
-    var(--panel-width, var(--workspace-panel)) minmax(0, 1fr)
-    var(--chat-width, var(--workspace-chat));
+  grid-template-columns: var(--panel-width, var(--workspace-panel)) minmax(0, 1fr);
   min-block-size: 0;
+}
+
+.workspace .map,
+.workspace .chat {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .panel {
@@ -69,7 +73,10 @@
   display: grid;
   min-block-size: 0;
   min-inline-size: 0;
-  box-shadow: var(--shadow-divider-start);
+}
+
+.chat[data-docked="true"] {
+  pointer-events: none;
 }
 
 .mobileDock {
@@ -78,9 +85,7 @@
 
 @media (max-width: 89.99rem) {
   .workspace {
-    grid-template-columns:
-      var(--panel-width, var(--workspace-panel-compact)) minmax(0, 1fr)
-      var(--chat-width, var(--workspace-chat-compact));
+    grid-template-columns: var(--panel-width, var(--workspace-panel-compact)) minmax(0, 1fr);
   }
 }
 
@@ -107,6 +112,11 @@
 
   .workspace {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace .map,
+  .workspace .chat {
+    grid-column: 1;
   }
 
   .panel,
@@ -155,6 +165,7 @@
 
 .page[data-surface="conversation"] .workspace .chat {
   display: grid;
+  grid-column: 1;
   box-shadow: none;
 }
 
@@ -183,7 +194,7 @@
 }
 @media (min-width: 64rem) {
   .workspace[data-surface="hotel-panel"] {
-    grid-template-columns: calc(100% / 3) minmax(0, 1fr) var(--chat-width, var(--workspace-chat));
+    grid-template-columns: calc(100% / 3) minmax(0, 1fr);
   }
   .panel {
     view-transition-name: hotel-panel;
