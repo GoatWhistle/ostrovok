@@ -9,7 +9,9 @@ from hotel_agent.application.ports.place_research import PlaceResearchRequest
 SOCHI = (39.7300, 43.5900)
 
 
-def page(title: str, lon: float, lat: float, licence: str, taken: str = "2021-07-04") -> dict:
+def page(
+    title: str, lon: float, lat: float, licence: str, taken: str = "2021-07-04"
+) -> dict[str, object]:
     return {
         "title": title,
         "coordinates": [{"lon": lon, "lat": lat}],
@@ -25,7 +27,7 @@ def page(title: str, lon: float, lat: float, licence: str, taken: str = "2021-07
     }
 
 
-def provider(pages: list[dict]) -> CommonsPhotos:
+def provider(pages: list[dict[str, object]]) -> CommonsPhotos:
     def handle(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, content=json.dumps({"query": {"pages": pages}}))
 
@@ -81,4 +83,17 @@ async def test_a_note_warns_that_a_nearby_photo_is_not_a_window_view() -> None:
     result = await photos.research(PlaceResearchRequest(SOCHI, 1000))
 
     assert "not what is visible from a room" in result.note
+    await photos.aclose()
+
+
+async def test_an_upstream_error_is_reported_instead_of_an_empty_result() -> None:
+    def handle(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200, content=json.dumps({"error": {"code": "cirrussearch-too-busy-error"}})
+        )
+
+    photos = CommonsPhotos("test-agent", httpx.MockTransport(handle))
+
+    with pytest.raises(ValueError, match="cirrussearch-too-busy-error"):
+        await photos.research(PlaceResearchRequest(SOCHI, 1000))
     await photos.aclose()

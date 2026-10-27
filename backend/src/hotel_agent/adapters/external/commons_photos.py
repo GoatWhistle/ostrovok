@@ -46,6 +46,9 @@ class CommonsPhotos:
                 "iiprop": "url|extmetadata",
             },
         )
+        failure = payload.get("error")
+        if isinstance(failure, dict):
+            raise ValueError(f"Commons is unavailable: {failure.get('code', 'unknown')}")
         records = [
             row
             for page in payload.get("query", {}).get("pages", [])
