@@ -86,7 +86,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "plan-questions":
         return asyncio.run(_plan_questions(args.region, settings))
     if args.command == "metrics":
-        return asyncio.run(_metrics(args.region, settings.database_url))
+        return asyncio.run(_metrics(args.region, settings))
     if args.command == "refresh-facts":
         return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
@@ -255,12 +255,16 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
     return 0
 
 
-async def _metrics(region: str, database_url: str) -> int:
+async def _metrics(region: str, settings: Settings) -> int:
+    keys = [
+        item.key
+        for item in YamlCharacteristicRegistry.from_directory(settings.characteristics_dir).all()
+    ]
     async with (
-        AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool,
+        AsyncConnectionPool(settings.database_url, min_size=1, max_size=2, open=False) as pool,
         pool.connection() as db,
     ):
-        rows = await PostgresQualityMetrics(db).coverage(region)
+        rows = await PostgresQualityMetrics(db).coverage(region, keys)
     print(f"{'characteristic':28} {'coverage':>9} {'hotelier':>9} {'open':>8}")
     for row in rows:
         print(

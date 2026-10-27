@@ -9,17 +9,19 @@ counted AS (
     SELECT f.characteristic_key AS key, COUNT(DISTINCT f.subject_id) AS covered
     FROM facts f JOIN scope s ON s.id = f.subject_id
     WHERE f.subject_type = 'hotel' AND f.status IN ('active', 'confirmed_by_hotelier')
+      AND f.characteristic_key = ANY(%(keys)s::text[])
     GROUP BY 1),
 asked AS (
     SELECT q.characteristic_key AS key, COUNT(DISTINCT q.hotel_id) AS open_questions
     FROM hotelier_questions q JOIN scope s ON s.id = q.hotel_id
-    WHERE q.status = 'open'
+    WHERE q.status = 'open' AND q.characteristic_key = ANY(%(keys)s::text[])
     GROUP BY 1),
 answered AS (
     SELECT f.characteristic_key AS key, COUNT(DISTINCT f.subject_id) AS from_hotelier
     FROM facts f JOIN scope s ON s.id = f.subject_id
     WHERE f.subject_type = 'hotel' AND f.source_type IN ('hotelier', 'llm_extraction')
       AND f.status IN ('active', 'confirmed_by_hotelier')
+      AND f.characteristic_key = ANY(%(keys)s::text[])
     GROUP BY 1)
 SELECT COALESCE(counted.key, asked.key, answered.key),
     (SELECT COUNT(*) FROM scope),
@@ -36,8 +38,8 @@ class PostgresQualityMetrics:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
 
-    async def coverage(self, region: str) -> Sequence[CharacteristicMetric]:
-        result = await self._connection.execute(COVERAGE, {"region": region})
+    async def coverage(self, region: str, keys: Sequence[str]) -> Sequence[CharacteristicMetric]:
+        result = await self._connection.execute(COVERAGE, {"region": region, "keys": list(keys)})
         return [
             CharacteristicMetric(
                 characteristic_key=str(row[0]),
