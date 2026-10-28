@@ -9,6 +9,7 @@ that owns each one. Scrubbed at submission.
 | `per-wish-agent/` | agent loop implementation | Plan, verification and preserved session before per-wish search |
 | `stand-restart/` | stand integration | Pinned deployment, source hashes, live before/after smoke and preserved root snapshot |
 | `plan.md` | план работ | Задачи до готового MVP, критерии готовности, риски |
+| `hotelier-cabinet/` | hotelier backend | Notifications, demand-ranked questions, cabinet overview, batch answer: decisions, endpoints, checks and limits |
 | `naming.md` | `naming` | Name candidates, scores, finalists, taglines, name origin |
 | `brand/` | `brand-identity` | Logo gallery and the chosen mark's rationale |
 | `design/` | `refero-style` | Style extraction, source-site screenshots, conflicts resolved |
