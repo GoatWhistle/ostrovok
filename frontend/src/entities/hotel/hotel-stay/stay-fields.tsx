@@ -116,7 +116,6 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
 
       {!hasStay(checkIn, checkOut, adults) ? (
         <>
-          <p className={styles.note}>{t("explore:offers.pickDates")}</p>
           <ScrollArea className={styles.presets}>
             {PRESETS.map((preset) => (
               <Button
