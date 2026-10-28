@@ -20,7 +20,7 @@
 }
 
 .pin[data-kind="hotel"] {
-  padding-inline-start: var(--space-4);
+  padding-inline-start: var(--space-8);
 }
 
 .pin[data-kind="cluster"] {
@@ -42,22 +42,34 @@
   --button-height: var(--space-48);
 }
 
+.pin[data-kind="hotel"] {
+  --pin-ring: var(--map-hotel);
+  --pin-match: var(--status-warning);
+}
+
+.pin[data-state="complete"] {
+  --pin-match: var(--map-hotel-selected);
+}
+
 .pin[data-state="nodata"] {
-  --button-height: var(--space-12);
+  --pin-match: var(--text-muted);
+}
+
+.pin[data-kind="hotel"][data-selected="false"] {
+  --button-height: var(--pin-dot);
   --button-padding: 0;
   --button-radius: var(--radius-pill);
-  --button-surface: var(--text-primary);
+  --button-surface: transparent;
+  --button-surface-hover: transparent;
+  --button-surface-press: transparent;
 
-  inline-size: var(--space-12);
+  inline-size: var(--pin-dot);
   padding-inline: 0;
+  box-shadow: none;
 }
 
-.pin[data-state="nodata"]::before {
-  inset: calc((var(--space-12) - var(--target-min)) / 2);
-}
-
-.pin[data-kind="hotel"][data-selected="false"]:not([data-state="nodata"]) {
-  padding-inline: var(--space-4);
+.pin[data-kind="hotel"][data-selected="false"]::before {
+  inset: calc((var(--pin-dot) - var(--target-min)) / 2);
 }
 
 .pin[data-selected="false"]:not(:focus-visible) .score {
@@ -67,33 +79,31 @@
 .pin[data-selected="true"] {
   --button-surface: var(--map-hotel-selected);
   --button-text: var(--map-hotel-selected-text);
+  --pin-ring: var(--map-hotel-selected-text);
 }
 
 .face {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-6);
   line-height: var(--pin-dot);
 }
 
 .dot {
-  display: grid;
-  place-items: center;
-  inline-size: var(--pin-dot);
-  block-size: var(--pin-dot);
-  border-radius: var(--radius-xs);
-  background-color: var(--status-warning-surface);
-  color: var(--text-warning);
+  flex: none;
+  box-sizing: border-box;
+  inline-size: var(--space-16);
+  block-size: var(--space-16);
+  border: var(--space-2) solid var(--pin-ring);
+  border-radius: var(--radius-pill);
+  background-color: var(--pin-match);
+  box-shadow: var(--shadow-pin);
+  transition: scale var(--dur-fast) var(--ease-out);
 }
 
-.pin[data-state="complete"] .dot {
-  background-color: var(--surface-highlight);
-  color: var(--text-on-highlight);
-}
-
-.pin[data-selected="true"] .dot {
-  background-color: var(--action-fact);
-  color: var(--text-on-fact);
+.pin[data-state="nodata"] .dot {
+  inline-size: var(--space-12);
+  block-size: var(--space-12);
 }
 
 .bubble {
@@ -147,12 +157,8 @@
     z-index: var(--layer-raised);
   }
 
-  .pin[data-kind="hotel"]:not([data-state="nodata"]):hover {
-    --button-text: var(--map-hotel-selected-text);
-  }
-
-  .pin:hover .score {
-    display: inline;
+  .pin[data-kind="hotel"][data-selected="false"]:hover .dot {
+    scale: 1.25;
   }
 }
 

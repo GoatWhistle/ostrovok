@@ -35,6 +35,10 @@
   gap: var(--space-8);
 }
 
+.bottom:has([aria-expanded="true"]) {
+  z-index: var(--layer-header);
+}
+
 .bottomCenter {
   grid-column: 2;
   min-inline-size: 0;

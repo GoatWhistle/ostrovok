@@ -23,6 +23,12 @@ export function MapMeta({
         label={t("explore:map.attributionTitle")}
         osm={t("explore:map.attribution")}
         terrain={t("explore:map.terrainAttribution")}
+        groups={{
+          map: t("explore:map.sourcesMap"),
+          terrain: t("explore:map.sourcesTerrain"),
+          weather: t("explore:map.sourcesWeather"),
+          other: t("explore:map.sourcesOther"),
+        }}
         sources={{
           weather: t("explore:map.weatherAttribution"),
           landcover: t("explore:map.landcoverAttribution"),

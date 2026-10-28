@@ -36,9 +36,7 @@ function HotelPin({ view, onSelect }: { view: HotelView; onSelect: MapPinProps["
       <span className={styles.face} aria-hidden="true">
         {total === 0 ? null : (
           <>
-            <span className={styles.dot}>
-              <Icon name={state === "complete" ? "check" : "partial"} size="sm" />
-            </span>
+            <span className={styles.dot} />
             <span className={styles.score}>{t("explore:results.score", { full, total })}</span>
           </>
         )}
