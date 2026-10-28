@@ -39,6 +39,7 @@ def window_evidence(
     features = []
     visibility: dict[str, Any] = {
         "status": "blocked" if rejected else "unknown",
+        "request_kind": request.kind,
         "reason": reason,
         "bookable_room_confirmed": False,
         "calculation_attempted": evaluated,

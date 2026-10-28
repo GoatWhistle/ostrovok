@@ -1,12 +1,18 @@
 import json
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from datetime import datetime
 
 from psycopg import AsyncConnection
+from psycopg.types.json import Jsonb
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
 from hotel_agent.adapters.db.hotel_media import read_hotel_photos
 from hotel_agent.adapters.db.search_facts import FACTS, STALE_FACTS, fact_record
+from hotel_agent.application.declared_rooms import (
+    DECLARED_SOURCE_KEY,
+    DeclaredRoomsRecord,
+    declared_details,
+)
 from hotel_agent.application.dto import (
     BuildingRecord,
     FacadeRecord,
@@ -75,8 +81,17 @@ FROM hotels h JOIN buildings b
 WHERE h.id = %(hotel_id)s
 ORDER BY b.footprint <-> h.location"""
 
-ROOMS = """SELECT id, name, capacity, floor_min, floor_max, facade_ids,
-price_amount, price_currency, included FROM rooms WHERE hotel_id = %(hotel_id)s ORDER BY id"""
+ROOM_COLUMNS = """SELECT id, name, capacity, floor_min, floor_max, facade_ids,
+price_amount, price_currency, included, details, hotel_id FROM rooms """
+ROOMS = ROOM_COLUMNS + "WHERE hotel_id = %(hotel_id)s ORDER BY id"
+ROOMS_BY_HOTELS = ROOM_COLUMNS + "WHERE hotel_id = ANY(%(ids)s::text[]) ORDER BY hotel_id, id"
+DELETE_DECLARED_ROOMS = """DELETE FROM rooms WHERE hotel_id = %(hotel_id)s
+AND details->>'declared_source' = %(source)s"""
+SAVE_DECLARED_ROOM = """INSERT INTO rooms
+(id, hotel_id, name, capacity, floor_min, floor_max, synthetic, details)
+VALUES (%(id)s, %(hotel_id)s, %(name)s, %(capacity)s, %(floor)s, %(floor)s, false, %(details)s)
+ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, capacity = EXCLUDED.capacity,
+floor_min = EXCLUDED.floor_min, floor_max = EXCLUDED.floor_max, details = EXCLUDED.details"""
 
 
 class PostgresSearchRepository:
@@ -116,6 +131,25 @@ class PostgresSearchRepository:
         ).fetchall()
         return [_supplier_content(row) for row in rows]
 
+    async def save_declared_rooms(self, record: DeclaredRoomsRecord) -> None:
+        await self._connection.execute(
+            DELETE_DECLARED_ROOMS, {"hotel_id": record.hotel_id, "source": record.source}
+        )
+        for room in record.rooms:
+            if room.main_places is None:
+                continue
+            await self._connection.execute(
+                SAVE_DECLARED_ROOM,
+                {
+                    "id": f"{record.source}:{record.hotel_id}:{room.id}",
+                    "hotel_id": record.hotel_id,
+                    "name": room.name,
+                    "capacity": room.main_places,
+                    "floor": room.floor,
+                    "details": Jsonb(declared_details(record, room)),
+                },
+            )
+
     async def nearby_city(self, location: tuple[float, float], radius_m: float) -> str | None:
         params = {"lon": location[0], "lat": location[1], "radius": radius_m}
         for kinds in SETTLEMENT_KINDS:
@@ -138,20 +172,20 @@ class PostgresSearchRepository:
 
     async def list_rooms(self, hotel_id: str) -> Sequence[RoomRecord]:
         rows = await (await self._connection.execute(ROOMS, {"hotel_id": hotel_id})).fetchall()
-        return [
-            RoomRecord(
-                id=str(row[0]),
-                name=str(row[1]),
-                capacity=int(str(row[2])),
-                floor_min=int(str(row[3])) if row[3] is not None else None,
-                floor_max=int(str(row[4])) if row[4] is not None else None,
-                facade_ids=tuple(str(item) for item in row[5]) if isinstance(row[5], list) else (),
-                price_amount=float(str(row[6])) if row[6] is not None else None,
-                price_currency=str(row[7]) if row[7] is not None else None,
-                included=tuple(str(item) for item in row[8]) if isinstance(row[8], list) else (),
-            )
-            for row in rows
-        ]
+        return [_room(row) for row in rows]
+
+    async def list_rooms_by_hotels(
+        self, hotel_ids: Sequence[str]
+    ) -> Mapping[str, Sequence[RoomRecord]]:
+        if not hotel_ids:
+            return {}
+        rows = await (
+            await self._connection.execute(ROOMS_BY_HOTELS, {"ids": list(hotel_ids)})
+        ).fetchall()
+        found: dict[str, list[RoomRecord]] = {}
+        for row in rows:
+            found.setdefault(str(row[10]), []).append(_room(row))
+        return found
 
     async def list_hotels(
         self, region: str, bbox: tuple[float, float, float, float] | None
@@ -252,6 +286,27 @@ def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:
         address=str(row[10]) if row[10] is not None else None,
         city=str(row[11]) if row[11] is not None else None,
         photos=read_hotel_photos(row[12], row[13], str(row[0])),
+    )
+
+
+def _room(row: tuple[object, ...]) -> RoomRecord:
+    details = row[9] if isinstance(row[9], dict) else {}
+    views = details.get("views")
+    return RoomRecord(
+        id=str(row[0]),
+        name=str(row[1]),
+        capacity=int(str(row[2])),
+        floor_min=int(str(row[3])) if row[3] is not None else None,
+        floor_max=int(str(row[4])) if row[4] is not None else None,
+        facade_ids=tuple(str(item) for item in row[5]) if isinstance(row[5], list) else (),
+        price_amount=float(str(row[6])) if row[6] is not None else None,
+        price_currency=str(row[7]) if row[7] is not None else None,
+        included=tuple(str(item) for item in row[8]) if isinstance(row[8], list) else (),
+        views=tuple(str(code) for code in views) if isinstance(views, list) else (),
+        declared_source=str(details[DECLARED_SOURCE_KEY])
+        if isinstance(details.get(DECLARED_SOURCE_KEY), str)
+        else None,
+        page_url=str(details["page_url"]) if isinstance(details.get("page_url"), str) else None,
     )
 
 

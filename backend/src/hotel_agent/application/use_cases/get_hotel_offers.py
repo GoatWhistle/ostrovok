@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from datetime import date, datetime
 from enum import StrEnum
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
+from hotel_agent.application.declared_rooms import DeclaredRoomsRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.hotel_offers import (
     HotelOfferSearchPort,
@@ -169,6 +171,8 @@ class GetHotelOffers:
                 sandbox = False
                 checked_at = content.checked_at
         declared, declared_card = await self._declared_rooms(identity, content)
+        if declared and declared_card is not None:
+            await self._save_declared(hotel_id, declared, declared_card)
         return HotelOffers(
             hotel_id=hotel_id,
             check_in=check_in,
@@ -188,6 +192,20 @@ class GetHotelOffers:
             rates_complete=content.rates_complete if content else False,
             details=content.details if content else None,
         )
+
+    async def _save_declared(
+        self, hotel_id: str, rooms: tuple[SupplierRoom, ...], page_url: str
+    ) -> None:
+        source = urlsplit(page_url).hostname
+        if source is None:
+            return
+        async with self._uow() as uow:
+            await uow.search.save_declared_rooms(
+                DeclaredRoomsRecord(
+                    hotel_id=hotel_id, source=source, page_url=page_url, rooms=rooms
+                )
+            )
+            await uow.commit()
 
     async def _declared_rooms(
         self, identity: HotelIdentity, content: OfferLookup | None

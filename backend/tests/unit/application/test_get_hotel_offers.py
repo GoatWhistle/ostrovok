@@ -31,9 +31,10 @@ def repository(supplier_id: str | None) -> UnitOfWorkFactory:
         ),
         get_supplier_id=AsyncMock(return_value=supplier_id),
         nearby_city=AsyncMock(return_value="Сочи"),
+        save_declared_rooms=AsyncMock(),
     )
     scope = MagicMock()
-    scope.__aenter__ = AsyncMock(return_value=SimpleNamespace(search=search))
+    scope.__aenter__ = AsyncMock(return_value=SimpleNamespace(search=search, commit=AsyncMock()))
     scope.__aexit__ = AsyncMock(return_value=None)
     return cast(UnitOfWorkFactory, lambda: scope)
 

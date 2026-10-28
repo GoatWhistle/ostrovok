@@ -26,6 +26,7 @@ from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
+from hotel_agent.application.room_view_corroboration import corroborate_room_views
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
 from hotel_agent.application.search_selection import Selection, select_candidates
@@ -197,9 +198,11 @@ class SearchHotels:
         results = [
             SearchResult(hotel=hotel, scored=scored) for hotel, scored in selection.accepted[:limit]
         ]
-        await save_search_evidence(
-            self._uow, explored.facts, [item.hotel.id for item in results], explored.features
-        )
+        selected_ids = [item.hotel.id for item in results]
+        async with self._uow() as uow:
+            rooms = await uow.search.list_rooms_by_hotels(selected_ids)
+        facts = corroborate_room_views(explored.facts, rooms)
+        await save_search_evidence(self._uow, facts, selected_ids, explored.features)
         fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
