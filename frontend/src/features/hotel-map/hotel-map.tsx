@@ -135,6 +135,7 @@ export function HotelMap({
     <section
       ref={insets.stage}
       className={styles.stage}
+      data-popover-boundary
       data-full-map={fullMap}
       aria-label={t("explore:map.title")}
       data-map-active={map.active}

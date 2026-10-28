@@ -29,6 +29,10 @@
   transform-origin: top left;
 }
 
+.panel[data-placement="start"] {
+  transform-origin: center right;
+}
+
 .panel[data-state="closed"] {
   clip-path: inset(100% 0 0 0 round var(--radius-md));
   opacity: 0;

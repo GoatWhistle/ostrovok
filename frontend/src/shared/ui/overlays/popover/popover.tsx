@@ -3,14 +3,14 @@ import { createPortal } from "react-dom"
 import { Button } from "../../primitives/button/button"
 import type { IconName } from "../../primitives/icon/icon"
 import styles from "./popover.module.css"
-import { usePopover } from "./use-popover"
+import { type PopoverPlacement, usePopover } from "./use-popover"
 
 export interface PopoverProps {
   readonly label: string
   readonly icon: IconName
   readonly summary?: ReactNode
   readonly children: ReactNode
-  readonly placement?: "top" | "bottom"
+  readonly placement?: PopoverPlacement
 }
 
 export function Popover({ label, icon, summary, children, placement = "top" }: PopoverProps) {

@@ -45,6 +45,7 @@ export function SceneTimePanel({
   const sunriseHour = zoneHour(sunrise)
   return (
     <Popover
+      placement="start"
       label={`${t("explore:weather.scene")}: ${weatherText(weather, weatherPending, locale)}`}
       icon={weatherIcon(
         weather?.status === "available" ? weather.weather_code : undefined,

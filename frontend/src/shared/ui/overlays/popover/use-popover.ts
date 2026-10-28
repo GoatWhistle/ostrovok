@@ -1,7 +1,51 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react"
 import { usePresence } from "@/shared/motion"
 
-export function usePopover(placement: "top" | "bottom") {
+export type PopoverPlacement = "top" | "bottom" | "start"
+
+export interface Bounds {
+  readonly left: number
+  readonly top: number
+  readonly right: number
+  readonly bottom: number
+}
+
+function boundsOf(element: Element | null | undefined): Bounds {
+  const area = element?.closest("[data-popover-boundary]")?.getBoundingClientRect()
+  return {
+    left: Math.max(0, area?.left ?? 0),
+    top: Math.max(0, area?.top ?? 0),
+    right: Math.min(innerWidth, area?.right ?? innerWidth),
+    bottom: Math.min(innerHeight, area?.bottom ?? innerHeight),
+  }
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(value, max))
+}
+
+export function placePanel(
+  anchor: Pick<DOMRect, "left" | "top" | "bottom" | "height">,
+  box: { readonly width: number; readonly height: number },
+  placement: PopoverPlacement,
+  bounds: Bounds,
+  gap: number,
+) {
+  const maxLeft = bounds.right - box.width - gap
+  const maxTop = bounds.bottom - box.height - gap
+  const beside = anchor.left - box.width - gap
+  if (placement === "start" && beside >= bounds.left + gap) {
+    const middle = anchor.top + anchor.height / 2 - box.height / 2
+    return { left: beside, top: clamp(middle, bounds.top + gap, maxTop) }
+  }
+  const top = placement === "bottom" ? anchor.bottom + gap : anchor.top - box.height - gap
+  return {
+    left: clamp(anchor.left, bounds.left + gap, maxLeft),
+    top: clamp(top, bounds.top + gap, maxTop),
+  }
+}
+
+export function usePopover(placement: PopoverPlacement) {
   const id = useId()
   const trigger = useRef<HTMLButtonElement>(null)
   const panel = useRef<HTMLElement>(null)
@@ -20,11 +64,7 @@ export function usePopover(placement: "top" | "bottom") {
         Number.parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue("--space-8"),
         ) || 8
-      const top = placement === "top" ? anchor.top - box.height - gap : anchor.bottom + gap
-      setPosition({
-        left: Math.max(gap, Math.min(anchor.left, innerWidth - box.width - gap)),
-        top: Math.max(gap, Math.min(top, innerHeight - box.height - gap)),
-      })
+      setPosition(placePanel(anchor, box, placement, boundsOf(trigger.current), gap))
     }
     place()
     const observer = new ResizeObserver(place)
