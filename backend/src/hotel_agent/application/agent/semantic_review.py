@@ -52,15 +52,38 @@ class ReviewResult:
 
 
 class SemanticReview:
-    def __init__(self, llm: LLMPort, logger: LoggerPort, timeout_s: float = 30) -> None:
-        self._llm, self._logger, self._timeout = llm, logger, timeout_s
+    def __init__(
+        self,
+        llm: LLMPort,
+        logger: LoggerPort,
+        timeout_s: float = 30,
+        first: LLMPort | None = None,
+    ) -> None:
+        self._llm, self._logger, self._timeout, self._first = llm, logger, timeout_s, first
 
     async def check(self, query: str, mode: str, claims: Sequence[ReviewClaim]) -> ReviewResult:
         if not claims:
             return ReviewResult()
-        sources = {claim.id: claim.evidence for claim in claims}
-        if len(sources) != len(claims):
+        if len({claim.id for claim in claims}) != len(claims):
             raise ValueError("Semantic review claim identifiers must be unique")
+        if self._first is None:
+            return await self._judge(self._llm, "main", query, mode, claims)
+        quick = await self._judge(self._first, "first", query, mode, claims)
+        doubted = [claim for claim in claims if claim.id not in quick.accepted_ids]
+        if not doubted:
+            return quick
+        final = await self._judge(self._llm, "main", query, mode, doubted)
+        return ReviewResult(
+            quick.accepted_ids + final.accepted_ids,
+            final.rejected_ids,
+            final.unavailable,
+            final.rejections,
+        )
+
+    async def _judge(
+        self, llm: LLMPort, tier: str, query: str, mode: str, claims: Sequence[ReviewClaim]
+    ) -> ReviewResult:
+        sources = {claim.id: claim.evidence for claim in claims}
         context = json.dumps(
             {
                 "mode": mode,
@@ -79,9 +102,11 @@ class SemanticReview:
         )
         try:
             async with asyncio.timeout(self._timeout):
-                verdicts = tuple(await self._llm.verify_evidence(context))
+                verdicts = tuple(await llm.verify_evidence(context))
         except (ModelFailure, TimeoutError):
-            self._logger.warning("semantic_review_unavailable", mode=mode, claims=len(claims))
+            self._logger.warning(
+                "semantic_review_unavailable", mode=mode, tier=tier, claims=len(claims)
+            )
             return ReviewResult(unavailable=True)
         counts = Counter(verdict.record_id for verdict in verdicts)
         accepted = tuple(
@@ -118,6 +143,7 @@ class SemanticReview:
         self._logger.info(
             "semantic_review_finished",
             mode=mode,
+            tier=tier,
             accepted=len(accepted),
             rejected=len(rejected),
             rejection_reasons=json.dumps(reasons, sort_keys=True),

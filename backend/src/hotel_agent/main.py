@@ -144,6 +144,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)
+    verdict_review = SemanticReview(providers.llm, logger, first=providers.review_llm)
     search_hotels = SearchHotels(
         providers.llm,
         providers.uow,
@@ -172,7 +173,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
         EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
-        RecommendationReview(semantic_review),
+        RecommendationReview(verdict_review),
         landmark_review=semantic_review,
         geographic_objects=GeographicObjects(view_geometry),
     )
@@ -192,7 +193,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 providers.registry,
                 GetHotelCard(providers.uow, providers.clock),
                 providers.clock,
-                review=ChatAnswerReview(semantic_review),
+                review=ChatAnswerReview(verdict_review),
             ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),

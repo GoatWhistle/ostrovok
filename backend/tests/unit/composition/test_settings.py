@@ -1,7 +1,9 @@
 from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 
+from hotel_agent.composition import build_review_llm
 from hotel_agent.settings import (
     DEFAULT_DATABASE_URL,
     ConfigError,
@@ -64,3 +66,21 @@ def test_blank_values_fall_back_to_defaults() -> None:
 def test_invalid_value_names_the_variable(env: dict[str, str], message: str) -> None:
     with pytest.raises(ConfigError, match=message):
         load_settings(env)
+
+
+def test_review_model_defaults_to_the_planning_model() -> None:
+    assert load_settings({"LLM_PLANNING_MODEL": "fast"}).llm_review_model == "fast"
+    chosen = load_settings({"LLM_PLANNING_MODEL": "fast", "LLM_REVIEW_MODEL": "review"})
+    assert chosen.llm_review_model == "review"
+
+
+def test_review_model_equal_to_the_main_model_adds_no_second_client() -> None:
+    settings = Settings(
+        llm_provider=LLMProvider.OPENAI_COMPAT,
+        llm_api_key="key",
+        llm_base_url="https://example.invalid/v1",
+        llm_model="main",
+        llm_review_model="main",
+    )
+    assert build_review_llm(settings, MagicMock(), MagicMock()) is None
+    assert build_review_llm(Settings(llm_review_model="fast"), MagicMock(), MagicMock()) is None
