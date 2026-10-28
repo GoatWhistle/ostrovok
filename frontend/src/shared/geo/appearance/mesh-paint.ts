@@ -19,10 +19,10 @@ export function paintMeshes(map: MapLibreMap, appearance: MapAppearance, sun: Su
   const resolve = (list: readonly string[]) =>
     list.filter((token) => read(token).length > 0).map(tone)
   const flat = resolve(materials.flatRoofTokens ?? tokens)
-  renderAppearanceRoofs(map, roofPaint(flat))
+  const trim = materials.trimTokens
+  renderAppearanceRoofs(map, roofPaint(flat), trim ? tone(palette.hotelSelected) : undefined)
   const colors = readAppearanceColors(appearance)
   const light = { sky: colors, azimuth: sun.azimuth, altitude: sun.altitude }
-  const trim = materials.trimTokens
   paintRoofMesh(
     map,
     trim && {

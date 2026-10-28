@@ -12,7 +12,7 @@ export const TOY_TOWN: AppearancePackage = {
     building: "--map-toy-wall",
     buildingLine: "--map-toy-line",
     buildingVolume: "--map-toy-wall",
-    hotelVolume: "--map-toy-road",
+    hotelVolume: "--map-toy-hotel-wall",
     road: "--map-toy-road",
     roadCasing: "--map-toy-line",
     roadLight: "--map-toy-road",
@@ -53,6 +53,7 @@ export const TOY_TOWN: AppearancePackage = {
     hotel: "matte",
     verticalGradient: true,
     roofToken: "--map-toy-roof",
+    hotelRoofToken: "--map-toy-teal",
     roofTokens: [
       "--map-toy-roof",
       "--map-toy-roof-clay",

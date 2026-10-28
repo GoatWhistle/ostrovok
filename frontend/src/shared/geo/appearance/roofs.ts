@@ -1,5 +1,6 @@
 import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
+import { contextHeight, HOTEL } from "../map-layers"
 import { sceneHeight } from "../night-city/night-layers"
 import { overviewHeight } from "../overview-buildings"
 import { FLAT_ROOF } from "../roof-forms/layer"
@@ -49,7 +50,7 @@ function roofFilter(
 function ownerHeight(map: MapLibreMap, owner: string, lift: number): ExpressionSpecification {
   if (owner === "overview-volumes") return overviewHeight(lift)
   if (owner === "scene-volumes") return sceneHeight(map, lift)
-  return ["+", ["max", 0, ["to-number", ["get", "height_m"], 0]], lift]
+  return contextHeight(map, lift)
 }
 
 function syncPaint(
@@ -106,6 +107,13 @@ function renderRoof(
 export function renderAppearanceRoofs(
   map: MapLibreMap,
   color: ExpressionSpecification | string | undefined,
+  accent?: string,
 ) {
-  for (const roof of ROOFS) renderRoof(map, roof, color)
+  for (const roof of ROOFS) {
+    const marked =
+      color && accent && roof.owner === "buildings-volume"
+        ? (["case", HOTEL, accent, color] as ExpressionSpecification)
+        : color
+    renderRoof(map, roof, marked)
+  }
 }

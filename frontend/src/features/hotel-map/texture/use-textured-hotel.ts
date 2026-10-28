@@ -7,6 +7,7 @@ import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { type BuildingColors, renderBuildings } from "@/shared/geo/map-layers"
 import type { SunPosition } from "@/shared/geo/terrain"
 import { buildingMesh } from "@/shared/geo/textured-building/geometry"
+import { renderHotelHalo } from "@/shared/geo/textured-building/halo"
 import { TexturedBuildingLayer } from "@/shared/geo/textured-building/layer"
 import { HOTEL_ALBEDO } from "@/shared/geo/textured-building/material"
 import {
@@ -78,6 +79,11 @@ export function useTexturedHotel({
       try {
         map.addLayer(current, labelAnchor(map))
         renderBuildings(map, remainingBuildings(data.current, footprints), palette.current)
+        renderHotelHalo(
+          map,
+          { type: "FeatureCollection", features: footprints } as unknown as FeatureCollection,
+          palette.current.hotelSelected,
+        )
         setStatus("ready")
       } catch {
         current.onRemove()
@@ -98,6 +104,11 @@ export function useTexturedHotel({
       map.off("webglcontextrestored", restore)
       map.off("style.load", activate)
       if (map.getLayer(current.id)) map.removeLayer(current.id)
+      renderHotelHalo(
+        map,
+        { type: "FeatureCollection", features: [] },
+        palette.current.hotelSelected,
+      )
       layer.current = null
     }
   }, [mapRef, ready, hotelId, footprints, albedo.data, material])

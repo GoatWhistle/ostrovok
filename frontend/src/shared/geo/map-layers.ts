@@ -1,6 +1,7 @@
 import type { Feature, FeatureCollection } from "geojson"
 import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "./basemap-labels"
+import { MESH_FROM } from "./overview-buildings"
 import { contextRoofs } from "./roof-forms/layer"
 
 export interface BuildingColors {
@@ -19,7 +20,27 @@ export interface HighlightColors {
   readonly land: string
 }
 
-const HOTEL: ExpressionSpecification = ["boolean", ["get", "is_hotel"], false]
+export const HOTEL: ExpressionSpecification = ["boolean", ["get", "is_hotel"], false]
+const CONTEXT_HEIGHT: ExpressionSpecification = ["max", 0, ["to-number", ["get", "height_m"], 0]]
+const meshed = new WeakMap<MapLibreMap, readonly string[]>()
+
+export function contextHeight(map: MapLibreMap, lift = 0): ExpressionSpecification {
+  const raised: ExpressionSpecification = ["+", CONTEXT_HEIGHT, lift]
+  const covered = [...(meshed.get(map) ?? [])]
+  return [
+    "step",
+    ["zoom"],
+    raised,
+    MESH_FROM,
+    ["case", ["all", ["!", HOTEL], ["in", ["get", "id"], ["literal", covered]]], 0, raised],
+  ]
+}
+
+export function hideMeshedContext(map: MapLibreMap, covered: readonly string[]) {
+  meshed.set(map, covered)
+  if (map.getLayer("buildings-volume"))
+    map.setPaintProperty("buildings-volume", "fill-extrusion-height", contextHeight(map))
+}
 const POLYGON: ExpressionSpecification = ["==", ["geometry-type"], "Polygon"]
 
 export function updateSource(map: MapLibreMap, name: string, data: FeatureCollection) {
@@ -42,6 +63,7 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
     colors.buildingVolume,
   ])
   map.setPaintProperty("buildings-outline", "line-color", colors.hotelSelected)
+  map.setPaintProperty("buildings-halo", "line-color", colors.hotelSelected)
 }
 
 export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
@@ -67,6 +89,22 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
   )
   map.addLayer(
     {
+      id: "buildings-halo",
+      type: "line",
+      source: "buildings",
+      filter: HOTEL,
+      layout: { "line-join": "round" },
+      paint: {
+        "line-color": colors.hotelSelected,
+        "line-width": ["interpolate", ["exponential", 2], ["zoom"], 14, 4, 18, 26],
+        "line-blur": ["interpolate", ["exponential", 2], ["zoom"], 14, 3, 18, 18],
+        "line-opacity": 0.42,
+      },
+    },
+    before,
+  )
+  map.addLayer(
+    {
       id: "buildings-volume",
       type: "fill-extrusion",
       source: "buildings",
@@ -74,7 +112,7 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
       paint: {
         "fill-extrusion-color": ["case", HOTEL, colors.hotelVolume, colors.buildingVolume],
         "fill-extrusion-vertical-gradient": true,
-        "fill-extrusion-height": ["max", 0, ["to-number", ["get", "height_m"], 0]],
+        "fill-extrusion-height": contextHeight(map),
         "fill-extrusion-base": ["max", 0, ["to-number", ["get", "min_height_m"], 0]],
         "fill-extrusion-opacity": 0.95,
       },

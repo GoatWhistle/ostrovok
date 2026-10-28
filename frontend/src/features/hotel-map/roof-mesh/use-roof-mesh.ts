@@ -2,6 +2,7 @@ import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
 import type { MapRenderScene } from "@/entities/map-data"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
+import { hideMeshedContext } from "@/shared/geo/map-layers"
 import { hideMeshedSceneVolumes } from "@/shared/geo/night-city/night-layers"
 import { WINDOW_LAYER } from "@/shared/geo/night-city/window-layer"
 import { MESH_FROM, markMeshBuildings } from "@/shared/geo/overview-buildings"
@@ -14,11 +15,12 @@ import {
   tileCandidates,
 } from "@/shared/geo/roof-mesh/sources"
 import { watchRoofTriggers } from "@/shared/geo/roof-mesh/triggers"
+import type { DrawnVolume } from "../night-city/night-city-data"
 
 function sceneCandidates(
   scene: MapRenderScene | undefined,
   skip: ReadonlySet<string>,
-  walled: ReadonlySet<string>,
+  drawn: ReadonlyMap<string, DrawnVolume>,
 ) {
   return (scene?.features ?? []).flatMap((feature): RoofCandidate[] => {
     const id = feature.properties.building_id
@@ -28,9 +30,9 @@ function sceneCandidates(
       {
         id,
         geometry,
-        height: feature.properties.render_height_m,
+        height: drawn.get(id)?.height || feature.properties.render_height_m,
         levels: feature.properties.levels,
-        solid: !walled.has(id) && isSolid(geometry),
+        solid: (drawn.get(id)?.base ?? 0) === 0 && isSolid(geometry),
       },
     ]
   })
@@ -45,7 +47,7 @@ export function useRoofMesh(
   ready: boolean,
   scene: MapRenderScene | undefined,
   skipped: readonly string[],
-  walled: readonly string[],
+  drawn: ReadonlyMap<string, DrawnVolume>,
   enabled: boolean,
 ) {
   const layer = useRef<RoofMeshLayer | null>(null)
@@ -67,7 +69,7 @@ export function useRoofMesh(
     const build = () => {
       if (grow(map) <= 0) return
       const skip = new Set(skipped)
-      const own = sceneCandidates(scene, skip, new Set(walled))
+      const own = sceneCandidates(scene, skip, drawn)
       for (const feature of scene?.features ?? []) skip.add(feature.properties.building_id)
       const center = map.getCenter()
       const inputs = roofInputs(
@@ -79,6 +81,7 @@ export function useRoofMesh(
       current.setMesh(mesh)
       markMeshBuildings(map, mesh.covered)
       hideMeshedSceneVolumes(map, mesh.covered)
+      hideMeshedContext(map, mesh.covered)
       if (map.getLayer(ROOF_MESH_LAYER)) map.moveLayer(ROOF_MESH_LAYER, labelAnchor(map))
       if (map.getLayer(WINDOW_LAYER)) map.moveLayer(WINDOW_LAYER, labelAnchor(map))
     }
@@ -90,5 +93,5 @@ export function useRoofMesh(
       map.off("zoom", zoom)
       unwatch()
     }
-  }, [mapRef, ready, scene, skipped, walled, enabled])
+  }, [mapRef, ready, scene, skipped, drawn, enabled])
 }
