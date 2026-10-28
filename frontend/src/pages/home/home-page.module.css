@@ -209,6 +209,7 @@
 }
 .page[data-standalone="true"] .workspace .map {
   display: grid;
+  grid-column: 1;
 }
 .page[data-standalone="true"] .panel,
 .page[data-standalone="true"] .workspace .chat,
