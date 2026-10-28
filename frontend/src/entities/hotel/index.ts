@@ -1,3 +1,4 @@
+export { amenityGroupName, amenityName, type SupplierText } from "./amenity/amenity-name"
 export { useFactMutation } from "./fact.mutations"
 export { useHotelGeometry } from "./geometry/use-hotel-geometry"
 export {
