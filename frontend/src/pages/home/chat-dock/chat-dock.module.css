@@ -36,6 +36,16 @@
   min-inline-size: 0;
 }
 
+.attached {
+  justify-self: stretch;
+  inline-size: auto;
+  min-inline-size: 0;
+  max-inline-size: none;
+  margin: var(--space-8) var(--space-12);
+  box-shadow: var(--shadow-ring);
+  animation: none;
+}
+
 .panel {
   display: grid;
   min-block-size: 0;

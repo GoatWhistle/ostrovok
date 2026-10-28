@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react"
-import { ChatComposer, SearchChat, type SearchChatProps } from "@/features/search-chat"
+import { SearchChat, type SearchChatProps } from "@/features/search-chat"
 import { useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
-import { Button } from "@/shared/ui"
 import styles from "./chat-dock.module.css"
+import { DockBar } from "./dock-bar"
 
 export interface ChatDockProps {
   readonly open: boolean
@@ -38,28 +38,7 @@ export function ChatDock({ open, onOpenChange, chat }: ChatDockProps) {
           <SearchChat {...chat} onCollapse={collapse} />
         </section>
       ) : (
-        <div className={styles.bar}>
-          <ChatComposer
-            flat
-            bare
-            draftKey={chat.draftKey}
-            pending={chat.sending}
-            selectedHotel={chat.selectedHotel}
-            onClearHotel={chat.onClearHotel}
-            onSend={chat.onSend}
-          />
-          <Button
-            ref={toggle}
-            variant="ghost"
-            iconOnly
-            icon="expand"
-            title={t("explore:chat.openDialog")}
-            aria-expanded={false}
-            onClick={() => onOpenChange(true)}
-          >
-            {t("explore:chat.openDialog")}
-          </Button>
-        </div>
+        <DockBar chat={chat} toggleRef={toggle} onExpand={() => onOpenChange(true)} />
       )}
     </div>
   )

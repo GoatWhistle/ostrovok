@@ -1,5 +1,5 @@
 import { SearchChat, type SearchChatProps } from "@/features/search-chat"
-import { ChatDock } from "./chat-dock"
+import { ChatDock } from "./chat-dock/chat-dock"
 import styles from "./home-page.module.css"
 
 export interface WorkspaceChatProps {
