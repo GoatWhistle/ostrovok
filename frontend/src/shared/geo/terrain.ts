@@ -47,6 +47,8 @@ const FALLBACK_MAX_ZOOM = 6
 const TERRAIN_MIN_ZOOM = 6
 const TERRAIN = { source: "sochi-dem", exaggeration: 1.15 }
 const SEA_NEAR_FROM = WORLD_WATER_FADE_FROM - 0.5
+const CITY_GROUND_FROM = 11
+const CITY_GROUND_TO = 12
 const SEA_NEAR: ExpressionSpecification = [
   "interpolate",
   ["linear"],
@@ -98,6 +100,10 @@ function groundColor(colors: TerrainColors, sea: string): ExpressionSpecificatio
     colors.land,
     WORLD_WATER_FADE_FROM,
     sea,
+    CITY_GROUND_FROM,
+    sea,
+    CITY_GROUND_TO,
+    colors.land,
   ]
 }
 
