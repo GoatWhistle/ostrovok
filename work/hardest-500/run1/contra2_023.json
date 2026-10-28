@@ -1,0 +1,65 @@
+{
+ "id": "610247c6-332f-4456-8f32-28b446cdb60b",
+ "title": "Москва: с детским клубом",
+ "updated_at": "2026-10-28T19:21:43.980080Z",
+ "messages": [
+  {
+   "id": "66d5b62e-9481-4600-acc9-5643a1ba4337",
+   "role": "user",
+   "content": "хочу только для взрослых и чтобы было с детским клубом и анимацией, Москва",
+   "created_at": "2026-10-28T19:21:43.980080Z"
+  },
+  {
+   "id": "3a879129-d268-485f-87b0-2d6b45c50fcc",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:21:43.980080Z"
+  }
+ ],
+ "effective_query": "отель только для взрослых с детским клубом и анимацией, Москва",
+ "search": {
+  "query_id": "4a88834a266ef9a1",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:cfe33f7b4ccd",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с детским клубом"
+    }
+   ],
+   "unmatched_terms": [
+    "только для взрослых",
+    "детский клуб",
+    "анимация"
+   ],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "отель только для взрослых с детским клубом и анимацией, Москва",
+   "corrections": [
+    {
+     "original": "только для взрослых с детским клубом",
+     "corrected": "только для взрослых с детским клубом",
+     "reason": "Противоречие: отель только для взрослых не может иметь детский клуб и анимацию для детей."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6382
+ },
+ "search_message_id": "3a879129-d268-485f-87b0-2d6b45c50fcc"
+}

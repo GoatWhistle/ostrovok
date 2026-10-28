@@ -1,0 +1,71 @@
+{
+ "id": "81b71c2b-175a-4c39-b70d-bb566ae48a17",
+ "title": "Эверест: с завтраком, парковкой, на вершине Эвереста",
+ "updated_at": "2026-10-28T19:16:23.460941Z",
+ "messages": [
+  {
+   "id": "ee56dd56-8b23-4b18-ac60-f005a1305463",
+   "role": "user",
+   "content": "подбери гостиницу на вершине Эвереста без кислорода, желательно с завтраком и парковкой",
+   "created_at": "2026-10-28T19:16:23.460941Z"
+  },
+  {
+   "id": "da57e657-60b8-4ed9-9274-9bb4d06d5185",
+   "role": "assistant",
+   "content": "Не нашёл «Эверест» в данных об отелях. Какой город вы имеете в виду?",
+   "created_at": "2026-10-28T19:16:23.460941Z"
+  }
+ ],
+ "effective_query": "гостиница на вершине Эвереста, с завтраком и парковкой",
+ "search": {
+  "query_id": "edc0c33074e4907b",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:bbe0bb5b1a61",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с завтраком"
+    },
+    {
+     "characteristic_key": "facility:25767f157c4c",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "парковкой"
+    },
+    {
+     "characteristic_key": "spatial:419253cbb84e",
+     "op": "lte",
+     "value": 500.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "на вершине Эвереста"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Эверест",
+   "anywhere": false,
+   "normalized_query": "гостиница на вершине Эвереста, с завтраком и парковкой",
+   "corrections": [],
+   "unsupported_region": "Эверест",
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 9216
+ },
+ "search_message_id": "da57e657-60b8-4ed9-9274-9bb4d06d5185"
+}

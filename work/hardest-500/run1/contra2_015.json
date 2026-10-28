@@ -1,0 +1,64 @@
+{
+ "id": "19f72a15-1358-4231-9f4d-4df19e82515e",
+ "title": "Казань: номер на первом этаже",
+ "updated_at": "2026-10-28T19:21:19.820887Z",
+ "messages": [
+  {
+   "id": "e35b3603-02ef-47bb-9182-7010145db914",
+   "role": "user",
+   "content": "Казань, на первом этаже; при этом строго выше тридцатого",
+   "created_at": "2026-10-28T19:21:19.820887Z"
+  },
+  {
+   "id": "5ea825ba-2853-4997-9ecc-863506f13039",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:21:19.820887Z"
+  }
+ ],
+ "effective_query": "Казань, отель, номер на первом этаже, при этом строго выше тридцатого этажа",
+ "search": {
+  "query_id": "07a564c652263587",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "room_capacity",
+     "op": "gte",
+     "value": 1.0,
+     "weight": 0.5,
+     "required": false,
+     "source_text": "номер на первом этаже"
+    }
+   ],
+   "unmatched_terms": [
+    "первый этаж",
+    "выше тридцатого этажа"
+   ],
+   "location_hint": "Казань",
+   "anywhere": false,
+   "normalized_query": "Казань, отель, номер на первом этаже, при этом строго выше тридцатого этажа",
+   "corrections": [
+    {
+     "original": "номер на первом этаже, при этом строго выше тридцатого этажа",
+     "corrected": "номер на первом этаже, при этом строго выше тридцатого этажа",
+     "reason": "Противоречие: номер не может быть одновременно на первом этаже и выше тридцатого этажа. Нужно уточнить, какое условие важнее."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6021
+ },
+ "search_message_id": "5ea825ba-2853-4997-9ecc-863506f13039"
+}

@@ -1,0 +1,48 @@
+{
+ "id": "e6cd7cd1-a7fe-4834-9716-9cb761b5f2ba",
+ "title": "нужен отель в межгалактической пустоте",
+ "updated_at": "2026-10-28T19:15:01.486875Z",
+ "messages": [
+  {
+   "id": "c1f04e30-be63-4a86-bb5a-25b0dcc14fb2",
+   "role": "user",
+   "content": "нужен отель в межгалактической пустоте",
+   "created_at": "2026-10-28T19:15:01.486875Z"
+  },
+  {
+   "id": "4603800d-59df-45f2-95b9-896787076b31",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:15:01.486875Z"
+  }
+ ],
+ "effective_query": "отель в межгалактической пустоте",
+ "search": {
+  "query_id": "d0ea329906301da4",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "в межгалактической пустоте"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в межгалактической пустоте",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 2632
+ },
+ "search_message_id": "4603800d-59df-45f2-95b9-896787076b31"
+}

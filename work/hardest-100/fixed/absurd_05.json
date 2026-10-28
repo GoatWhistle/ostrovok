@@ -1,0 +1,57 @@
+{
+ "id": "18a34d94-9b8e-4c3a-872d-0ddbd90749d8",
+ "title": "Тихое место",
+ "updated_at": "2026-10-28T18:52:34.851511Z",
+ "messages": [
+  {
+   "id": "9320a642-0955-4825-8539-83cf0664008f",
+   "role": "user",
+   "content": "отель внутри действующего вулкана, желательно потише",
+   "created_at": "2026-10-28T18:52:34.851511Z"
+  },
+  {
+   "id": "104deadf-a9db-456b-aef0-8be559911ecc",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:52:34.851511Z"
+  }
+ ],
+ "effective_query": "отель внутри действующего вулкана, тихое место",
+ "search": {
+  "query_id": "787c4e29bad0a0c7",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "noise_level",
+     "op": "lte",
+     "value": 3.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "тихое место"
+    }
+   ],
+   "unmatched_terms": [
+    "внутри действующего вулкана"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель внутри действующего вулкана, тихое место",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6034
+ },
+ "search_message_id": "104deadf-a9db-456b-aef0-8be559911ecc"
+}

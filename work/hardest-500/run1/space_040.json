@@ -1,0 +1,69 @@
+{
+ "id": "31be034e-8568-4e45-9778-dc3ce25f1dd7",
+ "title": "Гренландия: с завтраком, парковкой",
+ "updated_at": "2026-10-28T19:16:11.402093Z",
+ "messages": [
+  {
+   "id": "723990a1-21c1-4233-9faa-8dc6eb5fb4bd",
+   "role": "user",
+   "content": "подбери гостиницу под ледником Гренландии, желательно с завтраком и парковкой",
+   "created_at": "2026-10-28T19:16:11.402093Z"
+  },
+  {
+   "id": "9331b98a-3dff-40fe-ae3a-be874e010785",
+   "role": "assistant",
+   "content": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска. На какие даты едете?",
+   "created_at": "2026-10-28T19:16:11.402093Z"
+  }
+ ],
+ "effective_query": "гостиница под ледником Гренландии, с завтраком и парковкой",
+ "search": {
+  "query_id": "d38fe0ae74732bc4",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:bbe0bb5b1a61",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с завтраком"
+    },
+    {
+     "characteristic_key": "facility:25767f157c4c",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "парковкой"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Гренландия",
+   "anywhere": false,
+   "normalized_query": "гостиница под ледником Гренландии, с завтраком и парковкой",
+   "corrections": [
+    {
+     "original": "под ледником Гренландии",
+     "corrected": "под ледником Гренландии",
+     "reason": "Неоднозначный ориентир: в Гренландии много ледников, невозможно определить конкретный ледник для поиска."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 4414
+ },
+ "search_message_id": "9331b98a-3dff-40fe-ae3a-be874e010785"
+}

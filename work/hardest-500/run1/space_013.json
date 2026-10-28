@@ -1,0 +1,57 @@
+{
+ "id": "8f4425b0-69f2-4d9b-bb71-7300ed5d4fec",
+ "title": "Этна: в жерле Этны",
+ "updated_at": "2026-10-28T19:15:16.542887Z",
+ "messages": [
+  {
+   "id": "3140d3af-ebaa-4eb7-8bf6-e24db4677a89",
+   "role": "user",
+   "content": "нужен отель в жерле Этны",
+   "created_at": "2026-10-28T19:15:16.542887Z"
+  },
+  {
+   "id": "332ec6b9-9e6d-4782-b442-c13eb8922dde",
+   "role": "assistant",
+   "content": "Не нашёл «Этна» в данных об отелях. Какой город вы имеете в виду?",
+   "created_at": "2026-10-28T19:15:16.542887Z"
+  }
+ ],
+ "effective_query": "отель в жерле Этны",
+ "search": {
+  "query_id": "3288c91392e002e0",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:7b507c33cae0",
+     "op": "lte",
+     "value": 50000.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "в жерле Этны"
+    }
+   ],
+   "unmatched_terms": [
+    "в жерле Этны"
+   ],
+   "location_hint": "Этна",
+   "anywhere": false,
+   "normalized_query": "отель в жерле Этны",
+   "corrections": [],
+   "unsupported_region": "Этна",
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 11177
+ },
+ "search_message_id": "332ec6b9-9e6d-4782-b442-c13eb8922dde"
+}

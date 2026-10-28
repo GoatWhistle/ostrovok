@@ -1,0 +1,55 @@
+{
+ "id": "e7de59e1-28df-47c1-b62d-4b26c7a11dbe",
+ "title": "Казань",
+ "updated_at": "2026-10-28T19:20:57.909697Z",
+ "messages": [
+  {
+   "id": "671300cf-e537-4691-a0d3-0595cddb8068",
+   "role": "user",
+   "content": "Казань, самый дешёвый; при этом самый дорогой в городе",
+   "created_at": "2026-10-28T19:20:57.909697Z"
+  },
+  {
+   "id": "41a52b4d-f6b7-4a64-b11c-2838432a1752",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:20:57.909697Z"
+  }
+ ],
+ "effective_query": "Казань, самый дешёвый отель; при этом самый дорогой в городе",
+ "search": {
+  "query_id": "948604756e7a60be",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "самый дешёвый отель",
+    "самый дорогой в городе"
+   ],
+   "location_hint": "Казань",
+   "anywhere": false,
+   "normalized_query": "Казань, самый дешёвый отель; при этом самый дорогой в городе",
+   "corrections": [
+    {
+     "original": "самый дешёвый отель; при этом самый дорогой в городе",
+     "corrected": "самый дешёвый отель; при этом самый дорогой в городе",
+     "reason": "Противоречие: одновременно самый дешёвый и самый дорогой отель в городе — взаимоисключающие условия, нужно уточнить, какое из них главное."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 4198
+ },
+ "search_message_id": "41a52b4d-f6b7-4a64-b11c-2838432a1752"
+}

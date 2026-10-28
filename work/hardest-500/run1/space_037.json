@@ -1,0 +1,57 @@
+{
+ "id": "c04072d7-33c9-4c16-8d91-593e1864fc4f",
+ "title": "Антарктида: с завтраком",
+ "updated_at": "2026-10-28T19:16:12.904478Z",
+ "messages": [
+  {
+   "id": "6550586a-4ccd-49b8-bdcf-c21a37265a38",
+   "role": "user",
+   "content": "подбери гостиницу внутри айсберга в Антарктиде, желательно с завтраком и парковкой",
+   "created_at": "2026-10-28T19:16:12.904478Z"
+  },
+  {
+   "id": "f8bca8fb-ca54-4f7e-93be-a866edecf254",
+   "role": "assistant",
+   "content": "Не нашёл «Антарктида» в данных об отелях. Какой город вы имеете в виду?",
+   "created_at": "2026-10-28T19:16:12.904478Z"
+  }
+ ],
+ "effective_query": "гостиница внутри айсберга в Антарктиде с завтраком и парковкой",
+ "search": {
+  "query_id": "4540be51bcd25169",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:bbe0bb5b1a61",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с завтраком"
+    }
+   ],
+   "unmatched_terms": [
+    "внутри айсберга"
+   ],
+   "location_hint": "Антарктида",
+   "anywhere": false,
+   "normalized_query": "гостиница внутри айсберга в Антарктиде с завтраком и парковкой",
+   "corrections": [],
+   "unsupported_region": "Антарктида",
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 8970
+ },
+ "search_message_id": "f8bca8fb-ca54-4f7e-93be-a866edecf254"
+}

@@ -1,0 +1,54 @@
+{
+ "id": "c542cb19-e7aa-4b20-a5eb-834f1866a9bf",
+ "title": "нужен отель в точке Лагранжа между Землёй и Луной",
+ "updated_at": "2026-10-28T19:15:04.453268Z",
+ "messages": [
+  {
+   "id": "dc3872f9-1611-4c77-ba08-3b0b328a52e8",
+   "role": "user",
+   "content": "нужен отель в точке Лагранжа между Землёй и Луной",
+   "created_at": "2026-10-28T19:15:04.453268Z"
+  },
+  {
+   "id": "b32ec934-dd7d-4d66-bc36-ef2edbf23197",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:15:04.453268Z"
+  }
+ ],
+ "effective_query": "отель в точке Лагранжа между Землёй и Луной",
+ "search": {
+  "query_id": "0980c26602914109",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "в точке Лагранжа между Землёй и Луной"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в точке Лагранжа между Землёй и Луной",
+   "corrections": [
+    {
+     "original": "в точке Лагранжа между Землёй и Луной",
+     "corrected": "в точке Лагранжа между Землёй и Луной",
+     "reason": "Указанное место находится в космосе и не является городом, регионом или наземным ориентиром; подбор отеля там невозможен, требуется уточнить место на Земле."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6018
+ },
+ "search_message_id": "b32ec934-dd7d-4d66-bc36-ef2edbf23197"
+}

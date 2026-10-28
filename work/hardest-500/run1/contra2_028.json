@@ -1,0 +1,73 @@
+{
+ "id": "2f89c24a-01ca-4064-b83a-c2a1dd656aed",
+ "title": "Сочи: тихо, без шума самолётов, рядом с аэропортом, до аэропорта 200 км",
+ "updated_at": "2026-10-28T19:22:01.286787Z",
+ "messages": [
+  {
+   "id": "2c115835-fdda-4374-8555-fc0f628c3b46",
+   "role": "user",
+   "content": "нужен отель в Сочи рядом с аэропортом, но обязательно там, где не слышно самолётов и до аэропорта двести километров",
+   "created_at": "2026-10-28T19:22:01.286787Z"
+  },
+  {
+   "id": "202c37ce-94ee-4763-bf25-facfe4c27fdb",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:22:01.286787Z"
+  }
+ ],
+ "effective_query": "отель в Сочи рядом с аэропортом, тихо, без шума самолётов, до аэропорта 200 км",
+ "search": {
+  "query_id": "107baf3bf9bec7ee",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "noise_level",
+     "op": "lte",
+     "value": 3.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "тихо, без шума самолётов"
+    },
+    {
+     "characteristic_key": "nearby:aeroway:aerodrome::0:5000",
+     "op": "gte",
+     "value": 1.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с аэропортом"
+    },
+    {
+     "characteristic_key": "nearby:aeroway:aerodrome::0:50000:avoid",
+     "op": "lte",
+     "value": 0.0,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "до аэропорта 200 км"
+    }
+   ],
+   "unmatched_terms": [
+    "до аэропорта 200 км"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи рядом с аэропортом, тихо, без шума самолётов, до аэропорта 200 км",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 7835
+ },
+ "search_message_id": "202c37ce-94ee-4763-bf25-facfe4c27fdb"
+}

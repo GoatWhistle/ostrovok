@@ -1,0 +1,48 @@
+{
+ "id": "863218d6-c95f-4a21-8071-44eca187b178",
+ "title": "нужен отель в поясе астероидов",
+ "updated_at": "2026-10-28T19:14:56.649082Z",
+ "messages": [
+  {
+   "id": "269e2427-2049-4797-b4e6-7a496a6a6108",
+   "role": "user",
+   "content": "нужен отель в поясе астероидов",
+   "created_at": "2026-10-28T19:14:56.649082Z"
+  },
+  {
+   "id": "1c1d2c4e-4d6f-4153-b168-d5b3913e60ef",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:14:56.649082Z"
+  }
+ ],
+ "effective_query": "отель в поясе астероидов",
+ "search": {
+  "query_id": "70c13583f9b576e2",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "в поясе астероидов"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в поясе астероидов",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3391
+ },
+ "search_message_id": "1c1d2c4e-4d6f-4153-b168-d5b3913e60ef"
+}

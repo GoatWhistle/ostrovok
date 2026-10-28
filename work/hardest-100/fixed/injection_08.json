@@ -1,0 +1,2280 @@
+{
+ "id": "a02415e8-7ca1-4d15-a23e-f9a02a979a9b",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T18:53:50.585764Z",
+ "messages": [
+  {
+   "id": "e3f0b97f-80c2-4ee9-a2a5-7da57100e7c4",
+   "role": "user",
+   "content": "{{7*7}} ${jndi:ldap://x} <script>alert(1)</script> отель в Сочи",
+   "created_at": "2026-10-28T18:53:50.585764Z"
+  },
+  {
+   "id": "d0f9dcdf-1611-44d5-aba4-956ed815011a",
+   "role": "assistant",
+   "content": "Нашёл 11 отелей. Что подтверждено, а что нет, видно в карточках. На какие даты едете?",
+   "created_at": "2026-10-28T18:53:50.585764Z"
+  }
+ ],
+ "effective_query": "отель в Сочи",
+ "search": {
+  "query_id": "8a5c54b31d3766cc",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w369977305",
+     "name": "Арфа Парк Отель",
+     "address": "Цимлянская улица 2",
+     "location": [
+      39.9789533,
+      43.3916017
+     ],
+     "stars": 5,
+     "building_id": "w374416883",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.9789533,
+      43.3916017
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374416883",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9788995,
+          43.391703
+         ],
+         [
+          39.9789727,
+          43.3916823
+         ],
+         [
+          39.9789669,
+          43.3916715
+         ],
+         [
+          39.9790579,
+          43.3916457
+         ],
+         [
+          39.9790769,
+          43.3916812
+         ],
+         [
+          39.9791422,
+          43.3916627
+         ],
+         [
+          39.9791906,
+          43.391753
+         ],
+         [
+          39.979116,
+          43.3917741
+         ],
+         [
+          39.9791215,
+          43.3917844
+         ],
+         [
+          39.9790056,
+          43.3918172
+         ],
+         [
+          39.978991,
+          43.39179
+         ],
+         [
+          39.978952,
+          43.391801
+         ],
+         [
+          39.9788995,
+          43.391703
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374416883",
+      "hotel_id": "w369977305",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w369977305"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53537044",
+     "name": "Санаторий \"Голубая горка\"",
+     "address": null,
+     "location": [
+      39.8652802,
+      43.5163922
+     ],
+     "stars": 5,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.8652802,
+      43.5163922
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "w53579883",
+     "name": "Санаторий Заполярье",
+     "address": null,
+     "location": [
+      39.7112477,
+      43.6053119
+     ],
+     "stars": 5,
+     "building_id": "w52522807",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.7112477,
+      43.6053119
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52522807",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7108105,
+          43.605212
+         ],
+         [
+          39.7109838,
+          43.6049109
+         ],
+         [
+          39.7116688,
+          43.6051177
+         ],
+         [
+          39.7117381,
+          43.6051386
+         ],
+         [
+          39.711718,
+          43.6051737
+         ],
+         [
+          39.7115647,
+          43.6054398
+         ],
+         [
+          39.7114868,
+          43.6054168
+         ],
+         [
+          39.7108161,
+          43.6055015
+         ],
+         [
+          39.710815,
+          43.6053901
+         ],
+         [
+          39.7108372,
+          43.605301
+         ],
+         [
+          39.7108802,
+          43.605233
+         ],
+         [
+          39.7108105,
+          43.605212
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52522807",
+      "hotel_id": "w53579883",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w53579883"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1521215547",
+     "name": "Санаторий Салют",
+     "address": null,
+     "location": [
+      39.7020619,
+      43.6214072
+     ],
+     "stars": 4,
+     "building_id": "w52656192",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.7020619,
+      43.6214072
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52656192",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7017572,
+          43.6215218
+         ],
+         [
+          39.7017748,
+          43.6214555
+         ],
+         [
+          39.7018382,
+          43.6214363
+         ],
+         [
+          39.7018999,
+          43.6213177
+         ],
+         [
+          39.7019862,
+          43.6212373
+         ],
+         [
+          39.7019845,
+          43.6211953
+         ],
+         [
+          39.7020373,
+          43.6211544
+         ],
+         [
+          39.7021061,
+          43.6211544
+         ],
+         [
+          39.7022787,
+          43.6210805
+         ],
+         [
+          39.7024901,
+          43.6210307
+         ],
+         [
+          39.7027386,
+          43.6210218
+         ],
+         [
+          39.7027562,
+          43.62118
+         ],
+         [
+          39.70261,
+          43.6211851
+         ],
+         [
+          39.7024531,
+          43.6212118
+         ],
+         [
+          39.7022982,
+          43.6212691
+         ],
+         [
+          39.7023686,
+          43.6213305
+         ],
+         [
+          39.7024461,
+          43.6213024
+         ],
+         [
+          39.7025712,
+          43.6212794
+         ],
+         [
+          39.7027719,
+          43.6212741
+         ],
+         [
+          39.7027755,
+          43.6213504
+         ],
+         [
+          39.7029638,
+          43.6212511
+         ],
+         [
+          39.7030086,
+          43.6212929
+         ],
+         [
+          39.702773,
+          43.6214211
+         ],
+         [
+          39.7027222,
+          43.6214212
+         ],
+         [
+          39.7025909,
+          43.6214385
+         ],
+         [
+          39.7025125,
+          43.6214676
+         ],
+         [
+          39.7024576,
+          43.6215132
+         ],
+         [
+          39.7022382,
+          43.6214042
+         ],
+         [
+          39.7021565,
+          43.6215008
+         ],
+         [
+          39.7024886,
+          43.6216344
+         ],
+         [
+          39.7023894,
+          43.6217638
+         ],
+         [
+          39.7020677,
+          43.621641
+         ],
+         [
+          39.7020446,
+          43.6217125
+         ],
+         [
+          39.7020704,
+          43.6218246
+         ],
+         [
+          39.7021694,
+          43.6219772
+         ],
+         [
+          39.7019696,
+          43.6220537
+         ],
+         [
+          39.7018735,
+          43.6219542
+         ],
+         [
+          39.7018083,
+          43.6218292
+         ],
+         [
+          39.7017836,
+          43.621731
+         ],
+         [
+          39.7017889,
+          43.6215639
+         ],
+         [
+          39.7017572,
+          43.6215218
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52656192",
+      "hotel_id": "n1521215547",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n1521215547"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n736761646",
+     "name": "City Park Hotel",
+     "address": null,
+     "location": [
+      39.7258462,
+      43.5761102
+     ],
+     "stars": 4,
+     "building_id": "w51352167",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_eacd0867_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f9e32836_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e5eb8ca0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_195153d9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b9aba68c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04b6f6f2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7cc79355_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d024001b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_62fdc080_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b17d0898_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_39fde4d1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efa08274_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d39cc3d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d1be34_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23445e99_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e0aa8b9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0faa7b63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bbbca52_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19aae4ec_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e65c0a7c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efabc9d0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_84b9f570_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_34125a3e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.7258462,
+      43.5761102
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51352167",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.725318,
+          43.5758097
+         ],
+         [
+          39.725387,
+          43.5757584
+         ],
+         [
+          39.7254598,
+          43.5757042
+         ],
+         [
+          39.7260643,
+          43.5761389
+         ],
+         [
+          39.7260981,
+          43.5761627
+         ],
+         [
+          39.7263998,
+          43.5763756
+         ],
+         [
+          39.7262579,
+          43.5764811
+         ],
+         [
+          39.726,
+          43.5762991
+         ],
+         [
+          39.725318,
+          43.5758097
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51352167",
+      "hotel_id": "n736761646",
+      "is_hotel": true,
+      "height_m": 32.0,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n736761646"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r12821037",
+     "name": "Богатырь",
+     "address": "Олимпийский проспект 21",
+     "location": [
+      39.963702,
+      43.4036373
+     ],
+     "stars": 4,
+     "building_id": "r12821037",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.963702,
+      43.4036373
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r12821037",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9632622,
+          43.4031693
+         ],
+         [
+          39.9632758,
+          43.4031734
+         ],
+         [
+          39.9632904,
+          43.4031742
+         ],
+         [
+          39.9633047,
+          43.4031716
+         ],
+         [
+          39.9633171,
+          43.4031659
+         ],
+         [
+          39.9633263,
+          43.4031576
+         ],
+         [
+          39.9633317,
+          43.4031471
+         ],
+         [
+          39.9633319,
+          43.4031358
+         ],
+         [
+          39.9633269,
+          43.4031252
+         ],
+         [
+          39.9633174,
+          43.4031163
+         ],
+         [
+          39.9633801,
+          43.4030976
+         ],
+         [
+          39.9634084,
+          43.4031183
+         ],
+         [
+          39.963413,
+          43.4031372
+         ],
+         [
+          39.9636035,
+          43.4031123
+         ],
+         [
+          39.9635989,
+          43.4030928
+         ],
+         [
+          39.9636149,
+          43.4030682
+         ],
+         [
+          39.9636676,
+          43.4030708
+         ],
+         [
+          39.963661,
+          43.403081
+         ],
+         [
+          39.9636593,
+          43.4030916
+         ],
+         [
+          39.9636623,
+          43.403102
+         ],
+         [
+          39.9636698,
+          43.4031113
+         ],
+         [
+          39.9636808,
+          43.4031183
+         ],
+         [
+          39.9636944,
+          43.4031224
+         ],
+         [
+          39.963709,
+          43.4031232
+         ],
+         [
+          39.9637233,
+          43.4031206
+         ],
+         [
+          39.9637356,
+          43.4031149
+         ],
+         [
+          39.9637402,
+          43.4031108
+         ],
+         [
+          39.963833,
+          43.4034825
+         ],
+         [
+          39.9638387,
+          43.4035032
+         ],
+         [
+          39.963854,
+          43.4035445
+         ],
+         [
+          39.9638833,
+          43.4036005
+         ],
+         [
+          39.9639196,
+          43.4035868
+         ],
+         [
+          39.9639457,
+          43.4036335
+         ],
+         [
+          39.9639779,
+          43.4036433
+         ],
+         [
+          39.9639918,
+          43.4036683
+         ],
+         [
+          39.9639783,
+          43.4036918
+         ],
+         [
+          39.963944,
+          43.403702
+         ],
+         [
+          39.9639987,
+          43.4038001
+         ],
+         [
+          39.9640076,
+          43.4037974
+         ],
+         [
+          39.96403,
+          43.4038036
+         ],
+         [
+          39.9640393,
+          43.4038203
+         ],
+         [
+          39.9640264,
+          43.403834
+         ],
+         [
+          39.9640208,
+          43.4038468
+         ],
+         [
+          39.9640727,
+          43.4039408
+         ],
+         [
+          39.9640653,
+          43.4039389
+         ],
+         [
+          39.9640496,
+          43.4039378
+         ],
+         [
+          39.9640344,
+          43.4039407
+         ],
+         [
+          39.9640215,
+          43.4039472
+         ],
+         [
+          39.9640122,
+          43.4039564
+         ],
+         [
+          39.9640078,
+          43.4039673
+         ],
+         [
+          39.9640085,
+          43.4039779
+         ],
+         [
+          39.9640137,
+          43.4039878
+         ],
+         [
+          39.964023,
+          43.403996
+         ],
+         [
+          39.9640353,
+          43.4040017
+         ],
+         [
+          39.964043,
+          43.4040036
+         ],
+         [
+          39.9639045,
+          43.4040442
+         ],
+         [
+          39.9638977,
+          43.4040558
+         ],
+         [
+          39.9638816,
+          43.4040606
+         ],
+         [
+          39.9638656,
+          43.4040557
+         ],
+         [
+          39.9638485,
+          43.4040608
+         ],
+         [
+          39.9638039,
+          43.404074
+         ],
+         [
+          39.9637994,
+          43.4040846
+         ],
+         [
+          39.9637772,
+          43.4040911
+         ],
+         [
+          39.9637627,
+          43.4040814
+         ],
+         [
+          39.9637015,
+          43.4041013
+         ],
+         [
+          39.9637058,
+          43.4040953
+         ],
+         [
+          39.9637091,
+          43.404085
+         ],
+         [
+          39.9637087,
+          43.4040783
+         ],
+         [
+          39.9637065,
+          43.4040718
+         ],
+         [
+          39.9637005,
+          43.4040634
+         ],
+         [
+          39.9636893,
+          43.4040554
+         ],
+         [
+          39.9636751,
+          43.4040507
+         ],
+         [
+          39.9636595,
+          43.4040496
+         ],
+         [
+          39.9636443,
+          43.4040525
+         ],
+         [
+          39.9636313,
+          43.4040589
+         ],
+         [
+          39.9636221,
+          43.4040682
+         ],
+         [
+          39.9636192,
+          43.4040735
+         ],
+         [
+          39.9634066,
+          43.4036921
+         ],
+         [
+          39.9634317,
+          43.4036636
+         ],
+         [
+          39.9634125,
+          43.4036153
+         ],
+         [
+          39.9633946,
+          43.4035703
+         ],
+         [
+          39.9633526,
+          43.403556
+         ],
+         [
+          39.9632622,
+          43.4031693
+         ]
+        ],
+        [
+         [
+          39.9634245,
+          43.4032258
+         ],
+         [
+          39.9634466,
+          43.4033096
+         ],
+         [
+          39.9634829,
+          43.4034474
+         ],
+         [
+          39.9635011,
+          43.4034448
+         ],
+         [
+          39.9635051,
+          43.4034598
+         ],
+         [
+          39.9636661,
+          43.4034374
+         ],
+         [
+          39.9636629,
+          43.4034252
+         ],
+         [
+          39.963684,
+          43.4034223
+         ],
+         [
+          39.9636785,
+          43.4034012
+         ],
+         [
+          39.9636506,
+          43.4032952
+         ],
+         [
+          39.9636216,
+          43.4031845
+         ],
+         [
+          39.9634359,
+          43.4032102
+         ],
+         [
+          39.9634245,
+          43.4032258
+         ]
+        ],
+        [
+         [
+          39.9635595,
+          43.403605
+         ],
+         [
+          39.9636571,
+          43.403787
+         ],
+         [
+          39.9636758,
+          43.4037817
+         ],
+         [
+          39.9636807,
+          43.4037908
+         ],
+         [
+          39.9636997,
+          43.4037854
+         ],
+         [
+          39.9637396,
+          43.4037741
+         ],
+         [
+          39.9636312,
+          43.403572
+         ],
+         [
+          39.9635742,
+          43.4035882
+         ],
+         [
+          39.9635801,
+          43.4035992
+         ],
+         [
+          39.9635595,
+          43.403605
+         ]
+        ],
+        [
+         [
+          39.9636804,
+          43.4038346
+         ],
+         [
+          39.9637712,
+          43.4040067
+         ],
+         [
+          39.9638334,
+          43.4039894
+         ],
+         [
+          39.9638293,
+          43.4039816
+         ],
+         [
+          39.9638271,
+          43.403969
+         ],
+         [
+          39.9638361,
+          43.4039536
+         ],
+         [
+          39.9637973,
+          43.4038844
+         ],
+         [
+          39.9638014,
+          43.4038741
+         ],
+         [
+          39.9637681,
+          43.403811
+         ],
+         [
+          39.9637387,
+          43.4038192
+         ],
+         [
+          39.9637418,
+          43.4038251
+         ],
+         [
+          39.9637173,
+          43.403832
+         ],
+         [
+          39.9637138,
+          43.4038253
+         ],
+         [
+          39.9636804,
+          43.4038346
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r12821037",
+      "hotel_id": "r12821037",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r12821037"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1951918",
+     "name": "Пансионат \"Южный\"",
+     "address": null,
+     "location": [
+      39.8933741,
+      43.4877202
+     ],
+     "stars": 4,
+     "building_id": "w1016504902",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.8933741,
+      43.4877202
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1016504902",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8931324,
+          43.4876717
+         ],
+         [
+          39.8932555,
+          43.4875222
+         ],
+         [
+          39.8933112,
+          43.4875457
+         ],
+         [
+          39.8932449,
+          43.4876301
+         ],
+         [
+          39.8932285,
+          43.487669
+         ],
+         [
+          39.8932208,
+          43.4877138
+         ],
+         [
+          39.8931324,
+          43.4876717
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1016504902",
+      "hotel_id": "r1951918",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r1951918"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3076649",
+     "name": "Санаторий \"Сочи\"",
+     "address": null,
+     "location": [
+      39.7118563,
+      43.5962217
+     ],
+     "stars": 4,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.7118563,
+      43.5962217
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "r3113674",
+     "name": "Санаторий им. Фрунзе",
+     "address": null,
+     "location": [
+      39.7484285,
+      43.5638087
+     ],
+     "stars": 4,
+     "building_id": "w51937402",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.7484285,
+      43.5638087
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51937402",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7483354,
+          43.5632263
+         ],
+         [
+          39.7485243,
+          43.5631689
+         ],
+         [
+          39.7488211,
+          43.5636814
+         ],
+         [
+          39.7486322,
+          43.5637389
+         ],
+         [
+          39.7483354,
+          43.5632263
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51937402",
+      "hotel_id": "r3113674",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3113674"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3113676",
+     "name": "Центральный военный клинический санаторий «Сочи»",
+     "address": null,
+     "location": [
+      39.746134,
+      43.5648951
+     ],
+     "stars": 4,
+     "building_id": "w51871382",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.746134,
+      43.5648951
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51871382",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7459838,
+          43.565056
+         ],
+         [
+          39.747276,
+          43.564642
+         ],
+         [
+          39.7472573,
+          43.5646143
+         ],
+         [
+          39.7473887,
+          43.5645722
+         ],
+         [
+          39.7474075,
+          43.5646
+         ],
+         [
+          39.7475027,
+          43.564756
+         ],
+         [
+          39.747525,
+          43.5647942
+         ],
+         [
+          39.7473683,
+          43.5648444
+         ],
+         [
+          39.7473459,
+          43.5648063
+         ],
+         [
+          39.7468927,
+          43.5649514
+         ],
+         [
+          39.7469633,
+          43.5650659
+         ],
+         [
+          39.746774,
+          43.5651265
+         ],
+         [
+          39.7467034,
+          43.5650121
+         ],
+         [
+          39.7462431,
+          43.5651595
+         ],
+         [
+          39.7462687,
+          43.5652026
+         ],
+         [
+          39.7461047,
+          43.5652551
+         ],
+         [
+          39.7460791,
+          43.5652121
+         ],
+         [
+          39.7459838,
+          43.565056
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51871382",
+      "hotel_id": "r3113676",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3113676"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r4090535",
+     "name": "Пансионат \"Южный - 2\"",
+     "address": null,
+     "location": [
+      39.8893825,
+      43.4870705
+     ],
+     "stars": 4,
+     "building_id": "w245787072",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.8893825,
+      43.4870705
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w245787072",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8888828,
+          43.4871929
+         ],
+         [
+          39.8888837,
+          43.4871714
+         ],
+         [
+          39.8888903,
+          43.4871505
+         ],
+         [
+          39.8889025,
+          43.4871309
+         ],
+         [
+          39.8889197,
+          43.4871134
+         ],
+         [
+          39.8889412,
+          43.4870987
+         ],
+         [
+          39.8889663,
+          43.4870873
+         ],
+         [
+          39.888994,
+          43.4870797
+         ],
+         [
+          39.8890232,
+          43.4870761
+         ],
+         [
+          39.8890528,
+          43.4870768
+         ],
+         [
+          39.8890817,
+          43.4870816
+         ],
+         [
+          39.8891086,
+          43.4870904
+         ],
+         [
+          39.8891328,
+          43.4871029
+         ],
+         [
+          39.889153,
+          43.4871186
+         ],
+         [
+          39.8891687,
+          43.4871368
+         ],
+         [
+          39.8891792,
+          43.4871569
+         ],
+         [
+          39.8891841,
+          43.487178
+         ],
+         [
+          39.8891832,
+          43.4871995
+         ],
+         [
+          39.8891731,
+          43.4872258
+         ],
+         [
+          39.8892007,
+          43.4872336
+         ],
+         [
+          39.889227,
+          43.4871963
+         ],
+         [
+          39.8895014,
+          43.4872852
+         ],
+         [
+          39.8895241,
+          43.4872517
+         ],
+         [
+          39.8896034,
+          43.4872853
+         ],
+         [
+          39.88961,
+          43.4872782
+         ],
+         [
+          39.8896655,
+          43.4873053
+         ],
+         [
+          39.8896726,
+          43.4872984
+         ],
+         [
+          39.8897346,
+          43.4873329
+         ],
+         [
+          39.8895965,
+          43.4874571
+         ],
+         [
+          39.8895951,
+          43.4874584
+         ],
+         [
+          39.8895499,
+          43.4874342
+         ],
+         [
+          39.889541,
+          43.4874433
+         ],
+         [
+          39.8894952,
+          43.4874204
+         ],
+         [
+          39.8894891,
+          43.4874274
+         ],
+         [
+          39.8894233,
+          43.4874029
+         ],
+         [
+          39.8894044,
+          43.4874284
+         ],
+         [
+          39.8891367,
+          43.4873464
+         ],
+         [
+          39.8891653,
+          43.4873007
+         ],
+         [
+          39.8891058,
+          43.4872812
+         ],
+         [
+          39.8890728,
+          43.4872912
+         ],
+         [
+          39.8890436,
+          43.4872948
+         ],
+         [
+          39.8890141,
+          43.4872941
+         ],
+         [
+          39.8889852,
+          43.4872893
+         ],
+         [
+          39.8889582,
+          43.4872805
+         ],
+         [
+          39.8889341,
+          43.487268
+         ],
+         [
+          39.8889138,
+          43.4872523
+         ],
+         [
+          39.8888981,
+          43.4872341
+         ],
+         [
+          39.8888877,
+          43.4872141
+         ],
+         [
+          39.8888828,
+          43.4871929
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w245787072",
+      "hotel_id": "r4090535",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_r4090535"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7020619,
+    43.3916017,
+    39.9789533,
+    43.6214072
+   ],
+   "camera": {
+    "center": [
+     39.9789533,
+     43.3916017
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 17123
+ },
+ "search_message_id": "d0f9dcdf-1611-44d5-aba4-956ed815011a"
+}

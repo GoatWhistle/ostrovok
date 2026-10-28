@@ -1,0 +1,55 @@
+{
+ "id": "54c6fcd3-20af-4b84-918c-21c1c35290d1",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T18:53:05.626308Z",
+ "messages": [
+  {
+   "id": "85ba4eaf-e710-42d5-abba-00711cfa68db",
+   "role": "user",
+   "content": "дешёвый пятизвёздочный люкс не дороже 300 рублей за ночь в Сочи",
+   "created_at": "2026-10-28T18:53:05.626308Z"
+  },
+  {
+   "id": "cf10042f-bb1a-4ab0-aae9-fa3d56e63a9a",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T18:53:05.626308Z"
+  }
+ ],
+ "effective_query": "дешёвый пятизвёздочный люкс не дороже 300 рублей за ночь в Сочи",
+ "search": {
+  "query_id": "e2aabccc9fc68f17",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "дешёвый пятизвёздочный люкс",
+    "не дороже 300 рублей за ночь"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "дешёвый пятизвёздочный люкс не дороже 300 рублей за ночь в Сочи",
+   "corrections": [
+    {
+     "original": "дешёвый пятизвёздочный люкс не дороже 300 рублей за ночь",
+     "corrected": "дешёвый пятизвёздочный люкс не дороже 300 рублей за ночь",
+     "reason": "Противоречие: пятизвёздочный люкс не может быть дешёвым и стоить не дороже 300 рублей за ночь. Уточните, что важнее — уровень отеля или бюджет."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": "не дороже 300 рублей за ночь",
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5501
+ },
+ "search_message_id": "cf10042f-bb1a-4ab0-aae9-fa3d56e63a9a"
+}

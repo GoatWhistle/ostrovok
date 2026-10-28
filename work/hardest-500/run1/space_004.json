@@ -1,0 +1,48 @@
+{
+ "id": "413b9760-440c-4c3e-a26d-3e2a911c19b5",
+ "title": "нужен отель внутри чёрной дыры",
+ "updated_at": "2026-10-28T19:14:54.343357Z",
+ "messages": [
+  {
+   "id": "4bc8c695-e7ff-49dd-b5b3-5fc4b050f66a",
+   "role": "user",
+   "content": "нужен отель внутри чёрной дыры",
+   "created_at": "2026-10-28T19:14:54.343357Z"
+  },
+  {
+   "id": "ad28d2cf-120e-4049-b2ec-ad7c314bffb5",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:14:54.343357Z"
+  }
+ ],
+ "effective_query": "отель внутри чёрной дыры",
+ "search": {
+  "query_id": "289d6285a94ac479",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "внутри чёрной дыры"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель внутри чёрной дыры",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3289
+ },
+ "search_message_id": "ad28d2cf-120e-4049-b2ec-ad7c314bffb5"
+}

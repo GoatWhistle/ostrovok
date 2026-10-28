@@ -1,0 +1,1717 @@
+{
+ "id": "b77435e0-cc7e-4114-a4b7-2ca66672f115",
+ "title": "Ростов",
+ "updated_at": "2026-10-28T18:55:39.995652Z",
+ "messages": [
+  {
+   "id": "5dedc115-0c98-4b18-8a4e-97bdcb0ec7a7",
+   "role": "user",
+   "content": "нужен отель в Ростове",
+   "created_at": "2026-10-28T18:55:39.995652Z"
+  },
+  {
+   "id": "3679e0ce-a843-4b70-9f34-c43ecc8d6c8f",
+   "role": "assistant",
+   "content": "Нашёл 16 отелей. Первые в списке: Иван-Царевич, Усадьба Плешанова и Азимуту. На какие даты едете?",
+   "created_at": "2026-10-28T18:55:39.995652Z"
+  }
+ ],
+ "effective_query": "отель в Ростове",
+ "search": {
+  "query_id": "6e3d2dddf9741fed",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": "Ростов",
+   "anywhere": false,
+   "normalized_query": "отель в Ростове",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n4126095590",
+     "name": "Иван-Царевич",
+     "address": "Ленинская улица 19",
+     "location": [
+      39.4056537,
+      57.1822724
+     ],
+     "stars": 3,
+     "building_id": "w966003890",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4056537,
+      57.1822724
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w966003890",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4054394,
+          57.1823752
+         ],
+         [
+          39.4056213,
+          57.1821669
+         ],
+         [
+          39.4058507,
+          57.1822257
+         ],
+         [
+          39.4056689,
+          57.1824341
+         ],
+         [
+          39.4054394,
+          57.1823752
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w966003890",
+      "hotel_id": "n4126095590",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n4126095590"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n475895923",
+     "name": "Усадьба Плешанова",
+     "address": "Ленинская улица 34",
+     "location": [
+      39.4009812,
+      57.181607
+     ],
+     "stars": 3,
+     "building_id": "w1009075141",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4009812,
+      57.181607
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1009075141",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4008281,
+          57.1816294
+         ],
+         [
+          39.4009493,
+          57.1814963
+         ],
+         [
+          39.4011998,
+          57.1815633
+         ],
+         [
+          39.4010785,
+          57.1816964
+         ],
+         [
+          39.4008281,
+          57.1816294
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1009075141",
+      "hotel_id": "n475895923",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n475895923"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w170014362",
+     "name": "Азимуту",
+     "address": "Окружная улица 29А",
+     "location": [
+      39.4223161,
+      57.1901454
+     ],
+     "stars": 3,
+     "building_id": "w170014362",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4223161,
+      57.1901454
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w170014362",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4218502,
+          57.1902732
+         ],
+         [
+          39.4219001,
+          57.1902013
+         ],
+         [
+          39.4219674,
+          57.1901714
+         ],
+         [
+          39.4220095,
+          57.1901526
+         ],
+         [
+          39.4220476,
+          57.1901452
+         ],
+         [
+          39.4219901,
+          57.1900673
+         ],
+         [
+          39.4221371,
+          57.1899404
+         ],
+         [
+          39.4223167,
+          57.1898456
+         ],
+         [
+          39.4225232,
+          57.1897791
+         ],
+         [
+          39.4225567,
+          57.1898011
+         ],
+         [
+          39.4225944,
+          57.1897861
+         ],
+         [
+          39.4226376,
+          57.1897838
+         ],
+         [
+          39.4226748,
+          57.1897926
+         ],
+         [
+          39.4227887,
+          57.1897698
+         ],
+         [
+          39.4228535,
+          57.1898247
+         ],
+         [
+          39.4228276,
+          57.1898902
+         ],
+         [
+          39.4227226,
+          57.1899401
+         ],
+         [
+          39.4227075,
+          57.1899283
+         ],
+         [
+          39.4225152,
+          57.1899945
+         ],
+         [
+          39.4223909,
+          57.1900649
+         ],
+         [
+          39.4222908,
+          57.1901474
+         ],
+         [
+          39.4222819,
+          57.190167
+         ],
+         [
+          39.4223719,
+          57.1902263
+         ],
+         [
+          39.4223951,
+          57.1903021
+         ],
+         [
+          39.4223453,
+          57.1903739
+         ],
+         [
+          39.4223254,
+          57.1903828
+         ],
+         [
+          39.4223716,
+          57.1904177
+         ],
+         [
+          39.4224078,
+          57.190445
+         ],
+         [
+          39.4223468,
+          57.1904707
+         ],
+         [
+          39.4222781,
+          57.1904995
+         ],
+         [
+          39.4222419,
+          57.1904722
+         ],
+         [
+          39.4221865,
+          57.1904303
+         ],
+         [
+          39.422096,
+          57.1904352
+         ],
+         [
+          39.4220582,
+          57.1904275
+         ],
+         [
+          39.4219634,
+          57.1904082
+         ],
+         [
+          39.4218734,
+          57.1903489
+         ],
+         [
+          39.4218502,
+          57.1902732
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w170014362",
+      "hotel_id": "w170014362",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w170014362"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w176940840",
+     "name": "Селивановъ",
+     "address": "Окружная улица 5",
+     "location": [
+      39.4283392,
+      57.1872207
+     ],
+     "stars": 3,
+     "building_id": "w176940840",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4283392,
+      57.1872207
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w176940840",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4280843,
+          57.1872791
+         ],
+         [
+          39.4282859,
+          57.1870409
+         ],
+         [
+          39.428426,
+          57.1870757
+         ],
+         [
+          39.4285294,
+          57.1871014
+         ],
+         [
+          39.42841,
+          57.1872425
+         ],
+         [
+          39.4284469,
+          57.1872516
+         ],
+         [
+          39.4284729,
+          57.1872581
+         ],
+         [
+          39.4283907,
+          57.1873552
+         ],
+         [
+          39.4282619,
+          57.1873232
+         ],
+         [
+          39.4280843,
+          57.1872791
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w176940840",
+      "hotel_id": "w176940840",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w176940840"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1932260252",
+     "name": "Царевна-лягушка",
+     "address": null,
+     "location": [
+      39.4054395,
+      57.1826662
+     ],
+     "stars": 2,
+     "building_id": "w397488743",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4054395,
+      57.1826662
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w397488743",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.405212,
+          57.182765
+         ],
+         [
+          39.4053588,
+          57.1826033
+         ],
+         [
+          39.4055828,
+          57.182663
+         ],
+         [
+          39.405436,
+          57.1828247
+         ],
+         [
+          39.405212,
+          57.182765
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w397488743",
+      "hotel_id": "n1932260252",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n1932260252"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5164719319",
+     "name": "Гостевое подворье Неро",
+     "address": null,
+     "location": [
+      39.4031198,
+      57.1822109
+     ],
+     "stars": 2,
+     "building_id": "r13395538",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4031198,
+      57.1822109
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r13395538",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4029958,
+          57.1822571
+         ],
+         [
+          39.4031371,
+          57.1820957
+         ],
+         [
+          39.4030072,
+          57.1820626
+         ],
+         [
+          39.4030419,
+          57.1820226
+         ],
+         [
+          39.4030481,
+          57.1820155
+         ],
+         [
+          39.4031269,
+          57.1820356
+         ],
+         [
+          39.403147,
+          57.1820407
+         ],
+         [
+          39.4031785,
+          57.1820484
+         ],
+         [
+          39.4032886,
+          57.1820767
+         ],
+         [
+          39.4031059,
+          57.1822854
+         ],
+         [
+          39.4029958,
+          57.1822571
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r13395538",
+      "hotel_id": "n5164719319",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n5164719319"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10749551579",
+     "name": "Боярский двор",
+     "address": "Каменный мост 4",
+     "location": [
+      39.4138228,
+      57.1843976
+     ],
+     "stars": null,
+     "building_id": "r2421034",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4138228,
+      57.1843976
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r2421034",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4135067,
+          57.1846155
+         ],
+         [
+          39.4137557,
+          57.1843648
+         ],
+         [
+          39.4138911,
+          57.1843993
+         ],
+         [
+          39.4140853,
+          57.184447
+         ],
+         [
+          39.4139228,
+          57.1846193
+         ],
+         [
+          39.4138586,
+          57.1846853
+         ],
+         [
+          39.4138398,
+          57.1847029
+         ],
+         [
+          39.4135963,
+          57.1846418
+         ],
+         [
+          39.4135067,
+          57.1846155
+         ]
+        ],
+        [
+         [
+          39.4137863,
+          57.1845095
+         ],
+         [
+          39.4138777,
+          57.1845339
+         ],
+         [
+          39.4139289,
+          57.1844775
+         ],
+         [
+          39.4138374,
+          57.1844531
+         ],
+         [
+          39.4137863,
+          57.1845095
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r2421034",
+      "hotel_id": "n10749551579",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n10749551579"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13942461901",
+     "name": "Багди",
+     "address": "Северная улица 53",
+     "location": [
+      39.4307567,
+      57.203809
+     ],
+     "stars": null,
+     "building_id": "w305537123",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4307567,
+      57.203809
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w305537123",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4303982,
+          57.2038609
+         ],
+         [
+          39.4310438,
+          57.2036797
+         ],
+         [
+          39.4311173,
+          57.2037565
+         ],
+         [
+          39.4304717,
+          57.2039377
+         ],
+         [
+          39.4303982,
+          57.2038609
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w305537123",
+      "hotel_id": "n13942461901",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n13942461901"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1893197655",
+     "name": "Дом на погребах",
+     "address": null,
+     "location": [
+      39.4169507,
+      57.1850073
+     ],
+     "stars": null,
+     "building_id": "w170286760",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4169507,
+      57.1850073
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w170286760",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4168182,
+          57.1850899
+         ],
+         [
+          39.4171356,
+          57.1847612
+         ],
+         [
+          39.4172078,
+          57.1847817
+         ],
+         [
+          39.4173021,
+          57.1848111
+         ],
+         [
+          39.4173653,
+          57.1848308
+         ],
+         [
+          39.4170515,
+          57.185156
+         ],
+         [
+          39.4168182,
+          57.1850899
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w170286760",
+      "hotel_id": "n1893197655",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n1893197655"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1912190568",
+     "name": "летняя гостиница «Хорс»",
+     "address": null,
+     "location": [
+      39.415567,
+      57.1828627
+     ],
+     "stars": null,
+     "building_id": "w170286956",
+     "height_m": null,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.415567,
+      57.1828627
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w170286956",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4151167,
+          57.1829761
+         ],
+         [
+          39.4154278,
+          57.1829517
+         ],
+         [
+          39.4154747,
+          57.182948
+         ],
+         [
+          39.4154804,
+          57.1829695
+         ],
+         [
+          39.4154955,
+          57.1830259
+         ],
+         [
+          39.4154486,
+          57.1830296
+         ],
+         [
+          39.4151577,
+          57.1830524
+         ],
+         [
+          39.4151167,
+          57.1829761
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w170286956",
+      "hotel_id": "n1912190568",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n1912190568"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1949977326",
+     "name": "Русское подворье",
+     "address": null,
+     "location": [
+      39.4169333,
+      57.1868575
+     ],
+     "stars": null,
+     "building_id": "w1126351162",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4169333,
+      57.1868575
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1126351162",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4167368,
+          57.1869372
+         ],
+         [
+          39.4168058,
+          57.1868356
+         ],
+         [
+          39.4168523,
+          57.1867703
+         ],
+         [
+          39.4170354,
+          57.1868091
+         ],
+         [
+          39.4169236,
+          57.1869765
+         ],
+         [
+          39.4167368,
+          57.1869372
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1126351162",
+      "hotel_id": "n1949977326",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n1949977326"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4616375044",
+     "name": "Ростовский Hotel",
+     "address": "улица Достоевского 37",
+     "location": [
+      39.402736,
+      57.1945485
+     ],
+     "stars": null,
+     "building_id": "w851806990",
+     "height_m": 9.0,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.402736,
+      57.1945485
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w851806990",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4025366,
+          57.1945492
+         ],
+         [
+          39.4028622,
+          57.1944218
+         ],
+         [
+          39.4029791,
+          57.1945094
+         ],
+         [
+          39.4026535,
+          57.1946368
+         ],
+         [
+          39.4025366,
+          57.1945492
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w851806990",
+      "hotel_id": "n4616375044",
+      "is_hotel": true,
+      "height_m": 9.0,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4616375044"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5065134437",
+     "name": "База отдыха \"Ярославна\"",
+     "address": null,
+     "location": [
+      39.3460483,
+      57.1503505
+     ],
+     "stars": null,
+     "building_id": "w173808959",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.3460483,
+      57.1503505
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w173808959",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.3454459,
+          57.1502105
+         ],
+         [
+          39.3455884,
+          57.1501631
+         ],
+         [
+          39.3459108,
+          57.1504483
+         ],
+         [
+          39.3457683,
+          57.1504957
+         ],
+         [
+          39.3454459,
+          57.1502105
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w173808959",
+      "hotel_id": "n5065134437",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n5065134437"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9694396017",
+     "name": "Гостевой дом O'27 Silvuplé",
+     "address": null,
+     "location": [
+      39.4230957,
+      57.190917
+     ],
+     "stars": null,
+     "building_id": "w173231894",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4230957,
+      57.190917
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w173231894",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4229364,
+          57.1908567
+         ],
+         [
+          39.4231099,
+          57.190796
+         ],
+         [
+          39.4232551,
+          57.1909178
+         ],
+         [
+          39.4230816,
+          57.1909785
+         ],
+         [
+          39.4229364,
+          57.1908567
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w173231894",
+      "hotel_id": "n9694396017",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n9694396017"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r2421034",
+     "name": "Дом Фигурина",
+     "address": "улица Каменный Мост 4",
+     "location": [
+      39.4137985,
+      57.1845411
+     ],
+     "stars": null,
+     "building_id": "r2421034",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4137985,
+      57.1845411
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r2421034",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4135067,
+          57.1846155
+         ],
+         [
+          39.4137557,
+          57.1843648
+         ],
+         [
+          39.4138911,
+          57.1843993
+         ],
+         [
+          39.4140853,
+          57.184447
+         ],
+         [
+          39.4139228,
+          57.1846193
+         ],
+         [
+          39.4138586,
+          57.1846853
+         ],
+         [
+          39.4138398,
+          57.1847029
+         ],
+         [
+          39.4135963,
+          57.1846418
+         ],
+         [
+          39.4135067,
+          57.1846155
+         ]
+        ],
+        [
+         [
+          39.4137863,
+          57.1845095
+         ],
+         [
+          39.4138777,
+          57.1845339
+         ],
+         [
+          39.4139289,
+          57.1844775
+         ],
+         [
+          39.4138374,
+          57.1844531
+         ],
+         [
+          39.4137863,
+          57.1845095
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r2421034",
+      "hotel_id": "r2421034",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_r2421034"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w170286943",
+     "name": "гостиница-усадьба Подозерка",
+     "address": "улица Подозёрка 32",
+     "location": [
+      39.4149146,
+      57.182755
+     ],
+     "stars": null,
+     "building_id": "w170286943",
+     "height_m": null,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [],
+    "camera": {
+     "center": [
+      39.4149146,
+      57.182755
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w170286943",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.4148276,
+          57.1827006
+         ],
+         [
+          39.4149884,
+          57.182688
+         ],
+         [
+          39.4150145,
+          57.1827857
+         ],
+         [
+          39.4149412,
+          57.1827914
+         ],
+         [
+          39.414945,
+          57.1828059
+         ],
+         [
+          39.4148576,
+          57.1828128
+         ],
+         [
+          39.4148276,
+          57.1827006
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w170286943",
+      "hotel_id": "w170286943",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w170286943"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n9720557517",
+     "name": "Bravis",
+     "address": null,
+     "location": [
+      39.3964912,
+      57.1758209
+     ],
+     "stars": null,
+     "building_id": "w397508085",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "В источнике нет города Ростов; указан только region_id russia и координаты. Рекомендация не подтверждает, что отель находится в Ростове."
+   },
+   {
+    "hotel": {
+     "id": "n12462450436",
+     "name": "Байкер хаус «Олень»",
+     "address": null,
+     "location": [
+      39.4272483,
+      57.1882538
+     ],
+     "stars": null,
+     "building_id": "w176840349",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Источник не подтверждает город Ростов: указан только region_id 'russia' и координаты, без названия города. Рекомендация отеля как подходящего для запроса 'отель в Ростове' не подтверждена."
+   },
+   {
+    "hotel": {
+     "id": "w927663563",
+     "name": "Гостиница",
+     "address": null,
+     "location": [
+      39.417417,
+      57.1876743
+     ],
+     "stars": null,
+     "building_id": "w927663563",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Запрос требует отель в Ростове. В источнике указан регион russia и координаты 39.417417, 57.1876743, соответствующие Ростову (Ярославская область), а не Ростову-на-Дону. Ответ не подтверждает принадлежность к запрошенному городу и не содержит проверенных условий."
+   },
+   {
+    "hotel": {
+     "id": "w184500988",
+     "name": "Лионъ",
+     "address": "улица 50 лет Октября 11",
+     "location": [
+      39.4178638,
+      57.1867467
+     ],
+     "stars": null,
+     "building_id": "w184500988",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "В источнике нет города Ростов; указан только region_id russia, координаты и адрес без города. Рекомендация не подтверждает, что отель находится в Ростове."
+   },
+   {
+    "hotel": {
+     "id": "n13881417701",
+     "name": "На Фрунзе",
+     "address": "улица Фрунзе 34",
+     "location": [
+      39.4018421,
+      57.1841145
+     ],
+     "stars": null,
+     "building_id": "w965985786",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Источник не подтверждает город Ростов: указан только region_id 'russia', адрес 'улица Фрунзе 34' и координаты, без названия города. Рекомендация отеля как подходящего для запроса 'отель в Ростове' не подтверждена."
+   },
+   {
+    "hotel": {
+     "id": "w257909502",
+     "name": "Плешанов",
+     "address": "улица Радищева 4",
+     "location": [
+      39.4007397,
+      57.1790485
+     ],
+     "stars": null,
+     "building_id": "w257909502",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "В источнике нет города Ростов; указан только region_id russia, координаты и адрес без города. Рекомендация не подтверждает, что отель находится в Ростове."
+   },
+   {
+    "hotel": {
+     "id": "w397488761",
+     "name": "Покровские ворота",
+     "address": "Ленинская улица 28/18",
+     "location": [
+      39.4036612,
+      57.1822529
+     ],
+     "stars": null,
+     "building_id": "w397488761",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Запрос требует отель в Ростове. В источнике указан регион russia и координаты 39.4036612, 57.1822529, которые соответствуют Ростову (Ярославская область), а не Ростову-на-Дону. Ответ не подтверждает принадлежность к запрошенному городу и не содержит проверенных условий."
+   },
+   {
+    "hotel": {
+     "id": "n13104576999",
+     "name": "Рождественский",
+     "address": null,
+     "location": [
+      39.4266593,
+      57.1866447
+     ],
+     "stars": null,
+     "building_id": "w170286858",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Источник не подтверждает город Ростов: указан только region_id 'russia' и координаты, без названия города. Рекомендация отеля как подходящего для запроса 'отель в Ростове' не подтверждена."
+   },
+   {
+    "hotel": {
+     "id": "n12062240991",
+     "name": "Саквояж",
+     "address": null,
+     "location": [
+      39.3559429,
+      57.1645595
+     ],
+     "stars": null,
+     "building_id": "w177353589",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Источник не подтверждает город Ростов: указан только region_id 'russia' и координаты, без названия города. Рекомендация отеля как подходящего для запроса 'отель в Ростове' не подтверждена."
+   },
+   {
+    "hotel": {
+     "id": "n12068906011",
+     "name": "Усадьба Подозёрка",
+     "address": null,
+     "location": [
+      39.4145626,
+      57.182526
+     ],
+     "stars": null,
+     "building_id": "w170286982",
+     "height_m": null,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Источник не подтверждает город Ростов: указан только region_id 'russia' и координаты, без названия города. Рекомендация отеля как подходящего для запроса 'отель в Ростове' не подтверждена."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.3460483,
+    57.1503505,
+    39.4307567,
+    57.203809
+   ],
+   "camera": {
+    "center": [
+     39.4056537,
+     57.1822724
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 31779
+ },
+ "search_message_id": "3679e0ce-a843-4b70-9f34-c43ecc8d6c8f"
+}

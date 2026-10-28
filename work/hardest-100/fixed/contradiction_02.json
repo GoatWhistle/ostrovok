@@ -1,0 +1,63 @@
+{
+ "id": "9539c27b-ac11-4a32-91fd-79e81ef87669",
+ "title": "Абсолютно тихий",
+ "updated_at": "2026-10-28T18:52:54.996754Z",
+ "messages": [
+  {
+   "id": "843b91bf-3d9e-4995-b958-3da304f55f16",
+   "role": "user",
+   "content": "нужен абсолютно тихий отель прямо над ночным клубом с живой музыкой",
+   "created_at": "2026-10-28T18:52:54.996754Z"
+  },
+  {
+   "id": "db5c84fa-02cf-4bf5-8190-c44b2a06b460",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:52:54.996754Z"
+  }
+ ],
+ "effective_query": "абсолютно тихий отель прямо над ночным клубом с живой музыкой",
+ "search": {
+  "query_id": "7b4cc4f86d164c88",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "noise_level",
+     "op": "lte",
+     "value": 2.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "абсолютно тихий"
+    }
+   ],
+   "unmatched_terms": [
+    "прямо над ночным клубом с живой музыкой"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "абсолютно тихий отель прямо над ночным клубом с живой музыкой",
+   "corrections": [
+    {
+     "original": "абсолютно тихий отель прямо над ночным клубом с живой музыкой",
+     "corrected": "абсолютно тихий отель прямо над ночным клубом с живой музыкой",
+     "reason": "Противоречие: отель прямо над ночным клубом с живой музыкой не может быть абсолютно тихим. Нужно уточнить, какое условие важнее."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5373
+ },
+ "search_message_id": "db5c84fa-02cf-4bf5-8190-c44b2a06b460"
+}

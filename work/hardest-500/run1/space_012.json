@@ -1,0 +1,48 @@
+{
+ "id": "90e3e919-8419-436f-b162-87745c6a7458",
+ "title": "Антарктида",
+ "updated_at": "2026-10-28T19:15:11.218913Z",
+ "messages": [
+  {
+   "id": "ef2fd5d8-4fbe-4613-8feb-612b7799388e",
+   "role": "user",
+   "content": "нужен отель внутри айсберга в Антарктиде",
+   "created_at": "2026-10-28T19:15:11.218913Z"
+  },
+  {
+   "id": "48bb7662-512d-4050-be64-d79723d5b4da",
+   "role": "assistant",
+   "content": "Не нашёл «Антарктида» в данных об отелях. Какой город вы имеете в виду?",
+   "created_at": "2026-10-28T19:15:11.218913Z"
+  }
+ ],
+ "effective_query": "отель внутри айсберга в Антарктиде",
+ "search": {
+  "query_id": "20033aa359ce9dd7",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "внутри айсберга"
+   ],
+   "location_hint": "Антарктида",
+   "anywhere": false,
+   "normalized_query": "отель внутри айсберга в Антарктиде",
+   "corrections": [],
+   "unsupported_region": "Антарктида",
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 7466
+ },
+ "search_message_id": "48bb7662-512d-4050-be64-d79723d5b4da"
+}

@@ -1,0 +1,69 @@
+{
+ "id": "06187254-226e-494d-b12f-bbb94e6912e6",
+ "title": "Казань: в центре Казани, не ближе 100 км к центру",
+ "updated_at": "2026-10-28T19:19:08.642318Z",
+ "messages": [
+  {
+   "id": "0005d1ee-2ba6-4739-af0b-3b1d35eb23f2",
+   "role": "user",
+   "content": "Казань, в самом центре; при этом не ближе ста километров к центру",
+   "created_at": "2026-10-28T19:19:08.642318Z"
+  },
+  {
+   "id": "8c2775d1-c0ca-4419-b0f3-90de2bc12b68",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:19:08.642318Z"
+  }
+ ],
+ "effective_query": "отель в центре Казани, не ближе 100 км к центру",
+ "search": {
+  "query_id": "5228dd5e5effa1ba",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:25b611b5b703",
+     "op": "lte",
+     "value": 1500.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "в центре Казани"
+    },
+    {
+     "characteristic_key": "spatial:c428705e5950",
+     "op": "gte",
+     "value": 50000.0,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "не ближе 100 км к центру"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Казань",
+   "anywhere": false,
+   "normalized_query": "отель в центре Казани, не ближе 100 км к центру",
+   "corrections": [
+    {
+     "original": "в центре Казани, не ближе 100 км к центру",
+     "corrected": "в центре Казани, не ближе 100 км к центру",
+     "reason": "Противоречие: отель одновременно должен быть в центре Казани и не ближе 100 км к центру. Нужно уточнить, какое условие важнее."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5488
+ },
+ "search_message_id": "8c2775d1-c0ca-4419-b0f3-90de2bc12b68"
+}

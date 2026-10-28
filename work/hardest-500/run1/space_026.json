@@ -1,0 +1,61 @@
+{
+ "id": "00c8bf27-f126-4795-8421-c116b6c85076",
+ "title": "С завтраком",
+ "updated_at": "2026-10-28T19:15:46.290851Z",
+ "messages": [
+  {
+   "id": "65106ae0-2233-448e-890a-e12a803519ba",
+   "role": "user",
+   "content": "подбери гостиницу на обратной стороне Луны, желательно с завтраком и парковкой",
+   "created_at": "2026-10-28T19:15:46.290851Z"
+  },
+  {
+   "id": "66ddad8f-182a-47c5-b1ec-29de2cf18ab0",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:15:46.290851Z"
+  }
+ ],
+ "effective_query": "гостиница на обратной стороне Луны, с завтраком и парковкой",
+ "search": {
+  "query_id": "30125301a113d1bb",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:bbe0bb5b1a61",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с завтраком"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "гостиница на обратной стороне Луны, с завтраком и парковкой",
+   "corrections": [
+    {
+     "original": "на обратной стороне Луны",
+     "corrected": "на обратной стороне Луны",
+     "reason": "Место поиска не является городом, регионом или доступным ориентиром на Земле; подобрать отель невозможно, требуется уточнение места."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6835
+ },
+ "search_message_id": "66ddad8f-182a-47c5-b1ec-29de2cf18ab0"
+}

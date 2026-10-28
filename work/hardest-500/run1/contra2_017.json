@@ -1,0 +1,69 @@
+{
+ "id": "c3da7593-48d6-4c11-af5a-d0e1111d025a",
+ "title": "Москва: с бассейном, без бассейна",
+ "updated_at": "2026-10-28T19:21:28.184863Z",
+ "messages": [
+  {
+   "id": "8c71a6b3-ccb8-47cd-aec8-10afd4455486",
+   "role": "user",
+   "content": "хочу с бассейном и чтобы было без бассейна, Москва",
+   "created_at": "2026-10-28T19:21:28.184863Z"
+  },
+  {
+   "id": "97173c83-cf52-43ce-b96c-3b5fe8c2ea92",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:21:28.184863Z"
+  }
+ ],
+ "effective_query": "Москва отель с бассейном и без бассейна",
+ "search": {
+  "query_id": "072ad570bb853077",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:52f08014edee",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с бассейном"
+    },
+    {
+     "characteristic_key": "facility:94fae81b7464",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "без бассейна"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва отель с бассейном и без бассейна",
+   "corrections": [
+    {
+     "original": "с бассейном и без бассейна",
+     "corrected": "с бассейном и без бассейна",
+     "reason": "Противоречие: одновременно требуется наличие бассейна и его отсутствие"
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 4898
+ },
+ "search_message_id": "97173c83-cf52-43ce-b96c-3b5fe8c2ea92"
+}

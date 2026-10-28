@@ -1,0 +1,69 @@
+{
+ "id": "2fb9248a-195e-44f2-a905-202b13eccc7a",
+ "title": "Сочи: с животными, куда животных не пускают",
+ "updated_at": "2026-10-28T19:21:32.809668Z",
+ "messages": [
+  {
+   "id": "5ba9a086-1575-4fe5-8871-427de15c215a",
+   "role": "user",
+   "content": "нужен отель в Сочи с животными, но обязательно куда животных не пускают",
+   "created_at": "2026-10-28T19:21:32.809668Z"
+  },
+  {
+   "id": "931b470a-bece-4748-905e-9acbee96496f",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:21:32.809668Z"
+  }
+ ],
+ "effective_query": "отель в Сочи с животными, но обязательно куда животных не пускают",
+ "search": {
+  "query_id": "feebd2e8311271b7",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "pets_policy",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "с животными"
+    },
+    {
+     "characteristic_key": "pets_policy",
+     "op": "eq",
+     "value": false,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "куда животных не пускают"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи с животными, но обязательно куда животных не пускают",
+   "corrections": [
+    {
+     "original": "с животными, но обязательно куда животных не пускают",
+     "corrected": "с животными, но обязательно куда животных не пускают",
+     "reason": "Противоречие: одновременно требуется размещение с животными и отель, куда животных не пускают. Нужно уточнить, какое условие верное."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5240
+ },
+ "search_message_id": "931b470a-bece-4748-905e-9acbee96496f"
+}

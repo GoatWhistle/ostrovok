@@ -1,0 +1,48 @@
+{
+ "id": "d9d4d0c4-dfb6-4ac8-a98b-098a927b74cb",
+ "title": "хочу отель, где температура воздуха минус триста градусов…",
+ "updated_at": "2026-10-28T19:17:00.570010Z",
+ "messages": [
+  {
+   "id": "b2d2111d-27b8-4152-b709-135b38d1194a",
+   "role": "user",
+   "content": "хочу отель, где температура воздуха минус триста градусов Цельсия",
+   "created_at": "2026-10-28T19:17:00.570010Z"
+  },
+  {
+   "id": "ad565334-335a-4305-a344-7c6a8d3624c8",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:17:00.570010Z"
+  }
+ ],
+ "effective_query": "отель, где температура воздуха минус триста градусов Цельсия",
+ "search": {
+  "query_id": "3546430b489f1894",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "температура воздуха минус триста градусов Цельсия"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель, где температура воздуха минус триста градусов Цельсия",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3110
+ },
+ "search_message_id": "ad565334-335a-4305-a344-7c6a8d3624c8"
+}

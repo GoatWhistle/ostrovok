@@ -1,0 +1,61 @@
+{
+ "id": "96e3e161-8b9e-47fa-9c3a-c3eee5f58d4e",
+ "title": "Москва: с видом на море",
+ "updated_at": "2026-10-28T19:19:19.040632Z",
+ "messages": [
+  {
+   "id": "d68ecf63-10db-4ea6-8f67-199e20dcc179",
+   "role": "user",
+   "content": "хочу с видом на море и чтобы было чтобы моря не было видно, Москва",
+   "created_at": "2026-10-28T19:19:19.040632Z"
+  },
+  {
+   "id": "4c8c6db3-6c25-4eb7-9670-d05eb30e21e1",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:19:19.040632Z"
+  }
+ ],
+ "effective_query": "Москва, отель с видом на море, чтобы моря не было видно",
+ "search": {
+  "query_id": "bb5eebf4eb71c50d",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:5745a44d5c64",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на море"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва, отель с видом на море, чтобы моря не было видно",
+   "corrections": [
+    {
+     "original": "отель с видом на море, чтобы моря не было видно",
+     "corrected": "отель с видом на море, чтобы моря не было видно",
+     "reason": "Противоречие: одновременно требуется вид на море и отсутствие видимости моря; в Москве моря нет."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5398
+ },
+ "search_message_id": "4c8c6db3-6c25-4eb7-9670-d05eb30e21e1"
+}

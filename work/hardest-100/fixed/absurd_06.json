@@ -1,0 +1,63 @@
+{
+ "id": "929261cf-20f7-44f4-a568-8ce57b28fef6",
+ "title": "Припять: завтрак включён, рядом с реактором",
+ "updated_at": "2026-10-28T18:52:41.508777Z",
+ "messages": [
+  {
+   "id": "f53fc86e-aeb1-41c8-97f0-22efc65a95c6",
+   "role": "user",
+   "content": "гостиница в Припяти рядом с реактором, завтрак включён",
+   "created_at": "2026-10-28T18:52:41.508777Z"
+  },
+  {
+   "id": "e3107890-79b8-432a-a290-87e9f029274d",
+   "role": "assistant",
+   "content": "Не нашёл «Припять» в данных об отелях. Какой город вы имеете в виду?",
+   "created_at": "2026-10-28T18:52:41.508777Z"
+  }
+ ],
+ "effective_query": "гостиница в Припяти рядом с реактором, завтрак включён",
+ "search": {
+  "query_id": "9f1f1eb2086122ad",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "facility:0de8646194c2",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "завтрак включён"
+    },
+    {
+     "characteristic_key": "spatial:29418d91bc03",
+     "op": "lte",
+     "value": 500.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с реактором"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Припять",
+   "anywhere": false,
+   "normalized_query": "гостиница в Припяти рядом с реактором, завтрак включён",
+   "corrections": [],
+   "unsupported_region": "Припять",
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 9745
+ },
+ "search_message_id": "e3107890-79b8-432a-a290-87e9f029274d"
+}

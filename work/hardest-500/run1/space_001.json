@@ -1,0 +1,48 @@
+{
+ "id": "80e1aa4f-e31b-4bae-a6d4-b3908a710957",
+ "title": "нужен отель на обратной стороне Луны",
+ "updated_at": "2026-10-28T19:14:53.856786Z",
+ "messages": [
+  {
+   "id": "5fb4e227-77dd-4a14-b837-8e46893d5fe2",
+   "role": "user",
+   "content": "нужен отель на обратной стороне Луны",
+   "created_at": "2026-10-28T19:14:53.856786Z"
+  },
+  {
+   "id": "657096f9-3537-4e67-b325-53f2b8f16ce3",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:14:53.856786Z"
+  }
+ ],
+ "effective_query": "отель на обратной стороне Луны",
+ "search": {
+  "query_id": "f050d5035d7110ba",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "на обратной стороне Луны"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель на обратной стороне Луны",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3032
+ },
+ "search_message_id": "657096f9-3537-4e67-b325-53f2b8f16ce3"
+}

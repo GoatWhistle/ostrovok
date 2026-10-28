@@ -1,0 +1,54 @@
+{
+ "id": "27859e84-ce5c-45d2-99bd-c82c10e04d49",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T19:18:46.434256Z",
+ "messages": [
+  {
+   "id": "cac87ee1-1621-4659-841d-ab7ba4fff2cd",
+   "role": "user",
+   "content": "найди в Сочи отель, в котором номер имеет отрицательную площадь",
+   "created_at": "2026-10-28T19:18:46.434256Z"
+  },
+  {
+   "id": "9fa89846-c97a-4dd5-abd4-cb72cc86a5a5",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:18:46.434256Z"
+  }
+ ],
+ "effective_query": "Сочи отель, в котором номер имеет отрицательную площадь",
+ "search": {
+  "query_id": "bea4f16aceed34a1",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "номер имеет отрицательную площадь"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи отель, в котором номер имеет отрицательную площадь",
+   "corrections": [
+    {
+     "original": "номер имеет отрицательную площадь",
+     "corrected": "номер имеет отрицательную площадь",
+     "reason": "Отрицательная площадь номера невозможна: это противоречивое требование, нужно уточнить у пользователя."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5905
+ },
+ "search_message_id": "9fa89846-c97a-4dd5-abd4-cb72cc86a5a5"
+}

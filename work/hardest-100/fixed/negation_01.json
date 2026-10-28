@@ -1,0 +1,5839 @@
+{
+ "id": "9e97bb76-1835-4937-99f7-0eaf586b5844",
+ "title": "Сочи: не рядом с морем, без бассейна, без завтрака",
+ "updated_at": "2026-10-28T19:08:06.593237Z",
+ "messages": [
+  {
+   "id": "211dc282-196f-41cf-a6cf-d26bc15a26fc",
+   "role": "user",
+   "content": "отель в Сочи не рядом с морем, не в центре, без бассейна и без завтрака",
+   "created_at": "2026-10-28T19:08:06.593237Z"
+  },
+  {
+   "id": "e1e2690b-1aff-484a-9f32-76867e2ae47b",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Каникулы в Сочи, Антика и Дельта Сириус. Проверка не завершена: без бассейна. В проверенных источниках подтверждение не найдено: без завтрака; не в центре. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T19:08:06.593237Z"
+  }
+ ],
+ "effective_query": "отель в Сочи не рядом с морем, не в центре, без бассейна и без завтрака",
+ "search": {
+  "query_id": "7156c0e725519213",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:b6d1fea96039",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "не рядом с морем"
+    },
+    {
+     "characteristic_key": "derived:7941eaaf3064",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "без бассейна"
+    },
+    {
+     "characteristic_key": "derived:2cb73215e49c",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "без завтрака"
+    },
+    {
+     "characteristic_key": "derived:80d6c2e16a32",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "не в центре"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи не рядом с морем, не в центре, без бассейна и без завтрака",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w52587525",
+     "name": "Каникулы в Сочи",
+     "address": null,
+     "location": [
+      39.7196402,
+      43.6072346
+     ],
+     "stars": 4,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1171 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_w52587525",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.706599_43.602572",
+        "g_point_39.719640_43.607235"
+       ],
+       "subject": "hotel:w52587525",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.706599_43.602572",
+       "g_point_39.719640_43.607235"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_w52587525",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52587525",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_w52587525",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52587525",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_w52587525",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52587525",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7196402,
+      43.6072346
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "n10967527654",
+     "name": "Антика",
+     "address": "Виноградная улица 134/1",
+     "location": [
+      39.7195995,
+      43.6151666
+     ],
+     "stars": 3,
+     "building_id": "w260646973",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1426.2 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n10967527654",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.704685_43.608246",
+        "g_point_39.719600_43.615167"
+       ],
+       "subject": "hotel:n10967527654",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.704685_43.608246",
+       "g_point_39.719600_43.615167"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n10967527654",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10967527654",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n10967527654",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10967527654",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n10967527654",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10967527654",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7195995,
+      43.6151666
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w260646973",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7195008,
+          43.6151397
+         ],
+         [
+          39.7195745,
+          43.6150575
+         ],
+         [
+          39.7196203,
+          43.6150318
+         ],
+         [
+          39.7197578,
+          43.6150938
+         ],
+         [
+          39.7197567,
+          43.6151571
+         ],
+         [
+          39.7197267,
+          43.6151892
+         ],
+         [
+          39.7197083,
+          43.6151922
+         ],
+         [
+          39.7196787,
+          43.6152252
+         ],
+         [
+          39.7196523,
+          43.6152128
+         ],
+         [
+          39.7196304,
+          43.6152373
+         ],
+         [
+          39.7195028,
+          43.6151774
+         ],
+         [
+          39.7195259,
+          43.6151515
+         ],
+         [
+          39.7195008,
+          43.6151397
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w260646973",
+      "hotel_id": "n10967527654",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10967527654"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6938319486",
+     "name": "Дельта Сириус",
+     "address": null,
+     "location": [
+      39.9659713,
+      43.412437
+     ],
+     "stars": 3,
+     "building_id": "r17954940",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1591.7 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n6938319486",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.960215_43.398747",
+        "g_point_39.965971_43.412437"
+       ],
+       "subject": "hotel:n6938319486",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.960215_43.398747",
+       "g_point_39.965971_43.412437"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n6938319486",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6938319486",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n6938319486",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6938319486",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n6938319486",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6938319486",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9659713,
+      43.412437
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r17954940",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9651277,
+          43.4124835
+         ],
+         [
+          39.9651736,
+          43.4124617
+         ],
+         [
+          39.9653175,
+          43.4126214
+         ],
+         [
+          39.9652946,
+          43.4126323
+         ],
+         [
+          39.9652716,
+          43.4126433
+         ],
+         [
+          39.9651277,
+          43.4124835
+         ]
+        ]
+       ],
+       [
+        [
+         [
+          39.9652354,
+          43.4123292
+         ],
+         [
+          39.9652355,
+          43.4122638
+         ],
+         [
+          39.9652456,
+          43.412204
+         ],
+         [
+          39.9652549,
+          43.4121723
+         ],
+         [
+          39.9652686,
+          43.4121376
+         ],
+         [
+          39.9653017,
+          43.4120769
+         ],
+         [
+          39.9653266,
+          43.4120419
+         ],
+         [
+          39.9653693,
+          43.4119938
+         ],
+         [
+          39.965385,
+          43.4119828
+         ],
+         [
+          39.9654002,
+          43.4119784
+         ],
+         [
+          39.9654173,
+          43.4119773
+         ],
+         [
+          39.9654345,
+          43.4119802
+         ],
+         [
+          39.96545,
+          43.4119869
+         ],
+         [
+          39.9656346,
+          43.4122175
+         ],
+         [
+          39.9656395,
+          43.412226
+         ],
+         [
+          39.9657257,
+          43.4122242
+         ],
+         [
+          39.9657189,
+          43.4122027
+         ],
+         [
+          39.9657092,
+          43.4121812
+         ],
+         [
+          39.9655243,
+          43.4119473
+         ],
+         [
+          39.9655126,
+          43.4119118
+         ],
+         [
+          39.9655217,
+          43.4118754
+         ],
+         [
+          39.9655444,
+          43.4118493
+         ],
+         [
+          39.9655728,
+          43.4118326
+         ],
+         [
+          39.9656178,
+          43.4118212
+         ],
+         [
+          39.9656608,
+          43.4118223
+         ],
+         [
+          39.9657085,
+          43.4118381
+         ],
+         [
+          39.9657465,
+          43.4118727
+         ],
+         [
+          39.9659077,
+          43.4120571
+         ],
+         [
+          39.9659394,
+          43.4120839
+         ],
+         [
+          39.9659824,
+          43.412109
+         ],
+         [
+          39.966024,
+          43.4120372
+         ],
+         [
+          39.9660009,
+          43.4120219
+         ],
+         [
+          39.9659806,
+          43.4120095
+         ],
+         [
+          39.9657972,
+          43.4118158
+         ],
+         [
+          39.9657935,
+          43.4117999
+         ],
+         [
+          39.9657957,
+          43.4117875
+         ],
+         [
+          39.9658012,
+          43.411777
+         ],
+         [
+          39.9658133,
+          43.4117649
+         ],
+         [
+          39.9658743,
+          43.4117573
+         ],
+         [
+          39.9659508,
+          43.4117509
+         ],
+         [
+          39.9660154,
+          43.4117506
+         ],
+         [
+          39.9661022,
+          43.4117575
+         ],
+         [
+          39.9661665,
+          43.4117682
+         ],
+         [
+          39.9662453,
+          43.4117885
+         ],
+         [
+          39.966314,
+          43.4118134
+         ],
+         [
+          39.9664066,
+          43.4118587
+         ],
+         [
+          39.9664789,
+          43.4119039
+         ],
+         [
+          39.966516,
+          43.4119314
+         ],
+         [
+          39.9665527,
+          43.4119623
+         ],
+         [
+          39.9665673,
+          43.411978
+         ],
+         [
+          39.9665715,
+          43.4119872
+         ],
+         [
+          39.9665712,
+          43.4119995
+         ],
+         [
+          39.9665621,
+          43.4120137
+         ],
+         [
+          39.9665405,
+          43.4120246
+         ],
+         [
+          39.9661944,
+          43.4120738
+         ],
+         [
+          39.9661438,
+          43.4120735
+         ],
+         [
+          39.9661077,
+          43.4120683
+         ],
+         [
+          39.9660777,
+          43.4120606
+         ],
+         [
+          39.966041,
+          43.4121303
+         ],
+         [
+          39.9660706,
+          43.4121368
+         ],
+         [
+          39.9660994,
+          43.4121408
+         ],
+         [
+          39.9661254,
+          43.4121424
+         ],
+         [
+          39.9661644,
+          43.4121417
+         ],
+         [
+          39.9661943,
+          43.4121385
+         ],
+         [
+          39.9665531,
+          43.4120984
+         ],
+         [
+          39.966601,
+          43.4120927
+         ],
+         [
+          39.9666459,
+          43.4121003
+         ],
+         [
+          39.9666764,
+          43.4121145
+         ],
+         [
+          39.9666986,
+          43.4121333
+         ],
+         [
+          39.9667122,
+          43.4121544
+         ],
+         [
+          39.9667176,
+          43.4121762
+         ],
+         [
+          39.9667161,
+          43.4121953
+         ],
+         [
+          39.9667042,
+          43.4122211
+         ],
+         [
+          39.9666778,
+          43.4122461
+         ],
+         [
+          39.9666401,
+          43.412263
+         ],
+         [
+          39.9665971,
+          43.4122697
+         ],
+         [
+          39.966264,
+          43.4123142
+         ],
+         [
+          39.9661624,
+          43.4123384
+         ],
+         [
+          39.9661105,
+          43.412353
+         ],
+         [
+          39.9661595,
+          43.412353
+         ],
+         [
+          39.9661993,
+          43.4123565
+         ],
+         [
+          39.9662267,
+          43.4123674
+         ],
+         [
+          39.9662402,
+          43.412388
+         ],
+         [
+          39.9662385,
+          43.4124169
+         ],
+         [
+          39.9662172,
+          43.4124457
+         ],
+         [
+          39.9661875,
+          43.4124723
+         ],
+         [
+          39.9661488,
+          43.4124977
+         ],
+         [
+          39.9661061,
+          43.4125159
+         ],
+         [
+          39.9660612,
+          43.4125296
+         ],
+         [
+          39.9660195,
+          43.412534
+         ],
+         [
+          39.9659816,
+          43.4125311
+         ],
+         [
+          39.9659506,
+          43.4125207
+         ],
+         [
+          39.965932,
+          43.4125001
+         ],
+         [
+          39.9659331,
+          43.4124705
+         ],
+         [
+          39.9659454,
+          43.4124347
+         ],
+         [
+          39.9658083,
+          43.4125508
+         ],
+         [
+          39.9657146,
+          43.4126453
+         ],
+         [
+          39.9656521,
+          43.4127166
+         ],
+         [
+          39.9656063,
+          43.4127379
+         ],
+         [
+          39.9655816,
+          43.4127421
+         ],
+         [
+          39.9655478,
+          43.4127414
+         ],
+         [
+          39.9655061,
+          43.4127301
+         ],
+         [
+          39.9654745,
+          43.4127095
+         ],
+         [
+          39.9654526,
+          43.4126752
+         ],
+         [
+          39.9654515,
+          43.4126438
+         ],
+         [
+          39.9654651,
+          43.4126155
+         ],
+         [
+          39.9655002,
+          43.412578
+         ],
+         [
+          39.965683,
+          43.4123961
+         ],
+         [
+          39.9657035,
+          43.412367
+         ],
+         [
+          39.9657148,
+          43.4123451
+         ],
+         [
+          39.9657225,
+          43.4123248
+         ],
+         [
+          39.9657281,
+          43.4123027
+         ],
+         [
+          39.9657313,
+          43.4122689
+         ],
+         [
+          39.9656493,
+          43.4122699
+         ],
+         [
+          39.9656447,
+          43.4122943
+         ],
+         [
+          39.9656388,
+          43.4123108
+         ],
+         [
+          39.9656281,
+          43.4123324
+         ],
+         [
+          39.9656132,
+          43.4123545
+         ],
+         [
+          39.9655935,
+          43.4123767
+         ],
+         [
+          39.9654082,
+          43.4125647
+         ],
+         [
+          39.9653996,
+          43.4125702
+         ],
+         [
+          39.9653901,
+          43.4125738
+         ],
+         [
+          39.9653809,
+          43.4125758
+         ],
+         [
+          39.9653723,
+          43.4125764
+         ],
+         [
+          39.9653618,
+          43.4125757
+         ],
+         [
+          39.9653516,
+          43.4125733
+         ],
+         [
+          39.9653415,
+          43.4125694
+         ],
+         [
+          39.965296,
+          43.4125074
+         ],
+         [
+          39.9652744,
+          43.4124679
+         ],
+         [
+          39.9652562,
+          43.4124244
+         ],
+         [
+          39.9652427,
+          43.4123772
+         ],
+         [
+          39.9652354,
+          43.4123292
+         ]
+        ]
+       ],
+       [
+        [
+         [
+          39.9663578,
+          43.4117304
+         ],
+         [
+          39.9664022,
+          43.4117005
+         ],
+         [
+          39.9665825,
+          43.4118421
+         ],
+         [
+          39.9665603,
+          43.4118571
+         ],
+         [
+          39.9665381,
+          43.411872
+         ],
+         [
+          39.9663578,
+          43.4117304
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r17954940",
+      "hotel_id": "n6938319486",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n6938319486"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759613912",
+     "name": "Vada",
+     "address": null,
+     "location": [
+      39.9835262,
+      43.4048682
+     ],
+     "stars": null,
+     "building_id": "w167393654",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1519.7 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n10759613912",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.976050_43.392327",
+        "g_point_39.983526_43.404868"
+       ],
+       "subject": "hotel:n10759613912",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.976050_43.392327",
+       "g_point_39.983526_43.404868"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n10759613912",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759613912",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n10759613912",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759613912",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n10759613912",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759613912",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9835262,
+      43.4048682
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w167393654",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9834231,
+          43.4048467
+         ],
+         [
+          39.9835858,
+          43.4047918
+         ],
+         [
+          39.9836647,
+          43.4049151
+         ],
+         [
+          39.983502,
+          43.4049701
+         ],
+         [
+          39.9834231,
+          43.4048467
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w167393654",
+      "hotel_id": "n10759613912",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10759613912"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11016631786",
+     "name": "Эдельвейс",
+     "address": null,
+     "location": [
+      39.911887,
+      43.4551347
+     ],
+     "stars": null,
+     "building_id": "w54239750",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1054.6 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11016631786",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.900584_43.450378",
+        "g_point_39.911887_43.455135"
+       ],
+       "subject": "hotel:n11016631786",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.900584_43.450378",
+       "g_point_39.911887_43.455135"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11016631786",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11016631786",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11016631786",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11016631786",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11016631786",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11016631786",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.911887,
+      43.4551347
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54239750",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.911746,
+          43.4550831
+         ],
+         [
+          39.9117464,
+          43.4550428
+         ],
+         [
+          39.9117598,
+          43.4550429
+         ],
+         [
+          39.91176,
+          43.4550185
+         ],
+         [
+          39.9118134,
+          43.4549895
+         ],
+         [
+          39.911991,
+          43.4549968
+         ],
+         [
+          39.9119868,
+          43.4550513
+         ],
+         [
+          39.9120062,
+          43.4550521
+         ],
+         [
+          39.9120108,
+          43.4550766
+         ],
+         [
+          39.9120097,
+          43.4550971
+         ],
+         [
+          39.9120016,
+          43.4551176
+         ],
+         [
+          39.9119856,
+          43.4551169
+         ],
+         [
+          39.9119824,
+          43.4551569
+         ],
+         [
+          39.9119053,
+          43.4551537
+         ],
+         [
+          39.9119049,
+          43.4551589
+         ],
+         [
+          39.9118271,
+          43.4551558
+         ],
+         [
+          39.9118276,
+          43.45515
+         ],
+         [
+          39.911793,
+          43.4551486
+         ],
+         [
+          39.9117592,
+          43.4551113
+         ],
+         [
+          39.9117594,
+          43.4550831
+         ],
+         [
+          39.911746,
+          43.4550831
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54239750",
+      "hotel_id": "n11016631786",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11016631786"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11119611105",
+     "name": "Ретрит Дом Ливерпуль",
+     "address": null,
+     "location": [
+      39.8990671,
+      43.4982069
+     ],
+     "stars": null,
+     "building_id": "w144123639",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1291.7 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11119611105",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.884358_43.493614",
+        "g_point_39.899067_43.498207"
+       ],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.884358_43.493614",
+       "g_point_39.899067_43.498207"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11119611105",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11119611105",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11119611105",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8990671,
+      43.4982069
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w144123639",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8988107,
+          43.4980706
+         ],
+         [
+          39.8990576,
+          43.4979357
+         ],
+         [
+          39.8993477,
+          43.4982148
+         ],
+         [
+          39.8993263,
+          43.4982315
+         ],
+         [
+          39.8991579,
+          43.4983286
+         ],
+         [
+          39.8991007,
+          43.4983498
+         ],
+         [
+          39.8988107,
+          43.4980706
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w144123639",
+      "hotel_id": "n11119611105",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11119611105"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11138786395",
+     "name": "Sochirentapart",
+     "address": null,
+     "location": [
+      39.7290435,
+      43.5961427
+     ],
+     "stars": null,
+     "building_id": "w202062090",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1674.9 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11138786395",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.717040_43.583843",
+        "g_point_39.729044_43.596143"
+       ],
+       "subject": "hotel:n11138786395",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.717040_43.583843",
+       "g_point_39.729044_43.596143"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11138786395",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138786395",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11138786395",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138786395",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11138786395",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138786395",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7290435,
+      43.5961427
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w202062090",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7289444,
+          43.5961722
+         ],
+         [
+          39.7289544,
+          43.5961478
+         ],
+         [
+          39.7289699,
+          43.59613
+         ],
+         [
+          39.7289891,
+          43.5961128
+         ],
+         [
+          39.7290146,
+          43.5960976
+         ],
+         [
+          39.7290419,
+          43.5960891
+         ],
+         [
+          39.7290747,
+          43.5960838
+         ],
+         [
+          39.7291057,
+          43.5960844
+         ],
+         [
+          39.7291376,
+          43.5960891
+         ],
+         [
+          39.7291659,
+          43.596099
+         ],
+         [
+          39.7291896,
+          43.5961102
+         ],
+         [
+          39.7292106,
+          43.59613
+         ],
+         [
+          39.7291231,
+          43.5961835
+         ],
+         [
+          39.7290593,
+          43.5961953
+         ],
+         [
+          39.7289444,
+          43.5961722
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w202062090",
+      "hotel_id": "n11138786395",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11138786395"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11138788609",
+     "name": "Palm resort",
+     "address": null,
+     "location": [
+      39.9622965,
+      43.4120603
+     ],
+     "stars": null,
+     "building_id": "w209196476",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1467.2 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11138788609",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.959360_43.399039",
+        "g_point_39.962297_43.412060"
+       ],
+       "subject": "hotel:n11138788609",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.959360_43.399039",
+       "g_point_39.962297_43.412060"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11138788609",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138788609",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11138788609",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138788609",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11138788609",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11138788609",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9622965,
+      43.4120603
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w209196476",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9620496,
+          43.4119267
+         ],
+         [
+          39.9621873,
+          43.411875
+         ],
+         [
+          39.9623386,
+          43.4120876
+         ],
+         [
+          39.962201,
+          43.4121393
+         ],
+         [
+          39.9620496,
+          43.4119267
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w209196476",
+      "hotel_id": "n11138788609",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11138788609"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11304222982",
+     "name": "Grand Way",
+     "address": null,
+     "location": [
+      39.9623019,
+      43.4141977
+     ],
+     "stars": null,
+     "building_id": "w98222520",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1700.1 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11304222982",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.959170_43.399079",
+        "g_point_39.962302_43.414198"
+       ],
+       "subject": "hotel:n11304222982",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.959170_43.399079",
+       "g_point_39.962302_43.414198"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11304222982",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222982",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11304222982",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222982",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11304222982",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222982",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9623019,
+      43.4141977
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98222520",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9622109,
+          43.4140294
+         ],
+         [
+          39.9623355,
+          43.4140109
+         ],
+         [
+          39.9623995,
+          43.4142383
+         ],
+         [
+          39.9622748,
+          43.4142568
+         ],
+         [
+          39.9622109,
+          43.4140294
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98222520",
+      "hotel_id": "n11304222982",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11304222982"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11304222983",
+     "name": "Grand Way",
+     "address": null,
+     "location": [
+      39.714219,
+      43.6330973
+     ],
+     "stars": null,
+     "building_id": "w52455565",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1730 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11304222983",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.697854_43.623011",
+        "g_point_39.714219_43.633097"
+       ],
+       "subject": "hotel:n11304222983",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.697854_43.623011",
+       "g_point_39.714219_43.633097"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11304222983",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222983",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11304222983",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222983",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11304222983",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222983",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.714219,
+      43.6330973
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52455565",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7141137,
+          43.6330336
+         ],
+         [
+          39.7142513,
+          43.6329873
+         ],
+         [
+          39.7143201,
+          43.6330942
+         ],
+         [
+          39.7142346,
+          43.633123
+         ],
+         [
+          39.7141825,
+          43.6331406
+         ],
+         [
+          39.7141137,
+          43.6330336
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52455565",
+      "hotel_id": "n11304222983",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11304222983"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11304222984",
+     "name": "Grand Way",
+     "address": null,
+     "location": [
+      39.7267395,
+      43.594985
+     ],
+     "stars": null,
+     "building_id": "w238327764",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1464.7 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11304222984",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.717040_43.583843",
+        "g_point_39.726740_43.594985"
+       ],
+       "subject": "hotel:n11304222984",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.717040_43.583843",
+       "g_point_39.726740_43.594985"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11304222984",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222984",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11304222984",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222984",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11304222984",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11304222984",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7267395,
+      43.594985
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w238327764",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7263687,
+          43.5946297
+         ],
+         [
+          39.7265759,
+          43.5945445
+         ],
+         [
+          39.7266525,
+          43.5946411
+         ],
+         [
+          39.726669,
+          43.594662
+         ],
+         [
+          39.7267131,
+          43.5947182
+         ],
+         [
+          39.7267251,
+          43.5947334
+         ],
+         [
+          39.7267633,
+          43.594782
+         ],
+         [
+          39.7267882,
+          43.5948137
+         ],
+         [
+          39.7268202,
+          43.5948543
+         ],
+         [
+          39.726881,
+          43.5949317
+         ],
+         [
+          39.7269188,
+          43.5949797
+         ],
+         [
+          39.7268791,
+          43.5949961
+         ],
+         [
+          39.726865,
+          43.5950016
+         ],
+         [
+          39.7268267,
+          43.5950177
+         ],
+         [
+          39.7267112,
+          43.5950653
+         ],
+         [
+          39.7263755,
+          43.5946383
+         ],
+         [
+          39.7263687,
+          43.5946297
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w238327764",
+      "hotel_id": "n11304222984",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n11304222984"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843553790",
+     "name": "Виноградный",
+     "address": null,
+     "location": [
+      39.7178829,
+      43.6107175
+     ],
+     "stars": null,
+     "building_id": "w52526422",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1122.8 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11843553790",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.705321_43.606331",
+        "g_point_39.717883_43.610717"
+       ],
+       "subject": "hotel:n11843553790",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.705321_43.606331",
+       "g_point_39.717883_43.610717"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11843553790",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553790",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11843553790",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553790",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11843553790",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553790",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7178829,
+      43.6107175
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52526422",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7178594,
+          43.6106245
+         ],
+         [
+          39.7180706,
+          43.6106218
+         ],
+         [
+          39.7180737,
+          43.6107478
+         ],
+         [
+          39.7178625,
+          43.6107505
+         ],
+         [
+          39.7178594,
+          43.6106245
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52526422",
+      "hotel_id": "n11843553790",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n11843553790"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843553792",
+     "name": "Парк Горького",
+     "address": null,
+     "location": [
+      39.7293573,
+      43.5958475
+     ],
+     "stars": null,
+     "building_id": "w202867113",
+     "height_m": 64.0,
+     "levels": 20,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1663.1 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11843553792",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.717040_43.583843",
+        "g_point_39.729357_43.595847"
+       ],
+       "subject": "hotel:n11843553792",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.717040_43.583843",
+       "g_point_39.729357_43.595847"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11843553792",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553792",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11843553792",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553792",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11843553792",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843553792",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7293573,
+      43.5958475
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w202867113",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7284946,
+          43.5960749
+         ],
+         [
+          39.7285393,
+          43.5959926
+         ],
+         [
+          39.7286053,
+          43.5959182
+         ],
+         [
+          39.7286901,
+          43.5958546
+         ],
+         [
+          39.7287904,
+          43.5958041
+         ],
+         [
+          39.7289024,
+          43.5957688
+         ],
+         [
+          39.7290217,
+          43.59575
+         ],
+         [
+          39.7291438,
+          43.5957484
+         ],
+         [
+          39.729264,
+          43.5957641
+         ],
+         [
+          39.7293776,
+          43.5957965
+         ],
+         [
+          39.7294804,
+          43.5958443
+         ],
+         [
+          39.7295683,
+          43.5959057
+         ],
+         [
+          39.7295366,
+          43.5959243
+         ],
+         [
+          39.7295573,
+          43.5959428
+         ],
+         [
+          39.7294962,
+          43.5959788
+         ],
+         [
+          39.7294755,
+          43.5959602
+         ],
+         [
+          39.7293843,
+          43.5960139
+         ],
+         [
+          39.7293544,
+          43.595993
+         ],
+         [
+          39.7293407,
+          43.5960084
+         ],
+         [
+          39.7292289,
+          43.5959564
+         ],
+         [
+          39.7292431,
+          43.5959404
+         ],
+         [
+          39.7292001,
+          43.5959282
+         ],
+         [
+          39.7291274,
+          43.5959187
+         ],
+         [
+          39.7291134,
+          43.5959189
+         ],
+         [
+          39.7291194,
+          43.595939
+         ],
+         [
+          39.7289263,
+          43.5959695
+         ],
+         [
+          39.7289205,
+          43.5959502
+         ],
+         [
+          39.7289135,
+          43.5959524
+         ],
+         [
+          39.7288528,
+          43.595983
+         ],
+         [
+          39.7288216,
+          43.5960063
+         ],
+         [
+          39.7288408,
+          43.5960153
+         ],
+         [
+          39.7287684,
+          43.596097
+         ],
+         [
+          39.7287501,
+          43.5960885
+         ],
+         [
+          39.7287342,
+          43.5961189
+         ],
+         [
+          39.7286141,
+          43.5960969
+         ],
+         [
+          39.7286064,
+          43.5961188
+         ],
+         [
+          39.7285259,
+          43.596104
+         ],
+         [
+          39.7285336,
+          43.5960821
+         ],
+         [
+          39.7284946,
+          43.5960749
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w202867113",
+      "hotel_id": "n11843553792",
+      "is_hotel": true,
+      "height_m": 64.0,
+      "min_height_m": 0,
+      "levels": 20,
+      "height_fact_id": "f_height_n11843553792"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11874180256",
+     "name": "Ареда",
+     "address": null,
+     "location": [
+      39.735049,
+      43.5901032
+     ],
+     "stars": null,
+     "building_id": "w51983330",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1610.8 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11874180256",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.718434_43.582041",
+        "g_point_39.735049_43.590103"
+       ],
+       "subject": "hotel:n11874180256",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.718434_43.582041",
+       "g_point_39.735049_43.590103"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11874180256",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11874180256",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11874180256",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11874180256",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11874180256",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11874180256",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.735049,
+      43.5901032
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51983330",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348648,
+          43.590074
+         ],
+         [
+          39.7348658,
+          43.5900607
+         ],
+         [
+          39.7348749,
+          43.5900459
+         ],
+         [
+          39.7348929,
+          43.5900347
+         ],
+         [
+          39.7349587,
+          43.5900273
+         ],
+         [
+          39.7349578,
+          43.5900228
+         ],
+         [
+          39.7349796,
+          43.5900203
+         ],
+         [
+          39.734988,
+          43.5900132
+         ],
+         [
+          39.7350004,
+          43.5900083
+         ],
+         [
+          39.7350148,
+          43.5900098
+         ],
+         [
+          39.7350252,
+          43.5900152
+         ],
+         [
+          39.7350449,
+          43.590013
+         ],
+         [
+          39.7350458,
+          43.590017
+         ],
+         [
+          39.7351092,
+          43.5900099
+         ],
+         [
+          39.7351325,
+          43.590119
+         ],
+         [
+          39.7349188,
+          43.5901429
+         ],
+         [
+          39.7349105,
+          43.5901039
+         ],
+         [
+          39.7348901,
+          43.590098
+         ],
+         [
+          39.7348748,
+          43.59009
+         ],
+         [
+          39.7348648,
+          43.590074
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51983330",
+      "hotel_id": "n11874180256",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11874180256"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11958163737",
+     "name": "Villa Maria club",
+     "address": null,
+     "location": [
+      39.9644744,
+      43.4116024
+     ],
+     "stars": null,
+     "building_id": "w147588879",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1461.6 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11958163737",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.959879_43.398889",
+        "g_point_39.964474_43.411602"
+       ],
+       "subject": "hotel:n11958163737",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.959879_43.398889",
+       "g_point_39.964474_43.411602"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11958163737",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163737",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11958163737",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163737",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11958163737",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163737",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9644744,
+      43.4116024
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147588879",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9643351,
+          43.411505
+         ],
+         [
+          39.9643453,
+          43.4114951
+         ],
+         [
+          39.9643641,
+          43.4114912
+         ],
+         [
+          39.9643783,
+          43.4114966
+         ],
+         [
+          39.9643895,
+          43.4114916
+         ],
+         [
+          39.9643886,
+          43.4114833
+         ],
+         [
+          39.9643939,
+          43.411474
+         ],
+         [
+          39.9644071,
+          43.4114694
+         ],
+         [
+          39.9644212,
+          43.4114681
+         ],
+         [
+          39.9644336,
+          43.4114716
+         ],
+         [
+          39.9645681,
+          43.4116293
+         ],
+         [
+          39.9644992,
+          43.4116603
+         ],
+         [
+          39.9644978,
+          43.4116679
+         ],
+         [
+          39.9644856,
+          43.4116736
+         ],
+         [
+          39.9644715,
+          43.4116748
+         ],
+         [
+          39.9644593,
+          43.4116708
+         ],
+         [
+          39.9644504,
+          43.4116645
+         ],
+         [
+          39.9644479,
+          43.4116547
+         ],
+         [
+          39.9644506,
+          43.411647
+         ],
+         [
+          39.9644105,
+          43.4116002
+         ],
+         [
+          39.9644003,
+          43.4115996
+         ],
+         [
+          39.9643885,
+          43.4115863
+         ],
+         [
+          39.9643931,
+          43.4115785
+         ],
+         [
+          39.9643881,
+          43.4115724
+         ],
+         [
+          39.9643774,
+          43.4115718
+         ],
+         [
+          39.964368,
+          43.4115601
+         ],
+         [
+          39.9643699,
+          43.4115528
+         ],
+         [
+          39.9643375,
+          43.4115151
+         ],
+         [
+          39.9643351,
+          43.411505
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147588879",
+      "hotel_id": "n11958163737",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n11958163737"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11958163786",
+     "name": "Альпийская",
+     "address": null,
+     "location": [
+      39.7385198,
+      43.5900274
+     ],
+     "stars": null,
+     "building_id": "w554629198",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 2078.1 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n11958163786",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.725415_43.573929",
+        "g_point_39.738520_43.590027"
+       ],
+       "subject": "hotel:n11958163786",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.725415_43.573929",
+       "g_point_39.738520_43.590027"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n11958163786",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163786",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n11958163786",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163786",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n11958163786",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11958163786",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7385198,
+      43.5900274
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w554629198",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7383661,
+          43.5899953
+         ],
+         [
+          39.7386058,
+          43.5899578
+         ],
+         [
+          39.7386556,
+          43.5901244
+         ],
+         [
+          39.7384159,
+          43.590162
+         ],
+         [
+          39.7383661,
+          43.5899953
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w554629198",
+      "hotel_id": "n11958163786",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n11958163786"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12043534507",
+     "name": "Белладжио",
+     "address": null,
+     "location": [
+      39.7191495,
+      43.6214123
+     ],
+     "stars": null,
+     "building_id": "w52038433",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1560.5 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n12043534507",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.702537_43.614179",
+        "g_point_39.719150_43.621412"
+       ],
+       "subject": "hotel:n12043534507",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.702537_43.614179",
+       "g_point_39.719150_43.621412"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n12043534507",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12043534507",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n12043534507",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12043534507",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n12043534507",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12043534507",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7191495,
+      43.6214123
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52038433",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7190154,
+          43.6214274
+         ],
+         [
+          39.7190991,
+          43.6212901
+         ],
+         [
+          39.7193174,
+          43.6213599
+         ],
+         [
+          39.7192337,
+          43.6214971
+         ],
+         [
+          39.7190154,
+          43.6214274
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52038433",
+      "hotel_id": "n12043534507",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n12043534507"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1365.8 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n12183637632",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.704685_43.608246",
+        "g_point_39.719857_43.613739"
+       ],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.704685_43.608246",
+       "g_point_39.719857_43.613739"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n12183637632",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n12183637632",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n12183637632",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7198569,
+      43.6137393
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w140689178",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7197435,
+          43.6137332
+         ],
+         [
+          39.7197902,
+          43.6136473
+         ],
+         [
+          39.7198645,
+          43.6136685
+         ],
+         [
+          39.7198691,
+          43.6136599
+         ],
+         [
+          39.7202937,
+          43.6137809
+         ],
+         [
+          39.720214,
+          43.6139276
+         ],
+         [
+          39.7197929,
+          43.6138075
+         ],
+         [
+          39.7198034,
+          43.6137882
+         ],
+         [
+          39.7197451,
+          43.6137716
+         ],
+         [
+          39.719763,
+          43.6137387
+         ],
+         [
+          39.7197435,
+          43.6137332
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w140689178",
+      "hotel_id": "n12183637632",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n12183637632"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12184779499",
+     "name": "Каменный",
+     "address": null,
+     "location": [
+      39.7176566,
+      43.6154285
+     ],
+     "stars": null,
+     "building_id": "w52526485",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1240.2 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n12184779499",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.703828_43.610514",
+        "g_point_39.717657_43.615429"
+       ],
+       "subject": "hotel:n12184779499",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.703828_43.610514",
+       "g_point_39.717657_43.615429"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n12184779499",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12184779499",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n12184779499",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12184779499",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n12184779499",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12184779499",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7176566,
+      43.6154285
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52526485",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7175853,
+          43.6154849
+         ],
+         [
+          39.7176125,
+          43.615352
+         ],
+         [
+          39.717737,
+          43.6153653
+         ],
+         [
+          39.7177098,
+          43.6154982
+         ],
+         [
+          39.7175853,
+          43.6154849
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52526485",
+      "hotel_id": "n12184779499",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n12184779499"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12416060226",
+     "name": "МореСолнцеАпарт",
+     "address": "Батумское шоссе 28Ак3",
+     "location": [
+      39.6619199,
+      43.6586144
+     ],
+     "stars": null,
+     "building_id": "w893118321",
+     "height_m": 64.0,
+     "levels": 20,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.1,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:b6d1fea96039",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с морем",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 1247.9 (нужно не менее 500).",
+      "fact": {
+       "fact_id": "f_wish_b6d1fea96039_n12416060226",
+       "characteristic_key": "derived:b6d1fea96039",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с морем",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.660103_43.647469",
+        "g_point_39.661920_43.658614"
+       ],
+       "subject": "hotel:n12416060226",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с морем",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 8
+       }
+      },
+      "geo_refs": [
+       "g_point_39.660103_43.647469",
+       "g_point_39.661920_43.658614"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:7941eaaf3064",
+      "match": "unknown",
+      "margin": null,
+      "label": "без бассейна",
+      "explanation": "Не удалось найти в доступных данных (словарь услуг поставщиков и веб-страницах) записей об отсутствии бассейна ни в одном из отелей. Все попытки поиска привели к пустой выборке.",
+      "fact": {
+       "fact_id": "f_wish_7941eaaf3064_n12416060226",
+       "characteristic_key": "derived:7941eaaf3064",
+       "value": null,
+       "unit": null,
+       "label": "без бассейна",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12416060226",
+       "qualifiers": {
+        "source_text": "без бассейна",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:2cb73215e49c",
+      "match": "unknown",
+      "margin": null,
+      "label": "без завтрака",
+      "explanation": "После исчерпания инструментов без подтверждения соответствия предоставления питания предлагаю уточнить время поездки и составить параметры дозированного поиска.",
+      "fact": {
+       "fact_id": "f_wish_2cb73215e49c_n12416060226",
+       "characteristic_key": "derived:2cb73215e49c",
+       "value": null,
+       "unit": null,
+       "label": "без завтрака",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12416060226",
+       "qualifiers": {
+        "source_text": "без завтрака",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:80d6c2e16a32",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в центре",
+      "explanation": "Инструменты не обнаружили в каталоге поля с названием района (addr:district), а онлайн-идентификация текущих отелей не подтвердила, что они находятся вне центральной части Сочи.",
+      "fact": {
+       "fact_id": "f_wish_80d6c2e16a32_n12416060226",
+       "characteristic_key": "derived:80d6c2e16a32",
+       "value": null,
+       "unit": null,
+       "label": "не в центре",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12416060226",
+       "qualifiers": {
+        "source_text": "не в центре",
+        "wish_status": "exhausted",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6619199,
+      43.6586144
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w893118321",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.661612,
+          43.658309
+         ],
+         [
+          39.6618852,
+          43.6582478
+         ],
+         [
+          39.6620988,
+          43.6587469
+         ],
+         [
+          39.6618256,
+          43.6588081
+         ],
+         [
+          39.6617188,
+          43.6585585
+         ],
+         [
+          39.661612,
+          43.658309
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w893118321",
+      "hotel_id": "n12416060226",
+      "is_hotel": true,
+      "height_m": 64.0,
+      "min_height_m": 0,
+      "levels": 20,
+      "height_fact_id": "f_height_n12416060226"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w51764141",
+     "name": "Azimut Парк Отель Виноградная",
+     "address": "Виноградная улица 101/1",
+     "location": [
+      39.7180527,
+      43.6129871
+     ],
+     "stars": null,
+     "building_id": "r443261",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w209174465",
+     "name": "Blue Marine",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605233,
+      43.4110274
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4706161636",
+     "name": "Blue Marine hotel",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605409,
+      43.4110295
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7115162128",
+     "name": "Center Plaza",
+     "address": "Старонасыпная улица 1",
+     "location": [
+      39.9280934,
+      43.4275197
+     ],
+     "stars": null,
+     "building_id": "w53293146",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w190714781",
+     "name": "Cosmos",
+     "address": "улица Горького 56 с1",
+     "location": [
+      39.7273072,
+      43.5906505
+     ],
+     "stars": null,
+     "building_id": "w190714781",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8474990753",
+     "name": "Diana Palace",
+     "address": null,
+     "location": [
+      39.9098376,
+      43.4658544
+     ],
+     "stars": null,
+     "building_id": "w208412188",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_024e5e87_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_024e5e87_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c175e383_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_470a2a99_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7998befe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bab1b73f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f2fc492_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_40e18078_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_20900b9e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4428adc5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_587708b7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c8e799f4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19544959_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_10dfb601_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_69c59066_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19e49748_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d6d1057_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_cf48c0b8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_162aa572_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_cf2ddba5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3a27151_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_75dcbc06_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_01b667ba_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77fa2c83_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_865520be_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6154749386",
+     "name": "Galla",
+     "address": "Берёзовый переулок 31",
+     "location": [
+      39.9579001,
+      43.410927
+     ],
+     "stars": null,
+     "building_id": "w209174484",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w209174472",
+     "name": "Galla",
+     "address": "Камышовая улица 27",
+     "location": [
+      39.9578394,
+      43.4107445
+     ],
+     "stars": null,
+     "building_id": "w209174472",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.6619199,
+    43.4048682,
+    39.9835262,
+    43.6586144
+   ],
+   "camera": {
+    "center": [
+     39.7196402,
+     43.6072346
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 152022
+ },
+ "search_message_id": "e1e2690b-1aff-484a-9f32-76867e2ae47b"
+}

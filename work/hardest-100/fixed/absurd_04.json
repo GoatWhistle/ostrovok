@@ -1,0 +1,64 @@
+{
+ "id": "a0f80d45-74a6-4b2e-8525-c2d9eeed5b44",
+ "title": "Чёрное море: номер",
+ "updated_at": "2026-10-28T18:52:36.397549Z",
+ "messages": [
+  {
+   "id": "d9ee56ff-1c52-484a-953c-b0afc4939dba",
+   "role": "user",
+   "content": "подводный номер на дне Чёрного моря с панорамными окнами",
+   "created_at": "2026-10-28T18:52:36.397549Z"
+  },
+  {
+   "id": "43d6d2fb-0224-45cb-aa5f-88cc673e9f06",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T18:52:36.397549Z"
+  }
+ ],
+ "effective_query": "подводный номер на дне Чёрного моря с панорамными окнами",
+ "search": {
+  "query_id": "35496a6d17975d8c",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "double_room",
+     "op": "eq",
+     "value": true,
+     "weight": 0.5,
+     "required": false,
+     "source_text": "номер"
+    }
+   ],
+   "unmatched_terms": [
+    "подводный номер",
+    "панорамные окна"
+   ],
+   "location_hint": "Чёрное море",
+   "anywhere": false,
+   "normalized_query": "подводный номер на дне Чёрного моря с панорамными окнами",
+   "corrections": [
+    {
+     "original": "подводный номер на дне Чёрного моря",
+     "corrected": "подводный номер на дне Чёрного моря",
+     "reason": "Подводных отелей на дне Чёрного моря не существует; условие невыполнимо, требуется уточнение."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 11433
+ },
+ "search_message_id": "43d6d2fb-0224-45cb-aa5f-88cc673e9f06"
+}

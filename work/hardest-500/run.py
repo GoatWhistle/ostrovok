@@ -34,7 +34,12 @@ async def one(client, case, output, semaphore):
             report["effective_query"] = body.get("effective_query")
             messages = body.get("messages") or []
             reply = next(
-                (m.get("text", "") for m in reversed(messages) if m.get("role") == "assistant"), ""
+                (
+                    m.get("content", "")
+                    for m in reversed(messages)
+                    if m.get("role") == "assistant"
+                ),
+                "",
             )
             report["reply"] = reply
             search = body.get("search") or {}

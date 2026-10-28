@@ -1,0 +1,55 @@
+{
+ "id": "e88149d3-a96e-458b-b92d-34c5ab8e6592",
+ "title": "Тунгусский метеорит: в кратере Тунгусского метеорита",
+ "updated_at": "2026-10-28T19:15:57.268077Z",
+ "messages": [
+  {
+   "id": "cb7a16dd-ecdb-4385-9670-448bbdd0fa9f",
+   "role": "user",
+   "content": "нужен отель в кратере Тунгусского метеорита",
+   "created_at": "2026-10-28T19:15:57.268077Z"
+  },
+  {
+   "id": "a8a48c07-101e-4185-b15f-adf1784df696",
+   "role": "assistant",
+   "content": "Не нашёл отелей, где данные подтверждают ваши условия. Попробуйте смягчить одно из них. В проверенных источниках подтверждение не найдено: в кратере Тунгусского метеорита. На какие даты едете?",
+   "created_at": "2026-10-28T19:15:57.268077Z"
+  }
+ ],
+ "effective_query": "отель в кратере Тунгусского метеорита",
+ "search": {
+  "query_id": "6080dc3630b8996e",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:ff322a5ac42b",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "в кратере Тунгусского метеорита"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Тунгусский метеорит",
+   "anywhere": false,
+   "normalized_query": "отель в кратере Тунгусского метеорита",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 41751
+ },
+ "search_message_id": "a8a48c07-101e-4185-b15f-adf1784df696"
+}

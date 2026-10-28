@@ -1,0 +1,63 @@
+{
+ "id": "f46558f5-86cb-4aa5-bf63-d4173fdfeccb",
+ "title": "Сочи: у моря",
+ "updated_at": "2026-10-28T18:53:01.351484Z",
+ "messages": [
+  {
+   "id": "c6b3ba9b-fd88-4cc1-87bb-0172b0b485ce",
+   "role": "user",
+   "content": "отель у моря в Сочи, но чтобы до моря было минимум 300 километров",
+   "created_at": "2026-10-28T18:53:01.351484Z"
+  },
+  {
+   "id": "763eaf66-25ba-4719-b724-6693498cb183",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T18:53:01.351484Z"
+  }
+ ],
+ "effective_query": "отель у моря в Сочи, но чтобы до моря было минимум 300 километров",
+ "search": {
+  "query_id": "168485cb0860b63c",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "distance_to_sea",
+     "op": "lte",
+     "value": 10.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "у моря"
+    }
+   ],
+   "unmatched_terms": [
+    "до моря было минимум 300 километров"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель у моря в Сочи, но чтобы до моря было минимум 300 километров",
+   "corrections": [
+    {
+     "original": "отель у моря в Сочи, но чтобы до моря было минимум 300 километров",
+     "corrected": "отель у моря в Сочи, но чтобы до моря было минимум 300 километров",
+     "reason": "Противоречие: отель у моря в Сочи не может находиться минимум в 300 км от моря. Нужно уточнить, какое условие важнее."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 6562
+ },
+ "search_message_id": "763eaf66-25ba-4719-b724-6693498cb183"
+}

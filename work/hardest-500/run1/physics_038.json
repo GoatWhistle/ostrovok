@@ -1,0 +1,54 @@
+{
+ "id": "17c6c1ea-8acc-447f-8710-533e0d82376c",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T19:18:40.518099Z",
+ "messages": [
+  {
+   "id": "11497dc6-c739-4d16-a3e6-344bc04c73c0",
+   "role": "user",
+   "content": "найди в Сочи отель, где температура воздуха минус триста градусов Цельсия",
+   "created_at": "2026-10-28T19:18:40.518099Z"
+  },
+  {
+   "id": "22efb061-f8b8-438e-8a23-0ce1fd76d2ef",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T19:18:40.518099Z"
+  }
+ ],
+ "effective_query": "Сочи отель температура воздуха минус триста градусов Цельсия",
+ "search": {
+  "query_id": "315a1901d98e03ce",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "температура воздуха минус триста градусов Цельсия"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи отель температура воздуха минус триста градусов Цельсия",
+   "corrections": [
+    {
+     "original": "температура воздуха минус триста градусов Цельсия",
+     "corrected": "температура воздуха минус триста градусов Цельсия",
+     "reason": "Значение физически невозможно: температура воздуха не может быть минус 300 °C (ниже абсолютного нуля). Уточните, что имелось в виду."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5579
+ },
+ "search_message_id": "22efb061-f8b8-438e-8a23-0ce1fd76d2ef"
+}

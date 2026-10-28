@@ -1,0 +1,52 @@
+{
+ "id": "773eea3c-5aee-4553-a541-12f227454a70",
+ "title": "нужен отель в затонувшей Атлантиде",
+ "updated_at": "2026-10-28T19:15:24.793959Z",
+ "messages": [
+  {
+   "id": "44ace747-4389-410d-b89c-a6ea32a98afb",
+   "role": "user",
+   "content": "нужен отель в затонувшей Атлантиде",
+   "created_at": "2026-10-28T19:15:24.793959Z"
+  },
+  {
+   "id": "55aeb4a3-7e87-46a6-a2a4-32a674d80baa",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T19:15:24.793959Z"
+  }
+ ],
+ "effective_query": "отель в затонувшей Атлантиде",
+ "search": {
+  "query_id": "ca4c1ef6b3d0439a",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в затонувшей Атлантиде",
+   "corrections": [
+    {
+     "original": "в затонувшей Атлантиде",
+     "corrected": "в затонувшей Атлантиде",
+     "reason": "Атлантида — мифический затонувший остров, реальное место поиска отелей не определено; уточните город или регион."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3979
+ },
+ "search_message_id": "55aeb4a3-7e87-46a6-a2a4-32a674d80baa"
+}
