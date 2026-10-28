@@ -66,6 +66,27 @@ WITH bounds AS (
         t.class
     FROM trees t CROSS JOIN bounds
     WHERE %(z)s >= 15 AND t.geometry && bounds.query
+), alleys AS (
+    SELECT ST_AsMVTGeom(ST_Transform(p.geometry, 3857), bounds.geom, 4096, 64) AS geom,
+        p.class, p.class_source
+    FROM prop_lines p CROSS JOIN bounds
+    WHERE %(z)s >= 14 AND p.geometry && bounds.query
+), props AS (
+    SELECT ST_AsMVTGeom(ST_Transform(p.location, 3857), bounds.geom, 4096, 64) AS geom,
+        p.class, p.class_source,
+        COALESCE(
+            p.tags->>'natural', p.tags->>'tourism', p.tags->>'amenity',
+            p.tags->>'leisure', p.tags->>'man_made', p.tags->>'historic'
+        ) AS kind,
+        p.tags->>'name' AS name
+    FROM pois p CROSS JOIN bounds
+    WHERE %(z)s >= 16 AND p.location && bounds.query
+        AND (p.tags->>'natural' IN ('waterfall', 'spring', 'cave_entrance')
+            OR p.tags->>'tourism' IN ('viewpoint', 'artwork')
+            OR p.tags->>'amenity' IN ('fountain', 'bench', 'drinking_water')
+            OR p.tags->>'leisure' = 'playground'
+            OR p.tags->>'man_made' = 'lighthouse'
+            OR p.tags ? 'historic')
 )
 SELECT COALESCE((SELECT ST_AsMVT(roads, 'roads') FROM roads), '\\x'::bytea)
     || COALESCE((SELECT ST_AsMVT(shore, 'coastline') FROM shore), '\\x'::bytea)
@@ -74,6 +95,8 @@ SELECT COALESCE((SELECT ST_AsMVT(roads, 'roads') FROM roads), '\\x'::bytea)
     || COALESCE((SELECT ST_AsMVT(ground, 'landcover') FROM ground), '\\x'::bytea)
     || COALESCE((SELECT ST_AsMVT(water, 'water') FROM water), '\\x'::bytea)
     || COALESCE((SELECT ST_AsMVT(plants, 'trees') FROM plants), '\\x'::bytea)
+    || COALESCE((SELECT ST_AsMVT(alleys, 'tree_rows') FROM alleys), '\\x'::bytea)
+    || COALESCE((SELECT ST_AsMVT(props, 'props') FROM props), '\\x'::bytea)
 """
 
 

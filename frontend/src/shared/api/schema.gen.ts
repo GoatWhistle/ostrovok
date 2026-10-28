@@ -295,7 +295,7 @@ export interface paths {
         };
         /**
          * Векторная геометрия импортированного покрытия OpenStreetMap
-         * @description Версия lod-v3. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. roads: магистрали с z8, primary с z10, secondary и tertiary с z11, остальные с z13; coastline с z8. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v3.
+         * @description Версия lod-v4. buildings: стабильный строковый id, class, class_source, height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые, z16–19: полные. roads: магистрали с z8, primary с z10, secondary и tertiary с z11, остальные с z13; coastline с z8. На z2–11 landcover содержит фактические жилые, коммерческие и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается. tree_rows: аллеи natural=tree_row с z14. props: отдельные объекты из pois с z16 (водопады, источники, видовые точки, фонтаны, скамейки, площадки, арт-объекты, маяки, исторические объекты) с class каталога, kind исходного тега и name, если он есть. Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v4.
          */
         get: operations["getMapTile"];
         put?: never;
@@ -1086,10 +1086,25 @@ export interface components {
             available_rooms: number | null;
             meal?: string | null;
             amenities: string[];
+            /** @description Этаж номера; заполняется только источником, который его публикует */
             floor_number?: number | null;
             room_group_id?: string | null;
             /** Format: date-time */
             free_cancellation_before?: string | null;
+            /** @description Число гостей, на которое поставщик посчитал этот тариф */
+            occupancy?: number | null;
+            bed_places?: components["schemas"]["BedPlaces"] | null;
+        };
+        /** @description Спальные места тарифа по данным поставщика; не максимальная вместимость категории */
+        BedPlaces: {
+            /** @description Основные места */
+            main: number;
+            /** @description Дополнительные места */
+            extra: number;
+            /** @description Детские кроватки */
+            child_cots: number;
+            /** @description Коды типов кроватей поставщика */
+            bedding: string[];
         };
         SupplierRoom: {
             id: string;
@@ -1098,6 +1113,14 @@ export interface components {
             amenities: string[];
             size_sqm?: number | null;
             bedding?: string | null;
+            /** @description Нормализованные цели вида из окна, объявленные поставщиком для этой категории */
+            views: string[];
+            /** @description Этаж категории по карточке поставщика */
+            floor?: number | null;
+            /** @description Основные места в категории */
+            main_places?: number | null;
+            /** @description Дополнительные места в категории */
+            extra_places?: number | null;
         };
         SupplierPhoto: {
             url: string;
@@ -1133,6 +1156,11 @@ export interface components {
             address?: string | null;
             link?: string | null;
             categories: components["schemas"]["SupplierRegistryCategory"][];
+            /**
+             * Format: date
+             * @description Дата окончания действия свидетельства о присвоении категории
+             */
+            valid_until?: string | null;
         };
         /** @description Опубликованные поставщиком факты об отеле; отсутствующее поле означает неизвестность */
         SupplierFacts: {
@@ -1772,7 +1800,7 @@ export interface operations {
     getMapTile: {
         parameters: {
             query?: {
-                /** @description lod-v3; другая версия возвращает 409 */
+                /** @description lod-v4; другая версия возвращает 409 */
                 v?: string;
             };
             header?: never;
@@ -1785,10 +1813,10 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile */
+            /** @description Слои roads, coastline, beaches, buildings, landcover, water, trees, tree_rows, props в формате Mapbox Vector Tile */
             200: {
                 headers: {
-                    "X-Map-Tile-Version"?: "lod-v3";
+                    "X-Map-Tile-Version"?: "lod-v4";
                     [name: string]: unknown;
                 };
                 content: {

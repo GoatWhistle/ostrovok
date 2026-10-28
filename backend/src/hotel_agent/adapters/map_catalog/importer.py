@@ -1,6 +1,6 @@
 import json
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 
 from psycopg import Connection
 from psycopg.types.json import Jsonb
@@ -32,14 +32,21 @@ class PostgresMapImporter:
                 geometry = feature.geometry["type"]
                 if geometry == "Point" and tags.get("natural") == "tree":
                     table, layer = "trees", "prop"
+                elif geometry in {"LineString", "MultiLineString"}:
+                    if not catalog.classify(tags, "prop").match:
+                        continue
+                    table, layer = "prop_lines", "prop"
                 elif geometry == "MultiPolygon" and not tags.get("building"):
                     water = tags.get("natural") == "water" or tags.get("waterway") == "riverbank"
                     table, layer = ("water_areas" if water else "landcover"), "ground"
                 else:
                     continue
                 classification = catalog.classify(tags, "prop" if layer == "prop" else "ground")
+                shape = "ST_SetSRID(ST_GeomFromGeoJSON(%s),4326)"
+                if table == "prop_lines":
+                    shape = f"ST_Multi({shape})"
                 cursor.execute(
-                    f"INSERT INTO {table} (id,region_id,geometry,tags,class) VALUES (%s,%s,ST_SetSRID(ST_GeomFromGeoJSON(%s),4326),%s,%s) "
+                    f"INSERT INTO {table} (id,region_id,geometry,tags,class) VALUES (%s,%s,{shape},%s,%s) "
                     "ON CONFLICT(id) DO UPDATE SET geometry=excluded.geometry,tags=excluded.tags,class=excluded.class",
                     (
                         feature.id,
@@ -87,6 +94,22 @@ class PostgresMapImporter:
                     for id, tags in roads
                 ],
             )
+            places = list(cursor.execute("SELECT id,tags FROM pois WHERE region_id=%s", (region,)))
+            cursor.executemany(
+                "UPDATE pois SET class=%s,class_source=%s WHERE id=%s",
+                [
+                    (*poi_class(catalog, tags if isinstance(tags, dict) else {}), id)
+                    for id, tags in places
+                ],
+            )
             counts["buildings"] = len(updates)
             counts["roads"] = len(roads)
+            counts["pois"] = len(places)
         return dict(counts)
+
+
+def poi_class(catalog: MapCatalog, tags: Mapping[str, str]) -> tuple[str, str]:
+    prop = catalog.classify(tags, "prop")
+    if prop.match:
+        return prop.key, "prop"
+    return catalog.classify(tags, "poi").key, "tag"
