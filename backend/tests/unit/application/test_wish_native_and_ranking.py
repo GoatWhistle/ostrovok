@@ -183,3 +183,43 @@ def test_facade_within_requested_bound_wins_over_a_restricted_near_miss() -> Non
     assert result[0].qualifiers["native_value"] == 0.5
     assert result[0].facade_azimuth == 270
     assert result[0].qualifiers["estimated_match"]
+
+
+def test_a_threshold_stated_in_seconds_is_not_met_by_a_minute_measurement() -> None:
+    term = "до моря не больше 3 секунд"
+    intent = Intent(
+        characteristic_key="distance_to_sea",
+        op=Op.LTE,
+        value=3.0,
+        weight=1,
+        required=False,
+        source_text=term,
+    )
+    row = replace(record("distance_to_sea", 0.1), unit="min")
+    evidence = RequestedEvidence(intents=(intent,), facts=(row,), features=())
+
+    [fact] = native_facts(term, evidence, NOW)
+
+    assert fact.value is False
+    assert fact.qualifiers["native_threshold"] == 0.05
+    assert fact.qualifiers["stated_threshold"] == 3.0
+
+
+def test_a_threshold_already_in_minutes_still_matches() -> None:
+    term = "до моря не больше 10 минут"
+    intent = Intent(
+        characteristic_key="distance_to_sea",
+        op=Op.LTE,
+        value=10.0,
+        weight=1,
+        required=False,
+        source_text=term,
+    )
+    row = replace(record("distance_to_sea", 0.1), unit="min")
+    evidence = RequestedEvidence(intents=(intent,), facts=(row,), features=())
+
+    [fact] = native_facts(term, evidence, NOW)
+
+    assert fact.value is True
+    assert fact.qualifiers["native_threshold"] == 10.0
+    assert "stated_threshold" not in fact.qualifiers

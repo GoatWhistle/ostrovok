@@ -4,6 +4,7 @@ from dataclasses import replace
 from datetime import datetime, timedelta
 
 from hotel_agent.application.agent.evidence_summary import brief, summary
+from hotel_agent.application.agent.stated_units import rescaled
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.fact_records import fact_from_record
@@ -44,9 +45,11 @@ def native_facts(
         for row in evidence.facts:
             if row.characteristic_key != intent.characteristic_key:
                 continue
+            converted = rescaled(term, row.unit, intent.value)
+            wanted = intent if converted is None else replace(intent, value=converted)
             fact = fact_from_record(row)
-            matched = match(intent, fact, now)
-            unrestricted = match(intent, replace(fact, qualifiers={}), now)
+            matched = match(wanted, fact, now)
+            unrestricted = match(wanted, replace(fact, qualifiers={}), now)
             rank = (ranks[matched.quality], ranks[unrestricted.quality], row.confidence)
             if row.hotel_id in selected and rank <= selected[row.hotel_id][:3]:
                 continue
@@ -63,9 +66,11 @@ def native_facts(
                 "native_characteristic_key": row.characteristic_key,
                 "native_value": row.value,
                 "native_unit": row.unit,
-                "native_op": str(intent.op),
-                "native_threshold": intent.value,
+                "native_op": str(wanted.op),
+                "native_threshold": wanted.value,
             }
+            if converted is not None:
+                qualifiers["stated_threshold"] = intent.value
             if matched.quality is MatchQuality.PARTIAL:
                 qualifiers["estimated_match"] = True
             selected[row.hotel_id] = (
