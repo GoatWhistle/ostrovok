@@ -1,13 +1,16 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { darkness, type SkyColors, skyPalette, sunLight } from "../sun-light"
+import { darkness, type SkyColors, sunLight, warmth } from "../sun-light"
 import { mixHex } from "../time-tint"
 import { type RoofLight, roofMeshOf } from "./layer"
 import { ROOF_TONES } from "./plan"
+import { GRAVEL_TONES, PLASTER_TONES } from "./writer"
 
 type Rgb = readonly [number, number, number]
 
 export interface RoofPaint {
   readonly pitched: readonly string[]
+  readonly gravel: readonly string[]
+  readonly plaster: readonly string[]
   readonly steel: string
   readonly wall: string
   readonly brick: string
@@ -18,10 +21,13 @@ export interface RoofPaint {
 
 const MIN_LIGHT_ALTITUDE = 5
 const DAY_LIGHT = 0.5
+const LOW_LIGHT = 0.82
 const NIGHT_LIGHT = 0.08
 const DAY_AMBIENT = 0.66
+const LOW_AMBIENT = 0.6
 const NIGHT_AMBIENT = 0.6
 const SKY_SHARE = 0.3
+const LOW_SKY_SHARE = 0.55
 
 function rgb(hex: string): Rgb {
   const value = Number.parseInt(hex.replace("#", ""), 16)
@@ -41,17 +47,24 @@ export function sunVector(azimuth: number, altitude: number): Rgb {
 
 export function roofLight(paint: RoofPaint): RoofLight {
   const night = darkness(paint.altitude)
+  const warm = warmth(paint.altitude)
   const sun = sunLight(paint.sky, paint.azimuth, paint.altitude)
-  const tones = Array.from(
-    { length: ROOF_TONES },
-    (_, index) => paint.pitched[index % Math.max(1, paint.pitched.length)] ?? paint.wall,
-  )
-  const ambient = mixHex("#ffffff", skyPalette(paint.sky, paint.altitude).horizon, SKY_SHARE)
+  const cycle = (list: readonly string[], length: number) =>
+    Array.from({ length }, (_, index) => list[index % Math.max(1, list.length)] ?? paint.wall)
+  const ambient = mixHex("#ffffff", paint.sky.sky, SKY_SHARE + (LOW_SKY_SHARE - SKY_SHARE) * warm)
+  const day = DAY_LIGHT + (LOW_LIGHT - DAY_LIGHT) * warm
+  const shade = DAY_AMBIENT + (LOW_AMBIENT - DAY_AMBIENT) * warm
   return {
-    palette: [...tones, paint.steel, paint.wall, paint.brick].map(rgb),
+    palette: [
+      ...cycle(paint.pitched, ROOF_TONES),
+      paint.steel,
+      paint.brick,
+      ...cycle(paint.gravel, GRAVEL_TONES),
+      ...cycle(paint.plaster, PLASTER_TONES),
+    ].map(rgb),
     sun: sunVector(paint.azimuth, paint.altitude),
-    light: scaled(rgb(sun.color), DAY_LIGHT + (NIGHT_LIGHT - DAY_LIGHT) * night),
-    ambient: scaled(rgb(ambient), DAY_AMBIENT + (NIGHT_AMBIENT - DAY_AMBIENT) * night),
+    light: scaled(rgb(sun.color), day + (NIGHT_LIGHT - day) * night),
+    ambient: scaled(rgb(ambient), shade + (NIGHT_AMBIENT - shade) * night),
   }
 }
 

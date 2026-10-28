@@ -1,8 +1,9 @@
 import { type FlatBox, writeHousings, writeParapet } from "./flat"
 import { type Local, type LocalFrame, localFrame } from "./frame"
-import { planRoof } from "./plan"
+import { planRoof, seedOf } from "./plan"
 import { writeRoof } from "./shapes"
-import { RoofWriter } from "./writer"
+import { writeCap, writeWalls } from "./walls"
+import { GRAVEL_TONE, GRAVEL_TONES, PLASTER_TONE, PLASTER_TONES, RoofWriter } from "./writer"
 
 type LonLat = readonly [number, number]
 
@@ -13,13 +14,17 @@ export interface RoofInput {
   readonly height: number
   readonly levels: number | null
   readonly ground: number
+  readonly bodies: readonly (readonly LonLat[])[]
 }
 
 export interface RoofMesh {
   readonly origin: LonLat
   readonly vertices: Float32Array
   readonly indices: Uint32Array
+  readonly covered: readonly string[]
 }
+
+const IDENTITY = { center: [0, 0], major: [1, 0], minor: [0, 1] } as const
 
 const EARTH_CIRCUMFERENCE_M = 2 * Math.PI * 6371008.8
 const MAX_PITCHED_HEIGHT = 16
@@ -76,15 +81,35 @@ function writeFlat(writer: RoofWriter, input: RoofInput, ring: Local[], frame: L
   writeHousings(writer, flat)
 }
 
+function writeBodies(
+  writer: RoofWriter,
+  input: RoofInput,
+  bodies: readonly Local[][],
+  pitched: boolean,
+) {
+  writer.begin({ ...IDENTITY, base: input.ground }, 0)
+  const gravel = GRAVEL_TONE + ((seedOf(input.id) >>> 3) % GRAVEL_TONES)
+  let capped = true
+  for (const body of bodies) {
+    writeWalls(writer, body, input.height)
+    if (!pitched) capped = writeCap(writer, body, input.height, gravel) && capped
+  }
+  return bodies.length > 0 && capped
+}
+
 export function buildRoofMesh(inputs: readonly RoofInput[], origin: LonLat): RoofMesh {
   const project = projector(origin)
   const writer = new RoofWriter()
+  const covered: string[] = []
   for (const input of inputs) {
     if (input.height <= 0) continue
     const ring = project(input.ring)
     const frame = localFrame(ring, project(input.extra))
     if (!frame) continue
-    if (isPitched(input, frame)) {
+    const pitched = isPitched(input, frame)
+    writer.wall = PLASTER_TONE + (seedOf(input.id) % PLASTER_TONES)
+    if (writeBodies(writer, input, input.bodies.map(project), pitched)) covered.push(input.id)
+    if (pitched) {
       const plan = planRoof({
         id: input.id,
         length: frame.length,
@@ -107,5 +132,6 @@ export function buildRoofMesh(inputs: readonly RoofInput[], origin: LonLat): Roo
     origin,
     vertices: new Float32Array(writer.vertices),
     indices: new Uint32Array(writer.indices),
+    covered,
   }
 }

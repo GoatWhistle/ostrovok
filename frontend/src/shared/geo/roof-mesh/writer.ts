@@ -2,8 +2,12 @@ export type Point3 = readonly [number, number, number]
 
 export const ROOF_STRIDE = 8
 export const STEEL_TONE = 5
-export const WALL_TONE = 6
-export const BRICK_TONE = 7
+export const BRICK_TONE = 6
+export const GRAVEL_TONE = 7
+export const GRAVEL_TONES = 3
+export const PLASTER_TONE = 10
+export const PLASTER_TONES = 6
+export const PALETTE_SIZE = 16
 
 export interface RoofFrame2 {
   readonly center: readonly [number, number]
@@ -17,6 +21,7 @@ export class RoofWriter {
   readonly indices: number[] = []
   private frame: RoofFrame2 = { center: [0, 0], major: [1, 0], minor: [0, 1], base: 0 }
   private pivot: Point3 = [0, 0, 0]
+  wall = PLASTER_TONE
 
   begin(frame: RoofFrame2, rise: number) {
     this.frame = frame

@@ -2,6 +2,7 @@ import type { FeatureCollection } from "geojson"
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
 import { updateSource } from "../map-layers"
+import { MESH_FROM } from "../overview-buildings"
 
 export interface NightColors {
   readonly lamp: string
@@ -95,6 +96,26 @@ export function renderNightLights(map: MapLibreMap, night: number, colors: Night
   ])
 }
 
+const meshed = new WeakMap<MapLibreMap, readonly string[]>()
+
+export function sceneHeight(map: MapLibreMap, lift = 0): ExpressionSpecification {
+  const raised: ExpressionSpecification = ["+", ["get", "render_height_m"], lift]
+  const covered = meshed.get(map) ?? []
+  return [
+    "step",
+    ["zoom"],
+    raised,
+    MESH_FROM,
+    ["case", ["in", ["get", "building_id"], ["literal", [...covered]]], 0, raised],
+  ]
+}
+
+export function hideMeshedSceneVolumes(map: MapLibreMap, covered: readonly string[]) {
+  meshed.set(map, covered)
+  if (map.getLayer("scene-volumes"))
+    map.setPaintProperty("scene-volumes", "fill-extrusion-height", sceneHeight(map))
+}
+
 export function renderSceneVolumes(
   map: MapLibreMap,
   data: FeatureCollection,
@@ -120,7 +141,7 @@ export function renderSceneVolumes(
       filter,
       paint: {
         "fill-extrusion-color": color,
-        "fill-extrusion-height": ["get", "render_height_m"],
+        "fill-extrusion-height": sceneHeight(map),
         "fill-extrusion-base": ["get", "min_height_m"],
         "fill-extrusion-vertical-gradient": true,
         "fill-extrusion-opacity": 0.95,

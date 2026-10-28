@@ -1,5 +1,5 @@
 import type { RoofPlan } from "./plan"
-import { BRICK_TONE, type Point3, type RoofWriter, WALL_TONE } from "./writer"
+import { BRICK_TONE, type Point3, type RoofWriter } from "./writer"
 
 export interface RoofBox {
   readonly halfLength: number
@@ -22,7 +22,7 @@ function gableEnds(writer: RoofWriter, { halfLength: l, halfWidth: w }: RoofBox,
         [u, w, 0],
         [u, 0, top],
       ],
-      WALL_TONE,
+      writer.wall,
     )
 }
 
@@ -115,7 +115,7 @@ const halfHip: Writer = (writer, box, { rise, tone }) => {
         [side * l, inner, knee],
         [side * l, -inner, knee],
       ],
-      WALL_TONE,
+      writer.wall,
     )
   }
 }
@@ -144,7 +144,7 @@ const shed: Writer = (writer, box, { rise, tone }) => {
         [u, w, high],
         [u, -w, low],
       ],
-      WALL_TONE,
+      writer.wall,
     )
   writer.face(
     [
@@ -153,7 +153,7 @@ const shed: Writer = (writer, box, { rise, tone }) => {
       [l, w, high],
       [-l, w, high],
     ],
-    WALL_TONE,
+    writer.wall,
   )
 }
 

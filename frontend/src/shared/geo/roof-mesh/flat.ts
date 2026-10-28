@@ -1,5 +1,5 @@
 import { seedOf } from "./plan"
-import { type RoofWriter, STEEL_TONE, WALL_TONE } from "./writer"
+import { type RoofWriter, STEEL_TONE } from "./writer"
 
 type Ring = readonly (readonly [number, number])[]
 
@@ -42,7 +42,7 @@ export function writeParapet(writer: RoofWriter, ring: Ring) {
         [x2, y2, PARAPET],
         [x1, y1, PARAPET],
       ],
-      WALL_TONE,
+      writer.wall,
       [(outward * (y2 - y1)) / length, (outward * (x1 - x2)) / length, 0],
     )
   }
@@ -67,6 +67,6 @@ export function writeHousings(writer: RoofWriter, flat: FlatBox) {
     const size = 2.2 + ((seed >>> 20) % 10) / 6
     const corner = flat.toLocal(u, v)
     if (!inside(corner, flat.ring)) continue
-    writer.box(u, v, size, 0, 1.4 + (seed % 7) / 5, index === 0 ? WALL_TONE : STEEL_TONE)
+    writer.box(u, v, size, 0, 1.4 + (seed % 7) / 5, index === 0 ? writer.wall : STEEL_TONE)
   }
 }

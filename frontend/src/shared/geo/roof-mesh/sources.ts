@@ -9,6 +9,7 @@ export interface RoofCandidate {
   readonly geometry: { readonly type: string; readonly coordinates: unknown }
   readonly height: number
   readonly levels: number | null
+  readonly solid: boolean
 }
 
 const ESTIMATED_HEIGHT_M = 6.4
@@ -19,6 +20,12 @@ function outerRings(geometry: RoofCandidate["geometry"]): Ring[] {
   if (geometry.type === "MultiPolygon")
     return (geometry.coordinates as Ring[][]).map((polygon) => polygon[0] ?? [])
   return []
+}
+
+export function isSolid(geometry: RoofCandidate["geometry"]): boolean {
+  if (geometry.type === "Polygon") return (geometry.coordinates as Ring[]).length === 1
+  const polygons = geometry.coordinates as Ring[][]
+  return geometry.type === "MultiPolygon" && polygons.length === 1 && polygons[0]?.length === 1
 }
 
 function centroid(ring: Ring): LonLat {
@@ -47,6 +54,7 @@ export function tileCandidates(map: MapLibreMap, skip: ReadonlySet<string>): Roo
       geometry: feature.geometry as RoofCandidate["geometry"],
       height: number(feature.properties.height_m) ?? ESTIMATED_HEIGHT_M,
       levels: number(feature.properties.levels),
+      solid: isSolid(feature.geometry as RoofCandidate["geometry"]),
     })
     pieces.set(id, list)
   }
@@ -55,7 +63,8 @@ export function tileCandidates(map: MapLibreMap, skip: ReadonlySet<string>): Roo
     if (!first) return []
     if (rest.length === 0) return [first]
     const coordinates = list.flatMap((item) => outerRings(item.geometry).map((ring) => [ring]))
-    return [{ ...first, geometry: { type: "MultiPolygon", coordinates } }]
+    const solid = list.every((item) => item.solid)
+    return [{ ...first, solid, geometry: { type: "MultiPolygon", coordinates } }]
   })
 }
 
@@ -90,15 +99,16 @@ export function roofInputs(
     const middle = centroid(ring)
     const distance = Math.hypot((middle[0] - center[0]) * scale, middle[1] - center[1])
     const extra = rings.length > 1 ? rings.filter((item) => item !== ring).flat() : []
-    return [{ candidate, ring, extra, middle, distance }]
+    return [{ candidate, ring, rings, extra, middle, distance }]
   })
   placed.sort((left, right) => left.distance - right.distance)
-  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, extra, middle }) => ({
+  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, rings, extra, middle }) => ({
     id: candidate.id,
     ring,
     extra,
     height: candidate.height,
     levels: candidate.levels,
+    bodies: candidate.solid ? rings : [],
     ground: map.queryTerrainElevation([middle[0], middle[1]]) ?? 0,
   }))
 }

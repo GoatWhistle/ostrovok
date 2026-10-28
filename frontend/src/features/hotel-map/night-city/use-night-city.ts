@@ -93,7 +93,7 @@ export function useNightCity({
   const scene = useMapScene(request)
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
   const roofless = useMemo(() => [...textured], [textured])
-  useRoofMesh(mapRef, ready, scene.data, roofless, effects.roofs)
+  useRoofMesh(mapRef, ready, scene.data, roofless, excluded, effects.roofs)
   useEffect(() => {
     const map = mapRef.current
     const data = scene.data

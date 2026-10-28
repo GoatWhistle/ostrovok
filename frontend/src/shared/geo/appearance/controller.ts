@@ -95,6 +95,8 @@ export class MapAppearanceController {
       materials.trimTokens
         ? {
             pitched: colors,
+            gravel: flat,
+            plaster: resolve(materials.plasterTokens ?? [palette.building]),
             steel: tone(materials.trimTokens.steel),
             brick: tone(materials.trimTokens.brick),
             wall: tone(palette.building),

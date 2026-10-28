@@ -19,7 +19,7 @@ function box(width: number, depth: number, x = 0): [number, number][] {
 }
 
 function input(id: string, ring: [number, number][], height = 7): RoofInput {
-  return { id, ring, extra: [], height, levels: 2, ground: 12 }
+  return { id, ring, extra: [], height, levels: 2, ground: 12, bodies: [] }
 }
 
 function heights(vertices: Float32Array): number[] {
