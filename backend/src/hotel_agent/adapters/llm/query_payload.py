@@ -34,6 +34,26 @@ def valid_intent_value(value_type: ValueType, value: object) -> bool:
     return isinstance(value, bool | str | int | float)
 
 
+ANYWHERE_PHRASES = (
+    "город не важен",
+    "город неважен",
+    "по всей россии",
+    "где угодно",
+    "любой город",
+    "неважно где",
+    "не важно где",
+    "the city does not matter",
+    "search across russia",
+    "any city",
+    "anywhere in russia",
+)
+
+
+def says_anywhere(query: str) -> bool:
+    text = normalize(query)
+    return any(phrase in text for phrase in ANYWHERE_PHRASES)
+
+
 def nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest | None:
     key = text(raw, "osm_key")
     value = text(raw, "osm_value").strip().lower()
@@ -204,7 +224,7 @@ def parse_payload(
             if normalize(item) != location_fragment
         ),
         location_hint=optional_text(payload, "location_hint"),
-        anywhere=flag(payload, "anywhere"),
+        anywhere=flag(payload, "anywhere") or says_anywhere(query),
         nearby_objects=tuple(
             nearby_item
             for raw in items(payload, "nearby_objects")
@@ -226,7 +246,7 @@ def parse_payload(
             for raw in items(payload, "corrections")
             if (correction := query_correction(raw, query)) is not None
         ),
-        needs_clarification=flag(payload, "needs_clarification"),
+        needs_clarification=flag(payload, "needs_clarification") and not says_anywhere(query),
         wants_room=flag(payload, "wants_room"),
         room_preferences_unrestricted=flag(payload, "room_preferences_unrestricted"),
         budget=optional_text(payload, "budget"),
