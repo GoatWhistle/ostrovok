@@ -1,3 +1,4 @@
+import asyncio
 import json
 from dataclasses import replace
 from types import SimpleNamespace
@@ -9,6 +10,7 @@ from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import (
     RecommendationReview,
     recommendation_claim,
+    wave_width,
 )
 from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.agent.wish_evidence import wish_intent
@@ -99,7 +101,43 @@ async def test_rejected_first_batch_promotes_supported_candidates_from_the_next_
     )
     assert report.accepted_ids == ("12", "13")
     assert report.rejected_ids == tuple(str(i) for i in range(12))
-    assert llm.verify_evidence.await_count == 2
+    assert llm.verify_evidence.await_count == 3
+
+
+async def test_first_wave_reviews_small_batches_concurrently() -> None:
+    parsed, rows = candidates(30)
+    sizes: list[int] = []
+    running = 0
+    peak = 0
+
+    async def verify(context: str) -> tuple[EvidenceVerdict, ...]:
+        nonlocal running, peak
+        running += 1
+        peak = max(peak, running)
+        await asyncio.sleep(0)
+        running -= 1
+        records = json.loads(context)["records"]
+        sizes.append(len(records))
+        return tuple(
+            EvidenceVerdict(
+                record_id=row["record_id"], supported=True, quote="Double room on floor 2"
+            )
+            for row in records
+        )
+
+    llm = SimpleNamespace(verify_evidence=AsyncMock(side_effect=verify))
+    report = await RecommendationReview(SemanticReview(cast(LLMPort, llm), MagicMock())).check(
+        "двухместный", parsed, rows, 20
+    )
+    assert report.accepted_ids == tuple(str(i) for i in range(24))
+    assert sizes == [6] * 4
+    assert peak == 4
+
+
+def test_wave_width_keeps_the_reviewed_span_of_whole_dozens() -> None:
+    assert wave_width(20, 6) == 4
+    assert wave_width(2, 6) == 2
+    assert wave_width(20, 12) == 2
 
 
 async def test_candidate_budget_does_not_let_unreviewed_hotels_into_the_approved_ids() -> None:
