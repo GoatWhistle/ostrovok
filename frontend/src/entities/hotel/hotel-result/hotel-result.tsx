@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui"
 import { HotelRating } from "../hotel-rating/hotel-rating"
 import { HotelStars } from "../hotel-stars/hotel-stars"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
-import { MatchScore, matchScore } from "../match-score/match-score"
+import { MatchConfidence, MatchScore, matchScore } from "../match-score/match-score"
 import { OfferPreview } from "../offer-preview/offer-preview"
 import { HotelMatches } from "./hotel-matches"
 import styles from "./hotel-result.module.css"
@@ -21,12 +21,20 @@ export interface HotelResultProps {
 }
 
 export function HotelResult({ result, ...props }: HotelResultProps) {
-  return <HotelSummaryCard hotel={result.hotel} matched={result.matched} {...props} />
+  return (
+    <HotelSummaryCard
+      hotel={result.hotel}
+      matched={result.matched}
+      confidence={result.confidence}
+      {...props}
+    />
+  )
 }
 
 interface HotelSummaryCardProps extends Omit<HotelResultProps, "result"> {
   readonly hotel: HotelSummary
   readonly matched: readonly MatchedProperty[]
+  readonly confidence?: number | undefined
   readonly onRooms?: () => void
   readonly idPrefix?: string
 }
@@ -34,6 +42,7 @@ interface HotelSummaryCardProps extends Omit<HotelResultProps, "result"> {
 export function HotelSummaryCard({
   hotel,
   matched,
+  confidence,
   selected,
   index,
   onSelect,
@@ -71,6 +80,7 @@ export function HotelSummaryCard({
             {hotel.name}
           </Button>
           <MatchScore score={matchScore({ matched })} quiet />
+          <MatchConfidence value={confidence} />
         </div>
         <div className={styles.meta}>
           <HotelStars value={hotel.stars ?? preview.stars} />
