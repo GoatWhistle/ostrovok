@@ -1,37 +1,42 @@
 .provenance {
   display: grid;
-  gap: var(--space-12);
+  gap: var(--space-16);
   padding-block: var(--space-8);
 }
 
-.list {
-  composes: captionText from "../../../shared/styles/compose.module.css";
+.list,
+.technical {
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-8) var(--space-12);
-  padding: var(--space-12);
-  border-radius: var(--radius-sm);
-  background-color: var(--surface-sunken);
-  color: var(--text-primary);
+  gap: var(--space-12);
 }
 
-.list dt {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  color: var(--text-muted);
-  font-weight: var(--weight-semibold);
-}
-
-.list dd {
-  align-self: center;
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-16);
   min-inline-size: 0;
+}
+
+.row dt {
+  color: var(--text-secondary);
+}
+
+.row dd {
+  min-inline-size: 0;
+  margin: 0;
   color: var(--text-primary);
   overflow-wrap: anywhere;
 }
 
-.mono {
-  composes: monoText from "../../../shared/styles/compose.module.css";
+.technical {
+  padding-block: var(--space-8);
+}
+
+.technical code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
 }
 
 .evidence {
@@ -44,10 +49,8 @@
 }
 
 .quote {
-  composes: secondaryText from "../../../shared/styles/compose.module.css";
-  padding: var(--space-8) var(--space-12);
-  border-radius: var(--radius-sm);
-  background-color: var(--surface-sunken);
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  margin: 0;
   overflow-wrap: anywhere;
 }
 

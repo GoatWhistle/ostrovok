@@ -10,6 +10,7 @@ import styles from "./fact-list.module.css"
 
 export interface FactListProps {
   readonly title?: string
+  readonly collapsible?: boolean
   readonly facts: readonly Fact[]
   readonly onFact: (fact: FactBrief) => void
 }
@@ -84,13 +85,13 @@ function useFactNotes(locale: Locale) {
   }
 }
 
-export function FactList({ facts, onFact, title: heading }: FactListProps) {
+export function FactList({ facts, onFact, title: heading, collapsible = false }: FactListProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const groups = groupFacts(facts)
   const factNotes = useFactNotes(locale)
   return (
-    <DetailsSection title={heading ?? t("explore:details.facts")}>
+    <DetailsSection title={heading ?? t("explore:details.facts")} collapsible={collapsible}>
       {groups.length ? (
         <ul className={styles.list}>
           {groups.map(({ fact, count }) => {

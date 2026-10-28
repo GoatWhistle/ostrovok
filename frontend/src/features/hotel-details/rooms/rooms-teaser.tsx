@@ -43,12 +43,12 @@ export function RoomsTeaser({
   return (
     <RowButton
       className={styles.teaser}
-      leading={
-        <span className={styles.teaserIcon}>
-          <Icon name="room" />
-        </span>
+      trailing={
+        <>
+          <Icon name="room" size="sm" className={styles.teaserIcon} />
+          <Icon name="chevron-right" size="sm" />
+        </>
       }
-      trailing={<Icon name="chevron-right" size="sm" />}
       onClick={onOpen}
     >
       <span className={styles.teaserTitle}>{t("explore:roomsScreen.title")}</span>

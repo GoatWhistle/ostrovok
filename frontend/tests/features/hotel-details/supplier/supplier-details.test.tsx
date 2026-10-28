@@ -1,6 +1,7 @@
 import { render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
+import { SupplierDescription } from "../../../../src/features/hotel-details/supplier/supplier-description"
 import { SupplierDetails } from "../../../../src/features/hotel-details/supplier/supplier-details"
 import type { components } from "../../../../src/shared/api/schema.gen"
 import { createI18n, LocaleProvider } from "../../../../src/shared/i18n"
@@ -109,6 +110,16 @@ function show(details: Details, wishes: readonly string[] = []) {
 }
 
 describe("supplier details", () => {
+  it("omits the description heading when the enclosing tab already names it", () => {
+    render(
+      <LocaleProvider instance={createI18n("ru")}>
+        <SupplierDescription sections={DETAILS.description} pattern={undefined} heading={false} />
+      </LocaleProvider>,
+    )
+    expect(screen.queryByText(ru.supplier.about)).toBeNull()
+    expect(screen.getByRole("button", { name: ru.supplier.showMore })).toBeTruthy()
+  })
+
   it("leaves the register record and the supplier page link out of the panel", () => {
     show(DETAILS)
     expect(screen.queryByText(/R232024007508/)).toBeNull()
@@ -116,14 +127,12 @@ describe("supplier details", () => {
     expect(screen.queryByRole("img")).toBeNull()
   })
 
-  it("lists the nearest five places first with supplier distances", async () => {
+  it("shows every nearby place immediately in distance order", () => {
     show(DETAILS)
     const places = screen.getByText("Pearl Beach").closest("ul") as HTMLElement
-    expect(within(places).getAllByRole("listitem")).toHaveLength(5)
+    expect(within(places).getAllByRole("listitem")).toHaveLength(6)
     expect(within(places).getAllByRole("listitem")[0]?.textContent).toContain(metres(168))
     expect(within(places).getByText(kilometres("1,4"))).toBeTruthy()
-    expect(screen.queryByText("Far Tower")).toBeNull()
-    await userEvent.click(screen.getByText(ru.supplier.moreNearby.replace("{{count}}", "1")))
     expect(screen.getByText("Far Tower")).toBeTruthy()
   })
 

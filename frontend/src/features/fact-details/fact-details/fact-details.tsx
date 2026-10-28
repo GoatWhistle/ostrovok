@@ -89,7 +89,7 @@ export function FactDetails({
           {review ? <FactCorrection fact={fact} /> : null}
           {fact.provenance ? (
             <Disclosure title={t("explore:details.provenance")} icon="source" defaultOpen={!review}>
-              <FactProvenance provenance={fact.provenance} conflicts={conflicts} />
+              <FactProvenance provenance={fact.provenance} conflicts={conflicts} fact={fact} />
             </Disclosure>
           ) : null}
           {fact.history?.length ? (

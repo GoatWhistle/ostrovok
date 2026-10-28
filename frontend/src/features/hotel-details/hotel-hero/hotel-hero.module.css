@@ -4,11 +4,9 @@
 }
 
 .title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4) var(--space-16);
+  display: grid;
+  justify-content: start;
+  gap: var(--space-8);
   margin-block-start: var(--space-4);
 }
 
@@ -23,6 +21,8 @@
 .name {
   composes: headingText from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
+  font-size: var(--font-size-heading-lg);
+  letter-spacing: var(--tracking-tight);
 }
 
 .badges {
@@ -59,12 +59,12 @@
 .address {
   composes: bodySmText from "../../../shared/styles/compose.module.css";
   display: inline-flex;
-  align-items: center;
+  align-items: start;
   gap: var(--space-6);
   max-inline-size: 100%;
-  margin-inline-start: auto;
+  margin-inline-start: 0;
   color: var(--text-secondary);
-  text-align: end;
+  text-align: start;
 }
 
 .address span {
@@ -86,16 +86,4 @@
 .fact {
   composes: bodySmText from "../../../shared/styles/compose.module.css";
   color: var(--text-secondary);
-}
-
-@media (max-width: 47.99rem) {
-  .title {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .address {
-    margin-inline-start: 0;
-    text-align: start;
-  }
 }

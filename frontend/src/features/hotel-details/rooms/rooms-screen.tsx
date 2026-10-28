@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react"
 import { StayFields } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useTranslation } from "@/shared/i18n"
-import { Button } from "@/shared/ui"
+import { Button, Disclosure } from "@/shared/ui"
+import { RoomList } from "../room-list/room-list"
 import { OfferState, offerRequest } from "./offer-state"
 import { RoomCatalog } from "./room-catalog"
 import styles from "./rooms.module.css"
@@ -22,11 +23,13 @@ export function RoomsScreen({
   hotelName,
   stay,
   onBack,
+  hotelRooms = [],
 }: {
   readonly hotelId: string
   readonly hotelName: string
   readonly stay?: Stay | undefined
   readonly onBack: () => void
+  readonly hotelRooms?: components["schemas"]["HotelCard"]["rooms"] | undefined
 }) {
   const { t } = useTranslation()
   const offers = useRoomOffers(hotelId, stay)
@@ -54,6 +57,7 @@ export function RoomsScreen({
         sandbox={Boolean(offers.current?.sandbox)}
         partial={Boolean(offers.priced && !offers.priced.rates_complete)}
       />
+      {!offers.rooms.length && hotelRooms.length ? <RoomList rooms={hotelRooms} /> : null}
       {offers.rooms.length ? (
         <RoomCatalog
           key={`${hotelId}:${offers.stayKey}`}
@@ -61,6 +65,11 @@ export function RoomsScreen({
           rooms={offers.rooms}
           content={offers.priced}
         />
+      ) : null}
+      {offers.rooms.length && hotelRooms.length ? (
+        <Disclosure title={t("explore:details.rooms")}>
+          <RoomList rooms={hotelRooms} />
+        </Disclosure>
       ) : null}
     </section>
   )

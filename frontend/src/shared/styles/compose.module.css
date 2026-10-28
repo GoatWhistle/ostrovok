@@ -21,6 +21,12 @@
   line-height: var(--line-height-body-sm);
 }
 
+.bodyMedium {
+  composes: bodySmText;
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
 .secondaryText {
   composes: bodySmText;
   color: var(--text-secondary);

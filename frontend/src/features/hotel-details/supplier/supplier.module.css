@@ -39,7 +39,7 @@
 }
 
 .top {
-  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  composes: plainList bodyMedium from "../../../shared/styles/compose.module.css";
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr));
   max-inline-size: var(--prose-measure);
@@ -74,7 +74,7 @@
 }
 
 .items {
-  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  composes: plainList bodyMedium from "../../../shared/styles/compose.module.css";
   display: grid;
   gap: var(--space-2);
 }
@@ -93,7 +93,7 @@
 }
 
 .places {
-  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  composes: plainList bodyMedium from "../../../shared/styles/compose.module.css";
   display: grid;
 }
 
@@ -102,7 +102,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-16);
-  padding-block: var(--space-6);
+  padding-block: var(--space-12);
 }
 
 .place + .place {
@@ -116,7 +116,12 @@
 
 .distance {
   flex: none;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-variant-numeric: var(--font-numeric);
   text-align: end;
+}
+
+.description {
+  display: grid;
+  gap: var(--space-8);
 }

@@ -26,6 +26,7 @@ export {
   type SegmentedProps,
 } from "./forms/segmented/segmented"
 export { Select, type SelectOption, type SelectProps } from "./forms/select/select"
+export { Tabs, type TabsProps } from "./forms/tabs/tabs"
 export { TextArea, TextField } from "./forms/text-field/text-field"
 export { Card, type CardProps } from "./layout/card/card"
 export { Disclosure, type DisclosureProps } from "./layout/disclosure/disclosure"

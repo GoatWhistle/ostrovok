@@ -1,7 +1,6 @@
 import { useHotelOffers, useHotelStay } from "@/entities/hotel"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Disclosure } from "@/shared/ui"
-import { DetailsSection } from "../details-section/details-section"
 import styles from "./hotel-facilities.module.css"
 
 const FACILITIES: Readonly<Record<string, MessageKey>> = {
@@ -20,11 +19,21 @@ const FACILITIES: Readonly<Record<string, MessageKey>> = {
   has_disabled_support: "explore:offers.facilities.accessibility",
 }
 interface HotelFacilitiesProps {
+  readonly open?: boolean | undefined
+  readonly onOpenChange?: ((open: boolean) => void) | undefined
+  readonly emptyText?: string
   readonly hotelId: string
   readonly facilitiesRu: readonly string[]
   readonly facilitiesEn: readonly string[]
 }
-export function HotelFacilities({ hotelId, facilitiesRu, facilitiesEn }: HotelFacilitiesProps) {
+export function HotelFacilities({
+  hotelId,
+  facilitiesRu,
+  facilitiesEn,
+  emptyText,
+  open,
+  onOpenChange,
+}: HotelFacilitiesProps) {
   const { locale } = useLocale()
   const { t } = useTranslation()
   const { value } = useHotelStay()
@@ -39,7 +48,7 @@ export function HotelFacilities({ hotelId, facilitiesRu, facilitiesEn }: HotelFa
         .filter(Boolean),
     ),
   ]
-  if (!facilities.length) return null
+  if (!facilities.length) return emptyText ? <p className={styles.source}>{emptyText}</p> : null
   const rows = (items: string[]) => (
     <ul className={styles.list}>
       {items.map((text) => (
@@ -48,17 +57,13 @@ export function HotelFacilities({ hotelId, facilitiesRu, facilitiesEn }: HotelFa
     </ul>
   )
   return (
-    <DetailsSection title={t("explore:details.facilities", { count: facilities.length })}>
-      <p className={styles.source}>{t("explore:offers.facilitiesNote")}</p>
-      {rows(facilities.slice(0, 4))}
-      {facilities.length > 4 ? (
-        <Disclosure
-          title={t("explore:cards.moreFacilities", { count: facilities.length - 4 })}
-          icon="check"
-        >
-          {rows(facilities.slice(4))}
-        </Disclosure>
-      ) : null}
-    </DetailsSection>
+    <Disclosure
+      icon="building"
+      title={t("explore:supplierAmenityGroup.general")}
+      open={open}
+      onOpenChange={onOpenChange}
+    >
+      {rows(facilities)}
+    </Disclosure>
   )
 }

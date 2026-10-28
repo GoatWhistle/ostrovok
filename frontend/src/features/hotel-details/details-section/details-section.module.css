@@ -24,3 +24,13 @@
 .hint {
   composes: captionText from "../../../shared/styles/compose.module.css";
 }
+
+.collapsible {
+  --disclosure-size: var(--font-size-body);
+  --disclosure-weight: var(--weight-bold);
+  --disclosure-leading: var(--line-height-subheading);
+  --disclosure-tracking: var(--tracking-tight);
+
+  padding-block-start: 0;
+  border-block-start: 0;
+}

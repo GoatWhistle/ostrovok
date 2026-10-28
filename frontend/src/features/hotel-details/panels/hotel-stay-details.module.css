@@ -1,0 +1,31 @@
+.list {
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.details {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.stay {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin: 0;
+}
+
+.label {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
+.time {
+  margin: 0;
+  margin-block-start: var(--space-4);
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+}

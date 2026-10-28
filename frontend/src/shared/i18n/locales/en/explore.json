@@ -134,7 +134,7 @@
     "openAllDay": " with 24-hour opening",
     "walkEvidence": "Shortest route on the OSM walking network to the coast",
     "genericEvidence": "Supported by data for this hotel",
-    "supplierEvidence": "Listed in the hotel's supplier catalogue",
+    "supplierEvidence": "Listed in the hotel profile",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "north": "Face north",
@@ -261,17 +261,16 @@
     "fullBoard": "full board",
     "allInclusive": "all inclusive",
     "unknownMeal": "terms to confirm",
-    "providerUnavailable": "Live room availability is not connected to a supplier yet.",
-    "hotelUnmapped": "This hotel has not been matched to the supplier catalogue yet. Availability is unknown.",
-    "providerError": "Could not check availability with the supplier. Try again later.",
+    "providerUnavailable": "Live room availability is currently unavailable.",
+    "hotelUnmapped": "Availability information is not available for this hotel yet.",
+    "providerError": "Could not check room availability. Try again later.",
     "requestError": "Could not load room offers.",
     "presetWeekend": "This weekend",
     "presetWeek": "In a week, 2 nights",
-    "noOffers": "The supplier returned no offers for these dates and guests. Availability is unknown.",
-    "sandbox": "Supplier test data. Prices and availability are not confirmed for booking.",
+    "noOffers": "No offers were found for these dates and guests. Availability is not confirmed.",
+    "sandbox": "Test data. Prices and availability are not confirmed for booking.",
     "viewRooms": "Rooms and prices",
     "fromPrice": "From {{price}}",
-    "facilitiesNote": "Hotel facilities are not necessarily included in the room rate.",
     "nonSmoking": "Non-smoking",
     "facilities": {
       "internet": "Internet",
@@ -291,8 +290,7 @@
   },
   "details": {
     "summaryStars": "Category: {{count}} stars",
-    "rooms": "Known room categories",
-    "facilities": "Hotel facilities ({{count}})",
+    "rooms": "Room details",
     "roomCapacity": "Up to {{count}} adults",
     "roomFloor": "Floors: {{min}}–{{max}}",
     "roomPriceUnknown": "Price unavailable",
@@ -338,7 +336,9 @@
     "conflict": {
       "accepted": "Accepted",
       "rejected": "Rejected"
-    }
+    },
+    "technical": "Technical details",
+    "sourceConfidence": "Source confidence"
   },
   "status": {
     "active": "Current",
@@ -362,7 +362,7 @@
     "open_meteo": "Open-Meteo",
     "hotelier": "Hotelier",
     "llm_extraction": "Extracted from a source",
-    "supplier": "Supplier catalog"
+    "supplier": "Hotel listing"
   },
   "hotelier": {
     "description": "Clarify information about your hotel. Your answer becomes a fact with its source and date.",
@@ -592,11 +592,9 @@
     "showLess": "Show less",
     "amenities": "Services and amenities",
     "allAmenities": "All amenities ({{count}})",
-    "amenitiesNote": "The supplier list. Confirm terms and fees with the hotel.",
+    "amenitiesNote": "Confirm terms and fees with the hotel.",
     "free": "free",
     "nearby": "Near the hotel",
-    "nearbyNote": "Distances reported by the supplier",
-    "moreNearby": "{{count}} more",
     "metres": "{{value}} m",
     "kilometres": "{{value}} km",
     "wishTopics": {
@@ -687,7 +685,6 @@
     "toFloor": "Up to floor {{value, number}}",
     "noConfirmedWishes": "No confirmed matches yet",
     "moreWishes": "Other wishes: {{count}}",
-    "moreFacilities": "More facilities: {{count}}",
     "allEvidence": "All facts and sources",
     "views": "Views and surroundings",
     "catalogPrice": "Catalog price, dates not checked: {{amount, number}} {{currency}}",
@@ -917,6 +914,49 @@
     "privateBeach": "Private beach",
     "tourDesk": "Tour desk",
     "english": "English",
-    "russian": "Russian"
+    "russian": "Russian",
+    "atm": "ATM",
+    "shops": "Shops",
+    "dishwasher": "Dishwasher",
+    "cafe": "Cafe",
+    "kitchen": "Kitchen",
+    "sharedKitchen": "Shared kitchen",
+    "microwave": "Microwave"
+  },
+  "hotelCard": {
+    "tabs": "Hotel sections",
+    "about": "About",
+    "nearby": "Nearby",
+    "amenities": "Amenities",
+    "paid": "Paid services",
+    "periodUnknown": "Charging period not specified",
+    "petsService": "Stay with a pet",
+    "nearbyEmpty": "Nearby places have not been provided yet",
+    "amenitiesEmpty": "Amenities have not been provided yet",
+    "supplierDescription": "Description",
+    "buildingDetails": "Building details",
+    "descriptionTitles": {
+      "nearby": ["Location", "Nearby", "Surroundings"],
+      "amenities": [
+        "At the hotel",
+        "At the hostel",
+        "At the apart-hotel",
+        "At the apartment",
+        "At the guest house",
+        "At the resort",
+        "Services and amenities",
+        "Amenities",
+        "At the sanatorium",
+        "At the inn",
+        "At the complex"
+      ],
+      "rooms": ["In the room", "Rooms", "Room amenities"]
+    },
+    "stayConditions": "Stay conditions",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "fromTime": "from {{time}}",
+    "untilTime": "by {{time}}",
+    "amenityNotes": "Conditions and details"
   }
 }

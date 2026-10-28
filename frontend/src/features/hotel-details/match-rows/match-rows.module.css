@@ -30,8 +30,7 @@
 }
 
 .label {
-  composes: bodyStrong from "../../../shared/styles/compose.module.css";
-  color: var(--text-primary);
+  composes: bodyMedium from "../../../shared/styles/compose.module.css";
 }
 
 .note {

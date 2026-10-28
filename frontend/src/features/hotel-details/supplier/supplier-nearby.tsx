@@ -1,13 +1,9 @@
-import { useId, useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button } from "@/shared/ui"
 import { DetailsSection } from "../details-section/details-section"
 import styles from "./supplier.module.css"
 
 type Place = components["schemas"]["SupplierNearbyPlace"]
-
-const VISIBLE = 5
 
 function useDistance() {
   const { t } = useTranslation()
@@ -34,30 +30,20 @@ function Places({ places, id }: { readonly places: readonly Place[]; readonly id
   )
 }
 
-export function SupplierNearby({ places }: { readonly places: readonly Place[] }) {
+export function SupplierNearby({
+  places,
+  heading = true,
+}: {
+  readonly places: readonly Place[]
+  readonly heading?: boolean
+}) {
   const { t } = useTranslation()
-  const id = useId()
-  const [open, setOpen] = useState(false)
   if (!places.length) return null
   const sorted = [...places].sort((a, b) => a.distance_m - b.distance_m)
-  const rest = sorted.length - VISIBLE
-  return (
-    <DetailsSection title={t("explore:supplier.nearby")} hint={t("explore:supplier.nearbyNote")}>
-      <Places id={id} places={open ? sorted : sorted.slice(0, VISIBLE)} />
-      {rest > 0 ? (
-        <Button
-          variant="ghost"
-          size="compact"
-          className={styles.more}
-          aria-expanded={open}
-          aria-controls={id}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open
-            ? t("explore:supplier.showLess")
-            : t("explore:supplier.moreNearby", { count: rest })}
-        </Button>
-      ) : null}
-    </DetailsSection>
+  const content = <Places places={sorted} />
+  return heading ? (
+    <DetailsSection title={t("explore:supplier.nearby")}>{content}</DetailsSection>
+  ) : (
+    content
   )
 }

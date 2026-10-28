@@ -81,8 +81,8 @@
 
 @media (max-width: 47.99rem) {
   .cover {
-    margin-block-start: calc(-1 * var(--space-16));
-    margin-inline: calc(-1 * var(--space-16));
+    margin-block-start: calc(-1 * var(--space-24));
+    margin-inline: calc(-1 * var(--space-24));
     touch-action: pan-y;
   }
 

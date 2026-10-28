@@ -3,20 +3,12 @@ import { useId } from "react"
 import { useHotel, useHotelDetails } from "@/entities/hotel"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
-import { isAvailableFact } from "@/shared/geo/facts/matching"
 import { useTranslation } from "@/shared/i18n"
-import { Banner, Button, Disclosure, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
-import { ConflictValues } from "../conflict-values/conflict-values"
-import { FactList } from "../fact-list/fact-list"
-import { FactSources } from "../fact-sources/fact-sources"
-import { HotelFacilities } from "../hotel-facilities/hotel-facilities"
+import { Button, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
 import { HotelHero } from "../hotel-hero/hotel-hero"
-import { MatchRows } from "../match-rows/match-rows"
-import { RoomList } from "../room-list/room-list"
+import { HotelCardPanels } from "../panels/hotel-card-panels"
 import { RoomsScreen } from "../rooms/rooms-screen"
-import { RoomsTeaser } from "../rooms/rooms-teaser"
 import { useRoomsScreen } from "../rooms/use-rooms-screen"
-import { SupplierDetails } from "../supplier/supplier-details"
 import styles from "./hotel-details.module.css"
 
 export interface HotelDetailsProps {
@@ -25,7 +17,7 @@ export interface HotelDetailsProps {
   readonly stay?: components["schemas"]["SearchResponse"]["parsed"] | undefined
   readonly onProperty?: ((property: MatchedProperty) => void) | undefined
   readonly onFact: (fact: FactBrief) => void
-  readonly onPreview?: (property: MatchedProperty | undefined) => void
+  readonly onPreview?: ((property: MatchedProperty | undefined) => void) | undefined
   readonly className?: string | undefined
 }
 
@@ -92,11 +84,6 @@ export function HotelDetails({
       />
     )
   const card = hotel.data
-  const rooms = card.rooms ?? []
-  const views = card.facts.filter(
-    (fact) =>
-      fact.characteristic_key === "sunset_view" || fact.characteristic_key.startsWith("spatial:"),
-  )
   if (roomsScreen.open)
     return (
       <article ref={roomsScreen.top} className={clsx(styles.details, className)}>
@@ -105,6 +92,7 @@ export function HotelDetails({
           hotelName={card.hotel.name}
           stay={stay}
           onBack={roomsScreen.hide}
+          hotelRooms={card.rooms}
         />
       </article>
     )
@@ -120,61 +108,19 @@ export function HotelDetails({
         supplier={supplier}
         source={catalog.data?.source}
         titleId={titleId}
+        compact
       />
-      <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
-      {matched.length ? (
-        <MatchRows
-          matched={matched}
-          onProperty={onProperty}
-          onFact={onFact}
-          onPreview={onPreview}
-        />
-      ) : (
-        <FactList
-          facts={card.facts.filter(
-            (fact) => isAvailableFact(fact) && !fact.characteristic_key.startsWith("derived:"),
-          )}
-          onFact={onFact}
-        />
-      )}
-      {rooms.length ? (
-        <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
-          <RoomList rooms={rooms} />
-        </Disclosure>
-      ) : null}
-      {views.length ? (
-        <FactList title={t("explore:cards.views")} facts={views} onFact={onFact} />
-      ) : null}
-      {supplier ? (
-        <SupplierDetails details={supplier} wishes={matched.map((item) => item.label)} />
-      ) : null}
-      {supplier?.amenity_groups.length ? null : (
-        <HotelFacilities
-          hotelId={card.hotel.id}
-          facilitiesRu={card.facilities_ru ?? []}
-          facilitiesEn={card.facilities_en ?? []}
-        />
-      )}
-      <div className={styles.sources}>
-        <Disclosure title={t("explore:cards.allEvidence")} icon="source">
-          {card.conflicts?.length ? (
-            <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
-              {t("explore:details.conflictsText")}
-              <ConflictValues conflicts={card.conflicts} facts={card.facts} />
-            </Banner>
-          ) : null}
-          {card.stale_count ? (
-            <Banner
-              tone="neutral"
-              icon="stale"
-              title={t("explore:details.staleCount", { count: card.stale_count })}
-            >
-              {t("explore:details.staleText")}
-            </Banner>
-          ) : null}
-          <FactSources facts={card.facts} onFact={onFact} />
-        </Disclosure>
-      </div>
+      <HotelCardPanels
+        key={card.hotel.id}
+        card={card}
+        supplier={supplier}
+        matched={matched}
+        stay={stay}
+        onProperty={onProperty}
+        onFact={onFact}
+        onPreview={onPreview}
+        onRooms={roomsScreen.show}
+      />
       <RoomsDock available={catalog.data?.status === "available"} onOpen={roomsScreen.show} />
     </article>
   )

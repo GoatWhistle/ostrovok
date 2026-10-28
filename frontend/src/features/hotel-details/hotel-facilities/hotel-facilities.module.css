@@ -1,11 +1,22 @@
 .list {
-  composes: plainList from "../../../shared/styles/compose.module.css";
+  composes: plainList bodyMedium from "../../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-8);
   overflow-wrap: anywhere;
 }
 
 .source {
   composes: bodySmText from "../../../shared/styles/compose.module.css";
   margin: 0 0 var(--space-8);
+}
+
+.list > li {
+  font-size: var(--font-size-label);
+
+  display: flex;
+  align-items: center;
+  min-block-size: var(--target-min);
+}
+
+.list > li + li {
+  border-block-start: var(--hairline) solid var(--border-subtle);
 }

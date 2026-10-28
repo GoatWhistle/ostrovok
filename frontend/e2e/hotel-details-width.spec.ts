@@ -56,16 +56,7 @@ async function openDetails(page: Page, url: string) {
   await page.goto(url, { waitUntil: "domcontentloaded" })
   const article = page.locator("article[aria-labelledby]").filter({ visible: true }).first()
   await expect(article).toBeVisible()
-  await expect(article.getByText(`${LONG} point 0`)).toBeVisible()
-  for (const name of [
-    copy.supplier.showMore,
-    copy.supplier.allAmenities.split(" (")[0] ?? "",
-    copy.supplier.moreNearby.split(" ")[0] ?? "",
-    copy.cards.allEvidence,
-  ]) {
-    await article.locator("button[aria-expanded='false']", { hasText: name }).first().click()
-  }
-  await expect(article.locator("button[aria-expanded='false']")).toHaveCount(0)
+  await expect(article.getByRole("tablist", { name: copy.hotelCard.tabs })).toBeVisible()
   return article
 }
 
@@ -92,8 +83,40 @@ for (const [width, path] of [
 ] as const) {
   test(`hotel details never scroll sideways at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 })
-    await openDetails(page, path)
-    await expect.poll(() => overflow(page)).toEqual({ extra: 0, wider: expect.any(Number) })
-    expect((await overflow(page)).wider).toBeLessThanOrEqual(1)
+    const article = await openDetails(page, path)
+    const tabs = article.getByRole("tablist", { name: copy.hotelCard.tabs })
+    for (const panel of [copy.hotelCard.nearby, copy.hotelCard.amenities, copy.hotelCard.about]) {
+      await tabs.getByRole("tab", { name: panel, exact: true }).click()
+      if (panel === copy.hotelCard.nearby) {
+        await expect(article.getByText(`${LONG} point 0`)).toBeVisible()
+        await expect(
+          article.getByRole("button", { name: copy.hotelCard.supplierDescription }),
+        ).toHaveCount(0)
+        await expect(article.getByText(`${LONG} point 8`)).toBeVisible()
+      }
+      if (panel === copy.hotelCard.amenities) {
+        const categories = article.locator("[data-amenity-group]")
+        let total = 0
+        for (const [index, group] of DETAILS.details.amenity_groups.entries()) {
+          const category = categories.nth(index)
+          await category.getByRole("button").first().click()
+          await expect(category.getByRole("listitem")).toHaveCount(group.amenities.length)
+          total += await category.getByRole("listitem").count()
+          await expect.poll(() => overflow(page)).toEqual({ extra: 0, wider: expect.any(Number) })
+        }
+        expect(total).toBe(Object.values(copy.supplierAmenity).length + 48)
+      }
+      if (panel === copy.hotelCard.about) {
+        await article.getByRole("button", { name: copy.hotelCard.supplierDescription }).click()
+        await expect(
+          article.getByText(`${LONG}. ${"A quiet place near the shore. ".repeat(12)}`, {
+            exact: true,
+          }),
+        ).toBeVisible()
+        await article.getByRole("button", { name: copy.cards.allEvidence }).click()
+      }
+      await expect.poll(() => overflow(page)).toEqual({ extra: 0, wider: expect.any(Number) })
+      expect((await overflow(page)).wider).toBeLessThanOrEqual(1)
+    }
   })
 }

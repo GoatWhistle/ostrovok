@@ -1,0 +1,75 @@
+.amenities {
+  display: grid;
+}
+
+.group {
+  --disclosure-size: var(--font-size-body);
+  --disclosure-weight: var(--weight-bold);
+
+  min-inline-size: 0;
+  padding-block: var(--space-4);
+}
+
+.group + .group {
+  border-block-start: var(--hairline) solid var(--border-subtle);
+}
+
+.list {
+  composes: plainList bodyMedium from "../../../shared/styles/compose.module.css";
+  --disclosure-size: var(--font-size-label);
+  --disclosure-weight: var(--weight-semibold);
+
+  display: grid;
+}
+
+.item {
+  display: grid;
+  align-content: center;
+  min-block-size: var(--target-min);
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.item + .item {
+  border-block-start: var(--hairline) solid var(--border-subtle);
+}
+
+.name {
+  composes: bodyMedium from "../../../shared/styles/compose.module.css";
+  padding-block: var(--space-12);
+  min-inline-size: 0;
+}
+
+.description {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+  font-weight: var(--weight-regular);
+}
+
+.notes {
+  display: grid;
+  gap: var(--space-12);
+  padding-block: var(--space-4) var(--space-8);
+}
+
+.face {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-inline-size: 0;
+}
+
+.itemIcon {
+  color: var(--text-secondary);
+}
+
+.amenities .list {
+  padding-inline-start: 0;
+}
+
+.list .name {
+  font-size: var(--font-size-label);
+  font-weight: var(--weight-semibold);
+}
