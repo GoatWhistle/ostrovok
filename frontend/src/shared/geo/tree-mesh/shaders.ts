@@ -1,3 +1,12 @@
+import { PICK_SPREAD } from "./instances"
+import { MIN_KEEP } from "./selection"
+
+const EDGE = `
+uniform vec2 u_reach;
+float edgeFade(vec2 at) {
+  return 1.0 - smoothstep(u_reach.y * 0.86, u_reach.y, length(at));
+}`
+
 export const TREE_VERTEX = `#version 300 es
 in vec3 a_position;
 in vec3 a_normal;
@@ -8,20 +17,29 @@ in float a_tone;
 in float a_spin;
 uniform mat4 u_matrix;
 uniform float u_grow;
+uniform vec3 u_camera;
+${EDGE}
 out vec3 v_normal;
 out float v_tone;
 out float v_part;
 out float v_level;
 void main() {
-  float c = cos(a_spin);
-  float s = sin(a_spin);
-  vec3 p = a_position * a_size * u_grow;
-  vec2 r = vec2(c * p.x - s * p.y, s * p.x + c * p.y);
-  v_normal = vec3(c * a_normal.x - s * a_normal.y, s * a_normal.x + c * a_normal.y, a_normal.z);
-  gl_Position = u_matrix * vec4(a_offset.xy + r, a_offset.z + p.z, 1.0);
+  float edge = edgeFade(a_offset.xy);
+  float keep = clamp(u_reach.x / max(distance(a_offset, u_camera), 1.0), ${MIN_KEEP}, 1.0);
   v_tone = a_tone;
   v_part = a_part;
   v_level = a_position.z;
+  v_normal = vec3(0.0, 0.0, 1.0);
+  if (edge <= 0.0 || fract(a_spin * ${PICK_SPREAD}) >= keep) {
+    gl_Position = vec4(0.0, 0.0, 2.0, 1.0);
+    return;
+  }
+  float c = cos(a_spin);
+  float s = sin(a_spin);
+  vec3 p = a_position * a_size * u_grow * edge * min(inversesqrt(keep), 1.7);
+  vec2 r = vec2(c * p.x - s * p.y, s * p.x + c * p.y);
+  v_normal = vec3(c * a_normal.x - s * a_normal.y, s * a_normal.x + c * a_normal.y, a_normal.z);
+  gl_Position = u_matrix * vec4(a_offset.xy + r, a_offset.z + p.z, 1.0);
 }`
 
 export const TREE_FRAGMENT = `#version 300 es
@@ -55,12 +73,13 @@ uniform mat4 u_matrix;
 uniform vec2 u_direction;
 uniform float u_length;
 uniform float u_grow;
+${EDGE}
 out vec2 v_corner;
 void main() {
   vec2 side = vec2(-u_direction.y, u_direction.x);
-  float radius = a_size * 0.32 * u_grow;
+  float radius = a_size * 0.32 * u_grow * edgeFade(a_offset.xy);
   vec2 local = a_corner.x * side * radius + a_corner.y * u_direction * radius * (1.0 + u_length);
-  vec2 center = u_direction * a_size * 0.45 * u_length * u_grow;
+  vec2 center = u_direction * radius * 1.40625 * u_length;
   gl_Position = u_matrix * vec4(a_offset.xy + center + local, a_offset.z + 0.2, 1.0);
   v_corner = a_corner;
 }`

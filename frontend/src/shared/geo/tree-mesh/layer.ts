@@ -5,54 +5,26 @@ import {
   MercatorCoordinate,
 } from "maplibre-gl"
 import { linkProgram } from "../textured-building/material"
-import { broadleaf, bush, conifer, SHADOW_QUAD, TREE_STRIDE } from "./geometry"
+import { SHADOW_QUAD } from "./geometry"
+import { type ChunkedTrees, chunkTrees, INSTANCE_STRIDE, type TreeInstances } from "./instances"
+import { createKind, deleteKind, type Kind, uploadInstances } from "./kind"
+import { TreeSelection } from "./selection"
 import { SHADOW_FRAGMENT, SHADOW_VERTEX, TREE_FRAGMENT, TREE_VERTEX } from "./shaders"
-import { type TreeLight, treeUniforms } from "./uniforms"
+import { type TreeLight, treeUniforms, type Uniforms, uniformsOf } from "./uniforms"
+import { cameraOf, focalOf, localMatrix } from "./view"
 
+export { INSTANCE_STRIDE, type TreeInstances }
 export const TREE_LAYER = "tree-mesh"
-export const INSTANCE_STRIDE = 6
-const KINDS = [broadleaf, conifer, bush] as const
+const TREE_METRES = 10
+const NEAR_PX = 14
+const THIN_PX = 3.2
 const layers = new WeakMap<MapLibreMap, TreeLayer>()
 
-export interface TreeInstances {
-  readonly origin: readonly [number, number]
-  readonly kinds: readonly Float32Array[]
-}
-
-interface Kind {
-  readonly mesh: WebGLBuffer
-  readonly vertices: number
-  readonly tree: WebGLVertexArrayObject
-  readonly shadow: WebGLVertexArrayObject
-  readonly instances: WebGLBuffer
-  count: number
-}
-
-interface Attribute {
-  readonly name: string
-  readonly size: number
-  readonly stride: number
-  readonly offset: number
-  readonly divisor?: number
-}
-
-function bind(gl: WebGL2RenderingContext, program: WebGLProgram, attribute: Attribute) {
-  const location = gl.getAttribLocation(program, attribute.name)
-  if (location < 0) return
-  gl.enableVertexAttribArray(location)
-  gl.vertexAttribPointer(
-    location,
-    attribute.size,
-    gl.FLOAT,
-    false,
-    attribute.stride * 4,
-    attribute.offset * 4,
-  )
-  gl.vertexAttribDivisor(location, attribute.divisor ?? 0)
-}
-
-function instanced(name: string, size: number, offset: number): Attribute {
-  return { name, size, stride: INSTANCE_STRIDE, offset, divisor: 1 }
+interface Programs {
+  readonly trees: WebGLProgram
+  readonly shadows: WebGLProgram
+  readonly treeAt: Uniforms
+  readonly shadowAt: Uniforms
 }
 
 export class TreeLayer implements CustomLayerInterface {
@@ -61,12 +33,15 @@ export class TreeLayer implements CustomLayerInterface {
   readonly renderingMode = "3d"
   private map: MapLibreMap | undefined
   private gl: WebGL2RenderingContext | undefined
-  private trees: WebGLProgram | undefined
-  private shadows: WebGLProgram | undefined
+  private programs: Programs | undefined
   private quad: WebGLBuffer | null = null
   private kinds: Kind[] = []
-  private origin: readonly [number, number] = [0, 0]
-  private pending: TreeInstances | undefined
+  private origin = { x: 0, y: 0, scale: 1 }
+  private chunked: ChunkedTrees | undefined
+  private uploaded = false
+  private readonly selection = new TreeSelection()
+  private readonly matrix = new Float32Array(16)
+  private palette = new Float32Array(18)
   private grow = 0
   private lighting: TreeLight | undefined
 
@@ -74,57 +49,47 @@ export class TreeLayer implements CustomLayerInterface {
     this.map = map
     this.gl = gl
     layers.set(map, this)
-    this.trees = linkProgram(gl, TREE_VERTEX, TREE_FRAGMENT)
-    this.shadows = linkProgram(gl, SHADOW_VERTEX, SHADOW_FRAGMENT)
+    const trees = linkProgram(gl, TREE_VERTEX, TREE_FRAGMENT)
+    const shadows = linkProgram(gl, SHADOW_VERTEX, SHADOW_FRAGMENT)
+    this.programs = {
+      trees,
+      shadows,
+      treeAt: uniformsOf(gl, trees),
+      shadowAt: uniformsOf(gl, shadows),
+    }
     this.quad = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, this.quad)
     gl.bufferData(gl.ARRAY_BUFFER, SHADOW_QUAD, gl.STATIC_DRAW)
-    this.kinds = KINDS.map((make) => this.createKind(gl, make()))
+    this.kinds = [0, 1, 2].map((index) => createKind(gl, trees, shadows, this.quad, index))
     gl.bindVertexArray(null)
-    if (this.pending) this.setTrees(this.pending)
-  }
-
-  private createKind(gl: WebGL2RenderingContext, geometry: Float32Array): Kind {
-    const trees = this.trees
-    const shadows = this.shadows
-    const mesh = gl.createBuffer()
-    const instances = gl.createBuffer()
-    const tree = gl.createVertexArray()
-    const shadow = gl.createVertexArray()
-    if (!trees || !shadows || !mesh || !instances || !tree || !shadow)
-      throw new Error("Tree GPU resources unavailable")
-    gl.bindVertexArray(tree)
-    gl.bindBuffer(gl.ARRAY_BUFFER, mesh)
-    gl.bufferData(gl.ARRAY_BUFFER, geometry, gl.STATIC_DRAW)
-    bind(gl, trees, { name: "a_position", size: 3, stride: TREE_STRIDE, offset: 0 })
-    bind(gl, trees, { name: "a_normal", size: 3, stride: TREE_STRIDE, offset: 3 })
-    bind(gl, trees, { name: "a_part", size: 1, stride: TREE_STRIDE, offset: 6 })
-    gl.bindBuffer(gl.ARRAY_BUFFER, instances)
-    bind(gl, trees, instanced("a_offset", 3, 0))
-    bind(gl, trees, instanced("a_size", 1, 3))
-    bind(gl, trees, instanced("a_tone", 1, 4))
-    bind(gl, trees, instanced("a_spin", 1, 5))
-    gl.bindVertexArray(shadow)
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.quad)
-    bind(gl, shadows, { name: "a_corner", size: 2, stride: 2, offset: 0 })
-    gl.bindBuffer(gl.ARRAY_BUFFER, instances)
-    bind(gl, shadows, instanced("a_offset", 3, 0))
-    bind(gl, shadows, instanced("a_size", 1, 3))
-    return { mesh, vertices: geometry.length / TREE_STRIDE, tree, shadow, instances, count: 0 }
+    if (this.chunked) this.adopt(this.chunked)
   }
 
   setTrees(instances: TreeInstances) {
-    this.pending = instances
+    this.setChunks(chunkTrees(instances))
+  }
+
+  setChunks(chunked: ChunkedTrees) {
+    this.chunked = chunked
+    const origin = MercatorCoordinate.fromLngLat([...chunked.origin], 0)
+    this.origin = { x: origin.x, y: origin.y, scale: origin.meterInMercatorCoordinateUnits() }
+    if (this.gl) this.adopt(chunked)
+    this.map?.triggerRepaint()
+  }
+
+  private adopt(chunked: ChunkedTrees) {
     const gl = this.gl
     if (!gl) return
-    this.kinds.forEach((kind, index) => {
-      const data = instances.kinds[index] ?? new Float32Array()
-      gl.bindBuffer(gl.ARRAY_BUFFER, kind.instances)
-      gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW)
-      kind.count = data.length / INSTANCE_STRIDE
+    this.selection.reset(chunked)
+    chunked.kinds.forEach((data, index) => {
+      const kind = this.kinds[index]
+      if (!kind) return
+      for (const buffer of [kind.near, kind.far]) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+        gl.bufferData(gl.ARRAY_BUFFER, Math.max(4, data.byteLength), gl.DYNAMIC_DRAW)
+      }
     })
-    this.origin = instances.origin
-    this.map?.triggerRepaint()
+    this.uploaded = false
   }
 
   setGrow(grow: number) {
@@ -135,68 +100,88 @@ export class TreeLayer implements CustomLayerInterface {
 
   setLight(lighting: TreeLight | undefined) {
     this.lighting = lighting
+    if (lighting) this.palette = new Float32Array(lighting.palette.flat())
     this.map?.triggerRepaint()
-  }
-
-  private matrix(input: CustomRenderMethodInput): Float32Array {
-    const origin = MercatorCoordinate.fromLngLat([...this.origin], 0)
-    const scale = origin.meterInMercatorCoordinateUnits()
-    return new DOMMatrix(Array.from(input.defaultProjectionData.mainMatrix))
-      .translate(origin.x, origin.y, 0)
-      .scale(scale, scale, scale)
-      .toFloat32Array()
   }
 
   render(gl: WebGL2RenderingContext, input: CustomRenderMethodInput) {
     const lighting = this.lighting
-    const trees = this.trees
-    const shadows = this.shadows
-    if (!trees || !shadows || !lighting || this.grow <= 0) return
-    const matrix = this.matrix(input)
+    const programs = this.programs
+    const map = this.map
+    const chunked = this.chunked
+    if (!programs || !lighting || !map || !chunked || this.grow <= 0) return
+    localMatrix(this.matrix, input.defaultProjectionData.mainMatrix, this.origin)
+    const camera = cameraOf(this.matrix)
+    const reach = TREE_METRES * this.grow * focalOf(map)
+    const changed = this.selection.update({
+      matrix: this.matrix,
+      camera,
+      nearDistance: reach / NEAR_PX,
+      thinDistance: reach / THIN_PX,
+    })
+    if (changed || !this.uploaded) uploadInstances(gl, this.kinds, this.selection)
+    this.uploaded = true
+    const frame = {
+      matrix: this.matrix,
+      camera,
+      grow: this.grow,
+      thin: reach / THIN_PX,
+      radius: chunked.radius,
+    }
     gl.enable(gl.DEPTH_TEST)
     gl.depthFunc(gl.LEQUAL)
     gl.disable(gl.CULL_FACE)
-    if (lighting.shadowAlpha > 0) {
-      treeUniforms(gl, shadows, matrix, this.grow, lighting)
-      gl.depthMask(false)
-      gl.enable(gl.BLEND)
-      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
-      for (const kind of this.kinds) {
-        if (kind.count === 0) continue
-        gl.bindVertexArray(kind.shadow)
-        gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, kind.count)
-      }
-    }
-    treeUniforms(gl, trees, matrix, this.grow, lighting)
+    if (lighting.shadowAlpha > 0) this.drawShadows(gl, programs, frame, lighting)
+    treeUniforms(gl, programs.trees, programs.treeAt, frame, lighting, this.palette)
     gl.depthMask(true)
     gl.disable(gl.BLEND)
-    const conifer = gl.getUniformLocation(trees, "u_conifer")
     this.kinds.forEach((kind, index) => {
-      if (kind.count === 0) return
-      gl.uniform1f(conifer, index === 1 ? 1 : 0)
-      gl.bindVertexArray(kind.tree)
-      gl.drawArraysInstanced(gl.TRIANGLES, 0, kind.vertices, kind.count)
+      gl.uniform1f(programs.treeAt.u_conifer, index === 1 ? 1 : 0)
+      const near = this.selection.nearCount[index] ?? 0
+      const far = this.selection.farCount[index] ?? 0
+      if (near > 0) {
+        gl.bindVertexArray(kind.nearTree)
+        gl.drawArraysInstanced(gl.TRIANGLES, 0, kind.vertices, near)
+      }
+      if (far > 0) {
+        gl.bindVertexArray(kind.farTree)
+        gl.drawArraysInstanced(gl.TRIANGLES, 0, kind.farVertices, far)
+      }
     })
     gl.bindVertexArray(null)
+  }
+
+  private drawShadows(
+    gl: WebGL2RenderingContext,
+    programs: Programs,
+    frame: Parameters<typeof treeUniforms>[3],
+    lighting: TreeLight,
+  ) {
+    treeUniforms(gl, programs.shadows, programs.shadowAt, frame, lighting, this.palette)
+    gl.depthMask(false)
+    gl.enable(gl.BLEND)
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
+    this.kinds.forEach((kind, index) => {
+      const near = this.selection.nearCount[index] ?? 0
+      if (near === 0) return
+      gl.bindVertexArray(kind.shadow)
+      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, near)
+    })
   }
 
   onRemove() {
     const gl = this.gl
     if (gl) {
-      for (const kind of this.kinds) {
-        gl.deleteBuffer(kind.instances)
-        gl.deleteBuffer(kind.mesh)
-        gl.deleteVertexArray(kind.tree)
-        gl.deleteVertexArray(kind.shadow)
-      }
+      for (const kind of this.kinds) deleteKind(gl, kind)
       gl.deleteBuffer(this.quad)
-      if (this.trees) gl.deleteProgram(this.trees)
-      if (this.shadows) gl.deleteProgram(this.shadows)
+      if (this.programs) {
+        gl.deleteProgram(this.programs.trees)
+        gl.deleteProgram(this.programs.shadows)
+      }
     }
     if (this.map) layers.delete(this.map)
     this.kinds = []
-    this.trees = undefined
-    this.shadows = undefined
+    this.programs = undefined
     this.map = undefined
     this.gl = undefined
   }

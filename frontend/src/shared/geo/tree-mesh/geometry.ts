@@ -79,6 +79,29 @@ function blob(out: number[], center: Vec3, radius: number, height: number, part 
     )
 }
 
+const OCTA: readonly Vec3[] = [
+  [1, 0, 0],
+  [0, 1, 0],
+  [-1, 0, 0],
+  [0, -1, 0],
+  [0, 0, 1],
+  [0, 0, -1],
+]
+
+function octahedron(out: number[], center: Vec3, radius: number, height: number) {
+  const place = ([x, y, z]: Vec3): Vec3 => [
+    center[0] + x * radius,
+    center[1] + y * radius,
+    center[2] + z * height,
+  ]
+  for (let index = 0; index < 4; index += 1) {
+    const a = place(OCTA[index] ?? [0, 0, 0])
+    const b = place(OCTA[(index + 1) % 4] ?? [0, 0, 0])
+    triangle(out, a, b, place([0, 0, 1]), 0, center)
+    triangle(out, b, a, place([0, 0, -1]), 0, center)
+  }
+}
+
 function prism(out: number[], half: number, from: number, to: number, sides = 4) {
   const ring = Array.from({ length: sides }, (_, index) => {
     const angle = (index / sides) * Math.PI * 2 + Math.PI / sides
@@ -128,3 +151,21 @@ export function bush(): Float32Array {
 }
 
 export const SHADOW_QUAD = new Float32Array([-1, -1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1])
+
+export function broadleafFar(): Float32Array {
+  const out: number[] = []
+  octahedron(out, [0.03, 0.02, 0.64], 0.4, 0.4)
+  return new Float32Array(out)
+}
+
+export function coniferFar(): Float32Array {
+  const out: number[] = []
+  cone(out, 0.2, 0.3, 1, 5)
+  return new Float32Array(out)
+}
+
+export function bushFar(): Float32Array {
+  const out: number[] = []
+  octahedron(out, [0, 0, 0.45], 0.55, 0.5)
+  return new Float32Array(out)
+}
