@@ -3,7 +3,7 @@ from datetime import date
 
 from hotel_agent.adapters.llm.payload import flag, items, number, optional_text, strings, text
 from hotel_agent.adapters.llm.text import normalize
-from hotel_agent.application.anywhere_request import says_anywhere
+from hotel_agent.application.anywhere_request import is_anywhere_phrase, says_anywhere
 from hotel_agent.domain.characteristics import ValueType
 from hotel_agent.domain.query import (
     OSM_OBJECT_KEYS,
@@ -197,12 +197,13 @@ def parse_payload(
             if item.strip()
             and normalize(item) in normalize(query)
             and normalize(item) != location_fragment
+            and not is_anywhere_phrase(item)
         ),
         intents=intents,
         unmatched_terms=tuple(
             item
             for item in dict.fromkeys((*strings(payload, "unmatched_terms"), *unit_terms))
-            if normalize(item) != location_fragment
+            if normalize(item) != location_fragment and not is_anywhere_phrase(item)
         ),
         location_hint=optional_text(payload, "location_hint"),
         anywhere=flag(payload, "anywhere") or says_anywhere(query),

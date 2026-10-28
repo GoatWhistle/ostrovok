@@ -38,3 +38,22 @@ def test_an_anywhere_request_does_not_ask_for_a_city() -> None:
 
     assert parsed.anywhere
     assert not parsed.needs_clarification
+
+
+def test_the_anywhere_phrase_is_not_treated_as_a_wish() -> None:
+    parsed = parse_payload(
+        {
+            "wishes": ["в средневековом стиле", "город не важен"],
+            "intents": [],
+            "unmatched_terms": ["город не важен", "любой город"],
+            "location_hint": None,
+            "anywhere": True,
+            "needs_clarification": False,
+        },
+        "отель в средневековом стиле, город не важен, любой город",
+        lambda raw, query: None,
+    )
+
+    assert parsed.anywhere
+    assert parsed.wishes == ("в средневековом стиле",)
+    assert parsed.unmatched_terms == ()

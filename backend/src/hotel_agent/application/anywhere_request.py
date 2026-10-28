@@ -19,6 +19,11 @@ def says_anywhere(query: str) -> bool:
     return any(phrase in text for phrase in ANYWHERE_PHRASES)
 
 
+def is_anywhere_phrase(term: str) -> bool:
+    text = term.casefold().replace("ё", "е").strip(" .,!?")
+    return any(text == phrase or phrase == text for phrase in ANYWHERE_PHRASES)
+
+
 def keep_anywhere(message: str, query: str) -> str:
     if not says_anywhere(message) or says_anywhere(query):
         return query
