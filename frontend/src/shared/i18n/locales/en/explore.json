@@ -592,7 +592,8 @@
       "phone": "Phone",
       "website": "Website"
     },
-    "kind": "Place type"
+    "kind": "Place type",
+    "onsite": "In the same building according to map data; indoor route unknown"
   },
   "supplier": {
     "open": "Open on {{source}}",
@@ -1029,5 +1030,25 @@
     "headerText": "Share the details that help guests choose your hotel.",
     "stars": "{{count, number}}",
     "conditionsPlaceholder": "Add any restrictions or additional conditions"
+  },
+  "searchMap": {
+    "locating": "Finding the city…",
+    "searching": "Searching hotels: {{location}}",
+    "checking": "Checking preferences: {{location}}",
+    "city": "Which city are you looking in?",
+    "unresolved": "Could not locate the city. Please clarify its name in chat.",
+    "empty": "No hotels found. Try changing your preferences.",
+    "error": "Search failed. Please try again.",
+    "retry": "Retry",
+    "pending": "Map points are candidates. Preferences are still being checked.",
+    "best": "Best matching option: {{name}}",
+    "visiting": "Checking {{name}}",
+    "walk": "{{term}}: {{minutes}} min walk, {{meters}} m",
+    "straight": "{{term}}: {{meters}} m in a straight line. Walking route unavailable",
+    "checkingHotel": "Comparing your wishes and available ratings",
+    "longer": "This walk is longer. Comparing other options",
+    "onsite": "{{name}}: in the same building according to map data. Indoor route unknown",
+    "target": "OpenStreetMap: {{name}}",
+    "unnamed": "Unnamed place"
   }
 }
