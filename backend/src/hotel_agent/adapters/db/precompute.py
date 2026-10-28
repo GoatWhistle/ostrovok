@@ -1,6 +1,7 @@
 from collections.abc import Mapping
 
 from psycopg import AsyncConnection
+from psycopg.types.json import Jsonb
 from psycopg_pool import AsyncConnectionPool
 
 HEIGHTS = """WITH heights AS (
@@ -46,6 +47,32 @@ FROM pois WHERE region_id = %(region)s
 ON CONFLICT (id) DO UPDATE SET geometry = EXCLUDED.geometry, name = EXCLUDED.name,
     characteristic_key = EXCLUDED.characteristic_key"""
 
+OWNED_BY_REGION = """(f.subject_type = 'hotel' AND EXISTS (
+        SELECT 1 FROM hotels h WHERE h.id = f.subject_id AND h.region_id = %(region)s))
+    OR (f.subject_type = 'facade' AND EXISTS (
+        SELECT 1 FROM facades fa JOIN hotels h ON h.id = fa.hotel_id
+        WHERE fa.id = f.subject_id AND h.region_id = %(region)s))"""
+
+STAMP_DATASETS = (
+    """UPDATE facts f SET evidence = COALESCE(f.evidence, '[]'::jsonb) || %(entries)s::jsonb
+WHERE f.source_type IN ('computed', 'osm', 'dem')
+  AND NOT COALESCE(f.evidence, '[]'::jsonb) @> %(entries)s::jsonb
+  AND ("""
+    + OWNED_BY_REGION
+    + ")"
+)
+
+STAMP_OSM_LINKS = (
+    """UPDATE facts f SET source_url = 'https://www.openstreetmap.org/'
+    || CASE left(f.source_id, 1)
+        WHEN 'w' THEN 'way/' WHEN 'n' THEN 'node/' ELSE 'relation/' END
+    || substring(f.source_id, 2)
+WHERE f.source_url IS NULL AND f.source_id ~ '^[nwr][0-9]+$'
+  AND ("""
+    + OWNED_BY_REGION
+    + ")"
+)
+
 REMOVE_LEGACY_BARS = """DELETE FROM facts
 WHERE characteristic_key = 'bars_nearby'
   AND subject_id IN (SELECT id FROM hotels WHERE region_id = %(region)s)"""
@@ -82,3 +109,17 @@ class PostgresPrecompute:
                 "building_height": height_result.rowcount,
                 "double_room": rooms_result.rowcount,
             }
+
+    async def stamp_sources(
+        self, region: str, osm_source: str, dem_source: str
+    ) -> Mapping[str, int]:
+        entries = [{"kind": "dataset", "text": name} for name in (osm_source, dem_source) if name]
+        async with self._pool.connection() as db:
+            links = await db.execute(STAMP_OSM_LINKS, {"region": region})
+            datasets = 0
+            if entries:
+                stamped = await db.execute(
+                    STAMP_DATASETS, {"region": region, "entries": Jsonb(entries)}
+                )
+                datasets = max(stamped.rowcount, 0)
+            return {"source_links": max(links.rowcount, 0), "dataset_notes": datasets}

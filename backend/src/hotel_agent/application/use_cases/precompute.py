@@ -9,3 +9,6 @@ class Precompute:
 
     async def __call__(self, region: str) -> Mapping[str, int]:
         return await self._calculator.run(region)
+
+    async def stamp(self, region: str, osm_source: str, dem_source: str) -> Mapping[str, int]:
+        return await self._calculator.stamp_sources(region, osm_source, dem_source)

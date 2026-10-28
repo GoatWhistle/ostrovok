@@ -240,6 +240,7 @@ async def _ingest_settlements(args: Namespace, database_url: str) -> int:
 
 
 async def _precompute(region: str, directory: Path, database_url: str) -> int:
+    sources = _seed_sources(directory)
     async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
         counts = await Precompute(PostgresPrecompute(pool))(region)
         routes = await PrecomputeWalk(SochiWalkGraph(), PostgresWalkStore(pool))(region, directory)
@@ -254,13 +255,28 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
         )
     finally:
         await uow.aclose()
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        stamped = await Precompute(PostgresPrecompute(pool)).stamp(region, *sources)
     for name, count in counts.items():
         print(f"{name}: {count}")
     print(f"distance_to_sea: {routes}")
     for name, count in facades.items():
         print(f"{name}: {count}")
     print(f"sunset_view: {sunset}")
+    for name, count in stamped.items():
+        print(f"{name}: {count}")
     return 0
+
+
+def _seed_sources(directory: Path) -> tuple[str, str]:
+    meta = directory / "meta.json"
+    if not meta.is_file():
+        return ("", "")
+    try:
+        described = json.loads(meta.read_text())
+    except ValueError:
+        return ("", "")
+    return (str(described.get("osm_source", "")), str(described.get("dem_source", "")))
 
 
 async def _metrics(region: str, settings: Settings) -> int:
