@@ -24,11 +24,13 @@ SET_STATUS = "UPDATE hotelier_questions SET status = %(status)s WHERE id = %(id)
 CANDIDATES = """SELECT h.id, h.name, k.key
 FROM hotels h CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
 WHERE h.region_id = %(region)s AND h.name <> h.id
+  AND (%(hotels)s::text[] IS NULL OR h.id = ANY(%(hotels)s::text[]))
   AND NOT EXISTS (SELECT 1 FROM facts f WHERE f.subject_type = 'hotel'
       AND f.subject_id = h.id AND f.characteristic_key = k.key AND f.status <> 'superseded')
   AND NOT EXISTS (SELECT 1 FROM hotelier_questions q
       WHERE q.hotel_id = h.id AND q.characteristic_key = k.key)
-ORDER BY h.id, k.key"""
+ORDER BY h.id, k.key
+LIMIT %(limit)s"""
 
 ADD_QUESTIONS = """INSERT INTO hotelier_questions
     (id, hotel_id, characteristic_key, text, reason, status, created_at)
@@ -64,10 +66,20 @@ class PostgresQuestionStore:
         await self._connection.execute(SET_STATUS, {"id": question_id, "status": status})
 
     async def candidates(
-        self, region: str, characteristic_keys: Sequence[str]
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        hotel_ids: Sequence[str] | None = None,
+        limit: int = 1000,
     ) -> Sequence[QuestionCandidate]:
         cursor = await self._connection.execute(
-            CANDIDATES, {"region": region, "keys": list(characteristic_keys)}
+            CANDIDATES,
+            {
+                "region": region,
+                "keys": list(characteristic_keys),
+                "hotels": list(hotel_ids) if hotel_ids is not None else None,
+                "limit": limit,
+            },
         )
         return [
             QuestionCandidate(

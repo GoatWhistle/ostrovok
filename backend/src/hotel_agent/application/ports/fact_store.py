@@ -40,7 +40,11 @@ class QuestionStore(Protocol):
     async def set_status(self, question_id: str, status: str) -> None: ...
 
     async def candidates(
-        self, region: str, characteristic_keys: Sequence[str]
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        hotel_ids: Sequence[str] | None = None,
+        limit: int = 1000,
     ) -> Sequence[QuestionCandidate]: ...
 
     async def add(self, records: Sequence[QuestionRecord]) -> int: ...
