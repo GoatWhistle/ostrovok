@@ -1,10 +1,12 @@
-import { useState } from "react"
 import { HotelResult, StayBar } from "@/entities/hotel"
 import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { EmptyState, Select, Skeleton } from "@/shared/ui"
+import { EmptyState, Skeleton } from "@/shared/ui"
+import { ORDER_KEYS, orderResults, seaDistance } from "./result-order"
 import styles from "./search-results.module.css"
+import { SortControl } from "./sort-control"
+import { useResultFacts, useResultOrder } from "./use-result-order"
 
 export interface SearchResultsProps {
   readonly response: components["schemas"]["SearchResponse"] | undefined
@@ -15,11 +17,8 @@ export interface SearchResultsProps {
   readonly onPreview: (result: SearchResult, property: MatchedProperty | undefined) => void
 }
 
-type Order = "match" | "name"
-
-function ordered(results: readonly SearchResult[], order: Order, locale: string) {
-  if (order === "match") return results
-  return [...results].sort((a, b) => a.hotel.name.localeCompare(b.hotel.name, locale))
+function uniqueResults(response: SearchResultsProps["response"]): SearchResult[] {
+  return [...new Map((response?.results ?? []).map((result) => [result.hotel.id, result])).values()]
 }
 
 export function SearchResults({
@@ -32,7 +31,9 @@ export function SearchResults({
 }: SearchResultsProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  const [order, setOrder] = useState<Order>("match")
+  const { order, change } = useResultOrder()
+  const results = uniqueResults(response)
+  const details = useResultFacts(results, order)
   if (response === undefined && !pending)
     return (
       <EmptyState
@@ -52,7 +53,6 @@ export function SearchResults({
         ))}
       </div>
     )
-  const results = [...new Map(response.results.map((result) => [result.hotel.id, result])).values()]
   if (results.length === 0) {
     const cityNeeded = !response.parsed.location_hint || Boolean(response.parsed.unsupported_region)
     return (
@@ -71,20 +71,18 @@ export function SearchResults({
           <b>{t("explore:panel.hotelCount", { count: results.length })}</b>{" "}
           {t("explore:panel.matches", { count: results.length })}
         </p>
-        <Select<Order>
-          label={t("explore:panel.sort")}
-          value={order}
-          onChange={setOrder}
-          size="compact"
-          options={[
-            { value: "match", label: t("explore:panel.sortMatch") },
-            { value: "name", label: t("explore:panel.sortName") },
-          ]}
+        <SortControl
+          order={order}
+          keys={ORDER_KEYS.filter(
+            (key) => key !== "sea" || results.some((result) => seaDistance(result) !== undefined),
+          )}
+          pending={details.pending}
+          onChange={change}
         />
       </div>
       <StayBar />
       <div className={styles.list}>
-        {ordered(results, order, locale).map((result, index) => (
+        {orderResults(results, order, locale, details.facts).map((result, index) => (
           <HotelResult
             key={result.hotel.id}
             index={index}

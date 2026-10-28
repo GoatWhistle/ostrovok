@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
+import { queryOptions, useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { api, unwrap } from "@/shared/api"
 import type { SearchRequest } from "@/shared/api/hotel-types"
@@ -79,8 +79,8 @@ export function useHotelOffers(
 export function hotelDetailsKey(id: string | undefined) {
   return ["hotel-details", id] as const
 }
-export function useHotelDetails(id: string | undefined) {
-  return useQuery({
+export function hotelDetailsOptions(id: string | undefined) {
+  return queryOptions({
     queryKey: hotelDetailsKey(id),
     enabled: id !== undefined,
     staleTime: 600_000,
@@ -95,6 +95,9 @@ export function useHotelDetails(id: string | undefined) {
       ),
     retry: false,
   })
+}
+export function useHotelDetails(id: string | undefined) {
+  return useQuery(hotelDetailsOptions(id))
 }
 export function useHotelScene(id: string | undefined) {
   return useQuery({
