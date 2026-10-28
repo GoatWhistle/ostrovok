@@ -86,6 +86,20 @@ async def test_guest_capacity_without_catalog_facts_is_dropped_not_unknown() -> 
     assert hotels.list_facts.await_args.kwargs["characteristic_keys"] == ["room_capacity"]
 
 
+async def test_double_room_read_from_a_guest_count_is_dropped_without_facts() -> None:
+    wanted = replace(capacity("на двоих"), characteristic_key="double_room", op=Op.EQ, value=True)
+    use_case, _, hotels, _ = search(
+        ParsedQuery(intents=(wanted,), unmatched_terms=(), location_hint="Москва"),
+        (37.4, 55.5, 37.9, 56.0),
+    )
+
+    result = await use_case("тихий отель в Москве на двоих", "sochi", None, 20)
+
+    assert result.parsed.adults == 2
+    assert not result.parsed.intents
+    assert hotels.list_facts.await_args.kwargs["characteristic_keys"] == ["double_room"]
+
+
 async def test_guest_capacity_is_scored_on_a_real_catalog_fact() -> None:
     use_case, _, hotels, _ = search(
         ParsedQuery(intents=(capacity("на двоих"),), unmatched_terms=(), location_hint="Москва"),

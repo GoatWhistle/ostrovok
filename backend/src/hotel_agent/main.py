@@ -193,7 +193,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 providers.registry,
                 GetHotelCard(providers.uow, providers.clock),
                 providers.clock,
-                review=ChatAnswerReview(verdict_review),
+                review=ChatAnswerReview(semantic_review),
             ),
             registry=providers.registry,
             get_geo_features=GetGeoFeatures(providers.uow),

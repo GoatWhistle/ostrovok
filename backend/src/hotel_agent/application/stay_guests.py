@@ -8,6 +8,7 @@ from hotel_agent.application.stay_question import GUEST_KEYS, GUEST_WORDS
 from hotel_agent.domain.query import Intent, ParsedQuery
 
 CAPACITY = "room_capacity"
+CAPACITY_KEYS = frozenset({CAPACITY, "double_room"})
 DIGITS = re.compile(
     r"\b([1-9])\s*(?:-?[хx]\s*)?(взросл|чел|гост|adults?|people|persons?|guests?)", re.IGNORECASE
 )
@@ -29,7 +30,7 @@ def guest_count(text: str) -> int | None:
 
 
 def guest_capacity(intent: Intent) -> bool:
-    return intent.characteristic_key == CAPACITY and bool(GUEST_WORDS.search(intent.source_text))
+    return intent.characteristic_key in CAPACITY_KEYS and guest_phrase(intent.source_text)
 
 
 def guest_phrase(text: str) -> bool:
@@ -40,7 +41,9 @@ def stay_guests(parsed: ParsedQuery) -> ParsedQuery:
     counts = [
         int(intent.value)
         for intent in parsed.intents
-        if guest_capacity(intent) and isinstance(intent.value, int | float)
+        if guest_capacity(intent)
+        and intent.characteristic_key == CAPACITY
+        and isinstance(intent.value, int | float)
     ]
     texts = (
         *(intent.source_text for intent in parsed.intents),
@@ -78,14 +81,17 @@ def researched(parsed: ParsedQuery) -> ParsedQuery:
 async def catalog_capacity(
     uow: UnitOfWorkFactory, parsed: ParsedQuery, hotels: Sequence[SearchHotelRecord]
 ) -> tuple[ParsedQuery, tuple[SearchFactRecord, ...]]:
-    if not any(guest_capacity(intent) for intent in parsed.intents):
+    keys = sorted(
+        {intent.characteristic_key for intent in parsed.intents if guest_capacity(intent)}
+    )
+    if not keys:
         return parsed, ()
     facts: tuple[SearchFactRecord, ...] = ()
     if hotels:
         async with uow() as unit:
             facts = tuple(
                 await unit.search.list_facts(
-                    None, hotel_ids=[hotel.id for hotel in hotels], characteristic_keys=[CAPACITY]
+                    None, hotel_ids=[hotel.id for hotel in hotels], characteristic_keys=keys
                 )
             )
     return (parsed, facts) if facts else (researched(parsed), ())
