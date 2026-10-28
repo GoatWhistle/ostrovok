@@ -5,6 +5,7 @@ from fastapi import APIRouter, Query
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
 from hotel_agent.application.use_cases.answer_questions import AnswerHotelierQuestions
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
+from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
 from hotel_agent.application.use_cases.hotelier_notifications import (
     DEFAULT_PAGE,
@@ -37,10 +38,12 @@ from hotel_agent.interfaces.http.hotelier_schemas import (
     AnswerResponseSchema,
     CorrectionInput,
     QuestionAnswerInput,
+    QuestionDetailSchema,
     QuestionListSchema,
     QuestionSchema,
     QuestionStatusInput,
     answer_schema,
+    question_detail_schema,
     question_schema,
 )
 
@@ -55,6 +58,7 @@ def build_router(
     read_notifications: MarkNotificationsRead,
     answer_questions: AnswerHotelierQuestions,
     state_fact: StateHotelierFact,
+    get_question: GetHotelierQuestion,
 ) -> APIRouter:
     router = APIRouter(tags=["hotelier"])
 
@@ -94,6 +98,12 @@ def build_router(
     @router.post("/hotelier/{hotel_id}/answers", response_model=BatchAnswerSchema)
     async def answers(hotel_id: str, body: AnswerInput) -> BatchAnswerSchema:
         return batch_answer_schema(await answer_questions(hotel_id, body.text))
+
+    @router.get("/hotelier/questions/{question_id}", response_model=QuestionDetailSchema)
+    async def question(
+        question_id: str, token: Annotated[str, Query(min_length=8, max_length=64)]
+    ) -> QuestionDetailSchema:
+        return question_detail_schema(await get_question(question_id, token))
 
     @router.post(
         "/hotelier/questions/{question_id}/answer",

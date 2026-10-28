@@ -54,6 +54,7 @@ from hotel_agent.application.use_cases.get_map_scene import GetMapScene
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
+from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
 from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
@@ -231,6 +232,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             ),
             state_hotelier_fact=StateHotelierFact(
                 providers.uow, providers.registry, providers.llm, providers.clock, new_id
+            ),
+            get_hotelier_question=GetHotelierQuestion(
+                providers.uow, providers.registry, config.question_link_secret
             ),
             change_question_status=ChangeQuestionStatus(providers.uow),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),

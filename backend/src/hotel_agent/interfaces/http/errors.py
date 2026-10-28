@@ -12,6 +12,7 @@ from hotel_agent.domain.errors import (
     InvalidQuery,
     InvalidRegistry,
     InvalidValue,
+    LinkSigningUnavailable,
     MapVersionChanged,
     ModelFailure,
     NotFound,
@@ -28,6 +29,7 @@ STATUS_BY_ERROR: dict[type[DomainError], HTTPStatus] = {
     UnknownCharacteristic: HTTPStatus.UNPROCESSABLE_ENTITY,
     InvalidRegistry: HTTPStatus.INTERNAL_SERVER_ERROR,
     ModelFailure: HTTPStatus.SERVICE_UNAVAILABLE,
+    LinkSigningUnavailable: HTTPStatus.SERVICE_UNAVAILABLE,
 }
 
 

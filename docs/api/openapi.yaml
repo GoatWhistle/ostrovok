@@ -768,6 +768,36 @@ paths:
         "503": { $ref: "#/components/responses/ModelUnavailable" }
 
   /hotelier/questions/{question_id}:
+    get:
+      tags: [hotelier]
+      operationId: getHotelierQuestion
+      description: >-
+        Один вопрос по подписанной ссылке: отельеру можно отправить адрес, который открывает только
+        этот вопрос, без доступа к остальному кабинету. Подпись считается от идентификатора вопроса
+        и секрета `QUESTION_LINK_SECRET`; без секрета метод отвечает `503`. Это не вход: ссылка
+        лишь неугадываема.
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema: { type: string }
+        - name: token
+          in: query
+          required: true
+          schema: { type: string, minLength: 8, maxLength: 64 }
+      responses:
+        "200":
+          description: Вопрос и поля, которыми на него можно ответить
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelierQuestionDetail" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+        "503":
+          description: Подписанные ссылки не настроены
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
     patch:
       tags: [hotelier]
       operationId: changeHotelierQuestionStatus
@@ -1949,6 +1979,24 @@ components:
           type: array
           description: Вопросы, которых текст не коснулся; они остались открытыми
           items: { type: string }
+
+    HotelierQuestionDetail:
+      type: object
+      required: [question, hotel_name, title, fields]
+      properties:
+        question: { $ref: "#/components/schemas/HotelierQuestion" }
+        hotel_name: { type: string, example: Гостиница «Приморская» }
+        title: { type: string, example: Размещение с животными }
+        fields:
+          type: array
+          description: Поля, которыми можно ответить без свободного текста
+          items:
+            type: object
+            required: [name, kind]
+            properties:
+              name: { type: string, example: max_weight_kg }
+              kind: { type: string, enum: [bool, number] }
+              unit: { type: string, nullable: true, example: кг }
 
     HotelierQuestion:
       type: object

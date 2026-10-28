@@ -14,6 +14,7 @@ from hotel_agent.application.use_cases.answer_question import AnswerHotelierQues
 from hotel_agent.application.use_cases.answer_questions import AnswerHotelierQuestions
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
 from hotel_agent.application.use_cases.get_fact import GetFact
+from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
 from hotel_agent.application.use_cases.hotelier_notifications import (
     ListHotelierNotifications,
@@ -24,6 +25,8 @@ from hotel_agent.application.use_cases.hotelier_questions import (
     ListHotelierQuestions,
 )
 from hotel_agent.application.use_cases.state_fact import StateHotelierFact
+from hotel_agent.domain.question_links import question_token
+from hotel_agent.domain.value_objects import QuestionId
 from hotel_agent.interfaces.http.errors import ErrorHandlers
 from hotel_agent.interfaces.http.hotelier_schemas import fact_detail_schema
 from hotel_agent.interfaces.http.routers import hotelier
@@ -36,6 +39,7 @@ from tests.unit.application.hotelier_fakes import (
     question,
 )
 
+SECRET = "contract-secret"
 HOTEL = SearchHotelRecord(
     id="h1",
     region_id="sochi",
@@ -81,6 +85,7 @@ def client(store: Store, characteristics_dir: Path) -> TestClient:
             MarkNotificationsRead(uow, FixedClock()),
             AnswerHotelierQuestions(uow, FakeLLM(registry), answer),
             StateHotelierFact(uow, registry, FakeLLM(registry), FixedClock(), Ids()),
+            GetHotelierQuestion(uow, registry, SECRET),
         )
     )
     return TestClient(app)
@@ -245,6 +250,32 @@ def test_a_hotelier_states_a_value_nobody_asked_about(client: TestClient, valida
     assert payload["fact"]["provenance"]["evidence"][0]["kind"] == "quote"
     assert payload["fact"]["status"] == "confirmed_by_hotelier"
     assert payload["conflicts"] == []
+
+
+def test_a_signed_link_opens_one_question(client: TestClient, validate: Any) -> None:
+    token = question_token(QuestionId("q1"), SECRET)
+
+    response = client.get(f"/hotelier/questions/q1?token={token}")
+
+    assert response.status_code == 200
+    payload = response.json()
+    validate("HotelierQuestionDetail", payload)
+    validate("HotelierQuestion", payload["question"])
+    assert payload["hotel_name"] == "Hotel One"
+    assert payload["title"] == "Размещение с животными"
+    assert [item["name"] for item in payload["fields"]] == [
+        "allowed",
+        "max_weight_kg",
+        "fee_rub",
+    ]
+
+
+def test_a_wrong_token_hides_the_question(client: TestClient, validate: Any) -> None:
+    response = client.get("/hotelier/questions/q1?token=" + "0" * 16)
+
+    assert response.status_code == 404
+    validate("Error", response.json())
+    assert response.json()["code"] == "not_found"
 
 
 @pytest.mark.parametrize(

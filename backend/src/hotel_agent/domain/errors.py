@@ -79,3 +79,8 @@ class InvalidConversationTitle(InvalidQuery):
 class ModelFailure(DomainError):
     code = "model_failure"
     message = "Language model failed"
+
+
+class LinkSigningUnavailable(DomainError):
+    code = "question_links_unavailable"
+    message = "Question links are not configured"

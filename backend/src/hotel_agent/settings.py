@@ -40,6 +40,7 @@ class Settings:
     etg_api_key: str | None = None
     etg_environment: str = "sandbox"
     nuitee_api_key: str | None = None
+    question_link_secret: str = ""
     hotel_data_mode: HotelDataMode = HotelDataMode.FREE
     ostrovok_site_enabled: bool = True
     public_data_user_agent: str = "HotelAgent/0.1 (https://github.com/GoatWhistle/o-hack)"
@@ -72,6 +73,7 @@ def load_settings(env: Mapping[str, str]) -> Settings:
         etg_api_key=env.get("ETG_API_KEY") or None,
         etg_environment=_etg_environment(env),
         nuitee_api_key=env.get("NUITEE_API_KEY") or None,
+        question_link_secret=env.get("QUESTION_LINK_SECRET") or "",
         hotel_data_mode=_choice(env, "HOTEL_DATA_MODE", HotelDataMode, HotelDataMode.FREE),
         ostrovok_site_enabled=_ostrovok_site_enabled(env),
         embedding_api_key=env.get("EMBEDDING_API_KEY") or None,
