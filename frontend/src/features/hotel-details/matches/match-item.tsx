@@ -2,7 +2,6 @@ import { MatchGlyph, RowButton, StatusGlyph } from "@/entities/evidence"
 import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
-import { factScope } from "@/shared/geo/facts/scope"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
@@ -21,20 +20,12 @@ export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProp
   const hasMap = (item.geo_refs?.length ?? fact?.geo_refs?.length ?? 0) > 0
   const verdict = wishVerdict(item, locale)
   const status = fact && !current ? t(`explore:status.${fact.status}`) : undefined
-  const note = [status, ...(fact ? factScope(fact, locale) : []), item.explanation]
-    .filter(Boolean)
-    .join("; ")
   const glyph =
     fact && !current ? <StatusGlyph status={fact.status} /> : <MatchGlyph match={item.match} />
   const body = (
     <>
-      <span className={styles.label}>{matchedTitle(item, locale)}</span>
-      {verdict ? <span className={styles.verdict}>{verdict}</span> : null}
-      {note ? (
-        <span className={styles.note} lang="ru">
-          {note}
-        </span>
-      ) : null}
+      <span className={styles.label}>{verdict ?? matchedTitle(item, locale)}</span>
+      {status ? <span className={styles.note}>{status}</span> : null}
     </>
   )
   return (
