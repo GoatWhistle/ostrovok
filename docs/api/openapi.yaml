@@ -1202,9 +1202,15 @@ components:
         hotel: { $ref: "#/components/schemas/HotelSummary" }
         cause:
           type: string
-          enum: [requirement_unmet, view_not_computed, no_evidence, review]
+          enum:
+            - requirement_unmet
+            - requirement_unknown
+            - view_not_computed
+            - no_evidence
+            - review
           description: >-
             `requirement_unmet` — обязательное условие подтверждённо не выполнено;
+            `requirement_unknown` — обязательное условие осталось неизвестным, подтвердить нечем;
             `view_not_computed` — вид требовался, но посчитать его не удалось;
             `no_evidence` — ни одного подтверждённого совпадения;
             `review` — смысловая проверка отклонила рекомендацию.
@@ -1213,6 +1219,10 @@ components:
           description: Доля выполненных условий с учётом веса и уверенности, от 0 до 1
           example: 0.66
         characteristic_key: { type: string, nullable: true }
+        condition:
+          type: string
+          description: Условие словами пользователя, из-за которого отель не подошёл
+          example: можно с собакой
         detail:
           type: string
           description: Пояснение смысловой проверки, если причина `review`

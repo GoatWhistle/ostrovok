@@ -8,14 +8,21 @@ from hotel_agent.application.agent.semantic_review import ReviewResult
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.search_evidence import best_facts
 from hotel_agent.application.search_ranking import search_rank, view_eligible
-from hotel_agent.domain.query import ParsedQuery
+from hotel_agent.domain.query import Intent, ParsedQuery
 from hotel_agent.domain.services.scoring import MatchQuality, Scored, score
 
 Candidate = tuple[SearchHotelRecord, Scored]
 
-type Cause = Literal["requirement_unmet", "view_not_computed", "no_evidence", "review"]
+type Cause = Literal[
+    "requirement_unmet",
+    "requirement_unknown",
+    "view_not_computed",
+    "no_evidence",
+    "review",
+]
 
 REQUIREMENT_UNMET: Cause = "requirement_unmet"
+REQUIREMENT_UNKNOWN: Cause = "requirement_unknown"
 VIEW_NOT_COMPUTED: Cause = "view_not_computed"
 NO_EVIDENCE: Cause = "no_evidence"
 REVIEWED_OUT: Cause = "review"
@@ -28,6 +35,7 @@ class Rejection:
     cause: Cause
     closeness: float = 0.0
     characteristic_key: str | None = None
+    condition: str = ""
     detail: str = ""
 
 
@@ -59,12 +67,14 @@ async def select_candidates(
             if found is None:
                 kept.append(item)
             else:
+                cause, intent = found
                 rejected.append(
                     Rejection(
                         hotel=item[0],
-                        cause=found[0],
+                        cause=cause,
                         closeness=item[1].partial,
-                        characteristic_key=found[1],
+                        characteristic_key=intent.characteristic_key if intent else None,
+                        condition=intent.source_text if intent else "",
                     )
                 )
         ranked = kept
@@ -83,34 +93,43 @@ async def select_candidates(
     return Selection(tuple(ranked), tuple(accepted), report, _shown(rejected))
 
 
-def _cause(scored: Scored) -> tuple[Cause, str | None] | None:
+def _cause(scored: Scored) -> tuple[Cause, Intent | None] | None:
     if scored.disqualified:
-        unmet = next(
-            (
-                item.intent.characteristic_key
-                for item in scored.matches
-                if item.intent.required and item.quality is MatchQuality.NONE
-            ),
-            None,
-        )
-        return (REQUIREMENT_UNMET, unmet)
+        return (REQUIREMENT_UNMET, _required(scored, MatchQuality.NONE))
     if not view_eligible(scored):
         return (VIEW_NOT_COMPUTED, None)
     return None
 
 
+def _required(scored: Scored, quality: MatchQuality) -> Intent | None:
+    return next(
+        (
+            item.intent
+            for item in scored.matches
+            if item.intent.required and item.quality is quality
+        ),
+        None,
+    )
+
+
 def _reviewed_out(ranked: list[Candidate], report: ReviewResult) -> list[Rejection]:
     reasons = {item.id: item for item in report.rejections}
-    return [
-        Rejection(
-            hotel=hotel,
-            cause=REVIEWED_OUT,
-            closeness=scored.partial,
-            detail=reasons[hotel.id].reason if hotel.id in reasons else "",
+    rejected = []
+    for hotel, scored in ranked:
+        if hotel.id in report.accepted_ids:
+            continue
+        missing = _required(scored, MatchQuality.UNKNOWN)
+        rejected.append(
+            Rejection(
+                hotel=hotel,
+                cause=REVIEWED_OUT if missing is None else REQUIREMENT_UNKNOWN,
+                closeness=scored.partial,
+                characteristic_key=missing.characteristic_key if missing else None,
+                condition=missing.source_text if missing else "",
+                detail=reasons[hotel.id].reason if hotel.id in reasons else "",
+            )
         )
-        for hotel, scored in ranked
-        if hotel.id not in report.accepted_ids
-    ]
+    return rejected
 
 
 def _shown(rejected: list[Rejection]) -> tuple[Rejection, ...]:

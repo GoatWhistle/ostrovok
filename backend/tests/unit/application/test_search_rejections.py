@@ -1,6 +1,11 @@
 from datetime import UTC, datetime, timedelta
+from types import SimpleNamespace
+from typing import cast
+from unittest.mock import AsyncMock
 
 from hotel_agent.application.agent.data_records import ExplorationOutcome
+from hotel_agent.application.agent.recommendation_review import RecommendationReview
+from hotel_agent.application.agent.semantic_review import ReviewResult
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.search_selection import select_candidates
 from hotel_agent.domain.characteristics import Op
@@ -121,3 +126,20 @@ async def test_without_conditions_nothing_is_rejected() -> None:
 
     assert [item[0].id for item in selection.accepted] == ["h1"]
     assert selection.rejected == ()
+
+
+async def test_a_required_condition_nobody_could_confirm_says_so() -> None:
+    parsed = ParsedQuery(
+        intents=(wanted("pets_policy", True),), unmatched_terms=(), location_hint="Сочи"
+    )
+    explored = ExplorationOutcome(hotels=(hotel("h1", "Неизвестно"),))
+    review = SimpleNamespace(check=AsyncMock(return_value=ReviewResult(accepted_ids=())))
+
+    selection = await select_candidates(
+        "можно с собакой", parsed, explored, NOW, cast(RecommendationReview, review), 20
+    )
+
+    assert selection.accepted == ()
+    assert [(item.cause, item.characteristic_key) for item in selection.rejected] == [
+        ("requirement_unknown", "pets_policy")
+    ]

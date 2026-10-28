@@ -133,3 +133,58 @@ async def test_a_search_without_results_breaks_nothing(disposable_database: str)
 
         assert await demand.unknown_counts(region, ["pets_policy"], SINCE) == []
         assert await demand.appearances(hotel, SINCE) == 0
+
+
+async def record_rejection(url: str, region: str, hotel_id: str, key: str, cause: str) -> None:
+    async with await psycopg.AsyncConnection.connect(url) as connection:
+        await connection.execute(
+            """INSERT INTO chat_conversations(id, region_id, effective_query, created_at,
+                updated_at, search_snapshot)
+            VALUES (%(id)s, %(region)s, 'можно с собакой', %(at)s, %(at)s, %(snapshot)s)""",
+            {
+                "id": str(uuid4()),
+                "region": region,
+                "at": NOW,
+                "snapshot": json.dumps(
+                    {
+                        "results": [],
+                        "rejected": [
+                            {
+                                "hotel": {"id": hotel_id, "name": "Integration hotel"},
+                                "cause": cause,
+                                "characteristic_key": key,
+                                "closeness": 0.0,
+                            }
+                        ],
+                    }
+                ),
+            },
+        )
+        await connection.commit()
+
+
+async def test_an_empty_result_still_records_what_was_asked_for(
+    disposable_database: str,
+) -> None:
+    region, hotel = await seed_hotel(disposable_database)
+    await record_rejection(disposable_database, region, hotel, "pets_policy", "requirement_unknown")
+    async with await psycopg.AsyncConnection.connect(disposable_database) as connection:
+        demand = PostgresHotelierDemand(connection)
+
+        counts = await demand.unknown_counts(region, ["pets_policy"], SINCE)
+        own = await demand.for_hotel(hotel, SINCE)
+
+        assert [(item.characteristic_key, item.blocked) for item in counts] == [("pets_policy", 1)]
+        assert [(item.characteristic_key, item.blocked) for item in own] == [("pets_policy", 1)]
+        assert await demand.appearances(hotel, SINCE) == 0
+
+
+async def test_a_hotel_rejected_for_another_reason_is_not_demand(
+    disposable_database: str,
+) -> None:
+    region, hotel = await seed_hotel(disposable_database)
+    await record_rejection(disposable_database, region, hotel, "pets_policy", "requirement_unmet")
+    async with await psycopg.AsyncConnection.connect(disposable_database) as connection:
+        demand = PostgresHotelierDemand(connection)
+
+        assert await demand.unknown_counts(region, ["pets_policy"], SINCE) == []

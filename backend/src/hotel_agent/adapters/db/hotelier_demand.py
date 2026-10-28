@@ -5,29 +5,47 @@ from psycopg import AsyncConnection
 
 from hotel_agent.application.dto import DemandRecord
 
-MATCH_HITS = """SELECT r->'hotel'->>'id' AS hotel_id,
-    m->>'characteristic_key' AS characteristic_key,
-    m->>'match' AS quality
-FROM chat_conversations c,
-    LATERAL jsonb_array_elements(COALESCE(c.search_snapshot->'results', '[]'::jsonb)) r,
-    LATERAL jsonb_array_elements(COALESCE(r->'matched', '[]'::jsonb)) m
-WHERE c.updated_at >= %(since)s AND r->'hotel'->>'id' IS NOT NULL"""
+SCOPE = """c.updated_at >= %(since)s
+  AND (%(region)s::text IS NULL OR c.region_id = %(region)s::text)"""
 
-HOTEL_DEMAND = (
-    "WITH hits AS ("
-    + MATCH_HITS
-    + """ AND r->'hotel'->>'id' = %(hotel)s)
+HITS = (
+    """WITH hits AS (
+    SELECT r->'hotel'->>'id' AS hotel_id,
+        m->>'characteristic_key' AS characteristic_key,
+        m->>'match' AS quality
+    FROM chat_conversations c,
+        LATERAL jsonb_array_elements(COALESCE(c.search_snapshot->'results', '[]'::jsonb)) r,
+        LATERAL jsonb_array_elements(COALESCE(r->'matched', '[]'::jsonb)) m
+    WHERE """
+    + SCOPE
+    + """
+      AND r->'hotel'->>'id' IS NOT NULL
+      AND (%(hotel)s::text IS NULL OR r->'hotel'->>'id' = %(hotel)s::text)
+    UNION ALL
+    SELECT x->'hotel'->>'id', x->>'characteristic_key', 'unknown'
+    FROM chat_conversations c,
+        LATERAL jsonb_array_elements(COALESCE(c.search_snapshot->'rejected', '[]'::jsonb)) x
+    WHERE """
+    + SCOPE
+    + """
+      AND x->>'cause' = 'requirement_unknown'
+      AND x->'hotel'->>'id' IS NOT NULL
+      AND x->>'characteristic_key' IS NOT NULL
+      AND (%(hotel)s::text IS NULL OR x->'hotel'->>'id' = %(hotel)s::text)
+)"""
+)
+
+GROUPED = """
 SELECT hotel_id, characteristic_key, count(*),
     count(*) FILTER (WHERE quality = 'unknown')
 FROM hits
-GROUP BY hotel_id, characteristic_key
-ORDER BY 4 DESC, 3 DESC, characteristic_key"""
-)
+GROUP BY hotel_id, characteristic_key"""
+
+HOTEL_DEMAND = HITS + GROUPED + "\nORDER BY 4 DESC, 3 DESC, characteristic_key"
 
 UNKNOWN_COUNTS = (
-    "WITH hits AS ("
-    + MATCH_HITS
-    + """ AND c.region_id = %(region)s)
+    HITS
+    + """
 SELECT hotel_id, characteristic_key, count(*),
     count(*) FILTER (WHERE quality = 'unknown')
 FROM hits
@@ -49,7 +67,9 @@ class PostgresHotelierDemand:
         self._connection = connection
 
     async def for_hotel(self, hotel_id: str, since: datetime) -> Sequence[DemandRecord]:
-        result = await self._connection.execute(HOTEL_DEMAND, {"hotel": hotel_id, "since": since})
+        result = await self._connection.execute(
+            HOTEL_DEMAND, {"hotel": hotel_id, "region": None, "since": since}
+        )
         return [_demand(row) for row in await result.fetchall()]
 
     async def appearances(self, hotel_id: str, since: datetime) -> int:
@@ -70,6 +90,7 @@ class PostgresHotelierDemand:
             UNKNOWN_COUNTS,
             {
                 "region": region,
+                "hotel": None,
                 "keys": list(characteristic_keys),
                 "since": since,
                 "limit": limit,

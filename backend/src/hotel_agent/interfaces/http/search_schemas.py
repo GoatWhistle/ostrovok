@@ -3,6 +3,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from hotel_agent.application.condition_keys import named_key
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.search_selection import Rejection
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
@@ -68,9 +69,16 @@ class ViewportSchema(BaseModel):
 
 class RejectedHotelSchema(BaseModel):
     hotel: HotelSummarySchema
-    cause: Literal["requirement_unmet", "view_not_computed", "no_evidence", "review"]
+    cause: Literal[
+        "requirement_unmet",
+        "requirement_unknown",
+        "view_not_computed",
+        "no_evidence",
+        "review",
+    ]
     closeness: float
     characteristic_key: str | None = None
+    condition: str = ""
     detail: str = ""
 
 
@@ -137,18 +145,19 @@ def search_schema(
         query_id=outcome.query_id,
         parsed=parsed,
         results=results,
-        rejected=[_rejected(item) for item in outcome.rejected],
+        rejected=[_rejected(item, registry) for item in outcome.rejected],
         viewport=viewport,
         took_ms=took_ms,
     )
 
 
-def _rejected(item: Rejection) -> RejectedHotelSchema:
+def _rejected(item: Rejection, registry: CharacteristicRegistryPort) -> RejectedHotelSchema:
     return RejectedHotelSchema(
         hotel=hotel_summary_schema(item.hotel),
         cause=item.cause,
         closeness=round(item.closeness, 4),
-        characteristic_key=item.characteristic_key,
+        characteristic_key=named_key(item.characteristic_key, item.condition, registry),
+        condition=item.condition,
         detail=item.detail,
     )
 
