@@ -4,7 +4,7 @@ import type { SearchResult } from "@/shared/api/hotel-types"
 
 function result(id: string, name: string, sea?: number): SearchResult {
   return {
-    hotel: { id, name, location: { lon: 0, lat: 0 } },
+    hotel: { id, name, location: [0, 0] },
     score: 1,
     matched:
       sea === undefined
@@ -21,7 +21,7 @@ function result(id: string, name: string, sea?: number): SearchResult {
                 label: "",
                 confidence: 1,
                 source_type: "computed",
-                status: "verified",
+                status: "active",
               },
             },
           ],
