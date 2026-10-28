@@ -127,12 +127,13 @@ export function renderCatalogLayers(
   map: MapLibreMap,
   colors: ClassColors,
   excluded: readonly string[] = [],
+  water: ExpressionSpecification | string = colors.ground,
 ) {
   if (!map.getSource("sochi-map")) return
   if (!map.getLayer("base-landcover")) addCatalogLayers(map, colors)
   renderOverviewBuildings(map, colors.volume, excluded)
   map.setPaintProperty("base-landcover", "fill-color", colors.ground)
-  map.setPaintProperty("base-water", "fill-color", colors.ground)
+  map.setPaintProperty("base-water", "fill-color", water)
   map.setPaintProperty("base-trees", "circle-color", colors.prop)
   if (map.getLayer("base-buildings"))
     map.setPaintProperty("base-buildings", "fill-color", colors.volume)

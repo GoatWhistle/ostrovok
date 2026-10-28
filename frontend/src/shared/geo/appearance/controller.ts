@@ -97,15 +97,10 @@ export class MapAppearanceController {
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": tinted.sea } })
     renderTerrain(map, tinted, scene.sun, APPEARANCES[this.appearance].materials.lightContrast)
-    map
-      .getContainer()
-      .parentElement?.style.setProperty(
-        "--map-backdrop",
-        scenePalette(tinted, scene.sun.altitude).sea,
-      )
-    renderBasemap(map, tinted)
-    renderCatalogLayers(map, classes, scene.excluded)
     const sea = scenePalette(tinted, scene.sun.altitude).sea
+    map.getContainer().parentElement?.style.setProperty("--map-backdrop", sea)
+    renderBasemap(map, tinted)
+    renderCatalogLayers(map, classes, scene.excluded, sea)
     renderShore(map, {
       shallows: mixHex(sea, tinted.sand, SHALLOW_SAND),
       foam: mixHex(sea, tinted.road, FOAM_WHITE),
