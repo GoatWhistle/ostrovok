@@ -39,6 +39,19 @@ class QuestionStore(Protocol):
 
     async def set_status(self, question_id: str, status: str) -> None: ...
 
+    async def set_statuses(self, question_ids: Sequence[str], status: str) -> int: ...
+
+    async def open_without_demand(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        backed: Sequence[tuple[str, str]],
+    ) -> Sequence[str]: ...
+
+    async def deferred_with_demand(
+        self, region: str, backed: Sequence[tuple[str, str]]
+    ) -> Sequence[QuestionRecord]: ...
+
     async def candidates(
         self,
         region: str,

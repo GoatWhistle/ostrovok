@@ -46,6 +46,7 @@ from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.prune_questions import PruneHotelierQuestions
 from hotel_agent.application.use_cases.refresh_facts import RefreshStaleFacts
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
 from hotel_agent.application.use_cases.sweep_notifications import (
@@ -90,6 +91,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_plan_questions(args, settings))
     if args.command == "notify-hoteliers":
         return asyncio.run(_notify_hoteliers(args, settings))
+    if args.command == "prune-questions":
+        return asyncio.run(_prune_questions(args, settings))
     if args.command == "metrics":
         return asyncio.run(_metrics(args.region, settings))
     if args.command == "refresh-facts":
@@ -329,6 +332,31 @@ async def _plan_questions(args: Namespace, settings: Settings) -> int:
     finally:
         await uow.aclose()
     print(f"hotelier_questions: {added}")
+    return 0
+
+
+async def _prune_questions(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
+    try:
+        report = await PruneHotelierQuestions(
+            uow,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+            window_days=args.window_days,
+        )(args.region, apply=args.apply)
+    finally:
+        await uow.aclose()
+    print(
+        json.dumps(
+            {
+                "backed": report.backed,
+                "unbacked": report.unbacked,
+                "deferred": report.deferred,
+                "reopened": report.reopened,
+                "applied": report.applied,
+            }
+        )
+    )
     return 0
 
 

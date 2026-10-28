@@ -162,6 +162,44 @@ class FakeQuestions:
         current = self._view()[question_id]
         self._pending["questions"][question_id] = replace(current, status=status)
 
+    async def set_statuses(self, question_ids: Sequence[str], status: str) -> int:
+        changed = 0
+        for identifier in question_ids:
+            current = self._view().get(identifier)
+            if current is None or current.status == "answered":
+                continue
+            self._pending["questions"][identifier] = replace(current, status=status)
+            changed += 1
+        return changed
+
+    async def open_without_demand(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        backed: Sequence[tuple[str, str]],
+    ) -> Sequence[str]:
+        wanted, pairs = set(characteristic_keys), set(backed)
+        return sorted(
+            item.id
+            for item in self._view().values()
+            if item.status == "open"
+            and item.characteristic_key in wanted
+            and (item.hotel_id, item.characteristic_key) not in pairs
+        )
+
+    async def deferred_with_demand(
+        self, region: str, backed: Sequence[tuple[str, str]]
+    ) -> Sequence[QuestionRecord]:
+        pairs = set(backed)
+        return sorted(
+            (
+                item
+                for item in self._view().values()
+                if item.status == "skipped" and (item.hotel_id, item.characteristic_key) in pairs
+            ),
+            key=lambda item: item.id,
+        )
+
     def _linked(self, record: QuestionRecord) -> QuestionRecord:
         facts = {**self._store.facts, **self._pending["facts"]}.values()
         linked = sorted(

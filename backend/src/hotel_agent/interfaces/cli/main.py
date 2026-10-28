@@ -61,6 +61,16 @@ def build_parser() -> ArgumentParser:
         help="How many questions to queue when no search demand is recorded yet",
     )
 
+    pruning = commands.add_parser(
+        "prune-questions",
+        help="Defer open questions no search asks for and reopen the deferred ones that matter",
+    )
+    pruning.add_argument("--region", default="sochi")
+    pruning.add_argument("--window-days", type=int, default=14)
+    pruning.add_argument(
+        "--apply", action="store_true", help="Write the changes instead of only reporting them"
+    )
+
     notices = commands.add_parser(
         "notify-hoteliers", help="Raise notifications about expiring values and blocked searches"
     )
