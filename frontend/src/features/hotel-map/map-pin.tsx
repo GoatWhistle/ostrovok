@@ -39,7 +39,7 @@ function HotelPin({ view, onSelect }: { view: HotelView; onSelect: MapPinProps["
             <span className={styles.dot}>
               <Icon name={state === "complete" ? "check" : "partial"} size="sm" />
             </span>
-            <span>{t("explore:results.score", { full, total })}</span>
+            <span className={styles.score}>{t("explore:results.score", { full, total })}</span>
           </>
         )}
         <span data-map-label className={`${styles.bubble} ${styles.label}`}>

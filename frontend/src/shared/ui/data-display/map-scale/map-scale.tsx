@@ -5,7 +5,7 @@ import styles from "./map-scale.module.css"
 
 const EQUATOR_METERS = 40075016.686
 const TILE_PIXELS = 512
-const MAX_PIXELS = 96
+const MAX_PIXELS = 72
 const STEPS = [1, 2, 5] as const
 
 interface Scale {

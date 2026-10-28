@@ -56,6 +56,14 @@
   inset: calc((var(--space-12) - var(--target-min)) / 2);
 }
 
+.pin[data-kind="hotel"][data-selected="false"]:not([data-state="nodata"]) {
+  padding-inline: var(--space-4);
+}
+
+.pin[data-selected="false"]:not(:focus-visible) .score {
+  display: none;
+}
+
 .pin[data-selected="true"] {
   --button-surface: var(--map-hotel-selected);
   --button-text: var(--map-hotel-selected-text);
@@ -141,6 +149,10 @@
 
   .pin[data-kind="hotel"]:not([data-state="nodata"]):hover {
     --button-text: var(--map-hotel-selected-text);
+  }
+
+  .pin:hover .score {
+    display: inline;
   }
 }
 
