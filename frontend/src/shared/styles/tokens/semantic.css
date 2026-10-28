@@ -84,6 +84,7 @@
   --shadow-color-strong: color-mix(in oklab, var(--night-950) 18%, transparent);
   --scrollbar-thumb: color-mix(in oklab, var(--night-950) 22%, transparent);
   --scrollbar-thumb-hover: color-mix(in oklab, var(--night-950) 38%, transparent);
+  --filter-map-dim: none;
 }
 
 :root[data-theme="dark"] {
@@ -171,4 +172,5 @@
   --shadow-color-strong: color-mix(in oklab, #000000 55%, transparent);
   --scrollbar-thumb: color-mix(in oklab, var(--night-50) 20%, transparent);
   --scrollbar-thumb-hover: color-mix(in oklab, var(--night-50) 36%, transparent);
+  --filter-map-dim: brightness(0.7) saturate(0.8) contrast(1.06);
 }

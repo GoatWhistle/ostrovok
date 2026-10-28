@@ -7,6 +7,9 @@
   position: absolute;
   inset: 0;
 }
+.canvas canvas {
+  filter: var(--filter-map-dim);
+}
 .marker {
   composes: roundIconShape from "../../shared/styles/compose.module.css";
   background: var(--map-hotel-selected);
@@ -20,6 +23,9 @@
   align-content: center;
   padding: var(--space-16);
   background: var(--surface-sunken);
+}
+.state > * {
+  block-size: 100%;
 }
 .notice {
   position: absolute;
