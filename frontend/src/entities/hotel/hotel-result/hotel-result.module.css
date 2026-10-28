@@ -31,6 +31,12 @@
   min-block-size: var(--thumb-size);
 }
 
+.thumb[data-empty] {
+  align-self: start;
+  aspect-ratio: 1;
+  min-block-size: 0;
+}
+
 .body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -85,6 +91,10 @@
 
 .meta:empty {
   display: none;
+}
+
+.confidence {
+  composes: captionText from "../../../shared/styles/compose.module.css";
 }
 
 .address {

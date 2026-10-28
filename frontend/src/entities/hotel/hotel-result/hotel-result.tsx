@@ -80,11 +80,11 @@ export function HotelSummaryCard({
             {hotel.name}
           </Button>
           <MatchScore score={matchScore({ matched })} quiet />
-          <MatchConfidence value={confidence} />
         </div>
         <div className={styles.meta}>
           <HotelStars value={hotel.stars ?? preview.stars} />
           <HotelRating score={preview.rating} reviews={preview.reviews} />
+          <MatchConfidence value={confidence} className={styles.confidence} />
         </div>
         {hotel.address ? <p className={styles.address}>{hotel.address}</p> : null}
         <HotelMatches matched={matched} onProperty={onProperty} onPreview={onPreview} />

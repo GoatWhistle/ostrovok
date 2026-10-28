@@ -1,6 +1,6 @@
 import { clsx } from "clsx"
 import type { MatchedProperty } from "@/shared/api/hotel-types"
-import { useTranslation } from "@/shared/i18n"
+import { useFormatters, useTranslation } from "@/shared/i18n"
 import { Icon, StatusBadge } from "@/shared/ui"
 import styles from "./match-score.module.css"
 
@@ -57,10 +57,11 @@ export interface MatchConfidenceProps {
 
 export function MatchConfidence({ value, className }: MatchConfidenceProps) {
   const { t } = useTranslation()
+  const format = useFormatters()
   if (value === undefined || value <= 0) return null
   return (
     <span className={clsx(styles.confidence, className)}>
-      {t("explore:results.confidence", { value })}
+      {t("explore:results.confidence", { value: format.percent(value) })}
     </span>
   )
 }
