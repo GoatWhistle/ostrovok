@@ -98,3 +98,9 @@
   --chat-history-height: 360px;
   --legend-swatch: 22px;
 }
+
+@media (max-width: 47.99rem) {
+  :root {
+    --header-height: 52px;
+  }
+}
