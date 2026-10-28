@@ -1,4 +1,4 @@
-import type { Map as MapLibreMap } from "maplibre-gl"
+import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { IN_SCENE } from "../overview-buildings"
 
 const SHADOWS = [
@@ -14,18 +14,49 @@ const SHADOWS = [
   { id: "toy-context-shadow", owner: "buildings-volume", source: "buildings", min: 14, max: 24 },
 ] as const
 
-const MAX_LENGTH = 52
-const SHADOW_OPACITY = 0.28
+const TYPICAL_HEIGHT_M = 7
+const MAX_LENGTH_M = 24
+const SHADOW_OPACITY = 0.14
+const STEPS = [0.5, 1] as const
 const MIN_ALTITUDE = 0.5
 const CLEAR = "rgba(0, 0, 0, 0)"
+const EARTH_CIRCUMFERENCE_M = 40075016.686
+const FROM_ZOOM = 14
+const TO_ZOOM = 20
 
 export function shadowOffset(azimuth: number, altitude: number): [number, number] {
   if (altitude <= MIN_ALTITUDE) return [0, 0]
-  const length = Math.min(MAX_LENGTH, 14 / Math.tan((altitude * Math.PI) / 180))
+  const length = Math.min(MAX_LENGTH_M, TYPICAL_HEIGHT_M / Math.tan((altitude * Math.PI) / 180))
   const radians = ((azimuth + 180) * Math.PI) / 180
   return [
     Math.round(Math.sin(radians) * length * 10) / 10,
     Math.round(-Math.cos(radians) * length * 10) / 10,
+  ]
+}
+
+function pixels(map: MapLibreMap, zoom: number): number {
+  const latitude = (map.getCenter().lat * Math.PI) / 180
+  return (512 * 2 ** zoom) / (EARTH_CIRCUMFERENCE_M * Math.cos(latitude))
+}
+
+function translate(
+  map: MapLibreMap,
+  [x, y]: readonly [number, number],
+  share: number,
+): ExpressionSpecification {
+  const at = (zoom: number) => {
+    const scale = pixels(map, zoom) * share
+    const point = [Math.round(x * scale * 10) / 10, Math.round(y * scale * 10) / 10]
+    return ["literal", point] as ExpressionSpecification
+  }
+  return [
+    "interpolate",
+    ["exponential", 2],
+    ["zoom"],
+    FROM_ZOOM,
+    at(FROM_ZOOM),
+    TO_ZOOM,
+    at(TO_ZOOM),
   ]
 }
 
@@ -35,16 +66,27 @@ function renderShadow(
   color: string | undefined,
   offset: [number, number],
 ) {
+  for (const share of STEPS) renderShadowStep(map, shadow, color, offset, share)
+}
+
+function renderShadowStep(
+  map: MapLibreMap,
+  shadow: (typeof SHADOWS)[number],
+  color: string | undefined,
+  offset: [number, number],
+  share: number,
+) {
+  const id = share === 1 ? shadow.id : `${shadow.id}-near`
   if (!color) {
-    if (map.getLayer(shadow.id)) map.removeLayer(shadow.id)
+    if (map.getLayer(id)) map.removeLayer(id)
     return
   }
   if (!map.getSource(shadow.source) || !map.getLayer(shadow.owner)) return
   const filter = map.getFilter(shadow.owner)
-  if (!map.getLayer(shadow.id)) {
+  if (!map.getLayer(id)) {
     map.addLayer(
       {
-        id: shadow.id,
+        id,
         type: "fill",
         source: shadow.source,
         ...("layer" in shadow ? { "source-layer": shadow.layer } : {}),
@@ -60,10 +102,10 @@ function renderShadow(
       shadow.owner,
     )
   }
-  map.setPaintProperty(shadow.id, "fill-color", offset[0] || offset[1] ? color : CLEAR)
-  map.setPaintProperty(shadow.id, "fill-translate", offset)
-  if (JSON.stringify(map.getFilter(shadow.id)) !== JSON.stringify(filter))
-    map.setFilter(shadow.id, filter ?? null)
+  map.setPaintProperty(id, "fill-color", offset[0] || offset[1] ? color : CLEAR)
+  map.setPaintProperty(id, "fill-translate", translate(map, offset, share))
+  if (JSON.stringify(map.getFilter(id)) !== JSON.stringify(filter))
+    map.setFilter(id, filter ?? null)
 }
 
 export function renderGroundShadows(
@@ -109,8 +151,5 @@ export function renderTreeShadows(
       "base-trees",
     )
   map.setPaintProperty(TREE_SHADOW, "circle-color", x || y ? color : CLEAR)
-  map.setPaintProperty(TREE_SHADOW, "circle-translate", [
-    x * TREE_SHADOW_SHARE,
-    y * TREE_SHADOW_SHARE,
-  ])
+  map.setPaintProperty(TREE_SHADOW, "circle-translate", translate(map, [x, y], TREE_SHADOW_SHARE))
 }
