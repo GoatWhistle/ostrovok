@@ -1,4 +1,4 @@
-import type { Map as MapLibreMap } from "maplibre-gl"
+import { LngLat, type Map as MapLibreMap } from "maplibre-gl"
 import { sourceFeatures } from "./feature-cache"
 import type { RoofInput } from "./mesh"
 
@@ -87,6 +87,11 @@ function largest(rings: readonly Ring[]): Ring | undefined {
   return best
 }
 
+function drawnGround(map: MapLibreMap, [lon, lat]: LonLat): number | undefined {
+  if (!map.getTerrain()) return map.queryTerrainElevation([lon, lat]) ?? 0
+  return map.terrain?.getDrawnElevationForLngLat(new LngLat(lon, lat))
+}
+
 export function roofInputs(
   map: MapLibreMap,
   candidates: readonly RoofCandidate[],
@@ -98,18 +103,20 @@ export function roofInputs(
     const ring = largest(rings)
     if (!ring || ring.length < 4) return []
     const middle = centroid(ring)
+    const ground = drawnGround(map, middle)
+    if (ground === undefined) return []
     const distance = Math.hypot((middle[0] - center[0]) * scale, middle[1] - center[1])
     const extra = rings.length > 1 ? rings.filter((item) => item !== ring).flat() : []
-    return [{ candidate, ring, rings, extra, middle, distance }]
+    return [{ candidate, ring, rings, extra, ground, distance }]
   })
   placed.sort((left, right) => left.distance - right.distance)
-  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, rings, extra, middle }) => ({
+  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, rings, extra, ground }) => ({
     id: candidate.id,
     ring,
     extra,
     height: candidate.height,
     levels: candidate.levels,
     bodies: candidate.solid ? rings : [],
-    ground: map.queryTerrainElevation([middle[0], middle[1]]) ?? 0,
+    ground,
   }))
 }
