@@ -6,6 +6,7 @@ from hotel_agent.adapters.llm.text import normalize
 from hotel_agent.domain.characteristics import ValueType
 from hotel_agent.domain.query import (
     OSM_OBJECT_KEYS,
+    WIDE_OBJECT_RADIUS_M,
     FacilityRequest,
     Intent,
     NearbyObjectRequest,
@@ -52,7 +53,10 @@ def nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest 
         open_24h=flag(raw, "open_24h"),
         avoid=flag(raw, "avoid"),
         required=flag(raw, "required"),
-        radius_m=max(100, min(50000, int(radius or 500))),
+        radius_m=max(
+            WIDE_OBJECT_RADIUS_M.get((key, value), 100),
+            min(50000, int(radius or 500)),
+        ),
         source_text=source,
         name=name if quoted_name(name, query) else "",
     )
