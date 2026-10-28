@@ -85,7 +85,7 @@ Factmap разбирает ту же фразу на три условия и п
 ## Как это работает
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#ffffff","primaryTextColor":"#12140f","primaryBorderColor":"#1546db","secondaryColor":"#eaece5","tertiaryColor":"#f4f5f1","lineColor":"#61665a","textColor":"#12140f","noteBkgColor":"#eaece5","noteTextColor":"#4a4e44","actorBkg":"#ffffff","actorBorder":"#1546db","fontFamily":"Manrope Variable"}}}%%
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#ffffff","primaryTextColor":"#171717","primaryBorderColor":"#0f5f6a","secondaryColor":"#efeae0","tertiaryColor":"#f7f4ed","lineColor":"#656565","textColor":"#171717","noteBkgColor":"#efeae0","noteTextColor":"#535353","actorBkg":"#ffffff","actorBorder":"#0f5f6a","fontFamily":"Manrope Variable"}}}%%
 flowchart LR
     A["Сообщение<br/>в чате"] --> B["Разбор запроса:<br/>условия, исправления, радиусы"]
     B --> C{"Запрос<br/>понятен?"}
