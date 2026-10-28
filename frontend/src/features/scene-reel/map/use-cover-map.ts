@@ -28,6 +28,7 @@ const OPTIONS = {
 }
 const DAY_SUN = { azimuth: 250, altitude: 32 }
 const DUSK_SUN = { azimuth: 250, altitude: -8 }
+const SUNSET_SUN = { azimuth: 250, altitude: 1.5 }
 const REGIONS = ["sochi"]
 const NO_TEXTURES: ReadonlySet<string> = new Set()
 const QUALITY = 1
@@ -89,7 +90,12 @@ function useCityLayers(
   })
 }
 
-export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonly ReelCamera[]) {
+export function useCoverMap(
+  enabled: boolean,
+  visible: boolean,
+  cameras: readonly ReelCamera[],
+  golden: boolean,
+) {
   const map = useMapInstance(enabled, OPTIONS)
   const scene = useHotelScene(enabled ? "n11331531334" : undefined)
   const catalog = useMapCatalog()
@@ -97,7 +103,7 @@ export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonl
   const { locale } = useLocale()
   const colors = useMapColors()
   const { theme } = useTheme()
-  const sun = theme === "dark" ? DUSK_SUN : DAY_SUN
+  const sun = golden ? SUNSET_SUN : theme === "dark" ? DUSK_SUN : DAY_SUN
   const [loaded, setLoaded] = useState(false)
   const buildings = useMemo(
     () =>

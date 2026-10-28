@@ -1,7 +1,6 @@
-import { useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "@/shared/i18n"
 import { motionCurve } from "@/shared/motion"
-import { useTheme } from "@/shared/theme"
 import { CoverSources } from "./cover-sources"
 import { useCoverMap } from "./map/use-cover-map"
 import { useReelCamera } from "./map/use-reel-camera"
@@ -19,7 +18,6 @@ const SUNSET_GRADE = 0.22
 
 export function ProofReel({ still }: { readonly still: boolean }) {
   const { t } = useTranslation()
-  const { theme } = useTheme()
   const target = useRef<HTMLElement>(null)
   const viewport = useStoryViewport(target)
   const timing = useMemo(reelTiming, [])
@@ -32,7 +30,8 @@ export function ProofReel({ still }: { readonly still: boolean }) {
       ),
     [still, compact],
   )
-  const map = useCoverMap(viewport.visible, viewport.visible, cameras)
+  const [golden, setGolden] = useState(still)
+  const map = useCoverMap(viewport.visible, viewport.visible, cameras, golden)
   const shown = map.loaded && !map.failed
   const elapsed = useReelClock(shown && !still && viewport.visible)
   const frame = still
@@ -45,7 +44,9 @@ export function ProofReel({ still }: { readonly still: boolean }) {
     }),
     [viewport.height, compact],
   )
-  const anchors = useReelCamera(map.instance, shown, frame, map.colors, padding, theme !== "dark")
+  const sunsetShot = still || frame.index === 1
+  useEffect(() => setGolden(sunsetShot), [sunsetShot])
+  const anchors = useReelCamera(map.instance, shown, frame, map.colors, padding, golden)
   return (
     <figure
       ref={target}

@@ -1,6 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useLayoutEffect, useRef } from "react"
-import { previewMapSun } from "@/shared/geo/appearance/controller"
 import { paintRoute } from "@/shared/geo/map-layers"
 import type { MapColors } from "@/shared/theme"
 import type { ProofState, ReelFrame } from "../playback/reel-frame"
@@ -16,12 +15,8 @@ const ROUTE_LAYERS = [
 const LABEL_SHIFT = 4
 const PING_OPACITY = 0.45
 const PING_SCALE = 2.6
-const DAY_ALTITUDE = 32
-const GOLDEN_ALTITUDE = 2
-const SUN_STEP = 0.5
-const SUN_METERS = 3400
-const DAY_GLITTER = 2
-const SUNSET_LABEL_METERS = 330
+const SUN_METERS = 700
+const GLITTER_STRENGTH = 2.4
 const NOISE_OPACITY = 0.35
 
 export interface ReelAnchors {
@@ -75,7 +70,7 @@ function drawRoute(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
     if (map.getLayer(id)) map.setPaintProperty(id, "line-opacity", opacity * proof.opacity)
 }
 
-function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame, daylight: boolean) {
+function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
   const { sunset, quiet } = frame.proofs
   drawRoute(map, colors, frame)
   paintNoiseRoads(map, colors.routeGlow, quiet.draw * quiet.opacity * NOISE_OPACITY)
@@ -88,8 +83,8 @@ function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame, dayl
       calmFade: quiet.opacity,
     },
     {
-      glow: daylight ? colors.sunLow : colors.moonlight,
-      strength: daylight ? DAY_GLITTER : 1,
+      glow: colors.sunLow,
+      strength: GLITTER_STRENGTH,
       quiet: colors.hotelSelected,
     },
   )
@@ -101,7 +96,7 @@ export function useReelCamera(
   frame: ReelFrame,
   colors: MapColors,
   padding: { readonly top: number; readonly bottom: number },
-  daylight: boolean,
+  golden: boolean,
 ) {
   const anchors: ReelAnchors = {
     sea: useRef<HTMLDivElement>(null),
@@ -110,7 +105,6 @@ export function useReelCamera(
     sun: useRef<HTMLDivElement>(null),
   }
   const previous = useRef("")
-  const sun = useRef(Number.NaN)
   useLayoutEffect(() => {
     const current = map.current
     if (!ready || !current) return
@@ -124,17 +118,11 @@ export function useReelCamera(
       current.jumpTo(camera)
       previous.current = key
     }
-    paintProofs(current, colors, frame, daylight)
-    const weight = sunsetWeight(frame)
-    const step = Math.round((DAY_ALTITUDE + (GOLDEN_ALTITUDE - DAY_ALTITUDE) * weight) / SUN_STEP)
-    if (daylight && step !== sun.current)
-      previewMapSun(current, { azimuth: SUNSET_AZIMUTH, altitude: step * SUN_STEP })
-    sun.current = daylight ? step : Number.NaN
-    placeSun(current, anchors.sun.current, daylight ? weight : 0)
+    paintProofs(current, colors, frame)
+    placeSun(current, anchors.sun.current, golden ? sunsetWeight(frame) : 0)
     const { sea, sunset, quiet } = frame.proofs
-    const sunsetAt = offset(HOTEL, SUNSET_AZIMUTH, SUNSET_LABEL_METERS)
     place(current, anchors.sea.current, along(ROUTE, sea.draw), sea, frame.pulse)
-    place(current, anchors.sunset.current, sunsetAt, sunset, frame.pulse)
+    place(current, anchors.sunset.current, HOTEL, sunset, frame.pulse)
     place(current, anchors.quiet.current, HOTEL, quiet, frame.pulse)
   })
   return anchors

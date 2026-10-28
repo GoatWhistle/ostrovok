@@ -7,9 +7,9 @@ const EDGE = "reel-ground-edge"
 const ARC_STEPS = 10
 const RING_STEPS = 64
 const GLITTER_FROM = 260
-const GLITTER_TO = 3400
-const GLITTER_DEGREES = 3.2
-const CORE_DEGREES = 1.1
+const GLITTER_TO = 700
+const GLITTER_DEGREES = 4
+const CORE_DEGREES = 1.4
 const STEP = 0.02
 
 export interface GroundState {
