@@ -2,8 +2,8 @@ from dataclasses import replace
 from datetime import date
 
 from hotel_agent.application.dto import SearchHotelRecord
-from hotel_agent.application.reply_notes import hotels_ru
-from hotel_agent.application.search_reply import search_reply
+from hotel_agent.application.reply_plurals import hotels_ru
+from hotel_agent.application.search_reply import fallback_reply, search_reply
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, ParsedQuery
@@ -74,7 +74,7 @@ def test_guest_count_from_capacity_intent_is_not_asked_again() -> None:
     answer = search_reply(search, None, "ru")
 
     assert "сколько вас" not in answer
-    assert "Напишите даты поездки и бюджет, и я проверю свободные номера." in answer
+    assert answer.endswith("Чтобы проверить свободные номера, подскажите даты поездки и бюджет?")
 
 
 def test_single_missing_date_is_named_precisely() -> None:
@@ -83,7 +83,7 @@ def test_single_missing_date_is_named_precisely() -> None:
 
     answer = search_reply(search, None, "en")
 
-    assert answer.endswith("Tell me the check-out date, and I'll check free rooms.")
+    assert answer.endswith("To check free rooms, could you share the check-out date?")
 
 
 def test_found_reply_names_top_hotels_with_russian_plural() -> None:
@@ -92,7 +92,9 @@ def test_found_reply_names_top_hotels_with_russian_plural() -> None:
     search = SearchOutcome(query_id="q", parsed=parsed, results=results)
 
     assert search_reply(search, None, "ru") == "Нашёл 4 отеля. Ближе всего к запросу: A, B и C."
-    assert search_reply(search, None, "en") == "Found 4 hotels. Closest to your request: A, B and C."
+    assert (
+        search_reply(search, None, "en") == "Found 4 hotels. Closest to your request: A, B and C."
+    )
 
 
 def test_russian_hotel_plural_forms() -> None:
@@ -114,3 +116,25 @@ def test_selected_hotel_update_is_short() -> None:
     answer = search_reply(search, "id-Beta", "ru")
 
     assert answer == "Учёл. «Beta» остаётся в подборке, всего 2 отеля."
+
+
+def test_review_fallback_uses_plurals_and_ends_with_one_date_question() -> None:
+    parsed = ParsedQuery(intents=(QUIET, GUESTS), unmatched_terms=(), location_hint="Хоста")
+    expected = {
+        1: ("Нашёл 1 отель.", "Found 1 hotel."),
+        2: ("Нашёл 2 отеля.", "Found 2 hotels."),
+        5: ("Нашёл 5 отелей.", "Found 5 hotels."),
+        21: ("Нашёл 21 отель.", "Found 21 hotels."),
+    }
+    for count, (ru, en) in expected.items():
+        results = tuple(hotel(f"H{index}", MatchQuality.UNKNOWN) for index in range(count))
+        search = SearchOutcome(query_id="q", parsed=parsed, results=results)
+
+        answer_ru = fallback_reply(search, "ru")
+        answer_en = fallback_reply(search, "en")
+
+        assert answer_ru.startswith(ru)
+        assert answer_en.startswith(en)
+        assert answer_ru.endswith("подскажите даты поездки и бюджет?")
+        assert answer_en.endswith("could you share your dates and your budget?")
+        assert answer_ru.count("?") == 1

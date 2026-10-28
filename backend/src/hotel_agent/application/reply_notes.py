@@ -4,23 +4,6 @@ from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import MatchQuality
 
 GUEST_KEYS = frozenset({"room_capacity"})
-HOTEL_FORMS = ("отель", "отеля", "отелей")
-
-
-def hotels_ru(count: int) -> str:
-    tail = count % 100
-    if 11 <= tail <= 14:
-        return f"{count} {HOTEL_FORMS[2]}"
-    last = count % 10
-    if last == 1:
-        return f"{count} {HOTEL_FORMS[0]}"
-    if 2 <= last <= 4:
-        return f"{count} {HOTEL_FORMS[1]}"
-    return f"{count} {HOTEL_FORMS[2]}"
-
-
-def hotels_en(count: int) -> str:
-    return f"{count} hotel" if count == 1 else f"{count} hotels"
 
 
 def listing(items: list[str], locale: str) -> str:
@@ -71,8 +54,13 @@ def unverified_note(parsed: ParsedQuery, locale: str) -> str | None:
     return f"Не смог проверить: {terms}. На подборку это не влияло."
 
 
+def guests_given(parsed: ParsedQuery) -> bool:
+    return any(intent.characteristic_key in GUEST_KEYS for intent in parsed.intents)
+
+
 def room_ask(parsed: ParsedQuery, locale: str) -> str | None:
-    if not parsed.wants_room or parsed.room_preferences_unrestricted:
+    stay = parsed.wants_room or parsed.adults is not None or guests_given(parsed)
+    if not stay or parsed.room_preferences_unrestricted:
         return None
     en = locale == "en"
     missing: list[str] = []
@@ -82,9 +70,7 @@ def room_ask(parsed: ParsedQuery, locale: str) -> str | None:
         missing.append("the check-in date" if en else "дату заезда")
     elif parsed.check_out is None:
         missing.append("the check-out date" if en else "дату выезда")
-    if parsed.adults is None and not any(
-        intent.characteristic_key in GUEST_KEYS for intent in parsed.intents
-    ):
+    if parsed.adults is None and not guests_given(parsed):
         missing.append("how many guests" if en else "сколько вас")
     if parsed.budget is None:
         missing.append("your budget" if en else "бюджет")
@@ -92,5 +78,5 @@ def room_ask(parsed: ParsedQuery, locale: str) -> str | None:
         return None
     fields = listing(missing, locale)
     if en:
-        return f"Tell me {fields}, and I'll check free rooms."
-    return f"Напишите {fields}, и я проверю свободные номера."
+        return f"To check free rooms, could you share {fields}?"
+    return f"Чтобы проверить свободные номера, подскажите {fields}?"

@@ -1,5 +1,6 @@
 from hotel_agent.application.agent.chat_answer_review import safe_answer
-from hotel_agent.application.reply_notes import compose_reply, hotels_en, hotels_ru, listing
+from hotel_agent.application.reply_notes import compose_reply, listing
+from hotel_agent.application.reply_plurals import hotels_en, hotels_ru
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
 
 
@@ -15,7 +16,7 @@ def search_reply(search: SearchOutcome, selected_hotel_id: str | None, locale: s
     if search.question:
         return compose_reply(search, None, locale, search.question)
     if search.review and search.review.unavailable:
-        return compose_reply(search, safe_answer(search, locale), locale)
+        return fallback_reply(search, locale)
     if parsed.needs_clarification:
         if en:
             return "Some of the conditions contradict each other. Which one matters more?"
@@ -23,6 +24,12 @@ def search_reply(search: SearchOutcome, selected_hotel_id: str | None, locale: s
     if not search.results:
         return compose_reply(search, empty_lead(search, locale), locale)
     return compose_reply(search, found_lead(search, selected_hotel_id, locale), locale)
+
+
+def fallback_reply(search: SearchOutcome, locale: str) -> str:
+    if search.question:
+        return compose_reply(search, None, locale, search.question)
+    return compose_reply(search, safe_answer(search, locale), locale)
 
 
 def empty_lead(search: SearchOutcome, locale: str) -> str:
@@ -50,9 +57,7 @@ def found_lead(search: SearchOutcome, selected_hotel_id: str | None, locale: str
     en = locale == "en"
     count = len(search.results)
     total = hotels_en(count) if en else hotels_ru(count)
-    selected = next(
-        (item for item in search.results if item.hotel.id == selected_hotel_id), None
-    )
+    selected = next((item for item in search.results if item.hotel.id == selected_hotel_id), None)
     if selected:
         if en:
             return f"Got it. {selected.hotel.name} is still on the list, {total} in total."
