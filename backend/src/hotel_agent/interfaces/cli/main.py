@@ -50,9 +50,24 @@ def build_parser() -> ArgumentParser:
     geometry.add_argument("--region", default="russia")
 
     questions = commands.add_parser(
-        "plan-questions", help="Queue hotelier questions for characteristics without facts"
+        "plan-questions", help="Queue hotelier questions the searches actually ask for"
     )
     questions.add_argument("--region", default="sochi")
+    questions.add_argument("--limit", type=int, default=200)
+    questions.add_argument(
+        "--cold-start",
+        type=int,
+        default=20,
+        help="How many questions to queue when no search demand is recorded yet",
+    )
+
+    notices = commands.add_parser(
+        "notify-hoteliers", help="Raise notifications about expiring values and blocked searches"
+    )
+    notices.add_argument("--region", default="sochi")
+    notices.add_argument("--lead-days", type=int, default=14)
+    notices.add_argument("--window-days", type=int, default=14)
+    notices.add_argument("--limit", type=int, default=500)
 
     refresh = commands.add_parser(
         "refresh-facts", help="Recheck facts whose validity has expired and record disagreements"

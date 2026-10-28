@@ -48,6 +48,9 @@ from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
 from hotel_agent.application.use_cases.refresh_facts import RefreshStaleFacts
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
+from hotel_agent.application.use_cases.sweep_notifications import (
+    SweepHotelierNotifications,
+)
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
 from hotel_agent.settings import HotelDataMode, Settings, load_settings
@@ -82,9 +85,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest_settlements(args, settings.database_url))
     if args.command == "precompute":
         code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
-        return code or asyncio.run(_plan_questions(args.region, settings))
+        return code or asyncio.run(_plan_questions(args, settings))
     if args.command == "plan-questions":
-        return asyncio.run(_plan_questions(args.region, settings))
+        return asyncio.run(_plan_questions(args, settings))
+    if args.command == "notify-hoteliers":
+        return asyncio.run(_notify_hoteliers(args, settings))
     if args.command == "metrics":
         return asyncio.run(_metrics(args.region, settings))
     if args.command == "refresh-facts":
@@ -309,17 +314,46 @@ async def _refresh_geography(region: str, database_url: str) -> int:
         await uow.aclose()
 
 
-async def _plan_questions(region: str, settings: Settings) -> int:
+async def _plan_questions(args: Namespace, settings: Settings) -> int:
     uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
     try:
         added = await PlanHotelierQuestions(
             uow,
             YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
             SystemClock(),
-        )(region)
+        )(
+            args.region,
+            limit=getattr(args, "limit", 200),
+            cold_start=getattr(args, "cold_start", 20),
+        )
     finally:
         await uow.aclose()
     print(f"hotelier_questions: {added}")
+    return 0
+
+
+async def _notify_hoteliers(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
+    try:
+        report = await SweepHotelierNotifications(
+            uow,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+            lead_days=args.lead_days,
+            window_days=args.window_days,
+            limit=args.limit,
+        )(args.region)
+    finally:
+        await uow.aclose()
+    print(
+        json.dumps(
+            {
+                "expiring": report.expiring,
+                "demand": report.demand,
+                "written": report.written,
+            }
+        )
+    )
     return 0
 
 
