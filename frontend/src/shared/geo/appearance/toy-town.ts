@@ -7,6 +7,7 @@ export const TOY_TOWN: AppearancePackage = {
   palette: {
     land: "--map-toy-earth",
     park: "--map-toy-green",
+    forest: "--map-toy-forest",
     sand: "--map-toy-sand",
     water: "--map-toy-water",
     building: "--map-toy-wall",
@@ -52,7 +53,6 @@ export const TOY_TOWN: AppearancePackage = {
   materials: {
     hotel: "matte",
     verticalGradient: true,
-    roofToken: "--map-toy-roof",
     hotelRoofToken: "--map-toy-teal",
     roofTokens: [
       "--map-toy-roof",
@@ -92,6 +92,7 @@ export const TOY_TOWN: AppearancePackage = {
     trees: true,
     lights: true,
     roadGlow: false,
+    steadyLights: false,
   },
   mini: { terrain: false, volumes: false, lights: false },
 }

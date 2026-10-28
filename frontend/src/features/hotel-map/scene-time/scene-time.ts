@@ -19,8 +19,16 @@ export function forecastEnd(today: string): string {
 
 export function sunScene(date: string, hour: number, lat: number, lon: number) {
   const when = new Date(Date.parse(`${date}T00:00:00+03:00`) + hour * HOUR_MS)
+  const moon = SunCalc.getMoonPosition(when, lat, lon)
   return {
-    position: SunCalc.getPosition(when, lat, lon),
+    position: {
+      ...SunCalc.getPosition(when, lat, lon),
+      moon: {
+        azimuth: moon.azimuth,
+        altitude: moon.altitude,
+        fraction: SunCalc.getMoonIllumination(when).fraction,
+      },
+    },
     times: SunCalc.getTimes(when, lat, lon),
   }
 }

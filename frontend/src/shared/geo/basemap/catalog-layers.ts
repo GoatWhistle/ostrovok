@@ -36,11 +36,11 @@ function classMatch(
 
 export function classColors(
   classes: readonly CatalogClass[],
-  resolve: (token: string) => string | undefined,
+  resolve: (token: string, item: CatalogClass) => string | undefined,
   fallback: Fallback,
 ): ClassColors {
   const colored = classes.flatMap((item) => {
-    const color = resolve(item.style.fill ?? "")
+    const color = resolve(item.style.fill ?? "", item)
     return color && HEX.test(color) ? [{ item, color }] : []
   })
   const pairs = (keep: (item: CatalogClass) => boolean) =>

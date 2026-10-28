@@ -87,3 +87,25 @@ describe("windowDensity", () => {
     ])
   })
 })
+
+describe("quality at rest", () => {
+  it("returns to full quality once the map rests", () => {
+    const changes: QualityLevel[] = []
+    const governor = new QualityGovernor((level) => changes.push(level))
+    feed(governor, 40, 6)
+    expect(governor.level).toBe(3)
+    governor.rest()
+    expect(governor.level).toBe(0)
+    governor.rest()
+    expect(changes).toEqual([1, 2, 3, 0])
+  })
+
+  it("keeps steady lights on until the scene drops its volumes", () => {
+    expect([0, 1, 2, 3].map((level) => windowDensity(level as QualityLevel, true))).toEqual([
+      1, 1, 1, 0,
+    ])
+    expect([0, 1, 2, 3].map((level) => windowDensity(level as QualityLevel))).toEqual([
+      1, 0.5, 0, 0,
+    ])
+  })
+})

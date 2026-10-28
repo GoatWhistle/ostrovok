@@ -10,14 +10,14 @@ import {
 import type { Camera, HotelSummary, SearchResult } from "@/shared/api/hotel-types"
 import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
-import { appearanceClasses } from "@/shared/geo/appearance/palette"
+import { appearanceClasses, readNightColors, tintedColors } from "@/shared/geo/appearance/palette"
 import { retainPmtiles } from "@/shared/geo/basemap/pmtiles-protocol"
 import { renderHighlights } from "@/shared/geo/buildings/map-layers"
 import { useMapInstance } from "@/shared/geo/engine/use-map-instance"
 import { useMapRendering } from "@/shared/geo/engine/use-map-rendering"
 import { featureCollection } from "@/shared/geo/geometry/geometry"
-import { tintForTime } from "@/shared/geo/sun/time-tint"
-import { followTerrainZoom, lightMode, type SunPosition } from "@/shared/geo/terrain/terrain"
+import { nightFactor } from "@/shared/geo/night-city/night-layers"
+import { followTerrainZoom, type SunPosition } from "@/shared/geo/terrain/terrain"
 import type { TexturedFootprint } from "@/shared/geo/textured-building/selection"
 import { useLocale } from "@/shared/i18n"
 import { useReducedMotion } from "@/shared/motion"
@@ -79,9 +79,11 @@ export function useHotelMap({
   )
   const basemaps = useBasemaps(regionIds)
   const catalog = useMapCatalog()
+  const night = useMemo(() => readNightColors(appearance.id), [appearance.id])
   const classes = useMemo(
-    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, sun.altitude),
-    [appearance.id, catalog.data, colors, sun.altitude],
+    () =>
+      appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, night, sun.altitude),
+    [appearance.id, catalog.data, colors, night, sun.altitude],
   )
   useEffect(() => retainPmtiles(), [])
   const highlightData = useMemo(() => featureCollection(highlights), [highlights])
@@ -107,14 +109,8 @@ export function useHotelMap({
   }, [instance, active, highlightData, colors])
   const buildingData = useMemo(() => featureCollection(buildings), [buildings])
   const buildingColors = useMemo(
-    () =>
-      tintForTime(
-        colors,
-        lightMode(sun.altitude),
-        sun.altitude,
-        APPEARANCES[appearance.id].materials.duskTint,
-      ),
-    [colors, sun.altitude, appearance.id],
+    () => tintedColors(appearance.id, colors, night, sun.altitude),
+    [colors, night, sun.altitude, appearance.id],
   )
   const textureStatus = useTexturedHotel({
     mapRef: instance,
@@ -135,7 +131,7 @@ export function useHotelMap({
   )
   const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
   const textured = useMemo(() => new Set(buildingIds(texturedFootprints)), [texturedFootprints])
-  const quality = useMapQuality(instance, active)
+  const quality = useMapQuality(instance, active, nightFactor(sun.altitude) > 0)
   useNightCity({
     mapRef: instance,
     ready: active,

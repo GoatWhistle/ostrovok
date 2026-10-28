@@ -1,6 +1,6 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { skyPalette, sunLight } from "../sun/sun-light"
-import { mixHex } from "../sun/time-tint"
+import { mixHex } from "../color/hex-color"
+import { type MoonLight, type NightLight, skyPalette, sunLight } from "../sun/sun-light"
 import { renderWorldWater } from "../world/water"
 import { WORLD_WATER_FADE_FROM } from "../world/water-layers"
 import { retryingTileUrl } from "./dem-protocol"
@@ -9,6 +9,7 @@ import { addSnowLayers, paintSnow, rgba } from "./snow"
 export interface SunPosition {
   readonly azimuth: number
   readonly altitude: number
+  readonly moon?: MoonLight
 }
 
 export interface TerrainColors {
@@ -178,6 +179,7 @@ export function renderTerrain(
   colors: TerrainColors,
   sun: SunPosition,
   contrast = 1,
+  night?: NightLight,
 ) {
   const { sea, sky } = scenePalette(colors, sun.altitude)
   addTerrainLayers(map, colors, sea)
@@ -192,7 +194,10 @@ export function renderTerrain(
   map.setPaintProperty("sochi-hillshade", "hillshade-accent-color", colors.hillShadow)
   map.setPaintProperty("sochi-hillshade", "hillshade-illumination-direction", sun.azimuth)
   map.setPaintProperty("canvas", "background-color", groundColor(colors, sea))
-  map.setLight({ anchor: "map", ...sunLight(colors, sun.azimuth, sun.altitude, contrast) })
+  map.setLight({
+    anchor: "map",
+    ...sunLight(colors, sun.azimuth, sun.altitude, contrast, night),
+  })
   map.setSky({
     "sky-color": sky,
     "horizon-color": mixHex(sky, sea, HORIZON_SEA),

@@ -3,6 +3,10 @@ import { PATH, roadWidth } from "../ground/road-widths"
 import { WORLD_WATER_FADE_TO } from "../world/water-layers"
 
 const COAST_FROM = 8
+const LIGHT_OPACITY = 0.7
+const NIGHT_LIGHT_OPACITY = 0.95
+const LIGHT_WIDTH = 1.8
+const NIGHT_LIGHT_WIDTH = 1.6
 
 export interface BasemapColors {
   readonly sand: string
@@ -23,7 +27,16 @@ const LIT: ExpressionSpecification = [
   false,
 ]
 
-function paintBasemap(map: MapLibreMap, colors: BasemapColors) {
+function lightWidth(night: number): ExpressionSpecification {
+  const widest = LIGHT_WIDTH * (1 + (NIGHT_LIGHT_WIDTH - 1) * night)
+  return ["interpolate", ["linear"], ["zoom"], 13, 0.4, 18, widest]
+}
+
+function lightOpacity(night: number): number {
+  return LIGHT_OPACITY + (NIGHT_LIGHT_OPACITY - LIGHT_OPACITY) * night
+}
+
+function paintBasemap(map: MapLibreMap, colors: BasemapColors, night: number) {
   map.setPaintProperty("base-beaches", "fill-color", colors.sand)
   map.setPaintProperty("base-buildings", "fill-color", colors.building)
   map.setPaintProperty("base-buildings", "fill-outline-color", colors.buildingLine)
@@ -31,12 +44,14 @@ function paintBasemap(map: MapLibreMap, colors: BasemapColors) {
   map.setPaintProperty("base-roads", "line-color", colors.road)
   map.setPaintProperty("base-roads-glow", "line-color", colors.roadGlow)
   map.setPaintProperty("base-roads-light", "line-color", colors.roadLight)
+  map.setPaintProperty("base-roads-light", "line-width", lightWidth(night))
+  map.setPaintProperty("base-roads-light", "line-opacity", lightOpacity(night))
   map.setPaintProperty("base-coastline", "line-color", colors.coast)
 }
 
-export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
+export function renderBasemap(map: MapLibreMap, colors: BasemapColors, night = 0) {
   if (map.getSource("sochi-map")) {
-    paintBasemap(map, colors)
+    paintBasemap(map, colors, night)
     return
   }
   map.addSource("sochi-map", {
@@ -102,8 +117,8 @@ export function renderBasemap(map: MapLibreMap, colors: BasemapColors) {
     layout: { "line-cap": "round", "line-join": "round" },
     paint: {
       "line-color": colors.roadLight,
-      "line-width": ["interpolate", ["linear"], ["zoom"], 13, 0.4, 18, 1.8],
-      "line-opacity": 0.7,
+      "line-width": lightWidth(night),
+      "line-opacity": lightOpacity(night),
     },
   })
   map.addLayer({

@@ -14,8 +14,14 @@ const WINDOWS_TO_RAISE = 4
 const MAX_FRAME_MS = 250
 const STALLED_FRAMES = 8
 const MAX_LEVEL: QualityLevel = 3
+const REST_MS = 1500
 
-export function windowDensity(level: QualityLevel): number {
+export function lightsLevel(steady: boolean): QualityLevel {
+  return steady ? 3 : 2
+}
+
+export function windowDensity(level: QualityLevel, steady = false): number {
+  if (steady) return level >= lightsLevel(steady) ? 0 : 1
   if (level === 0) return 1
   return level === 1 ? 0.5 : 0
 }
@@ -68,19 +74,27 @@ export class QualityGovernor {
     }
   }
 
+  rest() {
+    if (this.level > 0) this.settle(0)
+  }
+
   private sampleStall() {
     this.stalled += 1
     if (this.stalled >= STALLED_FRAMES && this.level < MAX_LEVEL) this.shift(1)
   }
 
   private shift(step: 1 | -1) {
+    this.settle((this.level + step) as QualityLevel)
+  }
+
+  private settle(level: QualityLevel) {
     this.frames = []
     this.elapsed = 0
     this.stalled = 0
-    this.level = (this.level + step) as QualityLevel
+    this.level = level
     this.slow = 0
     this.fast = 0
-    this.onChange(this.level)
+    this.onChange(level)
   }
 }
 
@@ -103,6 +117,22 @@ export function watchMovingFrames(map: MapLibreMap, onFrame: (frameMs: number) =
   }
 }
 
+export function watchRest(map: MapLibreMap, onRest: () => void) {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const wait = () => {
+    clearTimeout(timer)
+    timer = setTimeout(onRest, REST_MS)
+  }
+  const stop = () => clearTimeout(timer)
+  map.on("moveend", wait)
+  map.on("movestart", stop)
+  return () => {
+    stop()
+    map.off("moveend", wait)
+    map.off("movestart", stop)
+  }
+}
+
 function setVisible(map: MapLibreMap, layer: string, visible: boolean) {
   if (!map.getLayer(layer)) return
   const value = visible ? "visible" : "none"
@@ -110,8 +140,13 @@ function setVisible(map: MapLibreMap, layer: string, visible: boolean) {
     map.setLayoutProperty(layer, "visibility", value)
 }
 
-export function applyQuality(map: MapLibreMap, level: QualityLevel, roadGlow = true) {
-  setVisible(map, "base-roads-glow", level === 0 && roadGlow)
+export function applyQuality(
+  map: MapLibreMap,
+  level: QualityLevel,
+  roadGlow = true,
+  night = false,
+) {
+  setVisible(map, "base-roads-glow", (level === 0 && roadGlow) || (level <= 1 && night))
   setVisible(map, "scene-volumes", level < 3)
   setVisible(map, "overview-volumes", level < 3)
   setVisible(map, "base-buildings", true)

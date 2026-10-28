@@ -1,6 +1,7 @@
 export const NEON_TOKENS = {
   land: "--map-neon-land",
   park: "--map-neon-park",
+  forest: "--map-neon-class-forest",
   sand: "--map-neon-sand",
   water: "--map-neon-water",
   building: "--map-neon-building",

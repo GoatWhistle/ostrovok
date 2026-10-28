@@ -9,6 +9,7 @@ import { WINDOW_STRIDE, type WindowMesh } from "./window-mesh"
 import { WINDOW_FRAGMENT, WINDOW_VERTEX } from "./window-shaders"
 
 export const WINDOW_LAYER = "night-windows"
+const GLOW_OFFSET = [-1, -4] as const
 const ATTRIBUTES = [
   ["a_position", 3, 0],
   ["a_wall", 2, 12],
@@ -126,7 +127,13 @@ export class WindowLayer implements CustomLayerInterface {
     gl.enable(gl.BLEND)
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
     gl.disable(gl.CULL_FACE)
+    const lifted = this.light.glass < 0.5
+    if (lifted) {
+      gl.enable(gl.POLYGON_OFFSET_FILL)
+      gl.polygonOffset(...GLOW_OFFSET)
+    }
     gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0)
+    if (lifted) gl.disable(gl.POLYGON_OFFSET_FILL)
     gl.bindVertexArray(null)
     gl.depthMask(true)
   }

@@ -3,7 +3,7 @@ import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { AppearancePackage } from "@/shared/geo/appearance/types"
 import { labelAnchor } from "@/shared/geo/basemap/basemap-labels"
 import { markSceneBuildings } from "@/shared/geo/buildings/overview-buildings"
-import { type QualityLevel, windowDensity } from "@/shared/geo/engine/map-quality"
+import { lightsLevel, type QualityLevel, windowDensity } from "@/shared/geo/engine/map-quality"
 import { type SceneViewport, watchSceneViewport } from "@/shared/geo/engine/scene-viewport"
 import {
   nightFactor,
@@ -131,13 +131,13 @@ export function useNightCity({
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
-    const lights = quality >= 2 || !effects.lights ? 0 : night
+    const lights = quality >= lightsLevel(effects.steadyLights) || !effects.lights ? 0 : night
     renderNightLights(map, lights, { lamp: colors.lamp, cityGlow: colors.cityGlow })
     const update = () =>
       layer.current?.setLight({
         night,
         fade: windowFade(map.getZoom(), night),
-        density: effects.windows ? windowDensity(quality) : 0,
+        density: effects.windows ? windowDensity(quality, effects.steadyLights) : 0,
         glass: effects.facades ? 1 : 0,
         warm: rgb(colors.windowWarm),
         cool: rgb(colors.windowCool),
@@ -157,5 +157,6 @@ export function useNightCity({
     effects.lights,
     effects.windows,
     effects.facades,
+    effects.steadyLights,
   ])
 }

@@ -4,7 +4,7 @@ import { useRegions } from "@/entities/catalog"
 import { useHotelScene } from "@/entities/hotel"
 import { drawnVolumes, useBasemaps, useMapCatalog, useNightCity } from "@/entities/map-data"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
-import { appearanceClasses } from "@/shared/geo/appearance/palette"
+import { appearanceClasses, readNightColors } from "@/shared/geo/appearance/palette"
 import { retainPmtiles } from "@/shared/geo/basemap/pmtiles-protocol"
 import { renderBuildings, renderHighlights } from "@/shared/geo/buildings/map-layers"
 import { useMapInstance } from "@/shared/geo/engine/use-map-instance"
@@ -73,7 +73,14 @@ function useCityLayers(
   )
   const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
   const classes = useMemo(
-    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, sun.altitude),
+    () =>
+      appearanceClasses(
+        appearance.id,
+        catalog.data?.classes ?? [],
+        colors,
+        readNightColors(appearance.id),
+        sun.altitude,
+      ),
     [appearance.id, catalog.data, colors, sun.altitude],
   )
   useNightCity({
