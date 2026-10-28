@@ -1868,10 +1868,37 @@ components:
       required: [message]
       properties:
         conversation_id: { type: string, format: uuid, nullable: true }
-        message: { type: string, minLength: 1, maxLength: 2000 }
+        message:
+          type: string
+          maxLength: 2000
+          description: >-
+            Реплика пользователя. Пустая строка допустима только вместе с непустым filters:
+            это правка набора фильтров, она запускает поиск и не пишет реплику в чат.
+        filters:
+          type: array
+          nullable: true
+          description: >-
+            Активный набор фильтров, который пользователь видит над полем ввода. Когда поле
+            передано, поиск опирается только на него: удалённое условие в запрос не возвращается.
+            null означает, что клиент фильтрами не управляет и контекст берётся из переписки.
+          items: { $ref: "#/components/schemas/ChatFilter" }
         region_id: { type: string, default: russia }
         selected_hotel_id: { type: string, nullable: true }
         locale: { type: string, enum: [ru, en], default: ru }
+
+    ChatFilter:
+      type: object
+      description: >-
+        Одно понятое условие поиска. wish и location несут слова пользователя в label,
+        dates и guests — структурные значения, которые клиент форматирует сам.
+      required: [kind]
+      properties:
+        kind: { type: string, enum: [wish, location, dates, guests] }
+        label: { type: string, example: "вид на закат" }
+        key: { type: string, nullable: true, example: sunset_view }
+        check_in: { type: string, format: date, nullable: true }
+        check_out: { type: string, format: date, nullable: true }
+        adults: { type: integer, nullable: true, example: 2 }
     ChatMessage:
       type: object
       required: [id, role, content, created_at]
@@ -1904,6 +1931,12 @@ components:
           type: array
           items: { $ref: "#/components/schemas/ChatMessage" }
         effective_query: { type: string, nullable: true }
+        filters:
+          type: array
+          description: >-
+            Набор фильтров, разобранный из текущей выдачи. Клиент заменяет им своё состояние
+            после каждого ответа; пустой массив означает, что выдачи ещё нет.
+          items: { $ref: "#/components/schemas/ChatFilter" }
         search:
           nullable: true
           allOf:
