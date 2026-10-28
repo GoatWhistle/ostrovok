@@ -29,7 +29,7 @@
 }
 
 .stay > * {
-  max-inline-size: calc(var(--compare-card-min) * 2 + var(--term-min));
+  max-inline-size: var(--prose-measure);
 }
 
 @media (min-width: 64rem) {
