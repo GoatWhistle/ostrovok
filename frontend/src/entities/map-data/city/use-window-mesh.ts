@@ -1,10 +1,10 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect } from "react"
-import type { MapRenderScene } from "@/entities/map-data"
 import { tileWindowBuildings } from "@/shared/geo/night-city/tile-windows"
 import type { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import type { WindowLayer } from "@/shared/geo/night-city/window-layer"
 import { watchRoofTriggers } from "@/shared/geo/roof-mesh/triggers"
+import type { MapRenderScene } from "../map-scene.queries"
 import { type DrawnVolume, windowBuildings } from "./night-city-data"
 
 export interface WindowMeshInput {

@@ -5,7 +5,7 @@ import {
   drawnVolumes,
   sceneCollection,
   windowBuildings,
-} from "@/features/hotel-map/night-city/night-city-data"
+} from "@/entities/map-data/city/night-city-data"
 
 const RING = [
   [39.9, 43.44],

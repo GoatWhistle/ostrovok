@@ -1,6 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
-import type { MapRenderScene } from "@/entities/map-data"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { hideMeshedContext } from "@/shared/geo/map-layers"
 import { hideMeshedSceneVolumes } from "@/shared/geo/night-city/night-layers"
@@ -15,7 +14,8 @@ import {
   tileCandidates,
 } from "@/shared/geo/roof-mesh/sources"
 import { watchRoofTriggers } from "@/shared/geo/roof-mesh/triggers"
-import type { DrawnVolume } from "../night-city/night-city-data"
+import type { MapRenderScene } from "../map-scene.queries"
+import type { DrawnVolume } from "./night-city-data"
 
 function sceneCandidates(
   scene: MapRenderScene | undefined,

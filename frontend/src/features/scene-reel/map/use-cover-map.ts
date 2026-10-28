@@ -1,16 +1,19 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { useEffect, useMemo, useState } from "react"
+import { type RefObject, useEffect, useMemo, useState } from "react"
+import { useRegions } from "@/entities/catalog"
 import { useHotelScene } from "@/entities/hotel"
-import { useBasemaps, useMapCatalog } from "@/entities/map-data"
+import { drawnVolumes, useBasemaps, useMapCatalog, useNightCity } from "@/entities/map-data"
+import { APPEARANCES } from "@/shared/geo/appearance/packages"
+import { appearanceClasses } from "@/shared/geo/appearance/palette"
 import { useMapInstance } from "@/shared/geo/engine/use-map-instance"
 import { useMapRendering } from "@/shared/geo/engine/use-map-rendering"
 import { featureCollection } from "@/shared/geo/geometry"
 import { renderBuildings, renderHighlights } from "@/shared/geo/map-layers"
 import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
-import { followTerrainZoom } from "@/shared/geo/terrain"
+import { followTerrainZoom, type SunPosition } from "@/shared/geo/terrain"
 import { useLocale } from "@/shared/i18n"
 import { motionMs } from "@/shared/motion"
-import { useMapColors, useTheme } from "@/shared/theme"
+import { type MapColors, useMapAppearance, useMapColors, useTheme } from "@/shared/theme"
 import type { ReelCamera } from "../shots"
 import walk from "./beach-walk.json"
 
@@ -26,6 +29,8 @@ const OPTIONS = {
 const DAY_SUN = { azimuth: 250, altitude: 3 }
 const DUSK_SUN = { azimuth: 250, altitude: -8 }
 const REGIONS = ["sochi"]
+const NO_TEXTURES: ReadonlySet<string> = new Set()
+const QUALITY = 1
 
 function settle(map: MapLibreMap, camera: ReelCamera, limit: number) {
   return new Promise<void>((resolve) => {
@@ -46,6 +51,42 @@ async function preload(map: MapLibreMap, cameras: readonly ReelCamera[], cancell
     if (cancelled()) return
     await settle(map, camera, limit)
   }
+}
+
+function useCityLayers(
+  mapRef: RefObject<MapLibreMap | null>,
+  ready: boolean,
+  buildings: readonly unknown[],
+  sun: SunPosition,
+  colors: MapColors,
+) {
+  const regions = useRegions()
+  const catalog = useMapCatalog()
+  const appearance = useMapAppearance()
+  const boxes = useMemo(
+    () =>
+      regions.data?.items?.flatMap((item) =>
+        item.id && item.bbox ? [{ id: item.id, bbox: item.bbox }] : [],
+      ) ?? [],
+    [regions.data],
+  )
+  const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
+  const classes = useMemo(
+    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, sun.altitude),
+    [appearance.id, catalog.data, colors, sun.altitude],
+  )
+  useNightCity({
+    mapRef,
+    ready,
+    regions: boxes,
+    drawn,
+    textured: NO_TEXTURES,
+    colors,
+    volumeColor: classes.volume,
+    sun,
+    quality: QUALITY,
+    effects: APPEARANCES[appearance.id].effects,
+  })
 }
 
 export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonly ReelCamera[]) {
@@ -77,6 +118,7 @@ export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonl
     [catalog.data, assets, locale, buildings, sun],
   )
   const rendering = useMapRendering(map.instance, map.ready, snapshot, map.active && visible)
+  useCityLayers(map.instance, map.ready && visible, buildings.features, sun, colors)
   const prepared = scene.data !== undefined && catalog.data !== undefined && assets.length > 0
   useEffect(() => retainPmtiles(), [])
   useEffect(() => {
