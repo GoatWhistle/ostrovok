@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { paintRoofMesh } from "../roof-mesh/paint"
-import type { SunPosition } from "../terrain/terrain"
 import { tintHex } from "../sun/time-tint"
+import type { SunPosition } from "../terrain/terrain"
 import { paintTreeMesh } from "../tree-mesh/paint"
 import { APPEARANCES } from "./packages"
 import { readAppearanceColors } from "./palette"

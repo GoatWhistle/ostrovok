@@ -1,10 +1,10 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { retryingTileUrl } from "./dem-protocol"
-import { addSnowLayers, paintSnow, rgba } from "./snow"
 import { skyPalette, sunLight } from "../sun/sun-light"
 import { mixHex } from "../sun/time-tint"
 import { renderWorldWater } from "../world/water"
 import { WORLD_WATER_FADE_FROM } from "../world/water-layers"
+import { retryingTileUrl } from "./dem-protocol"
+import { addSnowLayers, paintSnow, rgba } from "./snow"
 
 export interface SunPosition {
   readonly azimuth: number

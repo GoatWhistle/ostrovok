@@ -1,9 +1,9 @@
 import type { Fact, FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import type { Locale } from "@/shared/i18n"
 import { i18n } from "@/shared/i18n/instance"
-import { petsLabel } from "./pets"
 import { sunsetExplanation } from "../sun/sunset-explanation"
 import { viewExplanation } from "../sun/view-explanation"
+import { petsLabel } from "./pets"
 
 function number(value: unknown, locale: Locale) {
   return typeof value === "number" && Number.isFinite(value)

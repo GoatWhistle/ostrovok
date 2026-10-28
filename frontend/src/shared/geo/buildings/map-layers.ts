@@ -1,8 +1,8 @@
 import type { Feature, FeatureCollection } from "geojson"
 import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap/basemap-labels"
-import { contextHeight, HOTEL } from "./context-height"
 import { contextRoofs } from "../roof-forms/layer"
+import { contextHeight, HOTEL } from "./context-height"
 
 export interface BuildingColors {
   readonly building: string

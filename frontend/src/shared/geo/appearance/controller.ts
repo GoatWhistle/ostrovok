@@ -4,6 +4,7 @@ import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap/bas
 import { type CatalogClass, renderCatalogLayers } from "../basemap/catalog-layers"
 import { renderShore } from "../ground/shore-layers"
 import { sunLight } from "../sun/sun-light"
+import { mixHex, tintForTime } from "../sun/time-tint"
 import {
   lightMode,
   renderTerrain,
@@ -11,7 +12,6 @@ import {
   scenePalette,
   type TerrainColors,
 } from "../terrain/terrain"
-import { mixHex, tintForTime } from "../sun/time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
 import { labelPalette } from "./label-palette"
 import { paintMeshes } from "./mesh-paint"

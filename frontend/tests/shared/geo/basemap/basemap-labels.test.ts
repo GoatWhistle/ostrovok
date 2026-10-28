@@ -1,7 +1,11 @@
 import { featureFilter } from "@maplibre/maplibre-gl-style-spec"
 import type { LayerSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { describe, expect, it } from "vitest"
-import { type BasemapAssets, exclusionFor, renderBasemapLabels } from "@/shared/geo/basemap/basemap-labels"
+import {
+  type BasemapAssets,
+  exclusionFor,
+  renderBasemapLabels,
+} from "@/shared/geo/basemap/basemap-labels"
 
 const asset = (regionId: string, maxZoom: number, bbox: readonly number[]): BasemapAssets => ({
   regionId,

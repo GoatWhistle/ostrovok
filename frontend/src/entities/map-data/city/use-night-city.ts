@@ -2,7 +2,9 @@ import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { AppearancePackage } from "@/shared/geo/appearance/types"
 import { labelAnchor } from "@/shared/geo/basemap/basemap-labels"
+import { markSceneBuildings } from "@/shared/geo/buildings/overview-buildings"
 import { type QualityLevel, windowDensity } from "@/shared/geo/engine/map-quality"
+import { type SceneViewport, watchSceneViewport } from "@/shared/geo/engine/scene-viewport"
 import {
   nightFactor,
   renderNightLights,
@@ -11,9 +13,7 @@ import {
 } from "@/shared/geo/night-city/night-layers"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
-import { markSceneBuildings } from "@/shared/geo/buildings/overview-buildings"
 import { withRoofForms } from "@/shared/geo/roof-forms/layer"
-import { type SceneViewport, watchSceneViewport } from "@/shared/geo/engine/scene-viewport"
 import type { SunPosition } from "@/shared/geo/terrain/terrain"
 import type { MapColors } from "@/shared/theme"
 import { useMapScene } from "../map-scene.queries"
