@@ -52,6 +52,9 @@ class SearchOutcome:
     review: ReviewResult | None = None
 
 
+COUNTRY_NAMES = frozenset({"россия", "russia"})
+
+
 class SearchHotels:
     def __init__(
         self,
@@ -94,8 +97,9 @@ class SearchHotels:
             + tuple(spatial_intent(request) for request in parsed.spatial_requests),
         )
         location = parsed.location_hint.strip() if parsed.location_hint else None
-        if location and location.casefold() in {"россия", "russia"}:
+        if location and location.casefold() in COUNTRY_NAMES:
             location = None
+            parsed = replace(parsed, anywhere=True, needs_clarification=False)
         progress.step("parsed", **_understood(parsed, location))
         if parsed.needs_clarification or (not location and not parsed.anywhere):
             return _empty(
