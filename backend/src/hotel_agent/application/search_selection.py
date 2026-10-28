@@ -13,6 +13,8 @@ from hotel_agent.domain.services.scoring import Scored, score
 
 Candidate = tuple[SearchHotelRecord, Scored]
 
+NEAREST_LIMIT = 5
+
 
 @dataclass(frozen=True, slots=True)
 class Selection:
@@ -48,4 +50,4 @@ async def select_candidates(
 
 
 def nearest_matches(ranked: Sequence[Candidate], limit: int) -> tuple[Candidate, ...]:
-    return tuple(ranked[:limit])
+    return tuple(ranked[: min(limit, NEAREST_LIMIT)])
