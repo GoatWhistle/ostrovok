@@ -61,6 +61,16 @@ export const TOY_TOWN: AppearancePackage = {
       "--map-toy-roof",
     ],
     trimTokens: { steel: "--map-toy-roof-steel", brick: "--map-toy-brick" },
+    treeTokens: {
+      leaves: [
+        "--map-toy-leaf",
+        "--map-toy-leaf-fresh",
+        "--map-toy-leaf-deep",
+        "--map-toy-leaf-olive",
+      ],
+      conifer: "--map-toy-conifer",
+      trunk: "--map-toy-trunk",
+    },
     plasterTokens: [
       "--map-toy-wall",
       "--map-toy-plaster-white",
@@ -74,6 +84,13 @@ export const TOY_TOWN: AppearancePackage = {
     lightContrast: 0.6,
     duskTint: 0.2,
   },
-  effects: { windows: true, facades: true, roofs: true, lights: true, roadGlow: false },
+  effects: {
+    windows: true,
+    facades: true,
+    roofs: true,
+    trees: true,
+    lights: true,
+    roadGlow: false,
+  },
   mini: { terrain: false, volumes: false, lights: false },
 }

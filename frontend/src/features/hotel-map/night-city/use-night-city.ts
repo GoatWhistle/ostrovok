@@ -18,6 +18,7 @@ import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewp
 import type { SunPosition } from "@/shared/geo/terrain"
 import type { MapColors } from "@/shared/theme"
 import { useRoofMesh } from "../roof-mesh/use-roof-mesh"
+import { useTreeMesh } from "../tree-mesh/use-tree-mesh"
 import {
   type DrawnVolume,
   type RegionBox,
@@ -94,6 +95,7 @@ export function useNightCity({
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
   const roofless = useMemo(() => [...textured], [textured])
   useRoofMesh(mapRef, ready, scene.data, roofless, excluded, effects.roofs)
+  useTreeMesh(mapRef, ready, effects.trees)
   useEffect(() => {
     const map = mapRef.current
     const data = scene.data

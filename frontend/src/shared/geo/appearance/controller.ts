@@ -2,15 +2,13 @@ import type { Map as MapLibreMap } from "maplibre-gl"
 import { renderBasemap } from "../basemap"
 import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
-import { paintRoofMesh } from "../roof-mesh/paint"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
-import { tintForTime, tintHex } from "../time-tint"
+import { tintForTime } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
+import { paintMeshes } from "./mesh-paint"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
 import { appearanceClasses, readAppearanceColors } from "./palette"
-import { renderAppearanceRoofs, roofPaint } from "./roofs"
-import { renderGroundShadows, renderTreeShadows } from "./shadows"
 import type { MapAppearance } from "./types"
 
 const OVERVIEW_ALTITUDE = 45
@@ -71,47 +69,11 @@ export class MapAppearanceController {
 
   private refreshRoofs = () => {
     if (this.disposed || !this.visible || this.profile === "mini") return
-    const materials = APPEARANCES[this.appearance].materials
-    const tokens = materials.roofTokens ?? (materials.roofToken ? [materials.roofToken] : [])
-    const style = getComputedStyle(document.documentElement)
-    const palette = APPEARANCES[this.appearance].palette
-    const sky = {
-      horizonDusk: style.getPropertyValue(palette.horizonDusk).trim(),
-      horizonNight: style.getPropertyValue(palette.horizonNight).trim(),
-    }
-    const altitude = this.scene?.sun.altitude ?? OVERVIEW_ALTITUDE
-    const resolve = (list: readonly string[]) =>
-      list
-        .map((token) => style.getPropertyValue(token).trim())
-        .filter((value) => value.length > 0)
-        .map((value) => tintHex(value, sky, altitude, materials.duskTint))
-    const colors = resolve(tokens)
-    const flat = resolve(materials.flatRoofTokens ?? tokens)
-    renderAppearanceRoofs(this.map, roofPaint(flat))
-    const tone = (token: string) =>
-      tintHex(style.getPropertyValue(token).trim(), sky, altitude, materials.duskTint)
-    paintRoofMesh(
+    paintMeshes(
       this.map,
-      materials.trimTokens
-        ? {
-            pitched: colors,
-            gravel: flat,
-            plaster: resolve(materials.plasterTokens ?? [palette.building]),
-            steel: tone(materials.trimTokens.steel),
-            brick: tone(materials.trimTokens.brick),
-            wall: tone(palette.building),
-            sky: readAppearanceColors(this.appearance),
-            azimuth: this.scene?.sun.azimuth ?? 0,
-            altitude,
-          }
-        : undefined,
+      this.appearance,
+      this.scene?.sun ?? { azimuth: 0, altitude: OVERVIEW_ALTITUDE },
     )
-    const sun = this.scene?.sun
-    const shadow = materials.shadowToken
-      ? style.getPropertyValue(materials.shadowToken).trim()
-      : undefined
-    renderGroundShadows(this.map, shadow, sun?.azimuth ?? 0, sun?.altitude ?? 0)
-    renderTreeShadows(this.map, shadow, sun?.azimuth ?? 0, sun?.altitude ?? 0)
   }
 
   private paint() {
