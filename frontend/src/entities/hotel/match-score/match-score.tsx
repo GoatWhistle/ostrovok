@@ -4,6 +4,8 @@ import { useFormatters, useTranslation } from "@/shared/i18n"
 import { Icon, StatusBadge } from "@/shared/ui"
 import styles from "./match-score.module.css"
 
+const LOW_CONFIDENCE = 0.7
+
 export interface Score {
   readonly full: number
   readonly total: number
@@ -58,7 +60,7 @@ export interface MatchConfidenceProps {
 export function MatchConfidence({ value, className }: MatchConfidenceProps) {
   const { t } = useTranslation()
   const format = useFormatters()
-  if (value === undefined || value <= 0) return null
+  if (value === undefined || value <= 0 || value >= LOW_CONFIDENCE) return null
   return (
     <span className={clsx(styles.confidence, className)}>
       {t("explore:results.confidence", { value: format.percent(value) })}
