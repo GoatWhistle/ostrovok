@@ -114,12 +114,7 @@ export function HotelDetails({
       aria-labelledby={titleId}
       data-motion="fade"
     >
-      <HotelHero
-        hotel={card.hotel}
-        supplier={supplier}
-        titleId={titleId}
-        onRooms={catalog.data?.status === "available" ? roomsScreen.show : undefined}
-      />
+      <HotelHero hotel={card.hotel} supplier={supplier} titleId={titleId} />
       {matched.length ? (
         <MatchRows
           matched={matched}

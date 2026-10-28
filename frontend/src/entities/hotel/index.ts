@@ -9,6 +9,7 @@ export {
   useHotelScene,
   useHotelSearch,
 } from "./hotel.queries"
+export { HotelRating } from "./hotel-rating/hotel-rating"
 export { HotelResult, HotelSummaryCard } from "./hotel-result/hotel-result"
 export { HotelStars } from "./hotel-stars/hotel-stars"
 export { useHotelRoom } from "./hotel-stay/hotel-room"

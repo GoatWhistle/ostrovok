@@ -40,17 +40,17 @@ const SUPPLIER: Supplier = {
 function show(supplier: Supplier | undefined) {
   return render(
     <LocaleProvider>
-      <HotelHero hotel={HOTEL} supplier={supplier} titleId="title" onRooms={undefined} />
+      <HotelHero hotel={HOTEL} supplier={supplier} titleId="title" />
     </LocaleProvider>,
   )
 }
 
 describe("hotel hero", () => {
   it("leads with the supplier photos and the stay facts", () => {
-    show(SUPPLIER)
-    expect(screen.getByRole("img").getAttribute("src")).toContain("a.jpg")
+    const { container } = show(SUPPLIER)
+    expect(container.querySelector("img")?.getAttribute("src")).toContain("a.jpg")
     fireEvent.click(screen.getByRole("button", { name: ru.rooms.nextPhoto }))
-    expect(screen.getByRole("img").getAttribute("src")).toContain("b.jpg")
+    expect(container.querySelector("img")?.getAttribute("src")).toContain("b.jpg")
     expect(screen.getByText(ru.hotelCover.checkIn.replace("{{time}}", "13:00"))).toBeTruthy()
     expect(screen.getByText(ru.hotelCover.checkOut.replace("{{time}}", "12:00"))).toBeTruthy()
     expect(screen.getByText(/6,8/)).toBeTruthy()
@@ -58,8 +58,8 @@ describe("hotel hero", () => {
   })
 
   it("shows no cover and no invented facts without supplier data", () => {
-    show(undefined)
-    expect(screen.queryByRole("img")).toBeNull()
+    const { container } = show(undefined)
+    expect(container.querySelector("img")).toBeNull()
     expect(screen.queryByText(/13:00/)).toBeNull()
     expect(screen.queryByRole("button", { name: ru.offers.viewRooms })).toBeNull()
   })
