@@ -43,6 +43,13 @@ class SearchResult:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class AskedHotelier:
+    hotel_id: str
+    characteristic_key: str
+    question_id: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class SearchOutcome:
     query_id: str
     parsed: ParsedQuery
@@ -50,6 +57,7 @@ class SearchOutcome:
     question: str | None = None
     wish_results: tuple[WishResult, ...] = ()
     rejected: tuple[Rejection, ...] = ()
+    asked: tuple[AskedHotelier, ...] = ()
     review: ReviewResult | None = None
 
 
@@ -201,6 +209,7 @@ class SearchHotels:
         await save_search_evidence(
             self._uow, explored.facts, [item.hotel.id for item in results], explored.features
         )
+        asked = await self._asked(results, parsed)
         fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
@@ -210,6 +219,32 @@ class SearchHotels:
             wish_results=explored.wish_results,
             review=selection.report,
             rejected=selection.rejected,
+            asked=asked,
+        )
+
+    async def _asked(
+        self, results: Sequence[SearchResult], parsed: ParsedQuery
+    ) -> tuple[AskedHotelier, ...]:
+        unknown = {
+            (item.hotel.id, match.intent.characteristic_key)
+            for item in results
+            for match in item.scored.matches
+            if match.fact is None
+        }
+        if not unknown:
+            return ()
+        async with self._uow() as uow:
+            records = await uow.questions.open_for(
+                sorted({hotel for hotel, _ in unknown}), sorted({key for _, key in unknown})
+            )
+        return tuple(
+            AskedHotelier(
+                hotel_id=record.hotel_id,
+                characteristic_key=record.characteristic_key,
+                question_id=record.id,
+            )
+            for record in records
+            if (record.hotel_id, record.characteristic_key) in unknown
         )
 
     async def _selection(

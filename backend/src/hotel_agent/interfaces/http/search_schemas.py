@@ -43,6 +43,7 @@ class MatchedPropertySchema(BaseModel):
     fact: FactBriefSchema | None = None
     geo_refs: list[str] = Field(default_factory=list)
     camera: CameraSchema | None = None
+    hotelier_question_id: str | None = None
 
 
 class BuildingFeatureSchema(BaseModel):
@@ -120,7 +121,8 @@ def search_schema(
         check_out=outcome.parsed.check_out,
         adults=outcome.parsed.adults,
     )
-    results = [_search_result(item, registry) for item in outcome.results]
+    asked = {(item.hotel_id, item.characteristic_key): item.question_id for item in outcome.asked}
+    results = [_search_result(item, registry, asked) for item in outcome.results]
     viewport = None
     if results:
         points = [item.hotel.location for item in results]
@@ -152,7 +154,9 @@ def _rejected(item: Rejection) -> RejectedHotelSchema:
 
 
 def _search_result(
-    result: SearchResult, registry: CharacteristicRegistryPort
+    result: SearchResult,
+    registry: CharacteristicRegistryPort,
+    asked: Mapping[tuple[str, str], str],
 ) -> SearchResultSchema:
     hotel = result.hotel
     best_facade = next(
@@ -194,14 +198,22 @@ def _search_result(
     return SearchResultSchema(
         hotel=hotel_summary_schema(hotel),
         score=round(result.scored.score, 3),
-        matched=[_matched_schema(match, registry, camera) for match in result.scored.matches],
+        matched=[
+            _matched_schema(
+                match, registry, camera, asked.get((hotel.id, match.intent.characteristic_key))
+            )
+            for match in result.scored.matches
+        ],
         camera=camera,
         footprint=footprint,
     )
 
 
 def _matched_schema(
-    match: PropertyMatch, registry: CharacteristicRegistryPort, camera: CameraSchema
+    match: PropertyMatch,
+    registry: CharacteristicRegistryPort,
+    camera: CameraSchema,
+    question_id: str | None = None,
 ) -> MatchedPropertySchema:
     try:
         characteristic = registry.get(match.intent.characteristic_key)
@@ -228,6 +240,7 @@ def _matched_schema(
         fact=brief,
         geo_refs=[str(ref) for ref in fact.geo_refs] if fact else [],
         camera=camera if fact and fact.subject.part else None,
+        hotelier_question_id=question_id,
     )
 
 

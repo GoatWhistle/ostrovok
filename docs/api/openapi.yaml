@@ -1135,9 +1135,22 @@ components:
         match: { type: string, enum: [full, partial, none, unknown, computing] }
         label: { type: string, example: "Закат с 5-го этажа" }
         explanation: { type: string, example: "Закат есть, но только с 5-го этажа западной стороны" }
-        fact: { $ref: "#/components/schemas/FactBrief" }
+        fact:
+          nullable: true
+          allOf:
+            - { $ref: "#/components/schemas/FactBrief" }
         geo_refs: { type: array, items: { type: string } }
-        camera: { $ref: "#/components/schemas/Camera" }
+        camera:
+          nullable: true
+          allOf:
+            - { $ref: "#/components/schemas/Camera" }
+        hotelier_question_id:
+          type: string
+          nullable: true
+          description: >-
+            Открытый вопрос отелю по этому условию, если значение неизвестно и вопрос уже
+            поставлен. Вопросы ставит `plan-questions` по записанному спросу, поиск их не создаёт.
+          example: q_n10058556917_pets_policy
 
     HotelSummary:
       type: object

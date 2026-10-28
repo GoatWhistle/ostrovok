@@ -45,6 +45,13 @@ WHERE h.region_id = %(region)s AND q.status = 'skipped' AND EXISTS ("""
     + ")\nORDER BY q.id"
 )
 
+OPEN_FOR = (
+    QUESTION_COLUMNS
+    + """ WHERE q.status = 'open' AND q.hotel_id = ANY(%(hotels)s::text[])
+  AND q.characteristic_key = ANY(%(keys)s::text[])
+ORDER BY q.hotel_id, q.characteristic_key"""
+)
+
 CANDIDATES = """SELECT h.id, h.name, k.key
 FROM hotels h CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
 WHERE h.region_id = %(region)s AND h.name <> h.id
@@ -112,6 +119,16 @@ class PostgresQuestionStore:
             },
         )
         return [str(row[0]) for row in await cursor.fetchall()]
+
+    async def open_for(
+        self, hotel_ids: Sequence[str], characteristic_keys: Sequence[str]
+    ) -> Sequence[QuestionRecord]:
+        if not hotel_ids or not characteristic_keys:
+            return []
+        cursor = await self._connection.execute(
+            OPEN_FOR, {"hotels": list(hotel_ids), "keys": list(characteristic_keys)}
+        )
+        return [_question(row) for row in await cursor.fetchall()]
 
     async def deferred_with_demand(
         self, region: str, backed: Sequence[tuple[str, str]]

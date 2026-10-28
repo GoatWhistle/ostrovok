@@ -53,6 +53,7 @@ def search(
             nearby_objects=SimpleNamespace(),
             geo_features=SimpleNamespace(get_batch=AsyncMock(return_value=())),
             named_places=SimpleNamespace(geographic_name=AsyncMock(return_value=None)),
+            questions=SimpleNamespace(open_for=AsyncMock(return_value=[])),
         )
     )
     scope.__aexit__ = AsyncMock(return_value=None)

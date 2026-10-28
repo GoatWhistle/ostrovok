@@ -99,6 +99,7 @@ def build(
             nearby_objects=SimpleNamespace(),
             named_places=SimpleNamespace(geographic_name=AsyncMock(return_value=None)),
             geo_features=SimpleNamespace(save_batch=AsyncMock()),
+            questions=SimpleNamespace(open_for=AsyncMock(return_value=[])),
             commit=AsyncMock(),
         )
     )

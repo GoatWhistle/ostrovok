@@ -48,6 +48,10 @@ class QuestionStore(Protocol):
         backed: Sequence[tuple[str, str]],
     ) -> Sequence[str]: ...
 
+    async def open_for(
+        self, hotel_ids: Sequence[str], characteristic_keys: Sequence[str]
+    ) -> Sequence[QuestionRecord]: ...
+
     async def deferred_with_demand(
         self, region: str, backed: Sequence[tuple[str, str]]
     ) -> Sequence[QuestionRecord]: ...
