@@ -1,5 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { labelAnchor } from "./basemap-labels"
+import { labelAnchor } from "../basemap-labels"
 
 export interface ShoreColors {
   readonly shallows: string
