@@ -126,14 +126,15 @@ def test_measured_conditions_state_the_value_and_the_threshold_once() -> None:
     )
 
 
-def test_unmeasured_wish_reason_is_cut_to_the_first_whole_sentences() -> None:
+def test_unmeasured_wish_reason_keeps_whole_sentences_without_tool_names() -> None:
     reason = (
-        "Проверил афишу и общий поиск. " * 9
-    ) + "Подтверждений не нашлось, это не доказывает отсутствие."
+        "Пожелание «развлечения» слишком общее для числового критерия. "
+        "check_requested по term «развлечения» вернул 0 записей (matched_hotel_ids пусто). "
+        "Семантический поиск search_documents не нашёл описаний у отелей."
+    )
 
+    assert brief(reason) == "Пожелание «развлечения» слишком общее для числового критерия."
     assert len(brief(reason)) <= MAX_LENGTH
-    assert brief(reason).endswith(".")
-    assert "…" not in brief(reason)
 
 
 def test_sources_show_hosts_without_tracking_tails() -> None:

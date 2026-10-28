@@ -10,6 +10,7 @@ CONFIRMED = "Подтверждено источником"
 QUOTED = "Подтверждено"
 TIMESTAMP = "; retrieved_at="
 SENTENCE = re.compile(r"(?<=[.!?…])\s+")
+TECHNICAL = re.compile(r"[A-Za-z]+_[A-Za-z]")
 
 
 def compress(text: str) -> str:
@@ -43,7 +44,9 @@ def summary(clauses: Iterable[str], limit: int = MAX_LENGTH) -> str:
 
 
 def brief(text: str, limit: int = MAX_LENGTH) -> str:
-    return summary(SENTENCE.split(compress(text)), limit)
+    sentences = SENTENCE.split(compress(text))
+    plain = [item for item in sentences if not TECHNICAL.search(item)]
+    return summary(plain or sentences, limit)
 
 
 def quoted(text: str, limit: int = QUOTE_LENGTH) -> str:
