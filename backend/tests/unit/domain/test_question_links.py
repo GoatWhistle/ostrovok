@@ -30,3 +30,8 @@ def test_nothing_matches_without_a_token_or_a_secret() -> None:
 
     assert not token_matches(QUESTION, "", SECRET)
     assert not token_matches(QUESTION, token, "")
+
+
+def test_a_non_ascii_token_is_rejected_instead_of_raising() -> None:
+    assert not token_matches(QUESTION, "пароль1234567890", SECRET)
+    assert not token_matches(QUESTION, "🔑🔑🔑🔑🔑🔑🔑🔑", SECRET)

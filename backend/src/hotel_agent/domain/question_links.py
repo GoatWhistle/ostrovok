@@ -14,4 +14,6 @@ def question_token(question_id: QuestionId, secret: str) -> str:
 def token_matches(question_id: QuestionId, token: str, secret: str) -> bool:
     if not secret or not token:
         return False
-    return hmac.compare_digest(question_token(question_id, secret), token.strip().casefold())
+    return hmac.compare_digest(
+        question_token(question_id, secret).encode(), token.strip().casefold().encode()
+    )

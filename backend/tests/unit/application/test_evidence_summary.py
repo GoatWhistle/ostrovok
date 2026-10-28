@@ -142,3 +142,10 @@ def test_sources_show_hosts_without_tracking_tails() -> None:
         "Источники: afisha.yandex.ru, ru.wikipedia.org"
     )
     assert measured("Подтверждений в данных источника", 1, "gte", 1) == "Подтверждено источником"
+
+
+def test_zero_confirmations_do_not_read_as_confirmed() -> None:
+    assert measured("Подтверждений в данных источника", 0, "gte", 1) == (
+        "Подтверждений в данных источника: 0 (нужно не менее 1)"
+    )
+    assert measured("Подтверждений в данных источника", 2, "gte", 1) == "Подтверждено источником"

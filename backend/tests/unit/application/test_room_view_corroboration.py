@@ -103,3 +103,13 @@ def test_a_hotel_without_declared_rooms_keeps_its_fact() -> None:
     plain = fact(request_kind="sea_view")
     [found] = corroborate_room_views([plain], {})
     assert found is plain
+
+
+def test_a_category_below_the_computed_floor_does_not_confirm_a_bookable_room() -> None:
+    low = room(floor_min=2, floor_max=2)
+    [found] = corroborate_room_views([fact(request_kind="sea_view", floor=9)], {"hotel-1": [low]})
+    visibility = found.qualifiers["visibility"]
+
+    assert visibility["bookable_room_confirmed"] is False
+    assert visibility["declared_room"]["floor"] == 2
+    assert "этаж ниже того, с которого открывается вид" in found.explanation

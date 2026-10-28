@@ -76,6 +76,14 @@ def confirmation(description: str) -> bool:
     return compress(description).startswith("Подтвержден")
 
 
+def satisfied(value: float, op: str, threshold: float) -> bool:
+    if op == "gte":
+        return value >= threshold
+    if op == "lte":
+        return value <= threshold
+    return value == threshold
+
+
 def measured(description: str, value: float, op: str, threshold: float) -> str:
     label = field_label(description)
     condition = (
@@ -83,6 +91,11 @@ def measured(description: str, value: float, op: str, threshold: float) -> str:
         if op == "eq" and value == threshold
         else f" (нужно {OPERATORS.get(op, OPERATORS['eq'])} {threshold:g})"
     )
-    if confirmation(description) and threshold <= 1 and op != "lte":
+    if (
+        confirmation(description)
+        and threshold <= 1
+        and op != "lte"
+        and satisfied(value, op, threshold)
+    ):
         return CONFIRMED
     return f"{label}: {value:g}{condition}"

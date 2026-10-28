@@ -28,7 +28,9 @@ def _fact(fact: SearchFactRecord, rooms: Sequence[RoomRecord]) -> SearchFactReco
     room = _match(rooms, codes, visibility.get("floor"))
     if room is None:
         return fact
-    confirmed = visibility.get("status") == "visible"
+    visible = visibility.get("status") == "visible"
+    reached = _floor_reached(room, visibility.get("floor"))
+    confirmed = visible and reached
     declared: dict[str, Any] = {
         "category": room.name,
         "views": list(room.views),
@@ -45,7 +47,9 @@ def _fact(fact: SearchFactRecord, rooms: Sequence[RoomRecord]) -> SearchFactReco
             "declared_room": declared,
         },
     }
-    return replace(fact, qualifiers=qualifiers, explanation=_explanation(fact, room, confirmed))
+    return replace(
+        fact, qualifiers=qualifiers, explanation=_explanation(fact, room, visible, reached)
+    )
 
 
 def _codes(fact: SearchFactRecord, visibility: dict[str, Any]) -> tuple[str, ...]:
@@ -55,8 +59,17 @@ def _codes(fact: SearchFactRecord, visibility: dict[str, Any]) -> tuple[str, ...
     return VIEW_CODES_BY_KIND.get(fact.characteristic_key, ())
 
 
+def _computed_floor(floor: object) -> int | None:
+    return floor if isinstance(floor, int) and not isinstance(floor, bool) else None
+
+
+def _floor_reached(room: RoomRecord, floor: object) -> bool:
+    computed = _computed_floor(floor)
+    return computed is None or room.floor_min is None or room.floor_min >= computed
+
+
 def _match(rooms: Sequence[RoomRecord], codes: tuple[str, ...], floor: object) -> RoomRecord | None:
-    computed = floor if isinstance(floor, int) and not isinstance(floor, bool) else None
+    computed = _computed_floor(floor)
     found: RoomRecord | None = None
     for room in rooms:
         if not any(code in room.views for code in codes):
@@ -67,14 +80,15 @@ def _match(rooms: Sequence[RoomRecord], codes: tuple[str, ...], floor: object) -
     return found
 
 
-def _explanation(fact: SearchFactRecord, room: RoomRecord, confirmed: bool) -> str:
+def _explanation(fact: SearchFactRecord, room: RoomRecord, visible: bool, reached: bool) -> str:
     floor = f", этаж {room.floor_min}" if room.floor_min is not None else ""
     source = f" по карточке {room.declared_source}" if room.declared_source else ""
-    lead = (
-        "Поставщик заявляет категорию с таким видом"
-        if confirmed
-        else "Категория с таким видом у поставщика есть, но расчёт вид не подтвердил"
-    )
+    if not visible:
+        lead = "Категория с таким видом у поставщика есть, но расчёт вид не подтвердил"
+    elif not reached:
+        lead = "Категория с таким видом есть, но её этаж ниже того, с которого открывается вид"
+    else:
+        lead = "Поставщик заявляет категорию с таким видом"
     return (
         f"{fact.explanation} {lead}: «{room.name}»{floor}{source}. "
         "Это заявление о категории, а не проверенный нами номер."
