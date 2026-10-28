@@ -1,6 +1,8 @@
 from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 
+import pytest
+
 from hotel_agent.domain.characteristics import Op, SourceType
 from hotel_agent.domain.entities import Fact, FactStatus
 from hotel_agent.domain.query import Intent
@@ -92,3 +94,22 @@ def test_the_margin_never_lifts_a_partial_above_a_full_match() -> None:
 
     assert partial.matches[0].quality is MatchQuality.PARTIAL
     assert full.score > partial.score
+
+
+def test_a_measured_condition_is_never_worth_less_than_an_unmeasured_one() -> None:
+    plain = replace(measured(10.0, 10.0, Op.LTE), qualifiers={})
+    bare = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": plain}, NOW)
+    exact = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(10.0, 10.0, Op.LTE)}, NOW)
+    roomy = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(4.0, 10.0, Op.LTE)}, NOW)
+
+    assert exact.score == pytest.approx(bare.score)
+    assert roomy.score > bare.score
+
+
+def test_the_best_partial_never_overtakes_the_tightest_full() -> None:
+    tight = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(10.0, 10.0, Op.LTE)}, NOW)
+    generous = replace(measured(4.0, 10.0, Op.LTE), qualifiers={"months": "апрель"})
+    best_partial = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": generous}, NOW)
+
+    assert best_partial.matches[0].quality is MatchQuality.PARTIAL
+    assert tight.score > best_partial.score

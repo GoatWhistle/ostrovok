@@ -116,8 +116,8 @@ def _graded(item: PropertyMatch) -> float:
     base = WEIGHT_OF_QUALITY[item.quality]
     if item.margin is None:
         return base
-    share = min(max(item.margin, 0.0), MARGIN_CAP) / MARGIN_CAP
-    return base * (1.0 - MARGIN_SHARE + MARGIN_SHARE * share)
+    slack = min(max(item.margin, 0.0), MARGIN_CAP) - 1.0
+    return base * (1.0 + MARGIN_SHARE * slack)
 
 
 def _quality(intent: Intent, value: FactValue) -> MatchQuality:

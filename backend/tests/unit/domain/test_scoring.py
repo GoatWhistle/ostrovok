@@ -122,8 +122,9 @@ def test_score_is_the_weighted_share_of_what_matched(make_fact: FactMaker, now: 
 
     result = score(wanted, facts, now)
 
-    assert result.score == pytest.approx(0.9875)
+    assert result.score == pytest.approx(1.05)
     assert result.confidence == pytest.approx(1.0)
+    assert [item.quality for item in result.matches] == [MatchQuality.FULL, MatchQuality.FULL]
 
 
 def test_an_unknown_property_lowers_the_score_without_removing_the_hotel(
