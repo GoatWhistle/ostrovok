@@ -1,5 +1,6 @@
 import type { Geometry } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
+import { sourceFeatures } from "../roof-mesh/feature-cache"
 import { Occupancy } from "./occupancy"
 import { fillCells, type Local, RULES, type Tree, type TreeRule, treeAt } from "./scatter"
 
@@ -65,15 +66,30 @@ interface Frame {
 
 type Query = (sourceLayer: string) => ReturnType<MapLibreMap["querySourceFeatures"]>
 
+const REACH_MARGIN = 150
+
+function within(frame: Frame, points: readonly Local[]): boolean {
+  const limit = frame.radius + REACH_MARGIN
+  return points.some(
+    ([x, y]) => Math.abs(x - frame.middle[0]) < limit && Math.abs(y - frame.middle[1]) < limit,
+  )
+}
+
 function occupancyFor(query: Query, frame: Frame): Occupancy {
   const occupancy = new Occupancy(frame.middle, frame.radius)
   for (const road of query("roads")) {
     const half = ROAD_HALF[String(road.properties.kind)] ?? 3
-    for (const line of lines(road.geometry)) occupancy.line(line.map(frame.world), half)
+    for (const line of lines(road.geometry)) {
+      const points = line.map(frame.world)
+      if (within(frame, points)) occupancy.line(points, half)
+    }
   }
   for (const building of query("buildings"))
-    for (const polygon of rings(building.geometry))
+    for (const polygon of rings(building.geometry)) {
+      const first = polygon[0]?.[0]
+      if (!first || !within(frame, [frame.world(first)])) continue
       occupancy.polygon(polygon.map((ring) => ring.map(frame.world)))
+    }
   return occupancy
 }
 
@@ -90,12 +106,10 @@ function scatter(query: Query, frame: Frame, occupancy: Occupancy): Map<string, 
       const tree = treeAt(i, j, rule)
       if (tree && near(tree.x, tree.y) && !occupancy.taken(tree.x, tree.y)) seen.set(key, tree)
     }
-    for (const polygon of rings(cover.geometry))
-      fillCells(
-        polygon.map((ring) => ring.map(frame.world)),
-        rule.spacing,
-        visit,
-      )
+    for (const polygon of rings(cover.geometry)) {
+      const projected = polygon.map((ring) => ring.map(frame.world))
+      if (within(frame, projected[0] ?? [])) fillCells(projected, rule.spacing, visit)
+    }
   }
   for (const point of query("trees")) {
     if (point.geometry.type !== "Point") continue
@@ -168,7 +182,7 @@ export function treeField(map: MapLibreMap, radius: number): TreeField {
   }
   const middle = world(origin)
   const frame: Frame = { origin, scale, middle, radius, world }
-  const query: Query = (sourceLayer) => map.querySourceFeatures("sochi-map", { sourceLayer })
+  const query: Query = (sourceLayer) => sourceFeatures(map, sourceLayer)
   const occupancy = occupancyFor(query, frame)
   const seen = scatter(query, frame, occupancy)
   streetTrees(query, frame, occupancy, seen)

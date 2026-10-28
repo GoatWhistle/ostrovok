@@ -5,9 +5,12 @@ const SETTLE_MS = 180
 
 export function watchRoofTriggers(map: MapLibreMap, build: () => void): () => void {
   let timer: ReturnType<typeof setTimeout> | undefined
+  const run = () => {
+    if (!map.isMoving()) build()
+  }
   const settle = () => {
     clearTimeout(timer)
-    timer = setTimeout(build, SETTLE_MS)
+    timer = setTimeout(run, SETTLE_MS)
   }
   const onTiles = (event: MapSourceDataEvent) => {
     if (event.sourceId === "sochi-map" && event.isSourceLoaded) settle()

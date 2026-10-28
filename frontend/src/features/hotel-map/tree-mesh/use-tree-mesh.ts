@@ -8,8 +8,8 @@ import { type TreeField, treeField } from "@/shared/geo/tree-mesh/sources"
 
 const GROW_FROM = 14.8
 const GROW_SPAN = 0.5
-const BASE_RADIUS = 1600
-const MIN_RADIUS = 450
+const BASE_RADIUS = 1100
+const MIN_RADIUS = 700
 const FLAT_TREES = ["base-trees", "base-trees-shadow"]
 
 function grow(map: MapLibreMap) {

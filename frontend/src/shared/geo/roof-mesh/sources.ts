@@ -1,4 +1,5 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
+import { sourceFeatures } from "./feature-cache"
 import type { RoofInput } from "./mesh"
 
 type LonLat = readonly [number, number]
@@ -13,7 +14,7 @@ export interface RoofCandidate {
 }
 
 const ESTIMATED_HEIGHT_M = 6.4
-const MAX_ROOFS = 6000
+const MAX_ROOFS = 4500
 
 function outerRings(geometry: RoofCandidate["geometry"]): Ring[] {
   if (geometry.type === "Polygon") return [(geometry.coordinates as Ring[])[0] ?? []]
@@ -45,7 +46,7 @@ function number(value: unknown): number | null {
 
 export function tileCandidates(map: MapLibreMap, skip: ReadonlySet<string>): RoofCandidate[] {
   const pieces = new Map<string, RoofCandidate[]>()
-  for (const feature of map.querySourceFeatures("sochi-map", { sourceLayer: "buildings" })) {
+  for (const feature of sourceFeatures(map, "buildings")) {
     const id = String(feature.properties.id ?? feature.id ?? "")
     if (!id || skip.has(id)) continue
     const list = pieces.get(id) ?? []
