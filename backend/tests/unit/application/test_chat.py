@@ -27,7 +27,7 @@ def chat(search: Any = None, uow: Any = None) -> Chat:
         cast(LLMPort, SimpleNamespace()),
         cast(UnitOfWorkFactory, uow),
         cast(SearchHotels, search),
-        lambda outcome: {"query_id": outcome.query_id},
+        lambda outcome, took_ms: {"query_id": outcome.query_id},
         cast(CharacteristicRegistryPort, SimpleNamespace()),
     )
 

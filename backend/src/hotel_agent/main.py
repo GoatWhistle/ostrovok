@@ -184,9 +184,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 providers.llm,
                 providers.uow,
                 search_hotels,
-                lambda outcome: search_schema(outcome, providers.registry, 0).model_dump(
-                    mode="json"
-                ),
+                lambda outcome, took_ms: search_schema(
+                    outcome, providers.registry, took_ms
+                ).model_dump(mode="json"),
                 providers.registry,
                 GetHotelCard(providers.uow, providers.clock),
                 providers.clock,

@@ -2,6 +2,7 @@ import asyncio
 import json
 from collections.abc import AsyncIterator
 from http import HTTPStatus
+from time import perf_counter
 from uuid import UUID
 
 from fastapi import APIRouter, Response, status
@@ -42,17 +43,16 @@ async def conversation_events(
 
     async def run() -> ConversationSchema:
         token = progress.listen(lambda stage, fields: queue.put_nowait((stage, fields)))
+        started = perf_counter()
         try:
-            return conversation_schema(
-                await chat.send(
-                    str(request.conversation_id) if request.conversation_id else None,
-                    request.message,
-                    request.region_id,
-                    request.selected_hotel_id,
-                    request.locale,
-                ),
-                registry,
+            outcome = await chat.send(
+                str(request.conversation_id) if request.conversation_id else None,
+                request.message,
+                request.region_id,
+                request.selected_hotel_id,
+                request.locale,
             )
+            return conversation_schema(outcome, registry, round((perf_counter() - started) * 1000))
         finally:
             progress.release(token)
             queue.put_nowait(None)
@@ -97,16 +97,15 @@ def build_router(chat: Chat, registry: CharacteristicRegistryPort) -> APIRouter:
 
     @router.post("/chat/messages", response_model=ConversationSchema)
     async def send_message(request: ChatRequestSchema) -> ConversationSchema:
-        return conversation_schema(
-            await chat.send(
-                str(request.conversation_id) if request.conversation_id else None,
-                request.message,
-                request.region_id,
-                request.selected_hotel_id,
-                request.locale,
-            ),
-            registry,
+        started = perf_counter()
+        outcome = await chat.send(
+            str(request.conversation_id) if request.conversation_id else None,
+            request.message,
+            request.region_id,
+            request.selected_hotel_id,
+            request.locale,
         )
+        return conversation_schema(outcome, registry, round((perf_counter() - started) * 1000))
 
     @router.post("/chat/messages/stream", response_class=StreamingResponse)
     async def stream_message(request: ChatRequestSchema) -> StreamingResponse:

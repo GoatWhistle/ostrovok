@@ -34,7 +34,7 @@ def build(characteristics_dir: Path, search: AsyncMock) -> TestClient:
         FakeLLM(registry),
         cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, [])),
         cast(SearchHotels, search),
-        lambda r: search_schema(r, registry, 0).model_dump(mode="json"),
+        lambda r, took_ms: search_schema(r, registry, took_ms).model_dump(mode="json"),
         registry,
     )
     app = FastAPI()

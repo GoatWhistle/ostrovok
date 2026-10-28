@@ -39,7 +39,7 @@ class ConversationSchema(BaseModel):
 
 
 def conversation_schema(
-    outcome: ConversationOutcome, registry: CharacteristicRegistryPort
+    outcome: ConversationOutcome, registry: CharacteristicRegistryPort, took_ms: int = 0
 ) -> ConversationSchema:
     conversation = outcome.conversation
     return ConversationSchema(
@@ -68,7 +68,7 @@ def conversation_schema(
         search=(
             SearchResponseSchema.model_validate(outcome.search_snapshot)
             if outcome.search_snapshot is not None
-            else search_schema(outcome.search, registry, 0)
+            else search_schema(outcome.search, registry, took_ms)
             if outcome.search
             else None
         ),
