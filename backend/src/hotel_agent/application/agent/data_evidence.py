@@ -1,4 +1,5 @@
 import hashlib
+import re
 from datetime import datetime, timedelta
 
 from hotel_agent.application.agent.data_records import DataCriterion, ExplorationOutcome
@@ -189,8 +190,7 @@ def materialize(
         if keys and not any(
             keys <= set(values) and all(values[key] for key in keys) for values in by_hotel.values()
         ):
-            wanted = "; ".join(f"«{term}»" for term in resolved)
-            question = f"В проверенных данных не нашёл отель, который одновременно соответствует условиям {wanted}. Какое условие или область поиска можно изменить?"
+            question = conflict_question(query, resolved)
     return ExplorationOutcome(
         hotels=tools.hotels,
         intents=tuple(intents),
@@ -216,3 +216,14 @@ def _confidence(criterion: DataCriterion, metrics: dict[str, float]) -> float:
 
 def _normalize(value: str) -> str:
     return " ".join(value.casefold().replace("ё", "е").split())
+
+
+CYRILLIC = re.compile(r"[Ѐ-ӿ]")
+
+
+def conflict_question(query: str, terms: list[str]) -> str:
+    if CYRILLIC.search(query):
+        wanted = ", ".join(f"«{term}»" for term in terms)
+        return f"Ни один проверенный отель не подходит одновременно под {wanted}. Что можно ослабить?"
+    wanted = ", ".join(f"“{term}”" for term in terms)
+    return f"No verified hotel matches {wanted} at once. Which condition can I relax?"

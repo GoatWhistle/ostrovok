@@ -2,6 +2,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from uuid import uuid4
 
+from hotel_agent.application import progress
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.chat_dialogue import ChatDialogue
 from hotel_agent.application.chat_records import ConversationRecord
@@ -92,6 +93,7 @@ class Chat:
             if previous is None:
                 raise ConversationNotFound()
             region_id = previous.region_id
+        progress.mark("rewrite")
         decision = await self._dialogue.respond(
             previous, message.strip(), selected_hotel_id, locale
         )
@@ -112,6 +114,7 @@ class Chat:
             effective_query = decision.query
             search = await self._search(effective_query, region_id, None, 20)
             snapshot = {**self._serialize_search(search), "_chat_message_id": answer_id}
+            progress.mark("answer")
             answer = self._answer(search, selected_hotel_id, locale)
             if self._review is not None and not await self._review.accepts(
                 effective_query, answer, search
@@ -120,6 +123,7 @@ class Chat:
         else:
             assert decision.reply is not None
             answer = decision.reply
+        progress.mark("done")
         identifier = conversation_id or str(uuid4())
         title = (
             None
