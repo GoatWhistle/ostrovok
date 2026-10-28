@@ -1,5 +1,5 @@
-import { type CatalogClass, classColors } from "../catalog-layers"
-import { tintHex } from "../time-tint"
+import { type CatalogClass, classColors } from "../basemap/catalog-layers"
+import { tintHex } from "../sun/time-tint"
 import { APPEARANCES } from "./packages"
 import type { MapColors } from "./palette-tokens"
 import type { MapAppearance } from "./types"

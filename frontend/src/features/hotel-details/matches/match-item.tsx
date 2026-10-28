@@ -1,6 +1,6 @@
 import { MatchGlyph, RowButton, StatusGlyph } from "@/entities/evidence"
 import type { MatchedProperty } from "@/shared/api/hotel-types"
-import { matchedTitle } from "@/shared/geo/fact-label"
+import { matchedTitle } from "@/shared/geo/facts/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { useMediaQuery } from "@/shared/hooks"

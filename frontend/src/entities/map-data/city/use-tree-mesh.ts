@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect } from "react"
-import { labelAnchor } from "@/shared/geo/basemap-labels"
+import { labelAnchor } from "@/shared/geo/basemap/basemap-labels"
 import { watchTerrainData } from "@/shared/geo/night-city/terrain-watch"
 import { WINDOW_LAYER } from "@/shared/geo/night-city/window-layer"
 import { watchRoofTriggers } from "@/shared/geo/roof-mesh/triggers"

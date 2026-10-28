@@ -1,5 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { IN_SCENE } from "../overview-buildings"
+import { IN_SCENE } from "../buildings/overview-buildings"
 
 const SHADOWS = [
   {

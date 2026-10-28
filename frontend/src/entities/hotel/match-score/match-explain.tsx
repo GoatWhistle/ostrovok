@@ -1,5 +1,5 @@
 import type { MatchedProperty } from "@/shared/api/hotel-types"
-import { matchedTitle } from "@/shared/geo/fact-label"
+import { matchedTitle } from "@/shared/geo/facts/fact-label"
 import { isUsableMatch } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { type Locale, useLocale, useTranslation } from "@/shared/i18n"

@@ -1,17 +1,17 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { renderBasemap } from "../basemap"
-import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
-import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
+import { renderBasemap } from "../basemap/basemap"
+import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap/basemap-labels"
+import { type CatalogClass, renderCatalogLayers } from "../basemap/catalog-layers"
 import { renderShore } from "../ground/shore-layers"
-import { sunLight } from "../sun-light"
+import { sunLight } from "../sun/sun-light"
 import {
   lightMode,
   renderTerrain,
   type SunPosition,
   scenePalette,
   type TerrainColors,
-} from "../terrain"
-import { mixHex, tintForTime } from "../time-tint"
+} from "../terrain/terrain"
+import { mixHex, tintForTime } from "../sun/time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
 import { labelPalette } from "./label-palette"
 import { paintMeshes } from "./mesh-paint"

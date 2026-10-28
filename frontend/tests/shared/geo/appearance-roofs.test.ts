@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { expect, it, vi } from "vitest"
 import { renderAppearanceRoofs } from "@/shared/geo/appearance/roofs"
-import { overviewHeight } from "@/shared/geo/overview-buildings"
+import { overviewHeight } from "@/shared/geo/buildings/overview-buildings"
 
 function scene() {
   const layers = new Map<string, { id: string; filter?: unknown; paint: Record<string, unknown> }>([

@@ -1,6 +1,6 @@
-import type { LabelColors } from "../basemap-labels"
-import { darkness } from "../sun-light"
-import { mixHex } from "../time-tint"
+import type { LabelColors } from "../basemap/basemap-labels"
+import { darkness } from "../sun/sun-light"
+import { mixHex } from "../sun/time-tint"
 
 interface Source extends LabelColors {
   readonly land: string

@@ -1,6 +1,6 @@
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
-import { characteristicTitle } from "@/shared/geo/fact-label"
+import { characteristicTitle } from "@/shared/geo/facts/fact-label"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Chip, StatusBadge } from "@/shared/ui"
 import { understoodName, useStayFacts } from "../agent-progress/understood-chips"

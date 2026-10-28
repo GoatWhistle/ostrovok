@@ -1,5 +1,5 @@
 import { useHotel } from "@/entities/hotel"
-import { factLabel } from "@/shared/geo/fact-label"
+import { factLabel } from "@/shared/geo/facts/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Banner } from "@/shared/ui"
 

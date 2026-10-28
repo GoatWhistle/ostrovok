@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap, Marker } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useState } from "react"
 import type { HotelSummary, SearchResult } from "@/shared/api/hotel-types"
-import { hotelPoint } from "@/shared/geo/hotel-point"
+import { hotelPoint } from "@/shared/geo/buildings/hotel-point"
 import { useLocale } from "@/shared/i18n"
 import {
   createMarker,

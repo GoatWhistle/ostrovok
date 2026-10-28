@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import type { HotelSummary } from "@/shared/api/hotel-types"
-import { featureCollection } from "@/shared/geo/geometry"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
 import { useGeoFeatures } from "../hotel.queries"
 
 export function useHotelGeometry(refs: readonly string[], hotel: HotelSummary | undefined) {

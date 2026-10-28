@@ -6,8 +6,8 @@ import type {
   MatchedProperty,
   SearchResult,
 } from "@/shared/api/hotel-types"
-import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/fact-label"
-import { featureCollection } from "@/shared/geo/geometry"
+import { factLabel, matchedExplanation, matchedTitle } from "@/shared/geo/facts/fact-label"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
 import type { Locale } from "@/shared/i18n"
 
 const OVERVIEW_ZOOM_STEP = 1.8

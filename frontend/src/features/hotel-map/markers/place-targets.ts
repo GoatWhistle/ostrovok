@@ -1,6 +1,6 @@
 import type { Feature } from "geojson"
 import { placeName, walkLabel } from "@/entities/place"
-import { featureCollection } from "@/shared/geo/geometry"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
 import type { Locale } from "@/shared/i18n"
 
 function poiId(feature: Feature): string | undefined {

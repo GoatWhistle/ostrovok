@@ -6,7 +6,7 @@ import {
   QualityGovernor,
   type QualityLevel,
   watchMovingFrames,
-} from "@/shared/geo/map-quality"
+} from "@/shared/geo/engine/map-quality"
 import { useMapAppearance } from "@/shared/theme"
 
 export function useMapQuality(mapRef: RefObject<MapLibreMap | null>, ready: boolean) {

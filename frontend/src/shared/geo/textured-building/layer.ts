@@ -5,7 +5,7 @@ import {
   MercatorCoordinate,
 } from "maplibre-gl"
 import type { BuildingMaterial } from "../appearance/materials"
-import type { SunPosition } from "../terrain"
+import type { SunPosition } from "../terrain/terrain"
 import type { BuildingMesh } from "./geometry"
 import { buildingProgram } from "./material"
 

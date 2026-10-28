@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useLayoutEffect, useRef } from "react"
-import { paintRoute } from "@/shared/geo/map-layers"
+import { paintRoute } from "@/shared/geo/buildings/map-layers"
 import { rgb } from "@/shared/geo/roof-mesh/paint"
 import type { MapColors } from "@/shared/theme"
 import type { ProofState, ReelFrame } from "../playback/reel-frame"

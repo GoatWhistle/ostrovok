@@ -1,1 +1,1 @@
-export { HotelComparison } from "./hotel-comparison/hotel-comparison"
+export { HotelComparison } from "./hotel-comparison"

@@ -1,7 +1,7 @@
 import { FactStatusBadge } from "@/entities/evidence"
 import { useFact } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
-import { factLabel } from "@/shared/geo/fact-label"
+import { factLabel } from "@/shared/geo/facts/fact-label"
 import { useFormatters, useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Skeleton } from "@/shared/ui"
 import styles from "./saved-answer.module.css"

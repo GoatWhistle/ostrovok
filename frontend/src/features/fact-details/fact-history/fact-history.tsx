@@ -1,6 +1,6 @@
 import { FactStatusBadge, StatusGlyph, sourceIcon } from "@/entities/evidence"
 import type { Fact } from "@/shared/api/hotel-types"
-import { factLabel } from "@/shared/geo/fact-label"
+import { factLabel } from "@/shared/geo/facts/fact-label"
 import { useFormatters, useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
 import styles from "./fact-history.module.css"

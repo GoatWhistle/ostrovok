@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { lightRig, rgb } from "../roof-mesh/paint"
-import { darkness, type SkyColors } from "../sun-light"
+import { darkness, type SkyColors } from "../sun/sun-light"
 import { treeLayerOf } from "./layer"
 import { LEAF_TONES } from "./scatter"
 

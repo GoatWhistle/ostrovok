@@ -1,6 +1,6 @@
 import { FactStatusBadge, HueIcon, RowButton } from "@/entities/evidence"
 import type { Fact, FactBrief } from "@/shared/api/hotel-types"
-import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
+import { characteristicTitle, factLabel } from "@/shared/geo/facts/fact-label"
 import { factScope } from "@/shared/geo/facts/scope"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { type Locale, useLocale, useTranslation } from "@/shared/i18n"

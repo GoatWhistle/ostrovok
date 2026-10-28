@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react"
-import type { SunPosition } from "@/shared/geo/terrain"
+import type { SunPosition } from "@/shared/geo/terrain/terrain"
 
 export interface PreviewedSun {
   readonly hour: number

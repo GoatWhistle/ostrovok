@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react"
 import { useHotel } from "@/entities/hotel"
-import { hotelPoint } from "@/shared/geo/hotel-point"
+import { hotelPoint } from "@/shared/geo/buildings/hotel-point"
 import { useInViewport } from "@/shared/hooks"
 import { useTranslation } from "@/shared/i18n"
 import { Button, Card, ContentBoundary, EmptyState, Skeleton } from "@/shared/ui"

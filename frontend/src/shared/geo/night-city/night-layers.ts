@@ -4,9 +4,9 @@ import type {
   Map as MapLibreMap,
   SymbolLayerSpecification,
 } from "maplibre-gl"
-import { labelAnchor } from "../basemap-labels"
-import { updateSource } from "../map-layers"
-import { MESH_FROM } from "../overview-buildings"
+import { labelAnchor } from "../basemap/basemap-labels"
+import { updateSource } from "../buildings/map-layers"
+import { MESH_FROM } from "../buildings/overview-buildings"
 import { ensureLampSprite, LAMP_ICON, LAMP_POST_ICON } from "./lamp-sprite"
 
 export interface NightColors {

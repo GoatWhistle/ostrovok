@@ -1,6 +1,6 @@
 import { type LngLatLike, type Map as MapLibreMap, Marker } from "maplibre-gl"
 import type { SearchResult } from "@/shared/api/hotel-types"
-import { hotelPoint } from "@/shared/geo/hotel-point"
+import { hotelPoint } from "@/shared/geo/buildings/hotel-point"
 import styles from "./map-pin.module.css"
 
 interface ViewBase {

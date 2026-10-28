@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson"
 import type { HotelScene, SearchResult } from "@/shared/api/hotel-types"
-import { featureCollection } from "../geometry"
+import { featureCollection } from "../geometry/geometry"
 
 export type TexturedFootprint = Feature<Polygon | MultiPolygon>
 

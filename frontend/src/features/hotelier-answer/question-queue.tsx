@@ -1,7 +1,7 @@
 import { useMutationState } from "@tanstack/react-query"
 import { FactTile, RowButton } from "@/entities/evidence"
 import type { components } from "@/shared/api/schema.gen"
-import { characteristicTitle } from "@/shared/geo/fact-label"
+import { characteristicTitle } from "@/shared/geo/facts/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./question-queue.module.css"

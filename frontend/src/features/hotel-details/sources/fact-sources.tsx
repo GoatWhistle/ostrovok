@@ -1,6 +1,6 @@
 import { RowButton, sourceIcon } from "@/entities/evidence"
 import type { Fact, FactBrief } from "@/shared/api/hotel-types"
-import { factLabel } from "@/shared/geo/fact-label"
+import { factLabel } from "@/shared/geo/facts/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
 import { groupFacts } from "../fact-list"

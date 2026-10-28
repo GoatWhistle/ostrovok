@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { darkness, type SkyColors, sunLight, warmth } from "../sun-light"
-import { mixHex } from "../time-tint"
+import { darkness, type SkyColors, sunLight, warmth } from "../sun/sun-light"
+import { mixHex } from "../sun/time-tint"
 import { type RoofLight, roofMeshOf } from "./layer"
 import { ROOF_TONES } from "./plan"
 import { GRAVEL_TONES, PLASTER_TONES } from "./writer"

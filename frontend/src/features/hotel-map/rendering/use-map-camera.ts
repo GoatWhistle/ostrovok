@@ -1,8 +1,8 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
 import type { Camera } from "@/shared/api/hotel-types"
-import { featureCollection } from "@/shared/geo/geometry"
-import { geometryBounds } from "@/shared/geo/geometry-bounds"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
+import { geometryBounds } from "@/shared/geo/geometry/geometry-bounds"
 import { motionMs } from "@/shared/motion"
 import { cameraZoom, fitOptions } from "./fit-zoom"
 
