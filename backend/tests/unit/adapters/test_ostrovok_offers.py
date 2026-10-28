@@ -360,6 +360,70 @@ async def test_two_listings_of_the_same_hotel_collapse_to_the_closest() -> None:
         await provider.aclose()
 
 
+async def test_bed_places_and_occupancy_come_from_the_rate() -> None:
+    sleeping = rate(
+        occupancy=2,
+        bed_places={"main_count": 2, "extra_count": 1, "child_cot_count": 1},
+        rooms=[
+            {
+                "amenities_data": ["non-smoking"],
+                "bedding_data": ["twin"],
+                "multi_bed_data": [{"bed": "single", "count": 2}],
+            }
+        ],
+    )
+    async with httpx.AsyncClient(transport=site(rates=[sleeping])) as client:
+        provider = OstrovokHotelOffers(Clock(), client)
+        result = await provider.search(HOTEL, CHECK_IN, CHECK_OUT, 2, "ru")
+        assert result is not None
+        [offer] = result.offers
+        assert offer.occupancy == 2
+        assert offer.bed_places is not None
+        assert offer.bed_places.main == 2
+        assert offer.bed_places.extra == 1
+        assert offer.bed_places.child_cots == 1
+        assert offer.bed_places.bedding == ("single", "twin")
+        await provider.aclose()
+
+
+async def test_rate_without_bed_places_keeps_them_unknown() -> None:
+    async with httpx.AsyncClient(transport=site(rates=[rate(occupancy="two")])) as client:
+        provider = OstrovokHotelOffers(Clock(), client)
+        result = await provider.search(HOTEL, CHECK_IN, CHECK_OUT, 2, "ru")
+        assert result is not None
+        [offer] = result.offers
+        assert offer.occupancy is None
+        assert offer.bed_places is None
+        await provider.aclose()
+
+
+async def test_star_certificate_dates_the_registry_record() -> None:
+    page = hotel_page(starCertificate={"certificateId": "С232024007508", "validTo": "2028-08-08"})
+    async with httpx.AsyncClient(transport=site(pages={MASTER_ID: page})) as client:
+        provider = OstrovokHotelOffers(Clock(), client)
+        found = await provider.details(HOTEL)
+        assert found is not None
+        registry = found.details.facts.registry
+        assert registry is not None
+        assert registry.record == "С232024007508"
+        assert registry.valid_until == date(2028, 8, 8)
+        await provider.aclose()
+
+
+async def test_certificate_carries_the_record_when_the_register_is_absent() -> None:
+    page = hotel_page(starCertificate={"certificateId": "С442024016365", "validTo": ""})
+    page["facts"] = {key: value for key, value in page["facts"].items() if key != "register"}
+    async with httpx.AsyncClient(transport=site(pages={MASTER_ID: page})) as client:
+        provider = OstrovokHotelOffers(Clock(), client)
+        found = await provider.details(HOTEL)
+        assert found is not None
+        registry = found.details.facts.registry
+        assert registry is not None
+        assert registry.record == "С442024016365"
+        assert registry.valid_until is None
+        await provider.aclose()
+
+
 async def test_two_same_named_hotels_apart_are_not_collapsed() -> None:
     twin = suggestion(master_id=42, otahotel_id="zhemchuzhina_twin")
     far = hotel_page(id="zhemchuzhina_twin", masterId="42")

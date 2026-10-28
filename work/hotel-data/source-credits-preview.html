@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><main style="position:absolute;bottom:24px;right:24px" id="root"></main><script type="module">
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import {MapAttribution} from '/src/shared/ui/data-display/map-attribution/map-attribution.tsx'
+import '/src/shared/styles/global.css'
+const locale=new URLSearchParams(location.search).get('locale') || 'ru'
+const dictionary=await import(`/src/shared/i18n/locales/${locale}/explore.json`)
+const m=dictionary.default.map
+createRoot(document.getElementById('root')).render(React.createElement(MapAttribution,{label:m.attributionTitle,osm:m.attribution,terrain:m.terrainAttribution,sources:{weather:m.weatherAttribution,landcover:m.landcoverAttribution,biodiversity:m.biodiversityAttribution,events:m.eventsAttribution,license:m.dataLicense}}))
+</script></body></html>

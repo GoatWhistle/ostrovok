@@ -47,6 +47,7 @@ def search(
         by_ids=AsyncMock(return_value=[hotel]),
         list_facts=AsyncMock(return_value=[]),
         list_supplier_content=AsyncMock(return_value=[]),
+        list_rooms_by_hotels=AsyncMock(return_value={}),
     )
     scope = MagicMock()
     scope.__aenter__ = AsyncMock(

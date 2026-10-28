@@ -1,0 +1,255 @@
+{
+  "verified_at": "2026-10-26T15:32:12.952583+00:00",
+  "runtime": {
+    "verified_at": "2026-10-26T15:21:42.344619+00:00",
+    "image": "hotel-agent-backend:window-integrated-20261026d",
+    "image_id": "sha256:5ebea97d7b5925488e665551a24e1fd6e84f29607a57d718cdb7b7cec9359004",
+    "integration_patch_commit": "8a69b8a9ccf5797e8ae9377c7f1b64f17698a0a5",
+    "actual_stand_source_commit": "f20c2596e1e1be7b57ca3bdfdf6384b2aa9b44c9",
+    "checks": {
+      "main.py": true,
+      "composition.py": true,
+      "application/use_cases/chat.py": true,
+      "application/use_cases/search_hotels.py": true,
+      "application/agent/explore_data.py": true,
+      "application/agent/semantic_review.py": true,
+      "application/agent/recommendation_review.py": true,
+      "application/agent/chat_answer_review.py": true,
+      "application/use_cases/ensure_geography.py": true,
+      "application/use_cases/get_hotel_scene.py": true,
+      "adapters/db/geography.py": true,
+      "adapters/db/building_facts.py": true,
+      "adapters/external/overpass_geography.py": true
+    }
+  },
+  "database": {
+    "hotels": 34087,
+    "buildings": 27488779,
+    "beaches": 17847,
+    "height_rows": 246415,
+    "level_rows": 3217146,
+    "facades": 240594,
+    "coverage_rows": 4,
+    "database_size_bytes": 20006867427,
+    "measured_at": "2026-10-26T15:26:42.163535+00:00"
+  },
+  "scenes": [
+    {
+      "city": "Moscow",
+      "hotel_id": "r225030",
+      "http_status": 200,
+      "timings_s": [
+        0.151,
+        0.044
+      ],
+      "facades": 78,
+      "context_buildings": 1555
+    },
+    {
+      "city": "Saint Petersburg",
+      "hotel_id": "n7794790581",
+      "http_status": 200,
+      "timings_s": [
+        0.025,
+        0.015
+      ],
+      "facades": 12,
+      "context_buildings": 351
+    },
+    {
+      "city": "Kazan",
+      "hotel_id": "n13002498725",
+      "http_status": 200,
+      "timings_s": [
+        0.081,
+        0.013
+      ],
+      "facades": 6,
+      "context_buildings": 369
+    },
+    {
+      "city": "Vladivostok",
+      "hotel_id": "n12254628702",
+      "http_status": 200,
+      "timings_s": [
+        0.035,
+        0.02
+      ],
+      "facades": 7,
+      "context_buildings": 848
+    },
+    {
+      "city": "Makhachkala",
+      "hotel_id": "n1245252324",
+      "http_status": 200,
+      "timings_s": [
+        0.029,
+        0.017
+      ],
+      "facades": 4,
+      "context_buildings": 770
+    },
+    {
+      "city": "Murmansk",
+      "hotel_id": "n922749767",
+      "http_status": 200,
+      "timings_s": [
+        0.01,
+        0.007
+      ],
+      "facades": 14,
+      "context_buildings": 213
+    },
+    {
+      "city": "Kaliningrad",
+      "hotel_id": "n8738029619",
+      "http_status": 200,
+      "timings_s": [
+        0.024,
+        0.01
+      ],
+      "facades": 6,
+      "context_buildings": 155
+    },
+    {
+      "city": "Novosibirsk",
+      "hotel_id": "w114434550",
+      "http_status": 200,
+      "timings_s": [
+        0.027,
+        0.01
+      ],
+      "facades": 5,
+      "context_buildings": 247
+    },
+    {
+      "city": "Sochi",
+      "hotel_id": "n9908709817",
+      "http_status": 200,
+      "timings_s": [
+        0.07,
+        0.024
+      ],
+      "facades": 9,
+      "context_buildings": 503
+    },
+    {
+      "city": "Novorossiysk",
+      "hotel_id": "n4381195791",
+      "http_status": 200,
+      "timings_s": [
+        0.032,
+        0.019
+      ],
+      "facades": 4,
+      "context_buildings": 809
+    },
+    {
+      "city": "Irkutsk",
+      "hotel_id": "w727105171",
+      "http_status": 200,
+      "timings_s": [
+        0.021,
+        0.013
+      ],
+      "facades": 12,
+      "context_buildings": 357
+    },
+    {
+      "city": "Petropavlovsk-Kamchatsky",
+      "hotel_id": "n2456569885",
+      "http_status": 200,
+      "timings_s": [
+        0.011,
+        0.005
+      ],
+      "facades": 6,
+      "context_buildings": 146
+    },
+    {
+      "city": "Yuzhno-Sakhalinsk",
+      "hotel_id": "n10603594213",
+      "http_status": 200,
+      "timings_s": [
+        0.022,
+        0.01
+      ],
+      "facades": 4,
+      "context_buildings": 336
+    },
+    {
+      "city": "Anadyr",
+      "hotel_id": "n4172612500",
+      "http_status": 200,
+      "timings_s": [
+        0.008,
+        0.006
+      ],
+      "facades": 4,
+      "context_buildings": 240
+    }
+  ],
+  "terrain": [
+    {
+      "city": "Vladivostok",
+      "tile": [
+        12,
+        3548,
+        1503
+      ],
+      "http_status": 200,
+      "seconds": 0.03,
+      "bytes": 38295,
+      "valid_png": true
+    },
+    {
+      "city": "Murmansk",
+      "tile": [
+        12,
+        2424,
+        950
+      ],
+      "http_status": 200,
+      "seconds": 0.022,
+      "bytes": 55115,
+      "valid_png": true
+    },
+    {
+      "city": "Irkutsk",
+      "tile": [
+        12,
+        3234,
+        1347
+      ],
+      "http_status": 200,
+      "seconds": 0.021,
+      "bytes": 52898,
+      "valid_png": true
+    },
+    {
+      "city": "Petropavlovsk-Kamchatsky",
+      "tile": [
+        12,
+        3853,
+        1333
+      ],
+      "http_status": 200,
+      "seconds": 0.027,
+      "bytes": 69750,
+      "valid_png": true
+    },
+    {
+      "city": "Anadyr",
+      "tile": [
+        12,
+        4067,
+        1073
+      ],
+      "http_status": 200,
+      "seconds": 0.016,
+      "bytes": 36089,
+      "valid_png": true
+    }
+  ],
+  "online_geography": "not verified: primary Overpass406, VK504, Private.coffee timeout; local coverage available"
+}

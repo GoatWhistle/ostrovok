@@ -13,6 +13,7 @@ export interface ClassColors {
   readonly volume: ExpressionSpecification | string
   readonly roads: ExpressionSpecification | string
   readonly prop: ExpressionSpecification | string
+  readonly poi: ExpressionSpecification | string
 }
 
 interface Fallback {
@@ -63,6 +64,10 @@ export function classColors(
     prop: classMatch(
       pairs((item) => item.layer === "prop"),
       defaults("prop", fallback.park),
+    ),
+    poi: classMatch(
+      pairs((item) => item.layer === "poi" || item.layer === "prop"),
+      defaults("poi", fallback.park),
     ),
   }
 }
@@ -121,6 +126,46 @@ function addCatalogLayers(map: MapLibreMap, colors: ClassColors) {
     },
     map.getLayer("base-roads-glow") ? "base-roads-glow" : undefined,
   )
+  map.addLayer(
+    {
+      id: "base-tree-rows",
+      type: "line",
+      source: "sochi-map",
+      "source-layer": "tree_rows",
+      minzoom: 14,
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": colors.prop,
+        "line-width": ["interpolate", ["linear"], ["zoom"], 14, 1.4, 17, 6, 19, 14],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 14, 0.45, 16, 0.8],
+        "line-blur": ["interpolate", ["linear"], ["zoom"], 14, 0.6, 19, 4],
+      },
+    },
+    map.getLayer("base-trees") ? "base-trees" : undefined,
+  )
+  map.addLayer({
+    id: "base-props",
+    type: "circle",
+    source: "sochi-map",
+    "source-layer": "props",
+    minzoom: 16,
+    paint: {
+      "circle-color": colors.poi,
+      "circle-radius": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        16,
+        ["match", ["get", "kind"], ["waterfall", "viewpoint", "lighthouse"], 3.2, 1.8],
+        19,
+        ["match", ["get", "kind"], ["waterfall", "viewpoint", "lighthouse"], 8, 4.5],
+      ],
+      "circle-opacity": 0.9,
+      "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 16, 0, 18, 0.8],
+      "circle-stroke-color": colors.prop,
+      "circle-pitch-alignment": "map",
+    },
+  })
 }
 
 export function renderCatalogLayers(
@@ -135,6 +180,9 @@ export function renderCatalogLayers(
   map.setPaintProperty("base-landcover", "fill-color", colors.ground)
   map.setPaintProperty("base-water", "fill-color", water)
   map.setPaintProperty("base-trees", "circle-color", colors.prop)
+  map.setPaintProperty("base-tree-rows", "line-color", colors.prop)
+  map.setPaintProperty("base-props", "circle-color", colors.poi)
+  map.setPaintProperty("base-props", "circle-stroke-color", colors.prop)
   if (map.getLayer("base-buildings"))
     map.setPaintProperty("base-buildings", "fill-color", colors.volume)
   if (map.getLayer("base-roads")) map.setPaintProperty("base-roads", "line-color", colors.roads)

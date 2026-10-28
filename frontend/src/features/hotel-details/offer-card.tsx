@@ -67,6 +67,22 @@ export function OfferCard({ offer }: { readonly offer: Offer }) {
             })}
           </li>
         ) : null}
+        {offer.bed_places ? (
+          <li className={styles.metaItem}>
+            <Icon name="room" size="sm" />
+            {t("explore:offers.bedPlaces", { count: offer.bed_places.main })}
+          </li>
+        ) : null}
+        {offer.bed_places && offer.bed_places.extra > 0 ? (
+          <li className={styles.metaItem}>
+            {t("explore:offers.extraBeds", { count: offer.bed_places.extra })}
+          </li>
+        ) : null}
+        {offer.bed_places && offer.bed_places.child_cots > 0 ? (
+          <li className={styles.metaItem}>
+            {t("explore:offers.childCots", { count: offer.bed_places.child_cots })}
+          </li>
+        ) : null}
         {offer.floor_number != null ? (
           <li className={styles.metaItem}>
             <Icon name="height" size="sm" />

@@ -1,0 +1,55 @@
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 26%]
+........................................................................ [ 35%]
+........................................................................ [ 44%]
+........................................................................ [ 52%]
+........................................................................ [ 61%]
+........................................................................ [ 70%]
+........................................................................ [ 79%]
+........................................................................ [ 88%]
+........................................................................ [ 96%]
+.........................                                                [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/savelij/projects/o-hack/backend/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/unit/adapters/test_geographic_objects.py::test_large_lake_scope_includes_both_ends_and_excludes_distant_inland
+tests/unit/adapters/test_geographic_objects.py::test_shore_distance_is_not_distance_to_lake_center
+tests/unit/application/test_geographic_candidates.py::test_natural_object_search_uses_full_shape_without_selecting_one_region
+  /Users/savelij/projects/o-hack/backend/src/hotel_agent/adapters/geo/geographic_objects.py:22: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    self._geometry = transform(self._forward.transform, geometry)
+
+tests/unit/adapters/test_geographic_objects.py::test_large_lake_scope_includes_both_ends_and_excludes_distant_inland
+tests/unit/application/test_geographic_candidates.py::test_natural_object_search_uses_full_shape_without_selecting_one_region
+  /Users/savelij/projects/o-hack/backend/src/hotel_agent/adapters/geo/geographic_objects.py:26: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    return AreaBoundary(transform(self._inverse.transform, self._geometry.buffer(radius_m)))
+
+tests/unit/adapters/test_terrain_cache.py::test_children_and_concurrent_callers_share_parent_download
+tests/unit/adapters/test_terrain_cache.py::test_terrain_enlargement_does_not_create_spikes_at_rgb_byte_boundaries
+  /Users/savelij/projects/o-hack/backend/.venv/lib/python3.12/site-packages/rasterio/io.py:144: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    rd = writer(
+
+tests/unit/adapters/test_terrain_cache.py::test_children_and_concurrent_callers_share_parent_download
+tests/unit/adapters/test_terrain_cache.py::test_terrain_enlargement_does_not_create_spikes_at_rgb_byte_boundaries
+  /Users/savelij/projects/o-hack/backend/.venv/lib/python3.12/site-packages/rasterio/io.py:141: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    rd = DatasetReader(mempath, driver=driver, sharing=sharing, thread_safe=thread_safe, **kwargs)
+
+tests/unit/adapters/test_view_assessment.py::test_known_neighbor_obstructs_ray_and_unknown_height_stays_unknown
+tests/unit/adapters/test_view_assessment.py::test_known_neighbor_obstructs_ray_and_unknown_height_stays_unknown
+  /Users/savelij/projects/o-hack/backend/src/hotel_agent/adapters/geo/view_assessment.py:53: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+    polygon: Any = transform(project.transform, shape(building.geometry))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+817 passed, 19 warnings in 2.88s

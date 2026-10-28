@@ -1,0 +1,29 @@
+{
+  "old": "8e229bc394d96a98212dbdd7613359783cbc3a8b",
+  "new": "3ad0ece6b69efe5b313b0d3a55109c1e61c81a45",
+  "target": "feat/hotel-agent-mvp",
+  "source": "fix/geographic-object-search",
+  "backup": "/var/folders/65/lzx_90pj7x70ktp4zlxvmxyc0000gn/T/o-hack-merge-h6ojxnao",
+  "preserved_local_files": [
+    "backend/src/hotel_agent/adapters/external/ostrovok_offers.py",
+    "backend/src/hotel_agent/adapters/geo/window_candidates.py",
+    "backend/src/hotel_agent/adapters/geo/window_scene.py",
+    "backend/src/hotel_agent/adapters/geo/window_targets.py",
+    "backend/src/hotel_agent/adapters/llm/prompts.py",
+    "backend/src/hotel_agent/application/exploration_requests.py",
+    "backend/src/hotel_agent/application/use_cases/get_hotel_offers.py",
+    "backend/src/hotel_agent/domain/visibility.py",
+    "backend/tests/contract/test_hotel_offers.py",
+    "backend/tests/unit/adapters/test_dome_visibility.py",
+    "backend/tests/unit/adapters/test_ostrovok_offers.py",
+    "backend/tests/unit/adapters/test_view_components.py",
+    "docs/README.md",
+    "docs/design-decisions.md",
+    "docs/evidence.md",
+    "docs/hotel-data.md",
+    "frontend/src/pages/home/home-page.tsx"
+  ],
+  "merge": "fast-forward",
+  "pushed": false,
+  "validation": "758 backend unit/contract tests passed on merged root working tree; git diff --check passed"
+}

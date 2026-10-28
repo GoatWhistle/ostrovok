@@ -397,22 +397,25 @@ paths:
       operationId: getMapTile
       summary: Векторная геометрия импортированного покрытия OpenStreetMap
       description: >-
-        Версия lod-v3. buildings: стабильный строковый id, class, class_source,
+        Версия lod-v4. buildings: стабильный строковый id, class, class_source,
         height_m, levels, height_source. z10–11: крупные контуры, z12–15: упрощённые,
         z16–19: полные. roads: магистрали с z8, primary с z10, secondary и tertiary
         с z11, остальные с z13; coastline с z8. На z2–11 landcover содержит фактические жилые, коммерческие
         и промышленные полигоны; вне импортированного покрытия геометрия не выдумывается.
-        Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v3.
+        tree_rows: аллеи natural=tree_row с z14. props: отдельные объекты из pois с z16
+        (водопады, источники, видовые точки, фонтаны, скамейки, площадки, арт-объекты,
+        маяки, исторические объекты) с class каталога, kind исходного тега и name, если он есть.
+        Геометрия обрезается с буфером 64/4096 тайла. Для кэширования используйте v=lod-v4.
       parameters:
-        - { name: v, in: query, required: false, schema: { type: string }, description: lod-v3; другая версия возвращает 409 }
+        - { name: v, in: query, required: false, schema: { type: string }, description: lod-v4; другая версия возвращает 409 }
         - { name: z, in: path, required: true, schema: { type: integer, minimum: 0, maximum: 19 } }
         - { name: x, in: path, required: true, schema: { type: integer, minimum: 0 } }
         - { name: y, in: path, required: true, schema: { type: integer, minimum: 0 } }
       responses:
         "200":
-          description: Слои roads, coastline, beaches, buildings, landcover, water, trees в формате Mapbox Vector Tile
+          description: Слои roads, coastline, beaches, buildings, landcover, water, trees, tree_rows, props в формате Mapbox Vector Tile
           headers:
-            X-Map-Tile-Version: { schema: { type: string, enum: [lod-v3] } }
+            X-Map-Tile-Version: { schema: { type: string, enum: [lod-v4] } }
           content:
             application/vnd.mapbox-vector-tile:
               schema: { type: string, format: binary }
@@ -1351,6 +1354,11 @@ components:
           allOf: [{ $ref: "#/components/schemas/SupplierDetails" }]
           nullable: true
           description: Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам
+        declared_rooms:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierRoom" }
+          description: "Категории из публичной карточки другого поставщика: заполняются, когда основной источник не публикует вид из окна и этаж"
+        declared_card: { type: string, nullable: true, description: "Адрес публичной карточки, из которой взяты declared_rooms" }
         offers:
           type: array
           items: { $ref: "#/components/schemas/RoomOffer" }
@@ -1366,13 +1374,27 @@ components:
         available_rooms: { type: integer, nullable: true }
         meal: { type: string, nullable: true }
         amenities: { type: array, items: { type: string } }
-        floor_number: { type: integer, nullable: true }
+        floor_number: { type: integer, nullable: true, description: "Этаж номера; заполняется только источником, который его публикует" }
         room_group_id: { type: string, nullable: true }
         free_cancellation_before: { type: string, format: date-time, nullable: true }
+        occupancy: { type: integer, nullable: true, description: "Число гостей, на которое поставщик посчитал этот тариф" }
+        bed_places:
+          allOf: [{ $ref: "#/components/schemas/BedPlaces" }]
+          nullable: true
+
+    BedPlaces:
+      type: object
+      required: [main, extra, child_cots, bedding]
+      description: "Спальные места тарифа по данным поставщика; не максимальная вместимость категории"
+      properties:
+        main: { type: integer, description: Основные места }
+        extra: { type: integer, description: Дополнительные места }
+        child_cots: { type: integer, description: Детские кроватки }
+        bedding: { type: array, items: { type: string }, description: Коды типов кроватей поставщика }
 
     SupplierRoom:
       type: object
-      required: [id, name, photos, amenities]
+      required: [id, name, photos, amenities, views]
       properties:
         id: { type: string }
         name: { type: string }
@@ -1380,6 +1402,13 @@ components:
         amenities: { type: array, items: { type: string } }
         size_sqm: { type: number, nullable: true }
         bedding: { type: string, nullable: true }
+        views:
+          type: array
+          items: { type: string }
+          description: "Нормализованные цели вида из окна, объявленные поставщиком для этой категории"
+        floor: { type: integer, nullable: true, description: "Этаж категории по карточке поставщика" }
+        main_places: { type: integer, nullable: true, description: "Основные места в категории" }
+        extra_places: { type: integer, nullable: true, description: "Дополнительные места в категории" }
 
 
     SupplierPhoto:
@@ -1439,6 +1468,7 @@ components:
         categories:
           type: array
           items: { $ref: "#/components/schemas/SupplierRegistryCategory" }
+        valid_until: { type: string, format: date, nullable: true, description: "Дата окончания действия свидетельства о присвоении категории" }
 
     SupplierFacts:
       type: object

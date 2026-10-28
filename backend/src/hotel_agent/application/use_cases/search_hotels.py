@@ -26,6 +26,7 @@ from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
+from hotel_agent.application.room_view_corroboration import corroborate_room_views
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
 from hotel_agent.application.search_selection import Selection, nearest_matches, select_candidates
@@ -213,10 +214,13 @@ class SearchHotels:
                 explored, parsed, selection = retried, retried_parsed, attempt
         chosen = selection.accepted or nearest_matches(selection.ranked, limit)
         results = [SearchResult(hotel=hotel, scored=scored) for hotel, scored in chosen[:limit]]
-        found = tuple(row for row in explored.facts if row not in capacity)
-        await save_search_evidence(
-            self._uow, found, [item.hotel.id for item in results], explored.features
+        selected_ids = [item.hotel.id for item in results]
+        async with self._uow() as uow:
+            rooms = await uow.search.list_rooms_by_hotels(selected_ids)
+        found = corroborate_room_views(
+            tuple(row for row in explored.facts if row not in capacity), rooms
         )
+        await save_search_evidence(self._uow, found, selected_ids, explored.features)
         fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],

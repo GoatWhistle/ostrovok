@@ -31,9 +31,10 @@ def repository(supplier_id: str | None) -> UnitOfWorkFactory:
         ),
         get_supplier_id=AsyncMock(return_value=supplier_id),
         nearby_city=AsyncMock(return_value="Сочи"),
+        save_declared_rooms=AsyncMock(),
     )
     scope = MagicMock()
-    scope.__aenter__ = AsyncMock(return_value=SimpleNamespace(search=search))
+    scope.__aenter__ = AsyncMock(return_value=SimpleNamespace(search=search, commit=AsyncMock()))
     scope.__aexit__ = AsyncMock(return_value=None)
     return cast(UnitOfWorkFactory, lambda: scope)
 
@@ -231,6 +232,75 @@ async def test_web_card_fills_an_unmatched_hotel_without_claiming_rates() -> Non
     card.find.assert_awaited_once()
     assert card.find.await_args is not None
     assert card.find.await_args.args[0].city == "Сочи"
+
+
+@pytest.mark.asyncio
+async def test_declared_rooms_add_views_the_matched_supplier_does_not_publish() -> None:
+    from hotel_agent.application.ports.hotel_web_card import HotelCardLookupPort
+    from hotel_agent.application.ports.supplier_details import (
+        SupplierDetails,
+        SupplierHotel,
+        SupplierRoom,
+    )
+
+    plain = SupplierRoom(id="rg1", name="Стандарт", photos=(), amenities=())
+    declared = SupplierRoom(
+        id="alean:1", name="Люкс", photos=(), amenities=(), views=("sea",), floor=4
+    )
+    card = SimpleNamespace(
+        find=AsyncMock(
+            return_value=SupplierHotel(
+                details=SupplierDetails(
+                    supplier_id="www.alean.ru",
+                    page_url="https://www.alean.ru/hotels/rossiya/a/b/c/d/",
+                    name="Отель",
+                    location=(39.7, 43.6),
+                ),
+                rooms=(declared,),
+            )
+        )
+    )
+    search = SimpleNamespace(
+        search=AsyncMock(
+            return_value=OfferLookup(
+                offers=(),
+                checked_at=datetime(2026, 10, 25, tzinfo=UTC),
+                room_groups=(plain,),
+            )
+        ),
+        details=AsyncMock(return_value=None),
+        aclose=AsyncMock(),
+        source="Островок",
+        sandbox=False,
+    )
+    offers = GetHotelOffers(
+        repository(None),
+        None,
+        clock(),
+        search_provider=cast(HotelOfferSearchPort, search),
+        room_card=cast(HotelCardLookupPort, card),
+    )
+    result = await offers("hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru")
+
+    assert result.room_groups == (plain,)
+    assert result.declared_rooms == (declared,)
+    assert result.declared_card == "https://www.alean.ru/hotels/rossiya/a/b/c/d/"
+
+    with_views = SupplierRoom(
+        id="rg2", name="Люкс с видом на море", photos=(), amenities=(), views=("sea",)
+    )
+    search.search = AsyncMock(
+        return_value=OfferLookup(
+            offers=(),
+            checked_at=datetime(2026, 10, 25, tzinfo=UTC),
+            room_groups=(with_views,),
+        )
+    )
+    card.find.reset_mock()
+    second = await offers("hotel-1", date(2026, 11, 1), date(2026, 11, 2), 2, "ru")
+    assert second.declared_rooms == ()
+    assert second.declared_card is None
+    card.find.assert_not_called()
 
 
 @pytest.mark.asyncio

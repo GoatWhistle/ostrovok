@@ -1,4 +1,5 @@
 import math
+from datetime import date
 from typing import Any
 from urllib.parse import urlsplit
 
@@ -36,7 +37,7 @@ def details(hotel: dict[str, Any], page_url: str, supplier_id: str) -> SupplierD
         location=_coordinates(location),
         photos=photos(hotel.get("images")),
         facilities=facilities(hotel.get("serpFilters")),
-        facts=facts(hotel.get("facts")),
+        facts=facts(hotel.get("facts"), hotel.get("starCertificate")),
         amenity_groups=amenity_groups(hotel.get("amenityGroups")),
         description=description(hotel.get("descriptionStruct")),
         nearby=nearby(location.get("pois")),
@@ -77,9 +78,9 @@ def facilities(values: object) -> tuple[str, ...]:
     return tuple(dict.fromkeys(found))
 
 
-def facts(values: object) -> SupplierHotelFacts:
+def facts(values: object, certificate: object = None) -> SupplierHotelFacts:
     if not isinstance(values, dict):
-        return SupplierHotelFacts()
+        return SupplierHotelFacts(registry=certificate_registry(certificate))
     return SupplierHotelFacts(
         floors_number=_positive(values.get("floorsNumber")),
         rooms_number=_positive(values.get("roomsNumber")),
@@ -93,16 +94,25 @@ def facts(values: object) -> SupplierHotelFacts:
         room_wifi=values.get("hasRoomWifi")
         if isinstance(values.get("hasRoomWifi"), bool)
         else None,
-        registry=registry(values.get("register")),
+        registry=registry(values.get("register"), certificate),
     )
 
 
-def registry(values: object) -> SupplierRegistry | None:
-    if not isinstance(values, dict):
+def certificate_registry(certificate: object) -> SupplierRegistry | None:
+    if not isinstance(certificate, dict):
         return None
-    record = _text(values.get("record"))
+    record = _text(certificate.get("certificateId"))
     if record is None:
         return None
+    return SupplierRegistry(record=record, valid_until=_day(certificate.get("validTo")))
+
+
+def registry(values: object, certificate: object = None) -> SupplierRegistry | None:
+    if not isinstance(values, dict):
+        return certificate_registry(certificate)
+    record = _text(values.get("record"))
+    if record is None:
+        return certificate_registry(certificate)
     link = _text(values.get("link"))
     if link is not None and urlsplit(link).hostname not in REGISTRY_HOSTS:
         link = None
@@ -119,6 +129,7 @@ def registry(values: object) -> SupplierRegistry | None:
         address=_text(values.get("address")),
         link=link,
         categories=tuple(categories),
+        valid_until=_day(certificate.get("validTo")) if isinstance(certificate, dict) else None,
     )
 
 
@@ -226,6 +237,16 @@ def _coordinates(location: dict[str, Any]) -> tuple[float, float] | None:
 
 def _text(value: object) -> str | None:
     return value.strip() if isinstance(value, str) and value.strip() else None
+
+
+def _day(value: object) -> date | None:
+    text = _text(value)
+    if text is None:
+        return None
+    try:
+        return date.fromisoformat(text)
+    except ValueError:
+        return None
 
 
 def _count(value: object) -> int | None:

@@ -4,6 +4,7 @@ import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
 import { HotelCover } from "../hotel-cover"
 import { OfferCard } from "../offer-card"
+import { roomFacts, viewKeys } from "./room-facts"
 import styles from "./rooms.module.css"
 
 type Room = components["schemas"]["SupplierRoom"]
@@ -57,14 +58,14 @@ export function RoomView({
     back.current?.focus({ preventScroll: true })
   }, [])
   const amenities = room.amenities.flatMap((code) => (AMENITIES[code] ? [AMENITIES[code]] : []))
-  const facts = [
-    room.size_sqm != null
-      ? t("explore:roomsScreen.area", {
-          value: new Intl.NumberFormat(locale).format(room.size_sqm),
-        })
-      : undefined,
-    room.bedding ?? undefined,
-  ].filter((value): value is string => Boolean(value))
+  const number = new Intl.NumberFormat(locale)
+  const facts = roomFacts(room, {
+    area: (value) => t("explore:roomsScreen.area", { value: number.format(value) }),
+    floor: (value) => t("explore:roomsScreen.floor", { value }),
+    places: (value) => t("explore:roomsScreen.places", { value }),
+    extraPlaces: (value) => t("explore:roomsScreen.extraPlaces", { value }),
+  })
+  const views = viewKeys(room)
   return (
     <section className={styles.room} aria-label={room.name}>
       <Button ref={back} variant="ghost" size="compact" icon="chevron-left" onClick={onBack}>
@@ -82,6 +83,18 @@ export function RoomView({
             </li>
           ))}
         </ul>
+      ) : null}
+      {views.length ? (
+        <>
+          <p className={styles.title}>{t("explore:roomsScreen.declaredView")}</p>
+          <ul className={styles.tags}>
+            {views.map((key) => (
+              <li key={key} className={styles.tag}>
+                {t(key)}
+              </li>
+            ))}
+          </ul>
+        </>
       ) : null}
       {amenities.length ? (
         <ul className={styles.amenityGrid}>

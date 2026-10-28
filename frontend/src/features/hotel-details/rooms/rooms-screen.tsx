@@ -4,6 +4,7 @@ import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Button } from "@/shared/ui"
 import { OfferState, offerRequest } from "../offer-state"
+import { DeclaredRooms } from "./declared-rooms"
 import { RoomCatalog } from "./room-catalog"
 import styles from "./rooms.module.css"
 import { useRoomOffers } from "./use-room-offers"
@@ -63,6 +64,9 @@ export function RoomsScreen({
           rooms={offers.rooms}
           content={offers.priced}
         />
+      ) : null}
+      {offers.current?.declared_card && offers.current.declared_rooms?.length ? (
+        <DeclaredRooms rooms={offers.current.declared_rooms} card={offers.current.declared_card} />
       ) : null}
       {checked ? (
         <p className={styles.checked}>

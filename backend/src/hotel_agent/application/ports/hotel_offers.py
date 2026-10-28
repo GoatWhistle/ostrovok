@@ -10,6 +10,14 @@ from hotel_agent.application.ports.supplier_details import (
 from hotel_agent.domain.hotel_identity import HotelIdentity
 
 
+@dataclass(frozen=True, slots=True, kw_only=True)
+class BedPlaces:
+    main: int
+    extra: int = 0
+    child_cots: int = 0
+    bedding: tuple[str, ...] = ()
+
+
 @dataclass(frozen=True, slots=True)
 class RoomOffer:
     id: str
@@ -22,6 +30,8 @@ class RoomOffer:
     floor_number: int | None = None
     room_group_id: str | None = None
     free_cancellation_before: datetime | None = None
+    occupancy: int | None = None
+    bed_places: BedPlaces | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -66,6 +76,7 @@ class OfferProviderFailure(Exception):
 
 
 __all__ = [
+    "BedPlaces",
     "HotelOfferSearchPort",
     "HotelOffersPort",
     "OfferLookup",

@@ -6,9 +6,11 @@ from uuid import uuid4
 
 from fastapi import FastAPI
 
+from hotel_agent.adapters.external.alean_site import AleanRoomCard
 from hotel_agent.adapters.external.commons_photos import CommonsPhotos
 from hotel_agent.adapters.external.event_sources import PublicEvents
 from hotel_agent.adapters.external.gbif import GBIFObservations
+from hotel_agent.adapters.external.hotel_cards import FirstHotelCard
 from hotel_agent.adapters.external.hotel_web_card import WebHotelCard
 from hotel_agent.adapters.external.nuitee_catalog import NuiteeCatalog
 from hotel_agent.adapters.external.overpass_geography import OverpassGeography
@@ -113,6 +115,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         logger,
     )
 
+    alean_cards = AleanRoomCard(web_research)
+
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         app.state.providers = providers
@@ -122,6 +126,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             if embedder:
                 await embedder.aclose()
             await web_research.aclose()
+            await alean_cards.aclose()
             await conditions.aclose()
             await geography_source.aclose()
             await events.aclose()
@@ -140,7 +145,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         providers.clock,
         providers.catalog_matcher,
         search_provider=providers.hotel_offer_search,
-        card_lookup=WebHotelCard(web_research),
+        card_lookup=FirstHotelCard(alean_cards, WebHotelCard(web_research)),
+        room_card=alean_cards,
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)

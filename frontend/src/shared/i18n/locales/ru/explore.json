@@ -286,7 +286,19 @@
       "airConditioning": "Кондиционер",
       "pets": "Размещение с питомцами",
       "accessibility": "Доступная среда"
-    }
+    },
+    "bedPlaces_one": "{{count, number}} основное место",
+    "bedPlaces_few": "{{count, number}} основных места",
+    "bedPlaces_many": "{{count, number}} основных мест",
+    "bedPlaces_other": "{{count, number}} основных места",
+    "extraBeds_one": "{{count, number}} дополнительное место",
+    "extraBeds_few": "{{count, number}} дополнительных места",
+    "extraBeds_many": "{{count, number}} дополнительных мест",
+    "extraBeds_other": "{{count, number}} дополнительных места",
+    "childCots_one": "{{count, number}} детская кроватка",
+    "childCots_few": "{{count, number}} детские кроватки",
+    "childCots_many": "{{count, number}} детских кроваток",
+    "childCots_other": "{{count, number}} детские кроватки"
   },
   "details": {
     "summaryStars": "Категория: {{count}} звезды",
@@ -819,7 +831,28 @@
     "teaserEmpty": "Выберите даты, чтобы увидеть цены",
     "unreachable": "Номера и цены этого отеля пока недоступны",
     "area": "{{value}} м²",
-    "noRate": "Нет тарифа на эти даты"
+    "noRate": "Нет тарифа на эти даты",
+    "floor": "Этаж {{value, number}}",
+    "places": "Мест: {{value, number}}",
+    "extraPlaces": "Дополнительных мест: {{value, number}}",
+    "declaredView": "Вид из номера по карточке поставщика",
+    "views": {
+      "sea": "на море",
+      "mountain": "на горы",
+      "city": "на город",
+      "park": "на парк",
+      "garden": "на сад",
+      "courtyard": "во двор",
+      "pool": "на бассейн",
+      "river": "на реку",
+      "lake": "на озеро",
+      "sunrise": "на восход",
+      "sunset": "на закат",
+      "panoramic": "панорамный"
+    },
+    "declaredTitle": "Категории по карточке другого поставщика",
+    "declaredFrom": "{{source}} публикует вид из окна и этаж. Цены и наличие берутся не оттуда",
+    "declaredLink": "Открыть карточку поставщика"
   },
   "supplierAmenityGroup": {
     "poolBeach": "Бассейн и пляж",

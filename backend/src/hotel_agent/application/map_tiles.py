@@ -1,1 +1,1 @@
-TILE_VERSION = "lod-v3"
+TILE_VERSION = "lod-v4"

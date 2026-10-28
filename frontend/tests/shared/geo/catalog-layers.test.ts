@@ -41,6 +41,47 @@ describe("classColors", () => {
     expect(colors.volume).toEqual(["match", ["get", "class"], "hotel", "#76d8d0", "#000002"])
   })
 
+  it("colours props and pois from both catalog layers", () => {
+    const tokens = new Map([
+      ["--map-class-fountain", "#4ab3d1"],
+      ["--map-class-poi_attraction", "#e0b050"],
+      ["--map-class-default_poi", "#808080"],
+      ["--map-class-tree_row", "#2f7d4f"],
+    ])
+    const colors = classColors(
+      [
+        item("fountain", "prop"),
+        item("tree_row", "prop"),
+        item("poi_attraction", "poi"),
+        item("default_poi", "poi", 0),
+      ],
+      (token) => tokens.get(token),
+      FALLBACK,
+    )
+    expect(colors.prop).toEqual([
+      "match",
+      ["get", "class"],
+      "fountain",
+      "#4ab3d1",
+      "tree_row",
+      "#2f7d4f",
+      "#000004",
+    ])
+    expect(colors.poi).toEqual([
+      "match",
+      ["get", "class"],
+      "fountain",
+      "#4ab3d1",
+      "tree_row",
+      "#2f7d4f",
+      "poi_attraction",
+      "#e0b050",
+      "default_poi",
+      "#808080",
+      "#808080",
+    ])
+  })
+
   it("ignores classes whose token is missing or not a colour", () => {
     const colors = classColors(
       [item("park", "ground"), item("lamp", "prop")],
@@ -52,6 +93,7 @@ describe("classColors", () => {
       volume: "#000002",
       roads: "#000003",
       prop: "#000004",
+      poi: "#000004",
     })
   })
 })
