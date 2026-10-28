@@ -63,7 +63,6 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
     colors.buildingVolume,
   ])
   map.setPaintProperty("buildings-outline", "line-color", colors.hotelSelected)
-  map.setPaintProperty("buildings-halo", "line-color", colors.hotelSelected)
 }
 
 export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
@@ -83,22 +82,6 @@ export function renderBuildings(map: MapLibreMap, data: FeatureCollection, color
         "fill-color": ["case", HOTEL, colors.hotelVolume, colors.building],
         "fill-outline-color": colors.buildingLine,
         "fill-opacity": ["case", HOTEL, 0.9, 0.6],
-      },
-    },
-    before,
-  )
-  map.addLayer(
-    {
-      id: "buildings-halo",
-      type: "line",
-      source: "buildings",
-      filter: HOTEL,
-      layout: { "line-join": "round" },
-      paint: {
-        "line-color": colors.hotelSelected,
-        "line-width": ["interpolate", ["exponential", 2], ["zoom"], 14, 4, 18, 26],
-        "line-blur": ["interpolate", ["exponential", 2], ["zoom"], 14, 3, 18, 18],
-        "line-opacity": 0.42,
       },
     },
     before,
