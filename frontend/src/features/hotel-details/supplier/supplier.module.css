@@ -25,11 +25,12 @@
 }
 
 .mark {
-  padding-inline: var(--space-2);
-  border-radius: var(--radius-xs);
-  color: var(--text-on-highlight);
-  background-color: var(--surface-highlight);
-  box-decoration-break: clone;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--text-accent);
+  text-decoration-thickness: var(--space-2);
+  text-underline-offset: 0.25em;
+  background: none;
 }
 
 .more {
@@ -40,7 +41,7 @@
 .top {
   composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr));
   gap: var(--space-8) var(--space-24);
 }
 
@@ -81,7 +82,11 @@
   overflow-wrap: anywhere;
 }
 
-.free,
+.free {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+  margin-inline-start: var(--space-6);
+}
+
 .note {
   composes: captionText from "../../../shared/styles/compose.module.css";
 }

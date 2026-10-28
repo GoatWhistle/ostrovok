@@ -28,7 +28,7 @@ function AllAmenities({ groups }: { readonly groups: readonly Group[] }) {
                     <li key={item.name}>
                       <span lang={name.lang}>{name.text}</span>
                       {item.free ? (
-                        <span className={styles.free}> · {t("explore:supplier.free")}</span>
+                        <span className={styles.free}>{t("explore:supplier.free")}</span>
                       ) : null}
                     </li>
                   )

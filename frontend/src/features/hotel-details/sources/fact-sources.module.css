@@ -13,6 +13,10 @@
   overflow-wrap: anywhere;
 }
 
+.icon {
+  color: var(--text-muted);
+}
+
 .meta {
   composes: captionText from "../../../shared/styles/compose.module.css";
   display: grid;

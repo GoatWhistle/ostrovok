@@ -27,10 +27,18 @@
 
 .external {
   composes: roundIconShape pressable from "../../shared/styles/compose.module.css";
-  flex: none;
-  margin-inline-start: calc(-1 * var(--space-4));
+  position: relative;
+  display: inline-grid;
+  margin-inline-start: var(--space-4);
   color: var(--text-secondary);
+  vertical-align: middle;
   text-decoration: none;
+}
+
+.external::before {
+  content: "";
+  position: absolute;
+  inset: calc((var(--space-32) - var(--target-min)) / 2);
 }
 
 @media (hover: hover) and (pointer: fine) {

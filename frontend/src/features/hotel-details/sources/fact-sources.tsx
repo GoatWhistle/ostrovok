@@ -1,7 +1,8 @@
-import { RowButton } from "@/entities/evidence"
+import { RowButton, sourceIcon } from "@/entities/evidence"
 import type { Fact, FactBrief } from "@/shared/api/hotel-types"
 import { factLabel } from "@/shared/geo/fact-label"
 import { useLocale, useTranslation } from "@/shared/i18n"
+import { Icon } from "@/shared/ui"
 import { groupFacts } from "../fact-list"
 import styles from "./fact-sources.module.css"
 
@@ -27,7 +28,9 @@ export function FactSources({ facts, onFact }: FactSourcesProps) {
         return (
           <li key={fact.characteristic_key}>
             <RowButton
-              leading={null}
+              leading={
+                <Icon name={sourceIcon(fact.source_type)} size="sm" className={styles.icon} />
+              }
               data-fact-trigger={fact.fact_id}
               onClick={() => onFact(fact)}
               trailing={
