@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { chromium, type Page } from "@playwright/test"
@@ -38,6 +38,12 @@ const frontendRoot = resolve(fileURLToPath(new URL("..", import.meta.url)))
 const repoRoot = resolve(frontendRoot, "..")
 const publicDir = join(frontendRoot, "public")
 const LOCALES: readonly Locale[] = ["ru", "en"]
+
+function cardScene(theme: string): string | undefined {
+  const file = join(repoRoot, "docs", "brand", `card-scene-${theme}.jpg`)
+  if (!existsSync(file)) return undefined
+  return `data:image/jpeg;base64,${readFileSync(file).toString("base64")}`
+}
 
 function words(locale: Locale): CommonWords {
   const file = join(frontendRoot, "src", "shared", "i18n", "locales", locale, "common.json")
@@ -97,9 +103,14 @@ const family = fontFamily()
 for (const locale of LOCALES) {
   const text = words(locale)
   const colors = palette[CARD_THEME[locale]]
-  const card = { wordmark: text.app.wordmark, tagline: text.app.tagline }
+  const card = {
+    wordmark: text.app.wordmark,
+    tagline: text.app.tagline,
+    description: text.meta.description,
+  }
   const painted = paintedMark(mark, onSurface(colors))
-  write(ogFile(locale), await shoot(page, cardHtml(painted, card, colors, fonts, family)))
+  const html = cardHtml(painted, card, colors, fonts, family, cardScene(CARD_THEME[locale]))
+  write(ogFile(locale), await shoot(page, html))
 }
 await browser.close()
 
