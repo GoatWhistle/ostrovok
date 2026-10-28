@@ -1,0 +1,3042 @@
+{
+ "id": "4a3686e7-473b-4f24-808b-209e71499b6a",
+ "title": "Сочи: рядом с железнодорожным вокзалом",
+ "updated_at": "2026-10-28T20:10:44.656429Z",
+ "messages": [
+  {
+   "id": "853cf3fa-084f-413d-b23d-be6cf48978bd",
+   "role": "user",
+   "content": "Нужен отель в Сочи рядом с железнодорожным вокзалом",
+   "created_at": "2026-10-28T20:10:44.656429Z"
+  },
+  {
+   "id": "277ad327-b984-4e97-bb54-18f40e17567d",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Санаторий \"Аврора\", Даниэль и Grand Way. На какие даты едете?",
+   "created_at": "2026-10-28T20:10:44.656429Z"
+  }
+ ],
+ "effective_query": "отель в Сочи рядом с железнодорожным вокзалом",
+ "search": {
+  "query_id": "7dd3549a047a1774",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:721f230f07ff",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с железнодорожным вокзалом"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи рядом с железнодорожным вокзалом",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w53534006",
+     "name": "Санаторий \"Аврора\"",
+     "address": null,
+     "location": [
+      39.8648679,
+      43.5138913
+     ],
+     "stars": 4,
+     "building_id": "w52017823",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Хоста».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_w53534006",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6418277518",
+        "g_walk_w53534006_n6418277518"
+       ],
+       "subject": "hotel:w53534006",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Хоста"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6418277518",
+       "g_walk_w53534006_n6418277518"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8648679,
+      43.5138913
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52017823",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8648306,
+          43.514081
+         ],
+         [
+          39.8649414,
+          43.5140082
+         ],
+         [
+          39.8652822,
+          43.5142807
+         ],
+         [
+          39.8651714,
+          43.5143536
+         ],
+         [
+          39.8648306,
+          43.514081
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52017823",
+      "hotel_id": "w53534006",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53534006"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3843497059",
+     "name": "Даниэль",
+     "address": null,
+     "location": [
+      39.5883574,
+      43.7015771
+     ],
+     "stars": 2,
+     "building_id": "w381108151",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n3843497059",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n3843497059_n10673409971"
+       ],
+       "subject": "hotel:n3843497059",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n3843497059_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5883574,
+      43.7015771
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w381108151",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5882624,
+          43.7015973
+         ],
+         [
+          39.5883218,
+          43.7014903
+         ],
+         [
+          39.5884535,
+          43.7015285
+         ],
+         [
+          39.5883941,
+          43.7016355
+         ],
+         [
+          39.5882624,
+          43.7015973
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w381108151",
+      "hotel_id": "n3843497059",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n3843497059"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11304222984",
+     "name": "Grand Way",
+     "address": null,
+     "location": [
+      39.7267395,
+      43.594985
+     ],
+     "stars": null,
+     "building_id": "w238327764",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Сочи».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n11304222984",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6418280615",
+        "g_walk_n11304222984_n6418280615"
+       ],
+       "subject": "hotel:n11304222984",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Сочи"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6418280615",
+       "g_walk_n11304222984_n6418280615"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7267395,
+      43.594985
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w238327764",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7263687,
+          43.5946297
+         ],
+         [
+          39.7265759,
+          43.5945445
+         ],
+         [
+          39.7266525,
+          43.5946411
+         ],
+         [
+          39.726669,
+          43.594662
+         ],
+         [
+          39.7267131,
+          43.5947182
+         ],
+         [
+          39.7267251,
+          43.5947334
+         ],
+         [
+          39.7267633,
+          43.594782
+         ],
+         [
+          39.7267882,
+          43.5948137
+         ],
+         [
+          39.7268202,
+          43.5948543
+         ],
+         [
+          39.726881,
+          43.5949317
+         ],
+         [
+          39.7269188,
+          43.5949797
+         ],
+         [
+          39.7268791,
+          43.5949961
+         ],
+         [
+          39.726865,
+          43.5950016
+         ],
+         [
+          39.7268267,
+          43.5950177
+         ],
+         [
+          39.7267112,
+          43.5950653
+         ],
+         [
+          39.7263755,
+          43.5946383
+         ],
+         [
+          39.7263687,
+          43.5946297
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w238327764",
+      "hotel_id": "n11304222984",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n11304222984"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11331531334",
+     "name": "Cosmos Adler Hotel",
+     "address": null,
+     "location": [
+      39.904065,
+      43.4451502
+     ],
+     "stars": null,
+     "building_id": "w291652014",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Адлер».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n11331531334",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6439674063",
+        "g_walk_n11331531334_n6439674063"
+       ],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Адлер"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6439674063",
+       "g_walk_n11331531334_n6439674063"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.904065,
+      43.4451502
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w291652014",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9038943,
+          43.445266
+         ],
+         [
+          39.904035,
+          43.4449599
+         ],
+         [
+          39.9040286,
+          43.4449583
+         ],
+         [
+          39.9040556,
+          43.4448997
+         ],
+         [
+          39.9040632,
+          43.4449015
+         ],
+         [
+          39.9041067,
+          43.444807
+         ],
+         [
+          39.9042729,
+          43.4448473
+         ],
+         [
+          39.9042293,
+          43.444942
+         ],
+         [
+          39.9042353,
+          43.4449434
+         ],
+         [
+          39.9042219,
+          43.4449725
+         ],
+         [
+          39.9042081,
+          43.4450025
+         ],
+         [
+          39.904201,
+          43.4450007
+         ],
+         [
+          39.9040449,
+          43.4453403
+         ],
+         [
+          39.9039432,
+          43.4453157
+         ],
+         [
+          39.9039588,
+          43.4452817
+         ],
+         [
+          39.9038943,
+          43.445266
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w291652014",
+      "hotel_id": "n11331531334",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11331531334"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843545844",
+     "name": "LooBeach SeaView",
+     "address": null,
+     "location": [
+      39.5886514,
+      43.7015477
+     ],
+     "stars": null,
+     "building_id": "w728222076",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n11843545844",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n11843545844_n10673409971"
+       ],
+       "subject": "hotel:n11843545844",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n11843545844_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5886514,
+      43.7015477
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w728222076",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5885637,
+          43.7015633
+         ],
+         [
+          39.5886544,
+          43.7014204
+         ],
+         [
+          39.5887705,
+          43.7014589
+         ],
+         [
+          39.5886799,
+          43.7016018
+         ],
+         [
+          39.5885637,
+          43.7015633
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w728222076",
+      "hotel_id": "n11843545844",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11843545844"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843553851",
+     "name": "inSochi",
+     "address": null,
+     "location": [
+      39.7245402,
+      43.589363
+     ],
+     "stars": null,
+     "building_id": "w74466408",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Сочи».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n11843553851",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6418280615",
+        "g_walk_n11843553851_n6418280615"
+       ],
+       "subject": "hotel:n11843553851",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Сочи"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6418280615",
+       "g_walk_n11843553851_n6418280615"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7245402,
+      43.589363
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w74466408",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.724263,
+          43.589446
+         ],
+         [
+          39.7245448,
+          43.5893256
+         ],
+         [
+          39.7245895,
+          43.5893058
+         ],
+         [
+          39.7250539,
+          43.5898648
+         ],
+         [
+          39.725018,
+          43.5898805
+         ],
+         [
+          39.7248728,
+          43.5899438
+         ],
+         [
+          39.7249634,
+          43.5900529
+         ],
+         [
+          39.7249848,
+          43.5900787
+         ],
+         [
+          39.7251355,
+          43.590013
+         ],
+         [
+          39.7253055,
+          43.5902177
+         ],
+         [
+          39.7250499,
+          43.5902638
+         ],
+         [
+          39.7249655,
+          43.5902958
+         ],
+         [
+          39.7248216,
+          43.5901185
+         ],
+         [
+          39.7247054,
+          43.589962
+         ],
+         [
+          39.7246863,
+          43.5899699
+         ],
+         [
+          39.724263,
+          43.589446
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w74466408",
+      "hotel_id": "n11843553851",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11843553851"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12183637644",
+     "name": "Mirror Residence",
+     "address": null,
+     "location": [
+      39.7251383,
+      43.5897671
+     ],
+     "stars": null,
+     "building_id": "w74466408",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Сочи».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n12183637644",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6418280615",
+        "g_walk_n12183637644_n6418280615"
+       ],
+       "subject": "hotel:n12183637644",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Сочи"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6418280615",
+       "g_walk_n12183637644_n6418280615"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7251383,
+      43.5897671
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w74466408",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.724263,
+          43.589446
+         ],
+         [
+          39.7245448,
+          43.5893256
+         ],
+         [
+          39.7245895,
+          43.5893058
+         ],
+         [
+          39.7250539,
+          43.5898648
+         ],
+         [
+          39.725018,
+          43.5898805
+         ],
+         [
+          39.7248728,
+          43.5899438
+         ],
+         [
+          39.7249634,
+          43.5900529
+         ],
+         [
+          39.7249848,
+          43.5900787
+         ],
+         [
+          39.7251355,
+          43.590013
+         ],
+         [
+          39.7253055,
+          43.5902177
+         ],
+         [
+          39.7250499,
+          43.5902638
+         ],
+         [
+          39.7249655,
+          43.5902958
+         ],
+         [
+          39.7248216,
+          43.5901185
+         ],
+         [
+          39.7247054,
+          43.589962
+         ],
+         [
+          39.7246863,
+          43.5899699
+         ],
+         [
+          39.724263,
+          43.589446
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w74466408",
+      "hotel_id": "n12183637644",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n12183637644"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1300620592",
+     "name": "Khosta Hostel",
+     "address": null,
+     "location": [
+      39.8667708,
+      43.5113562
+     ],
+     "stars": null,
+     "building_id": "w53498767",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Хоста».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n1300620592",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6418277518",
+        "g_walk_n1300620592_n6418277518"
+       ],
+       "subject": "hotel:n1300620592",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Хоста"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6418277518",
+       "g_walk_n1300620592_n6418277518"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8667708,
+      43.5113562
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53498767",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8665565,
+          43.5113048
+         ],
+         [
+          39.8667022,
+          43.511214
+         ],
+         [
+          39.8667844,
+          43.5112993
+         ],
+         [
+          39.8667511,
+          43.5113222
+         ],
+         [
+          39.8668148,
+          43.5113851
+         ],
+         [
+          39.8667114,
+          43.5114443
+         ],
+         [
+          39.8665565,
+          43.5113048
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53498767",
+      "hotel_id": "n1300620592",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n1300620592"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13968540001",
+     "name": "«Венеция»",
+     "address": "Армавирская 2",
+     "location": [
+      39.6523184,
+      43.6512696
+     ],
+     "stars": null,
+     "building_id": "w54829849",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Дагомыс».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n13968540001",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n11144199483",
+        "g_walk_n13968540001_n11144199483"
+       ],
+       "subject": "hotel:n13968540001",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Дагомыс"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n11144199483",
+       "g_walk_n13968540001_n11144199483"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6523184,
+      43.6512696
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54829849",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6519977,
+          43.6514224
+         ],
+         [
+          39.6520895,
+          43.6513117
+         ],
+         [
+          39.6521997,
+          43.6513592
+         ],
+         [
+          39.6523651,
+          43.6511597
+         ],
+         [
+          39.6524406,
+          43.6511898
+         ],
+         [
+          39.6521299,
+          43.6515806
+         ],
+         [
+          39.6520451,
+          43.6515457
+         ],
+         [
+          39.6521079,
+          43.6514699
+         ],
+         [
+          39.6519977,
+          43.6514224
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54829849",
+      "hotel_id": "n13968540001",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n13968540001"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1436765347",
+     "name": "Алые Паруса",
+     "address": null,
+     "location": [
+      39.5872541,
+      43.7013754
+     ],
+     "stars": null,
+     "building_id": "w728222050",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n1436765347",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n1436765347_n10673409971"
+       ],
+       "subject": "hotel:n1436765347",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n1436765347_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5872541,
+      43.7013754
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w728222050",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5870696,
+          43.7014384
+         ],
+         [
+          39.5871781,
+          43.7013094
+         ],
+         [
+          39.5874251,
+          43.7014203
+         ],
+         [
+          39.5873149,
+          43.7015486
+         ],
+         [
+          39.5870696,
+          43.7014384
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w728222050",
+      "hotel_id": "n1436765347",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n1436765347"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2514339345",
+     "name": "Балтийский",
+     "address": "Балтийская улица 40",
+     "location": [
+      39.651574,
+      43.6507656
+     ],
+     "stars": null,
+     "building_id": "w97211067",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Дагомыс».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n2514339345",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n11144199483",
+        "g_walk_n2514339345_n11144199483"
+       ],
+       "subject": "hotel:n2514339345",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Дагомыс"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n11144199483",
+       "g_walk_n2514339345_n11144199483"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.651574,
+      43.6507656
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w97211067",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6514583,
+          43.6507367
+         ],
+         [
+          39.6515841,
+          43.6506918
+         ],
+         [
+          39.6516503,
+          43.6507891
+         ],
+         [
+          39.6516058,
+          43.650805
+         ],
+         [
+          39.6516842,
+          43.6509203
+         ],
+         [
+          39.651603,
+          43.6509492
+         ],
+         [
+          39.6514583,
+          43.6507367
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w97211067",
+      "hotel_id": "n2514339345",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n2514339345"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2514339347",
+     "name": "Генрих",
+     "address": null,
+     "location": [
+      39.6521227,
+      43.6514574
+     ],
+     "stars": null,
+     "building_id": "w54829849",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Дагомыс».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n2514339347",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n11144199483",
+        "g_walk_n2514339347_n11144199483"
+       ],
+       "subject": "hotel:n2514339347",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Дагомыс"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n11144199483",
+       "g_walk_n2514339347_n11144199483"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6521227,
+      43.6514574
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54829849",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6519977,
+          43.6514224
+         ],
+         [
+          39.6520895,
+          43.6513117
+         ],
+         [
+          39.6521997,
+          43.6513592
+         ],
+         [
+          39.6523651,
+          43.6511597
+         ],
+         [
+          39.6524406,
+          43.6511898
+         ],
+         [
+          39.6521299,
+          43.6515806
+         ],
+         [
+          39.6520451,
+          43.6515457
+         ],
+         [
+          39.6521079,
+          43.6514699
+         ],
+         [
+          39.6519977,
+          43.6514224
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54829849",
+      "hotel_id": "n2514339347",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n2514339347"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3035387337",
+     "name": "Валентин",
+     "address": null,
+     "location": [
+      39.5895533,
+      43.6972838
+     ],
+     "stars": null,
+     "building_id": "w102828762",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n3035387337",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n3035387337_n10673409971"
+       ],
+       "subject": "hotel:n3035387337",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n3035387337_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5895533,
+      43.6972838
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w102828762",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.589367,
+          43.6973238
+         ],
+         [
+          39.5894777,
+          43.6972135
+         ],
+         [
+          39.5895314,
+          43.6972466
+         ],
+         [
+          39.5895855,
+          43.6972006
+         ],
+         [
+          39.5896331,
+          43.6972235
+         ],
+         [
+          39.5895939,
+          43.6972625
+         ],
+         [
+          39.5896205,
+          43.6972765
+         ],
+         [
+          39.5895896,
+          43.6973071
+         ],
+         [
+          39.5895958,
+          43.6973104
+         ],
+         [
+          39.589558,
+          43.697348
+         ],
+         [
+          39.5895526,
+          43.6973451
+         ],
+         [
+          39.5895024,
+          43.697395
+         ],
+         [
+          39.589367,
+          43.6973238
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w102828762",
+      "hotel_id": "n3035387337",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n3035387337"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4281963807",
+     "name": "Hotel Veseloye",
+     "address": "улица Трубачёва 6",
+     "location": [
+      39.9961617,
+      43.4054159
+     ],
+     "stars": null,
+     "building_id": "w124797289",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Весёлое».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n4281963807",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n2195004394",
+        "g_walk_n4281963807_n2195004394"
+       ],
+       "subject": "hotel:n4281963807",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Весёлое"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n2195004394",
+       "g_walk_n4281963807_n2195004394"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9961617,
+      43.4054159
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124797289",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9960629,
+          43.405384
+         ],
+         [
+          39.9962465,
+          43.4053517
+         ],
+         [
+          39.9962752,
+          43.4054379
+         ],
+         [
+          39.9960916,
+          43.4054702
+         ],
+         [
+          39.9960629,
+          43.405384
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124797289",
+      "hotel_id": "n4281963807",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4281963807"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4331507393",
+     "name": "Генрих II",
+     "address": "Летняя улица 50",
+     "location": [
+      39.6497571,
+      43.6525942
+     ],
+     "stars": null,
+     "building_id": "w54637837",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Дагомыс».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n4331507393",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n11144199483",
+        "g_walk_n4331507393_n11144199483"
+       ],
+       "subject": "hotel:n4331507393",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Дагомыс"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n11144199483",
+       "g_walk_n4331507393_n11144199483"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6497571,
+      43.6525942
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54637837",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6494359,
+          43.6526844
+         ],
+         [
+          39.6500017,
+          43.6524059
+         ],
+         [
+          39.6501413,
+          43.6525544
+         ],
+         [
+          39.6499344,
+          43.6526562
+         ],
+         [
+          39.6498704,
+          43.6525881
+         ],
+         [
+          39.6498112,
+          43.6526173
+         ],
+         [
+          39.6498262,
+          43.6526333
+         ],
+         [
+          39.6497891,
+          43.6526515
+         ],
+         [
+          39.6497729,
+          43.6526343
+         ],
+         [
+          39.6497033,
+          43.6526686
+         ],
+         [
+          39.6497638,
+          43.6527329
+         ],
+         [
+          39.6495711,
+          43.6528279
+         ],
+         [
+          39.6494729,
+          43.6527239
+         ],
+         [
+          39.6494359,
+          43.6526844
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54637837",
+      "hotel_id": "n4331507393",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n4331507393"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4376958692",
+     "name": "Ягодка",
+     "address": "Ягодный переулок 3/1",
+     "location": [
+      39.5904294,
+      43.6995756
+     ],
+     "stars": null,
+     "building_id": "w89350493",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n4376958692",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n4376958692_n10673409971"
+       ],
+       "subject": "hotel:n4376958692",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n4376958692_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5904294,
+      43.6995756
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w89350493",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5903351,
+          43.6996435
+         ],
+         [
+          39.5903462,
+          43.6995416
+         ],
+         [
+          39.5904258,
+          43.6995461
+         ],
+         [
+          39.5904146,
+          43.699648
+         ],
+         [
+          39.5903351,
+          43.6996435
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w89350493",
+      "hotel_id": "n4376958692",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4376958692"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5646307221",
+     "name": "Station",
+     "address": "Фабричная улица 5",
+     "location": [
+      39.9065182,
+      43.4492466
+     ],
+     "stars": null,
+     "building_id": "w54238330",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Адлер».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n5646307221",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6439674063",
+        "g_walk_n5646307221_n6439674063"
+       ],
+       "subject": "hotel:n5646307221",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Адлер"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6439674063",
+       "g_walk_n5646307221_n6439674063"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9065182,
+      43.4492466
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54238330",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9063182,
+          43.4492861
+         ],
+         [
+          39.906436,
+          43.4490644
+         ],
+         [
+          39.906617,
+          43.4491151
+         ],
+         [
+          39.9066114,
+          43.4491256
+         ],
+         [
+          39.906688,
+          43.4491471
+         ],
+         [
+          39.906615,
+          43.4492845
+         ],
+         [
+          39.9065877,
+          43.4492769
+         ],
+         [
+          39.9065714,
+          43.4493076
+         ],
+         [
+          39.906542,
+          43.4492993
+         ],
+         [
+          39.9065302,
+          43.4493215
+         ],
+         [
+          39.9065075,
+          43.4493151
+         ],
+         [
+          39.9064897,
+          43.4493485
+         ],
+         [
+          39.9064374,
+          43.4493339
+         ],
+         [
+          39.9064422,
+          43.4493249
+         ],
+         [
+          39.9063979,
+          43.4493125
+         ],
+         [
+          39.9063863,
+          43.4493344
+         ],
+         [
+          39.9063231,
+          43.4493168
+         ],
+         [
+          39.9063367,
+          43.4492913
+         ],
+         [
+          39.9063182,
+          43.4492861
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54238330",
+      "hotel_id": "n5646307221",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n5646307221"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7111717233",
+     "name": "Атола",
+     "address": null,
+     "location": [
+      39.5882736,
+      43.7001507
+     ],
+     "stars": null,
+     "building_id": "w235604571",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лоо».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n7111717233",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10673409971",
+        "g_walk_n7111717233_n10673409971"
+       ],
+       "subject": "hotel:n7111717233",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Лоо"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10673409971",
+       "g_walk_n7111717233_n10673409971"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5882736,
+      43.7001507
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w235604571",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5880209,
+          43.700271
+         ],
+         [
+          39.5882136,
+          43.699966
+         ],
+         [
+          39.5882753,
+          43.6999864
+         ],
+         [
+          39.5882728,
+          43.6999903
+         ],
+         [
+          39.5883722,
+          43.7000236
+         ],
+         [
+          39.5883754,
+          43.7000187
+         ],
+         [
+          39.5884491,
+          43.7000435
+         ],
+         [
+          39.5882518,
+          43.7003494
+         ],
+         [
+          39.5881731,
+          43.7003229
+         ],
+         [
+          39.5881752,
+          43.7003195
+         ],
+         [
+          39.5881049,
+          43.700296
+         ],
+         [
+          39.5881034,
+          43.7002983
+         ],
+         [
+          39.5880209,
+          43.700271
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w235604571",
+      "hotel_id": "n7111717233",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n7111717233"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Сириус (Имеретинский курорт)».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n7111825664",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n2195050637",
+        "g_walk_n7111825664_n2195050637"
+       ],
+       "subject": "hotel:n7111825664",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Сириус (Имеретинский курорт)"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n2195050637",
+       "g_walk_n7111825664_n2195050637"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9739733,
+      43.4141076
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w209179371",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.973777,
+          43.4139935
+         ],
+         [
+          39.9739968,
+          43.4139371
+         ],
+         [
+          39.9740896,
+          43.4141282
+         ],
+         [
+          39.9739623,
+          43.4141608
+         ],
+         [
+          39.9739548,
+          43.4141456
+         ],
+         [
+          39.9739387,
+          43.4141497
+         ],
+         [
+          39.9739352,
+          43.4141426
+         ],
+         [
+          39.9739141,
+          43.414148
+         ],
+         [
+          39.9739104,
+          43.4141403
+         ],
+         [
+          39.9738553,
+          43.4141545
+         ],
+         [
+          39.973777,
+          43.4139935
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w209179371",
+      "hotel_id": "n7111825664",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n7111825664"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7169680844",
+     "name": "F & G",
+     "address": null,
+     "location": [
+      39.9048938,
+      43.4443602
+     ],
+     "stars": null,
+     "building_id": "w291652036",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.7,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "derived:721f230f07ff",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с железнодорожным вокзалом",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Адлер».",
+      "fact": {
+       "fact_id": "f_wish_721f230f07ff_n7169680844",
+       "characteristic_key": "derived:721f230f07ff",
+       "value": true,
+       "unit": null,
+       "label": "рядом с железнодорожным вокзалом",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6439674063",
+        "g_walk_n7169680844_n6439674063"
+       ],
+       "subject": "hotel:n7169680844",
+       "qualifiers": {
+        "source_text": "рядом с железнодорожным вокзалом",
+        "nearby_names": [
+         "Адлер"
+        ],
+        "native_characteristic_key": "nearby:railway:station::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6439674063",
+       "g_walk_n7169680844_n6439674063"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9048938,
+      43.4443602
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w291652036",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9044763,
+          43.4446148
+         ],
+         [
+          39.9048562,
+          43.4441475
+         ],
+         [
+          39.9050565,
+          43.4442334
+         ],
+         [
+          39.9046766,
+          43.4447007
+         ],
+         [
+          39.9044763,
+          43.4446148
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w291652036",
+      "hotel_id": "n7169680844",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n7169680844"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w190714781",
+     "name": "Cosmos",
+     "address": "улица Горького 56 с1",
+     "location": [
+      39.7273072,
+      43.5906505
+     ],
+     "stars": null,
+     "building_id": "w190714781",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53498769",
+     "name": "Green Hosta",
+     "address": "Платановая улица 15Б",
+     "location": [
+      39.8664338,
+      43.5108826
+     ],
+     "stars": null,
+     "building_id": "w53498769",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1004371374",
+     "name": "Sunny Apartments",
+     "address": "Летняя улица 15",
+     "location": [
+      39.6476213,
+      43.6540913
+     ],
+     "stars": null,
+     "building_id": "w1004371374",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1030684742",
+     "name": "АК \"Cosmos Adler Hotel\"",
+     "address": null,
+     "location": [
+      39.904226,
+      43.4449436
+     ],
+     "stars": null,
+     "building_id": "w291652014",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w79372739",
+     "name": "Апарт-отель Южный",
+     "address": "Летняя улица 15/2",
+     "location": [
+      39.647969,
+      43.6538659
+     ],
+     "stars": null,
+     "building_id": "w79372739",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n9956422886",
+     "name": "Араик",
+     "address": "Алтайская улица 12А",
+     "location": [
+      39.5905111,
+      43.6990714
+     ],
+     "stars": null,
+     "building_id": "w235604635",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53447916",
+     "name": "Арт-отель",
+     "address": "Кипарисовая улица 6",
+     "location": [
+      39.861093,
+      43.5148065
+     ],
+     "stars": null,
+     "building_id": "w53447916",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8541891228",
+     "name": "Весна",
+     "address": null,
+     "location": [
+      39.8672255,
+      43.5146214
+     ],
+     "stars": null,
+     "building_id": "w53498898",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w480572107",
+     "name": "Волна",
+     "address": "Армавирская улица 26А",
+     "location": [
+      39.6527917,
+      43.6529861
+     ],
+     "stars": null,
+     "building_id": "w480572107",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w54637886",
+     "name": "Волна",
+     "address": "Армавирская улица 26",
+     "location": [
+      39.6525174,
+      43.6531585
+     ],
+     "stars": null,
+     "building_id": "w54637886",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.7,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.5872541,
+    43.4054159,
+    39.9961617,
+    43.7015771
+   ],
+   "camera": {
+    "center": [
+     39.8648679,
+     43.5138913
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 8439
+ },
+ "search_message_id": "277ad327-b984-4e97-bb54-18f40e17567d"
+}

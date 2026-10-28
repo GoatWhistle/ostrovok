@@ -1,0 +1,284 @@
+{
+ "id": "f7af950c-cb5f-4b56-99ad-0462347c334d",
+ "title": "Екатеринбург: тихий номер не на улицу, рядом с деловым центром",
+ "updated_at": "2026-10-28T19:59:23.778913Z",
+ "messages": [
+  {
+   "id": "a2aeedb9-b437-4dcc-89a6-1112eee0ee27",
+   "role": "user",
+   "content": "Екатеринбург, отель рядом с деловым центром, тихий номер не на улицу",
+   "created_at": "2026-10-28T19:59:23.778913Z"
+  },
+  {
+   "id": "5b90ae88-6561-4d50-9a62-226db23e323e",
+   "role": "assistant",
+   "content": "Проверка не завершена: рядом с деловым центром. К сожалению, база не содержит прямой информации о направлении окон или тишине номеров для отелей Екатеринбурга. Укажите пожалуйста, на основе каких критериев вы хотите выбрать отель? Например, отелей с положительными отзывами о тишине, в тихом районе или с внутренним двориком?",
+   "created_at": "2026-10-28T19:59:23.778913Z"
+  }
+ ],
+ "effective_query": "Екатеринбург, отель рядом с деловым центром, тихий номер не на улицу",
+ "search": {
+  "query_id": "4641aed843190b13",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:c4525c18d42d",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "тихий номер не на улицу"
+    },
+    {
+     "characteristic_key": "derived:4200f3f7eb1d",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с деловым центром"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Екатеринбург",
+   "anywhere": false,
+   "normalized_query": "Екатеринбург, отель рядом с деловым центром, тихий номер не на улицу",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n5467686080",
+     "name": "\"Аура\" гостевой дом",
+     "address": null,
+     "location": [
+      60.6688167,
+      56.7856943
+     ],
+     "stars": null,
+     "building_id": "w154099415",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7832351437",
+     "name": "Aris",
+     "address": null,
+     "location": [
+      60.596925,
+      56.834583
+     ],
+     "stars": null,
+     "building_id": "w51342998",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7832351439",
+     "name": "Aris",
+     "address": null,
+     "location": [
+      60.6004009,
+      56.8238734
+     ],
+     "stars": null,
+     "building_id": "w50837325",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4443287822",
+     "name": "Arthostels",
+     "address": null,
+     "location": [
+      60.5969918,
+      56.8343778
+     ],
+     "stars": null,
+     "building_id": "w51342998",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n1304384636",
+     "name": "AVS Отель",
+     "address": null,
+     "location": [
+      60.5682885,
+      56.9046065
+     ],
+     "stars": null,
+     "building_id": "w115449248",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n538132088",
+     "name": "Azimut Аэропорт Отель Екатеринбург",
+     "address": null,
+     "location": [
+      60.7988998,
+      56.7509031
+     ],
+     "stars": 4,
+     "building_id": "w44122954",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4416616011",
+     "name": "B&B Hostel",
+     "address": null,
+     "location": [
+      60.6099415,
+      56.835786
+     ],
+     "stars": null,
+     "building_id": "w41111222",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4416624389",
+     "name": "B&B Hostel",
+     "address": null,
+     "location": [
+      60.6091624,
+      56.8385703
+     ],
+     "stars": null,
+     "building_id": "w38408618",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12946415983",
+     "name": "Clever House",
+     "address": "улица Фурманова 62",
+     "location": [
+      60.6041558,
+      56.8155883
+     ],
+     "stars": null,
+     "building_id": "w49927486",
+     "height_m": null,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4636738962",
+     "name": "Club House on Tatishcheva",
+     "address": "улица Татищева 49",
+     "location": [
+      60.5670373,
+      56.8343488
+     ],
+     "stars": null,
+     "building_id": "w116230916",
+     "height_m": null,
+     "levels": 24,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 85353
+ },
+ "search_message_id": "5b90ae88-6561-4d50-9a62-226db23e323e"
+}
