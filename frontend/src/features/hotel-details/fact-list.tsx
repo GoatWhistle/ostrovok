@@ -52,26 +52,35 @@ function restates(title: string, value: string): boolean {
   return title === "" || words(title).every((word) => seen.has(word))
 }
 
-function sameNumbers(note: string, value: string): boolean {
+function numbersWithin(note: string, value: string): boolean {
   const numbers = words(note).filter((word) => /^\p{N}+$/u.test(word))
   const seen = new Set(words(value))
   return numbers.length > 0 && numbers.every((word) => seen.has(word))
 }
 
+interface FactText {
+  readonly value: string
+  readonly notes: readonly string[]
+}
+
 function useFactNotes(locale: Locale) {
   const { t } = useTranslation()
-  return (fact: Fact, value: string, count: number): string[] => {
+  return (fact: Fact, label: string, count: number): FactText => {
     const verdict = wishVerdict(
       { characteristic_key: fact.characteristic_key, match: "full", label: fact.label, fact },
       locale,
     )
-    if (verdict && !restates(verdict, value) && !sameNumbers(verdict, value)) return [verdict]
+    const fresh = verdict && !numbersWithin(verdict, label) ? verdict : undefined
+    if (fresh && numbersWithin(label, fresh)) return { value: fresh, notes: [] }
+    if (fresh && !restates(fresh, label)) return { value: label, notes: [fresh] }
     const title = characteristicTitle(fact.characteristic_key, locale)
-    return [
+    const value = label
+    const notes = [
       title !== fact.characteristic_key && !restates(title, value) ? title : undefined,
       ...factScope(fact, locale),
       count > 1 ? t("explore:details.facadeValues", { count }) : undefined,
     ].filter((note): note is string => Boolean(note))
+    return { value, notes }
   }
 }
 
@@ -85,8 +94,7 @@ export function FactList({ facts, onFact, title: heading }: FactListProps) {
       {groups.length ? (
         <ul className={styles.list}>
           {groups.map(({ fact, count }) => {
-            const value = factLabel(fact, locale)
-            const notes = factNotes(fact, value, count)
+            const { value, notes } = factNotes(fact, factLabel(fact, locale), count)
             const settled = fact.status === "active" || fact.status === "confirmed_by_hotelier"
             return (
               <li key={fact.characteristic_key}>
