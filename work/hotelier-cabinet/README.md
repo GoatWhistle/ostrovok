@@ -83,8 +83,28 @@ POST /api/v1/hotelier/{hotel_id}/answers
 | Контур целиком на реальном PostgreSQL | `tests/integration/repository/postgres/test_hotelier_cabinet.py`: спрос → вопрос → ответ → факт → лента |
 | Разборка очереди | `tests/unit/application/test_question_pruning.py`, `tests/integration/repository/postgres/test_question_pruning.py` |
 
-Прогон 2026-10-28: 1135 юнит- и контрактных тестов, 29 интеграционных по кабинету — все зелёные.
-`ruff`, `ruff format --check`, `mypy`, `lint-imports` чисты.
+Прогон 2026-10-28: 1135 юнит- и контрактных тестов, 30 интеграционных по кабинету — все зелёные.
+`ruff`, `ruff format --check`, `mypy`, `lint-imports` чисты. Одновременная запись одного и того же
+оповещения с двух соединений оставляет одну строку и не падает.
+
+## Как включить на стенде
+
+Кода в образе стенда нет. Порядок включения:
+
+1. Слить ветку `feat/hotelier-cabinet`.
+2. `docker compose run --rm migrate` — применит `20261028120000_hotelier_notifications`; миграция
+   только создаёт таблицу, существующих не меняет.
+3. Пересобрать и поднять образ бэкенда (`docker buildx bake backend`, затем `docker compose up -d backend`).
+4. `make prune-questions` — посмотреть числа; `APPLY=1 make prune-questions` — разобрать очередь.
+5. `make notify-hoteliers` — поставить напоминания о сроках и спросе.
+6. `cd frontend && npm run api:types` — перегенерировать `schema.gen.ts` под новый контракт.
+
+Проверить вживую:
+
+```bash
+curl -s localhost:8000/api/v1/hotelier/<id>/overview | jq '.coverage, .next_action, .appearances'
+curl -s localhost:8000/api/v1/hotelier/<id>/notifications | jq '.unread, .items[0]'
+```
 
 ## Границы
 

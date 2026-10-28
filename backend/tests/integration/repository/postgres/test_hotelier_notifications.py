@@ -1,3 +1,4 @@
+import asyncio
 from datetime import UTC, datetime, timedelta
 
 import psycopg
@@ -119,3 +120,31 @@ async def test_the_payload_survives_storage(disposable_database: str) -> None:
         page = await store.page(hotel)
 
         assert page.items[0].payload == {"blocked_searches": 7, "window_days": 14}
+
+
+async def test_two_sweeps_at_once_leave_one_notification(disposable_database: str) -> None:
+    _, hotel = await seed_hotel(disposable_database)
+    first = await psycopg.AsyncConnection.connect(disposable_database)
+    second = await psycopg.AsyncConnection.connect(disposable_database)
+    try:
+        written = await asyncio.gather(
+            _store_and_commit(first, record(hotel, "1", dedup="fact_expiring|f_1")),
+            _store_and_commit(second, record(hotel, "2", dedup="fact_expiring|f_1")),
+            return_exceptions=True,
+        )
+    finally:
+        await first.close()
+        await second.close()
+    assert [item for item in written if isinstance(item, Exception)] == []
+    async with await psycopg.AsyncConnection.connect(disposable_database) as reader:
+        page = await PostgresNotificationStore(reader).page(hotel)
+    assert sum(written) == 1  # type: ignore[arg-type]
+    assert len(page.items) == 1
+
+
+async def _store_and_commit(
+    connection: psycopg.AsyncConnection[tuple[object, ...]], item: NotificationRecord
+) -> int:
+    written = await PostgresNotificationStore(connection).add([item])
+    await connection.commit()
+    return written
