@@ -1386,7 +1386,7 @@ components:
 
     SupplierRoom:
       type: object
-      required: [id, name, photos, amenities]
+      required: [id, name, photos, amenities, views]
       properties:
         id: { type: string }
         name: { type: string }
@@ -1394,6 +1394,13 @@ components:
         amenities: { type: array, items: { type: string } }
         size_sqm: { type: number, nullable: true }
         bedding: { type: string, nullable: true }
+        views:
+          type: array
+          items: { type: string }
+          description: "Нормализованные цели вида из окна, объявленные поставщиком для этой категории"
+        floor: { type: integer, nullable: true, description: "Этаж категории по карточке поставщика" }
+        main_places: { type: integer, nullable: true, description: "Основные места в категории" }
+        extra_places: { type: integer, nullable: true, description: "Дополнительные места в категории" }
 
 
     SupplierPhoto:

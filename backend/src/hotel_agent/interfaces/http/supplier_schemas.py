@@ -94,6 +94,10 @@ class SupplierRoomSchema(BaseModel):
     amenities: list[str]
     size_sqm: float | None
     bedding: str | None
+    views: list[str]
+    floor: int | None
+    main_places: int | None
+    extra_places: int | None
 
 
 def supplier_room_schema(room: SupplierRoom) -> SupplierRoomSchema:
@@ -104,6 +108,10 @@ def supplier_room_schema(room: SupplierRoom) -> SupplierRoomSchema:
         amenities=list(room.amenities),
         size_sqm=room.size_sqm,
         bedding=room.bedding,
+        views=list(room.views),
+        floor=room.floor,
+        main_places=room.main_places,
+        extra_places=room.extra_places,
     )
 
 

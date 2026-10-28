@@ -5,6 +5,7 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from hotel_agent.application.ports.hotel_offers import SupplierRoom
+from hotel_agent.domain.room_views import VIEW_CODES, declared_views, named_views
 
 
 def photo_urls(values: object) -> tuple[str, ...]:
@@ -53,6 +54,7 @@ def room_groups(hotel: dict[str, Any]) -> tuple[SupplierRoom, ...]:
         if not isinstance(amenities, list) or any(not isinstance(x, str) for x in amenities):
             raise ValueError("Invalid room amenities")
         bedding = name.get("beddingType")
+        views = room_views(title, tuple(amenities))
         result[room_id] = SupplierRoom(
             id=room_id,
             name=title,
@@ -60,5 +62,12 @@ def room_groups(hotel: dict[str, Any]) -> tuple[SupplierRoom, ...]:
             amenities=tuple(amenities),
             size_sqm=size,
             bedding=bedding if isinstance(bedding, str) and bedding else None,
+            views=views,
         )
     return tuple(result.values())
+
+
+def room_views(title: str, amenities: tuple[str, ...]) -> tuple[str, ...]:
+    coded = declared_views(*(code.replace("-", " ") for code in amenities if "view" in code))
+    found = set(named_views(title)) | set(coded)
+    return tuple(code for code in VIEW_CODES if code in found)

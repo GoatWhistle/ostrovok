@@ -3,9 +3,22 @@ from datetime import date
 from typing import Any
 
 from hotel_agent.application.dto import SearchHotelRecord
+from hotel_agent.application.ports.hotel_offers import RoomOffer
 from hotel_agent.application.use_cases.get_hotel_offers import GetHotelOffers
 from hotel_agent.domain.errors import InvalidQuery
 from hotel_agent.domain.query import ParsedQuery
+
+
+def _bed_places(offer: RoomOffer) -> dict[str, Any] | None:
+    places = offer.bed_places
+    if places is None:
+        return None
+    return {
+        "main": places.main,
+        "extra": places.extra,
+        "child_cots": places.child_cots,
+        "bedding": list(places.bedding),
+    }
 
 
 class RoomOfferTools:
@@ -80,8 +93,22 @@ class RoomOfferTools:
                             "meal": offer.meal,
                             "amenities": offer.amenities,
                             "floor_number": offer.floor_number,
+                            "occupancy": offer.occupancy,
+                            "bed_places": _bed_places(offer),
                         }
                         for offer in result.offers[:6]
+                    ],
+                    "room_categories": [
+                        {
+                            "name": room.name,
+                            "views": list(room.views),
+                            "floor": room.floor,
+                            "size_sqm": room.size_sqm,
+                            "main_places": room.main_places,
+                            "extra_places": room.extra_places,
+                        }
+                        for room in result.room_groups[:12]
+                        if room.views or room.floor is not None
                     ],
                 }
             )
@@ -146,5 +173,5 @@ class RoomOfferTools:
             "hotels": observations,
             "check_in": str(check_in),
             "check_out": str(check_out),
-            "note": "Prices are for the whole requested stay. Sandbox is demonstration inventory. Unmapped/error is unknown availability, not sold out. Do not compare different currencies without conversion.",
+            "note": "Room views and floors are what the supplier card declares, not a measured line of sight. Prices are for the whole requested stay. Sandbox is demonstration inventory. Unmapped/error is unknown availability, not sold out. Do not compare different currencies without conversion.",
         }
