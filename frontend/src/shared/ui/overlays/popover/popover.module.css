@@ -11,6 +11,18 @@
   --button-radius: var(--radius-pill);
 }
 
+.inline {
+  --button-height: var(--space-24);
+  --button-padding: 0;
+  --button-text: var(--text-muted);
+  --button-surface-hover: transparent;
+  --button-surface-press: transparent;
+}
+
+.inline[aria-expanded="true"] {
+  --button-text: var(--text-primary);
+}
+
 .panel {
   composes: floatingSurface from "../../../styles/compose.module.css";
   position: fixed;
@@ -23,6 +35,10 @@
   clip-path: inset(0 0 0 0 round var(--radius-md));
   opacity: 1;
   transition: var(--transition-reveal-in);
+}
+
+.compact {
+  padding: var(--space-12);
 }
 
 .panel[data-placement="bottom"] {

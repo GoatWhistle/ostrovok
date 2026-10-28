@@ -1,5 +1,5 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react"
-import { usePresence } from "@/shared/motion"
+import { motionMs, usePresence } from "@/shared/motion"
 
 export type PopoverPlacement = "top" | "bottom" | "start"
 
@@ -50,7 +50,9 @@ export function usePopover(placement: PopoverPlacement) {
   const trigger = useRef<HTMLButtonElement>(null)
   const panel = useRef<HTMLElement>(null)
   const [open, setOpen] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const [instant, setInstant] = useState(false)
+  const leave = useRef<number | undefined>(undefined)
   const [position, setPosition] = useState({ left: 0, top: 0 })
   const presence = usePresence(open, "--dur-exit", instant)
 
@@ -81,7 +83,7 @@ export function usePopover(placement: PopoverPlacement) {
 
   useEffect(() => {
     if (!open) return
-    panel.current?.focus({ preventScroll: true })
+    if (!hovered) panel.current?.focus({ preventScroll: true })
     const outside = (event: PointerEvent) => {
       const target = event.target as Node
       if (panel.current?.contains(target) || trigger.current?.contains(target)) return
@@ -106,7 +108,40 @@ export function usePopover(placement: PopoverPlacement) {
       document.removeEventListener("keydown", dismiss)
       document.removeEventListener("focusin", blur)
     }
+  }, [open, hovered])
+
+  useEffect(() => {
+    if (!open) setHovered(false)
   }, [open])
 
-  return { id, trigger, panel, open, setOpen, instant, setInstant, position, presence }
+  useEffect(() => () => window.clearTimeout(leave.current), [])
+
+  const hover = {
+    enter: () => {
+      window.clearTimeout(leave.current)
+      if (open) return
+      setHovered(true)
+      setOpen(true)
+    },
+    leave: () => {
+      window.clearTimeout(leave.current)
+      if (!hovered) return
+      leave.current = window.setTimeout(() => setOpen(false), motionMs("--dur-fast"))
+    },
+    pin: () => setHovered(false),
+  }
+
+  return {
+    id,
+    trigger,
+    panel,
+    open,
+    hovered,
+    setOpen,
+    instant,
+    setInstant,
+    position,
+    presence,
+    hover,
+  }
 }
