@@ -1,0 +1,27 @@
+.workspace {
+  display: grid;
+  gap: var(--space-24);
+  min-inline-size: 0;
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+.heading {
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+.heading > header {
+  padding: var(--space-24) var(--space-32);
+  border-block-end: var(--hairline) solid var(--border-subtle);
+}
+.headingText {
+  composes: headingText from "../../shared/styles/compose.module.css";
+}
+@media (max-width: 48rem) {
+  .heading > header {
+    padding: var(--space-24) var(--space-16);
+  }
+  .headingText {
+    font-size: var(--font-size-subheading);
+  }
+}

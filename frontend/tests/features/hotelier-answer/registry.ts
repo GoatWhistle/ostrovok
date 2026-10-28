@@ -3,6 +3,7 @@ import { QueryClient } from "@tanstack/react-query"
 const base = {
   description: "",
   scope: "hotel" as const,
+  source_kinds: ["hotelier" as const],
   unit: null,
   display: {},
 }

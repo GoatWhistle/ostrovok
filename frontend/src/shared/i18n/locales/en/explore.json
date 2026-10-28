@@ -426,10 +426,8 @@
     "queueError": "Not saved",
     "change": "Change hotel",
     "preview": "Guest view",
-    "facts": "Hotel information",
     "allQuestions": "All questions: {{count}}",
-    "backToQuestion": "Back to question",
-    "backToFacts": "Back to hotel information"
+    "backToQuestion": "Back to question"
   },
   "compare": {
     "title": "Hotel comparison",
@@ -748,7 +746,10 @@
       "label": "Adults per room",
       "text": "up to {{value}} adults"
     },
-    "missing": "Enter a value"
+    "missing": "Enter a value",
+    "decrease": "Decrease: {{label}}",
+    "increase": "Increase: {{label}}",
+    "invalidCount": "Enter a non-negative whole number, such as 2 or 4"
   },
   "sunsetEvidence": {
     "arc": "In {{months}} the sun sets between {{from}}° and {{to}}°",
@@ -958,5 +959,42 @@
     "fromTime": "from {{time}}",
     "untilTime": "by {{time}}",
     "amenityNotes": "Conditions and details"
+  },
+  "workspace": {
+    "tabs": "Hotelier sections",
+    "questions": "Questions",
+    "data": "Hotel data",
+    "questionsHeading": "Your answers help guests find the right hotel.",
+    "loadFailed": "Could not load hotel data",
+    "complete": "All details clarified",
+    "completeText": "Add details in advance or edit your saved answers in hotel data.",
+    "viewData": "View hotel data",
+    "askDouble": "Is there a room for two guests?",
+    "askPets": "Are pets welcome?",
+    "askCapacity": "How many adults fit in your largest room?",
+    "followUp": "Please add more detail",
+    "saveNext": "Save and continue",
+    "dataHeading": "What your guests should know",
+    "dataIntro": "Add your policies or your own entry before anyone asks.",
+    "add": "Add your own entry",
+    "cancel": "Cancel",
+    "entriesFailed": "Could not load your entries",
+    "edit": "Edit",
+    "fill": "Fill in",
+    "noData": "No details yet",
+    "noDataText": "Add your first entry about staying at your hotel.",
+    "editEntry": "Edit entry",
+    "newEntry": "New entry",
+    "entryHint": "For example, describe early check-in, luggage storage or a cot.",
+    "entryTitle": "Title",
+    "entryDescription": "Conditions and details",
+    "titlePlaceholder": "For example: early check-in",
+    "descriptionPlaceholder": "For example: from 10:00 subject to availability, with a RUB 1,000 fee",
+    "saveFailed": "Could not save. Check your connection and try again.",
+    "save": "Save changes",
+    "addEntry": "Add entry",
+    "headerText": "Share the details that help guests choose your hotel.",
+    "stars": "{{count, number}}",
+    "conditionsPlaceholder": "Add any restrictions or additional conditions"
   }
 }

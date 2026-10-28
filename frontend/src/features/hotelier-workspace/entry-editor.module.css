@@ -1,0 +1,25 @@
+.form {
+  display: grid;
+  gap: var(--space-16);
+}
+.content h2 {
+  font-size: var(--font-size-subheading);
+  font-weight: var(--weight-bold);
+}
+.form p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+.content > label {
+  max-inline-size: var(--field-max-width);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.content {
+  padding: 0;
+  background: transparent;
+}

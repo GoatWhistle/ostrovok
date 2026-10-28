@@ -58,7 +58,8 @@ test("correction collapse and cancel preserve different values and restore focus
 }) => {
   await installHotelContract(page)
   await page.goto("/hotelier/h_test_a", { waitUntil: "domcontentloaded" })
-  const facts = page.getByRole("complementary", { name: copy.hotelier.facts, exact: true })
+  await page.getByRole("button", { name: copy.hotelier.preview, exact: true }).click()
+  const facts = page.getByRole("dialog", { name: copy.hotelier.preview, exact: true })
   const fact = facts.locator("[data-fact-trigger]").first()
   await fact.click()
   const edit = facts.getByRole("button", { name: copy.details.wrong, exact: true })

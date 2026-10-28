@@ -119,7 +119,7 @@ describe("typed hotelier answers", () => {
     await userEvent.click(send())
     expect(post).not.toHaveBeenCalled()
     expect(field.getAttribute("aria-invalid")).toBe("true")
-    expect(screen.getByRole("alert").textContent).toBe(copy.answerFields.invalidNumber)
+    expect(screen.getByRole("alert").textContent).toBe(copy.answerFields.invalidCount)
     expect(document.activeElement).toBe(field)
     await userEvent.clear(field)
     await userEvent.type(field, "4")

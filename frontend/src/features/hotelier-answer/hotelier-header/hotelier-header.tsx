@@ -1,6 +1,6 @@
 import { useHotel } from "@/entities/hotel"
 import { useTranslation } from "@/shared/i18n"
-import { Button, Disclosure, PageHeader } from "@/shared/ui"
+import { Button, Disclosure, Icon, PageHeader, Skeleton } from "@/shared/ui"
 import styles from "./hotelier-header.module.css"
 import { LookupForm } from "./lookup-form"
 
@@ -12,6 +12,7 @@ export interface HotelierHeaderProps {
 export function HotelierHeader({ hotelId, onPreview }: HotelierHeaderProps) {
   const { t } = useTranslation()
   const hotel = useHotel(hotelId)
+  const summary = hotel.data?.hotel
   if (!hotelId)
     return (
       <div className={styles.header}>
@@ -24,15 +25,28 @@ export function HotelierHeader({ hotelId, onPreview }: HotelierHeaderProps) {
     )
   return (
     <div className={styles.header}>
-      <PageHeader
-        title={hotel.data?.hotel.name ?? hotelId}
-        description={t("explore:hotelier.badge")}
-        actions={
-          <Button variant="secondary" icon="guests" onClick={onPreview}>
-            {t("explore:hotelier.preview")}
-          </Button>
-        }
-      />
+      <div className={styles.identity}>
+        {summary?.thumbnail_url ? (
+          <img className={styles.photo} src={summary.thumbnail_url} alt="" />
+        ) : null}
+        <div className={styles.title}>
+          {summary?.stars ? (
+            <p className={styles.stars}>
+              <Icon name="star" size="sm" />
+              {t("explore:workspace.stars", { count: summary.stars })}
+            </p>
+          ) : null}
+          {hotel.isPending ? (
+            <Skeleton lines={2} />
+          ) : (
+            <PageHeader title={summary?.name ?? hotelId} />
+          )}
+          <p className={styles.description}>{t("explore:workspace.headerText")}</p>
+        </div>
+        <Button variant="ghost" icon="guests" onClick={onPreview}>
+          {t("explore:hotelier.preview")}
+        </Button>
+      </div>
       <div className={styles.change}>
         <Disclosure title={t("explore:hotelier.change")} icon="building">
           <LookupForm hotelId={hotelId} />

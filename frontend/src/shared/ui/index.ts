@@ -18,6 +18,7 @@ export {
   type StatusTone,
 } from "./data-display/status-badge/status-badge"
 export { Chip, type ChipProps } from "./forms/chip/chip"
+export { NumberField } from "./forms/number-field"
 export { SearchBox, type SearchBoxProps } from "./forms/search-box/search-box"
 export {
   Segmented,
@@ -26,6 +27,7 @@ export {
   type SegmentedProps,
 } from "./forms/segmented/segmented"
 export { Select, type SelectOption, type SelectProps } from "./forms/select/select"
+export { Switch } from "./forms/switch"
 export { Tabs, type TabsProps } from "./forms/tabs/tabs"
 export { TextArea, TextField } from "./forms/text-field/text-field"
 export { Card, type CardProps } from "./layout/card/card"

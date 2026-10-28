@@ -1,0 +1,6 @@
+.control {
+  display: grid;
+  justify-items: end;
+  gap: var(--space-8);
+  flex-shrink: 0;
+}

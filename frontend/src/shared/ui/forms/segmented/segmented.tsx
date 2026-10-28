@@ -9,6 +9,7 @@ export interface SegmentedOption<T extends string> {
   readonly label: string
   readonly icon?: IconName
   readonly short?: string
+  readonly tone?: "success" | "danger" | undefined
 }
 
 export type SegmentedDisplay = "label" | "icon" | "short"
@@ -18,6 +19,7 @@ export interface SegmentedProps<T extends string> {
   readonly options: readonly SegmentedOption<T>[]
   readonly value: T
   readonly onChange: (value: T) => void
+  readonly onClear?: (() => void) | undefined
   readonly disabled?: boolean
   readonly display?: SegmentedDisplay
   readonly className?: string | undefined
@@ -52,6 +54,7 @@ export function Segmented<T extends string>({
   options,
   value,
   onChange,
+  onClear,
   display = "label",
   disabled = false,
   className,
@@ -65,6 +68,7 @@ export function Segmented<T extends string>({
   return (
     <fieldset
       ref={listRef}
+      data-tone={options.find((option) => option.value === value)?.tone}
       disabled={disabled}
       className={clsx(styles.segmented, className)}
       onKeyDown={modality.onKeyDown}
@@ -78,6 +82,7 @@ export function Segmented<T extends string>({
           ref={itemRef(option.value)}
           className={styles.option}
           data-checked={option.value === value}
+          data-tone={option.tone}
           title={display === "label" ? undefined : option.label}
         >
           <input
@@ -86,6 +91,9 @@ export function Segmented<T extends string>({
             name={name}
             value={option.value}
             checked={option.value === value}
+            onClick={() => {
+              if (option.value === value) onClear?.()
+            }}
             onChange={() => onChange(option.value)}
           />
           <OptionFace

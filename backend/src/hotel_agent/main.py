@@ -56,6 +56,7 @@ from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
+from hotel_agent.application.use_cases.hotelier_entries import ManageHotelierEntries
 from hotel_agent.application.use_cases.hotelier_questions import (
     ChangeQuestionStatus,
     ListHotelierQuestions,
@@ -212,6 +213,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             get_terrain_tile=GetTerrainTile(terrain_tiles),
             get_weather=GetWeather(conditions),
             get_fact=GetFact(providers.uow),
+            hotelier_entries=ManageHotelierEntries(providers.uow, providers.clock),
             list_hotelier_questions=ListHotelierQuestions(providers.uow),
             answer_hotelier_question=AnswerHotelierQuestion(
                 providers.uow, providers.registry, providers.llm, providers.clock, new_id

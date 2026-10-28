@@ -1,0 +1,18 @@
+.editor {
+  padding: 0;
+  background: transparent;
+  display: grid;
+  gap: var(--space-24);
+  min-inline-size: 0;
+}
+.heading {
+  composes: headingText from "../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+.form {
+  display: grid;
+  gap: var(--space-24);
+}
+.form > button {
+  justify-self: start;
+}

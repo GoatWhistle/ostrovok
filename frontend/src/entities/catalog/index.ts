@@ -3,6 +3,8 @@ export {
   type AnswerField,
   AnswerFields,
   answerFields,
+  answerNeedsNote,
+  binaryDraft,
   composeAnswer,
   draftFromValue,
   EMPTY_DRAFT,
