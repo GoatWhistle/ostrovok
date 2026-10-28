@@ -70,13 +70,13 @@ export function HotelHero({ hotel, supplier, source, titleId }: HotelHeroProps) 
       <HotelCover key={hotel.id} photos={coverPhotos(hotel, supplier)} name={hotel.name} />
       <div className={styles.title}>
         <div className={styles.naming}>
-          <p className={styles.name}>
-            <span id={titleId} lang="ru">
-              {hotel.name}
-            </span>
-            {pageUrl ? <SupplierLink url={pageUrl} source={source ?? ""} /> : null}
+          <p id={titleId} className={styles.name} lang="ru">
+            {hotel.name}
           </p>
-          <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+          <span className={styles.badges}>
+            <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+            {pageUrl ? <SupplierLink url={pageUrl} source={source ?? ""} /> : null}
+          </span>
         </div>
         {hotel.address ? (
           <p className={styles.address}>

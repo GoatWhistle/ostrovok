@@ -25,13 +25,17 @@
   overflow-wrap: anywhere;
 }
 
+.badges {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
 .external {
   composes: roundIconShape pressable from "../../shared/styles/compose.module.css";
   position: relative;
   display: inline-grid;
-  margin-inline-start: var(--space-4);
   color: var(--text-secondary);
-  vertical-align: middle;
   text-decoration: none;
 }
 
