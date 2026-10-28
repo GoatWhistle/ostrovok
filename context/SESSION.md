@@ -178,10 +178,13 @@ Updated: 2026-10-27, Europe/Moscow
 - 2026-10-27, дословно: «до этого же работало, давай поиск либо принудительно, либо не так строго отвергать». Причина регресса найдена: хеджирование пускало запасную qwen вперёд основной в итоговых проверках. Исправлено. Принудительный поиск по каталожным названиям замерен и откачен как вредный. Разбор и таблица мер: work/web-search-fix/remaining.md.
 - 2026-10-27, дословно: «подними сначала стенд» / «перезапусти». Стенд поднят целиком, все сервисы на одном теге.
 - 2026-10-27, дословно: «пуш проверь еще раз». gh HTTPS token invalid; fetch/push go through `git@github.com:GoatWhistle/o-hack.git`, remote config unchanged.
+- 2026-10-28, дословно: «сейчас некоторые факты описываются слишком подробно и не понятно. Твоя задача выдавать факты короче, структуризированнее. Например с запросами с концертом Кишлака или где жил Трамп, там описание факта очень большое, надо писать кратко и по факту, никто в здравом уме это полностью читать не будет. Делай в отдельной worktree, потом запусти отдельный свой стенд и проверь, чтобы все работало». Сделано в ветке `fix/brief-fact-explanations`, [отчёт](../work/brief-facts/README.md).
 - 2026-10-28, дословно: «окей, потом когда все задачи будут выполнены сделай проверку ui ux, надо сделать все идеально. запиши куда то». После завершения агентов карты, чата и мобильной версии провести полную проверку UI/UX (375/1440 px, обе темы, RU/EN) и довести найденное до идеала.
 
 ## Current state
 
+- Короткие факты: `fix/brief-fact-explanations` (`a1cbf8f`), стенд :18090; 82–153 символа
+  вместо 461, закат и вид из окна в базе длинные до `make precompute`; не влито.
 - Main/origin2d2fd12; backend view-corridor-20261026 image14de83d8 healthy200. Only3geometrymodules overlaid on independentfdcd62b4 runtime; TAGpersisted,frontendunchanged.817clean/833root unitcontract+12DBtests passed.
 - NativeOstankino now2positive rays, independentaudit0errors; 40535terminal3/3pass;15672+22504stoppedSIGINTbyuser.18801terminal dueindependentdeploy;Onega/russianbridge/nevyan resumed. Goal incomplete:50processed acrossversions27auto18review5special. [Evidence](../../o-hack-stand/work/window-views/review-probe/README.md).
 - Moscow-City complex absent locally; externalidentity+geometryneeded. Independent event/web workdirty,preserved. Priorstate:[archive](../work/window-views/session-before-round15.md). Protectedverbatimquotes exceedSESSIONtarget.
