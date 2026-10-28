@@ -1,0 +1,6803 @@
+{
+ "id": "f0a61980-651a-4519-9332-ecdafb898c1f",
+ "title": "Сочи: номер на двоих, на двоих взрослых и одного ребёнка, рядом с детской…",
+ "updated_at": "2026-10-28T19:50:10.743414Z",
+ "messages": [
+  {
+   "id": "1e5f90ca-54f7-4368-84b8-9799d557837b",
+   "role": "user",
+   "content": "Нужен номер в Сочи на двоих взрослых и ребёнка, рядом с детской площадкой",
+   "created_at": "2026-10-28T19:50:10.743414Z"
+  },
+  {
+   "id": "3a46d84b-7d9d-4fb6-a1c9-d3bf8991392c",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Bliss House, Liberty fly и 777. На какие даты едете?",
+   "created_at": "2026-10-28T19:50:10.743414Z"
+  }
+ ],
+ "effective_query": "Сочи, номер на двоих взрослых и одного ребёнка, рядом с детской площадкой",
+ "search": {
+  "query_id": "374f7d42e7f9d515",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "double_room",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "номер на двоих"
+    },
+    {
+     "characteristic_key": "room_capacity",
+     "op": "gte",
+     "value": 3.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "на двоих взрослых и одного ребёнка"
+    },
+    {
+     "characteristic_key": "derived:3f0db314b07f",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с детской площадкой"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, номер на двоих взрослых и одного ребёнка, рядом с детской площадкой",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": 2
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n11878294032",
+     "name": "Bliss House",
+     "address": null,
+     "location": [
+      39.9170665,
+      43.4291139
+     ],
+     "stars": null,
+     "building_id": "w147646191",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_27b4fee4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e605d22_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e2ab962_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f1b526cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_693e5058_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_89290789_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04f865d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9bf75fc9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_36ff2a08_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4b387cb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e4d9937_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7bfef549_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_995b347a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_08af9865_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee35fd20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b3822f39_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fa2d72c1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_98caa048_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac963a91_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d9c1d2f3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42806922_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c155c5fe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b00a01d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.836,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n11878294032",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294032",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.667,
+      "label": "Вместимость номера: 5",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n11878294032",
+       "characteristic_key": "room_capacity",
+       "value": 5.0,
+       "unit": null,
+       "label": "Вместимость номера: 5",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294032",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n11878294032",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w161202286",
+        "g_poi_w160473114",
+        "g_poi_n1538131100",
+        "g_poi_n1538131099",
+        "g_poi_w106622213",
+        "g_poi_w170900825",
+        "g_poi_w165399583",
+        "g_walk_n11878294032_w161202286",
+        "g_walk_n11878294032_w160473114",
+        "g_walk_n11878294032_n1538131100",
+        "g_walk_n11878294032_n1538131099",
+        "g_walk_n11878294032_w106622213"
+       ],
+       "subject": "hotel:n11878294032",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 7,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w161202286",
+       "g_poi_w160473114",
+       "g_poi_n1538131100",
+       "g_poi_n1538131099",
+       "g_poi_w106622213",
+       "g_poi_w170900825",
+       "g_poi_w165399583",
+       "g_walk_n11878294032_w161202286",
+       "g_walk_n11878294032_w160473114",
+       "g_walk_n11878294032_n1538131100",
+       "g_walk_n11878294032_n1538131099",
+       "g_walk_n11878294032_w106622213"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9170665,
+      43.4291139
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147646191",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9168601,
+          43.4290303
+         ],
+         [
+          39.9169789,
+          43.4289548
+         ],
+         [
+          39.9171355,
+          43.4290846
+         ],
+         [
+          39.9171227,
+          43.4290928
+         ],
+         [
+          39.9171772,
+          43.429138
+         ],
+         [
+          39.9171801,
+          43.4291579
+         ],
+         [
+          39.9171728,
+          43.4291757
+         ],
+         [
+          39.9171591,
+          43.4291896
+         ],
+         [
+          39.9171364,
+          43.4291963
+         ],
+         [
+          39.9171103,
+          43.4291991
+         ],
+         [
+          39.9170846,
+          43.4291969
+         ],
+         [
+          39.9170295,
+          43.4291512
+         ],
+         [
+          39.9170162,
+          43.4291597
+         ],
+         [
+          39.9168601,
+          43.4290303
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147646191",
+      "hotel_id": "n11878294032",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11878294032"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5267688942",
+     "name": "Liberty fly",
+     "address": null,
+     "location": [
+      39.9214891,
+      43.423066
+     ],
+     "stars": null,
+     "building_id": "w708922832",
+     "height_m": 10.0,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a4577180_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8833492c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dac5f0e4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2d70ed2c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9ec066b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_809e4e62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_64458eae_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4f9c3342_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_791d3ee3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4cb257a1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4c27a129_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c8cb87ac_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_76cf085d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b51e44c2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_09fac0d8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57c8169b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d51b5418_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e64b934c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d745775_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54dca8f7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88e668c8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_aee11864_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5fefd31d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.827,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n5267688942",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5267688942",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.333,
+      "label": "Вместимость номера: 4",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n5267688942",
+       "characteristic_key": "room_capacity",
+       "value": 4.0,
+       "unit": null,
+       "label": "Вместимость номера: 4",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5267688942",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n5267688942",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1278225789",
+        "g_poi_w491668593",
+        "g_poi_n3027834933",
+        "g_walk_n5267688942_w1278225789",
+        "g_walk_n5267688942_w491668593",
+        "g_walk_n5267688942_n3027834933"
+       ],
+       "subject": "hotel:n5267688942",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 3,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1278225789",
+       "g_poi_w491668593",
+       "g_poi_n3027834933",
+       "g_walk_n5267688942_w1278225789",
+       "g_walk_n5267688942_w491668593",
+       "g_walk_n5267688942_n3027834933"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9214891,
+      43.423066
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w708922832",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9210527,
+          43.423188
+         ],
+         [
+          39.9210693,
+          43.4231761
+         ],
+         [
+          39.9210642,
+          43.4231723
+         ],
+         [
+          39.9210717,
+          43.4231669
+         ],
+         [
+          39.9210751,
+          43.4231552
+         ],
+         [
+          39.9210857,
+          43.4231463
+         ],
+         [
+          39.9211195,
+          43.4231353
+         ],
+         [
+          39.9211278,
+          43.4231297
+         ],
+         [
+          39.9211339,
+          43.4231346
+         ],
+         [
+          39.9212788,
+          43.4230433
+         ],
+         [
+          39.9212916,
+          43.4230438
+         ],
+         [
+          39.9212987,
+          43.4230466
+         ],
+         [
+          39.9213028,
+          43.4230517
+         ],
+         [
+          39.9213023,
+          43.4230576
+         ],
+         [
+          39.9212967,
+          43.4230661
+         ],
+         [
+          39.9213165,
+          43.4230843
+         ],
+         [
+          39.9215138,
+          43.4229493
+         ],
+         [
+          39.9215433,
+          43.4229722
+         ],
+         [
+          39.921561,
+          43.4229724
+         ],
+         [
+          39.9215739,
+          43.422984
+         ],
+         [
+          39.9215737,
+          43.4230046
+         ],
+         [
+          39.9215762,
+          43.4230072
+         ],
+         [
+          39.9215933,
+          43.4229972
+         ],
+         [
+          39.9216055,
+          43.4230078
+         ],
+         [
+          39.9216129,
+          43.4230188
+         ],
+         [
+          39.921619,
+          43.4230319
+         ],
+         [
+          39.9216193,
+          43.4230458
+         ],
+         [
+          39.9216035,
+          43.4230685
+         ],
+         [
+          39.9215677,
+          43.4230843
+         ],
+         [
+          39.9215521,
+          43.423105
+         ],
+         [
+          39.9215382,
+          43.4231146
+         ],
+         [
+          39.9215081,
+          43.4231215
+         ],
+         [
+          39.9214764,
+          43.4231399
+         ],
+         [
+          39.9214631,
+          43.4231669
+         ],
+         [
+          39.9214436,
+          43.4231823
+         ],
+         [
+          39.9213994,
+          43.4232017
+         ],
+         [
+          39.9213711,
+          43.4232146
+         ],
+         [
+          39.92135,
+          43.423229
+         ],
+         [
+          39.9213343,
+          43.4232518
+         ],
+         [
+          39.9213206,
+          43.423269
+         ],
+         [
+          39.9212972,
+          43.4232806
+         ],
+         [
+          39.9212672,
+          43.4232892
+         ],
+         [
+          39.9212425,
+          43.423302
+         ],
+         [
+          39.9212258,
+          43.4233218
+         ],
+         [
+          39.9210527,
+          43.423188
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w708922832",
+      "hotel_id": "n5267688942",
+      "is_hotel": true,
+      "height_m": 10.0,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n5267688942"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.818,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_w54437496",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_w54437496",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w54437496",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w650973714",
+        "g_poi_w1288610011",
+        "g_walk_w54437496_w650973714",
+        "g_walk_w54437496_w1288610011"
+       ],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 2,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w650973714",
+       "g_poi_w1288610011",
+       "g_walk_w54437496_w650973714",
+       "g_walk_w54437496_w1288610011"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9047123,
+      43.4634661
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54437496",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9045767,
+          43.4634214
+         ],
+         [
+          39.9047069,
+          43.4633912
+         ],
+         [
+          39.9047276,
+          43.4634383
+         ],
+         [
+          39.9047468,
+          43.4634339
+         ],
+         [
+          39.9047735,
+          43.4634411
+         ],
+         [
+          39.904786,
+          43.4634688
+         ],
+         [
+          39.9047732,
+          43.4634888
+         ],
+         [
+          39.9047492,
+          43.4634943
+         ],
+         [
+          39.9047732,
+          43.4635491
+         ],
+         [
+          39.9046458,
+          43.4635786
+         ],
+         [
+          39.9045767,
+          43.4634214
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54437496",
+      "hotel_id": "w54437496",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w54437496"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11878294031",
+     "name": "SM Royal",
+     "address": null,
+     "location": [
+      39.9184333,
+      43.4288605
+     ],
+     "stars": null,
+     "building_id": "w708992263",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_3e159d88_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3e159d88_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_06dec2e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a64f786c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_15ee3608_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6d37aae1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a985b71_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4aaebf6a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee43eea2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4d26def_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_66db58b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c783db8d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c5563786_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dd91575c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_07d82529_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_37669758_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f5b0f823_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0c59b530_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e5258693_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5d81354c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ab3057b5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d06ddf8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_92ceeadd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f9cdee0b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8abfebbf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.818,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n11878294031",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294031",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n11878294031",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294031",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n11878294031",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w161202286",
+        "g_poi_n1538131099",
+        "g_poi_w160473114",
+        "g_poi_n1538131100",
+        "g_poi_w165399583",
+        "g_poi_w106622213",
+        "g_poi_w170900825",
+        "g_walk_n11878294031_w161202286",
+        "g_walk_n11878294031_n1538131099",
+        "g_walk_n11878294031_w160473114",
+        "g_walk_n11878294031_n1538131100",
+        "g_walk_n11878294031_w165399583"
+       ],
+       "subject": "hotel:n11878294031",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 7,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w161202286",
+       "g_poi_n1538131099",
+       "g_poi_w160473114",
+       "g_poi_n1538131100",
+       "g_poi_w165399583",
+       "g_poi_w106622213",
+       "g_poi_w170900825",
+       "g_walk_n11878294031_w161202286",
+       "g_walk_n11878294031_n1538131099",
+       "g_walk_n11878294031_w160473114",
+       "g_walk_n11878294031_n1538131100",
+       "g_walk_n11878294031_w165399583"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9184333,
+      43.4288605
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w708992263",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9183048,
+          43.4288299
+         ],
+         [
+          39.9184126,
+          43.428757
+         ],
+         [
+          39.9187733,
+          43.4290473
+         ],
+         [
+          39.9186618,
+          43.4291175
+         ],
+         [
+          39.9183048,
+          43.4288299
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w708992263",
+      "hotel_id": "n11878294031",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11878294031"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n736761646",
+     "name": "City Park Hotel",
+     "address": null,
+     "location": [
+      39.7258462,
+      43.5761102
+     ],
+     "stars": 4,
+     "building_id": "w51352167",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_eacd0867_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f9e32836_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e5eb8ca0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_195153d9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b9aba68c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04b6f6f2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7cc79355_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d024001b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_62fdc080_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b17d0898_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_39fde4d1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efa08274_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d39cc3d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d1be34_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23445e99_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e0aa8b9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0faa7b63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bbbca52_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19aae4ec_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e65c0a7c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efabc9d0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_84b9f570_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_34125a3e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.818,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n736761646",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n736761646",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n736761646",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n736761646",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Дерево для детей».",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n736761646",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n3162630024",
+        "g_poi_n4213896116",
+        "g_poi_n4920379521",
+        "g_walk_n736761646_n3162630024",
+        "g_walk_n736761646_n4213896116",
+        "g_walk_n736761646_n4920379521"
+       ],
+       "subject": "hotel:n736761646",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "nearby_names": [
+         "Дерево для детей"
+        ],
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 3,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n3162630024",
+       "g_poi_n4213896116",
+       "g_poi_n4920379521",
+       "g_walk_n736761646_n3162630024",
+       "g_walk_n736761646_n4213896116",
+       "g_walk_n736761646_n4920379521"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7258462,
+      43.5761102
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51352167",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.725318,
+          43.5758097
+         ],
+         [
+          39.725387,
+          43.5757584
+         ],
+         [
+          39.7254598,
+          43.5757042
+         ],
+         [
+          39.7260643,
+          43.5761389
+         ],
+         [
+          39.7260981,
+          43.5761627
+         ],
+         [
+          39.7263998,
+          43.5763756
+         ],
+         [
+          39.7262579,
+          43.5764811
+         ],
+         [
+          39.726,
+          43.5762991
+         ],
+         [
+          39.725318,
+          43.5758097
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51352167",
+      "hotel_id": "n736761646",
+      "is_hotel": true,
+      "height_m": 32.0,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n736761646"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w52572781",
+     "name": "SPA Отель \"Ostrova\"",
+     "address": "улица Пирогова 10 к14",
+     "location": [
+      39.7094709,
+      43.606121
+     ],
+     "stars": null,
+     "building_id": "w52572781",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_278bab84_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_278bab84_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d7a97c61_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dad6793f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_119cc1e2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2e9c0cb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c76778f3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fceb49d5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea0e04a6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0ea1b514_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_816552da_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1d2ad99d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c277a3e2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_faf03b25_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5d0eff4c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f5ffd603_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3f655b07_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_553f4f87_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3e6aba9d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9830a8e1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5159c4fb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2b2f288e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3ce4d3e4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f3c4c5af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_563199c7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.818,
+    "confidence": 0.992,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_w52572781",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52572781",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_w52572781",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52572781",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w52572781",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1451629259",
+        "g_poi_w1451629260",
+        "g_poi_w1451629262",
+        "g_poi_w1451910282",
+        "g_poi_w209253769",
+        "g_walk_w52572781_w1451629259",
+        "g_walk_w52572781_w1451629260",
+        "g_walk_w52572781_w1451629262",
+        "g_walk_w52572781_w1451910282",
+        "g_walk_w52572781_w209253769"
+       ],
+       "subject": "hotel:w52572781",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 5,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1451629259",
+       "g_poi_w1451629260",
+       "g_poi_w1451629262",
+       "g_poi_w1451910282",
+       "g_poi_w209253769",
+       "g_walk_w52572781_w1451629259",
+       "g_walk_w52572781_w1451629260",
+       "g_walk_w52572781_w1451629262",
+       "g_walk_w52572781_w1451910282",
+       "g_walk_w52572781_w209253769"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7094709,
+      43.606121
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52572781",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7093109,
+          43.6062229
+         ],
+         [
+          39.7093115,
+          43.6062173
+         ],
+         [
+          39.7093148,
+          43.6062118
+         ],
+         [
+          39.7093204,
+          43.6062075
+         ],
+         [
+          39.7093276,
+          43.6062047
+         ],
+         [
+          39.7093372,
+          43.6062049
+         ],
+         [
+          39.7093384,
+          43.6061716
+         ],
+         [
+          39.709331,
+          43.6061696
+         ],
+         [
+          39.7093249,
+          43.6061661
+         ],
+         [
+          39.7093207,
+          43.6061612
+         ],
+         [
+          39.7093188,
+          43.6061557
+         ],
+         [
+          39.7093194,
+          43.60615
+         ],
+         [
+          39.7093227,
+          43.6061446
+         ],
+         [
+          39.7093283,
+          43.6061403
+         ],
+         [
+          39.7093355,
+          43.6061375
+         ],
+         [
+          39.7093436,
+          43.6061366
+         ],
+         [
+          39.7093478,
+          43.6061047
+         ],
+         [
+          39.7093448,
+          43.6061039
+         ],
+         [
+          39.7093382,
+          43.6060998
+         ],
+         [
+          39.7093344,
+          43.6060955
+         ],
+         [
+          39.7093325,
+          43.6060899
+         ],
+         [
+          39.7093332,
+          43.6060843
+         ],
+         [
+          39.7093364,
+          43.6060788
+         ],
+         [
+          39.709342,
+          43.6060745
+         ],
+         [
+          39.7093492,
+          43.6060717
+         ],
+         [
+          39.7093521,
+          43.6060718
+         ],
+         [
+          39.709355,
+          43.6060287
+         ],
+         [
+          39.7093638,
+          43.6060148
+         ],
+         [
+          39.7094057,
+          43.6059871
+         ],
+         [
+          39.7094261,
+          43.6059822
+         ],
+         [
+          39.7095101,
+          43.6059852
+         ],
+         [
+          39.709512,
+          43.605982
+         ],
+         [
+          39.7095176,
+          43.6059777
+         ],
+         [
+          39.7095248,
+          43.6059749
+         ],
+         [
+          39.7095329,
+          43.605974
+         ],
+         [
+          39.709541,
+          43.6059751
+         ],
+         [
+          39.7095481,
+          43.6059781
+         ],
+         [
+          39.7095534,
+          43.6059826
+         ],
+         [
+          39.7095564,
+          43.6059882
+         ],
+         [
+          39.7095623,
+          43.6059886
+         ],
+         [
+          39.7095633,
+          43.605982
+         ],
+         [
+          39.709747,
+          43.6059961
+         ],
+         [
+          39.7097453,
+          43.6060077
+         ],
+         [
+          39.7097662,
+          43.6060093
+         ],
+         [
+          39.7097733,
+          43.6060123
+         ],
+         [
+          39.7097786,
+          43.6060168
+         ],
+         [
+          39.7097816,
+          43.6060223
+         ],
+         [
+          39.7097787,
+          43.6060738
+         ],
+         [
+          39.7097763,
+          43.6060794
+         ],
+         [
+          39.7097716,
+          43.606084
+         ],
+         [
+          39.7097652,
+          43.6060873
+         ],
+         [
+          39.7097577,
+          43.6060889
+         ],
+         [
+          39.7097494,
+          43.6060884
+         ],
+         [
+          39.7097428,
+          43.6061462
+         ],
+         [
+          39.7096764,
+          43.6061422
+         ],
+         [
+          39.7096779,
+          43.6061289
+         ],
+         [
+          39.7096058,
+          43.6061245
+         ],
+         [
+          39.7095679,
+          43.6061465
+         ],
+         [
+          39.7095634,
+          43.6061786
+         ],
+         [
+          39.7095521,
+          43.6061777
+         ],
+         [
+          39.7095412,
+          43.6062558
+         ],
+         [
+          39.7094635,
+          43.6062501
+         ],
+         [
+          39.7094625,
+          43.6062572
+         ],
+         [
+          39.7094578,
+          43.6062618
+         ],
+         [
+          39.7094514,
+          43.6062651
+         ],
+         [
+          39.7094438,
+          43.6062667
+         ],
+         [
+          39.7093763,
+          43.6062613
+         ],
+         [
+          39.7093689,
+          43.6062593
+         ],
+         [
+          39.7093628,
+          43.6062557
+         ],
+         [
+          39.7093586,
+          43.6062509
+         ],
+         [
+          39.7093567,
+          43.6062454
+         ],
+         [
+          39.709357,
+          43.6062396
+         ],
+         [
+          39.7093305,
+          43.6062388
+         ],
+         [
+          39.7093231,
+          43.6062369
+         ],
+         [
+          39.709317,
+          43.6062333
+         ],
+         [
+          39.7093128,
+          43.6062285
+         ],
+         [
+          39.7093109,
+          43.6062229
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52572781",
+      "hotel_id": "w52572781",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w52572781"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w150742817",
+     "name": "Papaya Park Hotel",
+     "address": "улица Котовского 41А",
+     "location": [
+      39.9219274,
+      43.443328
+     ],
+     "stars": null,
+     "building_id": "w150742817",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_c43e40d8_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c43e40d8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_804de469_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_31316157_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_134322b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e8f27f01_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_72740f5e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42d39cfc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4dafe83c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8e47705e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_574be25f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bfe7d9ef_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5fa6d600_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e948c4d7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e20af90_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f07e820_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8aef58de_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1bcc37f9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0fdcf44d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2f8aa6a0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c50ff626_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a8040cd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ddea1e76_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dcab45d7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_72c09f84_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.589,
+    "confidence": 0.975,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_w150742817",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w150742817",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 2.0,
+      "label": "Вместимость номера: 8",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_w150742817",
+       "characteristic_key": "room_capacity",
+       "value": 8.0,
+       "unit": null,
+       "label": "Вместимость номера: 8",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w150742817",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "none",
+      "margin": null,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w150742817",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": false,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w150742817",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 0,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9219274,
+      43.443328
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w150742817",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9217538,
+          43.4433312
+         ],
+         [
+          39.9218354,
+          43.443204
+         ],
+         [
+          39.9221878,
+          43.4433232
+         ],
+         [
+          39.9221062,
+          43.4434504
+         ],
+         [
+          39.9217538,
+          43.4433312
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w150742817",
+      "hotel_id": "w150742817",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w150742817"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3063850920",
+     "name": "Weiler Hotel",
+     "address": null,
+     "location": [
+      39.9032047,
+      43.4707785
+     ],
+     "stars": null,
+     "building_id": "w81065577",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_b2e09fab_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b2e09fab_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_83daccb9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d91bdcd8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_de78ec84_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ecd75397_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b937a53e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b40cc58b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4daabe03_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d3c2fcb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_21aa7142_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_598f7ae9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_14fd6c4f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_89e83e5c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dabcefaf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_01bf89c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_05c76588_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f25ab085_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_44690a6f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f794d681_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f3a0ba4c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f3fcf46_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8f8c1917_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_80bfe418_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_cb8a03df_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.57,
+    "confidence": 0.975,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n3063850920",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3063850920",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.333,
+      "label": "Вместимость номера: 4",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n3063850920",
+       "characteristic_key": "room_capacity",
+       "value": 4.0,
+       "unit": null,
+       "label": "Вместимость номера: 4",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3063850920",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "none",
+      "margin": null,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n3063850920",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": false,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3063850920",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 0,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9032047,
+      43.4707785
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81065577",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9030286,
+          43.4709399
+         ],
+         [
+          39.9031801,
+          43.4706833
+         ],
+         [
+          39.9033269,
+          43.4707289
+         ],
+         [
+          39.9032282,
+          43.470896
+         ],
+         [
+          39.9034047,
+          43.4709509
+         ],
+         [
+          39.9033519,
+          43.4710404
+         ],
+         [
+          39.9030286,
+          43.4709399
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81065577",
+      "hotel_id": "n3063850920",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n3063850920"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.561,
+    "confidence": 0.975,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n12183637632",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n12183637632",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "none",
+      "margin": null,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n12183637632",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": false,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12183637632",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 0,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7198569,
+      43.6137393
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w140689178",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7197435,
+          43.6137332
+         ],
+         [
+          39.7197902,
+          43.6136473
+         ],
+         [
+          39.7198645,
+          43.6136685
+         ],
+         [
+          39.7198691,
+          43.6136599
+         ],
+         [
+          39.7202937,
+          43.6137809
+         ],
+         [
+          39.720214,
+          43.6139276
+         ],
+         [
+          39.7197929,
+          43.6138075
+         ],
+         [
+          39.7198034,
+          43.6137882
+         ],
+         [
+          39.7197451,
+          43.6137716
+         ],
+         [
+          39.719763,
+          43.6137387
+         ],
+         [
+          39.7197435,
+          43.6137332
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w140689178",
+      "hotel_id": "n12183637632",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n12183637632"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51003626",
+     "name": "Green Club",
+     "address": "Курортный проспект 108А",
+     "location": [
+      39.7770445,
+      43.5534254
+     ],
+     "stars": null,
+     "building_id": "w51003626",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_57a9061d_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57a9061d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_de7d1899_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93d0e20a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_21125878_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1bb11ad5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_152c4a7d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_af426cba_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f539bca8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_06cf3c79_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_474ead71_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d2871a23_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4ca104cb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_766d7bd6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_749edded_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_977f0819_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0db7c293_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bd5942e7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f6aa707d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4d6d3adb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b75e0a82_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9e1aede7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_38a9781c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f8b71bcc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d2614db2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.561,
+    "confidence": 0.975,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_w51003626",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51003626",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_w51003626",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51003626",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "none",
+      "margin": null,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w51003626",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": false,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51003626",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 0,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7770445,
+      43.5534254
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51003626",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7768633,
+          43.5534004
+         ],
+         [
+          39.7772755,
+          43.5533327
+         ],
+         [
+          39.7773162,
+          43.553463
+         ],
+         [
+          39.776904,
+          43.5535307
+         ],
+         [
+          39.7768633,
+          43.5534004
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51003626",
+      "hotel_id": "w51003626",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w51003626"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.516,
+    "confidence": 0.954,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n10759614195",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "none",
+      "margin": 0.667,
+      "label": "Вместимость номера: 2.0",
+      "explanation": "В этом номере только двухместное размещение, четвёртого гостя разместить нельзя.",
+      "fact": {
+       "fact_id": "f_109b59a7e7e843f08b93c538511c1742",
+       "characteristic_key": "room_capacity",
+       "value": 2.0,
+       "unit": null,
+       "label": "Вместимость номера: 2.0",
+       "confidence": 1.0,
+       "source_type": "hotelier",
+       "status": "confirmed_by_hotelier",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n10759614195",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w491668593",
+        "g_walk_n10759614195_w491668593"
+       ],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w491668593",
+       "g_walk_n10759614195_w491668593"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8474990753",
+     "name": "Diana Palace",
+     "address": null,
+     "location": [
+      39.9098376,
+      43.4658544
+     ],
+     "stars": null,
+     "building_id": "w208412188",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_024e5e87_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_024e5e87_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c175e383_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_470a2a99_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7998befe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bab1b73f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f2fc492_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_40e18078_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_20900b9e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4428adc5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_587708b7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c8e799f4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19544959_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_10dfb601_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_69c59066_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19e49748_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d6d1057_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_cf48c0b8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_162aa572_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_cf2ddba5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3a27151_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_75dcbc06_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_01b667ba_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77fa2c83_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_865520be_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.516,
+    "confidence": 0.954,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "full",
+      "margin": null,
+      "label": "Двухместный номер: True",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n8474990753",
+       "characteristic_key": "double_room",
+       "value": true,
+       "unit": null,
+       "label": "Двухместный номер: True",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8474990753",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "none",
+      "margin": 0.667,
+      "label": "Вместимость номера: 2",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n8474990753",
+       "characteristic_key": "room_capacity",
+       "value": 2.0,
+       "unit": null,
+       "label": "Вместимость номера: 2",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8474990753",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 1.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n8474990753",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w868532860",
+        "g_walk_n8474990753_w868532860"
+       ],
+       "subject": "hotel:n8474990753",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 1,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w868532860",
+       "g_walk_n8474990753_w868532860"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9098376,
+      43.4658544
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w208412188",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9096145,
+          43.465854
+         ],
+         [
+          39.9096291,
+          43.4658315
+         ],
+         [
+          39.9096619,
+          43.4658169
+         ],
+         [
+          39.9098223,
+          43.465809
+         ],
+         [
+          39.9098898,
+          43.4659109
+         ],
+         [
+          39.9097458,
+          43.4659651
+         ],
+         [
+          39.9096145,
+          43.465854
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w208412188",
+      "hotel_id": "n8474990753",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n8474990753"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6494244800",
+     "name": "Hostel House Sochi",
+     "address": null,
+     "location": [
+      39.9309517,
+      43.447126
+     ],
+     "stars": null,
+     "building_id": "w54058299",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_7e4ceb7a_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e4ceb7a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_03f391d5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c97b846b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_41010c24_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0711dcaf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ccb4b9d1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_71b6ce67_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_22dd0c6a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b9ebf731_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9f1a6ba5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_92f4dc26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_46fd8e0b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_adfc340a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_40ac23bf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb0fbb35_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5667f04f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0f6e665f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_44045ec5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_becb0d62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db27de53_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df1cd315_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.279,
+    "confidence": 0.836,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "none",
+      "margin": null,
+      "label": "Двухместный номер: False",
+      "explanation": "Вместимость проверена по категориям номеров Nuitee",
+      "fact": {
+       "fact_id": "f_double_room_n6494244800",
+       "characteristic_key": "double_room",
+       "value": false,
+       "unit": null,
+       "label": "Двухместный номер: False",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6494244800",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "full",
+      "margin": 1.0,
+      "label": "Вместимость номера: 3",
+      "explanation": "Вместимость одной категории номера по каталогу Nuitee",
+      "fact": {
+       "fact_id": "f_room_capacity_n6494244800",
+       "characteristic_key": "room_capacity",
+       "value": 3.0,
+       "unit": null,
+       "label": "Вместимость номера: 3",
+       "confidence": 0.85,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6494244800",
+       "qualifiers": {
+        "source": "room_inventory"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "none",
+      "margin": null,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n6494244800",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": false,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6494244800",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 0,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9309517,
+      43.447126
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54058299",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9307769,
+          43.4470715
+         ],
+         [
+          39.9308992,
+          43.4469182
+         ],
+         [
+          39.9310406,
+          43.4469775
+         ],
+         [
+          39.9310298,
+          43.446991
+         ],
+         [
+          39.9312831,
+          43.4470972
+         ],
+         [
+          39.9311733,
+          43.4472352
+         ],
+         [
+          39.9311452,
+          43.4472423
+         ],
+         [
+          39.9310182,
+          43.4471872
+         ],
+         [
+          39.9310095,
+          43.4471977
+         ],
+         [
+          39.9308304,
+          43.44712
+         ],
+         [
+          39.9308218,
+          43.4471019
+         ],
+         [
+          39.9308284,
+          43.4470936
+         ],
+         [
+          39.9307769,
+          43.4470715
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54058299",
+      "hotel_id": "n6494244800",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n6494244800"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843553791",
+     "name": "Лиссабон",
+     "address": null,
+     "location": [
+      39.7626811,
+      43.5657815
+     ],
+     "stars": null,
+     "building_id": "w51791712",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n11843553791",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1209987182",
+        "g_poi_w204764781",
+        "g_poi_w1209987205",
+        "g_poi_w1209987195",
+        "g_poi_w1209779778",
+        "g_poi_w1209779734",
+        "g_poi_w1209987184",
+        "g_poi_w946217648",
+        "g_poi_n1759552773",
+        "g_poi_w1209779790",
+        "g_poi_w60098306",
+        "g_poi_n11482284682",
+        "g_poi_w1209779753",
+        "g_poi_w1209779791",
+        "g_poi_w1209793910",
+        "g_poi_w1209793923",
+        "g_poi_w1208760800",
+        "g_poi_w1209793905",
+        "g_poi_w1208776020",
+        "g_poi_w1208776002",
+        "g_poi_n12278335760",
+        "g_poi_w83887980",
+        "g_poi_w1287463895",
+        "g_poi_w1327199623",
+        "g_poi_w1287463904",
+        "g_poi_w1453508700",
+        "g_walk_n11843553791_w1209987182",
+        "g_walk_n11843553791_w204764781",
+        "g_walk_n11843553791_w1209987205",
+        "g_walk_n11843553791_w1209987195",
+        "g_walk_n11843553791_w1209779778"
+       ],
+       "subject": "hotel:n11843553791",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 26,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1209987182",
+       "g_poi_w204764781",
+       "g_poi_w1209987205",
+       "g_poi_w1209987195",
+       "g_poi_w1209779778",
+       "g_poi_w1209779734",
+       "g_poi_w1209987184",
+       "g_poi_w946217648",
+       "g_poi_n1759552773",
+       "g_poi_w1209779790",
+       "g_poi_w60098306",
+       "g_poi_n11482284682",
+       "g_poi_w1209779753",
+       "g_poi_w1209779791",
+       "g_poi_w1209793910",
+       "g_poi_w1209793923",
+       "g_poi_w1208760800",
+       "g_poi_w1209793905",
+       "g_poi_w1208776020",
+       "g_poi_w1208776002",
+       "g_poi_n12278335760",
+       "g_poi_w83887980",
+       "g_poi_w1287463895",
+       "g_poi_w1327199623",
+       "g_poi_w1287463904",
+       "g_poi_w1453508700",
+       "g_walk_n11843553791_w1209987182",
+       "g_walk_n11843553791_w204764781",
+       "g_walk_n11843553791_w1209987205",
+       "g_walk_n11843553791_w1209987195",
+       "g_walk_n11843553791_w1209779778"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7626811,
+      43.5657815
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51791712",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7622619,
+          43.5660134
+         ],
+         [
+          39.7626355,
+          43.5656827
+         ],
+         [
+          39.76269,
+          43.565715
+         ],
+         [
+          39.7627435,
+          43.5656677
+         ],
+         [
+          39.7628104,
+          43.5657074
+         ],
+         [
+          39.7627595,
+          43.5657525
+         ],
+         [
+          39.7628135,
+          43.5657845
+         ],
+         [
+          39.7624374,
+          43.5661175
+         ],
+         [
+          39.7622619,
+          43.5660134
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51791712",
+      "hotel_id": "n11843553791",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11843553791"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11138786325",
+     "name": "Черномор",
+     "address": null,
+     "location": [
+      39.9212828,
+      43.4312708
+     ],
+     "stars": null,
+     "building_id": "w55359125",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n11138786325",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w165399583",
+        "g_poi_n1538131099",
+        "g_poi_w161202286",
+        "g_poi_n1747487665",
+        "g_poi_n1538131100",
+        "g_poi_n1435910042",
+        "g_poi_n1747487663",
+        "g_poi_n1747487664",
+        "g_poi_n7318393984",
+        "g_poi_n1747487666",
+        "g_poi_w106622213",
+        "g_poi_w160473114",
+        "g_poi_n1449076877",
+        "g_poi_w1474486681",
+        "g_poi_w1474486680",
+        "g_poi_w1474486682",
+        "g_poi_w1474486683",
+        "g_poi_n1631049337",
+        "g_poi_w1474486684",
+        "g_poi_w1474486685",
+        "g_poi_w1474482326",
+        "g_walk_n11138786325_w165399583",
+        "g_walk_n11138786325_n1538131099",
+        "g_walk_n11138786325_w161202286",
+        "g_walk_n11138786325_n1747487665",
+        "g_walk_n11138786325_n1538131100"
+       ],
+       "subject": "hotel:n11138786325",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 21,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w165399583",
+       "g_poi_n1538131099",
+       "g_poi_w161202286",
+       "g_poi_n1747487665",
+       "g_poi_n1538131100",
+       "g_poi_n1435910042",
+       "g_poi_n1747487663",
+       "g_poi_n1747487664",
+       "g_poi_n7318393984",
+       "g_poi_n1747487666",
+       "g_poi_w106622213",
+       "g_poi_w160473114",
+       "g_poi_n1449076877",
+       "g_poi_w1474486681",
+       "g_poi_w1474486680",
+       "g_poi_w1474486682",
+       "g_poi_w1474486683",
+       "g_poi_n1631049337",
+       "g_poi_w1474486684",
+       "g_poi_w1474486685",
+       "g_poi_w1474482326",
+       "g_walk_n11138786325_w165399583",
+       "g_walk_n11138786325_n1538131099",
+       "g_walk_n11138786325_w161202286",
+       "g_walk_n11138786325_n1747487665",
+       "g_walk_n11138786325_n1538131100"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9212828,
+      43.4312708
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w55359125",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9211663,
+          43.4312173
+         ],
+         [
+          39.9212178,
+          43.4311594
+         ],
+         [
+          39.9212955,
+          43.4311958
+         ],
+         [
+          39.9212838,
+          43.431209
+         ],
+         [
+          39.9213677,
+          43.4312483
+         ],
+         [
+          39.9212918,
+          43.4313338
+         ],
+         [
+          39.9212056,
+          43.4312935
+         ],
+         [
+          39.9212419,
+          43.4312527
+         ],
+         [
+          39.9211663,
+          43.4312173
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w55359125",
+      "hotel_id": "n11138786325",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11138786325"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8511234971",
+     "name": "Ключевой 9",
+     "address": null,
+     "location": [
+      39.9071083,
+      43.449337
+     ],
+     "stars": null,
+     "building_id": "w54238333",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n8511234971",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n5646289034",
+        "g_poi_n1514237491",
+        "g_poi_n7198076286",
+        "g_poi_n7198004969",
+        "g_poi_w628479920",
+        "g_poi_n7298648403",
+        "g_poi_w1444676381",
+        "g_poi_n7298648214",
+        "g_poi_n13970028015",
+        "g_poi_n7298726598",
+        "g_poi_n8170740320",
+        "g_poi_n2862997463",
+        "g_poi_n2862997475",
+        "g_poi_w985076421",
+        "g_poi_w627969450",
+        "g_poi_w548562678",
+        "g_poi_n7169681010",
+        "g_poi_w781366862",
+        "g_poi_w794919367",
+        "g_poi_w781366864",
+        "g_walk_n8511234971_n5646289034",
+        "g_walk_n8511234971_n1514237491",
+        "g_walk_n8511234971_n7198076286",
+        "g_walk_n8511234971_n7198004969",
+        "g_walk_n8511234971_w628479920"
+       ],
+       "subject": "hotel:n8511234971",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 20,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n5646289034",
+       "g_poi_n1514237491",
+       "g_poi_n7198076286",
+       "g_poi_n7198004969",
+       "g_poi_w628479920",
+       "g_poi_n7298648403",
+       "g_poi_w1444676381",
+       "g_poi_n7298648214",
+       "g_poi_n13970028015",
+       "g_poi_n7298726598",
+       "g_poi_n8170740320",
+       "g_poi_n2862997463",
+       "g_poi_n2862997475",
+       "g_poi_w985076421",
+       "g_poi_w627969450",
+       "g_poi_w548562678",
+       "g_poi_n7169681010",
+       "g_poi_w781366862",
+       "g_poi_w794919367",
+       "g_poi_w781366864",
+       "g_walk_n8511234971_n5646289034",
+       "g_walk_n8511234971_n1514237491",
+       "g_walk_n8511234971_n7198076286",
+       "g_walk_n8511234971_n7198004969",
+       "g_walk_n8511234971_w628479920"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9071083,
+      43.449337
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54238333",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9070132,
+          43.4493088
+         ],
+         [
+          39.9070359,
+          43.4492202
+         ],
+         [
+          39.9072377,
+          43.4492474
+         ],
+         [
+          39.9072151,
+          43.4493361
+         ],
+         [
+          39.9070132,
+          43.4493088
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54238333",
+      "hotel_id": "n8511234971",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n8511234971"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5646307221",
+     "name": "Station",
+     "address": "Фабричная улица 5",
+     "location": [
+      39.9065182,
+      43.4492466
+     ],
+     "stars": null,
+     "building_id": "w54238330",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_n5646307221",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7198076286",
+        "g_poi_n5646289034",
+        "g_poi_n1514237491",
+        "g_poi_n7198004969",
+        "g_poi_w628479920",
+        "g_poi_n7298648403",
+        "g_poi_w1444676381",
+        "g_poi_n7298648214",
+        "g_poi_n13970028015",
+        "g_poi_n7298726598",
+        "g_poi_n8170740320",
+        "g_poi_n2862997463",
+        "g_poi_w985076421",
+        "g_poi_n2862997475",
+        "g_poi_w627969450",
+        "g_poi_w548562678",
+        "g_poi_n7169681010",
+        "g_poi_w781366862",
+        "g_walk_n5646307221_n7198076286",
+        "g_walk_n5646307221_n5646289034",
+        "g_walk_n5646307221_n1514237491",
+        "g_walk_n5646307221_n7198004969",
+        "g_walk_n5646307221_w628479920"
+       ],
+       "subject": "hotel:n5646307221",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 18,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7198076286",
+       "g_poi_n5646289034",
+       "g_poi_n1514237491",
+       "g_poi_n7198004969",
+       "g_poi_w628479920",
+       "g_poi_n7298648403",
+       "g_poi_w1444676381",
+       "g_poi_n7298648214",
+       "g_poi_n13970028015",
+       "g_poi_n7298726598",
+       "g_poi_n8170740320",
+       "g_poi_n2862997463",
+       "g_poi_w985076421",
+       "g_poi_n2862997475",
+       "g_poi_w627969450",
+       "g_poi_w548562678",
+       "g_poi_n7169681010",
+       "g_poi_w781366862",
+       "g_walk_n5646307221_n7198076286",
+       "g_walk_n5646307221_n5646289034",
+       "g_walk_n5646307221_n1514237491",
+       "g_walk_n5646307221_n7198004969",
+       "g_walk_n5646307221_w628479920"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9065182,
+      43.4492466
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54238330",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9063182,
+          43.4492861
+         ],
+         [
+          39.906436,
+          43.4490644
+         ],
+         [
+          39.906617,
+          43.4491151
+         ],
+         [
+          39.9066114,
+          43.4491256
+         ],
+         [
+          39.906688,
+          43.4491471
+         ],
+         [
+          39.906615,
+          43.4492845
+         ],
+         [
+          39.9065877,
+          43.4492769
+         ],
+         [
+          39.9065714,
+          43.4493076
+         ],
+         [
+          39.906542,
+          43.4492993
+         ],
+         [
+          39.9065302,
+          43.4493215
+         ],
+         [
+          39.9065075,
+          43.4493151
+         ],
+         [
+          39.9064897,
+          43.4493485
+         ],
+         [
+          39.9064374,
+          43.4493339
+         ],
+         [
+          39.9064422,
+          43.4493249
+         ],
+         [
+          39.9063979,
+          43.4493125
+         ],
+         [
+          39.9063863,
+          43.4493344
+         ],
+         [
+          39.9063231,
+          43.4493168
+         ],
+         [
+          39.9063367,
+          43.4492913
+         ],
+         [
+          39.9063182,
+          43.4492861
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54238330",
+      "hotel_id": "n5646307221",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n5646307221"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53290651",
+     "name": "WЫSHKA",
+     "address": "улица Ульянова 80/1",
+     "location": [
+      39.9256137,
+      43.430697
+     ],
+     "stars": null,
+     "building_id": "w53290651",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w53290651",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n1449076877",
+        "g_poi_w1474482326",
+        "g_poi_n1747487663",
+        "g_poi_n1747487664",
+        "g_poi_n1631049337",
+        "g_poi_n1516831638",
+        "g_poi_w1474486681",
+        "g_poi_w1474486680",
+        "g_poi_w1474486685",
+        "g_poi_w1474486683",
+        "g_poi_w1474486684",
+        "g_poi_w1474486682",
+        "g_poi_n1747487666",
+        "g_poi_n1747487665",
+        "g_poi_n1631049333",
+        "g_poi_w165399583",
+        "g_poi_n1435910042",
+        "g_poi_n1538131099",
+        "g_walk_w53290651_n1449076877",
+        "g_walk_w53290651_w1474482326",
+        "g_walk_w53290651_n1747487663",
+        "g_walk_w53290651_n1747487664",
+        "g_walk_w53290651_n1631049337"
+       ],
+       "subject": "hotel:w53290651",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 18,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n1449076877",
+       "g_poi_w1474482326",
+       "g_poi_n1747487663",
+       "g_poi_n1747487664",
+       "g_poi_n1631049337",
+       "g_poi_n1516831638",
+       "g_poi_w1474486681",
+       "g_poi_w1474486680",
+       "g_poi_w1474486685",
+       "g_poi_w1474486683",
+       "g_poi_w1474486684",
+       "g_poi_w1474486682",
+       "g_poi_n1747487666",
+       "g_poi_n1747487665",
+       "g_poi_n1631049333",
+       "g_poi_w165399583",
+       "g_poi_n1435910042",
+       "g_poi_n1538131099",
+       "g_walk_w53290651_n1449076877",
+       "g_walk_w53290651_w1474482326",
+       "g_walk_w53290651_n1747487663",
+       "g_walk_w53290651_n1747487664",
+       "g_walk_w53290651_n1631049337"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9256137,
+      43.430697
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53290651",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9254184,
+          43.4307142
+         ],
+         [
+          39.9256652,
+          43.4305348
+         ],
+         [
+          39.92578,
+          43.4306182
+         ],
+         [
+          39.9256846,
+          43.4306875
+         ],
+         [
+          39.9257266,
+          43.430718
+         ],
+         [
+          39.9256693,
+          43.4307597
+         ],
+         [
+          39.9256274,
+          43.4307292
+         ],
+         [
+          39.9255333,
+          43.4307976
+         ],
+         [
+          39.9254184,
+          43.4307142
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53290651",
+      "hotel_id": "w53290651",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53290651"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w333853733",
+     "name": "Бархатные сезоны - \"Семейный Квартал\"",
+     "address": null,
+     "location": [
+      39.9925419,
+      43.3921018
+     ],
+     "stars": 3,
+     "building_id": "w207637623",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w333853733",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w805558665",
+        "g_poi_w805558664",
+        "g_poi_w1115176700",
+        "g_poi_n3725843139",
+        "g_poi_n3725843138",
+        "g_poi_w805558684",
+        "g_poi_w805558685",
+        "g_poi_w805574164",
+        "g_poi_w805574163",
+        "g_poi_n3725839075",
+        "g_poi_w802608671",
+        "g_poi_w805574177",
+        "g_poi_w805574176",
+        "g_poi_n3725819004",
+        "g_poi_w805574186",
+        "g_poi_w805574187",
+        "g_poi_n3725818997",
+        "g_walk_w333853733_w805558665",
+        "g_walk_w333853733_w805558664",
+        "g_walk_w333853733_w1115176700",
+        "g_walk_w333853733_n3725843139",
+        "g_walk_w333853733_n3725843138"
+       ],
+       "subject": "hotel:w333853733",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 17,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_w805558665",
+       "g_poi_w805558664",
+       "g_poi_w1115176700",
+       "g_poi_n3725843139",
+       "g_poi_n3725843138",
+       "g_poi_w805558684",
+       "g_poi_w805558685",
+       "g_poi_w805574164",
+       "g_poi_w805574163",
+       "g_poi_n3725839075",
+       "g_poi_w802608671",
+       "g_poi_w805574177",
+       "g_poi_w805574176",
+       "g_poi_n3725819004",
+       "g_poi_w805574186",
+       "g_poi_w805574187",
+       "g_poi_n3725818997",
+       "g_walk_w333853733_w805558665",
+       "g_walk_w333853733_w805558664",
+       "g_walk_w333853733_w1115176700",
+       "g_walk_w333853733_n3725843139",
+       "g_walk_w333853733_n3725843138"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9925419,
+      43.3921018
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207637623",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9925662,
+          43.39229
+         ],
+         [
+          39.9926216,
+          43.3922299
+         ],
+         [
+          39.9926345,
+          43.3922362
+         ],
+         [
+          39.9926799,
+          43.392187
+         ],
+         [
+          39.9926669,
+          43.3921807
+         ],
+         [
+          39.9927224,
+          43.3921205
+         ],
+         [
+          39.9927282,
+          43.3921142
+         ],
+         [
+          39.9927836,
+          43.392054
+         ],
+         [
+          39.9927965,
+          43.3920604
+         ],
+         [
+          39.9928419,
+          43.3920111
+         ],
+         [
+          39.992829,
+          43.3920048
+         ],
+         [
+          39.9928844,
+          43.3919447
+         ],
+         [
+          39.9928903,
+          43.3919383
+         ],
+         [
+          39.9929165,
+          43.39191
+         ],
+         [
+          39.992931,
+          43.3919171
+         ],
+         [
+          39.9929755,
+          43.3918688
+         ],
+         [
+          39.992961,
+          43.3918616
+         ],
+         [
+          39.9930132,
+          43.391805
+         ],
+         [
+          39.993094,
+          43.3918446
+         ],
+         [
+          39.9930842,
+          43.3918552
+         ],
+         [
+          39.9931195,
+          43.3918725
+         ],
+         [
+          39.9931293,
+          43.3918619
+         ],
+         [
+          39.9931722,
+          43.391883
+         ],
+         [
+          39.9931624,
+          43.3918936
+         ],
+         [
+          39.993198,
+          43.391911
+         ],
+         [
+          39.9932077,
+          43.3919004
+         ],
+         [
+          39.993242,
+          43.3919172
+         ],
+         [
+          39.9932507,
+          43.3919214
+         ],
+         [
+          39.9933332,
+          43.3919618
+         ],
+         [
+          39.9933245,
+          43.3919713
+         ],
+         [
+          39.993392,
+          43.3920043
+         ],
+         [
+          39.9934007,
+          43.3919949
+         ],
+         [
+          39.9934831,
+          43.3920353
+         ],
+         [
+          39.9934918,
+          43.3920396
+         ],
+         [
+          39.9935261,
+          43.3920564
+         ],
+         [
+          39.9935163,
+          43.392067
+         ],
+         [
+          39.9935519,
+          43.3920844
+         ],
+         [
+          39.9935616,
+          43.3920738
+         ],
+         [
+          39.9936045,
+          43.3920949
+         ],
+         [
+          39.9935948,
+          43.3921055
+         ],
+         [
+          39.9936301,
+          43.3921228
+         ],
+         [
+          39.9936398,
+          43.3921122
+         ],
+         [
+          39.9937206,
+          43.3921518
+         ],
+         [
+          39.9936685,
+          43.3922084
+         ],
+         [
+          39.9936539,
+          43.3922013
+         ],
+         [
+          39.9936094,
+          43.3922496
+         ],
+         [
+          39.9936239,
+          43.3922567
+         ],
+         [
+          39.9935977,
+          43.3922851
+         ],
+         [
+          39.9935919,
+          43.3922915
+         ],
+         [
+          39.9935639,
+          43.3923219
+         ],
+         [
+          39.9935498,
+          43.392315
+         ],
+         [
+          39.9935216,
+          43.3923455
+         ],
+         [
+          39.9935357,
+          43.3923524
+         ],
+         [
+          39.9934919,
+          43.3924
+         ],
+         [
+          39.9934778,
+          43.392393
+         ],
+         [
+          39.9934497,
+          43.3924236
+         ],
+         [
+          39.9934638,
+          43.3924305
+         ],
+         [
+          39.9934357,
+          43.3924609
+         ],
+         [
+          39.9934298,
+          43.3924673
+         ],
+         [
+          39.9934018,
+          43.3924977
+         ],
+         [
+          39.9933877,
+          43.3924908
+         ],
+         [
+          39.9933596,
+          43.3925214
+         ],
+         [
+          39.9933736,
+          43.3925283
+         ],
+         [
+          39.9933299,
+          43.3925758
+         ],
+         [
+          39.9933158,
+          43.3925689
+         ],
+         [
+          39.9932876,
+          43.3925994
+         ],
+         [
+          39.9933017,
+          43.3926063
+         ],
+         [
+          39.9932736,
+          43.3926368
+         ],
+         [
+          39.9931333,
+          43.392568
+         ],
+         [
+          39.9931887,
+          43.3925079
+         ],
+         [
+          39.9932016,
+          43.3925142
+         ],
+         [
+          39.993247,
+          43.392465
+         ],
+         [
+          39.9932341,
+          43.3924586
+         ],
+         [
+          39.9932895,
+          43.3923985
+         ],
+         [
+          39.9932954,
+          43.3923922
+         ],
+         [
+          39.9933508,
+          43.392332
+         ],
+         [
+          39.9933637,
+          43.3923384
+         ],
+         [
+          39.9934091,
+          43.3922891
+         ],
+         [
+          39.9933962,
+          43.3922828
+         ],
+         [
+          39.9934516,
+          43.3922227
+         ],
+         [
+          39.9934643,
+          43.3922289
+         ],
+         [
+          39.9934709,
+          43.392223
+         ],
+         [
+          39.9934995,
+          43.392192
+         ],
+         [
+          39.9933975,
+          43.392142
+         ],
+         [
+          39.9933888,
+          43.3921377
+         ],
+         [
+          39.9933471,
+          43.3921172
+         ],
+         [
+          39.9933565,
+          43.3921069
+         ],
+         [
+          39.9933146,
+          43.3920864
+         ],
+         [
+          39.9933052,
+          43.3920967
+         ],
+         [
+          39.99324,
+          43.3920648
+         ],
+         [
+          39.9932495,
+          43.3920545
+         ],
+         [
+          39.9932076,
+          43.392034
+         ],
+         [
+          39.9931981,
+          43.3920442
+         ],
+         [
+          39.9931564,
+          43.3920238
+         ],
+         [
+          39.9931477,
+          43.3920195
+         ],
+         [
+          39.9930457,
+          43.3919695
+         ],
+         [
+          39.9930171,
+          43.3920005
+         ],
+         [
+          39.9930115,
+          43.392007
+         ],
+         [
+          39.9930248,
+          43.3920135
+         ],
+         [
+          39.9929967,
+          43.3920439
+         ],
+         [
+          39.9929826,
+          43.392037
+         ],
+         [
+          39.9929545,
+          43.3920676
+         ],
+         [
+          39.9929685,
+          43.3920745
+         ],
+         [
+          39.9929248,
+          43.392122
+         ],
+         [
+          39.9929107,
+          43.3921151
+         ],
+         [
+          39.9928825,
+          43.3921456
+         ],
+         [
+          39.9928966,
+          43.3921525
+         ],
+         [
+          39.9928685,
+          43.392183
+         ],
+         [
+          39.9928627,
+          43.3921893
+         ],
+         [
+          39.9928346,
+          43.3922197
+         ],
+         [
+          39.9928206,
+          43.3922128
+         ],
+         [
+          39.9927924,
+          43.3922434
+         ],
+         [
+          39.9928065,
+          43.3922503
+         ],
+         [
+          39.9927627,
+          43.3922978
+         ],
+         [
+          39.9927486,
+          43.3922909
+         ],
+         [
+          39.9927205,
+          43.3923214
+         ],
+         [
+          39.9927345,
+          43.3923283
+         ],
+         [
+          39.9927065,
+          43.3923588
+         ],
+         [
+          39.9925662,
+          43.39229
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207637623",
+      "hotel_id": "w333853733",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w333853733"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w333853735",
+     "name": "Бархатные сезоны - \"Спортивный Квартал\"",
+     "address": null,
+     "location": [
+      39.9953693,
+      43.3908997
+     ],
+     "stars": 3,
+     "building_id": "w207638085",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.257,
+    "confidence": 0.7,
+    "matched": [
+     {
+      "characteristic_key": "double_room",
+      "match": "unknown",
+      "margin": null,
+      "label": "Двухместный номер",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "room_capacity",
+      "match": "unknown",
+      "margin": null,
+      "label": "Вместимость номера",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f0db314b07f",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с детской площадкой",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет.",
+      "fact": {
+       "fact_id": "f_wish_3f0db314b07f_w333853735",
+       "characteristic_key": "derived:3f0db314b07f",
+       "value": true,
+       "unit": null,
+       "label": "рядом с детской площадкой",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n3725839075",
+        "g_poi_w805558685",
+        "g_poi_w805558684",
+        "g_poi_n3725843139",
+        "g_poi_n3725843138",
+        "g_poi_w805558664",
+        "g_poi_w805558665",
+        "g_poi_w805574164",
+        "g_poi_w805574163",
+        "g_poi_w805574177",
+        "g_poi_w805574176",
+        "g_poi_n3725819004",
+        "g_poi_w1115176700",
+        "g_poi_w805574186",
+        "g_poi_n3725818997",
+        "g_poi_w805574187",
+        "g_poi_w802608671",
+        "g_walk_w333853735_n3725839075",
+        "g_walk_w333853735_w805558685",
+        "g_walk_w333853735_w805558684",
+        "g_walk_w333853735_n3725843139",
+        "g_walk_w333853735_n3725843138"
+       ],
+       "subject": "hotel:w333853735",
+       "qualifiers": {
+        "source_text": "рядом с детской площадкой",
+        "native_characteristic_key": "nearby:leisure:playground::0:500",
+        "native_value": 17,
+        "native_unit": "count",
+        "native_op": "gte",
+        "native_threshold": 1.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_poi_n3725839075",
+       "g_poi_w805558685",
+       "g_poi_w805558684",
+       "g_poi_n3725843139",
+       "g_poi_n3725843138",
+       "g_poi_w805558664",
+       "g_poi_w805558665",
+       "g_poi_w805574164",
+       "g_poi_w805574163",
+       "g_poi_w805574177",
+       "g_poi_w805574176",
+       "g_poi_n3725819004",
+       "g_poi_w1115176700",
+       "g_poi_w805574186",
+       "g_poi_n3725818997",
+       "g_poi_w805574187",
+       "g_poi_w802608671",
+       "g_walk_w333853735_n3725839075",
+       "g_walk_w333853735_w805558685",
+       "g_walk_w333853735_w805558684",
+       "g_walk_w333853735_n3725843139",
+       "g_walk_w333853735_n3725843138"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9953693,
+      43.3908997
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207638085",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9955641,
+          43.390784
+         ],
+         [
+          39.9956057,
+          43.3907483
+         ],
+         [
+          39.9957427,
+          43.3908326
+         ],
+         [
+          39.995701,
+          43.3908683
+         ],
+         [
+          39.9955641,
+          43.390784
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207638085",
+      "hotel_id": "w333853735",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w333853735"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n4370780891",
+     "name": "Family Park Hotel",
+     "address": "улица Кирова 11",
+     "location": [
+      39.9205416,
+      43.4222099
+     ],
+     "stars": null,
+     "building_id": "w77860264",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fc74ac80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_abff12d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4c66be3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bebafdf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a2b90ee7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efc9d14c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fd5fe838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e862baf2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5a1a7f26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f183818_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3aee4dea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_040a79cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df5ab243_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d949f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2e043b47_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7c2d7e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2818503a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e7c291a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db630c80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8943a96c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c956a8aa_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54120d30_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_53ad83e3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.5391,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Запрос требует номер на двоих взрослых и одного ребёнка, но вместимость подтверждена только 2 (quality none). Ответ признаёт невыполнение условия, но всё равно рекомендует отель при all_conditions_verified=false. Условие 'рядом с детской площадкой' подтверждено лишь приблизительно (computed, confidence 0.7), а в ответе указано full/guaranteed=true, что завышает гарантию."
+   },
+   {
+    "hotel": {
+     "id": "n11035837905",
+     "name": "шарм гостиница",
+     "address": null,
+     "location": [
+      39.8953797,
+      43.4769149
+     ],
+     "stars": null,
+     "building_id": "w81149503",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_965ba338_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_965ba338_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c5bcafca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6352815d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_02241d7f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b1ab003_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bcff4f70_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0a7be1c5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5af40963_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_05209b4c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26dda639_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f12fbdc1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5dd7d448_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2afd1f1a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_91398543_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e468abf8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a6a2ec94_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47fb7954_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3058631_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_eef3f23b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6b413753_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca325ee8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_99da8b3a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_09de7903_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e58d09cb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.5391,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Запрос требует размещение на двоих взрослых и одного ребёнка, но источник подтверждает только двухместное размещение (quality none). Ответ сам это признаёт, однако рекомендация отеля при невыполненном ключевом условии и all_conditions_verified=false не соответствует смыслу запроса. Кроме того, 'рядом с детской площадкой' подтверждено лишь приблизительно (computed, confidence 0.7, без названий объектов), а в ответе указано full/guaranteed=true, что завышает гарантию."
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8932134771",
+     "name": "Black Sea",
+     "address": "улица Ленина 219А/5",
+     "location": [
+      39.8936563,
+      43.4732997
+     ],
+     "stars": 2,
+     "building_id": "w672015518",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53292017",
+     "name": "Black Sea",
+     "address": "улица Бестужева 6А",
+     "location": [
+      39.9224817,
+      43.41941
+     ],
+     "stars": null,
+     "building_id": "w53292017",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w201474330",
+     "name": "Brevis apartments",
+     "address": "улица Орджоникидзе 11/1",
+     "location": [
+      39.7243657,
+      43.5767707
+     ],
+     "stars": 3,
+     "building_id": "w201474330",
+     "height_m": 51.2,
+     "levels": 16,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.2567,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7094709,
+    43.3908997,
+    39.9953693,
+    43.6137393
+   ],
+   "camera": {
+    "center": [
+     39.9170665,
+     43.4291139
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 30206
+ },
+ "search_message_id": "3a46d84b-7d9d-4fb6-a1c9-d3bf8991392c"
+}

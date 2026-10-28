@@ -1,0 +1,4514 @@
+{
+ "id": "da463801-dd7d-49f9-a735-6bb80f39ac7c",
+ "title": "Сочи: с видом на закат над морем",
+ "updated_at": "2026-10-28T19:55:03.879071Z",
+ "messages": [
+  {
+   "id": "5088cc87-d73e-4c8e-8727-a57952ac3467",
+   "role": "user",
+   "content": "Отель в Сочи с видом на закат над морем",
+   "created_at": "2026-10-28T19:55:03.879071Z"
+  },
+  {
+   "id": "de3d2e95-a308-42c9-a84f-fe3e648cd7a6",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: VIP-корпус «Меркурий», Санаторий \"Октябрьский\" и Radisson Collection Paradise Resort & Spa Sochi. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T19:55:03.879071Z"
+  }
+ ],
+ "effective_query": "Отель в Сочи с видом на закат над морем",
+ "search": {
+  "query_id": "6d15f1a338d8a51e",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:09db02a69646",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на закат над морем"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Отель в Сочи с видом на закат над морем",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n4426452241",
+     "name": "VIP-корпус «Меркурий»",
+     "address": null,
+     "location": [
+      39.6561137,
+      43.6505845
+     ],
+     "stars": 5,
+     "building_id": "w97211080",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 13. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_n4426452241",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4426452241",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 3,
+        "facades_total": 28,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.4,
+        "facades_facing_sunset": 13,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6561137,
+      43.6505845
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w97211080",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6553154,
+          43.6502606
+         ],
+         [
+          39.6555706,
+          43.650263
+         ],
+         [
+          39.6558763,
+          43.6505024
+         ],
+         [
+          39.6565295,
+          43.6505024
+         ],
+         [
+          39.6566679,
+          43.6506172
+         ],
+         [
+          39.656498,
+          43.6507382
+         ],
+         [
+          39.6564088,
+          43.6506718
+         ],
+         [
+          39.65617,
+          43.6506756
+         ],
+         [
+          39.6561068,
+          43.650724
+         ],
+         [
+          39.6560808,
+          43.6507439
+         ],
+         [
+          39.6559523,
+          43.650668
+         ],
+         [
+          39.6557791,
+          43.6506699
+         ],
+         [
+          39.6557738,
+          43.6506091
+         ],
+         [
+          39.6556899,
+          43.6506091
+         ],
+         [
+          39.6556873,
+          43.6505635
+         ],
+         [
+          39.6556445,
+          43.6505656
+         ],
+         [
+          39.6556445,
+          43.650534
+         ],
+         [
+          39.6556009,
+          43.6505352
+         ],
+         [
+          39.6555992,
+          43.6505036
+         ],
+         [
+          39.6555555,
+          43.6505036
+         ],
+         [
+          39.6555555,
+          43.6504732
+         ],
+         [
+          39.6555203,
+          43.6504732
+         ],
+         [
+          39.6555203,
+          43.6504417
+         ],
+         [
+          39.6554732,
+          43.6504441
+         ],
+         [
+          39.6554162,
+          43.6503979
+         ],
+         [
+          39.6554145,
+          43.6503615
+         ],
+         [
+          39.6553456,
+          43.6503238
+         ],
+         [
+          39.6553171,
+          43.6502922
+         ],
+         [
+          39.6553154,
+          43.6502606
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w97211080",
+      "hotel_id": "n4426452241",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4426452241"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1639410",
+     "name": "Санаторий \"Октябрьский\"",
+     "address": "улица Плеханова 42/44",
+     "location": [
+      39.7005198,
+      43.6272901
+     ],
+     "stars": 5,
+     "building_id": "w998100419",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 5. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 1.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1639410",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1639410",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 1,
+        "facades_total": 22,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 5,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7005198,
+      43.6272901
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w998100419",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7005051,
+          43.6274807
+         ],
+         [
+          39.700532,
+          43.6274793
+         ],
+         [
+          39.7005281,
+          43.6274409
+         ],
+         [
+          39.7005937,
+          43.6274375
+         ],
+         [
+          39.7005968,
+          43.6274688
+         ],
+         [
+          39.7006332,
+          43.6274668
+         ],
+         [
+          39.7006419,
+          43.6275536
+         ],
+         [
+          39.7006908,
+          43.6275511
+         ],
+         [
+          39.7006958,
+          43.6276008
+         ],
+         [
+          39.7007091,
+          43.6276163
+         ],
+         [
+          39.7007181,
+          43.6276372
+         ],
+         [
+          39.7007221,
+          43.6276592
+         ],
+         [
+          39.7007207,
+          43.6276812
+         ],
+         [
+          39.7007129,
+          43.6277014
+         ],
+         [
+          39.7006964,
+          43.6277017
+         ],
+         [
+          39.7006974,
+          43.6277248
+         ],
+         [
+          39.7006707,
+          43.6277255
+         ],
+         [
+          39.700671,
+          43.6277329
+         ],
+         [
+          39.7006004,
+          43.6277346
+         ],
+         [
+          39.7006001,
+          43.6277273
+         ],
+         [
+          39.7005718,
+          43.627728
+         ],
+         [
+          39.7005583,
+          43.6277138
+         ],
+         [
+          39.7005517,
+          43.6276954
+         ],
+         [
+          39.7005511,
+          43.627678
+         ],
+         [
+          39.7005541,
+          43.6276599
+         ],
+         [
+          39.7005674,
+          43.6276457
+         ],
+         [
+          39.7005584,
+          43.6275599
+         ],
+         [
+          39.7005164,
+          43.6275621
+         ],
+         [
+          39.7005051,
+          43.6274807
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w998100419",
+      "hotel_id": "r1639410",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r1639410"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r7447995",
+     "name": "Radisson Collection Paradise Resort & Spa Sochi",
+     "address": "улица 65 лет Победы 50",
+     "location": [
+      39.9758043,
+      43.3949298
+     ],
+     "stars": 5,
+     "building_id": "w260633951",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 4. Горизонт по DEM и высотам зданий открывается с 3-го этажа. В здании этажей: 8.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r7447995",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r7447995",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 3,
+        "floors_known": 8,
+        "facades_total": 16,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 4,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9758043,
+      43.3949298
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w260633951",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.975161,
+          43.3951575
+         ],
+         [
+          39.9752783,
+          43.3951412
+         ],
+         [
+          39.9752988,
+          43.3951883
+         ],
+         [
+          39.9753431,
+          43.3952168
+         ],
+         [
+          39.9753977,
+          43.3952205
+         ],
+         [
+          39.9756261,
+          43.3951821
+         ],
+         [
+          39.975933,
+          43.3949677
+         ],
+         [
+          39.9759552,
+          43.3949046
+         ],
+         [
+          39.9759432,
+          43.3948538
+         ],
+         [
+          39.9759194,
+          43.3948067
+         ],
+         [
+          39.9759881,
+          43.3947738
+         ],
+         [
+          39.9760891,
+          43.3949115
+         ],
+         [
+          39.9760808,
+          43.3949476
+         ],
+         [
+          39.9756941,
+          43.3952203
+         ],
+         [
+          39.9752809,
+          43.3952859
+         ],
+         [
+          39.9752018,
+          43.3952964
+         ],
+         [
+          39.975161,
+          43.3951575
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w260633951",
+      "hotel_id": "r7447995",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r7447995"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r9273776",
+     "name": "Hyatt Regency Sochi",
+     "address": "улица Орджоникидзе 17",
+     "location": [
+      39.7267211,
+      43.5757016
+     ],
+     "stars": 5,
+     "building_id": "r9273776",
+     "height_m": 86.4,
+     "levels": 27,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 11. Горизонт по DEM и высотам зданий открывается с 14-го этажа. В здании этажей: 27.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r9273776",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r9273776",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 14,
+        "floors_known": 27,
+        "facades_total": 27,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 11,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7267211,
+      43.5757016
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r9273776",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7263265,
+          43.5755725
+         ],
+         [
+          39.7263345,
+          43.5755633
+         ],
+         [
+          39.7264055,
+          43.5755093
+         ],
+         [
+          39.7264244,
+          43.5755044
+         ],
+         [
+          39.7264486,
+          43.5755075
+         ],
+         [
+          39.7265217,
+          43.5755237
+         ],
+         [
+          39.7265964,
+          43.5754762
+         ],
+         [
+          39.7266155,
+          43.5754651
+         ],
+         [
+          39.7266332,
+          43.5754641
+         ],
+         [
+          39.7266475,
+          43.5754677
+         ],
+         [
+          39.7266938,
+          43.5754976
+         ],
+         [
+          39.7267538,
+          43.5755363
+         ],
+         [
+          39.7268183,
+          43.5755779
+         ],
+         [
+          39.7268783,
+          43.5756166
+         ],
+         [
+          39.7269533,
+          43.5756651
+         ],
+         [
+          39.7270326,
+          43.5756998
+         ],
+         [
+          39.727116,
+          43.5757249
+         ],
+         [
+          39.7272028,
+          43.5757417
+         ],
+         [
+          39.7273385,
+          43.5757574
+         ],
+         [
+          39.7275123,
+          43.5758789
+         ],
+         [
+          39.7274552,
+          43.5758755
+         ],
+         [
+          39.726995,
+          43.5762048
+         ],
+         [
+          39.7270036,
+          43.5762456
+         ],
+         [
+          39.7268094,
+          43.5761276
+         ],
+         [
+          39.7267798,
+          43.5760098
+         ],
+         [
+          39.7267527,
+          43.5759431
+         ],
+         [
+          39.7267301,
+          43.5759084
+         ],
+         [
+          39.7266768,
+          43.5758497
+         ],
+         [
+          39.7266156,
+          43.5758036
+         ],
+         [
+          39.7265623,
+          43.5757636
+         ],
+         [
+          39.7265041,
+          43.5757197
+         ],
+         [
+          39.7264442,
+          43.5756747
+         ],
+         [
+          39.7263843,
+          43.5756293
+         ],
+         [
+          39.7263399,
+          43.5755977
+         ],
+         [
+          39.7263265,
+          43.5755831
+         ],
+         [
+          39.7263265,
+          43.5755725
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r9273776",
+      "hotel_id": "r9273776",
+      "is_hotel": true,
+      "height_m": 86.4,
+      "min_height_m": 0,
+      "levels": 27,
+      "height_fact_id": "f_height_r9273776"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w369977305",
+     "name": "Арфа Парк Отель",
+     "address": "Цимлянская улица 2",
+     "location": [
+      39.9789533,
+      43.3916017
+     ],
+     "stars": 5,
+     "building_id": "w374416883",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 283–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_w369977305",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w369977305",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 3,
+        "facades_total": 10,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9789533,
+      43.3916017
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374416883",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9788995,
+          43.391703
+         ],
+         [
+          39.9789727,
+          43.3916823
+         ],
+         [
+          39.9789669,
+          43.3916715
+         ],
+         [
+          39.9790579,
+          43.3916457
+         ],
+         [
+          39.9790769,
+          43.3916812
+         ],
+         [
+          39.9791422,
+          43.3916627
+         ],
+         [
+          39.9791906,
+          43.391753
+         ],
+         [
+          39.979116,
+          43.3917741
+         ],
+         [
+          39.9791215,
+          43.3917844
+         ],
+         [
+          39.9790056,
+          43.3918172
+         ],
+         [
+          39.978991,
+          43.39179
+         ],
+         [
+          39.978952,
+          43.391801
+         ],
+         [
+          39.9788995,
+          43.391703
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374416883",
+      "hotel_id": "w369977305",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w369977305"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1521215547",
+     "name": "Санаторий Салют",
+     "address": null,
+     "location": [
+      39.7020619,
+      43.6214072
+     ],
+     "stars": 4,
+     "building_id": "w52656192",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 10. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_n1521215547",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1521215547",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 5,
+        "facades_total": 40,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 10,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7020619,
+      43.6214072
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52656192",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7017572,
+          43.6215218
+         ],
+         [
+          39.7017748,
+          43.6214555
+         ],
+         [
+          39.7018382,
+          43.6214363
+         ],
+         [
+          39.7018999,
+          43.6213177
+         ],
+         [
+          39.7019862,
+          43.6212373
+         ],
+         [
+          39.7019845,
+          43.6211953
+         ],
+         [
+          39.7020373,
+          43.6211544
+         ],
+         [
+          39.7021061,
+          43.6211544
+         ],
+         [
+          39.7022787,
+          43.6210805
+         ],
+         [
+          39.7024901,
+          43.6210307
+         ],
+         [
+          39.7027386,
+          43.6210218
+         ],
+         [
+          39.7027562,
+          43.62118
+         ],
+         [
+          39.70261,
+          43.6211851
+         ],
+         [
+          39.7024531,
+          43.6212118
+         ],
+         [
+          39.7022982,
+          43.6212691
+         ],
+         [
+          39.7023686,
+          43.6213305
+         ],
+         [
+          39.7024461,
+          43.6213024
+         ],
+         [
+          39.7025712,
+          43.6212794
+         ],
+         [
+          39.7027719,
+          43.6212741
+         ],
+         [
+          39.7027755,
+          43.6213504
+         ],
+         [
+          39.7029638,
+          43.6212511
+         ],
+         [
+          39.7030086,
+          43.6212929
+         ],
+         [
+          39.702773,
+          43.6214211
+         ],
+         [
+          39.7027222,
+          43.6214212
+         ],
+         [
+          39.7025909,
+          43.6214385
+         ],
+         [
+          39.7025125,
+          43.6214676
+         ],
+         [
+          39.7024576,
+          43.6215132
+         ],
+         [
+          39.7022382,
+          43.6214042
+         ],
+         [
+          39.7021565,
+          43.6215008
+         ],
+         [
+          39.7024886,
+          43.6216344
+         ],
+         [
+          39.7023894,
+          43.6217638
+         ],
+         [
+          39.7020677,
+          43.621641
+         ],
+         [
+          39.7020446,
+          43.6217125
+         ],
+         [
+          39.7020704,
+          43.6218246
+         ],
+         [
+          39.7021694,
+          43.6219772
+         ],
+         [
+          39.7019696,
+          43.6220537
+         ],
+         [
+          39.7018735,
+          43.6219542
+         ],
+         [
+          39.7018083,
+          43.6218292
+         ],
+         [
+          39.7017836,
+          43.621731
+         ],
+         [
+          39.7017889,
+          43.6215639
+         ],
+         [
+          39.7017572,
+          43.6215218
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52656192",
+      "hotel_id": "n1521215547",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n1521215547"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r12821037",
+     "name": "Богатырь",
+     "address": "Олимпийский проспект 21",
+     "location": [
+      39.963702,
+      43.4036373
+     ],
+     "stars": 4,
+     "building_id": "r12821037",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 7. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 8.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r12821037",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r12821037",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 8,
+        "facades_total": 29,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 7,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.963702,
+      43.4036373
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r12821037",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9632622,
+          43.4031693
+         ],
+         [
+          39.9632758,
+          43.4031734
+         ],
+         [
+          39.9632904,
+          43.4031742
+         ],
+         [
+          39.9633047,
+          43.4031716
+         ],
+         [
+          39.9633171,
+          43.4031659
+         ],
+         [
+          39.9633263,
+          43.4031576
+         ],
+         [
+          39.9633317,
+          43.4031471
+         ],
+         [
+          39.9633319,
+          43.4031358
+         ],
+         [
+          39.9633269,
+          43.4031252
+         ],
+         [
+          39.9633174,
+          43.4031163
+         ],
+         [
+          39.9633801,
+          43.4030976
+         ],
+         [
+          39.9634084,
+          43.4031183
+         ],
+         [
+          39.963413,
+          43.4031372
+         ],
+         [
+          39.9636035,
+          43.4031123
+         ],
+         [
+          39.9635989,
+          43.4030928
+         ],
+         [
+          39.9636149,
+          43.4030682
+         ],
+         [
+          39.9636676,
+          43.4030708
+         ],
+         [
+          39.963661,
+          43.403081
+         ],
+         [
+          39.9636593,
+          43.4030916
+         ],
+         [
+          39.9636623,
+          43.403102
+         ],
+         [
+          39.9636698,
+          43.4031113
+         ],
+         [
+          39.9636808,
+          43.4031183
+         ],
+         [
+          39.9636944,
+          43.4031224
+         ],
+         [
+          39.963709,
+          43.4031232
+         ],
+         [
+          39.9637233,
+          43.4031206
+         ],
+         [
+          39.9637356,
+          43.4031149
+         ],
+         [
+          39.9637402,
+          43.4031108
+         ],
+         [
+          39.963833,
+          43.4034825
+         ],
+         [
+          39.9638387,
+          43.4035032
+         ],
+         [
+          39.963854,
+          43.4035445
+         ],
+         [
+          39.9638833,
+          43.4036005
+         ],
+         [
+          39.9639196,
+          43.4035868
+         ],
+         [
+          39.9639457,
+          43.4036335
+         ],
+         [
+          39.9639779,
+          43.4036433
+         ],
+         [
+          39.9639918,
+          43.4036683
+         ],
+         [
+          39.9639783,
+          43.4036918
+         ],
+         [
+          39.963944,
+          43.403702
+         ],
+         [
+          39.9639987,
+          43.4038001
+         ],
+         [
+          39.9640076,
+          43.4037974
+         ],
+         [
+          39.96403,
+          43.4038036
+         ],
+         [
+          39.9640393,
+          43.4038203
+         ],
+         [
+          39.9640264,
+          43.403834
+         ],
+         [
+          39.9640208,
+          43.4038468
+         ],
+         [
+          39.9640727,
+          43.4039408
+         ],
+         [
+          39.9640653,
+          43.4039389
+         ],
+         [
+          39.9640496,
+          43.4039378
+         ],
+         [
+          39.9640344,
+          43.4039407
+         ],
+         [
+          39.9640215,
+          43.4039472
+         ],
+         [
+          39.9640122,
+          43.4039564
+         ],
+         [
+          39.9640078,
+          43.4039673
+         ],
+         [
+          39.9640085,
+          43.4039779
+         ],
+         [
+          39.9640137,
+          43.4039878
+         ],
+         [
+          39.964023,
+          43.403996
+         ],
+         [
+          39.9640353,
+          43.4040017
+         ],
+         [
+          39.964043,
+          43.4040036
+         ],
+         [
+          39.9639045,
+          43.4040442
+         ],
+         [
+          39.9638977,
+          43.4040558
+         ],
+         [
+          39.9638816,
+          43.4040606
+         ],
+         [
+          39.9638656,
+          43.4040557
+         ],
+         [
+          39.9638485,
+          43.4040608
+         ],
+         [
+          39.9638039,
+          43.404074
+         ],
+         [
+          39.9637994,
+          43.4040846
+         ],
+         [
+          39.9637772,
+          43.4040911
+         ],
+         [
+          39.9637627,
+          43.4040814
+         ],
+         [
+          39.9637015,
+          43.4041013
+         ],
+         [
+          39.9637058,
+          43.4040953
+         ],
+         [
+          39.9637091,
+          43.404085
+         ],
+         [
+          39.9637087,
+          43.4040783
+         ],
+         [
+          39.9637065,
+          43.4040718
+         ],
+         [
+          39.9637005,
+          43.4040634
+         ],
+         [
+          39.9636893,
+          43.4040554
+         ],
+         [
+          39.9636751,
+          43.4040507
+         ],
+         [
+          39.9636595,
+          43.4040496
+         ],
+         [
+          39.9636443,
+          43.4040525
+         ],
+         [
+          39.9636313,
+          43.4040589
+         ],
+         [
+          39.9636221,
+          43.4040682
+         ],
+         [
+          39.9636192,
+          43.4040735
+         ],
+         [
+          39.9634066,
+          43.4036921
+         ],
+         [
+          39.9634317,
+          43.4036636
+         ],
+         [
+          39.9634125,
+          43.4036153
+         ],
+         [
+          39.9633946,
+          43.4035703
+         ],
+         [
+          39.9633526,
+          43.403556
+         ],
+         [
+          39.9632622,
+          43.4031693
+         ]
+        ],
+        [
+         [
+          39.9634245,
+          43.4032258
+         ],
+         [
+          39.9634466,
+          43.4033096
+         ],
+         [
+          39.9634829,
+          43.4034474
+         ],
+         [
+          39.9635011,
+          43.4034448
+         ],
+         [
+          39.9635051,
+          43.4034598
+         ],
+         [
+          39.9636661,
+          43.4034374
+         ],
+         [
+          39.9636629,
+          43.4034252
+         ],
+         [
+          39.963684,
+          43.4034223
+         ],
+         [
+          39.9636785,
+          43.4034012
+         ],
+         [
+          39.9636506,
+          43.4032952
+         ],
+         [
+          39.9636216,
+          43.4031845
+         ],
+         [
+          39.9634359,
+          43.4032102
+         ],
+         [
+          39.9634245,
+          43.4032258
+         ]
+        ],
+        [
+         [
+          39.9635595,
+          43.403605
+         ],
+         [
+          39.9636571,
+          43.403787
+         ],
+         [
+          39.9636758,
+          43.4037817
+         ],
+         [
+          39.9636807,
+          43.4037908
+         ],
+         [
+          39.9636997,
+          43.4037854
+         ],
+         [
+          39.9637396,
+          43.4037741
+         ],
+         [
+          39.9636312,
+          43.403572
+         ],
+         [
+          39.9635742,
+          43.4035882
+         ],
+         [
+          39.9635801,
+          43.4035992
+         ],
+         [
+          39.9635595,
+          43.403605
+         ]
+        ],
+        [
+         [
+          39.9636804,
+          43.4038346
+         ],
+         [
+          39.9637712,
+          43.4040067
+         ],
+         [
+          39.9638334,
+          43.4039894
+         ],
+         [
+          39.9638293,
+          43.4039816
+         ],
+         [
+          39.9638271,
+          43.403969
+         ],
+         [
+          39.9638361,
+          43.4039536
+         ],
+         [
+          39.9637973,
+          43.4038844
+         ],
+         [
+          39.9638014,
+          43.4038741
+         ],
+         [
+          39.9637681,
+          43.403811
+         ],
+         [
+          39.9637387,
+          43.4038192
+         ],
+         [
+          39.9637418,
+          43.4038251
+         ],
+         [
+          39.9637173,
+          43.403832
+         ],
+         [
+          39.9637138,
+          43.4038253
+         ],
+         [
+          39.9636804,
+          43.4038346
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r12821037",
+      "hotel_id": "r12821037",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r12821037"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1637714",
+     "name": "Лазурная",
+     "address": null,
+     "location": [
+      39.7772063,
+      43.5515534
+     ],
+     "stars": 4,
+     "building_id": "w91321096",
+     "height_m": 60.8,
+     "levels": 19,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 19.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1637714",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1637714",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 19,
+        "facades_total": 6,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7772063,
+      43.5515534
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w91321096",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7768383,
+          43.5511413
+         ],
+         [
+          39.7771016,
+          43.5510526
+         ],
+         [
+          39.7773392,
+          43.5514233
+         ],
+         [
+          39.7775231,
+          43.5517102
+         ],
+         [
+          39.7772598,
+          43.5517988
+         ],
+         [
+          39.7768755,
+          43.5511994
+         ],
+         [
+          39.7768383,
+          43.5511413
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w91321096",
+      "hotel_id": "r1637714",
+      "is_hotel": true,
+      "height_m": 60.8,
+      "min_height_m": 0,
+      "levels": 19,
+      "height_fact_id": "f_height_r1637714"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1637716",
+     "name": "Primorye Sanatorium",
+     "address": null,
+     "location": [
+      39.7722698,
+      43.551836
+     ],
+     "stars": 4,
+     "building_id": "w51843675",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 5. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 8.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1637716",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1637716",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 8,
+        "facades_total": 14,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 5,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7722698,
+      43.551836
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51843675",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7721527,
+          43.5512866
+         ],
+         [
+          39.7723055,
+          43.5511625
+         ],
+         [
+          39.7726671,
+          43.5513935
+         ],
+         [
+          39.7728253,
+          43.5515021
+         ],
+         [
+          39.773182,
+          43.5517471
+         ],
+         [
+          39.7730439,
+          43.5518698
+         ],
+         [
+          39.7729992,
+          43.5518406
+         ],
+         [
+          39.77298,
+          43.5518575
+         ],
+         [
+          39.7729237,
+          43.5518207
+         ],
+         [
+          39.7728559,
+          43.5518757
+         ],
+         [
+          39.772583,
+          43.5516971
+         ],
+         [
+          39.7726508,
+          43.5516421
+         ],
+         [
+          39.7725078,
+          43.5515486
+         ],
+         [
+          39.772527,
+          43.5515316
+         ],
+         [
+          39.7721527,
+          43.5512866
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51843675",
+      "hotel_id": "r1637716",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r1637716"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1867898",
+     "name": "Санаторий \"Салют\"",
+     "address": null,
+     "location": [
+      39.7039372,
+      43.6230233
+     ],
+     "stars": 4,
+     "building_id": "w52448469",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 1.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1867898",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1867898",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 1,
+        "facades_total": 5,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7039372,
+      43.6230233
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52448469",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.70351,
+          43.6227687
+         ],
+         [
+          39.7035426,
+          43.6227543
+         ],
+         [
+          39.7036455,
+          43.6227066
+         ],
+         [
+          39.7039098,
+          43.6230068
+         ],
+         [
+          39.7037767,
+          43.6230659
+         ],
+         [
+          39.70351,
+          43.6227687
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52448469",
+      "hotel_id": "r1867898",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r1867898"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1949407",
+     "name": "Luciano отель и СПА 5*",
+     "address": "Курортный проспект 86",
+     "location": [
+      39.7493698,
+      43.5662793
+     ],
+     "stars": 4,
+     "building_id": "w46916268",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 4-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1949407",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1949407",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 4,
+        "floors_known": 4,
+        "facades_total": 17,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7493698,
+      43.5662793
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w46916268",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7488923,
+          43.5664903
+         ],
+         [
+          39.7492548,
+          43.5663693
+         ],
+         [
+          39.7492466,
+          43.5663566
+         ],
+         [
+          39.7492443,
+          43.5663414
+         ],
+         [
+          39.7492535,
+          43.56633
+         ],
+         [
+          39.7492683,
+          43.5663208
+         ],
+         [
+          39.7492858,
+          43.5663167
+         ],
+         [
+          39.7493041,
+          43.5663167
+         ],
+         [
+          39.7493221,
+          43.5663244
+         ],
+         [
+          39.7493364,
+          43.5663359
+         ],
+         [
+          39.7493476,
+          43.5663537
+         ],
+         [
+          39.7494889,
+          43.566307
+         ],
+         [
+          39.7495055,
+          43.5663334
+         ],
+         [
+          39.7497758,
+          43.5662439
+         ],
+         [
+          39.7498614,
+          43.5663798
+         ],
+         [
+          39.7496906,
+          43.5664363
+         ],
+         [
+          39.7496986,
+          43.5664489
+         ],
+         [
+          39.7496132,
+          43.5664772
+         ],
+         [
+          39.7496046,
+          43.5664636
+         ],
+         [
+          39.7495556,
+          43.5664799
+         ],
+         [
+          39.7495598,
+          43.5664861
+         ],
+         [
+          39.749472,
+          43.566516
+         ],
+         [
+          39.7494672,
+          43.5665092
+         ],
+         [
+          39.7494352,
+          43.5665198
+         ],
+         [
+          39.7494377,
+          43.5665268
+         ],
+         [
+          39.7494354,
+          43.5665349
+         ],
+         [
+          39.7494257,
+          43.5665408
+         ],
+         [
+          39.7494138,
+          43.5665423
+         ],
+         [
+          39.7494021,
+          43.5665393
+         ],
+         [
+          39.7493955,
+          43.566533
+         ],
+         [
+          39.7492551,
+          43.5665797
+         ],
+         [
+          39.7492104,
+          43.5665091
+         ],
+         [
+          39.7492257,
+          43.566504
+         ],
+         [
+          39.7492161,
+          43.5664889
+         ],
+         [
+          39.749119,
+          43.5665213
+         ],
+         [
+          39.7491316,
+          43.5665412
+         ],
+         [
+          39.7489608,
+          43.5665982
+         ],
+         [
+          39.7488923,
+          43.5664903
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w46916268",
+      "hotel_id": "r1949407",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_r1949407"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1951918",
+     "name": "Пансионат \"Южный\"",
+     "address": null,
+     "location": [
+      39.8933741,
+      43.4877202
+     ],
+     "stars": 4,
+     "building_id": "w1016504902",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 1.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r1951918",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1951918",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 1,
+        "floors_known": 1,
+        "facades_total": 6,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8933741,
+      43.4877202
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1016504902",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8931324,
+          43.4876717
+         ],
+         [
+          39.8932555,
+          43.4875222
+         ],
+         [
+          39.8933112,
+          43.4875457
+         ],
+         [
+          39.8932449,
+          43.4876301
+         ],
+         [
+          39.8932285,
+          43.487669
+         ],
+         [
+          39.8932208,
+          43.4877138
+         ],
+         [
+          39.8931324,
+          43.4876717
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1016504902",
+      "hotel_id": "r1951918",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r1951918"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3113674",
+     "name": "Санаторий им. Фрунзе",
+     "address": null,
+     "location": [
+      39.7484285,
+      43.5638087
+     ],
+     "stars": 4,
+     "building_id": "w51937402",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 3-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r3113674",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r3113674",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 3,
+        "floors_known": 5,
+        "facades_total": 4,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7484285,
+      43.5638087
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51937402",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7483354,
+          43.5632263
+         ],
+         [
+          39.7485243,
+          43.5631689
+         ],
+         [
+          39.7488211,
+          43.5636814
+         ],
+         [
+          39.7486322,
+          43.5637389
+         ],
+         [
+          39.7483354,
+          43.5632263
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51937402",
+      "hotel_id": "r3113674",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3113674"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3113676",
+     "name": "Центральный военный клинический санаторий «Сочи»",
+     "address": null,
+     "location": [
+      39.746134,
+      43.5648951
+     ],
+     "stars": 4,
+     "building_id": "w51871382",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 5. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r3113676",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r3113676",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 5,
+        "facades_total": 17,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 5,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.746134,
+      43.5648951
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51871382",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7459838,
+          43.565056
+         ],
+         [
+          39.747276,
+          43.564642
+         ],
+         [
+          39.7472573,
+          43.5646143
+         ],
+         [
+          39.7473887,
+          43.5645722
+         ],
+         [
+          39.7474075,
+          43.5646
+         ],
+         [
+          39.7475027,
+          43.564756
+         ],
+         [
+          39.747525,
+          43.5647942
+         ],
+         [
+          39.7473683,
+          43.5648444
+         ],
+         [
+          39.7473459,
+          43.5648063
+         ],
+         [
+          39.7468927,
+          43.5649514
+         ],
+         [
+          39.7469633,
+          43.5650659
+         ],
+         [
+          39.746774,
+          43.5651265
+         ],
+         [
+          39.7467034,
+          43.5650121
+         ],
+         [
+          39.7462431,
+          43.5651595
+         ],
+         [
+          39.7462687,
+          43.5652026
+         ],
+         [
+          39.7461047,
+          43.5652551
+         ],
+         [
+          39.7460791,
+          43.5652121
+         ],
+         [
+          39.7459838,
+          43.565056
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51871382",
+      "hotel_id": "r3113676",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3113676"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r4090535",
+     "name": "Пансионат \"Южный - 2\"",
+     "address": null,
+     "location": [
+      39.8893825,
+      43.4870705
+     ],
+     "stars": 4,
+     "building_id": "w245787072",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 18. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 2.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_r4090535",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r4090535",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 2,
+        "facades_total": 43,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 18,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8893825,
+      43.4870705
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w245787072",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8888828,
+          43.4871929
+         ],
+         [
+          39.8888837,
+          43.4871714
+         ],
+         [
+          39.8888903,
+          43.4871505
+         ],
+         [
+          39.8889025,
+          43.4871309
+         ],
+         [
+          39.8889197,
+          43.4871134
+         ],
+         [
+          39.8889412,
+          43.4870987
+         ],
+         [
+          39.8889663,
+          43.4870873
+         ],
+         [
+          39.888994,
+          43.4870797
+         ],
+         [
+          39.8890232,
+          43.4870761
+         ],
+         [
+          39.8890528,
+          43.4870768
+         ],
+         [
+          39.8890817,
+          43.4870816
+         ],
+         [
+          39.8891086,
+          43.4870904
+         ],
+         [
+          39.8891328,
+          43.4871029
+         ],
+         [
+          39.889153,
+          43.4871186
+         ],
+         [
+          39.8891687,
+          43.4871368
+         ],
+         [
+          39.8891792,
+          43.4871569
+         ],
+         [
+          39.8891841,
+          43.487178
+         ],
+         [
+          39.8891832,
+          43.4871995
+         ],
+         [
+          39.8891731,
+          43.4872258
+         ],
+         [
+          39.8892007,
+          43.4872336
+         ],
+         [
+          39.889227,
+          43.4871963
+         ],
+         [
+          39.8895014,
+          43.4872852
+         ],
+         [
+          39.8895241,
+          43.4872517
+         ],
+         [
+          39.8896034,
+          43.4872853
+         ],
+         [
+          39.88961,
+          43.4872782
+         ],
+         [
+          39.8896655,
+          43.4873053
+         ],
+         [
+          39.8896726,
+          43.4872984
+         ],
+         [
+          39.8897346,
+          43.4873329
+         ],
+         [
+          39.8895965,
+          43.4874571
+         ],
+         [
+          39.8895951,
+          43.4874584
+         ],
+         [
+          39.8895499,
+          43.4874342
+         ],
+         [
+          39.889541,
+          43.4874433
+         ],
+         [
+          39.8894952,
+          43.4874204
+         ],
+         [
+          39.8894891,
+          43.4874274
+         ],
+         [
+          39.8894233,
+          43.4874029
+         ],
+         [
+          39.8894044,
+          43.4874284
+         ],
+         [
+          39.8891367,
+          43.4873464
+         ],
+         [
+          39.8891653,
+          43.4873007
+         ],
+         [
+          39.8891058,
+          43.4872812
+         ],
+         [
+          39.8890728,
+          43.4872912
+         ],
+         [
+          39.8890436,
+          43.4872948
+         ],
+         [
+          39.8890141,
+          43.4872941
+         ],
+         [
+          39.8889852,
+          43.4872893
+         ],
+         [
+          39.8889582,
+          43.4872805
+         ],
+         [
+          39.8889341,
+          43.487268
+         ],
+         [
+          39.8889138,
+          43.4872523
+         ],
+         [
+          39.8888981,
+          43.4872341
+         ],
+         [
+          39.8888877,
+          43.4872141
+         ],
+         [
+          39.8888828,
+          43.4871929
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w245787072",
+      "hotel_id": "r4090535",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_r4090535"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w201474331",
+     "name": "Mercure Sochi Centre",
+     "address": "улица Орджоникидзе 11А к1",
+     "location": [
+      39.7243632,
+      43.5776924
+     ],
+     "stars": 4,
+     "building_id": "w201474331",
+     "height_m": 51.2,
+     "levels": 16,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 16.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_w201474331",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w201474331",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 16,
+        "facades_total": 13,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7243632,
+      43.5776924
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w201474331",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7242161,
+          43.5778661
+         ],
+         [
+          39.7242168,
+          43.5774088
+         ],
+         [
+          39.724227,
+          43.5774142
+         ],
+         [
+          39.7242806,
+          43.5774323
+         ],
+         [
+          39.724338,
+          43.5774424
+         ],
+         [
+          39.724397,
+          43.5774442
+         ],
+         [
+          39.7244554,
+          43.5774377
+         ],
+         [
+          39.7245109,
+          43.5774231
+         ],
+         [
+          39.7245321,
+          43.5774137
+         ],
+         [
+          39.7245314,
+          43.5778664
+         ],
+         [
+          39.7244768,
+          43.5778663
+         ],
+         [
+          39.7244767,
+          43.5778952
+         ],
+         [
+          39.7244723,
+          43.5779029
+         ],
+         [
+          39.7244629,
+          43.5779059
+         ],
+         [
+          39.724282,
+          43.5779058
+         ],
+         [
+          39.7242712,
+          43.5779026
+         ],
+         [
+          39.7242684,
+          43.5778954
+         ],
+         [
+          39.7242685,
+          43.5778662
+         ],
+         [
+          39.7242161,
+          43.5778661
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w201474331",
+      "hotel_id": "w201474331",
+      "is_hotel": true,
+      "height_m": 51.2,
+      "min_height_m": 0,
+      "levels": 16,
+      "height_fact_id": "f_height_w201474331"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w289803971",
+     "name": "Bridge Resort Hotel",
+     "address": null,
+     "location": [
+      39.9895008,
+      43.3893139
+     ],
+     "stars": 4,
+     "building_id": "w207638105",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 4-го этажа. В здании этажей: 6.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_w289803971",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w289803971",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 4,
+        "floors_known": 6,
+        "facades_total": 4,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9895008,
+      43.3893139
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207638105",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.989092,
+          43.3893931
+         ],
+         [
+          39.9893424,
+          43.3892481
+         ],
+         [
+          39.9894678,
+          43.3893699
+         ],
+         [
+          39.9892174,
+          43.3895106
+         ],
+         [
+          39.989092,
+          43.3893931
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207638105",
+      "hotel_id": "w289803971",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_w289803971"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51847429",
+     "name": "Жемчужина",
+     "address": "Черноморская улица 3",
+     "location": [
+      39.7314295,
+      43.5708048
+     ],
+     "stars": 4,
+     "building_id": "w51847429",
+     "height_m": 54.4,
+     "levels": 17,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 5-го этажа. В здании этажей: 17.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_w51847429",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51847429",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 5,
+        "floors_known": 17,
+        "facades_total": 8,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7314295,
+      43.5708048
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51847429",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7306173,
+          43.5703677
+         ],
+         [
+          39.7307646,
+          43.5702593
+         ],
+         [
+          39.7315363,
+          43.5708098
+         ],
+         [
+          39.7316437,
+          43.5708864
+         ],
+         [
+          39.7317703,
+          43.5709767
+         ],
+         [
+          39.7319096,
+          43.5710761
+         ],
+         [
+          39.7320769,
+          43.5711955
+         ],
+         [
+          39.7319298,
+          43.5713037
+         ],
+         [
+          39.7306173,
+          43.5703677
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51847429",
+      "hotel_id": "w51847429",
+      "is_hotel": true,
+      "height_m": 54.4,
+      "min_height_m": 0,
+      "levels": 17,
+      "height_fact_id": "f_height_w51847429"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10967527654",
+     "name": "Антика",
+     "address": "Виноградная улица 134/1",
+     "location": [
+      39.7195995,
+      43.6151666
+     ],
+     "stars": 3,
+     "building_id": "w260646973",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 3. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_n10967527654",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10967527654",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 3,
+        "facades_total": 11,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 3,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7195995,
+      43.6151666
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w260646973",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7195008,
+          43.6151397
+         ],
+         [
+          39.7195745,
+          43.6150575
+         ],
+         [
+          39.7196203,
+          43.6150318
+         ],
+         [
+          39.7197578,
+          43.6150938
+         ],
+         [
+          39.7197567,
+          43.6151571
+         ],
+         [
+          39.7197267,
+          43.6151892
+         ],
+         [
+          39.7197083,
+          43.6151922
+         ],
+         [
+          39.7196787,
+          43.6152252
+         ],
+         [
+          39.7196523,
+          43.6152128
+         ],
+         [
+          39.7196304,
+          43.6152373
+         ],
+         [
+          39.7195028,
+          43.6151774
+         ],
+         [
+          39.7195259,
+          43.6151515
+         ],
+         [
+          39.7195008,
+          43.6151397
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w260646973",
+      "hotel_id": "n10967527654",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10967527654"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1323204199",
+     "name": "МИРИТ",
+     "address": null,
+     "location": [
+      39.7227223,
+      43.5808926
+     ],
+     "stars": 3,
+     "building_id": "w51386621",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:09db02a69646",
+      "match": "partial",
+      "margin": null,
+      "label": "с видом на закат над морем",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 3. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_09db02a69646_n1323204199",
+       "characteristic_key": "derived:09db02a69646",
+       "value": true,
+       "unit": null,
+       "label": "с видом на закат над морем",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1323204199",
+       "qualifiers": {
+        "months": "апрель — август",
+        "from_floor": 2,
+        "floors_known": 4,
+        "facades_total": 11,
+        "season_to_month": 8,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 3,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "source_text": "с видом на закат над морем",
+        "native_characteristic_key": "sunset_view",
+        "native_value": true,
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7227223,
+      43.5808926
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51386621",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7224464,
+          43.5808155
+         ],
+         [
+          39.7224602,
+          43.580799
+         ],
+         [
+          39.7225488,
+          43.5806931
+         ],
+         [
+          39.7225741,
+          43.5806843
+         ],
+         [
+          39.7226038,
+          43.5806818
+         ],
+         [
+          39.7226362,
+          43.5806864
+         ],
+         [
+          39.7226761,
+          43.5807003
+         ],
+         [
+          39.7227072,
+          43.5807227
+         ],
+         [
+          39.7228927,
+          43.5809476
+         ],
+         [
+          39.7228731,
+          43.5809752
+         ],
+         [
+          39.7228427,
+          43.5809894
+         ],
+         [
+          39.7224464,
+          43.5808155
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51386621",
+      "hotel_id": "n1323204199",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n1323204199"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8932134771",
+     "name": "Black Sea",
+     "address": "улица Ленина 219А/5",
+     "location": [
+      39.8936563,
+      43.4732997
+     ],
+     "stars": 2,
+     "building_id": "w672015518",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11878294032",
+     "name": "Bliss House",
+     "address": null,
+     "location": [
+      39.9170665,
+      43.4291139
+     ],
+     "stars": null,
+     "building_id": "w147646191",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_27b4fee4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e605d22_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e2ab962_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f1b526cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_693e5058_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_89290789_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04f865d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9bf75fc9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_36ff2a08_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4b387cb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e4d9937_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7bfef549_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_995b347a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_08af9865_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee35fd20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b3822f39_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fa2d72c1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_98caa048_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac963a91_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d9c1d2f3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42806922_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c155c5fe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b00a01d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w209174465",
+     "name": "Blue Marine",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605233,
+      43.4110274
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4706161636",
+     "name": "Blue Marine hotel",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605409,
+      43.4110295
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w201474330",
+     "name": "Brevis apartments",
+     "address": "улица Орджоникидзе 11/1",
+     "location": [
+      39.7243657,
+      43.5767707
+     ],
+     "stars": 3,
+     "building_id": "w201474330",
+     "height_m": 51.2,
+     "levels": 16,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w207637828",
+     "name": "Bridge Family Resort",
+     "address": "Фигурная улица 45 к1",
+     "location": [
+      39.9887124,
+      43.390526
+     ],
+     "stars": 3,
+     "building_id": "w207637828",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11866202895",
+     "name": "Cascade",
+     "address": null,
+     "location": [
+      39.9148089,
+      43.4253046
+     ],
+     "stars": null,
+     "building_id": "w679416881",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3747,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.6561137,
+    43.3893139,
+    39.9895008,
+    43.6505845
+   ],
+   "camera": {
+    "center": [
+     39.6561137,
+     43.6505845
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 20409
+ },
+ "search_message_id": "de3d2e95-a308-42c9-a84f-fe3e648cd7a6"
+}
