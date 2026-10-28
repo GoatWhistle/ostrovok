@@ -1,6 +1,7 @@
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import datetime, timedelta
+from typing import Literal
 
 from hotel_agent.application.dto import (
     ConflictRecord,
@@ -29,11 +30,7 @@ EXPIRY_LEAD_DAYS = 14
 QUEUE_SIZE = 20
 LIVE_STATUSES = frozenset({FactStatus.ACTIVE, FactStatus.STALE, FactStatus.CONFIRMED_BY_HOTELIER})
 
-UNKNOWN = "unknown"
-DISPUTED = "disputed"
-STALE = "stale"
-CONFIRMED = "confirmed"
-KNOWN = "known"
+type StateName = Literal["known", "confirmed", "stale", "disputed", "unknown"]
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -47,7 +44,7 @@ class QueuedQuestion:
 class CharacteristicState:
     key: str
     title: str
-    state: str
+    state: StateName
     askable: bool
     blocked_searches: int
     appearances: int
@@ -220,13 +217,13 @@ class GetHotelierCabinet:
         )
 
 
-def _state(fact: Fact | None, disputed: bool, now: datetime) -> str:
+def _state(fact: Fact | None, disputed: bool, now: datetime) -> StateName:
     if fact is None or fact.value is None:
-        return UNKNOWN
+        return "unknown"
     if disputed:
-        return DISPUTED
+        return "disputed"
     if fact.is_stale_at(now):
-        return STALE
+        return "stale"
     if fact.status is FactStatus.CONFIRMED_BY_HOTELIER:
-        return CONFIRMED
-    return KNOWN
+        return "confirmed"
+    return "known"

@@ -535,6 +535,11 @@ paths:
       operationId: listHotelierQuestions
       parameters:
         - $ref: "#/components/parameters/HotelId"
+        - name: status
+          in: query
+          required: false
+          description: Оставляет только вопросы в этом состоянии; без параметра возвращаются все
+          schema: { type: string, enum: [open, answered, skipped] }
       responses:
         "200":
           description: OK
@@ -547,6 +552,119 @@ paths:
                     type: array
                     items: { $ref: "#/components/schemas/HotelierQuestion" }
         "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
+  /hotelier/{hotel_id}/overview:
+    get:
+      tags: [hotelier]
+      operationId: getHotelierCabinet
+      description: >-
+        Сводка кабинета: что система знает об отеле, чего не хватает, что оспорено, что скоро
+        истечёт, сколько раз отель попал в выдачу и какой один шаг стоит сделать сейчас.
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelierOverview" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /hotelier/{hotel_id}/notifications:
+    get:
+      tags: [hotelier]
+      operationId: listHotelierNotifications
+      description: >-
+        Лента оповещений отеля, новые сверху. Текст сообщения собирает клиент по полю kind;
+        payload несёт только числа и ключи.
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+        - name: unread_only
+          in: query
+          required: false
+          schema: { type: boolean, default: false }
+        - name: cursor
+          in: query
+          required: false
+          description: Значение next_cursor предыдущей страницы
+          schema: { type: string }
+        - name: limit
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, maximum: 100, default: 50 }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelierNotificationFeed" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
+  /hotelier/{hotel_id}/notifications/read:
+    post:
+      tags: [hotelier]
+      operationId: readHotelierNotifications
+      description: Отмечает прочитанными указанные оповещения; без списка — все непрочитанные
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                ids:
+                  type: array
+                  maxItems: 200
+                  items: { type: string }
+      responses:
+        "200":
+          description: Сколько оповещений стали прочитанными
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [read, unread]
+                properties:
+                  read: { type: integer, example: 3 }
+                  unread: { $ref: "#/components/schemas/NotificationCounters" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+
+  /hotelier/{hotel_id}/answers:
+    post:
+      tags: [hotelier]
+      operationId: answerHotelierQuestions
+      description: >-
+        Один свободный текст против всех открытых вопросов отеля: применяется к тем, из которых
+        удалось извлечь поля, остальные остаются открытыми.
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              additionalProperties: false
+              properties:
+                text: { type: string, minLength: 1, maxLength: 10000 }
+            example:
+              text: С собаками до 10 кг можно, 2500 ₽ за ночь; двухместные номера есть
+      responses:
+        "200":
+          description: Применённые ответы и вопросы, которых текст не коснулся
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/BatchAnswerResult" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+        "503": { $ref: "#/components/responses/ModelUnavailable" }
 
   /hotelier/questions/{question_id}/answer:
     post:
@@ -1541,6 +1659,185 @@ components:
           nullable: true
           allOf:
             - { $ref: "#/components/schemas/SearchResponse" }
+
+    NotificationCounters:
+      type: object
+      required: [total, action, by_kind]
+      properties:
+        total: { type: integer, example: 4 }
+        action:
+          type: integer
+          description: Из них требуют действия отельера
+          example: 3
+        by_kind:
+          type: object
+          additionalProperties: { type: integer }
+
+    HotelierNotification:
+      type: object
+      required: [id, hotel_id, kind, severity, created_at, payload]
+      properties:
+        id: { type: string, example: n_9f2c1d4ab8e70315 }
+        hotel_id: { type: string }
+        kind:
+          type: string
+          enum:
+            - question_opened
+            - answer_accepted
+            - answer_needs_detail
+            - fact_changed
+            - fact_expiring
+            - conflict_opened
+            - conflict_resolved
+            - search_demand
+        severity: { type: string, enum: [action, info] }
+        created_at: { type: string, format: date-time }
+        read_at: { type: string, format: date-time, nullable: true }
+        characteristic_key: { type: string, nullable: true }
+        title:
+          type: string
+          nullable: true
+          description: Название характеристики из реестра
+        question_id: { type: string, nullable: true }
+        question_text: { type: string, nullable: true }
+        fact_id: { type: string, nullable: true }
+        conflict_id: { type: string, nullable: true }
+        payload:
+          type: object
+          description: Числа и ключи для подстановки в текст на клиенте
+          additionalProperties: true
+
+    HotelierNotificationFeed:
+      type: object
+      required: [items, unread]
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/HotelierNotification" }
+        next_cursor: { type: string, nullable: true }
+        unread: { $ref: "#/components/schemas/NotificationCounters" }
+
+    CoverageSummary:
+      type: object
+      required: [total, known, unknown, confirmed, stale, disputed, completeness]
+      properties:
+        total: { type: integer, example: 9 }
+        known: { type: integer, example: 5 }
+        unknown: { type: integer, example: 4 }
+        confirmed:
+          type: integer
+          description: Значения, подтверждённые отельером
+          example: 1
+        stale: { type: integer, example: 2 }
+        disputed: { type: integer, example: 1 }
+        completeness: { type: number, example: 0.56 }
+
+    CharacteristicState:
+      type: object
+      required: [key, title, state, askable, blocked_searches, appearances]
+      properties:
+        key: { type: string, example: pets_policy }
+        title: { type: string, example: Размещение с животными }
+        state: { type: string, enum: [known, confirmed, stale, disputed, unknown] }
+        askable:
+          type: boolean
+          description: Эту характеристику система может спросить у отельера
+        blocked_searches:
+          type: integer
+          description: Сколько раз неизвестное значение помешало ответить на живой запрос
+          example: 7
+        appearances:
+          type: integer
+          description: Сколько раз характеристику спрашивали у этого отеля
+          example: 12
+        fact:
+          nullable: true
+          allOf:
+            - { $ref: "#/components/schemas/Fact" }
+
+    QueuedQuestion:
+      type: object
+      required: [question, blocked_searches, priority]
+      properties:
+        question: { $ref: "#/components/schemas/HotelierQuestion" }
+        blocked_searches: { type: integer, example: 7 }
+        priority: { type: number, example: 5.5 }
+
+    HotelierAttention:
+      type: object
+      required: [kind, reference, characteristic_key, blocked_searches]
+      properties:
+        kind:
+          type: string
+          enum: [resolve_conflict, answer_question, reconfirm_value]
+        reference:
+          type: string
+          description: Идентификатор конфликта, вопроса или факта в зависимости от kind
+        characteristic_key: { type: string }
+        blocked_searches: { type: integer }
+
+    HotelierOverview:
+      type: object
+      required:
+        - hotel
+        - coverage
+        - unread
+        - appearances
+        - window_days
+        - questions
+        - conflicts
+        - expiring
+        - characteristics
+      properties:
+        hotel: { $ref: "#/components/schemas/HotelSummary" }
+        coverage: { $ref: "#/components/schemas/CoverageSummary" }
+        unread: { $ref: "#/components/schemas/NotificationCounters" }
+        appearances:
+          type: integer
+          description: Сколько раз отель попал в выдачу за окно наблюдения
+          example: 12
+        window_days: { type: integer, example: 14 }
+        questions:
+          type: array
+          description: Открытые вопросы, сначала самые весомые
+          items: { $ref: "#/components/schemas/QueuedQuestion" }
+        conflicts:
+          type: array
+          items: { $ref: "#/components/schemas/Conflict" }
+        expiring:
+          type: array
+          description: Значения, срок которых истекает в ближайшие две недели
+          items: { $ref: "#/components/schemas/Fact" }
+        characteristics:
+          type: array
+          items: { $ref: "#/components/schemas/CharacteristicState" }
+        next_action:
+          nullable: true
+          allOf:
+            - { $ref: "#/components/schemas/HotelierAttention" }
+
+    BatchAnswerResult:
+      type: object
+      required: [hotel_id, applied, untouched]
+      properties:
+        hotel_id: { type: string }
+        applied:
+          type: array
+          items:
+            type: object
+            required: [question_id, extracted, conflicts]
+            properties:
+              question_id: { type: string }
+              extracted:
+                type: array
+                items: { $ref: "#/components/schemas/Fact" }
+              conflicts:
+                type: array
+                items: { $ref: "#/components/schemas/Conflict" }
+        untouched:
+          type: array
+          description: Вопросы, которых текст не коснулся; они остались открытыми
+          items: { type: string }
 
     HotelierQuestion:
       type: object
