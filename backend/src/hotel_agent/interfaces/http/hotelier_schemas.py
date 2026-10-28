@@ -36,6 +36,13 @@ class AnswerInput(BaseModel):
     text: str = Field(min_length=1, max_length=10_000)
 
 
+class QuestionAnswerInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    text: str = Field(default="", max_length=10_000)
+    fields: dict[str, bool | float | str | None] | None = None
+
+
 class QuestionStatusInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
 

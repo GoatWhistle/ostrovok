@@ -28,7 +28,7 @@ from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
-from hotel_agent.application.search_selection import Selection, select_candidates
+from hotel_agent.application.search_selection import Rejection, Selection, select_candidates
 from hotel_agent.application.spatial_matching import spatial_intent
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.domain.errors import InvalidQuery
@@ -49,6 +49,7 @@ class SearchOutcome:
     results: Sequence[SearchResult]
     question: str | None = None
     wish_results: tuple[WishResult, ...] = ()
+    rejected: tuple[Rejection, ...] = ()
     review: ReviewResult | None = None
 
 
@@ -208,6 +209,7 @@ class SearchHotels:
             question=explored.question,
             wish_results=explored.wish_results,
             review=selection.report,
+            rejected=selection.rejected,
         )
 
     async def _selection(

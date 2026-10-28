@@ -27,6 +27,7 @@ def hotelier_fact(
     method: str,
     source: SourceRef,
     now: datetime,
+    evidence_kind: EvidenceKind = EvidenceKind.QUOTE,
 ) -> Fact:
     values = {field.name: field.value for field in extraction.fields}
     value = checked_value(
@@ -56,7 +57,7 @@ def hotelier_fact(
             observed_at=now,
             valid_until=now + timedelta(days=characteristic.ttl_days),
             evidence=tuple(
-                Evidence(kind=EvidenceKind.QUOTE, text=item.quote) for item in extraction.fields
+                Evidence(kind=evidence_kind, text=item.quote) for item in extraction.fields
             ),
         ),
     )

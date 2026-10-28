@@ -36,6 +36,7 @@ from hotel_agent.interfaces.http.hotelier_schemas import (
     AnswerInput,
     AnswerResponseSchema,
     CorrectionInput,
+    QuestionAnswerInput,
     QuestionListSchema,
     QuestionSchema,
     QuestionStatusInput,
@@ -99,8 +100,8 @@ def build_router(
         response_model=AnswerResponseSchema,
         response_model_exclude_unset=True,
     )
-    async def answer(question_id: str, body: AnswerInput) -> dict[str, object]:
-        return answer_schema(await answer_question(question_id, body.text))
+    async def answer(question_id: str, body: QuestionAnswerInput) -> dict[str, object]:
+        return answer_schema(await answer_question(question_id, body.text, fields=body.fields))
 
     @router.patch("/hotelier/questions/{question_id}", response_model=QuestionSchema)
     async def status(question_id: str, body: QuestionStatusInput) -> QuestionSchema:

@@ -4,6 +4,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
+from hotel_agent.application.search_selection import Rejection
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import UnknownCharacteristic
@@ -64,10 +65,19 @@ class ViewportSchema(BaseModel):
     camera: CameraSchema
 
 
+class RejectedHotelSchema(BaseModel):
+    hotel: HotelSummarySchema
+    cause: Literal["requirement_unmet", "view_not_computed", "no_evidence", "review"]
+    closeness: float
+    characteristic_key: str | None = None
+    detail: str = ""
+
+
 class SearchResponseSchema(BaseModel):
     query_id: str
     parsed: ParsedSchema
     results: list[SearchResultSchema]
+    rejected: list[RejectedHotelSchema] = Field(default_factory=list)
     viewport: ViewportSchema | None = None
     pending: list[dict[str, str]] = Field(default_factory=list)
     next_cursor: str | None = None
@@ -125,8 +135,19 @@ def search_schema(
         query_id=outcome.query_id,
         parsed=parsed,
         results=results,
+        rejected=[_rejected(item) for item in outcome.rejected],
         viewport=viewport,
         took_ms=took_ms,
+    )
+
+
+def _rejected(item: Rejection) -> RejectedHotelSchema:
+    return RejectedHotelSchema(
+        hotel=hotel_summary_schema(item.hotel),
+        cause=item.cause,
+        closeness=round(item.closeness, 4),
+        characteristic_key=item.characteristic_key,
+        detail=item.detail,
     )
 
 

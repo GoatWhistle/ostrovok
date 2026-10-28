@@ -98,6 +98,23 @@ def check_answer(contract: dict[str, Any], validate: Any, payload: dict[str, Any
         validate("HotelierQuestion", payload["follow_up"])
 
 
+def test_a_structured_answer_needs_no_model(client: TestClient, validate: Any) -> None:
+    response = client.post(
+        "/hotelier/questions/q1/answer",
+        json={"fields": {"allowed": True, "max_weight_kg": 8, "fee_rub": 1500}},
+    )
+
+    assert response.status_code == 200
+    fact = response.json()["extracted"][0]
+    validate("Fact", fact)
+    assert fact["value"] == {"allowed": True, "max_weight_kg": 8.0, "fee_rub": 1500.0}
+    assert fact["provenance"]["method"] == "hotelier_fields@1"
+    assert fact["provenance"]["confidence"] == 1.0
+    assert [item["kind"] for item in fact["provenance"]["evidence"]] == ["param"] * 3
+    assert fact["provenance"]["evidence"][0]["text"] == "allowed=true"
+    assert client.get("/hotelier/h1/questions").json()["items"][0]["status"] == "answered"
+
+
 def test_question_queue_and_answers_match_contract(
     client: TestClient, contract: dict[str, Any], validate: Any
 ) -> None:
@@ -235,7 +252,29 @@ def test_a_hotelier_states_a_value_nobody_asked_about(client: TestClient, valida
     [
         ("get", "/hotelier/missing/questions", None, 404, "not_found"),
         ("post", "/hotelier/questions/missing/answer", {"text": "Можно"}, 404, "not_found"),
-        ("post", "/hotelier/questions/q1/answer", {"text": ""}, 422, "validation_error"),
+        ("post", "/hotelier/questions/q1/answer", {"text": ""}, 422, "invalid_value"),
+        ("post", "/hotelier/questions/q1/answer", {"fields": {}}, 422, "invalid_value"),
+        (
+            "post",
+            "/hotelier/questions/q1/answer",
+            {"fields": {"nope": True}},
+            422,
+            "invalid_value",
+        ),
+        (
+            "post",
+            "/hotelier/questions/q1/answer",
+            {"fields": {"max_weight_kg": -1}},
+            422,
+            "invalid_value",
+        ),
+        (
+            "post",
+            "/hotelier/questions/q1/answer",
+            {"text": "Можно", "extra": 1},
+            422,
+            "validation_error",
+        ),
         ("patch", "/hotelier/questions/missing", {"status": "skipped"}, 404, "not_found"),
         ("patch", "/hotelier/questions/q1", {"status": "answered"}, 422, "validation_error"),
         ("patch", "/hotelier/questions/q1", {"status": "skipped", "x": 1}, 422, "validation_error"),

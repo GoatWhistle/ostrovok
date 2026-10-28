@@ -725,9 +725,26 @@ paths:
           application/json:
             schema:
               type: object
-              required: [text]
+              description: >-
+                Нужен либо свободный текст, либо заполненные поля. Поля приходят из
+                `answer_fields` характеристики, разбираются без обращения к модели и дают факт
+                с методом `hotelier_fields@1` и доказательством вида `param`.
+              additionalProperties: false
+              anyOf:
+                - required: [text]
+                - required: [fields]
               properties:
-                text: { type: string, minLength: 1, maxLength: 10000 }
+                text: { type: string, maxLength: 10000 }
+                fields:
+                  type: object
+                  nullable: true
+                  description: Значения полей характеристики; null в значении означает «не указано»
+                  additionalProperties:
+                    nullable: true
+                    oneOf:
+                      - type: boolean
+                      - type: number
+                      - type: string
             example:
               text: С собаками до 10 кг можно, 1500 ₽ в сутки, кошек тоже берём
       responses:
@@ -1131,8 +1148,8 @@ components:
         stars: { type: integer, nullable: true, example: 4 }
         address: { type: string, nullable: true }
         location: { $ref: "#/components/schemas/LonLat" }
-        building_id: { type: string, example: b_osm_w123456789 }
-        height_m: { type: number, example: 28.8 }
+        building_id: { type: string, nullable: true, example: b_osm_w123456789 }
+        height_m: { type: number, nullable: true, example: 28.8 }
         levels: { type: integer, nullable: true, example: 9 }
         thumbnail_url: { type: string, nullable: true }
         photos:
@@ -1164,6 +1181,29 @@ components:
           allOf:
             - $ref: "#/components/schemas/BuildingFeature"
 
+    RejectedHotel:
+      type: object
+      required: [hotel, cause, closeness]
+      description: Отель, который не попал в выдачу, и почему
+      properties:
+        hotel: { $ref: "#/components/schemas/HotelSummary" }
+        cause:
+          type: string
+          enum: [requirement_unmet, view_not_computed, no_evidence, review]
+          description: >-
+            `requirement_unmet` — обязательное условие подтверждённо не выполнено;
+            `view_not_computed` — вид требовался, но посчитать его не удалось;
+            `no_evidence` — ни одного подтверждённого совпадения;
+            `review` — смысловая проверка отклонила рекомендацию.
+        closeness:
+          type: number
+          description: Доля выполненных условий с учётом веса и уверенности, от 0 до 1
+          example: 0.66
+        characteristic_key: { type: string, nullable: true }
+        detail:
+          type: string
+          description: Пояснение смысловой проверки, если причина `review`
+
     SearchResponse:
       type: object
       required: [query_id, parsed, results]
@@ -1193,6 +1233,10 @@ components:
         results:
           type: array
           items: { $ref: "#/components/schemas/SearchResult" }
+        rejected:
+          type: array
+          description: До десяти отелей, не попавших в выдачу, самые близкие первыми
+          items: { $ref: "#/components/schemas/RejectedHotel" }
         viewport:
           type: object
           nullable: true
