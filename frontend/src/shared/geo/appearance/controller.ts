@@ -2,8 +2,9 @@ import type { Map as MapLibreMap } from "maplibre-gl"
 import { renderBasemap } from "../basemap"
 import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
+import { renderShore } from "../shore-layers"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
-import { tintForTime } from "../time-tint"
+import { mixHex, tintForTime } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
 import { paintMeshes } from "./mesh-paint"
 import { applyMiniProfile } from "./mini-profile"
@@ -12,6 +13,9 @@ import { appearanceClasses, readAppearanceColors } from "./palette"
 import type { MapAppearance } from "./types"
 
 const OVERVIEW_ALTITUDE = 45
+const SHALLOW_SAND = 0.38
+const FOAM_WHITE = 0.72
+const PIER_SAND = 0.3
 
 export interface MapSceneSnapshot {
   readonly catalog: readonly CatalogClass[]
@@ -100,6 +104,12 @@ export class MapAppearanceController {
       )
     renderBasemap(map, tinted)
     renderCatalogLayers(map, classes, scene.excluded)
+    const sea = scenePalette(tinted, scene.sun.altitude).sea
+    renderShore(map, {
+      shallows: mixHex(sea, tinted.sand, SHALLOW_SAND),
+      foam: mixHex(sea, tinted.road, FOAM_WHITE),
+      pier: mixHex(tinted.building, tinted.sand, PIER_SAND),
+    })
     renderBasemapLabels(map, scene.assets, colors, scene.locale)
     renderPlaceLabels(map, colors, scene.locale, outside(scene.assets.map((asset) => asset.bbox)))
     this.refreshRoofs()

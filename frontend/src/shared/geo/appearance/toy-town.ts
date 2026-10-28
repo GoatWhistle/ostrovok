@@ -17,7 +17,7 @@ export const TOY_TOWN: AppearancePackage = {
     roadCasing: "--map-toy-line",
     roadLight: "--map-toy-road",
     roadGlow: "--map-toy-road",
-    coast: "--map-toy-teal",
+    coast: "--map-toy-coast",
     fact: "--map-toy-forest",
     factLine: "--map-toy-teal",
     route: "--map-toy-plum",

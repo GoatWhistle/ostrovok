@@ -8,6 +8,7 @@ type LonLat = readonly [number, number]
 const EARTH_CIRCUMFERENCE_M = 2 * Math.PI * 6371008.8
 const MAX_TREES = 24000
 const ELEVATION_CELL = 24
+const SEA_LEVEL = 0.4
 const OSM_RULE: TreeRule = { spacing: 1, conifer: 0.1, bush: 0, keep: 1, height: [7, 12] }
 const ROAD_HALF: Readonly<Record<string, number>> = {
   motorway: 10,
@@ -175,6 +176,7 @@ export function treeField(map: MapLibreMap, radius: number): TreeField {
   const oy = middle[1] / scale
   const metres = EARTH_CIRCUMFERENCE_M * Math.cos((origin[1] * Math.PI) / 180)
   const ground = new Map<string, number>()
+  const wet = map.getTerrain() !== null
   const elevation = (x: number, y: number, at: LonLat) => {
     const key = `${Math.round(x / ELEVATION_CELL)}:${Math.round(y / ELEVATION_CELL)}`
     const cached = ground.get(key)
@@ -193,5 +195,6 @@ export function treeField(map: MapLibreMap, radius: number): TreeField {
       const z = elevation(tree.x, tree.y, unmercator([mx, my]))
       return { ...tree, x: (mx - ox) * metres, y: (my - oy) * metres, z }
     })
+    .filter((tree) => !wet || tree.z > SEA_LEVEL)
   return { origin, trees }
 }
