@@ -11,7 +11,9 @@ from hotel_agent.application.ports.place_lookup import PlaceLookupPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
-from hotel_agent.domain.query import SpatialRequest
+from hotel_agent.domain.query import NearbyObjectRequest, SpatialRequest
+
+RUSSIA = (19.0, 41.0, 180.0, 82.0)
 
 
 @dataclass(frozen=True, slots=True)
@@ -36,6 +38,7 @@ async def find_candidates(
     geographic_objects: GeographicObjectsPort | None = None,
     landmarks: LandmarkResolver | None = None,
     location_request: SpatialRequest | None = None,
+    nearby_request: NearbyObjectRequest | None = None,
 ) -> Candidates:
     if location is None:
         documents = await semantic.search(query, limit=200) if semantic else ()
@@ -62,8 +65,14 @@ async def find_candidates(
     if extent is None:
         async with uow_factory() as uow:
             place = await uow.named_places.geographic_name(location)
+        if place is None and nearby_request is not None:
+            async with uow_factory() as uow:
+                named = await uow.named_places.candidates(
+                    location, RUSSIA, nearby_request.osm_key, (nearby_request.osm_value,)
+                )
+            place = named[0] if named else None
         if place is None and landmarks is not None and location_request is not None:
-            resolution = await landmarks(location_request, "Россия", (19, 41, 180, 82), None)
+            resolution = await landmarks(location_request, "Россия", RUSSIA, None)
             place = resolution.place
         if place is not None and geographic_objects is not None:
             geometry = await geographic_objects.get(place.id)
@@ -74,7 +83,7 @@ async def find_candidates(
                 allow_expand = False
         position = place.location if place else None
         if position is None and place_lookup is not None:
-            position = await place_lookup.coordinates(location, (19, 41, 180, 82))
+            position = await place_lookup.coordinates(location, RUSSIA)
         if position is not None and extent is None:
             inferred = areas.region_at(position) if areas else None
             dy = 50000 / 111200

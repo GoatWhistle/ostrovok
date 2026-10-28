@@ -117,6 +117,14 @@ class SearchHotels:
             ),
             None,
         )
+        nearby_request = next(
+            (
+                r
+                for r in parsed.nearby_objects
+                if r.name and location and r.name.casefold() == location.casefold()
+            ),
+            None,
+        )
         candidates = await find_candidates(
             query,
             location,
@@ -129,6 +137,7 @@ class SearchHotels:
             self._geographic_objects,
             landmarks,
             location_request,
+            nearby_request,
         )
         if candidates.location_hint:
             location = candidates.location_hint
