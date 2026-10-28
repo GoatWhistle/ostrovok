@@ -14,9 +14,9 @@ const SHADOWS = [
   { id: "toy-context-shadow", owner: "buildings-volume", source: "buildings", min: 14, max: 24 },
 ] as const
 
-const MAX_LENGTH = 34
+const MAX_LENGTH = 52
 const SHADOW_OPACITY = 0.28
-const MIN_ALTITUDE = 4
+const MIN_ALTITUDE = 0.5
 
 export function shadowOffset(azimuth: number, altitude: number): [number, number] {
   if (altitude <= MIN_ALTITUDE) return [0, 0]

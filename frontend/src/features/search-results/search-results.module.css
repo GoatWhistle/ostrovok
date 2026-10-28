@@ -40,3 +40,9 @@
 .state {
   min-block-size: 100%;
 }
+
+@media (max-width: 47.99rem) {
+  .list {
+    --thumb-size: var(--mark-lg);
+  }
+}

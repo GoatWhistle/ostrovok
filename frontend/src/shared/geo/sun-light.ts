@@ -60,7 +60,7 @@ export function sunLight(colors: SkyColors, azimuth: number, altitude: number, c
   const day = DAY_INTENSITY + (LOW_INTENSITY - DAY_INTENSITY) * warm
   return {
     color: blend(colors.sunlight, colors.sunLow, moon, altitude),
-    intensity: (day + (NIGHT_INTENSITY - day) * night) * contrast,
+    intensity: (day + (NIGHT_INTENSITY - day) * night) * (contrast + (1 - contrast) * warm),
     position: [1.15, azimuth, polar + (NIGHT_POLAR - polar) * night] as [number, number, number],
   }
 }

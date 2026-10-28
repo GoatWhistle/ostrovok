@@ -24,5 +24,6 @@ export function HotelFacts({ hotelId, title, onFact }: HotelFactsProps) {
     )
   if (!hotel.data.facts.length)
     return <EmptyState icon="empty" title={t("explore:details.factsEmpty")} />
-  return <FactList title={title} facts={hotel.data.facts} onFact={onFact} />
+  const facts = hotel.data.facts.filter((fact) => !fact.characteristic_key.startsWith("derived:"))
+  return <FactList title={title} facts={facts} onFact={onFact} />
 }

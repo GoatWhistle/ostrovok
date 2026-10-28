@@ -6,11 +6,14 @@
 .trigger {
   composes: controlText pressable inlineRow from "../../../styles/compose.module.css";
   min-block-size: var(--target-min);
+  min-inline-size: 0;
+  white-space: normal;
   text-align: start;
 }
 
 .icon,
 .chevron {
+  flex: none;
   color: var(--text-muted);
 }
 

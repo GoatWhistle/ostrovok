@@ -1,6 +1,10 @@
 import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
+import { sceneHeight } from "../night-city/night-layers"
+import { overviewHeight } from "../overview-buildings"
 import { FLAT_ROOF } from "../roof-forms/layer"
+
+const CAP = 0.25
 
 const ROOFS = [
   {
@@ -42,6 +46,22 @@ function roofFilter(
   return owner ? (["all", owner, FLAT_ROOF] as FilterSpecification) : FLAT_ROOF
 }
 
+function ownerHeight(map: MapLibreMap, owner: string, lift: number): ExpressionSpecification {
+  if (owner === "overview-volumes") return overviewHeight(lift)
+  if (owner === "scene-volumes") return sceneHeight(map, lift)
+  return ["+", ["max", 0, ["to-number", ["get", "height_m"], 0]], lift]
+}
+
+function syncPaint(
+  map: MapLibreMap,
+  id: string,
+  name: "fill-extrusion-color" | "fill-extrusion-base" | "fill-extrusion-height",
+  value: ExpressionSpecification | string,
+) {
+  if (JSON.stringify(map.getPaintProperty(id, name)) !== JSON.stringify(value))
+    map.setPaintProperty(id, name, value)
+}
+
 function renderRoof(
   map: MapLibreMap,
   roof: (typeof ROOFS)[number],
@@ -53,10 +73,9 @@ function renderRoof(
   }
   if (!map.getSource(roof.source) || !map.getLayer(roof.owner)) return
   const filter = roofFilter(roof, map.getFilter(roof.owner) || undefined)
+  const base = ownerHeight(map, roof.owner, 0)
+  const top = ownerHeight(map, roof.owner, CAP)
   if (!map.getLayer(roof.id)) {
-    const height = map.getPaintProperty(roof.owner, "fill-extrusion-height") as
-      | ExpressionSpecification
-      | number
     map.addLayer(
       {
         id: roof.id,
@@ -68,8 +87,8 @@ function renderRoof(
         ...(filter ? { filter } : {}),
         paint: {
           "fill-extrusion-color": color,
-          "fill-extrusion-base": height,
-          "fill-extrusion-height": ["+", height, 0.25],
+          "fill-extrusion-base": base,
+          "fill-extrusion-height": top,
           "fill-extrusion-opacity": 1,
           "fill-extrusion-vertical-gradient": false,
         },
@@ -77,8 +96,9 @@ function renderRoof(
       labelAnchor(map),
     )
   }
-  if (map.getPaintProperty(roof.id, "fill-extrusion-color") !== color)
-    map.setPaintProperty(roof.id, "fill-extrusion-color", color)
+  syncPaint(map, roof.id, "fill-extrusion-color", color)
+  syncPaint(map, roof.id, "fill-extrusion-base", base)
+  syncPaint(map, roof.id, "fill-extrusion-height", top)
   if (JSON.stringify(map.getFilter(roof.id)) !== JSON.stringify(filter))
     map.setFilter(roof.id, filter ?? null)
 }

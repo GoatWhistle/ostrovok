@@ -2,7 +2,8 @@ import { FactStatusBadge, HueIcon, RowButton } from "@/entities/evidence"
 import type { Fact, FactBrief } from "@/shared/api/hotel-types"
 import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
 import { factScope } from "@/shared/geo/facts/scope"
-import { useLocale, useTranslation } from "@/shared/i18n"
+import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
+import { type Locale, useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
 import { DetailsSection } from "./details-section"
 import styles from "./fact-list.module.css"
@@ -39,22 +40,53 @@ function groupFacts(facts: readonly Fact[]): FactGroup[] {
   return [...groups.values()]
 }
 
+function words(text: string): string[] {
+  return text
+    .toLocaleLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter(Boolean)
+}
+
+function restates(title: string, value: string): boolean {
+  const seen = new Set(words(value))
+  return title === "" || words(title).every((word) => seen.has(word))
+}
+
+function sameNumbers(note: string, value: string): boolean {
+  const numbers = words(note).filter((word) => /^\p{N}+$/u.test(word))
+  const seen = new Set(words(value))
+  return numbers.length > 0 && numbers.every((word) => seen.has(word))
+}
+
+function useFactNotes(locale: Locale) {
+  const { t } = useTranslation()
+  return (fact: Fact, value: string, count: number): string[] => {
+    const verdict = wishVerdict(
+      { characteristic_key: fact.characteristic_key, match: "full", label: fact.label, fact },
+      locale,
+    )
+    if (verdict && !restates(verdict, value) && !sameNumbers(verdict, value)) return [verdict]
+    const title = characteristicTitle(fact.characteristic_key, locale)
+    return [
+      title !== fact.characteristic_key && !restates(title, value) ? title : undefined,
+      ...factScope(fact, locale),
+      count > 1 ? t("explore:details.facadeValues", { count }) : undefined,
+    ].filter((note): note is string => Boolean(note))
+  }
+}
+
 export function FactList({ facts, onFact, title: heading }: FactListProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   const groups = groupFacts(facts)
+  const factNotes = useFactNotes(locale)
   return (
     <DetailsSection title={heading ?? t("explore:details.facts")}>
       {groups.length ? (
         <ul className={styles.list}>
           {groups.map(({ fact, count }) => {
             const value = factLabel(fact, locale)
-            const title = characteristicTitle(fact.characteristic_key, locale)
-            const notes = [
-              title !== fact.characteristic_key && title !== value ? title : undefined,
-              ...factScope(fact, locale),
-              count > 1 ? t("explore:details.facadeValues", { count }) : undefined,
-            ].filter(Boolean)
+            const notes = factNotes(fact, value, count)
             const settled = fact.status === "active" || fact.status === "confirmed_by_hotelier"
             return (
               <li key={fact.characteristic_key}>

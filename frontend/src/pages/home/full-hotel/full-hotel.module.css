@@ -25,4 +25,7 @@
   .content {
     padding: var(--space-16) var(--space-16) 0;
   }
+  .page:has([data-rooms-screen]) .bar {
+    display: none;
+  }
 }
