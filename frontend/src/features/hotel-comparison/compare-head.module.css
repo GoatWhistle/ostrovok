@@ -1,15 +1,28 @@
 .head {
   display: grid;
+  grid-template-columns: var(--compare-photo) minmax(0, 1fr);
+  grid-auto-rows: min-content;
   align-content: start;
-  gap: var(--space-8);
+  gap: var(--space-4) var(--space-12);
   min-inline-size: 0;
+
+  --compare-photo: calc(var(--thumb-size) + var(--space-24));
 }
 
-.photo {
-  inline-size: 100%;
-  block-size: 10rem;
-  aspect-ratio: auto;
+.media {
+  grid-row: 1 / span 4;
+  grid-column: 1;
+  inline-size: var(--compare-photo);
+  aspect-ratio: 1;
   border-radius: var(--radius-md);
+}
+
+.media[data-empty] {
+  background-color: var(--surface-raised);
+}
+
+.head > :not(.media) {
+  grid-column: 2;
 }
 
 .title {
@@ -21,20 +34,21 @@
 }
 
 .name {
-  composes: truncateText from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  display: -webkit-box;
+  overflow: hidden;
   margin: 0;
-  font-size: var(--font-size-subheading);
-  font-weight: var(--weight-bold);
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .meta {
   composes: secondaryText from "../../shared/styles/compose.module.css";
-  display: grid;
-  gap: var(--space-2);
-}
-
-.fit {
-  font-variant-numeric: var(--font-numeric);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
 }
 
 .price {
@@ -48,21 +62,20 @@
   margin: 0;
 }
 
-.thumb {
-  display: none;
-}
-
 @media (max-width: 47.99rem) {
   .head {
     grid-template-columns: var(--target-min) minmax(0, 1fr);
     gap: var(--space-4);
   }
 
-  .thumb {
-    display: grid;
+  .media {
     grid-row: 1;
     inline-size: var(--target-min);
     block-size: var(--target-min);
+  }
+
+  .head > :not(.media) {
+    grid-column: auto;
   }
 
   .title {
@@ -81,12 +94,8 @@
   }
 
   .name {
-    display: -webkit-box;
     font-size: var(--font-size-body-sm);
     line-height: var(--line-height-body-sm);
-    white-space: normal;
-    overflow-wrap: anywhere;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
 
@@ -96,8 +105,6 @@
   }
 
   .meta {
-    display: flex;
-    flex-wrap: wrap;
     gap: var(--space-2) var(--space-8);
     font-size: var(--font-size-label);
   }

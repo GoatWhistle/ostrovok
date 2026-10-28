@@ -11,10 +11,11 @@ type Conversation = components["schemas"]["Conversation"]
 export function useComparison(ids: readonly string[], conversationId?: string | null) {
   const cache = useQueryClient()
   const unique = [...new Set(ids)]
-  const enabled = unique.length >= MIN_HOTELS && unique.length <= MAX_HOTELS
+  const listed = unique.length > 0 && unique.length <= MAX_HOTELS
+  const enabled = listed && unique.length >= MIN_HOTELS
   const conversation = useQuery({
     queryKey: ["conversation", conversationId ?? null],
-    enabled: enabled && Boolean(conversationId),
+    enabled: listed && Boolean(conversationId),
     queryFn: ({ signal }) =>
       unwrap(
         api.GET("/chat/conversations/{conversation_id}", {
@@ -42,7 +43,7 @@ export function useComparison(ids: readonly string[], conversationId?: string | 
       queryKey: ["hotel", id],
       queryFn: ({ signal }: { signal: AbortSignal }) =>
         unwrap(api.GET("/hotels/{hotel_id}", { signal, params: { path: { hotel_id: id } } })),
-      enabled,
+      enabled: listed,
       retry: false,
     })),
   })
@@ -53,7 +54,7 @@ export function useComparison(ids: readonly string[], conversationId?: string | 
         unwrap(
           api.GET("/hotels/{hotel_id}/details", { signal, params: { path: { hotel_id: id } } }),
         ),
-      enabled,
+      enabled: listed,
       staleTime: DETAILS_STALE_MS,
       retry: false,
     })),

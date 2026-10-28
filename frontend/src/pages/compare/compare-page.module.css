@@ -3,16 +3,24 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
+.page > header {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.page > header a {
+  --button-surface: transparent;
+  --button-height: var(--control-height-compact);
+  --button-padding: var(--space-8);
+
+  margin-inline-start: calc(-1 * var(--space-8));
+}
+
 @media (max-width: 47.99rem) {
   .page {
     gap: var(--space-16);
     padding: var(--space-8) var(--space-16) var(--space-48);
-  }
-
-  .page > header {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: var(--space-4);
   }
 
   .page > header h1 {
@@ -22,13 +30,5 @@
 
   .page > header p {
     display: none;
-  }
-
-  .page > header a {
-    --button-surface: transparent;
-    --button-height: var(--control-height-compact);
-    --button-padding: var(--space-8);
-
-    margin-inline-start: calc(-1 * var(--space-8));
   }
 }

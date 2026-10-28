@@ -1,11 +1,25 @@
 import type { CSSProperties } from "react"
 import type { ComparisonData } from "@/entities/comparison"
 import { useTranslation } from "@/shared/i18n"
-import { Disclosure, ScrollArea } from "@/shared/ui"
+import { ButtonLink, Disclosure, ScrollArea } from "@/shared/ui"
 import { CompareHead, CompareMedia } from "./compare-head"
 import type { LineView, SectionId } from "./compare-model"
 import { type CompareColumn, CompareRow } from "./compare-row"
 import styles from "./compare-table.module.css"
+
+const SLOT_BELOW = 4
+
+function CompareSlot({ lonely }: { readonly lonely: boolean }) {
+  const { t } = useTranslation()
+  return (
+    <div className={styles.slot}>
+      {lonely ? <p className={styles.slotText}>{t("explore:compare.addMore")}</p> : null}
+      <ButtonLink to="/" variant="secondary" size="compact" icon="plus">
+        {t("explore:compare.add")}
+      </ButtonLink>
+    </div>
+  )
+}
 
 export interface TableSection {
   readonly id: SectionId
@@ -26,6 +40,7 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
     id,
     name: data.hotels[index]?.data?.hotel.name ?? data.details[index]?.data?.details?.name ?? id,
   }))
+  const slot = ids.length < SLOT_BELOW
   return (
     <ScrollArea
       className={styles.frame}
@@ -34,17 +49,12 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
       data-count={ids.length > 2 ? "many" : "pair"}
       tabIndex={0}
     >
-      <div className={styles.table} style={{ "--compare-count": ids.length } as CSSProperties}>
-        <div className={styles.photos} aria-hidden="true">
-          <div className={styles.corner} />
-          {ids.map((id, index) => (
-            <CompareMedia
-              key={id}
-              hotel={data.hotels[index]?.data?.hotel ?? data.matches.get(id)?.hotel}
-              supplier={data.details[index]?.data?.details ?? undefined}
-            />
-          ))}
-        </div>
+      <div
+        className={styles.table}
+        data-slot={slot || undefined}
+        data-lonely={ids.length < 2 || undefined}
+        style={{ "--compare-count": ids.length } as CSSProperties}
+      >
         <div className={styles.heads}>
           <div className={styles.corner} />
           {ids.map((id, index) => {
@@ -58,7 +68,6 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
                 match={data.matches.get(id)}
                 media={
                   <CompareMedia
-                    compact
                     hotel={hotel?.data?.hotel ?? data.matches.get(id)?.hotel}
                     supplier={data.details[index]?.data?.details ?? undefined}
                   />
@@ -70,6 +79,7 @@ export function CompareTable({ ids, data, sections, onRemove, onFact }: CompareT
               />
             )
           })}
+          {slot ? <CompareSlot lonely={ids.length < 2} /> : null}
         </div>
         {sections.map((section) => (
           <section key={section.id} className={styles.section} data-section={section.id}>

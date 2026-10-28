@@ -14,7 +14,6 @@
 .summary {
   composes: secondaryText from "../../shared/styles/compose.module.css";
   margin: 0;
-  margin-inline-end: auto;
   font-variant-numeric: var(--font-numeric);
 }
 
@@ -27,6 +26,16 @@
 .stay {
   flex: 1 1 100%;
   min-inline-size: 0;
+}
+
+.stay > * {
+  max-inline-size: calc(var(--compare-card-min) * 2 + var(--term-min));
+}
+
+@media (min-width: 64rem) {
+  .slotted {
+    display: none;
+  }
 }
 
 .same {

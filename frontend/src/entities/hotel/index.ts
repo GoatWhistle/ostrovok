@@ -19,6 +19,7 @@ export { HotelStayProvider, useHotelStay } from "./hotel-stay/hotel-stay"
 export { StayBar } from "./hotel-stay/stay-bar"
 export { StayFields } from "./hotel-stay/stay-fields"
 export { HotelThumb, type HotelThumbProps } from "./hotel-thumb/hotel-thumb"
+export { MatchExplain, type MatchExplainProps } from "./match-score/match-explain"
 export {
   MatchConfidence,
   type MatchConfidenceProps,

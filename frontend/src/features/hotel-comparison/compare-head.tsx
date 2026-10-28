@@ -1,5 +1,12 @@
 import type { ReactNode } from "react"
-import { HotelStars, HotelThumb, useHotelOffers, useHotelStay } from "@/entities/hotel"
+import {
+  HotelRating,
+  HotelStars,
+  HotelThumb,
+  MatchExplain,
+  useHotelOffers,
+  useHotelStay,
+} from "@/entities/hotel"
 import type { HotelSummary, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
@@ -18,14 +25,6 @@ export interface CompareHeadProps {
   readonly failed: boolean
   readonly onRetry: () => void
   readonly onRemove: () => void
-}
-
-function CompareFit({ match }: { readonly match: SearchResult }) {
-  const { t } = useTranslation()
-  const total = match.matched.length
-  if (!total) return null
-  const full = match.matched.filter((item) => item.match === "full").length
-  return <span className={styles.fit}>{t("explore:compare.fit", { full, total })}</span>
 }
 
 function ComparePrice({ id }: { readonly id: string }) {
@@ -53,18 +52,14 @@ function ComparePrice({ id }: { readonly id: string }) {
   return <p className={styles.price}>{t("explore:compare.priceFrom", { price })}</p>
 }
 
-export function CompareMedia({
-  hotel,
-  supplier,
-  compact = false,
-}: Pick<CompareHeadProps, "hotel" | "supplier"> & { readonly compact?: boolean }) {
+export function CompareMedia({ hotel, supplier }: Pick<CompareHeadProps, "hotel" | "supplier">) {
   return (
     <HotelThumb
       src={hotel?.thumbnail_url}
       photos={hotel?.photos}
       extra={supplier?.photos.map((photo) => photo.url)}
       placeholder
-      className={compact ? styles.thumb : styles.photo}
+      className={styles.media}
     />
   )
 }
@@ -102,7 +97,11 @@ export function CompareHead({
       </div>
       <div className={styles.meta}>
         <HotelStars value={stars} />
-        {match ? <CompareFit match={match} /> : null}
+        <HotelRating
+          score={supplier?.rating?.total ?? undefined}
+          reviews={supplier?.rating?.reviews_count ?? 0}
+        />
+        {match ? <MatchExplain matched={match.matched} confidence={match.confidence} /> : null}
       </div>
       <ComparePrice id={id} />
     </div>

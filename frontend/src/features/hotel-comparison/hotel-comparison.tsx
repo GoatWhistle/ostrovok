@@ -8,7 +8,9 @@ import { comparisonView } from "./compare-sections"
 import { CompareTable } from "./compare-table"
 import styles from "./hotel-comparison.module.css"
 
-const MIN_HOTELS = 2
+const MIN_HOTELS = 1
+const PAIR = 2
+const SLOT_FROM = 4
 const MAX_HOTELS = 5
 
 export interface HotelComparisonProps {
@@ -39,7 +41,8 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
       />
     )
   const view = comparisonView(ids, data, registry.data?.items ?? [], locale, onlyDifferences)
-  const ready = !comparison.isPending && !comparison.isError
+  const pair = ids.length >= PAIR
+  const ready = pair && !comparison.isPending && !comparison.isError
   return (
     <HotelStayProvider stay={data.stay}>
       <section className={styles.comparison}>
@@ -49,19 +52,29 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
               ? t("explore:compare.summary", { different: view.different, total: view.total })
               : null}
           </p>
-          <Button
-            variant="ghost"
-            size="compact"
-            className={styles.toggle}
-            aria-pressed={onlyDifferences}
-            disabled={!ready}
-            onClick={() => setOnlyDifferences((value) => !value)}
-          >
-            {t("explore:compare.onlyDifferences")}
-          </Button>
-          <ButtonLink to="/" variant="ghost" size="compact" icon="plus">
-            {t("explore:compare.add")}
-          </ButtonLink>
+          {pair ? (
+            <Button
+              variant="ghost"
+              size="compact"
+              className={styles.toggle}
+              aria-pressed={onlyDifferences}
+              disabled={!ready}
+              onClick={() => setOnlyDifferences((value) => !value)}
+            >
+              {t("explore:compare.onlyDifferences")}
+            </Button>
+          ) : null}
+          {pair ? (
+            <ButtonLink
+              to="/"
+              variant="ghost"
+              size="compact"
+              icon="plus"
+              className={ids.length < SLOT_FROM ? styles.slotted : undefined}
+            >
+              {t("explore:compare.add")}
+            </ButtonLink>
+          ) : null}
           <div className={styles.stay}>
             <StayBar />
           </div>
@@ -86,7 +99,7 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
           onRemove={onRemove}
           onFact={onFact}
         />
-        {comparison.isPending ? <Skeleton lines={6} /> : null}
+        {comparison.isPending && comparison.fetchStatus !== "idle" ? <Skeleton lines={6} /> : null}
         {ready && onlyDifferences && view.different === 0 ? (
           <p className={styles.same}>{t("explore:compare.emptyDifference")}</p>
         ) : null}
