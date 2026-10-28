@@ -1,5 +1,7 @@
 .section {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-inline-size: 0;
   gap: var(--space-8);
   padding-block-start: var(--space-16);
   border-block-start: var(--hairline) solid var(--border-subtle);
