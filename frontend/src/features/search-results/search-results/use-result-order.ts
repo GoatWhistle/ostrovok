@@ -2,7 +2,7 @@ import { useQueries } from "@tanstack/react-query"
 import { useCallback, useState } from "react"
 import { hotelDetailsOptions } from "@/entities/hotel"
 import type { SearchResult } from "@/shared/api/hotel-types"
-import { type Order, type OrderKey, parseOrder, type ResultFacts } from "./result-order"
+import { type Order, type OrderKey, parseOrder, type ResultFacts } from "../result-order"
 
 const STORAGE_KEY = "factmap-results-order"
 const DETAIL_KEYS: ReadonlySet<OrderKey> = new Set(["rating", "reviews"])

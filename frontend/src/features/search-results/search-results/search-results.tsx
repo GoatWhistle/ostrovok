@@ -3,9 +3,9 @@ import type { MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { EmptyState, Skeleton } from "@/shared/ui"
-import { ORDER_KEYS, orderResults, seaDistance } from "./result-order"
+import { ORDER_KEYS, orderResults, seaDistance } from "../result-order"
+import { SortControl } from "../sort-control/sort-control"
 import styles from "./search-results.module.css"
-import { SortControl } from "./sort-control"
 import { useResultFacts, useResultOrder } from "./use-result-order"
 
 export interface SearchResultsProps {

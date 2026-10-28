@@ -1,1 +1,1 @@
-export { SearchResults } from "./search-results"
+export { SearchResults } from "./search-results/search-results"

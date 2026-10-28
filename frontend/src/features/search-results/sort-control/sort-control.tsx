@@ -1,7 +1,7 @@
 import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { Button, Select } from "@/shared/ui"
-import { DEFAULT_DIRECTION, type Order, type OrderKey } from "./result-order"
-import styles from "./search-results.module.css"
+import { DEFAULT_DIRECTION, type Order, type OrderKey } from "../result-order"
+import styles from "./sort-control.module.css"
 
 const KEY_LABEL: Readonly<Record<OrderKey, MessageKey>> = {
   match: "explore:panel.sortMatch",
