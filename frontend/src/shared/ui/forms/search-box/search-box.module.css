@@ -11,7 +11,7 @@
 }
 
 .box:focus-within {
-  box-shadow: var(--shadow-ring-focus);
+  box-shadow: var(--shadow-ring-strong);
 }
 
 .box:has(> .leading) {
