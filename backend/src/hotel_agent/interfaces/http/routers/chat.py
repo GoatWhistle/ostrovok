@@ -8,6 +8,7 @@ from fastapi import APIRouter, Response, status
 from fastapi.responses import StreamingResponse
 
 from hotel_agent.application import progress
+from hotel_agent.application.place_names import localized_place
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.domain.errors import DomainError
@@ -20,6 +21,13 @@ from hotel_agent.interfaces.http.chat_schemas import (
 from hotel_agent.interfaces.http.errors import STATUS_BY_ERROR
 
 Event = tuple[str, dict[str, object]]
+
+
+def localized_fields(fields: dict[str, object], locale: str) -> dict[str, object]:
+    location = fields.get("location")
+    if not isinstance(location, str):
+        return fields
+    return {**fields, "location": localized_place(location, locale)}
 
 
 def frame(event: str, payload: dict[str, object]) -> str:
@@ -63,7 +71,7 @@ async def conversation_events(
         if item is None:
             break
         stage, fields = item
-        yield frame("progress", {"stage": stage, **fields})
+        yield frame("progress", {"stage": stage, **localized_fields(fields, request.locale)})
     try:
         yield frame("result", (await answer).model_dump(mode="json"))
     except DomainError as error:
