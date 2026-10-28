@@ -221,13 +221,13 @@ Updated: 2026-10-28, Europe/Moscow
   (`available:false`, `reason:basemap_missing`), молчит фронт. Докачка запущена 2026-10-28.
 - Находки по UI/UX: артефакт <https://claude.ai/artifact/VSkFGDkwJ64W39Vktbcvj8>, снимки в
   `work/ui-review/walk/`.
-- 2026-10-28: все локальные ветки сведены в `feat/hotel-agent-mvp`. Своих коммитов было у трёх:
-  `fix/brief-fact-explanations`, `worktree-room-and-map-sources`, `feat/hotelier-cabinet`; остальные
-  12 уже содержались в ветке. Конфликты сведены руками: в `search_hotels.py` оставлены вместе
-  ближайшие совпадения, подтверждение вида по заявленным категориям и `asked`; в словарях
-  `explore.json` оба набора ключей. `schema.gen.ts` перегенерирован (35 операций). После
-  слияния: ruff, mypy 647 файлов, lint-imports, 1294 теста; фронт typecheck, lint, 625 тестов,
-  сборка. `rules` падает только на известном `css-duplicates`. Не пушилось.
+- 2026-10-28: все локальные ветки сведены в `feat/hotel-agent-mvp`; своя работа была у трёх
+  (`fix/brief-fact-explanations`, `worktree-room-and-map-sources`, `feat/hotelier-cabinet`),
+  остальные 12 уже содержались в ветке. Стенд поднят на слитом коде: образы `merged-20261028b`,
+  три сервиса здоровы, 35 операций, три миграции применены, слои карты перезалиты, живой запрос
+  отвечает за 13 с. Разбор конфликтов, проверки, числа и границы:
+  [work/branch-merge/README.md](../work/branch-merge/README.md). Не пушилось, интерфейс глазами
+  не смотрел.
 
 ## Historical state
 

@@ -12,6 +12,7 @@ that owns each one. Scrubbed at submission.
 | `task-coverage/review-2026-10-27.md` | разбор решения | Как работает поиск целиком, что сделано хорошо, критика P0/P1/P2 с числами живого стенда; тот же текст в `.pdf` |
 | `task-coverage/architecture-2026-10-27.md` | разбор архитектуры | Слои, порты, загрузка данных, восемь стадий пайплайна, агентный цикл, оценка, модель, карта; тот же текст в `.pdf` |
 | `pipeline-revision/plan.md` | пересмотр пайплайна | Что переделать в идее пайплайна: ранжирование по запасу, вопросы по ценности, срок годности, переход к именованным ключам; P0/P1/P2 с замерами 28 октября |
+| `branch-merge/README.md` | сведение веток | Какие локальные ветки слиты в MVP, как разобраны конфликты, нумерация миграций, проверки и состояние стенда |
 | `naming.md` | `naming` | Name candidates, scores, finalists, taglines, name origin |
 | `brand/` | `brand-identity` | Logo gallery and the chosen mark's rationale |
 | `design/` | `refero-style` | Style extraction, source-site screenshots, conflicts resolved |
