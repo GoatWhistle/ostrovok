@@ -7,9 +7,15 @@ import pytest
 
 from hotel_agent.adapters.llm.fake import FakeLLM
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
-from hotel_agent.application.dto import DemandRecord, NotificationRecord
+from hotel_agent.application.dto import DemandRecord, NotificationRecord, SearchHotelRecord
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
+from hotel_agent.application.use_cases.hotelier_notifications import (
+    ListHotelierNotifications,
+    MarkNotificationsRead,
+)
 from hotel_agent.application.use_cases.sweep_notifications import SweepHotelierNotifications
+from hotel_agent.domain.errors import HotelNotFound, InvalidQuery
+from hotel_agent.domain.notifications import NotificationKind
 from tests.unit.application.hotelier_fakes import (
     NOW,
     FixedClock,
@@ -21,6 +27,17 @@ from tests.unit.application.hotelier_fakes import (
 )
 
 REGION = "sochi"
+HOTEL = SearchHotelRecord(
+    id="h1",
+    region_id=REGION,
+    name="Hotel h1",
+    location=(39.72, 43.58),
+    stars=4,
+    building_id=None,
+    height_m=None,
+    levels=None,
+    footprint=None,
+)
 
 
 @pytest.fixture
@@ -148,3 +165,65 @@ async def test_demand_for_a_characteristic_no_one_can_answer_is_ignored(
     report = await sweep(store, registry)(REGION)
 
     assert (report.demand, report.written) == (0, 0)
+
+
+def seeded() -> Store:
+    store = Store(questions={"q1": question("q1", "h1", "pets_policy")})
+    store.hotel_records["h1"] = HOTEL
+    return store
+
+
+async def test_the_feed_explains_each_entry(registry: YamlCharacteristicRegistry) -> None:
+    store = seeded()
+    answer = AnswerHotelierQuestion(
+        factory(store), registry, FakeLLM(registry), FixedClock(), Ids()
+    )
+    await answer("q1", "С собаками до 10 кг, доплата 2500 рублей")
+
+    feed = await ListHotelierNotifications(factory(store), registry)("h1")
+
+    assert len(feed.items) == 1
+    item = feed.items[0]
+    assert item.title == "Размещение с животными"
+    assert item.question_text == "?"
+    assert item.notification.kind is NotificationKind.ANSWER_ACCEPTED
+    assert feed.unread.total == 1
+    assert feed.next_cursor is None
+
+
+async def test_the_feed_can_show_only_what_is_unread(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    store = seeded()
+    answer = AnswerHotelierQuestion(
+        factory(store), registry, FakeLLM(registry), FixedClock(), Ids()
+    )
+    await answer("q1", "С собаками до 10 кг")
+    read = MarkNotificationsRead(factory(store), FixedClock())
+
+    changed = await read("h1")
+    feed = await ListHotelierNotifications(factory(store), registry)("h1", unread_only=True)
+
+    assert changed == 1
+    assert feed.items == ()
+    assert feed.unread.total == 0
+
+
+async def test_a_page_size_outside_the_contract_is_refused(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    listing = ListHotelierNotifications(factory(seeded()), registry)
+
+    with pytest.raises(InvalidQuery):
+        await listing("h1", limit=0)
+    with pytest.raises(InvalidQuery):
+        await listing("h1", limit=101)
+
+
+async def test_the_feed_belongs_to_a_known_hotel(registry: YamlCharacteristicRegistry) -> None:
+    store = seeded()
+
+    with pytest.raises(HotelNotFound):
+        await ListHotelierNotifications(factory(store), registry)("missing")
+    with pytest.raises(HotelNotFound):
+        await MarkNotificationsRead(factory(store), FixedClock())("missing")

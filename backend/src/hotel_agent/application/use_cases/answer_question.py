@@ -49,13 +49,16 @@ class AnswerHotelierQuestion:
         self._uow, self._registry, self._llm = uow, registry, llm
         self._clock, self._next_id = clock, next_id
 
-    async def __call__(self, question_id: str, text: str) -> AnswerResult:
+    async def __call__(
+        self, question_id: str, text: str, extraction: Extraction | None = None
+    ) -> AnswerResult:
         if not text.strip() or len(text) > MAX_ANSWER_LENGTH:
             raise InvalidValue("Answer must contain between 1 and 10000 characters")
         async with self._uow() as uow:
             question = await _open_question(uow, question_id, lock=False)
         characteristic = self._registry.get(question.characteristic_key)
-        extraction = await self._llm.extract_fields(characteristic.key, text)
+        if extraction is None:
+            extraction = await self._llm.extract_fields(characteristic.key, text)
         values = {field.name: field.value for field in extraction.fields}
         if not values:
             async with self._uow() as uow:
