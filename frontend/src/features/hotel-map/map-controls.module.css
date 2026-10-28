@@ -51,3 +51,26 @@
     display: none;
   }
 }
+
+.sun {
+  display: grid;
+  justify-items: end;
+}
+
+.sun > button {
+  --button-radius: var(--radius-md);
+
+  inline-size: var(--target-min);
+  min-inline-size: var(--target-min);
+  padding-block: var(--space-6);
+  padding-inline: 0;
+  border-radius: var(--radius-md);
+}
+
+.sun > button > span:first-child {
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+}

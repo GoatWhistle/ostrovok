@@ -1372,7 +1372,10 @@ export interface components {
         ChatRequest: {
             /** Format: uuid */
             conversation_id?: string | null;
+            /** @description Реплика пользователя. Пустая строка допустима только вместе с непустым filters: это правка набора фильтров, она запускает поиск и не пишет реплику в чат. */
             message: string;
+            /** @description Активный набор фильтров, который пользователь видит над полем ввода. Когда поле передано, поиск опирается только на него: удалённое условие в запрос не возвращается. null означает, что клиент фильтрами не управляет и контекст берётся из переписки. */
+            filters?: components["schemas"]["ChatFilter"][] | null;
             /** @default russia */
             region_id: string;
             selected_hotel_id?: string | null;
@@ -1381,6 +1384,21 @@ export interface components {
              * @enum {string}
              */
             locale: "ru" | "en";
+        };
+        /** @description Одно понятое условие поиска. wish и location несут слова пользователя в label, dates и guests — структурные значения, которые клиент форматирует сам. */
+        ChatFilter: {
+            /** @enum {string} */
+            kind: "wish" | "location" | "dates" | "guests";
+            /** @example вид на закат */
+            label?: string;
+            /** @example sunset_view */
+            key?: string | null;
+            /** Format: date */
+            check_in?: string | null;
+            /** Format: date */
+            check_out?: string | null;
+            /** @example 2 */
+            adults?: number | null;
         };
         ChatMessage: {
             /** Format: uuid */
@@ -1409,6 +1427,8 @@ export interface components {
             updated_at: string | null;
             messages: components["schemas"]["ChatMessage"][];
             effective_query?: string | null;
+            /** @description Набор фильтров, разобранный из текущей выдачи. Клиент заменяет им своё состояние после каждого ответа; пустой массив означает, что выдачи ещё нет. */
+            filters?: components["schemas"]["ChatFilter"][];
             search?: components["schemas"]["SearchResponse"] | null;
         };
         NotificationCounters: {
