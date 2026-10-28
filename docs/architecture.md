@@ -15,7 +15,6 @@
 ## Кто что делает в системе?
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#ffffff","primaryTextColor":"#12140f","primaryBorderColor":"#1546db","secondaryColor":"#eaece5","tertiaryColor":"#f4f5f1","lineColor":"#61665a","textColor":"#12140f","noteBkgColor":"#eaece5","noteTextColor":"#4a4e44","actorBkg":"#ffffff","actorBorder":"#1546db","fontFamily":"Manrope Variable"}}}%%
 flowchart LR
     U1["Путешественник<br/>пишет запрос в чат"] --> M1["Разбор запроса<br/>на условия"]
     M1 -->|"каждое пожелание"| A["Отдельный агентский цикл"]
@@ -41,7 +40,6 @@ flowchart LR
 ## Из каких частей собран стенд?
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#ffffff","primaryTextColor":"#12140f","primaryBorderColor":"#1546db","secondaryColor":"#eaece5","tertiaryColor":"#f4f5f1","lineColor":"#61665a","textColor":"#12140f","noteBkgColor":"#eaece5","noteTextColor":"#4a4e44","actorBkg":"#ffffff","actorBorder":"#1546db","fontFamily":"Manrope Variable"}}}%%
 flowchart LR
     B["Браузер"] -->|":8080"| FE["frontend<br/>nginx и React SPA"]
     FE -->|"/api"| BE["backend<br/>FastAPI :8000"]
@@ -68,7 +66,6 @@ flowchart LR
 ## Как проходит основной сценарий?
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#ffffff","primaryTextColor":"#12140f","primaryBorderColor":"#1546db","secondaryColor":"#eaece5","tertiaryColor":"#f4f5f1","lineColor":"#61665a","textColor":"#12140f","noteBkgColor":"#eaece5","noteTextColor":"#4a4e44","actorBkg":"#ffffff","actorBorder":"#1546db","fontFamily":"Manrope Variable"}}}%%
 sequenceDiagram
     actor U as Путешественник
     participant FE as frontend
