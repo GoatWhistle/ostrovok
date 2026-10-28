@@ -1366,9 +1366,23 @@ components:
         available_rooms: { type: integer, nullable: true }
         meal: { type: string, nullable: true }
         amenities: { type: array, items: { type: string } }
-        floor_number: { type: integer, nullable: true }
+        floor_number: { type: integer, nullable: true, description: "Этаж номера; заполняется только источником, который его публикует" }
         room_group_id: { type: string, nullable: true }
         free_cancellation_before: { type: string, format: date-time, nullable: true }
+        occupancy: { type: integer, nullable: true, description: "Число гостей, на которое поставщик посчитал этот тариф" }
+        bed_places:
+          allOf: [{ $ref: "#/components/schemas/BedPlaces" }]
+          nullable: true
+
+    BedPlaces:
+      type: object
+      required: [main, extra, child_cots, bedding]
+      description: "Спальные места тарифа по данным поставщика; не максимальная вместимость категории"
+      properties:
+        main: { type: integer, description: Основные места }
+        extra: { type: integer, description: Дополнительные места }
+        child_cots: { type: integer, description: Детские кроватки }
+        bedding: { type: array, items: { type: string }, description: Коды типов кроватей поставщика }
 
     SupplierRoom:
       type: object
@@ -1439,6 +1453,7 @@ components:
         categories:
           type: array
           items: { $ref: "#/components/schemas/SupplierRegistryCategory" }
+        valid_until: { type: string, format: date, nullable: true, description: "Дата окончания действия свидетельства о присвоении категории" }
 
     SupplierFacts:
       type: object

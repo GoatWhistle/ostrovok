@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date
 from typing import Protocol
 
 from hotel_agent.domain.hotel_identity import HotelIdentity
@@ -48,6 +49,7 @@ class SupplierRegistry:
     address: str | None = None
     link: str | None = None
     categories: tuple[SupplierRegistryCategory, ...] = ()
+    valid_until: date | None = None
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

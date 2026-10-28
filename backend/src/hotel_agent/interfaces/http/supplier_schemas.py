@@ -1,3 +1,5 @@
+from datetime import date
+
 from pydantic import BaseModel
 
 from hotel_agent.application.ports.supplier_details import SupplierDetails, SupplierRoom
@@ -40,6 +42,7 @@ class SupplierRegistrySchema(BaseModel):
     address: str | None
     link: str | None
     categories: list[SupplierRegistryCategorySchema]
+    valid_until: date | None
 
 
 class SupplierFactsSchema(BaseModel):
@@ -136,6 +139,7 @@ def supplier_details_schema(details: SupplierDetails) -> SupplierDetailsSchema:
                     SupplierRegistryCategorySchema(category=item.category, rooms=item.rooms)
                     for item in registry.categories
                 ],
+                valid_until=registry.valid_until,
             )
             if registry
             else None,

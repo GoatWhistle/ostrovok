@@ -11,6 +11,13 @@ from hotel_agent.interfaces.http.supplier_schemas import (
 )
 
 
+class BedPlacesSchema(BaseModel):
+    main: int
+    extra: int
+    child_cots: int
+    bedding: list[str]
+
+
 class RoomOfferSchema(BaseModel):
     id: str
     room_name: str
@@ -22,6 +29,8 @@ class RoomOfferSchema(BaseModel):
     floor_number: int | None
     room_group_id: str | None
     free_cancellation_before: datetime | None
+    occupancy: int | None
+    bed_places: BedPlacesSchema | None
 
 
 class HotelOffersSchema(BaseModel):
@@ -70,6 +79,15 @@ def hotel_offers_schema(result: HotelOffers) -> HotelOffersSchema:
                 floor_number=item.floor_number,
                 room_group_id=item.room_group_id,
                 free_cancellation_before=item.free_cancellation_before,
+                occupancy=item.occupancy,
+                bed_places=BedPlacesSchema(
+                    main=item.bed_places.main,
+                    extra=item.bed_places.extra,
+                    child_cots=item.bed_places.child_cots,
+                    bedding=list(item.bed_places.bedding),
+                )
+                if item.bed_places
+                else None,
             )
             for item in result.offers
         ],

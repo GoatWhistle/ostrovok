@@ -3,7 +3,11 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
-from hotel_agent.application.ports.hotel_offers import OfferProviderFailure, RoomOffer
+from hotel_agent.application.ports.hotel_offers import (
+    BedPlaces,
+    OfferProviderFailure,
+    RoomOffer,
+)
 
 
 def site_offers(row: dict[str, Any], *, all_rates: bool = False) -> tuple[RoomOffer, ...]:
@@ -98,7 +102,43 @@ def _offer(rate: dict[str, Any]) -> RoomOffer:
         if len(rooms) == 1 and isinstance(rooms[0].get("rg_hash"), str)
         else None,
         free_cancellation_before=_cancellation(rate),
+        occupancy=_count(rate.get("occupancy")),
+        bed_places=_bed_places(rate, rooms),
     )
+
+
+def _bed_places(rate: dict[str, Any], rooms: list[dict[str, Any]]) -> BedPlaces | None:
+    places = rate.get("bed_places")
+    if not isinstance(places, dict):
+        return None
+    main = _count(places.get("main_count"))
+    if main is None:
+        return None
+    bedding: set[str] = set()
+    for room in rooms:
+        for code in _items(room.get("bedding_data")):
+            if isinstance(code, str) and code.strip():
+                bedding.add(code.strip())
+        for entry in _items(room.get("multi_bed_data")):
+            bed = entry.get("bed") if isinstance(entry, dict) else None
+            if isinstance(bed, str) and bed.strip():
+                bedding.add(bed.strip())
+    return BedPlaces(
+        main=main,
+        extra=_count(places.get("extra_count")) or 0,
+        child_cots=_count(places.get("child_cot_count")) or 0,
+        bedding=tuple(sorted(bedding)),
+    )
+
+
+def _items(value: object) -> list[Any]:
+    return list(value) if isinstance(value, list) else []
+
+
+def _count(value: object) -> int | None:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        return None
+    return value
 
 
 def _cancellation(rate: dict[str, Any]) -> datetime | None:
