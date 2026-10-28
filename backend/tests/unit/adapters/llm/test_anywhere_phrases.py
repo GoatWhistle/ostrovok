@@ -1,4 +1,5 @@
-from hotel_agent.adapters.llm.query_payload import parse_payload, says_anywhere
+from hotel_agent.adapters.llm.query_payload import parse_payload
+from hotel_agent.application.anywhere_request import says_anywhere
 
 
 def test_the_city_chip_phrase_always_means_anywhere() -> None:

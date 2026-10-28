@@ -5,6 +5,7 @@ from uuid import uuid4
 
 from hotel_agent.application import progress
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
+from hotel_agent.application.anywhere_request import keep_anywhere
 from hotel_agent.application.chat_dialogue import ChatDialogue
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, shorten, validated_title
@@ -115,7 +116,7 @@ class Chat:
         answer_id = str(uuid4())
         if decision.mode is ChatMode.SEARCH:
             assert decision.query is not None
-            effective_query = decision.query
+            effective_query = keep_anywhere(message, decision.query)
             started = perf_counter()
             search = await self._search(effective_query, region_id, None, 20)
             took_ms = round((perf_counter() - started) * 1000)

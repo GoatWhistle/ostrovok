@@ -224,6 +224,8 @@ CYRILLIC = re.compile(r"[Ѐ-ӿ]")
 def conflict_question(query: str, terms: list[str]) -> str:
     if CYRILLIC.search(query):
         wanted = ", ".join(f"«{term}»" for term in terms)
-        return f"Ни один проверенный отель не подходит одновременно под {wanted}. Что можно ослабить?"
+        return (
+            f"Ни один проверенный отель не подходит одновременно под {wanted}. Что можно ослабить?"
+        )
     wanted = ", ".join(f"“{term}”" for term in terms)
     return f"No verified hotel matches {wanted} at once. Which condition can I relax?"

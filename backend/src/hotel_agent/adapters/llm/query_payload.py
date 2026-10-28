@@ -3,6 +3,7 @@ from datetime import date
 
 from hotel_agent.adapters.llm.payload import flag, items, number, optional_text, strings, text
 from hotel_agent.adapters.llm.text import normalize
+from hotel_agent.application.anywhere_request import says_anywhere
 from hotel_agent.domain.characteristics import ValueType
 from hotel_agent.domain.query import (
     OSM_OBJECT_KEYS,
@@ -32,26 +33,6 @@ def valid_intent_value(value_type: ValueType, value: object) -> bool:
     if value_type in {ValueType.ENUM, ValueType.TEXT}:
         return isinstance(value, str)
     return isinstance(value, bool | str | int | float)
-
-
-ANYWHERE_PHRASES = (
-    "город не важен",
-    "город неважен",
-    "по всей россии",
-    "где угодно",
-    "любой город",
-    "неважно где",
-    "не важно где",
-    "the city does not matter",
-    "search across russia",
-    "any city",
-    "anywhere in russia",
-)
-
-
-def says_anywhere(query: str) -> bool:
-    text = normalize(query)
-    return any(phrase in text for phrase in ANYWHERE_PHRASES)
 
 
 def nearby_object(raw: Mapping[str, object], query: str) -> NearbyObjectRequest | None:
