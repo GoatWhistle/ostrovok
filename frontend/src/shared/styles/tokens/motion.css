@@ -72,6 +72,7 @@
   --transition-clip-out: clip-path var(--dur-panel-exit) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
+  --motion-theme-in: kf-fade-in var(--dur-slow) var(--ease-in-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
   --motion-scale-in: kf-scale-in var(--dur-base) var(--ease-out) both;
   --motion-scale-out: kf-scale-out var(--dur-exit) var(--ease-out) both;

@@ -53,7 +53,7 @@ export async function revealTransition(
   try {
     await transition.ready
     window.clearTimeout(limit)
-    if (kind === "dusk") {
+    if (kind === "dusk" || kind === "theme") {
       await transition.finished
       return
     }

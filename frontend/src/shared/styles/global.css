@@ -90,15 +90,23 @@ samp {
   animation-timing-function: var(--ease-out);
 }
 
+:root[data-view-transition="theme"] * {
+  view-transition-name: none;
+}
+
 :root[data-view-transition="theme"]::view-transition-old(root),
-:root[data-view-transition="theme"]::view-transition-new(root),
 :root[data-view-transition="locale"]::view-transition-old(root),
 :root[data-view-transition="locale"]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-:root[data-view-transition="theme"]::view-transition-new(root),
+:root[data-view-transition="theme"]::view-transition-new(root) {
+  z-index: var(--layer-raised);
+  animation: var(--motion-theme-in);
+  mix-blend-mode: normal;
+}
+
 :root[data-view-transition="locale"]::view-transition-new(root) {
   z-index: var(--layer-raised);
 }

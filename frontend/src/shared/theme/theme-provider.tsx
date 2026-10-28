@@ -22,6 +22,7 @@ export interface ThemeState {
 }
 
 export const ThemeContext = createContext<ThemeState | null>(null)
+export const ThemeSetterContext = createContext<ThemeState["setTheme"] | null>(null)
 
 export interface ThemeProviderProps {
   readonly children: ReactNode
@@ -42,5 +43,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [])
 
   const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme])
-  return <ThemeContext value={value}>{children}</ThemeContext>
+  return (
+    <ThemeSetterContext value={setTheme}>
+      <ThemeContext value={value}>{children}</ThemeContext>
+    </ThemeSetterContext>
+  )
 }
