@@ -77,5 +77,5 @@ def found_lead(search: SearchOutcome, selected_hotel_id: str | None, locale: str
     if count == 1:
         return f"Found one hotel: {names}." if en else f"Нашёл один отель: {names}."
     if en:
-        return f"Found {total}. Closest to your request: {names}."
-    return f"Нашёл {total}. Ближе всего к запросу: {names}."
+        return f"Found {total}. Top of the list: {names}."
+    return f"Нашёл {total}. Первые в списке: {names}."

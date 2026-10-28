@@ -92,10 +92,8 @@ def test_found_reply_names_top_hotels_with_russian_plural() -> None:
     results = tuple(hotel(name, MatchQuality.FULL) for name in ("A", "B", "C", "D"))
     search = SearchOutcome(query_id="q", parsed=parsed, results=results)
 
-    assert search_reply(search, None, "ru") == "Нашёл 4 отеля. Ближе всего к запросу: A, B и C."
-    assert (
-        search_reply(search, None, "en") == "Found 4 hotels. Closest to your request: A, B and C."
-    )
+    assert search_reply(search, None, "ru") == "Нашёл 4 отеля. Первые в списке: A, B и C."
+    assert search_reply(search, None, "en") == "Found 4 hotels. Top of the list: A, B and C."
 
 
 def test_russian_hotel_plural_forms() -> None:
