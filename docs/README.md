@@ -26,7 +26,7 @@
 |---|---|
 | [Архитектура](architecture.md) | Роли, сервисы Compose, путь данных от сообщения в чате до выдачи, слои, что заменяемо |
 | [Поиск по отдельным пожеланиям](wish-agent.md) | Цикл инструментов, проверка смысла, данные поставщика и поиск номеров в интернете |
-| [API](api.md) | 15 методов, формат ошибок, отсутствие входа; контракт [OpenAPI](api/openapi.yaml) |
+| [API](api.md) | 34 операции, формат ошибок, отсутствие входа; контракт [OpenAPI](api/openapi.yaml) |
 | [ADR 0001](adr/0001-postgis-raw-sql.md) | PostgreSQL 16 с PostGIS и сырой SQL через psycopg 3: геозапросы пишутся на SQL без обхода ORM |
 | [ADR 0002](adr/0002-layers-inside-backend.md) | Слои `domain`, `application`, `adapters`, `interfaces` лежат внутри `backend/`, чтобы не держать два бэкенда |
 | [ADR 0003](adr/0003-yandex-openai-compatible-endpoint.md) | Живая модель подключена через OpenAI-совместимый endpoint Yandex Cloud, а не через SDK вендора |

@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
+from hotel_agent.application.use_cases.answer_questions import AnswerHotelierQuestions
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.compare_hotels import CompareHotels
@@ -16,8 +17,14 @@ from hotel_agent.application.use_cases.get_map_scene import GetMapScene
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
+from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
+from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
+from hotel_agent.application.use_cases.hotelier_notifications import (
+    ListHotelierNotifications,
+    MarkNotificationsRead,
+)
 from hotel_agent.application.use_cases.hotelier_questions import (
     ChangeQuestionStatus,
     ListHotelierQuestions,
@@ -25,6 +32,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
 from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.interfaces.http.routers import (
     chat,
     compare,
@@ -69,6 +77,12 @@ def api_router_v1(
     answer_hotelier_question: AnswerHotelierQuestion,
     change_question_status: ChangeQuestionStatus,
     change_facts: ChangeFacts,
+    hotelier_cabinet: GetHotelierCabinet,
+    list_hotelier_notifications: ListHotelierNotifications,
+    read_hotelier_notifications: MarkNotificationsRead,
+    answer_hotelier_questions: AnswerHotelierQuestions,
+    state_hotelier_fact: StateHotelierFact,
+    get_hotelier_question: GetHotelierQuestion,
     get_map_style: GetMapStyle,
     get_map_scene: GetMapScene,
 ) -> APIRouter:
@@ -92,6 +106,12 @@ def api_router_v1(
             answer_hotelier_question,
             change_question_status,
             change_facts,
+            hotelier_cabinet,
+            list_hotelier_notifications,
+            read_hotelier_notifications,
+            answer_hotelier_questions,
+            state_hotelier_fact,
+            get_hotelier_question,
         )
     )
     router.include_router(map_tiles.build_router(get_map_tile))

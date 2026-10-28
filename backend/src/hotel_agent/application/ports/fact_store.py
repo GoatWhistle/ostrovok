@@ -43,12 +43,29 @@ class QuestionStore(Protocol):
 
     async def prune(self, region: str) -> int: ...
 
+    async def set_statuses(self, question_ids: Sequence[str], status: str) -> int: ...
+
+    async def open_without_demand(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        backed: Sequence[tuple[str, str]],
+    ) -> Sequence[str]: ...
+
+    async def open_for(
+        self, hotel_ids: Sequence[str], characteristic_keys: Sequence[str]
+    ) -> Sequence[QuestionRecord]: ...
+
+    async def deferred_with_demand(
+        self, region: str, backed: Sequence[tuple[str, str]]
+    ) -> Sequence[QuestionRecord]: ...
+
     async def candidates(
         self,
         region: str,
         characteristic_keys: Sequence[str],
-        hotels: int = 200,
-        allow_unseen: bool = True,
+        hotel_ids: Sequence[str] | None = None,
+        limit: int = 200,
     ) -> Sequence[QuestionCandidate]: ...
 
     async def add(self, records: Sequence[QuestionRecord]) -> int: ...

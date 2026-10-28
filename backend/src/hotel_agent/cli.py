@@ -37,10 +37,7 @@ from hotel_agent.adapters.seed.reader import GeoJsonSeedReader
 from hotel_agent.adapters.seed.store import GeoJsonSeedStore
 from hotel_agent.application.quality_metrics import overall_coverage, overall_hotelier_share
 from hotel_agent.application.use_cases.build_seed import BuildSeed
-from hotel_agent.application.use_cases.hotelier_questions import (
-    PlanHotelierQuestions,
-    PruneHotelierQuestions,
-)
+from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
 from hotel_agent.application.use_cases.ingest_pbf import IngestPbf
 from hotel_agent.application.use_cases.ingest_polygons import IngestPolygons
 from hotel_agent.application.use_cases.ingest_seed import IngestSeed
@@ -49,8 +46,12 @@ from hotel_agent.application.use_cases.precompute import Precompute
 from hotel_agent.application.use_cases.precompute_facades import PrecomputeFacades
 from hotel_agent.application.use_cases.precompute_sunset import PrecomputeSunset
 from hotel_agent.application.use_cases.precompute_walk import PrecomputeWalk
+from hotel_agent.application.use_cases.prune_questions import PruneHotelierQuestions
 from hotel_agent.application.use_cases.refresh_facts import RefreshStaleFacts
 from hotel_agent.application.use_cases.refresh_hotel_heights import RefreshHotelHeights
+from hotel_agent.application.use_cases.sweep_notifications import (
+    SweepHotelierNotifications,
+)
 from hotel_agent.application.use_cases.sync_hotel_catalog import SyncHotelCatalog
 from hotel_agent.interfaces.cli.main import build_parser, parse_bbox, run_build_seed
 from hotel_agent.settings import HotelDataMode, Settings, load_settings
@@ -85,13 +86,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         return asyncio.run(_ingest_settlements(args, settings.database_url))
     if args.command == "precompute":
         code = asyncio.run(_precompute(args.region, Path(args.directory), settings.database_url))
-        return code or asyncio.run(_plan_questions(args.region, settings))
+        return code or asyncio.run(_plan_questions(args, settings))
     if args.command == "plan-questions":
-        return asyncio.run(_plan_questions(args.region, settings, args.hotels))
+        return asyncio.run(_plan_questions(args, settings))
+    if args.command == "notify-hoteliers":
+        return asyncio.run(_notify_hoteliers(args, settings))
+    if args.command == "prune-questions":
+        return asyncio.run(_prune_questions(args, settings))
     if args.command == "metrics":
         return asyncio.run(_metrics(args.region, settings))
-    if args.command == "prune-questions":
-        return asyncio.run(_prune_questions(args.region, settings))
     if args.command == "refresh-facts":
         return asyncio.run(_refresh_facts(args, settings))
     if args.command == "refresh-geography":
@@ -237,6 +240,7 @@ async def _ingest_settlements(args: Namespace, database_url: str) -> int:
 
 
 async def _precompute(region: str, directory: Path, database_url: str) -> int:
+    sources = _seed_sources(directory)
     async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
         counts = await Precompute(PostgresPrecompute(pool))(region)
         routes = await PrecomputeWalk(SochiWalkGraph(), PostgresWalkStore(pool))(region, directory)
@@ -251,13 +255,28 @@ async def _precompute(region: str, directory: Path, database_url: str) -> int:
         )
     finally:
         await uow.aclose()
+    async with AsyncConnectionPool(database_url, min_size=1, max_size=2, open=False) as pool:
+        stamped = await Precompute(PostgresPrecompute(pool)).stamp(region, *sources)
     for name, count in counts.items():
         print(f"{name}: {count}")
     print(f"distance_to_sea: {routes}")
     for name, count in facades.items():
         print(f"{name}: {count}")
     print(f"sunset_view: {sunset}")
+    for name, count in stamped.items():
+        print(f"{name}: {count}")
     return 0
+
+
+def _seed_sources(directory: Path) -> tuple[str, str]:
+    meta = directory / "meta.json"
+    if not meta.is_file():
+        return ("", "")
+    try:
+        described = json.loads(meta.read_text())
+    except ValueError:
+        return ("", "")
+    return (str(described.get("osm_source", "")), str(described.get("dem_source", "")))
 
 
 async def _metrics(region: str, settings: Settings) -> int:
@@ -315,27 +334,71 @@ async def _refresh_geography(region: str, database_url: str) -> int:
         await uow.aclose()
 
 
-async def _prune_questions(region: str, settings: Settings) -> int:
-    uow = PostgresUnitOfWorkFactory(settings.database_url)
-    try:
-        skipped = await PruneHotelierQuestions(uow)(region)
-    finally:
-        await uow.aclose()
-    print(f"skipped: {skipped}")
-    return 0
-
-
-async def _plan_questions(region: str, settings: Settings, hotels: int = 200) -> int:
+async def _plan_questions(args: Namespace, settings: Settings) -> int:
     uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
     try:
         added = await PlanHotelierQuestions(
             uow,
             YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
             SystemClock(),
-        )(region, hotels)
+        )(
+            args.region,
+            limit=getattr(args, "limit", 200),
+            cold_start=getattr(args, "cold_start", 20),
+        )
     finally:
         await uow.aclose()
     print(f"hotelier_questions: {added}")
+    return 0
+
+
+async def _prune_questions(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
+    try:
+        report = await PruneHotelierQuestions(
+            uow,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+            window_days=args.window_days,
+        )(args.region, apply=args.apply)
+    finally:
+        await uow.aclose()
+    print(
+        json.dumps(
+            {
+                "backed": report.backed,
+                "unbacked": report.unbacked,
+                "deferred": report.deferred,
+                "reopened": report.reopened,
+                "applied": report.applied,
+            }
+        )
+    )
+    return 0
+
+
+async def _notify_hoteliers(args: Namespace, settings: Settings) -> int:
+    uow = PostgresUnitOfWorkFactory(settings.database_url, settings.seed_dir)
+    try:
+        report = await SweepHotelierNotifications(
+            uow,
+            YamlCharacteristicRegistry.from_directory(settings.characteristics_dir),
+            SystemClock(),
+            lead_days=args.lead_days,
+            window_days=args.window_days,
+            limit=args.limit,
+        )(args.region)
+    finally:
+        await uow.aclose()
+    print(
+        json.dumps(
+            {
+                "expiring": report.expiring,
+                "demand": report.demand,
+                "written": report.written,
+            }
+        )
+    )
     return 0
 
 

@@ -50,15 +50,34 @@ def build_parser() -> ArgumentParser:
     geometry.add_argument("--region", default="russia")
 
     questions = commands.add_parser(
-        "plan-questions", help="Queue hotelier questions for characteristics without facts"
+        "plan-questions", help="Queue hotelier questions the searches actually ask for"
     )
     questions.add_argument("--region", default="sochi")
-    questions.add_argument("--hotels", type=int, default=200)
-
-    prune = commands.add_parser(
-        "prune-questions", help="Skip open questions for hotels that never reached results"
+    questions.add_argument("--limit", type=int, default=200)
+    questions.add_argument(
+        "--cold-start",
+        type=int,
+        default=20,
+        help="How many hotels to seed questions for when no search demand is recorded yet",
     )
-    prune.add_argument("--region", default="sochi")
+
+    pruning = commands.add_parser(
+        "prune-questions",
+        help="Defer open questions no search asks for and reopen the deferred ones that matter",
+    )
+    pruning.add_argument("--region", default="sochi")
+    pruning.add_argument("--window-days", type=int, default=14)
+    pruning.add_argument(
+        "--apply", action="store_true", help="Write the changes instead of only reporting them"
+    )
+
+    notices = commands.add_parser(
+        "notify-hoteliers", help="Raise notifications about expiring values and blocked searches"
+    )
+    notices.add_argument("--region", default="sochi")
+    notices.add_argument("--lead-days", type=int, default=14)
+    notices.add_argument("--window-days", type=int, default=14)
+    notices.add_argument("--limit", type=int, default=500)
 
     refresh = commands.add_parser(
         "refresh-facts", help="Recheck facts whose validity has expired and record disagreements"

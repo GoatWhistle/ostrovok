@@ -21,6 +21,37 @@ WHERE id = %(id)s"""
 
 SET_STATUS = "UPDATE hotelier_questions SET status = %(status)s WHERE id = %(id)s"
 
+SET_STATUSES = """UPDATE hotelier_questions SET status = %(status)s
+WHERE id = ANY(%(ids)s::text[]) AND status <> 'answered'"""
+
+BACKED = """SELECT 1 FROM unnest(%(hotels)s::text[], %(backed_keys)s::text[]) AS b(hotel, key)
+    WHERE b.hotel = q.hotel_id AND b.key = q.characteristic_key"""
+
+OPEN_WITHOUT_DEMAND = (
+    """SELECT q.id
+FROM hotelier_questions q JOIN hotels h ON h.id = q.hotel_id
+WHERE h.region_id = %(region)s AND q.status = 'open'
+  AND q.characteristic_key = ANY(%(keys)s::text[])
+  AND NOT EXISTS ("""
+    + BACKED
+    + ")\nORDER BY q.id"
+)
+
+DEFERRED_WITH_DEMAND = (
+    QUESTION_COLUMNS
+    + """ JOIN hotels h ON h.id = q.hotel_id
+WHERE h.region_id = %(region)s AND q.status = 'skipped' AND EXISTS ("""
+    + BACKED
+    + ")\nORDER BY q.id"
+)
+
+OPEN_FOR = (
+    QUESTION_COLUMNS
+    + """ WHERE q.status = 'open' AND q.hotel_id = ANY(%(hotels)s::text[])
+  AND q.characteristic_key = ANY(%(keys)s::text[])
+ORDER BY q.hotel_id, q.characteristic_key"""
+)
+
 CANDIDATES = """WITH shown AS (
     SELECT f.subject_id AS hotel_id, COUNT(*) AS times
     FROM facts f
@@ -41,9 +72,9 @@ ranked AS (
     LEFT JOIN shown ON shown.hotel_id = h.id
     LEFT JOIN known ON known.hotel_id = h.id
     WHERE h.region_id = %(region)s AND h.name <> h.id
-      AND (shown.hotel_id IS NOT NULL OR %(allow_unseen)s)
+      AND (%(hotels)s::text[] IS NULL OR h.id = ANY(%(hotels)s::text[]))
     ORDER BY COALESCE(shown.times, 0) DESC, COALESCE(known.facts, 0) DESC, h.id
-    LIMIT %(hotels)s)
+    LIMIT %(limit)s)
 SELECT ranked.id, ranked.name, k.key
 FROM ranked CROSS JOIN unnest(%(keys)s::text[]) AS k(key)
 WHERE NOT EXISTS (SELECT 1 FROM facts f WHERE f.subject_type = 'hotel'
@@ -95,22 +126,64 @@ class PostgresQuestionStore:
 
     async def prune(self, region: str) -> int:
         cursor = await self._connection.execute(PRUNE, {"region": region})
-        return cursor.rowcount
+        return max(cursor.rowcount, 0)
+
+    async def set_statuses(self, question_ids: Sequence[str], status: str) -> int:
+        if not question_ids:
+            return 0
+        cursor = await self._connection.execute(
+            SET_STATUSES, {"ids": list(question_ids), "status": status}
+        )
+        return max(cursor.rowcount, 0)
+
+    async def open_without_demand(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        backed: Sequence[tuple[str, str]],
+    ) -> Sequence[str]:
+        cursor = await self._connection.execute(
+            OPEN_WITHOUT_DEMAND,
+            {
+                "region": region,
+                "keys": list(characteristic_keys),
+                **_pairs(backed),
+            },
+        )
+        return [str(row[0]) for row in await cursor.fetchall()]
+
+    async def open_for(
+        self, hotel_ids: Sequence[str], characteristic_keys: Sequence[str]
+    ) -> Sequence[QuestionRecord]:
+        if not hotel_ids or not characteristic_keys:
+            return []
+        cursor = await self._connection.execute(
+            OPEN_FOR, {"hotels": list(hotel_ids), "keys": list(characteristic_keys)}
+        )
+        return [_question(row) for row in await cursor.fetchall()]
+
+    async def deferred_with_demand(
+        self, region: str, backed: Sequence[tuple[str, str]]
+    ) -> Sequence[QuestionRecord]:
+        cursor = await self._connection.execute(
+            DEFERRED_WITH_DEMAND, {"region": region, **_pairs(backed)}
+        )
+        return [_question(row) for row in await cursor.fetchall()]
 
     async def candidates(
         self,
         region: str,
         characteristic_keys: Sequence[str],
-        hotels: int = 200,
-        allow_unseen: bool = True,
+        hotel_ids: Sequence[str] | None = None,
+        limit: int = 200,
     ) -> Sequence[QuestionCandidate]:
         cursor = await self._connection.execute(
             CANDIDATES,
             {
                 "region": region,
                 "keys": list(characteristic_keys),
-                "hotels": hotels,
-                "allow_unseen": allow_unseen,
+                "hotels": list(hotel_ids) if hotel_ids is not None else None,
+                "limit": limit,
             },
         )
         return [
@@ -154,3 +227,10 @@ def _question(row: tuple[object, ...]) -> QuestionRecord:
         answered_at=row[8],
         answer_fact_ids=tuple(str(item) for item in row[9]),
     )
+
+
+def _pairs(backed: Sequence[tuple[str, str]]) -> dict[str, list[str]]:
+    return {
+        "hotels": [hotel for hotel, _ in backed],
+        "backed_keys": [key for _, key in backed],
+    }

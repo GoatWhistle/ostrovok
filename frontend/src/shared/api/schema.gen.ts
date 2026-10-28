@@ -407,6 +407,91 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotelier/{hotel_id}/overview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Сводка кабинета: что система знает об отеле, чего не хватает, что оспорено, что скоро истечёт, сколько раз отель попал в выдачу и какой один шаг стоит сделать сейчас. */
+        get: operations["getHotelierCabinet"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/hotelier/{hotel_id}/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Лента оповещений отеля, новые сверху. Текст сообщения собирает клиент по полю kind; payload несёт только числа и ключи. */
+        get: operations["listHotelierNotifications"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/hotelier/{hotel_id}/notifications/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Отмечает прочитанными указанные оповещения. Без тела или с `ids: null` — все непрочитанные; пустой массив не отмечает ничего. */
+        post: operations["readHotelierNotifications"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/hotelier/{hotel_id}/facts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Отельер сам называет значение характеристики, о которой его не спрашивали: свободный текст раскладывается по полям реестра с цитатой и становится фактом с источником hotelier. */
+        post: operations["stateHotelierFact"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/hotelier/{hotel_id}/answers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Один свободный текст против всех открытых вопросов отеля: применяется к тем, из которых удалось извлечь поля, остальные остаются открытыми. */
+        post: operations["answerHotelierQuestions"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotelier/questions/{question_id}/answer": {
         parameters: {
             query?: never;
@@ -430,7 +515,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** @description Один вопрос по подписанной ссылке: отельеру можно отправить адрес, который открывает только этот вопрос, без доступа к остальному кабинету. Подпись считается от идентификатора вопроса и секрета `QUESTION_LINK_SECRET`; без секрета метод отвечает `503`. Это не вход: ссылка лишь неугадываема. */
+        get: operations["getHotelierQuestion"];
         put?: never;
         post?: never;
         delete?: never;
@@ -762,9 +848,14 @@ export interface components {
             label: string;
             /** @example Закат есть, но только с 5-го этажа западной стороны */
             explanation?: string;
-            fact?: components["schemas"]["FactBrief"];
+            fact?: components["schemas"]["FactBrief"] | null;
             geo_refs?: string[];
-            camera?: components["schemas"]["Camera"];
+            camera?: components["schemas"]["Camera"] | null;
+            /**
+             * @description Открытый вопрос отелю по этому условию, если значение неизвестно и вопрос уже поставлен. Вопросы ставит `plan-questions` по записанному спросу, поиск их не создаёт.
+             * @example q_n10058556917_pets_policy
+             */
+            hotelier_question_id?: string | null;
         };
         HotelSummary: {
             /** @example h_osm_w123456789 */
@@ -776,9 +867,9 @@ export interface components {
             address?: string | null;
             location: components["schemas"]["LonLat"];
             /** @example b_osm_w123456789 */
-            building_id?: string;
+            building_id?: string | null;
             /** @example 28.8 */
-            height_m?: number;
+            height_m?: number | null;
             /** @example 9 */
             levels?: number | null;
             thumbnail_url?: string | null;
@@ -810,6 +901,28 @@ export interface components {
             /** @description Упрощённый контур для отрисовки всех результатов сразу (MapLibre fill-extrusion) */
             footprint?: components["schemas"]["BuildingFeature"] | null;
         };
+        /** @description Отель, который не попал в выдачу, и почему */
+        RejectedHotel: {
+            hotel: components["schemas"]["HotelSummary"];
+            /**
+             * @description `requirement_unmet` — обязательное условие подтверждённо не выполнено; `requirement_unknown` — обязательное условие осталось неизвестным, подтвердить нечем; `view_not_computed` — вид требовался, но посчитать его не удалось; `no_evidence` — ни одного подтверждённого совпадения; `review` — смысловая проверка отклонила рекомендацию.
+             * @enum {string}
+             */
+            cause: "requirement_unmet" | "requirement_unknown" | "view_not_computed" | "no_evidence" | "review";
+            /**
+             * @description Доля выполненных условий с учётом веса и уверенности, от 0 до 1
+             * @example 0.66
+             */
+            closeness: number;
+            characteristic_key?: string | null;
+            /**
+             * @description Условие словами пользователя, из-за которого отель не подошёл
+             * @example можно с собакой
+             */
+            condition?: string;
+            /** @description Пояснение смысловой проверки, если причина `review` */
+            detail?: string;
+        };
         SearchResponse: {
             query_id: string;
             parsed: {
@@ -832,6 +945,8 @@ export interface components {
                 adults?: number | null;
             };
             results: components["schemas"]["SearchResult"][];
+            /** @description До десяти отелей, не попавших в выдачу, самые близкие первыми */
+            rejected?: components["schemas"]["RejectedHotel"][];
             /** @description Рамка для fitBounds по всем результатам */
             viewport?: {
                 bbox?: components["schemas"]["BBox"];
@@ -1249,6 +1364,147 @@ export interface components {
             messages: components["schemas"]["ChatMessage"][];
             effective_query?: string | null;
             search?: components["schemas"]["SearchResponse"] | null;
+        };
+        NotificationCounters: {
+            /** @example 4 */
+            total: number;
+            /**
+             * @description Из них требуют действия отельера
+             * @example 3
+             */
+            action: number;
+            by_kind: {
+                [key: string]: number;
+            };
+        };
+        HotelierNotification: {
+            /** @example n_9f2c1d4ab8e70315 */
+            id: string;
+            hotel_id: string;
+            /** @enum {string} */
+            kind: "question_opened" | "answer_accepted" | "answer_needs_detail" | "fact_changed" | "fact_expiring" | "conflict_opened" | "conflict_resolved" | "search_demand";
+            /** @enum {string} */
+            severity: "action" | "info";
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            read_at?: string | null;
+            characteristic_key?: string | null;
+            /** @description Название характеристики из реестра */
+            title?: string | null;
+            question_id?: string | null;
+            question_text?: string | null;
+            fact_id?: string | null;
+            conflict_id?: string | null;
+            /** @description Числа и ключи для подстановки в текст на клиенте */
+            payload: {
+                [key: string]: unknown;
+            };
+        };
+        HotelierNotificationFeed: {
+            items: components["schemas"]["HotelierNotification"][];
+            next_cursor?: string | null;
+            unread: components["schemas"]["NotificationCounters"];
+        };
+        CoverageSummary: {
+            /** @example 9 */
+            total: number;
+            /** @example 5 */
+            known: number;
+            /** @example 4 */
+            unknown: number;
+            /**
+             * @description Значения, подтверждённые отельером
+             * @example 1
+             */
+            confirmed: number;
+            /** @example 2 */
+            stale: number;
+            /** @example 1 */
+            disputed: number;
+            /** @example 0.56 */
+            completeness: number;
+        };
+        CharacteristicState: {
+            /** @example pets_policy */
+            key: string;
+            /** @example Размещение с животными */
+            title: string;
+            /** @enum {string} */
+            state: "known" | "confirmed" | "stale" | "disputed" | "unknown";
+            /** @description Эту характеристику система может спросить у отельера */
+            askable: boolean;
+            /**
+             * @description Сколько раз неизвестное значение помешало ответить на живой запрос
+             * @example 7
+             */
+            blocked_searches: number;
+            /**
+             * @description Сколько раз характеристику спрашивали у этого отеля
+             * @example 12
+             */
+            appearances: number;
+            fact?: components["schemas"]["Fact"] | null;
+        };
+        QueuedQuestion: {
+            question: components["schemas"]["HotelierQuestion"];
+            /** @example 7 */
+            blocked_searches: number;
+            /** @example 5.5 */
+            priority: number;
+        };
+        HotelierAttention: {
+            /** @enum {string} */
+            kind: "resolve_conflict" | "answer_question" | "reconfirm_value";
+            /** @description Идентификатор конфликта, вопроса или факта в зависимости от kind */
+            reference: string;
+            characteristic_key: string;
+            blocked_searches: number;
+        };
+        HotelierOverview: {
+            hotel: components["schemas"]["HotelSummary"];
+            coverage: components["schemas"]["CoverageSummary"];
+            unread: components["schemas"]["NotificationCounters"];
+            /**
+             * @description Сколько раз отель попал в выдачу за окно наблюдения
+             * @example 12
+             */
+            appearances: number;
+            /** @example 14 */
+            window_days: number;
+            /** @description Открытые вопросы, сначала самые весомые */
+            questions: components["schemas"]["QueuedQuestion"][];
+            conflicts: components["schemas"]["Conflict"][];
+            /** @description Значения, срок которых истекает в ближайшие две недели */
+            expiring: components["schemas"]["Fact"][];
+            characteristics: components["schemas"]["CharacteristicState"][];
+            next_action?: components["schemas"]["HotelierAttention"] | null;
+        };
+        BatchAnswerResult: {
+            hotel_id: string;
+            applied: {
+                question_id: string;
+                extracted: components["schemas"]["Fact"][];
+                conflicts: components["schemas"]["Conflict"][];
+            }[];
+            /** @description Вопросы, которых текст не коснулся; они остались открытыми */
+            untouched: string[];
+        };
+        HotelierQuestionDetail: {
+            question: components["schemas"]["HotelierQuestion"];
+            /** @example Гостиница «Приморская» */
+            hotel_name: string;
+            /** @example Размещение с животными */
+            title: string;
+            /** @description Поля, которыми можно ответить без свободного текста */
+            fields: {
+                /** @example max_weight_kg */
+                name: string;
+                /** @enum {string} */
+                kind: "bool" | "number";
+                /** @example кг */
+                unit?: string | null;
+            }[];
         };
         HotelierQuestion: {
             id: string;
@@ -1982,7 +2238,10 @@ export interface operations {
     };
     listHotelierQuestions: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Оставляет только вопросы в этом состоянии; без параметра возвращаются все */
+                status?: "open" | "answered" | "skipped";
+            };
             header?: never;
             path: {
                 hotel_id: components["parameters"]["HotelId"];
@@ -2003,6 +2262,172 @@ export interface operations {
                 };
             };
             404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+        };
+    };
+    getHotelierCabinet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierOverview"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    listHotelierNotifications: {
+        parameters: {
+            query?: {
+                unread_only?: boolean;
+                /** @description Значение next_cursor предыдущей страницы */
+                cursor?: string;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierNotificationFeed"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+        };
+    };
+    readHotelierNotifications: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    ids?: string[] | null;
+                };
+            };
+        };
+        responses: {
+            /** @description Сколько оповещений стали прочитанными */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example 3 */
+                        read: number;
+                        unread: components["schemas"]["NotificationCounters"];
+                    };
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+        };
+    };
+    stateHotelierFact: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "characteristic_key": "pets_policy",
+                 *       "text": "Можно с собаками до 10 кг, доплата 2500 рублей за ночь"
+                 *     }
+                 */
+                "application/json": {
+                    /** @example pets_policy */
+                    characteristic_key: string;
+                    text: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Новый факт от отельера и записанные противоречия */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        hotel_id: string;
+                        fact: components["schemas"]["Fact"];
+                        conflicts: components["schemas"]["Conflict"][];
+                    };
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+            503: components["responses"]["ModelUnavailable"];
+        };
+    };
+    answerHotelierQuestions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "text": "С собаками до 10 кг можно, 2500 ₽ за ночь; двухместные номера есть"
+                 *     }
+                 */
+                "application/json": {
+                    text: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Применённые ответы и вопросы, которых текст не коснулся */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BatchAnswerResult"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+            503: components["responses"]["ModelUnavailable"];
         };
     };
     answerHotelierQuestion: {
@@ -2022,8 +2447,12 @@ export interface operations {
                  *     }
                  */
                 "application/json": {
-                    text: string;
-                };
+                    text?: string;
+                    /** @description Значения полей характеристики; null в значении означает «не указано» */
+                    fields?: {
+                        [key: string]: (boolean | number | string) | null;
+                    } | null;
+                } | unknown | unknown;
             };
         };
         responses: {
@@ -2044,6 +2473,41 @@ export interface operations {
             404: components["responses"]["NotFound"];
             422: components["responses"]["InvalidInput"];
             503: components["responses"]["ModelUnavailable"];
+        };
+    };
+    getHotelierQuestion: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path: {
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Вопрос и поля, которыми на него можно ответить */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierQuestionDetail"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            422: components["responses"]["InvalidInput"];
+            /** @description Подписанные ссылки не настроены */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     changeHotelierQuestionStatus: {

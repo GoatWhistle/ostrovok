@@ -2,6 +2,7 @@ from collections.abc import Callable, Mapping
 from dataclasses import replace
 from datetime import datetime, timedelta
 
+from hotel_agent.application import hotelier_events
 from hotel_agent.application.dto import SearchFactRecord
 from hotel_agent.application.fact_records import FactOwner, fact_from_record, fact_to_record
 from hotel_agent.application.fact_values import checked_value
@@ -108,6 +109,9 @@ class ChangeFacts:
         if settlement.conflict is not None:
             records = (*records, conflict_record(settlement.conflict, owner))
         await uow.facts.save_conflicts(records)
+        await hotelier_events.announce(
+            uow.notifications, hotelier_events.conflicts_raised(records, owner.hotel_id, now)
+        )
 
     async def _replace(
         self,
@@ -125,7 +129,12 @@ class ChangeFacts:
         await uow.facts.save([fact_to_record(item, owner) for item in writes])
         replaced = {record.id, *(str(item.id) for item in others)}
         conflicts = await uow.facts.conflicts(owner.hotel_id)
-        await uow.facts.save_conflicts(settled_by_hotelier(conflicts, replaced, str(winner.id)))
+        settled = settled_by_hotelier(conflicts, replaced, str(winner.id))
+        await uow.facts.save_conflicts(settled)
+        await hotelier_events.announce(
+            uow.notifications,
+            hotelier_events.conflicts_raised(settled, owner.hotel_id, self._clock.now()),
+        )
 
     def _corrected(
         self,

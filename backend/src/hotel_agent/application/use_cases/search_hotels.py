@@ -29,7 +29,13 @@ from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.room_view_corroboration import corroborate_room_views
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
-from hotel_agent.application.search_selection import Selection, nearest_matches, select_candidates
+from hotel_agent.application.search_selection import (
+    Rejection,
+    Selection,
+    nearest_matches,
+    not_shown,
+    select_candidates,
+)
 from hotel_agent.application.spatial_matching import spatial_intent
 from hotel_agent.application.stay_guests import catalog_capacity, researched, stay_guests
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
@@ -45,12 +51,21 @@ class SearchResult:
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
+class AskedHotelier:
+    hotel_id: str
+    characteristic_key: str
+    question_id: str
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class SearchOutcome:
     query_id: str
     parsed: ParsedQuery
     results: Sequence[SearchResult]
     question: str | None = None
     wish_results: tuple[WishResult, ...] = ()
+    rejected: tuple[Rejection, ...] = ()
+    asked: tuple[AskedHotelier, ...] = ()
     review: ReviewResult | None = None
 
 
@@ -221,6 +236,7 @@ class SearchHotels:
             tuple(row for row in explored.facts if row not in capacity), rooms
         )
         await save_search_evidence(self._uow, found, selected_ids, explored.features)
+        asked = await self._asked(results, parsed)
         fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(
             query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
@@ -229,6 +245,33 @@ class SearchHotels:
             question=explored.question,
             wish_results=explored.wish_results,
             review=selection.report,
+            rejected=not_shown(selection.rejected, {item.hotel.id for item in results}),
+            asked=asked,
+        )
+
+    async def _asked(
+        self, results: Sequence[SearchResult], parsed: ParsedQuery
+    ) -> tuple[AskedHotelier, ...]:
+        unknown = {
+            (item.hotel.id, match.intent.characteristic_key)
+            for item in results
+            for match in item.scored.matches
+            if match.fact is None
+        }
+        if not unknown:
+            return ()
+        async with self._uow() as uow:
+            records = await uow.questions.open_for(
+                sorted({hotel for hotel, _ in unknown}), sorted({key for _, key in unknown})
+            )
+        return tuple(
+            AskedHotelier(
+                hotel_id=record.hotel_id,
+                characteristic_key=record.characteristic_key,
+                question_id=record.id,
+            )
+            for record in records
+            if (record.hotel_id, record.characteristic_key) in unknown
         )
 
     async def _selection(

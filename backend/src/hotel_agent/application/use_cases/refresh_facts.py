@@ -1,6 +1,7 @@
 from dataclasses import dataclass, replace
 from datetime import datetime
 
+from hotel_agent.application import hotelier_events
 from hotel_agent.application.dto import SearchFactRecord
 from hotel_agent.application.fact_records import FactOwner, fact_from_record, fact_to_record
 from hotel_agent.application.fact_versions import (
@@ -59,7 +60,7 @@ class RefreshStaleFacts:
                 await self._keep(fresh)
                 continue
             changed += 1
-            conflicts += await self._settle(replace(fresh, id=self._version(fresh, now)))
+            conflicts += await self._settle(replace(fresh, id=self._version(fresh, now)), row)
         return RefreshReport(
             retired=retired,
             checked=len(stale),
@@ -77,7 +78,7 @@ class RefreshStaleFacts:
             await uow.facts.save([fresh])
             await uow.commit()
 
-    async def _settle(self, fresh: SearchFactRecord) -> int:
+    async def _settle(self, fresh: SearchFactRecord, previous: SearchFactRecord) -> int:
         owner = FactOwner.of(fresh)
         tolerance = self._registry.get(fresh.characteristic_key).conflict_tolerance
         self._settled += 1
@@ -93,7 +94,19 @@ class RefreshStaleFacts:
                 ConflictId(f"c_refresh_{self._settled}"),
             )
             await uow.facts.save([fact_to_record(item, owner) for item in settlement.writes])
-            if settlement.conflict is not None:
-                await uow.facts.save_conflicts((conflict_record(settlement.conflict, owner),))
+            records = (
+                (conflict_record(settlement.conflict, owner),)
+                if settlement.conflict is not None
+                else ()
+            )
+            await uow.facts.save_conflicts(records)
+            now = self._clock.now()
+            await hotelier_events.announce(
+                uow.notifications,
+                (
+                    hotelier_events.fact_changed(previous, fresh, now),
+                    *hotelier_events.conflicts_raised(records, fresh.hotel_id, now),
+                ),
+            )
             await uow.commit()
         return 0 if settlement.conflict is None else 1

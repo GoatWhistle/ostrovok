@@ -10,8 +10,8 @@ from hotel_agent.application.use_cases.get_fact import GetFact
 from hotel_agent.application.use_cases.hotelier_questions import (
     ListHotelierQuestions,
     PlanHotelierQuestions,
-    PruneHotelierQuestions,
 )
+from hotel_agent.application.use_cases.prune_questions import PruneHotelierQuestions
 from hotel_agent.domain.entities import FactStatus, QuestionStatus, Resolution
 from hotel_agent.domain.errors import FactNotFound, HotelNotFound, InvalidValue, QuestionNotFound
 from hotel_agent.domain.services.conflict_resolver import RULE
@@ -230,16 +230,20 @@ async def test_planning_asks_only_about_the_most_shown_hotels(
     store = Store(hotels={"h1", "h2", "h3"})
     plan = PlanHotelierQuestions(factory(store), registry, FixedClock())
 
-    added = await plan("sochi", hotels=1)
+    added = await plan("sochi", cold_start=1)
 
     assert added == 3
     assert {item.hotel_id for item in store.questions.values()} == {"h1"}
 
 
-async def test_pruning_skips_questions_for_hotels_that_never_reached_results() -> None:
+async def test_pruning_skips_questions_for_hotels_that_never_reached_results(
+    registry: YamlCharacteristicRegistry,
+) -> None:
     store = Store(questions={"q1": question("q1", "h1", "pets_policy")})
 
-    skipped = await PruneHotelierQuestions(factory(store))("sochi")
+    report = await PruneHotelierQuestions(factory(store), registry, FixedClock())(
+        "sochi", apply=True
+    )
 
-    assert skipped == 1
+    assert report.deferred == 1
     assert store.questions["q1"].status == "skipped"

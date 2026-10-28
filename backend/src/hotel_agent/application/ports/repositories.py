@@ -17,7 +17,9 @@ from hotel_agent.application.dto import (
 )
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.fact_store import FactStore, QuestionStore
+from hotel_agent.application.ports.hotelier_demand import HotelierDemandPort
 from hotel_agent.application.ports.map_scene import MapSceneRepository
+from hotel_agent.application.ports.notifications import NotificationStore
 from hotel_agent.application.ports.places import PlaceRepository
 from hotel_agent.application.ports.semantic_search import SearchDocumentsPort
 from hotel_agent.application.ports.view_scenes import ViewSceneRepository
@@ -85,6 +87,14 @@ class SearchRepository(Protocol):
         region: str,
         characteristic_keys: Sequence[str],
         now: datetime,
+        limit: int = 500,
+    ) -> Sequence[SearchFactRecord]: ...
+
+    async def expiring_facts(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        horizon: datetime,
         limit: int = 500,
     ) -> Sequence[SearchFactRecord]: ...
 
@@ -164,6 +174,8 @@ class UnitOfWork(Protocol):
     data: DataRepository
     facts: FactStore
     questions: QuestionStore
+    notifications: NotificationStore
+    demand: HotelierDemandPort
     map_scene: MapSceneRepository
 
     async def __aenter__(self) -> Self: ...

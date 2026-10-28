@@ -40,6 +40,7 @@ from hotel_agent.application.agent.semantic_review import SemanticReview
 from hotel_agent.application.map_catalog import CATALOG_VERSION
 from hotel_agent.application.ports.place_research import PlaceResearchPort
 from hotel_agent.application.use_cases.answer_question import AnswerHotelierQuestion
+from hotel_agent.application.use_cases.answer_questions import AnswerHotelierQuestions
 from hotel_agent.application.use_cases.change_facts import ChangeFacts
 from hotel_agent.application.use_cases.chat import Chat
 from hotel_agent.application.use_cases.compare_hotels import CompareHotels
@@ -56,8 +57,14 @@ from hotel_agent.application.use_cases.get_map_scene import GetMapScene
 from hotel_agent.application.use_cases.get_map_style import GetMapStyle
 from hotel_agent.application.use_cases.get_map_tile import GetMapTile
 from hotel_agent.application.use_cases.get_place import GetPlace
+from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
+from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
+from hotel_agent.application.use_cases.hotelier_notifications import (
+    ListHotelierNotifications,
+    MarkNotificationsRead,
+)
 from hotel_agent.application.use_cases.hotelier_questions import (
     ChangeQuestionStatus,
     ListHotelierQuestions,
@@ -65,6 +72,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
 from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.composition import build_providers
 from hotel_agent.interfaces.http.app import api_router_v1
 from hotel_agent.interfaces.http.errors import ErrorHandlers
@@ -149,6 +157,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         room_card=alean_cards,
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
+    answer_hotelier_question = AnswerHotelierQuestion(
+        providers.uow, providers.registry, providers.llm, providers.clock, new_id
+    )
     semantic_review = SemanticReview(providers.llm, logger)
     verdict_review = SemanticReview(providers.llm, logger, first=providers.review_llm)
     search_hotels = SearchHotels(
@@ -219,8 +230,20 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             get_weather=GetWeather(conditions),
             get_fact=GetFact(providers.uow),
             list_hotelier_questions=ListHotelierQuestions(providers.uow),
-            answer_hotelier_question=AnswerHotelierQuestion(
+            answer_hotelier_question=answer_hotelier_question,
+            hotelier_cabinet=GetHotelierCabinet(providers.uow, providers.registry, providers.clock),
+            list_hotelier_notifications=ListHotelierNotifications(
+                providers.uow, providers.registry
+            ),
+            read_hotelier_notifications=MarkNotificationsRead(providers.uow, providers.clock),
+            answer_hotelier_questions=AnswerHotelierQuestions(
+                providers.uow, providers.llm, answer_hotelier_question
+            ),
+            state_hotelier_fact=StateHotelierFact(
                 providers.uow, providers.registry, providers.llm, providers.clock, new_id
+            ),
+            get_hotelier_question=GetHotelierQuestion(
+                providers.uow, providers.registry, config.question_link_secret
             ),
             change_question_status=ChangeQuestionStatus(providers.uow),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),

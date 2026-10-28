@@ -3,7 +3,9 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from hotel_agent.application.condition_keys import named_key
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
+from hotel_agent.application.search_selection import Rejection
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
 from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.errors import UnknownCharacteristic
@@ -43,6 +45,7 @@ class MatchedPropertySchema(BaseModel):
     fact: FactBriefSchema | None = None
     geo_refs: list[str] = Field(default_factory=list)
     camera: CameraSchema | None = None
+    hotelier_question_id: str | None = None
 
 
 class BuildingFeatureSchema(BaseModel):
@@ -66,10 +69,26 @@ class ViewportSchema(BaseModel):
     camera: CameraSchema
 
 
+class RejectedHotelSchema(BaseModel):
+    hotel: HotelSummarySchema
+    cause: Literal[
+        "requirement_unmet",
+        "requirement_unknown",
+        "view_not_computed",
+        "no_evidence",
+        "review",
+    ]
+    closeness: float
+    characteristic_key: str | None = None
+    condition: str = ""
+    detail: str = ""
+
+
 class SearchResponseSchema(BaseModel):
     query_id: str
     parsed: ParsedSchema
     results: list[SearchResultSchema]
+    rejected: list[RejectedHotelSchema] = Field(default_factory=list)
     viewport: ViewportSchema | None = None
     pending: list[dict[str, str]] = Field(default_factory=list)
     next_cursor: str | None = None
@@ -112,7 +131,8 @@ def search_schema(
         check_out=outcome.parsed.check_out,
         adults=outcome.parsed.adults,
     )
-    results = [_search_result(item, registry) for item in outcome.results]
+    asked = {(item.hotel_id, item.characteristic_key): item.question_id for item in outcome.asked}
+    results = [_search_result(item, registry, asked) for item in outcome.results]
     viewport = None
     if results:
         points = [item.hotel.location for item in results]
@@ -127,13 +147,27 @@ def search_schema(
         query_id=outcome.query_id,
         parsed=parsed,
         results=results,
+        rejected=[_rejected(item, registry) for item in outcome.rejected],
         viewport=viewport,
         took_ms=took_ms,
     )
 
 
+def _rejected(item: Rejection, registry: CharacteristicRegistryPort) -> RejectedHotelSchema:
+    return RejectedHotelSchema(
+        hotel=hotel_summary_schema(item.hotel),
+        cause=item.cause,
+        closeness=round(item.closeness, 4),
+        characteristic_key=named_key(item.characteristic_key, item.condition, registry),
+        condition=item.condition,
+        detail=item.detail,
+    )
+
+
 def _search_result(
-    result: SearchResult, registry: CharacteristicRegistryPort
+    result: SearchResult,
+    registry: CharacteristicRegistryPort,
+    asked: Mapping[tuple[str, str], str],
 ) -> SearchResultSchema:
     hotel = result.hotel
     best_facade = next(
@@ -176,14 +210,22 @@ def _search_result(
         hotel=hotel_summary_schema(hotel),
         score=round(result.scored.score, 3),
         confidence=round(result.scored.confidence, 3),
-        matched=[_matched_schema(match, registry, camera) for match in result.scored.matches],
+        matched=[
+            _matched_schema(
+                match, registry, camera, asked.get((hotel.id, match.intent.characteristic_key))
+            )
+            for match in result.scored.matches
+        ],
         camera=camera,
         footprint=footprint,
     )
 
 
 def _matched_schema(
-    match: PropertyMatch, registry: CharacteristicRegistryPort, camera: CameraSchema
+    match: PropertyMatch,
+    registry: CharacteristicRegistryPort,
+    camera: CameraSchema,
+    question_id: str | None = None,
 ) -> MatchedPropertySchema:
     try:
         characteristic = registry.get(match.intent.characteristic_key)
@@ -211,6 +253,7 @@ def _matched_schema(
         fact=brief,
         geo_refs=[str(ref) for ref in fact.geo_refs] if fact else [],
         camera=camera if fact and fact.subject.part else None,
+        hotelier_question_id=question_id,
     )
 
 
