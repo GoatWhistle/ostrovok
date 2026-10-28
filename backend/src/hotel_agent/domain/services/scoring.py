@@ -8,6 +8,7 @@ from hotel_agent.domain.entities import Fact, FactStatus, FactValue
 from hotel_agent.domain.query import Intent
 from hotel_agent.domain.services.confidence import aggregate, effective
 
+ALLOWED_FIELD = "allowed"
 PARTIAL_SLACK = 1.5
 MARGIN_CAP = 2.0
 MARGIN_SHARE = 0.1
@@ -126,6 +127,11 @@ def _quality(intent: Intent, value: FactValue) -> MatchQuality:
     if value is None:
         return MatchQuality.UNKNOWN
     if intent.op is Op.EQ:
+        if isinstance(value, Mapping) and isinstance(intent.value, bool):
+            flag = value.get(ALLOWED_FIELD)
+            if not isinstance(flag, bool):
+                return MatchQuality.UNKNOWN
+            return MatchQuality.FULL if flag is intent.value else MatchQuality.NONE
         return MatchQuality.FULL if _same(value, intent.value) else MatchQuality.NONE
     number = _number(value)
     wanted = _number(intent.value)

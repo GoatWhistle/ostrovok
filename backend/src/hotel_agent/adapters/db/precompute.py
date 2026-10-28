@@ -68,6 +68,29 @@ ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value, computed_at = EXCLUDED.co
 WHERE facts.status = 'active'"""
 
 
+PETS_POLICY = """INSERT INTO facts
+    (id, subject_type, subject_id, characteristic_key, value, unit, qualifiers,
+     source_type, method, confidence, computed_at, valid_until, status, explanation)
+SELECT 'f_pets_policy_' || c.hotel_id, 'hotel', c.hotel_id, 'pets_policy',
+    jsonb_build_object('allowed', (policy->>'allowed')::boolean, 'terms', policy->>'terms'),
+    NULL, jsonb_build_object('source', 'supplier_content', 'supplier', c.supplier),
+    'computed', 'pets_policy@1', 0.8, now(), now() + interval '180 days', 'active',
+    'Правила размещения с животными по данным поставщика'
+FROM hotel_supplier_content c
+JOIN hotels h ON h.id = c.hotel_id
+CROSS JOIN LATERAL (
+    SELECT jsonb_path_query_first(c.details, '$.**.pets') AS policy
+) found
+WHERE h.region_id = %(region)s AND found.policy ? 'allowed'
+  AND jsonb_typeof(found.policy->'allowed') = 'boolean'
+  AND NOT EXISTS (SELECT 1 FROM facts kept WHERE kept.subject_type = 'hotel'
+    AND kept.subject_id = c.hotel_id AND kept.characteristic_key = 'pets_policy'
+    AND kept.id <> 'f_pets_policy_' || c.hotel_id AND kept.status <> 'superseded')
+ON CONFLICT (id) DO UPDATE SET value = EXCLUDED.value, computed_at = EXCLUDED.computed_at,
+    valid_until = EXCLUDED.valid_until
+WHERE facts.status = 'active'"""
+
+
 class PostgresPrecompute:
     def __init__(self, pool: AsyncConnectionPool[AsyncConnection[tuple[object, ...]]]) -> None:
         self._pool = pool
@@ -78,7 +101,9 @@ class PostgresPrecompute:
             await db.execute(REMOVE_LEGACY_BARS, {"region": region})
             height_result = await db.execute(HEIGHTS, {"region": region})
             rooms_result = await db.execute(DOUBLE_ROOMS, {"region": region})
+            pets_result = await db.execute(PETS_POLICY, {"region": region})
             return {
                 "building_height": height_result.rowcount,
                 "double_room": rooms_result.rowcount,
+                "pets_policy": pets_result.rowcount,
             }
