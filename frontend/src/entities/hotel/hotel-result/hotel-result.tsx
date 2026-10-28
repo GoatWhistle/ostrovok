@@ -5,9 +5,8 @@ import { Button } from "@/shared/ui"
 import { HotelRating } from "../hotel-rating/hotel-rating"
 import { HotelStars } from "../hotel-stars/hotel-stars"
 import { HotelThumb } from "../hotel-thumb/hotel-thumb"
-import { MatchConfidence, MatchScore, matchScore } from "../match-score/match-score"
+import { MatchExplain } from "../match-score/match-explain"
 import { OfferPreview } from "../offer-preview/offer-preview"
-import { HotelMatches } from "./hotel-matches"
 import styles from "./hotel-result.module.css"
 import { useHotelPreview } from "./use-hotel-preview"
 
@@ -46,8 +45,6 @@ export function HotelSummaryCard({
   selected,
   index,
   onSelect,
-  onProperty,
-  onPreview,
   onRooms = onSelect,
   idPrefix = "hotel-result",
 }: HotelSummaryCardProps) {
@@ -79,15 +76,13 @@ export function HotelSummaryCard({
           >
             {hotel.name}
           </Button>
-          <MatchScore score={matchScore({ matched })} quiet />
+          <MatchExplain matched={matched} confidence={confidence} />
         </div>
         <div className={styles.meta}>
           <HotelStars value={hotel.stars ?? preview.stars} />
           <HotelRating score={preview.rating} reviews={preview.reviews} />
-          <MatchConfidence value={confidence} className={styles.confidence} />
         </div>
         {hotel.address ? <p className={styles.address}>{hotel.address}</p> : null}
-        <HotelMatches matched={matched} onProperty={onProperty} onPreview={onPreview} />
         <div className={styles.price}>
           <OfferPreview hotelId={hotel.id} onSelect={onRooms} enabled={viewport.visible} />
         </div>

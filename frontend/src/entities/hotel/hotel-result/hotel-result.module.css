@@ -26,15 +26,9 @@
 }
 
 .thumb {
-  align-self: stretch;
-  aspect-ratio: auto;
-  min-block-size: var(--thumb-size);
-}
-
-.thumb[data-empty] {
   align-self: start;
+  inline-size: var(--thumb-size);
   aspect-ratio: 1;
-  min-block-size: 0;
 }
 
 .body {
@@ -91,10 +85,6 @@
 
 .meta:empty {
   display: none;
-}
-
-.confidence {
-  composes: captionText from "../../../shared/styles/compose.module.css";
 }
 
 .address {

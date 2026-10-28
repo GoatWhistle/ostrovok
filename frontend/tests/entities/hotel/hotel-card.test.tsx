@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { HotelRating } from "../../../src/entities/hotel/hotel-rating/hotel-rating"
-import { HotelMatches } from "../../../src/entities/hotel/hotel-result/hotel-matches"
 import { HotelStars } from "../../../src/entities/hotel/hotel-stars/hotel-stars"
 import { HotelThumb } from "../../../src/entities/hotel/hotel-thumb/hotel-thumb"
+import { MatchExplain } from "../../../src/entities/hotel/match-score/match-explain"
 import type { MatchedProperty } from "../../../src/shared/api/hotel-types"
 import { petsLabel } from "../../../src/shared/geo/facts/pets"
 import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
@@ -25,38 +25,15 @@ function wish(key: string, match: MatchedProperty["match"], status = "active"): 
     },
   }
 }
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
+
 describe("hotel list evidence", () => {
-  it("shows at most two usable matches with full matches first", () => {
-    const onProperty = vi.fn()
-    const partial = { ...wish("partial", "partial"), explanation: "Only from the fourth floor" }
-    render(
-      <LocaleProvider>
-        <HotelMatches
-          matched={[
-            partial,
-            wish("found", "full"),
-            wish("second", "full"),
-            wish("missing", "none"),
-            wish("unknown", "unknown"),
-            wish("old", "full", "stale"),
-            wish("conflict", "full", "conflicted"),
-          ]}
-          onProperty={onProperty}
-          onPreview={vi.fn()}
-        />
-      </LocaleProvider>,
-    )
-    const buttons = screen.getAllByRole("button")
-    expect(buttons.map((button) => button.textContent)).toEqual(["found", "second"])
-    expect(screen.queryByText("Only from the fourth floor")).toBeNull()
-    expect(screen.queryByText("old")).toBeNull()
-    fireEvent.click(screen.getByRole("button", { name: "found" }))
-    expect(onProperty).toHaveBeenCalledOnce()
-  })
-  it("answers a wish with its verdict instead of the raw label", () => {
+  it("shows a plain score and explains every wish in words on demand", () => {
     const sea = wish("near_sea", "full")
     const fact = sea.fact as NonNullable<MatchedProperty["fact"]>
-    const item: MatchedProperty = {
+    const measured: MatchedProperty = {
       ...sea,
       label: "within walking distance of the sea",
       fact: {
@@ -64,13 +41,24 @@ describe("hotel list evidence", () => {
         qualifiers: { native_characteristic_key: "distance_to_sea", native_value: 3 },
       },
     }
+    vi.stubGlobal(
+      "ResizeObserver",
+      class {
+        observe() {}
+        disconnect() {}
+      },
+    )
     render(
       <LocaleProvider>
-        <HotelMatches matched={[item]} onProperty={vi.fn()} onPreview={vi.fn()} />
+        <MatchExplain matched={[wish("unknown", "unknown"), measured]} confidence={0.95} />
       </LocaleProvider>,
     )
+    expect(screen.getByText("1/2")).toBeTruthy()
     expect(screen.queryByText("within walking distance of the sea")).toBeNull()
-    expect(screen.getByRole("button").textContent).toContain("3")
+    fireEvent.click(screen.getByRole("button", { name: ru.cards.whyMatch }))
+    const items = screen.getAllByRole("listitem").map((item) => item.textContent)
+    expect(items[0]).toContain("3")
+    expect(items[1]).toBe(ru.cards.wishMissing.replace("{{text}}", "unknown"))
   })
   it("tries the next photo then removes the frame when all fail", () => {
     const { container } = render(
