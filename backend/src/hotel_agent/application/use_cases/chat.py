@@ -7,6 +7,7 @@ from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview, s
 from hotel_agent.application.chat_dialogue import ChatDialogue
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, shorten, validated_title
+from hotel_agent.application.ordinal_choice import chosen_hotel_id
 from hotel_agent.application.ports.chat_dialogue import ChatMode
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -93,6 +94,8 @@ class Chat:
             if previous is None:
                 raise ConversationNotFound()
             region_id = previous.region_id
+        if selected_hotel_id is None and previous is not None:
+            selected_hotel_id = chosen_hotel_id(message, previous.search_snapshot)
         decision = await self._dialogue.respond(
             previous, message.strip(), selected_hotel_id, locale
         )
