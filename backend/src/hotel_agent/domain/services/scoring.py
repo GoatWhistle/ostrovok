@@ -10,6 +10,7 @@ from hotel_agent.domain.services.confidence import aggregate, effective
 
 PARTIAL_SLACK = 1.5
 MARGIN_CAP = 2.0
+MARGIN_SHARE = 0.1
 
 
 class MatchQuality(StrEnum):
@@ -108,7 +109,15 @@ def _contribution(item: PropertyMatch, now: datetime) -> float:
     if item.fact is None or item.quality not in COUNTED_QUALITIES:
         return 0.0
     confidence = effective(item.fact.provenance, now).value
-    return item.intent.weight * WEIGHT_OF_QUALITY[item.quality] * confidence
+    return item.intent.weight * _graded(item) * confidence
+
+
+def _graded(item: PropertyMatch) -> float:
+    base = WEIGHT_OF_QUALITY[item.quality]
+    if item.margin is None:
+        return base
+    share = min(max(item.margin, 0.0), MARGIN_CAP) / MARGIN_CAP
+    return base * (1.0 - MARGIN_SHARE + MARGIN_SHARE * share)
 
 
 def _quality(intent: Intent, value: FactValue) -> MatchQuality:

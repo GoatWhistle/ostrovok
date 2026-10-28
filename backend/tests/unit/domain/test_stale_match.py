@@ -1,9 +1,10 @@
+from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 
 from hotel_agent.domain.characteristics import Op, SourceType
 from hotel_agent.domain.entities import Fact, FactStatus
 from hotel_agent.domain.query import Intent
-from hotel_agent.domain.services.scoring import MatchQuality, match
+from hotel_agent.domain.services.scoring import MatchQuality, match, score
 from hotel_agent.domain.value_objects import (
     Confidence,
     FactId,
@@ -53,3 +54,41 @@ def test_a_fresh_fact_still_matches_fully() -> None:
 
 def test_an_expired_fact_cannot_be_a_full_match() -> None:
     assert match(wanted(), fact(timedelta(days=-1)), NOW).quality is MatchQuality.PARTIAL
+
+
+def measured(value: float, threshold: float, op: Op) -> Fact:
+    row = fact(timedelta(days=1))
+    return replace(
+        row,
+        characteristic_key="distance_to_sea",
+        value=value,
+        qualifiers={"native_value": value, "native_threshold": threshold, "native_op": str(op)},
+    )
+
+
+def ordered(op: Op, threshold: float) -> Intent:
+    return Intent(
+        characteristic_key="distance_to_sea",
+        op=op,
+        value=threshold,
+        weight=1.0,
+        required=False,
+        source_text="до моря",
+    )
+
+
+def test_a_wider_margin_scores_above_a_tight_one_within_the_same_tier() -> None:
+    close = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(2.0, 10.0, Op.LTE)}, NOW)
+    tight = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(9.5, 10.0, Op.LTE)}, NOW)
+
+    assert close.score > tight.score
+    assert close.matches[0].quality is tight.matches[0].quality
+
+
+def test_the_margin_never_lifts_a_partial_above_a_full_match() -> None:
+    full = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": measured(9.9, 10.0, Op.LTE)}, NOW)
+    generous = replace(measured(2.0, 10.0, Op.LTE), qualifiers={"months": "апрель"})
+    partial = score([ordered(Op.LTE, 10.0)], {"distance_to_sea": generous}, NOW)
+
+    assert partial.matches[0].quality is MatchQuality.PARTIAL
+    assert full.score > partial.score
