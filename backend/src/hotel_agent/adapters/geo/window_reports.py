@@ -114,24 +114,19 @@ def window_evidence(
             "blocked": "Линия обзора перекрыта",
             "unknown": "Свободный обзор подтвердить не удалось",
         }[result.status]
-        explanation = (
-            f"{text}: «{name}», {round(report.distance_m)} м, этаж {report.floor}, "
-            f"направление окон {round(azimuth)}°. Проверены рельеф и здания на всём пути. "
-        )
+        sighting = f"«{name}», {round(report.distance_m)} м"
+        clauses = [f"{text}: {sighting}, этаж {report.floor}, окна {round(azimuth)}°"]
         if result.blockers:
             confirmed = next((b for b in result.blockers if b.confirmed), result.blockers[0])
             kind = "здание" if confirmed.kind == "building" else "рельеф"
             obstacle_label = "Препятствие" if confirmed.confirmed else "Возможное препятствие"
-            explanation += f"{obstacle_label}: {kind}, {round(confirmed.distance_m)} м от окна. "
+            clauses.append(f"{obstacle_label}: {kind}, {round(confirmed.distance_m)} м от окна")
         if report.missing:
-            explanation += "Не хватает данных: " + "; ".join(report.missing) + ". "
+            clauses.append("Не хватает данных: " + "; ".join(report.missing[:2]))
         if request.target_part == "whole":
-            explanation += (
-                "Проверена линия к части ориентира; полный обзор всего объекта не подтверждён. "
-            )
-        explanation += (
-            "Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля."
-        )
+            clauses.append("полный обзор всего объекта не подтверждён")
+        clauses.append("Расчёт по геометрии фасада, номер подтверждает отель")
+        explanation = ". ".join(clauses) + "."
         for suffix, kind, geometry, label, osm_ref, style in (
             (
                 "ray",

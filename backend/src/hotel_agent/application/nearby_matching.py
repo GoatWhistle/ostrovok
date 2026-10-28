@@ -72,8 +72,8 @@ def nearby_record(
             + (" с тегом opening_hours=24/7" if request.open_24h else "")
             + (
                 ": "
-                + ", ".join(f"«{name}»" for name in found[:5])
-                + (f" и ещё {len(found) - 5}" if len(found) > 5 else "")
+                + ", ".join(f"«{name}»" for name in found[:3])
+                + (f" и ещё {len(found) - 3}" if len(found) > 3 else "")
                 if found
                 else "; названий у найденных объектов в данных нет"
             )

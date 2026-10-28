@@ -4,6 +4,15 @@ from datetime import datetime, timedelta
 
 from hotel_agent.application.agent.data_records import DataCriterion, ExplorationOutcome
 from hotel_agent.application.agent.data_tools import DataTools
+from hotel_agent.application.agent.evidence_summary import (
+    CONFIRMED,
+    QUOTED,
+    confirmation,
+    measured,
+    quoted,
+    sources,
+    summary,
+)
 from hotel_agent.application.agent.record_filters import compare
 from hotel_agent.application.agent.wish_evidence import wish_intent
 from hotel_agent.application.dto import SearchFactRecord
@@ -64,19 +73,7 @@ def materialize(
             matches = [
                 compare(metrics[check.field], check.op, check.value) for check in criterion.checks
             ]
-            measured = "; ".join(
-                f"{tools.descriptions[check.field]}: {metrics[check.field]:g}"
-                for check in criterion.checks
-            )
             terrain = any(check.field.startswith("m") for check in criterion.checks)
-            operators = {"gte": "не менее", "lte": "не более", "eq": "равно"}
-            rules = "; ".join(
-                f"{tools.descriptions[check.field]} — {operators[check.op]} {check.value:g}"
-                for check in criterion.checks
-            )
-            explanation = f"{measured}. Проверка пожелания: {rules}. Оценочные критерии выбраны агентом по доступным данным."
-            if terrain:
-                explanation += " Источник: Copernicus GLO-30 / Mapterhorn DEM; оценка местности, не вида из номера."
             quotes = tuple(
                 quote
                 for check in criterion.checks
@@ -99,16 +96,39 @@ def materialize(
                     if str(page.get("source_url", "")) in urls and page.get("title")
                 )
             )
-            if quotes:
-                explanation += " Цитаты источника: " + " ".join(
-                    f"«{quote[:300]}»" for quote in quotes[:2]
-                )
-            if urls:
-                explanation += " Источники: " + ", ".join(urls)
+            event = (
+                tools.places.event_note(hotel.id)
+                if any(check.field.startswith("event") for check in criterion.checks)
+                else None
+            )
+            clauses = (
+                [event]
+                if event
+                else [
+                    measured(
+                        tools.descriptions[check.field],
+                        metrics[check.field],
+                        check.op,
+                        check.value,
+                    )
+                    for check in criterion.checks[:2]
+                ]
+            )
+            if not event and len(criterion.checks) > 2:
+                clauses.append(f"и ещё условий: {len(criterion.checks) - 2}")
+            if quotes and not event and _only_confirmations(criterion, tools):
+                quote = quoted(quotes[0])
+                if clauses[-1] == CONFIRMED:
+                    clauses[-1] = f"{QUOTED}: {quote}"
+                else:
+                    clauses.append(quote)
+            if terrain:
+                clauses.append("Рельеф по Copernicus GLO-30, не вид из номера")
             if "scope.distance_m" in metrics:
-                explanation += (
-                    f" До точки города по прямой {metrics['scope.distance_m'] / 1000:.1f} км."
-                )
+                clauses.append(f"{metrics['scope.distance_m'] / 1000:.1f} км от центра города")
+            if urls:
+                clauses.append(sources(urls))
+            explanation = summary(clauses)
             refs = {
                 ref
                 for check in criterion.checks
@@ -199,6 +219,10 @@ def materialize(
         bbox=tools.bbox,
         question=question,
     )
+
+
+def _only_confirmations(criterion: DataCriterion, tools: DataTools) -> bool:
+    return all(confirmation(tools.descriptions.get(check.field, "")) for check in criterion.checks)
 
 
 def _confidence(criterion: DataCriterion, metrics: dict[str, float]) -> float:

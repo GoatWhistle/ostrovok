@@ -83,7 +83,7 @@ class WishLoop:
             status = (
                 WishStatus.UNAVAILABLE if isinstance(error, ModelFailure) else WishStatus.INCOMPLETE
             )
-            reason = "Проверка пожелания прервана из-за недоступности модели или истечения времени. Отсутствие результата не доказывает отсутствие свойства."
+            reason = "Проверка прервана: модель недоступна или вышло время. Отсутствие свойства это не доказывает."
             self._logger.warning("wish_agent_unavailable", wish=term, cause=type(error).__name__)
         return completion.finish(status, reason, retained, question)
 
