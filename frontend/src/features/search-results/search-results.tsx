@@ -67,9 +67,11 @@ export function SearchResults({
   return (
     <section className={styles.results} aria-label={t("explore:panel.title")}>
       <div className={styles.count} aria-live="polite">
-        <p>
+        <p className={styles.summary}>
           <b>{t("explore:panel.hotelCount", { count: results.length })}</b>{" "}
-          {t("explore:panel.matches", { count: results.length })}
+          <span className={styles.matchWord}>
+            {t("explore:panel.matches", { count: results.length })}
+          </span>
         </p>
         <SortControl
           order={order}

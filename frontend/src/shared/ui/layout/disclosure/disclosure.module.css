@@ -12,6 +12,11 @@
   text-align: start;
 }
 
+.trigger > span {
+  min-inline-size: 0;
+  white-space: normal;
+}
+
 .icon,
 .chevron {
   flex: none;

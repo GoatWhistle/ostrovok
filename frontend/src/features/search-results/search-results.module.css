@@ -1,5 +1,6 @@
 .results {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: var(--space-12);
   min-inline-size: 0;
@@ -12,6 +13,18 @@
   gap: var(--space-12);
   color: var(--text-secondary);
   font-size: var(--font-size-body-sm);
+}
+
+.summary {
+  composes: truncateText from "../../shared/styles/compose.module.css";
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+@media (min-width: 64rem) and (max-width: 89.99rem) {
+  .matchWord {
+    display: none;
+  }
 }
 
 .count b {

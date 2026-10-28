@@ -189,7 +189,9 @@
     grid-column: 2;
   }
   .workspace[data-surface="hotel-panel"] {
-    grid-template-columns: calc(100% / 3) minmax(0, 1fr);
+    grid-template-columns:
+      clamp(var(--workspace-panel-compact), calc(100% / 3), var(--workspace-panel-max))
+      minmax(0, 1fr);
   }
   .panel {
     view-transition-name: hotel-panel;
