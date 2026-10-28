@@ -3,7 +3,7 @@
     "you": "You",
     "selected": "Selected hotel: {{name}}",
     "error": "The search did not complete",
-    "placeholder": "Ask about a hotel or describe what you are looking for",
+    "placeholder": "Describe a hotel or ask a question",
     "send": "Send",
     "log": "Search conversation",
     "newSearch": "New chat",
@@ -50,7 +50,7 @@
     "citySochi": "Sochi",
     "cityMoscow": "Moscow",
     "citySpb": "Saint Petersburg",
-    "startPlaceholder": "For example, a quiet room with a sunset view",
+    "startPlaceholder": "For example, quiet with a sunset view",
     "stage": {
       "parsing": "Reading the request",
       "candidates": "Hotels found in this area: {{found, number}}",
@@ -72,6 +72,12 @@
         "hotels": "Finding hotels",
         "wishes": "Checking conditions",
         "answer": "Writing the answer"
+      },
+      "short": {
+        "parse": "Request",
+        "hotels": "Hotels",
+        "wishes": "Conditions",
+        "answer": "Answer"
       },
       "stepState": {
         "done": "done",

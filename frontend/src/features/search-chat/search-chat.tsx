@@ -83,7 +83,9 @@ export function SearchChat({
       <div className={styles.body}>
         <ScrollArea ref={log} className={styles.log} role="log" aria-label={t("explore:chat.log")}>
           <ol ref={list} className={styles.messages}>
-            {messages.length === 0 && !loading ? <ChatGreeting onSend={onSend} /> : null}
+            {messages.length === 0 && !loading && !outgoing ? (
+              <ChatGreeting onSend={onSend} />
+            ) : null}
             {loading ? <AgentThinking /> : null}
             {messages.map((message) =>
               message.role === "user" ? (
