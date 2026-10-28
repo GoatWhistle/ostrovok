@@ -4,6 +4,7 @@ import type { Camera } from "@/shared/api/hotel-types"
 import { featureCollection } from "@/shared/geo/geometry"
 import { geometryBounds } from "@/shared/geo/geometry-bounds"
 import { motionMs } from "@/shared/motion"
+import { cameraZoom, fitOptions } from "./fit-zoom"
 
 interface CameraInput {
   readonly map: RefObject<MapLibreMap | null>
@@ -67,7 +68,7 @@ export function useMapCamera({
       if (!validCamera) return
       const options = {
         center: [validCamera.center[0] ?? 0, validCamera.center[1] ?? 0] as [number, number],
-        zoom: validCamera.zoom,
+        zoom: cameraZoom(validCamera.zoom),
         pitch: validCamera.pitch,
         bearing: validCamera.bearing,
       }
@@ -88,7 +89,7 @@ export function useMapCamera({
           [validBounds[0] ?? 0, validBounds[1] ?? 0],
           [validBounds[2] ?? 0, validBounds[3] ?? 0],
         ],
-        { duration: reduced ? 0 : motionMs("--dur-draw"), padding: 48 },
+        fitOptions({ duration: reduced ? 0 : motionMs("--dur-draw"), padding: 48 }),
       )
     },
   )
@@ -102,11 +103,10 @@ export function useMapCamera({
     corners ? JSON.stringify([hotelId, corners, camera?.center]) : undefined,
     (instance) => {
       if (corners)
-        instance.fitBounds(corners, {
-          padding: 72,
-          maxZoom: 17,
-          duration: reduced ? 0 : motionMs("--dur-draw"),
-        })
+        instance.fitBounds(
+          corners,
+          fitOptions({ padding: 72, duration: reduced ? 0 : motionMs("--dur-draw") }),
+        )
     },
   )
 }

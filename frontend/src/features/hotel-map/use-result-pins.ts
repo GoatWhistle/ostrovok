@@ -4,6 +4,7 @@ import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import { createMarker, hotelPosition, type MarkerView, removeMarkers } from "./marker-view"
 import { stackViews } from "./markers/spiderfy"
+import { FIT_MAX_ZOOM, fitOptions } from "./rendering/fit-zoom"
 
 const SOURCE = "hotel-results"
 
@@ -185,14 +186,14 @@ export async function expandCluster(
           [Math.min(...longitudes), Math.min(...latitudes)],
           [Math.max(...longitudes), Math.max(...latitudes)],
         ],
-        { padding: 48, maxZoom: map.getMaxZoom(), duration: instant ? 0 : duration },
+        fitOptions({ padding: 48, duration: instant ? 0 : duration }),
       )
       return
     }
   }
   map.easeTo({
     center: position,
-    zoom: Math.min(zoom, map.getMaxZoom()),
+    zoom: Math.min(zoom, map.getMaxZoom(), FIT_MAX_ZOOM),
     duration: instant ? 0 : duration,
   })
 }
