@@ -1,7 +1,7 @@
 import { MatchGlyph, StatusGlyph } from "@/entities/evidence"
 import { useTranslation } from "@/shared/i18n"
 import { Button, NoValue } from "@/shared/ui"
-import type { CellGlyph, CompareCell, LineView } from "./compare-model"
+import type { CellGlyph, CompareCell, LineView } from "../model/compare-model"
 import styles from "./compare-row.module.css"
 
 export interface CompareColumn {

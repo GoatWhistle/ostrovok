@@ -66,7 +66,7 @@
 }
 
 .slotText {
-  composes: secondaryText from "../../shared/styles/compose.module.css";
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
   margin: 0;
 }
 

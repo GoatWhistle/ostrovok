@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest"
-import type { CompareCell, CompareLine } from "../../../src/features/hotel-comparison/compare-model"
-import { viewLines } from "../../../src/features/hotel-comparison/compare-model"
-import { wishLines } from "../../../src/features/hotel-comparison/compare-wishes"
-import type { FactBrief } from "../../../src/shared/api/hotel-types"
+import type {
+  CompareCell,
+  CompareLine,
+} from "../../../../src/features/hotel-comparison/model/compare-model"
+import { viewLines } from "../../../../src/features/hotel-comparison/model/compare-model"
+import { wishLines } from "../../../../src/features/hotel-comparison/model/compare-wishes"
+import type { FactBrief } from "../../../../src/shared/api/hotel-types"
 
 function cell(text: string, rank?: number): CompareCell {
   return { text, glyph: { kind: "status", status: "active" }, rank }

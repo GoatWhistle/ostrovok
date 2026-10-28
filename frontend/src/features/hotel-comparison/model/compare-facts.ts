@@ -1,5 +1,5 @@
 import type { Characteristic, FactBrief } from "@/shared/api/hotel-types"
-import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
+import { characteristicTitle, factLabel } from "@/shared/geo/facts/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import type { Locale } from "@/shared/i18n"

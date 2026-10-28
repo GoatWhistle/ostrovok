@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { bestHotels, differs } from "../../../src/features/hotel-comparison/compare-diff"
-import type { FactBrief } from "../../../src/shared/api/hotel-types"
+import { bestHotels, differs } from "../../../../src/features/hotel-comparison/model/compare-diff"
+import type { FactBrief } from "../../../../src/shared/api/hotel-types"
 
 function fact(value: FactBrief["value"], unit = "min"): FactBrief {
   return {
