@@ -1,0 +1,1124 @@
+{
+ "id": "ef2baa10-2fe5-49b9-b9f2-567d00bd6058",
+ "title": "Казань: с размещением с животными",
+ "updated_at": "2026-10-28T19:23:38.227345Z",
+ "messages": [
+  {
+   "id": "952cba50-d135-4c2d-a29d-d1fc17760510",
+   "role": "user",
+   "content": "Казань, с животными; при этом куда животных не пускают",
+   "created_at": "2026-10-28T19:23:38.227345Z"
+  },
+  {
+   "id": "1fe3dbee-fe2a-4c06-aa88-1aa0c1c6dde1",
+   "role": "assistant",
+   "content": "Нашёл 5 отелей. Первые в списке: Корстон, Noble Millennium Panorama и Luciano Residence Kazan. Проверка не завершена: с размещением с животными. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T19:23:38.227345Z"
+  }
+ ],
+ "effective_query": "Казань, отель с размещением с животными",
+ "search": {
+  "query_id": "53e39e0b8ec6ec36",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:a3b8cafb434d",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "с размещением с животными"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Казань",
+   "anywhere": false,
+   "normalized_query": "Казань, отель с размещением с животными",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n702352946",
+     "name": "Корстон",
+     "address": null,
+     "location": [
+      49.1495475,
+      55.7938389
+     ],
+     "stars": 5,
+     "building_id": "w1044765231",
+     "height_m": 83.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:a3b8cafb434d",
+      "match": "unknown",
+      "margin": null,
+      "label": "с размещением с животными",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a3b8cafb434d_n702352946",
+       "characteristic_key": "derived:a3b8cafb434d",
+       "value": null,
+       "unit": null,
+       "label": "с размещением с животными",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n702352946",
+       "qualifiers": {
+        "source_text": "с размещением с животными",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      49.1495475,
+      55.7938389
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1044765231",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          49.1481556,
+          55.7940137
+         ],
+         [
+          49.1482072,
+          55.7940073
+         ],
+         [
+          49.1482554,
+          55.7940014
+         ],
+         [
+          49.1482139,
+          55.7939028
+         ],
+         [
+          49.1484275,
+          55.7938198
+         ],
+         [
+          49.1483748,
+          55.7938257
+         ],
+         [
+          49.148341,
+          55.7937291
+         ],
+         [
+          49.1485122,
+          55.7937101
+         ],
+         [
+          49.1485351,
+          55.7937755
+         ],
+         [
+          49.1487233,
+          55.7937479
+         ],
+         [
+          49.1486922,
+          55.7936663
+         ],
+         [
+          49.149104,
+          55.7936167
+         ],
+         [
+          49.1491213,
+          55.7936621
+         ],
+         [
+          49.1491353,
+          55.7936988
+         ],
+         [
+          49.1493262,
+          55.7936774
+         ],
+         [
+          49.149319,
+          55.7936194
+         ],
+         [
+          49.149314,
+          55.7935796
+         ],
+         [
+          49.1494511,
+          55.7935796
+         ],
+         [
+          49.1495531,
+          55.7935484
+         ],
+         [
+          49.1495781,
+          55.7935858
+         ],
+         [
+          49.1496161,
+          55.7936429
+         ],
+         [
+          49.1499234,
+          55.793605
+         ],
+         [
+          49.1501048,
+          55.7935439
+         ],
+         [
+          49.1503524,
+          55.7933512
+         ],
+         [
+          49.1505317,
+          55.7932912
+         ],
+         [
+          49.1506437,
+          55.7932789
+         ],
+         [
+          49.1507615,
+          55.793266
+         ],
+         [
+          49.1508459,
+          55.7932737
+         ],
+         [
+          49.1509801,
+          55.793286
+         ],
+         [
+          49.1511738,
+          55.7933463
+         ],
+         [
+          49.15132,
+          55.7934398
+         ],
+         [
+          49.1514404,
+          55.7937597
+         ],
+         [
+          49.1506626,
+          55.7938537
+         ],
+         [
+          49.1506897,
+          55.7939491
+         ],
+         [
+          49.1503807,
+          55.793978
+         ],
+         [
+          49.1504425,
+          55.7941346
+         ],
+         [
+          49.1500537,
+          55.7941862
+         ],
+         [
+          49.1501045,
+          55.7943134
+         ],
+         [
+          49.1492355,
+          55.7944226
+         ],
+         [
+          49.1490415,
+          55.7944445
+         ],
+         [
+          49.1491226,
+          55.7946594
+         ],
+         [
+          49.1485257,
+          55.7947305
+         ],
+         [
+          49.1485041,
+          55.7946732
+         ],
+         [
+          49.1483823,
+          55.7946877
+         ],
+         [
+          49.1482312,
+          55.7942838
+         ],
+         [
+          49.1482964,
+          55.7942761
+         ],
+         [
+          49.148286,
+          55.7942486
+         ],
+         [
+          49.1483515,
+          55.7942408
+         ],
+         [
+          49.1483366,
+          55.7942099
+         ],
+         [
+          49.1482368,
+          55.7942222
+         ],
+         [
+          49.1481556,
+          55.7940137
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1044765231",
+      "hotel_id": "n702352946",
+      "is_hotel": true,
+      "height_m": 83.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n702352946"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r19770300",
+     "name": "Noble Millennium Panorama",
+     "address": null,
+     "location": [
+      49.1321664,
+      55.811795
+     ],
+     "stars": 5,
+     "building_id": "r19770299",
+     "height_m": null,
+     "levels": 19,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:a3b8cafb434d",
+      "match": "unknown",
+      "margin": null,
+      "label": "с размещением с животными",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a3b8cafb434d_r19770300",
+       "characteristic_key": "derived:a3b8cafb434d",
+       "value": null,
+       "unit": null,
+       "label": "с размещением с животными",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r19770300",
+       "qualifiers": {
+        "source_text": "с размещением с животными",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      49.1321664,
+      55.811795
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r19770299",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          49.1318101,
+          55.8122342
+         ],
+         [
+          49.1318193,
+          55.8118609
+         ],
+         [
+          49.1320074,
+          55.8112478
+         ],
+         [
+          49.1326404,
+          55.8112493
+         ],
+         [
+          49.1327032,
+          55.811376
+         ],
+         [
+          49.1327058,
+          55.8117901
+         ],
+         [
+          49.1327074,
+          55.812229
+         ],
+         [
+          49.1321344,
+          55.8122367
+         ],
+         [
+          49.1318101,
+          55.8122342
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r19770299",
+      "hotel_id": "r19770300",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 19,
+      "height_fact_id": "f_height_r19770300"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w133487376",
+     "name": "Luciano Residence Kazan",
+     "address": "Право-Булачная улица 49",
+     "location": [
+      49.1163037,
+      55.786777
+     ],
+     "stars": 5,
+     "building_id": "w133487376",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:a3b8cafb434d",
+      "match": "unknown",
+      "margin": null,
+      "label": "с размещением с животными",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a3b8cafb434d_w133487376",
+       "characteristic_key": "derived:a3b8cafb434d",
+       "value": null,
+       "unit": null,
+       "label": "с размещением с животными",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w133487376",
+       "qualifiers": {
+        "source_text": "с размещением с животными",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      49.1163037,
+      55.786777
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w133487376",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          49.1158905,
+          55.7867045
+         ],
+         [
+          49.1161174,
+          55.7865634
+         ],
+         [
+          49.1161821,
+          55.7865912
+         ],
+         [
+          49.116623,
+          55.7867855
+         ],
+         [
+          49.1167858,
+          55.7869262
+         ],
+         [
+          49.1165578,
+          55.7870106
+         ],
+         [
+          49.1163824,
+          55.7869301
+         ],
+         [
+          49.1158905,
+          55.7867045
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w133487376",
+      "hotel_id": "w133487376",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_w133487376"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w194887955",
+     "name": "Luciano",
+     "address": "улица Островского 26",
+     "location": [
+      49.1175186,
+      55.7870569
+     ],
+     "stars": 5,
+     "building_id": "w194887955",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:a3b8cafb434d",
+      "match": "unknown",
+      "margin": null,
+      "label": "с размещением с животными",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a3b8cafb434d_w194887955",
+       "characteristic_key": "derived:a3b8cafb434d",
+       "value": null,
+       "unit": null,
+       "label": "с размещением с животными",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w194887955",
+       "qualifiers": {
+        "source_text": "с размещением с животными",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      49.1175186,
+      55.7870569
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w194887955",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          49.1170197,
+          55.7870404
+         ],
+         [
+          49.117397,
+          55.7868551
+         ],
+         [
+          49.1175211,
+          55.7869356
+         ],
+         [
+          49.1176281,
+          55.7868834
+         ],
+         [
+          49.1179189,
+          55.7870721
+         ],
+         [
+          49.1177885,
+          55.7871356
+         ],
+         [
+          49.1178693,
+          55.787188
+         ],
+         [
+          49.1175047,
+          55.7873619
+         ],
+         [
+          49.1170197,
+          55.7870404
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w194887955",
+      "hotel_id": "w194887955",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w194887955"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w95631843",
+     "name": "Kazan Palace by Tasigo",
+     "address": "улица Калинина 3Б",
+     "location": [
+      49.1374821,
+      55.78272
+     ],
+     "stars": 5,
+     "building_id": "w95631843",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:a3b8cafb434d",
+      "match": "unknown",
+      "margin": null,
+      "label": "с размещением с животными",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a3b8cafb434d_w95631843",
+       "characteristic_key": "derived:a3b8cafb434d",
+       "value": null,
+       "unit": null,
+       "label": "с размещением с животными",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w95631843",
+       "qualifiers": {
+        "source_text": "с размещением с животными",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      49.1374821,
+      55.78272
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w95631843",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          49.1368688,
+          55.7826767
+         ],
+         [
+          49.1371643,
+          55.7824511
+         ],
+         [
+          49.1372603,
+          55.7824908
+         ],
+         [
+          49.1372386,
+          55.7825074
+         ],
+         [
+          49.1374868,
+          55.7826102
+         ],
+         [
+          49.1375111,
+          55.7825916
+         ],
+         [
+          49.1376023,
+          55.7826294
+         ],
+         [
+          49.1377033,
+          55.7826712
+         ],
+         [
+          49.1376815,
+          55.7826878
+         ],
+         [
+          49.137905,
+          55.7827804
+         ],
+         [
+          49.1379294,
+          55.7827618
+         ],
+         [
+          49.1380535,
+          55.7828131
+         ],
+         [
+          49.1379457,
+          55.7828954
+         ],
+         [
+          49.1377461,
+          55.7830478
+         ],
+         [
+          49.1375119,
+          55.7829508
+         ],
+         [
+          49.1376712,
+          55.7828291
+         ],
+         [
+          49.1375045,
+          55.7827601
+         ],
+         [
+          49.1374224,
+          55.7828228
+         ],
+         [
+          49.1373099,
+          55.7827762
+         ],
+         [
+          49.1373894,
+          55.7827155
+         ],
+         [
+          49.1372317,
+          55.7826502
+         ],
+         [
+          49.1370816,
+          55.7827648
+         ],
+         [
+          49.1368688,
+          55.7826767
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w95631843",
+      "hotel_id": "w95631843",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w95631843"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n12272572531",
+     "name": "84",
+     "address": null,
+     "location": [
+      49.0554031,
+      55.8338301
+     ],
+     "stars": null,
+     "building_id": "w539291212",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13142525356",
+     "name": "Alfa best house",
+     "address": null,
+     "location": [
+      49.1035569,
+      55.7873457
+     ],
+     "stars": null,
+     "building_id": "w81559980",
+     "height_m": 12.0,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n12484773914",
+     "name": "Amati",
+     "address": null,
+     "location": [
+      49.1097598,
+      55.7907551
+     ],
+     "stars": null,
+     "building_id": "w1054782583",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n10004372105",
+     "name": "Amsterdam",
+     "address": null,
+     "location": [
+      49.1081917,
+      55.7895804
+     ],
+     "stars": null,
+     "building_id": "w90155378",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n14118698146",
+     "name": "Amsterdam",
+     "address": null,
+     "location": [
+      49.1222024,
+      55.7703234
+     ],
+     "stars": null,
+     "building_id": "w238310014",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w143056765",
+     "name": "Azimut отель Бауман Казань",
+     "address": "Право-Булачная улица 43/1",
+     "location": [
+      49.1139929,
+      55.7883235
+     ],
+     "stars": 3,
+     "building_id": "w143056765",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11280925757",
+     "name": "Bilyar inn",
+     "address": null,
+     "location": [
+      49.046131,
+      55.8244007
+     ],
+     "stars": 3,
+     "building_id": "w1033575682",
+     "height_m": null,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n2016092412",
+     "name": "Bilyar Palace",
+     "address": null,
+     "location": [
+      49.1248863,
+      55.7840826
+     ],
+     "stars": 4,
+     "building_id": "w220383031",
+     "height_m": null,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w99325913",
+     "name": "Bon Ami",
+     "address": "улица Островского 31",
+     "location": [
+      49.1174764,
+      55.7879957
+     ],
+     "stars": 4,
+     "building_id": "w99325913",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n10834208551",
+     "name": "Botanika",
+     "address": null,
+     "location": [
+      49.1805964,
+      55.7334359
+     ],
+     "stars": null,
+     "building_id": "r16397409",
+     "height_m": null,
+     "levels": 19,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "pets_policy",
+    "condition": "с размещением с животными",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    49.1163037,
+    55.78272,
+    49.1495475,
+    55.811795
+   ],
+   "camera": {
+    "center": [
+     49.1495475,
+     55.7938389
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 125188
+ },
+ "search_message_id": "1fe3dbee-fe2a-4c06-aa88-1aa0c1c6dde1"
+}

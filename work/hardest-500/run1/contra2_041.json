@@ -1,0 +1,4960 @@
+{
+ "id": "85b89e6a-ec31-44a5-b456-0520f76fe185",
+ "title": "Москва: в историческом центре старого города, в новостройке",
+ "updated_at": "2026-10-28T19:26:14.748760Z",
+ "messages": [
+  {
+   "id": "78698206-6c0b-47fa-9169-489b9b4c8376",
+   "role": "user",
+   "content": "хочу в historic центре старого города и чтобы было в новостройке, сданной завтра, Москва",
+   "created_at": "2026-10-28T19:26:14.748760Z"
+  },
+  {
+   "id": "735f5638-4474-471b-8b25-9b0923484755",
+   "role": "assistant",
+   "content": "Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. Уточните, пожалуйста, что вы имеете в виду под «новостройкой»: интерьеры в недавно завершённом здании (построенном, например, в последние 5–10 лет) или отдельную современную гостиницу? В историческом центре Москвы большинство отелей размещено в зданиях, построенных в XX веке или реконструированных из старых особняков, поэтому полностью «новых» отелей в старом центре может не быть.",
+   "created_at": "2026-10-28T19:26:14.748760Z"
+  }
+ ],
+ "effective_query": "Москва, отель в историческом центре старого города, в новостройке",
+ "search": {
+  "query_id": "209dec0b9577af99",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:bc5c80fa3035",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "в историческом центре старого города"
+    },
+    {
+     "characteristic_key": "derived:eb4ce26f7b1c",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "в новостройке"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва, отель в историческом центре старого города, в новостройке",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n6883695630",
+     "name": "Ассамблея Никитская",
+     "address": null,
+     "location": [
+      37.6069743,
+      55.7563719
+     ],
+     "stars": null,
+     "building_id": "w252866674",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.215,
+    "confidence": 0.781,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 109 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n6883695630",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7805569046216229,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n6883695630",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 109,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n6883695630",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6883695630",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6069743,
+      55.7563719
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w252866674",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6068243,
+          55.7563715
+         ],
+         [
+          37.6069449,
+          55.7563436
+         ],
+         [
+          37.6070448,
+          55.7563588
+         ],
+         [
+          37.6071523,
+          55.7564498
+         ],
+         [
+          37.6073301,
+          55.7566024
+         ],
+         [
+          37.6073246,
+          55.7566043
+         ],
+         [
+          37.6071933,
+          55.7566526
+         ],
+         [
+          37.6071705,
+          55.7566604
+         ],
+         [
+          37.6071386,
+          55.7566334
+         ],
+         [
+          37.6071011,
+          55.7566451
+         ],
+         [
+          37.6070175,
+          55.7565712
+         ],
+         [
+          37.6070317,
+          55.7565625
+         ],
+         [
+          37.6070404,
+          55.7565514
+         ],
+         [
+          37.607038,
+          55.7565429
+         ],
+         [
+          37.6069942,
+          55.7565038
+         ],
+         [
+          37.6069609,
+          55.7564738
+         ],
+         [
+          37.6069465,
+          55.7564672
+         ],
+         [
+          37.6069233,
+          55.7564676
+         ],
+         [
+          37.6069005,
+          55.7564735
+         ],
+         [
+          37.6068243,
+          55.7563715
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w252866674",
+      "hotel_id": "n6883695630",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n6883695630"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11801716881",
+     "name": "Stella di Mosca",
+     "address": null,
+     "location": [
+      37.6065311,
+      55.756081
+     ],
+     "stars": null,
+     "building_id": "r17713024",
+     "height_m": 23.15,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.214,
+    "confidence": 0.778,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 123 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n11801716881",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7782083918484036,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n11801716881",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 123,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n11801716881",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11801716881",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6065311,
+      55.756081
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r17713024",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6058535,
+          55.755742
+         ],
+         [
+          37.6060532,
+          55.7557202
+         ],
+         [
+          37.6061111,
+          55.7557139
+         ],
+         [
+          37.6063232,
+          55.7556908
+         ],
+         [
+          37.6063883,
+          55.7556837
+         ],
+         [
+          37.6063981,
+          55.7556826
+         ],
+         [
+          37.6064399,
+          55.755678
+         ],
+         [
+          37.6066477,
+          55.7556548
+         ],
+         [
+          37.6067089,
+          55.7556479
+         ],
+         [
+          37.6068256,
+          55.7556352
+         ],
+         [
+          37.6069868,
+          55.7558218
+         ],
+         [
+          37.607055,
+          55.7559008
+         ],
+         [
+          37.607073,
+          55.7559216
+         ],
+         [
+          37.6071326,
+          55.7559906
+         ],
+         [
+          37.6072109,
+          55.7560813
+         ],
+         [
+          37.6071187,
+          55.7561065
+         ],
+         [
+          37.6070948,
+          55.7560788
+         ],
+         [
+          37.606996,
+          55.7561058
+         ],
+         [
+          37.6069825,
+          55.7561095
+         ],
+         [
+          37.6069288,
+          55.7561242
+         ],
+         [
+          37.6069539,
+          55.7561533
+         ],
+         [
+          37.6067838,
+          55.7561998
+         ],
+         [
+          37.6066066,
+          55.7562483
+         ],
+         [
+          37.6065136,
+          55.7562737
+         ],
+         [
+          37.6064386,
+          55.7562942
+         ],
+         [
+          37.6064066,
+          55.7562571
+         ],
+         [
+          37.6063896,
+          55.7562618
+         ],
+         [
+          37.6061829,
+          55.7563183
+         ],
+         [
+          37.606065,
+          55.7561452
+         ],
+         [
+          37.6061027,
+          55.756136
+         ],
+         [
+          37.6061241,
+          55.7561308
+         ],
+         [
+          37.6061086,
+          55.7561135
+         ],
+         [
+          37.6059945,
+          55.755985
+         ],
+         [
+          37.6059217,
+          55.755903
+         ],
+         [
+          37.6059152,
+          55.7558957
+         ],
+         [
+          37.6058535,
+          55.755742
+         ]
+        ],
+        [
+         [
+          37.6062394,
+          55.7558992
+         ],
+         [
+          37.6062527,
+          55.7559144
+         ],
+         [
+          37.6063529,
+          55.7560291
+         ],
+         [
+          37.6063657,
+          55.7560438
+         ],
+         [
+          37.6066314,
+          55.7559703
+         ],
+         [
+          37.6066617,
+          55.7560049
+         ],
+         [
+          37.6067583,
+          55.7559782
+         ],
+         [
+          37.6067802,
+          55.7559721
+         ],
+         [
+          37.6066236,
+          55.7557929
+         ],
+         [
+          37.6065565,
+          55.7558115
+         ],
+         [
+          37.6065196,
+          55.7558217
+         ],
+         [
+          37.6064887,
+          55.7558302
+         ],
+         [
+          37.6063721,
+          55.7558625
+         ],
+         [
+          37.6062394,
+          55.7558992
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r17713024",
+      "hotel_id": "n11801716881",
+      "is_hotel": true,
+      "height_m": 23.15,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n11801716881"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2519942464",
+     "name": "Полянка",
+     "address": null,
+     "location": [
+      37.6060159,
+      55.7585
+     ],
+     "stars": null,
+     "building_id": "r8368432",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.212,
+    "confidence": 0.772,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 155 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n2519942464",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7723568698451465,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n2519942464",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 155,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n2519942464",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2519942464",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6060159,
+      55.7585
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r8368432",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6054932,
+          55.7581717
+         ],
+         [
+          37.605538,
+          55.7581549
+         ],
+         [
+          37.6057115,
+          55.75809
+         ],
+         [
+          37.6059105,
+          55.7582582
+         ],
+         [
+          37.6058199,
+          55.7582921
+         ],
+         [
+          37.605948,
+          55.7584005
+         ],
+         [
+          37.6060835,
+          55.7585151
+         ],
+         [
+          37.60617,
+          55.7584827
+         ],
+         [
+          37.6063342,
+          55.7586215
+         ],
+         [
+          37.6062217,
+          55.7586641
+         ],
+         [
+          37.6061347,
+          55.7586962
+         ],
+         [
+          37.6059853,
+          55.7585699
+         ],
+         [
+          37.6058953,
+          55.7586036
+         ],
+         [
+          37.605745,
+          55.7584765
+         ],
+         [
+          37.6056026,
+          55.758356
+         ],
+         [
+          37.6056778,
+          55.7583279
+         ],
+         [
+          37.6055074,
+          55.7581837
+         ],
+         [
+          37.6054932,
+          55.7581717
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r8368432",
+      "hotel_id": "n2519942464",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n2519942464"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3327460314",
+     "name": "Why not",
+     "address": "Большая Никитская улица 22/2",
+     "location": [
+      37.6032292,
+      55.7570922
+     ],
+     "stars": null,
+     "building_id": "w99312805",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.212,
+    "confidence": 0.771,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 162 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n3327460314",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7712722103823246,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n3327460314",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 162,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n3327460314",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3327460314",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6032292,
+      55.7570922
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w99312805",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6023158,
+          55.7570973
+         ],
+         [
+          37.6025899,
+          55.7570704
+         ],
+         [
+          37.6028948,
+          55.7570404
+         ],
+         [
+          37.6032272,
+          55.7570077
+         ],
+         [
+          37.6033662,
+          55.756994
+         ],
+         [
+          37.6035074,
+          55.7571824
+         ],
+         [
+          37.6035699,
+          55.7572666
+         ],
+         [
+          37.6032971,
+          55.7573325
+         ],
+         [
+          37.6032763,
+          55.7573375
+         ],
+         [
+          37.6032708,
+          55.75733
+         ],
+         [
+          37.6032656,
+          55.7573226
+         ],
+         [
+          37.6030483,
+          55.7573751
+         ],
+         [
+          37.602956,
+          55.7572421
+         ],
+         [
+          37.6031326,
+          55.7572027
+         ],
+         [
+          37.6031414,
+          55.7572153
+         ],
+         [
+          37.6031867,
+          55.7572025
+         ],
+         [
+          37.6032008,
+          55.7572165
+         ],
+         [
+          37.6032193,
+          55.7572107
+         ],
+         [
+          37.6032399,
+          55.7572312
+         ],
+         [
+          37.6032214,
+          55.757237
+         ],
+         [
+          37.603242,
+          55.7572575
+         ],
+         [
+          37.6033889,
+          55.7572277
+         ],
+         [
+          37.6033852,
+          55.7572214
+         ],
+         [
+          37.6034046,
+          55.7572174
+         ],
+         [
+          37.6033653,
+          55.7571501
+         ],
+         [
+          37.6033783,
+          55.7571474
+         ],
+         [
+          37.6033677,
+          55.7571292
+         ],
+         [
+          37.6033014,
+          55.7571364
+         ],
+         [
+          37.6033068,
+          55.7571518
+         ],
+         [
+          37.6032283,
+          55.7571604
+         ],
+         [
+          37.603223,
+          55.757145
+         ],
+         [
+          37.6031021,
+          55.7571582
+         ],
+         [
+          37.603108,
+          55.7571753
+         ],
+         [
+          37.6030134,
+          55.7571856
+         ],
+         [
+          37.6030075,
+          55.7571685
+         ],
+         [
+          37.6027174,
+          55.7572002
+         ],
+         [
+          37.6026902,
+          55.7571607
+         ],
+         [
+          37.6026475,
+          55.7571657
+         ],
+         [
+          37.6026758,
+          55.7572074
+         ],
+         [
+          37.6026181,
+          55.7572157
+         ],
+         [
+          37.602651,
+          55.7572641
+         ],
+         [
+          37.602715,
+          55.7572504
+         ],
+         [
+          37.6027434,
+          55.7572923
+         ],
+         [
+          37.6026851,
+          55.7573048
+         ],
+         [
+          37.6027226,
+          55.7573602
+         ],
+         [
+          37.6027722,
+          55.7573495
+         ],
+         [
+          37.6027767,
+          55.7573563
+         ],
+         [
+          37.6028139,
+          55.7573483
+         ],
+         [
+          37.6028277,
+          55.7573687
+         ],
+         [
+          37.6027905,
+          55.7573767
+         ],
+         [
+          37.602809,
+          55.7574039
+         ],
+         [
+          37.602874,
+          55.7575066
+         ],
+         [
+          37.6026994,
+          55.757551
+         ],
+         [
+          37.6026179,
+          55.7574454
+         ],
+         [
+          37.6025785,
+          55.7573943
+         ],
+         [
+          37.6025295,
+          55.7574054
+         ],
+         [
+          37.6023158,
+          55.7570973
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w99312805",
+      "hotel_id": "n3327460314",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n3327460314"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w99312809",
+     "name": "Арткорт Москва Центр",
+     "address": "Вознесенский переулок 7",
+     "location": [
+      37.6038223,
+      55.7580887
+     ],
+     "stars": 4,
+     "building_id": "w99312809",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.212,
+    "confidence": 0.771,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 166 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_w99312809",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7705587954683296,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:w99312809",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 166,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_w99312809",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w99312809",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6038223,
+      55.7580887
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w99312809",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6031442,
+          55.7580898
+         ],
+         [
+          37.6036048,
+          55.7579507
+         ],
+         [
+          37.6034987,
+          55.757826
+         ],
+         [
+          37.6035935,
+          55.7578035
+         ],
+         [
+          37.6039209,
+          55.7577256
+         ],
+         [
+          37.6040467,
+          55.7576957
+         ],
+         [
+          37.6041117,
+          55.7577706
+         ],
+         [
+          37.6042837,
+          55.7579729
+         ],
+         [
+          37.6044581,
+          55.7581779
+         ],
+         [
+          37.6044185,
+          55.7581906
+         ],
+         [
+          37.6042212,
+          55.7582462
+         ],
+         [
+          37.6041445,
+          55.7582678
+         ],
+         [
+          37.6039789,
+          55.7583182
+         ],
+         [
+          37.6037388,
+          55.7583913
+         ],
+         [
+          37.603706,
+          55.7583573
+         ],
+         [
+          37.6034587,
+          55.7584326
+         ],
+         [
+          37.603328,
+          55.7582902
+         ],
+         [
+          37.6031442,
+          55.7580898
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w99312809",
+      "hotel_id": "w99312809",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w99312809"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3323047406",
+     "name": "Алекс",
+     "address": "Большая Никитская улица 22/2",
+     "location": [
+      37.603002,
+      55.7571517
+     ],
+     "stars": null,
+     "building_id": "w99312805",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.211,
+    "confidence": 0.769,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 176 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n3323047406",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7687334831728204,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n3323047406",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 176,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n3323047406",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3323047406",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.603002,
+      55.7571517
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w99312805",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6023158,
+          55.7570973
+         ],
+         [
+          37.6025899,
+          55.7570704
+         ],
+         [
+          37.6028948,
+          55.7570404
+         ],
+         [
+          37.6032272,
+          55.7570077
+         ],
+         [
+          37.6033662,
+          55.756994
+         ],
+         [
+          37.6035074,
+          55.7571824
+         ],
+         [
+          37.6035699,
+          55.7572666
+         ],
+         [
+          37.6032971,
+          55.7573325
+         ],
+         [
+          37.6032763,
+          55.7573375
+         ],
+         [
+          37.6032708,
+          55.75733
+         ],
+         [
+          37.6032656,
+          55.7573226
+         ],
+         [
+          37.6030483,
+          55.7573751
+         ],
+         [
+          37.602956,
+          55.7572421
+         ],
+         [
+          37.6031326,
+          55.7572027
+         ],
+         [
+          37.6031414,
+          55.7572153
+         ],
+         [
+          37.6031867,
+          55.7572025
+         ],
+         [
+          37.6032008,
+          55.7572165
+         ],
+         [
+          37.6032193,
+          55.7572107
+         ],
+         [
+          37.6032399,
+          55.7572312
+         ],
+         [
+          37.6032214,
+          55.757237
+         ],
+         [
+          37.603242,
+          55.7572575
+         ],
+         [
+          37.6033889,
+          55.7572277
+         ],
+         [
+          37.6033852,
+          55.7572214
+         ],
+         [
+          37.6034046,
+          55.7572174
+         ],
+         [
+          37.6033653,
+          55.7571501
+         ],
+         [
+          37.6033783,
+          55.7571474
+         ],
+         [
+          37.6033677,
+          55.7571292
+         ],
+         [
+          37.6033014,
+          55.7571364
+         ],
+         [
+          37.6033068,
+          55.7571518
+         ],
+         [
+          37.6032283,
+          55.7571604
+         ],
+         [
+          37.603223,
+          55.757145
+         ],
+         [
+          37.6031021,
+          55.7571582
+         ],
+         [
+          37.603108,
+          55.7571753
+         ],
+         [
+          37.6030134,
+          55.7571856
+         ],
+         [
+          37.6030075,
+          55.7571685
+         ],
+         [
+          37.6027174,
+          55.7572002
+         ],
+         [
+          37.6026902,
+          55.7571607
+         ],
+         [
+          37.6026475,
+          55.7571657
+         ],
+         [
+          37.6026758,
+          55.7572074
+         ],
+         [
+          37.6026181,
+          55.7572157
+         ],
+         [
+          37.602651,
+          55.7572641
+         ],
+         [
+          37.602715,
+          55.7572504
+         ],
+         [
+          37.6027434,
+          55.7572923
+         ],
+         [
+          37.6026851,
+          55.7573048
+         ],
+         [
+          37.6027226,
+          55.7573602
+         ],
+         [
+          37.6027722,
+          55.7573495
+         ],
+         [
+          37.6027767,
+          55.7573563
+         ],
+         [
+          37.6028139,
+          55.7573483
+         ],
+         [
+          37.6028277,
+          55.7573687
+         ],
+         [
+          37.6027905,
+          55.7573767
+         ],
+         [
+          37.602809,
+          55.7574039
+         ],
+         [
+          37.602874,
+          55.7575066
+         ],
+         [
+          37.6026994,
+          55.757551
+         ],
+         [
+          37.6026179,
+          55.7574454
+         ],
+         [
+          37.6025785,
+          55.7573943
+         ],
+         [
+          37.6025295,
+          55.7574054
+         ],
+         [
+          37.6023158,
+          55.7570973
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w99312805",
+      "hotel_id": "n3323047406",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n3323047406"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3322998495",
+     "name": "Колобок",
+     "address": "Большая Никитская улица 22/2",
+     "location": [
+      37.6029523,
+      55.7571205
+     ],
+     "stars": null,
+     "building_id": "w99312805",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.211,
+    "confidence": 0.768,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 179 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n3322998495",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7681922578151422,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n3322998495",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 179,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n3322998495",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3322998495",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6029523,
+      55.7571205
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w99312805",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6023158,
+          55.7570973
+         ],
+         [
+          37.6025899,
+          55.7570704
+         ],
+         [
+          37.6028948,
+          55.7570404
+         ],
+         [
+          37.6032272,
+          55.7570077
+         ],
+         [
+          37.6033662,
+          55.756994
+         ],
+         [
+          37.6035074,
+          55.7571824
+         ],
+         [
+          37.6035699,
+          55.7572666
+         ],
+         [
+          37.6032971,
+          55.7573325
+         ],
+         [
+          37.6032763,
+          55.7573375
+         ],
+         [
+          37.6032708,
+          55.75733
+         ],
+         [
+          37.6032656,
+          55.7573226
+         ],
+         [
+          37.6030483,
+          55.7573751
+         ],
+         [
+          37.602956,
+          55.7572421
+         ],
+         [
+          37.6031326,
+          55.7572027
+         ],
+         [
+          37.6031414,
+          55.7572153
+         ],
+         [
+          37.6031867,
+          55.7572025
+         ],
+         [
+          37.6032008,
+          55.7572165
+         ],
+         [
+          37.6032193,
+          55.7572107
+         ],
+         [
+          37.6032399,
+          55.7572312
+         ],
+         [
+          37.6032214,
+          55.757237
+         ],
+         [
+          37.603242,
+          55.7572575
+         ],
+         [
+          37.6033889,
+          55.7572277
+         ],
+         [
+          37.6033852,
+          55.7572214
+         ],
+         [
+          37.6034046,
+          55.7572174
+         ],
+         [
+          37.6033653,
+          55.7571501
+         ],
+         [
+          37.6033783,
+          55.7571474
+         ],
+         [
+          37.6033677,
+          55.7571292
+         ],
+         [
+          37.6033014,
+          55.7571364
+         ],
+         [
+          37.6033068,
+          55.7571518
+         ],
+         [
+          37.6032283,
+          55.7571604
+         ],
+         [
+          37.603223,
+          55.757145
+         ],
+         [
+          37.6031021,
+          55.7571582
+         ],
+         [
+          37.603108,
+          55.7571753
+         ],
+         [
+          37.6030134,
+          55.7571856
+         ],
+         [
+          37.6030075,
+          55.7571685
+         ],
+         [
+          37.6027174,
+          55.7572002
+         ],
+         [
+          37.6026902,
+          55.7571607
+         ],
+         [
+          37.6026475,
+          55.7571657
+         ],
+         [
+          37.6026758,
+          55.7572074
+         ],
+         [
+          37.6026181,
+          55.7572157
+         ],
+         [
+          37.602651,
+          55.7572641
+         ],
+         [
+          37.602715,
+          55.7572504
+         ],
+         [
+          37.6027434,
+          55.7572923
+         ],
+         [
+          37.6026851,
+          55.7573048
+         ],
+         [
+          37.6027226,
+          55.7573602
+         ],
+         [
+          37.6027722,
+          55.7573495
+         ],
+         [
+          37.6027767,
+          55.7573563
+         ],
+         [
+          37.6028139,
+          55.7573483
+         ],
+         [
+          37.6028277,
+          55.7573687
+         ],
+         [
+          37.6027905,
+          55.7573767
+         ],
+         [
+          37.602809,
+          55.7574039
+         ],
+         [
+          37.602874,
+          55.7575066
+         ],
+         [
+          37.6026994,
+          55.757551
+         ],
+         [
+          37.6026179,
+          55.7574454
+         ],
+         [
+          37.6025785,
+          55.7573943
+         ],
+         [
+          37.6025295,
+          55.7574054
+         ],
+         [
+          37.6023158,
+          55.7570973
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w99312805",
+      "hotel_id": "n3322998495",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n3322998495"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5773235097",
+     "name": "Неаполь",
+     "address": null,
+     "location": [
+      37.6051538,
+      55.7588037
+     ],
+     "stars": 4,
+     "building_id": "w253250051",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.211,
+    "confidence": 0.766,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 193 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n5773235097",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7656580478722667,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n5773235097",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 193,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n5773235097",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5773235097",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6051538,
+      55.7588037
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w253250051",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6050233,
+          55.7587038
+         ],
+         [
+          37.6054796,
+          55.7585979
+         ],
+         [
+          37.6055208,
+          55.7586558
+         ],
+         [
+          37.6052925,
+          55.7587079
+         ],
+         [
+          37.6053336,
+          55.7587673
+         ],
+         [
+          37.6053802,
+          55.7588016
+         ],
+         [
+          37.6051763,
+          55.7588905
+         ],
+         [
+          37.6051346,
+          55.7588618
+         ],
+         [
+          37.6050233,
+          55.7587038
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w253250051",
+      "hotel_id": "n5773235097",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n5773235097"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6701011633",
+     "name": "Никитская капсула",
+     "address": null,
+     "location": [
+      37.6025721,
+      55.7571504
+     ],
+     "stars": null,
+     "building_id": "w99312805",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.21,
+    "confidence": 0.764,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 203 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n6701011633",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7639538306124706,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n6701011633",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 203,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n6701011633",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6701011633",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6025721,
+      55.7571504
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w99312805",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6023158,
+          55.7570973
+         ],
+         [
+          37.6025899,
+          55.7570704
+         ],
+         [
+          37.6028948,
+          55.7570404
+         ],
+         [
+          37.6032272,
+          55.7570077
+         ],
+         [
+          37.6033662,
+          55.756994
+         ],
+         [
+          37.6035074,
+          55.7571824
+         ],
+         [
+          37.6035699,
+          55.7572666
+         ],
+         [
+          37.6032971,
+          55.7573325
+         ],
+         [
+          37.6032763,
+          55.7573375
+         ],
+         [
+          37.6032708,
+          55.75733
+         ],
+         [
+          37.6032656,
+          55.7573226
+         ],
+         [
+          37.6030483,
+          55.7573751
+         ],
+         [
+          37.602956,
+          55.7572421
+         ],
+         [
+          37.6031326,
+          55.7572027
+         ],
+         [
+          37.6031414,
+          55.7572153
+         ],
+         [
+          37.6031867,
+          55.7572025
+         ],
+         [
+          37.6032008,
+          55.7572165
+         ],
+         [
+          37.6032193,
+          55.7572107
+         ],
+         [
+          37.6032399,
+          55.7572312
+         ],
+         [
+          37.6032214,
+          55.757237
+         ],
+         [
+          37.603242,
+          55.7572575
+         ],
+         [
+          37.6033889,
+          55.7572277
+         ],
+         [
+          37.6033852,
+          55.7572214
+         ],
+         [
+          37.6034046,
+          55.7572174
+         ],
+         [
+          37.6033653,
+          55.7571501
+         ],
+         [
+          37.6033783,
+          55.7571474
+         ],
+         [
+          37.6033677,
+          55.7571292
+         ],
+         [
+          37.6033014,
+          55.7571364
+         ],
+         [
+          37.6033068,
+          55.7571518
+         ],
+         [
+          37.6032283,
+          55.7571604
+         ],
+         [
+          37.603223,
+          55.757145
+         ],
+         [
+          37.6031021,
+          55.7571582
+         ],
+         [
+          37.603108,
+          55.7571753
+         ],
+         [
+          37.6030134,
+          55.7571856
+         ],
+         [
+          37.6030075,
+          55.7571685
+         ],
+         [
+          37.6027174,
+          55.7572002
+         ],
+         [
+          37.6026902,
+          55.7571607
+         ],
+         [
+          37.6026475,
+          55.7571657
+         ],
+         [
+          37.6026758,
+          55.7572074
+         ],
+         [
+          37.6026181,
+          55.7572157
+         ],
+         [
+          37.602651,
+          55.7572641
+         ],
+         [
+          37.602715,
+          55.7572504
+         ],
+         [
+          37.6027434,
+          55.7572923
+         ],
+         [
+          37.6026851,
+          55.7573048
+         ],
+         [
+          37.6027226,
+          55.7573602
+         ],
+         [
+          37.6027722,
+          55.7573495
+         ],
+         [
+          37.6027767,
+          55.7573563
+         ],
+         [
+          37.6028139,
+          55.7573483
+         ],
+         [
+          37.6028277,
+          55.7573687
+         ],
+         [
+          37.6027905,
+          55.7573767
+         ],
+         [
+          37.602809,
+          55.7574039
+         ],
+         [
+          37.602874,
+          55.7575066
+         ],
+         [
+          37.6026994,
+          55.757551
+         ],
+         [
+          37.6026179,
+          55.7574454
+         ],
+         [
+          37.6025785,
+          55.7573943
+         ],
+         [
+          37.6025295,
+          55.7574054
+         ],
+         [
+          37.6023158,
+          55.7570973
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w99312805",
+      "hotel_id": "n6701011633",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n6701011633"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5260174827",
+     "name": "Ситикомфорт",
+     "address": null,
+     "location": [
+      37.6043518,
+      55.7553663
+     ],
+     "stars": null,
+     "building_id": "w121349126",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.21,
+    "confidence": 0.762,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 214 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n5260174827",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7619619102287878,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n5260174827",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 214,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n5260174827",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5260174827",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6043518,
+      55.7553663
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w121349126",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6042415,
+          55.7552267
+         ],
+         [
+          37.6043943,
+          55.755206
+         ],
+         [
+          37.6044251,
+          55.7552782
+         ],
+         [
+          37.6044764,
+          55.7552712
+         ],
+         [
+          37.6045051,
+          55.7553384
+         ],
+         [
+          37.6044595,
+          55.7553447
+         ],
+         [
+          37.6045899,
+          55.7556167
+         ],
+         [
+          37.6044451,
+          55.7556302
+         ],
+         [
+          37.6043429,
+          55.7553854
+         ],
+         [
+          37.6043112,
+          55.7553897
+         ],
+         [
+          37.6042415,
+          55.7552267
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w121349126",
+      "hotel_id": "n5260174827",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n5260174827"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2615383381",
+     "name": "Ключевой элемент",
+     "address": null,
+     "location": [
+      37.6023259,
+      55.7573957
+     ],
+     "stars": null,
+     "building_id": "w147587062",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.209,
+    "confidence": 0.761,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 220 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n2615383381",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7608062493827203,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n2615383381",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 220,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n2615383381",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2615383381",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6023259,
+      55.7573957
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147587062",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6020638,
+          55.7573497
+         ],
+         [
+          37.6021444,
+          55.7573326
+         ],
+         [
+          37.6022993,
+          55.7572997
+         ],
+         [
+          37.6025404,
+          55.7576594
+         ],
+         [
+          37.6024613,
+          55.7576762
+         ],
+         [
+          37.6024708,
+          55.7576904
+         ],
+         [
+          37.6024066,
+          55.757704
+         ],
+         [
+          37.6023958,
+          55.7576879
+         ],
+         [
+          37.6023035,
+          55.7577075
+         ],
+         [
+          37.6021649,
+          55.7575007
+         ],
+         [
+          37.6021308,
+          55.757508
+         ],
+         [
+          37.602092,
+          55.7574501
+         ],
+         [
+          37.6021262,
+          55.7574428
+         ],
+         [
+          37.6020638,
+          55.7573497
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147587062",
+      "hotel_id": "n2615383381",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n2615383381"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6704104612",
+     "name": "Чайковский",
+     "address": null,
+     "location": [
+      37.6019445,
+      55.757222
+     ],
+     "stars": null,
+     "building_id": "w147587061",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.208,
+    "confidence": 0.757,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 242 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n6704104612",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7569225812298774,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n6704104612",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 242,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n6704104612",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6704104612",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6019445,
+      55.757222
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147587061",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6018094,
+          55.7571508
+         ],
+         [
+          37.6018487,
+          55.7571459
+         ],
+         [
+          37.6021744,
+          55.7571054
+         ],
+         [
+          37.6022993,
+          55.7572997
+         ],
+         [
+          37.6021444,
+          55.7573326
+         ],
+         [
+          37.6020859,
+          55.757243
+         ],
+         [
+          37.6019998,
+          55.7572526
+         ],
+         [
+          37.6020198,
+          55.7572889
+         ],
+         [
+          37.601961,
+          55.7572982
+         ],
+         [
+          37.6019404,
+          55.7572592
+         ],
+         [
+          37.6018686,
+          55.7572672
+         ],
+         [
+          37.6018094,
+          55.7571508
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147587061",
+      "hotel_id": "n6704104612",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n6704104612"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4053661923",
+     "name": "Скайвью Сити",
+     "address": null,
+     "location": [
+      37.6018721,
+      55.7571987
+     ],
+     "stars": null,
+     "building_id": "w147587061",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.208,
+    "confidence": 0.756,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 247 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n4053661923",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7561399268273399,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n4053661923",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 247,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n4053661923",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4053661923",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6018721,
+      55.7571987
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147587061",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6018094,
+          55.7571508
+         ],
+         [
+          37.6018487,
+          55.7571459
+         ],
+         [
+          37.6021744,
+          55.7571054
+         ],
+         [
+          37.6022993,
+          55.7572997
+         ],
+         [
+          37.6021444,
+          55.7573326
+         ],
+         [
+          37.6020859,
+          55.757243
+         ],
+         [
+          37.6019998,
+          55.7572526
+         ],
+         [
+          37.6020198,
+          55.7572889
+         ],
+         [
+          37.601961,
+          55.7572982
+         ],
+         [
+          37.6019404,
+          55.7572592
+         ],
+         [
+          37.6018686,
+          55.7572672
+         ],
+         [
+          37.6018094,
+          55.7571508
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147587061",
+      "hotel_id": "n4053661923",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n4053661923"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9580015060",
+     "name": "Cheers Arbat",
+     "address": "Малый Кисловский переулок 7",
+     "location": [
+      37.6021149,
+      55.7556602
+     ],
+     "stars": null,
+     "building_id": "r3415708",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.206,
+    "confidence": 0.75,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 282 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n9580015060",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7499173651999298,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n9580015060",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 282,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n9580015060",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n9580015060",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6021149,
+      55.7556602
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r3415708",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6018787,
+          55.7558017
+         ],
+         [
+          37.6020216,
+          55.7555442
+         ],
+         [
+          37.6024469,
+          55.7555453
+         ],
+         [
+          37.6025668,
+          55.7558964
+         ],
+         [
+          37.6026172,
+          55.7560356
+         ],
+         [
+          37.6023733,
+          55.7560489
+         ],
+         [
+          37.6023482,
+          55.7559839
+         ],
+         [
+          37.6021379,
+          55.7559445
+         ],
+         [
+          37.6019287,
+          55.7559066
+         ],
+         [
+          37.6019556,
+          55.7558766
+         ],
+         [
+          37.6019315,
+          55.7558561
+         ],
+         [
+          37.6018894,
+          55.7558442
+         ],
+         [
+          37.6019071,
+          55.7558068
+         ],
+         [
+          37.6018787,
+          55.7558017
+         ]
+        ],
+        [
+         [
+          37.60203,
+          55.7558709
+         ],
+         [
+          37.6022104,
+          55.7559014
+         ],
+         [
+          37.6022104,
+          55.7559149
+         ],
+         [
+          37.6023354,
+          55.7559351
+         ],
+         [
+          37.6023307,
+          55.7559102
+         ],
+         [
+          37.6023267,
+          55.7558887
+         ],
+         [
+          37.6022942,
+          55.7558757
+         ],
+         [
+          37.6022537,
+          55.755754
+         ],
+         [
+          37.6022885,
+          55.7557504
+         ],
+         [
+          37.6022387,
+          55.7555917
+         ],
+         [
+          37.6021557,
+          55.7555929
+         ],
+         [
+          37.6021104,
+          55.7556883
+         ],
+         [
+          37.6021287,
+          55.7556921
+         ],
+         [
+          37.60203,
+          55.7558709
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r3415708",
+      "hotel_id": "n9580015060",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n9580015060"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w52132569",
+     "name": "Гостевой дом при Посольстве Азербайджана",
+     "address": "Вознесенский переулок 15",
+     "location": [
+      37.6058389,
+      55.7600369
+     ],
+     "stars": null,
+     "building_id": "w52132569",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.204,
+    "confidence": 0.742,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 326 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_w52132569",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7420681357880996,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:w52132569",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 326,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_w52132569",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52132569",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6058389,
+      55.7600369
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52132569",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.605644,
+          55.7599886
+         ],
+         [
+          37.6057872,
+          55.7599169
+         ],
+         [
+          37.6058224,
+          55.7599006
+         ],
+         [
+          37.6062092,
+          55.7601712
+         ],
+         [
+          37.6060369,
+          55.7602493
+         ],
+         [
+          37.6057286,
+          55.7600429
+         ],
+         [
+          37.605644,
+          55.7599886
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52132569",
+      "hotel_id": "w52132569",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w52132569"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11251511995",
+     "name": "А. Костерев",
+     "address": null,
+     "location": [
+      37.6094158,
+      55.7595867
+     ],
+     "stars": null,
+     "building_id": "w52933354",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.203,
+    "confidence": 0.737,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 356 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n11251511995",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7366658764319678,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n11251511995",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 356,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n11251511995",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11251511995",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6094158,
+      55.7595867
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52933354",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6092247,
+          55.7596863
+         ],
+         [
+          37.6092862,
+          55.7596153
+         ],
+         [
+          37.6093844,
+          55.7595017
+         ],
+         [
+          37.6095128,
+          55.7595368
+         ],
+         [
+          37.6094354,
+          55.7596211
+         ],
+         [
+          37.6098012,
+          55.7597213
+         ],
+         [
+          37.609716,
+          55.7598198
+         ],
+         [
+          37.609623,
+          55.7597951
+         ],
+         [
+          37.609305,
+          55.7597082
+         ],
+         [
+          37.6092247,
+          55.7596863
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52933354",
+      "hotel_id": "n11251511995",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n11251511995"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3323051821",
+     "name": "Kind Cat",
+     "address": "Никитский бульвар 12",
+     "location": [
+      37.600628,
+      55.7555519
+     ],
+     "stars": null,
+     "building_id": "r3426065",
+     "height_m": null,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.202,
+    "confidence": 0.735,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 368 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n3323051821",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7346613591550346,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n3323051821",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 368,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n3323051821",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3323051821",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.600628,
+      55.7555519
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r3426065",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6000631,
+          55.7560223
+         ],
+         [
+          37.6000719,
+          55.7560114
+         ],
+         [
+          37.6001483,
+          55.7559171
+         ],
+         [
+          37.6001809,
+          55.7558769
+         ],
+         [
+          37.6003558,
+          55.7556609
+         ],
+         [
+          37.6005457,
+          55.7554266
+         ],
+         [
+          37.6007265,
+          55.7552033
+         ],
+         [
+          37.6008521,
+          55.7550483
+         ],
+         [
+          37.601091,
+          55.7551004
+         ],
+         [
+          37.6014587,
+          55.7551785
+         ],
+         [
+          37.6013732,
+          55.7552888
+         ],
+         [
+          37.6010473,
+          55.7556792
+         ],
+         [
+          37.6009051,
+          55.7556405
+         ],
+         [
+          37.6009296,
+          55.7556117
+         ],
+         [
+          37.6007523,
+          55.7555656
+         ],
+         [
+          37.600786,
+          55.7555246
+         ],
+         [
+          37.6007456,
+          55.755514
+         ],
+         [
+          37.6005948,
+          55.755697
+         ],
+         [
+          37.6006335,
+          55.7557071
+         ],
+         [
+          37.6006685,
+          55.7556645
+         ],
+         [
+          37.600989,
+          55.7557483
+         ],
+         [
+          37.6005997,
+          55.7562048
+         ],
+         [
+          37.6003625,
+          55.7561409
+         ],
+         [
+          37.6004616,
+          55.7560256
+         ],
+         [
+          37.6003906,
+          55.7560071
+         ],
+         [
+          37.6004234,
+          55.7559674
+         ],
+         [
+          37.6003811,
+          55.7559563
+         ],
+         [
+          37.6002801,
+          55.7560789
+         ],
+         [
+          37.6000631,
+          55.7560223
+         ]
+        ],
+        [
+         [
+          37.6004185,
+          55.755911
+         ],
+         [
+          37.60046,
+          55.7559218
+         ],
+         [
+          37.6004905,
+          55.7558848
+         ],
+         [
+          37.6006848,
+          55.7559356
+         ],
+         [
+          37.6007596,
+          55.7558449
+         ],
+         [
+          37.6005641,
+          55.755794
+         ],
+         [
+          37.6005979,
+          55.7557529
+         ],
+         [
+          37.6005574,
+          55.7557424
+         ],
+         [
+          37.6004185,
+          55.755911
+         ]
+        ],
+        [
+         [
+          37.600783,
+          55.7554686
+         ],
+         [
+          37.6008199,
+          55.7554783
+         ],
+         [
+          37.6008549,
+          55.7554356
+         ],
+         [
+          37.6010573,
+          55.7554882
+         ],
+         [
+          37.6011458,
+          55.7553846
+         ],
+         [
+          37.6009392,
+          55.7553309
+         ],
+         [
+          37.6009729,
+          55.7552898
+         ],
+         [
+          37.6009389,
+          55.7552809
+         ],
+         [
+          37.600783,
+          55.7554686
+         ]
+        ],
+        [
+         [
+          37.6009774,
+          55.7552358
+         ],
+         [
+          37.6010104,
+          55.7552445
+         ],
+         [
+          37.6010454,
+          55.7552018
+         ],
+         [
+          37.6013046,
+          55.7552695
+         ],
+         [
+          37.6013146,
+          55.7552573
+         ],
+         [
+          37.6012448,
+          55.7552391
+         ],
+         [
+          37.6012881,
+          55.7551866
+         ],
+         [
+          37.601234,
+          55.7551725
+         ],
+         [
+          37.6012256,
+          55.7551826
+         ],
+         [
+          37.6011205,
+          55.7551551
+         ],
+         [
+          37.6011288,
+          55.755145
+         ],
+         [
+          37.6010684,
+          55.7551293
+         ],
+         [
+          37.6009774,
+          55.7552358
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r3426065",
+      "hotel_id": "n3323051821",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_n3323051821"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r5371135",
+     "name": "DoubleTree Moscow Arbat",
+     "address": "Никитский бульвар 10",
+     "location": [
+      37.6011285,
+      55.7548521
+     ],
+     "stars": null,
+     "building_id": "r5371135",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.201,
+    "confidence": 0.731,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 386 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_r5371135",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7314458983796795,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:r5371135",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 386,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_r5371135",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r5371135",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6011285,
+      55.7548521
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r5371135",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6008521,
+          55.7550483
+         ],
+         [
+          37.6010205,
+          55.7548038
+         ],
+         [
+          37.6010797,
+          55.7547195
+         ],
+         [
+          37.6011636,
+          55.7546
+         ],
+         [
+          37.6013531,
+          55.7546322
+         ],
+         [
+          37.6013212,
+          55.7546762
+         ],
+         [
+          37.6013423,
+          55.7546808
+         ],
+         [
+          37.6012275,
+          55.7548489
+         ],
+         [
+          37.6011039,
+          55.7550301
+         ],
+         [
+          37.6011345,
+          55.7550368
+         ],
+         [
+          37.601091,
+          55.7551004
+         ],
+         [
+          37.6008521,
+          55.7550483
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r5371135",
+      "hotel_id": "r5371135",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_r5371135"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w256379146",
+     "name": "Ист-Вест",
+     "address": "Тверской бульвар 14 с4",
+     "location": [
+      37.6014066,
+      55.7597253
+     ],
+     "stars": null,
+     "building_id": "w256379146",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.729,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 401 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_w256379146",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7287180002573891,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:w256379146",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 401,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_w256379146",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w256379146",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6014066,
+      55.7597253
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w256379146",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6012334,
+          55.759671
+         ],
+         [
+          37.6013079,
+          55.7596477
+         ],
+         [
+          37.6014499,
+          55.7596031
+         ],
+         [
+          37.6014981,
+          55.759588
+         ],
+         [
+          37.6017192,
+          55.7598113
+         ],
+         [
+          37.6014545,
+          55.7598943
+         ],
+         [
+          37.6013922,
+          55.7598313
+         ],
+         [
+          37.6013711,
+          55.75981
+         ],
+         [
+          37.6012334,
+          55.759671
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w256379146",
+      "hotel_id": "w256379146",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w256379146"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4019686282",
+     "name": "Времена года",
+     "address": null,
+     "location": [
+      37.6054009,
+      55.7534551
+     ],
+     "stars": null,
+     "building_id": "w31496304",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.728,
+    "matched": [
+     {
+      "characteristic_key": "derived:bc5c80fa3035",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "в историческом центре старого города",
+      "explanation": "До приблизительного центра города 407 м по прямой. Ориентир рассчитан как медиана координат отелей с адресом в этом городе.",
+      "fact": {
+       "fact_id": "f_wish_bc5c80fa3035_n4019686282",
+       "characteristic_key": "derived:bc5c80fa3035",
+       "value": true,
+       "unit": null,
+       "label": "в историческом центре старого города",
+       "confidence": 0.7276776217975671,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_37.605812_55.757106"
+       ],
+       "subject": "hotel:n4019686282",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "в историческом центре старого города",
+        "native_characteristic_key": "spatial:ae975d99958e",
+        "native_value": 407,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 1500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_point_37.605812_55.757106"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:eb4ce26f7b1c",
+      "match": "unknown",
+      "margin": null,
+      "label": "в новостройке",
+      "explanation": "В базе данных нет записей о новостройках; поисковые запросы по интернету не привели к однозначным совпадениям с конкретными отелями в историческом центре.",
+      "fact": {
+       "fact_id": "f_wish_eb4ce26f7b1c_n4019686282",
+       "characteristic_key": "derived:eb4ce26f7b1c",
+       "value": null,
+       "unit": null,
+       "label": "в новостройке",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4019686282",
+       "qualifiers": {
+        "source_text": "в новостройке",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6054009,
+      55.7534551
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w31496304",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6051915,
+          55.7539049
+         ],
+         [
+          37.6052557,
+          55.7538963
+         ],
+         [
+          37.6052396,
+          55.7538583
+         ],
+         [
+          37.6054,
+          55.7538367
+         ],
+         [
+          37.6054162,
+          55.7538747
+         ],
+         [
+          37.6055607,
+          55.7538553
+         ],
+         [
+          37.6054311,
+          55.753551
+         ],
+         [
+          37.6054136,
+          55.7535534
+         ],
+         [
+          37.6053541,
+          55.7534152
+         ],
+         [
+          37.6056317,
+          55.7533773
+         ],
+         [
+          37.605883,
+          55.7539476
+         ],
+         [
+          37.6052394,
+          55.7540166
+         ],
+         [
+          37.6051949,
+          55.753913
+         ],
+         [
+          37.6051915,
+          55.7539049
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w31496304",
+      "hotel_id": "n4019686282",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4019686282"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n13359516702",
+     "name": "Светлый Лофт",
+     "address": null,
+     "location": [
+      37.6000789,
+      55.7542848
+     ],
+     "stars": null,
+     "building_id": "r7751085",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1967,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r225031",
+     "name": "Националь",
+     "address": "Моховая улица 15/1 с1",
+     "location": [
+      37.6134976,
+      55.7567694
+     ],
+     "stars": 5,
+     "building_id": "r225031",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1964,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n2519907875",
+     "name": "Fresh Hostel",
+     "address": "Мерзляковский переулок 16",
+     "location": [
+      37.5985634,
+      55.7555658
+     ],
+     "stars": null,
+     "building_id": "w175332949",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1963,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n2520383868",
+     "name": "Бамбук",
+     "address": null,
+     "location": [
+      37.597881,
+      55.75713
+     ],
+     "stars": null,
+     "building_id": "w32045624",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1957,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n3056419711",
+     "name": "Камергерский",
+     "address": null,
+     "location": [
+      37.6137809,
+      55.759827
+     ],
+     "stars": null,
+     "building_id": "r2669542",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1915,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r5371129",
+     "name": "Cosmos Selection Moscow Arbat",
+     "address": "улица Новый Арбат 2",
+     "location": [
+      37.5993871,
+      55.7532565
+     ],
+     "stars": null,
+     "building_id": "r5371129",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1913,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6718080706",
+     "name": "Ситикомфорт",
+     "address": null,
+     "location": [
+      37.6068442,
+      55.762402
+     ],
+     "stars": null,
+     "building_id": "w52132624",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.191,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n13483869061",
+     "name": "Апельсин",
+     "address": null,
+     "location": [
+      37.6142596,
+      55.7600266
+     ],
+     "stars": null,
+     "building_id": "r2669542",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1897,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11396850095",
+     "name": "Птица-синица",
+     "address": null,
+     "location": [
+      37.6053911,
+      55.7627871
+     ],
+     "stars": null,
+     "building_id": "r7154322",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1891,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n3327477352",
+     "name": "Moscow Hostel на Богословском",
+     "address": "Богословский переулок 3",
+     "location": [
+      37.6005059,
+      55.7619705
+     ],
+     "stars": null,
+     "building_id": "w52122747",
+     "height_m": null,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.189,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    37.600628,
+    55.7534551,
+    37.6094158,
+    55.7600369
+   ],
+   "camera": {
+    "center": [
+     37.6069743,
+     55.7563719
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 51352
+ },
+ "search_message_id": "735f5638-4474-471b-8b25-9b0923484755"
+}

@@ -1,0 +1,292 @@
+{
+ "id": "e5e1234a-d72e-411c-9ce1-b95bfc82da71",
+ "title": "Москва: парковкой на 20 машин, зона, где запрещён автотранспорт, рядом зона…",
+ "updated_at": "2026-10-28T19:25:10.508946Z",
+ "messages": [
+  {
+   "id": "da5f36e6-ff5c-48b9-b766-7021b86cec0c",
+   "role": "user",
+   "content": "хочу с парковкой на двадцать машин и чтобы было где запрещён автотранспорт, Москва",
+   "created_at": "2026-10-28T19:25:10.508946Z"
+  },
+  {
+   "id": "3e1425d3-d128-4b20-8087-b9970fb5291d",
+   "role": "assistant",
+   "content": "Проверка не завершена: парковкой на 20 машин; рядом зона, где запрещён автотранспорт. Для точной проверки расстояния до закрытой для автомобилей зоны укажите отель, в котором вы планируете остановиться. Также уточните пожелание по парковке: требуется ли на территории отеля парковка на 20 машин или достаточно подходящей парковки рядом? | Пока непонятно, где стоит отель, невозможно проверить расстояние до пешеходной зоны или наличие требуемой парковки. Пешеходные зоны Москвы (Красная площадь, Арбат и др.) регулярно обновляются властями, и информация о запрете движения нос может меняться в зависимости от дня недели или событий. Необходимо определить исходные объекты и расстояния до них.",
+   "created_at": "2026-10-28T19:25:10.508946Z"
+  }
+ ],
+ "effective_query": "Москва отель с парковкой на 20 машин, рядом зона, где запрещён автотранспорт",
+ "search": {
+  "query_id": "2aecd7b1f05a1282",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:569a43919748",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "парковкой на 20 машин"
+    },
+    {
+     "characteristic_key": "derived:3a3109f43c8e",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "зона, где запрещён автотранспорт"
+    },
+    {
+     "characteristic_key": "derived:d566a655b62e",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом зона, где запрещён автотранспорт"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва отель с парковкой на 20 машин, рядом зона, где запрещён автотранспорт",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n8825725921",
+     "name": "1 Арт Отель",
+     "address": null,
+     "location": [
+      37.643618,
+      55.809941
+     ],
+     "stars": null,
+     "building_id": "w685568633",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n3189991362",
+     "name": "123hostel.ru",
+     "address": null,
+     "location": [
+      37.7198901,
+      55.7842951
+     ],
+     "stars": null,
+     "building_id": "w343634575",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n13587400888",
+     "name": "1905",
+     "address": null,
+     "location": [
+      37.5558929,
+      55.7586138
+     ],
+     "stars": null,
+     "building_id": "w38938872",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4208531789",
+     "name": "1st Arbat Hotel",
+     "address": null,
+     "location": [
+      37.7175668,
+      55.7482496
+     ],
+     "stars": null,
+     "building_id": "w227175775",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11283323869",
+     "name": "21 Семеновская",
+     "address": "Щербаковская улица 41А",
+     "location": [
+      37.7328543,
+      55.7830958
+     ],
+     "stars": null,
+     "building_id": "w132365082",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n2519755766",
+     "name": "3 пингвина",
+     "address": null,
+     "location": [
+      37.6276768,
+      55.7417708
+     ],
+     "stars": null,
+     "building_id": "w53854148",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5903084085",
+     "name": "32 км",
+     "address": null,
+     "location": [
+      37.6195586,
+      55.572798
+     ],
+     "stars": null,
+     "building_id": "w373809750",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n13739866801",
+     "name": "3V",
+     "address": "1-й Басманный переулок 5/20 с3",
+     "location": [
+      37.663238,
+      55.7713142
+     ],
+     "stars": null,
+     "building_id": "w35683838",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8154400360",
+     "name": "47nebo",
+     "address": null,
+     "location": [
+      37.5403261,
+      55.7479426
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11663276873",
+     "name": "5Nebo",
+     "address": null,
+     "location": [
+      37.6326571,
+      55.7577088
+     ],
+     "stars": null,
+     "building_id": "r532946",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 137439
+ },
+ "search_message_id": "3e1425d3-d128-4b20-8087-b9970fb5291d"
+}
