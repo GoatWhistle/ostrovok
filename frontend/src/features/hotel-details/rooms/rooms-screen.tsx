@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { StayFields } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
-import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
+import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { Button } from "@/shared/ui"
 import { OfferState, offerRequest } from "../offer-state"
 import { RoomCatalog } from "./room-catalog"
@@ -29,13 +29,11 @@ export function RoomsScreen({
   readonly onBack: () => void
 }) {
   const { t } = useTranslation()
-  const { locale } = useLocale()
   const offers = useRoomOffers(hotelId, stay)
   const back = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     back.current?.focus({ preventScroll: true })
   }, [])
-  const checked = offers.current?.checked_at
   return (
     <section className={styles.screen} data-rooms-screen aria-labelledby={`${hotelId}-rooms-title`}>
       <div className={styles.screenHead}>
@@ -63,17 +61,6 @@ export function RoomsScreen({
           rooms={offers.rooms}
           content={offers.priced}
         />
-      ) : null}
-      {checked ? (
-        <p className={styles.checked}>
-          {t("explore:offers.source", {
-            source: offers.current?.source ?? "",
-            time: new Intl.DateTimeFormat(locale, {
-              dateStyle: "short",
-              timeStyle: "short",
-            }).format(new Date(checked)),
-          })}
-        </p>
       ) : null}
     </section>
   )
