@@ -144,6 +144,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         providers.catalog_matcher,
         search_provider=providers.hotel_offer_search,
         card_lookup=FirstHotelCard(alean_cards, WebHotelCard(web_research)),
+        room_card=alean_cards,
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)

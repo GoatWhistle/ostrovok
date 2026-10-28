@@ -1076,6 +1076,10 @@ export interface components {
             room_groups?: components["schemas"]["SupplierRoom"][];
             /** @description Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам */
             details?: components["schemas"]["SupplierDetails"] | null;
+            /** @description Категории из публичной карточки другого поставщика: заполняются, когда основной источник не публикует вид из окна и этаж */
+            declared_rooms?: components["schemas"]["SupplierRoom"][];
+            /** @description Адрес публичной карточки, из которой взяты declared_rooms */
+            declared_card?: string | null;
             offers: components["schemas"]["RoomOffer"][];
         };
         RoomOffer: {

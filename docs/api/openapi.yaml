@@ -1354,6 +1354,11 @@ components:
           allOf: [{ $ref: "#/components/schemas/SupplierDetails" }]
           nullable: true
           description: Сведения отеля из каталога поставщика, подтверждённые по адресу и координатам
+        declared_rooms:
+          type: array
+          items: { $ref: "#/components/schemas/SupplierRoom" }
+          description: "Категории из публичной карточки другого поставщика: заполняются, когда основной источник не публикует вид из окна и этаж"
+        declared_card: { type: string, nullable: true, description: "Адрес публичной карточки, из которой взяты declared_rooms" }
         offers:
           type: array
           items: { $ref: "#/components/schemas/RoomOffer" }

@@ -47,6 +47,8 @@ class HotelOffersSchema(BaseModel):
     room_categories: list[str]
     photo_url: str | None
     room_groups: list[SupplierRoomSchema]
+    declared_rooms: list[SupplierRoomSchema]
+    declared_card: str | None
     rates_complete: bool
     details: SupplierDetailsSchema | None
 
@@ -67,6 +69,8 @@ def hotel_offers_schema(result: HotelOffers) -> HotelOffersSchema:
         rates_complete=result.rates_complete,
         details=supplier_details_schema(result.details) if result.details else None,
         room_groups=[supplier_room_schema(room) for room in result.room_groups],
+        declared_rooms=[supplier_room_schema(room) for room in result.declared_rooms],
+        declared_card=result.declared_card,
         offers=[
             RoomOfferSchema(
                 id=item.id,

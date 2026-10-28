@@ -1,3 +1,4 @@
+import time
 from urllib.parse import urlsplit
 
 import httpx
@@ -11,6 +12,7 @@ HOSTS = frozenset({"alean.ru", "www.alean.ru"})
 PATH_PREFIX = "/hotels/"
 PAGE_LIMIT = 3
 MAX_BYTES = 2_000_000
+CACHE_SECONDS = 12 * 3600
 HEADERS = {
     "User-Agent": "HotelAgent/0.1 (+https://github.com/GoatWhistle/o-hack; hotel room research)",
     "Accept": "text/html",
@@ -29,12 +31,23 @@ class AleanRoomCard:
         self._client = client or httpx.AsyncClient(timeout=20, headers=HEADERS)
         self._owns_client = client is None
         self._page_limit = page_limit
+        self._cache: dict[tuple[str, float, float], tuple[float, SupplierHotel | None]] = {}
 
     async def aclose(self) -> None:
         if self._owns_client:
             await self._client.aclose()
 
     async def find(self, hotel: HotelIdentity) -> SupplierHotel | None:
+        key = (hotel.name, round(hotel.location[0], 4), round(hotel.location[1], 4))
+        cached = self._cache.get(key)
+        now = time.monotonic()
+        if cached is not None and now - cached[0] < CACHE_SECONDS:
+            return cached[1]
+        found = await self._lookup(hotel)
+        self._cache[key] = (now, found)
+        return found
+
+    async def _lookup(self, hotel: HotelIdentity) -> SupplierHotel | None:
         for url in await self._candidates(hotel):
             html = await self._page(url)
             if html is None:

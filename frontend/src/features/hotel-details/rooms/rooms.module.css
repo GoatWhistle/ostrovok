@@ -168,3 +168,22 @@
 .amenity svg {
   color: var(--text-success);
 }
+
+.declared {
+  display: grid;
+  gap: var(--space-8);
+  padding-block-start: var(--space-8);
+  border-block-start: 1px solid var(--border-subtle);
+}
+
+.declaredRow {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+
+.declaredLink {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  justify-self: start;
+  color: var(--text-link);
+}
