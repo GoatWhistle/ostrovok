@@ -9,7 +9,7 @@ import { HOTEL, SUNSET_AZIMUTH } from "../shots"
 import { GLITTER_FRAGMENT, GLITTER_VERTEX, SUN_FRAGMENT, SUN_VERTEX } from "./sunset-shaders"
 
 export const SUNSET_LAYER = "reel-sunset"
-const GLITTER_FROM = 230
+const GLITTER_FROM = 190
 const GLITTER_TO = 560
 const GLITTER_HALF = 70
 const SUN_METERS = 560
@@ -128,14 +128,13 @@ export class SunsetLayer implements CustomLayerInterface {
     gl.depthFunc(gl.LEQUAL)
     gl.depthMask(false)
     gl.enable(gl.BLEND)
-    gl.blendFuncSeparate(gl.ONE, gl.ONE, gl.ZERO, gl.ONE)
+    gl.blendFuncSeparate(gl.ONE, gl.ONE_MINUS_SRC_ALPHA, gl.ZERO, gl.ONE)
     const [ax, ay] = axis()
     this.paint(gl, glitter)
     gl.uniform2f(glitter.at("u_axis"), ax, ay)
     gl.uniform2f(glitter.at("u_reach"), GLITTER_FROM, GLITTER_TO)
     gl.uniform1f(glitter.at("u_time"), performance.now() / 1000)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
-    gl.blendFuncSeparate(gl.ONE, gl.ONE_MINUS_SRC_ALPHA, gl.ZERO, gl.ONE)
     this.paint(gl, sun)
     gl.uniform3f(sun.at("u_anchor"), ax * SUN_METERS, ay * SUN_METERS, 0)
     const canvas = map.getCanvas()

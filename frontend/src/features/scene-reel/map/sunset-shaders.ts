@@ -30,7 +30,7 @@ float sparkles(vec2 at, vec2 cell, float time) {
   float seed = hash(id);
   float flicker = 0.5 + 0.5 * sin(time * (0.6 + seed * 1.4) + seed * 40.0);
   float streak = exp(-inside.x * inside.x * 18.0 - inside.y * inside.y * 3.0);
-  return step(0.55, seed) * streak * flicker * flicker;
+  return step(0.5, seed) * streak * flicker * flicker;
 }
 void main() {
   float along = v_local.x;
@@ -42,12 +42,12 @@ void main() {
   vec2 at = vec2(along, across);
   vec2 cell = vec2(mix(1.4, 2.4, travel), mix(6.0, 11.0, travel));
   float fine = sparkles(at, cell, u_time) + 0.7 * sparkles(at + 17.0, cell * 0.6, u_time * 1.3);
-  float blur = clamp(length(fwidth(at / cell)) * 1.6, 0.0, 1.0);
-  float shimmer = mix(fine, 0.12, blur);
+  float blur = clamp(length(fwidth(at / cell)) * 1.1, 0.0, 1.0);
+  float shimmer = mix(fine, 0.18, blur);
   float glow = 0.16 * column * (0.6 + travel * 0.4);
-  float light = (shimmer * column + glow) * ends * u_intensity;
-  vec3 color = mix(u_hot, u_warm, travel) * light;
-  fragColor = vec4(color, 0.0);
+  float light = (shimmer * column + glow) * ends * u_intensity * mix(1.0, 1.8, travel);
+  vec3 color = mix(u_warm, u_hot, 0.35 + 0.65 * shimmer) * light;
+  fragColor = vec4(color, min(1.0, light * 0.55));
 }`
 
 export const SUN_VERTEX = `#version 300 es
@@ -82,7 +82,7 @@ void main() {
   face = mix(face, u_warm, redden * 0.55);
   float edge = 1.0 - smoothstep(0.6, 1.0, max(abs(v_corner.x), abs(v_corner.y)));
   float bloom = exp(-r * r * 14.0) * 0.32 + exp(-r * r * 4.5) * 0.12;
-  float band = exp(-v_corner.y * v_corner.y * 160.0) * exp(-v_corner.x * v_corner.x * 4.0) * 0.18;
+  float band = exp(-v_corner.y * v_corner.y * 90.0) * exp(-v_corner.x * v_corner.x * 1.6) * 0.24;
   vec3 halo = (u_hot * bloom * mix(0.3, 1.0, above) + u_warm * band) * edge;
   float cover = disc * above;
   fragColor = vec4((face * cover + halo) * u_intensity, cover * u_intensity);
