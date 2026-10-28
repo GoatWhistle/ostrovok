@@ -21,13 +21,18 @@ class ChatDialogue:
         message: str,
         selected_hotel_id: str | None,
         locale: str,
+        conditions: str | None = None,
     ) -> ChatDecision:
         context = json.dumps(
             {
                 "message": message,
                 "now": self._clock.now().isoformat() if self._clock else None,
                 "locale": locale,
-                "previous_search_query": previous.effective_query if previous else None,
+                "previous_search_query": conditions
+                if conditions
+                else previous.effective_query
+                if previous
+                else None,
                 "history": [{"role": m.role, "content": m.content} for m in previous.messages[-8:]]
                 if previous
                 else [],

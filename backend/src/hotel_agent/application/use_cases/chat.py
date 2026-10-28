@@ -1,4 +1,4 @@
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from time import perf_counter
 from uuid import uuid4
@@ -7,10 +7,11 @@ from hotel_agent.application import progress
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.anywhere_request import keep_anywhere
 from hotel_agent.application.chat_dialogue import ChatDialogue
+from hotel_agent.application.chat_filters import filters_of, filters_of_snapshot, query_of
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, shorten, validated_title
 from hotel_agent.application.ordinal_choice import chosen_hotel_id
-from hotel_agent.application.ports.chat_dialogue import ChatMode
+from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
@@ -19,6 +20,7 @@ from hotel_agent.application.search_reply import fallback_reply, search_reply
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
 from hotel_agent.application.use_cases.search_hotels import SearchHotels, SearchOutcome
 from hotel_agent.domain.errors import ConversationNotFound, InvalidQuery, RegionNotFound
+from hotel_agent.domain.filters import SearchFilter
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -26,6 +28,7 @@ class ConversationOutcome:
     conversation: ConversationRecord
     search: SearchOutcome | None
     search_snapshot: dict[str, object] | None = None
+    filters: tuple[SearchFilter, ...] = ()
 
 
 class Chat:
@@ -53,7 +56,10 @@ class Chat:
         if conversation is None:
             raise ConversationNotFound()
         return ConversationOutcome(
-            conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
+            conversation=conversation,
+            search=None,
+            search_snapshot=conversation.search_snapshot,
+            filters=filters_of_snapshot(conversation.search_snapshot),
         )
 
     async def rename(self, conversation_id: str, title: str) -> ConversationOutcome:
@@ -68,7 +74,10 @@ class Chat:
         if conversation is None:
             raise ConversationNotFound()
         return ConversationOutcome(
-            conversation=conversation, search=None, search_snapshot=conversation.search_snapshot
+            conversation=conversation,
+            search=None,
+            search_snapshot=conversation.search_snapshot,
+            filters=filters_of_snapshot(conversation.search_snapshot),
         )
 
     async def delete(self, conversation_id: str) -> None:
@@ -85,8 +94,11 @@ class Chat:
         region_id: str,
         selected_hotel_id: str | None,
         locale: str = "ru",
+        filters: Sequence[SearchFilter] | None = None,
     ) -> ConversationOutcome:
-        if not message.strip():
+        text = message.strip()
+        requested = query_of(filters) if filters is not None else ""
+        if not text and not requested:
             raise InvalidQuery("Chat message is empty")
         await self._known_region(region_id)
         previous = None
@@ -96,12 +108,15 @@ class Chat:
             if previous is None:
                 raise ConversationNotFound()
             region_id = previous.region_id
-        if selected_hotel_id is None and previous is not None:
-            selected_hotel_id = chosen_hotel_id(message, previous.search_snapshot)
-        progress.mark("rewrite")
-        decision = await self._dialogue.respond(
-            previous, message.strip(), selected_hotel_id, locale
-        )
+        if text and selected_hotel_id is None and previous is not None:
+            selected_hotel_id = chosen_hotel_id(text, previous.search_snapshot)
+        if text:
+            progress.mark("rewrite")
+            decision = await self._dialogue.respond(
+                previous, text, selected_hotel_id, locale, requested or None
+            )
+        else:
+            decision = ChatDecision(ChatMode.SEARCH, query=requested)
         search = None
         effective_query = previous.effective_query if previous else None
         snapshot = (
@@ -116,7 +131,7 @@ class Chat:
         answer_id = str(uuid4())
         if decision.mode is ChatMode.SEARCH:
             assert decision.query is not None
-            effective_query = keep_anywhere(message, decision.query)
+            effective_query = keep_anywhere(text, decision.query)
             started = perf_counter()
             search = await self._search(effective_query, region_id, None, 20)
             took_ms = round((perf_counter() - started) * 1000)
@@ -139,9 +154,9 @@ class Chat:
             None
             if previous
             else (
-                conversation_title(search.parsed, message.strip(), locale, self._registry)
+                conversation_title(search.parsed, text or requested, locale, self._registry)
                 if search
-                else shorten(" ".join(message.split()), 60)
+                else shorten(" ".join(text.split()), 60)
             )
         )
         async with self._uow() as uow:
@@ -150,7 +165,7 @@ class Chat:
                 region_id,
                 effective_query,
                 str(uuid4()),
-                message.strip(),
+                text or None,
                 answer_id,
                 answer,
                 snapshot,
@@ -161,7 +176,10 @@ class Chat:
             conversation = await uow.chat.get(identifier)
         assert conversation is not None
         return ConversationOutcome(
-            conversation=conversation, search=search, search_snapshot=snapshot
+            conversation=conversation,
+            search=search,
+            search_snapshot=snapshot,
+            filters=filters_of(search.parsed) if search else filters_of_snapshot(snapshot),
         )
 
     async def _known_region(self, region_id: str) -> None:

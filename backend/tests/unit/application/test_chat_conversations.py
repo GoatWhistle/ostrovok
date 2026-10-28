@@ -39,15 +39,24 @@ class FakeChatRepository:
         region_id: str,
         effective_query: str | None,
         user_message_id: str,
-        user_text: str,
+        user_text: str | None,
         answer_id: str,
         answer: str,
         search_snapshot: dict[str, object] | None,
         title: str | None = None,
     ) -> None:
         previous = self.conversations.get(conversation_id)
+        asked = (
+            ()
+            if user_text is None
+            else (
+                ChatMessageRecord(
+                    id=user_message_id, role="user", content=user_text, created_at=NOW
+                ),
+            )
+        )
         messages = (
-            ChatMessageRecord(id=user_message_id, role="user", content=user_text, created_at=NOW),
+            *asked,
             ChatMessageRecord(id=answer_id, role="assistant", content=answer, created_at=NOW),
         )
         self.conversations[conversation_id] = ConversationRecord(

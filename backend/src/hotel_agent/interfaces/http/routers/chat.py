@@ -17,6 +17,7 @@ from hotel_agent.interfaces.http.chat_schemas import (
     ChatRequestSchema,
     ConversationSchema,
     ConversationTitleSchema,
+    chat_filter,
     conversation_schema,
 )
 from hotel_agent.interfaces.http.errors import STATUS_BY_ERROR
@@ -59,6 +60,9 @@ async def conversation_events(
                 request.region_id,
                 request.selected_hotel_id,
                 request.locale,
+                None
+                if request.filters is None
+                else [chat_filter(item) for item in request.filters],
             )
             return conversation_schema(outcome, registry, round((perf_counter() - started) * 1000))
         finally:
@@ -112,6 +116,7 @@ def build_router(chat: Chat, registry: CharacteristicRegistryPort) -> APIRouter:
             request.region_id,
             request.selected_hotel_id,
             request.locale,
+            None if request.filters is None else [chat_filter(item) for item in request.filters],
         )
         return conversation_schema(outcome, registry, round((perf_counter() - started) * 1000))
 

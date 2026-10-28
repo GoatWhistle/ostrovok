@@ -52,7 +52,7 @@ class PostgresChatRepository:
         region_id: str,
         effective_query: str | None,
         user_message_id: str,
-        user_text: str,
+        user_text: str | None,
         answer_id: str,
         answer: str,
         search_snapshot: dict[str, object] | None,
@@ -72,24 +72,31 @@ class PostgresChatRepository:
                 "title": title,
             },
         )
+        rows = (
+            []
+            if user_text is None
+            else [
+                {
+                    "id": user_message_id,
+                    "conversation": conversation_id,
+                    "role": "user",
+                    "content": user_text,
+                }
+            ]
+        )
+        rows.append(
+            {
+                "id": answer_id,
+                "conversation": conversation_id,
+                "role": "assistant",
+                "content": answer,
+            }
+        )
         async with self._connection.cursor() as cursor:
             await cursor.executemany(
                 """INSERT INTO chat_messages (id, conversation_id, role, content)
                 VALUES (%(id)s, %(conversation)s, %(role)s, %(content)s)""",
-                [
-                    {
-                        "id": user_message_id,
-                        "conversation": conversation_id,
-                        "role": "user",
-                        "content": user_text,
-                    },
-                    {
-                        "id": answer_id,
-                        "conversation": conversation_id,
-                        "role": "assistant",
-                        "content": answer,
-                    },
-                ],
+                rows,
             )
 
     async def save_search_snapshot(
