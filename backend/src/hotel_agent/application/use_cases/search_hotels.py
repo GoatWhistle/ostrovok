@@ -30,7 +30,7 @@ from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
 from hotel_agent.application.search_selection import Selection, select_candidates
 from hotel_agent.application.spatial_matching import spatial_intent
-from hotel_agent.application.stay_question import without_guest_wishes
+from hotel_agent.application.stay_guests import catalog_capacity, researched, stay_guests
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.domain.errors import InvalidQuery
 from hotel_agent.domain.query import ParsedQuery
@@ -94,7 +94,7 @@ class SearchHotels:
             + tuple(facility_intent(request) for request in parsed.facility_requests)
             + tuple(spatial_intent(request) for request in parsed.spatial_requests),
         )
-        parsed = without_guest_wishes(parsed)
+        parsed = stay_guests(parsed)
         location = parsed.location_hint.strip() if parsed.location_hint else None
         if location and location.casefold() in {"россия", "russia"}:
             location = None
@@ -139,6 +139,7 @@ class SearchHotels:
         progress.step("candidates", found=len(hotels), region=region)
         if candidates.unsupported:
             return _empty(query, region, bbox, replace(parsed, unsupported_region=location))
+        parsed, capacity = await catalog_capacity(self._uow, parsed, hotels)
         native = RequestedTools(
             parsed,
             location or "Россия",
@@ -150,7 +151,7 @@ class SearchHotels:
             landmarks,
             self._geographic_objects,
         )
-        plan = exploration_plan(parsed)
+        plan = exploration_plan(researched(parsed))
         terms = plan.terms
         explored = ExplorationOutcome(hotels=tuple(hotels), bbox=bbox)
         explorer = self._explorer
@@ -186,6 +187,7 @@ class SearchHotels:
                 facts=tuple(row for item in collected for row in item.facts),
                 features=tuple(feature for item in collected for feature in item.features),
             )
+        explored = replace(explored, facts=explored.facts + capacity)
         progress.step("review", candidates=len(explored.hotels))
         selection = await self._selection(query, parsed, explored, limit)
         feedback = rejection_feedback(selection.ranked, selection.report)
@@ -199,8 +201,9 @@ class SearchHotels:
         results = [
             SearchResult(hotel=hotel, scored=scored) for hotel, scored in selection.accepted[:limit]
         ]
+        found = tuple(row for row in explored.facts if row not in capacity)
         await save_search_evidence(
-            self._uow, explored.facts, [item.hotel.id for item in results], explored.features
+            self._uow, found, [item.hotel.id for item in results], explored.features
         )
         fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
         return SearchOutcome(

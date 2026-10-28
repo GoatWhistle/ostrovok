@@ -1,5 +1,4 @@
 import re
-from dataclasses import replace
 
 from hotel_agent.domain.query import ParsedQuery
 
@@ -56,26 +55,3 @@ def stay_question(parsed: ParsedQuery, locale: str) -> str | None:
         return None
     english, russian = QUESTIONS[slot]
     return english if locale == "en" else russian
-
-
-def without_guest_wishes(parsed: ParsedQuery) -> ParsedQuery:
-    known = parsed.adults is not None or any(
-        intent.characteristic_key in GUEST_KEYS for intent in parsed.intents
-    )
-    if not known:
-        return parsed
-    return replace(
-        parsed,
-        intents=tuple(
-            intent
-            for intent in parsed.intents
-            if not (
-                intent.characteristic_key.startswith("derived:")
-                and GUEST_WORDS.search(intent.source_text)
-            )
-        ),
-        wishes=tuple(wish for wish in parsed.wishes if not GUEST_WORDS.search(wish)),
-        unmatched_terms=tuple(
-            term for term in parsed.unmatched_terms if not GUEST_WORDS.search(term)
-        ),
-    )
