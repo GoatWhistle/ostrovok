@@ -1,0 +1,1651 @@
+[
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Едем в Сочи с двумя детьми 5 и 9 лет, нужен отель с детским бассейном и завтраком",
+  "must_keep": [
+   "детск",
+   "бассейн",
+   "завтрак"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_001"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Семья из четырёх человек, Сочи, нужна дополнительная кровать и парковка",
+  "must_keep": [
+   "четыр",
+   "кроват",
+   "парковк"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_002"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Отель в Сочи с анимацией для детей и мелким входом в море",
+  "must_keep": [
+   "анимаци",
+   "дет",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_003"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Нужен номер в Сочи на двоих взрослых и ребёнка, рядом с детской площадкой",
+  "must_keep": [
+   "ребёнк",
+   "площадк"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_004"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Сочи, семейный номер с кухней, чтобы готовить детям",
+  "must_keep": [
+   "семейн",
+   "кухн"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_005"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Отель в Адлере с детским клубом и до пляжа не больше 10 минут пешком",
+  "must_keep": [
+   "детск",
+   "пляж",
+   "10 минут"
+  ],
+  "expected_location": "Адлер",
+  "id": "family_006"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Поедем с грудным ребёнком в Сочи, нужна детская кроватка в номере",
+  "must_keep": [
+   "ребёнк",
+   "кроватк"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_007"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Сочи, отель где можно оставить детей под присмотром на пару часов",
+  "must_keep": [
+   "дет",
+   "присмотр"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_008"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с огороженной территорией, чтобы ребёнок гулял сам",
+  "must_keep": [
+   "территор",
+   "ребёнок"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_009"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Сочи, два смежных номера для семьи с подростками",
+  "must_keep": [
+   "смежн",
+   "семь"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_010"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Отель в Сочи с игровой комнатой на случай дождя",
+  "must_keep": [
+   "игров",
+   "комнат"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_011"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Сочи, нужен отель где кормят детей отдельно и без острого",
+  "must_keep": [
+   "дет",
+   "остр"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_012"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Хотим в Сочи на школьные каникулы, отель с бассейном и недорого",
+  "must_keep": [
+   "каникул",
+   "бассейн",
+   "недорог"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_013"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Сочи, нужен лифт и вход без ступенек, поедем с коляской",
+  "must_keep": [
+   "лифт",
+   "ступен",
+   "коляск"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_014"
+ },
+ {
+  "group": "family",
+  "expect": "any",
+  "query": "Отель в Сочи, чтобы рядом был парк для прогулок с детьми",
+  "must_keep": [
+   "парк",
+   "дет"
+  ],
+  "expected_location": "Сочи",
+  "id": "family_015"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Хочу отель в Сочи с видом на море с высокого этажа",
+  "must_keep": [
+   "вид",
+   "море",
+   "этаж"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_001"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, до пляжа не больше 5 минут пешком",
+  "must_keep": [
+   "пляж",
+   "5 минут"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_002"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Нужен отель в Адлере на первой линии у моря",
+  "must_keep": [
+   "перв",
+   "лини",
+   "море"
+  ],
+  "expected_location": "Адлер",
+  "id": "beach_003"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Отель в Сочи с собственным пляжем",
+  "must_keep": [
+   "собственн",
+   "пляж"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_004"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, хочу слышать море из окна",
+  "must_keep": [
+   "море",
+   "окн"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_005"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Отель в Сочи рядом с галечным пляжем, не песчаным",
+  "must_keep": [
+   "галечн",
+   "пляж"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_006"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, вид на море и балкон",
+  "must_keep": [
+   "вид",
+   "море",
+   "балкон"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_007"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с бассейном с морской водой",
+  "must_keep": [
+   "бассейн",
+   "морск"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_008"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, хочу чтобы до моря можно было дойти с коляской",
+  "must_keep": [
+   "море",
+   "коляск"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_009"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Отель в Сочи у моря, но чтобы ночью было тихо",
+  "must_keep": [
+   "море",
+   "тих"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_010"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, пляж с зонтиками и лежаками от отеля",
+  "must_keep": [
+   "пляж",
+   "лежак"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_011"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Отель в Сочи с видом на закат над морем",
+  "must_keep": [
+   "закат",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_012"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, хочу купаться в бассейне с подогревом в октябре",
+  "must_keep": [
+   "бассейн",
+   "подогрев"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_013"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Нужен отель в Сочи в тихой бухте",
+  "must_keep": [
+   "тих",
+   "бухт"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_014"
+ },
+ {
+  "group": "beach",
+  "expect": "any",
+  "query": "Сочи, вид на море и чтобы не было видно стройки",
+  "must_keep": [
+   "вид",
+   "море",
+   "стройк"
+  ],
+  "expected_location": "Сочи",
+  "id": "beach_015"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Командировка в Сочи, нужен отель с быстрым интернетом и рабочим столом",
+  "must_keep": [
+   "интернет",
+   "рабоч"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_001"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Отель в Москве рядом с Экспоцентром, заезд поздно вечером",
+  "must_keep": [
+   "экспоцентр",
+   "поздн"
+  ],
+  "expected_location": "Москва",
+  "id": "business_002"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Сочи, нужен отель с конференц-залом на 20 человек",
+  "must_keep": [
+   "конференц",
+   "20"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_003"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Нужен тихий отель в Сочи, чтобы работать из номера весь день",
+  "must_keep": [
+   "тих",
+   "работ"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_004"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Отель в Санкт-Петербурге рядом с Московским вокзалом, ранний заезд",
+  "must_keep": [
+   "вокзал",
+   "ранн"
+  ],
+  "expected_location": "Санкт-Петербург",
+  "id": "business_005"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Сочи, отель с трансфером из аэропорта и поздним выездом",
+  "must_keep": [
+   "трансфер",
+   "аэропорт",
+   "поздн"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_006"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Казань, отель в центре с парковкой и завтраком с 6 утра",
+  "must_keep": [
+   "центр",
+   "парковк",
+   "завтрак"
+  ],
+  "expected_location": "Казань",
+  "id": "business_007"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Отель в Сочи, нужна глажка рубашек и химчистка",
+  "must_keep": [
+   "глажк",
+   "химчистк"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_008"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Екатеринбург, отель рядом с деловым центром, тихий номер не на улицу",
+  "must_keep": [
+   "делов",
+   "тих"
+  ],
+  "expected_location": "Екатеринбург",
+  "id": "business_009"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Сочи, нужен отель где можно провести встречу в лобби",
+  "must_keep": [
+   "встреч",
+   "лобби"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_010"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Нужен отель в Москве с круглосуточной стойкой, прилетаю в 3 ночи",
+  "must_keep": [
+   "круглосуточн",
+   "стойк"
+  ],
+  "expected_location": "Москва",
+  "id": "business_011"
+ },
+ {
+  "group": "business",
+  "expect": "any",
+  "query": "Сочи, отель с принтером или бизнес-центром",
+  "must_keep": [
+   "принтер",
+   "бизнес"
+  ],
+  "expected_location": "Сочи",
+  "id": "business_012"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, романтический уикенд, нужен спа и вид на море",
+  "must_keep": [
+   "спа",
+   "вид",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_001"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Хочу отель в Сочи с джакузи в номере",
+  "must_keep": [
+   "джакузи"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_002"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, отель только для взрослых, без детей",
+  "must_keep": [
+   "взросл",
+   "дет"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_003"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с панорамным окном и закатом",
+  "must_keep": [
+   "панорам",
+   "закат"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_004"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, годовщина свадьбы, хочется тихо и красиво",
+  "must_keep": [
+   "тих",
+   "красив"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_005"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Отель в Сочи с видом на горы и камином",
+  "must_keep": [
+   "вид",
+   "гор",
+   "камин"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_006"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, нужен номер с балконом и завтраком в постель",
+  "must_keep": [
+   "балкон",
+   "завтрак"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_007"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Хочу в Сочи отель с бассейном на крыше",
+  "must_keep": [
+   "бассейн",
+   "крыш"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_008"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, отель с хамамом и массажем",
+  "must_keep": [
+   "хамам",
+   "массаж"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_009"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Нужен небольшой бутик-отель в Сочи, не сетевой",
+  "must_keep": [
+   "бутик",
+   "сетев"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_010"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Сочи, отель где можно поужинать на террасе с видом",
+  "must_keep": [
+   "террас",
+   "вид"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_011"
+ },
+ {
+  "group": "romantic",
+  "expect": "any",
+  "query": "Отель в Сочи с видом на море и без шумных компаний",
+  "must_keep": [
+   "вид",
+   "море",
+   "шумн"
+  ],
+  "expected_location": "Сочи",
+  "id": "romantic_012"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Сочи, едем с собакой, нужен отель где её примут",
+  "must_keep": [
+   "собак"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_001"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Отель в Сочи, можно с кошкой",
+  "must_keep": [
+   "кошк"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_002"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Сочи, с собакой крупной породы, нужен отель без доплаты за питомца",
+  "must_keep": [
+   "собак",
+   "доплат"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_003"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с территорией, где можно выгулять собаку",
+  "must_keep": [
+   "выгул",
+   "собак"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_004"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Сочи, отель где животных пускают в ресторан",
+  "must_keep": [
+   "животн",
+   "ресторан"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_005"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Москва, отель рядом с ветклиникой, едем с больной кошкой",
+  "must_keep": [
+   "ветклиник",
+   "кошк"
+  ],
+  "expected_location": "Москва",
+  "id": "pets_006"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Сочи, можно ли с двумя собаками в один номер",
+  "must_keep": [
+   "двум",
+   "собак"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_007"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Отель в Сочи, где есть номера для питомцев на первом этаже",
+  "must_keep": [
+   "питом",
+   "первом этаже"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_008"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Сочи, нужен отель с кормом и лотком для кота",
+  "must_keep": [
+   "корм",
+   "лотк"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_009"
+ },
+ {
+  "group": "pets",
+  "expect": "any",
+  "query": "Нужен отель в Сочи рядом с парком, чтобы гулять с собакой утром",
+  "must_keep": [
+   "парк",
+   "собак"
+  ],
+  "expected_location": "Сочи",
+  "id": "pets_010"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Сочи, нужен отель доступный для коляски",
+  "must_keep": [
+   "коляск"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_001"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Отель в Сочи с номером для маломобильных гостей",
+  "must_keep": [
+   "маломобильн"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_002"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Сочи, нужен лифт и широкие двери в номере",
+  "must_keep": [
+   "лифт",
+   "широк"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_003"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Нужен отель в Сочи без ступеней от входа до номера",
+  "must_keep": [
+   "ступен"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_004"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Сочи, поручни в душе и сиденье в ванной",
+  "must_keep": [
+   "поручн",
+   "душ"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_005"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Отель в Сочи с пандусом и парковкой для инвалидов",
+  "must_keep": [
+   "пандус",
+   "инвалид"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_006"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Сочи, нужен номер на первом этаже, тяжело ходить по лестнице",
+  "must_keep": [
+   "первом этаже",
+   "лестниц"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_007"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Москва, отель с доступным входом рядом с метро",
+  "must_keep": [
+   "доступн",
+   "метро"
+  ],
+  "expected_location": "Москва",
+  "id": "access_008"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Сочи, нужен отель где поможет персонал с багажом и коляской",
+  "must_keep": [
+   "персонал",
+   "коляск"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_009"
+ },
+ {
+  "group": "access",
+  "expect": "any",
+  "query": "Отель в Сочи с беспороговым душем",
+  "must_keep": [
+   "душ"
+  ],
+  "expected_location": "Сочи",
+  "id": "access_010"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, отель не дороже 4000 рублей за ночь с завтраком",
+  "must_keep": [
+   "4000",
+   "завтрак"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_001"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Нужен недорогой отель в Сочи, главное чистота и интернет",
+  "must_keep": [
+   "недорог",
+   "чистот"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_002"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, хостел или гостевой дом до 2000 рублей",
+  "must_keep": [
+   "2000"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_003"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Отель в Сочи до 6000 за ночь, но обязательно с бассейном",
+  "must_keep": [
+   "6000",
+   "бассейн"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_004"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, ищу лучшее соотношение цены и качества у моря",
+  "must_keep": [
+   "цен",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_005"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Нужен отель в Сочи без скрытых доплат, всё включено в цену",
+  "must_keep": [
+   "доплат",
+   "включено"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_006"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, отель с бесплатной отменой бронирования",
+  "must_keep": [
+   "бесплатн",
+   "отмен"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_007"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Казань, отель до 3500 рублей в центре",
+  "must_keep": [
+   "3500",
+   "центр"
+  ],
+  "expected_location": "Казань",
+  "id": "budget_008"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, хочу всё включено и не дороже 8000 на двоих",
+  "must_keep": [
+   "включено",
+   "8000"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_009"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с завтраком, но без платной парковки",
+  "must_keep": [
+   "завтрак",
+   "парковк"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_010"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Сочи, подешевле, но чтобы до моря недалеко",
+  "must_keep": [
+   "подешевл",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_011"
+ },
+ {
+  "group": "budget",
+  "expect": "any",
+  "query": "Отель в Сочи, бюджет 5000, нужен кондиционер",
+  "must_keep": [
+   "5000",
+   "кондиционер"
+  ],
+  "expected_location": "Сочи",
+  "id": "budget_012"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, отель не дальше 15 минут от аэропорта",
+  "must_keep": [
+   "15 минут",
+   "аэропорт"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_001"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Нужен отель в Сочи рядом с железнодорожным вокзалом",
+  "must_keep": [
+   "вокзал"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_002"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Москва, отель в 5 минутах от метро",
+  "must_keep": [
+   "5 минут",
+   "метро"
+  ],
+  "expected_location": "Москва",
+  "id": "transport_003"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, нужна бесплатная парковка во дворе",
+  "must_keep": [
+   "бесплатн",
+   "парковк"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_004"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Отель в Сочи с зарядкой для электромобиля",
+  "must_keep": [
+   "зарядк",
+   "электромобил"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_005"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, хочу чтобы рядом была остановка автобуса до Красной Поляны",
+  "must_keep": [
+   "остановк",
+   "красной поляны"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_006"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Нужен отель в Сочи, откуда удобно без машины",
+  "must_keep": [
+   "без машин"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_007"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, отель рядом с Олимпийским парком и Сириусом",
+  "must_keep": [
+   "олимпийск",
+   "сириус"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_008"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Санкт-Петербург, отель рядом с Пулково на одну ночь",
+  "must_keep": [
+   "пулково",
+   "одну ночь"
+  ],
+  "expected_location": "Санкт-Петербург",
+  "id": "transport_009"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, нужен отель с трансфером на горнолыжный курорт",
+  "must_keep": [
+   "трансфер",
+   "горнолыжн"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_010"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Отель в Сочи, чтобы до Розы Хутор было не дольше часа",
+  "must_keep": [
+   "розы хутор",
+   "час"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_011"
+ },
+ {
+  "group": "transport",
+  "expect": "any",
+  "query": "Сочи, нужна крытая парковка для высокого джипа",
+  "must_keep": [
+   "крыт",
+   "парковк"
+  ],
+  "expected_location": "Сочи",
+  "id": "transport_012"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Нужен отель в Москве рядом с концертом в Крокус Сити Холл",
+  "must_keep": [
+   "концерт",
+   "крокус"
+  ],
+  "expected_location": "Москва",
+  "id": "event_001"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Сочи, отель рядом с Сириусом на время конференции",
+  "must_keep": [
+   "сириус",
+   "конференц"
+  ],
+  "expected_location": "Сочи",
+  "id": "event_002"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Москва, отель рядом с Лужниками на день матча",
+  "must_keep": [
+   "лужник",
+   "матч"
+  ],
+  "expected_location": "Москва",
+  "id": "event_003"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Сочи, нужен отель рядом с Олимпийским парком на время Формулы",
+  "must_keep": [
+   "олимпийск",
+   "формул"
+  ],
+  "expected_location": "Сочи",
+  "id": "event_004"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Санкт-Петербург, отель рядом с Мариинским театром на вечер",
+  "must_keep": [
+   "мариинск",
+   "вечер"
+  ],
+  "expected_location": "Санкт-Петербург",
+  "id": "event_005"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Казань, отель рядом с Ак Барс Ареной на хоккей",
+  "must_keep": [
+   "ак барс",
+   "хоккей"
+  ],
+  "expected_location": "Казань",
+  "id": "event_006"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Сочи, свадьба в Красной Поляне, нужен отель для гостей",
+  "must_keep": [
+   "свадьб",
+   "красной поляне"
+  ],
+  "expected_location": "Сочи",
+  "id": "event_007"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Москва, отель рядом с ВДНХ на выставку",
+  "must_keep": [
+   "вднх",
+   "выставк"
+  ],
+  "expected_location": "Москва",
+  "id": "event_008"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Сочи, отель рядом с дендрарием, хотим гулять",
+  "must_keep": [
+   "дендрари"
+  ],
+  "expected_location": "Сочи",
+  "id": "event_009"
+ },
+ {
+  "group": "event",
+  "expect": "any",
+  "query": "Нужен отель в Сочи на новогодние праздники с программой",
+  "must_keep": [
+   "новогодн",
+   "программ"
+  ],
+  "expected_location": "Сочи",
+  "id": "event_010"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, нужен санаторий с лечением позвоночника",
+  "must_keep": [
+   "санатори",
+   "позвоночник"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_001"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Отель в Сочи с диетическим питанием без глютена",
+  "must_keep": [
+   "диетическ",
+   "глютен"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_002"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, санаторий с минеральными водами и врачом",
+  "must_keep": [
+   "минеральн",
+   "врач"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_003"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Нужен отель в Сочи с веганским завтраком",
+  "must_keep": [
+   "веганск",
+   "завтрак"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_004"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, отель для аллергика: без ковров и пуховых одеял",
+  "must_keep": [
+   "аллерг",
+   "ковр"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_005"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, нужен санаторий с бассейном и грязелечением",
+  "must_keep": [
+   "санатори",
+   "грязе"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_006"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Отель в Сочи с некурящими номерами, у меня астма",
+  "must_keep": [
+   "некурящ",
+   "астм"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_007"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, нужен отель рядом с больницей на всякий случай",
+  "must_keep": [
+   "больниц"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_008"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Сочи, санаторий для пожилых родителей, спокойный",
+  "must_keep": [
+   "санатори",
+   "пожил"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_009"
+ },
+ {
+  "group": "health",
+  "expect": "any",
+  "query": "Отель в Сочи с кислородным коктейлем и ингаляциями",
+  "must_keep": [
+   "кислородн",
+   "ингаляц"
+  ],
+  "expected_location": "Сочи",
+  "id": "health_010"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, хочу отель с видом на горы",
+  "must_keep": [
+   "вид",
+   "гор"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_001"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Отель в Красной Поляне с видом на хребет",
+  "must_keep": [
+   "красной поляне",
+   "хребет"
+  ],
+  "expected_location": "Красная Поляна",
+  "id": "nature_002"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, нужен отель рядом с водопадами",
+  "must_keep": [
+   "водопад"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_003"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Хочу отель в Сочи в лесу, подальше от города",
+  "must_keep": [
+   "лес",
+   "город"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_004"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, отель рядом с подъёмником и трассами",
+  "must_keep": [
+   "подъёмник",
+   "трасс"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_005"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Отель в Сочи с видом на реку",
+  "must_keep": [
+   "вид",
+   "рек"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_006"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, хочу слышать птиц, а не машины",
+  "must_keep": [
+   "птиц",
+   "машин"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_007"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Нужен отель в Сочи рядом с терренкуром для прогулок",
+  "must_keep": [
+   "терренкур"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_008"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, отель в тисо-самшитовой роще или рядом",
+  "must_keep": [
+   "самшит",
+   "рощ"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_009"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Отель в Сочи с видом на Ахун",
+  "must_keep": [
+   "вид",
+   "ахун"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_010"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Сочи, хочу чтобы из окна были видны горы и море одновременно",
+  "must_keep": [
+   "гор",
+   "море"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_011"
+ },
+ {
+  "group": "nature",
+  "expect": "any",
+  "query": "Нужен отель в Сочи рядом с конной прогулкой",
+  "must_keep": [
+   "конн"
+  ],
+  "expected_location": "Сочи",
+  "id": "nature_012"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, нужен отель на месяц с кухней и стиральной машиной",
+  "must_keep": [
+   "месяц",
+   "кухн",
+   "стиральн"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_001"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Хочу поработать из Сочи три недели, нужен стабильный интернет",
+  "must_keep": [
+   "три недел",
+   "интернет"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_002"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, апартаменты с кухней на две недели",
+  "must_keep": [
+   "апартамент",
+   "кухн"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_003"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Нужен отель в Сочи на 30 ночей со скидкой за длительность",
+  "must_keep": [
+   "30",
+   "скидк"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_004"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, нужна уборка раз в неделю, а не каждый день",
+  "must_keep": [
+   "уборк",
+   "недел"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_005"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Отель в Сочи с рабочим местом и вторым монитором",
+  "must_keep": [
+   "рабоч",
+   "монитор"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_006"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, нужен отель где можно получать посылки",
+  "must_keep": [
+   "посылк"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_007"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, долгое проживание, нужен балкон и тишина",
+  "must_keep": [
+   "балкон",
+   "тишин"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_008"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Нужны апартаменты в Сочи с посудомойкой",
+  "must_keep": [
+   "апартамент",
+   "посудомо"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_009"
+ },
+ {
+  "group": "longstay",
+  "expect": "any",
+  "query": "Сочи, зимовка на три месяца, важно отопление",
+  "must_keep": [
+   "три месяц",
+   "отоплен"
+  ],
+  "expected_location": "Сочи",
+  "id": "longstay_010"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Сравни отели в Сочи и Адлере у моря",
+  "must_keep": [
+   "сочи",
+   "адлер",
+   "море"
+  ],
+  "id": "multi_001"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Сочи или Красная Поляна, где тише в ноябре",
+  "must_keep": [
+   "сочи",
+   "красная поляна",
+   "тише"
+  ],
+  "id": "multi_002"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Хочу к морю, Сочи или Анапа, нужен бассейн",
+  "must_keep": [
+   "сочи",
+   "анапа",
+   "бассейн"
+  ],
+  "id": "multi_003"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Москва или Санкт-Петербург на выходные, рядом с центром",
+  "must_keep": [
+   "москва",
+   "санкт-петербург",
+   "центр"
+  ],
+  "id": "multi_004"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Сравни Казань и Нижний Новгород для поездки с детьми",
+  "must_keep": [
+   "казань",
+   "нижний новгород",
+   "дет"
+  ],
+  "id": "multi_005"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Куда дешевле: Сочи или Геленджик, у моря",
+  "must_keep": [
+   "сочи",
+   "геленджик",
+   "море"
+  ],
+  "id": "multi_006"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Сочи, Адлер или Хоста, нужен тихий отель у пляжа",
+  "must_keep": [
+   "адлер",
+   "хост",
+   "пляж"
+  ],
+  "id": "multi_007"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Крым или Сочи с собакой",
+  "must_keep": [
+   "крым",
+   "сочи",
+   "собак"
+  ],
+  "id": "multi_008"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Сочи и Красная Поляна, хочу и море и горы за одну поездку",
+  "must_keep": [
+   "море",
+   "гор"
+  ],
+  "id": "multi_009"
+ },
+ {
+  "group": "multi",
+  "expect": "any",
+  "query": "Между Адлером и Сириусом, где ближе к аэропорту",
+  "must_keep": [
+   "адлер",
+   "сириус",
+   "аэропорт"
+  ],
+  "id": "multi_010"
+ }
+]
