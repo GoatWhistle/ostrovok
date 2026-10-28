@@ -38,11 +38,6 @@
   overflow-wrap: anywhere;
 }
 
-.checked {
-  composes: captionText from "../../../shared/styles/compose.module.css";
-  color: var(--text-muted);
-}
-
 .rows {
   composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;
@@ -90,24 +85,23 @@
   font-variant-numeric: var(--font-numeric);
 }
 
-.teaser {
-  border-radius: var(--radius-md);
+.teaser[data-align="start"] {
+  inline-size: calc(100% + var(--space-24));
+  margin-inline: calc(var(--space-12) * -1);
+  padding-inline: var(--space-12);
   background-color: var(--surface-raised);
 }
 
 .teaserIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: var(--space-40);
-  block-size: var(--space-40);
-  border-radius: var(--radius-sm);
-  background-color: var(--surface-sunken);
   color: var(--text-accent);
 }
 
 .teaserTitle {
-  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+  composes: bodyMedium from "../../../shared/styles/compose.module.css";
+}
+
+.teaser .teaserTitle {
+  font-weight: var(--weight-bold);
 }
 
 .teaserText {
@@ -150,7 +144,7 @@
 }
 
 .tag {
-  composes: fact from "../hotel-hero.module.css";
+  composes: fact from "../hotel-hero/hotel-hero.module.css";
 }
 
 .amenityGrid {

@@ -21,8 +21,8 @@ export interface Shot {
 export const HOTEL: Coordinates = [39.904065, 43.4451502]
 export const SEA_MINUTES = walk.properties.estimated_minutes
 export const SUNSET_AZIMUTH = 250
-export const RAY_METERS = 1100
-export const CONE_DEGREES = 10
+export const RAY_METERS = 460
+export const CONE_DEGREES = 13
 export const ROUTE: readonly Coordinates[] = walk.geometry.coordinates.map(
   ([lon = 0, lat = 0]) => [lon, lat] as const,
 )
@@ -32,22 +32,22 @@ const METERS_PER_DEGREE = 111320
 const SEA: Shot = {
   kind: "sea",
   label: "explore:cover.proofs.sea",
-  from: { center: [39.9035, 43.4455], zoom: 16.7, pitch: 50, bearing: -58 },
-  to: { center: [39.9032, 43.4458], zoom: 17.1, pitch: 56, bearing: -34 },
+  from: { center: [39.9035, 43.4455], zoom: 16.7, pitch: 52, bearing: -40 },
+  to: { center: [39.9032, 43.4458], zoom: 17.0, pitch: 56, bearing: -60 },
 }
 
 const SUNSET: Shot = {
   kind: "sunset",
   label: "explore:cover.proofs.sunset",
-  from: { center: [39.9037, 43.445], zoom: 16.5, pitch: 70, bearing: -128 },
-  to: { center: [39.9034, 43.4449], zoom: 16.8, pitch: 75, bearing: -102 },
+  from: { center: [39.9037, 43.445], zoom: 16.5, pitch: 70, bearing: -98 },
+  to: { center: [39.9034, 43.4449], zoom: 16.7, pitch: 74, bearing: -116 },
 }
 
 const QUIET: Shot = {
   kind: "quiet",
   label: "explore:cover.proofs.quiet",
-  from: { center: [39.9041, 43.4452], zoom: 16.1, pitch: 42, bearing: 8 },
-  to: { center: [39.9041, 43.4452], zoom: 16.4, pitch: 48, bearing: 40 },
+  from: { center: [39.9041, 43.4452], zoom: 16.2, pitch: 46, bearing: -84 },
+  to: { center: [39.9041, 43.4452], zoom: 16.4, pitch: 50, bearing: -62 },
 }
 
 export const SHOTS: readonly Shot[] = [SEA, SUNSET, QUIET]

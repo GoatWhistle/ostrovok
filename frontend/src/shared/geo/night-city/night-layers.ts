@@ -1,9 +1,13 @@
 import type { FeatureCollection } from "geojson"
-import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { labelAnchor } from "../basemap-labels"
-import { updateSource } from "../map-layers"
-import { MESH_FROM } from "../overview-buildings"
-import { ensureLampSprite, LAMP_ICON } from "./lamp-sprite"
+import type {
+  ExpressionSpecification,
+  Map as MapLibreMap,
+  SymbolLayerSpecification,
+} from "maplibre-gl"
+import { labelAnchor } from "../basemap/basemap-labels"
+import { updateSource } from "../buildings/map-layers"
+import { MESH_FROM } from "../buildings/overview-buildings"
+import { ensureLampSprite, LAMP_ICON, LAMP_POST_ICON } from "./lamp-sprite"
 
 export interface NightColors {
   readonly lamp: string
@@ -15,7 +19,7 @@ const FULL_NIGHT_ALTITUDE = -6
 const LIT_ROADS: ExpressionSpecification = [
   "match",
   ["get", "kind"],
-  ["primary", "secondary", "tertiary", "residential", "living_street", "pedestrian", "trunk"],
+  ["primary", "secondary", "tertiary", "residential", "living_street", "pedestrian"],
   true,
   false,
 ]
@@ -40,6 +44,16 @@ export function windowFade(zoom: number, night = 0): number {
   return Math.min(1, Math.max(0, zoom - from))
 }
 
+const POSTS_FROM = 16.8
+const LAMP_LAYOUT: SymbolLayerSpecification["layout"] = {
+  visibility: "none",
+  "symbol-placement": "line",
+  "symbol-spacing": ["interpolate", ["exponential", 2], ["zoom"], 15, 18, 19, 280],
+  "icon-allow-overlap": true,
+  "icon-ignore-placement": true,
+  "icon-offset": [0, -9],
+}
+
 function addNightLayers(map: MapLibreMap, colors: NightColors) {
   const before = map.getLayer("base-roads-light") ? "base-roads-light" : labelAnchor(map)
   map.addLayer(
@@ -56,7 +70,7 @@ function addNightLayers(map: MapLibreMap, colors: NightColors) {
     },
     map.getLayer("base-water") ? "base-water" : before,
   )
-  ensureLampSprite(map)
+  ensureLampSprite(map, colors.lamp)
   map.addLayer(
     {
       id: "night-lamps",
@@ -66,31 +80,66 @@ function addNightLayers(map: MapLibreMap, colors: NightColors) {
       minzoom: 14.5,
       filter: LIT_ROADS,
       layout: {
-        visibility: "none",
-        "symbol-placement": "line",
-        "symbol-spacing": ["interpolate", ["exponential", 2], ["zoom"], 15, 24, 19, 160],
+        ...LAMP_LAYOUT,
         "icon-image": LAMP_ICON,
-        "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 15, 0.32, 19, 1.4],
-        "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
+        "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 15, 0.32, 19, 1.8],
         "icon-pitch-alignment": "map",
         "icon-rotation-alignment": "map",
-        "icon-offset": [0, -14],
       },
       paint: { "icon-color": colors.lamp, "icon-opacity": 0 },
     },
     before,
   )
+  map.addLayer(
+    {
+      id: "night-lamp-posts",
+      type: "symbol",
+      source: "sochi-map",
+      "source-layer": "roads",
+      minzoom: POSTS_FROM,
+      filter: LIT_ROADS,
+      layout: {
+        ...LAMP_LAYOUT,
+        "icon-image": LAMP_POST_ICON,
+        "icon-anchor": "bottom",
+        "icon-size": ["interpolate", ["exponential", 2], ["zoom"], POSTS_FROM, 0.35, 19, 0.9],
+        "icon-pitch-alignment": "viewport",
+        "icon-rotation-alignment": "viewport",
+      },
+      paint: { "icon-opacity": 0 },
+    },
+    before,
+  )
+}
+
+function poolOpacity(night: number): ExpressionSpecification {
+  return [
+    "interpolate",
+    ["linear"],
+    ["zoom"],
+    14.5,
+    0.35 * night,
+    16,
+    0.75 * night,
+    17.5,
+    0.95 * night,
+  ]
 }
 
 export function renderNightLights(map: MapLibreMap, night: number, colors: NightColors) {
   if (!map.getSource("sochi-map")) return
-  if (!map.getLayer("night-lamps")) addNightLayers(map, colors)
+  if (!map.getLayer("night-lamp-posts")) {
+    for (const id of ["night-lamps", "night-glow"]) if (map.getLayer(id)) map.removeLayer(id)
+    addNightLayers(map, colors)
+  }
+  ensureLampSprite(map, colors.lamp)
   const visibility = night > 0 ? "visible" : "none"
-  map.setLayoutProperty("night-lamps", "visibility", visibility)
-  map.setLayoutProperty("night-glow", "visibility", visibility)
+  for (const id of ["night-lamps", "night-lamp-posts", "night-glow"])
+    if (map.getLayoutProperty(id, "visibility") !== visibility)
+      map.setLayoutProperty(id, "visibility", visibility)
   map.setPaintProperty("night-lamps", "icon-color", colors.lamp)
-  map.setPaintProperty("night-lamps", "icon-opacity", 0.95 * night)
+  map.setPaintProperty("night-lamps", "icon-opacity", poolOpacity(night))
+  map.setPaintProperty("night-lamp-posts", "icon-opacity", night)
   map.setPaintProperty("night-glow", "fill-color", colors.cityGlow)
   map.setPaintProperty("night-glow", "fill-opacity", [
     "interpolate",

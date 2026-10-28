@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
-import { type HighlightColors, paintRoute } from "@/shared/geo/map-layers"
+import { type HighlightColors, paintRoute } from "@/shared/geo/buildings/map-layers"
 import { motionMs, readEasing } from "@/shared/motion"
 
 export function useRouteDraw(

@@ -1,0 +1,123 @@
+.row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  border-block-start: var(--hairline) solid var(--border-subtle);
+}
+
+.label {
+  display: flex;
+  align-items: flex-start;
+  padding-block: var(--space-12);
+  padding-inline-end: var(--space-16);
+}
+
+.title {
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.cell {
+  display: flex;
+  align-items: flex-start;
+  min-inline-size: 0;
+  padding-block: var(--space-6);
+}
+
+.action {
+  --button-padding: var(--space-8);
+  --button-height: var(--control-height-compact);
+
+  margin-inline-start: calc(-1 * var(--space-8));
+}
+
+.static,
+.empty {
+  padding-block: var(--space-6);
+}
+
+.empty {
+  color: var(--text-muted);
+}
+
+.empty [data-no-value] {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-normal);
+}
+
+.value {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-inline-size: 0;
+  white-space: normal;
+  text-align: start;
+}
+
+.mark {
+  display: inline-flex;
+  padding-block-start: var(--space-2);
+}
+
+.mark > span {
+  color: var(--text-muted);
+}
+
+.text {
+  font-size: var(--font-size-body);
+  font-weight: var(--weight-regular);
+  font-variant-numeric: var(--font-numeric);
+  overflow-wrap: anywhere;
+}
+
+.text[data-best="true"] {
+  font-weight: var(--weight-bold);
+  text-decoration: underline var(--hairline) var(--text-accent);
+  text-underline-offset: var(--space-4);
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .label {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--layer-raised);
+    background-color: var(--surface-base);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .label {
+    grid-column: 1 / -1;
+    padding-block: var(--space-12) var(--space-2);
+  }
+
+  .title {
+    position: sticky;
+    inset-inline-start: 0;
+    font-size: var(--font-size-label);
+  }
+
+  .cell {
+    padding-block: 0 var(--space-8);
+  }
+
+  .action {
+    --button-padding: 0;
+
+    margin-inline-start: 0;
+  }
+
+  .static,
+  .empty {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--control-height-compact);
+    padding-block: 0;
+  }
+
+  .empty,
+  .text {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+  }
+}

@@ -1,0 +1,61 @@
+.results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--space-12);
+  min-inline-size: 0;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+
+.summary {
+  composes: truncateText from "../../../shared/styles/compose.module.css";
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+@media (min-width: 64rem) and (max-width: 89.99rem) {
+  .matchWord {
+    display: none;
+  }
+}
+
+.count b {
+  color: var(--text-primary);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: var(--font-numeric);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.loading {
+  display: grid;
+  gap: var(--space-8);
+  animation: var(--motion-fade-in);
+  animation-delay: var(--delay-skeleton);
+}
+
+.ghost {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  padding: var(--space-12);
+}
+
+.state {
+  min-block-size: 100%;
+}
+
+@media (max-width: 47.99rem) {
+  .list {
+    --thumb-size: var(--mark-lg);
+  }
+}

@@ -12,6 +12,7 @@ from hotel_agent.adapters.db.fact_store import PostgresFactStore
 from hotel_agent.adapters.db.geo_features import PostgresGeoFeatureRepository
 from hotel_agent.adapters.db.geography import PostgresGeography
 from hotel_agent.adapters.db.hotelier_demand import PostgresHotelierDemand
+from hotel_agent.adapters.db.hotelier_entries import PostgresHotelierEntries
 from hotel_agent.adapters.db.map_scene import PostgresMapScene
 from hotel_agent.adapters.db.map_tiles import PostgresMapTileRepository
 from hotel_agent.adapters.db.named_places import PostgresNamedPlaceRepository
@@ -28,6 +29,7 @@ from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.fact_store import FactStore, QuestionStore
 from hotel_agent.application.ports.geography import GeographyRepository
 from hotel_agent.application.ports.hotelier_demand import HotelierDemandPort
+from hotel_agent.application.ports.hotelier_entries import HotelierEntries
 from hotel_agent.application.ports.map_scene import MapSceneRepository
 from hotel_agent.application.ports.notifications import NotificationStore
 from hotel_agent.application.ports.places import PlaceRepository
@@ -95,6 +97,7 @@ class PostgresUnitOfWork:
         self.documents: SearchDocumentsPort
         self.view_scenes: ViewSceneRepository
         self.geography: GeographyRepository
+        self.hotelier_entries: HotelierEntries
         self.facts: FactStore
         self.questions: QuestionStore
         self.notifications: NotificationStore
@@ -117,6 +120,7 @@ class PostgresUnitOfWork:
         self.documents = PostgresSearchDocuments(self._connection)
         self.view_scenes = PostgresViewScenes(self._connection)
         self.geography = PostgresGeography(self._connection)
+        self.hotelier_entries = PostgresHotelierEntries(self._connection)
         self.facts = PostgresFactStore(self._connection)
         self.questions = PostgresQuestionStore(self._connection)
         self.notifications = PostgresNotificationStore(self._connection)

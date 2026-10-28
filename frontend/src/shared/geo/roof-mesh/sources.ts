@@ -87,9 +87,11 @@ function largest(rings: readonly Ring[]): Ring | undefined {
   return best
 }
 
-function drawnGround(map: MapLibreMap, [lon, lat]: LonLat): number | undefined {
-  if (!map.getTerrain()) return map.queryTerrainElevation([lon, lat]) ?? 0
-  return map.terrain?.getDrawnElevationForLngLat(new LngLat(lon, lat))
+function drawnGround(map: MapLibreMap, [lon, lat]: LonLat): number {
+  const drawn = map.getTerrain()
+    ? map.terrain?.getDrawnElevationForLngLat(new LngLat(lon, lat))
+    : undefined
+  return drawn ?? map.queryTerrainElevation([lon, lat]) ?? 0
 }
 
 export function roofInputs(
@@ -104,7 +106,6 @@ export function roofInputs(
     if (!ring || ring.length < 4) return []
     const middle = centroid(ring)
     const ground = drawnGround(map, middle)
-    if (ground === undefined) return []
     const distance = Math.hypot((middle[0] - center[0]) * scale, middle[1] - center[1])
     const extra = rings.length > 1 ? rings.filter((item) => item !== ring).flat() : []
     return [{ candidate, ring, rings, extra, ground, distance }]

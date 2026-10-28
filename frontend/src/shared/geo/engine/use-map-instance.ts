@@ -7,7 +7,7 @@ import {
 } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import { useEffect, useRef, useState } from "react"
-import { FULL_PIXEL_RATIO } from "@/shared/geo/map-quality"
+import { FULL_PIXEL_RATIO } from "@/shared/geo/engine/map-quality"
 import { watchMapVisibility } from "./watch-map-visibility"
 
 setWorkerUrl(workerUrl)

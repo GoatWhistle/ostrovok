@@ -16,6 +16,10 @@
   inline-size: 100%;
 }
 
+.face[data-leading="false"] {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .face[data-align="start"] {
   align-items: start;
 }

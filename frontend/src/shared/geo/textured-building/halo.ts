@@ -1,7 +1,7 @@
 import type { FeatureCollection } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { labelAnchor } from "../basemap-labels"
-import { updateSource } from "../map-layers"
+import { labelAnchor } from "../basemap/basemap-labels"
+import { updateSource } from "../buildings/map-layers"
 
 const SOURCE = "selected-hotel-halo"
 const GLOW = "selected-hotel-glow"

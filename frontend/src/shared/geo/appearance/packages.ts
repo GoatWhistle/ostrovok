@@ -1,24 +1,6 @@
-import { NEON_TOKENS } from "./palette-tokens"
+import { NEON } from "./neon"
 import { TOY_TOWN } from "./toy-town"
 import type { AppearancePackage, MapAppearance } from "./types"
-
-const NEON: AppearancePackage = {
-  id: "neon",
-  labelKey: "explore:map.neon",
-  version: "1",
-  palette: NEON_TOKENS,
-  classPrefix: "--map-neon-class-",
-  materials: { hotel: "textured", verticalGradient: true, roofToken: null },
-  effects: {
-    windows: true,
-    facades: false,
-    roofs: false,
-    trees: false,
-    lights: true,
-    roadGlow: true,
-  },
-  mini: { terrain: false, volumes: false, lights: false },
-}
 
 export const APPEARANCES: Readonly<Record<MapAppearance, AppearancePackage>> = {
   neon: NEON,

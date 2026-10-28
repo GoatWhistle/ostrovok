@@ -1,0 +1,34 @@
+.saved {
+  display: grid;
+  gap: var(--space-16);
+  max-inline-size: var(--prose-measure);
+}
+
+.block {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.label {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+}
+
+.text {
+  overflow-wrap: anywhere;
+}
+
+.fact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8) var(--space-12);
+}
+
+.value {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.next {
+  justify-self: start;
+}

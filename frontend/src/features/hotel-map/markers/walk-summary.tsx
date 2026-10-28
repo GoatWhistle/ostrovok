@@ -1,5 +1,5 @@
 import { walkLabel } from "@/entities/place"
-import { featureCollection } from "@/shared/geo/geometry"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
 import { useLocale, useTranslation } from "@/shared/i18n"
 
 export function WalkSummary({ features }: { readonly features: readonly unknown[] }) {

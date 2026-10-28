@@ -12,7 +12,7 @@ export function tileWindowBuildings(
   if (map.getZoom() < MIN_ZOOM) return []
   return roofInputs(map, tileCandidates(map, skip), center).map((input) => ({
     id: input.id,
-    rings: [input.ring],
+    rings: input.bodies.length > 0 ? input.bodies : [input.ring],
     ground: input.ground,
     base: 0,
     height: input.height,

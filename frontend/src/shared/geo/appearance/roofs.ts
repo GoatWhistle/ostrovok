@@ -1,8 +1,8 @@
 import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { labelAnchor } from "../basemap-labels"
-import { contextHeight, HOTEL } from "../map-layers"
+import { labelAnchor } from "../basemap/basemap-labels"
+import { contextHeight, HOTEL } from "../buildings/context-height"
+import { overviewHeight } from "../buildings/overview-buildings"
 import { sceneHeight } from "../night-city/night-layers"
-import { overviewHeight } from "../overview-buildings"
 import { FLAT_ROOF } from "../roof-forms/layer"
 
 const CAP = 0.25

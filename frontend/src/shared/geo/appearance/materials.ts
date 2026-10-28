@@ -16,10 +16,10 @@ function channels(hex: string): readonly [number, number, number] {
 export function readBuildingMaterial(id: MapAppearance): BuildingMaterial {
   const definition = APPEARANCES[id]
   const colors = readAppearanceColors(id)
-  const token = definition.materials.hotelRoofToken ?? definition.materials.roofToken
-  const roof = token
-    ? getComputedStyle(document.documentElement).getPropertyValue(token).trim()
-    : colors.buildingVolume
+  const roof =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(definition.materials.hotelRoofToken)
+      .trim() || colors.buildingVolume
   return {
     mode: definition.materials.hotel,
     wall: channels(colors.hotelVolume),

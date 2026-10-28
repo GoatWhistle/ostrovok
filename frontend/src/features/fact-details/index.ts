@@ -1,2 +1,2 @@
-export { FactDetails } from "./fact-details"
-export { useReviewNavigation } from "./use-review-navigation"
+export { FactDetails } from "./fact-details/fact-details"
+export { useReviewNavigation } from "./review-navigation/use-review-navigation"

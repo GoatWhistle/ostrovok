@@ -391,6 +391,39 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/hotelier/{hotel_id}/entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listHotelierEntries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/hotelier/{hotel_id}/entries/{entry_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Upsert a statement by stable client UUID. Does not create a search characteristic. */
+        put: operations["saveHotelierEntry"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotelier/{hotel_id}/questions": {
         parameters: {
             query?: never;
@@ -563,6 +596,19 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        HotelierEntryInput: {
+            title: string;
+            description: string;
+        };
+        HotelierEntry: {
+            /** Format: uuid */
+            id: string;
+            hotel_id: string;
+            title: string;
+            description: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
         Weather: {
             /** @enum {string} */
             status: "available" | "unavailable";
@@ -2227,6 +2273,68 @@ export interface operations {
             };
             /** @description Объект или отель не найден */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    listHotelierEntries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Editable hotelier statements */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        items: components["schemas"]["HotelierEntry"][];
+                    };
+                };
+            };
+            404: components["responses"]["NotFound"];
+        };
+    };
+    saveHotelierEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                hotel_id: components["parameters"]["HotelId"];
+                entry_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HotelierEntryInput"];
+            };
+        };
+        responses: {
+            /** @description Saved statement */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HotelierEntry"];
+                };
+            };
+            404: components["responses"]["NotFound"];
+            /** @description Invalid statement */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };

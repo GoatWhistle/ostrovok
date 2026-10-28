@@ -21,6 +21,7 @@ from hotel_agent.application.use_cases.get_question import GetHotelierQuestion
 from hotel_agent.application.use_cases.get_terrain_tile import GetTerrainTile
 from hotel_agent.application.use_cases.get_weather import GetWeather
 from hotel_agent.application.use_cases.hotelier_cabinet import GetHotelierCabinet
+from hotel_agent.application.use_cases.hotelier_entries import ManageHotelierEntries
 from hotel_agent.application.use_cases.hotelier_notifications import (
     ListHotelierNotifications,
     MarkNotificationsRead,
@@ -51,6 +52,9 @@ from hotel_agent.interfaces.http.routers import (
     terrain,
     weather,
 )
+from hotel_agent.interfaces.http.routers import (
+    hotelier_entries as entries_router,
+)
 
 
 def api_router_v1(
@@ -73,6 +77,7 @@ def api_router_v1(
     get_terrain_tile: GetTerrainTile,
     get_weather: GetWeather,
     get_fact: GetFact,
+    hotelier_entries: ManageHotelierEntries,
     list_hotelier_questions: ListHotelierQuestions,
     answer_hotelier_question: AnswerHotelierQuestion,
     change_question_status: ChangeQuestionStatus,
@@ -87,6 +92,7 @@ def api_router_v1(
     get_map_scene: GetMapScene,
 ) -> APIRouter:
     router = APIRouter(prefix="/api/v1")
+    router.include_router(entries_router.build_router(hotelier_entries))
     router.include_router(places.build_router(get_place))
     router.include_router(compare.build_router(compare_hotels))
     router.include_router(health.build_router(llm_provider))

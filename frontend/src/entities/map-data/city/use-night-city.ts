@@ -1,8 +1,10 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
 import type { AppearancePackage } from "@/shared/geo/appearance/types"
-import { labelAnchor } from "@/shared/geo/basemap-labels"
-import { type QualityLevel, windowDensity } from "@/shared/geo/map-quality"
+import { labelAnchor } from "@/shared/geo/basemap/basemap-labels"
+import { markSceneBuildings } from "@/shared/geo/buildings/overview-buildings"
+import { lightsLevel, type QualityLevel, windowDensity } from "@/shared/geo/engine/map-quality"
+import { type SceneViewport, watchSceneViewport } from "@/shared/geo/engine/scene-viewport"
 import {
   nightFactor,
   renderNightLights,
@@ -11,10 +13,8 @@ import {
 } from "@/shared/geo/night-city/night-layers"
 import { WindowBuilder } from "@/shared/geo/night-city/window-builder"
 import { WINDOW_LAYER, WindowLayer } from "@/shared/geo/night-city/window-layer"
-import { markSceneBuildings } from "@/shared/geo/overview-buildings"
 import { withRoofForms } from "@/shared/geo/roof-forms/layer"
-import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewport"
-import type { SunPosition } from "@/shared/geo/terrain"
+import type { SunPosition } from "@/shared/geo/terrain/terrain"
 import type { MapColors } from "@/shared/theme"
 import { useMapScene } from "../map-scene.queries"
 import { useTileVersions } from "../map-style.queries"
@@ -95,6 +95,10 @@ export function useNightCity({
   const scene = useMapScene(request)
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
   const roofless = useMemo(() => [...textured], [textured])
+  const windowless = useMemo(
+    () => (effects.facades ? new Set<string>() : textured),
+    [effects.facades, textured],
+  )
   useRoofMesh(mapRef, ready, scene.data, roofless, drawn, effects.roofs)
   useTreeMesh(mapRef, ready, effects.trees)
   useEffect(() => {
@@ -119,7 +123,7 @@ export function useNightCity({
     enabled: effects.windows,
     scene: scene.data,
     drawn,
-    textured,
+    textured: windowless,
     layer,
     builder,
   })
@@ -127,13 +131,13 @@ export function useNightCity({
   useEffect(() => {
     const map = mapRef.current
     if (!ready || !map) return
-    const lights = quality >= 2 || !effects.lights ? 0 : night
+    const lights = quality >= lightsLevel(effects.steadyLights) || !effects.lights ? 0 : night
     renderNightLights(map, lights, { lamp: colors.lamp, cityGlow: colors.cityGlow })
     const update = () =>
       layer.current?.setLight({
         night,
         fade: windowFade(map.getZoom(), night),
-        density: effects.windows ? windowDensity(quality) : 0,
+        density: effects.windows ? windowDensity(quality, effects.steadyLights) : 0,
         glass: effects.facades ? 1 : 0,
         warm: rgb(colors.windowWarm),
         cool: rgb(colors.windowCool),
@@ -153,5 +157,6 @@ export function useNightCity({
     effects.lights,
     effects.windows,
     effects.facades,
+    effects.steadyLights,
   ])
 }

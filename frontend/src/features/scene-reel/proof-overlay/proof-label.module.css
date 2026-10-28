@@ -1,0 +1,62 @@
+.anchor {
+  --proof-tone: var(--map-route);
+  position: absolute;
+  inset: 0 auto auto 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.anchor[data-kind="sunset"] {
+  --proof-tone: var(--map-viewshed-line);
+}
+.anchor[data-kind="quiet"] {
+  --proof-tone: var(--map-hotel-selected);
+}
+.ping,
+.dot,
+.swatch {
+  aspect-ratio: 1;
+  border-radius: var(--radius-pill);
+  background-color: var(--proof-tone);
+}
+.ping,
+.dot {
+  position: absolute;
+  inset-block-start: calc(var(--space-4) * -1);
+  inset-inline-start: calc(var(--space-4) * -1);
+  inline-size: var(--space-8);
+}
+.dot {
+  outline: var(--space-2) solid var(--map-label-halo);
+  box-shadow: var(--shadow-pin);
+}
+.stem {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  display: block;
+  block-size: var(--space-16);
+  border-inline-start: 1px solid var(--border-strong);
+}
+.label {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline-start: calc(var(--space-12) * -1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  inline-size: max-content;
+  padding-block: var(--space-2);
+  padding-inline: var(--space-8) var(--space-12);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-overlay);
+  box-shadow: var(--shadow-float);
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+.swatch {
+  flex: none;
+  inline-size: var(--space-6);
+}

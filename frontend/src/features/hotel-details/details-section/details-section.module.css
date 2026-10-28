@@ -1,0 +1,36 @@
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-inline-size: 0;
+  gap: var(--space-8);
+  padding-block-start: var(--space-16);
+  border-block-start: var(--hairline) solid var(--border-subtle);
+}
+
+.section:first-child {
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+
+.head {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.heading {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+}
+
+.hint {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
+.collapsible {
+  --disclosure-size: var(--font-size-body);
+  --disclosure-weight: var(--weight-bold);
+  --disclosure-leading: var(--line-height-subheading);
+  --disclosure-tracking: var(--tracking-tight);
+
+  padding-block-start: 0;
+  border-block-start: 0;
+}

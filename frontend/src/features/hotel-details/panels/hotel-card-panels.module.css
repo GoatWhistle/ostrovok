@@ -1,0 +1,21 @@
+.sections {
+  min-inline-size: 0;
+}
+
+.panel {
+  padding-block-start: var(--space-24);
+  min-inline-size: 0;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.empty {
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
+}
+
+.nearby {
+  display: grid;
+  gap: var(--space-16);
+}

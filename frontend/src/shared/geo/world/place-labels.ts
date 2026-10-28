@@ -1,5 +1,5 @@
 import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { BASEMAP_PLACES_FROM, type LabelColors } from "../basemap-labels"
+import { BASEMAP_PLACES_FROM, type LabelColors } from "../basemap/basemap-labels"
 
 const SOURCE = "place-labels"
 const DATA = "/data/place-labels.geojson"

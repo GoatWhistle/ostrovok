@@ -4,13 +4,13 @@ import { useRegions } from "@/entities/catalog"
 import { useHotelScene } from "@/entities/hotel"
 import { drawnVolumes, useBasemaps, useMapCatalog, useNightCity } from "@/entities/map-data"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
-import { appearanceClasses } from "@/shared/geo/appearance/palette"
+import { appearanceClasses, readNightColors } from "@/shared/geo/appearance/palette"
+import { retainPmtiles } from "@/shared/geo/basemap/pmtiles-protocol"
+import { renderBuildings, renderHighlights } from "@/shared/geo/buildings/map-layers"
 import { useMapInstance } from "@/shared/geo/engine/use-map-instance"
 import { useMapRendering } from "@/shared/geo/engine/use-map-rendering"
-import { featureCollection } from "@/shared/geo/geometry"
-import { renderBuildings, renderHighlights } from "@/shared/geo/map-layers"
-import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
-import { followTerrainZoom, type SunPosition } from "@/shared/geo/terrain"
+import { featureCollection } from "@/shared/geo/geometry/geometry"
+import { followTerrainZoom, type SunPosition } from "@/shared/geo/terrain/terrain"
 import { useLocale } from "@/shared/i18n"
 import { motionMs } from "@/shared/motion"
 import { type MapColors, useMapAppearance, useMapColors, useTheme } from "@/shared/theme"
@@ -26,8 +26,9 @@ const OPTIONS = {
   pitch: 50,
   bearing: -58,
 }
-const DAY_SUN = { azimuth: 250, altitude: 3 }
+const DAY_SUN = { azimuth: 250, altitude: 32 }
 const DUSK_SUN = { azimuth: 250, altitude: -8 }
+const SUNSET_SUN = { azimuth: 250, altitude: 1.5 }
 const REGIONS = ["sochi"]
 const NO_TEXTURES: ReadonlySet<string> = new Set()
 const QUALITY = 1
@@ -72,7 +73,14 @@ function useCityLayers(
   )
   const drawn = useMemo(() => drawnVolumes(buildings), [buildings])
   const classes = useMemo(
-    () => appearanceClasses(appearance.id, catalog.data?.classes ?? [], colors, sun.altitude),
+    () =>
+      appearanceClasses(
+        appearance.id,
+        catalog.data?.classes ?? [],
+        colors,
+        readNightColors(appearance.id),
+        sun.altitude,
+      ),
     [appearance.id, catalog.data, colors, sun.altitude],
   )
   useNightCity({
@@ -89,7 +97,12 @@ function useCityLayers(
   })
 }
 
-export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonly ReelCamera[]) {
+export function useCoverMap(
+  enabled: boolean,
+  visible: boolean,
+  cameras: readonly ReelCamera[],
+  golden: boolean,
+) {
   const map = useMapInstance(enabled, OPTIONS)
   const scene = useHotelScene(enabled ? "n11331531334" : undefined)
   const catalog = useMapCatalog()
@@ -97,7 +110,7 @@ export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonl
   const { locale } = useLocale()
   const colors = useMapColors()
   const { theme } = useTheme()
-  const sun = theme === "dark" ? DUSK_SUN : DAY_SUN
+  const sun = golden ? SUNSET_SUN : theme === "dark" ? DUSK_SUN : DAY_SUN
   const [loaded, setLoaded] = useState(false)
   const buildings = useMemo(
     () =>

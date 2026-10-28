@@ -1,12 +1,9 @@
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Disclosure } from "@/shared/ui"
-import { DetailsSection } from "../details-section"
+import { DetailsSection } from "../details-section/details-section"
 import styles from "./supplier.module.css"
 
 type Place = components["schemas"]["SupplierNearbyPlace"]
-
-const VISIBLE = 5
 
 function useDistance() {
   const { t } = useTranslation()
@@ -19,10 +16,10 @@ function useDistance() {
       : t("explore:supplier.kilometres", { value: kilometres.format(distance / 1000) })
 }
 
-function Places({ places }: { readonly places: readonly Place[] }) {
+function Places({ places, id }: { readonly places: readonly Place[]; readonly id?: string }) {
   const distance = useDistance()
   return (
-    <ul className={styles.places}>
+    <ul id={id} className={styles.places}>
       {places.map((place) => (
         <li key={`${place.name}:${place.distance_m}`} className={styles.place}>
           <span lang="ru">{place.name}</span>
@@ -33,19 +30,20 @@ function Places({ places }: { readonly places: readonly Place[] }) {
   )
 }
 
-export function SupplierNearby({ places }: { readonly places: readonly Place[] }) {
+export function SupplierNearby({
+  places,
+  heading = true,
+}: {
+  readonly places: readonly Place[]
+  readonly heading?: boolean
+}) {
   const { t } = useTranslation()
   if (!places.length) return null
   const sorted = [...places].sort((a, b) => a.distance_m - b.distance_m)
-  const rest = sorted.slice(VISIBLE)
-  return (
-    <DetailsSection title={t("explore:supplier.nearby")} hint={t("explore:supplier.nearbyNote")}>
-      <Places places={sorted.slice(0, VISIBLE)} />
-      {rest.length ? (
-        <Disclosure title={t("explore:supplier.moreNearby", { count: rest.length })}>
-          <Places places={rest} />
-        </Disclosure>
-      ) : null}
-    </DetailsSection>
+  const content = <Places places={sorted} />
+  return heading ? (
+    <DetailsSection title={t("explore:supplier.nearby")}>{content}</DetailsSection>
+  ) : (
+    content
   )
 }

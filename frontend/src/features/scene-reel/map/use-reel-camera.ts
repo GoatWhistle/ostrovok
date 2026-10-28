@@ -1,51 +1,28 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useLayoutEffect, useRef } from "react"
-import { paintRoute } from "@/shared/geo/map-layers"
+import { paintRoute } from "@/shared/geo/buildings/map-layers"
+import { rgb } from "@/shared/geo/roof-mesh/paint"
 import type { MapColors } from "@/shared/theme"
 import type { ProofState, ReelFrame } from "../playback/reel-frame"
-import {
-  along,
-  CONE_DEGREES,
-  type Coordinates,
-  HOTEL,
-  offset,
-  QUIET_METERS,
-  RAY_METERS,
-  ROUTE,
-  ring,
-  SUNSET_AZIMUTH,
-} from "../shots"
+import { along, type Coordinates, HOTEL, ROUTE } from "../shots"
+import { paintGround } from "./ground-shapes"
 import { paintNoiseRoads } from "./noise-roads"
+import { SUNSET_LAYER, SunsetLayer } from "./sunset-layer"
 
 const ROUTE_LAYERS = [
   ["route-line", 1],
   ["route-casing", 0.35],
   ["route-glow", 0.55],
 ] as const
-export const RINGS = ["near", "middle", "far"] as const
-const RING_COUNT = RINGS.length
-const RING_SEGMENTS = 48
-const LABEL_ENTER = 0.3
 const LABEL_SHIFT = 4
-const PING_OPACITY = 0.5
-const PING_SCALE = 3
-const SUNSET_LABEL_METERS = 240
+const PING_OPACITY = 0.45
+const PING_SCALE = 2.6
+const NOISE_OPACITY = 0.35
 
 export interface ReelAnchors {
   readonly sea: RefObject<HTMLDivElement | null>
   readonly sunset: RefObject<HTMLDivElement | null>
   readonly quiet: RefObject<HTMLDivElement | null>
-  readonly ray: RefObject<SVGGElement | null>
-  readonly rings: RefObject<(SVGPathElement | null)[]>
-}
-
-function pathOf(map: MapLibreMap, points: readonly Coordinates[]) {
-  return points
-    .map((point, step) => {
-      const { x, y } = map.project([point[0], point[1]])
-      return `${step === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`
-    })
-    .join(" ")
 }
 
 function place(
@@ -59,17 +36,38 @@ function place(
   const { x, y } = map.project([at[0], at[1]])
   element.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`
   element.style.opacity = String(proof.draw > 0 ? proof.opacity : 0)
-  const appear = Math.min(1, proof.label / LABEL_ENTER)
   const text = element.querySelector<HTMLElement>("[data-part='text']")
   const ping = element.querySelector<HTMLElement>("[data-part='ping']")
   if (text) {
-    text.style.opacity = String(appear)
-    text.style.transform = `translateY(${((1 - appear) * LABEL_SHIFT).toFixed(2)}px)`
+    text.style.opacity = String(proof.label)
+    text.style.transform = `translateY(${((1 - proof.label) * LABEL_SHIFT).toFixed(2)}px)`
   }
   if (ping) {
-    ping.style.opacity = String((1 - pulse) * PING_OPACITY)
+    ping.style.opacity = String((1 - pulse) * PING_OPACITY * proof.label)
     ping.style.transform = `scale(${(1 + pulse * PING_SCALE).toFixed(3)})`
   }
+}
+
+function sunsetWeight(frame: ReelFrame): number {
+  const sunset = frame.proofs.sunset
+  return Math.min(1, sunset.draw * 1.4) * sunset.opacity
+}
+
+const sunsets = new WeakMap<MapLibreMap, SunsetLayer>()
+
+function paintSunset(map: MapLibreMap, colors: MapColors, weight: number) {
+  let layer = sunsets.get(map)
+  if (!layer || !map.getLayer(SUNSET_LAYER)) {
+    layer = new SunsetLayer()
+    map.addLayer(layer)
+    sunsets.set(map, layer)
+  }
+  const [r, g, b] = rgb(colors.sunLow)
+  layer.update(weight, {
+    hot: [r, g * 0.82, b * 0.6],
+    warm: [r, g * 0.5, b * 0.3],
+    core: [r + (1 - r) * 0.55, g + (1 - g) * 0.45, b + (1 - b) * 0.3],
+  })
 }
 
 function drawRoute(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
@@ -79,39 +77,12 @@ function drawRoute(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
     if (map.getLayer(id)) map.setPaintProperty(id, "line-opacity", opacity * proof.opacity)
 }
 
-function drawRay(map: MapLibreMap, anchors: ReelAnchors, frame: ReelFrame) {
-  const meters = Math.max(1, RAY_METERS * frame.proofs.sunset.draw)
-  const end = offset(HOTEL, SUNSET_AZIMUTH, meters)
-  const group = anchors.ray.current
-  if (!group) return end
-  const [cone, ray] = group.querySelectorAll("path")
-  cone?.setAttribute(
-    "d",
-    `${pathOf(map, [
-      HOTEL,
-      offset(HOTEL, SUNSET_AZIMUTH - CONE_DEGREES, meters),
-      offset(HOTEL, SUNSET_AZIMUTH + CONE_DEGREES, meters),
-    ])} Z`,
-  )
-  ray?.setAttribute("d", pathOf(map, [HOTEL, end]))
-  const { x, y } = map.project([end[0], end[1]])
-  for (const circle of group.querySelectorAll("circle")) {
-    circle.setAttribute("cx", x.toFixed(1))
-    circle.setAttribute("cy", y.toFixed(1))
-  }
-  return end
-}
-
-function drawRings(map: MapLibreMap, anchors: ReelAnchors, frame: ReelFrame) {
-  const rings = anchors.rings.current
-  for (let step = 0; step < RING_COUNT; step += 1) {
-    const element = rings[step]
-    if (!element) continue
-    const phase = (frame.pulse + step / RING_COUNT) % 1
-    const meters = QUIET_METERS * (0.35 + 0.65 * phase) * Math.max(0.2, frame.proofs.quiet.draw)
-    element.setAttribute("d", `${pathOf(map, ring(HOTEL, meters, RING_SEGMENTS))} Z`)
-    element.style.opacity = String((1 - phase) * frame.proofs.quiet.opacity)
-  }
+function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame, golden: boolean) {
+  const { quiet } = frame.proofs
+  drawRoute(map, colors, frame)
+  paintNoiseRoads(map, colors.routeGlow, quiet.draw * quiet.opacity * NOISE_OPACITY)
+  paintGround(map, { calm: quiet.draw, calmFade: quiet.opacity }, colors.hotelSelected)
+  paintSunset(map, colors, golden ? sunsetWeight(frame) : 0)
 }
 
 export function useReelCamera(
@@ -120,13 +91,12 @@ export function useReelCamera(
   frame: ReelFrame,
   colors: MapColors,
   padding: { readonly top: number; readonly bottom: number },
+  golden: boolean,
 ) {
   const anchors: ReelAnchors = {
     sea: useRef<HTMLDivElement>(null),
     sunset: useRef<HTMLDivElement>(null),
     quiet: useRef<HTMLDivElement>(null),
-    ray: useRef<SVGGElement>(null),
-    rings: useRef<(SVGPathElement | null)[]>([]),
   }
   const previous = useRef("")
   useLayoutEffect(() => {
@@ -142,19 +112,10 @@ export function useReelCamera(
       current.jumpTo(camera)
       previous.current = key
     }
-    const quiet = frame.proofs.quiet
-    drawRoute(current, colors, frame)
-    drawRings(current, anchors, frame)
-    paintNoiseRoads(current, colors.routeGlow, quiet.draw * quiet.opacity * (1 - 0.5 * quiet.label))
-    const { sea, sunset } = frame.proofs
+    paintProofs(current, colors, frame, golden)
+    const { sea, sunset, quiet } = frame.proofs
     place(current, anchors.sea.current, along(ROUTE, sea.draw), sea, frame.pulse)
-    drawRay(current, anchors, frame)
-    const sunsetAt = offset(
-      HOTEL,
-      SUNSET_AZIMUTH,
-      Math.max(1, Math.min(SUNSET_LABEL_METERS, RAY_METERS * sunset.draw)),
-    )
-    place(current, anchors.sunset.current, sunsetAt, sunset, frame.pulse)
+    place(current, anchors.sunset.current, HOTEL, sunset, frame.pulse)
     place(current, anchors.quiet.current, HOTEL, quiet, frame.pulse)
   })
   return anchors

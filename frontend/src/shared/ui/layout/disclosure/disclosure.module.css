@@ -5,11 +5,28 @@
 }
 
 .trigger {
+  --disclosure-size: inherit;
+  --disclosure-weight: inherit;
+  --disclosure-leading: inherit;
+  --disclosure-tracking: inherit;
+
   composes: controlText pressable inlineRow from "../../../styles/compose.module.css";
   min-block-size: var(--target-min);
   min-inline-size: 0;
   white-space: normal;
   text-align: start;
+}
+
+.disclosure > .trigger {
+  font-size: var(--disclosure-size, var(--font-size-body-sm));
+  font-weight: var(--disclosure-weight, var(--weight-semibold));
+  line-height: var(--disclosure-leading, var(--line-height-label));
+  letter-spacing: var(--disclosure-tracking, inherit);
+}
+
+.trigger > span {
+  min-inline-size: 0;
+  white-space: normal;
 }
 
 .icon,
@@ -21,6 +38,18 @@
 .chevron {
   margin-inline-start: auto;
   transition: rotate var(--dur-base) var(--ease-out);
+}
+
+.iconOnly {
+  inline-size: max-content;
+  min-inline-size: var(--target-min);
+  padding-inline: var(--space-8);
+  justify-self: end;
+  justify-content: center;
+}
+
+.iconOnly .chevron {
+  margin-inline-start: 0;
 }
 
 .trigger[aria-expanded="true"] .chevron {

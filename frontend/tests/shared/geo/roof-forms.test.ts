@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest"
 import { toLocal } from "../../../src/shared/geo/roof-forms/footprint"
 import { type RoofSource, roofKind } from "../../../src/shared/geo/roof-forms/tiers"
 import { localFrame } from "../../../src/shared/geo/roof-mesh/frame"
-import { darkness, sunLight, warmth } from "../../../src/shared/geo/sun-light"
-import { tintHex } from "../../../src/shared/geo/time-tint"
+import { tintHex } from "../../../src/shared/geo/sun/horizon-tint"
+import { darkness, sunLight, warmth } from "../../../src/shared/geo/sun/sun-light"
 
 const LAT = 43.6
 const DX = 1 / (111_320 * Math.cos((LAT * Math.PI) / 180))

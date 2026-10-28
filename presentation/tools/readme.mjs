@@ -105,33 +105,6 @@ for (const theme of THEMES) {
 await page.evaluate(() => {
   document.documentElement.dataset.theme = "light"
 })
-const palette = await page.evaluate(() => {
-  const probe = document.createElement("span")
-  document.body.append(probe)
-  const canvas = document.createElement("canvas").getContext("2d")
-  const hex = (name) => {
-    probe.style.color = `var(${name})`
-    canvas.fillStyle = "#000"
-    canvas.fillStyle = getComputedStyle(probe).color
-    return canvas.fillStyle
-  }
-  const value = {
-    primaryColor: hex("--surface-raised"),
-    primaryTextColor: hex("--text-primary"),
-    primaryBorderColor: hex("--action-primary"),
-    secondaryColor: hex("--surface-sunken"),
-    tertiaryColor: hex("--surface-base"),
-    lineColor: hex("--text-muted"),
-    textColor: hex("--text-primary"),
-    noteBkgColor: hex("--surface-sunken"),
-    noteTextColor: hex("--text-secondary"),
-    actorBkg: hex("--surface-raised"),
-    actorBorder: hex("--action-primary"),
-    fontFamily: getComputedStyle(document.body).fontFamily.split(",")[0].replaceAll('"', "").trim(),
-  }
-  probe.remove()
-  return value
-})
 await browser.close()
 
 const escape = (text) => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;")
@@ -185,7 +158,6 @@ for (const name of ["banner", "mark"]) {
 }
 fs.writeFileSync(README, readme)
 
-const init = `%%{init: ${JSON.stringify({ theme: "base", themeVariables: palette })}}%%`
 const markdown = [README]
 const collect = (dir) => {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -203,7 +175,6 @@ for (const file of markdown) {
     out.push(lines[i])
     if (lines[i].trim() !== "```mermaid") continue
     blocks += 1
-    out.push(init)
     if (MERMAID_INIT.test(lines[i + 1] ?? "")) i += 1
   }
   if (out.join("\n") !== lines.join("\n")) fs.writeFileSync(file, out.join("\n"))
@@ -211,4 +182,4 @@ for (const file of markdown) {
 
 const counts = ROWS.map((kind) => `${kind} ${items[kind].length}`).join(", ")
 console.log(`docs/readme: banner, mark, ${counts}; light and dark at 2x`)
-console.log(`README rows rebuilt from readme/readme.json; mermaid blocks themed: ${blocks}`)
+console.log(`README rows rebuilt from readme/readme.json; mermaid blocks left to the GitHub theme: ${blocks}`)

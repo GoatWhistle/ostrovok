@@ -1,0 +1,89 @@
+.hero {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.title {
+  display: grid;
+  justify-content: start;
+  gap: var(--space-8);
+  margin-block-start: var(--space-4);
+}
+
+.naming {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-12);
+  min-inline-size: 0;
+}
+
+.name {
+  composes: headingText from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+  font-size: var(--font-size-heading-lg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.badges {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.external {
+  composes: roundIconShape pressable from "../../../shared/styles/compose.module.css";
+  position: relative;
+  display: inline-grid;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.external::before {
+  content: "";
+  position: absolute;
+  inset: calc((var(--space-32) - var(--target-min)) / 2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .external:hover {
+    color: var(--text-primary);
+    background-color: var(--action-ghost-hover);
+  }
+}
+
+.external:active {
+  background-color: var(--action-ghost-press);
+}
+
+.address {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  display: inline-flex;
+  align-items: start;
+  gap: var(--space-6);
+  max-inline-size: 100%;
+  margin-inline-start: 0;
+  color: var(--text-secondary);
+  text-align: start;
+}
+
+.address span {
+  overflow-wrap: anywhere;
+}
+
+.pin {
+  flex: none;
+  color: var(--text-accent);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-16);
+}
+
+.fact {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  color: var(--text-secondary);
+}

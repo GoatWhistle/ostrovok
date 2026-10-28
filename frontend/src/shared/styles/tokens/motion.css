@@ -45,13 +45,12 @@
   --toast-life: 5000ms;
   --toast-life-error: 10000ms;
   --reel-life: 7000ms;
-  --story-shot: 7000ms;
-  --story-flight: 1800ms;
-  --story-draw: 1400ms;
-  --story-label: 700ms;
-  --story-caret: 300ms;
-  --story-pulse: 2400ms;
-  --story-fade: 600ms;
+  --story-shot: 6500ms;
+  --story-flight: 1900ms;
+  --story-draw: 1100ms;
+  --story-label: 400ms;
+  --story-pulse: 3600ms;
+  --story-fade: 500ms;
 
   --transition-control:
     background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
@@ -72,6 +71,7 @@
   --transition-clip-out: clip-path var(--dur-panel-exit) var(--ease-out);
 
   --motion-fade-in: kf-fade-in var(--dur-base) var(--ease-out) both;
+  --motion-theme-in: kf-fade-in var(--dur-slow) var(--ease-in-out) both;
   --motion-fade-out: kf-fade-out var(--dur-exit) var(--ease-out) both;
   --motion-scale-in: kf-scale-in var(--dur-base) var(--ease-out) both;
   --motion-scale-out: kf-scale-out var(--dur-exit) var(--ease-out) both;

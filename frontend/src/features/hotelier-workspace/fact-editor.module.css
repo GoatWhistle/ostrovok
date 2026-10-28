@@ -1,0 +1,18 @@
+.form {
+  display: grid;
+  gap: var(--space-20);
+}
+.content h2 {
+  font-size: var(--font-size-subheading);
+  font-weight: var(--weight-bold);
+}
+.actions {
+  display: flex;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.content {
+  padding: 0;
+  background: transparent;
+}

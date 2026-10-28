@@ -1,0 +1,80 @@
+.workspace {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-columns: minmax(0, var(--panel-min)) minmax(0, 1fr);
+  min-inline-size: 0;
+  overflow: hidden;
+}
+
+.workspace[data-empty] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.workspace[data-empty] > .queue {
+  display: none;
+}
+
+.queue {
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+  padding: var(--space-12);
+  border-inline-end: var(--hairline) solid var(--border-subtle);
+}
+
+.main {
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+  min-inline-size: 0;
+  padding: var(--space-24);
+}
+
+.skeleton {
+  composes: skeletonReveal from "../../../entities/evidence/evidence-text.module.css";
+  display: grid;
+  gap: var(--space-16);
+}
+
+.all {
+  justify-self: start;
+}
+
+@media (max-width: 63.99rem) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace[data-view="question"] > .queue,
+  .workspace[data-view="queue"] > .main {
+    display: none;
+  }
+
+  .queue {
+    border-inline-end: 0;
+    border-block-end: var(--hairline) solid var(--border-subtle);
+  }
+
+  .main {
+    padding: var(--space-16);
+  }
+}
+
+.empty {
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
+  padding: var(--space-8);
+}
+
+.tabs > fieldset {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  inline-size: 100%;
+}
+
+.tabs > fieldset > label {
+  min-inline-size: 0;
+  padding-block: var(--space-4);
+  padding-inline: var(--space-4);
+  text-align: center;
+  white-space: normal;
+}

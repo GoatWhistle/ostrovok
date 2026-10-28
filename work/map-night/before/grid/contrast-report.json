@@ -1,0 +1,5648 @@
+{
+  "method": "Oklab Euclidean distance ×100; WCAG luminance ratio; unique material tones; actual getStyle and mesh lighting. Wall ratio is full-normal upper bound, not a rendered facet measurement.",
+  "samples": 48,
+  "expectedSamples": 48,
+  "complete": true,
+  "results": [
+    {
+      "look": "neon",
+      "hour": 0,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 1,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 10,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 11,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 12,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 13,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 14,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 15,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 16,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0b2642",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 4.887038711024936,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 17,
+      "colors": {
+        "land": "#1f213a",
+        "park": "#293943",
+        "water": "#0d2340",
+        "roadLight": "#5199ae",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 8.263017920665911,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 2.614668386276652,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 8.67444891969938,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 4.875121751097388,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 10.24865616221173,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 18,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071b2f",
+        "roadLight": "#295768",
+        "label": {
+          "text-color": "#1f2225",
+          "text-halo-color": "#101a2d",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1262334504940306,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.1976237073509606,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0864555478467768,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0878580951615813,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 19,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 2,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 20,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 21,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 22,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 23,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 3,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 4,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 5,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 6,
+      "colors": {
+        "land": "#101a2e",
+        "park": "#152632",
+        "water": "#071a2e",
+        "roadLight": "#295667",
+        "label": {
+          "text-color": "#16171a",
+          "text-halo-color": "#101a2e",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 4.37089795806954,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 1.1654150373552767,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 4.581696310318338,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 2.167684825640791,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 1.0321372119810093,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 7,
+      "colors": {
+        "land": "#21223b",
+        "park": "#2a3844",
+        "water": "#0d2340",
+        "roadLight": "#5093a8",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 7.524100422653983,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 2.8707294962122747,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 7.992682404743588,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 4.481699785558698,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 10.099610277632367,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 8,
+      "colors": {
+        "land": "#131c2f",
+        "park": "#213c3c",
+        "water": "#0c2641",
+        "roadLight": "#59c5d2",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 11.422831997355404,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 4.278420896816434,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 11.990698778370533,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.37510474662621,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.09574065778897,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "neon",
+      "hour": 9,
+      "colors": {
+        "land": "#111b2d",
+        "park": "#203d3b",
+        "water": "#0a2943",
+        "roadLight": "#5acbd7",
+        "label": {
+          "text-color": "#bdd4e4",
+          "text-halo-color": "#171717",
+          "text-halo-width": 1.4
+        }
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 12.197506333401533,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 5.6478392028601965,
+          "threshold": 7.5,
+          "passed": false
+        },
+        "sandLand": {
+          "value": 12.763990863344777,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": null,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "roofPlaster": {
+          "value": null,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": null,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": null,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 8.99332691433385,
+          "threshold": 3,
+          "passed": true
+        },
+        "labelLand": {
+          "value": 11.244520441803099,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 11.697014290025043,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": null,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 0,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 1,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 10,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.720462397334652,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 11,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.720462397334652,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 12,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.720462397334652,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 13,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.720462397334652,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 14,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.720462397334652,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 15,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3d0e2",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.815114373232358,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.7270665614562555,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 16,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#9dc8da",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 14.783058422696882,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 3.0538404435582924,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 17,
+      "colors": {
+        "land": "#f0e8d9",
+        "park": "#c8dbab",
+        "water": "#97bfd1",
+        "roadLight": "#fefcfb",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7176470588235294,
+            0.34901960784313724,
+            0.2784313725490196
+          ],
+          [
+            0.796078431372549,
+            0.5176470588235295,
+            0.3607843137254902
+          ],
+          [
+            0.8509803921568627,
+            0.7686274509803922,
+            0.611764705882353
+          ],
+          [
+            0.611764705882353,
+            0.6627450980392157,
+            0.6941176470588235
+          ],
+          [
+            0.7176470588235294,
+            0.34901960784313724,
+            0.2784313725490196
+          ]
+        ],
+        "plaster": [
+          [
+            0.9372549019607843,
+            0.9098039215686274,
+            0.8666666666666667
+          ],
+          [
+            0.9607843137254902,
+            0.9411764705882353,
+            0.9019607843137255
+          ],
+          [
+            0.9490196078431372,
+            0.8588235294117647,
+            0.7725490196078432
+          ],
+          [
+            0.9372549019607843,
+            0.8588235294117647,
+            0.6862745098039216
+          ],
+          [
+            0.8823529411764706,
+            0.8980392156862745,
+            0.8392156862745098
+          ],
+          [
+            0.9411764705882353,
+            0.8470588235294118,
+            0.8156862745098039
+          ]
+        ],
+        "leaves": [
+          [
+            0.5490196078431373,
+            0.7058823529411765,
+            0.4392156862745098
+          ],
+          [
+            0.6313725490196078,
+            0.7725490196078432,
+            0.49019607843137253
+          ],
+          [
+            0.4666666666666667,
+            0.6274509803921569,
+            0.396078431372549
+          ],
+          [
+            0.6549019607843137,
+            0.7254901960784313,
+            0.4666666666666667
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 8.660121434538327,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 16.62611530920877,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.054031103432056,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.904129237738136,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.082815637384776,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 6.914706393025191,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.143257070064491,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 9.323119281848037,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1902465147226908,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.562671296104172,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 3.5204304878983574,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 18,
+      "colors": {
+        "land": "#676e74",
+        "park": "#586963",
+        "water": "#3e5c71",
+        "roadLight": "#6c7581",
+        "label": {
+          "text-color": "#dadcde",
+          "text-halo-color": "#57606a",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3215686274509804,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.34901960784313724,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.37254901960784315,
+            0.3764705882352941,
+            0.3686274509803922
+          ],
+          [
+            0.2823529411764706,
+            0.33725490196078434,
+            0.396078431372549
+          ],
+          [
+            0.3215686274509804,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.403921568627451,
+            0.43137254901960786,
+            0.4627450980392157
+          ],
+          [
+            0.4117647058823529,
+            0.44313725490196076,
+            0.4745098039215686
+          ],
+          [
+            0.40784313725490196,
+            0.4117647058823529,
+            0.42745098039215684
+          ],
+          [
+            0.403921568627451,
+            0.4117647058823529,
+            0.396078431372549
+          ],
+          [
+            0.3843137254901961,
+            0.42745098039215684,
+            0.45098039215686275
+          ],
+          [
+            0.403921568627451,
+            0.40784313725490196,
+            0.44313725490196076
+          ]
+        ],
+        "leaves": [
+          [
+            0.25882352941176473,
+            0.35294117647058826,
+            0.30196078431372547
+          ],
+          [
+            0.2901960784313726,
+            0.3803921568627451,
+            0.3215686274509804
+          ],
+          [
+            0.22745098039215686,
+            0.3254901960784314,
+            0.28627450980392155
+          ],
+          [
+            0.2980392156862745,
+            0.3607843137254902,
+            0.3137254901960784
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.696343943064269,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 8.27996927054576,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.7886956128254399,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.8009762176652527,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 4.984160630618949,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 3.0429822406184197,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.5000817845244787,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.917188833404316,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1083604233143518,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 3.762530741980554,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 4.647214369822672,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.4437356801786325,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 19,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 2,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 20,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 21,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 22,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 23,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 3,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 4,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 5,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 6,
+      "colors": {
+        "land": "#656c73",
+        "park": "#566762",
+        "water": "#39566b",
+        "roadLight": "#6a737f",
+        "label": {
+          "text-color": "#e4e6e8",
+          "text-halo-color": "#4c5560",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ],
+          [
+            0.3411764705882353,
+            0.2823529411764706,
+            0.27058823529411763
+          ],
+          [
+            0.36470588235294116,
+            0.37254901960784315,
+            0.36470588235294116
+          ],
+          [
+            0.27450980392156865,
+            0.3333333333333333,
+            0.39215686274509803
+          ],
+          [
+            0.3137254901960784,
+            0.2196078431372549,
+            0.24313725490196078
+          ]
+        ],
+        "plaster": [
+          [
+            0.396078431372549,
+            0.4235294117647059,
+            0.4549019607843137
+          ],
+          [
+            0.403921568627451,
+            0.43529411764705883,
+            0.4666666666666667
+          ],
+          [
+            0.4,
+            0.403921568627451,
+            0.4235294117647059
+          ],
+          [
+            0.396078431372549,
+            0.403921568627451,
+            0.38823529411764707
+          ],
+          [
+            0.3764705882352941,
+            0.4196078431372549,
+            0.4470588235294118
+          ],
+          [
+            0.396078431372549,
+            0.4,
+            0.43529411764705883
+          ]
+        ],
+        "leaves": [
+          [
+            0.2549019607843137,
+            0.34901960784313724,
+            0.30196078431372547
+          ],
+          [
+            0.2823529411764706,
+            0.37254901960784315,
+            0.3176470588235294
+          ],
+          [
+            0.2235294117647059,
+            0.3215686274509804,
+            0.28627450980392155
+          ],
+          [
+            0.29411764705882354,
+            0.3568627450980392,
+            0.30980392156862746
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 3.708435061388356,
+          "threshold": 6,
+          "passed": false
+        },
+        "waterLand": {
+          "value": 9.521095936181485,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 1.8191134887113336,
+          "threshold": 3,
+          "passed": false
+        },
+        "plasterTones": {
+          "value": 0.6623034463195998,
+          "threshold": 1.1,
+          "passed": false
+        },
+        "roofTones": {
+          "value": 5.0131768479988015,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 2.7857903677994003,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "leafTones": {
+          "value": 1.2132457874427853,
+          "threshold": 1.9,
+          "passed": false
+        },
+        "leafPark": {
+          "value": 3.9311012849056435,
+          "threshold": 6,
+          "passed": false
+        },
+        "roadLand": {
+          "value": 1.1078740164048582,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 4.253186837001488,
+          "threshold": 4.5,
+          "passed": false
+        },
+        "labelHalo": {
+          "value": 6.046522654360826,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 1.2806647422064101,
+          "threshold": 1.3,
+          "passed": false
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 7,
+      "colors": {
+        "land": "#f0e8d9",
+        "park": "#c8dbab",
+        "water": "#97bfd1",
+        "roadLight": "#fdfcfa",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7215686274509804,
+            0.35294117647058826,
+            0.2823529411764706
+          ],
+          [
+            0.796078431372549,
+            0.5215686274509804,
+            0.3607843137254902
+          ],
+          [
+            0.8509803921568627,
+            0.7686274509803922,
+            0.615686274509804
+          ],
+          [
+            0.615686274509804,
+            0.6627450980392157,
+            0.6941176470588235
+          ],
+          [
+            0.7215686274509804,
+            0.35294117647058826,
+            0.2823529411764706
+          ]
+        ],
+        "plaster": [
+          [
+            0.9372549019607843,
+            0.9098039215686274,
+            0.8666666666666667
+          ],
+          [
+            0.9607843137254902,
+            0.9372549019607843,
+            0.9019607843137255
+          ],
+          [
+            0.9490196078431372,
+            0.8588235294117647,
+            0.7725490196078432
+          ],
+          [
+            0.9372549019607843,
+            0.8588235294117647,
+            0.6862745098039216
+          ],
+          [
+            0.8862745098039215,
+            0.8941176470588236,
+            0.8392156862745098
+          ],
+          [
+            0.9411764705882353,
+            0.8470588235294118,
+            0.8156862745098039
+          ]
+        ],
+        "leaves": [
+          [
+            0.5529411764705883,
+            0.7058823529411765,
+            0.44313725490196076
+          ],
+          [
+            0.6313725490196078,
+            0.7725490196078432,
+            0.49411764705882355
+          ],
+          [
+            0.47058823529411764,
+            0.6313725490196078,
+            0.4
+          ],
+          [
+            0.6588235294117647,
+            0.7294117647058823,
+            0.4666666666666667
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 8.660121434538327,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 16.62611530920877,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.054031103432056,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.904129237738136,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.021467550157011,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 6.9023947640826435,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 2.8755873919793515,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 9.264286833548816,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1873352556560552,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.562671296104172,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 3.53050577427113,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 8,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#9cc7d9",
+        "roadLight": "#fffffe",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3215686274509804,
+            0.25098039215686274
+          ],
+          [
+            0.788235294117647,
+            0.5019607843137255,
+            0.33725490196078434
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.596078431372549,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3215686274509804,
+            0.25098039215686274
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5294117647058824,
+            0.6980392156862745,
+            0.4235294117647059
+          ],
+          [
+            0.615686274509804,
+            0.7686274509803922,
+            0.47843137254901963
+          ],
+          [
+            0.4392156862745098,
+            0.615686274509804,
+            0.3764705882352941
+          ],
+          [
+            0.6431372549019608,
+            0.7215686274509804,
+            0.45098039215686275
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 15.060511379983254,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.726742485601104,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1456910163024,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 9.874594944732987,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1970648049237265,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 3.1373243804536814,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "look": "toy-town",
+      "hour": 9,
+      "colors": {
+        "land": "#f1eadb",
+        "park": "#c6dcaa",
+        "water": "#a3cfe1",
+        "roadLight": "#ffffff",
+        "label": {
+          "text-color": "#2a333a",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 1.4
+        },
+        "roofs": [
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ],
+          [
+            0.788235294117647,
+            0.4980392156862745,
+            0.3333333333333333
+          ],
+          [
+            0.8470588235294118,
+            0.7647058823529411,
+            0.6039215686274509
+          ],
+          [
+            0.592156862745098,
+            0.6509803921568628,
+            0.6901960784313725
+          ],
+          [
+            0.7058823529411765,
+            0.3176470588235294,
+            0.24705882352941178
+          ]
+        ],
+        "plaster": [
+          [
+            0.9411764705882353,
+            0.9176470588235294,
+            0.8745098039215686
+          ],
+          [
+            0.9647058823529412,
+            0.9490196078431372,
+            0.9137254901960784
+          ],
+          [
+            0.9529411764705882,
+            0.8627450980392157,
+            0.7764705882352941
+          ],
+          [
+            0.9411764705882353,
+            0.8627450980392157,
+            0.6823529411764706
+          ],
+          [
+            0.8823529411764706,
+            0.9019607843137255,
+            0.8470588235294118
+          ],
+          [
+            0.9450980392156862,
+            0.8509803921568627,
+            0.8196078431372549
+          ]
+        ],
+        "leaves": [
+          [
+            0.5254901960784314,
+            0.6980392156862745,
+            0.4196078431372549
+          ],
+          [
+            0.611764705882353,
+            0.7686274509803922,
+            0.4745098039215686
+          ],
+          [
+            0.43529411764705883,
+            0.615686274509804,
+            0.37254901960784315
+          ],
+          [
+            0.6392156862745098,
+            0.7215686274509804,
+            0.4470588235294118
+          ]
+        ]
+      },
+      "metrics": {
+        "parkLand": {
+          "value": 9.248119829414165,
+          "threshold": 6,
+          "passed": true
+        },
+        "waterLand": {
+          "value": 12.983971503328675,
+          "threshold": 7.5,
+          "passed": true
+        },
+        "sandLand": {
+          "value": 4.308032320368122,
+          "threshold": 3,
+          "passed": true
+        },
+        "plasterTones": {
+          "value": 1.902723089276435,
+          "threshold": 1.1,
+          "passed": true
+        },
+        "roofTones": {
+          "value": 11.694200171326955,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "roofPlaster": {
+          "value": 7.51545409196768,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "leafTones": {
+          "value": 3.1474804394769977,
+          "threshold": 1.9,
+          "passed": true
+        },
+        "leafPark": {
+          "value": 10.017069275927263,
+          "threshold": 6,
+          "passed": true
+        },
+        "roadLand": {
+          "value": 1.1977976615531343,
+          "threshold": 3,
+          "passed": false
+        },
+        "labelLand": {
+          "value": 10.735674583519236,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "labelHalo": {
+          "value": 12.85916591133476,
+          "threshold": 4.5,
+          "passed": true
+        },
+        "wallLight": {
+          "value": 2.7402409960265386,
+          "threshold": 1.3,
+          "passed": true
+        }
+      }
+    }
+  ]
+}

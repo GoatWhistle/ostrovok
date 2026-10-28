@@ -1,7 +1,7 @@
 import { type UseQueryResult, useQueries } from "@tanstack/react-query"
 import { api, unwrap } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
-import type { BasemapAssets } from "@/shared/geo/basemap-labels"
+import type { BasemapAssets } from "@/shared/geo/basemap/basemap-labels"
 
 export type MapStyleManifest = components["schemas"]["MapStyleManifest"]
 

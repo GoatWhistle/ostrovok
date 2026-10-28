@@ -1,0 +1,18 @@
+.result {
+  display: grid;
+  gap: var(--space-12);
+  animation: var(--motion-fade-in);
+}
+
+.sent {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.label {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+}
+
+.text {
+  overflow-wrap: anywhere;
+}

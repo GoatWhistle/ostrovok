@@ -1,6 +1,9 @@
+import type { LabelColors } from "../basemap/basemap-labels"
+import type { TimedKey } from "../sun/time-tint"
 import type { MapColors } from "./palette-tokens"
 
 export type MapAppearance = "neon" | "toy-town"
+export type NightKey = TimedKey | keyof LabelColors
 
 export interface AppearancePackage {
   readonly id: MapAppearance
@@ -8,23 +11,27 @@ export interface AppearancePackage {
   readonly version: string
   readonly palette: Readonly<Record<keyof MapColors, string>>
   readonly classPrefix: string
+  readonly sceneHour: number
   readonly materials: {
     readonly hotel: "textured" | "matte"
     readonly verticalGradient: boolean
-    readonly roofToken: string | null
-    readonly hotelRoofToken?: string
-    readonly roofTokens?: readonly string[]
-    readonly flatRoofTokens?: readonly string[]
-    readonly trimTokens?: { readonly steel: string; readonly brick: string }
-    readonly plasterTokens?: readonly string[]
-    readonly treeTokens?: {
+    readonly hotelRoofToken: string
+    readonly roofTokens: readonly string[]
+    readonly flatRoofTokens: readonly string[]
+    readonly trimTokens: { readonly steel: string; readonly brick: string }
+    readonly plasterTokens: readonly string[]
+    readonly treeTokens: {
       readonly leaves: readonly string[]
       readonly conifer: string
       readonly trunk: string
     }
-    readonly shadowToken?: string
-    readonly lightContrast?: number
-    readonly duskTint?: number
+    readonly shadowToken: string
+    readonly lightContrast: number
+    readonly duskTint: number
+  }
+  readonly night?: {
+    readonly palette: Readonly<Record<NightKey, string>>
+    readonly prefix: { readonly day: string; readonly night: string }
   }
   readonly effects: {
     readonly windows: boolean
@@ -33,6 +40,7 @@ export interface AppearancePackage {
     readonly trees: boolean
     readonly lights: boolean
     readonly roadGlow: boolean
+    readonly steadyLights: boolean
   }
   readonly mini: {
     readonly terrain: boolean

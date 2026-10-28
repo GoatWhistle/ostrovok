@@ -1,0 +1,73 @@
+.provenance {
+  display: grid;
+  gap: var(--space-16);
+  padding-block: var(--space-8);
+}
+
+.list,
+.technical {
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-12);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-16);
+  min-inline-size: 0;
+}
+
+.row dt {
+  color: var(--text-secondary);
+}
+
+.row dd {
+  min-inline-size: 0;
+  margin: 0;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.technical {
+  padding-block: var(--space-8);
+}
+
+.technical code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+}
+
+.evidence {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.label {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+}
+
+.quote {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--space-8);
+  min-block-size: var(--target-min);
+  color: var(--text-link);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--weight-semibold);
+  text-underline-offset: var(--space-4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    text-decoration: underline;
+  }
+}

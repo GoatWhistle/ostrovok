@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { roofPaint } from "../../../src/shared/geo/appearance/roofs"
 import { shadowOffset } from "../../../src/shared/geo/appearance/shadows"
-import { tintStrength } from "../../../src/shared/geo/time-tint"
+import { tintStrength } from "../../../src/shared/geo/sun/horizon-tint"
 
 describe("daylight map render", () => {
   it("spreads roof colours across buildings by feature id", () => {

@@ -1,6 +1,6 @@
 import { useHotel } from "@/entities/hotel"
 import type { Camera, HotelSummary, SearchResult } from "@/shared/api/hotel-types"
-import { hotelPoint } from "@/shared/geo/hotel-point"
+import { hotelPoint } from "@/shared/geo/buildings/hotel-point"
 import { regionOverview } from "../scene-data"
 
 export function useMapIdentity(result: SearchResult | undefined, id: string | undefined) {

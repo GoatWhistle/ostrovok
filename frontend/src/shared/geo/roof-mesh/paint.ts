@@ -1,6 +1,14 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { darkness, type SkyColors, sunLight, warmth } from "../sun-light"
-import { mixHex } from "../time-tint"
+import { mixHex } from "../color/hex-color"
+import {
+  darkness,
+  keyDirection,
+  type NightLight,
+  nightKey,
+  type SkyColors,
+  sunLight,
+  warmth,
+} from "../sun/sun-light"
 import { type RoofLight, roofMeshOf } from "./layer"
 import { ROOF_TONES } from "./plan"
 import { GRAVEL_TONES, PLASTER_TONES } from "./writer"
@@ -17,12 +25,15 @@ export interface RoofPaint {
   readonly sky: SkyColors
   readonly azimuth: number
   readonly altitude: number
+  readonly night?: NightLight | undefined
 }
 
 const MIN_LIGHT_ALTITUDE = 5
 const DAY_LIGHT = 0.5
 const LOW_LIGHT = 0.82
-const NIGHT_LIGHT = 0.08
+const HORIZON_NIGHT_LIGHT = 0.08
+const KEYED_NIGHT_LIGHT = 0.18
+const MOON_LIGHT = 0.1
 const DAY_AMBIENT = 0.66
 const LOW_AMBIENT = 0.6
 const NIGHT_AMBIENT = 0.6
@@ -51,17 +62,32 @@ export interface LightRig {
   readonly ambient: Rgb
 }
 
-export function lightRig(sky: SkyColors, azimuth: number, altitude: number): LightRig {
-  const night = darkness(altitude)
+function keyOf(sky: SkyColors, azimuth: number, altitude: number, night?: NightLight) {
+  if (!night) return { azimuth, altitude, level: HORIZON_NIGHT_LIGHT }
+  const key = nightKey(sky, night.moon)
+  return {
+    ...keyDirection(azimuth, altitude, key, darkness(altitude)),
+    level: KEYED_NIGHT_LIGHT + MOON_LIGHT * key.share,
+  }
+}
+
+export function lightRig(
+  sky: SkyColors,
+  azimuth: number,
+  altitude: number,
+  night?: NightLight,
+): LightRig {
+  const dark = darkness(altitude)
   const warm = warmth(altitude)
-  const sun = sunLight(sky, azimuth, altitude)
+  const sun = sunLight(sky, azimuth, altitude, 1, night)
+  const key = keyOf(sky, azimuth, altitude, night)
   const ambient = mixHex("#ffffff", sky.sky, SKY_SHARE + (LOW_SKY_SHARE - SKY_SHARE) * warm)
   const day = DAY_LIGHT + (LOW_LIGHT - DAY_LIGHT) * warm
   const shade = DAY_AMBIENT + (LOW_AMBIENT - DAY_AMBIENT) * warm
   return {
-    sun: sunVector(azimuth, altitude),
-    light: scaled(rgb(sun.color), day + (NIGHT_LIGHT - day) * night),
-    ambient: scaled(rgb(ambient), shade + (NIGHT_AMBIENT - shade) * night),
+    sun: sunVector(key.azimuth, key.altitude),
+    light: scaled(rgb(sun.color), day + (key.level - day) * dark),
+    ambient: scaled(rgb(ambient), shade + (NIGHT_AMBIENT - shade) * dark),
   }
 }
 
@@ -69,7 +95,7 @@ export function roofLight(paint: RoofPaint): RoofLight {
   const cycle = (list: readonly string[], length: number) =>
     Array.from({ length }, (_, index) => list[index % Math.max(1, list.length)] ?? paint.wall)
   return {
-    ...lightRig(paint.sky, paint.azimuth, paint.altitude),
+    ...lightRig(paint.sky, paint.azimuth, paint.altitude, paint.night),
     palette: [
       ...cycle(paint.pitched, ROOF_TONES),
       paint.steel,

@@ -16,9 +16,8 @@ export { HotelResult, HotelSummaryCard } from "./hotel-result/hotel-result"
 export { HotelStars } from "./hotel-stars/hotel-stars"
 export { useHotelRoom } from "./hotel-stay/hotel-room"
 export { HotelStayProvider, useHotelStay } from "./hotel-stay/hotel-stay"
-export { StayBar } from "./hotel-stay/stay-bar"
-export { StayFields } from "./hotel-stay/stay-fields"
 export { HotelThumb, type HotelThumbProps } from "./hotel-thumb/hotel-thumb"
+export { MatchExplain, type MatchExplainProps } from "./match-explain/match-explain"
 export {
   MatchConfidence,
   type MatchConfidenceProps,
@@ -29,3 +28,5 @@ export {
 } from "./match-score/match-score"
 export { OfferPreview } from "./offer-preview/offer-preview"
 export { matchesOfferStay, minimumOffers } from "./offer-preview/offer-prices"
+export { StayBar } from "./stay-bar/stay-bar"
+export { StayFields } from "./stay-fields/stay-fields"

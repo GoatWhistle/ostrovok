@@ -1,23 +1,23 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
-import { renderBasemap } from "../basemap"
-import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
-import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
+import { renderBasemap } from "../basemap/basemap"
+import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap/basemap-labels"
+import { type CatalogClass, renderCatalogLayers } from "../basemap/catalog-layers"
+import { mixHex } from "../color/hex-color"
 import { renderShore } from "../ground/shore-layers"
-import { sunLight } from "../sun-light"
+import { nightFactor } from "../night-city/night-layers"
+import { type NightLight, sunLight } from "../sun/sun-light"
 import {
-  lightMode,
   renderTerrain,
   type SunPosition,
   scenePalette,
   type TerrainColors,
-} from "../terrain"
-import { mixHex, tintForTime } from "../time-tint"
+} from "../terrain/terrain"
 import { renderPlaceLabels } from "../world/place-labels"
-import { labelPalette } from "./label-palette"
+import { labelPalette, nightLabelPalette } from "./label-palette"
 import { paintMeshes } from "./mesh-paint"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
-import { appearanceClasses, readAppearanceColors } from "./palette"
+import { appearanceClasses, readAppearanceColors, readNightColors, tintedColors } from "./palette"
 import type { MapAppearance } from "./types"
 
 const OVERVIEW_ALTITUDE = 45
@@ -104,10 +104,14 @@ export class MapAppearanceController {
     if (!sun || !light) return
     this.map.setLight({
       anchor: "map",
-      ...sunLight(light.colors, sun.azimuth, sun.altitude, light.contrast),
+      ...sunLight(light.colors, sun.azimuth, sun.altitude, light.contrast, this.nightLight(sun)),
     })
     if (this.map.getLayer(HILLSHADE))
       this.map.setPaintProperty(HILLSHADE, "hillshade-illumination-direction", sun.azimuth)
+  }
+
+  private nightLight(sun: SunPosition): NightLight | undefined {
+    return APPEARANCES[this.appearance].night ? { moon: sun.moon } : undefined
   }
 
   private refreshRoofs = () => {
@@ -121,35 +125,34 @@ export class MapAppearanceController {
     const map = this.map
     if (!scene || !this.visible) return
     const colors = readAppearanceColors(this.appearance)
-    const mode = lightMode(scene.sun.altitude)
-    const tinted = tintForTime(
-      colors,
-      mode,
-      scene.sun.altitude,
-      APPEARANCES[this.appearance].materials.duskTint,
-    )
-    const classes = appearanceClasses(this.appearance, scene.catalog, tinted, scene.sun.altitude)
+    const night = readNightColors(this.appearance)
+    const { materials } = APPEARANCES[this.appearance]
+    const altitude = scene.sun.altitude
+    const keyed = APPEARANCES[this.appearance].night !== undefined
+    const tinted = tintedColors(this.appearance, colors, night, altitude)
+    const base = keyed ? colors : tinted
+    const classes = appearanceClasses(this.appearance, scene.catalog, base, night, altitude)
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": tinted.sea } })
-    const contrast = APPEARANCES[this.appearance].materials.lightContrast
-    this.light = { colors: tinted, contrast: contrast ?? 1 }
-    renderTerrain(map, tinted, scene.sun, contrast)
+    this.light = { colors: tinted, contrast: materials.lightContrast }
+    renderTerrain(map, tinted, scene.sun, materials.lightContrast, this.nightLight(scene.sun))
     if (this.preview) this.paintLight()
     const sea = scenePalette(tinted, scene.sun.altitude).sea
     map.getContainer().parentElement?.style.setProperty("--map-backdrop", sea)
-    renderBasemap(map, tinted)
+    renderBasemap(map, tinted, keyed ? nightFactor(altitude) : 0)
     renderCatalogLayers(map, classes, scene.excluded, sea)
     renderShore(map, {
       shallows: mixHex(sea, tinted.sand, SHALLOW_SAND),
       foam: mixHex(sea, tinted.road, FOAM_WHITE),
       pier: mixHex(tinted.building, tinted.sand, PIER_SAND),
     })
-    const labels = labelPalette(colors, tinted, scene.sun.altitude)
+    const labels = keyed
+      ? nightLabelPalette(colors, { ...colors, ...night }, altitude)
+      : labelPalette(colors, tinted, altitude)
     renderBasemapLabels(map, scene.assets, labels, scene.locale)
     renderPlaceLabels(map, labels, scene.locale, outside(scene.assets.map((asset) => asset.bbox)))
     this.refreshRoofs()
     if (this.profile === "mini") applyMiniProfile(map, APPEARANCES[this.appearance])
-    const materials = APPEARANCES[this.appearance].materials
     for (const id of ["overview-volumes", "scene-volumes", "buildings-volume"]) {
       if (map.getLayer(id))
         map.setPaintProperty(id, "fill-extrusion-vertical-gradient", materials.verticalGradient)

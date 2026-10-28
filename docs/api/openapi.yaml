@@ -532,6 +532,54 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/Error" }
 
+  /hotelier/{hotel_id}/entries:
+    get:
+      tags: [hotelier]
+      operationId: listHotelierEntries
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      responses:
+        "200":
+          description: Editable hotelier statements
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/HotelierEntry" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /hotelier/{hotel_id}/entries/{entry_id}:
+    put:
+      tags: [hotelier]
+      operationId: saveHotelierEntry
+      description: Upsert a statement by stable client UUID. Does not create a search characteristic.
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+        - name: entry_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/HotelierEntryInput" }
+      responses:
+        "200":
+          description: Saved statement
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HotelierEntry" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422":
+          description: Invalid statement
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
   /hotelier/{hotel_id}/questions:
     get:
       tags: [hotelier]
@@ -912,6 +960,22 @@ components:
           schema: { $ref: "#/components/schemas/Error" }
 
   schemas:
+    HotelierEntryInput:
+      type: object
+      additionalProperties: false
+      required: [title, description]
+      properties:
+        title: { type: string, minLength: 1, maxLength: 80 }
+        description: { type: string, minLength: 1, maxLength: 1000 }
+    HotelierEntry:
+      type: object
+      required: [id, hotel_id, title, description, updated_at]
+      properties:
+        id: { type: string, format: uuid }
+        hotel_id: { type: string }
+        title: { type: string, minLength: 1, maxLength: 80 }
+        description: { type: string, minLength: 1, maxLength: 1000 }
+        updated_at: { type: string, format: date-time }
     Weather:
       type: object
       required: [status, date, hour]

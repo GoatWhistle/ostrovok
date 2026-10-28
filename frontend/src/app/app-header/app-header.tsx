@@ -1,6 +1,6 @@
 import { NavLink } from "react-router"
 import { useHealth } from "@/entities/health"
-import { SiteSettings } from "@/pages/home/site-settings"
+import { SiteSettings } from "@/pages/home/site-settings/site-settings"
 import { useTranslation } from "@/shared/i18n"
 import { BrandMark, StatusBadge, type StatusTone } from "@/shared/ui"
 import styles from "./app-header.module.css"

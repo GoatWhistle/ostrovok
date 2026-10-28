@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
-import { matchedValue } from "@/shared/geo/fact-label"
+import { matchedValue } from "@/shared/geo/facts/fact-label"
 import { useLocale } from "@/shared/i18n"
 import { characteristicIcon, Popover } from "@/shared/ui"
 import styles from "./map-focus.module.css"

@@ -2,7 +2,7 @@ import { amenityGroupName, amenityName } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Disclosure } from "@/shared/ui"
-import { DetailsSection } from "../details-section"
+import { DetailsSection } from "../details-section/details-section"
 import { pickAmenities } from "./amenity-picks"
 import styles from "./supplier.module.css"
 

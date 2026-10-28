@@ -18,6 +18,7 @@ from hotel_agent.application.dto import (
 from hotel_agent.application.ports.data_exploration import DataRepository
 from hotel_agent.application.ports.fact_store import FactStore, QuestionStore
 from hotel_agent.application.ports.hotelier_demand import HotelierDemandPort
+from hotel_agent.application.ports.hotelier_entries import HotelierEntries
 from hotel_agent.application.ports.map_scene import MapSceneRepository
 from hotel_agent.application.ports.notifications import NotificationStore
 from hotel_agent.application.ports.places import PlaceRepository
@@ -159,6 +160,7 @@ class ChatRepository(Protocol):
 
 
 class UnitOfWork(Protocol):
+    hotelier_entries: HotelierEntries
     walk: WalkRouterPort
     places: PlaceRepository
     view_scenes: ViewSceneRepository

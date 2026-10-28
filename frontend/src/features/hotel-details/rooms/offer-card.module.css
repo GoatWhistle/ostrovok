@@ -1,0 +1,35 @@
+.offer {
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-12);
+}
+
+.offerTop {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.room {
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
+  overflow-wrap: anywhere;
+}
+
+.price {
+  composes: subheadingText from "../../../shared/styles/compose.module.css";
+  flex: none;
+  font-variant-numeric: var(--font-numeric);
+}
+
+.meta {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-4);
+}
+
+.metaItem {
+  composes: bodySmText inlineRow from "../../../shared/styles/compose.module.css";
+}

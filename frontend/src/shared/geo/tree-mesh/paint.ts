@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { lightRig, rgb } from "../roof-mesh/paint"
-import { darkness, type SkyColors } from "../sun-light"
+import { darkness, type NightLight, type SkyColors } from "../sun/sun-light"
 import { treeLayerOf } from "./layer"
 import { LEAF_TONES } from "./scatter"
 
@@ -12,6 +12,7 @@ export interface TreePaint {
   readonly sky: SkyColors
   readonly azimuth: number
   readonly altitude: number
+  readonly night?: NightLight | undefined
 }
 
 const SHADOW_ALPHA = 0.3
@@ -25,7 +26,7 @@ export function paintTreeMesh(map: MapLibreMap, paint: TreePaint | undefined) {
     layer.setLight(undefined)
     return
   }
-  const rig = lightRig(paint.sky, paint.azimuth, paint.altitude)
+  const rig = lightRig(paint.sky, paint.azimuth, paint.altitude, paint.night)
   const [sx, sy] = rig.sun
   const flat = Math.hypot(sx, sy) || 1
   const altitude = (Math.max(MIN_SHADOW_ALTITUDE, paint.altitude) * Math.PI) / 180

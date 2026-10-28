@@ -2,10 +2,12 @@ import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useHotelGeometry, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import type { MapAppearance } from "@/shared/geo/appearance/types"
-import { matchedValue } from "@/shared/geo/fact-label"
+import { matchedValue } from "@/shared/geo/facts/fact-label"
 import { selectedFootprints } from "@/shared/geo/textured-building/selection"
 import { useLocale, useTranslation } from "@/shared/i18n"
+import { useMapAppearance } from "@/shared/theme"
 import { MapHeading } from "./controls/map-heading"
 import { MapMeta } from "./controls/map-meta"
 import styles from "./hotel-map.module.css"
@@ -17,12 +19,9 @@ import { identityOverview, useMapIdentity } from "./rendering/use-map-identity"
 import { useMapInsets } from "./rendering/use-map-insets"
 import { focusCopy, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
-import { forecastEnd, OVERVIEW_SUN, sceneToday } from "./scene-time/scene-time"
-import { SceneTimePanel } from "./scene-time/scene-time-panel"
-import { useSunPreview } from "./scene-time/use-sun-preview"
+import { OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
 import { useSunTheme } from "./scene-time/use-sun-theme"
 import { useHotelMap } from "./use-hotel-map"
-import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
   readonly returnToHotel?: boolean
@@ -71,9 +70,9 @@ export function HotelMap({
 }: HotelMapProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  const [today] = useState(sceneToday)
-  const [date, setDate] = useState(today)
-  const [hour, setHour] = useState(16)
+  const appearance = useMapAppearance()
+  const [date] = useState(sceneToday)
+  const hour = APPEARANCES[appearance.id].sceneHour
   const scene = useHotelScene(hotelId)
   const regions = useRegions()
   const hotel = results.find((item) => item.hotel.id === hotelId)
@@ -105,15 +104,8 @@ export function HotelMap({
   )
   const place = hotel ?? results[0]
   const [lon, lat] = sceneLocation(place, selectedCamera)
-  const { sun, preview, scrub, commit } = useSunPreview({
-    date,
-    hour,
-    lat,
-    lon,
-    setHour,
-  })
+  const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
   useSunTheme(sun.position.altitude, `${date}:${hour}`)
-  const weather = useWeather(lon, lat, date, hour, place !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)
   const focusFeatures = geoRefs.length ? (geometry.data?.features ?? []) : []
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
@@ -151,7 +143,6 @@ export function HotelMap({
           ready={map.active}
           azimuth={sun.position.azimuth}
           altitude={sun.position.altitude}
-          preview={preview}
         />
       ) : null}
       <MapPins views={map.markers} map={map.instance} onSelect={onSelect} onPlace={onPlace} />
@@ -200,26 +191,6 @@ export function HotelMap({
           showMapOverview(map.instance.current, overview, hotelId, results, instant)
         }
         onAppearance={onAppearance}
-        sun={
-          selectedCamera && place ? (
-            <SceneTimePanel
-              date={date}
-              minDate={today}
-              maxDate={forecastEnd(today)}
-              hour={hour}
-              altitude={sun.position.altitude}
-              azimuth={sun.position.azimuth}
-              preview={preview}
-              sunset={sun.times.sunset}
-              sunrise={sun.times.sunrise}
-              weather={weather.data}
-              weatherPending={weather.isPending || weather.isFetching}
-              onDate={setDate}
-              onHour={(value) => commit(map.instance.current, value)}
-              onScrub={(value) => scrub(map.instance.current, value)}
-            />
-          ) : undefined
-        }
       />
     </section>
   )

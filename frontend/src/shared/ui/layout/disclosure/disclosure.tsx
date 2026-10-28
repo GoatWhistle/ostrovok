@@ -1,4 +1,5 @@
-import { type ReactNode, useId, useRef, useState } from "react"
+import { clsx } from "clsx"
+import { type ReactNode, useEffect, useId, useRef, useState } from "react"
 import { usePresence } from "../../../motion/use-presence"
 import { prefersReducedMotion } from "../../../motion/use-reduced-motion"
 import { withViewTransition } from "../../../motion/with-view-transition"
@@ -7,8 +8,13 @@ import styles from "./disclosure.module.css"
 
 export interface DisclosureProps {
   readonly title: string
+  readonly expandedTitle?: string
+  readonly iconOnly?: boolean
+  readonly open?: boolean | undefined
+  readonly onOpenChange?: ((open: boolean) => void) | undefined
   readonly icon?: IconName
   readonly defaultOpen?: boolean
+  readonly revealOnOpen?: boolean
   readonly children: ReactNode
 }
 
@@ -16,23 +22,43 @@ function canMorph() {
   return typeof document.startViewTransition === "function" && !prefersReducedMotion()
 }
 
-export function Disclosure({ title, icon, defaultOpen = false, children }: DisclosureProps) {
+export function Disclosure({
+  title,
+  expandedTitle,
+  iconOnly = false,
+  open: controlledOpen,
+  onOpenChange,
+  icon,
+  defaultOpen = false,
+  revealOnOpen = false,
+  children,
+}: DisclosureProps) {
   const id = useId()
-  const [open, setOpen] = useState(defaultOpen)
+  const [internalOpen, setOpen] = useState(defaultOpen)
+  const open = controlledOpen ?? internalOpen
+  const label = open ? (expandedTitle ?? title) : title
   const [instant, setInstant] = useState(false)
   const presence = usePresence(open, "--dur-exit", instant)
   const root = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (open && revealOnOpen)
+      root.current?.scrollIntoView?.({ block: "start", behavior: "instant" })
+  }, [open, revealOnOpen])
   const morphName = `disclosure-${id.replace(/[^a-zA-Z0-9]/g, "")}`
   function toggle(keyboard: boolean) {
     const element = root.current
-    if (keyboard || !element || !canMorph()) {
+    const changeOpen = () => {
+      if (controlledOpen === undefined) setOpen((value) => !value)
+      onOpenChange?.(!open)
+    }
+    if (keyboard || !element || !canMorph() || controlledOpen !== undefined) {
       setInstant(keyboard)
-      setOpen((value) => !value)
+      changeOpen()
       return
     }
     setInstant(true)
     element.style.viewTransitionName = morphName
-    void withViewTransition("layout", () => setOpen((value) => !value)).finally(() => {
+    void withViewTransition("layout", changeOpen).finally(() => {
       element.style.viewTransitionName = ""
     })
   }
@@ -40,14 +66,15 @@ export function Disclosure({ title, icon, defaultOpen = false, children }: Discl
     <div ref={root} className={styles.disclosure}>
       <button
         type="button"
-        className={styles.trigger}
+        className={clsx(styles.trigger, iconOnly && styles.iconOnly)}
+        title={iconOnly ? label : undefined}
         aria-expanded={open}
         aria-controls={id}
         data-instant={instant}
         onClick={(event) => toggle(event.detail === 0)}
       >
         {icon ? <Icon name={icon} size="sm" className={styles.icon} /> : null}
-        <span>{title}</span>
+        <span className={iconOnly ? "visually-hidden" : undefined}>{label}</span>
         <Icon name="chevron-down" size="sm" className={styles.chevron} />
       </button>
       {presence.mounted ? (

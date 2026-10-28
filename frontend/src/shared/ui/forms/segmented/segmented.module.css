@@ -56,10 +56,19 @@
 }
 
 .input {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  opacity: 0;
-  cursor: inherit;
+  composes: overlayInput from "../../../styles/compose.module.css";
   appearance: none;
+}
+
+.segmented[data-tone="success"] .indicator {
+  background-color: var(--status-success-surface);
+}
+.segmented[data-tone="danger"] .indicator {
+  background-color: var(--status-danger-surface);
+}
+.option[data-tone="success"][data-checked="true"] {
+  color: var(--text-success);
+}
+.option[data-tone="danger"][data-checked="true"] {
+  color: var(--text-danger);
 }

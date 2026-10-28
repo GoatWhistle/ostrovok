@@ -1,10 +1,10 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
-import { labelAnchor } from "@/shared/geo/basemap-labels"
-import { hideMeshedContext } from "@/shared/geo/map-layers"
+import { labelAnchor } from "@/shared/geo/basemap/basemap-labels"
+import { hideMeshedContext } from "@/shared/geo/buildings/context-height"
+import { MESH_FROM, markMeshBuildings } from "@/shared/geo/buildings/overview-buildings"
 import { hideMeshedSceneVolumes } from "@/shared/geo/night-city/night-layers"
 import { WINDOW_LAYER } from "@/shared/geo/night-city/window-layer"
-import { MESH_FROM, markMeshBuildings } from "@/shared/geo/overview-buildings"
 import { ROOF_MESH_LAYER, RoofMeshLayer } from "@/shared/geo/roof-mesh/layer"
 import { buildRoofMesh } from "@/shared/geo/roof-mesh/mesh"
 import {

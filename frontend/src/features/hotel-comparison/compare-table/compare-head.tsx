@@ -1,0 +1,109 @@
+import type { ReactNode } from "react"
+import {
+  HotelRating,
+  HotelStars,
+  HotelThumb,
+  MatchExplain,
+  useHotelOffers,
+  useHotelStay,
+} from "@/entities/hotel"
+import type { HotelSummary, SearchResult } from "@/shared/api/hotel-types"
+import type { components } from "@/shared/api/schema.gen"
+import { useLocale, useTranslation } from "@/shared/i18n"
+import { Button, CloseButton, Skeleton } from "@/shared/ui"
+import styles from "./compare-head.module.css"
+
+type Supplier = components["schemas"]["SupplierDetails"]
+
+export interface CompareHeadProps {
+  readonly id: string
+  readonly hotel: HotelSummary | undefined
+  readonly supplier: Supplier | undefined
+  readonly match: SearchResult | undefined
+  readonly media?: ReactNode
+  readonly pending: boolean
+  readonly failed: boolean
+  readonly onRetry: () => void
+  readonly onRemove: () => void
+}
+
+function ComparePrice({ id }: { readonly id: string }) {
+  const { t } = useTranslation()
+  const { locale } = useLocale()
+  const { value } = useHotelStay()
+  const offers = useHotelOffers(id, value.checkIn, value.checkOut, value.adults || 2)
+  if (!value.checkIn || !value.checkOut) return null
+  if (offers.isPending && offers.fetchStatus !== "idle") return <Skeleton lines={1} />
+  if (offers.isError)
+    return (
+      <Button variant="ghost" size="compact" icon="retry" onClick={() => void offers.refetch()}>
+        {t("explore:compare.retryPrice")}
+      </Button>
+    )
+  const cheapest = [...(offers.data?.offers ?? [])].sort(
+    (a, b) => a.price_amount - b.price_amount,
+  )[0]
+  if (!cheapest) return <p className={styles.noPrice}>{t("explore:compare.priceMissing")}</p>
+  const price = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: cheapest.price_currency,
+    maximumFractionDigits: 0,
+  }).format(cheapest.price_amount)
+  return <p className={styles.price}>{t("explore:compare.priceFrom", { price })}</p>
+}
+
+export function CompareMedia({ hotel, supplier }: Pick<CompareHeadProps, "hotel" | "supplier">) {
+  return (
+    <HotelThumb
+      src={hotel?.thumbnail_url}
+      photos={hotel?.photos}
+      extra={supplier?.photos.map((photo) => photo.url)}
+      placeholder
+      className={styles.media}
+    />
+  )
+}
+
+export function CompareHead({
+  id,
+  hotel,
+  supplier,
+  match,
+  media,
+  pending,
+  failed,
+  onRetry,
+  onRemove,
+}: CompareHeadProps) {
+  const { t } = useTranslation()
+  const name = hotel?.name ?? supplier?.name
+  const stars = hotel?.stars ?? supplier?.facts.star_rating
+  return (
+    <div className={styles.head}>
+      {media}
+      <div className={styles.title}>
+        {name ? (
+          <p className={styles.name} dir="auto" title={name}>
+            {name}
+          </p>
+        ) : null}
+        {pending && !name ? <Skeleton lines={1} /> : null}
+        {failed && !name ? (
+          <Button variant="ghost" size="compact" icon="retry" onClick={onRetry}>
+            {t("explore:compare.cardError")}
+          </Button>
+        ) : null}
+        <CloseButton label={t("explore:compare.remove", { name: name ?? id })} onClick={onRemove} />
+      </div>
+      <div className={styles.meta}>
+        <HotelStars value={stars} />
+        <HotelRating
+          score={supplier?.rating?.total ?? undefined}
+          reviews={supplier?.rating?.reviews_count ?? 0}
+        />
+        {match ? <MatchExplain matched={match.matched} confidence={match.confidence} /> : null}
+      </div>
+      <ComparePrice id={id} />
+    </div>
+  )
+}

@@ -1,0 +1,58 @@
+.panel {
+  position: relative;
+  display: grid;
+  min-block-size: 0;
+  min-inline-size: 0;
+  background-color: var(--surface-base);
+  box-shadow: var(--shadow-divider-end);
+}
+
+.swap {
+  display: grid;
+  min-inline-size: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-block-size: 0;
+}
+
+.swap:has(> .scroll:only-child) {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  min-block-size: var(--control-height-hero);
+  padding: var(--space-8) var(--space-12);
+  box-shadow: var(--shadow-divider-bottom);
+}
+
+.scroll {
+  min-block-size: 0;
+  padding: var(--space-16);
+  outline: none;
+}
+
+.detailScroll {
+  composes: scroll;
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+}
+
+@media (min-width: 64rem) {
+  .panel {
+    view-transition-name: hotel-panel;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .detailScroll {
+    padding-block-end: 0;
+  }
+
+  .swap:has([data-rooms-screen]) > .bar {
+    display: none;
+  }
+}

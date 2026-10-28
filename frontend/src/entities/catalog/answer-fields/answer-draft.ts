@@ -52,8 +52,12 @@ export function invalidFields(
   return visibleFields(fields, draft)
     .filter((field) => field.kind === "number")
     .filter((field) => {
-      const kind = parseNumber(draft.numbers[field.name] ?? "").kind
-      return kind === "invalid" || (requireNumbers && kind === "empty")
+      const parsed = parseNumber(draft.numbers[field.name] ?? "")
+      return (
+        parsed.kind === "invalid" ||
+        (requireNumbers && parsed.kind === "empty") ||
+        (field.name === "adults" && parsed.kind === "value" && !Number.isInteger(parsed.value))
+      )
     })
     .map((field) => field.name)
 }
@@ -149,4 +153,30 @@ export function readDraft(text: string): AnswerDraft {
 
 export function writeDraft(draft: AnswerDraft): string {
   return JSON.stringify(draft)
+}
+
+export function binaryDraft(
+  fields: readonly AnswerField[],
+  draft: AnswerDraft,
+  enabled?: boolean,
+): AnswerDraft {
+  const choices = { ...draft.choices }
+  for (const field of fields)
+    if (field.kind === "bool") {
+      if (enabled !== undefined) choices[field.name] = enabled ? "yes" : "no"
+      else if (choiceOf(draft, field) === "unknown") choices[field.name] = "no"
+    }
+  return { ...draft, choices }
+}
+
+export function answerNeedsNote(
+  valueType: string | undefined,
+  fields: readonly AnswerField[],
+  draft: AnswerDraft,
+  followUp = false,
+): boolean {
+  const enabled = fields.every(
+    (field) => field.kind !== "bool" || draft.choices[field.name] === "yes",
+  )
+  return (valueType === "object" && enabled) || fields.length === 0 || followUp
 }
