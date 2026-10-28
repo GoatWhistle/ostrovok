@@ -3,6 +3,7 @@ import type { components } from "@/shared/api/schema.gen"
 import { sourceUrl } from "@/shared/api/source-url"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
+import { roomFacts } from "./room-facts"
 import styles from "./rooms.module.css"
 
 type Room = components["schemas"]["SupplierRoom"]
@@ -23,14 +24,13 @@ export function RoomRow({
   const { t } = useTranslation()
   const { locale } = useLocale()
   const photo = room.photos.map((url) => sourceUrl(url)).find(Boolean)
-  const details = [
-    room.size_sqm != null
-      ? t("explore:roomsScreen.area", {
-          value: new Intl.NumberFormat(locale).format(room.size_sqm),
-        })
-      : undefined,
-    room.bedding ?? undefined,
-  ].filter(Boolean)
+  const number = new Intl.NumberFormat(locale)
+  const details = roomFacts(room, {
+    area: (value) => t("explore:roomsScreen.area", { value: number.format(value) }),
+    floor: (value) => t("explore:roomsScreen.floor", { value }),
+    places: (value) => t("explore:roomsScreen.places", { value }),
+    extraPlaces: (value) => t("explore:roomsScreen.extraPlaces", { value }),
+  })
   return (
     <li>
       <RowButton

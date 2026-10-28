@@ -278,7 +278,19 @@
       "airConditioning": "Air conditioning",
       "pets": "Pets allowed",
       "accessibility": "Accessibility"
-    }
+    },
+    "bedPlaces_one": "{{count, number}} main place",
+    "bedPlaces_few": "{{count, number}} main places",
+    "bedPlaces_many": "{{count, number}} main places",
+    "bedPlaces_other": "{{count, number}} main places",
+    "extraBeds_one": "{{count, number}} extra place",
+    "extraBeds_few": "{{count, number}} extra places",
+    "extraBeds_many": "{{count, number}} extra places",
+    "extraBeds_other": "{{count, number}} extra places",
+    "childCots_one": "{{count, number}} child cot",
+    "childCots_few": "{{count, number}} child cots",
+    "childCots_many": "{{count, number}} child cots",
+    "childCots_other": "{{count, number}} child cots"
   },
   "details": {
     "summaryStars": "Category: {{count}} stars",
@@ -781,6 +793,24 @@
     "teaserEmpty": "Choose dates to see prices",
     "unreachable": "Rooms and prices for this hotel are not available yet",
     "area": "{{value}} m²",
-    "noRate": "No rate for these dates"
+    "noRate": "No rate for these dates",
+    "floor": "Floor {{value, number}}",
+    "places": "Places: {{value, number}}",
+    "extraPlaces": "Extra places: {{value, number}}",
+    "declaredView": "Window view as the supplier card states",
+    "views": {
+      "sea": "sea",
+      "mountain": "mountains",
+      "city": "city",
+      "park": "park",
+      "garden": "garden",
+      "courtyard": "courtyard",
+      "pool": "pool",
+      "river": "river",
+      "lake": "lake",
+      "sunrise": "sunrise",
+      "sunset": "sunset",
+      "panoramic": "panoramic"
+    }
   }
 }
