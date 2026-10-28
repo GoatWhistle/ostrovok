@@ -1,11 +1,13 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useLayoutEffect, useRef } from "react"
 import { paintRoute } from "@/shared/geo/map-layers"
+import { rgb } from "@/shared/geo/roof-mesh/paint"
 import type { MapColors } from "@/shared/theme"
 import type { ProofState, ReelFrame } from "../playback/reel-frame"
-import { along, type Coordinates, HOTEL, offset, ROUTE, SUNSET_AZIMUTH } from "../shots"
+import { along, type Coordinates, HOTEL, ROUTE } from "../shots"
 import { paintGround } from "./ground-shapes"
 import { paintNoiseRoads } from "./noise-roads"
+import { SUNSET_LAYER, SunsetLayer } from "./sunset-layer"
 
 const ROUTE_LAYERS = [
   ["route-line", 1],
@@ -15,15 +17,12 @@ const ROUTE_LAYERS = [
 const LABEL_SHIFT = 4
 const PING_OPACITY = 0.45
 const PING_SCALE = 2.6
-const SUN_METERS = 700
-const GLITTER_STRENGTH = 2.4
 const NOISE_OPACITY = 0.35
 
 export interface ReelAnchors {
   readonly sea: RefObject<HTMLDivElement | null>
   readonly sunset: RefObject<HTMLDivElement | null>
   readonly quiet: RefObject<HTMLDivElement | null>
-  readonly sun: RefObject<HTMLDivElement | null>
 }
 
 function place(
@@ -54,13 +53,21 @@ function sunsetWeight(frame: ReelFrame): number {
   return Math.min(1, sunset.draw * 1.4) * sunset.opacity
 }
 
-function placeSun(map: MapLibreMap, element: HTMLElement | null, weight: number) {
-  if (!element) return
-  const at = offset(HOTEL, SUNSET_AZIMUTH, SUN_METERS)
-  const { x, y } = map.project([at[0], at[1]])
-  const inside = Number.isFinite(x) && Number.isFinite(y) && y > 0
-  element.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`
-  element.style.opacity = String(inside ? weight : 0)
+const sunsets = new WeakMap<MapLibreMap, SunsetLayer>()
+
+function paintSunset(map: MapLibreMap, colors: MapColors, weight: number) {
+  let layer = sunsets.get(map)
+  if (!layer || !map.getLayer(SUNSET_LAYER)) {
+    layer = new SunsetLayer()
+    map.addLayer(layer)
+    sunsets.set(map, layer)
+  }
+  const [r, g, b] = rgb(colors.sunLow)
+  layer.update(weight, {
+    hot: [r, g * 0.82, b * 0.6],
+    warm: [r, g * 0.5, b * 0.3],
+    core: [r + (1 - r) * 0.55, g + (1 - g) * 0.45, b + (1 - b) * 0.3],
+  })
 }
 
 function drawRoute(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
@@ -70,24 +77,12 @@ function drawRoute(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
     if (map.getLayer(id)) map.setPaintProperty(id, "line-opacity", opacity * proof.opacity)
 }
 
-function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame) {
-  const { sunset, quiet } = frame.proofs
+function paintProofs(map: MapLibreMap, colors: MapColors, frame: ReelFrame, golden: boolean) {
+  const { quiet } = frame.proofs
   drawRoute(map, colors, frame)
   paintNoiseRoads(map, colors.routeGlow, quiet.draw * quiet.opacity * NOISE_OPACITY)
-  paintGround(
-    map,
-    {
-      glitter: sunset.draw,
-      glitterFade: sunset.opacity,
-      calm: quiet.draw,
-      calmFade: quiet.opacity,
-    },
-    {
-      glow: colors.sunLow,
-      strength: GLITTER_STRENGTH,
-      quiet: colors.hotelSelected,
-    },
-  )
+  paintGround(map, { calm: quiet.draw, calmFade: quiet.opacity }, colors.hotelSelected)
+  paintSunset(map, colors, golden ? sunsetWeight(frame) : 0)
 }
 
 export function useReelCamera(
@@ -102,7 +97,6 @@ export function useReelCamera(
     sea: useRef<HTMLDivElement>(null),
     sunset: useRef<HTMLDivElement>(null),
     quiet: useRef<HTMLDivElement>(null),
-    sun: useRef<HTMLDivElement>(null),
   }
   const previous = useRef("")
   useLayoutEffect(() => {
@@ -118,8 +112,7 @@ export function useReelCamera(
       current.jumpTo(camera)
       previous.current = key
     }
-    paintProofs(current, colors, frame)
-    placeSun(current, anchors.sun.current, golden ? sunsetWeight(frame) : 0)
+    paintProofs(current, colors, frame, golden)
     const { sea, sunset, quiet } = frame.proofs
     place(current, anchors.sea.current, along(ROUTE, sea.draw), sea, frame.pulse)
     place(current, anchors.sunset.current, HOTEL, sunset, frame.pulse)

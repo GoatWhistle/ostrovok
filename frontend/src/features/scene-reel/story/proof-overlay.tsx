@@ -8,10 +8,6 @@ export function ProofOverlay({ anchors }: { readonly anchors: ReelAnchors }) {
   const { t } = useTranslation()
   return (
     <div className={styles.overlay} aria-hidden="true">
-      <div ref={anchors.sun} className={styles.sun}>
-        <span className={styles.glow} />
-        <span className={styles.disc} />
-      </div>
       {SHOTS.map((shot) => (
         <ProofLabel
           key={shot.kind}

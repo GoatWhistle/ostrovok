@@ -4,27 +4,3 @@
   overflow: hidden;
   pointer-events: none;
 }
-.sun {
-  position: absolute;
-  inset: 0 auto auto 0;
-  opacity: 0;
-}
-.glow,
-.disc {
-  position: absolute;
-  border-radius: var(--radius-pill);
-  translate: -50% -50%;
-}
-.glow {
-  inline-size: calc(var(--space-48) * 3);
-  block-size: calc(var(--space-48) * 2);
-  background-color: var(--map-viewshed-line);
-  opacity: 0.8;
-  filter: blur(var(--space-24));
-}
-.disc {
-  inline-size: var(--space-48);
-  block-size: var(--space-48);
-  background-color: var(--map-neon-sun-low);
-  clip-path: inset(-50% -50% 45% -50%);
-}
