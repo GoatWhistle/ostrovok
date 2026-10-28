@@ -79,6 +79,7 @@ export function ConversationList({
                     key={item.id}
                     title={item.title || t("explore:chat.untitled")}
                     current={item.id === activeId}
+                    pending={item.pending === true}
                     onOpen={() => onOpen(item.id)}
                     onRename={(title) => onRename(item.id, title)}
                     onDelete={() => onDelete(item.id)}

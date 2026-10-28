@@ -73,6 +73,13 @@
   font-weight: var(--weight-semibold);
 }
 
+.pendingTitle {
+  flex: 1;
+  min-inline-size: 0;
+  padding-inline: var(--space-12);
+  animation: var(--motion-shimmer);
+}
+
 .rowActions {
   display: flex;
   flex: none;
