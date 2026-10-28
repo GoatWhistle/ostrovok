@@ -4,7 +4,7 @@ import { characteristicTitle } from "@/shared/geo/fact-label"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Chip, StatusBadge } from "@/shared/ui"
 import styles from "./agent-reply.module.css"
-import { understoodName } from "./progress/understood-chips"
+import { understoodName, useStayFacts } from "./progress/understood-chips"
 
 export type SearchResponse = components["schemas"]["SearchResponse"]
 type Parsed = SearchResponse["parsed"]
@@ -58,12 +58,21 @@ export function ReplyIntents({
 }) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  if (!parsed.intents?.length) return null
+  const facts = useStayFacts({
+    location: parsed.location_hint ?? undefined,
+    checkIn: parsed.check_in ?? undefined,
+    checkOut: parsed.check_out ?? undefined,
+    adults: parsed.adults ?? undefined,
+  })
+  if (!parsed.intents?.length && facts.length === 0) return null
   return (
     <div className={styles.group}>
       <p className={styles.caption}>{t("explore:chat.understood")}</p>
       <div className={styles.chips}>
-        {parsed.intents.map((intent, index) => {
+        {facts.map((fact) => (
+          <Chip key={fact.id} static label={fact.label} />
+        ))}
+        {parsed.intents?.map((intent, index) => {
           const key = intent.characteristic_key ?? ""
           return (
             <Chip

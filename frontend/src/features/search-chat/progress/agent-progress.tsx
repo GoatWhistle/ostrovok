@@ -5,7 +5,7 @@ import { AgentBubble } from "../chat-bubble"
 import { useThinkingClock } from "../thinking-clock"
 import styles from "./agent-progress.module.css"
 import { ProgressSteps, STEP_LABEL } from "./progress-steps"
-import { progressView, STEPS } from "./progress-view"
+import { progressView, STEPS, stepOf } from "./progress-view"
 import { UnderstoodChips } from "./understood-chips"
 
 const STAGE_KEYS = {
@@ -29,7 +29,8 @@ export function AgentProgress({ events }: { readonly events: readonly ChatProgre
   const step = STEPS[view.step] ?? "parse"
   const latest = events.findLast((event) => isStage(event.stage))
   const lead = t(STEP_LABEL[step])
-  const stage = latest && isStage(latest.stage) ? t(STAGE_KEYS[latest.stage], { ...latest }) : ""
+  const current = latest && isStage(latest.stage) && stepOf(latest.stage) === view.step
+  const stage = current ? t(STAGE_KEYS[latest.stage], { ...latest }) : ""
   const detail = stage && stage !== lead ? stage : t("explore:chat.thinkingHint")
   const understood = view.wishes.length > 0 || view.location !== undefined
   return (

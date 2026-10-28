@@ -1,6 +1,7 @@
 import type { ChatProgress } from "@/shared/api"
 import type { SearchResult } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
+import { useMediaQuery } from "@/shared/hooks"
 import { useFormatters, useTranslation } from "@/shared/i18n"
 import { ScrollArea } from "@/shared/ui"
 import { AgentFailure, AgentReply, AgentThinking } from "./agent-reply"
@@ -64,6 +65,7 @@ export function SearchChat({
   const { t } = useTranslation()
   const format = useFormatters()
   const { log, list } = useChatFollow(conversationId)
+  const finePointer = useMediaQuery("(pointer: fine)")
   const lastAssistant =
     searchMessageId === undefined
       ? messages.findLast((message) => message.role === "assistant")?.id
@@ -113,7 +115,7 @@ export function SearchChat({
         <div className={styles.composerArea}>
           <ChatComposer
             draftKey={draftKey ?? `chat:${conversationId ?? "new"}`}
-            autoFocus={Boolean(outgoing)}
+            autoFocus={finePointer && Boolean(outgoing)}
             pending={sending}
             selectedHotel={selectedHotel}
             onClearHotel={onClearHotel}
