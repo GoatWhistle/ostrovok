@@ -1,6 +1,7 @@
 .disclosure {
   display: grid;
   min-inline-size: 0;
+  view-transition-class: disclosure;
 }
 
 .trigger {

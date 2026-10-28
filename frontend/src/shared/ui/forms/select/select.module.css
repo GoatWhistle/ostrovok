@@ -14,7 +14,7 @@
 }
 
 .trigger[aria-expanded="true"] {
-  box-shadow: var(--shadow-ring-focus);
+  box-shadow: var(--shadow-ring-strong);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -129,5 +129,6 @@
 .select[data-size="compact"] .layer {
   inset-inline: auto 0;
   min-inline-size: max(100%, var(--select-layer-min));
+  inline-size: max-content;
   transform-origin: top right;
 }

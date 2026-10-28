@@ -1,5 +1,7 @@
-import { type ReactNode, useId, useState } from "react"
+import { type ReactNode, useId, useRef, useState } from "react"
 import { usePresence } from "../../../motion/use-presence"
+import { prefersReducedMotion } from "../../../motion/use-reduced-motion"
+import { withViewTransition } from "../../../motion/with-view-transition"
 import { Icon, type IconName } from "../../primitives/icon/icon"
 import styles from "./disclosure.module.css"
 
@@ -10,23 +12,39 @@ export interface DisclosureProps {
   readonly children: ReactNode
 }
 
+function canMorph() {
+  return typeof document.startViewTransition === "function" && !prefersReducedMotion()
+}
+
 export function Disclosure({ title, icon, defaultOpen = false, children }: DisclosureProps) {
   const id = useId()
   const [open, setOpen] = useState(defaultOpen)
   const [instant, setInstant] = useState(false)
   const presence = usePresence(open, "--dur-exit", instant)
+  const root = useRef<HTMLDivElement>(null)
+  const morphName = `disclosure-${id.replace(/[^a-zA-Z0-9]/g, "")}`
+  function toggle(keyboard: boolean) {
+    const element = root.current
+    if (keyboard || !element || !canMorph()) {
+      setInstant(keyboard)
+      setOpen((value) => !value)
+      return
+    }
+    setInstant(true)
+    element.style.viewTransitionName = morphName
+    void withViewTransition("layout", () => setOpen((value) => !value)).finally(() => {
+      element.style.viewTransitionName = ""
+    })
+  }
   return (
-    <div className={styles.disclosure}>
+    <div ref={root} className={styles.disclosure}>
       <button
         type="button"
         className={styles.trigger}
         aria-expanded={open}
         aria-controls={id}
         data-instant={instant}
-        onClick={(event) => {
-          setInstant(event.detail === 0)
-          setOpen((value) => !value)
-        }}
+        onClick={(event) => toggle(event.detail === 0)}
       >
         {icon ? <Icon name={icon} size="sm" className={styles.icon} /> : null}
         <span>{title}</span>
