@@ -4,9 +4,10 @@ import styles from "./hotel-rating.module.css"
 interface HotelRatingProps {
   readonly score: number | undefined
   readonly reviews: number
+  readonly size?: "caption" | "body"
 }
 
-export function HotelRating({ score, reviews }: HotelRatingProps) {
+export function HotelRating({ score, reviews, size = "caption" }: HotelRatingProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
   if (!score) return null
@@ -18,6 +19,7 @@ export function HotelRating({ score, reviews }: HotelRatingProps) {
     <span
       role="img"
       className={styles.rating}
+      data-size={size}
       aria-label={t("explore:cards.rating", { score: value, count: reviews })}
     >
       <b className={styles.score}>{value}</b>

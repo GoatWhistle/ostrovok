@@ -61,7 +61,7 @@ export function HotelHero({ hotel, supplier, titleId }: HotelHeroProps) {
       </div>
       {score || facts.length ? (
         <div className={styles.facts}>
-          <HotelRating score={score} reviews={supplier?.rating?.reviews_count ?? 0} />
+          <HotelRating score={score} reviews={supplier?.rating?.reviews_count ?? 0} size="body" />
           {facts.map((text) => (
             <span key={text} className={styles.fact}>
               {text}
