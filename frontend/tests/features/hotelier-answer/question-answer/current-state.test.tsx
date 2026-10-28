@@ -1,9 +1,9 @@
 import { QueryClientProvider } from "@tanstack/react-query"
 import { render, screen } from "@testing-library/react"
 import { expect, it } from "vitest"
-import { CurrentState } from "@/features/hotelier-answer/current-state"
+import { CurrentState } from "@/features/hotelier-answer/question-answer/current-state"
 import { LocaleProvider } from "@/shared/i18n"
-import { registryClient } from "./registry"
+import { registryClient } from "../registry"
 
 function height(id: string, value: number, status: string, at: string, confidence: number) {
   return {

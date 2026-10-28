@@ -1,5 +1,5 @@
 .workspace {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
   display: grid;
   grid-template-columns: minmax(0, var(--panel-min)) minmax(0, 1fr);
   min-inline-size: 0;
@@ -31,7 +31,7 @@
 }
 
 .skeleton {
-  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
+  composes: skeletonReveal from "../../../entities/evidence/evidence-text.module.css";
   display: grid;
   gap: var(--space-16);
 }
@@ -61,7 +61,7 @@
 }
 
 .empty {
-  composes: secondaryText from "../../shared/styles/compose.module.css";
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
   padding: var(--space-8);
 }
 

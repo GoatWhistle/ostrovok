@@ -10,7 +10,7 @@
 }
 
 .label {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .text {
@@ -25,7 +25,7 @@
 }
 
 .value {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
 

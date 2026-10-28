@@ -1,12 +1,14 @@
 import { QueryClientProvider } from "@tanstack/react-query"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import { QuestionAnswer } from "@/features/hotelier-answer/question-answer"
+import { QuestionAnswer } from "@/features/hotelier-answer/question-answer/question-answer"
 import { LocaleProvider } from "@/shared/i18n"
 import copy from "@/shared/i18n/locales/ru/explore.json"
-import { registryClient } from "./registry"
+import { registryClient } from "../registry"
 
-vi.mock("@/features/hotelier-answer/current-state", () => ({ CurrentState: () => null }))
+vi.mock("@/features/hotelier-answer/question-answer/current-state", () => ({
+  CurrentState: () => null,
+}))
 
 function question(id: string) {
   return {

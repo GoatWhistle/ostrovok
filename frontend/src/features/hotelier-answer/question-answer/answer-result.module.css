@@ -10,7 +10,7 @@
 }
 
 .label {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .text {

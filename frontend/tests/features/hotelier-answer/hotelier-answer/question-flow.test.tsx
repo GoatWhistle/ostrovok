@@ -7,10 +7,12 @@ import { HotelierAnswer } from "@/features/hotelier-answer"
 import { api } from "@/shared/api"
 import { LocaleProvider } from "@/shared/i18n"
 import copy from "@/shared/i18n/locales/ru/explore.json"
-import { hotelierServer, type ServerQuestion } from "./hotelier-server"
-import { registryClient } from "./registry"
+import { hotelierServer, type ServerQuestion } from "../hotelier-server"
+import { registryClient } from "../registry"
 
-vi.mock("@/features/hotelier-answer/current-state", () => ({ CurrentState: () => null }))
+vi.mock("@/features/hotelier-answer/question-answer/current-state", () => ({
+  CurrentState: () => null,
+}))
 
 let sequence = 0
 const h = copy.hotelier

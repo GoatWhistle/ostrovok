@@ -13,9 +13,9 @@
 }
 
 .text {
-  composes: label from "../../entities/evidence/evidence-text.module.css";
+  composes: label from "../../../entities/evidence/evidence-text.module.css";
 }
 
 .reason {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: captionText from "../../../shared/styles/compose.module.css";
 }

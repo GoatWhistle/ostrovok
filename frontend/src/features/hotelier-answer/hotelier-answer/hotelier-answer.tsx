@@ -1,9 +1,9 @@
 import { useHotelierQuestions } from "@/entities/hotelier"
 import { useTranslation } from "@/shared/i18n"
 import { Button, EmptyState, ErrorState, Segmented, Skeleton } from "@/shared/ui"
+import { QuestionAnswer } from "../question-answer/question-answer"
+import { QuestionQueue } from "../question-queue/question-queue"
 import styles from "./hotelier-answer.module.css"
-import { QuestionAnswer } from "./question-answer"
-import { QuestionQueue } from "./question-queue"
 import { useMobileQueue } from "./use-mobile-queue"
 import { type QueueTab, useQuestionSelection } from "./use-question-selection"
 
