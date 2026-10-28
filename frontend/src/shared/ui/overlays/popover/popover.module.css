@@ -45,6 +45,10 @@
   transform-origin: top left;
 }
 
+.panel[data-placement="bottom-end"] {
+  transform-origin: top right;
+}
+
 .panel[data-placement="start"] {
   transform-origin: center right;
 }

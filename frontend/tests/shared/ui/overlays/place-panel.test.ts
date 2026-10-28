@@ -25,4 +25,12 @@ describe("placePanel", () => {
     const position = placePanel(anchor, box, "top", bounds, 8)
     expect(position.top).toBe(72)
   })
+
+  it("aligns the right edge with the trigger for bottom-end", () => {
+    const trigger = { left: 340, right: 364, top: 100, bottom: 124, height: 24 }
+    const wide = { left: 0, top: 0, right: 1440, bottom: 900 }
+    const position = placePanel(trigger, { width: 300, height: 200 }, "bottom-end", wide, 8)
+    expect(position.left).toBe(64)
+    expect(position.top).toBe(132)
+  })
 })

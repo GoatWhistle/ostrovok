@@ -1,7 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react"
 import { motionMs, usePresence } from "@/shared/motion"
 
-export type PopoverPlacement = "top" | "bottom" | "start"
+export type PopoverPlacement = "top" | "bottom" | "bottom-end" | "start"
 
 export interface Bounds {
   readonly left: number
@@ -25,7 +25,7 @@ function clamp(value: number, min: number, max: number) {
 }
 
 export function placePanel(
-  anchor: Pick<DOMRect, "left" | "top" | "bottom" | "height">,
+  anchor: Pick<DOMRect, "left" | "top" | "bottom" | "height"> & Partial<Pick<DOMRect, "right">>,
   box: { readonly width: number; readonly height: number },
   placement: PopoverPlacement,
   bounds: Bounds,
@@ -38,9 +38,11 @@ export function placePanel(
     const middle = anchor.top + anchor.height / 2 - box.height / 2
     return { left: beside, top: clamp(middle, bounds.top + gap, maxTop) }
   }
-  const top = placement === "bottom" ? anchor.bottom + gap : anchor.top - box.height - gap
+  const below = placement === "bottom" || placement === "bottom-end"
+  const top = below ? anchor.bottom + gap : anchor.top - box.height - gap
+  const left = placement === "bottom-end" ? (anchor.right ?? anchor.left) - box.width : anchor.left
   return {
-    left: clamp(anchor.left, bounds.left + gap, maxLeft),
+    left: clamp(left, bounds.left + gap, maxLeft),
     top: clamp(top, bounds.top + gap, maxTop),
   }
 }
