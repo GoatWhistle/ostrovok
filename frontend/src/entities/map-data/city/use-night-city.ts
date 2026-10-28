@@ -95,6 +95,10 @@ export function useNightCity({
   const scene = useMapScene(request)
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
   const roofless = useMemo(() => [...textured], [textured])
+  const windowless = useMemo(
+    () => (effects.facades ? new Set<string>() : textured),
+    [effects.facades, textured],
+  )
   useRoofMesh(mapRef, ready, scene.data, roofless, drawn, effects.roofs)
   useTreeMesh(mapRef, ready, effects.trees)
   useEffect(() => {
@@ -119,7 +123,7 @@ export function useNightCity({
     enabled: effects.windows,
     scene: scene.data,
     drawn,
-    textured,
+    textured: windowless,
     layer,
     builder,
   })
