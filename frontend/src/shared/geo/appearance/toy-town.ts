@@ -50,6 +50,7 @@ export const TOY_TOWN: AppearancePackage = {
     cityGlow: "--map-toy-glow",
   },
   classPrefix: "--map-toy-class-",
+  sceneHour: 16,
   materials: {
     hotel: "matte",
     verticalGradient: true,

@@ -7,6 +7,7 @@ export const NEON: AppearancePackage = {
   version: "2",
   palette: NEON_TOKENS,
   classPrefix: "--map-neon-class-",
+  sceneHour: 22,
   materials: {
     hotel: "textured",
     verticalGradient: true,

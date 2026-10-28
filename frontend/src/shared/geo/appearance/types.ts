@@ -11,6 +11,7 @@ export interface AppearancePackage {
   readonly version: string
   readonly palette: Readonly<Record<keyof MapColors, string>>
   readonly classPrefix: string
+  readonly sceneHour: number
   readonly materials: {
     readonly hotel: "textured" | "matte"
     readonly verticalGradient: boolean
