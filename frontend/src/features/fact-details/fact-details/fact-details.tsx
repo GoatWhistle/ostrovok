@@ -6,9 +6,9 @@ import { characteristicTitle, factExplanation, factLabel } from "@/shared/geo/fa
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Banner, Button, Confidence, Disclosure, ErrorState, Skeleton } from "@/shared/ui"
 import { FactCorrection } from "../fact-correction/fact-correction"
-import styles from "./fact-details.module.css"
 import { FactHistory } from "../fact-history/fact-history"
 import { FactProvenance } from "../fact-provenance/fact-provenance"
+import styles from "./fact-details.module.css"
 
 export interface FactDetailsProps {
   readonly hotelId: string

@@ -4,8 +4,8 @@ import { useComparison } from "@/entities/comparison"
 import { HotelStayProvider, StayBar } from "@/entities/hotel"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, ButtonLink, EmptyState, ErrorState, Skeleton } from "@/shared/ui"
-import { comparisonView } from "./compare-sections"
-import { CompareTable } from "./compare-table"
+import { CompareTable } from "../compare-table/compare-table"
+import { comparisonView } from "../model/compare-sections"
 import styles from "./hotel-comparison.module.css"
 
 const MIN_HOTELS = 1
