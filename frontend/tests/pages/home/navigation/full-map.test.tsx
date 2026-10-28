@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react"
 import { expect, it, vi } from "vitest"
-import { useFullMap } from "@/pages/home/use-full-map"
+import { useFullMap } from "@/pages/home/navigation/use-full-map"
 
 it("lets a popover consume Escape before leaving the full map", () => {
   const exit = vi.fn()

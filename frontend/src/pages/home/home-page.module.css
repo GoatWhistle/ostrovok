@@ -15,45 +15,9 @@
 }
 
 .workspace .map,
-.workspace .chat {
+.workspace [data-slot="chat"] {
   grid-column: 2;
   grid-row: 1;
-}
-
-.panel {
-  position: relative;
-  display: grid;
-  min-block-size: 0;
-  min-inline-size: 0;
-  background-color: var(--surface-base);
-  box-shadow: var(--shadow-divider-end);
-}
-
-.swap {
-  display: grid;
-  min-inline-size: 0;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-block-size: 0;
-}
-
-.swap:has(> .scroll:only-child) {
-  grid-template-rows: minmax(0, 1fr);
-}
-
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
-  min-block-size: var(--control-height-hero);
-  padding: var(--space-8) var(--space-12);
-  box-shadow: var(--shadow-divider-bottom);
-}
-
-.scroll {
-  min-block-size: 0;
-  padding: var(--space-16);
-  outline: none;
 }
 
 .map {
@@ -62,17 +26,6 @@
   min-block-size: 0;
   min-inline-size: 0;
   background-color: var(--map-land);
-}
-
-.chat {
-  position: relative;
-  display: grid;
-  min-block-size: 0;
-  min-inline-size: 0;
-}
-
-.chat[data-docked="true"] {
-  pointer-events: none;
 }
 
 .mobileDock {
@@ -101,24 +54,24 @@
   }
 
   .workspace .map,
-  .workspace .chat {
+  .workspace [data-slot="chat"] {
     grid-column: 1;
   }
 
-  .panel,
-  .chat {
+  .workspace [data-slot="panel"],
+  .workspace [data-slot="chat"] {
     box-shadow: none;
   }
 
-  .panel,
+  .workspace [data-slot="panel"],
   .map,
-  .chat {
+  .workspace [data-slot="chat"] {
     animation: var(--motion-fade-in);
   }
 
-  .workspace:not([data-view="hotels"]) .panel,
+  .workspace:not([data-view="hotels"]) [data-slot="panel"],
   .workspace:not([data-view="map"]) .map,
-  .workspace:not([data-view="chat"]) .chat {
+  .workspace:not([data-view="chat"]) [data-slot="chat"] {
     display: none;
   }
 }
@@ -146,19 +99,19 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
-.page[data-surface="conversation"] .panel,
+.page[data-surface="conversation"] .workspace [data-slot="panel"],
 .page[data-surface="conversation"] .map,
 .page[data-surface="conversation"] .mobileDock {
   display: none;
 }
 
-.page[data-surface="conversation"] .workspace .chat {
+.page[data-surface="conversation"] .workspace [data-slot="chat"] {
   display: grid;
   grid-column: 1;
   box-shadow: none;
 }
 
-.page[data-surface="conversation"] .chat > [role="separator"] {
+.page[data-surface="conversation"] .workspace [data-slot="chat"] > [role="separator"] {
   display: none;
 }
 
@@ -166,12 +119,6 @@
   display: none;
 }
 
-.detailScroll {
-  composes: scroll;
-  display: grid;
-  align-content: start;
-  gap: var(--space-16);
-}
 .mapCanvas {
   min-inline-size: 0;
   min-block-size: 0;
@@ -193,9 +140,6 @@
       clamp(var(--workspace-panel-compact), calc(100% / 3), var(--workspace-panel-max))
       minmax(0, 1fr);
   }
-  .panel {
-    view-transition-name: hotel-panel;
-  }
 }
 .page[data-standalone="true"] {
   position: fixed;
@@ -213,8 +157,8 @@
   display: grid;
   grid-column: 1;
 }
-.page[data-standalone="true"] .panel,
-.page[data-standalone="true"] .workspace .chat,
+.page[data-standalone="true"] .workspace [data-slot="panel"],
+.page[data-standalone="true"] .workspace [data-slot="chat"],
 .page[data-standalone="true"] .mobileDock {
   display: none;
 }
@@ -225,22 +169,13 @@
   .page[data-surface="hotel-page"] .workspace {
     grid-row: 1;
   }
-  .page[data-surface="hotel-page"] .panel,
-  .page[data-surface="hotel-page"] .workspace .chat,
+  .page[data-surface="hotel-page"] .workspace [data-slot="panel"],
+  .page[data-surface="hotel-page"] .workspace [data-slot="chat"],
   .page[data-surface="hotel-page"] .mobileDock {
     display: none;
   }
   .page[data-surface="hotel-page"] .map {
     display: grid;
-  }
-}
-@media (max-width: 47.99rem) {
-  .detailScroll {
-    padding-block-end: 0;
-  }
-
-  .swap:has([data-rooms-screen]) > .bar {
-    display: none;
   }
 }
 @media (max-width: 63.99rem) and (pointer: coarse) {

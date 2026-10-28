@@ -1,0 +1,10 @@
+.chat {
+  position: relative;
+  display: grid;
+  min-block-size: 0;
+  min-inline-size: 0;
+}
+
+.chat[data-docked="true"] {
+  pointer-events: none;
+}

@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
-import { useSurfaceScroll } from "../../../src/pages/home/use-surface-scroll"
+import { useSurfaceScroll } from "../../../../src/pages/home/navigation/use-surface-scroll"
 
 function scrollTo(node: HTMLElement, top: number) {
   node.scrollTop = top

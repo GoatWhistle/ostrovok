@@ -4,8 +4,8 @@ import { SearchResults } from "@/features/search-results"
 import type { Resizable } from "@/shared/hooks/use-resizable"
 import { useTranslation } from "@/shared/i18n"
 import { ResizeHandle, ScrollArea } from "@/shared/ui"
-import styles from "./home-page.module.css"
 import { SelectedHotel } from "./selected-hotel"
+import styles from "./workspace-panel.module.css"
 
 type Workspace = ReturnType<typeof useHotelWorkspace>
 interface WorkspacePanelProps {
@@ -29,7 +29,7 @@ export function WorkspacePanel({
   const { t } = useTranslation()
   const detail = Boolean(state.hotelId && !fullHotel)
   return (
-    <aside className={styles.panel} aria-label={t("explore:panel.title")}>
+    <aside className={styles.panel} data-slot="panel" aria-label={t("explore:panel.title")}>
       {!detail ? (
         <ResizeHandle
           label={t("explore:panel.resizePanel")}

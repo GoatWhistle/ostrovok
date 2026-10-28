@@ -4,7 +4,7 @@ import { HotelLocation } from "@/features/hotel-location"
 import type { useHotelWorkspace } from "@/features/hotel-search"
 import { useDocumentTitle, useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
-import { HotelContent } from "../hotel-content"
+import { HotelContent } from "../hotel-content/hotel-content"
 import styles from "./full-hotel.module.css"
 import { useHotelSection } from "./use-hotel-section"
 

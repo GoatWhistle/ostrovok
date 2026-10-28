@@ -2,8 +2,8 @@ import type { Ref } from "react"
 import type { useHotelWorkspace } from "@/features/hotel-search"
 import { useTranslation } from "@/shared/i18n"
 import { Button, ScrollArea } from "@/shared/ui"
-import styles from "./home-page.module.css"
-import { HotelContent } from "./hotel-content"
+import { HotelContent } from "../hotel-content/hotel-content"
+import styles from "./workspace-panel.module.css"
 
 type Workspace = ReturnType<typeof useHotelWorkspace>
 

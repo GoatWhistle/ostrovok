@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react"
 import type { useHotelWorkspace } from "@/features/hotel-search"
 import { useMediaQuery } from "@/shared/hooks"
-import { CompareDock } from "./compare-dock"
-import { MapHotel } from "./map-hotel/map-hotel"
+import { CompareDock } from "../compare-dock/compare-dock"
+import { MapHotel } from "../map-hotel/map-hotel"
 
 const HotelMap = lazy(() =>
   import("@/features/hotel-map").then((module) => ({ default: module.HotelMap })),

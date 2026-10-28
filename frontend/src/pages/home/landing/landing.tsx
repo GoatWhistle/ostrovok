@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { SceneReel } from "@/features/scene-reel"
 import { ChatStart, type ChatStartProps } from "@/features/search-chat"
+import { SiteSettings } from "../site-settings/site-settings"
 import styles from "./landing.module.css"
-import { SiteSettings } from "./site-settings"
 
 export interface LandingProps {
   readonly draftKey: string
