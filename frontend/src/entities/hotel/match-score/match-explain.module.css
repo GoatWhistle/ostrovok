@@ -25,17 +25,26 @@
 .list {
   composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-2);
+  margin-inline: calc(-1 * var(--space-8));
 }
 
-.wish {
-  composes: bodySmText from "../../../shared/styles/compose.module.css";
-  color: var(--text-primary);
+.list .wish {
+  --button-height: auto;
+  --button-padding: var(--space-4) var(--space-8);
+  --button-text: var(--text-primary);
+
+  inline-size: 100%;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-height-body-sm);
+  white-space: normal;
+  text-align: start;
 }
 
-.wish[data-match="partial"],
-.wish[data-match="none"] {
-  color: var(--text-secondary);
+.list .wish[data-match="partial"],
+.list .wish[data-match="none"] {
+  --button-text: var(--text-secondary);
 }
 
 .note {

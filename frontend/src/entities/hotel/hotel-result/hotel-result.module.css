@@ -2,10 +2,13 @@
   composes: panelSurface from "../../../shared/styles/compose.module.css";
   position: relative;
   display: grid;
-  grid-template-columns: var(--thumb-size) minmax(0, 1fr);
+  --card-thumb: calc(var(--space-64) + var(--space-8));
+
+  grid-template-columns: var(--card-thumb) minmax(0, 1fr);
+  align-items: center;
   gap: var(--space-12);
   min-block-size: var(--target-min);
-  padding: var(--space-8);
+  padding: var(--space-12);
   animation: var(--motion-fade-in);
   animation-delay: calc(var(--i, 0) * var(--stagger));
   transition: var(--transition-press);
@@ -26,18 +29,16 @@
 }
 
 .thumb {
-  align-self: start;
-  inline-size: var(--thumb-size);
+  inline-size: var(--card-thumb);
   aspect-ratio: 1;
 }
 
 .body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  align-content: start;
-  gap: var(--space-2);
+  align-content: center;
+  gap: var(--space-4);
   min-inline-size: 0;
-  padding-block: var(--space-2);
 }
 
 .top {
@@ -87,10 +88,9 @@
   display: none;
 }
 
-.address {
-  composes: truncateText captionText from "../../../shared/styles/compose.module.css";
+.line {
+  composes: truncateText secondaryText from "../../../shared/styles/compose.module.css";
   margin: 0;
-  color: var(--text-secondary);
 }
 
 .price {
