@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
-import { HotelCover } from "../hotel-cover"
-import { OfferCard } from "../offer-card"
+import { HotelCover } from "../hotel-cover/hotel-cover"
+import { OfferCard } from "./offer-card"
 import styles from "./rooms.module.css"
 
 type Room = components["schemas"]["SupplierRoom"]

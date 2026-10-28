@@ -1,10 +1,10 @@
 import { render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
-import { SupplierDetails } from "../../../src/features/hotel-details/supplier/supplier-details"
-import type { components } from "../../../src/shared/api/schema.gen"
-import { createI18n, LocaleProvider } from "../../../src/shared/i18n"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+import { SupplierDetails } from "../../../../src/features/hotel-details/supplier/supplier-details"
+import type { components } from "../../../../src/shared/api/schema.gen"
+import { createI18n, LocaleProvider } from "../../../../src/shared/i18n"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 type Details = components["schemas"]["SupplierDetails"]
 

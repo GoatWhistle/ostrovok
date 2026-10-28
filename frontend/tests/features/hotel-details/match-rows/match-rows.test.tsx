@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
-import { MatchRows } from "../../../src/features/hotel-details/matches/match-rows"
-import type { MatchedProperty } from "../../../src/shared/api/hotel-types"
-import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+import { MatchRows } from "../../../../src/features/hotel-details/match-rows/match-rows"
+import type { MatchedProperty } from "../../../../src/shared/api/hotel-types"
+import { LocaleProvider } from "../../../../src/shared/i18n/locale-provider"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 function match(key: string, status: "active" | "stale" = "active"): MatchedProperty {
   return {

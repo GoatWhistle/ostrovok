@@ -18,9 +18,9 @@
 }
 
 .heading {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
 }
 
 .hint {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: captionText from "../../../shared/styles/compose.module.css";
 }

@@ -1,7 +1,7 @@
 import { useHotelOffers, useHotelStay } from "@/entities/hotel"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Disclosure } from "@/shared/ui"
-import { DetailsSection } from "../details-section"
+import { DetailsSection } from "../details-section/details-section"
 import styles from "./hotel-facilities.module.css"
 
 const FACILITIES: Readonly<Record<string, MessageKey>> = {

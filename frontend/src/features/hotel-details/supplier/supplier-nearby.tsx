@@ -2,7 +2,7 @@ import { useId, useState } from "react"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button } from "@/shared/ui"
-import { DetailsSection } from "../details-section"
+import { DetailsSection } from "../details-section/details-section"
 import styles from "./supplier.module.css"
 
 type Place = components["schemas"]["SupplierNearbyPlace"]

@@ -5,7 +5,7 @@ import { factScope } from "@/shared/geo/facts/scope"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { type Locale, useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
-import { DetailsSection } from "./details-section"
+import { DetailsSection } from "../details-section/details-section"
 import styles from "./fact-list.module.css"
 
 export interface FactListProps {

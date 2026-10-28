@@ -4,7 +4,7 @@ import type { components } from "@/shared/api/schema.gen"
 import { sourceUrl } from "@/shared/api/source-url"
 import { useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
-import { HotelCover } from "./hotel-cover"
+import { HotelCover } from "../hotel-cover/hotel-cover"
 import styles from "./hotel-hero.module.css"
 
 type Supplier = components["schemas"]["SupplierDetails"]

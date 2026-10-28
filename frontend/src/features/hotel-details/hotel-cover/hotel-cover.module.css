@@ -67,7 +67,7 @@
 }
 
 .count {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
   position: absolute;
   inset-block-end: var(--space-8);
   inset-inline-end: var(--space-8);

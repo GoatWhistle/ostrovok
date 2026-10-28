@@ -8,7 +8,7 @@
 }
 
 .skeleton {
-  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
+  composes: skeletonReveal from "../../../entities/evidence/evidence-text.module.css";
   display: grid;
   grid-template-columns: var(--thumb-size) minmax(0, 1fr);
   align-items: start;

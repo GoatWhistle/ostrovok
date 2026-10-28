@@ -2,7 +2,7 @@ import { useHotel } from "@/entities/hotel"
 import type { FactBrief } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
 import { EmptyState, ErrorState, Skeleton } from "@/shared/ui"
-import { FactList } from "./fact-list"
+import { FactList } from "../fact-list/fact-list"
 
 export interface HotelFactsProps {
   readonly hotelId: string

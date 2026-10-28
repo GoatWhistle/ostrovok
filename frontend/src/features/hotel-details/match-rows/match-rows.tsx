@@ -2,7 +2,7 @@ import type { FactBrief, MatchedProperty } from "@/shared/api/hotel-types"
 import { isUsableMatch } from "@/shared/geo/facts/matching"
 import { useTranslation } from "@/shared/i18n"
 import { Disclosure } from "@/shared/ui"
-import { DetailsSection } from "../details-section"
+import { DetailsSection } from "../details-section/details-section"
 import { MatchItem } from "./match-item"
 import styles from "./match-rows.module.css"
 

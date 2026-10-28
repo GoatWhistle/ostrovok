@@ -145,7 +145,7 @@
 }
 
 .tag {
-  composes: fact from "../hotel-hero.module.css";
+  composes: fact from "../hotel-hero/hotel-hero.module.css";
 }
 
 .amenityGrid {

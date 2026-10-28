@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { HotelHero } from "../../../src/features/hotel-details/hotel-hero"
-import type { HotelSummary } from "../../../src/shared/api/hotel-types"
-import type { components } from "../../../src/shared/api/schema.gen"
-import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+import { HotelHero } from "../../../../src/features/hotel-details/hotel-hero/hotel-hero"
+import type { HotelSummary } from "../../../../src/shared/api/hotel-types"
+import type { components } from "../../../../src/shared/api/schema.gen"
+import { LocaleProvider } from "../../../../src/shared/i18n/locale-provider"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 type Supplier = components["schemas"]["SupplierDetails"]
 

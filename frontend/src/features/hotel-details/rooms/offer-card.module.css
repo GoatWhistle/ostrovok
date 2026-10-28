@@ -1,5 +1,5 @@
 .offer {
-  composes: panelSurface from "../../shared/styles/compose.module.css";
+  composes: panelSurface from "../../../shared/styles/compose.module.css";
   display: grid;
   gap: var(--space-8);
   padding: var(--space-12);
@@ -14,22 +14,22 @@
 }
 
 .room {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
 
 .price {
-  composes: subheadingText from "../../shared/styles/compose.module.css";
+  composes: subheadingText from "../../../shared/styles/compose.module.css";
   flex: none;
   font-variant-numeric: var(--font-numeric);
 }
 
 .meta {
-  composes: plainList from "../../shared/styles/compose.module.css";
+  composes: plainList from "../../../shared/styles/compose.module.css";
   display: grid;
   gap: var(--space-4);
 }
 
 .metaItem {
-  composes: bodySmText inlineRow from "../../shared/styles/compose.module.css";
+  composes: bodySmText inlineRow from "../../../shared/styles/compose.module.css";
 }

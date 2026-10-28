@@ -1,7 +1,7 @@
 import type { components } from "@/shared/api/schema.gen"
 import { type MessageKey, useLocale, useTranslation } from "@/shared/i18n"
 import { Icon } from "@/shared/ui"
-import styles from "./hotel-offers.module.css"
+import styles from "./offer-card.module.css"
 
 type Offer = NonNullable<components["schemas"]["HotelOffers"]["offers"]>[number]
 
