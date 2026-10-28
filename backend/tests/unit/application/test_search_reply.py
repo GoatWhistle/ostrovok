@@ -4,7 +4,7 @@ from datetime import date
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.reply_plurals import hotels_ru
 from hotel_agent.application.search_reply import fallback_reply, search_reply
-from hotel_agent.application.stay_question import guests_given
+from hotel_agent.application.stay_question import guests_given, without_guest_wishes
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome, SearchResult
 from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.query import Intent, ParsedQuery
@@ -173,3 +173,27 @@ def test_hotel_words_are_not_read_as_guest_counts() -> None:
         assert not guests_given(replace(plain, normalized_query=text))
     for text in ("номер на двоих", "вдвоём", "2 взрослых", "for two", "2 adults"):
         assert guests_given(replace(plain, normalized_query=text))
+
+
+def test_guest_count_restated_as_a_wish_is_dropped_once_adults_are_known() -> None:
+    restated = Intent(
+        characteristic_key="derived:3e8fa632b747",
+        op=Op.EQ,
+        value=True,
+        weight=1.0,
+        required=False,
+        source_text="for two adults",
+    )
+    parsed = ParsedQuery(
+        intents=(QUIET, restated),
+        unmatched_terms=(),
+        location_hint="Адлер",
+        adults=2,
+        wishes=("quiet", "for two adults"),
+    )
+
+    cleaned = without_guest_wishes(parsed)
+
+    assert cleaned.intents == (QUIET,)
+    assert cleaned.wishes == ("quiet",)
+    assert without_guest_wishes(replace(parsed, adults=None)) == replace(parsed, adults=None)
