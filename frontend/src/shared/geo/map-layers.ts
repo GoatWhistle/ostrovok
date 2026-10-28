@@ -32,7 +32,16 @@ export function contextHeight(map: MapLibreMap, lift = 0): ExpressionSpecificati
     ["zoom"],
     raised,
     MESH_FROM,
-    ["case", ["all", ["!", HOTEL], ["in", ["get", "id"], ["literal", covered]]], 0, raised],
+    [
+      "case",
+      [
+        "all",
+        ["!", HOTEL],
+        ["in", ["coalesce", ["get", "building_id"], ["get", "id"]], ["literal", covered]],
+      ],
+      0,
+      raised,
+    ],
   ]
 }
 
