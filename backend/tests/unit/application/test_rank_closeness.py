@@ -102,3 +102,14 @@ def test_derived_wish_ranks_by_native_measurement_behind_boolean_match() -> None
     )
 
     assert [pair[0].id for pair in ranked] == ["far", "near", "next"]
+
+
+def test_equal_scores_fall_back_to_stars_instead_of_candidate_order() -> None:
+    plain = replace(hotel("plain", "Бета"), stars=2)
+    best = replace(hotel("best", "Альфа"), stars=5)
+    unrated = hotel("unrated", "Гамма")
+    empty = Scored(score=0.0, matches=(), disqualified=False)
+
+    ranked = sorted((plain, unrated, best), key=lambda item: search_rank(item, empty))
+
+    assert [item.id for item in ranked] == ["best", "plain", "unrated"]

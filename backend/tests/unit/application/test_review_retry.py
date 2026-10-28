@@ -16,6 +16,7 @@ from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
 from hotel_agent.domain.query import ParsedQuery
+from hotel_agent.domain.services.scoring import MatchQuality
 
 NOW = datetime(2026, 10, 26, tzinfo=UTC)
 TERM = "где жил поэт"
@@ -142,12 +143,17 @@ async def test_rejected_recommendation_sends_the_reason_back_into_research() -> 
     assert "смерти" in feedback[0].reason
 
 
-async def test_unverified_wish_is_not_retried_and_stays_an_honest_empty_answer() -> None:
+async def test_unverified_wish_is_not_retried_and_shows_candidates_as_unconfirmed() -> None:
     use_case, explorer, verify = build([ExplorationOutcome(hotels=(hotel(),), bbox=None)], [])
 
     result = await use_case(QUERY, "russia", None, 20)
 
-    assert result.results == []
+    assert [item.hotel.id for item in result.results] == ["h1"]
+    assert all(
+        match.quality is not MatchQuality.FULL
+        for item in result.results
+        for match in item.scored.matches
+    )
     assert explorer.await_count == 1
     verify.assert_not_awaited()
 

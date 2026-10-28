@@ -6,7 +6,9 @@ from hotel_agent.domain.characteristics import Op
 from hotel_agent.domain.services.scoring import COUNTED_QUALITIES, Scored
 
 
-def search_rank(hotel: SearchHotelRecord, scored: Scored) -> tuple[float, int, float, bool, bool]:
+def search_rank(
+    hotel: SearchHotelRecord, scored: Scored
+) -> tuple[float, int, float, bool, bool, int]:
     computed_views = 0
     for match in scored.matches:
         if match.fact is None:
@@ -24,6 +26,7 @@ def search_rank(hotel: SearchHotelRecord, scored: Scored) -> tuple[float, int, f
         closeness(scored),
         hotel.name == hotel.id,
         hotel.name.startswith("#"),
+        -(hotel.stars or 0),
     )
 
 

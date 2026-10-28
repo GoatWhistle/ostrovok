@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -44,3 +45,7 @@ async def select_candidates(
     report = await review.check(query, parsed, ranked, limit)
     accepted = [item for item in ranked if item[0].id in report.accepted_ids]
     return Selection(tuple(ranked), tuple(accepted), report)
+
+
+def nearest_matches(ranked: Sequence[Candidate], limit: int) -> tuple[Candidate, ...]:
+    return tuple(ranked[:limit])
