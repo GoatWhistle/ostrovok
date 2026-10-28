@@ -2,13 +2,13 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import { FactCorrection } from "@/features/fact-details/fact-correction"
+import { FactCorrection } from "@/features/fact-details/fact-correction/fact-correction"
 import { api } from "@/shared/api"
 import type { Fact } from "@/shared/api/hotel-types"
 import { clearSessionDraft, readSessionDraft } from "@/shared/hooks/session-draft"
 import { LocaleProvider } from "@/shared/i18n"
 import copy from "@/shared/i18n/locales/ru/explore.json"
-import { registryClient } from "../hotelier-answer/registry"
+import { registryClient } from "../../hotelier-answer/registry"
 
 const fact: Fact = {
   fact_id: "f_height",

@@ -5,7 +5,7 @@
 }
 
 .list {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: captionText from "../../../shared/styles/compose.module.css";
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-8) var(--space-12);
@@ -31,7 +31,7 @@
 }
 
 .mono {
-  composes: monoText from "../../shared/styles/compose.module.css";
+  composes: monoText from "../../../shared/styles/compose.module.css";
 }
 
 .evidence {
@@ -40,11 +40,11 @@
 }
 
 .label {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .quote {
-  composes: secondaryText from "../../shared/styles/compose.module.css";
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
   padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-sm);
   background-color: var(--surface-sunken);

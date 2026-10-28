@@ -11,11 +11,11 @@
 }
 
 .title {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
 }
 
 .text {
-  composes: secondaryText from "../../shared/styles/compose.module.css";
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
 }
 
 .actions {

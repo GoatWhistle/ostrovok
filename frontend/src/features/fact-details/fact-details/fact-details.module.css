@@ -10,7 +10,7 @@
 }
 
 .skeleton {
-  composes: skeletonReveal from "../../entities/evidence/evidence-text.module.css";
+  composes: skeletonReveal from "../../../entities/evidence/evidence-text.module.css";
   display: grid;
   gap: var(--space-16);
 }
@@ -36,16 +36,16 @@
 }
 
 .title {
-  composes: bodyStrong from "../../shared/styles/compose.module.css";
+  composes: bodyStrong from "../../../shared/styles/compose.module.css";
 }
 
 .explanation {
-  composes: secondaryText from "../../shared/styles/compose.module.css";
+  composes: secondaryText from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
 
 .value {
-  composes: headingText from "../../shared/styles/compose.module.css";
+  composes: headingText from "../../../shared/styles/compose.module.css";
   font-variant-numeric: var(--font-numeric);
   overflow-wrap: anywhere;
 }
