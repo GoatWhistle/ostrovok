@@ -28,16 +28,6 @@ make seed && make precompute
 
 Все порты слушают только `127.0.0.1`.
 
-Подложку с подписями Compose монтирует из `data/seed/sochi-map/basemap/` во фронтенд, nginx отдаёт её
-по `/maps/sochi/` частями (`Range`); сеть для неё не нужна.
-
-Подложка всей России (z0–14, около 13 ГБ) в Git не хранится. Её готовит
-`PMTILES_BIN=/path/to/pmtiles make fetch-basemap-russia`: вырезка из сборки Protomaps, проверка,
-манифест с SHA-256 и ссылка на архив с хешем в имени в каталоге `MAP_BASEMAPS_HOST_DIR`
-(по умолчанию `data/basemaps`). Compose монтирует этот каталог во фронтенд и бэкенд только для
-чтения, после этого `/api/v1/map/style?region_id=russia` отвечает `available: true`. Без каталога
-стенд работает с подложкой Сочи.
-
 | Команда | Что делает | Сеть |
 |---|---|---|
 | `make up` | `docker buildx bake`, затем `docker compose up -d --wait`; миграции dbmate применяются до старта бэкенда | Для сборки образов |
@@ -53,15 +43,22 @@ make seed && make precompute
 | `make build` | Только сборка образов через `docker-bake.hcl` | Да |
 | `make help` | Список целей | Нет |
 
-Для ручной загрузки 15 проверенных соответствий OSM и Nuitee нужен тестовый или рабочий
-ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается к API поставщика и записывает
+По умолчанию `HOTEL_DATA_MODE=free`: коммерческие API сведений об отелях отключены.
+Работают локальные данные и публичные веб-источники; [бесплатный путь и его границы](hotel-data.md).
+
+Для отдельно согласованной ручной загрузки 15 соответствий OSM и Nuitee нужны
+`HOTEL_DATA_MODE=partner` и тестовый или рабочий ключ `NUITEE_API_KEY` в игнорируемом `.env`. Команда обращается к API поставщика и записывает
 категории номеров и услуги в PostgreSQL:
 
 ```bash
 bash scripts/sync-nuitee-matches.sh
 ```
 
-Пары хранятся в `data/seed/sochi/nuitee_matches.csv`. Импорт повторяемый; он использует
+Для остальных отелей есть `match-nuitee --hotel-id <local_id>` и импорт с `--apply`;
+[правила сопоставления и дополнительные поставщики](hotel-data.md). Только в партнёрском режиме при запросе предложений
+Nuitee на даты ещё не связанный отель сопоставляется автоматически.
+
+Пары ручного списка хранятся в `data/seed/sochi/nuitee_matches.csv`. Импорт повторяемый; он использует
 реальный каталог Nuitee и не входит в офлайн-команду `make seed`. Без ключа завершается ошибкой.
 
 Образы собирает только `docker-bake.hcl`. Compose берёт готовые образы
@@ -113,11 +110,47 @@ docker compose up -d --force-recreate backend
 
 `make ingest-russia` повторяем: существующие OSM ID обновляются. Слой выбирается через
 `RUSSIA_LAYERS`, например `RUSSIA_LAYERS='coastline noise_sources walk'`.
+Полные контуры зданий, их частей и пляжей из уже проверенного снимка загружаются так:
+
+```bash
+RUSSIA_LAYERS='buildings beaches' RUSSIA_MIN_FREE_GIB=20 make ingest-russia
+```
+
+Импорт использует временный дисковый индекс координат в `data/raw/`; каталог удаляется
+после завершения. Нужно место для индекса и роста PostGIS сверх заданного резерва.
+Составные полигоны собираются и при отдельной загрузке пляжей.
+
+Для обновления всех исходных тегов уже загруженных отелей из каталога `backend/`:
+
+```bash
+uv run python scripts/refresh_osm_hotels.py --pbf ../data/raw/russia-261024.osm.pbf
+```
+
+Для ускорения полного импорта можно подготовить отдельный файл полигонов с их узлами и
+составными отношениями:
+
+```bash
+uv run python scripts/prepare_geography.py --pbf ../data/raw/russia-261024.osm.pbf --out ../data/raw/russia-polygons-261024.osm.pbf
+uv run hotel-agent ingest-pbf --region russia --pbf ../data/raw/russia-polygons-261024.osm.pbf --layers buildings beaches --batch-size 20000 --workers 3 --min-free-gib 20
+uv run hotel-agent refresh-geography --region russia
+```
+
+`--workers` допускает 1–4 отдельных транзакции для зданий и пляжей; очередь ограничена числом
+записывающих транзакций. Каждый завершённый пакет сохраняется, повторный импорт обновляет те же
+OSM ID. `refresh-geography` строит фасады на WGS84 и сохраняет факты высоты только по явному
+тегу `height`. Прежние вычисленные оценки высоты переводятся в устаревшие; подтверждённые
+отельером факты сохраняются. Эта команда не рассчитывает шум и пешие маршруты.
+
+Команда обновления тегов использует локальный PBF и не вызывает модель или API. OSM ID связывает запись
+с существующим отелем; комнаты и идентификаторы поставщиков сохраняются.
+Детали дозагрузки окружения и её ограничения описаны в [данных об отелях](hotel-data.md).
+
 Большие слои загружают отдельным запуском после проверки свободного места. Для зданий
 используйте `RUSSIA_LAYERS=buildings RUSSIA_BUILDING_RADIUS_M=350 make ingest-russia`:
 двухпроходный режим сохраняет замкнутые контуры в 350 м от ранее загруженных отелей,
 не создавая индекс всех узлов России. После импорта отели связываются с найденными
-зданиями. Пляжи и мультиполигоны OSM-отношений в этот проход не входят. Импорт OSM не
+зданиями. Мультиполигоны OSM-отношений в этот ограниченный проход не входят; полный
+импорт `buildings beaches` их собирает. Импорт OSM не
 добавляет номера, цены или цифровую модель рельефа. В остальных городах карту высот
 бэкенд получает из внешнего сервиса Mapterhorn.
 
@@ -127,6 +160,23 @@ docker compose up -d --force-recreate backend
 [таблицы переменных](#какие-переменные-читаются) и снова выполните `make up`. `.env` лежит в
 `.gitignore`. `make llm-check` делает один настоящий вызов к провайдеру из `.env` и тратит
 квоту; ни тесты, ни `make seed` его не вызывают.
+
+Для Anthropic задайте в `.env`:
+
+```dotenv
+LLM_PROVIDER=anthropic
+LLM_API_KEY=<ключ Anthropic>
+LLM_MODEL=claude-sonnet-4-6
+LLM_BASE_URL=https://api.anthropic.com/v1
+LLM_FALLBACK_MODEL=
+LLM_TIMEOUT_S=30
+```
+
+`LLM_BASE_URL` для Anthropic можно оставить пустым. Для собственного прокси укажите адрес
+с префиксом версии, например `https://proxy.example/anthropic/v1`.
+Модель должна поддерживать [структурированный вывод Claude](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
+`LLM_FALLBACK_MODEL` при необходимости задаёт другую модель того же провайдера.
+Адаптер проверен локальными ответами; живой вызов Anthropic не проверялся.
 
 ## Как разрабатывать без Docker?
 
@@ -154,14 +204,17 @@ npm run dev
 
 | Переменная | По умолчанию | Что задаёт |
 |---|---|---|
-| `LLM_PROVIDER` | `fake` | `fake`: офлайн-разбор по фразам реестра, без ключа и сети; `openai_compat`: живой OpenAI-совместимый endpoint; `anthropic` останавливает запуск с ошибкой, адаптера нет |
-| `LLM_BASE_URL` | пусто | Адрес endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat` |
-| `LLM_API_KEY` | пусто | Ключ провайдера. Обязателен для `openai_compat` |
+| `LLM_PROVIDER` | `fake` | `fake`: офлайн-разбор по фразам реестра, без ключа и сети; `openai_compat`: живой OpenAI-совместимый endpoint; `anthropic`: Claude через Messages API |
+| `LLM_BASE_URL` | пусто | Адрес endpoint, например `https://llm.api.cloud.yandex.net/v1`. Обязателен для `openai_compat`; у `anthropic` по умолчанию `https://api.anthropic.com/v1` |
+| `LLM_API_KEY` | пусто | Ключ провайдера. Обязателен для `openai_compat` и `anthropic` |
+| `HOTEL_DATA_MODE` | `free` | `free`: локальные и публичные источники; коммерческие API отключены. `partner`: отдельно согласованное подключение поставщиков |
+| `GEOGRAPHY_API_URL` | `https://overpass.private.coffee/api/interpreter` | Overpass для дозагрузки небольшой области при отсутствии локального покрытия |
+| `OSTROVOK_SITE` | `on` | Бесплатные сведения об отеле, номера, фотографии, факты и цены через JSON сайта Островка. `off` отключает их; API-ключ не нужен |
 | `NUITEE_API_KEY` | пусто | Ключ Nuitee Connect для категорий номеров и проверки тарифов; тестовый ключ помечает ответ как sandbox |
-| `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest`. Обязателен для `openai_compat` |
+| `LLM_MODEL` | пусто | Имя модели, например `gpt://<folder_id>/deepseek-v4.1-flash/latest` или `claude-sonnet-4-6`. Обязателен для `openai_compat` и `anthropic` |
 | `LLM_FALLBACK_MODEL` | пусто | Резервная модель того же endpoint; вызывается после таймаута или ошибки 5xx основной модели |
 | `LLM_TIMEOUT_S` | `30` | Таймаут запроса к модели, секунды, больше нуля |
-| `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk, задаются вместе. Без них предложения отвечают `provider_unavailable` |
+| `ETG_KEY_ID`, `ETG_API_KEY` | пусто | Партнёрские реквизиты ETG/RateHawk, задаются вместе. Используются только в `HOTEL_DATA_MODE=partner`; бесплатный режим читает сайт Островка |
 | `ETG_ENVIRONMENT` | `sandbox` | `sandbox` или `production` |
 | `CHARACTERISTICS_DIR` | `characteristics` | Каталог реестра характеристик; в Compose `/srv/characteristics` |
 | `SEED_DIR` | `data/seed` | Каталог среза; из него бэкенд читает `sochi/dem.tif` для рельефа; в Compose `/srv/data/seed` |
@@ -172,10 +225,7 @@ npm run dev
 | `FRONTEND_PORT` | `8080` | Порт интерфейса на хосте |
 | `API_UPSTREAM` | `http://backend:8000` | Куда nginx фронтенда проксирует `/api/` |
 | `API_URL` | `http://localhost:8000` | Куда проксирует `/api` dev-сервер Vite |
-| `MAP_ASSET_URL` | значение `API_URL` | Куда dev-сервер Vite проксирует `/maps`: подложки PMTiles, шрифты и спрайты. Для стенда Compose это адрес фронтенда, например `http://localhost:8080` |
-| `API_SCHEMA_URL` | `docs/api/openapi.yaml` | Источник схемы для `npm run api:types`; можно указать адрес `openapi.json` работающего бэкенда |
-| `E2E_BASE_URL` | пусто | Адрес уже запущенного фронтенда для `npm run e2e`; без него Playwright сам поднимает Vite на порту 5179 |
-| `E2E_BROWSER_EXECUTABLE` | пусто | Путь к своему Chromium для `npm run e2e` |
+| `API_SCHEMA_URL` | `http://localhost:8000/openapi.json` | Источник схемы для `npm run api:types` |
 | `COMPOSE_PROJECT_NAME` | `hotel-agent` | Имя проекта Compose и префикс образов |
 | `TAG` | `latest` | Тег образов |
 | `SITE_URL` | пусто | Адрес сайта для мета-тегов при сборке фронтенда |
@@ -193,11 +243,9 @@ make check
 
 `make check` запускает `ruff check`, `ruff format --check`, `mypy` в режиме `strict`,
 `lint-imports`, затем `pytest tests/unit` и `pytest tests/contract`. Обе группы тестов работают без
-базы и сети. `make test-integration` требует PostgreSQL с PostGIS и бинарь `dbmate`
-(`DBMATE_BIN`, если его нет в `PATH`). Часть тестов читает загруженный срез стенда по
-`DATABASE_URL`; тесты отельера и каталога создают отдельную временную базу на том же сервере,
-применяют к ней все миграции и удаляют её после прогона. Число процессов pytest-xdist выбирается
-автоматически.
+базы и сети. `make test-integration` требует запущенный стенд с загруженным срезом: в
+`tests/integration` один тест `test_seeded_search_and_geo_features`. Число процессов pytest-xdist
+выбирается автоматически.
 
 `lint-imports` проверяет правило зависимостей слоёв по контрактам из `backend/pyproject.toml`, то же
 правило независимо проверяет `tests/unit/architecture/`. `tests/contract` проверяет, что
@@ -213,10 +261,7 @@ npm run e2e
 
 `npm run verify` проверяет правила кода, CSS, текстов и движения, типы, Biome, запускает Vitest и
 собирает приложение. `npm run e2e` сам поднимает dev-сервер Vite и запускает Playwright; браузер
-Chromium должен быть установлен (`npx playwright install chromium`). Поиск, отели и ответы отельера
-в сценариях подменяются ответами по контракту, а метаданные, карта и погода запрашиваются у
-работающего бэкенда по `API_URL`. Часть сценариев намеренно запускает браузер без WebGL и проверяет
-резервное состояние карты.
+Chromium должен быть установлен (`npx playwright install chromium`).
 
 ## Что делать, если не запускается?
 
@@ -229,13 +274,17 @@ Chromium должен быть установлен (`npx playwright install chr
 | Чат отвечает, но отелей нет, карта пустая | Срез не загружен: `make seed && make precompute` |
 | Ошибка API в интерфейсе | `docker compose ps backend` и `docker compose logs --tail=50 backend`; затем `API_UPSTREAM` |
 | `ConfigError` при старте бэкенда | Значение переменной из сообщения; допустимые значения перечислены там же |
-| `LLM_PROVIDER=anthropic is not implemented yet` | Адаптера нет: оставьте `fake` или `openai_compat` |
+| `LLM_PROVIDER=anthropic needs LLM_*` | Задайте ключ и имя модели; адрес Anthropic по умолчанию встроен |
 | `LLM_PROVIDER=openai_compat needs LLM_*` | Для живой модели нужны все три переменные: адрес, ключ и модель |
 | `ETG_KEY_ID and ETG_API_KEY must be configured together` | Задайте обе переменные или ни одной |
 | Чат отвечает `503`, в логе `model_failure` | Основная и резервная модель не ответили или вернули ошибку; при `Language model returned HTTP 401` проверьте ключ |
 | `InvalidRegistry: ... is not a directory` | `CHARACTERISTICS_DIR` не указывает на каталог с YAML реестра |
 | Погода «недоступна» | Нет сети до Open-Meteo или дата дальше 15 дней от сегодня |
 | Зависимости не скачиваются | Доступ к реестрам npm, PyPI и Docker во время сборки |
+
+Для изолированных тестов каталога PostgreSQL нужен `dbmate` в PATH либо путь в `DBMATE_BIN`.
+Учётная запись `TEST_DATABASE_URL` (иначе `DATABASE_URL`) должна создавать временные базы;
+тесты удаляют их после проверки. Они не обращаются к поставщикам.
 
 ---
 

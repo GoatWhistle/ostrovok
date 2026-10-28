@@ -17,3 +17,5 @@ Before deploying the new map renderer/backend, apply included migrations and imp
 map layers; tests/integration/repository/postgres/test_map_layers.py remains unverified here.
 User's dirty root work is backed up/stashed separately and must be restored after fast-forward.
 This does not complete the window-view50 goal:40distinct cases remain untested.
+
+Merged into feat/hotel-agent-mvp and pushed as 2988814 on 2026-10-26. Root local provider/room edits restored and left uncommitted. Backup and stash retained: /tmp/o-hack-merge-final-1793036585, stash SHA in /tmp/o-hack-final-merge-stash. No stand restart or database migration performed.

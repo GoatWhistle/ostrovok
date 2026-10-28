@@ -38,7 +38,7 @@ async function walk(width: number, theme: string) {
   await input.press("Enter")
   await page.waitForTimeout(6000)
   await shoot(page, `${width}-${theme}-2-progress`)
-  await page.waitForTimeout(40000)
+  await page.waitForTimeout(110000)
   await shoot(page, `${width}-${theme}-3-results`)
   const card = page.locator("article, [data-hotel-id], li").first()
   if (await card.count()) {
