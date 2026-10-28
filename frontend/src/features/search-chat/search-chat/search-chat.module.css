@@ -1,5 +1,5 @@
 .chat {
-  composes: fillAvailable from "../../shared/styles/compose.module.css";
+  composes: fillAvailable from "../../../shared/styles/compose.module.css";
   display: flex;
   flex-direction: column;
   background-color: var(--surface-base);
@@ -23,7 +23,7 @@
 }
 
 .title {
-  composes: subheadingText truncateText from "../../shared/styles/compose.module.css";
+  composes: subheadingText truncateText from "../../../shared/styles/compose.module.css";
   flex: 1;
   min-inline-size: 0;
   margin: 0;

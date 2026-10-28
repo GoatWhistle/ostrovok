@@ -9,7 +9,7 @@
 }
 
 .question {
-  composes: subheadingText from "../../shared/styles/compose.module.css";
+  composes: subheadingText from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .caption {
-  composes: captionStrong from "../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
 }
 
 .chips {

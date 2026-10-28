@@ -1,8 +1,8 @@
 import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { useFirstVisit } from "@/shared/motion"
 import { Chip, characteristicHue, characteristicIcon } from "@/shared/ui"
+import { AgentBubble } from "../chat-bubble/chat-bubble"
 import styles from "./agent-reply.module.css"
-import { AgentBubble } from "./chat-bubble"
 
 export const SUGGESTIONS: readonly { readonly key: string; readonly label: MessageKey }[] = [
   { key: "sunset_view", label: "explore:chat.suggestSunset" },

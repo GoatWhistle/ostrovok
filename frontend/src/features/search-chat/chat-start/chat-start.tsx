@@ -2,10 +2,10 @@ import { useId, useRef, useState } from "react"
 import { type MessageKey, useFormatters, useTranslation } from "@/shared/i18n"
 import { motionMs, useFirstVisit } from "@/shared/motion"
 import { BrandMark, Button, Chip, characteristicHue, characteristicIcon, Icon } from "@/shared/ui"
-import { ChatComposer } from "./chat-composer"
+import { ChatComposer } from "../chat-composer/chat-composer"
+import type { HistoryEntry } from "../sidebar/history-groups"
+import { historyStamp } from "../sidebar/history-stamp"
 import styles from "./chat-start.module.css"
-import type { HistoryEntry } from "./sidebar/history-groups"
-import { historyStamp } from "./sidebar/history-stamp"
 
 const UNFOLD_COOLDOWN = 2
 const RECENT_LIMIT = 3

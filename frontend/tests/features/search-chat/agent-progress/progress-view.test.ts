@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { progressView } from "../../../src/features/search-chat/progress/progress-view"
-import type { ChatProgress } from "../../../src/shared/api"
+import { progressView } from "../../../../src/features/search-chat/agent-progress/progress-view"
+import type { ChatProgress } from "../../../../src/shared/api"
 
 const parsed: ChatProgress = {
   stage: "parsed",

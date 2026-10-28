@@ -1,12 +1,12 @@
 import type { ChatProgress } from "@/shared/api"
 import { useTranslation } from "@/shared/i18n"
 import { Skeleton } from "@/shared/ui"
-import { AgentBubble } from "../chat-bubble"
-import { useThinkingClock } from "../thinking-clock"
+import { AgentBubble } from "../chat-bubble/chat-bubble"
 import styles from "./agent-progress.module.css"
 import { ProgressSteps, STEP_LABEL } from "./progress-steps"
 import { progressView, STEPS, stepOf } from "./progress-view"
 import { UnderstoodChips } from "./understood-chips"
+import { useThinkingClock } from "./use-thinking-clock.ts"
 
 const STAGE_KEYS = {
   parsing: "explore:chat.stage.parsing",

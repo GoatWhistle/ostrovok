@@ -1,7 +1,10 @@
 import { useTranslation } from "@/shared/i18n"
 import { Button } from "@/shared/ui"
+import {
+  ConversationList,
+  type ConversationListProps,
+} from "../conversation-list/conversation-list"
 import styles from "./chat-sidebar.module.css"
-import { ConversationList, type ConversationListProps } from "./conversation-list"
 
 export interface ChatSidebarProps extends ConversationListProps {
   readonly collapsed: boolean

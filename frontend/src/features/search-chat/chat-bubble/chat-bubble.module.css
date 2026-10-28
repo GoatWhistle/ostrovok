@@ -6,7 +6,7 @@
 }
 
 .userText {
-  composes: bodySmText from "../../shared/styles/compose.module.css";
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
   position: relative;
   margin-inline-start: var(--chat-bubble-offset);
   padding: var(--space-8) var(--space-12);
@@ -48,7 +48,7 @@
 }
 
 .agentBody {
-  composes: bodySmText panelSurface from "../../shared/styles/compose.module.css";
+  composes: bodySmText panelSurface from "../../../shared/styles/compose.module.css";
   display: grid;
   gap: var(--space-12);
   min-inline-size: 0;
@@ -58,7 +58,7 @@
 }
 
 .agentTime {
-  composes: captionText from "../../shared/styles/compose.module.css";
+  composes: captionText from "../../../shared/styles/compose.module.css";
   justify-self: end;
   margin-block-start: calc(var(--space-6) * -1);
   color: var(--text-muted);

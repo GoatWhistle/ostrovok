@@ -1,8 +1,11 @@
 import { useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
 import { Button, Dialog } from "@/shared/ui"
+import {
+  ConversationList,
+  type ConversationListProps,
+} from "../conversation-list/conversation-list"
 import styles from "./chat-sidebar.module.css"
-import { ConversationList, type ConversationListProps } from "./conversation-list"
 
 export interface ChatsDrawerProps extends ConversationListProps {
   readonly open: boolean

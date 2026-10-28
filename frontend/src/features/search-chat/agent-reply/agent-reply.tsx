@@ -1,8 +1,8 @@
 import type { SearchResult } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
 import { ErrorState, Skeleton } from "@/shared/ui"
+import { AgentBubble } from "../chat-bubble/chat-bubble"
 import styles from "./agent-reply.module.css"
-import { AgentBubble } from "./chat-bubble"
 import {
   CityChoice,
   needsCity,

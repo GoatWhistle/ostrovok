@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { groupHistory } from "../../../src/features/search-chat/sidebar/history-groups"
+import { groupHistory } from "../../../../src/features/search-chat/sidebar/history-groups"
 
 const now = new Date(2026, 9, 27, 15, 0)
 const at = (day: number, hour: number) => new Date(2026, 9, day, hour).toISOString()

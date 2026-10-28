@@ -1,6 +1,9 @@
 import { render, screen, within } from "@testing-library/react"
 import { afterEach, expect, it, vi } from "vitest"
-import { SearchChat, type SearchChatProps } from "../../../src/features/search-chat/search-chat"
+import {
+  SearchChat,
+  type SearchChatProps,
+} from "../../../src/features/search-chat/search-chat/search-chat"
 import { createI18n, LocaleProvider } from "../../../src/shared/i18n"
 
 const props: SearchChatProps = {

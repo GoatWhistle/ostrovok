@@ -95,7 +95,7 @@
 }
 
 .chips {
-  composes: chips from "../agent-reply.module.css";
+  composes: chips from "../agent-reply/agent-reply.module.css";
 }
 
 .item {

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { AgentProgress } from "../../../src/features/search-chat/progress/agent-progress"
-import { createI18n, LocaleProvider } from "../../../src/shared/i18n"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+import { AgentProgress } from "../../../../src/features/search-chat/agent-progress/agent-progress"
+import { createI18n, LocaleProvider } from "../../../../src/shared/i18n"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 function show(events: Parameters<typeof AgentProgress>[0]["events"]) {
   return render(

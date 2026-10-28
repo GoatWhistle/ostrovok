@@ -1,8 +1,8 @@
 import { useId, useState } from "react"
 import { type MessageKey, useTranslation } from "@/shared/i18n"
 import { EmptyState, ScrollArea, TextField } from "@/shared/ui"
+import { groupHistory, type HistoryEntry, type HistoryGroup } from "../history-groups"
 import styles from "./conversation-list.module.css"
-import { groupHistory, type HistoryEntry, type HistoryGroup } from "./history-groups"
 import { HistoryRow } from "./history-row"
 
 export type { HistoryEntry }

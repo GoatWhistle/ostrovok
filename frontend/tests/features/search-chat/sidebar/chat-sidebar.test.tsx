@@ -4,9 +4,9 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 import {
   ChatSidebar,
   type ChatSidebarProps,
-} from "../../../src/features/search-chat/sidebar/chat-sidebar"
-import { createI18n, LocaleProvider } from "../../../src/shared/i18n"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+} from "../../../../src/features/search-chat/sidebar/chat-sidebar/chat-sidebar"
+import { createI18n, LocaleProvider } from "../../../../src/shared/i18n"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 const today = new Date().toISOString()
 
