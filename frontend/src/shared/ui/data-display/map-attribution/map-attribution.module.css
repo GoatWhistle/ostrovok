@@ -49,9 +49,7 @@
   composes: captionText from "../../../styles/compose.module.css";
   margin: 0;
   color: var(--text-muted);
-  font-size: var(--font-size-micro);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: var(--weight-medium);
 }
 
 .links {
