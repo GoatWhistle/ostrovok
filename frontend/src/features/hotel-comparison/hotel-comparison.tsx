@@ -13,6 +13,40 @@ const PAIR = 2
 const SLOT_FROM = 4
 const MAX_HOTELS = 5
 
+interface PairActionsProps {
+  readonly ready: boolean
+  readonly count: number
+  readonly onlyDifferences: boolean
+  readonly onToggle: () => void
+}
+
+function PairActions({ ready, count, onlyDifferences, onToggle }: PairActionsProps) {
+  const { t } = useTranslation()
+  return (
+    <>
+      <Button
+        variant="ghost"
+        size="compact"
+        className={styles.toggle}
+        aria-pressed={onlyDifferences}
+        disabled={!ready}
+        onClick={onToggle}
+      >
+        {t("explore:compare.onlyDifferences")}
+      </Button>
+      <ButtonLink
+        to="/"
+        variant="ghost"
+        size="compact"
+        icon="plus"
+        className={count < SLOT_FROM ? styles.slotted : undefined}
+      >
+        {t("explore:compare.add")}
+      </ButtonLink>
+    </>
+  )
+}
+
 export interface HotelComparisonProps {
   readonly ids: readonly string[]
   readonly conversationId?: string | null
@@ -53,27 +87,12 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
               : null}
           </p>
           {pair ? (
-            <Button
-              variant="ghost"
-              size="compact"
-              className={styles.toggle}
-              aria-pressed={onlyDifferences}
-              disabled={!ready}
-              onClick={() => setOnlyDifferences((value) => !value)}
-            >
-              {t("explore:compare.onlyDifferences")}
-            </Button>
-          ) : null}
-          {pair ? (
-            <ButtonLink
-              to="/"
-              variant="ghost"
-              size="compact"
-              icon="plus"
-              className={ids.length < SLOT_FROM ? styles.slotted : undefined}
-            >
-              {t("explore:compare.add")}
-            </ButtonLink>
+            <PairActions
+              ready={ready}
+              count={ids.length}
+              onlyDifferences={onlyDifferences}
+              onToggle={() => setOnlyDifferences((value) => !value)}
+            />
           ) : null}
           <div className={styles.stay}>
             <StayBar />
