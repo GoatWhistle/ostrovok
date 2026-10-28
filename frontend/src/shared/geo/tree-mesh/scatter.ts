@@ -83,7 +83,5 @@ export const RULES: Readonly<Record<string, TreeRule>> = {
   garden: { spacing: 10, conifer: 0.08, bush: 0.4, keep: 0.75, height: [4, 7] },
   cemetery: { spacing: 9, conifer: 0.6, bush: 0.1, keep: 0.8, height: [6, 11] },
   scrub: { spacing: 5, conifer: 0.05, bush: 0.85, keep: 0.7, height: [3, 5] },
-  grass: { spacing: 12, conifer: 0.1, bush: 0.5, keep: 0.55, height: [4, 8] },
-  residential: { spacing: 9, conifer: 0.12, bush: 0.35, keep: 0.42, height: [4, 9] },
-  default_ground: { spacing: 11, conifer: 0.1, bush: 0.4, keep: 0.3, height: [4, 8] },
+  residential: { spacing: 10, conifer: 0.12, bush: 0.35, keep: 0.3, height: [4, 9] },
 }

@@ -24,7 +24,7 @@ describe("tree scatter", () => {
     expect(cells.every(([i, j]) => i >= 0 && i < 4 && j >= 0 && j < 4)).toBe(true)
   })
 
-  it("thins a forest less than a lawn", () => {
+  it("thins a forest less than a yard", () => {
     const count = (name: string) => {
       const rule = RULES[name]
       if (!rule) return 0
@@ -33,7 +33,7 @@ describe("tree scatter", () => {
         for (let j = 0; j < 40; j += 1) if (treeAt(i, j, rule)) kept += 1
       return kept
     }
-    expect(count("wood")).toBeGreaterThan(count("grass"))
+    expect(count("wood")).toBeGreaterThan(count("residential"))
   })
 })
 
