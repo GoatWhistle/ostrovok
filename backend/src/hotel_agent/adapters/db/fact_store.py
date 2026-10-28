@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from datetime import datetime
 
 from psycopg import AsyncConnection
 from psycopg.types.json import Jsonb
@@ -50,6 +51,10 @@ WHERE ((c.subject_type = 'hotel' AND c.subject_id = %(hotel)s)
   AND (%(fact)s::text IS NULL OR %(fact)s::text = ANY(c.fact_ids))
 ORDER BY c.id"""
 
+RETIRE_EXPIRED = """UPDATE facts f SET status='stale'
+FROM hotels h WHERE h.id = f.subject_id AND h.region_id = %(region)s
+ AND f.status = 'active' AND f.valid_until IS NOT NULL AND f.valid_until <= %(now)s"""
+
 SAVE_CONFLICT = """INSERT INTO conflicts
     (id, subject_type, subject_id, characteristic_key, fact_ids, resolution, rule,
      winner_fact_id)
@@ -97,6 +102,10 @@ class PostgresFactStore:
             HOTEL_CONFLICTS, {"hotel": hotel_id, "fact": fact_id}
         )
         return [_conflict(row) for row in await cursor.fetchall()]
+
+    async def retire_expired(self, region: str, now: datetime) -> int:
+        cursor = await self._connection.execute(RETIRE_EXPIRED, {"region": region, "now": now})
+        return cursor.rowcount
 
     async def save_conflicts(self, records: Sequence[ConflictRecord]) -> None:
         for record in records:

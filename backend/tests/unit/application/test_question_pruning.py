@@ -94,7 +94,20 @@ async def test_an_answered_question_is_never_reopened_or_deferred(
     assert store.questions["q_done"].status == "answered"
 
 
-async def test_without_demand_the_queue_is_left_alone(
+async def test_without_demand_a_dry_run_changes_nothing(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    store = queue()
+    store.demand = []
+
+    report = await prune(store, registry)(REGION)
+
+    assert report == type(report)()
+    assert store.questions["q_noise"].status == "open"
+    assert store.questions["q_hidden"].status == "skipped"
+
+
+async def test_without_demand_applying_falls_back_to_the_unseen_sweep(
     registry: YamlCharacteristicRegistry,
 ) -> None:
     store = queue()
@@ -102,6 +115,7 @@ async def test_without_demand_the_queue_is_left_alone(
 
     report = await prune(store, registry)(REGION, apply=True)
 
-    assert report == type(report)()
-    assert store.questions["q_noise"].status == "open"
-    assert store.questions["q_hidden"].status == "skipped"
+    assert (report.deferred, report.applied) == (2, True)
+    assert store.questions["q_wanted"].status == "skipped"
+    assert store.questions["q_noise"].status == "skipped"
+    assert store.questions["q_done"].status == "answered"

@@ -14,6 +14,8 @@ export interface AppearancePackage {
     readonly roofToken: string | null
     readonly roofTokens?: readonly string[]
     readonly flatRoofTokens?: readonly string[]
+    readonly trimTokens?: { readonly steel: string; readonly brick: string }
+    readonly plasterTokens?: readonly string[]
     readonly shadowToken?: string
     readonly lightContrast?: number
     readonly duskTint?: number
@@ -21,6 +23,7 @@ export interface AppearancePackage {
   readonly effects: {
     readonly windows: boolean
     readonly facades: boolean
+    readonly roofs: boolean
     readonly lights: boolean
     readonly roadGlow: boolean
   }

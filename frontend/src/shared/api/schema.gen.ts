@@ -107,6 +107,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/chat/messages/stream": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Тот же ответ, но событиями по мере готовности
+         * @description Поток Server-Sent Events. Событие progress несёт стадию поиска (parsing, candidates, research, wish, review) и её поля; событие result — тот же Conversation, что возвращает /chat/messages; событие error — конверт ошибки.
+         */
+        post: operations["streamChatMessage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/hotels/{hotel_id}": {
         parameters: {
             query?: never;
@@ -733,6 +753,11 @@ export interface components {
             characteristic_key: string;
             /** @enum {string} */
             match: "full" | "partial" | "none" | "unknown" | "computing";
+            /**
+             * @description Запас измерения относительно порога, выше единицы — с запасом, ниже — впритык. Есть только там, где у условия числовой порог; для «да/нет» отсутствует.
+             * @example 1.4
+             */
+            margin?: number | null;
             /** @example Закат с 5-го этажа */
             label: string;
             /** @example Закат есть, но только с 5-го этажа западной стороны */
@@ -770,8 +795,16 @@ export interface components {
         };
         SearchResult: {
             hotel: components["schemas"]["HotelSummary"];
-            /** @example 0.82 */
+            /**
+             * @description Доля выполненных условий с учётом качества совпадения, без уверенности.
+             * @example 0.82
+             */
             score: number;
+            /**
+             * @description Общая уверенность в подтверждённых условиях, отдельно от соответствия.
+             * @example 0.74
+             */
+            confidence?: number;
             matched: components["schemas"]["MatchedProperty"][];
             camera?: components["schemas"]["Camera"];
             /** @description Упрощённый контур для отрисовки всех результатов сразу (MapLibre fill-extrusion) */
@@ -1456,6 +1489,30 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Conversation"];
+                };
+            };
+        };
+    };
+    streamChatMessage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ChatRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
                 };
             };
         };

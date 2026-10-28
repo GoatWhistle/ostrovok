@@ -3,6 +3,17 @@ from datetime import date
 
 from hotel_agent.domain.characteristics import Op, ScalarValue
 
+WIDE_OBJECT_RADIUS_M = {
+    ("aeroway", "aerodrome"): 5000,
+    ("aeroway", "terminal"): 5000,
+    ("leisure", "stadium"): 2000,
+    ("leisure", "nature_reserve"): 2000,
+    ("natural", "beach"): 1000,
+    ("natural", "peak"): 5000,
+    ("natural", "water"): 2000,
+    ("tourism", "theme_park"): 2000,
+}
+
 OSM_OBJECT_KEYS = (
     "amenity",
     "shop",

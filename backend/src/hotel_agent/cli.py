@@ -313,6 +313,7 @@ async def _refresh_facts(args: Namespace, settings: Settings) -> int:
         )(args.region, args.limit)
     finally:
         await uow.aclose()
+    print(f"retired: {report.retired}")
     print(f"checked: {report.checked}")
     print(f"recomputed: {report.recomputed}")
     print(f"changed: {report.changed}")

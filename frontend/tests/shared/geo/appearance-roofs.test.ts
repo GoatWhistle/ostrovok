@@ -1,6 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { expect, it, vi } from "vitest"
 import { renderAppearanceRoofs } from "@/shared/geo/appearance/roofs"
+import { overviewHeight } from "@/shared/geo/overview-buildings"
 
 function scene() {
   const layers = new Map<string, { id: string; filter?: unknown; paint: Record<string, unknown> }>([
@@ -38,7 +39,8 @@ it("keeps roof caps on the same real buildings and follows the owner's exclusion
   renderAppearanceRoofs(instance, "#b46b55")
   const roof = layers.get("toy-overview-roofs")
   expect(roof?.filter).toEqual([">", ["get", "height_m"], 0])
-  expect(roof?.paint["fill-extrusion-base"]).toEqual(["get", "height_m"])
+  expect(roof?.paint["fill-extrusion-base"]).toEqual(overviewHeight())
+  expect(roof?.paint["fill-extrusion-height"]).toEqual(overviewHeight(0.25))
   const filter = ["all", [">", ["get", "height_m"], 0], ["!=", ["get", "id"], "selected-hotel"]]
   map.setFilter("overview-volumes", filter)
   renderAppearanceRoofs(instance, "#b46b55")

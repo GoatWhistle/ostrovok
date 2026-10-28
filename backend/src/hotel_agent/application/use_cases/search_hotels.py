@@ -28,7 +28,13 @@ from hotel_agent.application.ports.search_areas import SearchAreasPort
 from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
-from hotel_agent.application.search_selection import Rejection, Selection, select_candidates
+from hotel_agent.application.search_selection import (
+    Rejection,
+    Selection,
+    nearest_matches,
+    not_shown,
+    select_candidates,
+)
 from hotel_agent.application.spatial_matching import spatial_intent
 from hotel_agent.application.use_cases.evaluate_window_views import EvaluateWindowViews
 from hotel_agent.domain.errors import InvalidQuery
@@ -59,6 +65,9 @@ class SearchOutcome:
     rejected: tuple[Rejection, ...] = ()
     asked: tuple[AskedHotelier, ...] = ()
     review: ReviewResult | None = None
+
+
+COUNTRY_NAMES = frozenset({"россия", "russia"})
 
 
 class SearchHotels:
@@ -103,8 +112,9 @@ class SearchHotels:
             + tuple(spatial_intent(request) for request in parsed.spatial_requests),
         )
         location = parsed.location_hint.strip() if parsed.location_hint else None
-        if location and location.casefold() in {"россия", "russia"}:
+        if location and location.casefold() in COUNTRY_NAMES:
             location = None
+            parsed = replace(parsed, anywhere=True, needs_clarification=False)
         progress.step("parsed", **_understood(parsed, location))
         if parsed.needs_clarification or (not location and not parsed.anywhere):
             return _empty(
@@ -126,6 +136,14 @@ class SearchHotels:
             ),
             None,
         )
+        nearby_request = next(
+            (
+                r
+                for r in parsed.nearby_objects
+                if r.name and location and r.name.casefold() == location.casefold()
+            ),
+            None,
+        )
         candidates = await find_candidates(
             query,
             location,
@@ -138,6 +156,7 @@ class SearchHotels:
             self._geographic_objects,
             landmarks,
             location_request,
+            nearby_request,
         )
         if candidates.location_hint:
             location = candidates.location_hint
@@ -203,9 +222,8 @@ class SearchHotels:
             attempt = await self._selection(query, retried_parsed, retried, limit)
             if attempt.accepted:
                 explored, parsed, selection = retried, retried_parsed, attempt
-        results = [
-            SearchResult(hotel=hotel, scored=scored) for hotel, scored in selection.accepted[:limit]
-        ]
+        chosen = selection.accepted or nearest_matches(selection.ranked, limit)
+        results = [SearchResult(hotel=hotel, scored=scored) for hotel, scored in chosen[:limit]]
         await save_search_evidence(
             self._uow, explored.facts, [item.hotel.id for item in results], explored.features
         )
@@ -218,7 +236,7 @@ class SearchHotels:
             question=explored.question,
             wish_results=explored.wish_results,
             review=selection.report,
-            rejected=selection.rejected,
+            rejected=not_shown(selection.rejected, {item.hotel.id for item in results}),
             asked=asked,
         )
 

@@ -58,7 +58,7 @@ def build_parser() -> ArgumentParser:
         "--cold-start",
         type=int,
         default=20,
-        help="How many questions to queue when no search demand is recorded yet",
+        help="How many hotels to seed questions for when no search demand is recorded yet",
     )
 
     pruning = commands.add_parser(

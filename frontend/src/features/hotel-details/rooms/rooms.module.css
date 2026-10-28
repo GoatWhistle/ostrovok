@@ -68,6 +68,11 @@
   object-fit: cover;
 }
 
+.rowPhoto[data-empty] {
+  inline-size: var(--space-40);
+  block-size: var(--space-40);
+}
+
 .rowName {
   composes: bodyStrong from "../../../shared/styles/compose.module.css";
   overflow-wrap: anywhere;

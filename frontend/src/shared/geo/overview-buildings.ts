@@ -4,8 +4,10 @@ import { labelAnchor } from "./basemap-labels"
 const SOURCE = "sochi-map"
 const SOURCE_LAYER = "buildings"
 const SCENE_STATE = "scene"
+const MESH_STATE = "mesh"
+export const MESH_FROM = 15
 const ESTIMATED_HEIGHT_M = 6.4
-const marked = new WeakMap<MapLibreMap, Set<string>>()
+const marked = new WeakMap<MapLibreMap, Readonly<Record<string, Set<string>>>>()
 const HEIGHT: ExpressionSpecification = [
   "max",
   0,
@@ -13,22 +15,39 @@ const HEIGHT: ExpressionSpecification = [
 ]
 
 export const IN_SCENE: ExpressionSpecification = ["boolean", ["feature-state", SCENE_STATE], false]
-export const OVERVIEW_HEIGHT: ExpressionSpecification = ["case", IN_SCENE, 0, HEIGHT]
+const IN_MESH: ExpressionSpecification = ["boolean", ["feature-state", MESH_STATE], false]
 
-export function markSceneBuildings(map: MapLibreMap, ids: readonly string[]) {
+export function overviewHeight(lift = 0): ExpressionSpecification {
+  const raised: ExpressionSpecification = ["+", HEIGHT, lift]
+  return [
+    "step",
+    ["zoom"],
+    ["case", IN_SCENE, 0, raised],
+    MESH_FROM,
+    ["case", ["any", IN_SCENE, IN_MESH], 0, raised],
+  ]
+}
+
+function mark(map: MapLibreMap, state: string, ids: readonly string[]) {
   if (!map.getSource(SOURCE)) return
   const next = new Set(ids)
-  const previous = marked.get(map) ?? new Set<string>()
+  const all = marked.get(map) ?? {}
+  const previous = all[state] ?? new Set<string>()
   for (const id of previous)
     if (!next.has(id))
-      map.removeFeatureState({ source: SOURCE, sourceLayer: SOURCE_LAYER, id }, SCENE_STATE)
+      map.removeFeatureState({ source: SOURCE, sourceLayer: SOURCE_LAYER, id }, state)
   for (const id of next)
     if (!previous.has(id))
-      map.setFeatureState(
-        { source: SOURCE, sourceLayer: SOURCE_LAYER, id },
-        { [SCENE_STATE]: true },
-      )
-  marked.set(map, next)
+      map.setFeatureState({ source: SOURCE, sourceLayer: SOURCE_LAYER, id }, { [state]: true })
+  marked.set(map, { ...all, [state]: next })
+}
+
+export function markSceneBuildings(map: MapLibreMap, ids: readonly string[]) {
+  mark(map, SCENE_STATE, ids)
+}
+
+export function markMeshBuildings(map: MapLibreMap, ids: readonly string[]) {
+  mark(map, MESH_STATE, ids)
 }
 
 export function renderOverviewBuildings(
@@ -56,7 +75,7 @@ export function renderOverviewBuildings(
       filter,
       paint: {
         "fill-extrusion-color": color,
-        "fill-extrusion-height": OVERVIEW_HEIGHT,
+        "fill-extrusion-height": overviewHeight(),
         "fill-extrusion-base": 0,
         "fill-extrusion-opacity": 1,
         "fill-extrusion-vertical-gradient": true,

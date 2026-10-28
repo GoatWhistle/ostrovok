@@ -28,7 +28,7 @@ NEXT = hotel("next", "Абрис")
 FAR = hotel("far", "Аида")
 
 
-def test_equal_scores_rank_by_closer_value_not_by_hotel_name() -> None:
+def test_a_measured_wish_ranks_by_the_closer_value_not_by_hotel_name() -> None:
     wish = Intent(
         characteristic_key="distance_to_sea",
         op=Op.LTE,
@@ -56,8 +56,11 @@ def test_equal_scores_rank_by_closer_value_not_by_hotel_name() -> None:
         key=lambda pair: search_rank(pair[0], pair[1]),
     )
 
-    assert {pair[1].score for pair in ranked} == {ranked[0][1].score}
     assert [pair[0].id for pair in ranked] == ["near", "far", "next"]
+    assert [round(pair[1].score, 4) for pair in ranked] == sorted(
+        (round(pair[1].score, 4) for pair in ranked), reverse=True
+    )
+    assert len({round(pair[1].score, 4) for pair in ranked}) == 3
 
 
 def test_unknown_scores_keep_candidate_order_instead_of_alphabet() -> None:
@@ -99,3 +102,14 @@ def test_derived_wish_ranks_by_native_measurement_behind_boolean_match() -> None
     )
 
     assert [pair[0].id for pair in ranked] == ["far", "near", "next"]
+
+
+def test_equal_scores_fall_back_to_stars_instead_of_candidate_order() -> None:
+    plain = replace(hotel("plain", "Бета"), stars=2)
+    best = replace(hotel("best", "Альфа"), stars=5)
+    unrated = hotel("unrated", "Гамма")
+    empty = Scored(score=0.0, matches=(), disqualified=False)
+
+    ranked = sorted((plain, unrated, best), key=lambda item: search_rank(item, empty))
+
+    assert [item.id for item in ranked] == ["best", "plain", "unrated"]

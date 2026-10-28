@@ -72,6 +72,7 @@ def build(
                 list_hotels=AsyncMock(return_value=[hotel(9)]),
             ),
             facts=SimpleNamespace(
+                retire_expired=AsyncMock(return_value=3),
                 save=AsyncMock(side_effect=lambda rows: saved.extend(rows)),
                 versions=AsyncMock(return_value=list(stale)),
                 save_conflicts=AsyncMock(side_effect=lambda rows: conflicts.extend(rows)),
@@ -145,3 +146,13 @@ async def test_a_closed_view_reaches_the_hotelier_as_a_notification(
     settled = next(item for item in notices if item.kind == "conflict_resolved")
     assert settled.payload["resolution"] == "resolved_by_rule"
     assert settled.payload["rule"]
+
+
+async def test_expired_facts_lose_their_active_status_first(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    refresh, _, _, _ = build([], 14.0, registry)
+
+    report = await refresh("sochi")
+
+    assert report.retired == 3

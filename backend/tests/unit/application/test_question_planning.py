@@ -66,10 +66,10 @@ async def test_a_fresh_region_still_gets_a_bounded_starter_queue(
 ) -> None:
     store = Store()
 
-    added = await plan(store, registry)(REGION, cold_start=2)
+    added = await plan(store, registry)(REGION, cold_start=1)
 
-    assert added == 2
-    assert len(store.questions) == 2
+    assert added == len(ASKABLE)
+    assert {item.hotel_id for item in store.questions.values()} == {"h1"}
 
 
 async def test_without_demand_and_without_a_cold_start_nothing_is_queued(

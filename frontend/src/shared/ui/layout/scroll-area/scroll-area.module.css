@@ -4,3 +4,9 @@
   scrollbar-gutter: stable;
   overscroll-behavior: contain;
 }
+
+@media (pointer: coarse) {
+  .scroll {
+    scrollbar-gutter: auto;
+  }
+}

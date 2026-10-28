@@ -2,7 +2,7 @@ import type { Map as MapLibreMap } from "maplibre-gl"
 import { renderBasemap } from "../basemap"
 import { type BasemapAssets, outside, renderBasemapLabels } from "../basemap-labels"
 import { type CatalogClass, renderCatalogLayers } from "../catalog-layers"
-import { paintRoofForms } from "../roof-forms/layer"
+import { paintRoofMesh } from "../roof-mesh/paint"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
 import { tintForTime, tintHex } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
@@ -88,12 +88,23 @@ export class MapAppearanceController {
     const colors = resolve(tokens)
     const flat = resolve(materials.flatRoofTokens ?? tokens)
     renderAppearanceRoofs(this.map, roofPaint(flat))
-    const edge = style.getPropertyValue(palette.buildingLine).trim()
-    paintRoofForms(
+    const tone = (token: string) =>
+      tintHex(style.getPropertyValue(token).trim(), sky, altitude, materials.duskTint)
+    paintRoofMesh(
       this.map,
-      colors,
-      flat,
-      edge ? tintHex(edge, sky, altitude, materials.duskTint) : undefined,
+      materials.trimTokens
+        ? {
+            pitched: colors,
+            gravel: flat,
+            plaster: resolve(materials.plasterTokens ?? [palette.building]),
+            steel: tone(materials.trimTokens.steel),
+            brick: tone(materials.trimTokens.brick),
+            wall: tone(palette.building),
+            sky: readAppearanceColors(this.appearance),
+            azimuth: this.scene?.sun.azimuth ?? 0,
+            altitude,
+          }
+        : undefined,
     )
     const sun = this.scene?.sun
     const shadow = materials.shadowToken
@@ -115,7 +126,7 @@ export class MapAppearanceController {
       scene.sun.altitude,
       APPEARANCES[this.appearance].materials.duskTint,
     )
-    const classes = appearanceClasses(this.appearance, scene.catalog, tinted)
+    const classes = appearanceClasses(this.appearance, scene.catalog, tinted, scene.sun.altitude)
     if (!map.getLayer("canvas"))
       map.addLayer({ id: "canvas", type: "background", paint: { "background-color": tinted.sea } })
     renderTerrain(map, tinted, scene.sun, APPEARANCES[this.appearance].materials.lightContrast)

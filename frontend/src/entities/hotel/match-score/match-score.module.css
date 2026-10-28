@@ -20,3 +20,9 @@
 .quiet[data-complete="false"] .mark {
   color: var(--status-warning);
 }
+
+.confidence {
+  color: var(--text-secondary);
+  font-variant-numeric: var(--font-numeric);
+  white-space: nowrap;
+}

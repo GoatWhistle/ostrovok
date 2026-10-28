@@ -1,3 +1,4 @@
+import asyncio
 from pathlib import Path
 from typing import Any, cast
 from unittest.mock import AsyncMock
@@ -33,7 +34,7 @@ def test_chat_contract_accepts_consultation_and_preserves_search_message(
         FakeLLM(registry),
         cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, [])),
         cast(SearchHotels, search),
-        lambda r, took: search_schema(r, registry, took).model_dump(mode="json"),
+        lambda r, took_ms: search_schema(r, registry, took_ms).model_dump(mode="json"),
         registry,
     )
     app = FastAPI()
@@ -53,3 +54,35 @@ def test_chat_contract_accepts_consultation_and_preserves_search_message(
         validate("Conversation", advice)
         assert found["search_message_id"] == advice["search_message_id"]
         assert advice["search"] == found["search"] and search.await_count == 1
+
+
+def test_chat_reports_the_time_the_search_actually_took(
+    characteristics_dir: Path,
+    validate: Any,
+) -> None:
+    registry = YamlCharacteristicRegistry.from_directory(characteristics_dir)
+    repository = FakeChatRepository()
+
+    async def slow(*args: object, **kwargs: object) -> SearchOutcome:
+        await asyncio.sleep(0.05)
+        return SearchOutcome(
+            query_id="q",
+            parsed=ParsedQuery(intents=(), unmatched_terms=(), location_hint="Сочи"),
+            results=(),
+        )
+
+    chat = Chat(
+        FakeLLM(registry),
+        cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, [])),
+        cast(SearchHotels, slow),
+        lambda r, took_ms: search_schema(r, registry, took_ms).model_dump(mode="json"),
+        registry,
+    )
+    app = FastAPI()
+    app.include_router(build_router(chat, registry))
+    with TestClient(app) as client:
+        found = client.post("/chat/messages", json={"message": "Найди отель в Сочи"}).json()
+
+    validate("Conversation", found)
+    assert found["search"] is not None
+    assert found["search"]["took_ms"] >= 50

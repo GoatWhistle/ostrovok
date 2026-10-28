@@ -2,6 +2,7 @@ import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { retryingTileUrl } from "./dem-protocol"
 import { addSnowLayers, paintSnow, rgba } from "./snow"
 import { skyPalette, sunLight } from "./sun-light"
+import { mixHex } from "./time-tint"
 import { renderWorldWater } from "./world/water"
 import { WORLD_WATER_FADE_FROM } from "./world/water-layers"
 
@@ -38,6 +39,8 @@ export interface TerrainColors {
 export type LightMode = "day" | "dusk" | "night"
 
 export const TERRAIN_TILE_VERSION = "2"
+const HORIZON_SEA = 0.5
+const FOG_LAND = 0.45
 const DEM_TILES = `/api/v1/map/terrain/{z}/{x}/{y}.png?v=${TERRAIN_TILE_VERSION}`
 const DEM_MAX_ZOOM = 14
 const FALLBACK_MAX_ZOOM = 6
@@ -186,8 +189,8 @@ export function renderTerrain(
   map.setLight({ anchor: "map", ...sunLight(colors, sun.azimuth, sun.altitude, contrast) })
   map.setSky({
     "sky-color": sky,
-    "horizon-color": sea,
-    "fog-color": sea,
+    "horizon-color": mixHex(sky, sea, HORIZON_SEA),
+    "fog-color": mixHex(sky, colors.land, FOG_LAND),
     "sky-horizon-blend": 0.55,
     "horizon-fog-blend": 0.7,
     "fog-ground-blend": 0.5,

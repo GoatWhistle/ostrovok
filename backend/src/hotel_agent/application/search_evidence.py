@@ -5,6 +5,12 @@ from hotel_agent.application.fact_records import fact_from_record
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
 from hotel_agent.domain.entities import Fact
 
+UNRESOLVED_METHOD = "wish_agent@1"
+
+
+def unresolved(record: SearchFactRecord) -> bool:
+    return record.value is None and record.method == UNRESOLVED_METHOD
+
 
 async def save_search_evidence(
     uow_factory: UnitOfWorkFactory,
@@ -12,7 +18,7 @@ async def save_search_evidence(
     hotel_ids: Sequence[str],
     features: Sequence[GeoFeatureRecord] = (),
 ) -> None:
-    selected = [r for r in records if r.hotel_id in hotel_ids]
+    selected = [r for r in records if r.hotel_id in hotel_ids and not unresolved(r)]
     if selected:
         async with uow_factory() as uow:
             refs = {ref for row in selected for ref in row.geo_refs}

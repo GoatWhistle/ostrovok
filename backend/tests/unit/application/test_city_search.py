@@ -4,6 +4,8 @@ from typing import cast
 from unittest.mock import AsyncMock, MagicMock
 
 from hotel_agent.application import progress
+from hotel_agent.application.agent.recommendation_review import RecommendationReview
+from hotel_agent.application.agent.semantic_review import ReviewRejection, ReviewResult
 from hotel_agent.application.dto import SearchHotelRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
@@ -23,6 +25,7 @@ def search(
     city_bbox: tuple[float, float, float, float] | None = None,
     areas: SearchAreasPort | None = None,
     semantic: SemanticSearchPort | None = None,
+    review: RecommendationReview | None = None,
 ) -> tuple[SearchHotels, SimpleNamespace, SimpleNamespace, MagicMock]:
     llm = SimpleNamespace(parse_query=AsyncMock(return_value=parsed))
     regions = SimpleNamespace(
@@ -64,6 +67,7 @@ def search(
         cast(ClockPort, clock),
         areas=areas,
         semantic=semantic,
+        review=review,
     )
     return use_case, regions, hotels, scope
 
@@ -263,3 +267,38 @@ async def test_the_understood_request_is_reported_before_hotels_are_read() -> No
             },
         ),
     ]
+
+
+async def test_a_review_that_confirms_nothing_still_shows_the_nearest_candidates() -> None:
+    parsed = ParsedQuery(
+        intents=(
+            Intent(
+                characteristic_key="derived:abc123",
+                op=Op.EQ,
+                value=True,
+                weight=1.0,
+                required=False,
+                source_text="двухместный номер",
+            ),
+        ),
+        unmatched_terms=(),
+        location_hint="Москва",
+    )
+    review = SimpleNamespace(
+        check=AsyncMock(
+            return_value=ReviewResult(
+                (),
+                ("m1",),
+                False,
+                (ReviewRejection("m1", "no_verified_wish", "Ни одно пожелание не проверено."),),
+            )
+        )
+    )
+    use_case, _, _, _ = search(
+        parsed, city_bbox=(37.4, 55.5, 37.9, 56.0), review=cast(RecommendationReview, review)
+    )
+
+    result = await use_case("двухместный номер в Москве", "russia", None, 20)
+
+    assert [item.hotel.id for item in result.results] == ["m1"]
+    assert result.results[0].scored.matches[0].quality is MatchQuality.UNKNOWN

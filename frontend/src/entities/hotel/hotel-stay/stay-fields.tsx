@@ -1,5 +1,5 @@
-import { useTranslation } from "@/shared/i18n"
-import { Button, Icon, TextField } from "@/shared/ui"
+import { useLocale, useTranslation } from "@/shared/i18n"
+import { Button, Icon, ScrollArea, TextField } from "@/shared/ui"
 import { type StayContext, useHotelStay } from "./hotel-stay"
 import styles from "./stay-fields.module.css"
 
@@ -52,6 +52,7 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
   const shared = useHotelStay()
   const { value, update } = control ?? shared
   const { checkIn, checkOut, adults } = value
+  const { locale } = useLocale()
   const today = localDate(new Date())
   const setCheckIn = (value: string) => update({ checkIn: value })
   const setCheckOut = (value: string) => update({ checkOut: value })
@@ -61,6 +62,7 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
       <div className={styles.fields}>
         <TextField
           type="date"
+          lang={locale}
           label={t("explore:offers.checkIn")}
           min={today}
           max={addDays(today, 730)}
@@ -73,6 +75,7 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
         />
         <TextField
           type="date"
+          lang={locale}
           label={t("explore:offers.checkOut")}
           min={addDays(checkIn, 1)}
           max={addDays(checkIn, 30)}
@@ -114,7 +117,7 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
       {!hasStay(checkIn, checkOut, adults) ? (
         <>
           <p className={styles.note}>{t("explore:offers.pickDates")}</p>
-          <div className={styles.presets}>
+          <ScrollArea className={styles.presets}>
             {PRESETS.map((preset) => (
               <Button
                 key={preset.key}
@@ -129,7 +132,7 @@ export function StayFields({ control }: { readonly control?: StayContext }) {
                 {t(preset.label)}
               </Button>
             ))}
-          </div>
+          </ScrollArea>
         </>
       ) : null}
     </div>

@@ -103,14 +103,8 @@ class PlanHotelierQuestions:
                     limit,
                 )
             elif cold_start > 0:
-                chosen = self._rank(
-                    await uow.questions.candidates(region, keys, None, cold_start),
-                    askable,
-                    blocked,
-                    now,
-                    cold_start,
-                    gated=False,
-                )
+                starter = await uow.questions.candidates(region, keys, None, cold_start)
+                chosen = self._rank(starter, askable, blocked, now, len(starter), gated=False)
             questions = [self._question(item, askable, now) for item in chosen]
             added = await uow.questions.add([question_to_record(item) for item in questions])
             await hotelier_events.announce(

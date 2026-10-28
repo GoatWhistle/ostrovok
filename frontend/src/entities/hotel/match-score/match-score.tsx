@@ -49,3 +49,18 @@ export function MatchScore({ score, quiet = false, className }: MatchScoreProps)
     </StatusBadge>
   )
 }
+
+export interface MatchConfidenceProps {
+  readonly value: number | undefined
+  readonly className?: string | undefined
+}
+
+export function MatchConfidence({ value, className }: MatchConfidenceProps) {
+  const { t } = useTranslation()
+  if (value === undefined || value <= 0) return null
+  return (
+    <span className={clsx(styles.confidence, className)}>
+      {t("explore:results.confidence", { value })}
+    </span>
+  )
+}

@@ -1,16 +1,9 @@
 # Project context
 
-Factmap: поиск отелей по пожеланиям с объяснениями и данными на карте. P0: тихий номер,
-вид на закат и близость моря. Организаторские поля пока не заполнены в `brief/`.
+Factmap: поиск отелей по пожеланиям с доказательствами на карте. RU default.
 
-Источник формы API: [OpenAPI](../docs/api/openapi.yaml). Состояние и инструкции:
-[SESSION](SESSION.md), [вопросы](open-questions.md).
-
-| Topic | Status | Evidence |
-|---|---|---|
-| Цикл пожеланий, поиск номеров и смысловая проверка ответа | implemented, locally tested | [Механизм](../docs/wish-agent.md), [649 backend checks](../docs/evidence.md#запуск-агентского-цикла-и-смысловой-проверки-26-октября-2026) |
-| Основной стенд :8080 | verified, 2026-10-26 | Новый цикл и проверка ответа; Yandex DeepSeek, `agent-loop-stand-20261026b`. [Запуск](../work/stand-restart/README.md) |
-| Данные и карта | previous verified state | [Полные прежние факты](../work/per-wish-agent/context-before.md) |
-
-[Документация](../docs/README.md), [рабочие материалы](../work/README.md),
-[предыдущая сессия](../work/per-wish-agent/session-before.md).
+[Current state and exact instructions](SESSION.md), [open questions](open-questions.md).
+[API contract](../docs/api/openapi.yaml), [product docs](../docs/README.md).
+[Prior verified stand/data facts and evidence](../work/stand-agent-deployment/readme-before-recovery.md).
+[ТЗ трека дословно](../brief/TASK.md), [требования и задачи](../brief/requirements.md) — записаны
+2026-10-27 со страницы docs.ostrovok.tech; критериев жюри, весов и дедлайна на ней нет.

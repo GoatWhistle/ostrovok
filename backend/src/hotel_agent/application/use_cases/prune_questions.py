@@ -49,7 +49,11 @@ class PruneHotelierQuestions:
                 {(item.hotel_id, item.characteristic_key) for item in demand if item.blocked > 0}
             )
             if not backed:
-                return PruneReport()
+                if not apply:
+                    return PruneReport()
+                swept = await uow.questions.prune(region)
+                await uow.commit()
+                return PruneReport(deferred=swept, applied=True)
             blocked = {(item.hotel_id, item.characteristic_key): item.blocked for item in demand}
             unbacked = await uow.questions.open_without_demand(region, keys, backed)
             waiting = await uow.questions.deferred_with_demand(region, backed)

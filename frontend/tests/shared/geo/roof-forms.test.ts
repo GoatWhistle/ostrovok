@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
-import { roofFrame } from "../../../src/shared/geo/roof-forms/footprint"
-import { pitchedRoof, type RoofSource } from "../../../src/shared/geo/roof-forms/tiers"
+import { toLocal } from "../../../src/shared/geo/roof-forms/footprint"
+import { type RoofSource, roofKind } from "../../../src/shared/geo/roof-forms/tiers"
+import { localFrame } from "../../../src/shared/geo/roof-mesh/frame"
 import { darkness, sunLight, warmth } from "../../../src/shared/geo/sun-light"
 import { tintHex } from "../../../src/shared/geo/time-tint"
 
@@ -25,41 +26,30 @@ function house(ring: [number, number][], height = 7, id = "w1"): RoofSource {
   }
 }
 
-describe("pitched roofs", () => {
+describe("roof kinds", () => {
   it("measures the long side and width of a footprint in metres", () => {
-    const frame = roofFrame(box(20, 10))
+    const frame = localFrame(toLocal(box(20, 10)).points)
     expect(frame?.length).toBeCloseTo(20, 0)
     expect(frame?.width).toBeCloseTo(10, 0)
     expect(frame?.rectangularity).toBeCloseTo(1, 2)
   })
 
-  it("stacks narrowing tiers from the eaves up to the ridge", () => {
-    const tiers = pitchedRoof(house(box(20, 10)))
-    expect(tiers).toHaveLength(6)
-    expect(tiers[0]?.properties?.base).toBe(7)
-    const tops = tiers.map((tier) => tier.properties?.top as number)
-    expect(tops).toEqual([...tops].sort((a, b) => a - b))
-    expect(tops.at(-1)).toBeLessThanOrEqual(7 + 4.5)
-    const top = tiers.at(-1)?.geometry.coordinates[0] ?? []
-    const frame = roofFrame(top as [number, number][])
-    expect(frame?.width).toBeLessThan(3)
+  it("finds the true rectangle of a square footprint", () => {
+    expect(localFrame(toLocal(box(12, 12)).points)?.rectangularity).toBeCloseTo(1, 2)
   })
 
-  it("puts a parapet and a recessed deck on tall blocks", () => {
-    const [parapet, deck] = pitchedRoof(house(box(30, 20), 30))
-    expect(parapet?.properties?.edge).toBe(true)
-    expect(parapet?.geometry.coordinates).toHaveLength(2)
-    expect(parapet?.properties?.top).toBeCloseTo(30.9)
-    expect(deck?.properties?.top).toBeCloseTo(30.3)
+  it("pitches low rectangular houses and keeps tall blocks flat", () => {
+    expect(roofKind(house(box(20, 10)))).toBe("pitched")
+    expect(roofKind(house(box(30, 20), 30))).toBe("flat")
   })
 
-  it("leaves hotels and irregular footprints to the flat cap", () => {
+  it("leaves hotels to the flat cap and irregular footprints flat", () => {
     expect(
-      pitchedRoof({
+      roofKind({
         ...house(box(20, 10)),
         properties: { ...house(box(20, 10)).properties, hotel_id: "h" },
       }),
-    ).toHaveLength(0)
+    ).toBe("none")
     const ell: [number, number][] = [
       [39.7, LAT],
       [39.7 + 20 * DX, LAT],
@@ -69,7 +59,7 @@ describe("pitched roofs", () => {
       [39.7, LAT + 20 * DY],
       [39.7, LAT],
     ]
-    expect(pitchedRoof(house(ell))).toHaveLength(0)
+    expect(roofKind(house(ell))).toBe("flat")
   })
 })
 

@@ -1,9 +1,22 @@
 import json
+import unicodedata
 
 from hotel_agent.application.agent.recommendation_review import recommendation_claim
 from hotel_agent.application.agent.semantic_review import ReviewClaim, SemanticReview
 from hotel_agent.application.agent.wish_records import WishStatus
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
+
+FOREIGN_BLOCKS = ("CJK", "HIRAGANA", "KATAKANA", "HANGUL", "ARABIC", "DEVANAGARI", "THAI")
+
+
+def foreign_script(answer: str) -> bool:
+    for symbol in answer:
+        if not symbol.isalpha():
+            continue
+        name = unicodedata.name(symbol, "")
+        if any(block in name for block in FOREIGN_BLOCKS):
+            return True
+    return False
 
 
 class ChatAnswerReview:
@@ -11,6 +24,8 @@ class ChatAnswerReview:
         self._review = review
 
     async def accepts(self, query: str, answer: str, search: SearchOutcome) -> bool:
+        if foreign_script(answer):
+            return False
         parsed = search.parsed
         evidence = {
             "location_hint": parsed.location_hint,

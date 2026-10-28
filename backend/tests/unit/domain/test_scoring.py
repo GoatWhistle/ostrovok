@@ -99,12 +99,16 @@ def test_a_fact_being_computed_is_reported_as_such(make_fact: FactMaker, now: da
 
 
 def test_score_weighs_quality_by_confidence(make_fact: FactMaker, now: datetime) -> None:
-    facts = {"distance_to_sea": make_fact(value=6.0, confidence=0.8, ttl_days=None)}
+    partial = score(
+        [intent()], {"distance_to_sea": make_fact(value=6.0, confidence=0.8, ttl_days=None)}, now
+    )
+    certain = score(
+        [intent()], {"distance_to_sea": make_fact(value=6.0, confidence=1.0, ttl_days=None)}, now
+    )
 
-    result = score([intent()], facts, now)
-
-    assert result.score == pytest.approx(0.8)
-    assert not result.disqualified
+    assert partial.score == pytest.approx(certain.score * 0.8)
+    assert partial.confidence == pytest.approx(0.8)
+    assert not partial.disqualified
 
 
 def test_score_is_the_weighted_share_of_what_matched(make_fact: FactMaker, now: datetime) -> None:
@@ -116,7 +120,11 @@ def test_score_is_the_weighted_share_of_what_matched(make_fact: FactMaker, now: 
     }
     wanted = [intent(weight=3.0), intent("sunset_view", Op.EQ, True, weight=1.0)]
 
-    assert score(wanted, facts, now).score == pytest.approx(1.0)
+    result = score(wanted, facts, now)
+
+    assert result.score == pytest.approx(1.05)
+    assert result.confidence == pytest.approx(1.0)
+    assert [item.quality for item in result.matches] == [MatchQuality.FULL, MatchQuality.FULL]
 
 
 def test_an_unknown_property_lowers_the_score_without_removing_the_hotel(
@@ -126,8 +134,9 @@ def test_an_unknown_property_lowers_the_score_without_removing_the_hotel(
     wanted = [intent(weight=1.0), intent("sunset_view", Op.EQ, True, weight=1.0)]
 
     result = score(wanted, facts, now)
+    alone = score([intent(weight=1.0)], facts, now)
 
-    assert result.score == pytest.approx(0.5)
+    assert result.score == pytest.approx(alone.score / 2)
     assert not result.disqualified
     assert [item.quality for item in result.matches] == [MatchQuality.FULL, MatchQuality.UNKNOWN]
 
@@ -139,9 +148,10 @@ def test_a_required_property_that_is_unknown_keeps_a_partial_recommendation(
     wanted = [intent(), intent("pets_policy", Op.EQ, True, required=True)]
 
     result = score(wanted, facts, now)
+    alone = score([intent()], facts, now)
 
     assert not result.disqualified
-    assert result.score == pytest.approx(0.5)
+    assert result.score == pytest.approx(alone.score / 2)
     assert result.matches[1].quality is MatchQuality.UNKNOWN
 
 

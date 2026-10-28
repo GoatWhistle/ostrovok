@@ -39,6 +39,7 @@ class FactBriefSchema(BaseModel):
 class MatchedPropertySchema(BaseModel):
     characteristic_key: str
     match: str
+    margin: float | None = None
     label: str
     explanation: str | None = None
     fact: FactBriefSchema | None = None
@@ -57,6 +58,7 @@ class BuildingFeatureSchema(BaseModel):
 class SearchResultSchema(BaseModel):
     hotel: HotelSummarySchema
     score: float
+    confidence: float = 0.0
     matched: list[MatchedPropertySchema]
     camera: CameraSchema
     footprint: BuildingFeatureSchema | None = None
@@ -207,6 +209,7 @@ def _search_result(
     return SearchResultSchema(
         hotel=hotel_summary_schema(hotel),
         score=round(result.scored.score, 3),
+        confidence=round(result.scored.confidence, 3),
         matched=[
             _matched_schema(
                 match, registry, camera, asked.get((hotel.id, match.intent.characteristic_key))
@@ -244,6 +247,7 @@ def _matched_schema(
     return MatchedPropertySchema(
         characteristic_key=match.intent.characteristic_key,
         match=match.quality,
+        margin=round(match.margin, 3) if match.margin is not None else None,
         label=label,
         explanation=fact.explanation if fact else "Нет подтверждённого факта",
         fact=brief,

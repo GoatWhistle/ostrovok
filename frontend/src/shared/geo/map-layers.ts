@@ -1,7 +1,7 @@
 import type { Feature, FeatureCollection } from "geojson"
 import type { ExpressionSpecification, GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "./basemap-labels"
-import { CONTEXT_ROOF_FORMS, contextRoofs, renderRoofForms } from "./roof-forms/layer"
+import { contextRoofs } from "./roof-forms/layer"
 
 export interface BuildingColors {
   readonly building: string
@@ -46,9 +46,7 @@ function paintBuildings(map: MapLibreMap, colors: BuildingColors) {
 
 export function renderBuildings(map: MapLibreMap, data: FeatureCollection, colors: BuildingColors) {
   const before = labelAnchor(map)
-  const { buildings, roofs } = contextRoofs(data)
-  updateSource(map, "buildings", buildings)
-  renderRoofForms(map, roofs, [], CONTEXT_ROOF_FORMS)
+  updateSource(map, "buildings", contextRoofs(data))
   if (map.getLayer("buildings-volume")) {
     paintBuildings(map, colors)
     return

@@ -62,7 +62,7 @@ def build(registry: YamlCharacteristicRegistry, llm: Any = None) -> SimpleNamesp
         cast(LLMPort, llm),
         cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, [])),
         cast(SearchHotels, search),
-        lambda r, _took: {"query_id": r.query_id},
+        lambda r, took_ms: {"query_id": r.query_id},
         registry,
         cast(GetHotelCard, card),
     )

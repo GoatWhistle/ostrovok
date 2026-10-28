@@ -2,6 +2,7 @@ import type { FeatureCollection } from "geojson"
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
 import { updateSource } from "../map-layers"
+import { MESH_FROM } from "../overview-buildings"
 
 export interface NightColors {
   readonly lamp: string
@@ -30,8 +31,12 @@ export function nightFactor(sunAltitude: number): number {
   return Math.min(1, Math.max(0, amount))
 }
 
-export function windowFade(zoom: number): number {
-  return Math.min(1, Math.max(0, zoom - 16))
+const DAY_WINDOWS_FROM = 16
+const NIGHT_WINDOWS_FROM = 14.6
+
+export function windowFade(zoom: number, night = 0): number {
+  const from = DAY_WINDOWS_FROM + (NIGHT_WINDOWS_FROM - DAY_WINDOWS_FROM) * night
+  return Math.min(1, Math.max(0, zoom - from))
 }
 
 function addNightLayers(map: MapLibreMap, colors: NightColors) {
@@ -91,6 +96,26 @@ export function renderNightLights(map: MapLibreMap, night: number, colors: Night
   ])
 }
 
+const meshed = new WeakMap<MapLibreMap, readonly string[]>()
+
+export function sceneHeight(map: MapLibreMap, lift = 0): ExpressionSpecification {
+  const raised: ExpressionSpecification = ["+", ["get", "render_height_m"], lift]
+  const covered = meshed.get(map) ?? []
+  return [
+    "step",
+    ["zoom"],
+    raised,
+    MESH_FROM,
+    ["case", ["in", ["get", "building_id"], ["literal", [...covered]]], 0, raised],
+  ]
+}
+
+export function hideMeshedSceneVolumes(map: MapLibreMap, covered: readonly string[]) {
+  meshed.set(map, covered)
+  if (map.getLayer("scene-volumes"))
+    map.setPaintProperty("scene-volumes", "fill-extrusion-height", sceneHeight(map))
+}
+
 export function renderSceneVolumes(
   map: MapLibreMap,
   data: FeatureCollection,
@@ -116,7 +141,7 @@ export function renderSceneVolumes(
       filter,
       paint: {
         "fill-extrusion-color": color,
-        "fill-extrusion-height": ["get", "render_height_m"],
+        "fill-extrusion-height": sceneHeight(map),
         "fill-extrusion-base": ["get", "min_height_m"],
         "fill-extrusion-vertical-gradient": true,
         "fill-extrusion-opacity": 0.95,

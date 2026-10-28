@@ -1163,6 +1163,13 @@ components:
       properties:
         characteristic_key: { type: string }
         match: { type: string, enum: [full, partial, none, unknown, computing] }
+        margin:
+          description: >-
+            Запас измерения относительно порога, выше единицы — с запасом, ниже — впритык.
+            Есть только там, где у условия числовой порог; для «да/нет» отсутствует.
+          type: number
+          nullable: true
+          example: 1.4
         label: { type: string, example: "Закат с 5-го этажа" }
         explanation: { type: string, example: "Закат есть, но только с 5-го этажа западной стороны" }
         fact:
@@ -1213,7 +1220,14 @@ components:
       required: [hotel, score, matched]
       properties:
         hotel: { $ref: "#/components/schemas/HotelSummary" }
-        score: { type: number, example: 0.82 }
+        score:
+          description: Доля выполненных условий с учётом качества совпадения, без уверенности.
+          type: number
+          example: 0.82
+        confidence:
+          description: Общая уверенность в подтверждённых условиях, отдельно от соответствия.
+          type: number
+          example: 0.74
         matched:
           type: array
           items: { $ref: "#/components/schemas/MatchedProperty" }

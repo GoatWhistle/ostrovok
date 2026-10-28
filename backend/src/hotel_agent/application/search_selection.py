@@ -1,3 +1,4 @@
+from collections.abc import Collection, Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Literal
@@ -27,6 +28,7 @@ VIEW_NOT_COMPUTED: Cause = "view_not_computed"
 NO_EVIDENCE: Cause = "no_evidence"
 REVIEWED_OUT: Cause = "review"
 REJECTED_SHOWN = 10
+NEAREST_LIMIT = 5
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -135,3 +137,11 @@ def _reviewed_out(ranked: list[Candidate], report: ReviewResult) -> list[Rejecti
 def _shown(rejected: list[Rejection]) -> tuple[Rejection, ...]:
     rejected.sort(key=lambda item: (-item.closeness, item.hotel.name.casefold()))
     return tuple(rejected[:REJECTED_SHOWN])
+
+
+def nearest_matches(ranked: Sequence[Candidate], limit: int) -> tuple[Candidate, ...]:
+    return tuple(ranked[: min(limit, NEAREST_LIMIT)])
+
+
+def not_shown(rejected: Sequence[Rejection], shown: Collection[str]) -> tuple[Rejection, ...]:
+    return tuple(item for item in rejected if item.hotel.id not in shown)
