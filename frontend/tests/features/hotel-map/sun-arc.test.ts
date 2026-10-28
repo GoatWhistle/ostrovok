@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import {
   arcFraction,
+  exactHour,
   fractionFromPoint,
   hourFromFraction,
 } from "../../../src/features/hotel-map/scene-time/sun-arc"
@@ -16,6 +17,11 @@ describe("sun arc", () => {
     expect(hourFromFraction(0, 7, 18)).toBe(7)
     expect(hourFromFraction(1, 7, 18)).toBe(18)
     expect(hourFromFraction(0.5, 7, 18)).toBe(13)
+  })
+
+  it("keeps minutes while the sun is dragged", () => {
+    expect(exactHour(0.5, 7, 18)).toBeCloseTo(12.5, 5)
+    expect(exactHour(2, 7, 18)).toBe(18)
   })
 
   it("reads the pointer angle from the left end to the right end", () => {

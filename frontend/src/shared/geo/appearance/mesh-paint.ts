@@ -9,13 +9,18 @@ import { renderAppearanceRoofs, roofPaint } from "./roofs"
 import { renderGroundShadows, renderTreeShadows } from "./shadows"
 import type { MapAppearance } from "./types"
 
-export function paintMeshes(map: MapLibreMap, appearance: MapAppearance, sun: SunPosition) {
+export function paintMeshes(
+  map: MapLibreMap,
+  appearance: MapAppearance,
+  sun: SunPosition,
+  tint = sun.altitude,
+) {
   const { materials, palette } = APPEARANCES[appearance]
   const tokens = materials.roofTokens ?? (materials.roofToken ? [materials.roofToken] : [])
   const style = getComputedStyle(document.documentElement)
   const read = (token: string) => style.getPropertyValue(token).trim()
   const sky = { horizonDusk: read(palette.horizonDusk), horizonNight: read(palette.horizonNight) }
-  const tone = (token: string) => tintHex(read(token), sky, sun.altitude, materials.duskTint)
+  const tone = (token: string) => tintHex(read(token), sky, tint, materials.duskTint)
   const resolve = (list: readonly string[]) =>
     list.filter((token) => read(token).length > 0).map(tone)
   const flat = resolve(materials.flatRoofTokens ?? tokens)

@@ -17,6 +17,7 @@ const SHADOWS = [
 const MAX_LENGTH = 52
 const SHADOW_OPACITY = 0.28
 const MIN_ALTITUDE = 0.5
+const CLEAR = "rgba(0, 0, 0, 0)"
 
 export function shadowOffset(azimuth: number, altitude: number): [number, number] {
   if (altitude <= MIN_ALTITUDE) return [0, 0]
@@ -34,7 +35,7 @@ function renderShadow(
   color: string | undefined,
   offset: [number, number],
 ) {
-  if (!color || (offset[0] === 0 && offset[1] === 0)) {
+  if (!color) {
     if (map.getLayer(shadow.id)) map.removeLayer(shadow.id)
     return
   }
@@ -59,7 +60,7 @@ function renderShadow(
       shadow.owner,
     )
   }
-  map.setPaintProperty(shadow.id, "fill-color", color)
+  map.setPaintProperty(shadow.id, "fill-color", offset[0] || offset[1] ? color : CLEAR)
   map.setPaintProperty(shadow.id, "fill-translate", offset)
   if (JSON.stringify(map.getFilter(shadow.id)) !== JSON.stringify(filter))
     map.setFilter(shadow.id, filter ?? null)
@@ -85,7 +86,7 @@ export function renderTreeShadows(
   altitude: number,
 ) {
   const [x, y] = shadowOffset(azimuth, altitude)
-  if (!color || !map.getLayer("base-trees") || (x === 0 && y === 0)) {
+  if (!color || !map.getLayer("base-trees")) {
     if (map.getLayer(TREE_SHADOW)) map.removeLayer(TREE_SHADOW)
     return
   }
@@ -107,7 +108,7 @@ export function renderTreeShadows(
       },
       "base-trees",
     )
-  map.setPaintProperty(TREE_SHADOW, "circle-color", color)
+  map.setPaintProperty(TREE_SHADOW, "circle-color", x || y ? color : CLEAR)
   map.setPaintProperty(TREE_SHADOW, "circle-translate", [
     x * TREE_SHADOW_SHARE,
     y * TREE_SHADOW_SHARE,

@@ -3,6 +3,7 @@ import type { Locale } from "@/shared/i18n"
 import { i18n } from "@/shared/i18n/instance"
 
 const ZONE = "Europe/Moscow"
+const HOUR_MS = 3_600_000
 
 export const OVERVIEW_SUN = { azimuth: 335, altitude: 45 } as const
 
@@ -17,7 +18,7 @@ export function forecastEnd(today: string): string {
 }
 
 export function sunScene(date: string, hour: number, lat: number, lon: number) {
-  const when = new Date(`${date}T${String(hour).padStart(2, "0")}:00:00+03:00`)
+  const when = new Date(Date.parse(`${date}T00:00:00+03:00`) + hour * HOUR_MS)
   return {
     position: SunCalc.getPosition(when, lat, lon),
     times: SunCalc.getTimes(when, lat, lon),

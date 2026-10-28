@@ -1,6 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
 import styles from "./scene-sun.module.css"
+import { type SunPreview, usePreviewedSun } from "./sun-preview"
 
 const DEGREE = Math.PI / 180
 const SIDE_LIMIT = 80
@@ -11,6 +12,7 @@ export interface SceneSunProps {
   readonly ready: boolean
   readonly azimuth: number
   readonly altitude: number
+  readonly preview?: SunPreview
 }
 
 function place(map: MapLibreMap, azimuth: number, altitude: number) {
@@ -36,8 +38,11 @@ function place(map: MapLibreMap, azimuth: number, altitude: number) {
   return { x, y, visible }
 }
 
-export function SceneSun({ map, ready, azimuth, altitude }: SceneSunProps) {
+export function SceneSun({ map, ready, azimuth: base, altitude: high, preview }: SceneSunProps) {
   const sun = useRef<HTMLSpanElement>(null)
+  const live = usePreviewedSun(preview)
+  const azimuth = live?.position.azimuth ?? base
+  const altitude = live?.position.altitude ?? high
   useEffect(() => {
     const instance = map.current
     const element = sun.current
