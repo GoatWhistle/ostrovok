@@ -23,6 +23,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
     ChangeQuestionStatus,
     ListHotelierQuestions,
 )
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.interfaces.http.errors import ErrorHandlers
 from hotel_agent.interfaces.http.hotelier_schemas import fact_detail_schema
 from hotel_agent.interfaces.http.routers import hotelier
@@ -79,6 +80,7 @@ def client(store: Store, characteristics_dir: Path) -> TestClient:
             ListHotelierNotifications(uow, registry),
             MarkNotificationsRead(uow, FixedClock()),
             AnswerHotelierQuestions(uow, FakeLLM(registry), answer),
+            StateHotelierFact(uow, registry, FakeLLM(registry), FixedClock(), Ids()),
         )
     )
     return TestClient(app)
@@ -208,6 +210,26 @@ def test_one_message_answers_the_queue(client: TestClient, validate: Any) -> Non
     assert client.get("/hotelier/h1/questions?status=open").json()["items"] == []
 
 
+def test_a_hotelier_states_a_value_nobody_asked_about(client: TestClient, validate: Any) -> None:
+    response = client.post(
+        "/hotelier/h1/facts",
+        json={
+            "characteristic_key": "pets_policy",
+            "text": "Можно с собаками до 10 кг, доплата 2500 рублей",
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    validate("Fact", payload["fact"])
+    assert payload["hotel_id"] == "h1"
+    assert payload["fact"]["provenance"]["method"] == "hotelier_statement@1"
+    assert payload["fact"]["provenance"]["source_type"] == "hotelier"
+    assert payload["fact"]["provenance"]["evidence"][0]["kind"] == "quote"
+    assert payload["fact"]["status"] == "confirmed_by_hotelier"
+    assert payload["conflicts"] == []
+
+
 @pytest.mark.parametrize(
     ("method", "path", "body", "status", "code"),
     [
@@ -228,6 +250,28 @@ def test_one_message_answers_the_queue(client: TestClient, validate: Any) -> Non
         ("post", "/hotelier/missing/notifications/read", None, 404, "not_found"),
         ("post", "/hotelier/missing/answers", {"text": "Можно"}, 404, "not_found"),
         ("post", "/hotelier/h1/answers", {"text": ""}, 422, "validation_error"),
+        (
+            "post",
+            "/hotelier/missing/facts",
+            {"characteristic_key": "pets_policy", "text": "Можно"},
+            404,
+            "not_found",
+        ),
+        (
+            "post",
+            "/hotelier/h1/facts",
+            {"characteristic_key": "nope", "text": "Можно"},
+            422,
+            "unknown_characteristic",
+        ),
+        (
+            "post",
+            "/hotelier/h1/facts",
+            {"characteristic_key": "pets_policy", "text": "привет"},
+            422,
+            "invalid_value",
+        ),
+        ("post", "/hotelier/h1/facts", {"text": "Можно"}, 422, "validation_error"),
     ],
 )
 def test_errors_use_the_envelope(

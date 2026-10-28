@@ -68,6 +68,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
 from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.composition import build_providers
 from hotel_agent.interfaces.http.app import api_router_v1
 from hotel_agent.interfaces.http.errors import ErrorHandlers
@@ -227,6 +228,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             read_hotelier_notifications=MarkNotificationsRead(providers.uow, providers.clock),
             answer_hotelier_questions=AnswerHotelierQuestions(
                 providers.uow, providers.llm, answer_hotelier_question
+            ),
+            state_hotelier_fact=StateHotelierFact(
+                providers.uow, providers.registry, providers.llm, providers.clock, new_id
             ),
             change_question_status=ChangeQuestionStatus(providers.uow),
             change_facts=ChangeFacts(providers.uow, providers.registry, providers.clock, new_id),

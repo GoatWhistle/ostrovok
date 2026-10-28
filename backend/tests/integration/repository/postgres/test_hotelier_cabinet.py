@@ -9,9 +9,15 @@ from hotel_agent.application.use_cases.hotelier_notifications import (
     MarkNotificationsRead,
 )
 from hotel_agent.application.use_cases.hotelier_questions import PlanHotelierQuestions
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.application.use_cases.sweep_notifications import SweepHotelierNotifications
 from hotel_agent.domain.services.hotelier_attention import ActionKind
-from tests.integration.repository.postgres.hotelier_setup import REGISTRY, seed_hotel, services
+from tests.integration.repository.postgres.hotelier_setup import (
+    REGISTRY,
+    new_id,
+    seed_hotel,
+    services,
+)
 from tests.integration.repository.postgres.test_hotelier_demand import record_search
 
 pytestmark = pytest.mark.anyio
@@ -122,5 +128,24 @@ async def test_one_message_closes_the_whole_queue(disposable_database: str) -> N
         assert [item.question_id for item in result.applied] == [f"q_{hotel}_pets_policy"]
         assert len(result.untouched) == 2
         assert len(overview.questions) == 2
+    finally:
+        await uow.aclose()
+
+
+async def test_a_stated_value_closes_a_gap_in_the_cabinet(disposable_database: str) -> None:
+    _, hotel = await seed_hotel(disposable_database)
+    uow, _, _ = services(disposable_database)
+    try:
+        cabinet = GetHotelierCabinet(uow, REGISTRY, SystemClock())
+        before = await cabinet(hotel)
+        state = StateHotelierFact(uow, REGISTRY, FakeLLM(REGISTRY), SystemClock(), new_id)
+
+        result = await state(hotel, "pets_policy", "Можно с собаками до 10 кг, доплата 2500")
+        after = await cabinet(hotel)
+
+        states = {item.key: item.state for item in after.characteristics}
+        assert states["pets_policy"] == "confirmed"
+        assert after.coverage.known == before.coverage.known + 1
+        assert result.fact.provenance.method == "hotelier_statement@1"
     finally:
         await uow.aclose()

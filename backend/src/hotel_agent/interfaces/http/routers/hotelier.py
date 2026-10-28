@@ -15,6 +15,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
     ChangeQuestionStatus,
     ListHotelierQuestions,
 )
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.domain.entities import QuestionStatus
 from hotel_agent.interfaces.http.cabinet_schemas import (
     BatchAnswerSchema,
@@ -22,10 +23,13 @@ from hotel_agent.interfaces.http.cabinet_schemas import (
     HotelierOverviewSchema,
     ReadNotificationsInput,
     ReadNotificationsSchema,
+    StatedFactSchema,
+    StatementInput,
     batch_answer_schema,
     counters_schema,
     feed_schema,
     overview_schema,
+    stated_fact_schema,
 )
 from hotel_agent.interfaces.http.fact_schemas import FactSchema, fact_schema
 from hotel_agent.interfaces.http.hotelier_schemas import (
@@ -49,6 +53,7 @@ def build_router(
     list_notifications: ListHotelierNotifications,
     read_notifications: MarkNotificationsRead,
     answer_questions: AnswerHotelierQuestions,
+    state_fact: StateHotelierFact,
 ) -> APIRouter:
     router = APIRouter(tags=["hotelier"])
 
@@ -80,6 +85,10 @@ def build_router(
         changed = await read_notifications(hotel_id, body.ids if body else None)
         feed = await list_notifications(hotel_id, limit=1)
         return ReadNotificationsSchema(read=changed, unread=counters_schema(feed.unread))
+
+    @router.post("/hotelier/{hotel_id}/facts", response_model=StatedFactSchema)
+    async def state(hotel_id: str, body: StatementInput) -> StatedFactSchema:
+        return stated_fact_schema(await state_fact(hotel_id, body.characteristic_key, body.text))
 
     @router.post("/hotelier/{hotel_id}/answers", response_model=BatchAnswerSchema)
     async def answers(hotel_id: str, body: AnswerInput) -> BatchAnswerSchema:

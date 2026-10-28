@@ -12,6 +12,7 @@ from hotel_agent.application.use_cases.hotelier_cabinet import (
     QueuedQuestion,
 )
 from hotel_agent.application.use_cases.hotelier_notifications import FeedItem, NotificationFeed
+from hotel_agent.application.use_cases.state_fact import StatedFact
 from hotel_agent.domain.services.hotelier_attention import Attention
 from hotel_agent.domain.services.hotelier_coverage import Coverage
 from hotel_agent.interfaces.http.fact_schemas import (
@@ -129,6 +130,19 @@ class AppliedAnswerSchema(BaseModel):
     conflicts: list[ConflictSchema]
 
 
+class StatementInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    characteristic_key: str = Field(min_length=1, max_length=120)
+    text: str = Field(min_length=1, max_length=10_000)
+
+
+class StatedFactSchema(BaseModel):
+    hotel_id: str
+    fact: FactSchema
+    conflicts: list[ConflictSchema]
+
+
 class BatchAnswerSchema(BaseModel):
     hotel_id: str
     applied: list[AppliedAnswerSchema]
@@ -238,4 +252,12 @@ def batch_answer_schema(result: BatchAnswerResult) -> BatchAnswerSchema:
             for item in result.applied
         ],
         untouched=list(result.untouched),
+    )
+
+
+def stated_fact_schema(result: StatedFact) -> StatedFactSchema:
+    return StatedFactSchema(
+        hotel_id=result.hotel_id,
+        fact=fact_schema(result.fact),
+        conflicts=[conflict_schema(item) for item in result.conflicts],
     )

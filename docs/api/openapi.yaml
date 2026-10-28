@@ -638,6 +638,47 @@ paths:
         "404": { $ref: "#/components/responses/NotFound" }
         "422": { $ref: "#/components/responses/InvalidInput" }
 
+  /hotelier/{hotel_id}/facts:
+    post:
+      tags: [hotelier]
+      operationId: stateHotelierFact
+      description: >-
+        Отельер сам называет значение характеристики, о которой его не спрашивали: свободный текст
+        раскладывается по полям реестра с цитатой и становится фактом с источником hotelier.
+      parameters:
+        - $ref: "#/components/parameters/HotelId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [characteristic_key, text]
+              additionalProperties: false
+              properties:
+                characteristic_key: { type: string, example: pets_policy }
+                text: { type: string, minLength: 1, maxLength: 10000 }
+            example:
+              characteristic_key: pets_policy
+              text: Можно с собаками до 10 кг, доплата 2500 рублей за ночь
+      responses:
+        "200":
+          description: Новый факт от отельера и записанные противоречия
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [hotel_id, fact, conflicts]
+                properties:
+                  hotel_id: { type: string }
+                  fact: { $ref: "#/components/schemas/Fact" }
+                  conflicts:
+                    type: array
+                    items: { $ref: "#/components/schemas/Conflict" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "422": { $ref: "#/components/responses/InvalidInput" }
+        "503": { $ref: "#/components/responses/ModelUnavailable" }
+
   /hotelier/{hotel_id}/answers:
     post:
       tags: [hotelier]

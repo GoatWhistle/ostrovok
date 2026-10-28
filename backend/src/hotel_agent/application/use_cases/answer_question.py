@@ -1,27 +1,22 @@
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import timedelta
 
 from hotel_agent.application import hotelier_events
 from hotel_agent.application.dto import ConflictRecord
 from hotel_agent.application.fact_records import FactOwner, fact_to_record
-from hotel_agent.application.fact_values import checked_value
 from hotel_agent.application.fact_versions import conflict_record, current_versions, settle_answer
+from hotel_agent.application.hotelier_facts import hotelier_fact
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import Extraction, LLMPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWork, UnitOfWorkFactory
 from hotel_agent.application.question_records import question_from_record
-from hotel_agent.domain.characteristics import Characteristic, SourceType, ValueType
-from hotel_agent.domain.entities import Fact, FactStatus, HotelierQuestion, QuestionStatus
+from hotel_agent.domain.characteristics import Characteristic, SourceType
+from hotel_agent.domain.entities import Fact, HotelierQuestion, QuestionStatus
 from hotel_agent.domain.errors import InvalidValue, QuestionNotFound
 from hotel_agent.domain.value_objects import (
-    Confidence,
     ConflictId,
-    Evidence,
-    EvidenceKind,
     FactId,
-    Provenance,
     SourceRef,
     Subject,
 )
@@ -116,40 +111,15 @@ class AnswerHotelierQuestion:
         extraction: Extraction,
         text: str,
     ) -> Fact:
-        values = {field.name: field.value for field in extraction.fields}
-        value = checked_value(
-            values
-            if characteristic.value_type is ValueType.OBJECT
-            else next(iter(values.values())),
-            characteristic.value_type,
-        )
-        now = self._clock.now()
-        return Fact(
-            id=FactId(self._next_id("f")),
+        return hotelier_fact(
+            fact_id=FactId(self._next_id("f")),
             subject=Subject.hotel(question.hotel_id),
-            characteristic_key=characteristic.key,
-            value=value,
-            unit=characteristic.unit,
-            qualifiers={
-                key: item
-                for key, item in values.items()
-                if key not in ("allowed", "present") and item is not None
-            }
-            if characteristic.value_type is ValueType.OBJECT
-            else {},
-            status=FactStatus.CONFIRMED_BY_HOTELIER,
-            explanation=text,
-            provenance=Provenance(
-                source=SourceRef(source_type=SourceType.HOTELIER, ref=str(question.id)),
-                method="hotelier_answer@1",
-                confidence=Confidence(1),
-                computed_at=now,
-                observed_at=now,
-                valid_until=now + timedelta(days=characteristic.ttl_days),
-                evidence=tuple(
-                    Evidence(kind=EvidenceKind.QUOTE, text=item.quote) for item in extraction.fields
-                ),
-            ),
+            characteristic=characteristic,
+            extraction=extraction,
+            text=text,
+            method="hotelier_answer@1",
+            source=SourceRef(source_type=SourceType.HOTELIER, ref=str(question.id)),
+            now=self._clock.now(),
         )
 
 

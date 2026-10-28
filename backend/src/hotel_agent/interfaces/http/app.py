@@ -31,6 +31,7 @@ from hotel_agent.application.use_cases.hotelier_questions import (
 from hotel_agent.application.use_cases.list_characteristics import ListCharacteristics
 from hotel_agent.application.use_cases.list_regions import ListRegions
 from hotel_agent.application.use_cases.search_hotels import SearchHotels
+from hotel_agent.application.use_cases.state_fact import StateHotelierFact
 from hotel_agent.interfaces.http.routers import (
     chat,
     compare,
@@ -79,6 +80,7 @@ def api_router_v1(
     list_hotelier_notifications: ListHotelierNotifications,
     read_hotelier_notifications: MarkNotificationsRead,
     answer_hotelier_questions: AnswerHotelierQuestions,
+    state_hotelier_fact: StateHotelierFact,
     get_map_style: GetMapStyle,
     get_map_scene: GetMapScene,
 ) -> APIRouter:
@@ -106,6 +108,7 @@ def api_router_v1(
             list_hotelier_notifications,
             read_hotelier_notifications,
             answer_hotelier_questions,
+            state_hotelier_fact,
         )
     )
     router.include_router(map_tiles.build_router(get_map_tile))

@@ -23,6 +23,8 @@
 | `c49969c` | Интеграционные тесты против реального PostgreSQL |
 | `d7b91e8` | Документация |
 | `78f0fd3` | Разборка очереди: вопросы без спроса откладываются, отложенные со спросом возвращаются |
+| `dec3264` | Производные факты пожеланий не попадают в кабинет; пустой `ids` больше не читает всё |
+| `(далее)` | Отельер называет значение сам, без заданного вопроса |
 
 #### Разборка накопленной очереди
 
@@ -70,7 +72,11 @@ GET  /api/v1/hotelier/{hotel_id}/questions?status=open
 GET  /api/v1/hotelier/{hotel_id}/notifications?unread_only&cursor&limit
 POST /api/v1/hotelier/{hotel_id}/notifications/read
 POST /api/v1/hotelier/{hotel_id}/answers
+POST /api/v1/hotelier/{hotel_id}/facts
 ```
+
+Последний закрывает дыру кабинета: отельер видел «неизвестно», но сказать значение сам не мог —
+только ответить на заданный вопрос или исправить существующий факт.
 
 ## Чем проверено
 
@@ -82,6 +88,7 @@ POST /api/v1/hotelier/{hotel_id}/answers
 | Хранение и SQL | `tests/integration/repository/postgres/test_hotelier_notifications.py`, `test_hotelier_demand.py` |
 | Контур целиком на реальном PostgreSQL | `tests/integration/repository/postgres/test_hotelier_cabinet.py`: спрос → вопрос → ответ → факт → лента |
 | Разборка очереди | `tests/unit/application/test_question_pruning.py`, `tests/integration/repository/postgres/test_question_pruning.py` |
+| Значение по своей инициативе | `tests/unit/application/test_state_fact.py`, контрактный и интеграционный случаи |
 
 Прогон 2026-10-28: 1135 юнит- и контрактных тестов, 30 интеграционных по кабинету — все зелёные.
 `ruff`, `ruff format --check`, `mypy`, `lint-imports` чисты. Одновременная запись одного и того же
