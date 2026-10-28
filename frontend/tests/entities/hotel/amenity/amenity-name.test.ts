@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { amenityGroupName, amenityName } from "../../../src/entities/hotel/amenity/amenity-name"
-import en from "../../../src/shared/i18n/locales/en/explore.json"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
-import "../../../src/shared/i18n/instance"
+import { amenityGroupName, amenityName } from "../../../../src/entities/hotel/amenity/amenity-name"
+import en from "../../../../src/shared/i18n/locales/en/explore.json"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
+import "../../../../src/shared/i18n/instance"
 
 describe("supplier amenity names", () => {
   it("translates known supplier amenities into English", () => {

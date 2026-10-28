@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { HotelRating } from "../../../src/entities/hotel/hotel-rating/hotel-rating"
-import { HotelStars } from "../../../src/entities/hotel/hotel-stars/hotel-stars"
-import { HotelThumb } from "../../../src/entities/hotel/hotel-thumb/hotel-thumb"
-import { MatchExplain } from "../../../src/entities/hotel/match-score/match-explain"
-import type { MatchedProperty } from "../../../src/shared/api/hotel-types"
-import { petsLabel } from "../../../src/shared/geo/facts/pets"
-import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
-import ru from "../../../src/shared/i18n/locales/ru/explore.json"
+import { HotelRating } from "../../../../src/entities/hotel/hotel-rating/hotel-rating"
+import { HotelStars } from "../../../../src/entities/hotel/hotel-stars/hotel-stars"
+import { HotelThumb } from "../../../../src/entities/hotel/hotel-thumb/hotel-thumb"
+import { MatchExplain } from "../../../../src/entities/hotel/match-explain/match-explain"
+import type { MatchedProperty } from "../../../../src/shared/api/hotel-types"
+import { petsLabel } from "../../../../src/shared/geo/facts/pets"
+import { LocaleProvider } from "../../../../src/shared/i18n/locale-provider"
+import ru from "../../../../src/shared/i18n/locales/ru/explore.json"
 
 function wish(key: string, match: MatchedProperty["match"], status = "active"): MatchedProperty {
   return {

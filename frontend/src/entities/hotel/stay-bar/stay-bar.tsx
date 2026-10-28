@@ -1,7 +1,7 @@
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Disclosure } from "@/shared/ui"
-import { useHotelStay } from "./hotel-stay"
-import { StayFields } from "./stay-fields"
+import { useHotelStay } from "../hotel-stay/hotel-stay"
+import { StayFields } from "../stay-fields/stay-fields"
 
 export function StayBar() {
   const { t } = useTranslation()

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
-import { cardFact } from "../../../src/entities/hotel/hotel-result/card-fact"
-import type { MatchedProperty } from "../../../src/shared/api/hotel-types"
-import "../../../src/shared/i18n/instance"
+import { cardFact } from "../../../../src/entities/hotel/hotel-result/card-fact"
+import type { MatchedProperty } from "../../../../src/shared/api/hotel-types"
+import "../../../../src/shared/i18n/instance"
 
 function measured(key: string, value: number, match: MatchedProperty["match"]): MatchedProperty {
   return {

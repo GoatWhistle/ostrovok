@@ -4,8 +4,8 @@ import { isUsableMatch } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import { type Locale, useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Popover } from "@/shared/ui"
+import { MatchConfidence, matchScore } from "../match-score/match-score"
 import styles from "./match-explain.module.css"
-import { MatchConfidence, matchScore } from "./match-score"
 
 type Translate = ReturnType<typeof useTranslation>["t"]
 

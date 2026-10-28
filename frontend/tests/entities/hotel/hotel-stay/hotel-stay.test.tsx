@@ -1,7 +1,10 @@
 import { act, renderHook } from "@testing-library/react"
 import type { ReactNode } from "react"
 import { describe, expect, it } from "vitest"
-import { HotelStayProvider, useHotelStay } from "../../../src/entities/hotel/hotel-stay/hotel-stay"
+import {
+  HotelStayProvider,
+  useHotelStay,
+} from "../../../../src/entities/hotel/hotel-stay/hotel-stay"
 
 describe("shared hotel stay", () => {
   it("keeps date edits shared between result list and selected hotel", () => {

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest"
 import {
   matchesOfferStay,
   minimumOffers,
-} from "../../../src/entities/hotel/offer-preview/offer-prices"
-import type { components } from "../../../src/shared/api/schema.gen"
+} from "../../../../src/entities/hotel/offer-preview/offer-prices"
+import type { components } from "../../../../src/shared/api/schema.gen"
 
 type Offers = components["schemas"]["HotelOffers"]
 function offer(

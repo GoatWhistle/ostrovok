@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { MatchConfidence } from "../../../src/entities/hotel/match-score/match-score"
-import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
+import { MatchConfidence } from "../../../../src/entities/hotel/match-score/match-score"
+import { LocaleProvider } from "../../../../src/shared/i18n/locale-provider"
 
 function show(value: number | undefined) {
   return render(

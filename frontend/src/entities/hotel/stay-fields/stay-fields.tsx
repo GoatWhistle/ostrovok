@@ -1,6 +1,6 @@
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon, ScrollArea, TextField } from "@/shared/ui"
-import { type StayContext, useHotelStay } from "./hotel-stay"
+import { type StayContext, useHotelStay } from "../hotel-stay/hotel-stay"
 import styles from "./stay-fields.module.css"
 
 const DEFAULT_ADULTS = 2
