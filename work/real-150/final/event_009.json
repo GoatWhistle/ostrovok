@@ -1,0 +1,3189 @@
+{
+ "id": "ede61942-f9ac-4b7c-8c13-e3a761fbf90f",
+ "title": "Сочи: рядом с дендрарием",
+ "updated_at": "2026-10-28T21:06:41.766785Z",
+ "messages": [
+  {
+   "id": "cda6c64a-4252-4eda-b36c-6129ef917531",
+   "role": "user",
+   "content": "Сочи, отель рядом с дендрарием, хотим гулять",
+   "created_at": "2026-10-28T21:06:41.766785Z"
+  },
+  {
+   "id": "5a740f7a-e4ea-4607-b8c4-9a552e7efcf0",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Пансионат \"Эдем\", Виктор и Пансионат \"Сочи Бриз Отель\". Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T21:06:41.766785Z"
+  }
+ ],
+ "effective_query": "Сочи, отель рядом с дендрарием",
+ "search": {
+  "query_id": "9dce39b80324ec37",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:569b9e90a139",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "рядом с дендрарием"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, отель рядом с дендрарием",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w51874466",
+     "name": "Пансионат \"Эдем\"",
+     "address": null,
+     "location": [
+      39.7388183,
+      43.566086
+     ],
+     "stars": 3,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.385,
+    "confidence": 0.77,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 200.6 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w51874466",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.76991,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:w51874466",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7388183,
+      43.566086
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "n1859715975",
+     "name": "Виктор",
+     "address": null,
+     "location": [
+      39.739759,
+      43.5711725
+     ],
+     "stars": null,
+     "building_id": "w53065046",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.384,
+    "confidence": 0.768,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 213.7 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n1859715975",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.767945,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:n1859715975",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.739759,
+      43.5711725
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53065046",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7396716,
+          43.571317
+         ],
+         [
+          39.7396773,
+          43.5710907
+         ],
+         [
+          39.7398458,
+          43.5710929
+         ],
+         [
+          39.7398402,
+          43.5713192
+         ],
+         [
+          39.7396716,
+          43.571317
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53065046",
+      "hotel_id": "n1859715975",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n1859715975"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53065036",
+     "name": "Пансионат \"Сочи Бриз Отель\"",
+     "address": null,
+     "location": [
+      39.7395682,
+      43.5699016
+     ],
+     "stars": 4,
+     "building_id": "w53065034",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.384,
+    "confidence": 0.767,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 219.2 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w53065036",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.76712,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:w53065036",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7395682,
+      43.5699016
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53065034",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7391794,
+          43.5699889
+         ],
+         [
+          39.7392854,
+          43.5699202
+         ],
+         [
+          39.7394864,
+          43.5698091
+         ],
+         [
+          39.7396456,
+          43.5697218
+         ],
+         [
+          39.7396506,
+          43.569719
+         ],
+         [
+          39.7396953,
+          43.5697611
+         ],
+         [
+          39.7399538,
+          43.5696182
+         ],
+         [
+          39.7400867,
+          43.5697476
+         ],
+         [
+          39.7399036,
+          43.5698477
+         ],
+         [
+          39.7399958,
+          43.5699318
+         ],
+         [
+          39.7397909,
+          43.5700456
+         ],
+         [
+          39.7396577,
+          43.5699194
+         ],
+         [
+          39.7393314,
+          43.5701166
+         ],
+         [
+          39.7391794,
+          43.5699889
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53065034",
+      "hotel_id": "w53065036",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w53065036"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w218836911",
+     "name": "Dolphin resort Hotel",
+     "address": "Черноморская улица 19",
+     "location": [
+      39.7379705,
+      43.5664672
+     ],
+     "stars": null,
+     "building_id": "w218836911",
+     "height_m": 12.8,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.382,
+    "confidence": 0.765,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 234.5 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w218836911",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.764825,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:w218836911",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7379705,
+      43.5664672
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w218836911",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7377805,
+          43.5663341
+         ],
+         [
+          39.7377809,
+          43.5663152
+         ],
+         [
+          39.7377887,
+          43.5662978
+         ],
+         [
+          39.7378062,
+          43.56628
+         ],
+         [
+          39.7378479,
+          43.5662528
+         ],
+         [
+          39.7379068,
+          43.5662355
+         ],
+         [
+          39.7380436,
+          43.566239
+         ],
+         [
+          39.7380663,
+          43.5662514
+         ],
+         [
+          39.7380857,
+          43.5662723
+         ],
+         [
+          39.7382106,
+          43.566586
+         ],
+         [
+          39.7382079,
+          43.5666085
+         ],
+         [
+          39.7381979,
+          43.5666266
+         ],
+         [
+          39.7381824,
+          43.5666421
+         ],
+         [
+          39.7381598,
+          43.5666527
+         ],
+         [
+          39.738122,
+          43.5666601
+         ],
+         [
+          39.7380614,
+          43.5666719
+         ],
+         [
+          39.738035,
+          43.5666714
+         ],
+         [
+          39.7380095,
+          43.5666665
+         ],
+         [
+          39.7379893,
+          43.5666562
+         ],
+         [
+          39.737974,
+          43.5666366
+         ],
+         [
+          39.7379639,
+          43.5666118
+         ],
+         [
+          39.7379652,
+          43.5665848
+         ],
+         [
+          39.7379751,
+          43.5665304
+         ],
+         [
+          39.7379597,
+          43.5664709
+         ],
+         [
+          39.7379302,
+          43.5664274
+         ],
+         [
+          39.737874,
+          43.5663981
+         ],
+         [
+          39.7378211,
+          43.566382
+         ],
+         [
+          39.7378007,
+          43.5663677
+         ],
+         [
+          39.7377883,
+          43.5663513
+         ],
+         [
+          39.7377805,
+          43.5663341
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w218836911",
+      "hotel_id": "w218836911",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w218836911"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1859716038",
+     "name": "Вилла \"Анна\"",
+     "address": null,
+     "location": [
+      39.7398019,
+      43.5717633
+     ],
+     "stars": null,
+     "building_id": "w53065022",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.382,
+    "confidence": 0.764,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 240.8 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n1859716038",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.76388,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7993031"
+       ],
+       "subject": "hotel:n1859716038",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7993031"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7398019,
+      43.5717633
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53065022",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7397382,
+          43.5716412
+         ],
+         [
+          39.739888,
+          43.5716252
+         ],
+         [
+          39.7399312,
+          43.5718374
+         ],
+         [
+          39.7399372,
+          43.5718383
+         ],
+         [
+          39.7399431,
+          43.5718411
+         ],
+         [
+          39.7399473,
+          43.571845
+         ],
+         [
+          39.7399496,
+          43.5718498
+         ],
+         [
+          39.7399496,
+          43.5718548
+         ],
+         [
+          39.7399474,
+          43.5718596
+         ],
+         [
+          39.7399432,
+          43.5718635
+         ],
+         [
+          39.7399374,
+          43.5718663
+         ],
+         [
+          39.7399307,
+          43.5718676
+         ],
+         [
+          39.7399238,
+          43.5718672
+         ],
+         [
+          39.7399174,
+          43.5718652
+         ],
+         [
+          39.7399155,
+          43.5718639
+         ],
+         [
+          39.7397939,
+          43.5718769
+         ],
+         [
+          39.739792,
+          43.5718787
+         ],
+         [
+          39.7397862,
+          43.5718815
+         ],
+         [
+          39.7397795,
+          43.5718827
+         ],
+         [
+          39.7397726,
+          43.5718823
+         ],
+         [
+          39.7397662,
+          43.5718803
+         ],
+         [
+          39.7397611,
+          43.5718769
+         ],
+         [
+          39.7397578,
+          43.5718725
+         ],
+         [
+          39.7397566,
+          43.5718676
+         ],
+         [
+          39.7397577,
+          43.5718626
+         ],
+         [
+          39.739761,
+          43.5718582
+         ],
+         [
+          39.7397661,
+          43.5718547
+         ],
+         [
+          39.7397724,
+          43.5718527
+         ],
+         [
+          39.7397793,
+          43.5718523
+         ],
+         [
+          39.7397816,
+          43.5718526
+         ],
+         [
+          39.7397685,
+          43.5717918
+         ],
+         [
+          39.739762,
+          43.5717925
+         ],
+         [
+          39.7397551,
+          43.5717921
+         ],
+         [
+          39.7397487,
+          43.5717901
+         ],
+         [
+          39.7397436,
+          43.5717867
+         ],
+         [
+          39.7397403,
+          43.5717823
+         ],
+         [
+          39.7397391,
+          43.5717773
+         ],
+         [
+          39.7397402,
+          43.5717724
+         ],
+         [
+          39.7397435,
+          43.5717679
+         ],
+         [
+          39.7397486,
+          43.5717645
+         ],
+         [
+          39.7397538,
+          43.5717629
+         ],
+         [
+          39.7397628,
+          43.5717619
+         ],
+         [
+          39.7397382,
+          43.5716412
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53065022",
+      "hotel_id": "n1859716038",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n1859716038"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11304222987",
+     "name": "Grand Way",
+     "address": null,
+     "location": [
+      39.7389704,
+      43.5701348
+     ],
+     "stars": null,
+     "building_id": "w53065038",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.761,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 261.7 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n11304222987",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.760745,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:n11304222987",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7389704,
+      43.5701348
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53065038",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7387258,
+          43.570054
+         ],
+         [
+          39.7388878,
+          43.5699554
+         ],
+         [
+          39.7390768,
+          43.5701185
+         ],
+         [
+          39.7389149,
+          43.5702171
+         ],
+         [
+          39.7387258,
+          43.570054
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53065038",
+      "hotel_id": "n11304222987",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11304222987"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7463256000",
+     "name": "АК \"Покровский Парк\"",
+     "address": "Депутатская улица 10Д",
+     "location": [
+      39.7390042,
+      43.5712909
+     ],
+     "stars": null,
+     "building_id": "w717299042",
+     "height_m": 54.4,
+     "levels": 17,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.379,
+    "confidence": 0.759,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 275 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n7463256000",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.75875,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:n7463256000",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7390042,
+      43.5712909
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w717299042",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.738703,
+          43.5712214
+         ],
+         [
+          39.7388962,
+          43.5712204
+         ],
+         [
+          39.7388964,
+          43.5712338
+         ],
+         [
+          39.7389219,
+          43.5712337
+         ],
+         [
+          39.7389219,
+          43.5712378
+         ],
+         [
+          39.7391232,
+          43.5712368
+         ],
+         [
+          39.7391232,
+          43.5712326
+         ],
+         [
+          39.739152,
+          43.5712325
+         ],
+         [
+          39.7391519,
+          43.5712174
+         ],
+         [
+          39.7393206,
+          43.5712166
+         ],
+         [
+          39.7393221,
+          43.5713807
+         ],
+         [
+          39.7392512,
+          43.571381
+         ],
+         [
+          39.7392512,
+          43.5713883
+         ],
+         [
+          39.7391978,
+          43.5713886
+         ],
+         [
+          39.7391977,
+          43.5713803
+         ],
+         [
+          39.7391383,
+          43.5713806
+         ],
+         [
+          39.7391382,
+          43.5713691
+         ],
+         [
+          39.7388853,
+          43.5713704
+         ],
+         [
+          39.7388854,
+          43.5713813
+         ],
+         [
+          39.7388345,
+          43.5713816
+         ],
+         [
+          39.7388346,
+          43.5713922
+         ],
+         [
+          39.7387741,
+          43.5713925
+         ],
+         [
+          39.738774,
+          43.5713832
+         ],
+         [
+          39.7387046,
+          43.5713835
+         ],
+         [
+          39.738703,
+          43.5712214
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w717299042",
+      "hotel_id": "n7463256000",
+      "is_hotel": true,
+      "height_m": 54.4,
+      "min_height_m": 0,
+      "levels": 17,
+      "height_fact_id": "f_height_n7463256000"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9120481162",
+     "name": "HiLoft Hostel",
+     "address": "Черноморская улица 15/1",
+     "location": [
+      39.7372515,
+      43.5667741
+     ],
+     "stars": null,
+     "building_id": "w228736310",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.379,
+    "confidence": 0.758,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 279 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n9120481162",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.75815,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:n9120481162",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7372515,
+      43.5667741
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w228736310",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7371024,
+          43.5667002
+         ],
+         [
+          39.7373217,
+          43.5666359
+         ],
+         [
+          39.7373765,
+          43.5666287
+         ],
+         [
+          39.7374346,
+          43.5666331
+         ],
+         [
+          39.7374748,
+          43.5666483
+         ],
+         [
+          39.7375188,
+          43.5666751
+         ],
+         [
+          39.7375454,
+          43.5667046
+         ],
+         [
+          39.7376001,
+          43.5668182
+         ],
+         [
+          39.7372818,
+          43.5669122
+         ],
+         [
+          39.7372131,
+          43.5668115
+         ],
+         [
+          39.7371935,
+          43.5668161
+         ],
+         [
+          39.7371024,
+          43.5667002
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w228736310",
+      "hotel_id": "n9120481162",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n9120481162"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w228736311",
+     "name": "Sanremo",
+     "address": "Черноморская улица 13Г",
+     "location": [
+      39.736202,
+      43.5670904
+     ],
+     "stars": null,
+     "building_id": "w228736311",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.373,
+    "confidence": 0.746,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 357.7 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w228736311",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.746345,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:w228736311",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.736202,
+      43.5670904
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w228736311",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7360202,
+          43.5670856
+         ],
+         [
+          39.7360593,
+          43.5670694
+         ],
+         [
+          39.7360894,
+          43.5670337
+         ],
+         [
+          39.7361507,
+          43.5670001
+         ],
+         [
+          39.7362106,
+          43.5669795
+         ],
+         [
+          39.7362778,
+          43.5669668
+         ],
+         [
+          39.7363323,
+          43.5669363
+         ],
+         [
+          39.7363749,
+          43.5669687
+         ],
+         [
+          39.7364207,
+          43.5670183
+         ],
+         [
+          39.736453,
+          43.5670707
+         ],
+         [
+          39.7363845,
+          43.5671112
+         ],
+         [
+          39.7363538,
+          43.5671544
+         ],
+         [
+          39.7362273,
+          43.5672118
+         ],
+         [
+          39.7362174,
+          43.5672001
+         ],
+         [
+          39.7361379,
+          43.5672325
+         ],
+         [
+          39.7361221,
+          43.5672126
+         ],
+         [
+          39.7361088,
+          43.5672184
+         ],
+         [
+          39.7360278,
+          43.5671314
+         ],
+         [
+          39.7360507,
+          43.5671217
+         ],
+         [
+          39.7360202,
+          43.5670856
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w228736311",
+      "hotel_id": "w228736311",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w228736311"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759606594",
+     "name": "RP Ranovsky Park",
+     "address": null,
+     "location": [
+      39.7393969,
+      43.5741612
+     ],
+     "stars": null,
+     "building_id": "w79271530",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.372,
+    "confidence": 0.743,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 377 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n10759606594",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.74345,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7993031"
+       ],
+       "subject": "hotel:n10759606594",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7993031"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7393969,
+      43.5741612
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w79271530",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7392574,
+          43.5741996
+         ],
+         [
+          39.7393179,
+          43.574189
+         ],
+         [
+          39.7393071,
+          43.5741567
+         ],
+         [
+          39.7394517,
+          43.5741314
+         ],
+         [
+          39.739467,
+          43.5741328
+         ],
+         [
+          39.7394814,
+          43.5741398
+         ],
+         [
+          39.7394887,
+          43.5741496
+         ],
+         [
+          39.7395102,
+          43.5742276
+         ],
+         [
+          39.739507,
+          43.5742404
+         ],
+         [
+          39.7395,
+          43.5742485
+         ],
+         [
+          39.7394875,
+          43.5742548
+         ],
+         [
+          39.7394107,
+          43.5742682
+         ],
+         [
+          39.7394197,
+          43.5742954
+         ],
+         [
+          39.739428,
+          43.5743204
+         ],
+         [
+          39.7394008,
+          43.5743252
+         ],
+         [
+          39.739409,
+          43.57435
+         ],
+         [
+          39.7393458,
+          43.574361
+         ],
+         [
+          39.7393049,
+          43.5742382
+         ],
+         [
+          39.7392722,
+          43.5742439
+         ],
+         [
+          39.7392574,
+          43.5741996
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w79271530",
+      "hotel_id": "n10759606594",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n10759606594"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8847798717",
+     "name": "PinkFloyd Apartment",
+     "address": null,
+     "location": [
+      39.7350219,
+      43.5679739
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.366,
+    "confidence": 0.731,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 457.6 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n8847798717",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.73136,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7350219,
+      43.5679739
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51854788",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348291,
+          43.5681017
+         ],
+         [
+          39.7348665,
+          43.5680531
+         ],
+         [
+          39.7348548,
+          43.5680484
+         ],
+         [
+          39.7348752,
+          43.5680218
+         ],
+         [
+          39.7348869,
+          43.5680265
+         ],
+         [
+          39.7350158,
+          43.5678577
+         ],
+         [
+          39.7353351,
+          43.5679857
+         ],
+         [
+          39.7352938,
+          43.5680398
+         ],
+         [
+          39.7353055,
+          43.5680445
+         ],
+         [
+          39.7352585,
+          43.5681061
+         ],
+         [
+          39.7352322,
+          43.5680955
+         ],
+         [
+          39.7350152,
+          43.5681342
+         ],
+         [
+          39.7349949,
+          43.5681606
+         ],
+         [
+          39.734898,
+          43.5681214
+         ],
+         [
+          39.7348933,
+          43.5681275
+         ],
+         [
+          39.7348291,
+          43.5681017
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51854788",
+      "hotel_id": "n8847798717",
+      "is_hotel": true,
+      "height_m": 80.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n8847798717"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12084515064",
+     "name": "Panoramapart",
+     "address": null,
+     "location": [
+      39.7349229,
+      43.5681
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.365,
+    "confidence": 0.73,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 467.9 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n12084515064",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.729815,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:n12084515064",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7349229,
+      43.5681
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51854788",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348291,
+          43.5681017
+         ],
+         [
+          39.7348665,
+          43.5680531
+         ],
+         [
+          39.7348548,
+          43.5680484
+         ],
+         [
+          39.7348752,
+          43.5680218
+         ],
+         [
+          39.7348869,
+          43.5680265
+         ],
+         [
+          39.7350158,
+          43.5678577
+         ],
+         [
+          39.7353351,
+          43.5679857
+         ],
+         [
+          39.7352938,
+          43.5680398
+         ],
+         [
+          39.7353055,
+          43.5680445
+         ],
+         [
+          39.7352585,
+          43.5681061
+         ],
+         [
+          39.7352322,
+          43.5680955
+         ],
+         [
+          39.7350152,
+          43.5681342
+         ],
+         [
+          39.7349949,
+          43.5681606
+         ],
+         [
+          39.734898,
+          43.5681214
+         ],
+         [
+          39.7348933,
+          43.5681275
+         ],
+         [
+          39.7348291,
+          43.5681017
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51854788",
+      "hotel_id": "n12084515064",
+      "is_hotel": true,
+      "height_m": 80.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n12084515064"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51853102",
+     "name": "Sea Galaxy",
+     "address": "Черноморская улица 4",
+     "location": [
+      39.735248,
+      43.5690042
+     ],
+     "stars": null,
+     "building_id": "w51853102",
+     "height_m": 57.6,
+     "levels": 18,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.365,
+    "confidence": 0.729,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 472.2 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w51853102",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.72917,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:w51853102",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.735248,
+      43.5690042
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51853102",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7349575,
+          43.5689197
+         ],
+         [
+          39.7351094,
+          43.5688095
+         ],
+         [
+          39.7352627,
+          43.5689204
+         ],
+         [
+          39.7353711,
+          43.5689989
+         ],
+         [
+          39.7356149,
+          43.5691754
+         ],
+         [
+          39.7354629,
+          43.5692857
+         ],
+         [
+          39.7349575,
+          43.5689197
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51853102",
+      "hotel_id": "w51853102",
+      "is_hotel": true,
+      "height_m": 57.6,
+      "min_height_m": 0,
+      "levels": 18,
+      "height_fact_id": "f_height_w51853102"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51679502",
+     "name": "Лермонтов",
+     "address": "улица Лермонтова 3",
+     "location": [
+      39.7372298,
+      43.5738946
+     ],
+     "stars": null,
+     "building_id": "w51679502",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.362,
+    "confidence": 0.724,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 503.5 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w51679502",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.724475,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7993031"
+       ],
+       "subject": "hotel:w51679502",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7993031"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7372298,
+      43.5738946
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51679502",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7371197,
+          43.5738518
+         ],
+         [
+          39.7373397,
+          43.5738092
+         ],
+         [
+          39.737395,
+          43.5739589
+         ],
+         [
+          39.737175,
+          43.5740015
+         ],
+         [
+          39.7371197,
+          43.5738518
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51679502",
+      "hotel_id": "w51679502",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w51679502"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5063986547",
+     "name": "Чемодан",
+     "address": null,
+     "location": [
+      39.7359049,
+      43.5712628
+     ],
+     "stars": null,
+     "building_id": "w51849076",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.361,
+    "confidence": 0.723,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 515.5 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n5063986547",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.722675,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:n5063986547",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7359049,
+      43.5712628
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51849076",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7354578,
+          43.5708261
+         ],
+         [
+          39.7355375,
+          43.5707911
+         ],
+         [
+          39.7356275,
+          43.5707516
+         ],
+         [
+          39.7358842,
+          43.5710587
+         ],
+         [
+          39.7360778,
+          43.5712903
+         ],
+         [
+          39.7359916,
+          43.5713281
+         ],
+         [
+          39.7359081,
+          43.5713648
+         ],
+         [
+          39.7354578,
+          43.5708261
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51849076",
+      "hotel_id": "n5063986547",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n5063986547"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3113676",
+     "name": "Центральный военный клинический санаторий «Сочи»",
+     "address": null,
+     "location": [
+      39.746134,
+      43.5648951
+     ],
+     "stars": 4,
+     "building_id": "w51871382",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.361,
+    "confidence": 0.722,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 519.2 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_r3113676",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.72212,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:r3113676",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.746134,
+      43.5648951
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51871382",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7459838,
+          43.565056
+         ],
+         [
+          39.747276,
+          43.564642
+         ],
+         [
+          39.7472573,
+          43.5646143
+         ],
+         [
+          39.7473887,
+          43.5645722
+         ],
+         [
+          39.7474075,
+          43.5646
+         ],
+         [
+          39.7475027,
+          43.564756
+         ],
+         [
+          39.747525,
+          43.5647942
+         ],
+         [
+          39.7473683,
+          43.5648444
+         ],
+         [
+          39.7473459,
+          43.5648063
+         ],
+         [
+          39.7468927,
+          43.5649514
+         ],
+         [
+          39.7469633,
+          43.5650659
+         ],
+         [
+          39.746774,
+          43.5651265
+         ],
+         [
+          39.7467034,
+          43.5650121
+         ],
+         [
+          39.7462431,
+          43.5651595
+         ],
+         [
+          39.7462687,
+          43.5652026
+         ],
+         [
+          39.7461047,
+          43.5652551
+         ],
+         [
+          39.7460791,
+          43.5652121
+         ],
+         [
+          39.7459838,
+          43.565056
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51871382",
+      "hotel_id": "r3113676",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3113676"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51849076",
+     "name": "Светлана",
+     "address": "Курортный проспект 75 к1",
+     "location": [
+      39.7357428,
+      43.5710296
+     ],
+     "stars": null,
+     "building_id": "w51849076",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.361,
+    "confidence": 0.721,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 524.3 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w51849076",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.721355,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7491420"
+       ],
+       "subject": "hotel:w51849076",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7491420"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7357428,
+      43.5710296
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51849076",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7354578,
+          43.5708261
+         ],
+         [
+          39.7355375,
+          43.5707911
+         ],
+         [
+          39.7356275,
+          43.5707516
+         ],
+         [
+          39.7358842,
+          43.5710587
+         ],
+         [
+          39.7360778,
+          43.5712903
+         ],
+         [
+          39.7359916,
+          43.5713281
+         ],
+         [
+          39.7359081,
+          43.5713648
+         ],
+         [
+          39.7354578,
+          43.5708261
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51849076",
+      "hotel_id": "w51849076",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_w51849076"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51849059",
+     "name": "ЖК \"Верещагинская дача\"",
+     "address": "Черноморская улица 4",
+     "location": [
+      39.7341857,
+      43.5695931
+     ],
+     "stars": null,
+     "building_id": "w51849059",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.357,
+    "confidence": 0.713,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 577.3 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_w51849059",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.7134050000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:w51849059",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7341857,
+      43.5695931
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51849059",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7338756,
+          43.5695416
+         ],
+         [
+          39.7339445,
+          43.5694405
+         ],
+         [
+          39.7343551,
+          43.5695874
+         ],
+         [
+          39.7344159,
+          43.5696092
+         ],
+         [
+          39.734374,
+          43.5696708
+         ],
+         [
+          39.7343358,
+          43.5696571
+         ],
+         [
+          39.7343088,
+          43.5696967
+         ],
+         [
+          39.7338756,
+          43.5695416
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51849059",
+      "hotel_id": "w51849059",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w51849059"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13438392946",
+     "name": "Разин",
+     "address": null,
+     "location": [
+      39.7365946,
+      43.574512
+     ],
+     "stars": null,
+     "building_id": "w51850154",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.356,
+    "confidence": 0.713,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 581.6 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n13438392946",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.7127600000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r7993031"
+       ],
+       "subject": "hotel:n13438392946",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_r7993031"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7365946,
+      43.574512
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51850154",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7364137,
+          43.5745356
+         ],
+         [
+          39.7365858,
+          43.5744381
+         ],
+         [
+          39.7367808,
+          43.5746189
+         ],
+         [
+          39.7366087,
+          43.5747163
+         ],
+         [
+          39.7364137,
+          43.5745356
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51850154",
+      "hotel_id": "n13438392946",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n13438392946"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12541096667",
+     "name": "Альфа",
+     "address": null,
+     "location": [
+      39.7339278,
+      43.56975
+     ],
+     "stars": null,
+     "building_id": "w51849058",
+     "height_m": 35.2,
+     "levels": 11,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.355,
+    "confidence": 0.709,
+    "matched": [
+     {
+      "characteristic_key": "derived:569b9e90a139",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с дендрарием",
+      "explanation": "Расстояние до ближайшего объекта «дендрарием» по прямой, м: 603.7 (нужно не более 1000).",
+      "fact": {
+       "fact_id": "f_wish_569b9e90a139_n12541096667",
+       "characteristic_key": "derived:569b9e90a139",
+       "value": true,
+       "unit": null,
+       "label": "рядом с дендрарием",
+       "confidence": 0.709445,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w1517944034"
+       ],
+       "subject": "hotel:n12541096667",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с дендрарием",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_w1517944034"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7339278,
+      43.56975
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51849058",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7337172,
+          43.5699669
+         ],
+         [
+          39.733896,
+          43.569702
+         ],
+         [
+          39.7341308,
+          43.5697852
+         ],
+         [
+          39.73411,
+          43.5698161
+         ],
+         [
+          39.7341853,
+          43.5698429
+         ],
+         [
+          39.7340461,
+          43.5700488
+         ],
+         [
+          39.7339785,
+          43.5700248
+         ],
+         [
+          39.7339596,
+          43.5700528
+         ],
+         [
+          39.7337172,
+          43.5699669
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51849058",
+      "hotel_id": "n12541096667",
+      "is_hotel": true,
+      "height_m": 35.2,
+      "min_height_m": 0,
+      "levels": 11,
+      "height_fact_id": "f_height_n12541096667"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n5047768723",
+     "name": "Апартаменты у моря",
+     "address": null,
+     "location": [
+      39.7504391,
+      43.573975
+     ],
+     "stars": null,
+     "building_id": "w241241973",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3504,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r1949407",
+     "name": "Luciano отель и СПА 5*",
+     "address": "Курортный проспект 86",
+     "location": [
+      39.7493698,
+      43.5662793
+     ],
+     "stars": 4,
+     "building_id": "w46916268",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3465,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r3113674",
+     "name": "Санаторий им. Фрунзе",
+     "address": null,
+     "location": [
+      39.7484285,
+      43.5638087
+     ],
+     "stars": 4,
+     "building_id": "w51937402",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3445,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w51847420",
+     "name": "Жемчужина",
+     "address": null,
+     "location": [
+      39.7322506,
+      43.5711773
+     ],
+     "stars": 4,
+     "building_id": "w51847424",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.34,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n948203233",
+     "name": "Отель \"Жемчуг\"",
+     "address": "Комсомольская улица 1",
+     "location": [
+      39.7325921,
+      43.5726527
+     ],
+     "stars": null,
+     "building_id": "w81508803",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.339,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w52359906",
+     "name": "Старт",
+     "address": "улица Яна Фабрициуса 2/25",
+     "location": [
+      39.7527451,
+      43.5704854
+     ],
+     "stars": null,
+     "building_id": "w52359906",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3388,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w51847429",
+     "name": "Жемчужина",
+     "address": "Черноморская улица 3",
+     "location": [
+      39.7314295,
+      43.5708048
+     ],
+     "stars": 4,
+     "building_id": "w51847429",
+     "height_m": 54.4,
+     "levels": 17,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3373,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4354563292",
+     "name": "Наш дом",
+     "address": "улица Корчагина 2",
+     "location": [
+      39.7326073,
+      43.5763725
+     ],
+     "stars": null,
+     "building_id": "w53083398",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3277,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w413289549",
+     "name": "Бэлла",
+     "address": "Пионерская улица 34",
+     "location": [
+      39.7346954,
+      43.5782323
+     ],
+     "stars": null,
+     "building_id": "w715151819",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3276,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6403072085",
+     "name": "Апартаменты на Метелёва",
+     "address": "улица Метелёва 10/1",
+     "location": [
+      39.7525279,
+      43.5770489
+     ],
+     "stars": null,
+     "building_id": "w241241967",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3268,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7339278,
+    43.5648951,
+    39.746134,
+    43.574512
+   ],
+   "camera": {
+    "center": [
+     39.7388183,
+     43.566086
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 16695
+ },
+ "search_message_id": "5a740f7a-e4ea-4607-b8c4-9a552e7efcf0"
+}

@@ -1,0 +1,2170 @@
+{
+ "id": "5e581a9c-67c8-407f-8fed-4270f0bf7b3c",
+ "title": "Сочи: можно выгулять собаку, территория",
+ "updated_at": "2026-10-28T20:03:57.135392Z",
+ "messages": [
+  {
+   "id": "01443b0e-48b2-471d-9e34-9da0411833eb",
+   "role": "user",
+   "content": "Нужен отель в Сочи с территорией, где можно выгулять собаку",
+   "created_at": "2026-10-28T20:03:57.135392Z"
+  },
+  {
+   "id": "c414fe78-5c3e-45e5-887c-275ba15e4865",
+   "role": "assistant",
+   "content": "Нашёл 6 отелей. Первые в списке: City Park Hotel, Golden Tennis Club и SM Royal. Проверка не завершена: территория. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T20:03:57.135392Z"
+  }
+ ],
+ "effective_query": "отель в Сочи с территорией, где можно выгулять собаку",
+ "search": {
+  "query_id": "879f5d5892fdd07f",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:109559f27c0f",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "можно выгулять собаку"
+    },
+    {
+     "characteristic_key": "derived:82780c96ebbd",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "территория"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи с территорией, где можно выгулять собаку",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n736761646",
+     "name": "City Park Hotel",
+     "address": null,
+     "location": [
+      39.7258462,
+      43.5761102
+     ],
+     "stars": 4,
+     "building_id": "w51352167",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57652dc7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_eacd0867_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f9e32836_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e5eb8ca0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_195153d9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b9aba68c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04b6f6f2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7cc79355_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d024001b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_62fdc080_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b17d0898_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_39fde4d1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efa08274_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d39cc3d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d1be34_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23445e99_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e0aa8b9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0faa7b63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bbbca52_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_19aae4ec_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e65c0a7c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efabc9d0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_84b9f570_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_34125a3e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_n736761646",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n736761646",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Only dogs and cats are allowed\nService animals are exempt from fees/restrictions\nPet max weight (per pet) in lb is 11\nPets cannot be left unattended\nPet max weight (per pet) in kg is 5\nPets allowed\nMaximum number of pets per room 1\nService animals are allowed",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_n736761646",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n736761646",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7258462,
+      43.5761102
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51352167",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.725318,
+          43.5758097
+         ],
+         [
+          39.725387,
+          43.5757584
+         ],
+         [
+          39.7254598,
+          43.5757042
+         ],
+         [
+          39.7260643,
+          43.5761389
+         ],
+         [
+          39.7260981,
+          43.5761627
+         ],
+         [
+          39.7263998,
+          43.5763756
+         ],
+         [
+          39.7262579,
+          43.5764811
+         ],
+         [
+          39.726,
+          43.5762991
+         ],
+         [
+          39.725318,
+          43.5758097
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51352167",
+      "hotel_id": "n736761646",
+      "is_hotel": true,
+      "height_m": 32.0,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n736761646"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_n10759614195",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Only dogs and cats are allowed\nPets allowed",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_n10759614195",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11878294031",
+     "name": "SM Royal",
+     "address": null,
+     "location": [
+      39.9184333,
+      43.4288605
+     ],
+     "stars": null,
+     "building_id": "w708992263",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_3e159d88_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3e159d88_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_06dec2e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a64f786c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_15ee3608_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6d37aae1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a985b71_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4aaebf6a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee43eea2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4d26def_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_66db58b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c783db8d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c5563786_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dd91575c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_07d82529_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_37669758_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f5b0f823_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0c59b530_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e5258693_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5d81354c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ab3057b5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d06ddf8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_92ceeadd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f9cdee0b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8abfebbf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_n11878294031",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294031",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Pet max weight (per pet) in kg is 10\nPets allowed\nPet max weight (per pet) in lb is 22",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_n11878294031",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11878294031",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9184333,
+      43.4288605
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w708992263",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9183048,
+          43.4288299
+         ],
+         [
+          39.9184126,
+          43.428757
+         ],
+         [
+          39.9187733,
+          43.4290473
+         ],
+         [
+          39.9186618,
+          43.4291175
+         ],
+         [
+          39.9183048,
+          43.4288299
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w708992263",
+      "hotel_id": "n11878294031",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11878294031"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6494244800",
+     "name": "Hostel House Sochi",
+     "address": null,
+     "location": [
+      39.9309517,
+      43.447126
+     ],
+     "stars": null,
+     "building_id": "w54058299",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_7e4ceb7a_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e4ceb7a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_03f391d5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c97b846b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_41010c24_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0711dcaf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ccb4b9d1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_71b6ce67_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_22dd0c6a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b9ebf731_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9f1a6ba5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_92f4dc26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_46fd8e0b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_adfc340a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_40ac23bf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb0fbb35_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5667f04f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0f6e665f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_44045ec5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_becb0d62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db27de53_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df1cd315_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_n6494244800",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6494244800",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Pets allowed\nPets allowed (no fees)",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_n6494244800",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6494244800",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9309517,
+      43.447126
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54058299",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9307769,
+          43.4470715
+         ],
+         [
+          39.9308992,
+          43.4469182
+         ],
+         [
+          39.9310406,
+          43.4469775
+         ],
+         [
+          39.9310298,
+          43.446991
+         ],
+         [
+          39.9312831,
+          43.4470972
+         ],
+         [
+          39.9311733,
+          43.4472352
+         ],
+         [
+          39.9311452,
+          43.4472423
+         ],
+         [
+          39.9310182,
+          43.4471872
+         ],
+         [
+          39.9310095,
+          43.4471977
+         ],
+         [
+          39.9308304,
+          43.44712
+         ],
+         [
+          39.9308218,
+          43.4471019
+         ],
+         [
+          39.9308284,
+          43.4470936
+         ],
+         [
+          39.9307769,
+          43.4470715
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54058299",
+      "hotel_id": "n6494244800",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n6494244800"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w150742817",
+     "name": "Papaya Park Hotel",
+     "address": "улица Котовского 41А",
+     "location": [
+      39.9219274,
+      43.443328
+     ],
+     "stars": null,
+     "building_id": "w150742817",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_c43e40d8_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c43e40d8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_804de469_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_31316157_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_134322b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e8f27f01_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_72740f5e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42d39cfc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4dafe83c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8e47705e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_574be25f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bfe7d9ef_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5fa6d600_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e948c4d7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e20af90_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f07e820_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8aef58de_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1bcc37f9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0fdcf44d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2f8aa6a0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c50ff626_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a8040cd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ddea1e76_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dcab45d7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_72c09f84_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_w150742817",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w150742817",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Pet max weight (per pet) in lb is 11\nPet max weight (per pet) in kg is 5\nPets allowed\nPets allowed (no fees)",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_w150742817",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w150742817",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9219274,
+      43.443328
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w150742817",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9217538,
+          43.4433312
+         ],
+         [
+          39.9218354,
+          43.443204
+         ],
+         [
+          39.9221878,
+          43.4433232
+         ],
+         [
+          39.9221062,
+          43.4434504
+         ],
+         [
+          39.9217538,
+          43.4433312
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w150742817",
+      "hotel_id": "w150742817",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w150742817"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.399,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:109559f27c0f",
+      "match": "full",
+      "margin": null,
+      "label": "можно выгулять собаку",
+      "explanation": "Правила размещения с животными по данным поставщика.",
+      "fact": {
+       "fact_id": "f_wish_109559f27c0f_w54437496",
+       "characteristic_key": "derived:109559f27c0f",
+       "value": true,
+       "unit": null,
+       "label": "можно выгулять собаку",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source": "supplier_content",
+        "supplier": "nuitee",
+        "source_text": "можно выгулять собаку",
+        "native_characteristic_key": "pets_policy",
+        "native_value": {
+         "terms": "Only dogs and cats are allowed\nPet max weight (per pet) in lb is 13\nPet max weight (per pet) in kg is 6\nPets allowed\nPets allowed (no fees)",
+         "allowed": true
+        },
+        "native_unit": null,
+        "native_op": "eq",
+        "native_threshold": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:82780c96ebbd",
+      "match": "unknown",
+      "margin": null,
+      "label": "территория",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_82780c96ebbd_w54437496",
+       "characteristic_key": "derived:82780c96ebbd",
+       "value": null,
+       "unit": null,
+       "label": "территория",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source_text": "территория",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "environment",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9047123,
+      43.4634661
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54437496",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9045767,
+          43.4634214
+         ],
+         [
+          39.9047069,
+          43.4633912
+         ],
+         [
+          39.9047276,
+          43.4634383
+         ],
+         [
+          39.9047468,
+          43.4634339
+         ],
+         [
+          39.9047735,
+          43.4634411
+         ],
+         [
+          39.904786,
+          43.4634688
+         ],
+         [
+          39.9047732,
+          43.4634888
+         ],
+         [
+          39.9047492,
+          43.4634943
+         ],
+         [
+          39.9047732,
+          43.4635491
+         ],
+         [
+          39.9046458,
+          43.4635786
+         ],
+         [
+          39.9045767,
+          43.4634214
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54437496",
+      "hotel_id": "w54437496",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w54437496"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r5674341",
+     "name": "Azimut",
+     "address": "Новороссийское шоссе 1",
+     "location": [
+      39.8550582,
+      43.5143903
+     ],
+     "stars": 4,
+     "building_id": "w52018833",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:109559f27c0f",
+    "condition": "можно выгулять собаку",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7258462,
+    43.4244336,
+    39.9309517,
+    43.5761102
+   ],
+   "camera": {
+    "center": [
+     39.7258462,
+     43.5761102
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 72660
+ },
+ "search_message_id": "c414fe78-5c3e-45e5-887c-275ba15e4865"
+}

@@ -1,0 +1,5861 @@
+{
+ "id": "77ae1704-6181-431a-995f-d85e9296b929",
+ "title": "Москва: рядом с метро, доступный вход",
+ "updated_at": "2026-10-28T20:06:42.889260Z",
+ "messages": [
+  {
+   "id": "3403618c-b6c7-44ba-88c0-69a4ab4b686b",
+   "role": "user",
+   "content": "Москва, отель с доступным входом рядом с метро",
+   "created_at": "2026-10-28T20:06:42.889260Z"
+  },
+  {
+   "id": "081fc879-94f0-42a8-9e95-ab7ac77f1780",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Rockmond, Red Kremlin и Времена года. Проверка не завершена: доступный вход. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T20:06:42.889260Z"
+  }
+ ],
+ "effective_query": "Москва отель с доступным входом рядом с метро",
+ "search": {
+  "query_id": "245e95a57bbb4545",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:aaaa3c9260e1",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с метро"
+    },
+    {
+     "characteristic_key": "derived:0c56b847d51d",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "доступный вход"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва отель с доступным входом рядом с метро",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n10712629653",
+     "name": "Rockmond",
+     "address": "Пресненская набережная 8 с1",
+     "location": [
+      37.5394484,
+      55.747102
+     ],
+     "stars": null,
+     "building_id": "w37448943",
+     "height_m": 76.0,
+     "levels": 18,
+     "thumbnail_url": "https://mos-holidays.ru/wp-content/uploads/2020/07/kompleks-Gorod-Stolits-moskva-citi-1.jpg",
+     "photos": [
+      {
+       "url": "https://mos-holidays.ru/wp-content/uploads/2020/07/kompleks-Gorod-Stolits-moskva-citi-1.jpg",
+       "source_url": "https://www.openstreetmap.org/node/10712629653",
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Деловой центр», «Москва-Сити», «Сити-Экспоцентр»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n10712629653",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n5436457732",
+        "g_poi_n3226428878",
+        "g_poi_n253045735",
+        "g_poi_n255856078",
+        "g_poi_n4379061172",
+        "g_poi_n11835191569",
+        "g_walk_n10712629653_n5436457732",
+        "g_walk_n10712629653_n3226428878",
+        "g_walk_n10712629653_n253045735",
+        "g_walk_n10712629653_n255856078",
+        "g_walk_n10712629653_n4379061172"
+       ],
+       "subject": "hotel:n10712629653",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 6,
+        "nearby_names": [
+         "Деловой центр",
+         "Москва-Сити",
+         "Сити-Экспоцентр"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n5436457732",
+       "g_poi_n3226428878",
+       "g_poi_n253045735",
+       "g_poi_n255856078",
+       "g_poi_n4379061172",
+       "g_poi_n11835191569",
+       "g_walk_n10712629653_n5436457732",
+       "g_walk_n10712629653_n3226428878",
+       "g_walk_n10712629653_n253045735",
+       "g_walk_n10712629653_n255856078",
+       "g_walk_n10712629653_n4379061172"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n10712629653",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10712629653",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5394484,
+      55.747102
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w37448943",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.53867,
+          55.7470425
+         ],
+         [
+          37.5386888,
+          55.7470223
+         ],
+         [
+          37.5389466,
+          55.746745
+         ],
+         [
+          37.5393597,
+          55.7467782
+         ],
+         [
+          37.5392309,
+          55.746896
+         ],
+         [
+          37.5395904,
+          55.7470047
+         ],
+         [
+          37.5397352,
+          55.7468794
+         ],
+         [
+          37.5399801,
+          55.7470407
+         ],
+         [
+          37.5397218,
+          55.7472824
+         ],
+         [
+          37.5394841,
+          55.7475047
+         ],
+         [
+          37.5391505,
+          55.7474213
+         ],
+         [
+          37.5393224,
+          55.7472299
+         ],
+         [
+          37.5387081,
+          55.7470534
+         ],
+         [
+          37.53867,
+          55.7470425
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w37448943",
+      "hotel_id": "n10712629653",
+      "is_hotel": true,
+      "height_m": 76.0,
+      "min_height_m": 0,
+      "levels": 18,
+      "height_fact_id": "f_height_n10712629653"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3088975980",
+     "name": "Red Kremlin",
+     "address": "Староваганьковский переулок 19 с3",
+     "location": [
+      37.606329,
+      55.7512096
+     ],
+     "stars": null,
+     "building_id": "w367223792",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Боровицкая», «Арбатская», «Александровский сад», «Библиотека имени Ленина»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n3088975980",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n296953128",
+        "g_poi_n242546476",
+        "g_poi_n253228506",
+        "g_poi_n278692958",
+        "g_poi_n253043175",
+        "g_poi_r1407392",
+        "g_walk_n3088975980_n296953128",
+        "g_walk_n3088975980_n242546476",
+        "g_walk_n3088975980_n253228506",
+        "g_walk_n3088975980_n278692958",
+        "g_walk_n3088975980_n253043175"
+       ],
+       "subject": "hotel:n3088975980",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 6,
+        "nearby_names": [
+         "Боровицкая",
+         "Арбатская",
+         "Александровский сад",
+         "Библиотека имени Ленина"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n296953128",
+       "g_poi_n242546476",
+       "g_poi_n253228506",
+       "g_poi_n278692958",
+       "g_poi_n253043175",
+       "g_poi_r1407392",
+       "g_walk_n3088975980_n296953128",
+       "g_walk_n3088975980_n242546476",
+       "g_walk_n3088975980_n253228506",
+       "g_walk_n3088975980_n278692958",
+       "g_walk_n3088975980_n253043175"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n3088975980",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3088975980",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.606329,
+      55.7512096
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w367223792",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6062692,
+          55.7511659
+         ],
+         [
+          37.6063595,
+          55.7511491
+         ],
+         [
+          37.6065793,
+          55.7511073
+         ],
+         [
+          37.6065915,
+          55.7511278
+         ],
+         [
+          37.6066328,
+          55.7511929
+         ],
+         [
+          37.6063171,
+          55.7512454
+         ],
+         [
+          37.6062764,
+          55.751178
+         ],
+         [
+          37.6062692,
+          55.7511659
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w367223792",
+      "hotel_id": "n3088975980",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n3088975980"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4019686282",
+     "name": "Времена года",
+     "address": null,
+     "location": [
+      37.6054009,
+      55.7534551
+     ],
+     "stars": null,
+     "building_id": "w31496304",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Арбатская», «Боровицкая», «Александровский сад», «Библиотека имени Ленина»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n4019686282",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n242546476",
+        "g_poi_n296953128",
+        "g_poi_n253228506",
+        "g_poi_n253043175",
+        "g_poi_r1407392",
+        "g_poi_n278692958",
+        "g_walk_n4019686282_n242546476",
+        "g_walk_n4019686282_n296953128",
+        "g_walk_n4019686282_n253228506",
+        "g_walk_n4019686282_n253043175",
+        "g_walk_n4019686282_r1407392"
+       ],
+       "subject": "hotel:n4019686282",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 6,
+        "nearby_names": [
+         "Арбатская",
+         "Боровицкая",
+         "Александровский сад",
+         "Библиотека имени Ленина"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n242546476",
+       "g_poi_n296953128",
+       "g_poi_n253228506",
+       "g_poi_n253043175",
+       "g_poi_r1407392",
+       "g_poi_n278692958",
+       "g_walk_n4019686282_n242546476",
+       "g_walk_n4019686282_n296953128",
+       "g_walk_n4019686282_n253228506",
+       "g_walk_n4019686282_n253043175",
+       "g_walk_n4019686282_r1407392"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n4019686282",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4019686282",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6054009,
+      55.7534551
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w31496304",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6051915,
+          55.7539049
+         ],
+         [
+          37.6052557,
+          55.7538963
+         ],
+         [
+          37.6052396,
+          55.7538583
+         ],
+         [
+          37.6054,
+          55.7538367
+         ],
+         [
+          37.6054162,
+          55.7538747
+         ],
+         [
+          37.6055607,
+          55.7538553
+         ],
+         [
+          37.6054311,
+          55.753551
+         ],
+         [
+          37.6054136,
+          55.7535534
+         ],
+         [
+          37.6053541,
+          55.7534152
+         ],
+         [
+          37.6056317,
+          55.7533773
+         ],
+         [
+          37.605883,
+          55.7539476
+         ],
+         [
+          37.6052394,
+          55.7540166
+         ],
+         [
+          37.6051949,
+          55.753913
+         ],
+         [
+          37.6051915,
+          55.7539049
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w31496304",
+      "hotel_id": "n4019686282",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4019686282"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4385687860",
+     "name": "In Time",
+     "address": null,
+     "location": [
+      37.6070956,
+      55.7513089
+     ],
+     "stars": null,
+     "building_id": "w96475609",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Боровицкая», «Арбатская», «Александровский сад», «Библиотека имени Ленина»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n4385687860",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n296953128",
+        "g_poi_n242546476",
+        "g_poi_n253228506",
+        "g_poi_n278692958",
+        "g_poi_n253043175",
+        "g_poi_r1407392",
+        "g_walk_n4385687860_n296953128",
+        "g_walk_n4385687860_n242546476",
+        "g_walk_n4385687860_n253228506",
+        "g_walk_n4385687860_n278692958",
+        "g_walk_n4385687860_n253043175"
+       ],
+       "subject": "hotel:n4385687860",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 6,
+        "nearby_names": [
+         "Боровицкая",
+         "Арбатская",
+         "Александровский сад",
+         "Библиотека имени Ленина"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n296953128",
+       "g_poi_n242546476",
+       "g_poi_n253228506",
+       "g_poi_n278692958",
+       "g_poi_n253043175",
+       "g_poi_r1407392",
+       "g_walk_n4385687860_n296953128",
+       "g_walk_n4385687860_n242546476",
+       "g_walk_n4385687860_n253228506",
+       "g_walk_n4385687860_n278692958",
+       "g_walk_n4385687860_n253043175"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n4385687860",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4385687860",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6070956,
+      55.7513089
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w96475609",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.606718,
+          55.7513318
+         ],
+         [
+          37.6071819,
+          55.751259
+         ],
+         [
+          37.607155,
+          55.7511977
+         ],
+         [
+          37.6074486,
+          55.7511515
+         ],
+         [
+          37.6075261,
+          55.751341
+         ],
+         [
+          37.6072858,
+          55.7513934
+         ],
+         [
+          37.6072584,
+          55.75134
+         ],
+         [
+          37.6070767,
+          55.7513674
+         ],
+         [
+          37.6070912,
+          55.7513996
+         ],
+         [
+          37.606775,
+          55.751451
+         ],
+         [
+          37.6067399,
+          55.7513776
+         ],
+         [
+          37.606718,
+          55.7513318
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w96475609",
+      "hotel_id": "n4385687860",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4385687860"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10537328752",
+     "name": "Diamond Apartments",
+     "address": "1-й Красногвардейский проезд 21 с2",
+     "location": [
+      37.5342229,
+      55.7494359
+     ],
+     "stars": 5,
+     "building_id": "r14060891",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": "https://diamond-apart.com/upload/resize_cache/webp/iblock/032/032e695a6523c29d3ea653b270b054a5.webp",
+     "photos": [
+      {
+       "url": "https://diamond-apart.com/upload/resize_cache/webp/iblock/032/032e695a6523c29d3ea653b270b054a5.webp",
+       "source_url": "https://www.openstreetmap.org/node/10537328752",
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Москва-Сити», «Деловой центр»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n10537328752",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n255856078",
+        "g_poi_n4379061172",
+        "g_poi_n3226428878",
+        "g_poi_n5436457732",
+        "g_poi_n253045735",
+        "g_walk_n10537328752_n255856078",
+        "g_walk_n10537328752_n4379061172",
+        "g_walk_n10537328752_n3226428878",
+        "g_walk_n10537328752_n5436457732",
+        "g_walk_n10537328752_n253045735"
+       ],
+       "subject": "hotel:n10537328752",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Москва-Сити",
+         "Деловой центр"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n255856078",
+       "g_poi_n4379061172",
+       "g_poi_n3226428878",
+       "g_poi_n5436457732",
+       "g_poi_n253045735",
+       "g_walk_n10537328752_n255856078",
+       "g_walk_n10537328752_n4379061172",
+       "g_walk_n10537328752_n3226428878",
+       "g_walk_n10537328752_n5436457732",
+       "g_walk_n10537328752_n253045735"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n10537328752",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10537328752",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5342229,
+      55.7494359
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r14060891",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5335214,
+          55.749807
+         ],
+         [
+          37.5336499,
+          55.7495597
+         ],
+         [
+          37.533702,
+          55.7494595
+         ],
+         [
+          37.5340276,
+          55.7491168
+         ],
+         [
+          37.5344448,
+          55.749259
+         ],
+         [
+          37.5343709,
+          55.7493841
+         ],
+         [
+          37.5342886,
+          55.7495237
+         ],
+         [
+          37.5342291,
+          55.7496243
+         ],
+         [
+          37.5341854,
+          55.7497043
+         ],
+         [
+          37.5349412,
+          55.749948
+         ],
+         [
+          37.5351127,
+          55.7500033
+         ],
+         [
+          37.5351469,
+          55.7500143
+         ],
+         [
+          37.5349186,
+          55.750234
+         ],
+         [
+          37.5348092,
+          55.7503393
+         ],
+         [
+          37.5347777,
+          55.7503293
+         ],
+         [
+          37.5339703,
+          55.7500752
+         ],
+         [
+          37.5335214,
+          55.749807
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r14060891",
+      "hotel_id": "n10537328752",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10537328752"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r6210564",
+     "name": "Ararat Park Hyatt Moscow",
+     "address": "Неглинная улица 4",
+     "location": [
+      37.6217998,
+      55.7599702
+     ],
+     "stars": 5,
+     "building_id": "r6210564",
+     "height_m": null,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Площадь Революции», «Театральная», «Кузнецкий Мост», «Охотный ряд», «Лубянка»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_r6210564",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n242546475",
+        "g_poi_n292143794",
+        "g_poi_n252934400",
+        "g_poi_n267335315",
+        "g_poi_n267335316",
+        "g_walk_r6210564_n242546475",
+        "g_walk_r6210564_n292143794",
+        "g_walk_r6210564_n252934400",
+        "g_walk_r6210564_n267335315",
+        "g_walk_r6210564_n267335316"
+       ],
+       "subject": "hotel:r6210564",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Площадь Революции",
+         "Театральная",
+         "Кузнецкий Мост",
+         "Охотный ряд",
+         "Лубянка"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n242546475",
+       "g_poi_n292143794",
+       "g_poi_n252934400",
+       "g_poi_n267335315",
+       "g_poi_n267335316",
+       "g_walk_r6210564_n242546475",
+       "g_walk_r6210564_n292143794",
+       "g_walk_r6210564_n252934400",
+       "g_walk_r6210564_n267335315",
+       "g_walk_r6210564_n267335316"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_r6210564",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r6210564",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6217998,
+      55.7599702
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r6210564",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.62121,
+          55.7601988
+         ],
+         [
+          37.6214943,
+          55.7596438
+         ],
+         [
+          37.6218277,
+          55.7596947
+         ],
+         [
+          37.6218099,
+          55.759733
+         ],
+         [
+          37.6219742,
+          55.7597601
+         ],
+         [
+          37.6219656,
+          55.7597765
+         ],
+         [
+          37.6218908,
+          55.7599163
+         ],
+         [
+          37.6222222,
+          55.7599725
+         ],
+         [
+          37.6222489,
+          55.7599226
+         ],
+         [
+          37.6223428,
+          55.7599386
+         ],
+         [
+          37.6220993,
+          55.7603504
+         ],
+         [
+          37.6214961,
+          55.7602452
+         ],
+         [
+          37.6214056,
+          55.7602309
+         ],
+         [
+          37.62121,
+          55.7601988
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r6210564",
+      "hotel_id": "r6210564",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r6210564"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11482410978",
+     "name": "InPremium",
+     "address": null,
+     "location": [
+      37.5372739,
+      55.7503006
+     ],
+     "stars": null,
+     "building_id": "w809610199",
+     "height_m": null,
+     "levels": 14,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Деловой центр», «Москва-Сити»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n11482410978",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n3226428878",
+        "g_poi_n5436457732",
+        "g_poi_n255856078",
+        "g_poi_n253045735",
+        "g_poi_n4379061172",
+        "g_walk_n11482410978_n3226428878",
+        "g_walk_n11482410978_n5436457732",
+        "g_walk_n11482410978_n255856078",
+        "g_walk_n11482410978_n253045735",
+        "g_walk_n11482410978_n4379061172"
+       ],
+       "subject": "hotel:n11482410978",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Деловой центр",
+         "Москва-Сити"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n3226428878",
+       "g_poi_n5436457732",
+       "g_poi_n255856078",
+       "g_poi_n253045735",
+       "g_poi_n4379061172",
+       "g_walk_n11482410978_n3226428878",
+       "g_walk_n11482410978_n5436457732",
+       "g_walk_n11482410978_n255856078",
+       "g_walk_n11482410978_n253045735",
+       "g_walk_n11482410978_n4379061172"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n11482410978",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11482410978",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5372739,
+      55.7503006
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w809610199",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5352188,
+          55.7504478
+         ],
+         [
+          37.535698,
+          55.7499885
+         ],
+         [
+          37.5361451,
+          55.7501363
+         ],
+         [
+          37.5362754,
+          55.7500113
+         ],
+         [
+          37.5363087,
+          55.7499883
+         ],
+         [
+          37.5363523,
+          55.7499715
+         ],
+         [
+          37.5364025,
+          55.7499623
+         ],
+         [
+          37.5364552,
+          55.7499615
+         ],
+         [
+          37.5365063,
+          55.749969
+         ],
+         [
+          37.5365515,
+          55.7499843
+         ],
+         [
+          37.5365872,
+          55.7500062
+         ],
+         [
+          37.5366105,
+          55.7500328
+         ],
+         [
+          37.5366196,
+          55.7500621
+         ],
+         [
+          37.5366136,
+          55.7500916
+         ],
+         [
+          37.5365931,
+          55.7501189
+         ],
+         [
+          37.5364624,
+          55.7502411
+         ],
+         [
+          37.5365811,
+          55.7502804
+         ],
+         [
+          37.5367142,
+          55.7501528
+         ],
+         [
+          37.5369408,
+          55.7502276
+         ],
+         [
+          37.5368077,
+          55.7503552
+         ],
+         [
+          37.5369118,
+          55.7503896
+         ],
+         [
+          37.5370435,
+          55.7502635
+         ],
+         [
+          37.5370768,
+          55.7502405
+         ],
+         [
+          37.5371204,
+          55.7502237
+         ],
+         [
+          37.5371705,
+          55.7502145
+         ],
+         [
+          37.5372233,
+          55.7502136
+         ],
+         [
+          37.5372743,
+          55.7502211
+         ],
+         [
+          37.5373195,
+          55.7502365
+         ],
+         [
+          37.5373553,
+          55.7502583
+         ],
+         [
+          37.5373786,
+          55.750285
+         ],
+         [
+          37.5373876,
+          55.7503142
+         ],
+         [
+          37.5373817,
+          55.7503437
+         ],
+         [
+          37.5373612,
+          55.7503711
+         ],
+         [
+          37.5372292,
+          55.7504945
+         ],
+         [
+          37.5375474,
+          55.7505997
+         ],
+         [
+          37.5371166,
+          55.7510126
+         ],
+         [
+          37.5361629,
+          55.7506975
+         ],
+         [
+          37.5361393,
+          55.7507202
+         ],
+         [
+          37.5359637,
+          55.7506621
+         ],
+         [
+          37.5359874,
+          55.7506395
+         ],
+         [
+          37.5357621,
+          55.750565
+         ],
+         [
+          37.5355402,
+          55.7504917
+         ],
+         [
+          37.5354918,
+          55.7505381
+         ],
+         [
+          37.5352188,
+          55.7504478
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w809610199",
+      "hotel_id": "n11482410978",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 14,
+      "height_fact_id": "f_height_n11482410978"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3118171187",
+     "name": "High Level",
+     "address": null,
+     "location": [
+      37.5403698,
+      55.7483321
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Деловой центр», «Москва-Сити», «Сити-Экспоцентр»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n3118171187",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n5436457732",
+        "g_poi_n3226428878",
+        "g_poi_n253045735",
+        "g_poi_n255856078",
+        "g_poi_n11835191569",
+        "g_walk_n3118171187_n5436457732",
+        "g_walk_n3118171187_n3226428878",
+        "g_walk_n3118171187_n253045735",
+        "g_walk_n3118171187_n255856078",
+        "g_walk_n3118171187_n11835191569"
+       ],
+       "subject": "hotel:n3118171187",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Деловой центр",
+         "Москва-Сити",
+         "Сити-Экспоцентр"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n5436457732",
+       "g_poi_n3226428878",
+       "g_poi_n253045735",
+       "g_poi_n255856078",
+       "g_poi_n11835191569",
+       "g_walk_n3118171187_n5436457732",
+       "g_walk_n3118171187_n3226428878",
+       "g_walk_n3118171187_n253045735",
+       "g_walk_n3118171187_n255856078",
+       "g_walk_n3118171187_n11835191569"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n3118171187",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3118171187",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5403698,
+      55.7483321
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52929377",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5395868,
+          55.7481837
+         ],
+         [
+          37.5399755,
+          55.7478275
+         ],
+         [
+          37.5408584,
+          55.7481326
+         ],
+         [
+          37.5404697,
+          55.7484889
+         ],
+         [
+          37.5402272,
+          55.7484051
+         ],
+         [
+          37.5400215,
+          55.748334
+         ],
+         [
+          37.5398399,
+          55.7482712
+         ],
+         [
+          37.5395868,
+          55.7481837
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52929377",
+      "hotel_id": "n3118171187",
+      "is_hotel": true,
+      "height_m": 238.0,
+      "min_height_m": 0,
+      "levels": 59,
+      "height_fact_id": "f_height_n3118171187"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5107823149",
+     "name": "ГородОтель",
+     "address": null,
+     "location": [
+      37.6547331,
+      55.7735385
+     ],
+     "stars": null,
+     "building_id": "r1309225",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Комсомольская», «Ленинградский вокзал», «Ярославский вокзал», «Москва-Пассажирская-Казанская»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n5107823149",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n297148038",
+        "g_poi_n267335088",
+        "g_poi_r1736667",
+        "g_poi_r1397947",
+        "g_poi_n85698866",
+        "g_walk_n5107823149_n297148038",
+        "g_walk_n5107823149_n267335088",
+        "g_walk_n5107823149_r1736667",
+        "g_walk_n5107823149_r1397947",
+        "g_walk_n5107823149_n85698866"
+       ],
+       "subject": "hotel:n5107823149",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Комсомольская",
+         "Ленинградский вокзал",
+         "Ярославский вокзал",
+         "Москва-Пассажирская-Казанская"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n297148038",
+       "g_poi_n267335088",
+       "g_poi_r1736667",
+       "g_poi_r1397947",
+       "g_poi_n85698866",
+       "g_walk_n5107823149_n297148038",
+       "g_walk_n5107823149_n267335088",
+       "g_walk_n5107823149_r1736667",
+       "g_walk_n5107823149_r1397947",
+       "g_walk_n5107823149_n85698866"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n5107823149",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5107823149",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6547331,
+      55.7735385
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r1309225",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6543909,
+          55.7740735
+         ],
+         [
+          37.6544408,
+          55.7739909
+         ],
+         [
+          37.6544648,
+          55.7739512
+         ],
+         [
+          37.6544333,
+          55.7739452
+         ],
+         [
+          37.6546604,
+          55.7735691
+         ],
+         [
+          37.6546807,
+          55.773573
+         ],
+         [
+          37.6546882,
+          55.7735605
+         ],
+         [
+          37.6546955,
+          55.7735484
+         ],
+         [
+          37.654703,
+          55.773536
+         ],
+         [
+          37.6547105,
+          55.7735237
+         ],
+         [
+          37.6547255,
+          55.7734987
+         ],
+         [
+          37.6547328,
+          55.7734867
+         ],
+         [
+          37.6547403,
+          55.7734743
+         ],
+         [
+          37.6547478,
+          55.7734619
+         ],
+         [
+          37.6547519,
+          55.7734551
+         ],
+         [
+          37.6547686,
+          55.7734274
+         ],
+         [
+          37.6547699,
+          55.7734253
+         ],
+         [
+          37.6547774,
+          55.7734129
+         ],
+         [
+          37.6547849,
+          55.7734005
+         ],
+         [
+          37.6547895,
+          55.7733927
+         ],
+         [
+          37.6548064,
+          55.7733648
+         ],
+         [
+          37.654807,
+          55.7733638
+         ],
+         [
+          37.6548145,
+          55.7733514
+         ],
+         [
+          37.654822,
+          55.773339
+         ],
+         [
+          37.6548368,
+          55.7733144
+         ],
+         [
+          37.6548441,
+          55.7733024
+         ],
+         [
+          37.6548516,
+          55.7732899
+         ],
+         [
+          37.6548591,
+          55.7732776
+         ],
+         [
+          37.6548739,
+          55.773253
+         ],
+         [
+          37.6548812,
+          55.7732409
+         ],
+         [
+          37.6548887,
+          55.7732285
+         ],
+         [
+          37.6548962,
+          55.7732161
+         ],
+         [
+          37.654911,
+          55.7731917
+         ],
+         [
+          37.6549183,
+          55.7731796
+         ],
+         [
+          37.6549258,
+          55.7731672
+         ],
+         [
+          37.6549332,
+          55.7731548
+         ],
+         [
+          37.65494,
+          55.7731436
+         ],
+         [
+          37.6549515,
+          55.7731246
+         ],
+         [
+          37.6548807,
+          55.7731111
+         ],
+         [
+          37.654857,
+          55.7731065
+         ],
+         [
+          37.6548289,
+          55.7731012
+         ],
+         [
+          37.6548009,
+          55.7730958
+         ],
+         [
+          37.6547776,
+          55.7730914
+         ],
+         [
+          37.6547855,
+          55.7730783
+         ],
+         [
+          37.6548036,
+          55.7730482
+         ],
+         [
+          37.6548115,
+          55.7730351
+         ],
+         [
+          37.6548338,
+          55.7729983
+         ],
+         [
+          37.6548417,
+          55.7729852
+         ],
+         [
+          37.6548595,
+          55.7729558
+         ],
+         [
+          37.654875,
+          55.7729301
+         ],
+         [
+          37.6548829,
+          55.772917
+         ],
+         [
+          37.6549056,
+          55.7728793
+         ],
+         [
+          37.6549134,
+          55.7728664
+         ],
+         [
+          37.6549341,
+          55.7728322
+         ],
+         [
+          37.654942,
+          55.7728191
+         ],
+         [
+          37.6549653,
+          55.7728235
+         ],
+         [
+          37.6549934,
+          55.7728289
+         ],
+         [
+          37.6550206,
+          55.7728341
+         ],
+         [
+          37.6550451,
+          55.7728388
+         ],
+         [
+          37.655116,
+          55.7728523
+         ],
+         [
+          37.6551274,
+          55.7728334
+         ],
+         [
+          37.6552575,
+          55.7726179
+         ],
+         [
+          37.6552909,
+          55.7725626
+         ],
+         [
+          37.6553667,
+          55.7724371
+         ],
+         [
+          37.6554441,
+          55.7724519
+         ],
+         [
+          37.6554644,
+          55.7724184
+         ],
+         [
+          37.6556607,
+          55.772364
+         ],
+         [
+          37.6557331,
+          55.7723778
+         ],
+         [
+          37.6557706,
+          55.7723158
+         ],
+         [
+          37.6558732,
+          55.7723354
+         ],
+         [
+          37.6558805,
+          55.7723368
+         ],
+         [
+          37.6559646,
+          55.7723528
+         ],
+         [
+          37.6560188,
+          55.7723632
+         ],
+         [
+          37.6560413,
+          55.7723675
+         ],
+         [
+          37.656061,
+          55.7723713
+         ],
+         [
+          37.6561032,
+          55.7723793
+         ],
+         [
+          37.656146,
+          55.7723875
+         ],
+         [
+          37.6562106,
+          55.7723998
+         ],
+         [
+          37.6562304,
+          55.7724036
+         ],
+         [
+          37.6563066,
+          55.7724182
+         ],
+         [
+          37.6563361,
+          55.7724238
+         ],
+         [
+          37.6563033,
+          55.7724781
+         ],
+         [
+          37.6563574,
+          55.7724884
+         ],
+         [
+          37.6563959,
+          55.7724958
+         ],
+         [
+          37.656459,
+          55.7725078
+         ],
+         [
+          37.6565215,
+          55.7725198
+         ],
+         [
+          37.6565592,
+          55.772527
+         ],
+         [
+          37.6566206,
+          55.7725387
+         ],
+         [
+          37.6566456,
+          55.7725435
+         ],
+         [
+          37.6566784,
+          55.7724892
+         ],
+         [
+          37.6568888,
+          55.7725294
+         ],
+         [
+          37.6577954,
+          55.7727027
+         ],
+         [
+          37.6578104,
+          55.7726778
+         ],
+         [
+          37.6579262,
+          55.7726999
+         ],
+         [
+          37.658042,
+          55.7727221
+         ],
+         [
+          37.658027,
+          55.7727469
+         ],
+         [
+          37.6581242,
+          55.7727655
+         ],
+         [
+          37.6582246,
+          55.7727847
+         ],
+         [
+          37.658259,
+          55.7727913
+         ],
+         [
+          37.6583659,
+          55.7728117
+         ],
+         [
+          37.6583966,
+          55.7728175
+         ],
+         [
+          37.658506,
+          55.7728384
+         ],
+         [
+          37.6585727,
+          55.7728512
+         ],
+         [
+          37.6585399,
+          55.7729055
+         ],
+         [
+          37.6584661,
+          55.7730276
+         ],
+         [
+          37.6584092,
+          55.7731219
+         ],
+         [
+          37.6583974,
+          55.7731414
+         ],
+         [
+          37.6583682,
+          55.7731358
+         ],
+         [
+          37.6583163,
+          55.7732218
+         ],
+         [
+          37.6582832,
+          55.7732766
+         ],
+         [
+          37.6583124,
+          55.7732821
+         ],
+         [
+          37.6583021,
+          55.7732992
+         ],
+         [
+          37.6582918,
+          55.7733163
+         ],
+         [
+          37.6582735,
+          55.7733466
+         ],
+         [
+          37.6582443,
+          55.773395
+         ],
+         [
+          37.658226,
+          55.7734252
+         ],
+         [
+          37.6582158,
+          55.7734421
+         ],
+         [
+          37.6582057,
+          55.7734589
+         ],
+         [
+          37.6581866,
+          55.7734905
+         ],
+         [
+          37.6581542,
+          55.7735442
+         ],
+         [
+          37.6581351,
+          55.7735758
+         ],
+         [
+          37.6581248,
+          55.7735928
+         ],
+         [
+          37.6581145,
+          55.7736099
+         ],
+         [
+          37.6580959,
+          55.7736406
+         ],
+         [
+          37.6580705,
+          55.7736827
+         ],
+         [
+          37.658047,
+          55.7737216
+         ],
+         [
+          37.6580367,
+          55.7737386
+         ],
+         [
+          37.6580263,
+          55.7737558
+         ],
+         [
+          37.6580078,
+          55.7737865
+         ],
+         [
+          37.6579776,
+          55.7738365
+         ],
+         [
+          37.6579591,
+          55.7738671
+         ],
+         [
+          37.6579491,
+          55.7738837
+         ],
+         [
+          37.6579384,
+          55.7739014
+         ],
+         [
+          37.6579191,
+          55.7739334
+         ],
+         [
+          37.6578939,
+          55.773975
+         ],
+         [
+          37.6578746,
+          55.774007
+         ],
+         [
+          37.6578646,
+          55.7740237
+         ],
+         [
+          37.657854,
+          55.7740412
+         ],
+         [
+          37.6578342,
+          55.774074
+         ],
+         [
+          37.6578076,
+          55.774118
+         ],
+         [
+          37.6577878,
+          55.7741508
+         ],
+         [
+          37.6577772,
+          55.7741683
+         ],
+         [
+          37.657767,
+          55.7741852
+         ],
+         [
+          37.6577473,
+          55.7742179
+         ],
+         [
+          37.65772,
+          55.774263
+         ],
+         [
+          37.6577012,
+          55.7742942
+         ],
+         [
+          37.6576915,
+          55.7743103
+         ],
+         [
+          37.6576805,
+          55.7743284
+         ],
+         [
+          37.6576513,
+          55.7743228
+         ],
+         [
+          37.6576306,
+          55.774357
+         ],
+         [
+          37.6576018,
+          55.7744048
+         ],
+         [
+          37.6575917,
+          55.7744214
+         ],
+         [
+          37.6575821,
+          55.7744374
+         ],
+         [
+          37.6575795,
+          55.7744416
+         ],
+         [
+          37.6575475,
+          55.7744946
+         ],
+         [
+          37.6575647,
+          55.7744979
+         ],
+         [
+          37.6575801,
+          55.7745009
+         ],
+         [
+          37.6575726,
+          55.7745135
+         ],
+         [
+          37.6575069,
+          55.7746231
+         ],
+         [
+          37.6574291,
+          55.774753
+         ],
+         [
+          37.6572275,
+          55.7747145
+         ],
+         [
+          37.6571934,
+          55.774708
+         ],
+         [
+          37.6571306,
+          55.774696
+         ],
+         [
+          37.657081,
+          55.7746865
+         ],
+         [
+          37.6570534,
+          55.7746812
+         ],
+         [
+          37.6570374,
+          55.7746781
+         ],
+         [
+          37.6570075,
+          55.7746724
+         ],
+         [
+          37.6569897,
+          55.774669
+         ],
+         [
+          37.6569834,
+          55.7746678
+         ],
+         [
+          37.6569615,
+          55.7746636
+         ],
+         [
+          37.6569454,
+          55.7746606
+         ],
+         [
+          37.6569162,
+          55.774655
+         ],
+         [
+          37.6569024,
+          55.7746524
+         ],
+         [
+          37.6568989,
+          55.7746582
+         ],
+         [
+          37.6568847,
+          55.7746816
+         ],
+         [
+          37.656845,
+          55.7746741
+         ],
+         [
+          37.6568168,
+          55.7746687
+         ],
+         [
+          37.6568048,
+          55.7746664
+         ],
+         [
+          37.6567765,
+          55.774661
+         ],
+         [
+          37.6567705,
+          55.7746598
+         ],
+         [
+          37.6567337,
+          55.7746528
+         ],
+         [
+          37.6567049,
+          55.7746473
+         ],
+         [
+          37.6566527,
+          55.7746373
+         ],
+         [
+          37.6566245,
+          55.7746319
+         ],
+         [
+          37.6565812,
+          55.7746237
+         ],
+         [
+          37.6565529,
+          55.7746182
+         ],
+         [
+          37.6565397,
+          55.7746157
+         ],
+         [
+          37.656513,
+          55.7746106
+         ],
+         [
+          37.6564813,
+          55.7746046
+         ],
+         [
+          37.6564637,
+          55.7746012
+         ],
+         [
+          37.6564464,
+          55.7745979
+         ],
+         [
+          37.6564103,
+          55.774591
+         ],
+         [
+          37.6563992,
+          55.7745889
+         ],
+         [
+          37.6563892,
+          55.774587
+         ],
+         [
+          37.6563542,
+          55.7745803
+         ],
+         [
+          37.6563414,
+          55.7745778
+         ],
+         [
+          37.6563002,
+          55.7745699
+         ],
+         [
+          37.6562874,
+          55.7745675
+         ],
+         [
+          37.6562743,
+          55.774565
+         ],
+         [
+          37.6562597,
+          55.7745891
+         ],
+         [
+          37.6562543,
+          55.7745981
+         ],
+         [
+          37.6561899,
+          55.7745857
+         ],
+         [
+          37.6561838,
+          55.7745846
+         ],
+         [
+          37.6561777,
+          55.7745834
+         ],
+         [
+          37.6561225,
+          55.7745729
+         ],
+         [
+          37.6560741,
+          55.7745636
+         ],
+         [
+          37.6560622,
+          55.7745613
+         ],
+         [
+          37.6560599,
+          55.7745609
+         ],
+         [
+          37.6559972,
+          55.7745489
+         ],
+         [
+          37.6560026,
+          55.7745399
+         ],
+         [
+          37.6560349,
+          55.7744866
+         ],
+         [
+          37.6559892,
+          55.7744779
+         ],
+         [
+          37.6559835,
+          55.7744768
+         ],
+         [
+          37.6559466,
+          55.7744697
+         ],
+         [
+          37.6559414,
+          55.7744687
+         ],
+         [
+          37.6558771,
+          55.7744564
+         ],
+         [
+          37.6558688,
+          55.7744549
+         ],
+         [
+          37.6557922,
+          55.7744402
+         ],
+         [
+          37.6557592,
+          55.7744339
+         ],
+         [
+          37.6557442,
+          55.774431
+         ],
+         [
+          37.6557051,
+          55.7744236
+         ],
+         [
+          37.6556659,
+          55.7744161
+         ],
+         [
+          37.6556432,
+          55.7744117
+         ],
+         [
+          37.6556169,
+          55.7744067
+         ],
+         [
+          37.6555962,
+          55.7744028
+         ],
+         [
+          37.655543,
+          55.7743926
+         ],
+         [
+          37.6555343,
+          55.7743909
+         ],
+         [
+          37.6555147,
+          55.7743872
+         ],
+         [
+          37.6554964,
+          55.7743837
+         ],
+         [
+          37.6554702,
+          55.7743787
+         ],
+         [
+          37.6554487,
+          55.7743746
+         ],
+         [
+          37.6554273,
+          55.7743705
+         ],
+         [
+          37.655388,
+          55.774363
+         ],
+         [
+          37.6553781,
+          55.7743611
+         ],
+         [
+          37.6553392,
+          55.7743537
+         ],
+         [
+          37.6553161,
+          55.7743492
+         ],
+         [
+          37.655287,
+          55.7743437
+         ],
+         [
+          37.6552652,
+          55.7743395
+         ],
+         [
+          37.6552421,
+          55.7743351
+         ],
+         [
+          37.6552404,
+          55.7743348
+         ],
+         [
+          37.6551911,
+          55.7743254
+         ],
+         [
+          37.6551673,
+          55.7743208
+         ],
+         [
+          37.6551362,
+          55.7743149
+         ],
+         [
+          37.65513,
+          55.774325
+         ],
+         [
+          37.655107,
+          55.7743206
+         ],
+         [
+          37.6550894,
+          55.7743172
+         ],
+         [
+          37.6550545,
+          55.7743106
+         ],
+         [
+          37.6550369,
+          55.7743072
+         ],
+         [
+          37.654968,
+          55.774294
+         ],
+         [
+          37.6549285,
+          55.7742865
+         ],
+         [
+          37.654885,
+          55.7742782
+         ],
+         [
+          37.6548456,
+          55.7742706
+         ],
+         [
+          37.6547884,
+          55.7742597
+         ],
+         [
+          37.6547699,
+          55.7742562
+         ],
+         [
+          37.6547309,
+          55.7742487
+         ],
+         [
+          37.6547139,
+          55.7742455
+         ],
+         [
+          37.6546803,
+          55.7742391
+         ],
+         [
+          37.6547017,
+          55.7742036
+         ],
+         [
+          37.6547065,
+          55.7741956
+         ],
+         [
+          37.6546748,
+          55.7741895
+         ],
+         [
+          37.6546699,
+          55.7741975
+         ],
+         [
+          37.6546613,
+          55.7742118
+         ],
+         [
+          37.6546383,
+          55.7742074
+         ],
+         [
+          37.6546469,
+          55.7741931
+         ],
+         [
+          37.6546517,
+          55.7741851
+         ],
+         [
+          37.6546379,
+          55.7741824
+         ],
+         [
+          37.6546091,
+          55.7741904
+         ],
+         [
+          37.6544694,
+          55.7741637
+         ],
+         [
+          37.6543909,
+          55.7740735
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r1309225",
+      "hotel_id": "n5107823149",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n5107823149"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8154400360",
+     "name": "47nebo",
+     "address": null,
+     "location": [
+      37.5403261,
+      55.7479426
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Деловой центр», «Москва-Сити», «Сити-Экспоцентр»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n8154400360",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n5436457732",
+        "g_poi_n3226428878",
+        "g_poi_n253045735",
+        "g_poi_n255856078",
+        "g_poi_n11835191569",
+        "g_walk_n8154400360_n5436457732",
+        "g_walk_n8154400360_n3226428878",
+        "g_walk_n8154400360_n253045735",
+        "g_walk_n8154400360_n255856078",
+        "g_walk_n8154400360_n11835191569"
+       ],
+       "subject": "hotel:n8154400360",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Деловой центр",
+         "Москва-Сити",
+         "Сити-Экспоцентр"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n5436457732",
+       "g_poi_n3226428878",
+       "g_poi_n253045735",
+       "g_poi_n255856078",
+       "g_poi_n11835191569",
+       "g_walk_n8154400360_n5436457732",
+       "g_walk_n8154400360_n3226428878",
+       "g_walk_n8154400360_n253045735",
+       "g_walk_n8154400360_n255856078",
+       "g_walk_n8154400360_n11835191569"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n8154400360",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8154400360",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5403261,
+      55.7479426
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52929377",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5395868,
+          55.7481837
+         ],
+         [
+          37.5399755,
+          55.7478275
+         ],
+         [
+          37.5408584,
+          55.7481326
+         ],
+         [
+          37.5404697,
+          55.7484889
+         ],
+         [
+          37.5402272,
+          55.7484051
+         ],
+         [
+          37.5400215,
+          55.748334
+         ],
+         [
+          37.5398399,
+          55.7482712
+         ],
+         [
+          37.5395868,
+          55.7481837
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52929377",
+      "hotel_id": "n8154400360",
+      "is_hotel": true,
+      "height_m": 238.0,
+      "min_height_m": 0,
+      "levels": 59,
+      "height_fact_id": "f_height_n8154400360"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8370848124",
+     "name": "Sky Apartments",
+     "address": null,
+     "location": [
+      37.536583,
+      55.749298
+     ],
+     "stars": null,
+     "building_id": "r14060559",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Москва-Сити», «Деловой центр»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n8370848124",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n255856078",
+        "g_poi_n3226428878",
+        "g_poi_n5436457732",
+        "g_poi_n253045735",
+        "g_poi_n4379061172",
+        "g_walk_n8370848124_n255856078",
+        "g_walk_n8370848124_n3226428878",
+        "g_walk_n8370848124_n5436457732",
+        "g_walk_n8370848124_n253045735",
+        "g_walk_n8370848124_n4379061172"
+       ],
+       "subject": "hotel:n8370848124",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Москва-Сити",
+         "Деловой центр"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n255856078",
+       "g_poi_n3226428878",
+       "g_poi_n5436457732",
+       "g_poi_n253045735",
+       "g_poi_n4379061172",
+       "g_walk_n8370848124_n255856078",
+       "g_walk_n8370848124_n3226428878",
+       "g_walk_n8370848124_n5436457732",
+       "g_walk_n8370848124_n253045735",
+       "g_walk_n8370848124_n4379061172"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n8370848124",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8370848124",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.536583,
+      55.749298
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r14060559",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.53617,
+          55.7496054
+         ],
+         [
+          37.5364922,
+          55.7493029
+         ],
+         [
+          37.5366024,
+          55.7491985
+         ],
+         [
+          37.5368428,
+          55.7492045
+         ],
+         [
+          37.5370927,
+          55.749226
+         ],
+         [
+          37.5373028,
+          55.7492664
+         ],
+         [
+          37.5375427,
+          55.7493272
+         ],
+         [
+          37.5374954,
+          55.7493658
+         ],
+         [
+          37.5376493,
+          55.7494372
+         ],
+         [
+          37.5378163,
+          55.7495785
+         ],
+         [
+          37.5379685,
+          55.7495365
+         ],
+         [
+          37.538155,
+          55.7494974
+         ],
+         [
+          37.5386708,
+          55.7496581
+         ],
+         [
+          37.538271,
+          55.7500458
+         ],
+         [
+          37.5381662,
+          55.7500508
+         ],
+         [
+          37.5381473,
+          55.7501242
+         ],
+         [
+          37.5381335,
+          55.7501437
+         ],
+         [
+          37.5380868,
+          55.7502092
+         ],
+         [
+          37.5378339,
+          55.7501651
+         ],
+         [
+          37.5375929,
+          55.7501097
+         ],
+         [
+          37.5373773,
+          55.7500264
+         ],
+         [
+          37.5371746,
+          55.7499208
+         ],
+         [
+          37.5372136,
+          55.7498928
+         ],
+         [
+          37.5370002,
+          55.749813
+         ],
+         [
+          37.5367941,
+          55.7497084
+         ],
+         [
+          37.5367257,
+          55.7497267
+         ],
+         [
+          37.5366293,
+          55.7497538
+         ],
+         [
+          37.53617,
+          55.7496054
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r14060559",
+      "hotel_id": "n8370848124",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n8370848124"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9022840254",
+     "name": "Марриотт Империал Плаза",
+     "address": null,
+     "location": [
+      37.6615137,
+      55.7769396
+     ],
+     "stars": null,
+     "building_id": "w832692480",
+     "height_m": null,
+     "levels": 18,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Москва-Пассажирская-Казанская», «Ярославский вокзал», «Москва-Пассажирская-Ярославская», «Комсомольская», «Ленинградский вокзал»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n9022840254",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n85698866",
+        "g_poi_r1397947",
+        "g_poi_n473887668",
+        "g_poi_n267335088",
+        "g_poi_r1736667",
+        "g_walk_n9022840254_n85698866",
+        "g_walk_n9022840254_r1397947",
+        "g_walk_n9022840254_n473887668",
+        "g_walk_n9022840254_n267335088",
+        "g_walk_n9022840254_r1736667"
+       ],
+       "subject": "hotel:n9022840254",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Москва-Пассажирская-Казанская",
+         "Ярославский вокзал",
+         "Москва-Пассажирская-Ярославская",
+         "Комсомольская",
+         "Ленинградский вокзал"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n85698866",
+       "g_poi_r1397947",
+       "g_poi_n473887668",
+       "g_poi_n267335088",
+       "g_poi_r1736667",
+       "g_walk_n9022840254_n85698866",
+       "g_walk_n9022840254_r1397947",
+       "g_walk_n9022840254_n473887668",
+       "g_walk_n9022840254_n267335088",
+       "g_walk_n9022840254_r1736667"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n9022840254",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n9022840254",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6615137,
+      55.7769396
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w832692480",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6608306,
+          55.7768274
+         ],
+         [
+          37.6610901,
+          55.7766461
+         ],
+         [
+          37.6612237,
+          55.7767066
+         ],
+         [
+          37.6611948,
+          55.7767267
+         ],
+         [
+          37.6613128,
+          55.7767802
+         ],
+         [
+          37.6613523,
+          55.7767525
+         ],
+         [
+          37.6613799,
+          55.7767466
+         ],
+         [
+          37.6614134,
+          55.7767442
+         ],
+         [
+          37.6614429,
+          55.7767483
+         ],
+         [
+          37.6616512,
+          55.7768426
+         ],
+         [
+          37.6617462,
+          55.7767763
+         ],
+         [
+          37.6619006,
+          55.7766684
+         ],
+         [
+          37.6621726,
+          55.7767916
+         ],
+         [
+          37.6620174,
+          55.7769
+         ],
+         [
+          37.6616437,
+          55.7771611
+         ],
+         [
+          37.6609908,
+          55.7768656
+         ],
+         [
+          37.660961,
+          55.7768865
+         ],
+         [
+          37.6608306,
+          55.7768274
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w832692480",
+      "hotel_id": "n9022840254",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 18,
+      "height_fact_id": "f_height_n9022840254"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r85761",
+     "name": "Метрополь",
+     "address": "Театральный проезд 2",
+     "location": [
+      37.6217227,
+      55.7584458
+     ],
+     "stars": null,
+     "building_id": "r85761",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Площадь Революции», «Театральная», «Кузнецкий Мост», «Охотный ряд», «Лубянка»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_r85761",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n242546475",
+        "g_poi_n292143794",
+        "g_poi_n252934400",
+        "g_poi_n267335315",
+        "g_poi_n267335316",
+        "g_walk_r85761_n242546475",
+        "g_walk_r85761_n292143794",
+        "g_walk_r85761_n252934400",
+        "g_walk_r85761_n267335315",
+        "g_walk_r85761_n267335316"
+       ],
+       "subject": "hotel:r85761",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 5,
+        "nearby_names": [
+         "Площадь Революции",
+         "Театральная",
+         "Кузнецкий Мост",
+         "Охотный ряд",
+         "Лубянка"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n242546475",
+       "g_poi_n292143794",
+       "g_poi_n252934400",
+       "g_poi_n267335315",
+       "g_poi_n267335316",
+       "g_walk_r85761_n242546475",
+       "g_walk_r85761_n292143794",
+       "g_walk_r85761_n252934400",
+       "g_walk_r85761_n267335315",
+       "g_walk_r85761_n267335316"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_r85761",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r85761",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6217227,
+      55.7584458
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r85761",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6206936,
+          55.7587811
+         ],
+         [
+          37.6208256,
+          55.7585468
+         ],
+         [
+          37.6208892,
+          55.7585581
+         ],
+         [
+          37.621237,
+          55.7579401
+         ],
+         [
+          37.6216881,
+          55.7580204
+         ],
+         [
+          37.6218815,
+          55.7580549
+         ],
+         [
+          37.6220187,
+          55.7578113
+         ],
+         [
+          37.6221226,
+          55.7578298
+         ],
+         [
+          37.6223438,
+          55.7587478
+         ],
+         [
+          37.6223155,
+          55.7587995
+         ],
+         [
+          37.6221887,
+          55.7590475
+         ],
+         [
+          37.6210627,
+          55.7588469
+         ],
+         [
+          37.6206936,
+          55.7587811
+         ]
+        ],
+        [
+         [
+          37.6213646,
+          55.7582566
+         ],
+         [
+          37.6213877,
+          55.7582607
+         ],
+         [
+          37.6213727,
+          55.7582873
+         ],
+         [
+          37.6216261,
+          55.7583325
+         ],
+         [
+          37.6217225,
+          55.7581614
+         ],
+         [
+          37.6214459,
+          55.7581121
+         ],
+         [
+          37.6213646,
+          55.7582566
+         ]
+        ],
+        [
+         [
+          37.6217831,
+          55.7587047
+         ],
+         [
+          37.6218191,
+          55.7587009
+         ],
+         [
+          37.6218592,
+          55.7587356
+         ],
+         [
+          37.6218406,
+          55.7587555
+         ],
+         [
+          37.6220481,
+          55.7587923
+         ],
+         [
+          37.6220934,
+          55.758714
+         ],
+         [
+          37.622065,
+          55.7587086
+         ],
+         [
+          37.6220405,
+          55.7585608
+         ],
+         [
+          37.6218703,
+          55.7585349
+         ],
+         [
+          37.6217831,
+          55.7587047
+         ]
+        ],
+        [
+         [
+          37.6218559,
+          55.7583984
+         ],
+         [
+          37.6220342,
+          55.7584302
+         ],
+         [
+          37.6221015,
+          55.7584225
+         ],
+         [
+          37.6220589,
+          55.7582714
+         ],
+         [
+          37.6220778,
+          55.7582481
+         ],
+         [
+          37.6220672,
+          55.7582228
+         ],
+         [
+          37.621965,
+          55.7582046
+         ],
+         [
+          37.6218559,
+          55.7583984
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r85761",
+      "hotel_id": "r85761",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r85761"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10068755736",
+     "name": "Ван Гог",
+     "address": null,
+     "location": [
+      37.6564537,
+      55.7597847
+     ],
+     "stars": null,
+     "building_id": "w53048049",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Курская», «Чкаловская», «Москва-Пассажирская-Курская»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n10068755736",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n5202107570",
+        "g_poi_n5202107572",
+        "g_poi_n1123660474",
+        "g_poi_n61088523",
+        "g_walk_n10068755736_n5202107570",
+        "g_walk_n10068755736_n5202107572",
+        "g_walk_n10068755736_n1123660474",
+        "g_walk_n10068755736_n61088523"
+       ],
+       "subject": "hotel:n10068755736",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Курская",
+         "Чкаловская",
+         "Москва-Пассажирская-Курская"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n5202107570",
+       "g_poi_n5202107572",
+       "g_poi_n1123660474",
+       "g_poi_n61088523",
+       "g_walk_n10068755736_n5202107570",
+       "g_walk_n10068755736_n5202107572",
+       "g_walk_n10068755736_n1123660474",
+       "g_walk_n10068755736_n61088523"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n10068755736",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10068755736",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6564537,
+      55.7597847
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53048049",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6563017,
+          55.7597646
+         ],
+         [
+          37.656322,
+          55.7597088
+         ],
+         [
+          37.6564573,
+          55.7597245
+         ],
+         [
+          37.6566301,
+          55.7597444
+         ],
+         [
+          37.6566074,
+          55.7598065
+         ],
+         [
+          37.6564965,
+          55.7597937
+         ],
+         [
+          37.6564911,
+          55.7598087
+         ],
+         [
+          37.6563673,
+          55.7597944
+         ],
+         [
+          37.6563751,
+          55.7597731
+         ],
+         [
+          37.6563017,
+          55.7597646
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53048049",
+      "hotel_id": "n10068755736",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n10068755736"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11083589900",
+     "name": "Тихонов на Ордынке",
+     "address": null,
+     "location": [
+      37.623083,
+      55.7440597
+     ],
+     "stars": null,
+     "building_id": "r7503428",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Третьяковский», «Третьяковская», «Новокузнецкая»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n11083589900",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n11822425558",
+        "g_poi_n493292529",
+        "g_poi_n277499852",
+        "g_poi_n292143796",
+        "g_walk_n11083589900_n11822425558",
+        "g_walk_n11083589900_n493292529",
+        "g_walk_n11083589900_n277499852",
+        "g_walk_n11083589900_n292143796"
+       ],
+       "subject": "hotel:n11083589900",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Третьяковский",
+         "Третьяковская",
+         "Новокузнецкая"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n11822425558",
+       "g_poi_n493292529",
+       "g_poi_n277499852",
+       "g_poi_n292143796",
+       "g_walk_n11083589900_n11822425558",
+       "g_walk_n11083589900_n493292529",
+       "g_walk_n11083589900_n277499852",
+       "g_walk_n11083589900_n292143796"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n11083589900",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11083589900",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.623083,
+      55.7440597
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r7503428",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6229253,
+          55.7440745
+         ],
+         [
+          37.6229952,
+          55.743943
+         ],
+         [
+          37.623217,
+          55.7439804
+         ],
+         [
+          37.6231578,
+          55.7440916
+         ],
+         [
+          37.6231276,
+          55.7440865
+         ],
+         [
+          37.6231086,
+          55.7441221
+         ],
+         [
+          37.6230328,
+          55.7441093
+         ],
+         [
+          37.623041,
+          55.744094
+         ],
+         [
+          37.6229253,
+          55.7440745
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r7503428",
+      "hotel_id": "n11083589900",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n11083589900"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11098015379",
+     "name": "Golden Horse",
+     "address": null,
+     "location": [
+      37.6310948,
+      55.7595191
+     ],
+     "stars": null,
+     "building_id": "r4485797",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лубянка», «Китай-город», «Кузнецкий Мост»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n11098015379",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n267335316",
+        "g_poi_n5176322726",
+        "g_poi_n5176322725",
+        "g_poi_n252934400",
+        "g_walk_n11098015379_n267335316",
+        "g_walk_n11098015379_n5176322726",
+        "g_walk_n11098015379_n5176322725",
+        "g_walk_n11098015379_n252934400"
+       ],
+       "subject": "hotel:n11098015379",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Лубянка",
+         "Китай-город",
+         "Кузнецкий Мост"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n267335316",
+       "g_poi_n5176322726",
+       "g_poi_n5176322725",
+       "g_poi_n252934400",
+       "g_walk_n11098015379_n267335316",
+       "g_walk_n11098015379_n5176322726",
+       "g_walk_n11098015379_n5176322725",
+       "g_walk_n11098015379_n252934400"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n11098015379",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11098015379",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6310948,
+      55.7595191
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r4485797",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6304343,
+          55.7592515
+         ],
+         [
+          37.6307143,
+          55.759047
+         ],
+         [
+          37.630584,
+          55.7589827
+         ],
+         [
+          37.630666,
+          55.7589257
+         ],
+         [
+          37.6307942,
+          55.7589845
+         ],
+         [
+          37.6308057,
+          55.7590108
+         ],
+         [
+          37.63083,
+          55.7590663
+         ],
+         [
+          37.6306033,
+          55.759231
+         ],
+         [
+          37.6305369,
+          55.75928
+         ],
+         [
+          37.6307506,
+          55.7593635
+         ],
+         [
+          37.630809,
+          55.7593858
+         ],
+         [
+          37.6309054,
+          55.7594225
+         ],
+         [
+          37.631074,
+          55.7594567
+         ],
+         [
+          37.6312292,
+          55.7594882
+         ],
+         [
+          37.63153,
+          55.7595455
+         ],
+         [
+          37.6314837,
+          55.7596399
+         ],
+         [
+          37.6313726,
+          55.7598745
+         ],
+         [
+          37.6313111,
+          55.7600044
+         ],
+         [
+          37.6312785,
+          55.7600383
+         ],
+         [
+          37.6312436,
+          55.7600578
+         ],
+         [
+          37.631202,
+          55.76007
+         ],
+         [
+          37.6311531,
+          55.7600767
+         ],
+         [
+          37.6310929,
+          55.7600778
+         ],
+         [
+          37.6305757,
+          55.7600005
+         ],
+         [
+          37.6306581,
+          55.7598392
+         ],
+         [
+          37.6306811,
+          55.759792
+         ],
+         [
+          37.6305439,
+          55.7597702
+         ],
+         [
+          37.6305724,
+          55.7597153
+         ],
+         [
+          37.6306059,
+          55.7597108
+         ],
+         [
+          37.6306286,
+          55.7596886
+         ],
+         [
+          37.6307159,
+          55.7596002
+         ],
+         [
+          37.6307498,
+          55.7595697
+         ],
+         [
+          37.6309432,
+          55.7596144
+         ],
+         [
+          37.6309614,
+          55.759594
+         ],
+         [
+          37.631011,
+          55.7596054
+         ],
+         [
+          37.6309781,
+          55.759653
+         ],
+         [
+          37.6310882,
+          55.7596751
+         ],
+         [
+          37.6311056,
+          55.7596475
+         ],
+         [
+          37.6311359,
+          55.7596536
+         ],
+         [
+          37.6311184,
+          55.7596812
+         ],
+         [
+          37.631145,
+          55.7596865
+         ],
+         [
+          37.6311855,
+          55.7596213
+         ],
+         [
+          37.6312042,
+          55.7595911
+         ],
+         [
+          37.6312269,
+          55.7595546
+         ],
+         [
+          37.6311943,
+          55.7595487
+         ],
+         [
+          37.6311613,
+          55.7595428
+         ],
+         [
+          37.6311375,
+          55.7595541
+         ],
+         [
+          37.6308057,
+          55.759481
+         ],
+         [
+          37.6307648,
+          55.7594595
+         ],
+         [
+          37.6307714,
+          55.7594388
+         ],
+         [
+          37.6306781,
+          55.7593847
+         ],
+         [
+          37.6304343,
+          55.7592515
+         ]
+        ],
+        [
+         [
+          37.6308683,
+          55.7598686
+         ],
+         [
+          37.6310814,
+          55.7598985
+         ],
+         [
+          37.6311155,
+          55.7598325
+         ],
+         [
+          37.6311244,
+          55.7598153
+         ],
+         [
+          37.6308952,
+          55.7597735
+         ],
+         [
+          37.6308712,
+          55.7598181
+         ],
+         [
+          37.6308922,
+          55.7598217
+         ],
+         [
+          37.6308683,
+          55.7598686
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r4485797",
+      "hotel_id": "n11098015379",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n11098015379"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13464110960",
+     "name": "IDera",
+     "address": null,
+     "location": [
+      37.7343727,
+      55.7299563
+     ],
+     "stars": null,
+     "building_id": "w192928784",
+     "height_m": null,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Нижегородская»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n13464110960",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7340764981",
+        "g_poi_n10852613372",
+        "g_poi_n5988989651",
+        "g_poi_n4833126188",
+        "g_walk_n13464110960_n7340764981",
+        "g_walk_n13464110960_n10852613372",
+        "g_walk_n13464110960_n5988989651",
+        "g_walk_n13464110960_n4833126188"
+       ],
+       "subject": "hotel:n13464110960",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Нижегородская"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7340764981",
+       "g_poi_n10852613372",
+       "g_poi_n5988989651",
+       "g_poi_n4833126188",
+       "g_walk_n13464110960_n7340764981",
+       "g_walk_n13464110960_n10852613372",
+       "g_walk_n13464110960_n5988989651",
+       "g_walk_n13464110960_n4833126188"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n13464110960",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13464110960",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.7343727,
+      55.7299563
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w192928784",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.7336097,
+          55.7285991
+         ],
+         [
+          37.7342459,
+          55.7285414
+         ],
+         [
+          37.7342322,
+          55.7284894
+         ],
+         [
+          37.7345119,
+          55.728462
+         ],
+         [
+          37.7350661,
+          55.7284077
+         ],
+         [
+          37.7350538,
+          55.728378
+         ],
+         [
+          37.7357029,
+          55.7283155
+         ],
+         [
+          37.7358153,
+          55.7283047
+         ],
+         [
+          37.735067,
+          55.7296861
+         ],
+         [
+          37.7346202,
+          55.730492
+         ],
+         [
+          37.7342076,
+          55.7304719
+         ],
+         [
+          37.7340303,
+          55.7304687
+         ],
+         [
+          37.7339074,
+          55.7298147
+         ],
+         [
+          37.7337836,
+          55.729156
+         ],
+         [
+          37.7336097,
+          55.7285991
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w192928784",
+      "hotel_id": "n13464110960",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n13464110960"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13808583201",
+     "name": "Ibis Москва Киевская",
+     "address": "Киевская улица 2",
+     "location": [
+      37.5632031,
+      55.7433274
+     ],
+     "stars": null,
+     "building_id": "r8758395",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Москва-Пассажирская-Киевская», «Киевская»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n13808583201",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n2687602339",
+        "g_poi_n4927798806",
+        "g_poi_n253375111",
+        "g_poi_n309745114",
+        "g_walk_n13808583201_n2687602339",
+        "g_walk_n13808583201_n4927798806",
+        "g_walk_n13808583201_n253375111",
+        "g_walk_n13808583201_n309745114"
+       ],
+       "subject": "hotel:n13808583201",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Москва-Пассажирская-Киевская",
+         "Киевская"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n2687602339",
+       "g_poi_n4927798806",
+       "g_poi_n253375111",
+       "g_poi_n309745114",
+       "g_walk_n13808583201_n2687602339",
+       "g_walk_n13808583201_n4927798806",
+       "g_walk_n13808583201_n253375111",
+       "g_walk_n13808583201_n309745114"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n13808583201",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13808583201",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5632031,
+      55.7433274
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r8758395",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.561681,
+          55.742973
+         ],
+         [
+          37.5616869,
+          55.742947
+         ],
+         [
+          37.56171,
+          55.7429243
+         ],
+         [
+          37.5617468,
+          55.7429083
+         ],
+         [
+          37.5617917,
+          55.7429015
+         ],
+         [
+          37.5618378,
+          55.7429048
+         ],
+         [
+          37.5634387,
+          55.743267
+         ],
+         [
+          37.563739,
+          55.7437711
+         ],
+         [
+          37.5638974,
+          55.744037
+         ],
+         [
+          37.563597,
+          55.7440566
+         ],
+         [
+          37.5634526,
+          55.7438142
+         ],
+         [
+          37.5633721,
+          55.743679
+         ],
+         [
+          37.5622201,
+          55.7438965
+         ],
+         [
+          37.561681,
+          55.742973
+         ]
+        ],
+        [
+         [
+          37.5621845,
+          55.7435981
+         ],
+         [
+          37.5623491,
+          55.7436579
+         ],
+         [
+          37.5625543,
+          55.7436191
+         ],
+         [
+          37.5625225,
+          55.7435593
+         ],
+         [
+          37.562434,
+          55.7435324
+         ],
+         [
+          37.5623898,
+          55.7434886
+         ],
+         [
+          37.5623898,
+          55.7434686
+         ],
+         [
+          37.5622907,
+          55.7434437
+         ],
+         [
+          37.5622199,
+          55.7435414
+         ],
+         [
+          37.5621845,
+          55.7435981
+         ]
+        ],
+        [
+         [
+          37.5623048,
+          55.7433551
+         ],
+         [
+          37.5624765,
+          55.7433949
+         ],
+         [
+          37.562572,
+          55.7432644
+         ],
+         [
+          37.5624057,
+          55.7432206
+         ],
+         [
+          37.5623048,
+          55.7433551
+         ]
+        ],
+        [
+         [
+          37.5626234,
+          55.7434284
+         ],
+         [
+          37.5626591,
+          55.7434853
+         ],
+         [
+          37.5626978,
+          55.7434776
+         ],
+         [
+          37.5627202,
+          55.7435134
+         ],
+         [
+          37.5628151,
+          55.7434946
+         ],
+         [
+          37.5628256,
+          55.7435113
+         ],
+         [
+          37.5629428,
+          55.743488
+         ],
+         [
+          37.5629304,
+          55.7434683
+         ],
+         [
+          37.5631819,
+          55.7434183
+         ],
+         [
+          37.5631657,
+          55.7433772
+         ],
+         [
+          37.5631307,
+          55.7433466
+         ],
+         [
+          37.5631056,
+          55.7433594
+         ],
+         [
+          37.5630233,
+          55.7433084
+         ],
+         [
+          37.5630584,
+          55.7432905
+         ],
+         [
+          37.5628111,
+          55.7432303
+         ],
+         [
+          37.5626919,
+          55.7433876
+         ],
+         [
+          37.5627127,
+          55.743405
+         ],
+         [
+          37.5626473,
+          55.743414
+         ],
+         [
+          37.5626234,
+          55.7434284
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r8758395",
+      "hotel_id": "n13808583201",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 12,
+      "height_fact_id": "f_height_n13808583201"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1868774746",
+     "name": "Амстердам",
+     "address": null,
+     "location": [
+      37.7969359,
+      55.8110229
+     ],
+     "stars": null,
+     "building_id": "w94342685",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Отстойно-разворотная площадка конечной станции \"Щелковская\"», «Щёлковская», «Центральная», «Автовокзал «Центральный»»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n1868774746",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_w519866075",
+        "g_poi_n2692905506",
+        "g_poi_r7206762",
+        "g_poi_n7986076165",
+        "g_walk_n1868774746_w519866075",
+        "g_walk_n1868774746_n2692905506",
+        "g_walk_n1868774746_r7206762",
+        "g_walk_n1868774746_n7986076165"
+       ],
+       "subject": "hotel:n1868774746",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Отстойно-разворотная площадка конечной станции \"Щелковская\"",
+         "Щёлковская",
+         "Центральная",
+         "Автовокзал «Центральный»"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_w519866075",
+       "g_poi_n2692905506",
+       "g_poi_r7206762",
+       "g_poi_n7986076165",
+       "g_walk_n1868774746_w519866075",
+       "g_walk_n1868774746_n2692905506",
+       "g_walk_n1868774746_r7206762",
+       "g_walk_n1868774746_n7986076165"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n1868774746",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1868774746",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.7969359,
+      55.8110229
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w94342685",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.7968538,
+          55.8111297
+         ],
+         [
+          37.7968643,
+          55.8107657
+         ],
+         [
+          37.7970264,
+          55.8107671
+         ],
+         [
+          37.7970174,
+          55.811076
+         ],
+         [
+          37.7969446,
+          55.8110753
+         ],
+         [
+          37.796943,
+          55.8111305
+         ],
+         [
+          37.7968538,
+          55.8111297
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w94342685",
+      "hotel_id": "n1868774746",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n1868774746"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2519755765",
+     "name": "Seasons",
+     "address": "улица Большая Ордынка 13/9",
+     "location": [
+      37.6252559,
+      55.7436833
+     ],
+     "stars": null,
+     "building_id": "w48346522",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.38,
+    "confidence": 0.691,
+    "matched": [
+     {
+      "characteristic_key": "derived:aaaa3c9260e1",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с метро",
+      "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Третьяковская», «Новокузнецкая», «Третьяковский»",
+      "fact": {
+       "fact_id": "f_wish_aaaa3c9260e1_n2519755765",
+       "characteristic_key": "derived:aaaa3c9260e1",
+       "value": true,
+       "unit": null,
+       "label": "рядом с метро",
+       "confidence": 0.7,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n493292529",
+        "g_poi_n277499852",
+        "g_poi_n292143796",
+        "g_poi_n11822425558",
+        "g_walk_n2519755765_n493292529",
+        "g_walk_n2519755765_n277499852",
+        "g_walk_n2519755765_n292143796",
+        "g_walk_n2519755765_n11822425558"
+       ],
+       "subject": "hotel:n2519755765",
+       "qualifiers": {
+        "native_op": "gte",
+        "tool_calls": 0,
+        "native_unit": "count",
+        "source_text": "рядом с метро",
+        "wish_status": "matched",
+        "native_value": 4,
+        "nearby_names": [
+         "Третьяковская",
+         "Новокузнецкая",
+         "Третьяковский"
+        ],
+        "checked_sources": [],
+        "native_threshold": 1.0,
+        "native_characteristic_key": "nearby:public_transport:station::0:500"
+       }
+      },
+      "geo_refs": [
+       "g_poi_n493292529",
+       "g_poi_n277499852",
+       "g_poi_n292143796",
+       "g_poi_n11822425558",
+       "g_walk_n2519755765_n493292529",
+       "g_walk_n2519755765_n277499852",
+       "g_walk_n2519755765_n292143796",
+       "g_walk_n2519755765_n11822425558"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:0c56b847d51d",
+      "match": "unknown",
+      "margin": null,
+      "label": "доступный вход",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_0c56b847d51d_n2519755765",
+       "characteristic_key": "derived:0c56b847d51d",
+       "value": null,
+       "unit": null,
+       "label": "доступный вход",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2519755765",
+       "qualifiers": {
+        "source_text": "доступный вход",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6252559,
+      55.7436833
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w48346522",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6250463,
+          55.7438105
+         ],
+         [
+          37.6250673,
+          55.7436055
+         ],
+         [
+          37.6250934,
+          55.74335
+         ],
+         [
+          37.6250989,
+          55.7432966
+         ],
+         [
+          37.6253564,
+          55.7433027
+         ],
+         [
+          37.6253474,
+          55.7433884
+         ],
+         [
+          37.6253121,
+          55.7437263
+         ],
+         [
+          37.6257632,
+          55.7437473
+         ],
+         [
+          37.6257603,
+          55.7437632
+         ],
+         [
+          37.6258571,
+          55.7437739
+         ],
+         [
+          37.6258484,
+          55.7438111
+         ],
+         [
+          37.62588,
+          55.743825
+         ],
+         [
+          37.6258727,
+          55.7438567
+         ],
+         [
+          37.6258363,
+          55.7438633
+         ],
+         [
+          37.6258278,
+          55.7438998
+         ],
+         [
+          37.625655,
+          55.7438869
+         ],
+         [
+          37.625348,
+          55.7438641
+         ],
+         [
+          37.6250996,
+          55.7438456
+         ],
+         [
+          37.625073,
+          55.7438383
+         ],
+         [
+          37.6250555,
+          55.7438274
+         ],
+         [
+          37.6250463,
+          55.7438105
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w48346522",
+      "hotel_id": "n2519755765",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n2519755765"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n8825725921",
+     "name": "1 Арт Отель",
+     "address": null,
+     "location": [
+      37.643618,
+      55.809941
+     ],
+     "stars": null,
+     "building_id": "w685568633",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n3189991362",
+     "name": "123hostel.ru",
+     "address": null,
+     "location": [
+      37.7198901,
+      55.7842951
+     ],
+     "stars": null,
+     "building_id": "w343634575",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13587400888",
+     "name": "1905",
+     "address": null,
+     "location": [
+      37.5558929,
+      55.7586138
+     ],
+     "stars": null,
+     "building_id": "w38938872",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4208531789",
+     "name": "1st Arbat Hotel",
+     "address": null,
+     "location": [
+      37.7175668,
+      55.7482496
+     ],
+     "stars": null,
+     "building_id": "w227175775",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11283323869",
+     "name": "21 Семеновская",
+     "address": "Щербаковская улица 41А",
+     "location": [
+      37.7328543,
+      55.7830958
+     ],
+     "stars": null,
+     "building_id": "w132365082",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n2519755766",
+     "name": "3 пингвина",
+     "address": null,
+     "location": [
+      37.6276768,
+      55.7417708
+     ],
+     "stars": null,
+     "building_id": "w53854148",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n5903084085",
+     "name": "32 км",
+     "address": null,
+     "location": [
+      37.6195586,
+      55.572798
+     ],
+     "stars": null,
+     "building_id": "w373809750",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13739866801",
+     "name": "3V",
+     "address": "1-й Басманный переулок 5/20 с3",
+     "location": [
+      37.663238,
+      55.7713142
+     ],
+     "stars": null,
+     "building_id": "w35683838",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11663276873",
+     "name": "5Nebo",
+     "address": null,
+     "location": [
+      37.6326571,
+      55.7577088
+     ],
+     "stars": null,
+     "building_id": "r532946",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n6143223724",
+     "name": "7 высоток",
+     "address": null,
+     "location": [
+      37.55963,
+      55.870342
+     ],
+     "stars": null,
+     "building_id": "w28194384",
+     "height_m": null,
+     "levels": 14,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    37.5342229,
+    55.7299563,
+    37.7969359,
+    55.8110229
+   ],
+   "camera": {
+    "center": [
+     37.5394484,
+     55.747102
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 72622
+ },
+ "search_message_id": "081fc879-94f0-42a8-9e95-ab7ac77f1780"
+}

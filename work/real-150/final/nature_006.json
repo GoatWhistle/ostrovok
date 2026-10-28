@@ -1,0 +1,46 @@
+{
+ "id": "b8b01271-76e4-4f8f-b185-2c6a9b53e197",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T21:12:36.762375Z",
+ "messages": [
+  {
+   "id": "32b17aab-97ef-495d-9a97-1ec63e8f2bba",
+   "role": "user",
+   "content": "Отель в Сочи с видом на реку",
+   "created_at": "2026-10-28T21:12:36.762375Z"
+  },
+  {
+   "id": "84c76259-d526-401d-9722-1a4cc928a3c8",
+   "role": "assistant",
+   "content": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска. На какие даты едете?",
+   "created_at": "2026-10-28T21:12:36.762375Z"
+  }
+ ],
+ "effective_query": "Отель в Сочи с видом на реку",
+ "search": {
+  "query_id": "0551d46266870bd8",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Отель в Сочи с видом на реку",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3218
+ },
+ "search_message_id": "84c76259-d526-401d-9722-1a4cc928a3c8"
+}

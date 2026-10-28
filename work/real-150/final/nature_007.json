@@ -1,0 +1,5143 @@
+{
+ "id": "9d04867d-1d58-4944-b43d-f7d191b3989e",
+ "title": "Сочи: тихое место, не слышно машин, слышно птиц",
+ "updated_at": "2026-10-28T21:13:42.744747Z",
+ "messages": [
+  {
+   "id": "cfda335a-270a-4498-910c-d7930fc78a56",
+   "role": "user",
+   "content": "Сочи, хочу слышать птиц, а не машины",
+   "created_at": "2026-10-28T21:13:42.744747Z"
+  },
+  {
+   "id": "be82cf7e-4cfd-410d-b66f-9278234e3b46",
+   "role": "assistant",
+   "content": "Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. Пожелание «слышно птиц» невозможно подтвердить или опровергнуть данными: в каталоге нет записей о présidentстве птиц, а звуковой профиль и акустическая privacidad не измеряются объективными полями. Было исследовано 788 отелей: пустая проверка check_requested, половина с низкой / высокая доля деревьев по landcover, считанные страницы catalogs (101hotels, glampinginfo) и Яндекс.Карты дали только общие описания «среди леса/гор» без упоминания bird и звуков. Наблюдаемые источники для этого пожелания (place1/2 trees_sample_pct, contexto e internet unpersonalizado): не подтверждают утверждение о конкретных местах для прослушивания птиц в Сочи.原因是：повторные поиски не дали новых relevant на minimum 1 hotel identity that directly states or shows birdatie siguiendly willingness to stay & explanations of verification. Какую повыше точность уточнения хотите для localisation и или лишь о spatiotempорах ситуациях around?",
+   "created_at": "2026-10-28T21:13:42.744747Z"
+  }
+ ],
+ "effective_query": "Сочи, тихое место, слышно птиц, не слышно машин",
+ "search": {
+  "query_id": "e56a3ac2ef075993",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:1c6dd046a35a",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "тихое место"
+    },
+    {
+     "characteristic_key": "derived:98ea2cb428ea",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "не слышно машин"
+    },
+    {
+     "characteristic_key": "derived:472c99ae97d8",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "слышно птиц"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, тихое место, слышно птиц, не слышно машин",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w714785935",
+     "name": "Karap Palace Hotel",
+     "address": "Нижнеимеретинская улица 121",
+     "location": [
+      39.966752,
+      43.3983151
+     ],
+     "stars": null,
+     "building_id": "w714785935",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.22,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w714785935",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785935_1"
+       ],
+       "subject": "hotel:w714785935",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.3,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785935_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w714785935",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785935_1"
+       ],
+       "subject": "facade:w714785935:206",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 206.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785935_1"
+      ],
+      "camera": {
+       "center": [
+        39.966752,
+        43.3983151
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_w714785935_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w714785935",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w714785935",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.966752,
+      43.3983151
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_w714785935_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714785935",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9666057,
+          43.3982328
+         ],
+         [
+          39.9667863,
+          43.3981677
+         ],
+         [
+          39.9669714,
+          43.3984386
+         ],
+         [
+          39.9667907,
+          43.3985037
+         ],
+         [
+          39.9666057,
+          43.3982328
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714785935",
+      "hotel_id": "w714785935",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w714785935"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.213,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n11190910581",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11190910581_1"
+       ],
+       "subject": "hotel:n11190910581",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 1.5,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11190910581_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 1.333,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n11190910581",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11190910581_1"
+       ],
+       "subject": "facade:n11190910581:224",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.5,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 223.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11190910581_1"
+      ],
+      "camera": {
+       "center": [
+        39.9358143,
+        43.4115027
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 44.0,
+       "focus_facade_id": "fc_n11190910581_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n11190910581",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11190910581",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9358143,
+      43.4115027
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 44.0,
+     "focus_facade_id": "fc_n11190910581_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207638209",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9352514,
+          43.411309
+         ],
+         [
+          39.9354062,
+          43.4112008
+         ],
+         [
+          39.9354656,
+          43.4112393
+         ],
+         [
+          39.9354928,
+          43.4112576
+         ],
+         [
+          39.935521,
+          43.411275
+         ],
+         [
+          39.9355502,
+          43.4112916
+         ],
+         [
+          39.9355803,
+          43.4113074
+         ],
+         [
+          39.9356112,
+          43.4113222
+         ],
+         [
+          39.935643,
+          43.4113361
+         ],
+         [
+          39.9356755,
+          43.411349
+         ],
+         [
+          39.9357087,
+          43.4113609
+         ],
+         [
+          39.9357425,
+          43.4113719
+         ],
+         [
+          39.9357769,
+          43.4113819
+         ],
+         [
+          39.9358118,
+          43.4113908
+         ],
+         [
+          39.9358472,
+          43.4113986
+         ],
+         [
+          39.9358831,
+          43.4114055
+         ],
+         [
+          39.9359192,
+          43.4114112
+         ],
+         [
+          39.9359557,
+          43.4114159
+         ],
+         [
+          39.9359924,
+          43.4114194
+         ],
+         [
+          39.9360292,
+          43.4114219
+         ],
+         [
+          39.9360662,
+          43.4114233
+         ],
+         [
+          39.9361032,
+          43.4114236
+         ],
+         [
+          39.9361402,
+          43.4114228
+         ],
+         [
+          39.9361772,
+          43.4114209
+         ],
+         [
+          39.936214,
+          43.4114179
+         ],
+         [
+          39.9362505,
+          43.4114138
+         ],
+         [
+          39.9362869,
+          43.4114086
+         ],
+         [
+          39.9363229,
+          43.4114024
+         ],
+         [
+          39.9363585,
+          43.4113951
+         ],
+         [
+          39.9363937,
+          43.4113867
+         ],
+         [
+          39.9364284,
+          43.4113773
+         ],
+         [
+          39.9365066,
+          43.4115231
+         ],
+         [
+          39.9364638,
+          43.4115347
+         ],
+         [
+          39.9364394,
+          43.4115405
+         ],
+         [
+          39.9364203,
+          43.411545
+         ],
+         [
+          39.9363763,
+          43.4115541
+         ],
+         [
+          39.9363318,
+          43.4115618
+         ],
+         [
+          39.9362869,
+          43.4115681
+         ],
+         [
+          39.9362418,
+          43.4115732
+         ],
+         [
+          39.9361963,
+          43.4115769
+         ],
+         [
+          39.9361507,
+          43.4115792
+         ],
+         [
+          39.936105,
+          43.4115802
+         ],
+         [
+          39.9360593,
+          43.4115798
+         ],
+         [
+          39.9360136,
+          43.4115781
+         ],
+         [
+          39.9359681,
+          43.411575
+         ],
+         [
+          39.9359228,
+          43.4115706
+         ],
+         [
+          39.9358778,
+          43.4115649
+         ],
+         [
+          39.9358331,
+          43.4115578
+         ],
+         [
+          39.9357889,
+          43.4115494
+         ],
+         [
+          39.9357451,
+          43.4115396
+         ],
+         [
+          39.935702,
+          43.4115286
+         ],
+         [
+          39.9356595,
+          43.4115164
+         ],
+         [
+          39.9356177,
+          43.4115028
+         ],
+         [
+          39.9355767,
+          43.4114881
+         ],
+         [
+          39.9355366,
+          43.4114721
+         ],
+         [
+          39.9354974,
+          43.411455
+         ],
+         [
+          39.9354592,
+          43.4114367
+         ],
+         [
+          39.935422,
+          43.4114173
+         ],
+         [
+          39.9353859,
+          43.4113968
+         ],
+         [
+          39.935351,
+          43.4113752
+         ],
+         [
+          39.9353174,
+          43.4113527
+         ],
+         [
+          39.9352514,
+          43.411309
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207638209",
+      "hotel_id": "n11190910581",
+      "is_hotel": true,
+      "height_m": 22.4,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_n11190910581"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4370780891",
+     "name": "Family Park Hotel",
+     "address": "улица Кирова 11",
+     "location": [
+      39.9205416,
+      43.4222099
+     ],
+     "stars": null,
+     "building_id": "w77860264",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fc74ac80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_abff12d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4c66be3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bebafdf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a2b90ee7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efc9d14c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fd5fe838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e862baf2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5a1a7f26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f183818_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3aee4dea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_040a79cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df5ab243_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d949f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2e043b47_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7c2d7e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2818503a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e7c291a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db630c80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8943a96c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c956a8aa_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54120d30_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_53ad83e3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.209,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.765,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n4370780891",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4370780891_1"
+       ],
+       "subject": "hotel:n4370780891",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 1.7,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4370780891_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 1.176,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n4370780891",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4370780891_1"
+       ],
+       "subject": "facade:n4370780891:225",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.7,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 225.2
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4370780891_1"
+      ],
+      "camera": {
+       "center": [
+        39.9205416,
+        43.4222099
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 45.0,
+       "focus_facade_id": "fc_n4370780891_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n4370780891",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4370780891",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9205416,
+      43.4222099
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 45.0,
+     "focus_facade_id": "fc_n4370780891_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w77860264",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9203219,
+          43.4221747
+         ],
+         [
+          39.9203816,
+          43.4221309
+         ],
+         [
+          39.9203703,
+          43.4221228
+         ],
+         [
+          39.9204588,
+          43.422058
+         ],
+         [
+          39.9204739,
+          43.4220689
+         ],
+         [
+          39.9205075,
+          43.4220443
+         ],
+         [
+          39.9205783,
+          43.4220953
+         ],
+         [
+          39.9205377,
+          43.422125
+         ],
+         [
+          39.920583,
+          43.4221577
+         ],
+         [
+          39.9206231,
+          43.4221283
+         ],
+         [
+          39.9207169,
+          43.4221959
+         ],
+         [
+          39.9206221,
+          43.4222653
+         ],
+         [
+          39.9206385,
+          43.4222771
+         ],
+         [
+          39.9205561,
+          43.4223374
+         ],
+         [
+          39.9205043,
+          43.4223001
+         ],
+         [
+          39.9204909,
+          43.4223099
+         ],
+         [
+          39.9203417,
+          43.4222025
+         ],
+         [
+          39.9203511,
+          43.4221957
+         ],
+         [
+          39.9203219,
+          43.4221747
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w77860264",
+      "hotel_id": "n4370780891",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4370780891"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.207,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.667,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n4712092442",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4712092442_1"
+       ],
+       "subject": "hotel:n4712092442",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 1.8,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4712092442_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 1.111,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n4712092442",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4712092442_1"
+       ],
+       "subject": "facade:n4712092442:206",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.8,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 205.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4712092442_1"
+      ],
+      "camera": {
+       "center": [
+        39.9668263,
+        43.3989565
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_n4712092442_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n4712092442",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4712092442",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9668263,
+      43.3989565
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_n4712092442_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374921439",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9665586,
+          43.3989753
+         ],
+         [
+          39.9667803,
+          43.3988975
+         ],
+         [
+          39.9667555,
+          43.3988602
+         ],
+         [
+          39.9669443,
+          43.398794
+         ],
+         [
+          39.9670258,
+          43.3989166
+         ],
+         [
+          39.9666153,
+          43.3990607
+         ],
+         [
+          39.9665586,
+          43.3989753
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374921439",
+      "hotel_id": "n4712092442",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4712092442"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53292017",
+     "name": "Black Sea",
+     "address": "улица Бестужева 6А",
+     "location": [
+      39.9224817,
+      43.41941
+     ],
+     "stars": null,
+     "building_id": "w53292017",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.206,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.579,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w53292017",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292017_1"
+       ],
+       "subject": "hotel:w53292017",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 1.9,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292017_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 1.053,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w53292017",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292017_1"
+       ],
+       "subject": "facade:w53292017:236",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.9,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 235.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292017_1"
+      ],
+      "camera": {
+       "center": [
+        39.9224817,
+        43.41941
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_w53292017_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w53292017",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53292017",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9224817,
+      43.41941
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_w53292017_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292017",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9223893,
+          43.419423
+         ],
+         [
+          39.9224834,
+          43.4193227
+         ],
+         [
+          39.9226204,
+          43.4193905
+         ],
+         [
+          39.9225262,
+          43.4194908
+         ],
+         [
+          39.9223893,
+          43.419423
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292017",
+      "hotel_id": "w53292017",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53292017"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53292014",
+     "name": "Green House Hotel",
+     "address": "улица Бестужева 1В",
+     "location": [
+      39.9223431,
+      43.4188527
+     ],
+     "stars": null,
+     "building_id": "w53292014",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.201,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.304,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w53292014",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292014_1"
+       ],
+       "subject": "hotel:w53292014",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 2.3,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292014_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 0.87,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w53292014",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292014_1"
+       ],
+       "subject": "facade:w53292014:236",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 235.5
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292014_1"
+      ],
+      "camera": {
+       "center": [
+        39.9223431,
+        43.4188527
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_w53292014_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w53292014",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53292014",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9223431,
+      43.4188527
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_w53292014_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292014",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9222058,
+          43.4188782
+         ],
+         [
+          39.9223564,
+          43.4187186
+         ],
+         [
+          39.9225491,
+          43.4188145
+         ],
+         [
+          39.9223984,
+          43.4189741
+         ],
+         [
+          39.9222058,
+          43.4188782
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292014",
+      "hotel_id": "w53292014",
+      "is_hotel": true,
+      "height_m": 22.4,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_w53292014"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w207637828",
+     "name": "Bridge Family Resort",
+     "address": "Фигурная улица 45 к1",
+     "location": [
+      39.9887124,
+      43.390526
+     ],
+     "stars": 3,
+     "building_id": "w207637828",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w207637828",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w207637828_1"
+       ],
+       "subject": "hotel:w207637828",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w207637828_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w207637828",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w207637828_1"
+       ],
+       "subject": "facade:w207637828:217",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 217.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w207637828_1"
+      ],
+      "camera": {
+       "center": [
+        39.9887124,
+        43.390526
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 37.0,
+       "focus_facade_id": "fc_w207637828_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w207637828",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w207637828",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9887124,
+      43.390526
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 37.0,
+     "focus_facade_id": "fc_w207637828_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207637828",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9884154,
+          43.390359
+         ],
+         [
+          39.9885747,
+          43.3902702
+         ],
+         [
+          39.9886808,
+          43.3903708
+         ],
+         [
+          39.9886976,
+          43.3903614
+         ],
+         [
+          39.9886801,
+          43.3903448
+         ],
+         [
+          39.9887213,
+          43.3903232
+         ],
+         [
+          39.9887635,
+          43.3903802
+         ],
+         [
+          39.9887568,
+          43.3903839
+         ],
+         [
+          39.9890052,
+          43.3906193
+         ],
+         [
+          39.9889931,
+          43.3906273
+         ],
+         [
+          39.9889368,
+          43.3906644
+         ],
+         [
+          39.9889059,
+          43.3907271
+         ],
+         [
+          39.9888457,
+          43.3907106
+         ],
+         [
+          39.9888453,
+          43.3907199
+         ],
+         [
+          39.988826,
+          43.3907306
+         ],
+         [
+          39.9888117,
+          43.3907169
+         ],
+         [
+          39.9887999,
+          43.3907235
+         ],
+         [
+          39.9887055,
+          43.3906339
+         ],
+         [
+          39.9887114,
+          43.3906306
+         ],
+         [
+          39.9886567,
+          43.3905786
+         ],
+         [
+          39.9886499,
+          43.3905823
+         ],
+         [
+          39.9885548,
+          43.390492
+         ],
+         [
+          39.988561,
+          43.3904885
+         ],
+         [
+          39.9885069,
+          43.3904372
+         ],
+         [
+          39.9885013,
+          43.3904404
+         ],
+         [
+          39.9884154,
+          43.390359
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207637828",
+      "hotel_id": "w207637828",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_w207637828"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n10759614195",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10759614195_1"
+       ],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10759614195_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n10759614195",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10759614195_1"
+       ],
+       "subject": "facade:n10759614195:236",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 236.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10759614195_1"
+      ],
+      "camera": {
+       "center": [
+        39.9162591,
+        43.4244336
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_n10759614195_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n10759614195",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_n10759614195_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7115085741",
+     "name": "El Paraiso",
+     "address": "улица Просвещения 70",
+     "location": [
+      39.9151498,
+      43.4260269
+     ],
+     "stars": null,
+     "building_id": "w149546331",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n7115085741",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n7115085741_1"
+       ],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n7115085741_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n7115085741",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n7115085741_1"
+       ],
+       "subject": "facade:n7115085741:233",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 232.9
+       }
+      },
+      "geo_refs": [
+       "g_fc_n7115085741_1"
+      ],
+      "camera": {
+       "center": [
+        39.9151498,
+        43.4260269
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 53.0,
+       "focus_facade_id": "fc_n7115085741_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n7115085741",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9151498,
+      43.4260269
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 53.0,
+     "focus_facade_id": "fc_n7115085741_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w149546331",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9150257,
+          43.4260506
+         ],
+         [
+          39.9150552,
+          43.4260222
+         ],
+         [
+          39.9150578,
+          43.4260068
+         ],
+         [
+          39.9150662,
+          43.425996
+         ],
+         [
+          39.9150804,
+          43.4259875
+         ],
+         [
+          39.9150994,
+          43.4259811
+         ],
+         [
+          39.9151279,
+          43.4259536
+         ],
+         [
+          39.9155345,
+          43.4261767
+         ],
+         [
+          39.9154331,
+          43.4262741
+         ],
+         [
+          39.9150257,
+          43.4260506
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w149546331",
+      "hotel_id": "n7115085741",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n7115085741"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n7123898236",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n7123898236_1"
+       ],
+       "subject": "hotel:n7123898236",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n7123898236_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n7123898236",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n7123898236_1"
+       ],
+       "subject": "facade:n7123898236:210",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 210.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_n7123898236_1"
+      ],
+      "camera": {
+       "center": [
+        39.9296998,
+        43.4155685
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 30.0,
+       "focus_facade_id": "fc_n7123898236_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n7123898236",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7123898236",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9296998,
+      43.4155685
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 30.0,
+     "focus_facade_id": "fc_n7123898236_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80189222",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9295858,
+          43.4155859
+         ],
+         [
+          39.9297424,
+          43.4155192
+         ],
+         [
+          39.9298284,
+          43.4156257
+         ],
+         [
+          39.9296718,
+          43.4156924
+         ],
+         [
+          39.9295858,
+          43.4155859
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80189222",
+      "hotel_id": "n7123898236",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n7123898236"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w124781620",
+     "name": "Kavkaz",
+     "address": "Нижнеимеретинская улица 161А",
+     "location": [
+      39.9718084,
+      43.3962964
+     ],
+     "stars": null,
+     "building_id": "w124781620",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w124781620",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w124781620_1"
+       ],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w124781620_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w124781620",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w124781620_1"
+       ],
+       "subject": "facade:w124781620:262",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 262.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w124781620_1"
+      ],
+      "camera": {
+       "center": [
+        39.9718084,
+        43.3962964
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 82.0,
+       "focus_facade_id": "fc_w124781620_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w124781620",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9718084,
+      43.3962964
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 82.0,
+     "focus_facade_id": "fc_w124781620_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124781620",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9717148,
+          43.3962675
+         ],
+         [
+          39.9717182,
+          43.396249
+         ],
+         [
+          39.9717295,
+          43.3962286
+         ],
+         [
+          39.9717901,
+          43.3962064
+         ],
+         [
+          39.9718214,
+          43.3962112
+         ],
+         [
+          39.9718452,
+          43.3962221
+         ],
+         [
+          39.9718695,
+          43.3962413
+         ],
+         [
+          39.9720545,
+          43.3965087
+         ],
+         [
+          39.971909,
+          43.3965619
+         ],
+         [
+          39.9717249,
+          43.3962957
+         ],
+         [
+          39.9717148,
+          43.3962675
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124781620",
+      "hotel_id": "w124781620",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_w124781620"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w147552207",
+     "name": "Camellia",
+     "address": "Цветочная улица 17/10",
+     "location": [
+      39.9287233,
+      43.4172038
+     ],
+     "stars": null,
+     "building_id": "w147552207",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w147552207",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w147552207_1"
+       ],
+       "subject": "hotel:w147552207",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w147552207_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w147552207",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w147552207_1"
+       ],
+       "subject": "facade:w147552207:220",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 220.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w147552207_1"
+      ],
+      "camera": {
+       "center": [
+        39.9287233,
+        43.4172038
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 40.0,
+       "focus_facade_id": "fc_w147552207_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w147552207",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w147552207",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9287233,
+      43.4172038
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 40.0,
+     "focus_facade_id": "fc_w147552207_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147552207",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9286237,
+          43.4172096
+         ],
+         [
+          39.928778,
+          43.4171143
+         ],
+         [
+          39.9288726,
+          43.4171951
+         ],
+         [
+          39.9287183,
+          43.4172904
+         ],
+         [
+          39.9286237,
+          43.4172096
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147552207",
+      "hotel_id": "w147552207",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w147552207"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w98649229",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w98649229_1"
+       ],
+       "subject": "hotel:w98649229",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 0.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_w98649229_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": null,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w98649229",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w98649229_1"
+       ],
+       "subject": "facade:w98649229:204",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 203.5
+       }
+      },
+      "geo_refs": [
+       "g_fc_w98649229_1"
+      ],
+      "camera": {
+       "center": [
+        39.9723597,
+        43.3980926
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_w98649229_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w98649229",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w98649229",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9723597,
+      43.3980926
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_w98649229_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98649229",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9722795,
+          43.3980804
+         ],
+         [
+          39.9724326,
+          43.3980319
+         ],
+         [
+          39.97248,
+          43.398111
+         ],
+         [
+          39.9723269,
+          43.3981595
+         ],
+         [
+          39.9722795,
+          43.3980804
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98649229",
+      "hotel_id": "w98649229",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w98649229"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843545854",
+     "name": "Ellis",
+     "address": null,
+     "location": [
+      39.9218944,
+      43.4194425
+     ],
+     "stars": null,
+     "building_id": "w167403316",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.199,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.154,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n11843545854",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11843545854_1"
+       ],
+       "subject": "hotel:n11843545854",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 2.6,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11843545854_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 0.769,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n11843545854",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11843545854_1"
+       ],
+       "subject": "facade:n11843545854:234",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.6,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 234.5
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11843545854_1"
+      ],
+      "camera": {
+       "center": [
+        39.9218944,
+        43.4194425
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 54.0,
+       "focus_facade_id": "fc_n11843545854_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n11843545854",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843545854",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9218944,
+      43.4194425
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 54.0,
+     "focus_facade_id": "fc_n11843545854_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w167403316",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9218298,
+          43.4194526
+         ],
+         [
+          39.921886,
+          43.4193951
+         ],
+         [
+          39.9219546,
+          43.4194305
+         ],
+         [
+          39.9219718,
+          43.4194394
+         ],
+         [
+          39.9219671,
+          43.4194442
+         ],
+         [
+          39.9219155,
+          43.4194969
+         ],
+         [
+          39.9218298,
+          43.4194526
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w167403316",
+      "hotel_id": "n11843545854",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11843545854"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8448352104",
+     "name": "Celentano",
+     "address": null,
+     "location": [
+      39.9693622,
+      43.3994846
+     ],
+     "stars": null,
+     "building_id": "w98646833",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.196,
+    "confidence": 0.839,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "partial",
+      "margin": 1.0,
+      "label": "тихое место",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n8448352104",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": true,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n8448352104_1"
+       ],
+       "subject": "hotel:n8448352104",
+       "qualifiers": {
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "score",
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "native_value": 3.0,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 3.0,
+        "native_characteristic_key": "noise_level"
+       }
+      },
+      "geo_refs": [
+       "g_fc_n8448352104_1"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 0.667,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n8448352104",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n8448352104_1"
+       ],
+       "subject": "facade:n8448352104:203",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 3.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 203.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_n8448352104_1"
+      ],
+      "camera": {
+       "center": [
+        39.9693622,
+        43.3994846
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 23.0,
+       "focus_facade_id": "fc_n8448352104_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n8448352104",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8448352104",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9693622,
+      43.3994846
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 23.0,
+     "focus_facade_id": "fc_n8448352104_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98646833",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.969253,
+          43.3994766
+         ],
+         [
+          39.969418,
+          43.3994248
+         ],
+         [
+          39.9694847,
+          43.399537
+         ],
+         [
+          39.9693197,
+          43.3995889
+         ],
+         [
+          39.969253,
+          43.3994766
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98646833",
+      "hotel_id": "n8448352104",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n8448352104"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301267",
+     "name": "Адельфия",
+     "address": "улица Просвещения 13",
+     "location": [
+      39.916582,
+      43.423965
+     ],
+     "stars": 3,
+     "building_id": "w53301267",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "unknown",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w53301267",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": null,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53301267",
+       "qualifiers": {
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w53301267",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53301267_1"
+       ],
+       "subject": "facade:w53301267:243",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 243.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53301267_1"
+      ],
+      "camera": {
+       "center": [
+        39.916582,
+        43.423965
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 63.0,
+       "focus_facade_id": "fc_w53301267_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w53301267",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53301267",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.916582,
+      43.423965
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 63.0,
+     "focus_facade_id": "fc_w53301267_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301267",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9164235,
+          43.4239487
+         ],
+         [
+          39.9165097,
+          43.4238246
+         ],
+         [
+          39.9167135,
+          43.4238936
+         ],
+         [
+          39.916683,
+          43.4239368
+         ],
+         [
+          39.9166796,
+          43.4239573
+         ],
+         [
+          39.9166871,
+          43.4239884
+         ],
+         [
+          39.9166768,
+          43.4240108
+         ],
+         [
+          39.9166463,
+          43.4240258
+         ],
+         [
+          39.9165988,
+          43.4240253
+         ],
+         [
+          39.916554,
+          43.4240181
+         ],
+         [
+          39.9165059,
+          43.4240003
+         ],
+         [
+          39.9164648,
+          43.4239671
+         ],
+         [
+          39.9164235,
+          43.4239487
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301267",
+      "hotel_id": "w53301267",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w53301267"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4284096790",
+     "name": "Элона",
+     "address": null,
+     "location": [
+      39.9215364,
+      43.4243045
+     ],
+     "stars": null,
+     "building_id": "w53301309",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "unknown",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n4284096790",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": null,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4284096790",
+       "qualifiers": {
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n4284096790",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4284096790_1"
+       ],
+       "subject": "facade:n4284096790:221",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 221.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4284096790_1"
+      ],
+      "camera": {
+       "center": [
+        39.9215364,
+        43.4243045
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 41.0,
+       "focus_facade_id": "fc_n4284096790_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n4284096790",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4284096790",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9215364,
+      43.4243045
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 41.0,
+     "focus_facade_id": "fc_n4284096790_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301309",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9214004,
+          43.4242644
+         ],
+         [
+          39.9214946,
+          43.4242045
+         ],
+         [
+          39.921603,
+          43.4242945
+         ],
+         [
+          39.9215088,
+          43.4243543
+         ],
+         [
+          39.9214004,
+          43.4242644
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301309",
+      "hotel_id": "n4284096790",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4284096790"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5047768723",
+     "name": "Апартаменты у моря",
+     "address": null,
+     "location": [
+      39.7504391,
+      43.573975
+     ],
+     "stars": null,
+     "building_id": "w241241973",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "unknown",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n5047768723",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": null,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5047768723",
+       "qualifiers": {
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n5047768723",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n5047768723_1"
+       ],
+       "subject": "facade:n5047768723:271",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 270.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n5047768723_1"
+      ],
+      "camera": {
+       "center": [
+        39.7504391,
+        43.573975
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 91.0,
+       "focus_facade_id": "fc_n5047768723_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n5047768723",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5047768723",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7504391,
+      43.573975
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 91.0,
+     "focus_facade_id": "fc_n5047768723_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w241241973",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.750272,
+          43.5737624
+         ],
+         [
+          39.7502812,
+          43.5737623
+         ],
+         [
+          39.7502798,
+          43.5736932
+         ],
+         [
+          39.7503306,
+          43.5736927
+         ],
+         [
+          39.7503418,
+          43.5736837
+         ],
+         [
+          39.7503546,
+          43.573679
+         ],
+         [
+          39.7503688,
+          43.5736777
+         ],
+         [
+          39.7503828,
+          43.5736799
+         ],
+         [
+          39.7503953,
+          43.5736848
+         ],
+         [
+          39.750404,
+          43.573692
+         ],
+         [
+          39.7504632,
+          43.5736914
+         ],
+         [
+          39.7504704,
+          43.5740893
+         ],
+         [
+          39.7504188,
+          43.5740898
+         ],
+         [
+          39.7504079,
+          43.5741008
+         ],
+         [
+          39.750397,
+          43.5741059
+         ],
+         [
+          39.7503844,
+          43.5741084
+         ],
+         [
+          39.7503713,
+          43.574108
+         ],
+         [
+          39.7503591,
+          43.5741047
+         ],
+         [
+          39.7503488,
+          43.5740988
+         ],
+         [
+          39.7503409,
+          43.5740905
+         ],
+         [
+          39.7502866,
+          43.5740911
+         ],
+         [
+          39.7502851,
+          43.5740187
+         ],
+         [
+          39.7502769,
+          43.5740188
+         ],
+         [
+          39.7502757,
+          43.5739628
+         ],
+         [
+          39.7502848,
+          43.5739627
+         ],
+         [
+          39.7502819,
+          43.5738273
+         ],
+         [
+          39.7502734,
+          43.5738273
+         ],
+         [
+          39.750272,
+          43.5737624
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w241241973",
+      "hotel_id": "n5047768723",
+      "is_hotel": true,
+      "height_m": 32.0,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n5047768723"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4708436063",
+     "name": "Победа",
+     "address": "улица 65 лет Победы 37",
+     "location": [
+      39.9712658,
+      43.397961
+     ],
+     "stars": null,
+     "building_id": "w98649185",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "unknown",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_n4708436063",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": null,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4708436063",
+       "qualifiers": {
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_n4708436063",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4708436063_1"
+       ],
+       "subject": "facade:n4708436063:204",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.2,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 203.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4708436063_1"
+      ],
+      "camera": {
+       "center": [
+        39.9712658,
+        43.397961
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_n4708436063_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_n4708436063",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4708436063",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9712658,
+      43.397961
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_n4708436063_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98649185",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9711545,
+          43.3979221
+         ],
+         [
+          39.9713125,
+          43.3978715
+         ],
+         [
+          39.9713761,
+          43.3979767
+         ],
+         [
+          39.9712183,
+          43.3980273
+         ],
+         [
+          39.9711545,
+          43.3979221
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98649185",
+      "hotel_id": "n4708436063",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n4708436063"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w101803471",
+     "name": "У дяди Вани",
+     "address": "улица Крамского 6",
+     "location": [
+      39.9834366,
+      43.3931223
+     ],
+     "stars": null,
+     "building_id": "w101803471",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:1c6dd046a35a",
+      "match": "unknown",
+      "margin": null,
+      "label": "тихое место",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_1c6dd046a35a_w101803471",
+       "characteristic_key": "derived:1c6dd046a35a",
+       "value": null,
+       "unit": null,
+       "label": "тихое место",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w101803471",
+       "qualifiers": {
+        "source_text": "тихое место",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:98ea2cb428ea",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "не слышно машин",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_98ea2cb428ea_w101803471",
+       "characteristic_key": "derived:98ea2cb428ea",
+       "value": true,
+       "unit": null,
+       "label": "не слышно машин",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w101803471_1"
+       ],
+       "subject": "facade:w101803471:193",
+       "qualifiers": {
+        "source_text": "не слышно машин",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.2,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 193.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w101803471_1"
+      ],
+      "camera": {
+       "center": [
+        39.9834366,
+        43.3931223
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 13.0,
+       "focus_facade_id": "fc_w101803471_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:472c99ae97d8",
+      "match": "unknown",
+      "margin": null,
+      "label": "слышно птиц",
+      "explanation": "Исключено: all проверяемые источники подтверждены (database, web, landcover, documents) и ясноว่าคุณไม่มีข้อมูลทางภาษาที่บ่งบอกว่ามีนกอยู่ใน Those ที่า。.",
+      "fact": {
+       "fact_id": "f_wish_472c99ae97d8_w101803471",
+       "characteristic_key": "derived:472c99ae97d8",
+       "value": null,
+       "unit": null,
+       "label": "слышно птиц",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w101803471",
+       "qualifiers": {
+        "source_text": "слышно птиц",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 14
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9834366,
+      43.3931223
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 13.0,
+     "focus_facade_id": "fc_w101803471_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w101803471",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9833838,
+          43.3930717
+         ],
+         [
+          39.9834649,
+          43.3930577
+         ],
+         [
+          39.9835309,
+          43.3931924
+         ],
+         [
+          39.9834194,
+          43.3932181
+         ],
+         [
+          39.9833838,
+          43.3930717
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w101803471",
+      "hotel_id": "w101803471",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w101803471"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w209174465",
+     "name": "Blue Marine",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605233,
+      43.4110274
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4706161636",
+     "name": "Blue Marine hotel",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605409,
+      43.4110295
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w207637871",
+     "name": "Mantera Resort&Congress",
+     "address": "Голубая улица 1",
+     "location": [
+      39.9376921,
+      43.4101592
+     ],
+     "stars": null,
+     "building_id": "w207637871",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w914302324",
+     "name": "Mirror",
+     "address": null,
+     "location": [
+      39.9259636,
+      43.4289219
+     ],
+     "stars": null,
+     "building_id": "w48976700",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8386199473",
+     "name": "Sea Side",
+     "address": "Шкиперская улица",
+     "location": [
+      39.9782474,
+      43.3955421
+     ],
+     "stars": null,
+     "building_id": "w902919629",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5334373804",
+     "name": "Sun Kiss Hostel",
+     "address": null,
+     "location": [
+      39.9377677,
+      43.4202198
+     ],
+     "stars": null,
+     "building_id": "w207790192",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649240",
+     "name": "Адлер-Олимпик",
+     "address": "Общинная улица 50",
+     "location": [
+      39.973292,
+      43.3978013
+     ],
+     "stars": null,
+     "building_id": "w98649240",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w727335975",
+     "name": "Азалия",
+     "address": "Львовская улица 1/26",
+     "location": [
+      39.5501754,
+      43.739416
+     ],
+     "stars": null,
+     "building_id": "w727335975",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4522993498",
+     "name": "Алла",
+     "address": "Интернациональная улица 7А",
+     "location": [
+      39.9230637,
+      43.4201315
+     ],
+     "stars": null,
+     "building_id": "w80156741",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1098,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7504391,
+    43.390526,
+    39.9887124,
+    43.573975
+   ],
+   "camera": {
+    "center": [
+     39.966752,
+     43.3983151
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 26.0,
+    "focus_facade_id": "fc_w714785935_1"
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 64419
+ },
+ "search_message_id": "be82cf7e-4cfd-410d-b66f-9278234e3b46"
+}

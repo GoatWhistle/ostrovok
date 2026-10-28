@@ -1,0 +1,63 @@
+{
+ "id": "eb71bd3a-e856-48ce-9345-85ac30cf601f",
+ "title": "Рядом с центром",
+ "updated_at": "2026-10-28T21:19:30.364910Z",
+ "messages": [
+  {
+   "id": "2e7590d6-c742-48c5-b195-67bcf2400756",
+   "role": "user",
+   "content": "Москва или Санкт-Петербург на выходные, рядом с центром",
+   "created_at": "2026-10-28T21:19:30.364910Z"
+  },
+  {
+   "id": "568f1e70-4c37-47fa-b86e-77e08adc340a",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T21:19:30.364910Z"
+  }
+ ],
+ "effective_query": "отель в Москве или Санкт-Петербурге на выходные рядом с центром",
+ "search": {
+  "query_id": "02da2e78d5daf452",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:66ff55d62c73",
+     "op": "lte",
+     "value": 1500.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с центром"
+    }
+   ],
+   "unmatched_terms": [
+    "на выходные"
+   ],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в Москве или Санкт-Петербурге на выходные рядом с центром",
+   "corrections": [
+    {
+     "original": "в Москве или Санкт-Петербурге",
+     "corrected": "в Москве или Санкт-Петербурге",
+     "reason": "Указаны два несовместимых города одновременно; нужно уточнить, какой город выбрать."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3713
+ },
+ "search_message_id": "568f1e70-4c37-47fa-b86e-77e08adc340a"
+}

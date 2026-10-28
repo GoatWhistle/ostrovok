@@ -1,0 +1,2355 @@
+{
+ "id": "867bbcb5-4427-4328-9ba3-6bceaeef34b9",
+ "title": "Москва: рядом с ВДНХ",
+ "updated_at": "2026-10-28T21:06:29.901207Z",
+ "messages": [
+  {
+   "id": "3d86339c-90b3-44a2-baf5-85df9193c881",
+   "role": "user",
+   "content": "Москва, отель рядом с ВДНХ на выставку",
+   "created_at": "2026-10-28T21:06:29.901207Z"
+  },
+  {
+   "id": "9d3945cc-7c3e-42f8-bf64-f0925fdd50f3",
+   "role": "assistant",
+   "content": "Нашёл 11 отелей. Первые в списке: Наследие, Золотой колос и Cosmos. На какие даты едете?",
+   "created_at": "2026-10-28T21:06:29.901207Z"
+  }
+ ],
+ "effective_query": "Москва, отель рядом с ВДНХ",
+ "search": {
+  "query_id": "08af77879116fc72",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:1650f20c778b",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с ВДНХ"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Москва, отель рядом с ВДНХ",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w30425675",
+     "name": "Наследие",
+     "address": "улица Космонавтов 2",
+     "location": [
+      37.644458,
+      55.8204797
+     ],
+     "stars": null,
+     "building_id": "w30425675",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.757,
+    "confidence": 0.688,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 210 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30425675",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.6878710492478306,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30425675_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30425675",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 210,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30425675_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.644458,
+      55.8204797
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30425675",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.643835,
+          55.820439
+         ],
+         [
+          37.6444574,
+          55.8204361
+         ],
+         [
+          37.6450796,
+          55.820433
+         ],
+         [
+          37.64508,
+          55.8204602
+         ],
+         [
+          37.6450817,
+          55.8205722
+         ],
+         [
+          37.6438371,
+          55.8205782
+         ],
+         [
+          37.643835,
+          55.820439
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30425675",
+      "hotel_id": "w30425675",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30425675"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w30425681",
+     "name": "Золотой колос",
+     "address": "Ярославская улица 15 к3",
+     "location": [
+      37.6461163,
+      55.8198133
+     ],
+     "stars": null,
+     "building_id": "w30425681",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.654,
+    "confidence": 0.623,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "full",
+      "margin": 1.506,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 332 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30425681",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.6227761412757217,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30425681_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30425681",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 332,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30425681_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6461163,
+      55.8198133
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30425681",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.646027,
+          55.819526
+         ],
+         [
+          37.6462934,
+          55.8195126
+         ],
+         [
+          37.6463837,
+          55.8200777
+         ],
+         [
+          37.6461262,
+          55.8200907
+         ],
+         [
+          37.6461213,
+          55.8200598
+         ],
+         [
+          37.6461123,
+          55.8200034
+         ],
+         [
+          37.6461075,
+          55.8199737
+         ],
+         [
+          37.6461391,
+          55.8199721
+         ],
+         [
+          37.6461359,
+          55.8199522
+         ],
+         [
+          37.6461273,
+          55.8198979
+         ],
+         [
+          37.6460906,
+          55.8198997
+         ],
+         [
+          37.6460857,
+          55.8198691
+         ],
+         [
+          37.6460649,
+          55.8197392
+         ],
+         [
+          37.6460613,
+          55.8197164
+         ],
+         [
+          37.646095,
+          55.8197147
+         ],
+         [
+          37.6460845,
+          55.8196491
+         ],
+         [
+          37.6460822,
+          55.819635
+         ],
+         [
+          37.6460447,
+          55.8196369
+         ],
+         [
+          37.646027,
+          55.819526
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30425681",
+      "hotel_id": "w30425681",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30425681"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r7006911",
+     "name": "Cosmos",
+     "address": "проспект Мира 150",
+     "location": [
+      37.6463028,
+      55.8222583
+     ],
+     "stars": null,
+     "building_id": "r7006911",
+     "height_m": null,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.613,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "full",
+      "margin": 1.429,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 350 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_r7006911",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.6132790138770416,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_r7006911_2816bb0fbdcc"
+       ],
+       "subject": "hotel:r7006911",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 350,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_r7006911_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6463028,
+      55.8222583
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r7006911",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.644589,
+          55.8222591
+         ],
+         [
+          37.6446356,
+          55.8222001
+         ],
+         [
+          37.6446601,
+          55.8221691
+         ],
+         [
+          37.644674,
+          55.8221516
+         ],
+         [
+          37.6446405,
+          55.822144
+         ],
+         [
+          37.6448897,
+          55.8218159
+         ],
+         [
+          37.6449403,
+          55.8218282
+         ],
+         [
+          37.6449928,
+          55.8218376
+         ],
+         [
+          37.6450467,
+          55.821844
+         ],
+         [
+          37.6451014,
+          55.8218475
+         ],
+         [
+          37.6451565,
+          55.821848
+         ],
+         [
+          37.6452114,
+          55.8218454
+         ],
+         [
+          37.6452656,
+          55.8218398
+         ],
+         [
+          37.6453186,
+          55.8218312
+         ],
+         [
+          37.6453636,
+          55.8219207
+         ],
+         [
+          37.6458375,
+          55.8218483
+         ],
+         [
+          37.6458176,
+          55.8218073
+         ],
+         [
+          37.6458888,
+          55.8217996
+         ],
+         [
+          37.6459862,
+          55.821789
+         ],
+         [
+          37.6461576,
+          55.8217832
+         ],
+         [
+          37.6463289,
+          55.82179
+         ],
+         [
+          37.6464972,
+          55.8218091
+         ],
+         [
+          37.6465661,
+          55.8218224
+         ],
+         [
+          37.6465903,
+          55.8217877
+         ],
+         [
+          37.6466168,
+          55.8217499
+         ],
+         [
+          37.6465954,
+          55.8217451
+         ],
+         [
+          37.6466143,
+          55.8217181
+         ],
+         [
+          37.6468112,
+          55.8217615
+         ],
+         [
+          37.6467953,
+          55.8217844
+         ],
+         [
+          37.6468139,
+          55.8217887
+         ],
+         [
+          37.6469155,
+          55.8218185
+         ],
+         [
+          37.6470119,
+          55.8218534
+         ],
+         [
+          37.6470997,
+          55.8218916
+         ],
+         [
+          37.6471218,
+          55.8218788
+         ],
+         [
+          37.6472606,
+          55.821955
+         ],
+         [
+          37.6473813,
+          55.822041
+         ],
+         [
+          37.6474836,
+          55.8221342
+         ],
+         [
+          37.6475574,
+          55.8222212
+         ],
+         [
+          37.6476151,
+          55.822312
+         ],
+         [
+          37.647658,
+          55.8224084
+         ],
+         [
+          37.6476325,
+          55.8224122
+         ],
+         [
+          37.6476519,
+          55.8224728
+         ],
+         [
+          37.6476606,
+          55.8225342
+         ],
+         [
+          37.6476581,
+          55.8226008
+         ],
+         [
+          37.6476432,
+          55.8226668
+         ],
+         [
+          37.6475158,
+          55.8226586
+         ],
+         [
+          37.6474927,
+          55.8227296
+         ],
+         [
+          37.6474564,
+          55.822799
+         ],
+         [
+          37.6474072,
+          55.8228657
+         ],
+         [
+          37.6473258,
+          55.8229468
+         ],
+         [
+          37.6472254,
+          55.8230208
+         ],
+         [
+          37.6470947,
+          55.823091
+         ],
+         [
+          37.647057,
+          55.8230699
+         ],
+         [
+          37.6470215,
+          55.8230501
+         ],
+         [
+          37.6468863,
+          55.8231225
+         ],
+         [
+          37.646668,
+          55.822994
+         ],
+         [
+          37.6468369,
+          55.8229005
+         ],
+         [
+          37.6464741,
+          55.8227109
+         ],
+         [
+          37.6465191,
+          55.8226774
+         ],
+         [
+          37.6465421,
+          55.8226527
+         ],
+         [
+          37.6465538,
+          55.8226402
+         ],
+         [
+          37.6465634,
+          55.8226241
+         ],
+         [
+          37.6465774,
+          55.8226004
+         ],
+         [
+          37.6465892,
+          55.8225589
+         ],
+         [
+          37.6465888,
+          55.822517
+         ],
+         [
+          37.6465764,
+          55.8224756
+         ],
+         [
+          37.6465534,
+          55.8224356
+         ],
+         [
+          37.6465164,
+          55.8223985
+         ],
+         [
+          37.6464799,
+          55.8223718
+         ],
+         [
+          37.6464155,
+          55.8223363
+         ],
+         [
+          37.6463533,
+          55.8223131
+         ],
+         [
+          37.6462853,
+          55.8222959
+         ],
+         [
+          37.6462402,
+          55.8222891
+         ],
+         [
+          37.6462133,
+          55.822285
+         ],
+         [
+          37.6461818,
+          55.8222833
+         ],
+         [
+          37.646139,
+          55.8222809
+         ],
+         [
+          37.6460646,
+          55.8222836
+         ],
+         [
+          37.6460388,
+          55.8222099
+         ],
+         [
+          37.6458809,
+          55.8222354
+         ],
+         [
+          37.6458204,
+          55.8222451
+         ],
+         [
+          37.6457166,
+          55.8222619
+         ],
+         [
+          37.6456143,
+          55.8222784
+         ],
+         [
+          37.6455597,
+          55.8222871
+         ],
+         [
+          37.6454663,
+          55.8223019
+         ],
+         [
+          37.6452918,
+          55.8223225
+         ],
+         [
+          37.645112,
+          55.8223267
+         ],
+         [
+          37.6449328,
+          55.8223174
+         ],
+         [
+          37.6447575,
+          55.8222947
+         ],
+         [
+          37.644589,
+          55.8222591
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r7006911",
+      "hotel_id": "r7006911",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_r7006911"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w30426006",
+     "name": "Оксана",
+     "address": "Ярославская улица 15 к2",
+     "location": [
+      37.6469704,
+      55.8200388
+     ],
+     "stars": null,
+     "building_id": "w30426006",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.62,
+    "confidence": 0.6,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "full",
+      "margin": 1.333,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 375 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30426006",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.6002358195675703,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30426006_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30426006",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 375,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30426006_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6469704,
+      55.8200388
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30426006",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6466883,
+          55.8198991
+         ],
+         [
+          37.6471879,
+          55.8198691
+         ],
+         [
+          37.6472006,
+          55.8199357
+         ],
+         [
+          37.6472806,
+          55.8203561
+         ],
+         [
+          37.647021,
+          55.8203717
+         ],
+         [
+          37.6469657,
+          55.8200813
+         ],
+         [
+          37.6470438,
+          55.8200766
+         ],
+         [
+          37.64702,
+          55.8199511
+         ],
+         [
+          37.6469102,
+          55.8199577
+         ],
+         [
+          37.6469236,
+          55.8200277
+         ],
+         [
+          37.6467152,
+          55.8200402
+         ],
+         [
+          37.6466883,
+          55.8198991
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30426006",
+      "hotel_id": "w30426006",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30426006"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8089346659",
+     "name": "Глобус",
+     "address": "Ярославская улица 17",
+     "location": [
+      37.6478274,
+      55.8218402
+     ],
+     "stars": null,
+     "building_id": "w48373952",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.583,
+    "confidence": 0.573,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "full",
+      "margin": 1.176,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 425 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_n8089346659",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.5730738615075143,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n8089346659_2816bb0fbdcc"
+       ],
+       "subject": "hotel:n8089346659",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 425,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n8089346659_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6478274,
+      55.8218402
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w48373952",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.647722,
+          55.8218573
+         ],
+         [
+          37.6479114,
+          55.8217954
+         ],
+         [
+          37.6487828,
+          55.8226371
+         ],
+         [
+          37.6488345,
+          55.822687
+         ],
+         [
+          37.6488644,
+          55.822716
+         ],
+         [
+          37.6492645,
+          55.8231024
+         ],
+         [
+          37.649075,
+          55.8231643
+         ],
+         [
+          37.6486726,
+          55.8227755
+         ],
+         [
+          37.6486166,
+          55.8227214
+         ],
+         [
+          37.647722,
+          55.8218573
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w48373952",
+      "hotel_id": "n8089346659",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n8089346659"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r17984122",
+     "name": "Золотой колос",
+     "address": "Ярославская улица 10 к5",
+     "location": [
+      37.6487846,
+      55.8191136
+     ],
+     "stars": null,
+     "building_id": "r17984122",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.262,
+    "confidence": 0.525,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.969,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 516 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_r17984122",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.5247314188213682,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_r17984122_2816bb0fbdcc"
+       ],
+       "subject": "hotel:r17984122",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 516,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_r17984122_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6487846,
+      55.8191136
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r17984122",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6482627,
+          55.8190481
+         ],
+         [
+          37.6483222,
+          55.8190447
+         ],
+         [
+          37.6483685,
+          55.819042
+         ],
+         [
+          37.6483818,
+          55.8190413
+         ],
+         [
+          37.6484105,
+          55.8190396
+         ],
+         [
+          37.6484426,
+          55.8190378
+         ],
+         [
+          37.6484521,
+          55.8190372
+         ],
+         [
+          37.6485584,
+          55.8190311
+         ],
+         [
+          37.6486108,
+          55.8190281
+         ],
+         [
+          37.6487167,
+          55.819022
+         ],
+         [
+          37.6487284,
+          55.8190214
+         ],
+         [
+          37.6487584,
+          55.8190196
+         ],
+         [
+          37.6487894,
+          55.8190179
+         ],
+         [
+          37.6488012,
+          55.8190172
+         ],
+         [
+          37.6489043,
+          55.8190113
+         ],
+         [
+          37.6489341,
+          55.8190095
+         ],
+         [
+          37.6489646,
+          55.8190078
+         ],
+         [
+          37.6492588,
+          55.8189909
+         ],
+         [
+          37.6492672,
+          55.819037
+         ],
+         [
+          37.6492683,
+          55.8190433
+         ],
+         [
+          37.6493134,
+          55.8190407
+         ],
+         [
+          37.6493184,
+          55.8190683
+         ],
+         [
+          37.649313,
+          55.8190686
+         ],
+         [
+          37.6492733,
+          55.8190708
+         ],
+         [
+          37.6492748,
+          55.8190787
+         ],
+         [
+          37.6492762,
+          55.8190867
+         ],
+         [
+          37.6492781,
+          55.8190969
+         ],
+         [
+          37.6492809,
+          55.8191126
+         ],
+         [
+          37.649284,
+          55.8191293
+         ],
+         [
+          37.6491544,
+          55.8191367
+         ],
+         [
+          37.6491082,
+          55.8191394
+         ],
+         [
+          37.6491098,
+          55.8191485
+         ],
+         [
+          37.6490805,
+          55.8191502
+         ],
+         [
+          37.6490725,
+          55.8191507
+         ],
+         [
+          37.6490617,
+          55.8191513
+         ],
+         [
+          37.6489831,
+          55.8191558
+         ],
+         [
+          37.6489774,
+          55.8191561
+         ],
+         [
+          37.6489638,
+          55.8191569
+         ],
+         [
+          37.6489588,
+          55.8191572
+         ],
+         [
+          37.6489441,
+          55.8191581
+         ],
+         [
+          37.6489311,
+          55.8191588
+         ],
+         [
+          37.648927,
+          55.819159
+         ],
+         [
+          37.6489131,
+          55.8191598
+         ],
+         [
+          37.6489012,
+          55.8191605
+         ],
+         [
+          37.6488891,
+          55.8191612
+         ],
+         [
+          37.6488728,
+          55.8191622
+         ],
+         [
+          37.6488703,
+          55.8191488
+         ],
+         [
+          37.6488278,
+          55.8191512
+         ],
+         [
+          37.6487938,
+          55.8191532
+         ],
+         [
+          37.648784,
+          55.8191537
+         ],
+         [
+          37.648726,
+          55.8191571
+         ],
+         [
+          37.6487027,
+          55.8191584
+         ],
+         [
+          37.6486945,
+          55.8191589
+         ],
+         [
+          37.6486968,
+          55.8191711
+         ],
+         [
+          37.6486674,
+          55.8191728
+         ],
+         [
+          37.6486374,
+          55.8191745
+         ],
+         [
+          37.6486206,
+          55.8191755
+         ],
+         [
+          37.648605,
+          55.8191764
+         ],
+         [
+          37.6485435,
+          55.8191799
+         ],
+         [
+          37.648508,
+          55.819182
+         ],
+         [
+          37.6484868,
+          55.8191832
+         ],
+         [
+          37.6484757,
+          55.8191838
+         ],
+         [
+          37.6484695,
+          55.8191842
+         ],
+         [
+          37.648467,
+          55.8191703
+         ],
+         [
+          37.6484371,
+          55.819172
+         ],
+         [
+          37.6484039,
+          55.8191739
+         ],
+         [
+          37.6483825,
+          55.8191752
+         ],
+         [
+          37.6483658,
+          55.8191761
+         ],
+         [
+          37.6483492,
+          55.8191771
+         ],
+         [
+          37.6482869,
+          55.8191807
+         ],
+         [
+          37.648278,
+          55.8191317
+         ],
+         [
+          37.6482716,
+          55.8190966
+         ],
+         [
+          37.6482627,
+          55.8190481
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r17984122",
+      "hotel_id": "r17984122",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r17984122"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w30425670",
+     "name": "Ярославская",
+     "address": "Ярославская улица 8 к1",
+     "location": [
+      37.6474477,
+      55.8174587
+     ],
+     "stars": null,
+     "building_id": "w30425670",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.506,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.907,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 551 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30425670",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.5061974012101121,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30425670_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30425670",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 551,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30425670_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6474477,
+      55.8174587
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30425670",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.647322,
+          55.8172738
+         ],
+         [
+          37.6473509,
+          55.817272
+         ],
+         [
+          37.6475754,
+          55.8172585
+         ],
+         [
+          37.6476846,
+          55.8178295
+         ],
+         [
+          37.6474312,
+          55.8178448
+         ],
+         [
+          37.647322,
+          55.8172738
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30425670",
+      "hotel_id": "w30425670",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30425670"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w30426003",
+     "name": "Золотой колос",
+     "address": "Ярославская улица 10 к4",
+     "location": [
+      37.6496052,
+      55.8193122
+     ],
+     "stars": null,
+     "building_id": "w30426003",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.249,
+    "confidence": 0.504,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.899,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 556 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30426003",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.5035176185402209,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30426003_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30426003",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 556,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30426003_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6496052,
+      55.8193122
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30426003",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6494434,
+          55.8189779
+         ],
+         [
+          37.6499515,
+          55.8189524
+         ],
+         [
+          37.6500417,
+          55.8195194
+         ],
+         [
+          37.6495404,
+          55.8195446
+         ],
+         [
+          37.6495345,
+          55.8195072
+         ],
+         [
+          37.6495307,
+          55.8194835
+         ],
+         [
+          37.6495025,
+          55.8194849
+         ],
+         [
+          37.6494973,
+          55.8194521
+         ],
+         [
+          37.649526,
+          55.8194506
+         ],
+         [
+          37.649517,
+          55.8193942
+         ],
+         [
+          37.6497598,
+          55.819382
+         ],
+         [
+          37.6497175,
+          55.8191155
+         ],
+         [
+          37.6494672,
+          55.8191281
+         ],
+         [
+          37.6494434,
+          55.8189779
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30426003",
+      "hotel_id": "w30426003",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30426003"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w75390684",
+     "name": "Катюша",
+     "address": "улица Кибальчича 9",
+     "location": [
+      37.646129,
+      55.8167667
+     ],
+     "stars": null,
+     "building_id": "w75390684",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.249,
+    "confidence": 0.502,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.896,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 558 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w75390684",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.5022327627019726,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w75390684_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w75390684",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 558,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w75390684_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.646129,
+      55.8167667
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w75390684",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6458234,
+          55.8167106
+         ],
+         [
+          37.6465586,
+          55.816673
+         ],
+         [
+          37.6465875,
+          55.8168507
+         ],
+         [
+          37.6458522,
+          55.8168884
+         ],
+         [
+          37.6458234,
+          55.8167106
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w75390684",
+      "hotel_id": "w75390684",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w75390684"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w30425667",
+     "name": "Державная",
+     "address": "Ярославская улица 8 к2",
+     "location": [
+      37.6486345,
+      55.8174594
+     ],
+     "stars": null,
+     "building_id": "w30425667",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.234,
+    "confidence": 0.477,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.825,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 606 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_w30425667",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.4770044778082541,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w30425667_2816bb0fbdcc"
+       ],
+       "subject": "hotel:w30425667",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 606,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w30425667_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6486345,
+      55.8174594
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w30425667",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6484958,
+          55.8172457
+         ],
+         [
+          37.6487346,
+          55.8172309
+         ],
+         [
+          37.6488425,
+          55.81778
+         ],
+         [
+          37.6486038,
+          55.8177949
+         ],
+         [
+          37.6484958,
+          55.8172457
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w30425667",
+      "hotel_id": "w30425667",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w30425667"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1822632570",
+     "name": "Дизайн Отель",
+     "address": null,
+     "location": [
+      37.6482136,
+      55.816968
+     ],
+     "stars": null,
+     "building_id": "w132904572",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.229,
+    "confidence": 0.468,
+    "matched": [
+     {
+      "characteristic_key": "derived:1650f20c778b",
+      "match": "partial",
+      "margin": 0.803,
+      "label": "рядом с ВДНХ",
+      "explanation": "До ближайшей точки контура «ВДНХ» 623 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_1650f20c778b_n1822632570",
+       "characteristic_key": "derived:1650f20c778b",
+       "value": true,
+       "unit": null,
+       "label": "рядом с ВДНХ",
+       "confidence": 0.4675700499458424,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n1822632570_2816bb0fbdcc"
+       ],
+       "subject": "hotel:n1822632570",
+       "qualifiers": {
+        "source_text": "рядом с ВДНХ",
+        "target_id": "n5202107574",
+        "target_location": [
+         37.6412006,
+         55.8209553
+        ],
+        "native_characteristic_key": "spatial:2816bb0fbdcc",
+        "native_value": 623,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n1822632570_2816bb0fbdcc"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6482136,
+      55.816968
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w132904572",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6480203,
+          55.816874
+         ],
+         [
+          37.6484644,
+          55.8168523
+         ],
+         [
+          37.6484907,
+          55.8170221
+         ],
+         [
+          37.6484277,
+          55.8170252
+         ],
+         [
+          37.6484299,
+          55.8170393
+         ],
+         [
+          37.6480487,
+          55.8170579
+         ],
+         [
+          37.6480203,
+          55.816874
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w132904572",
+      "hotel_id": "n1822632570",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n1822632570"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n8825725921",
+     "name": "1 Арт Отель",
+     "address": null,
+     "location": [
+      37.643618,
+      55.809941
+     ],
+     "stars": null,
+     "building_id": "w685568633",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n3189991362",
+     "name": "123hostel.ru",
+     "address": null,
+     "location": [
+      37.7198901,
+      55.7842951
+     ],
+     "stars": null,
+     "building_id": "w343634575",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13587400888",
+     "name": "1905",
+     "address": null,
+     "location": [
+      37.5558929,
+      55.7586138
+     ],
+     "stars": null,
+     "building_id": "w38938872",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4208531789",
+     "name": "1st Arbat Hotel",
+     "address": null,
+     "location": [
+      37.7175668,
+      55.7482496
+     ],
+     "stars": null,
+     "building_id": "w227175775",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11283323869",
+     "name": "21 Семеновская",
+     "address": "Щербаковская улица 41А",
+     "location": [
+      37.7328543,
+      55.7830958
+     ],
+     "stars": null,
+     "building_id": "w132365082",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n2519755766",
+     "name": "3 пингвина",
+     "address": null,
+     "location": [
+      37.6276768,
+      55.7417708
+     ],
+     "stars": null,
+     "building_id": "w53854148",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n5903084085",
+     "name": "32 км",
+     "address": null,
+     "location": [
+      37.6195586,
+      55.572798
+     ],
+     "stars": null,
+     "building_id": "w373809750",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13739866801",
+     "name": "3V",
+     "address": "1-й Басманный переулок 5/20 с3",
+     "location": [
+      37.663238,
+      55.7713142
+     ],
+     "stars": null,
+     "building_id": "w35683838",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n8154400360",
+     "name": "47nebo",
+     "address": null,
+     "location": [
+      37.5403261,
+      55.7479426
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11663276873",
+     "name": "5Nebo",
+     "address": null,
+     "location": [
+      37.6326571,
+      55.7577088
+     ],
+     "stars": null,
+     "building_id": "r532946",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    37.644458,
+    55.8167667,
+    37.6496052,
+    55.8222583
+   ],
+   "camera": {
+    "center": [
+     37.644458,
+     55.8204797
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 9100
+ },
+ "search_message_id": "9d3945cc-7c3e-42f8-bf64-f0925fdd50f3"
+}

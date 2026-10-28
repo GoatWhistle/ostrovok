@@ -1,0 +1,1324 @@
+{
+ "id": "f159503d-ce6d-45d4-9737-545815814f4d",
+ "title": "Сочи: хостел или гостевой дом, до 2000 рублей",
+ "updated_at": "2026-10-28T20:08:32.552811Z",
+ "messages": [
+  {
+   "id": "0ccd59e1-5e87-4380-9d2b-589cd4843f0d",
+   "role": "user",
+   "content": "Сочи, хостел или гостевой дом до 2000 рублей",
+   "created_at": "2026-10-28T20:08:32.552811Z"
+  },
+  {
+   "id": "f7dd2614-b344-4ca5-a93d-c7f44319ede9",
+   "role": "assistant",
+   "content": "Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. Какая дата заезда и выезда и сколько спальных мест нужно?",
+   "created_at": "2026-10-28T20:08:32.552811Z"
+  }
+ ],
+ "effective_query": "Сочи, хостел или гостевой дом до 2000 рублей",
+ "search": {
+  "query_id": "491bbd9db0581e91",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:32ff744cc182",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "хостел или гостевой дом"
+    },
+    {
+     "characteristic_key": "derived:989e239d9dfc",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "до 2000 рублей"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, хостел или гостевой дом до 2000 рублей",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": "до 2000 рублей",
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n10853513205",
+     "name": "Гостевой дом на Свердлова",
+     "address": null,
+     "location": [
+      39.9181515,
+      43.4282963
+     ],
+     "stars": null,
+     "building_id": "w708992273",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.162,
+    "confidence": 0.65,
+    "matched": [
+     {
+      "characteristic_key": "derived:32ff744cc182",
+      "match": "partial",
+      "margin": null,
+      "label": "хостел или гостевой дом",
+      "explanation": "Подтверждено: «tourism\": \"guest_house».",
+      "fact": {
+       "fact_id": "f_wish_32ff744cc182_n10853513205",
+       "characteristic_key": "derived:32ff744cc182",
+       "value": true,
+       "unit": null,
+       "label": "хостел или гостевой дом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10853513205",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "хостел или гостевой дом",
+        "source_quotes": [
+         "\"tourism\": \"guest_house\""
+        ],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 9
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:989e239d9dfc",
+      "match": "unknown",
+      "margin": null,
+      "label": "до 2000 рублей",
+      "explanation": "Для проверки цены необходим четкий период проживания и количество гостей, недоступные из текущего запроса.",
+      "fact": {
+       "fact_id": "f_wish_989e239d9dfc_n10853513205",
+       "characteristic_key": "derived:989e239d9dfc",
+       "value": null,
+       "unit": null,
+       "label": "до 2000 рублей",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10853513205",
+       "qualifiers": {
+        "source_text": "до 2000 рублей",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9181515,
+      43.4282963
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w708992273",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9178144,
+          43.4283044
+         ],
+         [
+          39.9179228,
+          43.4282362
+         ],
+         [
+          39.9181036,
+          43.4281226
+         ],
+         [
+          39.9182497,
+          43.4282451
+         ],
+         [
+          39.9180708,
+          43.4283576
+         ],
+         [
+          39.9180168,
+          43.4283123
+         ],
+         [
+          39.91798,
+          43.4282814
+         ],
+         [
+          39.9178696,
+          43.4283507
+         ],
+         [
+          39.9178144,
+          43.4283044
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w708992273",
+      "hotel_id": "n10853513205",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10853513205"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11119611105",
+     "name": "Ретрит Дом Ливерпуль",
+     "address": null,
+     "location": [
+      39.8990671,
+      43.4982069
+     ],
+     "stars": null,
+     "building_id": "w144123639",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.162,
+    "confidence": 0.65,
+    "matched": [
+     {
+      "characteristic_key": "derived:32ff744cc182",
+      "match": "partial",
+      "margin": null,
+      "label": "хостел или гостевой дом",
+      "explanation": "Подтверждено: «tourism\": \"guest_house».",
+      "fact": {
+       "fact_id": "f_wish_32ff744cc182_n11119611105",
+       "characteristic_key": "derived:32ff744cc182",
+       "value": true,
+       "unit": null,
+       "label": "хостел или гостевой дом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "хостел или гостевой дом",
+        "source_quotes": [
+         "\"tourism\": \"guest_house\""
+        ],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 9
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:989e239d9dfc",
+      "match": "unknown",
+      "margin": null,
+      "label": "до 2000 рублей",
+      "explanation": "Для проверки цены необходим четкий период проживания и количество гостей, недоступные из текущего запроса.",
+      "fact": {
+       "fact_id": "f_wish_989e239d9dfc_n11119611105",
+       "characteristic_key": "derived:989e239d9dfc",
+       "value": null,
+       "unit": null,
+       "label": "до 2000 рублей",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11119611105",
+       "qualifiers": {
+        "source_text": "до 2000 рублей",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8990671,
+      43.4982069
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w144123639",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8988107,
+          43.4980706
+         ],
+         [
+          39.8990576,
+          43.4979357
+         ],
+         [
+          39.8993477,
+          43.4982148
+         ],
+         [
+          39.8993263,
+          43.4982315
+         ],
+         [
+          39.8991579,
+          43.4983286
+         ],
+         [
+          39.8991007,
+          43.4983498
+         ],
+         [
+          39.8988107,
+          43.4980706
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w144123639",
+      "hotel_id": "n11119611105",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11119611105"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n3839779706",
+     "name": "Гостевой дом на Мамайке",
+     "address": "Полтавская улица 19/9",
+     "location": [
+      39.7003246,
+      43.6342098
+     ],
+     "stars": null,
+     "building_id": "w52123397",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.162,
+    "confidence": 0.65,
+    "matched": [
+     {
+      "characteristic_key": "derived:32ff744cc182",
+      "match": "partial",
+      "margin": null,
+      "label": "хостел или гостевой дом",
+      "explanation": "Подтверждено: «tourism\": \"guest_house\", \"addr:city\": \"Сочи».",
+      "fact": {
+       "fact_id": "f_wish_32ff744cc182_n3839779706",
+       "characteristic_key": "derived:32ff744cc182",
+       "value": true,
+       "unit": null,
+       "label": "хостел или гостевой дом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3839779706",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "хостел или гостевой дом",
+        "source_quotes": [
+         "\"tourism\": \"guest_house\", \"addr:city\": \"Сочи\""
+        ],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 9
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:989e239d9dfc",
+      "match": "unknown",
+      "margin": null,
+      "label": "до 2000 рублей",
+      "explanation": "Для проверки цены необходим четкий период проживания и количество гостей, недоступные из текущего запроса.",
+      "fact": {
+       "fact_id": "f_wish_989e239d9dfc_n3839779706",
+       "characteristic_key": "derived:989e239d9dfc",
+       "value": null,
+       "unit": null,
+       "label": "до 2000 рублей",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3839779706",
+       "qualifiers": {
+        "source_text": "до 2000 рублей",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7003246,
+      43.6342098
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52123397",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7002554,
+          43.6341515
+         ],
+         [
+          39.7003179,
+          43.6341397
+         ],
+         [
+          39.7003148,
+          43.6341309
+         ],
+         [
+          39.7004113,
+          43.6341127
+         ],
+         [
+          39.7004144,
+          43.6341215
+         ],
+         [
+          39.7004759,
+          43.6341099
+         ],
+         [
+          39.7005118,
+          43.6342096
+         ],
+         [
+          39.7004421,
+          43.6342227
+         ],
+         [
+          39.7004448,
+          43.6342302
+         ],
+         [
+          39.7003515,
+          43.6342478
+         ],
+         [
+          39.7003489,
+          43.6342406
+         ],
+         [
+          39.7002914,
+          43.6342515
+         ],
+         [
+          39.7002554,
+          43.6341515
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52123397",
+      "hotel_id": "n3839779706",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n3839779706"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6814518885",
+     "name": "Хостел ВокругСвета",
+     "address": null,
+     "location": [
+      39.9105885,
+      43.4463214
+     ],
+     "stars": null,
+     "building_id": "w54238341",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.162,
+    "confidence": 0.65,
+    "matched": [
+     {
+      "characteristic_key": "derived:32ff744cc182",
+      "match": "partial",
+      "margin": null,
+      "label": "хостел или гостевой дом",
+      "explanation": "Подтверждено: «tourism\": \"hostel».",
+      "fact": {
+       "fact_id": "f_wish_32ff744cc182_n6814518885",
+       "characteristic_key": "derived:32ff744cc182",
+       "value": true,
+       "unit": null,
+       "label": "хостел или гостевой дом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6814518885",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "хостел или гостевой дом",
+        "source_quotes": [
+         "\"tourism\": \"hostel\""
+        ],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 9
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:989e239d9dfc",
+      "match": "unknown",
+      "margin": null,
+      "label": "до 2000 рублей",
+      "explanation": "Для проверки цены необходим четкий период проживания и количество гостей, недоступные из текущего запроса.",
+      "fact": {
+       "fact_id": "f_wish_989e239d9dfc_n6814518885",
+       "characteristic_key": "derived:989e239d9dfc",
+       "value": null,
+       "unit": null,
+       "label": "до 2000 рублей",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6814518885",
+       "qualifiers": {
+        "source_text": "до 2000 рублей",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9105885,
+      43.4463214
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54238341",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.910433,
+          43.4462873
+         ],
+         [
+          39.9105203,
+          43.4461777
+         ],
+         [
+          39.9107302,
+          43.4462657
+         ],
+         [
+          39.910643,
+          43.4463753
+         ],
+         [
+          39.9105372,
+          43.446331
+         ],
+         [
+          39.910433,
+          43.4462873
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54238341",
+      "hotel_id": "n6814518885",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_n6814518885"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w68237336",
+     "name": "Гостевой дом Эвкалипт",
+     "address": "Ивановская улица 96А",
+     "location": [
+      39.9881975,
+      43.4891901
+     ],
+     "stars": null,
+     "building_id": "w68237336",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.162,
+    "confidence": 0.65,
+    "matched": [
+     {
+      "characteristic_key": "derived:32ff744cc182",
+      "match": "partial",
+      "margin": null,
+      "label": "хостел или гостевой дом",
+      "explanation": "Подтверждено: «tourism\": \"guest_house».",
+      "fact": {
+       "fact_id": "f_wish_32ff744cc182_w68237336",
+       "characteristic_key": "derived:32ff744cc182",
+       "value": true,
+       "unit": null,
+       "label": "хостел или гостевой дом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w68237336",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "хостел или гостевой дом",
+        "source_quotes": [
+         "\"tourism\": \"guest_house\""
+        ],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 9
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:989e239d9dfc",
+      "match": "unknown",
+      "margin": null,
+      "label": "до 2000 рублей",
+      "explanation": "Для проверки цены необходим четкий период проживания и количество гостей, недоступные из текущего запроса.",
+      "fact": {
+       "fact_id": "f_wish_989e239d9dfc_w68237336",
+       "characteristic_key": "derived:989e239d9dfc",
+       "value": null,
+       "unit": null,
+       "label": "до 2000 рублей",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w68237336",
+       "qualifiers": {
+        "source_text": "до 2000 рублей",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9881975,
+      43.4891901
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w68237336",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9880942,
+          43.4891651
+         ],
+         [
+          39.9882292,
+          43.4890977
+         ],
+         [
+          39.9883524,
+          43.4892276
+         ],
+         [
+          39.9882175,
+          43.489295
+         ],
+         [
+          39.9880942,
+          43.4891651
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w68237336",
+      "hotel_id": "w68237336",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w68237336"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "no_evidence",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7003246,
+    43.4282963,
+    39.9881975,
+    43.6342098
+   ],
+   "camera": {
+    "center": [
+     39.9181515,
+     43.4282963
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 81616
+ },
+ "search_message_id": "f7dd2614-b344-4ca5-a93d-c7f44319ede9"
+}

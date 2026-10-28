@@ -1,0 +1,1289 @@
+{
+ "id": "cdb74472-d319-42ca-acac-b7941ce0740b",
+ "title": "Сочи: рядом с подъёмником",
+ "updated_at": "2026-10-28T21:13:17.267581Z",
+ "messages": [
+  {
+   "id": "01120737-a600-414d-9297-cb517c8a31a8",
+   "role": "user",
+   "content": "Сочи, отель рядом с подъёмником и трассами",
+   "created_at": "2026-10-28T21:13:17.267581Z"
+  },
+  {
+   "id": "d5a01211-9f0d-4136-a4ff-8007c2e692cd",
+   "role": "assistant",
+   "content": "Нашёл 5 отелей. Первые в списке: VIP-корпус «Меркурий», Санаторий \"Октябрьский\" и Бочаров Ручей. Проверка не завершена: рядом с подъёмником. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T21:13:17.267581Z"
+  }
+ ],
+ "effective_query": "Сочи отель рядом с подъёмником и трассами",
+ "search": {
+  "query_id": "fe21a177d1738c32",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:dd61c76c5210",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с подъёмником"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи отель рядом с подъёмником и трассами",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n4426452241",
+     "name": "VIP-корпус «Меркурий»",
+     "address": null,
+     "location": [
+      39.6561137,
+      43.6505845
+     ],
+     "stars": 5,
+     "building_id": "w97211080",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:dd61c76c5210",
+      "match": "unknown",
+      "margin": null,
+      "label": "рядом с подъёмником",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_dd61c76c5210_n4426452241",
+       "characteristic_key": "derived:dd61c76c5210",
+       "value": null,
+       "unit": null,
+       "label": "рядом с подъёмником",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4426452241",
+       "qualifiers": {
+        "source_text": "рядом с подъёмником",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 18
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6561137,
+      43.6505845
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w97211080",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6553154,
+          43.6502606
+         ],
+         [
+          39.6555706,
+          43.650263
+         ],
+         [
+          39.6558763,
+          43.6505024
+         ],
+         [
+          39.6565295,
+          43.6505024
+         ],
+         [
+          39.6566679,
+          43.6506172
+         ],
+         [
+          39.656498,
+          43.6507382
+         ],
+         [
+          39.6564088,
+          43.6506718
+         ],
+         [
+          39.65617,
+          43.6506756
+         ],
+         [
+          39.6561068,
+          43.650724
+         ],
+         [
+          39.6560808,
+          43.6507439
+         ],
+         [
+          39.6559523,
+          43.650668
+         ],
+         [
+          39.6557791,
+          43.6506699
+         ],
+         [
+          39.6557738,
+          43.6506091
+         ],
+         [
+          39.6556899,
+          43.6506091
+         ],
+         [
+          39.6556873,
+          43.6505635
+         ],
+         [
+          39.6556445,
+          43.6505656
+         ],
+         [
+          39.6556445,
+          43.650534
+         ],
+         [
+          39.6556009,
+          43.6505352
+         ],
+         [
+          39.6555992,
+          43.6505036
+         ],
+         [
+          39.6555555,
+          43.6505036
+         ],
+         [
+          39.6555555,
+          43.6504732
+         ],
+         [
+          39.6555203,
+          43.6504732
+         ],
+         [
+          39.6555203,
+          43.6504417
+         ],
+         [
+          39.6554732,
+          43.6504441
+         ],
+         [
+          39.6554162,
+          43.6503979
+         ],
+         [
+          39.6554145,
+          43.6503615
+         ],
+         [
+          39.6553456,
+          43.6503238
+         ],
+         [
+          39.6553171,
+          43.6502922
+         ],
+         [
+          39.6553154,
+          43.6502606
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w97211080",
+      "hotel_id": "n4426452241",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4426452241"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1639410",
+     "name": "Санаторий \"Октябрьский\"",
+     "address": "улица Плеханова 42/44",
+     "location": [
+      39.7005198,
+      43.6272901
+     ],
+     "stars": 5,
+     "building_id": "w998100419",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:dd61c76c5210",
+      "match": "unknown",
+      "margin": null,
+      "label": "рядом с подъёмником",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_dd61c76c5210_r1639410",
+       "characteristic_key": "derived:dd61c76c5210",
+       "value": null,
+       "unit": null,
+       "label": "рядом с подъёмником",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1639410",
+       "qualifiers": {
+        "source_text": "рядом с подъёмником",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 18
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7005198,
+      43.6272901
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w998100419",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7005051,
+          43.6274807
+         ],
+         [
+          39.700532,
+          43.6274793
+         ],
+         [
+          39.7005281,
+          43.6274409
+         ],
+         [
+          39.7005937,
+          43.6274375
+         ],
+         [
+          39.7005968,
+          43.6274688
+         ],
+         [
+          39.7006332,
+          43.6274668
+         ],
+         [
+          39.7006419,
+          43.6275536
+         ],
+         [
+          39.7006908,
+          43.6275511
+         ],
+         [
+          39.7006958,
+          43.6276008
+         ],
+         [
+          39.7007091,
+          43.6276163
+         ],
+         [
+          39.7007181,
+          43.6276372
+         ],
+         [
+          39.7007221,
+          43.6276592
+         ],
+         [
+          39.7007207,
+          43.6276812
+         ],
+         [
+          39.7007129,
+          43.6277014
+         ],
+         [
+          39.7006964,
+          43.6277017
+         ],
+         [
+          39.7006974,
+          43.6277248
+         ],
+         [
+          39.7006707,
+          43.6277255
+         ],
+         [
+          39.700671,
+          43.6277329
+         ],
+         [
+          39.7006004,
+          43.6277346
+         ],
+         [
+          39.7006001,
+          43.6277273
+         ],
+         [
+          39.7005718,
+          43.627728
+         ],
+         [
+          39.7005583,
+          43.6277138
+         ],
+         [
+          39.7005517,
+          43.6276954
+         ],
+         [
+          39.7005511,
+          43.627678
+         ],
+         [
+          39.7005541,
+          43.6276599
+         ],
+         [
+          39.7005674,
+          43.6276457
+         ],
+         [
+          39.7005584,
+          43.6275599
+         ],
+         [
+          39.7005164,
+          43.6275621
+         ],
+         [
+          39.7005051,
+          43.6274807
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w998100419",
+      "hotel_id": "r1639410",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r1639410"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1871308",
+     "name": "Бочаров Ручей",
+     "address": null,
+     "location": [
+      39.7044516,
+      43.6177638
+     ],
+     "stars": 5,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:dd61c76c5210",
+      "match": "unknown",
+      "margin": null,
+      "label": "рядом с подъёмником",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_dd61c76c5210_r1871308",
+       "characteristic_key": "derived:dd61c76c5210",
+       "value": null,
+       "unit": null,
+       "label": "рядом с подъёмником",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1871308",
+       "qualifiers": {
+        "source_text": "рядом с подъёмником",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 18
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7044516,
+      43.6177638
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "r3076648",
+     "name": "Отель и СПА \"Родина\"",
+     "address": null,
+     "location": [
+      39.7137421,
+      43.5992671
+     ],
+     "stars": 5,
+     "building_id": "w52504317",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:dd61c76c5210",
+      "match": "unknown",
+      "margin": null,
+      "label": "рядом с подъёмником",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_dd61c76c5210_r3076648",
+       "characteristic_key": "derived:dd61c76c5210",
+       "value": null,
+       "unit": null,
+       "label": "рядом с подъёмником",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r3076648",
+       "qualifiers": {
+        "source_text": "рядом с подъёмником",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 18
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7137421,
+      43.5992671
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52504317",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7139237,
+          43.5991692
+         ],
+         [
+          39.7139653,
+          43.5990897
+         ],
+         [
+          39.7140724,
+          43.5990547
+         ],
+         [
+          39.7141822,
+          43.5990848
+         ],
+         [
+          39.7141972,
+          43.599109
+         ],
+         [
+          39.7143132,
+          43.599144
+         ],
+         [
+          39.7142215,
+          43.5993032
+         ],
+         [
+          39.7141071,
+          43.5992686
+         ],
+         [
+          39.7140818,
+          43.5992769
+         ],
+         [
+          39.713972,
+          43.5992468
+         ],
+         [
+          39.7139237,
+          43.5991692
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52504317",
+      "hotel_id": "r3076648",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r3076648"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r7447995",
+     "name": "Radisson Collection Paradise Resort & Spa Sochi",
+     "address": "улица 65 лет Победы 50",
+     "location": [
+      39.9758043,
+      43.3949298
+     ],
+     "stars": 5,
+     "building_id": "w260633951",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.0,
+    "confidence": 0.0,
+    "matched": [
+     {
+      "characteristic_key": "derived:dd61c76c5210",
+      "match": "unknown",
+      "margin": null,
+      "label": "рядом с подъёмником",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_dd61c76c5210_r7447995",
+       "characteristic_key": "derived:dd61c76c5210",
+       "value": null,
+       "unit": null,
+       "label": "рядом с подъёмником",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r7447995",
+       "qualifiers": {
+        "source_text": "рядом с подъёмником",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 18
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9758043,
+      43.3949298
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w260633951",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.975161,
+          43.3951575
+         ],
+         [
+          39.9752783,
+          43.3951412
+         ],
+         [
+          39.9752988,
+          43.3951883
+         ],
+         [
+          39.9753431,
+          43.3952168
+         ],
+         [
+          39.9753977,
+          43.3952205
+         ],
+         [
+          39.9756261,
+          43.3951821
+         ],
+         [
+          39.975933,
+          43.3949677
+         ],
+         [
+          39.9759552,
+          43.3949046
+         ],
+         [
+          39.9759432,
+          43.3948538
+         ],
+         [
+          39.9759194,
+          43.3948067
+         ],
+         [
+          39.9759881,
+          43.3947738
+         ],
+         [
+          39.9760891,
+          43.3949115
+         ],
+         [
+          39.9760808,
+          43.3949476
+         ],
+         [
+          39.9756941,
+          43.3952203
+         ],
+         [
+          39.9752809,
+          43.3952859
+         ],
+         [
+          39.9752018,
+          43.3952964
+         ],
+         [
+          39.975161,
+          43.3951575
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w260633951",
+      "hotel_id": "r7447995",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r7447995"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.6561137,
+    43.3949298,
+    39.9758043,
+    43.6505845
+   ],
+   "camera": {
+    "center": [
+     39.6561137,
+     43.6505845
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 58884
+ },
+ "search_message_id": "d5a01211-9f0d-4136-a4ff-8007c2e692cd"
+}

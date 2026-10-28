@@ -1,0 +1,1914 @@
+{
+ "id": "98e2afed-14f7-4cdc-bda2-bbfa482d037a",
+ "title": "Сочи: с минеральными водами, санаторий, с врачом",
+ "updated_at": "2026-10-28T21:08:39.900817Z",
+ "messages": [
+  {
+   "id": "5d1318d6-0ea1-4fc5-b8ce-db2581e20b3c",
+   "role": "user",
+   "content": "Сочи, санаторий с минеральными водами и врачом",
+   "created_at": "2026-10-28T21:08:39.900817Z"
+  },
+  {
+   "id": "133c9d62-f8bc-4be8-a9a3-221ebbd7fb2e",
+   "role": "assistant",
+   "content": "Нашёл 2 отеля. Первые в списке: Санаторий \"Металлург\" и Кавказ. Проверка не завершена: санаторий. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T21:08:39.900817Z"
+  }
+ ],
+ "effective_query": "Сочи санаторий с минеральными водами и врачом",
+ "search": {
+  "query_id": "6e71a76e05778cf0",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:ae134bc1e2cc",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с минеральными водами"
+    },
+    {
+     "characteristic_key": "derived:3f4116baf247",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "санаторий"
+    },
+    {
+     "characteristic_key": "derived:1410e2181c29",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с врачом"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи санаторий с минеральными водами и врачом",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w52283978",
+     "name": "Санаторий \"Металлург\"",
+     "address": "Ясногорская улица 92",
+     "location": [
+      39.7602433,
+      43.5634416
+     ],
+     "stars": 3,
+     "building_id": "w52283978",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.108,
+    "confidence": 0.649,
+    "matched": [
+     {
+      "characteristic_key": "derived:ae134bc1e2cc",
+      "match": "partial",
+      "margin": null,
+      "label": "с минеральными водами",
+      "explanation": "Подтверждено: «Санаторий «Металлург» в Сочи — это популярное лечебно-оздоровительное учреждение, расположенное в живописном…». Источник: kmvkurorts.ru.",
+      "fact": {
+       "fact_id": "f_wish_ae134bc1e2cc_w52283978",
+       "characteristic_key": "derived:ae134bc1e2cc",
+       "value": true,
+       "unit": null,
+       "label": "с минеральными водами",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52283978",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "с минеральными водами",
+        "source_quotes": [
+         "Санаторий «Металлург» в Сочи — это популярное лечебно-оздоровительное учреждение, расположенное в живописном районе Черноморского побережья."
+        ],
+        "source_urls": [
+         "https://kmvkurorts.ru/listing/sanatorii/sochi/pitevoe-lechenie-mineralnoy-vodoy"
+        ],
+        "source_titles": [
+         "Санатории Сочи с лечением минеральными водами, цены 2026-2027 год | Минеральные воды в санаториях Сочи"
+        ],
+        "catalogue_identity": [
+         "addr:city=Сочи",
+         "addr:country=RU",
+         "addr:housenumber=92",
+         "addr:street=Ясногорская улица",
+         "name=Санаторий \"Металлург\""
+        ],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f4116baf247",
+      "match": "unknown",
+      "margin": null,
+      "label": "санаторий",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_3f4116baf247_w52283978",
+       "characteristic_key": "derived:3f4116baf247",
+       "value": null,
+       "unit": null,
+       "label": "санаторий",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52283978",
+       "qualifiers": {
+        "source_text": "санаторий",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:1410e2181c29",
+      "match": "unknown",
+      "margin": null,
+      "label": "с врачом",
+      "explanation": "Смысл пожелания подтверждён цитатой источника.",
+      "fact": {
+       "fact_id": "f_wish_1410e2181c29_w52283978",
+       "characteristic_key": "derived:1410e2181c29",
+       "value": null,
+       "unit": null,
+       "label": "с врачом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w52283978",
+       "qualifiers": {
+        "source_text": "с врачом",
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 6
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7602433,
+      43.5634416
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52283978",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7595077,
+          43.5637143
+         ],
+         [
+          39.7596658,
+          43.5635882
+         ],
+         [
+          39.7597212,
+          43.5635461
+         ],
+         [
+          39.7597925,
+          43.5635826
+         ],
+         [
+          39.7598906,
+          43.5635985
+         ],
+         [
+          39.7600219,
+          43.5635934
+         ],
+         [
+          39.7601402,
+          43.5635692
+         ],
+         [
+          39.7602283,
+          43.5635328
+         ],
+         [
+          39.760178,
+          43.5634978
+         ],
+         [
+          39.7603496,
+          43.5633683
+         ],
+         [
+          39.7604081,
+          43.563409
+         ],
+         [
+          39.7604569,
+          43.5633419
+         ],
+         [
+          39.7604863,
+          43.5632554
+         ],
+         [
+          39.7604888,
+          43.5631601
+         ],
+         [
+          39.7604636,
+          43.5630896
+         ],
+         [
+          39.760411,
+          43.5630378
+         ],
+         [
+          39.7604627,
+          43.5630021
+         ],
+         [
+          39.7606356,
+          43.5628789
+         ],
+         [
+          39.7608058,
+          43.5630065
+         ],
+         [
+          39.7606487,
+          43.5631147
+         ],
+         [
+          39.760654,
+          43.5632045
+         ],
+         [
+          39.7606396,
+          43.5633108
+         ],
+         [
+          39.7605985,
+          43.5634
+         ],
+         [
+          39.7605052,
+          43.5634766
+         ],
+         [
+          39.7606992,
+          43.5636115
+         ],
+         [
+          39.7605276,
+          43.563741
+         ],
+         [
+          39.760326,
+          43.5636008
+         ],
+         [
+          39.7602251,
+          43.5636698
+         ],
+         [
+          39.7601035,
+          43.5637026
+         ],
+         [
+          39.7599573,
+          43.5637166
+         ],
+         [
+          39.7598333,
+          43.5637158
+         ],
+         [
+          39.75969,
+          43.5638224
+         ],
+         [
+          39.7595077,
+          43.5637143
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52283978",
+      "hotel_id": "w52283978",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w52283978"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7891121078",
+     "name": "Кавказ",
+     "address": "Железнодорожная улица 14",
+     "location": [
+      39.8609393,
+      43.5128529
+     ],
+     "stars": null,
+     "building_id": "w52017864",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.108,
+    "confidence": 0.646,
+    "matched": [
+     {
+      "characteristic_key": "derived:ae134bc1e2cc",
+      "match": "unknown",
+      "margin": null,
+      "label": "с минеральными водами",
+      "explanation": "Смысл пожелания подтверждён цитатой источника.",
+      "fact": {
+       "fact_id": "f_wish_ae134bc1e2cc_n7891121078",
+       "characteristic_key": "derived:ae134bc1e2cc",
+       "value": null,
+       "unit": null,
+       "label": "с минеральными водами",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7891121078",
+       "qualifiers": {
+        "source_text": "с минеральными водами",
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:3f4116baf247",
+      "match": "unknown",
+      "margin": null,
+      "label": "санаторий",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_3f4116baf247_n7891121078",
+       "characteristic_key": "derived:3f4116baf247",
+       "value": null,
+       "unit": null,
+       "label": "санаторий",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7891121078",
+       "qualifiers": {
+        "source_text": "санаторий",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "provider",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:1410e2181c29",
+      "match": "partial",
+      "margin": null,
+      "label": "с врачом",
+      "explanation": "Подтверждено: «Прием врача терапевта». Источник: san-kavkaz.ru.",
+      "fact": {
+       "fact_id": "f_wish_1410e2181c29_n7891121078",
+       "characteristic_key": "derived:1410e2181c29",
+       "value": true,
+       "unit": null,
+       "label": "с врачом",
+       "confidence": 0.65,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7891121078",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "с врачом",
+        "source_quotes": [
+         "Прием врача терапевта"
+        ],
+        "source_urls": [
+         "https://www.san-kavkaz.ru/"
+        ],
+        "source_titles": [
+         "Главная"
+        ],
+        "catalogue_identity": [
+         "addr:city=Сочи",
+         "addr:housenumber=14",
+         "addr:street=Железнодорожная улица",
+         "name=Кавказ",
+         "website=https://www.san-kavkaz.ru/"
+        ],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 6
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8609393,
+      43.5128529
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52017864",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8596447,
+          43.5132106
+         ],
+         [
+          39.8596597,
+          43.5132065
+         ],
+         [
+          39.8596631,
+          43.5131897
+         ],
+         [
+          39.8597054,
+          43.5131784
+         ],
+         [
+          39.8597222,
+          43.5131894
+         ],
+         [
+          39.8597371,
+          43.5131854
+         ],
+         [
+          39.8597378,
+          43.5131702
+         ],
+         [
+          39.8597823,
+          43.5131582
+         ],
+         [
+          39.8597979,
+          43.5131688
+         ],
+         [
+          39.8598134,
+          43.5131645
+         ],
+         [
+          39.8598136,
+          43.5131497
+         ],
+         [
+          39.8598534,
+          43.5131389
+         ],
+         [
+          39.8598708,
+          43.5131489
+         ],
+         [
+          39.8598871,
+          43.5131444
+         ],
+         [
+          39.8598879,
+          43.5131296
+         ],
+         [
+          39.8599296,
+          43.5131183
+         ],
+         [
+          39.8599453,
+          43.5131285
+         ],
+         [
+          39.8599627,
+          43.5131238
+         ],
+         [
+          39.8599649,
+          43.5131087
+         ],
+         [
+          39.8600042,
+          43.513098
+         ],
+         [
+          39.8600196,
+          43.5131083
+         ],
+         [
+          39.8600351,
+          43.513104
+         ],
+         [
+          39.8600352,
+          43.5130896
+         ],
+         [
+          39.8600815,
+          43.5130771
+         ],
+         [
+          39.8600967,
+          43.5130872
+         ],
+         [
+          39.8601137,
+          43.5130826
+         ],
+         [
+          39.8601144,
+          43.5130682
+         ],
+         [
+          39.8601565,
+          43.5130568
+         ],
+         [
+          39.8601721,
+          43.5130667
+         ],
+         [
+          39.8601872,
+          43.5130626
+         ],
+         [
+          39.8601873,
+          43.5130485
+         ],
+         [
+          39.860228,
+          43.5130374
+         ],
+         [
+          39.8602422,
+          43.5130476
+         ],
+         [
+          39.8602589,
+          43.513043
+         ],
+         [
+          39.8602591,
+          43.513029
+         ],
+         [
+          39.8603041,
+          43.5130168
+         ],
+         [
+          39.8603192,
+          43.5130265
+         ],
+         [
+          39.8603346,
+          43.5130223
+         ],
+         [
+          39.8603359,
+          43.5130082
+         ],
+         [
+          39.8603812,
+          43.5129959
+         ],
+         [
+          39.8603961,
+          43.5130056
+         ],
+         [
+          39.8604133,
+          43.5130009
+         ],
+         [
+          39.8604129,
+          43.5129873
+         ],
+         [
+          39.860455,
+          43.5129759
+         ],
+         [
+          39.8604701,
+          43.5129854
+         ],
+         [
+          39.8604879,
+          43.5129805
+         ],
+         [
+          39.8604901,
+          43.5129664
+         ],
+         [
+          39.8605335,
+          43.5129547
+         ],
+         [
+          39.8605469,
+          43.5129644
+         ],
+         [
+          39.8605622,
+          43.5129602
+         ],
+         [
+          39.8605632,
+          43.5129466
+         ],
+         [
+          39.8606059,
+          43.512935
+         ],
+         [
+          39.8606197,
+          43.5129446
+         ],
+         [
+          39.8606409,
+          43.5129388
+         ],
+         [
+          39.8606405,
+          43.5129256
+         ],
+         [
+          39.8606879,
+          43.5129128
+         ],
+         [
+          39.8607012,
+          43.5129223
+         ],
+         [
+          39.8607176,
+          43.5129179
+         ],
+         [
+          39.8607194,
+          43.5129043
+         ],
+         [
+          39.8607652,
+          43.5128918
+         ],
+         [
+          39.8607785,
+          43.5129012
+         ],
+         [
+          39.8607944,
+          43.5128969
+         ],
+         [
+          39.8607943,
+          43.512884
+         ],
+         [
+          39.8608401,
+          43.5128716
+         ],
+         [
+          39.8608545,
+          43.5128805
+         ],
+         [
+          39.8608696,
+          43.5128764
+         ],
+         [
+          39.86087,
+          43.5128635
+         ],
+         [
+          39.8609123,
+          43.512852
+         ],
+         [
+          39.8609275,
+          43.5128606
+         ],
+         [
+          39.8609445,
+          43.512856
+         ],
+         [
+          39.8609467,
+          43.5128427
+         ],
+         [
+          39.860989,
+          43.5128312
+         ],
+         [
+          39.861005,
+          43.5128395
+         ],
+         [
+          39.8610192,
+          43.5128356
+         ],
+         [
+          39.8610214,
+          43.5128224
+         ],
+         [
+          39.8610602,
+          43.5128119
+         ],
+         [
+          39.8610761,
+          43.5128201
+         ],
+         [
+          39.8610905,
+          43.5128161
+         ],
+         [
+          39.8610926,
+          43.5128032
+         ],
+         [
+          39.8611339,
+          43.512792
+         ],
+         [
+          39.86115,
+          43.5127999
+         ],
+         [
+          39.8611631,
+          43.5127963
+         ],
+         [
+          39.8611646,
+          43.5127837
+         ],
+         [
+          39.8612115,
+          43.5127709
+         ],
+         [
+          39.8612285,
+          43.5127785
+         ],
+         [
+          39.8612436,
+          43.5127744
+         ],
+         [
+          39.8612465,
+          43.5127614
+         ],
+         [
+          39.8612885,
+          43.5127501
+         ],
+         [
+          39.8613029,
+          43.5127582
+         ],
+         [
+          39.8613198,
+          43.5127536
+         ],
+         [
+          39.8613213,
+          43.5127412
+         ],
+         [
+          39.8613651,
+          43.5127293
+         ],
+         [
+          39.8613807,
+          43.5127369
+         ],
+         [
+          39.8613963,
+          43.5127327
+         ],
+         [
+          39.8613989,
+          43.5127202
+         ],
+         [
+          39.8614393,
+          43.5127092
+         ],
+         [
+          39.8614539,
+          43.512717
+         ],
+         [
+          39.8614715,
+          43.5127122
+         ],
+         [
+          39.8614714,
+          43.5127005
+         ],
+         [
+          39.8615127,
+          43.5126893
+         ],
+         [
+          39.8615265,
+          43.5126972
+         ],
+         [
+          39.8615452,
+          43.5126921
+         ],
+         [
+          39.861547,
+          43.51268
+         ],
+         [
+          39.8615905,
+          43.5126682
+         ],
+         [
+          39.8616038,
+          43.5126761
+         ],
+         [
+          39.8616187,
+          43.512672
+         ],
+         [
+          39.8616212,
+          43.5126599
+         ],
+         [
+          39.8616668,
+          43.5126476
+         ],
+         [
+          39.8616794,
+          43.5126555
+         ],
+         [
+          39.8616992,
+          43.5126501
+         ],
+         [
+          39.8617003,
+          43.5126385
+         ],
+         [
+          39.8617429,
+          43.5126269
+         ],
+         [
+          39.8617556,
+          43.5126347
+         ],
+         [
+          39.8617753,
+          43.5126293
+         ],
+         [
+          39.8617758,
+          43.512618
+         ],
+         [
+          39.8618201,
+          43.512606
+         ],
+         [
+          39.861832,
+          43.5126138
+         ],
+         [
+          39.8618519,
+          43.5126084
+         ],
+         [
+          39.8618519,
+          43.5125974
+         ],
+         [
+          39.8618931,
+          43.5125863
+         ],
+         [
+          39.8619064,
+          43.5125936
+         ],
+         [
+          39.8619244,
+          43.5125886
+         ],
+         [
+          39.8619255,
+          43.5125775
+         ],
+         [
+          39.8619715,
+          43.512565
+         ],
+         [
+          39.861983,
+          43.5125726
+         ],
+         [
+          39.8620016,
+          43.5125676
+         ],
+         [
+          39.8620036,
+          43.5125563
+         ],
+         [
+          39.8620416,
+          43.512546
+         ],
+         [
+          39.8620859,
+          43.5126319
+         ],
+         [
+          39.8620395,
+          43.5126445
+         ],
+         [
+          39.8620133,
+          43.5126321
+         ],
+         [
+          39.8620081,
+          43.5126531
+         ],
+         [
+          39.8619656,
+          43.5126646
+         ],
+         [
+          39.8619419,
+          43.5126524
+         ],
+         [
+          39.8619373,
+          43.5126724
+         ],
+         [
+          39.8618914,
+          43.5126849
+         ],
+         [
+          39.8618659,
+          43.5126722
+         ],
+         [
+          39.8618615,
+          43.512693
+         ],
+         [
+          39.8618159,
+          43.5127055
+         ],
+         [
+          39.86179,
+          43.5126932
+         ],
+         [
+          39.8617864,
+          43.5127135
+         ],
+         [
+          39.8617394,
+          43.5127263
+         ],
+         [
+          39.8617127,
+          43.5127136
+         ],
+         [
+          39.861707,
+          43.5127352
+         ],
+         [
+          39.8616634,
+          43.5127471
+         ],
+         [
+          39.8616364,
+          43.5127345
+         ],
+         [
+          39.8616299,
+          43.5127562
+         ],
+         [
+          39.8615891,
+          43.5127673
+         ],
+         [
+          39.8615626,
+          43.5127552
+         ],
+         [
+          39.861557,
+          43.5127761
+         ],
+         [
+          39.8615106,
+          43.5127887
+         ],
+         [
+          39.8614849,
+          43.5127762
+         ],
+         [
+          39.8614797,
+          43.5127971
+         ],
+         [
+          39.8614363,
+          43.512809
+         ],
+         [
+          39.8614096,
+          43.5127957
+         ],
+         [
+          39.8614034,
+          43.5128179
+         ],
+         [
+          39.8613642,
+          43.5128286
+         ],
+         [
+          39.8613373,
+          43.5128152
+         ],
+         [
+          39.8613321,
+          43.5128374
+         ],
+         [
+          39.8612861,
+          43.5128499
+         ],
+         [
+          39.861258,
+          43.5128351
+         ],
+         [
+          39.8612522,
+          43.5128592
+         ],
+         [
+          39.8612075,
+          43.5128714
+         ],
+         [
+          39.8611822,
+          43.5128585
+         ],
+         [
+          39.8611773,
+          43.5128796
+         ],
+         [
+          39.861134,
+          43.5128914
+         ],
+         [
+          39.8611095,
+          43.5128789
+         ],
+         [
+          39.8611042,
+          43.5128995
+         ],
+         [
+          39.8610596,
+          43.5129117
+         ],
+         [
+          39.8610342,
+          43.5128977
+         ],
+         [
+          39.8610286,
+          43.5129201
+         ],
+         [
+          39.8609868,
+          43.5129315
+         ],
+         [
+          39.8609585,
+          43.5129181
+         ],
+         [
+          39.860953,
+          43.5129407
+         ],
+         [
+          39.8609108,
+          43.5129522
+         ],
+         [
+          39.8608838,
+          43.5129372
+         ],
+         [
+          39.8608797,
+          43.5129607
+         ],
+         [
+          39.8608375,
+          43.5129722
+         ],
+         [
+          39.8608084,
+          43.5129571
+         ],
+         [
+          39.8608023,
+          43.5129818
+         ],
+         [
+          39.8607597,
+          43.5129935
+         ],
+         [
+          39.8607316,
+          43.5129778
+         ],
+         [
+          39.8607267,
+          43.5130024
+         ],
+         [
+          39.8606814,
+          43.5130148
+         ],
+         [
+          39.8606546,
+          43.513
+         ],
+         [
+          39.8606487,
+          43.5130237
+         ],
+         [
+          39.8606052,
+          43.5130356
+         ],
+         [
+          39.8605784,
+          43.5130208
+         ],
+         [
+          39.8605738,
+          43.5130441
+         ],
+         [
+          39.8605313,
+          43.5130557
+         ],
+         [
+          39.8605038,
+          43.5130412
+         ],
+         [
+          39.8604987,
+          43.5130646
+         ],
+         [
+          39.8604567,
+          43.5130761
+         ],
+         [
+          39.8604274,
+          43.5130605
+         ],
+         [
+          39.8604212,
+          43.5130857
+         ],
+         [
+          39.8603766,
+          43.5130979
+         ],
+         [
+          39.860351,
+          43.5130842
+         ],
+         [
+          39.8603477,
+          43.5131058
+         ],
+         [
+          39.860302,
+          43.5131182
+         ],
+         [
+          39.8602761,
+          43.5131051
+         ],
+         [
+          39.8602694,
+          43.5131271
+         ],
+         [
+          39.8602281,
+          43.5131384
+         ],
+         [
+          39.8602024,
+          43.5131236
+         ],
+         [
+          39.860199,
+          43.5131463
+         ],
+         [
+          39.8601568,
+          43.5131578
+         ],
+         [
+          39.8601269,
+          43.5131425
+         ],
+         [
+          39.8601194,
+          43.513168
+         ],
+         [
+          39.8600804,
+          43.5131786
+         ],
+         [
+          39.8600515,
+          43.5131633
+         ],
+         [
+          39.8600457,
+          43.5131881
+         ],
+         [
+          39.8600038,
+          43.5131995
+         ],
+         [
+          39.8599764,
+          43.5131845
+         ],
+         [
+          39.859969,
+          43.513209
+         ],
+         [
+          39.8599287,
+          43.51322
+         ],
+         [
+          39.8599041,
+          43.5132045
+         ],
+         [
+          39.8598996,
+          43.513228
+         ],
+         [
+          39.8598578,
+          43.5132393
+         ],
+         [
+          39.8598278,
+          43.5132214
+         ],
+         [
+          39.859822,
+          43.5132491
+         ],
+         [
+          39.8597825,
+          43.5132599
+         ],
+         [
+          39.8597562,
+          43.5132434
+         ],
+         [
+          39.8597501,
+          43.5132687
+         ],
+         [
+          39.8596842,
+          43.5132867
+         ],
+         [
+          39.8596447,
+          43.5132106
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52017864",
+      "hotel_id": "n7891121078",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n7891121078"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7602433,
+    43.5128529,
+    39.8609393,
+    43.5634416
+   ],
+   "camera": {
+    "center": [
+     39.7602433,
+     43.5634416
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 79650
+ },
+ "search_message_id": "133c9d62-f8bc-4be8-a9a3-221ebbd7fb2e"
+}

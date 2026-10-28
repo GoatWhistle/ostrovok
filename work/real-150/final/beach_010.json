@@ -1,0 +1,4878 @@
+{
+ "id": "bb7fca60-d091-458b-b7d0-00a680c09068",
+ "title": "Сочи: чтобы ночью было тихо, у моря",
+ "updated_at": "2026-10-28T19:54:38.637578Z",
+ "messages": [
+  {
+   "id": "593fae51-c162-4832-b64b-ae950eea31ec",
+   "role": "user",
+   "content": "Отель в Сочи у моря, но чтобы ночью было тихо",
+   "created_at": "2026-10-28T19:54:38.637578Z"
+  },
+  {
+   "id": "0dc6e91f-5dab-42e1-abac-f5e83fd67b18",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие, детали в карточках. На какие даты едете?",
+   "created_at": "2026-10-28T19:54:38.637578Z"
+  }
+ ],
+ "effective_query": "Отель в Сочи у моря, чтобы ночью было тихо",
+ "search": {
+  "query_id": "98e4c6cb0a3a07f3",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:c7119e5f801f",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "чтобы ночью было тихо"
+    },
+    {
+     "characteristic_key": "derived:b241aef47d86",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "у моря"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Отель в Сочи у моря, чтобы ночью было тихо",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w714785935",
+     "name": "Karap Palace Hotel",
+     "address": "Нижнеимеретинская улица 121",
+     "location": [
+      39.966752,
+      43.3983151
+     ],
+     "stars": null,
+     "building_id": "w714785935",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.602,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w714785935",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785935_1"
+       ],
+       "subject": "facade:w714785935:206",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 206.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785935_1"
+      ],
+      "camera": {
+       "center": [
+        39.966752,
+        43.3983151
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_w714785935_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w714785935",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w714785935"
+       ],
+       "subject": "hotel:w714785935",
+       "qualifiers": {
+        "meters": 147.2,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 1.8,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 0.6,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w714785935"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.966752,
+      43.3983151
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_w714785935_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714785935",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9666057,
+          43.3982328
+         ],
+         [
+          39.9667863,
+          43.3981677
+         ],
+         [
+          39.9669714,
+          43.3984386
+         ],
+         [
+          39.9667907,
+          43.3985037
+         ],
+         [
+          39.9666057,
+          43.3982328
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714785935",
+      "hotel_id": "w714785935",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w714785935"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.602,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n11190910581",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11190910581_1"
+       ],
+       "subject": "facade:n11190910581:224",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.5,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 223.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11190910581_1"
+      ],
+      "camera": {
+       "center": [
+        39.9358143,
+        43.4115027
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 44.0,
+       "focus_facade_id": "fc_n11190910581_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n11190910581",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11190910581"
+       ],
+       "subject": "hotel:n11190910581",
+       "qualifiers": {
+        "meters": 166.2,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 2.1,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 7.3,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n11190910581"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9358143,
+      43.4115027
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 44.0,
+     "focus_facade_id": "fc_n11190910581_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207638209",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9352514,
+          43.411309
+         ],
+         [
+          39.9354062,
+          43.4112008
+         ],
+         [
+          39.9354656,
+          43.4112393
+         ],
+         [
+          39.9354928,
+          43.4112576
+         ],
+         [
+          39.935521,
+          43.411275
+         ],
+         [
+          39.9355502,
+          43.4112916
+         ],
+         [
+          39.9355803,
+          43.4113074
+         ],
+         [
+          39.9356112,
+          43.4113222
+         ],
+         [
+          39.935643,
+          43.4113361
+         ],
+         [
+          39.9356755,
+          43.411349
+         ],
+         [
+          39.9357087,
+          43.4113609
+         ],
+         [
+          39.9357425,
+          43.4113719
+         ],
+         [
+          39.9357769,
+          43.4113819
+         ],
+         [
+          39.9358118,
+          43.4113908
+         ],
+         [
+          39.9358472,
+          43.4113986
+         ],
+         [
+          39.9358831,
+          43.4114055
+         ],
+         [
+          39.9359192,
+          43.4114112
+         ],
+         [
+          39.9359557,
+          43.4114159
+         ],
+         [
+          39.9359924,
+          43.4114194
+         ],
+         [
+          39.9360292,
+          43.4114219
+         ],
+         [
+          39.9360662,
+          43.4114233
+         ],
+         [
+          39.9361032,
+          43.4114236
+         ],
+         [
+          39.9361402,
+          43.4114228
+         ],
+         [
+          39.9361772,
+          43.4114209
+         ],
+         [
+          39.936214,
+          43.4114179
+         ],
+         [
+          39.9362505,
+          43.4114138
+         ],
+         [
+          39.9362869,
+          43.4114086
+         ],
+         [
+          39.9363229,
+          43.4114024
+         ],
+         [
+          39.9363585,
+          43.4113951
+         ],
+         [
+          39.9363937,
+          43.4113867
+         ],
+         [
+          39.9364284,
+          43.4113773
+         ],
+         [
+          39.9365066,
+          43.4115231
+         ],
+         [
+          39.9364638,
+          43.4115347
+         ],
+         [
+          39.9364394,
+          43.4115405
+         ],
+         [
+          39.9364203,
+          43.411545
+         ],
+         [
+          39.9363763,
+          43.4115541
+         ],
+         [
+          39.9363318,
+          43.4115618
+         ],
+         [
+          39.9362869,
+          43.4115681
+         ],
+         [
+          39.9362418,
+          43.4115732
+         ],
+         [
+          39.9361963,
+          43.4115769
+         ],
+         [
+          39.9361507,
+          43.4115792
+         ],
+         [
+          39.936105,
+          43.4115802
+         ],
+         [
+          39.9360593,
+          43.4115798
+         ],
+         [
+          39.9360136,
+          43.4115781
+         ],
+         [
+          39.9359681,
+          43.411575
+         ],
+         [
+          39.9359228,
+          43.4115706
+         ],
+         [
+          39.9358778,
+          43.4115649
+         ],
+         [
+          39.9358331,
+          43.4115578
+         ],
+         [
+          39.9357889,
+          43.4115494
+         ],
+         [
+          39.9357451,
+          43.4115396
+         ],
+         [
+          39.935702,
+          43.4115286
+         ],
+         [
+          39.9356595,
+          43.4115164
+         ],
+         [
+          39.9356177,
+          43.4115028
+         ],
+         [
+          39.9355767,
+          43.4114881
+         ],
+         [
+          39.9355366,
+          43.4114721
+         ],
+         [
+          39.9354974,
+          43.411455
+         ],
+         [
+          39.9354592,
+          43.4114367
+         ],
+         [
+          39.935422,
+          43.4114173
+         ],
+         [
+          39.9353859,
+          43.4113968
+         ],
+         [
+          39.935351,
+          43.4113752
+         ],
+         [
+          39.9353174,
+          43.4113527
+         ],
+         [
+          39.9352514,
+          43.411309
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207638209",
+      "hotel_id": "n11190910581",
+      "is_hotel": true,
+      "height_m": 22.4,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_n11190910581"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12084593369",
+     "name": "Kenguru",
+     "address": null,
+     "location": [
+      39.8939967,
+      43.4786544
+     ],
+     "stars": null,
+     "building_id": "w81148521",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.602,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n12084593369",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n12084593369_1"
+       ],
+       "subject": "facade:n12084593369:258",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 257.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_n12084593369_1"
+      ],
+      "camera": {
+       "center": [
+        39.8939967,
+        43.4786544
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 78.0,
+       "focus_facade_id": "fc_n12084593369_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n12084593369",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n12084593369"
+       ],
+       "subject": "hotel:n12084593369",
+       "qualifiers": {
+        "meters": 306.9,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.8,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 6.8,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n12084593369"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8939967,
+      43.4786544
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 78.0,
+     "focus_facade_id": "fc_n12084593369_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148521",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8937687,
+          43.4786839
+         ],
+         [
+          39.8938025,
+          43.4785724
+         ],
+         [
+          39.8940585,
+          43.4786133
+         ],
+         [
+          39.8940248,
+          43.4787247
+         ],
+         [
+          39.8937687,
+          43.4786839
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148521",
+      "hotel_id": "n12084593369",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n12084593369"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4370780891",
+     "name": "Family Park Hotel",
+     "address": "улица Кирова 11",
+     "location": [
+      39.9205416,
+      43.4222099
+     ],
+     "stars": null,
+     "building_id": "w77860264",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fc74ac80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_abff12d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4c66be3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bebafdf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a2b90ee7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efc9d14c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fd5fe838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e862baf2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5a1a7f26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f183818_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3aee4dea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_040a79cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df5ab243_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d949f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2e043b47_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7c2d7e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2818503a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e7c291a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db630c80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8943a96c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c956a8aa_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54120d30_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_53ad83e3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.599,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.765,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n4370780891",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4370780891_1"
+       ],
+       "subject": "facade:n4370780891:225",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.7,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 225.2
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4370780891_1"
+      ],
+      "camera": {
+       "center": [
+        39.9205416,
+        43.4222099
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 45.0,
+       "focus_facade_id": "fc_n4370780891_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n4370780891",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4370780891"
+       ],
+       "subject": "hotel:n4370780891",
+       "qualifiers": {
+        "meters": 205.0,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 2.6,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": -3.3,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n4370780891"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9205416,
+      43.4222099
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 45.0,
+     "focus_facade_id": "fc_n4370780891_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w77860264",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9203219,
+          43.4221747
+         ],
+         [
+          39.9203816,
+          43.4221309
+         ],
+         [
+          39.9203703,
+          43.4221228
+         ],
+         [
+          39.9204588,
+          43.422058
+         ],
+         [
+          39.9204739,
+          43.4220689
+         ],
+         [
+          39.9205075,
+          43.4220443
+         ],
+         [
+          39.9205783,
+          43.4220953
+         ],
+         [
+          39.9205377,
+          43.422125
+         ],
+         [
+          39.920583,
+          43.4221577
+         ],
+         [
+          39.9206231,
+          43.4221283
+         ],
+         [
+          39.9207169,
+          43.4221959
+         ],
+         [
+          39.9206221,
+          43.4222653
+         ],
+         [
+          39.9206385,
+          43.4222771
+         ],
+         [
+          39.9205561,
+          43.4223374
+         ],
+         [
+          39.9205043,
+          43.4223001
+         ],
+         [
+          39.9204909,
+          43.4223099
+         ],
+         [
+          39.9203417,
+          43.4222025
+         ],
+         [
+          39.9203511,
+          43.4221957
+         ],
+         [
+          39.9203219,
+          43.4221747
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w77860264",
+      "hotel_id": "n4370780891",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4370780891"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.597,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.667,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n4712092442",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4712092442_1"
+       ],
+       "subject": "facade:n4712092442:206",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.8,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 205.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4712092442_1"
+      ],
+      "camera": {
+       "center": [
+        39.9668263,
+        43.3989565
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_n4712092442_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n4712092442",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4712092442"
+       ],
+       "subject": "hotel:n4712092442",
+       "qualifiers": {
+        "meters": 242.6,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.0,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": -2.6,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n4712092442"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9668263,
+      43.3989565
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_n4712092442_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374921439",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9665586,
+          43.3989753
+         ],
+         [
+          39.9667803,
+          43.3988975
+         ],
+         [
+          39.9667555,
+          43.3988602
+         ],
+         [
+          39.9669443,
+          43.398794
+         ],
+         [
+          39.9670258,
+          43.3989166
+         ],
+         [
+          39.9666153,
+          43.3990607
+         ],
+         [
+          39.9665586,
+          43.3989753
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374921439",
+      "hotel_id": "n4712092442",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4712092442"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53292017",
+     "name": "Black Sea",
+     "address": "улица Бестужева 6А",
+     "location": [
+      39.9224817,
+      43.41941
+     ],
+     "stars": null,
+     "building_id": "w53292017",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.596,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.579,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w53292017",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292017_1"
+       ],
+       "subject": "facade:w53292017:236",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 1.9,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 235.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292017_1"
+      ],
+      "camera": {
+       "center": [
+        39.9224817,
+        43.41941
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_w53292017_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w53292017",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53292017"
+       ],
+       "subject": "hotel:w53292017",
+       "qualifiers": {
+        "meters": 192.0,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 2.4,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 5.0,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w53292017"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9224817,
+      43.41941
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_w53292017_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292017",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9223893,
+          43.419423
+         ],
+         [
+          39.9224834,
+          43.4193227
+         ],
+         [
+          39.9226204,
+          43.4193905
+         ],
+         [
+          39.9225262,
+          43.4194908
+         ],
+         [
+          39.9223893,
+          43.419423
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292017",
+      "hotel_id": "w53292017",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53292017"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53292014",
+     "name": "Green House Hotel",
+     "address": "улица Бестужева 1В",
+     "location": [
+      39.9223431,
+      43.4188527
+     ],
+     "stars": null,
+     "building_id": "w53292014",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.592,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.304,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w53292014",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53292014_1"
+       ],
+       "subject": "facade:w53292014:236",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 235.5
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53292014_1"
+      ],
+      "camera": {
+       "center": [
+        39.9223431,
+        43.4188527
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_w53292014_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w53292014",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53292014"
+       ],
+       "subject": "hotel:w53292014",
+       "qualifiers": {
+        "meters": 158.4,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 2.0,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 2.5,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w53292014"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9223431,
+      43.4188527
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_w53292014_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292014",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9222058,
+          43.4188782
+         ],
+         [
+          39.9223564,
+          43.4187186
+         ],
+         [
+          39.9225491,
+          43.4188145
+         ],
+         [
+          39.9223984,
+          43.4189741
+         ],
+         [
+          39.9222058,
+          43.4188782
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292014",
+      "hotel_id": "w53292014",
+      "is_hotel": true,
+      "height_m": 22.4,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_w53292014"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843545854",
+     "name": "Ellis",
+     "address": null,
+     "location": [
+      39.9218944,
+      43.4194425
+     ],
+     "stars": null,
+     "building_id": "w167403316",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.59,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.154,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n11843545854",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11843545854_1"
+       ],
+       "subject": "facade:n11843545854:234",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.6,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 234.5
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11843545854_1"
+      ],
+      "camera": {
+       "center": [
+        39.9218944,
+        43.4194425
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 54.0,
+       "focus_facade_id": "fc_n11843545854_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n11843545854",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11843545854"
+       ],
+       "subject": "hotel:n11843545854",
+       "qualifiers": {
+        "meters": 137.7,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 1.7,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 5.9,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n11843545854"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9218944,
+      43.4194425
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 54.0,
+     "focus_facade_id": "fc_n11843545854_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w167403316",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9218298,
+          43.4194526
+         ],
+         [
+          39.921886,
+          43.4193951
+         ],
+         [
+          39.9219546,
+          43.4194305
+         ],
+         [
+          39.9219718,
+          43.4194394
+         ],
+         [
+          39.9219671,
+          43.4194442
+         ],
+         [
+          39.9219155,
+          43.4194969
+         ],
+         [
+          39.9218298,
+          43.4194526
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w167403316",
+      "hotel_id": "n11843545854",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11843545854"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13114325896",
+     "name": "Les Amis",
+     "address": null,
+     "location": [
+      39.8972788,
+      43.4685007
+     ],
+     "stars": null,
+     "building_id": "w272265259",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.589,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.111,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n13114325896",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n13114325896_1"
+       ],
+       "subject": "facade:n13114325896:254",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.7,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 254.2
+       }
+      },
+      "geo_refs": [
+       "g_fc_n13114325896_1"
+      ],
+      "camera": {
+       "center": [
+        39.8972788,
+        43.4685007
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 74.0,
+       "focus_facade_id": "fc_n13114325896_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n13114325896",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13114325896"
+       ],
+       "subject": "hotel:n13114325896",
+       "qualifiers": {
+        "meters": 270.7,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.4,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 4.3,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n13114325896"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8972788,
+      43.4685007
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 74.0,
+     "focus_facade_id": "fc_n13114325896_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w272265259",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8968903,
+          43.4684662
+         ],
+         [
+          39.8969275,
+          43.4683702
+         ],
+         [
+          39.8975724,
+          43.4685018
+         ],
+         [
+          39.8975527,
+          43.4685525
+         ],
+         [
+          39.8975351,
+          43.4685979
+         ],
+         [
+          39.8968903,
+          43.4684662
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w272265259",
+      "hotel_id": "n13114325896",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n13114325896"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10858734694",
+     "name": "Моне",
+     "address": null,
+     "location": [
+      39.8992896,
+      43.4623607
+     ],
+     "stars": null,
+     "building_id": "w54241068",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.588,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.034,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n10858734694",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10858734694_4"
+       ],
+       "subject": "facade:n10858734694:165",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 2.9,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 165.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10858734694_4"
+      ],
+      "camera": {
+       "center": [
+        39.8992896,
+        43.4623607
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 345.0,
+       "focus_facade_id": "fc_n10858734694_4"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n10858734694",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n10858734694"
+       ],
+       "subject": "hotel:n10858734694",
+       "qualifiers": {
+        "meters": 239.5,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.0,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 2.7,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n10858734694"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8992896,
+      43.4623607
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 345.0,
+     "focus_facade_id": "fc_n10858734694_4"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54241068",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8988377,
+          43.4622948
+         ],
+         [
+          39.8989435,
+          43.4620068
+         ],
+         [
+          39.8992798,
+          43.4620718
+         ],
+         [
+          39.8992285,
+          43.4622116
+         ],
+         [
+          39.8994492,
+          43.4622543
+         ],
+         [
+          39.8994311,
+          43.4623037
+         ],
+         [
+          39.9003026,
+          43.4624732
+         ],
+         [
+          39.900299,
+          43.462483
+         ],
+         [
+          39.9006824,
+          43.4625569
+         ],
+         [
+          39.9008161,
+          43.4621916
+         ],
+         [
+          39.9006122,
+          43.4621523
+         ],
+         [
+          39.9007315,
+          43.4618262
+         ],
+         [
+          39.900801,
+          43.4618396
+         ],
+         [
+          39.9008873,
+          43.4618562
+         ],
+         [
+          39.9008565,
+          43.4619405
+         ],
+         [
+          39.9008887,
+          43.4619467
+         ],
+         [
+          39.9008309,
+          43.4621046
+         ],
+         [
+          39.9010408,
+          43.462145
+         ],
+         [
+          39.9010979,
+          43.461989
+         ],
+         [
+          39.9011276,
+          43.4619079
+         ],
+         [
+          39.9012466,
+          43.4619309
+         ],
+         [
+          39.9010966,
+          43.4623406
+         ],
+         [
+          39.9009826,
+          43.4623186
+         ],
+         [
+          39.9008726,
+          43.462619
+         ],
+         [
+          39.9008535,
+          43.4626154
+         ],
+         [
+          39.9008131,
+          43.4627256
+         ],
+         [
+          39.9005826,
+          43.462681
+         ],
+         [
+          39.9006001,
+          43.4626333
+         ],
+         [
+          39.9002673,
+          43.4625689
+         ],
+         [
+          39.9002451,
+          43.4626291
+         ],
+         [
+          39.8993735,
+          43.4624595
+         ],
+         [
+          39.8993946,
+          43.4624026
+         ],
+         [
+          39.8993492,
+          43.4623938
+         ],
+         [
+          39.8993417,
+          43.4624143
+         ],
+         [
+          39.8992364,
+          43.462394
+         ],
+         [
+          39.8992254,
+          43.4624238
+         ],
+         [
+          39.8991925,
+          43.4624174
+         ],
+         [
+          39.899211,
+          43.462367
+         ],
+         [
+          39.8991744,
+          43.4623599
+         ],
+         [
+          39.8988377,
+          43.4622948
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54241068",
+      "hotel_id": "n10858734694",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n10858734694"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11866202895",
+     "name": "Cascade",
+     "address": null,
+     "location": [
+      39.9148089,
+      43.4253046
+     ],
+     "stars": null,
+     "building_id": "w679416881",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n11866202895",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n11866202895_1"
+       ],
+       "subject": "facade:n11866202895:240",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 240.0
+       }
+      },
+      "geo_refs": [
+       "g_fc_n11866202895_1"
+      ],
+      "camera": {
+       "center": [
+        39.9148089,
+        43.4253046
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 60.0,
+       "focus_facade_id": "fc_n11866202895_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n11866202895",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11866202895"
+       ],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "meters": 12.6,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 0.2,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 0.0,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n11866202895"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9148089,
+      43.4253046
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 60.0,
+     "focus_facade_id": "fc_n11866202895_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w679416881",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9146362,
+          43.4253099
+         ],
+         [
+          39.9147233,
+          43.4251999
+         ],
+         [
+          39.9149516,
+          43.4252953
+         ],
+         [
+          39.9148645,
+          43.4254053
+         ],
+         [
+          39.9146362,
+          43.4253099
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w679416881",
+      "hotel_id": "n11866202895",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11866202895"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w124781620",
+     "name": "Kavkaz",
+     "address": "Нижнеимеретинская улица 161А",
+     "location": [
+      39.9718084,
+      43.3962964
+     ],
+     "stars": null,
+     "building_id": "w124781620",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w124781620",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w124781620_1"
+       ],
+       "subject": "facade:w124781620:262",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 262.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w124781620_1"
+      ],
+      "camera": {
+       "center": [
+        39.9718084,
+        43.3962964
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 82.0,
+       "focus_facade_id": "fc_w124781620_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w124781620",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w124781620"
+       ],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "meters": 22.7,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 0.3,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 1.7,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w124781620"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9718084,
+      43.3962964
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 82.0,
+     "focus_facade_id": "fc_w124781620_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124781620",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9717148,
+          43.3962675
+         ],
+         [
+          39.9717182,
+          43.396249
+         ],
+         [
+          39.9717295,
+          43.3962286
+         ],
+         [
+          39.9717901,
+          43.3962064
+         ],
+         [
+          39.9718214,
+          43.3962112
+         ],
+         [
+          39.9718452,
+          43.3962221
+         ],
+         [
+          39.9718695,
+          43.3962413
+         ],
+         [
+          39.9720545,
+          43.3965087
+         ],
+         [
+          39.971909,
+          43.3965619
+         ],
+         [
+          39.9717249,
+          43.3962957
+         ],
+         [
+          39.9717148,
+          43.3962675
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124781620",
+      "hotel_id": "w124781620",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_w124781620"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13301736402",
+     "name": "Lavicon club residence biarritz",
+     "address": "улица Просвещения 96/1",
+     "location": [
+      39.9138515,
+      43.4283976
+     ],
+     "stars": null,
+     "building_id": "w775621444",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n13301736402",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n13301736402_1"
+       ],
+       "subject": "facade:n13301736402:233",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 232.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n13301736402_1"
+      ],
+      "camera": {
+       "center": [
+        39.9138515,
+        43.4283976
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 53.0,
+       "focus_facade_id": "fc_n13301736402_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n13301736402",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13301736402"
+       ],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "meters": 74.6,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 0.9,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 1.2,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n13301736402"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9138515,
+      43.4283976
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 53.0,
+     "focus_facade_id": "fc_n13301736402_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w775621444",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9136743,
+          43.4283762
+         ],
+         [
+          39.9137877,
+          43.4282673
+         ],
+         [
+          39.9141424,
+          43.4284623
+         ],
+         [
+          39.9140091,
+          43.4285902
+         ],
+         [
+          39.9138642,
+          43.4285106
+         ],
+         [
+          39.9138841,
+          43.4284915
+         ],
+         [
+          39.9136743,
+          43.4283762
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w775621444",
+      "hotel_id": "n13301736402",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n13301736402"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7115085741",
+     "name": "El Paraiso",
+     "address": "улица Просвещения 70",
+     "location": [
+      39.9151498,
+      43.4260269
+     ],
+     "stars": null,
+     "building_id": "w149546331",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n7115085741",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n7115085741_1"
+       ],
+       "subject": "facade:n7115085741:233",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 232.9
+       }
+      },
+      "geo_refs": [
+       "g_fc_n7115085741_1"
+      ],
+      "camera": {
+       "center": [
+        39.9151498,
+        43.4260269
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 53.0,
+       "focus_facade_id": "fc_n7115085741_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n7115085741",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n7115085741"
+       ],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "meters": 98.1,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 1.2,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": -1.4,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n7115085741"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9151498,
+      43.4260269
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 53.0,
+     "focus_facade_id": "fc_n7115085741_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w149546331",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9150257,
+          43.4260506
+         ],
+         [
+          39.9150552,
+          43.4260222
+         ],
+         [
+          39.9150578,
+          43.4260068
+         ],
+         [
+          39.9150662,
+          43.425996
+         ],
+         [
+          39.9150804,
+          43.4259875
+         ],
+         [
+          39.9150994,
+          43.4259811
+         ],
+         [
+          39.9151279,
+          43.4259536
+         ],
+         [
+          39.9155345,
+          43.4261767
+         ],
+         [
+          39.9154331,
+          43.4262741
+         ],
+         [
+          39.9150257,
+          43.4260506
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w149546331",
+      "hotel_id": "n7115085741",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n7115085741"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n10759614195",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10759614195_1"
+       ],
+       "subject": "facade:n10759614195:236",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 236.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10759614195_1"
+      ],
+      "camera": {
+       "center": [
+        39.9162591,
+        43.4244336
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 56.0,
+       "focus_facade_id": "fc_n10759614195_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n10759614195",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n10759614195"
+       ],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "meters": 118.3,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 1.5,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 4.6,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n10759614195"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 56.0,
+     "focus_facade_id": "fc_n10759614195_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301283",
+     "name": "Kiparis Resort by Stellar Hotels",
+     "address": "переулок Богдана Хмельницкого 8",
+     "location": [
+      39.9167685,
+      43.4253594
+     ],
+     "stars": null,
+     "building_id": "w53301283",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w53301283",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53301283_1"
+       ],
+       "subject": "facade:w53301283:212",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 212.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53301283_1"
+      ],
+      "camera": {
+       "center": [
+        39.9167685,
+        43.4253594
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 32.0,
+       "focus_facade_id": "fc_w53301283_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w53301283",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53301283"
+       ],
+       "subject": "hotel:w53301283",
+       "qualifiers": {
+        "meters": 223.6,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 2.8,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 4.3,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w53301283"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9167685,
+      43.4253594
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 32.0,
+     "focus_facade_id": "fc_w53301283_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301283",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9165805,
+          43.4253763
+         ],
+         [
+          39.9167429,
+          43.4253011
+         ],
+         [
+          39.9167131,
+          43.4252671
+         ],
+         [
+          39.9168567,
+          43.4252006
+         ],
+         [
+          39.9169224,
+          43.4252755
+         ],
+         [
+          39.9169146,
+          43.4252889
+         ],
+         [
+          39.9168976,
+          43.4253004
+         ],
+         [
+          39.9168745,
+          43.4253066
+         ],
+         [
+          39.9168541,
+          43.4253071
+         ],
+         [
+          39.9168644,
+          43.4253188
+         ],
+         [
+          39.9168293,
+          43.4253351
+         ],
+         [
+          39.9168027,
+          43.4253474
+         ],
+         [
+          39.9168202,
+          43.4253674
+         ],
+         [
+          39.916793,
+          43.42538
+         ],
+         [
+          39.9167838,
+          43.4253958
+         ],
+         [
+          39.9167695,
+          43.4254072
+         ],
+         [
+          39.9167479,
+          43.4254165
+         ],
+         [
+          39.9167267,
+          43.4254189
+         ],
+         [
+          39.9167218,
+          43.425413
+         ],
+         [
+          39.9167116,
+          43.4254177
+         ],
+         [
+          39.9167038,
+          43.4254304
+         ],
+         [
+          39.9166884,
+          43.4254409
+         ],
+         [
+          39.916669,
+          43.4254469
+         ],
+         [
+          39.9166443,
+          43.4254489
+         ],
+         [
+          39.9165805,
+          43.4253763
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301283",
+      "hotel_id": "w53301283",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w53301283"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10058556917",
+     "name": "Островок",
+     "address": null,
+     "location": [
+      39.9153879,
+      43.428439
+     ],
+     "stars": null,
+     "building_id": "w53284172",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n10058556917",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10058556917_1"
+       ],
+       "subject": "facade:n10058556917:230",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 229.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10058556917_1"
+      ],
+      "camera": {
+       "center": [
+        39.9153879,
+        43.428439
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 50.0,
+       "focus_facade_id": "fc_n10058556917_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n10058556917",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n10058556917"
+       ],
+       "subject": "hotel:n10058556917",
+       "qualifiers": {
+        "meters": 296.8,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.7,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 7.0,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n10058556917"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9153879,
+      43.428439
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 50.0,
+     "focus_facade_id": "fc_n10058556917_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53284172",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9152692,
+          43.4284392
+         ],
+         [
+          39.9153984,
+          43.428328
+         ],
+         [
+          39.9155627,
+          43.4284287
+         ],
+         [
+          39.915571,
+          43.4284559
+         ],
+         [
+          39.9155333,
+          43.4284872
+         ],
+         [
+          39.9155382,
+          43.428495
+         ],
+         [
+          39.9155127,
+          43.4285166
+         ],
+         [
+          39.9155013,
+          43.4285138
+         ],
+         [
+          39.9154602,
+          43.4285479
+         ],
+         [
+          39.9154297,
+          43.4285463
+         ],
+         [
+          39.9152828,
+          43.4284636
+         ],
+         [
+          39.9152692,
+          43.4284392
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53284172",
+      "hotel_id": "n10058556917",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10058556917"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5267688942",
+     "name": "Liberty fly",
+     "address": null,
+     "location": [
+      39.9214891,
+      43.423066
+     ],
+     "stars": null,
+     "building_id": "w708922832",
+     "height_m": 10.0,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a4577180_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8833492c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dac5f0e4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2d70ed2c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9ec066b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_809e4e62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_64458eae_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4f9c3342_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_791d3ee3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4cb257a1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4c27a129_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c8cb87ac_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_76cf085d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b51e44c2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_09fac0d8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57c8169b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d51b5418_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e64b934c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d745775_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54dca8f7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88e668c8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_aee11864_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5fefd31d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n5267688942",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n5267688942_1"
+       ],
+       "subject": "facade:n5267688942:204",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 204.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_n5267688942_1"
+      ],
+      "camera": {
+       "center": [
+        39.9214891,
+        43.423066
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_n5267688942_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n5267688942",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n5267688942"
+       ],
+       "subject": "hotel:n5267688942",
+       "qualifiers": {
+        "meters": 329.7,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 4.1,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": -1.7,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n5267688942"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9214891,
+      43.423066
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_n5267688942_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w708922832",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9210527,
+          43.423188
+         ],
+         [
+          39.9210693,
+          43.4231761
+         ],
+         [
+          39.9210642,
+          43.4231723
+         ],
+         [
+          39.9210717,
+          43.4231669
+         ],
+         [
+          39.9210751,
+          43.4231552
+         ],
+         [
+          39.9210857,
+          43.4231463
+         ],
+         [
+          39.9211195,
+          43.4231353
+         ],
+         [
+          39.9211278,
+          43.4231297
+         ],
+         [
+          39.9211339,
+          43.4231346
+         ],
+         [
+          39.9212788,
+          43.4230433
+         ],
+         [
+          39.9212916,
+          43.4230438
+         ],
+         [
+          39.9212987,
+          43.4230466
+         ],
+         [
+          39.9213028,
+          43.4230517
+         ],
+         [
+          39.9213023,
+          43.4230576
+         ],
+         [
+          39.9212967,
+          43.4230661
+         ],
+         [
+          39.9213165,
+          43.4230843
+         ],
+         [
+          39.9215138,
+          43.4229493
+         ],
+         [
+          39.9215433,
+          43.4229722
+         ],
+         [
+          39.921561,
+          43.4229724
+         ],
+         [
+          39.9215739,
+          43.422984
+         ],
+         [
+          39.9215737,
+          43.4230046
+         ],
+         [
+          39.9215762,
+          43.4230072
+         ],
+         [
+          39.9215933,
+          43.4229972
+         ],
+         [
+          39.9216055,
+          43.4230078
+         ],
+         [
+          39.9216129,
+          43.4230188
+         ],
+         [
+          39.921619,
+          43.4230319
+         ],
+         [
+          39.9216193,
+          43.4230458
+         ],
+         [
+          39.9216035,
+          43.4230685
+         ],
+         [
+          39.9215677,
+          43.4230843
+         ],
+         [
+          39.9215521,
+          43.423105
+         ],
+         [
+          39.9215382,
+          43.4231146
+         ],
+         [
+          39.9215081,
+          43.4231215
+         ],
+         [
+          39.9214764,
+          43.4231399
+         ],
+         [
+          39.9214631,
+          43.4231669
+         ],
+         [
+          39.9214436,
+          43.4231823
+         ],
+         [
+          39.9213994,
+          43.4232017
+         ],
+         [
+          39.9213711,
+          43.4232146
+         ],
+         [
+          39.92135,
+          43.423229
+         ],
+         [
+          39.9213343,
+          43.4232518
+         ],
+         [
+          39.9213206,
+          43.423269
+         ],
+         [
+          39.9212972,
+          43.4232806
+         ],
+         [
+          39.9212672,
+          43.4232892
+         ],
+         [
+          39.9212425,
+          43.423302
+         ],
+         [
+          39.9212258,
+          43.4233218
+         ],
+         [
+          39.9210527,
+          43.423188
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w708922832",
+      "hotel_id": "n5267688942",
+      "is_hotel": true,
+      "height_m": 10.0,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n5267688942"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w147552207",
+     "name": "Camellia",
+     "address": "Цветочная улица 17/10",
+     "location": [
+      39.9287233,
+      43.4172038
+     ],
+     "stars": null,
+     "building_id": "w147552207",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": null,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_w147552207",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w147552207_1"
+       ],
+       "subject": "facade:w147552207:220",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 220.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w147552207_1"
+      ],
+      "camera": {
+       "center": [
+        39.9287233,
+        43.4172038
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 40.0,
+       "focus_facade_id": "fc_w147552207_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_w147552207",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w147552207"
+       ],
+       "subject": "hotel:w147552207",
+       "qualifiers": {
+        "meters": 387.4,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 4.8,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 6.3,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w147552207"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9287233,
+      43.4172038
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 40.0,
+     "focus_facade_id": "fc_w147552207_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w147552207",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9286237,
+          43.4172096
+         ],
+         [
+          39.928778,
+          43.4171143
+         ],
+         [
+          39.9288726,
+          43.4171951
+         ],
+         [
+          39.9287183,
+          43.4172904
+         ],
+         [
+          39.9286237,
+          43.4172096
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w147552207",
+      "hotel_id": "w147552207",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w147552207"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8448352104",
+     "name": "Celentano",
+     "address": null,
+     "location": [
+      39.9693622,
+      43.3994846
+     ],
+     "stars": null,
+     "building_id": "w98646833",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.587,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:c7119e5f801f",
+      "match": "partial",
+      "margin": 1.0,
+      "label": "чтобы ночью было тихо",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_c7119e5f801f_n8448352104",
+       "characteristic_key": "derived:c7119e5f801f",
+       "value": true,
+       "unit": null,
+       "label": "чтобы ночью было тихо",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n8448352104_1"
+       ],
+       "subject": "facade:n8448352104:203",
+       "qualifiers": {
+        "source_text": "чтобы ночью было тихо",
+        "native_characteristic_key": "noise_level",
+        "native_value": 3.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 203.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_n8448352104_1"
+      ],
+      "camera": {
+       "center": [
+        39.9693622,
+        43.3994846
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 23.0,
+       "focus_facade_id": "fc_n8448352104_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b241aef47d86",
+      "match": "full",
+      "margin": 2.0,
+      "label": "у моря",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу",
+      "fact": {
+       "fact_id": "f_wish_b241aef47d86_n8448352104",
+       "characteristic_key": "derived:b241aef47d86",
+       "value": true,
+       "unit": null,
+       "label": "у моря",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n8448352104"
+       ],
+       "subject": "hotel:n8448352104",
+       "qualifiers": {
+        "meters": 276.5,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "у моря",
+        "wish_status": "matched",
+        "native_value": 3.5,
+        "checked_sources": [],
+        "native_threshold": 10.0,
+        "elevation_delta_m": 0.0,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_n8448352104"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9693622,
+      43.3994846
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 23.0,
+     "focus_facade_id": "fc_n8448352104_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98646833",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.969253,
+          43.3994766
+         ],
+         [
+          39.969418,
+          43.3994248
+         ],
+         [
+          39.9694847,
+          43.399537
+         ],
+         [
+          39.9693197,
+          43.3995889
+         ],
+         [
+          39.969253,
+          43.3994766
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98646833",
+      "hotel_id": "n8448352104",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n8448352104"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n10974113805",
+     "name": "Оскар",
+     "address": null,
+     "location": [
+      39.8954489,
+      43.4756087
+     ],
+     "stars": null,
+     "building_id": "w81148688",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5848,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r5674341",
+     "name": "Azimut",
+     "address": "Новороссийское шоссе 1",
+     "location": [
+      39.8550582,
+      43.5143903
+     ],
+     "stars": 4,
+     "building_id": "w52018833",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5825,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n10574258309",
+     "name": "На Демократической",
+     "address": null,
+     "location": [
+      39.9247559,
+      43.4233678
+     ],
+     "stars": null,
+     "building_id": "w208416617",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n10118233110",
+     "name": "Swissotel Resort Сочи Камелия",
+     "address": null,
+     "location": [
+      39.7566382,
+      43.5626775
+     ],
+     "stars": null,
+     "building_id": "w697170340",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5745,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11637558669",
+     "name": "Родос Лайт",
+     "address": null,
+     "location": [
+      39.9294634,
+      43.4182208
+     ],
+     "stars": null,
+     "building_id": "w80194487",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5742,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11878294032",
+     "name": "Bliss House",
+     "address": null,
+     "location": [
+      39.9170665,
+      43.4291139
+     ],
+     "stars": null,
+     "building_id": "w147646191",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_27b4fee4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e605d22_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e2ab962_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f1b526cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_693e5058_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_89290789_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04f865d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9bf75fc9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_36ff2a08_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4b387cb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e4d9937_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7bfef549_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_995b347a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_08af9865_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee35fd20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b3822f39_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fa2d72c1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_98caa048_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac963a91_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d9c1d2f3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42806922_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c155c5fe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b00a01d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.5726,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11843545844",
+     "name": "LooBeach SeaView",
+     "address": null,
+     "location": [
+      39.5886514,
+      43.7015477
+     ],
+     "stars": null,
+     "building_id": "w728222076",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5717,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.571,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11016638373",
+     "name": "Grand Gallery",
+     "address": null,
+     "location": [
+      39.7212732,
+      43.585287
+     ],
+     "stars": null,
+     "building_id": "w51105527",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5699,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11016631787",
+     "name": "Аэростар",
+     "address": null,
+     "location": [
+      39.9008712,
+      43.4606348
+     ],
+     "stars": null,
+     "building_id": "w54239721",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.5683,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.8939967,
+    43.3962964,
+    39.9718084,
+    43.4786544
+   ],
+   "camera": {
+    "center": [
+     39.966752,
+     43.3983151
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 26.0,
+    "focus_facade_id": "fc_w714785935_1"
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 15445
+ },
+ "search_message_id": "0dc6e91f-5dab-42e1-abac-f5e83fd67b18"
+}

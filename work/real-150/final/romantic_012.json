@@ -1,0 +1,3853 @@
+{
+ "id": "4c8469ad-5211-4ead-a167-643c995a085a",
+ "title": "Сочи: без шумных компаний, с видом на море",
+ "updated_at": "2026-10-28T20:02:26.640102Z",
+ "messages": [
+  {
+   "id": "970a05e4-78b0-4214-83d4-27679691a7cf",
+   "role": "user",
+   "content": "Отель в Сочи с видом на море и без шумных компаний",
+   "created_at": "2026-10-28T20:02:26.640102Z"
+  },
+  {
+   "id": "a70a7e17-7f0b-400f-9f5d-4e43b236cede",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Kavkaz, Адельфия и Элона. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T20:02:26.640102Z"
+  }
+ ],
+ "effective_query": "Отель в Сочи с видом на море и без шумных компаний",
+ "search": {
+  "query_id": "09e9d095c178df39",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:7984df9789eb",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "без шумных компаний"
+    },
+    {
+     "characteristic_key": "derived:5586350325b1",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на море"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Отель в Сочи с видом на море и без шумных компаний",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "w124781620",
+     "name": "Kavkaz",
+     "address": "Нижнеимеретинская улица 161А",
+     "location": [
+      39.9718084,
+      43.3962964
+     ],
+     "stars": null,
+     "building_id": "w124781620",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.369,
+    "confidence": 0.918,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": null,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w124781620",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w124781620_1"
+       ],
+       "subject": "facade:w124781620:262",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.0,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 262.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w124781620_1"
+      ],
+      "camera": {
+       "center": [
+        39.9718084,
+        43.3962964
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 82.0,
+       "focus_facade_id": "fc_w124781620_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "с видом на море",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу; Линия обзора свободна в расчётной модели: «Море», 194 м, этаж 3, направление окон 207°. Проверены рельеф и здания на всём пути. Это оценка геометрии фасада; наличие номера с такими окнами нужно подтвердить у отеля.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w124781620",
+       "characteristic_key": "derived:5586350325b1",
+       "value": true,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w124781620",
+        "g_window_w124781620_5745a44d5c64_ray",
+        "g_window_w124781620_5745a44d5c64_target",
+        "g_window_w124781620_5745a44d5c64_observer"
+       ],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "meters": 22.7,
+        "native_op": "lte",
+        "tool_calls": 0,
+        "native_unit": "min",
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "native_value": 0.3,
+        "checked_sources": [],
+        "estimated_match": true,
+        "native_threshold": 10.0,
+        "elevation_delta_m": 1.7,
+        "native_characteristic_key": "distance_to_sea"
+       }
+      },
+      "geo_refs": [
+       "g_route_w124781620",
+       "g_window_w124781620_5745a44d5c64_ray",
+       "g_window_w124781620_5745a44d5c64_target",
+       "g_window_w124781620_5745a44d5c64_observer"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9718084,
+      43.3962964
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 82.0,
+     "focus_facade_id": "fc_w124781620_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124781620",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9717148,
+          43.3962675
+         ],
+         [
+          39.9717182,
+          43.396249
+         ],
+         [
+          39.9717295,
+          43.3962286
+         ],
+         [
+          39.9717901,
+          43.3962064
+         ],
+         [
+          39.9718214,
+          43.3962112
+         ],
+         [
+          39.9718452,
+          43.3962221
+         ],
+         [
+          39.9718695,
+          43.3962413
+         ],
+         [
+          39.9720545,
+          43.3965087
+         ],
+         [
+          39.971909,
+          43.3965619
+         ],
+         [
+          39.9717249,
+          43.3962957
+         ],
+         [
+          39.9717148,
+          43.3962675
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124781620",
+      "hotel_id": "w124781620",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_w124781620"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301267",
+     "name": "Адельфия",
+     "address": "улица Просвещения 13",
+     "location": [
+      39.916582,
+      43.423965
+     ],
+     "stars": 3,
+     "building_id": "w53301267",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w53301267",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w53301267_1"
+       ],
+       "subject": "facade:w53301267:243",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 243.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_w53301267_1"
+      ],
+      "camera": {
+       "center": [
+        39.916582,
+        43.423965
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 63.0,
+       "focus_facade_id": "fc_w53301267_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w53301267",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53301267",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.916582,
+      43.423965
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 63.0,
+     "focus_facade_id": "fc_w53301267_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301267",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9164235,
+          43.4239487
+         ],
+         [
+          39.9165097,
+          43.4238246
+         ],
+         [
+          39.9167135,
+          43.4238936
+         ],
+         [
+          39.916683,
+          43.4239368
+         ],
+         [
+          39.9166796,
+          43.4239573
+         ],
+         [
+          39.9166871,
+          43.4239884
+         ],
+         [
+          39.9166768,
+          43.4240108
+         ],
+         [
+          39.9166463,
+          43.4240258
+         ],
+         [
+          39.9165988,
+          43.4240253
+         ],
+         [
+          39.916554,
+          43.4240181
+         ],
+         [
+          39.9165059,
+          43.4240003
+         ],
+         [
+          39.9164648,
+          43.4239671
+         ],
+         [
+          39.9164235,
+          43.4239487
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301267",
+      "hotel_id": "w53301267",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w53301267"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4284096790",
+     "name": "Элона",
+     "address": null,
+     "location": [
+      39.9215364,
+      43.4243045
+     ],
+     "stars": null,
+     "building_id": "w53301309",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n4284096790",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4284096790_1"
+       ],
+       "subject": "facade:n4284096790:221",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 221.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4284096790_1"
+      ],
+      "camera": {
+       "center": [
+        39.9215364,
+        43.4243045
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 41.0,
+       "focus_facade_id": "fc_n4284096790_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n4284096790",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4284096790",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9215364,
+      43.4243045
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 41.0,
+     "focus_facade_id": "fc_n4284096790_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301309",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9214004,
+          43.4242644
+         ],
+         [
+          39.9214946,
+          43.4242045
+         ],
+         [
+          39.921603,
+          43.4242945
+         ],
+         [
+          39.9215088,
+          43.4243543
+         ],
+         [
+          39.9214004,
+          43.4242644
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301309",
+      "hotel_id": "n4284096790",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4284096790"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5047768723",
+     "name": "Апартаменты у моря",
+     "address": null,
+     "location": [
+      39.7504391,
+      43.573975
+     ],
+     "stars": null,
+     "building_id": "w241241973",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n5047768723",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n5047768723_1"
+       ],
+       "subject": "facade:n5047768723:271",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.1,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 270.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n5047768723_1"
+      ],
+      "camera": {
+       "center": [
+        39.7504391,
+        43.573975
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 91.0,
+       "focus_facade_id": "fc_n5047768723_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n5047768723",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5047768723",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7504391,
+      43.573975
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 91.0,
+     "focus_facade_id": "fc_n5047768723_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w241241973",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.750272,
+          43.5737624
+         ],
+         [
+          39.7502812,
+          43.5737623
+         ],
+         [
+          39.7502798,
+          43.5736932
+         ],
+         [
+          39.7503306,
+          43.5736927
+         ],
+         [
+          39.7503418,
+          43.5736837
+         ],
+         [
+          39.7503546,
+          43.573679
+         ],
+         [
+          39.7503688,
+          43.5736777
+         ],
+         [
+          39.7503828,
+          43.5736799
+         ],
+         [
+          39.7503953,
+          43.5736848
+         ],
+         [
+          39.750404,
+          43.573692
+         ],
+         [
+          39.7504632,
+          43.5736914
+         ],
+         [
+          39.7504704,
+          43.5740893
+         ],
+         [
+          39.7504188,
+          43.5740898
+         ],
+         [
+          39.7504079,
+          43.5741008
+         ],
+         [
+          39.750397,
+          43.5741059
+         ],
+         [
+          39.7503844,
+          43.5741084
+         ],
+         [
+          39.7503713,
+          43.574108
+         ],
+         [
+          39.7503591,
+          43.5741047
+         ],
+         [
+          39.7503488,
+          43.5740988
+         ],
+         [
+          39.7503409,
+          43.5740905
+         ],
+         [
+          39.7502866,
+          43.5740911
+         ],
+         [
+          39.7502851,
+          43.5740187
+         ],
+         [
+          39.7502769,
+          43.5740188
+         ],
+         [
+          39.7502757,
+          43.5739628
+         ],
+         [
+          39.7502848,
+          43.5739627
+         ],
+         [
+          39.7502819,
+          43.5738273
+         ],
+         [
+          39.7502734,
+          43.5738273
+         ],
+         [
+          39.750272,
+          43.5737624
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w241241973",
+      "hotel_id": "n5047768723",
+      "is_hotel": true,
+      "height_m": 32.0,
+      "min_height_m": 0,
+      "levels": 10,
+      "height_fact_id": "f_height_n5047768723"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4708436063",
+     "name": "Победа",
+     "address": "улица 65 лет Победы 37",
+     "location": [
+      39.9712658,
+      43.397961
+     ],
+     "stars": null,
+     "building_id": "w98649185",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n4708436063",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4708436063_1"
+       ],
+       "subject": "facade:n4708436063:204",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.2,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 203.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4708436063_1"
+      ],
+      "camera": {
+       "center": [
+        39.9712658,
+        43.397961
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_n4708436063_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n4708436063",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4708436063",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9712658,
+      43.397961
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_n4708436063_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w98649185",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9711545,
+          43.3979221
+         ],
+         [
+          39.9713125,
+          43.3978715
+         ],
+         [
+          39.9713761,
+          43.3979767
+         ],
+         [
+          39.9712183,
+          43.3980273
+         ],
+         [
+          39.9711545,
+          43.3979221
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w98649185",
+      "hotel_id": "n4708436063",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_n4708436063"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w101803471",
+     "name": "У дяди Вани",
+     "address": "улица Крамского 6",
+     "location": [
+      39.9834366,
+      43.3931223
+     ],
+     "stars": null,
+     "building_id": "w101803471",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w101803471",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w101803471_1"
+       ],
+       "subject": "facade:w101803471:193",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.2,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 193.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w101803471_1"
+      ],
+      "camera": {
+       "center": [
+        39.9834366,
+        43.3931223
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 13.0,
+       "focus_facade_id": "fc_w101803471_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w101803471",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w101803471",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9834366,
+      43.3931223
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 13.0,
+     "focus_facade_id": "fc_w101803471_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w101803471",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9833838,
+          43.3930717
+         ],
+         [
+          39.9834649,
+          43.3930577
+         ],
+         [
+          39.9835309,
+          43.3931924
+         ],
+         [
+          39.9834194,
+          43.3932181
+         ],
+         [
+          39.9833838,
+          43.3930717
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w101803471",
+      "hotel_id": "w101803471",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w101803471"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w714785946",
+     "name": "Ольга",
+     "address": "улица 65 лет Победы 10Б",
+     "location": [
+      39.9685868,
+      43.398166
+     ],
+     "stars": null,
+     "building_id": "w714785946",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w714785946",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785946_1"
+       ],
+       "subject": "facade:w714785946:206",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.2,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 205.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785946_1"
+      ],
+      "camera": {
+       "center": [
+        39.9685868,
+        43.398166
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_w714785946_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w714785946",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w714785946",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9685868,
+      43.398166
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_w714785946_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714785946",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9684988,
+          43.3981231
+         ],
+         [
+          39.9686192,
+          43.3980808
+         ],
+         [
+          39.9687187,
+          43.3982304
+         ],
+         [
+          39.9685983,
+          43.3982727
+         ],
+         [
+          39.9684988,
+          43.3981231
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714785946",
+      "hotel_id": "w714785946",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w714785946"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r7447995",
+     "name": "Radisson Collection Paradise Resort & Spa Sochi",
+     "address": "улица 65 лет Победы 50",
+     "location": [
+      39.9758043,
+      43.3949298
+     ],
+     "stars": 5,
+     "building_id": "w260633951",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_r7447995",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_r7447995_1"
+       ],
+       "subject": "facade:r7447995:191",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 190.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_r7447995_1"
+      ],
+      "camera": {
+       "center": [
+        39.9758043,
+        43.3949298
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 11.0,
+       "focus_facade_id": "fc_r7447995_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_r7447995",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r7447995",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9758043,
+      43.3949298
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 11.0,
+     "focus_facade_id": "fc_r7447995_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w260633951",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.975161,
+          43.3951575
+         ],
+         [
+          39.9752783,
+          43.3951412
+         ],
+         [
+          39.9752988,
+          43.3951883
+         ],
+         [
+          39.9753431,
+          43.3952168
+         ],
+         [
+          39.9753977,
+          43.3952205
+         ],
+         [
+          39.9756261,
+          43.3951821
+         ],
+         [
+          39.975933,
+          43.3949677
+         ],
+         [
+          39.9759552,
+          43.3949046
+         ],
+         [
+          39.9759432,
+          43.3948538
+         ],
+         [
+          39.9759194,
+          43.3948067
+         ],
+         [
+          39.9759881,
+          43.3947738
+         ],
+         [
+          39.9760891,
+          43.3949115
+         ],
+         [
+          39.9760808,
+          43.3949476
+         ],
+         [
+          39.9756941,
+          43.3952203
+         ],
+         [
+          39.9752809,
+          43.3952859
+         ],
+         [
+          39.9752018,
+          43.3952964
+         ],
+         [
+          39.975161,
+          43.3951575
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w260633951",
+      "hotel_id": "r7447995",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r7447995"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n5814333230",
+     "name": "Колибри",
+     "address": "Нижнеимеритинская улица 139",
+     "location": [
+      39.969313,
+      43.3979809
+     ],
+     "stars": null,
+     "building_id": "w374406070",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n5814333230",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n5814333230_1"
+       ],
+       "subject": "facade:n5814333230:204",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 204.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_n5814333230_1"
+      ],
+      "camera": {
+       "center": [
+        39.969313,
+        43.3979809
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_n5814333230_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n5814333230",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n5814333230",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.969313,
+      43.3979809
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_n5814333230_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374406070",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.969214,
+          43.3978971
+         ],
+         [
+          39.969342,
+          43.3978548
+         ],
+         [
+          39.9693627,
+          43.3978879
+         ],
+         [
+          39.9693773,
+          43.3978831
+         ],
+         [
+          39.9694285,
+          43.3979648
+         ],
+         [
+          39.9694149,
+          43.3979693
+         ],
+         [
+          39.9694357,
+          43.3980024
+         ],
+         [
+          39.9693084,
+          43.3980444
+         ],
+         [
+          39.9692685,
+          43.3979807
+         ],
+         [
+          39.9692534,
+          43.3979857
+         ],
+         [
+          39.9692226,
+          43.3979365
+         ],
+         [
+          39.9692359,
+          43.3979321
+         ],
+         [
+          39.969214,
+          43.3978971
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374406070",
+      "hotel_id": "n5814333230",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n5814333230"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6308858786",
+     "name": "Ресепшн санаторий Заполярье",
+     "address": null,
+     "location": [
+      39.7140437,
+      43.6045197
+     ],
+     "stars": null,
+     "building_id": "w52504315",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n6308858786",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n6308858786_1"
+       ],
+       "subject": "facade:n6308858786:203",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 202.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_n6308858786_1"
+      ],
+      "camera": {
+       "center": [
+        39.7140437,
+        43.6045197
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 23.0,
+       "focus_facade_id": "fc_n6308858786_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n6308858786",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6308858786",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7140437,
+      43.6045197
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 23.0,
+     "focus_facade_id": "fc_n6308858786_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52504315",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7138274,
+          43.6045027
+         ],
+         [
+          39.7141943,
+          43.6043917
+         ],
+         [
+          39.7143964,
+          43.604742
+         ],
+         [
+          39.7140295,
+          43.604853
+         ],
+         [
+          39.7138274,
+          43.6045027
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52504315",
+      "hotel_id": "n6308858786",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n6308858786"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w101803067",
+     "name": "Лазурная бухта",
+     "address": "улица Крамского 6А",
+     "location": [
+      39.9835257,
+      43.393057
+     ],
+     "stars": null,
+     "building_id": "w101803067",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w101803067",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w101803067_1"
+       ],
+       "subject": "facade:w101803067:197",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 197.1
+       }
+      },
+      "geo_refs": [
+       "g_fc_w101803067_1"
+      ],
+      "camera": {
+       "center": [
+        39.9835257,
+        43.393057
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 17.0,
+       "focus_facade_id": "fc_w101803067_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w101803067",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w101803067",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9835257,
+      43.393057
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 17.0,
+     "focus_facade_id": "fc_w101803067_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w101803067",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9834699,
+          43.3930234
+         ],
+         [
+          39.9835649,
+          43.3930021
+         ],
+         [
+          39.9836095,
+          43.3931074
+         ],
+         [
+          39.9835145,
+          43.3931286
+         ],
+         [
+          39.9834699,
+          43.3930234
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w101803067",
+      "hotel_id": "w101803067",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w101803067"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w374406070",
+     "name": "Лотос",
+     "address": "Нижнеимеретинская улица 139/1",
+     "location": [
+      39.9693137,
+      43.3979412
+     ],
+     "stars": null,
+     "building_id": "w374406070",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w374406070",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w374406070_1"
+       ],
+       "subject": "facade:w374406070:204",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 204.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_w374406070_1"
+      ],
+      "camera": {
+       "center": [
+        39.9693137,
+        43.3979412
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 24.0,
+       "focus_facade_id": "fc_w374406070_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w374406070",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w374406070",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9693137,
+      43.3979412
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 24.0,
+     "focus_facade_id": "fc_w374406070_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w374406070",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.969214,
+          43.3978971
+         ],
+         [
+          39.969342,
+          43.3978548
+         ],
+         [
+          39.9693627,
+          43.3978879
+         ],
+         [
+          39.9693773,
+          43.3978831
+         ],
+         [
+          39.9694285,
+          43.3979648
+         ],
+         [
+          39.9694149,
+          43.3979693
+         ],
+         [
+          39.9694357,
+          43.3980024
+         ],
+         [
+          39.9693084,
+          43.3980444
+         ],
+         [
+          39.9692685,
+          43.3979807
+         ],
+         [
+          39.9692534,
+          43.3979857
+         ],
+         [
+          39.9692226,
+          43.3979365
+         ],
+         [
+          39.9692359,
+          43.3979321
+         ],
+         [
+          39.969214,
+          43.3978971
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w374406070",
+      "hotel_id": "w374406070",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w374406070"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w502703777",
+     "name": "Роял Хилс на Мамайке",
+     "address": "Ландышевая улица 15/2",
+     "location": [
+      39.6926103,
+      43.6337514
+     ],
+     "stars": null,
+     "building_id": "w52120068",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w502703777",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w502703777_1"
+       ],
+       "subject": "facade:w502703777:213",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 212.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_w502703777_1"
+      ],
+      "camera": {
+       "center": [
+        39.6926103,
+        43.6337514
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 33.0,
+       "focus_facade_id": "fc_w502703777_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w502703777",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w502703777",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6926103,
+      43.6337514
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 33.0,
+     "focus_facade_id": "fc_w502703777_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52120068",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6923049,
+          43.6335483
+         ],
+         [
+          39.6924624,
+          43.633475
+         ],
+         [
+          39.6925343,
+          43.6335559
+         ],
+         [
+          39.6923767,
+          43.6336292
+         ],
+         [
+          39.6923049,
+          43.6335483
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52120068",
+      "hotel_id": "w502703777",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w502703777"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w54437496",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w54437496_1"
+       ],
+       "subject": "facade:w54437496:198",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 197.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_w54437496_1"
+      ],
+      "camera": {
+       "center": [
+        39.9047123,
+        43.4634661
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 18.0,
+       "focus_facade_id": "fc_w54437496_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w54437496",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54437496",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9047123,
+      43.4634661
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 18.0,
+     "focus_facade_id": "fc_w54437496_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54437496",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9045767,
+          43.4634214
+         ],
+         [
+          39.9047069,
+          43.4633912
+         ],
+         [
+          39.9047276,
+          43.4634383
+         ],
+         [
+          39.9047468,
+          43.4634339
+         ],
+         [
+          39.9047735,
+          43.4634411
+         ],
+         [
+          39.904786,
+          43.4634688
+         ],
+         [
+          39.9047732,
+          43.4634888
+         ],
+         [
+          39.9047492,
+          43.4634943
+         ],
+         [
+          39.9047732,
+          43.4635491
+         ],
+         [
+          39.9046458,
+          43.4635786
+         ],
+         [
+          39.9045767,
+          43.4634214
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54437496",
+      "hotel_id": "w54437496",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w54437496"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w714785935",
+     "name": "Karap Palace Hotel",
+     "address": "Нижнеимеретинская улица 121",
+     "location": [
+      39.966752,
+      43.3983151
+     ],
+     "stars": null,
+     "building_id": "w714785935",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w714785935",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785935_1"
+       ],
+       "subject": "facade:w714785935:206",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.3,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 206.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785935_1"
+      ],
+      "camera": {
+       "center": [
+        39.966752,
+        43.3983151
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 26.0,
+       "focus_facade_id": "fc_w714785935_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w714785935",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w714785935",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.966752,
+      43.3983151
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 26.0,
+     "focus_facade_id": "fc_w714785935_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714785935",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9666057,
+          43.3982328
+         ],
+         [
+          39.9667863,
+          43.3981677
+         ],
+         [
+          39.9669714,
+          43.3984386
+         ],
+         [
+          39.9667907,
+          43.3985037
+         ],
+         [
+          39.9666057,
+          43.3982328
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714785935",
+      "hotel_id": "w714785935",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w714785935"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10574258309",
+     "name": "На Демократической",
+     "address": null,
+     "location": [
+      39.9247559,
+      43.4233678
+     ],
+     "stars": null,
+     "building_id": "w208416617",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n10574258309",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n10574258309_1"
+       ],
+       "subject": "facade:n10574258309:237",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.4,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 237.4
+       }
+      },
+      "geo_refs": [
+       "g_fc_n10574258309_1"
+      ],
+      "camera": {
+       "center": [
+        39.9247559,
+        43.4233678
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 57.0,
+       "focus_facade_id": "fc_n10574258309_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n10574258309",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10574258309",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9247559,
+      43.4233678
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 57.0,
+     "focus_facade_id": "fc_n10574258309_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w208416617",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9244824,
+          43.4233827
+         ],
+         [
+          39.9244961,
+          43.4233671
+         ],
+         [
+          39.9247178,
+          43.4232473
+         ],
+         [
+          39.9248125,
+          43.4233372
+         ],
+         [
+          39.924814,
+          43.4233549
+         ],
+         [
+          39.9247071,
+          43.423497
+         ],
+         [
+          39.9246658,
+          43.4235159
+         ],
+         [
+          39.9246322,
+          43.4235192
+         ],
+         [
+          39.9246001,
+          43.4235103
+         ],
+         [
+          39.9244854,
+          43.4234004
+         ],
+         [
+          39.9244824,
+          43.4233827
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w208416617",
+      "hotel_id": "n10574258309",
+      "is_hotel": true,
+      "height_m": 25.6,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n10574258309"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12560021804",
+     "name": "Апельсин",
+     "address": null,
+     "location": [
+      39.9553145,
+      43.4127604
+     ],
+     "stars": null,
+     "building_id": "w1357057474",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n12560021804",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n12560021804_1"
+       ],
+       "subject": "facade:n12560021804:195",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.4,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 194.8
+       }
+      },
+      "geo_refs": [
+       "g_fc_n12560021804_1"
+      ],
+      "camera": {
+       "center": [
+        39.9553145,
+        43.4127604
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 15.0,
+       "focus_facade_id": "fc_n12560021804_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n12560021804",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12560021804",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9553145,
+      43.4127604
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 15.0,
+     "focus_facade_id": "fc_n12560021804_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1357057474",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9552301,
+          43.4127106
+         ],
+         [
+          39.9553862,
+          43.4126806
+         ],
+         [
+          39.9553994,
+          43.4127148
+         ],
+         [
+          39.955366,
+          43.4127214
+         ],
+         [
+          39.9553988,
+          43.4128102
+         ],
+         [
+          39.955276,
+          43.4128349
+         ],
+         [
+          39.9552301,
+          43.4127106
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1357057474",
+      "hotel_id": "n12560021804",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n12560021804"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4160653089",
+     "name": "Дом Адлер",
+     "address": "улица Гастелло 27",
+     "location": [
+      39.9146277,
+      43.4472654
+     ],
+     "stars": null,
+     "building_id": "w444613939",
+     "height_m": 60.8,
+     "levels": 19,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_n4160653089",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_n4160653089_1"
+       ],
+       "subject": "facade:n4160653089:270",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.4,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 269.7
+       }
+      },
+      "geo_refs": [
+       "g_fc_n4160653089_1"
+      ],
+      "camera": {
+       "center": [
+        39.9146277,
+        43.4472654
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 90.0,
+       "focus_facade_id": "fc_n4160653089_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_n4160653089",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4160653089",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9146277,
+      43.4472654
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 90.0,
+     "focus_facade_id": "fc_n4160653089_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w444613939",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9143734,
+          43.4472671
+         ],
+         [
+          39.9143742,
+          43.4471515
+         ],
+         [
+          39.9144223,
+          43.4471517
+         ],
+         [
+          39.9144224,
+          43.4471396
+         ],
+         [
+          39.9144942,
+          43.4471398
+         ],
+         [
+          39.9144943,
+          43.4471265
+         ],
+         [
+          39.9146583,
+          43.4471269
+         ],
+         [
+          39.9146579,
+          43.4471875
+         ],
+         [
+          39.9146788,
+          43.4471876
+         ],
+         [
+          39.9146785,
+          43.4472374
+         ],
+         [
+          39.9146582,
+          43.4472373
+         ],
+         [
+          39.914658,
+          43.4472865
+         ],
+         [
+          39.9146684,
+          43.4472865
+         ],
+         [
+          39.9146684,
+          43.4473074
+         ],
+         [
+          39.9146744,
+          43.4473074
+         ],
+         [
+          39.9146745,
+          43.4473305
+         ],
+         [
+          39.9146565,
+          43.4473305
+         ],
+         [
+          39.9146566,
+          43.4473642
+         ],
+         [
+          39.9145025,
+          43.4473645
+         ],
+         [
+          39.9145023,
+          43.4472791
+         ],
+         [
+          39.9144887,
+          43.4472675
+         ],
+         [
+          39.9143734,
+          43.4472671
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w444613939",
+      "hotel_id": "n4160653089",
+      "is_hotel": true,
+      "height_m": 60.8,
+      "min_height_m": 0,
+      "levels": 19,
+      "height_fact_id": "f_height_n4160653089"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w714785934",
+     "name": "Модарт",
+     "address": "Нижнеимеретинская улица 119",
+     "location": [
+      39.9665897,
+      43.3983943
+     ],
+     "stars": null,
+     "building_id": "w714785934",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w714785934",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w714785934_1"
+       ],
+       "subject": "facade:w714785934:205",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.4,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 205.3
+       }
+      },
+      "geo_refs": [
+       "g_fc_w714785934_1"
+      ],
+      "camera": {
+       "center": [
+        39.9665897,
+        43.3983943
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 25.0,
+       "focus_facade_id": "fc_w714785934_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w714785934",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w714785934",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9665897,
+      43.3983943
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 25.0,
+     "focus_facade_id": "fc_w714785934_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714785934",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9664693,
+          43.3983131
+         ],
+         [
+          39.9666068,
+          43.3982657
+         ],
+         [
+          39.9667703,
+          43.3985161
+         ],
+         [
+          39.9666327,
+          43.3985635
+         ],
+         [
+          39.9664693,
+          43.3983131
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714785934",
+      "hotel_id": "w714785934",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w714785934"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w914302324",
+     "name": "Mirror",
+     "address": null,
+     "location": [
+      39.9259636,
+      43.4289219
+     ],
+     "stars": null,
+     "building_id": "w48976700",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.165,
+    "confidence": 0.599,
+    "matched": [
+     {
+      "characteristic_key": "derived:7984df9789eb",
+      "match": "partial",
+      "margin": 2.0,
+      "label": "без шумных компаний",
+      "explanation": "Оценка 0–10 по расстоянию до дорог, железной дороги и баров OSM; не замер звука.",
+      "fact": {
+       "fact_id": "f_wish_7984df9789eb_w914302324",
+       "characteristic_key": "derived:7984df9789eb",
+       "value": true,
+       "unit": null,
+       "label": "без шумных компаний",
+       "confidence": 0.6,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_fc_w914302324_1"
+       ],
+       "subject": "facade:w914302324:214",
+       "qualifiers": {
+        "source_text": "без шумных компаний",
+        "native_characteristic_key": "noise_level",
+        "native_value": 0.4,
+        "native_unit": "score",
+        "native_op": "lte",
+        "native_threshold": 3.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1,
+        "facade_azimuth": 213.6
+       }
+      },
+      "geo_refs": [
+       "g_fc_w914302324_1"
+      ],
+      "camera": {
+       "center": [
+        39.9259636,
+        43.4289219
+       ],
+       "zoom": 17.0,
+       "pitch": 60.0,
+       "bearing": 34.0,
+       "focus_facade_id": "fc_w914302324_1"
+      },
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:5586350325b1",
+      "match": "unknown",
+      "margin": null,
+      "label": "с видом на море",
+      "explanation": "Пожелание подтверждено проверенными данными.",
+      "fact": {
+       "fact_id": "f_wish_5586350325b1_w914302324",
+       "characteristic_key": "derived:5586350325b1",
+       "value": null,
+       "unit": null,
+       "label": "с видом на море",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w914302324",
+       "qualifiers": {
+        "source_text": "с видом на море",
+        "wish_status": "matched",
+        "checked_sources": [],
+        "tool_calls": 0
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9259636,
+      43.4289219
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 34.0,
+     "focus_facade_id": "fc_w914302324_1"
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w48976700",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9258564,
+          43.4289203
+         ],
+         [
+          39.926074,
+          43.428815
+         ],
+         [
+          39.9261041,
+          43.4288001
+         ],
+         [
+          39.9261785,
+          43.4287644
+         ],
+         [
+          39.9263115,
+          43.4289093
+         ],
+         [
+          39.9259894,
+          43.4290652
+         ],
+         [
+          39.9258564,
+          43.4289203
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w48976700",
+      "hotel_id": "w914302324",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w914302324"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w209174465",
+     "name": "Blue Marine",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605233,
+      43.4110274
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4706161636",
+     "name": "Blue Marine hotel",
+     "address": "Тростниковая улица 44",
+     "location": [
+      39.9605409,
+      43.4110295
+     ],
+     "stars": null,
+     "building_id": "w209174465",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12084593369",
+     "name": "Kenguru",
+     "address": null,
+     "location": [
+      39.8939967,
+      43.4786544
+     ],
+     "stars": null,
+     "building_id": "w81148521",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w207637871",
+     "name": "Mantera Resort&Congress",
+     "address": "Голубая улица 1",
+     "location": [
+      39.9376921,
+      43.4101592
+     ],
+     "stars": null,
+     "building_id": "w207637871",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w249762806",
+     "name": "Sport Inn Hotel",
+     "address": null,
+     "location": [
+      39.9850876,
+      43.389005
+     ],
+     "stars": 3,
+     "building_id": "w728085064",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5334373804",
+     "name": "Sun Kiss Hostel",
+     "address": null,
+     "location": [
+      39.9377677,
+      43.4202198
+     ],
+     "stars": null,
+     "building_id": "w207790192",
+     "height_m": 32.0,
+     "levels": 10,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4708436060",
+     "name": "Абрис",
+     "address": "улица 65 лет Победы 4",
+     "location": [
+      39.9666202,
+      43.3988497
+     ],
+     "stars": null,
+     "building_id": "w250086729",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649240",
+     "name": "Адлер-Олимпик",
+     "address": "Общинная улица 50",
+     "location": [
+      39.973292,
+      43.3978013
+     ],
+     "stars": null,
+     "building_id": "w98649240",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w727335975",
+     "name": "Азалия",
+     "address": "Львовская улица 1/26",
+     "location": [
+      39.5501754,
+      43.739416
+     ],
+     "stars": null,
+     "building_id": "w727335975",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1647,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.6926103,
+    43.393057,
+    39.9835257,
+    43.6337514
+   ],
+   "camera": {
+    "center": [
+     39.9718084,
+     43.3962964
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 82.0,
+    "focus_facade_id": "fc_w124781620_1"
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 8491
+ },
+ "search_message_id": "a70a7e17-7f0b-400f-9f5d-4e43b236cede"
+}

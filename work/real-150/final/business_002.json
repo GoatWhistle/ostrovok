@@ -1,0 +1,1936 @@
+{
+ "id": "b25ecbb4-a6ad-4121-8a0c-567e3d783cf0",
+ "title": "Москва: рядом с Экспоцентром, заезд поздно вечером",
+ "updated_at": "2026-10-28T19:57:22.892894Z",
+ "messages": [
+  {
+   "id": "6973e0ac-4655-440e-9c3f-6c1051c8d8fd",
+   "role": "user",
+   "content": "Отель в Москве рядом с Экспоцентром, заезд поздно вечером",
+   "created_at": "2026-10-28T19:57:22.892894Z"
+  },
+  {
+   "id": "8b915e38-50df-4f86-95c3-d857b2bf3cec",
+   "role": "assistant",
+   "content": "Нашёл 7 отелей. Первые в списке: High Level, 47nebo и Rockmond. Проверка не завершена: заезд поздно вечером. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T19:57:22.892894Z"
+  }
+ ],
+ "effective_query": "Отель в Москве рядом с Экспоцентром, заезд поздно вечером",
+ "search": {
+  "query_id": "6c80029f245de82d",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:9a986e0542d6",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с Экспоцентром"
+    },
+    {
+     "characteristic_key": "derived:a1c861772c5f",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "заезд поздно вечером"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "Отель в Москве рядом с Экспоцентром, заезд поздно вечером",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n3118171187",
+     "name": "High Level",
+     "address": null,
+     "location": [
+      37.5403698,
+      55.7483321
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.288,
+    "confidence": 0.567,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "full",
+      "margin": 1.144,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 437 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n3118171187",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.5670086498360932,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n3118171187_ed50b0250d4e"
+       ],
+       "subject": "hotel:n3118171187",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 437,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n3118171187_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n3118171187",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n3118171187",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5403698,
+      55.7483321
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52929377",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5395868,
+          55.7481837
+         ],
+         [
+          37.5399755,
+          55.7478275
+         ],
+         [
+          37.5408584,
+          55.7481326
+         ],
+         [
+          37.5404697,
+          55.7484889
+         ],
+         [
+          37.5402272,
+          55.7484051
+         ],
+         [
+          37.5400215,
+          55.748334
+         ],
+         [
+          37.5398399,
+          55.7482712
+         ],
+         [
+          37.5395868,
+          55.7481837
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52929377",
+      "hotel_id": "n3118171187",
+      "is_hotel": true,
+      "height_m": 238.0,
+      "min_height_m": 0,
+      "levels": 59,
+      "height_fact_id": "f_height_n3118171187"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8154400360",
+     "name": "47nebo",
+     "address": null,
+     "location": [
+      37.5403261,
+      55.7479426
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.282,
+    "confidence": 0.559,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "full",
+      "margin": 1.106,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 452 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n8154400360",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.5587016121869403,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n8154400360_ed50b0250d4e"
+       ],
+       "subject": "hotel:n8154400360",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 452,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n8154400360_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n8154400360",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8154400360",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5403261,
+      55.7479426
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52929377",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5395868,
+          55.7481837
+         ],
+         [
+          37.5399755,
+          55.7478275
+         ],
+         [
+          37.5408584,
+          55.7481326
+         ],
+         [
+          37.5404697,
+          55.7484889
+         ],
+         [
+          37.5402272,
+          55.7484051
+         ],
+         [
+          37.5400215,
+          55.748334
+         ],
+         [
+          37.5398399,
+          55.7482712
+         ],
+         [
+          37.5395868,
+          55.7481837
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52929377",
+      "hotel_id": "n8154400360",
+      "is_hotel": true,
+      "height_m": 238.0,
+      "min_height_m": 0,
+      "levels": 59,
+      "height_fact_id": "f_height_n8154400360"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10712629653",
+     "name": "Rockmond",
+     "address": "Пресненская набережная 8 с1",
+     "location": [
+      37.5394484,
+      55.747102
+     ],
+     "stars": null,
+     "building_id": "w37448943",
+     "height_m": 76.0,
+     "levels": 18,
+     "thumbnail_url": "https://mos-holidays.ru/wp-content/uploads/2020/07/kompleks-Gorod-Stolits-moskva-citi-1.jpg",
+     "photos": [
+      {
+       "url": "https://mos-holidays.ru/wp-content/uploads/2020/07/kompleks-Gorod-Stolits-moskva-citi-1.jpg",
+       "source_url": "https://www.openstreetmap.org/node/10712629653",
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.127,
+    "confidence": 0.512,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "partial",
+      "margin": 0.926,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 540 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n10712629653",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.5117552317014159,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n10712629653_ed50b0250d4e"
+       ],
+       "subject": "hotel:n10712629653",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 540,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n10712629653_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n10712629653",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10712629653",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5394484,
+      55.747102
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w37448943",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.53867,
+          55.7470425
+         ],
+         [
+          37.5386888,
+          55.7470223
+         ],
+         [
+          37.5389466,
+          55.746745
+         ],
+         [
+          37.5393597,
+          55.7467782
+         ],
+         [
+          37.5392309,
+          55.746896
+         ],
+         [
+          37.5395904,
+          55.7470047
+         ],
+         [
+          37.5397352,
+          55.7468794
+         ],
+         [
+          37.5399801,
+          55.7470407
+         ],
+         [
+          37.5397218,
+          55.7472824
+         ],
+         [
+          37.5394841,
+          55.7475047
+         ],
+         [
+          37.5391505,
+          55.7474213
+         ],
+         [
+          37.5393224,
+          55.7472299
+         ],
+         [
+          37.5387081,
+          55.7470534
+         ],
+         [
+          37.53867,
+          55.7470425
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w37448943",
+      "hotel_id": "n10712629653",
+      "is_hotel": true,
+      "height_m": 76.0,
+      "min_height_m": 0,
+      "levels": 18,
+      "height_fact_id": "f_height_n10712629653"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12583131047",
+     "name": "Gipnoz",
+     "address": null,
+     "location": [
+      37.5435729,
+      55.7447564
+     ],
+     "stars": null,
+     "building_id": "w52520571",
+     "height_m": null,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.125,
+    "confidence": 0.504,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "partial",
+      "margin": 0.901,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 555 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n12583131047",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.5038122697157106,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n12583131047_ed50b0250d4e"
+       ],
+       "subject": "hotel:n12583131047",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 555,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n12583131047_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n12583131047",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12583131047",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5435729,
+      55.7447564
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52520571",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5433973,
+          55.7447146
+         ],
+         [
+          37.5436694,
+          55.744489
+         ],
+         [
+          37.5436839,
+          55.7444941
+         ],
+         [
+          37.5437416,
+          55.7444462
+         ],
+         [
+          37.5437209,
+          55.7444372
+         ],
+         [
+          37.5442681,
+          55.7439803
+         ],
+         [
+          37.5446142,
+          55.7441034
+         ],
+         [
+          37.5451178,
+          55.7442877
+         ],
+         [
+          37.5450881,
+          55.744313
+         ],
+         [
+          37.545141,
+          55.7443319
+         ],
+         [
+          37.5450891,
+          55.7443774
+         ],
+         [
+          37.5455314,
+          55.7445327
+         ],
+         [
+          37.5455999,
+          55.7445547
+         ],
+         [
+          37.5458104,
+          55.7446325
+         ],
+         [
+          37.5458572,
+          55.7445916
+         ],
+         [
+          37.5459258,
+          55.7446166
+         ],
+         [
+          37.5459656,
+          55.7445819
+         ],
+         [
+          37.5470838,
+          55.744982
+         ],
+         [
+          37.546552,
+          55.7454483
+         ],
+         [
+          37.5462323,
+          55.7457285
+         ],
+         [
+          37.5454968,
+          55.7454683
+         ],
+         [
+          37.5455049,
+          55.7454616
+         ],
+         [
+          37.5456802,
+          55.7453088
+         ],
+         [
+          37.5458613,
+          55.7453744
+         ],
+         [
+          37.5458267,
+          55.7454044
+         ],
+         [
+          37.5457931,
+          55.7454335
+         ],
+         [
+          37.5461661,
+          55.7455691
+         ],
+         [
+          37.5462307,
+          55.7455142
+         ],
+         [
+          37.5463469,
+          55.7454156
+         ],
+         [
+          37.5463143,
+          55.7454038
+         ],
+         [
+          37.5463479,
+          55.7453745
+         ],
+         [
+          37.5464053,
+          55.7453245
+         ],
+         [
+          37.5465824,
+          55.7451701
+         ],
+         [
+          37.5467764,
+          55.7450009
+         ],
+         [
+          37.5467364,
+          55.7449865
+         ],
+         [
+          37.546685,
+          55.7449681
+         ],
+         [
+          37.5466586,
+          55.7449911
+         ],
+         [
+          37.5464333,
+          55.7449111
+         ],
+         [
+          37.5461623,
+          55.7448148
+         ],
+         [
+          37.5459438,
+          55.7447373
+         ],
+         [
+          37.5458474,
+          55.744703
+         ],
+         [
+          37.545734,
+          55.7448019
+         ],
+         [
+          37.5454371,
+          55.7446968
+         ],
+         [
+          37.5451041,
+          55.7445789
+         ],
+         [
+          37.5448672,
+          55.7444951
+         ],
+         [
+          37.5449805,
+          55.7443963
+         ],
+         [
+          37.5448644,
+          55.7443541
+         ],
+         [
+          37.5445863,
+          55.7442529
+         ],
+         [
+          37.5444878,
+          55.744217
+         ],
+         [
+          37.5443482,
+          55.7441662
+         ],
+         [
+          37.5443379,
+          55.7441622
+         ],
+         [
+          37.5443003,
+          55.7441929
+         ],
+         [
+          37.5442641,
+          55.7442225
+         ],
+         [
+          37.5442745,
+          55.7442265
+         ],
+         [
+          37.5442033,
+          55.7442849
+         ],
+         [
+          37.5440538,
+          55.7444072
+         ],
+         [
+          37.543921,
+          55.7445159
+         ],
+         [
+          37.5438998,
+          55.7445082
+         ],
+         [
+          37.5438637,
+          55.7445397
+         ],
+         [
+          37.5437014,
+          55.7446811
+         ],
+         [
+          37.5437864,
+          55.7447112
+         ],
+         [
+          37.544097,
+          55.7448213
+         ],
+         [
+          37.5441221,
+          55.7447995
+         ],
+         [
+          37.5441635,
+          55.7447633
+         ],
+         [
+          37.5443504,
+          55.7448317
+         ],
+         [
+          37.5441671,
+          55.7449917
+         ],
+         [
+          37.5433973,
+          55.7447146
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52520571",
+      "hotel_id": "n12583131047",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_n12583131047"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11482410978",
+     "name": "InPremium",
+     "address": null,
+     "location": [
+      37.5372739,
+      55.7503006
+     ],
+     "stars": null,
+     "building_id": "w809610199",
+     "height_m": null,
+     "levels": 14,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.114,
+    "confidence": 0.466,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "partial",
+      "margin": 0.8,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 625 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n11482410978",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.4664399199850582,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n11482410978_ed50b0250d4e"
+       ],
+       "subject": "hotel:n11482410978",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 625,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n11482410978_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n11482410978",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11482410978",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5372739,
+      55.7503006
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w809610199",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5352188,
+          55.7504478
+         ],
+         [
+          37.535698,
+          55.7499885
+         ],
+         [
+          37.5361451,
+          55.7501363
+         ],
+         [
+          37.5362754,
+          55.7500113
+         ],
+         [
+          37.5363087,
+          55.7499883
+         ],
+         [
+          37.5363523,
+          55.7499715
+         ],
+         [
+          37.5364025,
+          55.7499623
+         ],
+         [
+          37.5364552,
+          55.7499615
+         ],
+         [
+          37.5365063,
+          55.749969
+         ],
+         [
+          37.5365515,
+          55.7499843
+         ],
+         [
+          37.5365872,
+          55.7500062
+         ],
+         [
+          37.5366105,
+          55.7500328
+         ],
+         [
+          37.5366196,
+          55.7500621
+         ],
+         [
+          37.5366136,
+          55.7500916
+         ],
+         [
+          37.5365931,
+          55.7501189
+         ],
+         [
+          37.5364624,
+          55.7502411
+         ],
+         [
+          37.5365811,
+          55.7502804
+         ],
+         [
+          37.5367142,
+          55.7501528
+         ],
+         [
+          37.5369408,
+          55.7502276
+         ],
+         [
+          37.5368077,
+          55.7503552
+         ],
+         [
+          37.5369118,
+          55.7503896
+         ],
+         [
+          37.5370435,
+          55.7502635
+         ],
+         [
+          37.5370768,
+          55.7502405
+         ],
+         [
+          37.5371204,
+          55.7502237
+         ],
+         [
+          37.5371705,
+          55.7502145
+         ],
+         [
+          37.5372233,
+          55.7502136
+         ],
+         [
+          37.5372743,
+          55.7502211
+         ],
+         [
+          37.5373195,
+          55.7502365
+         ],
+         [
+          37.5373553,
+          55.7502583
+         ],
+         [
+          37.5373786,
+          55.750285
+         ],
+         [
+          37.5373876,
+          55.7503142
+         ],
+         [
+          37.5373817,
+          55.7503437
+         ],
+         [
+          37.5373612,
+          55.7503711
+         ],
+         [
+          37.5372292,
+          55.7504945
+         ],
+         [
+          37.5375474,
+          55.7505997
+         ],
+         [
+          37.5371166,
+          55.7510126
+         ],
+         [
+          37.5361629,
+          55.7506975
+         ],
+         [
+          37.5361393,
+          55.7507202
+         ],
+         [
+          37.5359637,
+          55.7506621
+         ],
+         [
+          37.5359874,
+          55.7506395
+         ],
+         [
+          37.5357621,
+          55.750565
+         ],
+         [
+          37.5355402,
+          55.7504917
+         ],
+         [
+          37.5354918,
+          55.7505381
+         ],
+         [
+          37.5352188,
+          55.7504478
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w809610199",
+      "hotel_id": "n11482410978",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 14,
+      "height_fact_id": "f_height_n11482410978"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2377868500",
+     "name": "На Красной Пресне",
+     "address": null,
+     "location": [
+      37.539961,
+      55.7536083
+     ],
+     "stars": 3,
+     "building_id": "w39894670",
+     "height_m": null,
+     "levels": 16,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.11,
+    "confidence": 0.452,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "partial",
+      "margin": 0.766,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 653 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n2377868500",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.45170106163553786,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n2377868500_ed50b0250d4e"
+       ],
+       "subject": "hotel:n2377868500",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 653,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n2377868500_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n2377868500",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2377868500",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.539961,
+      55.7536083
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w39894670",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5397944,
+          55.7536126
+         ],
+         [
+          37.5399852,
+          55.7533961
+         ],
+         [
+          37.5401768,
+          55.7531786
+         ],
+         [
+          37.5403901,
+          55.7532381
+         ],
+         [
+          37.5402965,
+          55.7533443
+         ],
+         [
+          37.540396,
+          55.7533721
+         ],
+         [
+          37.5403436,
+          55.7534315
+         ],
+         [
+          37.5402441,
+          55.7534038
+         ],
+         [
+          37.5400077,
+          55.7536722
+         ],
+         [
+          37.5399062,
+          55.7536438
+         ],
+         [
+          37.5397944,
+          55.7536126
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w39894670",
+      "hotel_id": "n2377868500",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 16,
+      "height_fact_id": "f_height_n2377868500"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8370848124",
+     "name": "Sky Apartments",
+     "address": null,
+     "location": [
+      37.536583,
+      55.749298
+     ],
+     "stars": null,
+     "building_id": "r14060559",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.109,
+    "confidence": 0.448,
+    "matched": [
+     {
+      "characteristic_key": "derived:9a986e0542d6",
+      "match": "partial",
+      "margin": 0.759,
+      "label": "рядом с Экспоцентром",
+      "explanation": "До ближайшей точки контура «Экспоцентр» 659 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_9a986e0542d6_n8370848124",
+       "characteristic_key": "derived:9a986e0542d6",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Экспоцентром",
+       "confidence": 0.44832501261499336,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n8370848124_ed50b0250d4e"
+       ],
+       "subject": "hotel:n8370848124",
+       "qualifiers": {
+        "source_text": "рядом с Экспоцентром",
+        "target_id": "n10774195377",
+        "target_location": [
+         37.5471192,
+         55.7493346
+        ],
+        "native_characteristic_key": "spatial:ed50b0250d4e",
+        "native_value": 659,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "estimated_match": true,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n8370848124_ed50b0250d4e"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:a1c861772c5f",
+      "match": "unknown",
+      "margin": null,
+      "label": "заезд поздно вечером",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_a1c861772c5f_n8370848124",
+       "characteristic_key": "derived:a1c861772c5f",
+       "value": null,
+       "unit": null,
+       "label": "заезд поздно вечером",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8370848124",
+       "qualifiers": {
+        "source_text": "заезд поздно вечером",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.536583,
+      55.749298
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r14060559",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.53617,
+          55.7496054
+         ],
+         [
+          37.5364922,
+          55.7493029
+         ],
+         [
+          37.5366024,
+          55.7491985
+         ],
+         [
+          37.5368428,
+          55.7492045
+         ],
+         [
+          37.5370927,
+          55.749226
+         ],
+         [
+          37.5373028,
+          55.7492664
+         ],
+         [
+          37.5375427,
+          55.7493272
+         ],
+         [
+          37.5374954,
+          55.7493658
+         ],
+         [
+          37.5376493,
+          55.7494372
+         ],
+         [
+          37.5378163,
+          55.7495785
+         ],
+         [
+          37.5379685,
+          55.7495365
+         ],
+         [
+          37.538155,
+          55.7494974
+         ],
+         [
+          37.5386708,
+          55.7496581
+         ],
+         [
+          37.538271,
+          55.7500458
+         ],
+         [
+          37.5381662,
+          55.7500508
+         ],
+         [
+          37.5381473,
+          55.7501242
+         ],
+         [
+          37.5381335,
+          55.7501437
+         ],
+         [
+          37.5380868,
+          55.7502092
+         ],
+         [
+          37.5378339,
+          55.7501651
+         ],
+         [
+          37.5375929,
+          55.7501097
+         ],
+         [
+          37.5373773,
+          55.7500264
+         ],
+         [
+          37.5371746,
+          55.7499208
+         ],
+         [
+          37.5372136,
+          55.7498928
+         ],
+         [
+          37.5370002,
+          55.749813
+         ],
+         [
+          37.5367941,
+          55.7497084
+         ],
+         [
+          37.5367257,
+          55.7497267
+         ],
+         [
+          37.5366293,
+          55.7497538
+         ],
+         [
+          37.53617,
+          55.7496054
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r14060559",
+      "hotel_id": "n8370848124",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n8370848124"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n8825725921",
+     "name": "1 Арт Отель",
+     "address": null,
+     "location": [
+      37.643618,
+      55.809941
+     ],
+     "stars": null,
+     "building_id": "w685568633",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n3189991362",
+     "name": "123hostel.ru",
+     "address": null,
+     "location": [
+      37.7198901,
+      55.7842951
+     ],
+     "stars": null,
+     "building_id": "w343634575",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13587400888",
+     "name": "1905",
+     "address": null,
+     "location": [
+      37.5558929,
+      55.7586138
+     ],
+     "stars": null,
+     "building_id": "w38938872",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n4208531789",
+     "name": "1st Arbat Hotel",
+     "address": null,
+     "location": [
+      37.7175668,
+      55.7482496
+     ],
+     "stars": null,
+     "building_id": "w227175775",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11283323869",
+     "name": "21 Семеновская",
+     "address": "Щербаковская улица 41А",
+     "location": [
+      37.7328543,
+      55.7830958
+     ],
+     "stars": null,
+     "building_id": "w132365082",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n2519755766",
+     "name": "3 пингвина",
+     "address": null,
+     "location": [
+      37.6276768,
+      55.7417708
+     ],
+     "stars": null,
+     "building_id": "w53854148",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n5903084085",
+     "name": "32 км",
+     "address": null,
+     "location": [
+      37.6195586,
+      55.572798
+     ],
+     "stars": null,
+     "building_id": "w373809750",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n13739866801",
+     "name": "3V",
+     "address": "1-й Басманный переулок 5/20 с3",
+     "location": [
+      37.663238,
+      55.7713142
+     ],
+     "stars": null,
+     "building_id": "w35683838",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n11663276873",
+     "name": "5Nebo",
+     "address": null,
+     "location": [
+      37.6326571,
+      55.7577088
+     ],
+     "stars": null,
+     "building_id": "r532946",
+     "height_m": null,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n6143223724",
+     "name": "7 высоток",
+     "address": null,
+     "location": [
+      37.55963,
+      55.870342
+     ],
+     "stars": null,
+     "building_id": "w28194384",
+     "height_m": null,
+     "levels": 14,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.0,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": "Ни одно пожелание не проверено."
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    37.536583,
+    55.7447564,
+    37.5435729,
+    55.7536083
+   ],
+   "camera": {
+    "center": [
+     37.5403698,
+     55.7483321
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 90072
+ },
+ "search_message_id": "8b915e38-50df-4f86-95c3-d857b2bf3cec"
+}

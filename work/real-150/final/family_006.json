@@ -1,0 +1,4057 @@
+{
+ "id": "857f7447-8787-4541-a14d-8c00dacc0b6d",
+ "title": "Адлер: до пляжа не больше 10 минут пешком, с детским клубом",
+ "updated_at": "2026-10-28T19:51:32.539669Z",
+ "messages": [
+  {
+   "id": "72ddfdc3-08c0-42f8-a0e1-0d9d4b68012a",
+   "role": "user",
+   "content": "Отель в Адлере с детским клубом и до пляжа не больше 10 минут пешком",
+   "created_at": "2026-10-28T19:51:32.539669Z"
+  },
+  {
+   "id": "7352ad39-e9e5-451a-9804-3e9e019419a6",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие, детали в карточках. Проверка не завершена: с детским клубом. На какие даты едете?",
+   "created_at": "2026-10-28T19:51:32.539669Z"
+  }
+ ],
+ "effective_query": "Отель в Адлере с детским клубом и до пляжа не больше 10 минут пешком",
+ "search": {
+  "query_id": "70273f2961032722",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:342ac703a9e8",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "до пляжа не больше 10 минут пешком"
+    },
+    {
+     "characteristic_key": "derived:b8ba15c9723c",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с детским клубом"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Адлер",
+   "anywhere": false,
+   "normalized_query": "Отель в Адлере с детским клубом и до пляжа не больше 10 минут пешком",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n4728913621",
+     "name": "Prichal",
+     "address": null,
+     "location": [
+      39.9173948,
+      43.4223439
+     ],
+     "stars": 3,
+     "building_id": "w53290602",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n4728913621",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4728913621"
+       ],
+       "subject": "hotel:n4728913621",
+       "qualifiers": {
+        "meters": 10.1,
+        "elevation_delta_m": 0.0,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4728913621"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n4728913621",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4728913621",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9173948,
+      43.4223439
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53290602",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9173468,
+          43.422396
+         ],
+         [
+          39.9174247,
+          43.4222981
+         ],
+         [
+          39.9176308,
+          43.4223846
+         ],
+         [
+          39.917645,
+          43.4223668
+         ],
+         [
+          39.9177123,
+          43.4223951
+         ],
+         [
+          39.9176202,
+          43.4225108
+         ],
+         [
+          39.9173468,
+          43.422396
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53290602",
+      "hotel_id": "n4728913621",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4728913621"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301256",
+     "name": "Фламинго",
+     "address": "улица Просвещения 15В",
+     "location": [
+      39.9160695,
+      43.4240009
+     ],
+     "stars": 3,
+     "building_id": "w53301256",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w53301256",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53301256"
+       ],
+       "subject": "hotel:w53301256",
+       "qualifiers": {
+        "meters": 15.4,
+        "elevation_delta_m": 2.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53301256"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w53301256",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53301256",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9160695,
+      43.4240009
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301256",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9159379,
+          43.424039
+         ],
+         [
+          39.9160693,
+          43.4238649
+         ],
+         [
+          39.916267,
+          43.4239437
+         ],
+         [
+          39.9161355,
+          43.4241177
+         ],
+         [
+          39.9159379,
+          43.424039
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301256",
+      "hotel_id": "w53301256",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53301256"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11866202895",
+     "name": "Cascade",
+     "address": null,
+     "location": [
+      39.9148089,
+      43.4253046
+     ],
+     "stars": null,
+     "building_id": "w679416881",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n11866202895",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11866202895"
+       ],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "meters": 12.6,
+        "elevation_delta_m": 0.0,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n11866202895"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n11866202895",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9148089,
+      43.4253046
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w679416881",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9146362,
+          43.4253099
+         ],
+         [
+          39.9147233,
+          43.4251999
+         ],
+         [
+          39.9149516,
+          43.4252953
+         ],
+         [
+          39.9148645,
+          43.4254053
+         ],
+         [
+          39.9146362,
+          43.4253099
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w679416881",
+      "hotel_id": "n11866202895",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11866202895"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2857562133",
+     "name": "Огонёк",
+     "address": null,
+     "location": [
+      39.9081608,
+      43.4354295
+     ],
+     "stars": null,
+     "building_id": "w105867912",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n2857562133",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n2857562133"
+       ],
+       "subject": "hotel:n2857562133",
+       "qualifiers": {
+        "meters": 21.6,
+        "elevation_delta_m": 2.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n2857562133"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n2857562133",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2857562133",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9081608,
+      43.4354295
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w105867912",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.908096,
+          43.435511
+         ],
+         [
+          39.9081929,
+          43.4353665
+         ],
+         [
+          39.9083145,
+          43.4354095
+         ],
+         [
+          39.9082176,
+          43.435554
+         ],
+         [
+          39.908096,
+          43.435511
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w105867912",
+      "hotel_id": "n2857562133",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n2857562133"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53284184",
+     "name": "Пансионат \"Охотник\"",
+     "address": "улица Просвещения 110А",
+     "location": [
+      39.9077566,
+      43.4363432
+     ],
+     "stars": null,
+     "building_id": "w53284184",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w53284184",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53284184"
+       ],
+       "subject": "hotel:w53284184",
+       "qualifiers": {
+        "meters": 21.4,
+        "elevation_delta_m": 2.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53284184"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w53284184",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53284184",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9077566,
+      43.4363432
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53284184",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9075711,
+          43.4364
+         ],
+         [
+          39.9077179,
+          43.4361571
+         ],
+         [
+          39.9080348,
+          43.4362581
+         ],
+         [
+          39.907888,
+          43.436501
+         ],
+         [
+          39.9075711,
+          43.4364
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53284184",
+      "hotel_id": "w53284184",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w53284184"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w762421315",
+     "name": "Sochifornia Beach",
+     "address": "Голубая улица 14А",
+     "location": [
+      39.9252954,
+      43.4148967
+     ],
+     "stars": null,
+     "building_id": "w762421315",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w762421315",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w762421315"
+       ],
+       "subject": "hotel:w762421315",
+       "qualifiers": {
+        "meters": 23.6,
+        "elevation_delta_m": -0.3,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w762421315"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w762421315",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w762421315",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9252954,
+      43.4148967
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w762421315",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.925174,
+          43.414925
+         ],
+         [
+          39.9252293,
+          43.4148849
+         ],
+         [
+          39.9254284,
+          43.414797
+         ],
+         [
+          39.9254956,
+          43.414849
+         ],
+         [
+          39.9252712,
+          43.4149994
+         ],
+         [
+          39.925174,
+          43.414925
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w762421315",
+      "hotel_id": "w762421315",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w762421315"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w55356580",
+     "name": "Лазурь Бич",
+     "address": "улица Просвещения 104Б",
+     "location": [
+      39.908656,
+      43.4346157
+     ],
+     "stars": null,
+     "building_id": "w55356580",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w55356580",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w55356580"
+       ],
+       "subject": "hotel:w55356580",
+       "qualifiers": {
+        "meters": 29.8,
+        "elevation_delta_m": 2.2,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w55356580"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w55356580",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w55356580",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.908656,
+      43.4346157
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w55356580",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9084375,
+          43.4346929
+         ],
+         [
+          39.9086696,
+          43.4343932
+         ],
+         [
+          39.9086867,
+          43.4343801
+         ],
+         [
+          39.9087175,
+          43.4343714
+         ],
+         [
+          39.9087527,
+          43.4343705
+         ],
+         [
+          39.9087822,
+          43.4343768
+         ],
+         [
+          39.9088255,
+          43.4343849
+         ],
+         [
+          39.9088557,
+          43.4344059
+         ],
+         [
+          39.9088818,
+          43.4344374
+         ],
+         [
+          39.9088929,
+          43.4344639
+         ],
+         [
+          39.9088897,
+          43.4344847
+         ],
+         [
+          39.908875,
+          43.4345027
+         ],
+         [
+          39.9088652,
+          43.4344991
+         ],
+         [
+          39.9086645,
+          43.4347608
+         ],
+         [
+          39.908672,
+          43.4347679
+         ],
+         [
+          39.9086567,
+          43.4347804
+         ],
+         [
+          39.9086369,
+          43.4347912
+         ],
+         [
+          39.9086055,
+          43.4347977
+         ],
+         [
+          39.9085829,
+          43.4347967
+         ],
+         [
+          39.9085637,
+          43.4347906
+         ],
+         [
+          39.9085413,
+          43.4347874
+         ],
+         [
+          39.9085199,
+          43.4347827
+         ],
+         [
+          39.9085005,
+          43.434771
+         ],
+         [
+          39.9084868,
+          43.4347589
+         ],
+         [
+          39.9084695,
+          43.4347505
+         ],
+         [
+          39.9084528,
+          43.4347327
+         ],
+         [
+          39.9084449,
+          43.4347149
+         ],
+         [
+          39.9084375,
+          43.4346929
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w55356580",
+      "hotel_id": "w55356580",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w55356580"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w80180160",
+     "name": "Мечта",
+     "address": "улица Карла Маркса 2А",
+     "location": [
+      39.9200783,
+      43.4202366
+     ],
+     "stars": null,
+     "building_id": "w80180160",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w80180160",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w80180160"
+       ],
+       "subject": "hotel:w80180160",
+       "qualifiers": {
+        "meters": 30.8,
+        "elevation_delta_m": 0.8,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w80180160"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w80180160",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w80180160",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9200783,
+      43.4202366
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180160",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9199134,
+          43.4202487
+         ],
+         [
+          39.9199686,
+          43.420202
+         ],
+         [
+          39.9199923,
+          43.4202155
+         ],
+         [
+          39.9200095,
+          43.4201982
+         ],
+         [
+          39.920111,
+          43.4202483
+         ],
+         [
+          39.9201082,
+          43.4202379
+         ],
+         [
+          39.9201108,
+          43.4202287
+         ],
+         [
+          39.9201156,
+          43.4202187
+         ],
+         [
+          39.9201276,
+          43.420212
+         ],
+         [
+          39.9201426,
+          43.4202097
+         ],
+         [
+          39.9201399,
+          43.4201958
+         ],
+         [
+          39.9201545,
+          43.420183
+         ],
+         [
+          39.9201708,
+          43.4201841
+         ],
+         [
+          39.9201824,
+          43.4201722
+         ],
+         [
+          39.9202526,
+          43.4201841
+         ],
+         [
+          39.9201895,
+          43.4204211
+         ],
+         [
+          39.9200311,
+          43.4203393
+         ],
+         [
+          39.9199575,
+          43.4202997
+         ],
+         [
+          39.9199746,
+          43.4202844
+         ],
+         [
+          39.9199134,
+          43.4202487
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180160",
+      "hotel_id": "w80180160",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w80180160"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4469957897",
+     "name": "Фестиваль",
+     "address": null,
+     "location": [
+      39.9204398,
+      43.4199059
+     ],
+     "stars": null,
+     "building_id": "w53292012",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n4469957897",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4469957897"
+       ],
+       "subject": "hotel:n4469957897",
+       "qualifiers": {
+        "meters": 52.3,
+        "elevation_delta_m": 1.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.7,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4469957897"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n4469957897",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4469957897",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9204398,
+      43.4199059
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292012",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9201747,
+          43.4198424
+         ],
+         [
+          39.9204164,
+          43.4195985
+         ],
+         [
+          39.9206615,
+          43.4197266
+         ],
+         [
+          39.9204198,
+          43.4199705
+         ],
+         [
+          39.9201747,
+          43.4198424
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292012",
+      "hotel_id": "n4469957897",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4469957897"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301267",
+     "name": "Адельфия",
+     "address": "улица Просвещения 13",
+     "location": [
+      39.916582,
+      43.423965
+     ],
+     "stars": 3,
+     "building_id": "w53301267",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w53301267",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53301267"
+       ],
+       "subject": "hotel:w53301267",
+       "qualifiers": {
+        "meters": 71.4,
+        "elevation_delta_m": 5.9,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.9,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53301267"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w53301267",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53301267",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.916582,
+      43.423965
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301267",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9164235,
+          43.4239487
+         ],
+         [
+          39.9165097,
+          43.4238246
+         ],
+         [
+          39.9167135,
+          43.4238936
+         ],
+         [
+          39.916683,
+          43.4239368
+         ],
+         [
+          39.9166796,
+          43.4239573
+         ],
+         [
+          39.9166871,
+          43.4239884
+         ],
+         [
+          39.9166768,
+          43.4240108
+         ],
+         [
+          39.9166463,
+          43.4240258
+         ],
+         [
+          39.9165988,
+          43.4240253
+         ],
+         [
+          39.916554,
+          43.4240181
+         ],
+         [
+          39.9165059,
+          43.4240003
+         ],
+         [
+          39.9164648,
+          43.4239671
+         ],
+         [
+          39.9164235,
+          43.4239487
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301267",
+      "hotel_id": "w53301267",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w53301267"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53292057",
+     "name": "Гранат",
+     "address": "улица Калинина 4",
+     "location": [
+      39.9137945,
+      43.4286318
+     ],
+     "stars": null,
+     "building_id": "w53292057",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w53292057",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53292057"
+       ],
+       "subject": "hotel:w53292057",
+       "qualifiers": {
+        "meters": 74.7,
+        "elevation_delta_m": 2.3,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.9,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53292057"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w53292057",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53292057",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9137945,
+      43.4286318
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53292057",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9135967,
+          43.42863
+         ],
+         [
+          39.9137776,
+          43.428475
+         ],
+         [
+          39.9138803,
+          43.4285382
+         ],
+         [
+          39.9138421,
+          43.428571
+         ],
+         [
+          39.913871,
+          43.4285888
+         ],
+         [
+          39.9138846,
+          43.4285774
+         ],
+         [
+          39.914041,
+          43.4286759
+         ],
+         [
+          39.9138936,
+          43.4287994
+         ],
+         [
+          39.9137371,
+          43.4287009
+         ],
+         [
+          39.9137678,
+          43.4286752
+         ],
+         [
+          39.9137403,
+          43.4286582
+         ],
+         [
+          39.9136994,
+          43.4286932
+         ],
+         [
+          39.9135967,
+          43.42863
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53292057",
+      "hotel_id": "w53292057",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53292057"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13301736402",
+     "name": "Lavicon club residence biarritz",
+     "address": "улица Просвещения 96/1",
+     "location": [
+      39.9138515,
+      43.4283976
+     ],
+     "stars": null,
+     "building_id": "w775621444",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n13301736402",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13301736402"
+       ],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "meters": 74.6,
+        "elevation_delta_m": 1.2,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.9,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n13301736402"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n13301736402",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9138515,
+      43.4283976
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w775621444",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9136743,
+          43.4283762
+         ],
+         [
+          39.9137877,
+          43.4282673
+         ],
+         [
+          39.9141424,
+          43.4284623
+         ],
+         [
+          39.9140091,
+          43.4285902
+         ],
+         [
+          39.9138642,
+          43.4285106
+         ],
+         [
+          39.9138841,
+          43.4284915
+         ],
+         [
+          39.9136743,
+          43.4283762
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w775621444",
+      "hotel_id": "n13301736402",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n13301736402"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w55359089",
+     "name": "Рита",
+     "address": "улица 8 Марта 23",
+     "location": [
+      39.9141719,
+      43.4280289
+     ],
+     "stars": null,
+     "building_id": "w55359089",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w55359089",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w55359089"
+       ],
+       "subject": "hotel:w55359089",
+       "qualifiers": {
+        "meters": 78.6,
+        "elevation_delta_m": 2.4,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.0,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w55359089"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w55359089",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w55359089",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9141719,
+      43.4280289
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w55359089",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9140432,
+          43.428035
+         ],
+         [
+          39.9141202,
+          43.4279543
+         ],
+         [
+          39.9141741,
+          43.4279814
+         ],
+         [
+          39.914154,
+          43.4280025
+         ],
+         [
+          39.9141779,
+          43.4280146
+         ],
+         [
+          39.9141926,
+          43.4279991
+         ],
+         [
+          39.9143569,
+          43.4280817
+         ],
+         [
+          39.9142853,
+          43.4281568
+         ],
+         [
+          39.9140432,
+          43.428035
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w55359089",
+      "hotel_id": "w55359089",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w55359089"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w80180179",
+     "name": "Бристоль",
+     "address": "переулок Бестужева 5",
+     "location": [
+      39.9215831,
+      43.4193712
+     ],
+     "stars": null,
+     "building_id": "w80180179",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w80180179",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w80180179"
+       ],
+       "subject": "hotel:w80180179",
+       "qualifiers": {
+        "meters": 88.0,
+        "elevation_delta_m": 5.3,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w80180179"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w80180179",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w80180179",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9215831,
+      43.4193712
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180179",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9214903,
+          43.4193952
+         ],
+         [
+          39.9216091,
+          43.4192758
+         ],
+         [
+          39.9217224,
+          43.4193353
+         ],
+         [
+          39.9216036,
+          43.4194547
+         ],
+         [
+          39.9214903,
+          43.4193952
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180179",
+      "hotel_id": "w80180179",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w80180179"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w54147371",
+     "name": "Санаторий \"Адлер\"",
+     "address": null,
+     "location": [
+      39.9050495,
+      43.4429144
+     ],
+     "stars": null,
+     "building_id": "w54147222",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_w54147371",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w54147371"
+       ],
+       "subject": "hotel:w54147371",
+       "qualifiers": {
+        "meters": 89.1,
+        "elevation_delta_m": 3.2,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w54147371"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_w54147371",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w54147371",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9050495,
+      43.4429144
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54147222",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9049142,
+          43.4436695
+         ],
+         [
+          39.9050652,
+          43.4433731
+         ],
+         [
+          39.9051121,
+          43.4433857
+         ],
+         [
+          39.9051927,
+          43.4432274
+         ],
+         [
+          39.9049324,
+          43.4431575
+         ],
+         [
+          39.9049576,
+          43.4431081
+         ],
+         [
+          39.9052479,
+          43.443186
+         ],
+         [
+          39.9051164,
+          43.4434441
+         ],
+         [
+          39.905799,
+          43.4436274
+         ],
+         [
+          39.9056726,
+          43.4438755
+         ],
+         [
+          39.9051839,
+          43.4437443
+         ],
+         [
+          39.9053007,
+          43.4435151
+         ],
+         [
+          39.9051061,
+          43.4434629
+         ],
+         [
+          39.9049904,
+          43.44369
+         ],
+         [
+          39.9049142,
+          43.4436695
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54147222",
+      "hotel_id": "w54147371",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w54147371"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13825065360",
+     "name": "Альфа Сириус Морской квартал",
+     "address": null,
+     "location": [
+      39.9428867,
+      43.406868
+     ],
+     "stars": null,
+     "building_id": "w207637519",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n13825065360",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13825065360"
+       ],
+       "subject": "hotel:n13825065360",
+       "qualifiers": {
+        "meters": 91.3,
+        "elevation_delta_m": 0.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n13825065360"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n13825065360",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13825065360",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9428867,
+      43.406868
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207637519",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9426588,
+          43.4068558
+         ],
+         [
+          39.9429871,
+          43.406716
+         ],
+         [
+          39.9430613,
+          43.4068091
+         ],
+         [
+          39.9430966,
+          43.4068518
+         ],
+         [
+          39.942937,
+          43.4069197
+         ],
+         [
+          39.9427683,
+          43.4069915
+         ],
+         [
+          39.9427437,
+          43.406961
+         ],
+         [
+          39.9426588,
+          43.4068558
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207637519",
+      "hotel_id": "n13825065360",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n13825065360"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7115085741",
+     "name": "El Paraiso",
+     "address": "улица Просвещения 70",
+     "location": [
+      39.9151498,
+      43.4260269
+     ],
+     "stars": null,
+     "building_id": "w149546331",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n7115085741",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n7115085741"
+       ],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "meters": 98.1,
+        "elevation_delta_m": -1.4,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n7115085741"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n7115085741",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9151498,
+      43.4260269
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w149546331",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9150257,
+          43.4260506
+         ],
+         [
+          39.9150552,
+          43.4260222
+         ],
+         [
+          39.9150578,
+          43.4260068
+         ],
+         [
+          39.9150662,
+          43.425996
+         ],
+         [
+          39.9150804,
+          43.4259875
+         ],
+         [
+          39.9150994,
+          43.4259811
+         ],
+         [
+          39.9151279,
+          43.4259536
+         ],
+         [
+          39.9155345,
+          43.4261767
+         ],
+         [
+          39.9154331,
+          43.4262741
+         ],
+         [
+          39.9150257,
+          43.4260506
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w149546331",
+      "hotel_id": "n7115085741",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n7115085741"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4072901609",
+     "name": "Касабланка",
+     "address": "улица 8 Марта 5",
+     "location": [
+      39.9154215,
+      43.426786
+     ],
+     "stars": null,
+     "building_id": "w149546329",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n4072901609",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4072901609"
+       ],
+       "subject": "hotel:n4072901609",
+       "qualifiers": {
+        "meters": 102.6,
+        "elevation_delta_m": 3.7,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4072901609"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n4072901609",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4072901609",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9154215,
+      43.426786
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w149546329",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.915255,
+          43.4267778
+         ],
+         [
+          39.9153484,
+          43.4266832
+         ],
+         [
+          39.9155606,
+          43.4267937
+         ],
+         [
+          39.9155485,
+          43.4268072
+         ],
+         [
+          39.9156621,
+          43.4268741
+         ],
+         [
+          39.9156106,
+          43.426925
+         ],
+         [
+          39.9154919,
+          43.4268652
+         ],
+         [
+          39.9154672,
+          43.4268883
+         ],
+         [
+          39.915255,
+          43.4267778
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w149546329",
+      "hotel_id": "n4072901609",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4072901609"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11331531334",
+     "name": "Cosmos Adler Hotel",
+     "address": null,
+     "location": [
+      39.904065,
+      43.4451502
+     ],
+     "stars": null,
+     "building_id": "w291652014",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n11331531334",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11331531334"
+       ],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "meters": 100.4,
+        "elevation_delta_m": -0.3,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n11331531334"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n11331531334",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.904065,
+      43.4451502
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w291652014",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9038943,
+          43.445266
+         ],
+         [
+          39.904035,
+          43.4449599
+         ],
+         [
+          39.9040286,
+          43.4449583
+         ],
+         [
+          39.9040556,
+          43.4448997
+         ],
+         [
+          39.9040632,
+          43.4449015
+         ],
+         [
+          39.9041067,
+          43.444807
+         ],
+         [
+          39.9042729,
+          43.4448473
+         ],
+         [
+          39.9042293,
+          43.444942
+         ],
+         [
+          39.9042353,
+          43.4449434
+         ],
+         [
+          39.9042219,
+          43.4449725
+         ],
+         [
+          39.9042081,
+          43.4450025
+         ],
+         [
+          39.904201,
+          43.4450007
+         ],
+         [
+          39.9040449,
+          43.4453403
+         ],
+         [
+          39.9039432,
+          43.4453157
+         ],
+         [
+          39.9039588,
+          43.4452817
+         ],
+         [
+          39.9038943,
+          43.445266
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w291652014",
+      "hotel_id": "n11331531334",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11331531334"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.44,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:342ac703a9e8",
+      "match": "full",
+      "margin": 2.0,
+      "label": "до пляжа не больше 10 минут пешком",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_342ac703a9e8_n10759614195",
+       "characteristic_key": "derived:342ac703a9e8",
+       "value": true,
+       "unit": null,
+       "label": "до пляжа не больше 10 минут пешком",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n10759614195"
+       ],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "meters": 118.3,
+        "elevation_delta_m": 4.6,
+        "source_text": "до пляжа не больше 10 минут пешком",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.5,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 10.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n10759614195"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:b8ba15c9723c",
+      "match": "unknown",
+      "margin": null,
+      "label": "с детским клубом",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_b8ba15c9723c_n10759614195",
+       "characteristic_key": "derived:b8ba15c9723c",
+       "value": null,
+       "unit": null,
+       "label": "с детским клубом",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "с детским клубом",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53292017",
+     "name": "Black Sea",
+     "address": "улица Бестужева 6А",
+     "location": [
+      39.9224817,
+      43.41941
+     ],
+     "stars": null,
+     "building_id": "w53292017",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w147552207",
+     "name": "Camellia",
+     "address": "Цветочная улица 17/10",
+     "location": [
+      39.9287233,
+      43.4172038
+     ],
+     "stars": null,
+     "building_id": "w147552207",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7169680844",
+     "name": "F & G",
+     "address": null,
+     "location": [
+      39.9048938,
+      43.4443602
+     ],
+     "stars": null,
+     "building_id": "w291652036",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4370780891",
+     "name": "Family Park Hotel",
+     "address": "улица Кирова 11",
+     "location": [
+      39.9205416,
+      43.4222099
+     ],
+     "stars": null,
+     "building_id": "w77860264",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_82932e51_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fc74ac80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_abff12d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4c66be3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4bebafdf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a2b90ee7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_efc9d14c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fd5fe838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e862baf2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5a1a7f26_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5f183818_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3aee4dea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_040a79cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_df5ab243_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57d949f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2e043b47_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7c2d7e6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2818503a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e7c291a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_db630c80_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8943a96c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c956a8aa_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54120d30_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_53ad83e3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53292014",
+     "name": "Green House Hotel",
+     "address": "улица Бестужева 1В",
+     "location": [
+      39.9223431,
+      43.4188527
+     ],
+     "stars": null,
+     "building_id": "w53292014",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53301283",
+     "name": "Kiparis Resort by Stellar Hotels",
+     "address": "переулок Богдана Хмельницкого 8",
+     "location": [
+      39.9167685,
+      43.4253594
+     ],
+     "stars": null,
+     "building_id": "w53301283",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5267688942",
+     "name": "Liberty fly",
+     "address": null,
+     "location": [
+      39.9214891,
+      43.423066
+     ],
+     "stars": null,
+     "building_id": "w708922832",
+     "height_m": 10.0,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e1b25289_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a4577180_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8833492c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dac5f0e4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2d70ed2c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9ec066b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_809e4e62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_64458eae_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4f9c3342_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_791d3ee3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4cb257a1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4c27a129_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c8cb87ac_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_76cf085d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b51e44c2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_09fac0d8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_57c8169b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d51b5418_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e64b934c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0d745775_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_54dca8f7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88e668c8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_aee11864_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5fefd31d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w207637871",
+     "name": "Mantera Resort&Congress",
+     "address": "Голубая улица 1",
+     "location": [
+      39.9376921,
+      43.4101592
+     ],
+     "stars": null,
+     "building_id": "w207637871",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11843545856",
+     "name": "Marco Polo",
+     "address": null,
+     "location": [
+      39.917617,
+      43.425054
+     ],
+     "stars": null,
+     "building_id": "w80042447",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.4396,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.904065,
+    43.406868,
+    39.9428867,
+    43.4451502
+   ],
+   "camera": {
+    "center": [
+     39.9173948,
+     43.4223439
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 78035
+ },
+ "search_message_id": "7352ad39-e9e5-451a-9804-3e9e019419a6"
+}

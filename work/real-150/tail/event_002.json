@@ -1,0 +1,3643 @@
+{
+ "id": "06c76b86-6d9f-4283-8b3a-e7da4259c5ab",
+ "title": "Сочи: рядом с Сириусом, на время конференции",
+ "updated_at": "2026-10-28T21:04:58.819742Z",
+ "messages": [
+  {
+   "id": "78d8fe39-283e-4c57-b866-89faaa167af4",
+   "role": "user",
+   "content": "Сочи, отель рядом с Сириусом на время конференции",
+   "created_at": "2026-10-28T21:04:58.819742Z"
+  },
+  {
+   "id": "711b7a7b-dbb6-4534-a8a1-8c35171a2970",
+   "role": "assistant",
+   "content": "Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие именно даты конференции в Сириусе планируется поездка?",
+   "created_at": "2026-10-28T21:04:58.819742Z"
+  }
+ ],
+ "effective_query": "Сочи, отель рядом с Сириусом на время конференции",
+ "search": {
+  "query_id": "ef321de8b7abbd84",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:fc5a0a02526e",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "рядом с Сириусом"
+    },
+    {
+     "characteristic_key": "derived:440ef598188f",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "на время конференции"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, отель рядом с Сириусом на время конференции",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n13115134069",
+     "name": "Эридан",
+     "address": null,
+     "location": [
+      39.8940168,
+      43.4758473
+     ],
+     "stars": null,
+     "building_id": "w81148670",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.419,
+    "confidence": 0.762,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 71 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n13115134069",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7622484625596382,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n13115134069_29f70c649759"
+       ],
+       "subject": "hotel:n13115134069",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 71,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n13115134069_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n13115134069",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13115134069",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8940168,
+      43.4758473
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148670",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8938944,
+          43.475876
+         ],
+         [
+          39.8939248,
+          43.4758125
+         ],
+         [
+          39.89396,
+          43.4757388
+         ],
+         [
+          39.8940953,
+          43.4757729
+         ],
+         [
+          39.8940733,
+          43.475819
+         ],
+         [
+          39.8941887,
+          43.4758481
+         ],
+         [
+          39.8941452,
+          43.4759391
+         ],
+         [
+          39.8938944,
+          43.475876
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148670",
+      "hotel_id": "n13115134069",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n13115134069"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13962415401",
+     "name": "Графит",
+     "address": "Прибрежная улица 27",
+     "location": [
+      39.8924091,
+      43.4760271
+     ],
+     "stars": null,
+     "building_id": "w81153244",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.416,
+    "confidence": 0.757,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 81 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n13962415401",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.756574529664876,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n13962415401_29f70c649759"
+       ],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 81,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n13962415401_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n13962415401",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8924091,
+      43.4760271
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81153244",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.89217,
+          43.4760434
+         ],
+         [
+          39.8922149,
+          43.4759241
+         ],
+         [
+          39.8926497,
+          43.4760102
+         ],
+         [
+          39.8926049,
+          43.4761295
+         ],
+         [
+          39.89217,
+          43.4760434
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81153244",
+      "hotel_id": "n13962415401",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n13962415401"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11843545833",
+     "name": "Сириус",
+     "address": null,
+     "location": [
+      39.893361,
+      43.4762701
+     ],
+     "stars": null,
+     "building_id": "w81148695",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.4,
+    "confidence": 0.8,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": null,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 0 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n11843545833",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n11843545833_29f70c649759"
+       ],
+       "subject": "hotel:n11843545833",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 0,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n11843545833_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n11843545833",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11843545833",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.893361,
+      43.4762701
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148695",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8931904,
+          43.4762977
+         ],
+         [
+          39.8932336,
+          43.4762073
+         ],
+         [
+          39.893408,
+          43.4762512
+         ],
+         [
+          39.8933648,
+          43.4763415
+         ],
+         [
+          39.8931904,
+          43.4762977
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148695",
+      "hotel_id": "n11843545833",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11843545833"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4713060680",
+     "name": "Версаль 2",
+     "address": "улица Просвещения 97",
+     "location": [
+      39.8937557,
+      43.4750729
+     ],
+     "stars": null,
+     "building_id": "w714578281",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.4,
+    "confidence": 0.727,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 137 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n4713060680",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7269977009167105,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n4713060680_29f70c649759"
+       ],
+       "subject": "hotel:n4713060680",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 137,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n4713060680_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n4713060680",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4713060680",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8937557,
+      43.4750729
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w714578281",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.893579,
+          43.4751005
+         ],
+         [
+          39.8936282,
+          43.4749951
+         ],
+         [
+          39.8940036,
+          43.4750875
+         ],
+         [
+          39.8939543,
+          43.4751928
+         ],
+         [
+          39.893579,
+          43.4751005
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w714578281",
+      "hotel_id": "n4713060680",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4713060680"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4246173492",
+     "name": "Эллас",
+     "address": null,
+     "location": [
+      39.892802,
+      43.4774629
+     ],
+     "stars": null,
+     "building_id": "w161855157",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.399,
+    "confidence": 0.725,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 140 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n4246173492",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7252837089103766,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n4246173492_29f70c649759"
+       ],
+       "subject": "hotel:n4246173492",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 140,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n4246173492_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n4246173492",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4246173492",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.892802,
+      43.4774629
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w161855157",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8925676,
+          43.4774905
+         ],
+         [
+          39.89263,
+          43.4773558
+         ],
+         [
+          39.8929901,
+          43.4774436
+         ],
+         [
+          39.8929278,
+          43.4775783
+         ],
+         [
+          39.8925676,
+          43.4774905
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w161855157",
+      "hotel_id": "n4246173492",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n4246173492"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9727638558",
+     "name": "Звёздочка",
+     "address": "Лазурная улица 23/1",
+     "location": [
+      39.8949592,
+      43.4755777
+     ],
+     "stars": null,
+     "building_id": "w81153106",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.396,
+    "confidence": 0.72,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 150 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n9727638558",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7198968209417043,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n9727638558_29f70c649759"
+       ],
+       "subject": "hotel:n9727638558",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 150,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n9727638558_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n9727638558",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n9727638558",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8949592,
+      43.4755777
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81153106",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8948696,
+          43.4756424
+         ],
+         [
+          39.8949293,
+          43.4755034
+         ],
+         [
+          39.8950786,
+          43.4755371
+         ],
+         [
+          39.895076,
+          43.4755431
+         ],
+         [
+          39.8950993,
+          43.4755484
+         ],
+         [
+          39.895082,
+          43.4755886
+         ],
+         [
+          39.8950618,
+          43.475584
+         ],
+         [
+          39.895022,
+          43.4756768
+         ],
+         [
+          39.8948696,
+          43.4756424
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81153106",
+      "hotel_id": "n9727638558",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n9727638558"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81153106",
+     "name": "Звездочка",
+     "address": "Лазурная улица 21",
+     "location": [
+      39.8950098,
+      43.4755851
+     ],
+     "stars": null,
+     "building_id": "w81153106",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.395,
+    "confidence": 0.718,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 153 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w81153106",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7182384604519676,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w81153106_29f70c649759"
+       ],
+       "subject": "hotel:w81153106",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 153,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w81153106_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w81153106",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81153106",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8950098,
+      43.4755851
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81153106",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8948696,
+          43.4756424
+         ],
+         [
+          39.8949293,
+          43.4755034
+         ],
+         [
+          39.8950786,
+          43.4755371
+         ],
+         [
+          39.895076,
+          43.4755431
+         ],
+         [
+          39.8950993,
+          43.4755484
+         ],
+         [
+          39.895082,
+          43.4755886
+         ],
+         [
+          39.8950618,
+          43.475584
+         ],
+         [
+          39.895022,
+          43.4756768
+         ],
+         [
+          39.8948696,
+          43.4756424
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81153106",
+      "hotel_id": "w81153106",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w81153106"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81148687",
+     "name": "Уют",
+     "address": null,
+     "location": [
+      39.892837,
+      43.4776443
+     ],
+     "stars": null,
+     "building_id": "w81148687",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.393,
+    "confidence": 0.715,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 159 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w81148687",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7154422628080062,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w81148687_29f70c649759"
+       ],
+       "subject": "hotel:w81148687",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 159,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w81148687_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w81148687",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81148687",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.892837,
+      43.4776443
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148687",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8927282,
+          43.4776568
+         ],
+         [
+          39.8927707,
+          43.4775678
+         ],
+         [
+          39.8930001,
+          43.4776256
+         ],
+         [
+          39.8929576,
+          43.4777145
+         ],
+         [
+          39.8927282,
+          43.4776568
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148687",
+      "hotel_id": "w81148687",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w81148687"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12441295502",
+     "name": "МореСолнцеАпарт",
+     "address": "Прибрежная улица 10",
+     "location": [
+      39.8934136,
+      43.4747989
+     ],
+     "stars": null,
+     "building_id": "w161855147",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.392,
+    "confidence": 0.713,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 164 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n12441295502",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7127226527182106,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n12441295502_29f70c649759"
+       ],
+       "subject": "hotel:n12441295502",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 164,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n12441295502_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n12441295502",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12441295502",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8934136,
+      43.4747989
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w161855147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8933351,
+          43.4747667
+         ],
+         [
+          39.8933366,
+          43.4747571
+         ],
+         [
+          39.8933444,
+          43.4747484
+         ],
+         [
+          39.8933574,
+          43.4747406
+         ],
+         [
+          39.8933708,
+          43.4747401
+         ],
+         [
+          39.8933852,
+          43.4747432
+         ],
+         [
+          39.8933991,
+          43.4747124
+         ],
+         [
+          39.8934523,
+          43.474725
+         ],
+         [
+          39.8934621,
+          43.4747214
+         ],
+         [
+          39.8934782,
+          43.474721
+         ],
+         [
+          39.893496,
+          43.4747247
+         ],
+         [
+          39.8935102,
+          43.4747316
+         ],
+         [
+          39.8935151,
+          43.4747402
+         ],
+         [
+          39.8936027,
+          43.4747606
+         ],
+         [
+          39.8935531,
+          43.4748709
+         ],
+         [
+          39.8934647,
+          43.47485
+         ],
+         [
+          39.8934559,
+          43.4748531
+         ],
+         [
+          39.8934377,
+          43.4748531
+         ],
+         [
+          39.893419,
+          43.4748484
+         ],
+         [
+          39.8934069,
+          43.4748416
+         ],
+         [
+          39.893403,
+          43.4748353
+         ],
+         [
+          39.8933495,
+          43.4748226
+         ],
+         [
+          39.8933628,
+          43.474793
+         ],
+         [
+          39.8933523,
+          43.4747901
+         ],
+         [
+          39.8933451,
+          43.4747856
+         ],
+         [
+          39.893338,
+          43.4747777
+         ],
+         [
+          39.8933351,
+          43.4747667
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w161855147",
+      "hotel_id": "n12441295502",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n12441295502"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12416060217",
+     "name": "АК Шале Прибрежный",
+     "address": "Прибрежная улица 10",
+     "location": [
+      39.8934368,
+      43.4747959
+     ],
+     "stars": null,
+     "building_id": "w161855147",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.392,
+    "confidence": 0.713,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 164 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n12416060217",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7125132648428711,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n12416060217_29f70c649759"
+       ],
+       "subject": "hotel:n12416060217",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 164,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n12416060217_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n12416060217",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12416060217",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8934368,
+      43.4747959
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w161855147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8933351,
+          43.4747667
+         ],
+         [
+          39.8933366,
+          43.4747571
+         ],
+         [
+          39.8933444,
+          43.4747484
+         ],
+         [
+          39.8933574,
+          43.4747406
+         ],
+         [
+          39.8933708,
+          43.4747401
+         ],
+         [
+          39.8933852,
+          43.4747432
+         ],
+         [
+          39.8933991,
+          43.4747124
+         ],
+         [
+          39.8934523,
+          43.474725
+         ],
+         [
+          39.8934621,
+          43.4747214
+         ],
+         [
+          39.8934782,
+          43.474721
+         ],
+         [
+          39.893496,
+          43.4747247
+         ],
+         [
+          39.8935102,
+          43.4747316
+         ],
+         [
+          39.8935151,
+          43.4747402
+         ],
+         [
+          39.8936027,
+          43.4747606
+         ],
+         [
+          39.8935531,
+          43.4748709
+         ],
+         [
+          39.8934647,
+          43.47485
+         ],
+         [
+          39.8934559,
+          43.4748531
+         ],
+         [
+          39.8934377,
+          43.4748531
+         ],
+         [
+          39.893419,
+          43.4748484
+         ],
+         [
+          39.8934069,
+          43.4748416
+         ],
+         [
+          39.893403,
+          43.4748353
+         ],
+         [
+          39.8933495,
+          43.4748226
+         ],
+         [
+          39.8933628,
+          43.474793
+         ],
+         [
+          39.8933523,
+          43.4747901
+         ],
+         [
+          39.8933451,
+          43.4747856
+         ],
+         [
+          39.893338,
+          43.4747777
+         ],
+         [
+          39.8933351,
+          43.4747667
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w161855147",
+      "hotel_id": "n12416060217",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n12416060217"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81148674",
+     "name": "Натали",
+     "address": "улица Просвещения 158",
+     "location": [
+      39.8933011,
+      43.4777688
+     ],
+     "stars": null,
+     "building_id": "w81148674",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.391,
+    "confidence": 0.711,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 167 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w81148674",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7110837809830564,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w81148674_29f70c649759"
+       ],
+       "subject": "hotel:w81148674",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 167,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w81148674_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w81148674",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81148674",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8933011,
+      43.4777688
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148674",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8931454,
+          43.4777743
+         ],
+         [
+          39.8932012,
+          43.4776577
+         ],
+         [
+          39.8934745,
+          43.4777265
+         ],
+         [
+          39.8934213,
+          43.4778365
+         ],
+         [
+          39.8934187,
+          43.4778432
+         ],
+         [
+          39.8931454,
+          43.4777743
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148674",
+      "hotel_id": "w81148674",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w81148674"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11035837905",
+     "name": "шарм гостиница",
+     "address": null,
+     "location": [
+      39.8953797,
+      43.4769149
+     ],
+     "stars": null,
+     "building_id": "w81149503",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_965ba338_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_965ba338_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c5bcafca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6352815d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_02241d7f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b1ab003_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_bcff4f70_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0a7be1c5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5af40963_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_05209b4c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26dda639_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f12fbdc1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5dd7d448_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2afd1f1a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_91398543_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e468abf8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a6a2ec94_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47fb7954_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3058631_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_eef3f23b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6b413753_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca325ee8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_99da8b3a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_09de7903_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e58d09cb_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.388,
+    "confidence": 0.705,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 178 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n11035837905",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.705083221407877,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n11035837905_29f70c649759"
+       ],
+       "subject": "hotel:n11035837905",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 178,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n11035837905_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n11035837905",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11035837905",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8953797,
+      43.4769149
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81149503",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8952026,
+          43.4768919
+         ],
+         [
+          39.8952943,
+          43.4766714
+         ],
+         [
+          39.8954597,
+          43.4767077
+         ],
+         [
+          39.895368,
+          43.4769281
+         ],
+         [
+          39.8952026,
+          43.4768919
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81149503",
+      "hotel_id": "n11035837905",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n11035837905"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10974113805",
+     "name": "Оскар",
+     "address": null,
+     "location": [
+      39.8954489,
+      43.4756087
+     ],
+     "stars": null,
+     "building_id": "w81148688",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.386,
+    "confidence": 0.702,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 184 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n10974113805",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.7019596644735638,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n10974113805_29f70c649759"
+       ],
+       "subject": "hotel:n10974113805",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 184,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n10974113805_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n10974113805",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10974113805",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8954489,
+      43.4756087
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148688",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8953172,
+          43.4756312
+         ],
+         [
+          39.8953627,
+          43.4755361
+         ],
+         [
+          39.8955706,
+          43.4755885
+         ],
+         [
+          39.8955251,
+          43.4756835
+         ],
+         [
+          39.8953172,
+          43.4756312
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148688",
+      "hotel_id": "n10974113805",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10974113805"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w58732020",
+     "name": "Байкал",
+     "address": "улица Чкалова 11А",
+     "location": [
+      39.8956885,
+      43.4756508
+     ],
+     "stars": null,
+     "building_id": "w58732020",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.381,
+    "confidence": 0.693,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 200 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w58732020",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.693315668609272,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w58732020_29f70c649759"
+       ],
+       "subject": "hotel:w58732020",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 200,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w58732020_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w58732020",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w58732020",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8956885,
+      43.4756508
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w58732020",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8955611,
+          43.4756843
+         ],
+         [
+          39.895632,
+          43.4755375
+         ],
+         [
+          39.8958796,
+          43.4756005
+         ],
+         [
+          39.8958088,
+          43.4757472
+         ],
+         [
+          39.8955611,
+          43.4756843
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w58732020",
+      "hotel_id": "w58732020",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w58732020"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2870156263",
+     "name": "Амалия",
+     "address": null,
+     "location": [
+      39.8941034,
+      43.4779934
+     ],
+     "stars": null,
+     "building_id": "w81148595",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.381,
+    "confidence": 0.693,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 201 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n2870156263",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6929241714802146,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n2870156263_29f70c649759"
+       ],
+       "subject": "hotel:n2870156263",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 201,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n2870156263_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n2870156263",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2870156263",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8941034,
+      43.4779934
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148595",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8939561,
+          43.4779954
+         ],
+         [
+          39.8940134,
+          43.4778754
+         ],
+         [
+          39.8942919,
+          43.4779455
+         ],
+         [
+          39.8942346,
+          43.4780655
+         ],
+         [
+          39.8939561,
+          43.4779954
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148595",
+      "hotel_id": "n2870156263",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n2870156263"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81148634",
+     "name": "Сабрина",
+     "address": "улица Просвещения 160А",
+     "location": [
+      39.8936306,
+      43.4781193
+     ],
+     "stars": null,
+     "building_id": "w81148634",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.379,
+    "confidence": 0.69,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 207 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w81148634",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6897231149801014,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w81148634_29f70c649759"
+       ],
+       "subject": "hotel:w81148634",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 207,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w81148634_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w81148634",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81148634",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8936306,
+      43.4781193
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148634",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8935282,
+          43.4781324
+         ],
+         [
+          39.8935697,
+          43.4780457
+         ],
+         [
+          39.8937842,
+          43.4780997
+         ],
+         [
+          39.8937427,
+          43.4781864
+         ],
+         [
+          39.8935282,
+          43.4781324
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148634",
+      "hotel_id": "w81148634",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w81148634"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8424805030",
+     "name": "Zara",
+     "address": null,
+     "location": [
+      39.8936425,
+      43.474253
+     ],
+     "stars": null,
+     "building_id": "w81148626",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.374,
+    "confidence": 0.68,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 225 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n8424805030",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6797661178699522,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n8424805030_29f70c649759"
+       ],
+       "subject": "hotel:n8424805030",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 225,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n8424805030_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n8424805030",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8424805030",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8936425,
+      43.474253
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148626",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8935852,
+          43.47426
+         ],
+         [
+          39.8935948,
+          43.4742411
+         ],
+         [
+          39.8936169,
+          43.4742212
+         ],
+         [
+          39.8936461,
+          43.4742099
+         ],
+         [
+          39.8936854,
+          43.4741995
+         ],
+         [
+          39.8938626,
+          43.4742415
+         ],
+         [
+          39.8938057,
+          43.4743681
+         ],
+         [
+          39.8936399,
+          43.4743289
+         ],
+         [
+          39.8936148,
+          43.4743153
+         ],
+         [
+          39.8935984,
+          43.4742983
+         ],
+         [
+          39.893586,
+          43.4742772
+         ],
+         [
+          39.8935852,
+          43.47426
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148626",
+      "hotel_id": "n8424805030",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n8424805030"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81148580",
+     "name": "Дельфин",
+     "address": "Аллейная улица 11А",
+     "location": [
+      39.8915966,
+      43.4778642
+     ],
+     "stars": null,
+     "building_id": "w81148580",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.373,
+    "confidence": 0.679,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 227 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_w81148580",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6787467248901834,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_w81148580_29f70c649759"
+       ],
+       "subject": "hotel:w81148580",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 227,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_w81148580_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_w81148580",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81148580",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8915966,
+      43.4778642
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148580",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8915014,
+          43.477891
+         ],
+         [
+          39.8915555,
+          43.4777778
+         ],
+         [
+          39.8917394,
+          43.4778241
+         ],
+         [
+          39.8916853,
+          43.4779372
+         ],
+         [
+          39.8915014,
+          43.477891
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148580",
+      "hotel_id": "w81148580",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w81148580"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4665769643",
+     "name": "Приморье",
+     "address": "Лазурная улица",
+     "location": [
+      39.8956011,
+      43.4749411
+     ],
+     "stars": null,
+     "building_id": "w58732026",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.372,
+    "confidence": 0.675,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 233 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n4665769643",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6754798884461235,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n4665769643_29f70c649759"
+       ],
+       "subject": "hotel:n4665769643",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 233,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n4665769643_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n4665769643",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4665769643",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8956011,
+      43.4749411
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w58732026",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8955037,
+          43.4749695
+         ],
+         [
+          39.8955583,
+          43.4748718
+         ],
+         [
+          39.8957823,
+          43.4749378
+         ],
+         [
+          39.8957276,
+          43.4750355
+         ],
+         [
+          39.8955037,
+          43.4749695
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w58732026",
+      "hotel_id": "n4665769643",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4665769643"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2857674222",
+     "name": "Лидия",
+     "address": null,
+     "location": [
+      39.8930332,
+      43.4783951
+     ],
+     "stars": null,
+     "building_id": "w81148444",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.37,
+    "confidence": 0.673,
+    "matched": [
+     {
+      "characteristic_key": "derived:fc5a0a02526e",
+      "match": "full",
+      "margin": 2.0,
+      "label": "рядом с Сириусом",
+      "explanation": "До ближайшей точки контура «Сириус» 238 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+      "fact": {
+       "fact_id": "f_wish_fc5a0a02526e_n2857674222",
+       "characteristic_key": "derived:fc5a0a02526e",
+       "value": true,
+       "unit": null,
+       "label": "рядом с Сириусом",
+       "confidence": 0.6731920210889899,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_boundary_f_spatial_n2857674222_29f70c649759"
+       ],
+       "subject": "hotel:n2857674222",
+       "qualifiers": {
+        "source_text": "рядом с Сириусом",
+        "target_id": "n11843545833",
+        "target_location": [
+         39.893361,
+         43.4762701
+        ],
+        "native_characteristic_key": "spatial:29f70c649759",
+        "native_value": 238,
+        "native_unit": "м",
+        "native_op": "lte",
+        "native_threshold": 500.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_boundary_f_spatial_n2857674222_29f70c649759"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:440ef598188f",
+      "match": "unknown",
+      "margin": null,
+      "label": "на время конференции",
+      "explanation": "Пожелание «на время конференции» задаёт временное совпадение с мероприятием, но даты поездки и сама конференция не названы: в Сочи/Сириусе на осень 2026 найдено несколько разных…",
+      "fact": {
+       "fact_id": "f_wish_440ef598188f_n2857674222",
+       "characteristic_key": "derived:440ef598188f",
+       "value": null,
+       "unit": null,
+       "label": "на время конференции",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2857674222",
+       "qualifiers": {
+        "source_text": "на время конференции",
+        "wish_status": "needs_input",
+        "checked_sources": [
+         "database",
+         "web"
+        ],
+        "tool_calls": 4
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8930332,
+      43.4783951
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148444",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8928256,
+          43.4783726
+         ],
+         [
+          39.8928558,
+          43.4783129
+         ],
+         [
+          39.8930039,
+          43.4783524
+         ],
+         [
+          39.893022,
+          43.4783166
+         ],
+         [
+          39.8931165,
+          43.4783418
+         ],
+         [
+          39.8930682,
+          43.4784372
+         ],
+         [
+          39.8928256,
+          43.4783726
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148444",
+      "hotel_id": "n2857674222",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n2857674222"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w1425602206",
+     "name": "Барракуда",
+     "address": null,
+     "location": [
+      39.8909305,
+      43.4777828
+     ],
+     "stars": null,
+     "building_id": "w1425602206",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3622,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5789805853",
+     "name": "У Рузанны",
+     "address": null,
+     "location": [
+      39.8942649,
+      43.4739989
+     ],
+     "stars": null,
+     "building_id": "w81153278",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3596,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w81148473",
+     "name": "Алиса",
+     "address": "Лазурная улица 7Б",
+     "location": [
+      39.8955446,
+      43.4745051
+     ],
+     "stars": null,
+     "building_id": "w81148473",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3591,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w161855127",
+     "name": "Александрит",
+     "address": "Лазурная улица 6/1",
+     "location": [
+      39.8958152,
+      43.4746856
+     ],
+     "stars": null,
+     "building_id": "w161855127",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3585,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12084593369",
+     "name": "Kenguru",
+     "address": null,
+     "location": [
+      39.8939967,
+      43.4786544
+     ],
+     "stars": null,
+     "building_id": "w81148521",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3559,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n3205771821",
+     "name": "Белая Лилия",
+     "address": null,
+     "location": [
+      39.8955019,
+      43.4781862
+     ],
+     "stars": null,
+     "building_id": "w81148569",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3538,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w81148508",
+     "name": "Солнышко",
+     "address": "Аллейная улица 2/2",
+     "location": [
+      39.89426,
+      43.4787611
+     ],
+     "stars": null,
+     "building_id": "w81148508",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3479,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4709550761",
+     "name": "Остров \"Сочи\"",
+     "address": "улица Чкалова 2/1",
+     "location": [
+      39.8966897,
+      43.4752444
+     ],
+     "stars": null,
+     "building_id": "w81148616",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3451,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7164495127",
+     "name": "Олимпия",
+     "address": "чКАЛОВА 5Б",
+     "location": [
+      39.8963623,
+      43.4747047
+     ],
+     "stars": null,
+     "building_id": "w81148628",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3422,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n1599762384",
+     "name": "Иветтис",
+     "address": null,
+     "location": [
+      39.8971065,
+      43.475483
+     ],
+     "stars": null,
+     "building_id": "w81148624",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.3347,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.8915966,
+    43.474253,
+    39.8956885,
+    43.4783951
+   ],
+   "camera": {
+    "center": [
+     39.8940168,
+     43.4758473
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 27268
+ },
+ "search_message_id": "711b7a7b-dbb6-4534-a8a1-8c35171a2970"
+}

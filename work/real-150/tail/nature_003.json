@@ -1,0 +1,1892 @@
+{
+ "id": "2e1efeed-1d9d-4c5a-b6a2-d13d8badbf4f",
+ "title": "Сочи: рядом с водопадами",
+ "updated_at": "2026-10-28T21:11:51.075426Z",
+ "messages": [
+  {
+   "id": "025cfd8e-9926-41d8-9681-876cb2cfbe40",
+   "role": "user",
+   "content": "Сочи, нужен отель рядом с водопадами",
+   "created_at": "2026-10-28T21:11:51.075426Z"
+  },
+  {
+   "id": "bee8ea9a-f009-456e-80e9-d6dcf2d8573c",
+   "role": "assistant",
+   "content": "Нашёл 11 отелей. Первые в списке: Рест Мацеста, Рест Мацеста и МТЦ \"Спутник\". Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T21:11:51.075426Z"
+  }
+ ],
+ "effective_query": "Сочи, отель рядом с водопадами",
+ "search": {
+  "query_id": "9c0c90c391c2970d",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:d97d73ae8d17",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "рядом с водопадами"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, отель рядом с водопадами",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n9080245018",
+     "name": "Рест Мацеста",
+     "address": null,
+     "location": [
+      39.8030917,
+      43.5463683
+     ],
+     "stars": null,
+     "building_id": "w53213955",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.375,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 675.7 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n9080245018",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7493225,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n9080245018",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8030917,
+      43.5463683
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53213955",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8028318,
+          43.5464164
+         ],
+         [
+          39.8028869,
+          43.5462832
+         ],
+         [
+          39.8029636,
+          43.5462258
+         ],
+         [
+          39.8030709,
+          43.546222
+         ],
+         [
+          39.8031567,
+          43.5462621
+         ],
+         [
+          39.8031603,
+          43.5463412
+         ],
+         [
+          39.8033116,
+          43.5463755
+         ],
+         [
+          39.8032564,
+          43.5465087
+         ],
+         [
+          39.8028318,
+          43.5464164
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53213955",
+      "hotel_id": "n9080245018",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n9080245018"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9079226417",
+     "name": "Рест Мацеста",
+     "address": null,
+     "location": [
+      39.8030267,
+      43.5463687
+     ],
+     "stars": null,
+     "building_id": "w53213955",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.374,
+    "confidence": 0.749,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 680.8 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n9079226417",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.74894,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n9079226417",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8030267,
+      43.5463687
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53213955",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8028318,
+          43.5464164
+         ],
+         [
+          39.8028869,
+          43.5462832
+         ],
+         [
+          39.8029636,
+          43.5462258
+         ],
+         [
+          39.8030709,
+          43.546222
+         ],
+         [
+          39.8031567,
+          43.5462621
+         ],
+         [
+          39.8031603,
+          43.5463412
+         ],
+         [
+          39.8033116,
+          43.5463755
+         ],
+         [
+          39.8032564,
+          43.5465087
+         ],
+         [
+          39.8028318,
+          43.5464164
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53213955",
+      "hotel_id": "n9079226417",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n9079226417"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r5674746",
+     "name": "МТЦ \"Спутник\"",
+     "address": null,
+     "location": [
+      39.8063936,
+      43.5395355
+     ],
+     "stars": 4,
+     "building_id": "w598410262",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.364,
+    "confidence": 0.727,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 971.5 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_r5674746",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7271375,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:r5674746",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8063936,
+      43.5395355
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w598410262",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8060746,
+          43.5396124
+         ],
+         [
+          39.8061802,
+          43.5395832
+         ],
+         [
+          39.8062246,
+          43.5396673
+         ],
+         [
+          39.806119,
+          43.5396966
+         ],
+         [
+          39.8060746,
+          43.5396124
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w598410262",
+      "hotel_id": "r5674746",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_r5674746"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4369173790",
+     "name": "Корпус 3 \"Высотный\"",
+     "address": null,
+     "location": [
+      39.8056311,
+      43.5397789
+     ],
+     "stars": null,
+     "building_id": "w53214933",
+     "height_m": 64.0,
+     "levels": 20,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.363,
+    "confidence": 0.727,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 974.3 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n4369173790",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7269275000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n4369173790",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8056311,
+      43.5397789
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53214933",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8053884,
+          43.539753
+         ],
+         [
+          39.8054288,
+          43.5397202
+         ],
+         [
+          39.8053928,
+          43.5396953
+         ],
+         [
+          39.8055634,
+          43.5395663
+         ],
+         [
+          39.8056241,
+          43.5396085
+         ],
+         [
+          39.8056679,
+          43.5396118
+         ],
+         [
+          39.8057344,
+          43.5395974
+         ],
+         [
+          39.8058035,
+          43.539765
+         ],
+         [
+          39.8057585,
+          43.5397748
+         ],
+         [
+          39.8057718,
+          43.5398144
+         ],
+         [
+          39.8057675,
+          43.5398215
+         ],
+         [
+          39.805761,
+          43.5398256
+         ],
+         [
+          39.8057523,
+          43.5398275
+         ],
+         [
+          39.8056918,
+          43.5398192
+         ],
+         [
+          39.8056804,
+          43.5398571
+         ],
+         [
+          39.8054408,
+          43.5398189
+         ],
+         [
+          39.8054483,
+          43.5397768
+         ],
+         [
+          39.8053965,
+          43.5397699
+         ],
+         [
+          39.8053913,
+          43.5397648
+         ],
+         [
+          39.8053887,
+          43.5397597
+         ],
+         [
+          39.8053884,
+          43.539753
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53214933",
+      "hotel_id": "n4369173790",
+      "is_hotel": true,
+      "height_m": 64.0,
+      "min_height_m": 0,
+      "levels": 20,
+      "height_fact_id": "f_height_n4369173790"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4369348389",
+     "name": "Сочинский оздоровительный комплекс \"Спутник\"",
+     "address": "Новороссийское шоссе 17/1",
+     "location": [
+      39.8056505,
+      43.539527
+     ],
+     "stars": null,
+     "building_id": "w53214934",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.363,
+    "confidence": 0.725,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 998.4 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n4369348389",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.72512,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n4369348389",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8056505,
+      43.539527
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53214934",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8055268,
+          43.53953
+         ],
+         [
+          39.8055513,
+          43.5394458
+         ],
+         [
+          39.8056653,
+          43.5394166
+         ],
+         [
+          39.8057637,
+          43.5394863
+         ],
+         [
+          39.8057302,
+          43.5395689
+         ],
+         [
+          39.8056162,
+          43.5395932
+         ],
+         [
+          39.8055268,
+          43.53953
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53214934",
+      "hotel_id": "n4369348389",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4369348389"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53215178",
+     "name": "Зеленая роща",
+     "address": "Курортный проспект 120",
+     "location": [
+      39.8010207,
+      43.5424312
+     ],
+     "stars": null,
+     "building_id": "w53215178",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.362,
+    "confidence": 0.725,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1004.3 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_w53215178",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7246775,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:w53215178",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8010207,
+      43.5424312
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53215178",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8005395,
+          43.5423431
+         ],
+         [
+          39.8006772,
+          43.542324
+         ],
+         [
+          39.8007354,
+          43.542317
+         ],
+         [
+          39.8009129,
+          43.5422957
+         ],
+         [
+          39.8015326,
+          43.5425479
+         ],
+         [
+          39.8018292,
+          43.5425087
+         ],
+         [
+          39.8018454,
+          43.542595
+         ],
+         [
+          39.8014874,
+          43.5426373
+         ],
+         [
+          39.8008829,
+          43.5424002
+         ],
+         [
+          39.8007007,
+          43.5424219
+         ],
+         [
+          39.8005653,
+          43.5424407
+         ],
+         [
+          39.8005395,
+          43.5423431
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53215178",
+      "hotel_id": "w53215178",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53215178"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53549698",
+     "name": "Санаторий \"Зеленая роща\"",
+     "address": null,
+     "location": [
+      39.7997571,
+      43.5435052
+     ],
+     "stars": 4,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.361,
+    "confidence": 0.722,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1033.3 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_w53549698",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7225025,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:w53549698",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7997571,
+      43.5435052
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "n4370076889",
+     "name": "Корпус 1",
+     "address": "Новороссийское шоссе",
+     "location": [
+      39.805964,
+      43.5387088
+     ],
+     "stars": null,
+     "building_id": "w53214913",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.36,
+    "confidence": 0.72,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1069.6 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n4370076889",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.7197800000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n4370076889",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.805964,
+      43.5387088
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53214913",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8056441,
+          43.5385057
+         ],
+         [
+          39.8057284,
+          43.5384395
+         ],
+         [
+          39.8057206,
+          43.5384343
+         ],
+         [
+          39.8057764,
+          43.5383905
+         ],
+         [
+          39.8058085,
+          43.538412
+         ],
+         [
+          39.8058231,
+          43.5384005
+         ],
+         [
+          39.8062974,
+          43.5387183
+         ],
+         [
+          39.806135,
+          43.5388456
+         ],
+         [
+          39.8056914,
+          43.5385484
+         ],
+         [
+          39.8056989,
+          43.5385425
+         ],
+         [
+          39.8056441,
+          43.5385057
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53214913",
+      "hotel_id": "n4370076889",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n4370076889"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51041044",
+     "name": "Лотос",
+     "address": "аллея Челтенхема 5Б",
+     "location": [
+      39.7927645,
+      43.5492607
+     ],
+     "stars": null,
+     "building_id": "w51041044",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.343,
+    "confidence": 0.687,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1508.7 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_w51041044",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.6868475,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:w51041044",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7927645,
+      43.5492607
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51041044",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7926096,
+          43.5492731
+         ],
+         [
+          39.7926154,
+          43.549177
+         ],
+         [
+          39.7929513,
+          43.5491878
+         ],
+         [
+          39.7929455,
+          43.5492839
+         ],
+         [
+          39.7928439,
+          43.5493512
+         ],
+         [
+          39.7927764,
+          43.5492785
+         ],
+         [
+          39.7926096,
+          43.5492731
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51041044",
+      "hotel_id": "w51041044",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_w51041044"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8253762590",
+     "name": "Барские бани",
+     "address": null,
+     "location": [
+      39.830666,
+      43.5420515
+     ],
+     "stars": null,
+     "building_id": "w77769871",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.337,
+    "confidence": 0.675,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1672.6 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n8253762590",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.674555,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n8253762590",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.830666,
+      43.5420515
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w77769871",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8305823,
+          43.5420051
+         ],
+         [
+          39.8307107,
+          43.5419632
+         ],
+         [
+          39.8307693,
+          43.5420576
+         ],
+         [
+          39.8306409,
+          43.5420995
+         ],
+         [
+          39.8305823,
+          43.5420051
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w77769871",
+      "hotel_id": "n8253762590",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n8253762590"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6991122885",
+     "name": "Manjari",
+     "address": null,
+     "location": [
+      39.7946768,
+      43.5572326
+     ],
+     "stars": null,
+     "building_id": "w102322205",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.335,
+    "confidence": 0.671,
+    "matched": [
+     {
+      "characteristic_key": "derived:d97d73ae8d17",
+      "match": "partial",
+      "margin": null,
+      "label": "рядом с водопадами",
+      "explanation": "Расстояние до ближайшего объекта «водопадами» по прямой, м: 1723.3 (нужно не более 2000).",
+      "fact": {
+       "fact_id": "f_wish_d97d73ae8d17_n6991122885",
+       "characteristic_key": "derived:d97d73ae8d17",
+       "value": true,
+       "unit": null,
+       "label": "рядом с водопадами",
+       "confidence": 0.6707525,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n7342982234"
+       ],
+       "subject": "hotel:n6991122885",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "рядом с водопадами",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 2
+       }
+      },
+      "geo_refs": [
+       "g_poi_n7342982234"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7946768,
+      43.5572326
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w102322205",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7944427,
+          43.5572852
+         ],
+         [
+          39.7944584,
+          43.5570513
+         ],
+         [
+          39.794547,
+          43.5570563
+         ],
+         [
+          39.7945406,
+          43.5571916
+         ],
+         [
+          39.7947114,
+          43.5571967
+         ],
+         [
+          39.7947079,
+          43.5572751
+         ],
+         [
+          39.7947062,
+          43.5572966
+         ],
+         [
+          39.7944427,
+          43.5572852
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w102322205",
+      "hotel_id": "n6991122885",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n6991122885"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w739663665",
+     "name": "\"Море и Лес\"",
+     "address": "улица Володарского 44/2",
+     "location": [
+      39.8819443,
+      43.5331068
+     ],
+     "stars": null,
+     "building_id": "w739663665",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6276321485",
+     "name": "\"У Тёмы\"",
+     "address": "Енисейская улица 541",
+     "location": [
+      39.6077381,
+      43.6866181
+     ],
+     "stars": null,
+     "building_id": "w690523843",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w54437496",
+     "name": "777",
+     "address": "Орбитовская улица 9",
+     "location": [
+      39.9047123,
+      43.4634661
+     ],
+     "stars": null,
+     "building_id": "w54437496",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9b438c3c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d13efdb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ff57e2bc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2bf0b950_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7d4c28b2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17b3b2d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_323c8b64_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_601138ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b1afc1cf_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3b8f7ee5_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a3df370a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5173d16f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_17eb6a66_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1c096d5f_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_849b202a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1a6a6a69_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_50f5321d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8572c140_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a1cf78d6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fe0e4a16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d6a96a44_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dca521bd_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8b6c1f72_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_012ba578_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unknown",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": "Ни одно пожелание не проверено."
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7111825664",
+     "name": "Art Home",
+     "address": null,
+     "location": [
+      39.9739733,
+      43.4141076
+     ],
+     "stars": null,
+     "building_id": "w209179371",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w1115133765",
+     "name": "art-apartment",
+     "address": "улица Тюльпанов 23А",
+     "location": [
+      39.9352438,
+      43.4199978
+     ],
+     "stars": null,
+     "building_id": "w1115133765",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12183637632",
+     "name": "Atmosfera hotel&SPA",
+     "address": null,
+     "location": [
+      39.7198569,
+      43.6137393
+     ],
+     "stars": null,
+     "building_id": "w140689178",
+     "height_m": 25.6,
+     "levels": 8,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fb193f19_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_47cfa93a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_acaa6800_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_86e1dd93_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b4ac8633_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e508b90b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4729c95e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5ce870f8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6a74e97a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_3510bda7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_88d7ad68_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9136c5a9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_103520d4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_500e6e50_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77ec4d41_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c3acd055_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_33ff5838_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f4e1b446_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8297d1c9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d8b7ce4b_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_5c9dc491_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6c500795_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ec6942af_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_893f853d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "requirement_unmet",
+    "closeness": 0.0,
+    "characteristic_key": "derived:d97d73ae8d17",
+    "condition": "рядом с водопадами",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.7927645,
+    43.5387088,
+    39.830666,
+    43.5572326
+   ],
+   "camera": {
+    "center": [
+     39.8030917,
+     43.5463683
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 19277
+ },
+ "search_message_id": "bee8ea9a-f009-456e-80e9-d6dcf2d8573c"
+}

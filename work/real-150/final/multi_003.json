@@ -1,0 +1,69 @@
+{
+ "id": "3429ebd8-85e9-42a9-a72e-69d9923599a3",
+ "title": "У моря, с бассейном",
+ "updated_at": "2026-10-28T21:19:28.088222Z",
+ "messages": [
+  {
+   "id": "964c8e82-0220-4c5d-8698-909bc7646647",
+   "role": "user",
+   "content": "Хочу к морю, Сочи или Анапа, нужен бассейн",
+   "created_at": "2026-10-28T21:19:28.088222Z"
+  },
+  {
+   "id": "c73f7672-87cd-4939-89d1-0c9340308e58",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T21:19:28.088222Z"
+  }
+ ],
+ "effective_query": "Сочи или Анапа, у моря, с бассейном",
+ "search": {
+  "query_id": "5fb0d97e9686834b",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "distance_to_sea",
+     "op": "lte",
+     "value": 10.0,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "у моря"
+    },
+    {
+     "characteristic_key": "facility:52f08014edee",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с бассейном"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "Сочи или Анапа, у моря, с бассейном",
+   "corrections": [
+    {
+     "original": "Сочи или Анапа",
+     "corrected": "Сочи или Анапа",
+     "reason": "Указаны два разных города без предпочтения; нужно уточнить, какой из них выбрать."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3357
+ },
+ "search_message_id": "c73f7672-87cd-4939-89d1-0c9340308e58"
+}
