@@ -3,6 +3,7 @@ import { characteristicTitle, factLabel } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
 import type { Locale } from "@/shared/i18n"
+import { i18n } from "@/shared/i18n/instance"
 import type { ComparisonRow } from "./compare-diff"
 import { type CellGlyph, type CompareCell, type CompareLine, hotelCells } from "./compare-model"
 
@@ -42,12 +43,21 @@ function factRank(fact: FactBrief): number | undefined {
   return undefined
 }
 
+function heightText(fact: FactBrief, locale: Locale): string | undefined {
+  if (fact.characteristic_key !== "building_height" || typeof fact.value !== "number")
+    return undefined
+  const value = new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(fact.value)
+  return i18n.t("explore:supplier.metres", { lng: locale, value })
+}
+
 export function factCell(fact: FactBrief, locale: Locale): CompareCell {
   const text =
+    heightText(fact, locale) ??
     wishVerdict(
       { characteristic_key: fact.characteristic_key, match: "full", label: fact.label, fact },
       locale,
-    ) ?? factLabel(fact, locale)
+    ) ??
+    factLabel(fact, locale)
   return { text, glyph: factGlyph(fact), factId: fact.fact_id, rank: factRank(fact) }
 }
 

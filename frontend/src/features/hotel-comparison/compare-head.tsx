@@ -20,23 +20,6 @@ export interface CompareHeadProps {
   readonly onRemove: () => void
 }
 
-function CompareRating({ rating }: { readonly rating: Supplier["rating"] | undefined }) {
-  const { t } = useTranslation()
-  const { locale } = useLocale()
-  if (typeof rating?.total !== "number") return null
-  const score = new Intl.NumberFormat(locale, {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  }).format(rating.total)
-  return (
-    <span className={styles.rating}>
-      {rating.reviews_count
-        ? t("explore:compare.ratingReviews", { score, count: rating.reviews_count })
-        : score}
-    </span>
-  )
-}
-
 function CompareFit({ match }: { readonly match: SearchResult }) {
   const { t } = useTranslation()
   const total = match.matched.length
@@ -119,7 +102,6 @@ export function CompareHead({
       </div>
       <div className={styles.meta}>
         <HotelStars value={stars} />
-        <CompareRating rating={supplier?.rating} />
         {match ? <CompareFit match={match} /> : null}
       </div>
       <ComparePrice id={id} />
