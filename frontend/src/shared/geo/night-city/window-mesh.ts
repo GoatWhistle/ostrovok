@@ -15,8 +15,10 @@ export interface WindowMesh {
 export const WINDOW_STRIDE = 6
 const EARTH_CIRCUMFERENCE_M = 2 * Math.PI * 6371008.8
 const WALL_OFFSET_M = 0.15
-const MIN_WALL_M = 2
+const MIN_SEGMENT_M = 0.25
+const MIN_RING_M = 8
 const MIN_HEIGHT_M = 3
+const SHOPFRONT_FROM_M = 12
 
 function mercator(lon: number, lat: number): readonly [number, number] {
   const sin = Math.sin((lat * Math.PI) / 180)
@@ -95,12 +97,19 @@ function pushRing(
   indices: number[],
 ) {
   const outward = signedArea(points) > 0 ? 1 : -1
+  let perimeter = 0
+  for (let index = 0; index + 1 < points.length; index += 1) {
+    const [x1, y1] = points[index] ?? [0, 0]
+    const [x2, y2] = points[index + 1] ?? [0, 0]
+    perimeter += Math.hypot(x2 - x1, y2 - y1)
+  }
+  if (perimeter < MIN_RING_M) return
   let along = 0
   for (let index = 0; index + 1 < points.length; index += 1) {
     const from = points[index] ?? [0, 0]
     const to = points[index + 1] ?? [0, 0]
     const length = Math.hypot(to[0] - from[0], to[1] - from[1])
-    if (length >= MIN_WALL_M)
+    if (length >= MIN_SEGMENT_M)
       pushWall({ from, to, along, outward }, building, seed, vertices, indices)
     along += length
   }
@@ -116,7 +125,7 @@ export function buildWindowMesh(
   const indices: number[] = []
   for (const building of buildings) {
     if (building.height - building.base < MIN_HEIGHT_M) continue
-    const seed = seedOf(building.id)
+    const seed = seedOf(building.id) + (building.height >= SHOPFRONT_FROM_M ? 1 : 0)
     for (const ring of building.rings)
       pushRing(project(ring, frame), building, seed, vertices, indices)
   }

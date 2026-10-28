@@ -23,14 +23,17 @@ in vec2 v_wall;
 in float v_seed;
 out vec4 fragColor;
 float hash(vec2 cell) {
-  return fract(sin(dot(cell, vec2(12.9898, 78.233)) + v_seed * 917.0) * 43758.5453);
+  return fract(sin(dot(cell, vec2(12.9898, 78.233)) + fract(v_seed) * 917.0) * 43758.5453);
 }
 void main() {
   vec2 grid = vec2(v_wall.x / 3.1, v_wall.y / 3.2);
   vec2 local = fract(grid);
   vec2 cell = floor(grid);
-  float door = step(0.5, u_glass) * step(cell.y, 0.5) * step(0.84, hash(vec2(cell.x, 41.0)));
-  float window = step(0.22, local.x) * step(local.x, 0.72) * step(0.24, local.y) * step(local.y, 0.7);
+  float shop = step(1.0, v_seed) * step(cell.y, 0.5) * step(0.5, u_glass);
+  float door = step(0.5, u_glass) * step(cell.y, 0.5) * step(mix(0.84, 0.7, shop), hash(vec2(cell.x, 41.0)));
+  float upper = step(0.22, local.x) * step(local.x, 0.72) * step(0.24, local.y) * step(local.y, 0.7);
+  float front = step(0.06, local.x) * step(local.x, 0.94) * step(0.1, local.y) * step(local.y, 0.8);
+  float window = mix(upper, front, shop);
   float entry = step(0.3, local.x) * step(local.x, 0.68) * step(local.y, 0.7);
   float pane = mix(window, entry, door);
   if (pane < 0.5) discard;
