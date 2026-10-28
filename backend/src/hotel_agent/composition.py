@@ -34,8 +34,11 @@ class Providers:
     place_lookup: PlaceLookupPort
     catalog_matcher: MatchHotelCatalog | None = None
     hotel_offer_search: HotelOfferSearchPort | None = None
+    review_llm: LLMPort | None = None
 
     async def aclose(self) -> None:
+        if self.review_llm is not None:
+            await self.review_llm.aclose()
         if self.hotel_offer_search is not None:
             await self.hotel_offer_search.aclose()
         await self.llm.aclose()
@@ -60,6 +63,7 @@ def build_providers(settings: Settings, logger: LoggerPort) -> Providers:
     return Providers(
         registry=registry,
         llm=build_llm(settings, registry, logger),
+        review_llm=build_review_llm(settings, registry, logger),
         clock=clock,
         logger=logger,
         uow=uow,
@@ -99,6 +103,24 @@ def build_llm(
                 fallback_model=settings.llm_fallback_model,
                 timeout_s=settings.llm_timeout_s,
             )
+
+
+def build_review_llm(
+    settings: Settings, registry: CharacteristicRegistryPort, logger: LoggerPort
+) -> LLMPort | None:
+    model = settings.llm_review_model
+    if settings.llm_provider is not LLMProvider.OPENAI_COMPAT or not model:
+        return None
+    if model == settings.llm_model:
+        return None
+    return OpenAICompatLLM(
+        registry=registry,
+        logger=logger,
+        base_url=_required(settings, settings.llm_base_url, "LLM_BASE_URL"),
+        api_key=_required(settings, settings.llm_api_key, "LLM_API_KEY"),
+        model=model,
+        timeout_s=settings.llm_timeout_s,
+    )
 
 
 def _required(settings: Settings, value: str | None, name: str) -> str:

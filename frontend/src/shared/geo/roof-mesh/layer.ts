@@ -5,6 +5,7 @@ import {
   MercatorCoordinate,
 } from "maplibre-gl"
 import { linkProgram } from "../textured-building/material"
+import { roofFog } from "./fog"
 import type { RoofMesh } from "./mesh"
 import { ROOF_FRAGMENT, ROOF_VERTEX } from "./shaders"
 import { ROOF_STRIDE } from "./writer"
@@ -16,7 +17,18 @@ const ATTRIBUTES = [
   ["a_tone", 1, 24],
   ["a_base", 1, 28],
 ] as const
-const UNIFORMS = ["u_matrix", "u_grow", "u_sun", "u_light", "u_ambient", "u_palette"] as const
+const UNIFORMS = [
+  "u_matrix",
+  "u_grow",
+  "u_sun",
+  "u_light",
+  "u_ambient",
+  "u_palette",
+  "u_fog_depth",
+  "u_fog_color",
+  "u_horizon_color",
+  "u_fog_blend",
+] as const
 const layers = new WeakMap<MapLibreMap, RoofMeshLayer>()
 
 export interface RoofLight {
@@ -109,6 +121,7 @@ export class RoofMeshLayer implements CustomLayerInterface {
     gl.uniform3f(this.uniforms.u_light ?? null, ...lighting.light)
     gl.uniform3f(this.uniforms.u_ambient ?? null, ...lighting.ambient)
     gl.uniform3fv(this.uniforms.u_palette ?? null, lighting.palette.flat())
+    if (this.map) this.fog(gl, this.map, input.defaultProjectionData.mainMatrix)
     gl.enable(gl.DEPTH_TEST)
     gl.depthFunc(gl.LEQUAL)
     gl.depthMask(true)
@@ -116,6 +129,14 @@ export class RoofMeshLayer implements CustomLayerInterface {
     gl.disable(gl.CULL_FACE)
     gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0)
     gl.bindVertexArray(null)
+  }
+
+  private fog(gl: WebGL2RenderingContext, map: MapLibreMap, matrix: ArrayLike<number>) {
+    const fog = roofFog(map, matrix)
+    gl.uniform2f(this.uniforms.u_fog_depth ?? null, ...fog.depth)
+    gl.uniform3f(this.uniforms.u_fog_color ?? null, ...fog.color)
+    gl.uniform3f(this.uniforms.u_horizon_color ?? null, ...fog.horizon)
+    gl.uniform3f(this.uniforms.u_fog_blend ?? null, ...fog.blend)
   }
 
   onRemove() {

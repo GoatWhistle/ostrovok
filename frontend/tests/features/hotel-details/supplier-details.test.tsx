@@ -8,7 +8,6 @@ import ru from "../../../src/shared/i18n/locales/ru/explore.json"
 
 type Details = components["schemas"]["SupplierDetails"]
 
-const SOURCE = "Ostrovok"
 const metres = (value: number) => ru.supplier.metres.replace("{{value}}", String(value))
 const kilometres = (value: string) => ru.supplier.kilometres.replace("{{value}}", value)
 
@@ -42,17 +41,33 @@ const DETAILS: Details = {
   },
   amenity_groups: [
     {
-      name: "Pool and beach",
+      name: ru.supplierAmenityGroup.poolBeach,
       amenities: [
-        { name: "Heated outdoor pool", free: true },
+        { name: ru.supplierAmenity.heatedOutdoorPool, free: true },
         { name: "Sun loungers", free: false },
       ],
     },
+    {
+      name: ru.supplierAmenityGroup.internet,
+      amenities: [{ name: ru.supplierAmenity.freeWifi, free: true }],
+    },
   ],
-  description: [{ title: "Location", paragraphs: ["A hotel in Sochi."] }],
+  description: [
+    {
+      title: "Location",
+      paragraphs: [
+        "A hotel in <b>Sochi</b>&nbsp;centre. The lobby has a bar. Guests use a private beach nearby.",
+      ],
+    },
+    { title: "Rooms", paragraphs: ["Every room has a TV."] },
+  ],
   nearby: [
-    { name: "Pearl Beach", distance_m: 168, kind: "BEACH" },
     { name: "Sochi Arboretum", distance_m: 1400, kind: "PARK" },
+    { name: "Pearl Beach", distance_m: 168, kind: "BEACH" },
+    { name: "Park 3", distance_m: 2100, kind: "PARK" },
+    { name: "Park 4", distance_m: 2200, kind: "PARK" },
+    { name: "Park 5", distance_m: 2300, kind: "PARK" },
+    { name: "Far Tower", distance_m: 15000, kind: "VIEWPOINT" },
   ],
   rating: { total: 7.9, reviews_count: 302, detailed: [{ name: "location", score: 9.4 }] },
   check_in_from: "15:00",
@@ -85,52 +100,57 @@ function empty(): Details {
   }
 }
 
-function show(details: Details) {
+function show(details: Details, wishes: readonly string[] = []) {
   return render(
     <LocaleProvider instance={createI18n("ru")}>
-      <SupplierDetails details={details} source={SOURCE} />
+      <SupplierDetails details={details} wishes={wishes} />
     </LocaleProvider>,
   )
 }
 
 describe("supplier details", () => {
-  it("shows the building facts and the register record without repeating the cover", () => {
+  it("leaves the register record and the supplier page link out of the panel", () => {
     show(DETAILS)
+    expect(screen.queryByText(/R232024007508/)).toBeNull()
+    expect(screen.queryByRole("link")).toBeNull()
     expect(screen.queryByRole("img")).toBeNull()
-    expect(screen.getByText("19")).toBeTruthy()
-    expect(screen.getByText("1973")).toBeTruthy()
-    expect(screen.queryByText("15:00")).toBeNull()
-    expect(screen.getByText(ru.supplier.registryLink).getAttribute("href")).toBe(
-      DETAILS.facts.registry?.link,
+  })
+
+  it("lists the nearest five places first with supplier distances", async () => {
+    show(DETAILS)
+    const places = screen.getByText("Pearl Beach").closest("ul") as HTMLElement
+    expect(within(places).getAllByRole("listitem")).toHaveLength(5)
+    expect(within(places).getAllByRole("listitem")[0]?.textContent).toContain(metres(168))
+    expect(within(places).getByText(kilometres("1,4"))).toBeTruthy()
+    expect(screen.queryByText("Far Tower")).toBeNull()
+    await userEvent.click(screen.getByText(ru.supplier.moreNearby.replace("{{count}}", "1")))
+    expect(screen.getByText("Far Tower")).toBeTruthy()
+  })
+
+  it("shows the useful amenities up front and the full grouped list on demand", async () => {
+    show(DETAILS)
+    expect(screen.getByText(ru.supplierAmenity.freeWifi)).toBeTruthy()
+    expect(screen.queryByText("Sun loungers")).toBeNull()
+    await userEvent.click(screen.getByText(ru.supplier.allAmenities.replace("{{count}}", "3")))
+    expect(screen.getByText(ru.supplierAmenityGroup.poolBeach)).toBeTruthy()
+    expect(screen.getByText("Sun loungers").parentElement?.textContent).not.toContain(
+      ru.supplier.free,
     )
-    expect(
-      screen.getByText(ru.supplier.page.replace("{{source}}", SOURCE)).getAttribute("href"),
-    ).toBe(DETAILS.page_url)
   })
 
-  it("keeps supplier distances in metres and kilometres without inventing values", async () => {
-    show(DETAILS)
-    await userEvent.click(screen.getByText(ru.supplier.nearby.replace("{{count}}", "2")))
-    const places = screen.getByText("Pearl Beach").closest("ul")
-    expect(places).toBeTruthy()
-    expect(within(places as HTMLElement).getByText(metres(168))).toBeTruthy()
-    expect(within(places as HTMLElement).getByText(kilometres("1,4"))).toBeTruthy()
-  })
-
-  it("marks only the amenities the supplier declared free", async () => {
-    show(DETAILS)
-    await userEvent.click(screen.getByText(ru.supplier.amenities.replace("{{count}}", "2")))
-    const free = screen.getByText("Heated outdoor pool")
-    const paid = screen.getByText("Sun loungers")
-    expect(free.querySelector("svg")).toBeTruthy()
-    expect(paid.querySelector("svg")).toBeNull()
+  it("leads the description with sentences that match the wishes as plain text", async () => {
+    const { container } = show(DETAILS, [ru.supplier.wishTopics.sea])
+    const lead = container.querySelector("mark")?.closest("p")
+    expect(lead?.textContent?.startsWith("Guests use a private beach nearby.")).toBe(true)
+    expect(container.textContent).not.toContain("<b>")
+    expect(screen.getByText(ru.supplier.aboutWish)).toBeTruthy()
+    await userEvent.click(screen.getByRole("button", { name: ru.supplier.showMore }))
+    expect(screen.getByText("Rooms")).toBeTruthy()
+    expect(screen.getByRole("button", { name: ru.supplier.showLess })).toBeTruthy()
   })
 
   it("renders nothing invented when the supplier published no facts", () => {
-    show(empty())
-    expect(screen.queryByRole("img")).toBeNull()
-    expect(screen.queryByText(ru.supplier.registryLink)).toBeNull()
-    expect(screen.queryByText(ru.supplier.about)).toBeNull()
-    expect(screen.getByText(ru.supplier.page.replace("{{source}}", SOURCE))).toBeTruthy()
+    const { container } = show(empty())
+    expect(container.textContent).toBe("")
   })
 })

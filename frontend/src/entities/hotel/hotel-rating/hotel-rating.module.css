@@ -20,3 +20,20 @@
   composes: captionText from "../../../shared/styles/compose.module.css";
   white-space: nowrap;
 }
+
+.rating[data-size="body"] {
+  gap: var(--space-8);
+}
+
+.rating[data-size="body"] .score {
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+}
+
+.rating[data-size="body"] .reviews {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+}

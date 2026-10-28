@@ -39,7 +39,7 @@ function mercator(lon: number, lat: number): Local {
   return [(lon + 180) / 360, 0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)]
 }
 
-function projector(origin: LonLat) {
+export function projector(origin: LonLat) {
   const [ox, oy] = mercator(origin[0], origin[1])
   const metres = EARTH_CIRCUMFERENCE_M * Math.cos((origin[1] * Math.PI) / 180)
   return (points: readonly LonLat[]): Local[] =>

@@ -19,8 +19,8 @@ export function ProofOverlay({ frame, anchors }: ProofOverlayProps) {
         <g ref={anchors.ray} style={{ opacity: sunset.opacity * Math.min(1, sunset.draw * 3) }}>
           <path className={styles.cone} />
           <path className={styles.ray} />
-          <circle className={styles.glow} r={22} />
-          <circle className={styles.sun} r={7} />
+          <circle className={styles.glow} r={40} />
+          <circle className={styles.sun} r={11} />
         </g>
         <g className={styles.rings}>
           {RINGS.map((id, step) => (

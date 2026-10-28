@@ -5,7 +5,7 @@ import { AgentBubble } from "../chat-bubble"
 import { useThinkingClock } from "../thinking-clock"
 import styles from "./agent-progress.module.css"
 import { ProgressSteps, STEP_LABEL } from "./progress-steps"
-import { progressView, STEPS } from "./progress-view"
+import { progressView, STEPS, stepOf } from "./progress-view"
 import { UnderstoodChips } from "./understood-chips"
 
 const STAGE_KEYS = {
@@ -28,17 +28,17 @@ export function AgentProgress({ events }: { readonly events: readonly ChatProgre
   const view = progressView(events)
   const step = STEPS[view.step] ?? "parse"
   const latest = events.findLast((event) => isStage(event.stage))
-  const detail =
-    latest && isStage(latest.stage)
-      ? t(STAGE_KEYS[latest.stage], { ...latest })
-      : t("explore:chat.thinkingHint")
+  const lead = t(STEP_LABEL[step])
+  const current = latest && isStage(latest.stage) && stepOf(latest.stage) === view.step
+  const stage = current ? t(STAGE_KEYS[latest.stage], { ...latest }) : ""
+  const detail = stage && stage !== lead ? stage : t("explore:chat.thinkingHint")
   const understood = view.wishes.length > 0 || view.location !== undefined
   return (
     <AgentBubble motion="loading" busy>
       <div className={styles.progress}>
         <div className={styles.head}>
           <p className={styles.lead} role="status">
-            {t(STEP_LABEL[step])}
+            {lead}
           </p>
           <p className={styles.elapsed}>
             <span className="visually-hidden">{t("explore:chat.elapsed", { value: elapsed })}</span>

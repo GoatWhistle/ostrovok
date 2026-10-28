@@ -6,6 +6,7 @@ import styles from "./conversation-list.module.css"
 export interface HistoryRowProps {
   readonly title: string
   readonly current: boolean
+  readonly pending?: boolean
   readonly onOpen: () => void
   readonly onRename: (title: string) => Promise<unknown>
   readonly onDelete: () => Promise<unknown>
@@ -15,7 +16,14 @@ type Mode = "idle" | "rename" | "confirm"
 
 const TITLE_LIMIT = 80
 
-export function HistoryRow({ title, current, onOpen, onRename, onDelete }: HistoryRowProps) {
+export function HistoryRow({
+  title,
+  current,
+  pending = false,
+  onOpen,
+  onRename,
+  onDelete,
+}: HistoryRowProps) {
   const { t } = useTranslation()
   const [mode, setMode] = useState<Mode>("idle")
   const [draft, setDraft] = useState(title)
@@ -38,6 +46,15 @@ export function HistoryRow({ title, current, onOpen, onRename, onDelete }: Histo
     }
     void run(() => onRename(next))
   }
+  if (pending)
+    return (
+      <li className={styles.row} data-current={current} data-pending="true" aria-busy="true">
+        <span className={styles.pendingTitle} title={title}>
+          <span className={styles.itemTitle}>{title}</span>
+          <span className="visually-hidden">{t("explore:chat.historyPending")}</span>
+        </span>
+      </li>
+    )
   if (mode === "rename")
     return (
       <li className={styles.row} data-mode="rename">

@@ -1,0 +1,33 @@
+.list {
+  composes: plainList from "../../../shared/styles/compose.module.css";
+  display: grid;
+}
+
+.list > li + li {
+  box-shadow: var(--shadow-divider-top);
+}
+
+.fact {
+  composes: bodySmText from "../../../shared/styles/compose.module.css";
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.icon {
+  color: var(--text-muted);
+}
+
+.meta {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+  display: grid;
+  justify-items: end;
+  text-align: end;
+}
+
+.date {
+  font-variant-numeric: var(--font-numeric);
+}
+
+.empty {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}

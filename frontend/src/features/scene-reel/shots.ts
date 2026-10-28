@@ -22,7 +22,7 @@ export const HOTEL: Coordinates = [39.904065, 43.4451502]
 export const SEA_MINUTES = walk.properties.estimated_minutes
 export const SUNSET_AZIMUTH = 250
 export const RAY_METERS = 1100
-export const CONE_DEGREES = 4
+export const CONE_DEGREES = 10
 export const ROUTE: readonly Coordinates[] = walk.geometry.coordinates.map(
   ([lon = 0, lat = 0]) => [lon, lat] as const,
 )

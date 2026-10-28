@@ -7,6 +7,7 @@
   display: block;
   inline-size: 100%;
   aspect-ratio: 16 / 10;
+  max-block-size: min(62vh, 34rem);
   border-radius: var(--radius-md);
   object-fit: cover;
   background-color: var(--surface-sunken);
@@ -75,6 +76,7 @@
   background-color: var(--surface-media-scrim);
   color: var(--text-on-media);
   font-variant-numeric: tabular-nums;
+  backdrop-filter: var(--backdrop-glass);
 }
 
 @media (max-width: 47.99rem) {

@@ -27,13 +27,22 @@
 }
 
 .bar:has(textarea:focus-visible) {
-  outline: var(--focus-ring-width) solid var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
+  outline: var(--hairline) solid var(--border-strong);
 }
 
 .bar > form {
   flex: 1;
   min-inline-size: 0;
+}
+
+.attached {
+  justify-self: stretch;
+  inline-size: auto;
+  min-inline-size: 0;
+  max-inline-size: none;
+  margin: var(--space-8) var(--space-12);
+  box-shadow: var(--shadow-ring);
+  animation: none;
 }
 
 .panel {

@@ -24,7 +24,7 @@ export interface LabelColors {
 }
 
 const PREFIX = "basemap-"
-const SKIPPED = ["pois", "shield"]
+const SKIPPED = ["pois", "shield", "oneway"]
 const PLACES = ["places_country", "places_region", "places_locality"]
 export const BASEMAP_PLACES_FROM = 7
 
@@ -66,9 +66,19 @@ function singleName(layer: LayerSpecification, lang: string): LayerSpecification
   const name: DataDrivenPropertyValueSpecification<string> = [
     "coalesce",
     ["get", `name:${lang}`],
-    ["get", "name"],
+    lang === "ru" ? ["get", "name"] : "",
   ]
-  return { ...layer, layout: { ...layer.layout, "text-field": name } }
+  const layout = { ...layer.layout, "text-field": name }
+  if (!layer.id.endsWith("places_subplace")) return { ...layer, layout }
+  return {
+    ...layer,
+    layout: {
+      ...layout,
+      "text-transform": "none",
+      "text-letter-spacing": 0.02,
+      "text-size": ["interpolate", ["linear"], ["zoom"], 11, 10, 14, 12, 18, 16],
+    },
+  }
 }
 
 function laterPlaces(layer: LayerSpecification): LayerSpecification {
@@ -121,7 +131,7 @@ function paintLabels(map: MapLibreMap, colors: LabelColors) {
     map.setPaintProperty(
       id,
       "text-color",
-      id.includes("places") ? colors.labelStrong : colors.label,
+      id.includes("places") && !id.includes("subplace") ? colors.labelStrong : colors.label,
     )
     map.setPaintProperty(id, "text-halo-color", colors.labelHalo)
     map.setPaintProperty(id, "text-halo-width", 1.4)

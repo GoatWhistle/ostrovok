@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 from collections.abc import Mapping, Sequence
 
 from hotel_agent.application.agent.semantic_review import (
@@ -13,7 +14,8 @@ from hotel_agent.domain.entities import Fact
 from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import COUNTED_QUALITIES, MatchQuality, Scored
 
-BATCH = 12
+BATCH = 6
+WAVE_SPAN = 12
 
 
 def fact_evidence(fact: Fact | None) -> dict[str, object] | None:
@@ -87,9 +89,16 @@ def recommendation_claim(
     )
 
 
+def wave_width(limit: int, size: int) -> int:
+    span = max(1, math.ceil(limit / WAVE_SPAN)) * WAVE_SPAN
+    return max(1, math.ceil(span / size))
+
+
 class RecommendationReview:
-    def __init__(self, review: SemanticReview, max_candidates: int = 60) -> None:
-        self._review, self._max_candidates = review, max_candidates
+    def __init__(
+        self, review: SemanticReview, max_candidates: int = 60, batch: int = BATCH
+    ) -> None:
+        self._review, self._max_candidates, self._batch_size = review, max_candidates, batch
 
     async def check(
         self,
@@ -112,11 +121,12 @@ class RecommendationReview:
                 )
             else:
                 eligible.append((hotel, scored))
+        size = self._batch_size
         batches = [
-            eligible[offset : min(offset + BATCH, self._max_candidates)]
-            for offset in range(0, min(len(eligible), self._max_candidates), BATCH)
+            eligible[offset : min(offset + size, self._max_candidates)]
+            for offset in range(0, min(len(eligible), self._max_candidates), size)
         ]
-        wave = max(1, -(-limit // BATCH))
+        wave = wave_width(limit, size)
         for start in range(0, len(batches), wave):
             reports = await asyncio.gather(
                 *(self._batch(query, parsed, batch) for batch in batches[start : start + wave])
@@ -125,10 +135,11 @@ class RecommendationReview:
                 accepted.extend(report.accepted_ids)
                 rejected.extend(report.rejected_ids)
                 rejections.extend(report.rejections)
-                if report.unavailable or len(accepted) >= limit:
-                    return ReviewResult(
-                        tuple(accepted), tuple(rejected), report.unavailable, tuple(rejections)
-                    )
+            unavailable = any(report.unavailable for report in reports)
+            if unavailable or len(accepted) >= limit:
+                return ReviewResult(
+                    tuple(accepted), tuple(rejected), unavailable, tuple(rejections)
+                )
         return ReviewResult(tuple(accepted), tuple(rejected), rejections=tuple(rejections))
 
     async def _batch(

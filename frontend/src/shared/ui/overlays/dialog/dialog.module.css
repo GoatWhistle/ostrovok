@@ -11,6 +11,19 @@
 
 .dialog::backdrop {
   background-color: var(--surface-scrim);
+  animation: var(--motion-fade-in);
+}
+
+.dialog:not(.start) {
+  animation: var(--motion-scale-in);
+}
+
+.dialog:not(.start)[data-state="closed"] {
+  animation: var(--motion-scale-out);
+}
+
+.dialog[data-state="closed"]::backdrop {
+  animation: var(--motion-fade-out);
 }
 
 .header {
@@ -48,12 +61,4 @@
   margin: 0;
   padding: var(--space-8) var(--space-8) var(--space-8) var(--space-16);
   padding-block-start: max(var(--space-8), env(safe-area-inset-top));
-}
-
-.start::backdrop {
-  animation: var(--motion-fade-in);
-}
-
-.start[data-state="closed"]::backdrop {
-  animation: var(--motion-fade-out);
 }

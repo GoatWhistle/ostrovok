@@ -9,7 +9,14 @@ const NEON: AppearancePackage = {
   palette: NEON_TOKENS,
   classPrefix: "--map-neon-class-",
   materials: { hotel: "textured", verticalGradient: true, roofToken: null },
-  effects: { windows: true, facades: false, roofs: false, lights: true, roadGlow: true },
+  effects: {
+    windows: true,
+    facades: false,
+    roofs: false,
+    trees: false,
+    lights: true,
+    roadGlow: true,
+  },
   mini: { terrain: false, volumes: false, lights: false },
 }
 

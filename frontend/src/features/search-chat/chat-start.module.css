@@ -52,6 +52,7 @@
 .text {
   composes: secondaryText from "../../shared/styles/compose.module.css";
   font-size: var(--font-size-body);
+  text-wrap: pretty;
 }
 
 .composer {

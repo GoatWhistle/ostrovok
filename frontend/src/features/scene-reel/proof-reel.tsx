@@ -15,6 +15,7 @@ import { ProofOverlay } from "./story/proof-overlay"
 
 const COMPACT_WIDTH = 500
 const GRADE = 0.22
+const SUNSET_GRADE = 0.6
 
 interface ProofReelProps {
   readonly interruption: number
@@ -61,7 +62,9 @@ export function ProofReel({ interruption, still }: ProofReelProps) {
       <div ref={map.container} className={styles.canvas} aria-hidden="true" />
       <div
         className={styles.grade}
-        style={{ opacity: GRADE + GRADE * frame.proofs.sunset.draw * frame.proofs.sunset.opacity }}
+        style={{
+          opacity: GRADE + SUNSET_GRADE * frame.proofs.sunset.draw * frame.proofs.sunset.opacity,
+        }}
         aria-hidden="true"
       />
       {shown && <ProofOverlay frame={frame} anchors={anchors} />}

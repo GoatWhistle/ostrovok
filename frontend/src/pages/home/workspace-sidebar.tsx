@@ -4,6 +4,20 @@ import styles from "./workspace-sidebar.module.css"
 
 type Workspace = ReturnType<typeof useHotelWorkspace>
 
+const PENDING_ID = "pending"
+
+function withPending(state: Workspace) {
+  if (!state.sending || !state.outgoing || state.conversationId)
+    return { activeId: state.conversationId, conversations: state.history }
+  const entry = {
+    id: PENDING_ID,
+    title: state.outgoing,
+    updatedAt: new Date().toISOString(),
+    pending: true,
+  }
+  return { activeId: PENDING_ID, conversations: [entry, ...state.history] }
+}
+
 export interface WorkspaceSidebarProps {
   readonly state: Workspace
   readonly sidebar: ChatSidebarState
@@ -11,8 +25,7 @@ export interface WorkspaceSidebarProps {
 
 export function WorkspaceSidebar({ state, sidebar }: WorkspaceSidebarProps) {
   const list = {
-    activeId: state.conversationId,
-    conversations: state.history,
+    ...withPending(state),
     onOpen: state.openConversation,
     onRename: state.renameConversation,
     onDelete: state.deleteConversation,

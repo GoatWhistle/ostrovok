@@ -77,7 +77,7 @@ function derived(
 }
 
 describe("wish verdicts", () => {
-  it("turns measured values into short answers and keeps the method as a note", () => {
+  it("replaces the wish label with a short answer and hides method notes", () => {
     render(
       <LocaleProvider>
         <MatchRows
@@ -105,6 +105,7 @@ describe("wish verdicts", () => {
       screen.getByRole("button", { name: ru.cards.moreWishes.replace("{{count}}", "1") }),
     )
     expect(screen.getByText(ru.wish.incomplete)).toBeTruthy()
-    expect(screen.getAllByText("method note").length).toBe(3)
+    expect(screen.queryAllByText("method note")).toHaveLength(0)
+    expect(screen.queryByText("quiet")).toBeNull()
   })
 })

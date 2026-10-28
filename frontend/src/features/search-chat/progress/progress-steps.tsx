@@ -9,6 +9,13 @@ export const STEP_LABEL: Readonly<Record<StepId, MessageKey>> = {
   answer: "explore:chat.progress.step.answer",
 }
 
+const STEP_SHORT: Readonly<Record<StepId, MessageKey>> = {
+  parse: "explore:chat.progress.short.parse",
+  hotels: "explore:chat.progress.short.hotels",
+  wishes: "explore:chat.progress.short.wishes",
+  answer: "explore:chat.progress.short.answer",
+}
+
 type StepState = "done" | "current" | "todo"
 
 const STATE_LABEL: Readonly<Record<StepState, MessageKey>> = {
@@ -30,6 +37,10 @@ export function ProgressSteps({ current }: { readonly current: number }) {
         const state = stateOf(index, current)
         return (
           <li key={step} className={styles.step} data-state={state}>
+            <span className={styles.bar} aria-hidden="true" />
+            <span className={styles.stepName} aria-hidden="true">
+              {t(STEP_SHORT[step])}
+            </span>
             <span className="visually-hidden">
               {t("explore:chat.progress.stepAria", {
                 step: t(STEP_LABEL[step]),

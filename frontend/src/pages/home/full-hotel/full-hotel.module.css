@@ -10,11 +10,13 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-8);
-  padding: var(--space-8) var(--space-16);
+  padding-block: var(--space-8);
+  padding-inline: max(var(--space-16), calc((100% - var(--hotel-page-width)) / 2));
   box-shadow: var(--shadow-divider-bottom);
 }
 .content {
-  padding: var(--space-24);
+  padding-block: var(--space-24);
+  padding-inline: max(var(--space-24), calc((100% - var(--hotel-page-width)) / 2));
   outline: none;
 }
 @media (max-width: 47.99rem) {

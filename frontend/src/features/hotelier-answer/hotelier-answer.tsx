@@ -120,7 +120,11 @@ export function HotelierAnswer({ hotelId, onEditFact }: HotelierAnswerProps) {
       />
     )
   return (
-    <div className={styles.workspace} data-view={mobile.view}>
+    <div
+      className={styles.workspace}
+      data-view={mobile.view}
+      data-empty={(questions.isSuccess && !items.length) || undefined}
+    >
       <aside
         ref={mobile.queue}
         className={styles.queue}

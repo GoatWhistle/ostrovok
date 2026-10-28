@@ -1,3 +1,4 @@
+import { amenityName } from "@/entities/hotel"
 import type { HotelSummary } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import type { Locale } from "@/shared/i18n"
@@ -127,8 +128,7 @@ export function amenityLines(input: SupplierInput): readonly CompareLine[] {
   }
   const rows = names.map<CompareLine>((name) => ({
     key: `amenity:${name}`,
-    title: name,
-    userText: true,
+    title: amenityName(name, locale).text,
     cells: hotelCells(
       listed,
       (id) => indexes.get(id),

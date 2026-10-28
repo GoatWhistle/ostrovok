@@ -74,6 +74,7 @@
   --drawer-width: 320px;
   --map-dock-inset: 13.5rem;
   --landing-copy: 34rem;
+  --hotel-page-width: 60rem;
   --landing-visual-compact: 46dvh;
   --thumb-panel: 56px;
   --select-layer-min: 200px;
@@ -97,4 +98,10 @@
   --chat-history-width: 300px;
   --chat-history-height: 360px;
   --legend-swatch: 22px;
+}
+
+@media (max-width: 47.99rem) {
+  :root {
+    --header-height: 52px;
+  }
 }

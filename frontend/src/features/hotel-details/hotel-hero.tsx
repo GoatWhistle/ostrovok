@@ -1,9 +1,9 @@
-import { HotelStars } from "@/entities/hotel"
+import { HotelRating, HotelStars } from "@/entities/hotel"
 import type { HotelSummary } from "@/shared/api/hotel-types"
 import type { components } from "@/shared/api/schema.gen"
 import { sourceUrl } from "@/shared/api/source-url"
-import { useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Icon, type IconName } from "@/shared/ui"
+import { useTranslation } from "@/shared/i18n"
+import { Icon } from "@/shared/ui"
 import { HotelCover } from "./hotel-cover"
 import styles from "./hotel-hero.module.css"
 
@@ -12,8 +12,8 @@ type Supplier = components["schemas"]["SupplierDetails"]
 export interface HotelHeroProps {
   readonly hotel: HotelSummary
   readonly supplier: Supplier | undefined
+  readonly source?: string | null | undefined
   readonly titleId: string
-  readonly onRooms: (() => void) | undefined
 }
 
 function coverPhotos(hotel: HotelSummary, supplier: Supplier | undefined): string[] {
@@ -27,44 +27,44 @@ function coverPhotos(hotel: HotelSummary, supplier: Supplier | undefined): strin
 
 function useHeroFacts(supplier: Supplier | undefined) {
   const { t } = useTranslation()
-  const { locale } = useLocale()
   if (!supplier) return []
-  const score = supplier.rating?.total
-  const rooms = supplier.facts.rooms_number
-  const facts: { key: string; icon: IconName; text: string }[] = []
-  if (score)
-    facts.push({
-      key: "rating",
-      icon: "star",
-      text: t("explore:hotelCover.rating", {
-        score: new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(score),
-        count: supplier.rating?.reviews_count ?? 0,
-      }),
-    })
-  if (supplier.check_in_from)
-    facts.push({
-      key: "in",
-      icon: "calendar",
-      text: t("explore:hotelCover.checkIn", { time: supplier.check_in_from }),
-    })
-  if (supplier.check_out_until)
-    facts.push({
-      key: "out",
-      icon: "calendar",
-      text: t("explore:hotelCover.checkOut", { time: supplier.check_out_until }),
-    })
-  if (rooms)
-    facts.push({
-      key: "rooms",
-      icon: "room",
-      text: t("explore:hotelCover.rooms", { count: rooms }),
-    })
-  return facts
+  const { rooms_number: rooms, floors_number: floors, year_built: built } = supplier.facts
+  const renovated = supplier.facts.year_renovated
+  return [
+    supplier.check_in_from
+      ? t("explore:hotelCover.checkIn", { time: supplier.check_in_from })
+      : undefined,
+    supplier.check_out_until
+      ? t("explore:hotelCover.checkOut", { time: supplier.check_out_until })
+      : undefined,
+    rooms ? t("explore:hotelCover.rooms", { count: rooms }) : undefined,
+    floors ? t("explore:hotelCover.floors", { count: floors }) : undefined,
+    built ? t("explore:hotelCover.built", { year: built }) : undefined,
+    renovated ? t("explore:hotelCover.renovated", { year: renovated }) : undefined,
+  ].filter((text): text is string => Boolean(text))
 }
 
-export function HotelHero({ hotel, supplier, titleId, onRooms }: HotelHeroProps) {
+function SupplierLink({ url, source }: { readonly url: string; readonly source: string }) {
   const { t } = useTranslation()
+  const label = t("explore:supplier.open", { source })
+  return (
+    <a
+      className={styles.external}
+      href={url}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label={label}
+      title={label}
+    >
+      <Icon name="external" size="sm" />
+    </a>
+  )
+}
+
+export function HotelHero({ hotel, supplier, source, titleId }: HotelHeroProps) {
   const facts = useHeroFacts(supplier)
+  const score = supplier?.rating?.total ?? undefined
+  const pageUrl = supplier ? sourceUrl(supplier.page_url) : undefined
   return (
     <header className={styles.hero}>
       <HotelCover key={hotel.id} photos={coverPhotos(hotel, supplier)} name={hotel.name} />
@@ -73,7 +73,10 @@ export function HotelHero({ hotel, supplier, titleId, onRooms }: HotelHeroProps)
           <p id={titleId} className={styles.name} lang="ru">
             {hotel.name}
           </p>
-          <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+          <span className={styles.badges}>
+            <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
+            {pageUrl ? <SupplierLink url={pageUrl} source={source ?? ""} /> : null}
+          </span>
         </div>
         {hotel.address ? (
           <p className={styles.address}>
@@ -82,21 +85,14 @@ export function HotelHero({ hotel, supplier, titleId, onRooms }: HotelHeroProps)
           </p>
         ) : null}
       </div>
-      {facts.length ? (
-        <ul className={styles.facts}>
-          {facts.map((fact) => (
-            <li key={fact.key} className={styles.fact}>
-              <Icon name={fact.icon} size="sm" />
-              {fact.text}
-            </li>
+      {score || facts.length ? (
+        <div className={styles.facts}>
+          <HotelRating score={score} reviews={supplier?.rating?.reviews_count ?? 0} size="body" />
+          {facts.map((text) => (
+            <span key={text} className={styles.fact}>
+              {text}
+            </span>
           ))}
-        </ul>
-      ) : null}
-      {onRooms ? (
-        <div className={styles.actions}>
-          <Button variant="secondary" icon="calendar" onClick={onRooms}>
-            {t("explore:offers.viewRooms")}
-          </Button>
         </div>
       ) : null}
     </header>

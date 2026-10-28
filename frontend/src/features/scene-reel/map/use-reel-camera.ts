@@ -29,6 +29,7 @@ const LABEL_ENTER = 0.3
 const LABEL_SHIFT = 4
 const PING_OPACITY = 0.5
 const PING_SCALE = 3
+const SUNSET_LABEL_METERS = 240
 
 export interface ReelAnchors {
   readonly sea: RefObject<HTMLDivElement | null>
@@ -147,7 +148,13 @@ export function useReelCamera(
     paintNoiseRoads(current, colors.routeGlow, quiet.draw * quiet.opacity * (1 - 0.5 * quiet.label))
     const { sea, sunset } = frame.proofs
     place(current, anchors.sea.current, along(ROUTE, sea.draw), sea, frame.pulse)
-    place(current, anchors.sunset.current, drawRay(current, anchors, frame), sunset, frame.pulse)
+    drawRay(current, anchors, frame)
+    const sunsetAt = offset(
+      HOTEL,
+      SUNSET_AZIMUTH,
+      Math.max(1, Math.min(SUNSET_LABEL_METERS, RAY_METERS * sunset.draw)),
+    )
+    place(current, anchors.sunset.current, sunsetAt, sunset, frame.pulse)
     place(current, anchors.quiet.current, HOTEL, quiet, frame.pulse)
   })
   return anchors

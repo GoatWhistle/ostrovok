@@ -6,6 +6,7 @@ import { DateStepper, HourStepper } from "./scene-time-fields"
 import styles from "./scene-time-panel.module.css"
 import { SunFacts, weatherText } from "./scene-time-sun"
 import { SunArc } from "./sun-arc"
+import { type SunPreview, usePreviewedSun } from "./sun-preview"
 import { weatherIcon } from "./weather-icon"
 
 type Weather = components["schemas"]["Weather"]
@@ -23,28 +24,37 @@ interface SceneTimePanelProps {
   readonly weatherPending: boolean
   readonly onDate: (value: string) => void
   readonly onHour: (value: number) => void
+  readonly onScrub?: (value: number) => void
+  readonly preview?: SunPreview
 }
 
 export function SceneTimePanel({
   date,
   minDate,
   maxDate,
-  hour,
-  altitude,
-  azimuth,
+  hour: committed,
+  altitude: high,
+  azimuth: base,
   sunset,
   sunrise,
   weather,
   weatherPending,
   onDate,
   onHour,
+  onScrub,
+  preview,
 }: SceneTimePanelProps) {
+  const live = usePreviewedSun(preview)
+  const hour = live ? Math.round(live.hour) : committed
+  const altitude = live?.position.altitude ?? high
+  const azimuth = live?.position.azimuth ?? base
   const { t } = useTranslation()
   const { locale } = useLocale()
   const sunsetHour = zoneHour(sunset)
   const sunriseHour = zoneHour(sunrise)
   return (
     <Popover
+      placement="start"
       label={`${t("explore:weather.scene")}: ${weatherText(weather, weatherPending, locale)}`}
       icon={weatherIcon(
         weather?.status === "available" ? weather.weather_code : undefined,
@@ -60,12 +70,13 @@ export function SceneTimePanel({
         <strong>{t("explore:weather.scene")}</strong>
         <span>{weatherText(weather, weatherPending, locale)}</span>
         <SunArc
-          hour={hour}
+          hour={committed}
           sunrise={sunriseHour ?? 0}
           sunset={sunsetHour ?? 23}
           label={t("explore:weather.arc")}
           clock={t("explore:weather.hour", { value: hour })}
           onHour={onHour}
+          {...(onScrub ? { onScrub } : {})}
         />
         <div className={styles.fields}>
           <DateStepper date={date} minDate={minDate} maxDate={maxDate} onDate={onDate} />

@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
-import { useBasemaps, useMapCatalog } from "@/entities/map-data"
+import {
+  buildingIds,
+  drawnVolumes,
+  useBasemaps,
+  useMapCatalog,
+  useNightCity,
+} from "@/entities/map-data"
 import type { Camera, HotelSummary, SearchResult } from "@/shared/api/hotel-types"
 import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
@@ -16,8 +22,6 @@ import { tintForTime } from "@/shared/geo/time-tint"
 import { useLocale } from "@/shared/i18n"
 import { useReducedMotion } from "@/shared/motion"
 import { useMapAppearance, useMapColors } from "@/shared/theme"
-import { buildingIds, drawnVolumes } from "./night-city/night-city-data"
-import { useNightCity } from "./night-city/use-night-city"
 import { useMapQuality } from "./quality/use-map-quality"
 import { useMapCamera } from "./rendering/use-map-camera"
 import { useRouteDraw } from "./rendering/use-route-draw"

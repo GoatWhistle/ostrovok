@@ -4,6 +4,7 @@
   inset-inline-end: calc(var(--space-16) + var(--map-overlay-right, 0px));
   z-index: var(--layer-map-controls);
   display: grid;
+  justify-items: end;
   align-items: start;
   gap: var(--space-8);
 }
@@ -11,15 +12,19 @@
 .group {
   composes: floatingSurface from "../../shared/styles/compose.module.css";
   display: grid;
+  inline-size: var(--target-min);
   overflow: hidden;
 }
 
-.control,
-.compass {
+.group > button {
   --button-radius: 0;
   --button-text: var(--text-primary);
 
   inline-size: var(--target-min);
+  min-inline-size: var(--target-min);
+  padding-inline: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .group > * + * {
@@ -30,39 +35,37 @@
   rotate: var(--map-bearing, 0deg);
 }
 
-@media (max-width: 63.99rem) {
-  .controls[data-full-map="true"] {
-    grid-template-columns: repeat(2, var(--target-min));
-  }
-  .controls[data-full-map="true"] > .group:nth-last-child(2) {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, var(--target-min));
-  }
-}
-
-.group[hidden] {
-  display: none;
-}
-
 .sun {
   display: grid;
   justify-items: end;
 }
 
+.sun > button {
+  --button-radius: var(--radius-md);
+
+  inline-size: var(--target-min);
+  min-inline-size: var(--target-min);
+  padding-block: var(--space-6);
+  padding-inline: 0;
+  border-radius: var(--radius-md);
+}
+
+.sun > button > span:first-child {
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+}
+
 @media (max-width: 47.99rem) {
   .controls {
-    justify-items: end;
     gap: var(--space-6);
   }
 }
 
 @media (max-width: 47.99rem) and (pointer: coarse) {
-  .group:has(> :nth-child(2):last-child),
-  .group:has(> :nth-child(4)) > :nth-child(odd) {
+  .group[data-group="zoom"] {
     display: none;
-  }
-
-  .group:has(> :nth-child(4)) > :nth-child(2) {
-    border-block-start: none;
   }
 }

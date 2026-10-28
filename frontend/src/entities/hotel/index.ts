@@ -1,6 +1,8 @@
+export { amenityGroupName, amenityName, type SupplierText } from "./amenity/amenity-name"
 export { useFactMutation } from "./fact.mutations"
 export { useHotelGeometry } from "./geometry/use-hotel-geometry"
 export {
+  hotelDetailsOptions,
   useFact,
   useGeoFeatures,
   useHotel,
@@ -9,6 +11,7 @@ export {
   useHotelScene,
   useHotelSearch,
 } from "./hotel.queries"
+export { HotelRating } from "./hotel-rating/hotel-rating"
 export { HotelResult, HotelSummaryCard } from "./hotel-result/hotel-result"
 export { HotelStars } from "./hotel-stars/hotel-stars"
 export { useHotelRoom } from "./hotel-stay/hotel-room"

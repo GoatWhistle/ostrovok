@@ -24,6 +24,7 @@
   --text-danger: var(--red-700);
   --text-success: var(--green-700);
   --text-warning: var(--amber-700);
+  --rating-star: var(--amber-400);
   --text-conflict: var(--violet-700);
   --text-on-inverse: var(--night-50);
   --text-on-highlight: var(--night-950);
@@ -84,6 +85,7 @@
   --shadow-color-strong: color-mix(in oklab, var(--night-950) 18%, transparent);
   --scrollbar-thumb: color-mix(in oklab, var(--night-950) 22%, transparent);
   --scrollbar-thumb-hover: color-mix(in oklab, var(--night-950) 38%, transparent);
+  --filter-map-dim: none;
 }
 
 :root[data-theme="dark"] {
@@ -111,6 +113,7 @@
   --text-danger: var(--red-300);
   --text-success: var(--green-300);
   --text-warning: var(--amber-300);
+  --rating-star: var(--amber-300);
   --text-conflict: var(--violet-300);
   --text-on-inverse: var(--night-950);
   --text-on-highlight: var(--lime-200);
@@ -171,4 +174,5 @@
   --shadow-color-strong: color-mix(in oklab, #000000 55%, transparent);
   --scrollbar-thumb: color-mix(in oklab, var(--night-50) 20%, transparent);
   --scrollbar-thumb-hover: color-mix(in oklab, var(--night-50) 36%, transparent);
+  --filter-map-dim: brightness(0.7) saturate(0.8) contrast(1.06);
 }

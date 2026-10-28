@@ -30,6 +30,7 @@ from hotel_agent.adapters.semantic.index import DocumentIndex
 from hotel_agent.adapters.semantic.polza import PolzaEmbeddings
 from hotel_agent.adapters.semantic.search import SemanticSearch
 from hotel_agent.adapters.weather.met_norway import MetNorwayConditions
+from hotel_agent.application import progress
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview
 from hotel_agent.application.agent.explore_data import DataExplorer
 from hotel_agent.application.agent.recommendation_review import RecommendationReview
@@ -72,6 +73,7 @@ from hotel_agent.settings import Settings, load_settings
 def create_app(settings: Settings | None = None) -> FastAPI:
     config = settings or load_settings(os.environ)
     logger = StdlibLogger("hotel_agent", info=True)
+    progress.time_stages(logger)
     providers = build_providers(config, logger)
     terrain_tiles = CountryTerrainTiles(
         config.seed_dir / "sochi" / "dem.tif", config.terrain_cache_dir
@@ -142,6 +144,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     get_hotel_details = GetHotelDetails(providers.uow, providers.hotel_offer_search)
     semantic_review = SemanticReview(providers.llm, logger)
+    verdict_review = SemanticReview(providers.llm, logger, first=providers.review_llm)
     search_hotels = SearchHotels(
         providers.llm,
         providers.uow,
@@ -170,7 +173,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         SearchAreas(config.seed_dir / "russia-admin1.geojson"),
         semantic,
         EvaluateWindowViews(providers.uow, WindowViews(terrain_tiles, view_geometry)),
-        RecommendationReview(semantic_review),
+        RecommendationReview(verdict_review),
         landmark_review=semantic_review,
         geographic_objects=GeographicObjects(view_geometry),
     )

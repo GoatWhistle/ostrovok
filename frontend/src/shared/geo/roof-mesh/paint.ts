@@ -29,7 +29,7 @@ const NIGHT_AMBIENT = 0.6
 const SKY_SHARE = 0.3
 const LOW_SKY_SHARE = 0.55
 
-function rgb(hex: string): Rgb {
+export function rgb(hex: string): Rgb {
   const value = Number.parseInt(hex.replace("#", ""), 16)
   if (!Number.isFinite(value)) return [1, 1, 1]
   return [((value >> 16) & 255) / 255, ((value >> 8) & 255) / 255, (value & 255) / 255]
@@ -45,16 +45,31 @@ export function sunVector(azimuth: number, altitude: number): Rgb {
   return [Math.sin(az) * Math.cos(alt), -Math.cos(az) * Math.cos(alt), Math.sin(alt)]
 }
 
-export function roofLight(paint: RoofPaint): RoofLight {
-  const night = darkness(paint.altitude)
-  const warm = warmth(paint.altitude)
-  const sun = sunLight(paint.sky, paint.azimuth, paint.altitude)
-  const cycle = (list: readonly string[], length: number) =>
-    Array.from({ length }, (_, index) => list[index % Math.max(1, list.length)] ?? paint.wall)
-  const ambient = mixHex("#ffffff", paint.sky.sky, SKY_SHARE + (LOW_SKY_SHARE - SKY_SHARE) * warm)
+export interface LightRig {
+  readonly sun: Rgb
+  readonly light: Rgb
+  readonly ambient: Rgb
+}
+
+export function lightRig(sky: SkyColors, azimuth: number, altitude: number): LightRig {
+  const night = darkness(altitude)
+  const warm = warmth(altitude)
+  const sun = sunLight(sky, azimuth, altitude)
+  const ambient = mixHex("#ffffff", sky.sky, SKY_SHARE + (LOW_SKY_SHARE - SKY_SHARE) * warm)
   const day = DAY_LIGHT + (LOW_LIGHT - DAY_LIGHT) * warm
   const shade = DAY_AMBIENT + (LOW_AMBIENT - DAY_AMBIENT) * warm
   return {
+    sun: sunVector(azimuth, altitude),
+    light: scaled(rgb(sun.color), day + (NIGHT_LIGHT - day) * night),
+    ambient: scaled(rgb(ambient), shade + (NIGHT_AMBIENT - shade) * night),
+  }
+}
+
+export function roofLight(paint: RoofPaint): RoofLight {
+  const cycle = (list: readonly string[], length: number) =>
+    Array.from({ length }, (_, index) => list[index % Math.max(1, list.length)] ?? paint.wall)
+  return {
+    ...lightRig(paint.sky, paint.azimuth, paint.altitude),
     palette: [
       ...cycle(paint.pitched, ROOF_TONES),
       paint.steel,
@@ -62,9 +77,6 @@ export function roofLight(paint: RoofPaint): RoofLight {
       ...cycle(paint.gravel, GRAVEL_TONES),
       ...cycle(paint.plaster, PLASTER_TONES),
     ].map(rgb),
-    sun: sunVector(paint.azimuth, paint.altitude),
-    light: scaled(rgb(sun.color), day + (NIGHT_LIGHT - day) * night),
-    ambient: scaled(rgb(ambient), shade + (NIGHT_AMBIENT - shade) * night),
   }
 }
 

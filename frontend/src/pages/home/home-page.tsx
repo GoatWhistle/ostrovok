@@ -1,10 +1,11 @@
 import { type CSSProperties, useCallback, useRef, useState } from "react"
 import { HotelStayProvider } from "@/entities/hotel"
 import { useHotelWorkspace, type WorkspaceView } from "@/features/hotel-search"
-import { useChatSidebar } from "@/features/search-chat"
+import { type SearchChatProps, useChatSidebar } from "@/features/search-chat"
 import { useMediaQuery, useResizable, useVisualViewportHeight } from "@/shared/hooks"
 import { useDocumentTitle } from "@/shared/i18n"
 import { useInputModality, withViewTransition } from "@/shared/motion"
+import { DockBar } from "./chat-dock/dock-bar"
 import { CompareDock } from "./compare-dock"
 import { FullHotel } from "./full-hotel/full-hotel"
 import styles from "./home-page.module.css"
@@ -18,6 +19,8 @@ import { WorkspaceMap } from "./workspace-map"
 import { WorkspacePanel } from "./workspace-panel"
 import { WorkspaceSidebar } from "./workspace-sidebar"
 import { WorkspaceTabs } from "./workspace-tabs/workspace-tabs"
+
+const TAB_SURFACES: readonly string[] = ["workspace", "hotel-panel"]
 
 function useMapVisible(
   surface: ReturnType<typeof useHotelWorkspace>["surface"],
@@ -87,6 +90,28 @@ export function HomePage() {
   const mapVisible = useMapVisible(state.surface, state.view)
   const send = (message: string) => move(() => state.send(message))
   const sizes = panelStyle(panelSize.width)
+  const chat: SearchChatProps = {
+    draftKey: `chat:${state.navigation.scopeKey}`,
+    messages: state.messages,
+    conversationId: state.conversationId,
+    history: state.history,
+    search: state.search,
+    searchMessageId: state.searchMessageId,
+    outgoing: state.outgoing,
+    selectedHotel: selected?.hotel.name,
+    onClearHotel: () => move(state.closeHotel),
+    loading: state.chatLoading,
+    sending: state.sending,
+    progress: state.progress,
+    failed: state.chatFailed,
+    onSend: state.send,
+    onRetry: state.retry,
+    onShowOnMap: state.showOnMap,
+    onShowList: () => state.setView("hotels"),
+    onReset: () => state.reset(),
+    onOpenChats: chats.openChats,
+  }
+  const mapComposer = !wide && state.view === "map" && TAB_SURFACES.includes(state.surface)
   return (
     <HotelStayProvider scopeKey={state.navigation.scopeKey} stay={state.search?.parsed}>
       {start ? (
@@ -154,35 +179,23 @@ export function HomePage() {
             ) : null}
           </div>
           {start ? null : (
-            <WorkspaceChat
-              docked={docked}
-              open={dockOpen}
-              onOpenChange={setDockOpen}
-              chat={{
-                draftKey: `chat:${state.navigation.scopeKey}`,
-                messages: state.messages,
-                conversationId: state.conversationId,
-                history: state.history,
-                search: state.search,
-                searchMessageId: state.searchMessageId,
-                outgoing: state.outgoing,
-                selectedHotel: selected?.hotel.name,
-                onClearHotel: () => move(state.closeHotel),
-                loading: state.chatLoading,
-                sending: state.sending,
-                progress: state.progress,
-                failed: state.chatFailed,
-                onSend: state.send,
-                onRetry: state.retry,
-                onShowOnMap: state.showOnMap,
-                onShowList: () => state.setView("hotels"),
-                onReset: () => state.reset(),
-                onOpenChats: chats.openChats,
-              }}
-            />
+            <WorkspaceChat docked={docked} open={dockOpen} onOpenChange={setDockOpen} chat={chat} />
           )}
         </div>
         <WorkspaceTabs surface={state.surface} value={state.view} onChange={state.setView} />
+        {mapComposer ? (
+          <div className={styles.mobileDock} data-composer>
+            <DockBar
+              chat={chat}
+              variant="attached"
+              onSend={(message) => {
+                state.setView("chat")
+                state.send(message)
+              }}
+              onExpand={() => state.setView("chat")}
+            />
+          </div>
+        ) : null}
         {state.view === "hotels" ? (
           <div className={styles.mobileDock}>
             <CompareDock ids={state.compared} limit={state.limitReached} />

@@ -1,7 +1,7 @@
 import type { FeatureCollection } from "geojson"
 import type { Map as MapLibreMap } from "maplibre-gl"
-import type { MapRenderScene } from "@/entities/map-data"
 import type { WindowBuilding } from "@/shared/geo/night-city/window-mesh"
+import type { MapRenderScene } from "../map-scene.queries"
 
 export interface RegionBox {
   readonly id: string

@@ -1,7 +1,8 @@
 .scale {
   composes: monoText glassSurface inlineRow from "../../../styles/compose.module.css";
-  padding: var(--space-8) var(--space-12);
+  padding: var(--space-6) var(--space-12);
   border-radius: var(--radius-pill);
+  font-size: var(--font-size-caption);
   color: var(--text-primary);
 }
 
@@ -11,7 +12,7 @@
 }
 
 .scaleLabel {
-  min-inline-size: 7ch;
+  min-inline-size: 5ch;
   text-align: end;
 }
 

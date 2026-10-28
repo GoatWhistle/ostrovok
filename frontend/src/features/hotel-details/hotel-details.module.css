@@ -23,6 +23,12 @@
   grid-column: 1 / -1;
 }
 
+.sources {
+  padding-block-start: var(--space-8);
+  border-block-start: var(--hairline) solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
 .dock {
   display: none;
 }

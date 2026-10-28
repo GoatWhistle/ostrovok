@@ -1,5 +1,5 @@
 import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react"
-import { useId } from "react"
+import { useId, useRef, useState } from "react"
 import { useTranslation } from "@/shared/i18n"
 import styles from "./sun-arc.module.css"
 
@@ -15,6 +15,7 @@ export interface SunArcProps {
   readonly label: string
   readonly clock: string
   readonly onHour: (hour: number) => void
+  readonly onScrub?: (hour: number) => void
 }
 
 export function arcFraction(hour: number, sunrise: number, sunset: number): number {
@@ -22,9 +23,13 @@ export function arcFraction(hour: number, sunrise: number, sunset: number): numb
   return Math.min(1, Math.max(0, (hour - sunrise) / (sunset - sunrise)))
 }
 
-export function hourFromFraction(fraction: number, sunrise: number, sunset: number): number {
+export function exactHour(fraction: number, sunrise: number, sunset: number): number {
   const span = Math.max(1, sunset - sunrise)
-  return Math.round(sunrise + Math.min(1, Math.max(0, fraction)) * span)
+  return sunrise + Math.min(1, Math.max(0, fraction)) * span
+}
+
+export function hourFromFraction(fraction: number, sunrise: number, sunset: number): number {
+  return Math.round(exactHour(fraction, sunrise, sunset))
 }
 
 export function fractionFromPoint(x: number, y: number, width: number): number {
@@ -40,22 +45,40 @@ function point(fraction: number) {
   return { x: CENTER_X + RADIUS * Math.cos(angle), y: CENTER_Y - RADIUS * Math.sin(angle) }
 }
 
-export function SunArc({ hour, sunrise, sunset, label, clock, onHour }: SunArcProps) {
+export function SunArc({ hour, sunrise, sunset, label, clock, onHour, onScrub }: SunArcProps) {
   const { t } = useTranslation()
   const id = useId()
-  const fraction = arcFraction(hour, sunrise, sunset)
+  const [drag, setDrag] = useState<number | null>(null)
+  const dragged = useRef<number | null>(null)
+  const fraction = arcFraction(drag ?? hour, sunrise, sunset)
   const sun = point(fraction)
   const track = `M ${CENTER_X - RADIUS} ${CENTER_Y} A ${RADIUS} ${RADIUS} 0 0 1 ${CENTER_X + RADIUS} ${CENTER_Y}`
   const travelled = `M ${CENTER_X - RADIUS} ${CENTER_Y} A ${RADIUS} ${RADIUS} 0 0 1 ${sun.x} ${sun.y}`
 
   function move(event: ReactPointerEvent<HTMLDivElement>) {
     const box = event.currentTarget.getBoundingClientRect()
-    const next = hourFromFraction(
+    const next = exactHour(
       fractionFromPoint(event.clientX - box.left, event.clientY - box.top, box.width),
       sunrise,
       sunset,
     )
-    if (next !== hour) onHour(next)
+    if (!onScrub) {
+      if (Math.round(next) !== hour) onHour(Math.round(next))
+      return
+    }
+    if (next === dragged.current) return
+    dragged.current = next
+    setDrag(next)
+    onScrub(next)
+  }
+
+  function release(event: ReactPointerEvent<HTMLDivElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId))
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    const last = dragged.current
+    dragged.current = null
+    setDrag(null)
+    if (last !== null) onHour(Math.round(last))
   }
 
   function keys(event: ReactKeyboardEvent<HTMLDivElement>) {
@@ -86,7 +109,8 @@ export function SunArc({ hour, sunrise, sunset, label, clock, onHour }: SunArcPr
         onPointerMove={(event) => {
           if (event.currentTarget.hasPointerCapture(event.pointerId)) move(event)
         }}
-        onPointerUp={(event) => event.currentTarget.releasePointerCapture(event.pointerId)}
+        onPointerUp={release}
+        onPointerCancel={release}
         onKeyDown={keys}
       >
         <svg

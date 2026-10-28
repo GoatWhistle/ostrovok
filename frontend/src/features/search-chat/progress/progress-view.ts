@@ -29,6 +29,10 @@ const STEP_OF_STAGE: Readonly<Record<string, number>> = {
   review: 3,
 }
 
+export function stepOf(stage: string): number {
+  return STEP_OF_STAGE[stage] ?? 0
+}
+
 const STATE_OF_STATUS: Readonly<Record<string, WishState>> = {
   matched: "verified",
   needs_input: "partial",
@@ -68,7 +72,7 @@ function wishesOf(events: readonly ChatProgress[], researching: boolean): Progre
 }
 
 export function progressView(events: readonly ChatProgress[]): ProgressView {
-  const step = Math.max(0, ...events.map((event) => STEP_OF_STAGE[event.stage] ?? 0))
+  const step = Math.max(0, ...events.map((event) => stepOf(event.stage)))
   const parsed = events.findLast((event) => event.stage === "parsed")
   const researching = events.some((event) => event.stage === "research" || event.stage === "wish")
   return {

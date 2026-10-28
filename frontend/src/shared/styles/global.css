@@ -120,6 +120,17 @@ html:root[data-switching] *::after {
   animation-timing-function: var(--ease-out);
 }
 
+::view-transition-group(*.disclosure) {
+  overflow: clip;
+}
+
+::view-transition-old(*.disclosure),
+::view-transition-new(*.disclosure) {
+  block-size: auto;
+  object-fit: none;
+  object-position: top;
+}
+
 .visually-hidden {
   position: absolute;
   inset-block-start: 0;

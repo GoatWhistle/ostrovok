@@ -8,8 +8,6 @@ import { Button } from "@/shared/ui"
 import { MapAppearanceControl } from "./appearance/map-appearance-control"
 import styles from "./map-controls.module.css"
 
-const ROTATE_STEP = 30
-
 export interface MapControlsProps {
   readonly fullMap?: boolean
   readonly onExpand?: (() => void) | undefined
@@ -71,8 +69,8 @@ export function MapControls({
   const flat = useFlat(map, ready)
   return (
     <div className={styles.controls} data-full-map={fullMap} data-map-obstacle>
-      {onExpand ? (
-        <div className={styles.group} hidden={fullMap}>
+      <div className={styles.group}>
+        {onExpand && !fullMap ? (
           <Button
             variant="ghost"
             iconOnly
@@ -84,10 +82,10 @@ export function MapControls({
           >
             {t("explore:map.fullscreen")}
           </Button>
-        </div>
-      ) : null}
-      <MapAppearanceControl onChange={onAppearance} />
-      <div className={styles.group}>
+        ) : null}
+        <MapAppearanceControl onChange={onAppearance} />
+      </div>
+      <div className={styles.group} data-group="zoom">
         <Button
           variant="ghost"
           iconOnly
@@ -113,22 +111,6 @@ export function MapControls({
       </div>
       <div className={styles.group}>
         <Button
-          variant="ghost"
-          iconOnly
-          icon="rotate-left"
-          className={styles.control}
-          title={t("explore:map.rotateLeft")}
-          disabled={disabled}
-          onClick={(event) =>
-            map.current?.easeTo({
-              bearing: (map.current?.getBearing() ?? 0) - ROTATE_STEP,
-              duration: duration(event),
-            })
-          }
-        >
-          {t("explore:map.rotateLeft")}
-        </Button>
-        <Button
           ref={compass}
           variant="ghost"
           iconOnly
@@ -139,22 +121,6 @@ export function MapControls({
           onClick={(event) => map.current?.easeTo({ bearing: 0, duration: duration(event) })}
         >
           {t("explore:map.north")}
-        </Button>
-        <Button
-          variant="ghost"
-          iconOnly
-          icon="rotate-right"
-          className={styles.control}
-          title={t("explore:map.rotateRight")}
-          disabled={disabled}
-          onClick={(event) =>
-            map.current?.easeTo({
-              bearing: (map.current?.getBearing() ?? 0) + ROTATE_STEP,
-              duration: duration(event),
-            })
-          }
-        >
-          {t("explore:map.rotateRight")}
         </Button>
         <Button
           variant="ghost"
@@ -170,8 +136,6 @@ export function MapControls({
         >
           {flat ? t("explore:map.tilt") : t("explore:map.flat")}
         </Button>
-      </div>
-      <div className={styles.group}>
         <Button
           variant="ghost"
           iconOnly

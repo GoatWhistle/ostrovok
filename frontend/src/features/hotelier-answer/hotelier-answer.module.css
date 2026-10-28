@@ -6,6 +6,14 @@
   overflow: hidden;
 }
 
+.workspace[data-empty] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.workspace[data-empty] > .queue {
+  display: none;
+}
+
 .queue {
   display: grid;
   align-content: start;

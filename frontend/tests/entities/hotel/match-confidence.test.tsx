@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { MatchConfidence } from "../../../src/entities/hotel"
+import { MatchConfidence } from "../../../src/entities/hotel/match-score/match-score"
 import { LocaleProvider } from "../../../src/shared/i18n/locale-provider"
 
 function show(value: number | undefined) {
@@ -8,18 +8,16 @@ function show(value: number | undefined) {
     <LocaleProvider>
       <MatchConfidence value={value} />
     </LocaleProvider>,
-  )
+  ).container
 }
 
-describe("MatchConfidence", () => {
-  it("shows a known confidence as a percentage", () => {
-    show(0.74)
-
-    expect(screen.getByText(/74/)).not.toBeNull()
+describe("match confidence", () => {
+  it("stays hidden when the search is confident", () => {
+    expect(show(0.92).textContent).toBe("")
+    expect(show(undefined).textContent).toBe("")
   })
 
-  it("stays silent when confidence is unknown or zero", () => {
-    expect(show(undefined).container.textContent).toBe("")
-    expect(show(0).container.textContent).toBe("")
+  it("shows a low confidence as a percent", () => {
+    expect(show(0.55).textContent).toMatch(/55\s?%/)
   })
 })

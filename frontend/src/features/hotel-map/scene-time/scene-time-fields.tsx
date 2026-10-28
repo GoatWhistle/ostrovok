@@ -28,7 +28,7 @@ function Stepper({
   const id = useId()
   return (
     <div className={styles.field}>
-      <span id={id} className="visually-hidden">
+      <span id={id} className={styles.fieldLabel}>
         {label}
       </span>
       <div className={styles.stepper}>

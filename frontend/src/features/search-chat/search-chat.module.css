@@ -62,3 +62,10 @@
 .composerArea {
   composes: measure;
 }
+
+@media (max-width: 47.99rem) {
+  .header {
+    min-block-size: var(--control-height);
+    padding-block: var(--space-2);
+  }
+}

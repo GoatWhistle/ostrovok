@@ -1,6 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useMemo, useRef, useState } from "react"
-import { useMapScene, useTileVersions } from "@/entities/map-data"
 import type { AppearancePackage } from "@/shared/geo/appearance/types"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
 import { type QualityLevel, windowDensity } from "@/shared/geo/map-quality"
@@ -17,7 +16,8 @@ import { withRoofForms } from "@/shared/geo/roof-forms/layer"
 import { type SceneViewport, watchSceneViewport } from "@/shared/geo/scene-viewport"
 import type { SunPosition } from "@/shared/geo/terrain"
 import type { MapColors } from "@/shared/theme"
-import { useRoofMesh } from "../roof-mesh/use-roof-mesh"
+import { useMapScene } from "../map-scene.queries"
+import { useTileVersions } from "../map-style.queries"
 import {
   type DrawnVolume,
   type RegionBox,
@@ -25,6 +25,8 @@ import {
   rgb,
   sceneCollection,
 } from "./night-city-data"
+import { useRoofMesh } from "./use-roof-mesh"
+import { useTreeMesh } from "./use-tree-mesh"
 import { useWindowMesh } from "./use-window-mesh"
 
 export interface NightCityInput {
@@ -93,7 +95,8 @@ export function useNightCity({
   const scene = useMapScene(request)
   const excluded = useMemo(() => [...drawn.keys()], [drawn])
   const roofless = useMemo(() => [...textured], [textured])
-  useRoofMesh(mapRef, ready, scene.data, roofless, excluded, effects.roofs)
+  useRoofMesh(mapRef, ready, scene.data, roofless, drawn, effects.roofs)
+  useTreeMesh(mapRef, ready, effects.trees)
   useEffect(() => {
     const map = mapRef.current
     const data = scene.data

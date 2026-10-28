@@ -1,5 +1,5 @@
 import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
-import { PATH, roadWidth } from "./road-widths"
+import { PATH, roadWidth } from "./ground/road-widths"
 import { WORLD_WATER_FADE_TO } from "./world/water-layers"
 
 const COAST_FROM = 8

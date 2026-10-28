@@ -1,4 +1,5 @@
-import type { Map as MapLibreMap } from "maplibre-gl"
+import { LngLat, type Map as MapLibreMap } from "maplibre-gl"
+import { sourceFeatures } from "./feature-cache"
 import type { RoofInput } from "./mesh"
 
 type LonLat = readonly [number, number]
@@ -13,7 +14,7 @@ export interface RoofCandidate {
 }
 
 const ESTIMATED_HEIGHT_M = 6.4
-const MAX_ROOFS = 6000
+const MAX_ROOFS = 4500
 
 function outerRings(geometry: RoofCandidate["geometry"]): Ring[] {
   if (geometry.type === "Polygon") return [(geometry.coordinates as Ring[])[0] ?? []]
@@ -45,7 +46,7 @@ function number(value: unknown): number | null {
 
 export function tileCandidates(map: MapLibreMap, skip: ReadonlySet<string>): RoofCandidate[] {
   const pieces = new Map<string, RoofCandidate[]>()
-  for (const feature of map.querySourceFeatures("sochi-map", { sourceLayer: "buildings" })) {
+  for (const feature of sourceFeatures(map, "buildings")) {
     const id = String(feature.properties.id ?? feature.id ?? "")
     if (!id || skip.has(id)) continue
     const list = pieces.get(id) ?? []
@@ -86,6 +87,11 @@ function largest(rings: readonly Ring[]): Ring | undefined {
   return best
 }
 
+function drawnGround(map: MapLibreMap, [lon, lat]: LonLat): number | undefined {
+  if (!map.getTerrain()) return map.queryTerrainElevation([lon, lat]) ?? 0
+  return map.terrain?.getDrawnElevationForLngLat(new LngLat(lon, lat))
+}
+
 export function roofInputs(
   map: MapLibreMap,
   candidates: readonly RoofCandidate[],
@@ -97,18 +103,20 @@ export function roofInputs(
     const ring = largest(rings)
     if (!ring || ring.length < 4) return []
     const middle = centroid(ring)
+    const ground = drawnGround(map, middle)
+    if (ground === undefined) return []
     const distance = Math.hypot((middle[0] - center[0]) * scale, middle[1] - center[1])
     const extra = rings.length > 1 ? rings.filter((item) => item !== ring).flat() : []
-    return [{ candidate, ring, rings, extra, middle, distance }]
+    return [{ candidate, ring, rings, extra, ground, distance }]
   })
   placed.sort((left, right) => left.distance - right.distance)
-  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, rings, extra, middle }) => ({
+  return placed.slice(0, MAX_ROOFS).map(({ candidate, ring, rings, extra, ground }) => ({
     id: candidate.id,
     ring,
     extra,
     height: candidate.height,
     levels: candidate.levels,
     bodies: candidate.solid ? rings : [],
-    ground: map.queryTerrainElevation([middle[0], middle[1]]) ?? 0,
+    ground,
   }))
 }

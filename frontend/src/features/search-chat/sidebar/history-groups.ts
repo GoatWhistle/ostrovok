@@ -4,6 +4,7 @@ export interface HistoryEntry {
   readonly id: string
   readonly title: string
   readonly updatedAt?: string
+  readonly pending?: boolean
 }
 
 export interface HistorySection {

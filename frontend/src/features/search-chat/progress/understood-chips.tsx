@@ -16,7 +16,7 @@ const WISH_LABEL: Readonly<Record<WishState, MessageKey>> = {
 
 const DOUBTED: ReadonlySet<WishState> = new Set(["partial", "missing", "unknown"])
 
-interface Fact {
+export interface Fact {
   readonly id: string
   readonly label: string
 }
@@ -25,7 +25,9 @@ export function understoodName(index: number): CSSProperties {
   return { viewTransitionName: `understood-${index}` }
 }
 
-function useFacts(view: ProgressView): Fact[] {
+type StayFacts = Pick<ProgressView, "location" | "checkIn" | "checkOut" | "adults">
+
+export function useStayFacts(view: StayFacts): Fact[] {
   const { t } = useTranslation()
   const format = useFormatters()
   const facts: Fact[] = []
@@ -44,7 +46,7 @@ function useFacts(view: ProgressView): Fact[] {
 
 export function UnderstoodChips({ view }: { readonly view: ProgressView }) {
   const { t } = useTranslation()
-  const facts = useFacts(view)
+  const facts = useStayFacts(view)
   return (
     <div className={styles.group}>
       <p className={styles.caption}>{t("explore:chat.understood")}</p>

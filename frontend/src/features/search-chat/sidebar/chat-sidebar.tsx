@@ -26,7 +26,7 @@ export function ChatSidebar({ collapsed, onToggle, onNew, ...list }: ChatSidebar
           {toggleLabel}
         </Button>
         <Button
-          variant={collapsed ? "ghost" : "secondary"}
+          variant="ghost"
           iconOnly={collapsed}
           icon="new-search"
           align={collapsed ? "center" : "start"}

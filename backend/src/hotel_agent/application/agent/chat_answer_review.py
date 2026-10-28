@@ -4,6 +4,7 @@ import unicodedata
 from hotel_agent.application.agent.recommendation_review import recommendation_claim
 from hotel_agent.application.agent.semantic_review import ReviewClaim, SemanticReview
 from hotel_agent.application.agent.wish_records import WishStatus
+from hotel_agent.application.reply_plurals import hotels_en, hotels_ru
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
 
 FOREIGN_BLOCKS = ("CJK", "HIRAGANA", "KATAKANA", "HANGUL", "ARABIC", "DEVANAGARI", "THAI")
@@ -82,9 +83,9 @@ def safe_answer(search: SearchOutcome, locale: str) -> str:
         )
     if count:
         return (
-            f"Showing {count} hotels. The cards mark verified and unknown conditions."
+            f"Found {hotels_en(count)}. The cards show what is verified and what is not."
             if locale == "en"
-            else f"В подборке {count} отелей. Подтверждённые и неизвестные условия отмечены в карточках."
+            else f"Нашёл {hotels_ru(count)}. Что подтверждено, а что нет, видно в карточках."
         )
     if search.review and search.review.unavailable:
         return (

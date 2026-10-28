@@ -2,8 +2,8 @@ import { MatchGlyph, RowButton, StatusGlyph } from "@/entities/evidence"
 import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
-import { factScope } from "@/shared/geo/facts/scope"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
+import { useMediaQuery } from "@/shared/hooks"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
 import type { MatchRowsProps } from "./match-rows"
@@ -16,25 +16,18 @@ interface MatchItemProps extends Omit<MatchRowsProps, "matched"> {
 export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
+  const narrow = useMediaQuery("(max-width: 47.99rem)")
   const fact = item.fact
   const current = isCurrentFact(fact)
   const hasMap = (item.geo_refs?.length ?? fact?.geo_refs?.length ?? 0) > 0
   const verdict = wishVerdict(item, locale)
   const status = fact && !current ? t(`explore:status.${fact.status}`) : undefined
-  const note = [status, ...(fact ? factScope(fact, locale) : []), item.explanation]
-    .filter(Boolean)
-    .join("; ")
   const glyph =
     fact && !current ? <StatusGlyph status={fact.status} /> : <MatchGlyph match={item.match} />
   const body = (
     <>
-      <span className={styles.label}>{matchedTitle(item, locale)}</span>
-      {verdict ? <span className={styles.verdict}>{verdict}</span> : null}
-      {note ? (
-        <span className={styles.note} lang="ru">
-          {note}
-        </span>
-      ) : null}
+      <span className={styles.label}>{verdict ?? matchedTitle(item, locale)}</span>
+      {status ? <span className={styles.note}>{status}</span> : null}
     </>
   )
   return (
@@ -59,7 +52,13 @@ export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProp
         </div>
       )}
       {hasMap && onProperty ? (
-        <Button variant="ghost" size="compact" icon="map" onClick={() => onProperty(item)}>
+        <Button
+          variant="ghost"
+          size="compact"
+          icon="map"
+          iconOnly={narrow}
+          onClick={() => onProperty(item)}
+        >
           {t("explore:wish.onMap")}
         </Button>
       ) : null}

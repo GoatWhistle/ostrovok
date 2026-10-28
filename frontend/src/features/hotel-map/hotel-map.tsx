@@ -17,8 +17,9 @@ import { identityOverview, useMapIdentity } from "./rendering/use-map-identity"
 import { useMapInsets } from "./rendering/use-map-insets"
 import { focusCopy, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
-import { forecastEnd, OVERVIEW_SUN, sceneToday, sunScene } from "./scene-time/scene-time"
+import { forecastEnd, OVERVIEW_SUN, sceneToday } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
+import { useSunPreview } from "./scene-time/use-sun-preview"
 import { useSunTheme } from "./scene-time/use-sun-theme"
 import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
@@ -44,10 +45,6 @@ export interface HotelMapProps {
   readonly onPlace: (id: string) => void
   readonly onTimeChange: (date: string, hour: number) => void
   readonly onSelect: (result: SearchResult) => void
-}
-
-function isSceneHour(value: number) {
-  return Number.isInteger(value) && value >= 0 && value <= 23
 }
 
 export function HotelMap({
@@ -108,7 +105,13 @@ export function HotelMap({
   )
   const place = hotel ?? results[0]
   const [lon, lat] = sceneLocation(place, selectedCamera)
-  const sun = useMemo(() => sunScene(date, hour, lat, lon), [date, hour, lat, lon])
+  const { sun, preview, scrub, commit } = useSunPreview({
+    date,
+    hour,
+    lat,
+    lon,
+    setHour,
+  })
   useSunTheme(sun.position.altitude, `${date}:${hour}`)
   const weather = useWeather(lon, lat, date, hour, place !== undefined)
   const { invalid, missingHeight } = sceneQuality(buildings, highlights)
@@ -135,6 +138,7 @@ export function HotelMap({
     <section
       ref={insets.stage}
       className={styles.stage}
+      data-popover-boundary
       data-full-map={fullMap}
       aria-label={t("explore:map.title")}
       data-map-active={map.active}
@@ -147,6 +151,7 @@ export function HotelMap({
           ready={map.active}
           azimuth={sun.position.azimuth}
           altitude={sun.position.altitude}
+          preview={preview}
         />
       ) : null}
       <MapPins views={map.markers} map={map.instance} onSelect={onSelect} onPlace={onPlace} />
@@ -204,14 +209,14 @@ export function HotelMap({
               hour={hour}
               altitude={sun.position.altitude}
               azimuth={sun.position.azimuth}
+              preview={preview}
               sunset={sun.times.sunset}
               sunrise={sun.times.sunrise}
               weather={weather.data}
               weatherPending={weather.isPending || weather.isFetching}
               onDate={setDate}
-              onHour={(value) => {
-                if (isSceneHour(value)) setHour(value)
-              }}
+              onHour={(value) => commit(map.instance.current, value)}
+              onScrub={(value) => scrub(map.instance.current, value)}
             />
           ) : undefined
         }

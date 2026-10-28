@@ -31,7 +31,7 @@ export function FullHotel({
   const back = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     if (!globalThis.matchMedia?.("(pointer: coarse)").matches)
-      back.current?.focus({ preventScroll: true })
+      back.current?.focus({ preventScroll: true, focusVisible: false })
   }, [])
   const page = useHotelSection(state.hotelId, state.navigation.route.section, restoreScroll)
 

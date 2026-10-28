@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useHotelGeometry } from "@/entities/hotel"
 import type { HotelSummary } from "@/shared/api/hotel-types"
 import { useTranslation } from "@/shared/i18n"
@@ -19,8 +19,20 @@ export function LocationMap({
   const geometry = useHotelGeometry(geoRefs, hotel)
   const marker = useRef<HTMLSpanElement>(null)
   const map = useLocationMap(point, geometry.data?.features ?? [], marker)
+  const [painted, setPainted] = useState(false)
   useEffect(() => {
-    if (map.ready && map.instance.current) map.instance.current.getCanvas().tabIndex = -1
+    const instance = map.instance.current
+    if (!map.ready || !instance) return
+    instance.getCanvas().tabIndex = -1
+    if (instance.loaded() && instance.areTilesLoaded()) {
+      setPainted(true)
+      return
+    }
+    const done = () => setPainted(true)
+    instance.once("idle", done)
+    return () => {
+      instance.off("idle", done)
+    }
   }, [map.instance, map.ready])
   return (
     <div className={styles.map} data-minimap-active={map.active}>
@@ -42,7 +54,7 @@ export function LocationMap({
             description={t("explore:location.unavailableText")}
           />
         </div>
-      ) : !map.ready ? (
+      ) : !map.ready || !painted ? (
         <div className={styles.state}>
           <Skeleton shape="block" />
         </div>

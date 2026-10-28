@@ -11,6 +11,18 @@
   --button-radius: var(--radius-pill);
 }
 
+.inline {
+  --button-height: var(--space-24);
+  --button-padding: 0;
+  --button-text: var(--text-muted);
+  --button-surface-hover: transparent;
+  --button-surface-press: transparent;
+}
+
+.inline[aria-expanded="true"] {
+  --button-text: var(--text-primary);
+}
+
 .panel {
   composes: floatingSurface from "../../../styles/compose.module.css";
   position: fixed;
@@ -25,8 +37,20 @@
   transition: var(--transition-reveal-in);
 }
 
+.compact {
+  padding: var(--space-12);
+}
+
 .panel[data-placement="bottom"] {
   transform-origin: top left;
+}
+
+.panel[data-placement="bottom-end"] {
+  transform-origin: top right;
+}
+
+.panel[data-placement="start"] {
+  transform-origin: center right;
 }
 
 .panel[data-state="closed"] {
