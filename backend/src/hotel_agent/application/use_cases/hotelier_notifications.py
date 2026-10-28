@@ -86,7 +86,7 @@ class MarkNotificationsRead:
             await _known_hotel(uow, hotel_id)
             changed = (
                 await uow.notifications.mark_all_read(hotel_id, now)
-                if not ids
+                if ids is None
                 else await uow.notifications.mark_read(hotel_id, ids, now)
             )
             await uow.commit()

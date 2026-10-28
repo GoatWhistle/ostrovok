@@ -184,7 +184,12 @@ def test_the_notification_feed_matches_the_contract(client: TestClient, validate
     validate("NotificationCounters", feed.json()["unread"])
     assert feed.json()["unread"]["total"] == 1
 
-    read = client.post("/hotelier/h1/notifications/read", json={"ids": []})
+    nothing = client.post("/hotelier/h1/notifications/read", json={"ids": []})
+    assert nothing.status_code == 200
+    assert nothing.json()["read"] == 0
+    assert nothing.json()["unread"]["total"] == 1
+
+    read = client.post("/hotelier/h1/notifications/read")
     assert read.status_code == 200
     assert read.json()["read"] == 1
     assert read.json()["unread"]["total"] == 0

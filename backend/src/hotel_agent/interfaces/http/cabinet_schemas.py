@@ -69,7 +69,7 @@ class HotelierNotificationFeedSchema(BaseModel):
 class ReadNotificationsInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    ids: list[str] = Field(default_factory=list, max_length=200)
+    ids: list[str] | None = Field(default=None, max_length=200)
 
 
 class ReadNotificationsSchema(BaseModel):

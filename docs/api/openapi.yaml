@@ -606,7 +606,9 @@ paths:
     post:
       tags: [hotelier]
       operationId: readHotelierNotifications
-      description: Отмечает прочитанными указанные оповещения; без списка — все непрочитанные
+      description: >-
+        Отмечает прочитанными указанные оповещения. Без тела или с `ids: null` — все
+        непрочитанные; пустой массив не отмечает ничего.
       parameters:
         - $ref: "#/components/parameters/HotelId"
       requestBody:
@@ -619,6 +621,7 @@ paths:
               properties:
                 ids:
                   type: array
+                  nullable: true
                   maxItems: 200
                   items: { type: string }
       responses:

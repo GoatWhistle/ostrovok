@@ -205,3 +205,19 @@ async def test_a_batch_answer_needs_an_open_question(
 
     with pytest.raises(InvalidValue):
         await batch("h1", "можно с собаками")
+
+
+async def test_a_short_lived_wish_fact_is_not_mistaken_for_an_expiring_value(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    derived = replace(
+        computed_fact("f_wish", "h1", "derived:9f2c1d4ab8e7", True),
+        valid_until=NOW + timedelta(minutes=10),
+    )
+    current = store(facts={"f_wish": derived})
+
+    overview = await cabinet(current, registry)("h1")
+
+    assert overview.expiring == ()
+    assert overview.next_action is None
+    assert all(item.key != "derived:9f2c1d4ab8e7" for item in overview.characteristics)

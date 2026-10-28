@@ -99,7 +99,7 @@ class GetHotelierCabinet:
         known = self._registry.all()
         weights = {item.key: characteristic_weight(item) for item in known}
         queue = self._queue(questions, blocked, weights, now)
-        expiring = self._expiring(facts, now)
+        expiring = self._expiring(facts, set(weights), now)
         return CabinetOverview(
             hotel=hotel,
             coverage=coverage([item.key for item in known], facts, disputed, now),
@@ -138,12 +138,13 @@ class GetHotelierCabinet:
         ranked.sort(key=lambda item: (-item.priority, str(item.question.id)))
         return tuple(ranked[:QUEUE_SIZE])
 
-    def _expiring(self, facts: Sequence[Fact], now: datetime) -> tuple[Fact, ...]:
+    def _expiring(self, facts: Sequence[Fact], keys: set[str], now: datetime) -> tuple[Fact, ...]:
         horizon = now + timedelta(days=self._lead_days)
         rows = [
             fact
             for fact in facts
-            if fact.status in LIVE_STATUSES
+            if fact.characteristic_key in keys
+            and fact.status in LIVE_STATUSES
             and fact.provenance.valid_until is not None
             and fact.provenance.valid_until <= horizon
         ]
