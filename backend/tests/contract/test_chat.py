@@ -33,7 +33,7 @@ def test_chat_contract_accepts_consultation_and_preserves_search_message(
         FakeLLM(registry),
         cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, [])),
         cast(SearchHotels, search),
-        lambda r: search_schema(r, registry, 0).model_dump(mode="json"),
+        lambda r, took: search_schema(r, registry, took).model_dump(mode="json"),
         registry,
     )
     app = FastAPI()

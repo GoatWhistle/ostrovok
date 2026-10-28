@@ -1,5 +1,6 @@
 from collections.abc import Callable
 from dataclasses import dataclass
+from time import perf_counter
 from uuid import uuid4
 
 from hotel_agent.application.agent.chat_answer_review import ChatAnswerReview, safe_answer
@@ -30,7 +31,7 @@ class Chat:
         llm: LLMPort,
         uow: UnitOfWorkFactory,
         search: SearchHotels,
-        serialize_search: Callable[[SearchOutcome], dict[str, object]],
+        serialize_search: Callable[[SearchOutcome, int], dict[str, object]],
         registry: CharacteristicRegistryPort,
         hotel_card: GetHotelCard | None = None,
         clock: ClockPort | None = None,
@@ -110,8 +111,13 @@ class Chat:
         if decision.mode is ChatMode.SEARCH:
             assert decision.query is not None
             effective_query = decision.query
+            started = perf_counter()
             search = await self._search(effective_query, region_id, None, 20)
-            snapshot = {**self._serialize_search(search), "_chat_message_id": answer_id}
+            took_ms = round((perf_counter() - started) * 1000)
+            snapshot = {
+                **self._serialize_search(search, took_ms),
+                "_chat_message_id": answer_id,
+            }
             answer = self._answer(search, selected_hotel_id, locale)
             if self._review is not None and not await self._review.accepts(
                 effective_query, answer, search

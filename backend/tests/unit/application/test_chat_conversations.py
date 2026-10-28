@@ -149,7 +149,7 @@ def build(parsed: ParsedQuery) -> Harness:
         cast(LLMPort, FakeLLM()),
         cast(UnitOfWorkFactory, lambda: FakeUnitOfWork(repository, commits)),
         cast(SearchHotels, search),
-        lambda outcome: {"query_id": outcome.query_id},
+        lambda outcome, _took: {"query_id": outcome.query_id},
         cast(CharacteristicRegistryPort, FakeRegistry()),
     )
     return Harness(chat=chat, repository=repository, search=search, commits=commits)

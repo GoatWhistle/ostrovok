@@ -37,7 +37,7 @@ async def test_consult_search_and_hotel_advice_preserve_real_conversation(
         FakeLLM(registry),
         uow,
         cast(SearchHotels, search),
-        lambda result: search_schema(result, registry, 0).model_dump(mode="json"),
+        lambda result, _took: search_schema(result, registry, 0).model_dump(mode="json"),
         registry,
         GetHotelCard(uow, SystemClock()),
     )
