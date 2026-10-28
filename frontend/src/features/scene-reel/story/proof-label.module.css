@@ -26,11 +26,15 @@
   border: var(--space-2) solid var(--map-label-halo);
 }
 .label {
-  composes: controlText from "../../../shared/styles/compose.module.css";
+  composes: subheadingText from "../../../shared/styles/compose.module.css";
   position: absolute;
-  inset-block-end: var(--space-6);
+  inset-block-end: var(--space-12);
   inset-inline-start: var(--space-12);
-  color: var(--map-label-strong);
-  paint-order: stroke fill;
-  -webkit-text-stroke: var(--space-4) var(--map-label-halo);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-overlay);
+  border: var(--space-2) solid var(--proof-tone);
+  box-shadow: var(--shadow-float);
+  color: var(--text-primary);
+  white-space: nowrap;
 }

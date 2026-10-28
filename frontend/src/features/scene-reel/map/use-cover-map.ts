@@ -10,7 +10,7 @@ import { retainPmtiles } from "@/shared/geo/pmtiles-protocol"
 import { followTerrainZoom } from "@/shared/geo/terrain"
 import { useLocale } from "@/shared/i18n"
 import { motionMs } from "@/shared/motion"
-import { useMapColors } from "@/shared/theme"
+import { useMapColors, useTheme } from "@/shared/theme"
 import type { ReelCamera } from "../shots"
 import walk from "./beach-walk.json"
 
@@ -23,7 +23,8 @@ const OPTIONS = {
   pitch: 50,
   bearing: -58,
 }
-const SUN = { azimuth: 250, altitude: 3 }
+const DAY_SUN = { azimuth: 250, altitude: 3 }
+const DUSK_SUN = { azimuth: 250, altitude: -8 }
 const REGIONS = ["sochi"]
 
 function settle(map: MapLibreMap, camera: ReelCamera, limit: number) {
@@ -54,6 +55,8 @@ export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonl
   const assets = useBasemaps(enabled ? REGIONS : [])
   const { locale } = useLocale()
   const colors = useMapColors()
+  const { theme } = useTheme()
+  const sun = theme === "dark" ? DUSK_SUN : DAY_SUN
   const [loaded, setLoaded] = useState(false)
   const buildings = useMemo(
     () =>
@@ -68,10 +71,10 @@ export function useCoverMap(enabled: boolean, visible: boolean, cameras: readonl
       catalog: catalog.data?.classes ?? [],
       assets,
       locale,
-      sun: SUN,
+      sun,
       excluded: buildings.features.map((item) => String(item.id)),
     }),
-    [catalog.data, assets, locale, buildings],
+    [catalog.data, assets, locale, buildings, sun],
   )
   const rendering = useMapRendering(map.instance, map.ready, snapshot, map.active && visible)
   const prepared = scene.data !== undefined && catalog.data !== undefined && assets.length > 0
