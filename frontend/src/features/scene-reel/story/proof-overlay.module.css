@@ -4,39 +4,27 @@
   overflow: hidden;
   pointer-events: none;
 }
-.paths {
+.sun {
   position: absolute;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  overflow: visible;
+  inset: 0 auto auto 0;
+  opacity: 0;
 }
-.cone {
-  fill: var(--map-viewshed-line);
-  fill-opacity: 0.5;
-  stroke: none;
-  filter: blur(var(--blur-soft));
-}
-.ray {
-  fill: none;
-  stroke: var(--map-viewshed-line);
-  stroke-width: 3.5;
-  stroke-linecap: round;
+.glow,
+.disc {
+  position: absolute;
+  border-radius: var(--radius-pill);
+  translate: -50% -50%;
 }
 .glow {
-  fill: var(--map-viewshed-line);
-  fill-opacity: 0.4;
-  filter: blur(var(--blur-soft));
+  inline-size: calc(var(--space-48) * 3);
+  block-size: calc(var(--space-48) * 2);
+  background-color: var(--map-neon-sun-low);
+  opacity: 0.55;
+  filter: blur(var(--space-24));
 }
-.sun {
-  fill: var(--map-viewshed-line);
-}
-.rings {
-  fill: none;
-  stroke: var(--map-hotel-selected);
-  stroke-width: 1.5;
-}
-.ring {
-  fill: var(--map-hotel-selected);
-  fill-opacity: 0.06;
+.disc {
+  inline-size: var(--space-32);
+  block-size: var(--space-32);
+  background-color: var(--map-neon-sun-low);
+  clip-path: inset(-50% -50% 45% -50%);
 }

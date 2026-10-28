@@ -5,7 +5,7 @@ export function CoverSources({ className }: { readonly className: string | undef
   const { t } = useTranslation()
   return (
     <MapAttribution
-      placement="below"
+      placement="above"
       size="regular"
       className={className}
       label={t("explore:map.attributionTitle")}

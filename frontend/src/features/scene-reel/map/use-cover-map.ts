@@ -26,7 +26,7 @@ const OPTIONS = {
   pitch: 50,
   bearing: -58,
 }
-const DAY_SUN = { azimuth: 250, altitude: 3 }
+const DAY_SUN = { azimuth: 250, altitude: 32 }
 const DUSK_SUN = { azimuth: 250, altitude: -8 }
 const REGIONS = ["sochi"]
 const NO_TEXTURES: ReadonlySet<string> = new Set()

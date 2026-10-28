@@ -5,12 +5,12 @@ import { StaticCover } from "./static-cover"
 
 const Reel = lazy(() => import("./proof-reel").then((module) => ({ default: module.ProofReel })))
 
-export function SceneReel({ interruption }: { readonly interruption: number }) {
+export function SceneReel(_props: { readonly interruption: number }) {
   const reduced = useReducedMotion()
   return (
     <ContentBoundary fallback={<StaticCover />}>
       <Suspense fallback={<StaticCover />}>
-        <Reel interruption={interruption} still={reduced} />
+        <Reel still={reduced} />
       </Suspense>
     </ContentBoundary>
   )

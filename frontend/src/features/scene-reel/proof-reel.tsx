@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react"
 import { useTranslation } from "@/shared/i18n"
 import { motionCurve } from "@/shared/motion"
-import { Button } from "@/shared/ui"
+import { useTheme } from "@/shared/theme"
 import { CoverSources } from "./cover-sources"
 import { useCoverMap } from "./map/use-cover-map"
 import { useReelCamera } from "./map/use-reel-camera"
@@ -14,21 +14,16 @@ import { SHOTS, STILL } from "./shots"
 import { ProofOverlay } from "./story/proof-overlay"
 
 const COMPACT_WIDTH = 500
-const GRADE = 0.22
-const SUNSET_GRADE = 0.6
+const GRADE = 0.16
+const SUNSET_GRADE = 0.22
 
-interface ProofReelProps {
-  readonly interruption: number
-  readonly still: boolean
-}
-
-export function ProofReel({ interruption, still }: ProofReelProps) {
+export function ProofReel({ still }: { readonly still: boolean }) {
   const { t } = useTranslation()
+  const { theme } = useTheme()
   const target = useRef<HTMLElement>(null)
   const viewport = useStoryViewport(target)
   const timing = useMemo(reelTiming, [])
   const ease = useMemo(() => motionCurve("--ease-out"), [])
-  const fold = useMemo(() => motionCurve("--ease-fold"), [])
   const compact = viewport.width > 0 && viewport.width < COMPACT_WIDTH
   const cameras = useMemo(
     () =>
@@ -39,8 +34,10 @@ export function ProofReel({ interruption, still }: ProofReelProps) {
   )
   const map = useCoverMap(viewport.visible, viewport.visible, cameras)
   const shown = map.loaded && !map.failed
-  const clock = useReelClock({ enabled: shown && !still, visible: viewport.visible, interruption })
-  const frame = still ? stillFrame(compact) : reelFrame(clock.elapsed, timing, compact, ease, fold)
+  const elapsed = useReelClock(shown && !still && viewport.visible)
+  const frame = still
+    ? stillFrame(compact)
+    : reelFrame(elapsed + timing.flight, timing, compact, ease)
   const padding = useMemo(
     () => ({
       top: Math.round(viewport.height * (compact ? 0.16 : 0.1)),
@@ -48,15 +45,14 @@ export function ProofReel({ interruption, still }: ProofReelProps) {
     }),
     [viewport.height, compact],
   )
-  const anchors = useReelCamera(map.instance, shown, frame, map.colors, padding)
-  const label = clock.playing ? t("explore:cover.pause") : t("explore:cover.play")
+  const anchors = useReelCamera(map.instance, shown, frame, map.colors, padding, theme !== "dark")
   return (
     <figure
       ref={target}
       className={styles.reel}
       aria-label={t("explore:cover.title")}
       data-cover-shown={shown}
-      data-cover-playing={clock.running}
+      data-cover-playing={shown && !still && viewport.visible}
       data-cover-shot={frame.index}
     >
       <div ref={map.container} className={styles.canvas} aria-hidden="true" />
@@ -67,22 +63,9 @@ export function ProofReel({ interruption, still }: ProofReelProps) {
         }}
         aria-hidden="true"
       />
-      {shown && <ProofOverlay frame={frame} anchors={anchors} />}
+      {shown && <ProofOverlay anchors={anchors} />}
       <div className={styles.controls}>
         <CoverSources className={undefined} />
-        {!still && (
-          <Button
-            variant="secondary"
-            icon={clock.playing ? "pause" : "play"}
-            iconOnly
-            aria-label={label}
-            title={label}
-            disabled={!shown}
-            onClick={clock.toggle}
-          >
-            {label}
-          </Button>
-        )}
       </div>
     </figure>
   )
