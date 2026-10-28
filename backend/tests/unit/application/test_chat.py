@@ -57,9 +57,7 @@ def test_missing_tool_matches_do_not_claim_query_conditions_are_contradictory() 
 def test_room_request_asks_for_missing_dates_and_guests() -> None:
     parsed = ParsedQuery(intents=(), unmatched_terms=(), location_hint="Сочи", wants_room=True)
     answer = chat()._answer(outcome(parsed), None, "ru")
-    assert "даты поездки" in answer
-    assert "сколько вас" in answer
-    assert "бюджет" in answer
+    assert answer.endswith("На какие даты едете?")
 
 
 def test_room_request_does_not_ask_when_stay_is_complete() -> None:
@@ -72,7 +70,7 @@ def test_room_request_does_not_ask_when_stay_is_complete() -> None:
         budget="до 5000 рублей за ночь",
     )
     answer = chat()._answer(outcome(parsed), None, "ru")
-    assert "свободные номера" not in answer
+    assert "?" not in answer
 
 
 def test_unverified_conditions_are_named_in_answer() -> None:
@@ -120,7 +118,7 @@ def test_partial_recommendations_are_not_described_as_complete() -> None:
         SearchOutcome(query_id="test", parsed=parsed, results=(result,)), None, "ru"
     )
 
-    assert "Ни у одного отеля пока не подтверждены все условия" in answer
+    assert "Все условия пока не подтверждены ни у одного" in answer
 
 
 def test_chat_asks_for_city_before_room_details() -> None:
@@ -154,7 +152,7 @@ def test_explicit_waiver_skips_room_questions_but_anywhere_alone_does_not() -> N
         intents=(), unmatched_terms=(), location_hint=None, anywhere=True, wants_room=True
     )
     answer = chat()._answer(outcome(parsed), None, "ru")
-    assert "бюджет" in answer and "сколько вас" in answer
+    assert answer.endswith("На какие даты едете?")
     waived = replace(parsed, room_preferences_unrestricted=True)
     answer = chat()._answer(outcome(waived), None, "ru")
-    assert "свободные номера" not in answer
+    assert "?" not in answer

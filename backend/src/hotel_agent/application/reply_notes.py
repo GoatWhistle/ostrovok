@@ -1,9 +1,8 @@
 from hotel_agent.application.agent.wish_response import wish_response
+from hotel_agent.application.stay_question import stay_question
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
 from hotel_agent.domain.query import ParsedQuery
 from hotel_agent.domain.services.scoring import MatchQuality
-
-GUEST_KEYS = frozenset({"room_capacity"})
 
 
 def listing(items: list[str], locale: str) -> str:
@@ -14,35 +13,45 @@ def listing(items: list[str], locale: str) -> str:
 
 
 def compose_reply(
-    search: SearchOutcome, lead: str | None, locale: str, question: str | None = None
+    search: SearchOutcome,
+    lead: str | None,
+    locale: str,
+    question: str | None = None,
+    partial: bool = True,
 ) -> str:
     parts = [lead.strip()] if lead else []
     notes = wish_response("", search.wish_results, locale).strip()
     if notes:
         parts.append(notes)
-    partial = partial_note(search, locale)
-    if partial:
-        parts.append(partial)
+    closest = partial_note(search, locale) if partial else None
+    if closest:
+        parts.append(closest)
     unverified = unverified_note(search.parsed, locale)
     if unverified:
         parts.append(unverified)
-    ask = question.strip() if question else room_ask(search.parsed, locale)
+    ask = question.strip() if question else stay_question(search.parsed, locale)
     if ask:
         parts.append(ask)
     return " ".join(parts)
 
 
-def partial_note(search: SearchOutcome, locale: str) -> str | None:
+def is_partial(search: SearchOutcome) -> bool:
     if not search.parsed.intents or not search.results:
-        return None
-    if any(
+        return False
+    return not any(
         all(match.quality is MatchQuality.FULL for match in result.scored.matches)
         for result in search.results
-    ):
+    )
+
+
+def partial_note(search: SearchOutcome, locale: str, cards: bool = False) -> str | None:
+    if not is_partial(search):
         return None
     if locale == "en":
-        return "No hotel has every condition verified yet, so these are the closest matches."
-    return "Ни у одного отеля пока не подтверждены все условия, поэтому показываю самые близкие."
+        tail = "; details are on the cards." if cards else "."
+        return f"None has every condition verified yet, so these are the closest{tail}"
+    tail = ", детали в карточках." if cards else "."
+    return f"Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие{tail}"
 
 
 def unverified_note(parsed: ParsedQuery, locale: str) -> str | None:
@@ -52,31 +61,3 @@ def unverified_note(parsed: ParsedQuery, locale: str) -> str | None:
     if locale == "en":
         return f"I couldn't verify {terms}, so it didn't affect the ranking."
     return f"Не смог проверить: {terms}. На подборку это не влияло."
-
-
-def guests_given(parsed: ParsedQuery) -> bool:
-    return any(intent.characteristic_key in GUEST_KEYS for intent in parsed.intents)
-
-
-def room_ask(parsed: ParsedQuery, locale: str) -> str | None:
-    stay = parsed.wants_room or parsed.adults is not None or guests_given(parsed)
-    if not stay or parsed.room_preferences_unrestricted:
-        return None
-    en = locale == "en"
-    missing: list[str] = []
-    if parsed.check_in is None and parsed.check_out is None:
-        missing.append("your dates" if en else "даты поездки")
-    elif parsed.check_in is None:
-        missing.append("the check-in date" if en else "дату заезда")
-    elif parsed.check_out is None:
-        missing.append("the check-out date" if en else "дату выезда")
-    if parsed.adults is None and not guests_given(parsed):
-        missing.append("how many guests" if en else "сколько вас")
-    if parsed.budget is None:
-        missing.append("your budget" if en else "бюджет")
-    if not missing:
-        return None
-    fields = listing(missing, locale)
-    if en:
-        return f"To check free rooms, could you share {fields}?"
-    return f"Чтобы проверить свободные номера, подскажите {fields}?"

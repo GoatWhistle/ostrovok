@@ -1,5 +1,5 @@
 from hotel_agent.application.agent.chat_answer_review import safe_answer
-from hotel_agent.application.reply_notes import compose_reply, listing
+from hotel_agent.application.reply_notes import compose_reply, listing, partial_note
 from hotel_agent.application.reply_plurals import hotels_en, hotels_ru
 from hotel_agent.application.use_cases.search_hotels import SearchOutcome
 
@@ -29,7 +29,18 @@ def search_reply(search: SearchOutcome, selected_hotel_id: str | None, locale: s
 def fallback_reply(search: SearchOutcome, locale: str) -> str:
     if search.question:
         return compose_reply(search, None, locale, search.question)
-    return compose_reply(search, safe_answer(search, locale), locale)
+    count = len(search.results)
+    if not count:
+        return compose_reply(search, safe_answer(search, locale), locale)
+    en = locale == "en"
+    found = f"Found {hotels_en(count)}." if en else f"Нашёл {hotels_ru(count)}."
+    cards = (
+        "The cards show what is verified and what is not."
+        if en
+        else "Что подтверждено, а что нет, видно в карточках."
+    )
+    detail = partial_note(search, locale, cards=True) or cards
+    return compose_reply(search, f"{found} {detail}", locale, partial=False)
 
 
 def empty_lead(search: SearchOutcome, locale: str) -> str:
