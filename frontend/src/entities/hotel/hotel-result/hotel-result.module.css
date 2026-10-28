@@ -19,7 +19,7 @@
 }
 
 .hotel:has(.name:active) {
-  scale: var(--press-scale-surface);
+  background-color: var(--surface-raised-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -70,7 +70,7 @@
 }
 
 .hotel .name:active {
-  scale: 1;
+  scale: none;
 }
 
 .hotel[data-selected="true"] .name {

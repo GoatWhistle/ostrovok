@@ -20,7 +20,7 @@ export function HotelierWorkspace({ hotelId }: HotelierWorkspaceProps) {
   const hotel = useHotel(hotelId)
   const editable = new Set(
     catalog.data?.items
-      ?.filter((item) => item.scope === "hotel" && item.source_kinds?.includes("hotelier"))
+      ?.filter((item) => item.source_kinds?.includes("hotelier"))
       .map((item) => item.key),
   )
   const items = (questions.data?.items ?? []).filter((q) => editable.has(q.characteristic_key))

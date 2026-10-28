@@ -9,7 +9,7 @@ import { LocaleProvider } from "@/shared/i18n"
 import common from "@/shared/i18n/locales/ru/common.json"
 import copy from "@/shared/i18n/locales/ru/explore.json"
 import { hotelierServer } from "../../features/hotelier-answer/hotelier-server"
-import { registryClient } from "../../features/hotelier-answer/registry"
+import { CHARACTERISTICS, registryClient } from "../../features/hotelier-answer/registry"
 
 const h = copy.hotelier
 
@@ -22,7 +22,12 @@ function narrowScreen(narrow: boolean) {
   }))
 }
 
-function mount(fail = false) {
+function mount(fail = false, roomScope = false) {
+  const client = registryClient()
+  if (roomScope)
+    client.setQueryData(["characteristics"], {
+      items: CHARACTERISTICS.items.map((item) => ({ ...item, scope: "room" })),
+    })
   const calls = hotelierServer(
     [
       { id: "q_room", characteristic_key: "double_room", status: "open" },
@@ -33,7 +38,7 @@ function mount(fail = false) {
   )
   render(
     <MemoryRouter initialEntries={["/hotelier/h1"]}>
-      <QueryClientProvider client={registryClient()}>
+      <QueryClientProvider client={client}>
         <LocaleProvider>
           <Routes>
             <Route path="/hotelier/:hotelId" element={<HotelierPage />} />
@@ -66,6 +71,12 @@ afterEach(() => {
 })
 
 describe("hotelier workspace", () => {
+  it("shows owner-answerable room questions in the queue", async () => {
+    mount(false, true)
+    const queue = await screen.findByRole("complementary", { name: h.queue })
+    expect(within(queue).getByText(copy.facts.titleDoubleRoom)).toBeTruthy()
+  })
+
   it("shows one hotel header, short topics and no booking form", async () => {
     narrowScreen(false)
     mount()

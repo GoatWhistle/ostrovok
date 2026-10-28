@@ -13,3 +13,4 @@ class ChatDecision:
     mode: ChatMode
     query: str | None = None
     reply: str | None = None
+    question_keys: tuple[str, ...] = ()

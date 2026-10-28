@@ -10,6 +10,7 @@ from hotel_agent.application.chat_dialogue import ChatDialogue
 from hotel_agent.application.chat_filters import filters_of, filters_of_snapshot, query_of
 from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.conversation_titles import conversation_title, shorten, validated_title
+from hotel_agent.application.hotel_question_requests import enqueue_hotel_questions
 from hotel_agent.application.ordinal_choice import chosen_hotel_id
 from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.clock import ClockPort
@@ -48,7 +49,8 @@ class Chat:
         self._search = search
         self._serialize_search = serialize_search
         self._registry = registry
-        self._dialogue = ChatDialogue(llm, hotel_card, clock)
+        self._dialogue = ChatDialogue(llm, hotel_card, clock, registry)
+        self._clock = clock
 
     async def get(self, conversation_id: str) -> ConversationOutcome:
         async with self._uow() as uow:
@@ -100,7 +102,6 @@ class Chat:
         requested = query_of(filters) if filters is not None else ""
         if not text and not requested:
             raise InvalidQuery("Chat message is empty")
-        await self._known_region(region_id)
         previous = None
         if conversation_id:
             async with self._uow() as uow:
@@ -108,6 +109,7 @@ class Chat:
             if previous is None:
                 raise ConversationNotFound()
             region_id = previous.region_id
+        await self._known_region(region_id)
         if text and selected_hotel_id is None and previous is not None:
             selected_hotel_id = chosen_hotel_id(text, previous.search_snapshot)
         if text:
@@ -160,6 +162,20 @@ class Chat:
             )
         )
         async with self._uow() as uow:
+            if decision.mode is ChatMode.HOTEL and selected_hotel_id and self._clock:
+                queued = await enqueue_hotel_questions(
+                    uow,
+                    self._registry,
+                    self._clock.now(),
+                    selected_hotel_id,
+                    decision.question_keys,
+                )
+                if queued:
+                    answer += (
+                        "\n\nYour question has been sent to the hotel owner. Their reply will appear in the hotel card."
+                        if locale == "en"
+                        else "\n\nВопрос отправлен владельцу отеля. Его ответ появится в карточке."
+                    )
             await uow.chat.save(
                 identifier,
                 region_id,

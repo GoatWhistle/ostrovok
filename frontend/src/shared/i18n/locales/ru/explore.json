@@ -242,7 +242,10 @@
     "noiseQuiet": "Тихая сторона здания",
     "noiseModerate": "Умеренный уличный шум",
     "noiseLoud": "Возможен уличный шум",
-    "noiseExplanation": "Оценка по близости дорог, железной дороги и баров OpenStreetMap. Это не замер шума в номере."
+    "noiseExplanation": "Оценка по близости дорог, железной дороги и баров OpenStreetMap. Это не замер шума в номере.",
+    "blackoutPresent": "Плотные шторы блэкаут: есть",
+    "blackoutAbsent": "Плотные шторы блэкаут: нет",
+    "blackoutUnknown": "Плотные шторы блэкаут: нет данных"
   },
   "offers": {
     "checkIn": "Заезд",
@@ -510,14 +513,6 @@
     "chat": "Чат",
     "hotels": "Отели",
     "map": "Карта",
-    "hotelCount_one": "{{count, number}} отель",
-    "hotelCount_few": "{{count, number}} отеля",
-    "hotelCount_many": "{{count, number}} отелей",
-    "hotelCount_other": "{{count, number}} отеля",
-    "matches_one": "совпадает",
-    "matches_few": "совпадают",
-    "matches_many": "совпадают",
-    "matches_other": "совпадают",
     "sort": "Порядок",
     "sortMatch": "По совпадению",
     "sortName": "По названию",
@@ -534,7 +529,8 @@
     "cityTitle": "Уточните город",
     "cityText": "Напишите в чате, где ищете отель.",
     "back": "Все отели",
-    "resizePanel": "Изменить ширину панели отелей"
+    "resizePanel": "Изменить ширину панели отелей",
+    "matchedHotels": "Совпавшие отели"
   },
   "landing": {
     "settings": "Настройки",

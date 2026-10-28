@@ -19,18 +19,8 @@
   composes: truncateText from "../../../shared/styles/compose.module.css";
   flex: 1 1 auto;
   margin: 0;
-}
-
-@media (min-width: 64rem) and (max-width: 89.99rem) {
-  .matchWord {
-    display: none;
-  }
-}
-
-.count b {
   color: var(--text-primary);
   font-weight: var(--weight-bold);
-  font-variant-numeric: var(--font-numeric);
 }
 
 .list {

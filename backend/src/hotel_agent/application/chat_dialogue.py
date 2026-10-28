@@ -5,15 +5,22 @@ from hotel_agent.application.chat_records import ConversationRecord
 from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import LLMPort
+from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
+from hotel_agent.domain.characteristics import SourceType
 from hotel_agent.domain.errors import ModelFailure
 
 
 class ChatDialogue:
     def __init__(
-        self, llm: LLMPort, hotel_card: GetHotelCard | None, clock: ClockPort | None = None
+        self,
+        llm: LLMPort,
+        hotel_card: GetHotelCard | None,
+        clock: ClockPort | None = None,
+        registry: CharacteristicRegistryPort | None = None,
     ) -> None:
         self._llm, self._hotel_card, self._clock = llm, hotel_card, clock
+        self._registry = registry
 
     async def respond(
         self,
@@ -38,6 +45,13 @@ class ChatDialogue:
                 if previous
                 else [],
                 "selected_hotel": await selected_hotel_context(self._hotel_card, selected_hotel_id),
+                "requestable_characteristics": [
+                    {"key": item.key, "title": item.title_ru}
+                    for item in self._registry.all()
+                    if item.ask_hotelier_if_missing and SourceType.HOTELIER in item.source_kinds
+                ]
+                if self._registry
+                else [],
             },
             ensure_ascii=False,
             default=str,

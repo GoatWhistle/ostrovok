@@ -28,8 +28,25 @@ export function matchedValue(fact: FactBrief | undefined, locale: Locale): strin
   return i18n.t("explore:map.focusDetails", { lng: locale })
 }
 
+function booleanFactLabel(fact: FactBrief, locale: Locale): string | undefined {
+  if (fact.characteristic_key === "blackout_curtains")
+    return i18n.t(
+      fact.value === true
+        ? "explore:facts.blackoutPresent"
+        : fact.value === false
+          ? "explore:facts.blackoutAbsent"
+          : "explore:facts.blackoutUnknown",
+      { lng: locale },
+    )
+  if (fact.characteristic_key === "sunset_view" && typeof fact.value === "boolean")
+    return i18n.t(fact.value ? "explore:wish.sunset" : "explore:wish.noSunset", { lng: locale })
+  return undefined
+}
+
 export function factLabel(fact: FactBrief, locale: Locale): string {
   if (fact.characteristic_key === "pets_policy") return petsLabel(fact.value, locale)
+  const statement = booleanFactLabel(fact, locale)
+  if (statement) return statement
   const value = number(fact.value, locale)
   if (fact.characteristic_key === "building_height" && value)
     return i18n.t("explore:facts.buildingHeight", { value, lng: locale })
