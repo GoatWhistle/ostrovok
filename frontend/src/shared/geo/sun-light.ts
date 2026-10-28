@@ -19,13 +19,13 @@ const WARM_FROM = 22
 const WARM_FULL = 1
 const NIGHT_FROM = -1
 const NIGHT_FULL = -9
-const MOON_DIM = 0.45
+const MOON_DIM = 0.08
 const HIGHEST_POLAR = 26
 const LOWEST_POLAR = 72
 const NIGHT_POLAR = 50
 const DAY_INTENSITY = 0.72
 const LOW_INTENSITY = 0.55
-const NIGHT_INTENSITY = 0.5
+const NIGHT_INTENSITY = 0.38
 
 function smooth(from: number, to: number, value: number): number {
   const t = Math.min(1, Math.max(0, (value - from) / (to - from)))

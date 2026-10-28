@@ -6,6 +6,7 @@ import { renderShore } from "../ground/shore-layers"
 import { lightMode, renderTerrain, type SunPosition, scenePalette } from "../terrain"
 import { mixHex, tintForTime } from "../time-tint"
 import { renderPlaceLabels } from "../world/place-labels"
+import { labelPalette } from "./label-palette"
 import { paintMeshes } from "./mesh-paint"
 import { applyMiniProfile } from "./mini-profile"
 import { APPEARANCES } from "./packages"
@@ -110,8 +111,9 @@ export class MapAppearanceController {
       foam: mixHex(sea, tinted.road, FOAM_WHITE),
       pier: mixHex(tinted.building, tinted.sand, PIER_SAND),
     })
-    renderBasemapLabels(map, scene.assets, colors, scene.locale)
-    renderPlaceLabels(map, colors, scene.locale, outside(scene.assets.map((asset) => asset.bbox)))
+    const labels = labelPalette(colors, tinted, scene.sun.altitude)
+    renderBasemapLabels(map, scene.assets, labels, scene.locale)
+    renderPlaceLabels(map, labels, scene.locale, outside(scene.assets.map((asset) => asset.bbox)))
     this.refreshRoofs()
     if (this.profile === "mini") applyMiniProfile(map, APPEARANCES[this.appearance])
     const materials = APPEARANCES[this.appearance].materials

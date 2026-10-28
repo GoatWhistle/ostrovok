@@ -3,6 +3,7 @@ import type { ExpressionSpecification, Map as MapLibreMap } from "maplibre-gl"
 import { labelAnchor } from "../basemap-labels"
 import { updateSource } from "../map-layers"
 import { MESH_FROM } from "../overview-buildings"
+import { ensureLampSprite, LAMP_ICON } from "./lamp-sprite"
 
 export interface NightColors {
   readonly lamp: string
@@ -55,22 +56,28 @@ function addNightLayers(map: MapLibreMap, colors: NightColors) {
     },
     map.getLayer("base-water") ? "base-water" : before,
   )
+  ensureLampSprite(map)
   map.addLayer(
     {
       id: "night-lamps",
-      type: "line",
+      type: "symbol",
       source: "sochi-map",
       "source-layer": "roads",
       minzoom: 14.5,
       filter: LIT_ROADS,
-      layout: { "line-cap": "round", visibility: "none" },
-      paint: {
-        "line-color": colors.lamp,
-        "line-width": ["interpolate", ["linear"], ["zoom"], 15, 2.2, 19, 6],
-        "line-dasharray": [0.05, 7],
-        "line-blur": 1.2,
-        "line-opacity": 0,
+      layout: {
+        visibility: "none",
+        "symbol-placement": "line",
+        "symbol-spacing": ["interpolate", ["exponential", 2], ["zoom"], 15, 24, 19, 160],
+        "icon-image": LAMP_ICON,
+        "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 15, 0.32, 19, 1.4],
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "icon-pitch-alignment": "map",
+        "icon-rotation-alignment": "map",
+        "icon-offset": [0, -14],
       },
+      paint: { "icon-color": colors.lamp, "icon-opacity": 0 },
     },
     before,
   )
@@ -82,8 +89,8 @@ export function renderNightLights(map: MapLibreMap, night: number, colors: Night
   const visibility = night > 0 ? "visible" : "none"
   map.setLayoutProperty("night-lamps", "visibility", visibility)
   map.setLayoutProperty("night-glow", "visibility", visibility)
-  map.setPaintProperty("night-lamps", "line-color", colors.lamp)
-  map.setPaintProperty("night-lamps", "line-opacity", 0.9 * night)
+  map.setPaintProperty("night-lamps", "icon-color", colors.lamp)
+  map.setPaintProperty("night-lamps", "icon-opacity", 0.95 * night)
   map.setPaintProperty("night-glow", "fill-color", colors.cityGlow)
   map.setPaintProperty("night-glow", "fill-opacity", [
     "interpolate",
