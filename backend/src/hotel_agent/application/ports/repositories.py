@@ -85,6 +85,14 @@ class SearchRepository(Protocol):
         limit: int = 500,
     ) -> Sequence[SearchFactRecord]: ...
 
+    async def expiring_facts(
+        self,
+        region: str,
+        characteristic_keys: Sequence[str],
+        horizon: datetime,
+        limit: int = 500,
+    ) -> Sequence[SearchFactRecord]: ...
+
     async def list_facts(
         self,
         region: str | None,

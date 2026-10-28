@@ -1,3 +1,4 @@
+from collections.abc import Callable, Sequence
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from types import SimpleNamespace
@@ -7,7 +8,7 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 from hotel_agent.adapters.registry.yaml_loader import YamlCharacteristicRegistry
-from hotel_agent.application.dto import ConflictRecord, SearchFactRecord
+from hotel_agent.application.dto import ConflictRecord, NotificationRecord, SearchFactRecord
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWorkFactory
@@ -41,11 +42,25 @@ def stored(value: bool) -> SearchFactRecord:
     )
 
 
+def _collect(sink: list[NotificationRecord]) -> Callable[[Sequence[NotificationRecord]], int]:
+    def collect(rows: Sequence[NotificationRecord]) -> int:
+        sink.extend(rows)
+        return len(rows)
+
+    return collect
+
+
 def build(
     stale: list[SearchFactRecord], skyline: float, registry: CharacteristicRegistryPort
-) -> tuple[RefreshStaleFacts, list[SearchFactRecord], list[ConflictRecord]]:
+) -> tuple[
+    RefreshStaleFacts,
+    list[SearchFactRecord],
+    list[ConflictRecord],
+    list[NotificationRecord],
+]:
     saved: list[SearchFactRecord] = []
     conflicts: list[ConflictRecord] = []
+    notices: list[NotificationRecord] = []
     scope = MagicMock()
     scope.__aenter__ = AsyncMock(
         return_value=SimpleNamespace(
@@ -61,6 +76,7 @@ def build(
                 versions=AsyncMock(return_value=list(stale)),
                 save_conflicts=AsyncMock(side_effect=lambda rows: conflicts.extend(rows)),
             ),
+            notifications=SimpleNamespace(add=AsyncMock(side_effect=_collect(notices))),
             commit=AsyncMock(),
         )
     )
@@ -79,6 +95,7 @@ def build(
         RefreshStaleFacts(factory, PrecomputeSunset(factory, views, clock), registry, clock),
         (saved),
         conflicts,
+        notices,
     )
 
 
@@ -90,22 +107,41 @@ def registry(characteristics_dir: Path) -> YamlCharacteristicRegistry:
 async def test_an_unchanged_fact_is_only_given_a_new_validity(
     registry: YamlCharacteristicRegistry,
 ) -> None:
-    refresh, saved, conflicts = build([stored(True)], 14.0, registry)
+    refresh, saved, conflicts, notices = build([stored(True)], 14.0, registry)
 
     report = await refresh("sochi")
 
     assert (report.checked, report.recomputed, report.changed) == (1, 1, 0)
     assert conflicts == []
+    assert notices == []
     assert saved[0].valid_until is not None and saved[0].valid_until > NOW
 
 
 async def test_a_view_closed_since_the_last_check_is_recorded_as_a_conflict(
     registry: YamlCharacteristicRegistry,
 ) -> None:
-    refresh, _, conflicts = build([stored(True)], 70.0, registry)
+    refresh, _, conflicts, _ = build([stored(True)], 70.0, registry)
 
     report = await refresh("sochi")
 
     assert (report.changed, report.conflicts) == (1, 1)
     assert conflicts[0].characteristic_key == KEY
     assert conflicts[0].rule
+
+
+async def test_a_closed_view_reaches_the_hotelier_as_a_notification(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    refresh, _, _, notices = build([stored(True)], 70.0, registry)
+
+    await refresh("sochi")
+
+    changed = next(item for item in notices if item.kind == "fact_changed")
+    assert changed.hotel_id == "h1"
+    assert changed.characteristic_key == KEY
+    assert changed.payload["previous"] is True
+    assert changed.payload["current"] is False
+    assert changed.severity == "info"
+    settled = next(item for item in notices if item.kind == "conflict_resolved")
+    assert settled.payload["resolution"] == "resolved_by_rule"
+    assert settled.payload["rule"]

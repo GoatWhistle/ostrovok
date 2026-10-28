@@ -76,3 +76,15 @@ WHERE h.region_id = %(region)s AND f.subject_type = 'hotel'
   AND f.valid_until IS NOT NULL AND f.valid_until <= %(now)s
 ORDER BY f.valid_until
 LIMIT %(limit)s"""
+
+EXPIRING_FACTS = """SELECT h.id, f.id, f.characteristic_key, f.value, f.unit, f.qualifiers,
+    f.source_type, f.source_id, f.method, f.confidence, f.computed_at, f.valid_until,
+    f.status, f.geo_refs, f.explanation, NULL::double precision, f.subject_id,
+    f.source_url, f.observed_at, f.evidence
+FROM facts f JOIN hotels h ON h.id = f.subject_id
+WHERE h.region_id = %(region)s AND f.subject_type = 'hotel'
+  AND f.characteristic_key = ANY(%(characteristic_keys)s::text[])
+  AND f.status IN ('active', 'stale', 'confirmed_by_hotelier')
+  AND f.valid_until IS NOT NULL AND f.valid_until <= %(horizon)s
+ORDER BY f.valid_until, f.id
+LIMIT %(limit)s"""

@@ -2,6 +2,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import timedelta
 
+from hotel_agent.application import hotelier_events
 from hotel_agent.application.dto import ConflictRecord
 from hotel_agent.application.fact_records import FactOwner, fact_to_record
 from hotel_agent.application.fact_values import checked_value
@@ -62,6 +63,10 @@ class AnswerHotelierQuestion:
                 await uow.questions.record_answer(
                     question_id, QuestionStatus.OPEN.value, text, self._clock.now()
                 )
+                await hotelier_events.announce(
+                    uow.notifications,
+                    (hotelier_events.answer_needs_detail(current, self._clock.now()),),
+                )
                 await uow.commit()
             return AnswerResult(question_id=question_id, follow_up=current)
         fact = self._fact(question, characteristic, extraction, text)
@@ -86,6 +91,15 @@ class AnswerHotelierQuestion:
             await uow.facts.save_conflicts(conflicts)
             await uow.questions.record_answer(
                 question_id, QuestionStatus.ANSWERED.value, text, self._clock.now()
+            )
+            await hotelier_events.announce(
+                uow.notifications,
+                (
+                    hotelier_events.answer_accepted(question, settlement.fact, self._clock.now()),
+                    *hotelier_events.conflicts_raised(
+                        conflicts, str(question.hotel_id), self._clock.now()
+                    ),
+                ),
             )
             await uow.commit()
         return AnswerResult(
