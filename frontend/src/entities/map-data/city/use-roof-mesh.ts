@@ -1,7 +1,7 @@
 import type { Map as MapLibreMap } from "maplibre-gl"
 import { type RefObject, useEffect, useRef } from "react"
 import { labelAnchor } from "@/shared/geo/basemap-labels"
-import { hideMeshedContext } from "@/shared/geo/map-layers"
+import { hideMeshedContext } from "@/shared/geo/context-height"
 import { hideMeshedSceneVolumes } from "@/shared/geo/night-city/night-layers"
 import { WINDOW_LAYER } from "@/shared/geo/night-city/window-layer"
 import { MESH_FROM, markMeshBuildings } from "@/shared/geo/overview-buildings"
