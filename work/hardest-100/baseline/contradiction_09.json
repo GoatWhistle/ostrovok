@@ -1,0 +1,52 @@
+{
+ "id": "42366174-ad9d-4ff7-b9c5-e253b3c412d0",
+ "title": "нужен отель в Сочи и одновременно во Владивостоке, в одном…",
+ "updated_at": "2026-10-28T18:26:06.390631Z",
+ "messages": [
+  {
+   "id": "93117bda-bd0f-4caa-9483-256b768a3218",
+   "role": "user",
+   "content": "нужен отель в Сочи и одновременно во Владивостоке, в одном номере",
+   "created_at": "2026-10-28T18:26:06.390631Z"
+  },
+  {
+   "id": "974ea7ac-d7fc-46c8-85f9-3bc29a50f989",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:26:06.390631Z"
+  }
+ ],
+ "effective_query": "отель в Сочи и одновременно во Владивостоке, в одном номере",
+ "search": {
+  "query_id": "fa9271d9c5603fe0",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в Сочи и одновременно во Владивостоке, в одном номере",
+   "corrections": [
+    {
+     "original": "в Сочи и одновременно во Владивостоке",
+     "corrected": "в Сочи и одновременно во Владивостоке",
+     "reason": "Сочи и Владивосток — несовместимые города: отель не может находиться в обоих одновременно."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 4597
+ },
+ "search_message_id": "974ea7ac-d7fc-46c8-85f9-3bc29a50f989"
+}

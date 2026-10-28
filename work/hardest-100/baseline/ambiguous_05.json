@@ -1,0 +1,46 @@
+{
+ "id": "c84d7d78-dcc9-4435-871c-f0cab5016570",
+ "title": "отель в городе Н.",
+ "updated_at": "2026-10-28T18:28:53.634831Z",
+ "messages": [
+  {
+   "id": "c673caf3-f0ec-43d1-9a79-509c132f720d",
+   "role": "user",
+   "content": "отель в городе Н.",
+   "created_at": "2026-10-28T18:28:53.634831Z"
+  },
+  {
+   "id": "29934c5b-39e0-4d31-9ca0-612a3bf026c6",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:28:53.634831Z"
+  }
+ ],
+ "effective_query": "отель в городе Н.",
+ "search": {
+  "query_id": "303d4de464fc00ac",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в городе Н",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3287
+ },
+ "search_message_id": "29934c5b-39e0-4d31-9ca0-612a3bf026c6"
+}

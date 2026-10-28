@@ -3,6 +3,8 @@ import statistics
 import sys
 from pathlib import Path
 
+from hotel_agent.application.agent.stated_units import rescaled
+
 ROOT = Path(__file__).resolve().parent
 CASES = {c["id"]: c for c in json.loads((ROOT / "cases-100.json").read_text())}
 JUDGED = {"none", "none_or_clarify", "hotels"}
@@ -63,6 +65,10 @@ def score(path):
     out["distinguishable"] = sum(
         1 for r in nonempty if len({s for s in (r.get("scores") or []) if s is not None}) > 1
     )
+    out["hotels_when_forbidden"] = sum(
+        1 for r in rows if r["expect"] in {"none", "none_or_clarify"} and r.get("results")
+    )
+    out["unit_swapped_full"] = swapped(Path(path).parent)
     times = [r["seconds"] for r in rows if r.get("seconds")]
     out["latency_median"] = round(statistics.median(times), 1) if times else None
     out["latency_p95"] = (
@@ -80,6 +86,27 @@ def score(path):
             g["met"] += 1 if met(r["expect"], outcome(r)) else 0
     out["by_group"] = by_group
     return out
+
+
+def swapped(folder):
+    found = 0
+    for case in sorted(folder.glob("*.json")):
+        if case.name == "summary.json":
+            continue
+        body = json.loads(case.read_text())
+        for result in ((body.get("search") or {}).get("results") or []):
+            for item in result.get("matched") or []:
+                fact = item.get("fact") or {}
+                qualifiers = fact.get("qualifiers") or {}
+                if item.get("match") != "full":
+                    continue
+                if rescaled(
+                    item.get("label") or "",
+                    qualifiers.get("native_unit"),
+                    qualifiers.get("native_threshold"),
+                ) is not None:
+                    found += 1
+    return found
 
 
 def show(name, data):

@@ -1,0 +1,3701 @@
+{
+ "id": "27311ed3-3eb3-4250-a40a-b9ab0d387089",
+ "title": "Сочи: пешком за 2 минуты, до моря не больше 10 километров",
+ "updated_at": "2026-10-28T18:44:04.999277Z",
+ "messages": [
+  {
+   "id": "25f41350-dfc4-46e1-83b9-bb1508458c04",
+   "role": "user",
+   "content": "отель в Сочи, до моря не больше 10 километров пешком за 2 минуты",
+   "created_at": "2026-10-28T18:44:04.999277Z"
+  },
+  {
+   "id": "6a17bbe5-ed48-4c0f-a742-8a0e77dbbc27",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие, детали в карточках. На какие даты едете?",
+   "created_at": "2026-10-28T18:44:04.999277Z"
+  }
+ ],
+ "effective_query": "отель в Сочи, до моря не больше 10 километров, пешком за 2 минуты",
+ "search": {
+  "query_id": "4f8d8ae683b0e2f9",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:68a66ff37e28",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "пешком за 2 минуты"
+    },
+    {
+     "characteristic_key": "derived:cc0f4fe0631d",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "до моря не больше 10 километров"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи, до моря не больше 10 километров, пешком за 2 минуты",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n9256509684",
+     "name": "Сон у моря",
+     "address": null,
+     "location": [
+      39.6928323,
+      43.6282064
+     ],
+     "stars": null,
+     "building_id": "w872174344",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n9256509684",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n9256509684"
+       ],
+       "subject": "hotel:n9256509684",
+       "qualifiers": {
+        "meters": 24.0,
+        "elevation_delta_m": 1.8,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n9256509684"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 17.3 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n9256509684",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7997405,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.692675_43.628100",
+        "g_point_39.692832_43.628206"
+       ],
+       "subject": "hotel:n9256509684",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.692675_43.628100",
+       "g_point_39.692832_43.628206"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.6928323,
+      43.6282064
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w872174344",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6927232,
+          43.6282681
+         ],
+         [
+          39.6928442,
+          43.6281121
+         ],
+         [
+          39.6929318,
+          43.6281477
+         ],
+         [
+          39.6928107,
+          43.6283037
+         ],
+         [
+          39.6927232,
+          43.6282681
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w872174344",
+      "hotel_id": "n9256509684",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n9256509684"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4226172990",
+     "name": "Дважды два, На Азовской",
+     "address": "Азовская улица",
+     "location": [
+      39.5821217,
+      43.7032939
+     ],
+     "stars": null,
+     "building_id": "w728207106",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n4226172990",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4226172990"
+       ],
+       "subject": "hotel:n4226172990",
+       "qualifiers": {
+        "meters": 31.7,
+        "elevation_delta_m": -2.5,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4226172990"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 21.9 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n4226172990",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7996715000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.581978_43.703127",
+        "g_point_39.582122_43.703294"
+       ],
+       "subject": "hotel:n4226172990",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.581978_43.703127",
+       "g_point_39.582122_43.703294"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5821217,
+      43.7032939
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w728207106",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5818889,
+          43.7034274
+         ],
+         [
+          39.5821707,
+          43.7032033
+         ],
+         [
+          39.5823291,
+          43.7033074
+         ],
+         [
+          39.5820472,
+          43.7035315
+         ],
+         [
+          39.5818889,
+          43.7034274
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w728207106",
+      "hotel_id": "n4226172990",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4226172990"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w1425602206",
+     "name": "Барракуда",
+     "address": null,
+     "location": [
+      39.8909305,
+      43.4777828
+     ],
+     "stars": null,
+     "building_id": "w1425602206",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w1425602206",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w1425602206"
+       ],
+       "subject": "hotel:w1425602206",
+       "qualifiers": {
+        "meters": 24.2,
+        "elevation_delta_m": 0.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w1425602206"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 22.5 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w1425602206",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7996625,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.890676_43.477699",
+        "g_point_39.890931_43.477783"
+       ],
+       "subject": "hotel:w1425602206",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.890676_43.477699",
+       "g_point_39.890931_43.477783"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8909305,
+      43.4777828
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1425602206",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8907875,
+          43.4780165
+         ],
+         [
+          39.8909189,
+          43.4776394
+         ],
+         [
+          39.8909739,
+          43.4775907
+         ],
+         [
+          39.891057,
+          43.4776038
+         ],
+         [
+          39.8910356,
+          43.4776613
+         ],
+         [
+          39.8910033,
+          43.4777006
+         ],
+         [
+          39.89088,
+          43.4780335
+         ],
+         [
+          39.8907875,
+          43.4780165
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1425602206",
+      "hotel_id": "w1425602206",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w1425602206"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2616663493",
+     "name": "Эллинг \"Золотая Долина\"",
+     "address": null,
+     "location": [
+      39.5813663,
+      43.7039831
+     ],
+     "stars": null,
+     "building_id": "w728207105",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n2616663493",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n2616663493"
+       ],
+       "subject": "hotel:n2616663493",
+       "qualifiers": {
+        "meters": 24.4,
+        "elevation_delta_m": 5.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n2616663493"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 27.2 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n2616663493",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799592,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.581194_43.703772",
+        "g_point_39.581366_43.703983"
+       ],
+       "subject": "hotel:n2616663493",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.581194_43.703772",
+       "g_point_39.581366_43.703983"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5813663,
+      43.7039831
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w728207105",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5811597,
+          43.7040067
+         ],
+         [
+          39.5814161,
+          43.7037938
+         ],
+         [
+          39.5816724,
+          43.703581
+         ],
+         [
+          39.5818652,
+          43.7036965
+         ],
+         [
+          39.5815689,
+          43.7039299
+         ],
+         [
+          39.5813395,
+          43.7041198
+         ],
+         [
+          39.5811597,
+          43.7040067
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w728207105",
+      "hotel_id": "n2616663493",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n2616663493"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w228736311",
+     "name": "Sanremo",
+     "address": "Черноморская улица 13Г",
+     "location": [
+      39.736202,
+      43.5670904
+     ],
+     "stars": null,
+     "building_id": "w228736311",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w228736311",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w228736311"
+       ],
+       "subject": "hotel:w228736311",
+       "qualifiers": {
+        "meters": 15.1,
+        "elevation_delta_m": 6.0,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w228736311"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 27.3 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w228736311",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7995905000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.736073_43.566863",
+        "g_point_39.736202_43.567090"
+       ],
+       "subject": "hotel:w228736311",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.736073_43.566863",
+       "g_point_39.736202_43.567090"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.736202,
+      43.5670904
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w228736311",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7360202,
+          43.5670856
+         ],
+         [
+          39.7360593,
+          43.5670694
+         ],
+         [
+          39.7360894,
+          43.5670337
+         ],
+         [
+          39.7361507,
+          43.5670001
+         ],
+         [
+          39.7362106,
+          43.5669795
+         ],
+         [
+          39.7362778,
+          43.5669668
+         ],
+         [
+          39.7363323,
+          43.5669363
+         ],
+         [
+          39.7363749,
+          43.5669687
+         ],
+         [
+          39.7364207,
+          43.5670183
+         ],
+         [
+          39.736453,
+          43.5670707
+         ],
+         [
+          39.7363845,
+          43.5671112
+         ],
+         [
+          39.7363538,
+          43.5671544
+         ],
+         [
+          39.7362273,
+          43.5672118
+         ],
+         [
+          39.7362174,
+          43.5672001
+         ],
+         [
+          39.7361379,
+          43.5672325
+         ],
+         [
+          39.7361221,
+          43.5672126
+         ],
+         [
+          39.7361088,
+          43.5672184
+         ],
+         [
+          39.7360278,
+          43.5671314
+         ],
+         [
+          39.7360507,
+          43.5671217
+         ],
+         [
+          39.7360202,
+          43.5670856
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w228736311",
+      "hotel_id": "w228736311",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w228736311"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4226172989",
+     "name": "Дважды два, На Азовской",
+     "address": "Азовская улица",
+     "location": [
+      39.5821827,
+      43.703337
+     ],
+     "stars": null,
+     "building_id": "w728207106",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n4226172989",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4226172989"
+       ],
+       "subject": "hotel:n4226172989",
+       "qualifiers": {
+        "meters": 34.9,
+        "elevation_delta_m": 3.3,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4226172989"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 29 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n4226172989",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7995650000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.581992_43.703115",
+        "g_point_39.582183_43.703337"
+       ],
+       "subject": "hotel:n4226172989",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.581992_43.703115",
+       "g_point_39.582183_43.703337"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.5821827,
+      43.703337
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w728207106",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.5818889,
+          43.7034274
+         ],
+         [
+          39.5821707,
+          43.7032033
+         ],
+         [
+          39.5823291,
+          43.7033074
+         ],
+         [
+          39.5820472,
+          43.7035315
+         ],
+         [
+          39.5818889,
+          43.7034274
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w728207106",
+      "hotel_id": "n4226172989",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n4226172989"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4728913621",
+     "name": "Prichal",
+     "address": null,
+     "location": [
+      39.9173948,
+      43.4223439
+     ],
+     "stars": 3,
+     "building_id": "w53290602",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n4728913621",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4728913621"
+       ],
+       "subject": "hotel:n4728913621",
+       "qualifiers": {
+        "meters": 10.1,
+        "elevation_delta_m": 0.0,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4728913621"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 35.2 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n4728913621",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799472,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.917169_43.422073",
+        "g_point_39.917395_43.422344"
+       ],
+       "subject": "hotel:n4728913621",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.917169_43.422073",
+       "g_point_39.917395_43.422344"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9173948,
+      43.4223439
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53290602",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9173468,
+          43.422396
+         ],
+         [
+          39.9174247,
+          43.4222981
+         ],
+         [
+          39.9176308,
+          43.4223846
+         ],
+         [
+          39.917645,
+          43.4223668
+         ],
+         [
+          39.9177123,
+          43.4223951
+         ],
+         [
+          39.9176202,
+          43.4225108
+         ],
+         [
+          39.9173468,
+          43.422396
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53290602",
+      "hotel_id": "n4728913621",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n4728913621"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51874466",
+     "name": "Пансионат \"Эдем\"",
+     "address": null,
+     "location": [
+      39.7388183,
+      43.566086
+     ],
+     "stars": 3,
+     "building_id": null,
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w51874466",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w51874466"
+       ],
+       "subject": "hotel:w51874466",
+       "qualifiers": {
+        "meters": 7.8,
+        "elevation_delta_m": -3.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w51874466"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 41.8 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w51874466",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799373,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.738721_43.565717",
+        "g_point_39.738818_43.566086"
+       ],
+       "subject": "hotel:w51874466",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.738721_43.565717",
+       "g_point_39.738818_43.566086"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7388183,
+      43.566086
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": null
+   },
+   {
+    "hotel": {
+     "id": "w711599965",
+     "name": "Чайка",
+     "address": "Виноградная улица 33/3",
+     "location": [
+      39.7078059,
+      43.6005992
+     ],
+     "stars": null,
+     "building_id": "w711599965",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w711599965",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w711599965"
+       ],
+       "subject": "hotel:w711599965",
+       "qualifiers": {
+        "meters": 18.3,
+        "elevation_delta_m": 4.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w711599965"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 42.5 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w711599965",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7993625,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.707338_43.600421",
+        "g_point_39.707806_43.600599"
+       ],
+       "subject": "hotel:w711599965",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.707338_43.600421",
+       "g_point_39.707806_43.600599"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7078059,
+      43.6005992
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w711599965",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7077189,
+          43.6006817
+         ],
+         [
+          39.7077418,
+          43.6006145
+         ],
+         [
+          39.707811,
+          43.6004109
+         ],
+         [
+          39.7079072,
+          43.6004281
+         ],
+         [
+          39.7078373,
+          43.6006336
+         ],
+         [
+          39.7078672,
+          43.600639
+         ],
+         [
+          39.707845,
+          43.6007043
+         ],
+         [
+          39.7077189,
+          43.6006817
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w711599965",
+      "hotel_id": "w711599965",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w711599965"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n9120481162",
+     "name": "HiLoft Hostel",
+     "address": "Черноморская улица 15/1",
+     "location": [
+      39.7372515,
+      43.5667741
+     ],
+     "stars": null,
+     "building_id": "w228736310",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.64,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n9120481162",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n9120481162"
+       ],
+       "subject": "hotel:n9120481162",
+       "qualifiers": {
+        "meters": 18.6,
+        "elevation_delta_m": 0.3,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n9120481162"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 45 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n9120481162",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7993250000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.736949_43.566434",
+        "g_point_39.737251_43.566774"
+       ],
+       "subject": "hotel:n9120481162",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.736949_43.566434",
+       "g_point_39.737251_43.566774"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7372515,
+      43.5667741
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w228736310",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7371024,
+          43.5667002
+         ],
+         [
+          39.7373217,
+          43.5666359
+         ],
+         [
+          39.7373765,
+          43.5666287
+         ],
+         [
+          39.7374346,
+          43.5666331
+         ],
+         [
+          39.7374748,
+          43.5666483
+         ],
+         [
+          39.7375188,
+          43.5666751
+         ],
+         [
+          39.7375454,
+          43.5667046
+         ],
+         [
+          39.7376001,
+          43.5668182
+         ],
+         [
+          39.7372818,
+          43.5669122
+         ],
+         [
+          39.7372131,
+          43.5668115
+         ],
+         [
+          39.7371935,
+          43.5668161
+         ],
+         [
+          39.7371024,
+          43.5667002
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w228736310",
+      "hotel_id": "n9120481162",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n9120481162"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w55356580",
+     "name": "Лазурь Бич",
+     "address": "улица Просвещения 104Б",
+     "location": [
+      39.908656,
+      43.4346157
+     ],
+     "stars": null,
+     "building_id": "w55356580",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w55356580",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w55356580"
+       ],
+       "subject": "hotel:w55356580",
+       "qualifiers": {
+        "meters": 29.8,
+        "elevation_delta_m": 2.2,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w55356580"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 46.4 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w55356580",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799304,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.908230_43.434336",
+        "g_point_39.908656_43.434616"
+       ],
+       "subject": "hotel:w55356580",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.908230_43.434336",
+       "g_point_39.908656_43.434616"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.908656,
+      43.4346157
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w55356580",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9084375,
+          43.4346929
+         ],
+         [
+          39.9086696,
+          43.4343932
+         ],
+         [
+          39.9086867,
+          43.4343801
+         ],
+         [
+          39.9087175,
+          43.4343714
+         ],
+         [
+          39.9087527,
+          43.4343705
+         ],
+         [
+          39.9087822,
+          43.4343768
+         ],
+         [
+          39.9088255,
+          43.4343849
+         ],
+         [
+          39.9088557,
+          43.4344059
+         ],
+         [
+          39.9088818,
+          43.4344374
+         ],
+         [
+          39.9088929,
+          43.4344639
+         ],
+         [
+          39.9088897,
+          43.4344847
+         ],
+         [
+          39.908875,
+          43.4345027
+         ],
+         [
+          39.9088652,
+          43.4344991
+         ],
+         [
+          39.9086645,
+          43.4347608
+         ],
+         [
+          39.908672,
+          43.4347679
+         ],
+         [
+          39.9086567,
+          43.4347804
+         ],
+         [
+          39.9086369,
+          43.4347912
+         ],
+         [
+          39.9086055,
+          43.4347977
+         ],
+         [
+          39.9085829,
+          43.4347967
+         ],
+         [
+          39.9085637,
+          43.4347906
+         ],
+         [
+          39.9085413,
+          43.4347874
+         ],
+         [
+          39.9085199,
+          43.4347827
+         ],
+         [
+          39.9085005,
+          43.434771
+         ],
+         [
+          39.9084868,
+          43.4347589
+         ],
+         [
+          39.9084695,
+          43.4347505
+         ],
+         [
+          39.9084528,
+          43.4347327
+         ],
+         [
+          39.9084449,
+          43.4347149
+         ],
+         [
+          39.9084375,
+          43.4346929
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w55356580",
+      "hotel_id": "w55356580",
+      "is_hotel": true,
+      "height_m": 6.4,
+      "min_height_m": 0,
+      "levels": 2,
+      "height_fact_id": "f_height_w55356580"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2857562133",
+     "name": "Огонёк",
+     "address": null,
+     "location": [
+      39.9081608,
+      43.4354295
+     ],
+     "stars": null,
+     "building_id": "w105867912",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n2857562133",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n2857562133"
+       ],
+       "subject": "hotel:n2857562133",
+       "qualifiers": {
+        "meters": 21.6,
+        "elevation_delta_m": 2.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n2857562133"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 47.8 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n2857562133",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799283,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.907707_43.435154",
+        "g_point_39.908161_43.435429"
+       ],
+       "subject": "hotel:n2857562133",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.907707_43.435154",
+       "g_point_39.908161_43.435429"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9081608,
+      43.4354295
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w105867912",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.908096,
+          43.435511
+         ],
+         [
+          39.9081929,
+          43.4353665
+         ],
+         [
+          39.9083145,
+          43.4354095
+         ],
+         [
+          39.9082176,
+          43.435554
+         ],
+         [
+          39.908096,
+          43.435511
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w105867912",
+      "hotel_id": "n2857562133",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_n2857562133"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11866202895",
+     "name": "Cascade",
+     "address": null,
+     "location": [
+      39.9148089,
+      43.4253046
+     ],
+     "stars": null,
+     "building_id": "w679416881",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n11866202895",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11866202895"
+       ],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "meters": 12.6,
+        "elevation_delta_m": 0.0,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n11866202895"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 56.2 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n11866202895",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799157,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.914499_43.424852",
+        "g_point_39.914809_43.425305"
+       ],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.914499_43.424852",
+       "g_point_39.914809_43.425305"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9148089,
+      43.4253046
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w679416881",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9146362,
+          43.4253099
+         ],
+         [
+          39.9147233,
+          43.4251999
+         ],
+         [
+          39.9149516,
+          43.4252953
+         ],
+         [
+          39.9148645,
+          43.4254053
+         ],
+         [
+          39.9146362,
+          43.4253099
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w679416881",
+      "hotel_id": "n11866202895",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11866202895"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53301256",
+     "name": "Фламинго",
+     "address": "улица Просвещения 15В",
+     "location": [
+      39.9160695,
+      43.4240009
+     ],
+     "stars": 3,
+     "building_id": "w53301256",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w53301256",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53301256"
+       ],
+       "subject": "hotel:w53301256",
+       "qualifiers": {
+        "meters": 15.4,
+        "elevation_delta_m": 2.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53301256"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 56.6 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w53301256",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7991510000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.915615_43.423613",
+        "g_point_39.916069_43.424001"
+       ],
+       "subject": "hotel:w53301256",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.915615_43.423613",
+       "g_point_39.916069_43.424001"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9160695,
+      43.4240009
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53301256",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9159379,
+          43.424039
+         ],
+         [
+          39.9160693,
+          43.4238649
+         ],
+         [
+          39.916267,
+          43.4239437
+         ],
+         [
+          39.9161355,
+          43.4241177
+         ],
+         [
+          39.9159379,
+          43.424039
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53301256",
+      "hotel_id": "w53301256",
+      "is_hotel": true,
+      "height_m": 3.2,
+      "min_height_m": 0,
+      "levels": 1,
+      "height_fact_id": "f_height_w53301256"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12749552601",
+     "name": "Marina Yacht by Stellar",
+     "address": "Несебрская улица 6",
+     "location": [
+      39.7191449,
+      43.5819586
+     ],
+     "stars": null,
+     "building_id": "w51106901",
+     "height_m": 18.5,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n12749552601",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n12749552601"
+       ],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "meters": 14.9,
+        "elevation_delta_m": 4.5,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n12749552601"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 58 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n12749552601",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.79913,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.718434_43.582041",
+        "g_point_39.719145_43.581959"
+       ],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.718434_43.582041",
+       "g_point_39.719145_43.581959"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7191449,
+      43.5819586
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51106901",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7188997,
+          43.5820736
+         ],
+         [
+          39.7190388,
+          43.5819098
+         ],
+         [
+          39.7191725,
+          43.5817524
+         ],
+         [
+          39.7194855,
+          43.5818919
+         ],
+         [
+          39.7194313,
+          43.5819558
+         ],
+         [
+          39.7193922,
+          43.5820019
+         ],
+         [
+          39.7192128,
+          43.5822131
+         ],
+         [
+          39.7188997,
+          43.5820736
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51106901",
+      "hotel_id": "n12749552601",
+      "is_hotel": true,
+      "height_m": 18.5,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n12749552601"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53284184",
+     "name": "Пансионат \"Охотник\"",
+     "address": "улица Просвещения 110А",
+     "location": [
+      39.9077566,
+      43.4363432
+     ],
+     "stars": null,
+     "building_id": "w53284184",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w53284184",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53284184"
+       ],
+       "subject": "hotel:w53284184",
+       "qualifiers": {
+        "meters": 21.4,
+        "elevation_delta_m": 2.7,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53284184"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 59.4 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w53284184",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7991090000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.907194_43.435999",
+        "g_point_39.907757_43.436343"
+       ],
+       "subject": "hotel:w53284184",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.907194_43.435999",
+       "g_point_39.907757_43.436343"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9077566,
+      43.4363432
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53284184",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9075711,
+          43.4364
+         ],
+         [
+          39.9077179,
+          43.4361571
+         ],
+         [
+          39.9080348,
+          43.4362581
+         ],
+         [
+          39.907888,
+          43.436501
+         ],
+         [
+          39.9075711,
+          43.4364
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53284184",
+      "hotel_id": "w53284184",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w53284184"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12032893438",
+     "name": "Portofino",
+     "address": null,
+     "location": [
+      39.7236067,
+      43.5760733
+     ],
+     "stars": null,
+     "building_id": "w108065534",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n12032893438",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n12032893438"
+       ],
+       "subject": "hotel:n12032893438",
+       "qualifiers": {
+        "meters": 8.8,
+        "elevation_delta_m": 0.0,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.1,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n12032893438"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 59.6 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n12032893438",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.799106,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.723461_43.575548",
+        "g_point_39.723607_43.576073"
+       ],
+       "subject": "hotel:n12032893438",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.723461_43.575548",
+       "g_point_39.723607_43.576073"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7236067,
+      43.5760733
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w108065534",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7235221,
+          43.5761171
+         ],
+         [
+          39.7238188,
+          43.5758612
+         ],
+         [
+          39.7238824,
+          43.5758999
+         ],
+         [
+          39.7237305,
+          43.5760309
+         ],
+         [
+          39.7235857,
+          43.5761558
+         ],
+         [
+          39.7235221,
+          43.5761171
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w108065534",
+      "hotel_id": "n12032893438",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n12032893438"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7342978826",
+     "name": "Таис",
+     "address": null,
+     "location": [
+      39.7597608,
+      43.5586829
+     ],
+     "stars": null,
+     "building_id": "w52336702",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n7342978826",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n7342978826"
+       ],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "meters": 13.7,
+        "elevation_delta_m": 5.1,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n7342978826"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 66.3 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n7342978826",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7990055,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.759338_43.558172",
+        "g_point_39.759761_43.558683"
+       ],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.759338_43.558172",
+       "g_point_39.759761_43.558683"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7597608,
+      43.5586829
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52336702",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7596813,
+          43.5586423
+         ],
+         [
+          39.7596849,
+          43.5585824
+         ],
+         [
+          39.759744,
+          43.5585256
+         ],
+         [
+          39.759749,
+          43.5585135
+         ],
+         [
+          39.7597588,
+          43.5585047
+         ],
+         [
+          39.7597698,
+          43.558501
+         ],
+         [
+          39.7597856,
+          43.5585005
+         ],
+         [
+          39.7597993,
+          43.5585031
+         ],
+         [
+          39.7598163,
+          43.5584965
+         ],
+         [
+          39.7598697,
+          43.5585776
+         ],
+         [
+          39.75986,
+          43.5586354
+         ],
+         [
+          39.7598364,
+          43.558682
+         ],
+         [
+          39.7597261,
+          43.5587249
+         ],
+         [
+          39.7597085,
+          43.5586925
+         ],
+         [
+          39.7596973,
+          43.5586877
+         ],
+         [
+          39.7596897,
+          43.558681
+         ],
+         [
+          39.7596861,
+          43.5586735
+         ],
+         [
+          39.7596851,
+          43.5586641
+         ],
+         [
+          39.7596885,
+          43.5586556
+         ],
+         [
+          39.7596813,
+          43.5586423
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52336702",
+      "hotel_id": "n7342978826",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n7342978826"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81148594",
+     "name": "Пальма",
+     "address": "Аллейная улица 11",
+     "location": [
+      39.8915061,
+      43.4779871
+     ],
+     "stars": null,
+     "building_id": "w81148594",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_w81148594",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w81148594"
+       ],
+       "subject": "hotel:w81148594",
+       "qualifiers": {
+        "meters": 22.0,
+        "elevation_delta_m": 1.9,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w81148594"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 73.9 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_w81148594",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7988915,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.890671_43.477713",
+        "g_point_39.891506_43.477987"
+       ],
+       "subject": "hotel:w81148594",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.890671_43.477713",
+       "g_point_39.891506_43.477987"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8915061,
+      43.4779871
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81148594",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8913863,
+          43.4780042
+         ],
+         [
+          39.8914367,
+          43.4778988
+         ],
+         [
+          39.8916857,
+          43.4779615
+         ],
+         [
+          39.8916353,
+          43.4780669
+         ],
+         [
+          39.8913863,
+          43.4780042
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81148594",
+      "hotel_id": "w81148594",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w81148594"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8847798717",
+     "name": "PinkFloyd Apartment",
+     "address": null,
+     "location": [
+      39.7350219,
+      43.5679739
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.639,
+    "confidence": 0.96,
+    "matched": [
+     {
+      "characteristic_key": "derived:68a66ff37e28",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пешком за 2 минуты",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_68a66ff37e28_n8847798717",
+       "characteristic_key": "derived:68a66ff37e28",
+       "value": true,
+       "unit": null,
+       "label": "пешком за 2 минуты",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n8847798717"
+       ],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "meters": 17.3,
+        "elevation_delta_m": 0.0,
+        "source_text": "пешком за 2 минуты",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 2.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n8847798717"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:cc0f4fe0631d",
+      "match": "partial",
+      "margin": null,
+      "label": "до моря не больше 10 километров",
+      "explanation": "Расстояние до известной береговой линии по прямой, м: 75.6 (нужно не более 10000).",
+      "fact": {
+       "fact_id": "f_wish_cc0f4fe0631d_n8847798717",
+       "characteristic_key": "derived:cc0f4fe0631d",
+       "value": true,
+       "unit": null,
+       "label": "до моря не больше 10 километров",
+       "confidence": 0.7988660000000001,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_point_39.734872_43.567303",
+        "g_point_39.735022_43.567974"
+       ],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "до моря не больше 10 километров",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography"
+        ],
+        "tool_calls": 7
+       }
+      },
+      "geo_refs": [
+       "g_point_39.734872_43.567303",
+       "g_point_39.735022_43.567974"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7350219,
+      43.5679739
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51854788",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348291,
+          43.5681017
+         ],
+         [
+          39.7348665,
+          43.5680531
+         ],
+         [
+          39.7348548,
+          43.5680484
+         ],
+         [
+          39.7348752,
+          43.5680218
+         ],
+         [
+          39.7348869,
+          43.5680265
+         ],
+         [
+          39.7350158,
+          43.5678577
+         ],
+         [
+          39.7353351,
+          43.5679857
+         ],
+         [
+          39.7352938,
+          43.5680398
+         ],
+         [
+          39.7353055,
+          43.5680445
+         ],
+         [
+          39.7352585,
+          43.5681061
+         ],
+         [
+          39.7352322,
+          43.5680955
+         ],
+         [
+          39.7350152,
+          43.5681342
+         ],
+         [
+          39.7349949,
+          43.5681606
+         ],
+         [
+          39.734898,
+          43.5681214
+         ],
+         [
+          39.7348933,
+          43.5681275
+         ],
+         [
+          39.7348291,
+          43.5681017
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51854788",
+      "hotel_id": "n8847798717",
+      "is_hotel": true,
+      "height_m": 80.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n8847798717"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "w80180160",
+     "name": "Мечта",
+     "address": "улица Карла Маркса 2А",
+     "location": [
+      39.9200783,
+      43.4202366
+     ],
+     "stars": null,
+     "building_id": "w80180160",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6394,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n2514339345",
+     "name": "Балтийский",
+     "address": "Балтийская улица 40",
+     "location": [
+      39.651574,
+      43.6507656
+     ],
+     "stars": null,
+     "building_id": "w97211067",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6394,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n4986725623",
+     "name": "Апартаменты в Маяке",
+     "address": null,
+     "location": [
+      39.7242648,
+      43.576032
+     ],
+     "stars": null,
+     "building_id": "w51352173",
+     "height_m": 64.0,
+     "levels": 20,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12084515064",
+     "name": "Panoramapart",
+     "address": null,
+     "location": [
+      39.7349229,
+      43.5681
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n1589590335",
+     "name": "Жасмин",
+     "address": null,
+     "location": [
+      39.8970579,
+      43.4626757
+     ],
+     "stars": null,
+     "building_id": "w54241055",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53729769",
+     "name": "Престиж",
+     "address": "улица Просвещения 163",
+     "location": [
+      39.8897219,
+      43.4835354
+     ],
+     "stars": null,
+     "building_id": "w53729769",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w250086731",
+     "name": "Riffos",
+     "address": "Нижнеимеретинская улица 143А",
+     "location": [
+      39.969564,
+      43.3971959
+     ],
+     "stars": null,
+     "building_id": "w250086731",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w250086738",
+     "name": "Пиано",
+     "address": "Нижнеимеретинская улица 143А",
+     "location": [
+      39.9697627,
+      43.3971255
+     ],
+     "stars": null,
+     "building_id": "w250086738",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w762421315",
+     "name": "Sochifornia Beach",
+     "address": "Голубая улица 14А",
+     "location": [
+      39.9252954,
+      43.4148967
+     ],
+     "stars": null,
+     "building_id": "w762421315",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w250086722",
+     "name": "Анна Мария",
+     "address": "Нижнеимеретинская улица 139Б",
+     "location": [
+      39.9690072,
+      43.3974308
+     ],
+     "stars": null,
+     "building_id": "w250086722",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.6393,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.5813663,
+    43.4223439,
+    39.9173948,
+    43.7039831
+   ],
+   "camera": {
+    "center": [
+     39.6928323,
+     43.6282064
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 49529
+ },
+ "search_message_id": "6a17bbe5-ed48-4c0f-a742-8a0e77dbbc27"
+}

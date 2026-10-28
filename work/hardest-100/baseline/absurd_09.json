@@ -1,0 +1,61 @@
+{
+ "id": "1a0fd77c-ad01-415f-94f2-019055689676",
+ "title": "Сочи: с видом из окна на Статую Свободы",
+ "updated_at": "2026-10-28T18:25:37.611452Z",
+ "messages": [
+  {
+   "id": "ebb9c799-e691-4ef3-a604-488ba8cc5413",
+   "role": "user",
+   "content": "отель в Сочи, но чтобы из окна была видна Статуя Свободы",
+   "created_at": "2026-10-28T18:25:37.611452Z"
+  },
+  {
+   "id": "85eff79b-a4b6-4c7d-8478-6879d95a90b6",
+   "role": "assistant",
+   "content": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска. На какие даты едете?",
+   "created_at": "2026-10-28T18:25:37.611452Z"
+  }
+ ],
+ "effective_query": "отель в Сочи с видом из окна на Статую Свободы",
+ "search": {
+  "query_id": "82adab4e571fea87",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:86e66455ce46",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом из окна на Статую Свободы"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи с видом из окна на Статую Свободы",
+   "corrections": [
+    {
+     "original": "Статую Свободы",
+     "corrected": "Статую Свободы",
+     "reason": "Статуя Свободы находится в Нью-Йорке, а не в Сочи; указанные места несовместимы, требуется уточнение."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 8674
+ },
+ "search_message_id": "85eff79b-a4b6-4c7d-8478-6879d95a90b6"
+}

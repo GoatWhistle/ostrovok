@@ -1,0 +1,54 @@
+{
+ "id": "eef62273-4b5a-4af3-9a87-4f6f5d669bd0",
+ "title": "Сочи",
+ "updated_at": "2026-10-28T18:36:52.117233Z",
+ "messages": [
+  {
+   "id": "f587efa4-f217-43e9-9305-c2a30182cfcf",
+   "role": "user",
+   "content": "отель в Сочи, заезд 30 февраля",
+   "created_at": "2026-10-28T18:36:52.117233Z"
+  },
+  {
+   "id": "ee40a72e-55be-4915-8b7c-91e41e09fdc7",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T18:36:52.117233Z"
+  }
+ ],
+ "effective_query": "отель в Сочи, заезд 30 февраля",
+ "search": {
+  "query_id": "48f420df36deb48a",
+  "parsed": {
+   "intents": [],
+   "unmatched_terms": [
+    "заезд 30 февраля"
+   ],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "отель в Сочи, заезд 30 февраля",
+   "corrections": [
+    {
+     "original": "заезд 30 февраля",
+     "corrected": "заезд 30 февраля",
+     "reason": "30 февраля не существует ни в одном году; дата неоднозначна и требует уточнения."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 3959
+ },
+ "search_message_id": "ee40a72e-55be-4915-8b7c-91e41e09fdc7"
+}

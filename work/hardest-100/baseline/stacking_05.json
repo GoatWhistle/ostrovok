@@ -1,0 +1,6044 @@
+{
+ "id": "ab113892-f758-47dd-8cd4-c2364eb380de",
+ "title": "Сочи: вид на закат, пляж пешком 7 минут, веганский завтрак",
+ "updated_at": "2026-10-28T18:42:21.267076Z",
+ "messages": [
+  {
+   "id": "0eba2425-9d67-48b6-8f43-a5acdf98e4d9",
+   "role": "user",
+   "content": "Сочи, вид на закат с высокого этажа, пляж пешком 7 минут, без детей в отеле, веганский завтрак",
+   "created_at": "2026-10-28T18:42:21.267076Z"
+  },
+  {
+   "id": "1d741cc6-baeb-40ea-99a7-7cb1f616cfcb",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Cascade, Marina Yacht by Stellar и Таис. Проверка не завершена: веганский завтрак; с высокого этажа; отель без детей. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T18:42:21.267076Z"
+  }
+ ],
+ "effective_query": "Сочи, вид на закат с высокого этажа, пляж пешком 7 минут, отель без детей, веганский завтрак",
+ "search": {
+  "query_id": "cd173c1e9ac1e429",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:4cd914cb9867",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "вид на закат"
+    },
+    {
+     "characteristic_key": "derived:02aad1a98771",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "пляж пешком 7 минут"
+    },
+    {
+     "characteristic_key": "derived:9bf0c38fe9ca",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "веганский завтрак"
+    },
+    {
+     "characteristic_key": "derived:f1e5c24a18c7",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с высокого этажа"
+    },
+    {
+     "characteristic_key": "derived:e9171c8298f0",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "отель без детей"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Сочи",
+   "anywhere": false,
+   "normalized_query": "Сочи, вид на закат с высокого этажа, пляж пешком 7 минут, отель без детей, веганский завтрак",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n11866202895",
+     "name": "Cascade",
+     "address": null,
+     "location": [
+      39.9148089,
+      43.4253046
+     ],
+     "stars": null,
+     "building_id": "w679416881",
+     "height_m": 9.6,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n11866202895",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 3,
+        "native_value": true,
+        "facades_total": 4,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n11866202895",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11866202895"
+       ],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "meters": 12.6,
+        "elevation_delta_m": 0.0,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n11866202895"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n11866202895",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n11866202895",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11866202895",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9148089,
+      43.4253046
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w679416881",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9146362,
+          43.4253099
+         ],
+         [
+          39.9147233,
+          43.4251999
+         ],
+         [
+          39.9149516,
+          43.4252953
+         ],
+         [
+          39.9148645,
+          43.4254053
+         ],
+         [
+          39.9146362,
+          43.4253099
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w679416881",
+      "hotel_id": "n11866202895",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n11866202895"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12749552601",
+     "name": "Marina Yacht by Stellar",
+     "address": "Несебрская улица 6",
+     "location": [
+      39.7191449,
+      43.5819586
+     ],
+     "stars": null,
+     "building_id": "w51106901",
+     "height_m": 18.5,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n12749552601",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 5,
+        "native_value": true,
+        "facades_total": 7,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n12749552601",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n12749552601"
+       ],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "meters": 14.9,
+        "elevation_delta_m": 4.5,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n12749552601"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n12749552601",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n12749552601",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12749552601",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7191449,
+      43.5819586
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51106901",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7188997,
+          43.5820736
+         ],
+         [
+          39.7190388,
+          43.5819098
+         ],
+         [
+          39.7191725,
+          43.5817524
+         ],
+         [
+          39.7194855,
+          43.5818919
+         ],
+         [
+          39.7194313,
+          43.5819558
+         ],
+         [
+          39.7193922,
+          43.5820019
+         ],
+         [
+          39.7192128,
+          43.5822131
+         ],
+         [
+          39.7188997,
+          43.5820736
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51106901",
+      "hotel_id": "n12749552601",
+      "is_hotel": true,
+      "height_m": 18.5,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n12749552601"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7342978826",
+     "name": "Таис",
+     "address": null,
+     "location": [
+      39.7597608,
+      43.5586829
+     ],
+     "stars": null,
+     "building_id": "w52336702",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n7342978826",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 4,
+        "native_value": true,
+        "facades_total": 7,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n7342978826",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n7342978826"
+       ],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "meters": 13.7,
+        "elevation_delta_m": 5.1,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n7342978826"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n7342978826",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n7342978826",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7342978826",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7597608,
+      43.5586829
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w52336702",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7596813,
+          43.5586423
+         ],
+         [
+          39.7596849,
+          43.5585824
+         ],
+         [
+          39.759744,
+          43.5585256
+         ],
+         [
+          39.759749,
+          43.5585135
+         ],
+         [
+          39.7597588,
+          43.5585047
+         ],
+         [
+          39.7597698,
+          43.558501
+         ],
+         [
+          39.7597856,
+          43.5585005
+         ],
+         [
+          39.7597993,
+          43.5585031
+         ],
+         [
+          39.7598163,
+          43.5584965
+         ],
+         [
+          39.7598697,
+          43.5585776
+         ],
+         [
+          39.75986,
+          43.5586354
+         ],
+         [
+          39.7598364,
+          43.558682
+         ],
+         [
+          39.7597261,
+          43.5587249
+         ],
+         [
+          39.7597085,
+          43.5586925
+         ],
+         [
+          39.7596973,
+          43.5586877
+         ],
+         [
+          39.7596897,
+          43.558681
+         ],
+         [
+          39.7596861,
+          43.5586735
+         ],
+         [
+          39.7596851,
+          43.5586641
+         ],
+         [
+          39.7596885,
+          43.5586556
+         ],
+         [
+          39.7596813,
+          43.5586423
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w52336702",
+      "hotel_id": "n7342978826",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n7342978826"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8847798717",
+     "name": "PinkFloyd Apartment",
+     "address": null,
+     "location": [
+      39.7350219,
+      43.5679739
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 6. Горизонт по DEM и высотам зданий открывается с 3-го этажа. В здании этажей: 25.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n8847798717",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 3,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 25,
+        "native_value": true,
+        "facades_total": 11,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 6,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n8847798717",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n8847798717"
+       ],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "meters": 17.3,
+        "elevation_delta_m": 0.0,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n8847798717"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n8847798717",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n8847798717",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8847798717",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7350219,
+      43.5679739
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51854788",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348291,
+          43.5681017
+         ],
+         [
+          39.7348665,
+          43.5680531
+         ],
+         [
+          39.7348548,
+          43.5680484
+         ],
+         [
+          39.7348752,
+          43.5680218
+         ],
+         [
+          39.7348869,
+          43.5680265
+         ],
+         [
+          39.7350158,
+          43.5678577
+         ],
+         [
+          39.7353351,
+          43.5679857
+         ],
+         [
+          39.7352938,
+          43.5680398
+         ],
+         [
+          39.7353055,
+          43.5680445
+         ],
+         [
+          39.7352585,
+          43.5681061
+         ],
+         [
+          39.7352322,
+          43.5680955
+         ],
+         [
+          39.7350152,
+          43.5681342
+         ],
+         [
+          39.7349949,
+          43.5681606
+         ],
+         [
+          39.734898,
+          43.5681214
+         ],
+         [
+          39.7348933,
+          43.5681275
+         ],
+         [
+          39.7348291,
+          43.5681017
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51854788",
+      "hotel_id": "n8847798717",
+      "is_hotel": true,
+      "height_m": 80.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n8847798717"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2514339345",
+     "name": "Балтийский",
+     "address": "Балтийская улица 40",
+     "location": [
+      39.651574,
+      43.6507656
+     ],
+     "stars": null,
+     "building_id": "w97211067",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n2514339345",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2514339345",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 2,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 3,
+        "native_value": true,
+        "facades_total": 6,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.4,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.6,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n2514339345",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n2514339345"
+       ],
+       "subject": "hotel:n2514339345",
+       "qualifiers": {
+        "meters": 26.6,
+        "elevation_delta_m": -1.9,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n2514339345"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n2514339345",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2514339345",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n2514339345",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2514339345",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.651574,
+      43.6507656
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w97211067",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.6514583,
+          43.6507367
+         ],
+         [
+          39.6515841,
+          43.6506918
+         ],
+         [
+          39.6516503,
+          43.6507891
+         ],
+         [
+          39.6516058,
+          43.650805
+         ],
+         [
+          39.6516842,
+          43.6509203
+         ],
+         [
+          39.651603,
+          43.6509492
+         ],
+         [
+          39.6514583,
+          43.6507367
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w97211067",
+      "hotel_id": "n2514339345",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n2514339345"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4986725623",
+     "name": "Апартаменты в Маяке",
+     "address": null,
+     "location": [
+      39.7242648,
+      43.576032
+     ],
+     "stars": null,
+     "building_id": "w51352173",
+     "height_m": 64.0,
+     "levels": 20,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 11. Горизонт по DEM и высотам зданий открывается с 8-го этажа. В здании этажей: 20.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n4986725623",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4986725623",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 8,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 20,
+        "native_value": true,
+        "facades_total": 33,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 11,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n4986725623",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n4986725623"
+       ],
+       "subject": "hotel:n4986725623",
+       "qualifiers": {
+        "meters": 25.8,
+        "elevation_delta_m": 6.3,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n4986725623"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n4986725623",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4986725623",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n4986725623",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4986725623",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7242648,
+      43.576032
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51352173",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7239694,
+          43.5760009
+         ],
+         [
+          39.7240029,
+          43.5759704
+         ],
+         [
+          39.7240746,
+          43.5759101
+         ],
+         [
+          39.724112,
+          43.5759318
+         ],
+         [
+          39.7241597,
+          43.5759151
+         ],
+         [
+          39.7242142,
+          43.5759052
+         ],
+         [
+          39.7242662,
+          43.5759036
+         ],
+         [
+          39.7243214,
+          43.5759101
+         ],
+         [
+          39.7243682,
+          43.575923
+         ],
+         [
+          39.7244028,
+          43.5759377
+         ],
+         [
+          39.7244368,
+          43.5759574
+         ],
+         [
+          39.7244605,
+          43.5759792
+         ],
+         [
+          39.7244985,
+          43.5759685
+         ],
+         [
+          39.724558,
+          43.5760787
+         ],
+         [
+          39.7245152,
+          43.5760912
+         ],
+         [
+          39.7245157,
+          43.5760946
+         ],
+         [
+          39.7245103,
+          43.5761333
+         ],
+         [
+          39.7244932,
+          43.5761722
+         ],
+         [
+          39.7244688,
+          43.5762037
+         ],
+         [
+          39.7244346,
+          43.5762328
+         ],
+         [
+          39.724389,
+          43.5762583
+         ],
+         [
+          39.7243408,
+          43.576275
+         ],
+         [
+          39.7242877,
+          43.5762845
+         ],
+         [
+          39.724276,
+          43.5762849
+         ],
+         [
+          39.7242655,
+          43.5763184
+         ],
+         [
+          39.7241064,
+          43.5762911
+         ],
+         [
+          39.7241157,
+          43.5762583
+         ],
+         [
+          39.7240884,
+          43.5762456
+         ],
+         [
+          39.7240655,
+          43.5762309
+         ],
+         [
+          39.7240309,
+          43.5762005
+         ],
+         [
+          39.7240067,
+          43.5761672
+         ],
+         [
+          39.7239913,
+          43.5761292
+         ],
+         [
+          39.723987,
+          43.5760955
+         ],
+         [
+          39.7239918,
+          43.5760587
+         ],
+         [
+          39.7240066,
+          43.5760236
+         ],
+         [
+          39.7239694,
+          43.5760009
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51352173",
+      "hotel_id": "n4986725623",
+      "is_hotel": true,
+      "height_m": 64.0,
+      "min_height_m": 0,
+      "levels": 20,
+      "height_fact_id": "f_height_n4986725623"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w124781620",
+     "name": "Kavkaz",
+     "address": "Нижнеимеретинская улица 161А",
+     "location": [
+      39.9718084,
+      43.3962964
+     ],
+     "stars": null,
+     "building_id": "w124781620",
+     "height_m": 19.2,
+     "levels": 6,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 4. Горизонт по DEM и высотам зданий открывается с 5-го этажа. В здании этажей: 6.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w124781620",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 5,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 6,
+        "native_value": true,
+        "facades_total": 10,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 4,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w124781620",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w124781620"
+       ],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "meters": 22.7,
+        "elevation_delta_m": 1.7,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w124781620"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w124781620",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w124781620",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781620",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9718084,
+      43.3962964
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124781620",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9717148,
+          43.3962675
+         ],
+         [
+          39.9717182,
+          43.396249
+         ],
+         [
+          39.9717295,
+          43.3962286
+         ],
+         [
+          39.9717901,
+          43.3962064
+         ],
+         [
+          39.9718214,
+          43.3962112
+         ],
+         [
+          39.9718452,
+          43.3962221
+         ],
+         [
+          39.9718695,
+          43.3962413
+         ],
+         [
+          39.9720545,
+          43.3965087
+         ],
+         [
+          39.971909,
+          43.3965619
+         ],
+         [
+          39.9717249,
+          43.3962957
+         ],
+         [
+          39.9717148,
+          43.3962675
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124781620",
+      "hotel_id": "w124781620",
+      "is_hotel": true,
+      "height_m": 19.2,
+      "min_height_m": 0,
+      "levels": 6,
+      "height_fact_id": "f_height_w124781620"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w124781622",
+     "name": "Богородск",
+     "address": "Нижнеимеретинская улица 155Б",
+     "location": [
+      39.9708653,
+      43.3967344
+     ],
+     "stars": null,
+     "building_id": "w124781622",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 7. Горизонт по DEM и высотам зданий открывается с 5-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w124781622",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781622",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 5,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 5,
+        "native_value": true,
+        "facades_total": 11,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 7,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w124781622",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w124781622"
+       ],
+       "subject": "hotel:w124781622",
+       "qualifiers": {
+        "meters": 24.7,
+        "elevation_delta_m": 0.3,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w124781622"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w124781622",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781622",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w124781622",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w124781622",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9708653,
+      43.3967344
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w124781622",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9707934,
+          43.3967053
+         ],
+         [
+          39.9708002,
+          43.3966956
+         ],
+         [
+          39.9707962,
+          43.3966693
+         ],
+         [
+          39.9708036,
+          43.396645
+         ],
+         [
+          39.9708217,
+          43.3966179
+         ],
+         [
+          39.9708369,
+          43.3966127
+         ],
+         [
+          39.9708697,
+          43.3966015
+         ],
+         [
+          39.9709298,
+          43.3965809
+         ],
+         [
+          39.9710889,
+          43.3968258
+         ],
+         [
+          39.9709826,
+          43.3968623
+         ],
+         [
+          39.9709602,
+          43.3968556
+         ],
+         [
+          39.9709325,
+          43.3968451
+         ],
+         [
+          39.9709024,
+          43.396825
+         ],
+         [
+          39.9708785,
+          43.3967995
+         ],
+         [
+          39.9708612,
+          43.3967964
+         ],
+         [
+          39.9708473,
+          43.3967874
+         ],
+         [
+          39.9708439,
+          43.3967727
+         ],
+         [
+          39.9708493,
+          43.3967616
+         ],
+         [
+          39.9708313,
+          43.3967382
+         ],
+         [
+          39.970814,
+          43.396733
+         ],
+         [
+          39.9707993,
+          43.3967211
+         ],
+         [
+          39.9707934,
+          43.3967053
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w124781622",
+      "hotel_id": "w124781622",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w124781622"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w53729769",
+     "name": "Престиж",
+     "address": "улица Просвещения 163",
+     "location": [
+      39.8897219,
+      43.4835354
+     ],
+     "stars": null,
+     "building_id": "w53729769",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w53729769",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53729769",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 3,
+        "native_value": true,
+        "facades_total": 5,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w53729769",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w53729769"
+       ],
+       "subject": "hotel:w53729769",
+       "qualifiers": {
+        "meters": 32.9,
+        "elevation_delta_m": 1.4,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w53729769"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w53729769",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53729769",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w53729769",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w53729769",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8897219,
+      43.4835354
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w53729769",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8895545,
+          43.4835589
+         ],
+         [
+          39.8896051,
+          43.4834267
+         ],
+         [
+          39.8898992,
+          43.483486
+         ],
+         [
+          39.8898694,
+          43.4835638
+         ],
+         [
+          39.8898486,
+          43.4836182
+         ],
+         [
+          39.8895545,
+          43.4835589
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w53729769",
+      "hotel_id": "w53729769",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w53729769"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w81153134",
+     "name": "Штиль",
+     "address": "улица Просвещения 170/5",
+     "location": [
+      39.8891706,
+      43.4850607
+     ],
+     "stars": null,
+     "building_id": "w81153134",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 4. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w81153134",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81153134",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 3,
+        "native_value": true,
+        "facades_total": 6,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 4,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w81153134",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w81153134"
+       ],
+       "subject": "hotel:w81153134",
+       "qualifiers": {
+        "meters": 34.9,
+        "elevation_delta_m": 2.4,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.4,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w81153134"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w81153134",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81153134",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w81153134",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w81153134",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8891706,
+      43.4850607
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81153134",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8891057,
+          43.4850979
+         ],
+         [
+          39.889119,
+          43.48507
+         ],
+         [
+          39.889108,
+          43.4850672
+         ],
+         [
+          39.8891123,
+          43.4850581
+         ],
+         [
+          39.8891058,
+          43.4850519
+         ],
+         [
+          39.889115,
+          43.4850342
+         ],
+         [
+          39.8891248,
+          43.4850316
+         ],
+         [
+          39.8891296,
+          43.4850215
+         ],
+         [
+          39.8891417,
+          43.4850245
+         ],
+         [
+          39.889158,
+          43.4849901
+         ],
+         [
+          39.8894716,
+          43.4850683
+         ],
+         [
+          39.8894204,
+          43.4851763
+         ],
+         [
+          39.8891057,
+          43.4850979
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81153134",
+      "hotel_id": "w81153134",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w81153134"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13962415401",
+     "name": "Графит",
+     "address": "Прибрежная улица 27",
+     "location": [
+      39.8924091,
+      43.4760271
+     ],
+     "stars": null,
+     "building_id": "w81153244",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n13962415401",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 4,
+        "native_value": true,
+        "facades_total": 4,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n13962415401",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13962415401"
+       ],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "meters": 43.8,
+        "elevation_delta_m": 1.6,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.5,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n13962415401"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n13962415401",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n13962415401",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13962415401",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8924091,
+      43.4760271
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w81153244",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.89217,
+          43.4760434
+         ],
+         [
+          39.8922149,
+          43.4759241
+         ],
+         [
+          39.8926497,
+          43.4760102
+         ],
+         [
+          39.8926049,
+          43.4761295
+         ],
+         [
+          39.89217,
+          43.4760434
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w81153244",
+      "hotel_id": "n13962415401",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n13962415401"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n12084515064",
+     "name": "Panoramapart",
+     "address": null,
+     "location": [
+      39.7349229,
+      43.5681
+     ],
+     "stars": null,
+     "building_id": "w51854788",
+     "height_m": 80.0,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 6. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 25.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n12084515064",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12084515064",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 25,
+        "native_value": true,
+        "facades_total": 11,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 6,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n12084515064",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n12084515064"
+       ],
+       "subject": "hotel:n12084515064",
+       "qualifiers": {
+        "meters": 55.2,
+        "elevation_delta_m": 7.5,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.7,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n12084515064"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n12084515064",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12084515064",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n12084515064",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n12084515064",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7349229,
+      43.5681
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51854788",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7348291,
+          43.5681017
+         ],
+         [
+          39.7348665,
+          43.5680531
+         ],
+         [
+          39.7348548,
+          43.5680484
+         ],
+         [
+          39.7348752,
+          43.5680218
+         ],
+         [
+          39.7348869,
+          43.5680265
+         ],
+         [
+          39.7350158,
+          43.5678577
+         ],
+         [
+          39.7353351,
+          43.5679857
+         ],
+         [
+          39.7352938,
+          43.5680398
+         ],
+         [
+          39.7353055,
+          43.5680445
+         ],
+         [
+          39.7352585,
+          43.5681061
+         ],
+         [
+          39.7352322,
+          43.5680955
+         ],
+         [
+          39.7350152,
+          43.5681342
+         ],
+         [
+          39.7349949,
+          43.5681606
+         ],
+         [
+          39.734898,
+          43.5681214
+         ],
+         [
+          39.7348933,
+          43.5681275
+         ],
+         [
+          39.7348291,
+          43.5681017
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51854788",
+      "hotel_id": "n12084515064",
+      "is_hotel": true,
+      "height_m": 80.0,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_n12084515064"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1589590335",
+     "name": "Жасмин",
+     "address": null,
+     "location": [
+      39.8970579,
+      43.4626757
+     ],
+     "stars": null,
+     "building_id": "w54241055",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 8. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n1589590335",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1589590335",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 4,
+        "native_value": true,
+        "facades_total": 13,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 8,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n1589590335",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n1589590335"
+       ],
+       "subject": "hotel:n1589590335",
+       "qualifiers": {
+        "meters": 56.5,
+        "elevation_delta_m": 1.9,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.7,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n1589590335"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n1589590335",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1589590335",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n1589590335",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1589590335",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.8970579,
+      43.4626757
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w54241055",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.8967938,
+          43.4626428
+         ],
+         [
+          39.8968286,
+          43.462555
+         ],
+         [
+          39.8968512,
+          43.4624979
+         ],
+         [
+          39.8971768,
+          43.4625658
+         ],
+         [
+          39.897154,
+          43.4626235
+         ],
+         [
+          39.8971379,
+          43.4626642
+         ],
+         [
+          39.8971201,
+          43.4627091
+         ],
+         [
+          39.8970143,
+          43.462687
+         ],
+         [
+          39.8970322,
+          43.462642
+         ],
+         [
+          39.8970482,
+          43.4626014
+         ],
+         [
+          39.8970044,
+          43.4625923
+         ],
+         [
+          39.8969293,
+          43.4625766
+         ],
+         [
+          39.8968948,
+          43.4626638
+         ],
+         [
+          39.8967938,
+          43.4626428
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w54241055",
+      "hotel_id": "n1589590335",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n1589590335"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w51106908",
+     "name": "Версаль",
+     "address": "Несебрская улица 14",
+     "location": [
+      39.7182247,
+      43.5837129
+     ],
+     "stars": null,
+     "building_id": "w51106908",
+     "height_m": 38.4,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 8. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 12.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w51106908",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51106908",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 12,
+        "native_value": true,
+        "facades_total": 19,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 8,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w51106908",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w51106908"
+       ],
+       "subject": "hotel:w51106908",
+       "qualifiers": {
+        "meters": 66.5,
+        "elevation_delta_m": -0.4,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.8,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w51106908"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w51106908",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51106908",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w51106908",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w51106908",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.7182247,
+      43.5837129
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51106908",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7180419,
+          43.5836818
+         ],
+         [
+          39.7180513,
+          43.5836389
+         ],
+         [
+          39.7180793,
+          43.5835778
+         ],
+         [
+          39.7181526,
+          43.5836038
+         ],
+         [
+          39.7182227,
+          43.5835153
+         ],
+         [
+          39.7184914,
+          43.5836149
+         ],
+         [
+          39.7184694,
+          43.5836487
+         ],
+         [
+          39.7184133,
+          43.5837349
+         ],
+         [
+          39.7183967,
+          43.5837726
+         ],
+         [
+          39.7183731,
+          43.5837949
+         ],
+         [
+          39.7183281,
+          43.5838103
+         ],
+         [
+          39.7182808,
+          43.5838086
+         ],
+         [
+          39.7182501,
+          43.5837932
+         ],
+         [
+          39.7182382,
+          43.583764
+         ],
+         [
+          39.7182027,
+          43.5837743
+         ],
+         [
+          39.718172,
+          43.5837794
+         ],
+         [
+          39.7181389,
+          43.5837777
+         ],
+         [
+          39.7180916,
+          43.5837606
+         ],
+         [
+          39.7180584,
+          43.5837246
+         ],
+         [
+          39.7180419,
+          43.5836818
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51106908",
+      "hotel_id": "w51106908",
+      "is_hotel": true,
+      "height_m": 38.4,
+      "min_height_m": 0,
+      "levels": 12,
+      "height_fact_id": "f_height_w51106908"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n13301736402",
+     "name": "Lavicon club residence biarritz",
+     "address": "улица Просвещения 96/1",
+     "location": [
+      39.9138515,
+      43.4283976
+     ],
+     "stars": null,
+     "building_id": "w775621444",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 2. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 3.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n13301736402",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 2,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 3,
+        "native_value": true,
+        "facades_total": 6,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 2,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n13301736402",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n13301736402"
+       ],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "meters": 74.6,
+        "elevation_delta_m": 1.2,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 0.9,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n13301736402"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n13301736402",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n13301736402",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n13301736402",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9138515,
+      43.4283976
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w775621444",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9136743,
+          43.4283762
+         ],
+         [
+          39.9137877,
+          43.4282673
+         ],
+         [
+          39.9141424,
+          43.4284623
+         ],
+         [
+          39.9140091,
+          43.4285902
+         ],
+         [
+          39.9138642,
+          43.4285106
+         ],
+         [
+          39.9138841,
+          43.4284915
+         ],
+         [
+          39.9136743,
+          43.4283762
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w775621444",
+      "hotel_id": "n13301736402",
+      "is_hotel": true,
+      "height_m": 9.6,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n13301736402"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n7115085741",
+     "name": "El Paraiso",
+     "address": "улица Просвещения 70",
+     "location": [
+      39.9151498,
+      43.4260269
+     ],
+     "stars": null,
+     "building_id": "w149546331",
+     "height_m": 28.8,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 9.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n7115085741",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 2,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 9,
+        "native_value": true,
+        "facades_total": 5,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n7115085741",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n7115085741"
+       ],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "meters": 98.1,
+        "elevation_delta_m": -1.4,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.2,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n7115085741"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n7115085741",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n7115085741",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n7115085741",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9151498,
+      43.4260269
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w149546331",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9150257,
+          43.4260506
+         ],
+         [
+          39.9150552,
+          43.4260222
+         ],
+         [
+          39.9150578,
+          43.4260068
+         ],
+         [
+          39.9150662,
+          43.425996
+         ],
+         [
+          39.9150804,
+          43.4259875
+         ],
+         [
+          39.9150994,
+          43.4259811
+         ],
+         [
+          39.9151279,
+          43.4259536
+         ],
+         [
+          39.9155345,
+          43.4261767
+         ],
+         [
+          39.9154331,
+          43.4262741
+         ],
+         [
+          39.9150257,
+          43.4260506
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w149546331",
+      "hotel_id": "n7115085741",
+      "is_hotel": true,
+      "height_m": 28.8,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n7115085741"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n11331531334",
+     "name": "Cosmos Adler Hotel",
+     "address": null,
+     "location": [
+      39.904065,
+      43.4451502
+     ],
+     "stars": null,
+     "building_id": "w291652014",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 6. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n11331531334",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 2,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 4,
+        "native_value": true,
+        "facades_total": 11,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 6,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n11331531334",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n11331531334"
+       ],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "meters": 100.4,
+        "elevation_delta_m": -0.3,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n11331531334"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n11331531334",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n11331531334",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n11331531334",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.904065,
+      43.4451502
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w291652014",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9038943,
+          43.445266
+         ],
+         [
+          39.904035,
+          43.4449599
+         ],
+         [
+          39.9040286,
+          43.4449583
+         ],
+         [
+          39.9040556,
+          43.4448997
+         ],
+         [
+          39.9040632,
+          43.4449015
+         ],
+         [
+          39.9041067,
+          43.444807
+         ],
+         [
+          39.9042729,
+          43.4448473
+         ],
+         [
+          39.9042293,
+          43.444942
+         ],
+         [
+          39.9042353,
+          43.4449434
+         ],
+         [
+          39.9042219,
+          43.4449725
+         ],
+         [
+          39.9042081,
+          43.4450025
+         ],
+         [
+          39.904201,
+          43.4450007
+         ],
+         [
+          39.9040449,
+          43.4453403
+         ],
+         [
+          39.9039432,
+          43.4453157
+         ],
+         [
+          39.9039588,
+          43.4452817
+         ],
+         [
+          39.9038943,
+          43.445266
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w291652014",
+      "hotel_id": "n11331531334",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n11331531334"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8872412718",
+     "name": "СПА-отель \"Грейс Горизонт\"",
+     "address": null,
+     "location": [
+      39.723641,
+      43.5764415
+     ],
+     "stars": null,
+     "building_id": "w51352165",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 1. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n8872412718",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8872412718",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 5,
+        "native_value": true,
+        "facades_total": 7,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 1,
+        "sunset_azimuth_to_deg": 303.1,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n8872412718",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n8872412718"
+       ],
+       "subject": "hotel:n8872412718",
+       "qualifiers": {
+        "meters": 106.5,
+        "elevation_delta_m": 12.3,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.3,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n8872412718"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n8872412718",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8872412718",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n8872412718",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8872412718",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.723641,
+      43.5764415
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w51352165",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.7234603,
+          43.5764801
+         ],
+         [
+          39.7238764,
+          43.5761161
+         ],
+         [
+          39.7240655,
+          43.5762309
+         ],
+         [
+          39.7240884,
+          43.5762456
+         ],
+         [
+          39.7238153,
+          43.576472
+         ],
+         [
+          39.7237417,
+          43.576533
+         ],
+         [
+          39.7236632,
+          43.5766017
+         ],
+         [
+          39.7234603,
+          43.5764801
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w51352165",
+      "hotel_id": "n8872412718",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n8872412718"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n10759614195",
+     "name": "Golden Tennis Club",
+     "address": null,
+     "location": [
+      39.9162591,
+      43.4244336
+     ],
+     "stars": null,
+     "building_id": "w80180147",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8e595f6_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_908122e8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ea5f6364_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_23dce702_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7f47a1a7_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_e57fb4ca_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_1e72f57c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_def7429c_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a8bf2c55_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f49f1244_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77759988_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc91da63_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7b2e75ea_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2575c86e_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_a7e33eb8_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ca8570f0_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_dc68466d_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_26103694_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac3d1913_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_93db3c65_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_77565a20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c711ca62_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_952b1558_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_8a115b16_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 4. Горизонт по DEM и высотам зданий открывается с 1-го этажа. В здании этажей: 5.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_n10759614195",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 1,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 5,
+        "native_value": true,
+        "facades_total": 15,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.3,
+        "facades_facing_sunset": 4,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_n10759614195",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_n10759614195"
+       ],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "meters": 118.3,
+        "elevation_delta_m": 4.6,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 1.5,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_n10759614195"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_n10759614195",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_n10759614195",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10759614195",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9162591,
+      43.4244336
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w80180147",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.916045,
+          43.4244222
+         ],
+         [
+          39.9160998,
+          43.4243623
+         ],
+         [
+          39.916114,
+          43.4243648
+         ],
+         [
+          39.9161924,
+          43.4243522
+         ],
+         [
+          39.9162094,
+          43.4243308
+         ],
+         [
+          39.9162579,
+          43.424351
+         ],
+         [
+          39.9163259,
+          43.4243401
+         ],
+         [
+          39.9163391,
+          43.4243418
+         ],
+         [
+          39.9163437,
+          43.4243481
+         ],
+         [
+          39.916345,
+          43.4243547
+         ],
+         [
+          39.9163383,
+          43.4243596
+         ],
+         [
+          39.9163099,
+          43.4243667
+         ],
+         [
+          39.9163664,
+          43.4243934
+         ],
+         [
+          39.9163143,
+          43.42445
+         ],
+         [
+          39.9163264,
+          43.4244559
+         ],
+         [
+          39.9162967,
+          43.4244884
+         ],
+         [
+          39.9162907,
+          43.4244855
+         ],
+         [
+          39.9162645,
+          43.4245141
+         ],
+         [
+          39.9162279,
+          43.4244964
+         ],
+         [
+          39.9161775,
+          43.4245513
+         ],
+         [
+          39.9161283,
+          43.4245275
+         ],
+         [
+          39.9161388,
+          43.424516
+         ],
+         [
+          39.9161283,
+          43.4245109
+         ],
+         [
+          39.9161393,
+          43.4244989
+         ],
+         [
+          39.9161493,
+          43.4245037
+         ],
+         [
+          39.9161691,
+          43.4244821
+         ],
+         [
+          39.916045,
+          43.4244222
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w80180147",
+      "hotel_id": "n10759614195",
+      "is_hotel": true,
+      "height_m": 16.0,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_n10759614195"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w207638226",
+     "name": "Русь",
+     "address": "Голубая улица 18В",
+     "location": [
+      39.9313965,
+      43.4136428
+     ],
+     "stars": null,
+     "building_id": "w207638226",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.251,
+    "confidence": 0.95,
+    "matched": [
+     {
+      "characteristic_key": "derived:4cd914cb9867",
+      "match": "partial",
+      "margin": null,
+      "label": "вид на закат",
+      "explanation": "Закат в апрель — август садится по азимуту 284–303°. На закатную сторону выходит фасадов: 3. Горизонт по DEM и высотам зданий открывается с 2-го этажа. В здании этажей: 4.",
+      "fact": {
+       "fact_id": "f_wish_4cd914cb9867_w207638226",
+       "characteristic_key": "derived:4cd914cb9867",
+       "value": true,
+       "unit": null,
+       "label": "вид на закат",
+       "confidence": 0.75,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w207638226",
+       "qualifiers": {
+        "months": "апрель — август",
+        "native_op": "eq",
+        "from_floor": 2,
+        "tool_calls": 0,
+        "native_unit": null,
+        "source_text": "вид на закат",
+        "wish_status": "matched",
+        "floors_known": 4,
+        "native_value": true,
+        "facades_total": 11,
+        "checked_sources": [],
+        "estimated_match": true,
+        "season_to_month": 8,
+        "native_threshold": true,
+        "season_from_month": 4,
+        "checked_azimuth_deg": 293.2,
+        "facades_facing_sunset": 3,
+        "sunset_azimuth_to_deg": 303.0,
+        "rooms_with_known_floor": 0,
+        "bookable_room_confirmed": false,
+        "sunset_azimuth_from_deg": 283.5,
+        "native_characteristic_key": "sunset_view"
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:02aad1a98771",
+      "match": "full",
+      "margin": 2.0,
+      "label": "пляж пешком 7 минут",
+      "explanation": "Кратчайший маршрут по пешеходному графу OSM до точки доступа к берегу.",
+      "fact": {
+       "fact_id": "f_wish_02aad1a98771_w207638226",
+       "characteristic_key": "derived:02aad1a98771",
+       "value": true,
+       "unit": null,
+       "label": "пляж пешком 7 минут",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_route_w207638226"
+       ],
+       "subject": "hotel:w207638226",
+       "qualifiers": {
+        "meters": 516.7,
+        "elevation_delta_m": 1.4,
+        "source_text": "пляж пешком 7 минут",
+        "native_characteristic_key": "distance_to_sea",
+        "native_value": 6.5,
+        "native_unit": "min",
+        "native_op": "lte",
+        "native_threshold": 15.0,
+        "wish_status": "matched",
+        "checked_sources": [
+         "database"
+        ],
+        "tool_calls": 1
+       }
+      },
+      "geo_refs": [
+       "g_route_w207638226"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:9bf0c38fe9ca",
+      "match": "unknown",
+      "margin": null,
+      "label": "веганский завтрак",
+      "explanation": "Новостные страницы связаны с торговыми марками, правообладателями и контекстом, а не со свойствами самих отелей.",
+      "fact": {
+       "fact_id": "f_wish_9bf0c38fe9ca_w207638226",
+       "characteristic_key": "derived:9bf0c38fe9ca",
+       "value": null,
+       "unit": null,
+       "label": "веганский завтрак",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w207638226",
+       "qualifiers": {
+        "source_text": "веганский завтрак",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 12
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:f1e5c24a18c7",
+      "match": "unknown",
+      "margin": null,
+      "label": "с высокого этажа",
+      "explanation": "Поле floor_max в записи о номерах не позволяет подтвердить высокоэтажность, так как в записи указан этаж 8, что не гарантирует высокого этажа общего типа.",
+      "fact": {
+       "fact_id": "f_wish_f1e5c24a18c7_w207638226",
+       "characteristic_key": "derived:f1e5c24a18c7",
+       "value": null,
+       "unit": null,
+       "label": "с высокого этажа",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w207638226",
+       "qualifiers": {
+        "source_text": "с высокого этажа",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "geography",
+         "web"
+        ],
+        "tool_calls": 15
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:e9171c8298f0",
+      "match": "unknown",
+      "margin": null,
+      "label": "отель без детей",
+      "explanation": "Нет подтверждённого факта",
+      "fact": null,
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      39.9313965,
+      43.4136428
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w207638226",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          39.9312386,
+          43.413624
+         ],
+         [
+          39.9314137,
+          43.4135275
+         ],
+         [
+          39.931433,
+          43.4135468
+         ],
+         [
+          39.9314545,
+          43.4135518
+         ],
+         [
+          39.9314735,
+          43.4135607
+         ],
+         [
+          39.9314922,
+          43.4135737
+         ],
+         [
+          39.9315053,
+          43.4135896
+         ],
+         [
+          39.9315102,
+          43.4136055
+         ],
+         [
+          39.9315111,
+          43.4136207
+         ],
+         [
+          39.9315321,
+          43.4136408
+         ],
+         [
+          39.9314459,
+          43.4136876
+         ],
+         [
+          39.93144,
+          43.413702
+         ],
+         [
+          39.9314255,
+          43.4137149
+         ],
+         [
+          39.9314131,
+          43.4137234
+         ],
+         [
+          39.931401,
+          43.4137109
+         ],
+         [
+          39.9313623,
+          43.4137329
+         ],
+         [
+          39.9313188,
+          43.4136892
+         ],
+         [
+          39.9312929,
+          43.4137035
+         ],
+         [
+          39.9312799,
+          43.4136884
+         ],
+         [
+          39.9312715,
+          43.4136703
+         ],
+         [
+          39.9312688,
+          43.413653
+         ],
+         [
+          39.9312386,
+          43.413624
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w207638226",
+      "hotel_id": "w207638226",
+      "is_hotel": true,
+      "height_m": 12.8,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_w207638226"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n4712092442",
+     "name": "Abris",
+     "address": null,
+     "location": [
+      39.9668263,
+      43.3989565
+     ],
+     "stars": null,
+     "building_id": "w374921439",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w98649229",
+     "name": "AIDA",
+     "address": "Общинная улица 42",
+     "location": [
+      39.9723597,
+      43.3980926
+     ],
+     "stars": null,
+     "building_id": "w98649229",
+     "height_m": 6.4,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n7123898236",
+     "name": "Ales",
+     "address": null,
+     "location": [
+      39.9296998,
+      43.4155685
+     ],
+     "stars": null,
+     "building_id": "w80189222",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11190910581",
+     "name": "Alpha Sirius",
+     "address": null,
+     "location": [
+      39.9358143,
+      43.4115027
+     ],
+     "stars": null,
+     "building_id": "w207638209",
+     "height_m": 22.4,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "r5674341",
+     "name": "Azimut",
+     "address": "Новороссийское шоссе 1",
+     "location": [
+      39.8550582,
+      43.5143903
+     ],
+     "stars": 4,
+     "building_id": "w52018833",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8932134771",
+     "name": "Black Sea",
+     "address": "улица Ленина 219А/5",
+     "location": [
+      39.8936563,
+      43.4732997
+     ],
+     "stars": 2,
+     "building_id": "w672015518",
+     "height_m": 16.0,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w53292017",
+     "name": "Black Sea",
+     "address": "улица Бестужева 6А",
+     "location": [
+      39.9224817,
+      43.41941
+     ],
+     "stars": null,
+     "building_id": "w53292017",
+     "height_m": 3.2,
+     "levels": 1,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11878294032",
+     "name": "Bliss House",
+     "address": null,
+     "location": [
+      39.9170665,
+      43.4291139
+     ],
+     "stars": null,
+     "building_id": "w147646191",
+     "height_m": 9.6,
+     "levels": null,
+     "thumbnail_url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+     "photos": [
+      {
+       "url": "https://static.cupid.travel/hotels/ex_2dd30120_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_27b4fee4_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_0e605d22_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7e2ab962_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_f1b526cc_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_693e5058_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_89290789_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_04f865d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_9bf75fc9_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_36ff2a08_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_4b387cb3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_6e4d9937_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_7bfef549_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_995b347a_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_08af9865_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ee35fd20_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b3822f39_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_fa2d72c1_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_98caa048_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_ac963a91_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_d9c1d2f3_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_42806922_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_c155c5fe_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      },
+      {
+       "url": "https://static.cupid.travel/hotels/ex_b00a01d2_z.jpg",
+       "source_url": null,
+       "kind": "hotel"
+      }
+     ]
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w201474330",
+     "name": "Brevis apartments",
+     "address": "улица Орджоникидзе 11/1",
+     "location": [
+      39.7243657,
+      43.5767707
+     ],
+     "stars": 3,
+     "building_id": "w201474330",
+     "height_m": 51.2,
+     "levels": 16,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "w147552207",
+     "name": "Camellia",
+     "address": "Цветочная улица 17/10",
+     "location": [
+      39.9287233,
+      43.4172038
+     ],
+     "stars": null,
+     "building_id": "w147552207",
+     "height_m": 12.8,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1759,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    39.651574,
+    43.3962964,
+    39.9718084,
+    43.6507656
+   ],
+   "camera": {
+    "center": [
+     39.9148089,
+     43.4253046
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 156722
+ },
+ "search_message_id": "1d741cc6-baeb-40ea-99a7-7cb1f616cfcb"
+}

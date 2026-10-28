@@ -1,0 +1,55 @@
+{
+ "id": "c00d7a2e-e3af-4a5c-a7b5-617d5e71252a",
+ "title": "С видом на море",
+ "updated_at": "2026-10-28T18:29:06.132023Z",
+ "messages": [
+  {
+   "id": "a32761d3-d6bb-4acb-88ca-bb9a5493755c",
+   "role": "user",
+   "content": "отель с видом на море",
+   "created_at": "2026-10-28T18:29:06.132023Z"
+  },
+  {
+   "id": "4bac64fc-6b90-4dc4-b9b8-082d0786e9ca",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:29:06.132023Z"
+  }
+ ],
+ "effective_query": "отель с видом на море",
+ "search": {
+  "query_id": "73a598368cdc2299",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:5745a44d5c64",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на море"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель с видом на море",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5201
+ },
+ "search_message_id": "4bac64fc-6b90-4dc4-b9b8-082d0786e9ca"
+}

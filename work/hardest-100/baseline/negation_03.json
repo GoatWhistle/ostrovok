@@ -1,0 +1,4642 @@
+{
+ "id": "9e89bc4a-5d3c-4131-8a92-c83ded753295",
+ "title": "Москва: не в Москва-Сити, не рядом с Красной площадью",
+ "updated_at": "2026-10-28T18:43:27.087482Z",
+ "messages": [
+  {
+   "id": "a1216535-be23-4c69-9873-9710921c53b0",
+   "role": "user",
+   "content": "отель в Москве, но не в Москве-Сити и не рядом с Красной площадью",
+   "created_at": "2026-10-28T18:43:27.087482Z"
+  },
+  {
+   "id": "a5d7c04a-d6c7-49cc-ab6e-b6b6ff125a25",
+   "role": "assistant",
+   "content": "Нашёл 20 отелей. Первые в списке: Diamond Apartments, Петровский путевой дворец и Radisson Blu Leninsky Prospect Hotel, Moscow. Проверка не завершена: не в Москва-Сити. Все условия пока не подтверждены ни у одного, поэтому показываю самые близкие. На какие даты едете?",
+   "created_at": "2026-10-28T18:43:27.087482Z"
+  }
+ ],
+ "effective_query": "отель в Москве, не в Москва-Сити и не рядом с Красной площадью",
+ "search": {
+  "query_id": "f29cde9e8c6f707c",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "derived:df6f1e1bc319",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "не в Москва-Сити"
+    },
+    {
+     "characteristic_key": "derived:da6f128ff089",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": true,
+     "source_text": "не рядом с Красной площадью"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "отель в Москве, не в Москва-Сити и не рядом с Красной площадью",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": false,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [
+   {
+    "hotel": {
+     "id": "n10537328752",
+     "name": "Diamond Apartments",
+     "address": "1-й Красногвардейский проезд 21 с2",
+     "location": [
+      37.5342229,
+      55.7494359
+     ],
+     "stars": 5,
+     "building_id": "r14060891",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": "https://diamond-apart.com/upload/resize_cache/webp/iblock/032/032e695a6523c29d3ea653b270b054a5.webp",
+     "photos": [
+      {
+       "url": "https://diamond-apart.com/upload/resize_cache/webp/iblock/032/032e695a6523c29d3ea653b270b054a5.webp",
+       "source_url": "https://www.openstreetmap.org/node/10537328752",
+       "kind": "hotel"
+      }
+     ]
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n10537328752",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n10537328752",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5136.8 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n10537328752",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:n10537328752",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5342229,
+      55.7494359
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r14060891",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5335214,
+          55.749807
+         ],
+         [
+          37.5336499,
+          55.7495597
+         ],
+         [
+          37.533702,
+          55.7494595
+         ],
+         [
+          37.5340276,
+          55.7491168
+         ],
+         [
+          37.5344448,
+          55.749259
+         ],
+         [
+          37.5343709,
+          55.7493841
+         ],
+         [
+          37.5342886,
+          55.7495237
+         ],
+         [
+          37.5342291,
+          55.7496243
+         ],
+         [
+          37.5341854,
+          55.7497043
+         ],
+         [
+          37.5349412,
+          55.749948
+         ],
+         [
+          37.5351127,
+          55.7500033
+         ],
+         [
+          37.5351469,
+          55.7500143
+         ],
+         [
+          37.5349186,
+          55.750234
+         ],
+         [
+          37.5348092,
+          55.7503393
+         ],
+         [
+          37.5347777,
+          55.7503293
+         ],
+         [
+          37.5339703,
+          55.7500752
+         ],
+         [
+          37.5335214,
+          55.749807
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r14060891",
+      "hotel_id": "n10537328752",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n10537328752"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n8003660508",
+     "name": "Петровский путевой дворец",
+     "address": null,
+     "location": [
+      37.5518976,
+      55.793405
+     ],
+     "stars": 5,
+     "building_id": "r7783092",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n8003660508",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n8003660508",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5924.5 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n8003660508",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:n8003660508",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5518976,
+      55.793405
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r7783092",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5506557,
+          55.7931383
+         ],
+         [
+          37.5506717,
+          55.7930409
+         ],
+         [
+          37.5506928,
+          55.7930068
+         ],
+         [
+          37.5507171,
+          55.792964
+         ],
+         [
+          37.5507711,
+          55.7929158
+         ],
+         [
+          37.5507829,
+          55.7929236
+         ],
+         [
+          37.550795,
+          55.7929115
+         ],
+         [
+          37.5508538,
+          55.79293
+         ],
+         [
+          37.550846,
+          55.7929412
+         ],
+         [
+          37.5508706,
+          55.792949
+         ],
+         [
+          37.5508477,
+          55.7929779
+         ],
+         [
+          37.550933,
+          55.7930125
+         ],
+         [
+          37.5508814,
+          55.793109
+         ],
+         [
+          37.5508967,
+          55.7931921
+         ],
+         [
+          37.5509618,
+          55.7932742
+         ],
+         [
+          37.5508727,
+          55.7933026
+         ],
+         [
+          37.5509452,
+          55.7933562
+         ],
+         [
+          37.5514438,
+          55.7936267
+         ],
+         [
+          37.5514723,
+          55.7936138
+         ],
+         [
+          37.5514659,
+          55.7936023
+         ],
+         [
+          37.5514862,
+          55.7935892
+         ],
+         [
+          37.5515136,
+          55.7935945
+         ],
+         [
+          37.5515336,
+          55.7935824
+         ],
+         [
+          37.5515601,
+          55.7935664
+         ],
+         [
+          37.5515502,
+          55.7935523
+         ],
+         [
+          37.5515682,
+          55.7935418
+         ],
+         [
+          37.5515921,
+          55.7935428
+         ],
+         [
+          37.5516186,
+          55.7935256
+         ],
+         [
+          37.5515907,
+          55.7935105
+         ],
+         [
+          37.5516804,
+          55.7934583
+         ],
+         [
+          37.5516952,
+          55.7934664
+         ],
+         [
+          37.551778,
+          55.7934181
+         ],
+         [
+          37.5517492,
+          55.7934025
+         ],
+         [
+          37.5518225,
+          55.7933598
+         ],
+         [
+          37.5518958,
+          55.7933171
+         ],
+         [
+          37.5519246,
+          55.7933327
+         ],
+         [
+          37.5519867,
+          55.7932965
+         ],
+         [
+          37.5519656,
+          55.7932851
+         ],
+         [
+          37.552062,
+          55.7932289
+         ],
+         [
+          37.5520869,
+          55.7932424
+         ],
+         [
+          37.5521068,
+          55.7932324
+         ],
+         [
+          37.5520986,
+          55.7932186
+         ],
+         [
+          37.5521159,
+          55.7932109
+         ],
+         [
+          37.5521313,
+          55.7932165
+         ],
+         [
+          37.552166,
+          55.7931956
+         ],
+         [
+          37.5521949,
+          55.7931782
+         ],
+         [
+          37.5521867,
+          55.7931685
+         ],
+         [
+          37.5522004,
+          55.7931583
+         ],
+         [
+          37.5522276,
+          55.7931583
+         ],
+         [
+          37.5522489,
+          55.7931489
+         ],
+         [
+          37.5517453,
+          55.7928757
+         ],
+         [
+          37.5516535,
+          55.7928511
+         ],
+         [
+          37.5516088,
+          55.7929069
+         ],
+         [
+          37.5514827,
+          55.7928658
+         ],
+         [
+          37.5513029,
+          55.7928572
+         ],
+         [
+          37.5511528,
+          55.7928857
+         ],
+         [
+          37.5511129,
+          55.7928463
+         ],
+         [
+          37.5510693,
+          55.7928606
+         ],
+         [
+          37.5510533,
+          55.7928476
+         ],
+         [
+          37.5510366,
+          55.7928512
+         ],
+         [
+          37.5510081,
+          55.7928238
+         ],
+         [
+          37.5510221,
+          55.7928194
+         ],
+         [
+          37.5510104,
+          55.79281
+         ],
+         [
+          37.5511111,
+          55.7927721
+         ],
+         [
+          37.5511905,
+          55.7927513
+         ],
+         [
+          37.5512837,
+          55.7927373
+         ],
+         [
+          37.5514194,
+          55.7927404
+         ],
+         [
+          37.5515223,
+          55.7927535
+         ],
+         [
+          37.5517009,
+          55.7927919
+         ],
+         [
+          37.5518095,
+          55.79284
+         ],
+         [
+          37.5518336,
+          55.7928266
+         ],
+         [
+          37.5518244,
+          55.7928208
+         ],
+         [
+          37.551822,
+          55.7927855
+         ],
+         [
+          37.5518651,
+          55.7927605
+         ],
+         [
+          37.5519241,
+          55.7927598
+         ],
+         [
+          37.5519637,
+          55.7927781
+         ],
+         [
+          37.5519692,
+          55.7928191
+         ],
+         [
+          37.5519601,
+          55.7928225
+         ],
+         [
+          37.5523581,
+          55.7930384
+         ],
+         [
+          37.5523983,
+          55.7930177
+         ],
+         [
+          37.5524659,
+          55.7930291
+         ],
+         [
+          37.5524848,
+          55.7930712
+         ],
+         [
+          37.5525894,
+          55.7931222
+         ],
+         [
+          37.5526216,
+          55.7930972
+         ],
+         [
+          37.5527239,
+          55.7930376
+         ],
+         [
+          37.552675,
+          55.7930111
+         ],
+         [
+          37.5527024,
+          55.7929951
+         ],
+         [
+          37.552738,
+          55.7930144
+         ],
+         [
+          37.5528881,
+          55.792927
+         ],
+         [
+          37.5531987,
+          55.7930954
+         ],
+         [
+          37.5530877,
+          55.7931601
+         ],
+         [
+          37.5528558,
+          55.7930343
+         ],
+         [
+          37.5527511,
+          55.7930953
+         ],
+         [
+          37.5533737,
+          55.7934328
+         ],
+         [
+          37.553499,
+          55.7933598
+         ],
+         [
+          37.553306,
+          55.7932552
+         ],
+         [
+          37.5533964,
+          55.7932025
+         ],
+         [
+          37.5536278,
+          55.7933279
+         ],
+         [
+          37.5535541,
+          55.7933697
+         ],
+         [
+          37.5533576,
+          55.7934866
+         ],
+         [
+          37.5532709,
+          55.793536
+         ],
+         [
+          37.5529841,
+          55.7933805
+         ],
+         [
+          37.5529051,
+          55.7933377
+         ],
+         [
+          37.5527945,
+          55.7934022
+         ],
+         [
+          37.5523586,
+          55.7931658
+         ],
+         [
+          37.5523208,
+          55.7931879
+         ],
+         [
+          37.5521595,
+          55.7932818
+         ],
+         [
+          37.5525815,
+          55.7935107
+         ],
+         [
+          37.5524096,
+          55.7936108
+         ],
+         [
+          37.5524502,
+          55.7936329
+         ],
+         [
+          37.5523164,
+          55.7937108
+         ],
+         [
+          37.5522758,
+          55.7936888
+         ],
+         [
+          37.5521039,
+          55.7937889
+         ],
+         [
+          37.5516961,
+          55.7935677
+         ],
+         [
+          37.5516027,
+          55.7936206
+         ],
+         [
+          37.5515192,
+          55.7936676
+         ],
+         [
+          37.5514899,
+          55.7936846
+         ],
+         [
+          37.5518881,
+          55.7939006
+         ],
+         [
+          37.5517827,
+          55.7939621
+         ],
+         [
+          37.5518624,
+          55.7940053
+         ],
+         [
+          37.5521901,
+          55.7941831
+         ],
+         [
+          37.5521036,
+          55.7942334
+         ],
+         [
+          37.5519048,
+          55.7943494
+         ],
+         [
+          37.5518357,
+          55.7943896
+         ],
+         [
+          37.5516071,
+          55.7942655
+         ],
+         [
+          37.5517287,
+          55.7941947
+         ],
+         [
+          37.5519207,
+          55.7942988
+         ],
+         [
+          37.5520124,
+          55.7942454
+         ],
+         [
+          37.5513613,
+          55.7938922
+         ],
+         [
+          37.5512608,
+          55.7939507
+         ],
+         [
+          37.5515179,
+          55.7940902
+         ],
+         [
+          37.5514004,
+          55.7941586
+         ],
+         [
+          37.5511309,
+          55.7940124
+         ],
+         [
+          37.5514598,
+          55.7938208
+         ],
+         [
+          37.5513308,
+          55.7937508
+         ],
+         [
+          37.5512791,
+          55.7937515
+         ],
+         [
+          37.5512306,
+          55.7937258
+         ],
+         [
+          37.5512303,
+          55.7936953
+         ],
+         [
+          37.5512482,
+          55.7936844
+         ],
+         [
+          37.5508538,
+          55.7934703
+         ],
+         [
+          37.5508255,
+          55.7934852
+         ],
+         [
+          37.5507734,
+          55.793485
+         ],
+         [
+          37.5507318,
+          55.7934628
+         ],
+         [
+          37.5507297,
+          55.7934322
+         ],
+         [
+          37.550763,
+          55.7934096
+         ],
+         [
+          37.5508313,
+          55.793408
+         ],
+         [
+          37.5508465,
+          55.7934173
+         ],
+         [
+          37.5508707,
+          55.7934023
+         ],
+         [
+          37.5508316,
+          55.7933726
+         ],
+         [
+          37.5507787,
+          55.7933325
+         ],
+         [
+          37.5507421,
+          55.7933044
+         ],
+         [
+          37.5506917,
+          55.7932367
+         ],
+         [
+          37.5506557,
+          55.7931383
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r7783092",
+      "hotel_id": "n8003660508",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n8003660508"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r18610132",
+     "name": "Radisson Blu Leninsky Prospect Hotel, Moscow",
+     "address": null,
+     "location": [
+      37.5198007,
+      55.6736347
+     ],
+     "stars": 5,
+     "building_id": "w1354017820",
+     "height_m": null,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_r18610132",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r18610132",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 10483 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_r18610132",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:r18610132",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5198007,
+      55.6736347
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1354017820",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5189383,
+          55.6733849
+         ],
+         [
+          37.5194068,
+          55.6731586
+         ],
+         [
+          37.519671,
+          55.6733326
+         ],
+         [
+          37.5206472,
+          55.6739753
+         ],
+         [
+          37.5203843,
+          55.6741023
+         ],
+         [
+          37.5201787,
+          55.6742016
+         ],
+         [
+          37.5199583,
+          55.6740565
+         ],
+         [
+          37.5190338,
+          55.6734478
+         ],
+         [
+          37.5189383,
+          55.6733849
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1354017820",
+      "hotel_id": "r18610132",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 8,
+      "height_fact_id": "f_height_r18610132"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n1251100777",
+     "name": "Дельта",
+     "address": null,
+     "location": [
+      37.7488415,
+      55.7921049
+     ],
+     "stars": 4,
+     "building_id": "w39251618",
+     "height_m": null,
+     "levels": 29,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n1251100777",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n1251100777",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5502.6 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n1251100777",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10727347607"
+       ],
+       "subject": "hotel:n1251100777",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10727347607"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.7488415,
+      55.7921049
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w39251618",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.7480228,
+          55.7910838
+         ],
+         [
+          37.7481009,
+          55.7910747
+         ],
+         [
+          37.748292,
+          55.7910524
+         ],
+         [
+          37.7483553,
+          55.7912238
+         ],
+         [
+          37.7484942,
+          55.7912076
+         ],
+         [
+          37.7487763,
+          55.7919716
+         ],
+         [
+          37.7489151,
+          55.7919553
+         ],
+         [
+          37.7491077,
+          55.7924766
+         ],
+         [
+          37.7488526,
+          55.7925064
+         ],
+         [
+          37.7487867,
+          55.7923278
+         ],
+         [
+          37.7486345,
+          55.7923456
+         ],
+         [
+          37.7483601,
+          55.7916027
+         ],
+         [
+          37.7482205,
+          55.791619
+         ],
+         [
+          37.7480825,
+          55.7912454
+         ],
+         [
+          37.7480228,
+          55.7910838
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w39251618",
+      "hotel_id": "n1251100777",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 29,
+      "height_fact_id": "f_height_n1251100777"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2581712832",
+     "name": "Azimut Moscow Tulskaya Hotel",
+     "address": "Варшавское шоссе 9",
+     "location": [
+      37.6215437,
+      55.7004621
+     ],
+     "stars": 4,
+     "building_id": "r2024252",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n2581712832",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2581712832",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5592.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n2581712832",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:n2581712832",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6215437,
+      55.7004621
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r2024252",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6213898,
+          55.7002487
+         ],
+         [
+          37.6215268,
+          55.7002252
+         ],
+         [
+          37.6215542,
+          55.700276
+         ],
+         [
+          37.6217,
+          55.700251
+         ],
+         [
+          37.6217944,
+          55.7004257
+         ],
+         [
+          37.6218183,
+          55.7004216
+         ],
+         [
+          37.6218931,
+          55.7005599
+         ],
+         [
+          37.6218692,
+          55.700564
+         ],
+         [
+          37.6219474,
+          55.7007088
+         ],
+         [
+          37.6216647,
+          55.7007574
+         ],
+         [
+          37.6213898,
+          55.7002487
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r2024252",
+      "hotel_id": "n2581712832",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_n2581712832"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2612096222",
+     "name": "Инсайд Бизнес",
+     "address": null,
+     "location": [
+      37.4354915,
+      55.636996
+     ],
+     "stars": 4,
+     "building_id": "w139585201",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n2612096222",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2612096222",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 16974.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n2612096222",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:n2612096222",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.4354915,
+      55.636996
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w139585201",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.4341331,
+          55.6377365
+         ],
+         [
+          37.434353,
+          55.6374527
+         ],
+         [
+          37.4346315,
+          55.6370934
+         ],
+         [
+          37.4345604,
+          55.6370758
+         ],
+         [
+          37.4343752,
+          55.6370301
+         ],
+         [
+          37.4344787,
+          55.6368967
+         ],
+         [
+          37.43461,
+          55.6367273
+         ],
+         [
+          37.4347254,
+          55.6367558
+         ],
+         [
+          37.4351832,
+          55.6368687
+         ],
+         [
+          37.4355579,
+          55.6369613
+         ],
+         [
+          37.4356715,
+          55.6369894
+         ],
+         [
+          37.4355093,
+          55.6371987
+         ],
+         [
+          37.4354419,
+          55.6372857
+         ],
+         [
+          37.4351673,
+          55.6372179
+         ],
+         [
+          37.4350737,
+          55.6373386
+         ],
+         [
+          37.4348808,
+          55.6375876
+         ],
+         [
+          37.4347842,
+          55.6377122
+         ],
+         [
+          37.4346638,
+          55.6378675
+         ],
+         [
+          37.4341331,
+          55.6377365
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w139585201",
+      "hotel_id": "n2612096222",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_n2612096222"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n2650134767",
+     "name": "Maxima Panorama",
+     "address": "улица Мастеркова 4",
+     "location": [
+      37.6567052,
+      55.7086248
+     ],
+     "stars": 4,
+     "building_id": "w32235308",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n2650134767",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n2650134767",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5158.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n2650134767",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n9284083800"
+       ],
+       "subject": "hotel:n2650134767",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n9284083800"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6567052,
+      55.7086248
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w32235308",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6558799,
+          55.7082794
+         ],
+         [
+          37.656384,
+          55.7082723
+         ],
+         [
+          37.6571417,
+          55.7082604
+         ],
+         [
+          37.6570818,
+          55.7082618
+         ],
+         [
+          37.6570996,
+          55.7086369
+         ],
+         [
+          37.6567134,
+          55.7086427
+         ],
+         [
+          37.6564912,
+          55.708646
+         ],
+         [
+          37.6564845,
+          55.7085057
+         ],
+         [
+          37.6564445,
+          55.7085063
+         ],
+         [
+          37.6564457,
+          55.7085324
+         ],
+         [
+          37.6563557,
+          55.7085337
+         ],
+         [
+          37.6563654,
+          55.7087391
+         ],
+         [
+          37.6563868,
+          55.7091894
+         ],
+         [
+          37.6559234,
+          55.7091964
+         ],
+         [
+          37.6558849,
+          55.7083849
+         ],
+         [
+          37.6558799,
+          55.7082794
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w32235308",
+      "hotel_id": "n2650134767",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n2650134767"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n4056355040",
+     "name": "Moscow Holiday",
+     "address": "улица Мнёвники 3 к2",
+     "location": [
+      37.4992513,
+      55.7737106
+     ],
+     "stars": 4,
+     "building_id": "r1882846",
+     "height_m": null,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n4056355040",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n4056355040",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 7717 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n4056355040",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:n4056355040",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.4992513,
+      55.7737106
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r1882846",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.4987443,
+          55.7735694
+         ],
+         [
+          37.4988232,
+          55.7735134
+         ],
+         [
+          37.4989112,
+          55.773451
+         ],
+         [
+          37.4990307,
+          55.7735043
+         ],
+         [
+          37.4990117,
+          55.7735178
+         ],
+         [
+          37.4998736,
+          55.773902
+         ],
+         [
+          37.4997258,
+          55.7740068
+         ],
+         [
+          37.4993906,
+          55.7738574
+         ],
+         [
+          37.4992797,
+          55.773808
+         ],
+         [
+          37.499228,
+          55.7738447
+         ],
+         [
+          37.4991899,
+          55.7738277
+         ],
+         [
+          37.4991528,
+          55.7738112
+         ],
+         [
+          37.4992045,
+          55.7737745
+         ],
+         [
+          37.4987443,
+          55.7735694
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r1882846",
+      "hotel_id": "n4056355040",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_n4056355040"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n6800231949",
+     "name": "Арт Москва Войковская",
+     "address": null,
+     "location": [
+      37.5117399,
+      55.8153903
+     ],
+     "stars": 4,
+     "building_id": "r15053603",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n6800231949",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n6800231949",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 9427.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n6800231949",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:n6800231949",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5117399,
+      55.8153903
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r15053603",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5115919,
+          55.8154602
+         ],
+         [
+          37.5116369,
+          55.8150859
+         ],
+         [
+          37.5135707,
+          55.8151593
+         ],
+         [
+          37.5135256,
+          55.8155336
+         ],
+         [
+          37.5123547,
+          55.8154891
+         ],
+         [
+          37.5123521,
+          55.8155107
+         ],
+         [
+          37.5121529,
+          55.8155032
+         ],
+         [
+          37.5119482,
+          55.8154954
+         ],
+         [
+          37.5119508,
+          55.8154738
+         ],
+         [
+          37.5115919,
+          55.8154602
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r15053603",
+      "hotel_id": "n6800231949",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_n6800231949"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "n900952775",
+     "name": "Брайтон",
+     "address": "Петровско-Разумовский проезд 29",
+     "location": [
+      37.5618807,
+      55.8041908
+     ],
+     "stars": 4,
+     "building_id": "w76393623",
+     "height_m": null,
+     "levels": 3,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_n900952775",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:n900952775",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 6472.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_n900952775",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:n900952775",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5618807,
+      55.8041908
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w76393623",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5609319,
+          55.8040598
+         ],
+         [
+          37.5609457,
+          55.8040434
+         ],
+         [
+          37.5610569,
+          55.8039114
+         ],
+         [
+          37.5617283,
+          55.8040901
+         ],
+         [
+          37.561768,
+          55.804043
+         ],
+         [
+          37.5618256,
+          55.8040583
+         ],
+         [
+          37.5618347,
+          55.8040475
+         ],
+         [
+          37.5620585,
+          55.8041071
+         ],
+         [
+          37.5618846,
+          55.8043134
+         ],
+         [
+          37.5616098,
+          55.8042403
+         ],
+         [
+          37.5609319,
+          55.8040598
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w76393623",
+      "hotel_id": "n900952775",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 3,
+      "height_fact_id": "f_height_n900952775"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r1275698",
+     "name": "Советский",
+     "address": "Ленинградский проспект 32/2",
+     "location": [
+      37.5698573,
+      55.7847479
+     ],
+     "stars": 4,
+     "building_id": "r1275698",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_r1275698",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r1275698",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 4452.8 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_r1275698",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:r1275698",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5698573,
+      55.7847479
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r1275698",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5689037,
+          55.7846682
+         ],
+         [
+          37.5690421,
+          55.7846053
+         ],
+         [
+          37.5690314,
+          55.7845979
+         ],
+         [
+          37.5693354,
+          55.7844598
+         ],
+         [
+          37.5693255,
+          55.7844529
+         ],
+         [
+          37.5694216,
+          55.7844086
+         ],
+         [
+          37.5695219,
+          55.784363
+         ],
+         [
+          37.5695325,
+          55.7843703
+         ],
+         [
+          37.5696798,
+          55.7843034
+         ],
+         [
+          37.5698229,
+          55.7842384
+         ],
+         [
+          37.5698335,
+          55.7842459
+         ],
+         [
+          37.5699477,
+          55.784194
+         ],
+         [
+          37.5700743,
+          55.7842823
+         ],
+         [
+          37.5701154,
+          55.7842637
+         ],
+         [
+          37.5702121,
+          55.784331
+         ],
+         [
+          37.5702603,
+          55.7843645
+         ],
+         [
+          37.5702191,
+          55.7843832
+         ],
+         [
+          37.5703975,
+          55.7845074
+         ],
+         [
+          37.5709003,
+          55.7848574
+         ],
+         [
+          37.5707785,
+          55.7849113
+         ],
+         [
+          37.5702838,
+          55.7845646
+         ],
+         [
+          37.5702723,
+          55.7845638
+         ],
+         [
+          37.5699239,
+          55.7846488
+         ],
+         [
+          37.5700699,
+          55.7847501
+         ],
+         [
+          37.5697755,
+          55.7848843
+         ],
+         [
+          37.5696857,
+          55.7848221
+         ],
+         [
+          37.5695906,
+          55.7848654
+         ],
+         [
+          37.5697404,
+          55.78497
+         ],
+         [
+          37.5697655,
+          55.7849594
+         ],
+         [
+          37.5698159,
+          55.7849644
+         ],
+         [
+          37.5698268,
+          55.7849719
+         ],
+         [
+          37.5698561,
+          55.7849586
+         ],
+         [
+          37.5698804,
+          55.7849755
+         ],
+         [
+          37.5698952,
+          55.7849688
+         ],
+         [
+          37.56991,
+          55.7849621
+         ],
+         [
+          37.5699469,
+          55.7849879
+         ],
+         [
+          37.5699323,
+          55.7849945
+         ],
+         [
+          37.5699174,
+          55.7850013
+         ],
+         [
+          37.5699412,
+          55.7850178
+         ],
+         [
+          37.5699113,
+          55.7850314
+         ],
+         [
+          37.5699247,
+          55.7850407
+         ],
+         [
+          37.5699208,
+          55.7850682
+         ],
+         [
+          37.5698977,
+          55.7850795
+         ],
+         [
+          37.5701064,
+          55.7852248
+         ],
+         [
+          37.5704634,
+          55.7850627
+         ],
+         [
+          37.5706415,
+          55.7851867
+         ],
+         [
+          37.5700405,
+          55.7854596
+         ],
+         [
+          37.5695628,
+          55.7851271
+         ],
+         [
+          37.5691045,
+          55.784808
+         ],
+         [
+          37.5689037,
+          55.7846682
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r1275698",
+      "hotel_id": "r1275698",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 4,
+      "height_fact_id": "f_height_r1275698"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r17955321",
+     "name": "Park Tower",
+     "address": "Дмитровское шоссе 27",
+     "location": [
+      37.5716646,
+      55.8265675
+     ],
+     "stars": 4,
+     "building_id": "r17955321",
+     "height_m": null,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_r17955321",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r17955321",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 8111.3 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_r17955321",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n8757725948"
+       ],
+       "subject": "hotel:r17955321",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n8757725948"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5716646,
+      55.8265675
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r17955321",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5710581,
+          55.8267809
+         ],
+         [
+          37.5710958,
+          55.8267138
+         ],
+         [
+          37.5712394,
+          55.826458
+         ],
+         [
+          37.5713433,
+          55.8264764
+         ],
+         [
+          37.5714643,
+          55.8264979
+         ],
+         [
+          37.5715552,
+          55.8263358
+         ],
+         [
+          37.5715696,
+          55.8263102
+         ],
+         [
+          37.5716888,
+          55.8263313
+         ],
+         [
+          37.5717048,
+          55.8263028
+         ],
+         [
+          37.5718097,
+          55.8263213
+         ],
+         [
+          37.5717869,
+          55.8263619
+         ],
+         [
+          37.5719535,
+          55.8263916
+         ],
+         [
+          37.5719683,
+          55.8263938
+         ],
+         [
+          37.5719785,
+          55.826397
+         ],
+         [
+          37.5719881,
+          55.8264019
+         ],
+         [
+          37.5719969,
+          55.8264097
+         ],
+         [
+          37.5720013,
+          55.8264194
+         ],
+         [
+          37.5720132,
+          55.8266702
+         ],
+         [
+          37.5720071,
+          55.8266796
+         ],
+         [
+          37.571999,
+          55.8266843
+         ],
+         [
+          37.5719863,
+          55.8266877
+         ],
+         [
+          37.5719736,
+          55.8266882
+         ],
+         [
+          37.5719581,
+          55.8266851
+         ],
+         [
+          37.5718405,
+          55.8266648
+         ],
+         [
+          37.571833,
+          55.8266782
+         ],
+         [
+          37.5718879,
+          55.8266879
+         ],
+         [
+          37.571847,
+          55.8267609
+         ],
+         [
+          37.5714766,
+          55.8266953
+         ],
+         [
+          37.5715065,
+          55.826642
+         ],
+         [
+          37.571397,
+          55.8266226
+         ],
+         [
+          37.5712999,
+          55.8267956
+         ],
+         [
+          37.5711623,
+          55.8267712
+         ],
+         [
+          37.5711479,
+          55.8267968
+         ],
+         [
+          37.5710581,
+          55.8267809
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r17955321",
+      "hotel_id": "r17955321",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_r17955321"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r3064164",
+     "name": "Севастополь",
+     "address": null,
+     "location": [
+      37.5949465,
+      55.6495933
+     ],
+     "stars": 4,
+     "building_id": "w61186268",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_r3064164",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r3064164",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 11318.2 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_r3064164",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:r3064164",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5949465,
+      55.6495933
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w61186268",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5943989,
+          55.6498938
+         ],
+         [
+          37.5944011,
+          55.6495771
+         ],
+         [
+          37.5949431,
+          55.6495783
+         ],
+         [
+          37.5949409,
+          55.649895
+         ],
+         [
+          37.5943989,
+          55.6498938
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w61186268",
+      "hotel_id": "r3064164",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_r3064164"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "r391480",
+     "name": "Аэростар",
+     "address": "Ленинградский проспект 37 к9",
+     "location": [
+      37.5471616,
+      55.7904742
+     ],
+     "stars": 4,
+     "building_id": "r391480",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_r391480",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:r391480",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5915.7 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_r391480",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:r391480",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5471616,
+      55.7904742
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "r391480",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5462468,
+          55.7902957
+         ],
+         [
+          37.5473487,
+          55.7898118
+         ],
+         [
+          37.54753,
+          55.7899423
+         ],
+         [
+          37.5482164,
+          55.7904365
+         ],
+         [
+          37.5477932,
+          55.7906211
+         ],
+         [
+          37.5479483,
+          55.790732
+         ],
+         [
+          37.5477098,
+          55.7908375
+         ],
+         [
+          37.5475546,
+          55.7907267
+         ],
+         [
+          37.5471146,
+          55.7909203
+         ],
+         [
+          37.5468218,
+          55.7907096
+         ],
+         [
+          37.5467159,
+          55.7906333
+         ],
+         [
+          37.5465803,
+          55.7905357
+         ],
+         [
+          37.5462468,
+          55.7902957
+         ]
+        ],
+        [
+         [
+          37.5467924,
+          55.7903794
+         ],
+         [
+          37.5468477,
+          55.7904193
+         ],
+         [
+          37.5469825,
+          55.7905166
+         ],
+         [
+          37.5470881,
+          55.7905928
+         ],
+         [
+          37.5471259,
+          55.7906201
+         ],
+         [
+          37.5476359,
+          55.7903966
+         ],
+         [
+          37.5473024,
+          55.790156
+         ],
+         [
+          37.5467924,
+          55.7903794
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "r391480",
+      "hotel_id": "r391480",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_r391480"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w111479395",
+     "name": "ART hotel",
+     "address": "3-я Песчаная улица 2",
+     "location": [
+      37.5176467,
+      55.7925956
+     ],
+     "stars": 4,
+     "building_id": "w111479395",
+     "height_m": null,
+     "levels": null,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w111479395",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w111479395",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 7530.4 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w111479395",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:w111479395",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.5176467,
+      55.7925956
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w111479395",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.5173428,
+          55.792894
+         ],
+         [
+          37.5174042,
+          55.7927926
+         ],
+         [
+          37.5176126,
+          55.7928313
+         ],
+         [
+          37.5177012,
+          55.792682
+         ],
+         [
+          37.5175172,
+          55.7926555
+         ],
+         [
+          37.5174854,
+          55.7926356
+         ],
+         [
+          37.5174783,
+          55.7926117
+         ],
+         [
+          37.5174962,
+          55.7925797
+         ],
+         [
+          37.5175283,
+          55.792557
+         ],
+         [
+          37.5175675,
+          55.7925453
+         ],
+         [
+          37.517757,
+          55.7925729
+         ],
+         [
+          37.5178314,
+          55.7924252
+         ],
+         [
+          37.517627,
+          55.7923931
+         ],
+         [
+          37.5176847,
+          55.7922906
+         ],
+         [
+          37.517975,
+          55.7923408
+         ],
+         [
+          37.5179917,
+          55.7923084
+         ],
+         [
+          37.5181592,
+          55.7923366
+         ],
+         [
+          37.5177855,
+          55.792971
+         ],
+         [
+          37.5173428,
+          55.792894
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w111479395",
+      "hotel_id": "w111479395",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": null,
+      "height_fact_id": "f_height_w111479395"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w1332499065",
+     "name": "AZIMUT Сити Отель Комсити Москва",
+     "address": "Киевское шоссе, 22-й километр д. 6А, с. 3",
+     "location": [
+      37.4294801,
+      55.6359205
+     ],
+     "stars": 4,
+     "building_id": "w1332499065",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w1332499065",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w1332499065",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 17316.2 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w1332499065",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:w1332499065",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.4294801,
+      55.6359205
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w1332499065",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.4290856,
+          55.6359042
+         ],
+         [
+          37.4291798,
+          55.6357461
+         ],
+         [
+          37.4300562,
+          55.6359125
+         ],
+         [
+          37.4299619,
+          55.6360707
+         ],
+         [
+          37.4295114,
+          55.6359851
+         ],
+         [
+          37.4290856,
+          55.6359042
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w1332499065",
+      "hotel_id": "w1332499065",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 9,
+      "height_fact_id": "f_height_w1332499065"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w173097291",
+     "name": "DoubleTree by Hilton Hotel Moscow - Marina",
+     "address": "Ленинградское шоссе 39 с1",
+     "location": [
+      37.4845405,
+      55.8329727
+     ],
+     "stars": 4,
+     "building_id": "w173097291",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w173097291",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w173097291",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 12012.6 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w173097291",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n6012079979"
+       ],
+       "subject": "hotel:w173097291",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n6012079979"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.4845405,
+      55.8329727
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w173097291",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.4839483,
+          55.832826
+         ],
+         [
+          37.4841183,
+          55.8326276
+         ],
+         [
+          37.484965,
+          55.8327439
+         ],
+         [
+          37.4853334,
+          55.8327809
+         ],
+         [
+          37.4847501,
+          55.8335621
+         ],
+         [
+          37.4844235,
+          55.8334819
+         ],
+         [
+          37.4848368,
+          55.8329336
+         ],
+         [
+          37.4839483,
+          55.832826
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w173097291",
+      "hotel_id": "w173097291",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 5,
+      "height_fact_id": "f_height_w173097291"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w39251585",
+     "name": "Вега",
+     "address": "Измайловское шоссе 71 к3В",
+     "location": [
+      37.7471839,
+      55.7905026
+     ],
+     "stars": 4,
+     "building_id": "w39251585",
+     "height_m": null,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w39251585",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w39251585",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5304.9 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w39251585",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10727347607"
+       ],
+       "subject": "hotel:w39251585",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10727347607"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.7471839,
+      55.7905026
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w39251585",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.7465494,
+          55.7904567
+         ],
+         [
+          37.7474916,
+          55.7903452
+         ],
+         [
+          37.7475257,
+          55.7904364
+         ],
+         [
+          37.7478251,
+          55.7904009
+         ],
+         [
+          37.7478758,
+          55.7905362
+         ],
+         [
+          37.7475641,
+          55.7905731
+         ],
+         [
+          37.7469411,
+          55.7906469
+         ],
+         [
+          37.7469118,
+          55.7905686
+         ],
+         [
+          37.7466049,
+          55.790605
+         ],
+         [
+          37.7465494,
+          55.7904567
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w39251585",
+      "hotel_id": "w39251585",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 25,
+      "height_fact_id": "f_height_w39251585"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w72412496",
+     "name": "Альфа",
+     "address": "Измайловское шоссе 71 кА",
+     "location": [
+      37.749422,
+      55.7898416
+     ],
+     "stars": 4,
+     "building_id": "w72412496",
+     "height_m": null,
+     "levels": 29,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w72412496",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w72412496",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 5358.9 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w72412496",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_n10727347607"
+       ],
+       "subject": "hotel:w72412496",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_n10727347607"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.749422,
+      55.7898416
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w72412496",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.748862,
+          55.789817
+         ],
+         [
+          37.7491593,
+          55.789781
+         ],
+         [
+          37.7498055,
+          55.7897026
+         ],
+         [
+          37.7498352,
+          55.7897798
+         ],
+         [
+          37.7501339,
+          55.7897436
+         ],
+         [
+          37.7501905,
+          55.7898909
+         ],
+         [
+          37.7492439,
+          55.7900057
+         ],
+         [
+          37.7492115,
+          55.7899211
+         ],
+         [
+          37.7489158,
+          55.789957
+         ],
+         [
+          37.748862,
+          55.789817
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w72412496",
+      "hotel_id": "w72412496",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 29,
+      "height_fact_id": "f_height_w72412496"
+     }
+    }
+   },
+   {
+    "hotel": {
+     "id": "w75520056",
+     "name": "Даниловская",
+     "address": "Большой Староданиловский переулок 5А",
+     "location": [
+      37.6278848,
+      55.709784
+     ],
+     "stars": 4,
+     "building_id": "w75520056",
+     "height_m": null,
+     "levels": 7,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "score": 0.2,
+    "confidence": 0.799,
+    "matched": [
+     {
+      "characteristic_key": "derived:df6f1e1bc319",
+      "match": "unknown",
+      "margin": null,
+      "label": "не в Москва-Сити",
+      "explanation": "Источники не дали ничего нового по этому пожеланию; проверка остановлена, это не доказывает отсутствие свойства.",
+      "fact": {
+       "fact_id": "f_wish_df6f1e1bc319_w75520056",
+       "characteristic_key": "derived:df6f1e1bc319",
+       "value": null,
+       "unit": null,
+       "label": "не в Москва-Сити",
+       "confidence": 0.2,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [],
+       "subject": "hotel:w75520056",
+       "qualifiers": {
+        "source_text": "не в Москва-Сити",
+        "wish_status": "incomplete",
+        "checked_sources": [
+         "database",
+         "embeddings",
+         "web"
+        ],
+        "tool_calls": 17
+       }
+      },
+      "geo_refs": [],
+      "camera": null,
+      "hotelier_question_id": null
+     },
+     {
+      "characteristic_key": "derived:da6f128ff089",
+      "match": "partial",
+      "margin": null,
+      "label": "не рядом с Красной площадью",
+      "explanation": "Расстояние до ближайшего объекта «Красной площадью» по прямой, м: 4603.8 (нужно не менее 2000).",
+      "fact": {
+       "fact_id": "f_wish_da6f128ff089_w75520056",
+       "characteristic_key": "derived:da6f128ff089",
+       "value": true,
+       "unit": null,
+       "label": "не рядом с Красной площадью",
+       "confidence": 0.8,
+       "source_type": "computed",
+       "status": "active",
+       "geo_refs": [
+        "g_poi_r8857806"
+       ],
+       "subject": "hotel:w75520056",
+       "qualifiers": {
+        "estimated_location": true,
+        "source_text": "не рядом с Красной площадью",
+        "source_quotes": [],
+        "source_urls": [],
+        "wish_status": "matched",
+        "checked_sources": [
+         "database",
+         "geography"
+        ],
+        "tool_calls": 3
+       }
+      },
+      "geo_refs": [
+       "g_poi_r8857806"
+      ],
+      "camera": null,
+      "hotelier_question_id": null
+     }
+    ],
+    "camera": {
+     "center": [
+      37.6278848,
+      55.709784
+     ],
+     "zoom": 17.0,
+     "pitch": 60.0,
+     "bearing": 0.0,
+     "focus_facade_id": null
+    },
+    "footprint": {
+     "type": "Feature",
+     "id": "w75520056",
+     "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+       [
+        [
+         [
+          37.6273796,
+          55.7096711
+         ],
+         [
+          37.6275412,
+          55.7096381
+         ],
+         [
+          37.6275475,
+          55.7096482
+         ],
+         [
+          37.6282075,
+          55.7095084
+         ],
+         [
+          37.6282034,
+          55.7095014
+         ],
+         [
+          37.6285091,
+          55.7094365
+         ],
+         [
+          37.6285166,
+          55.7094464
+         ],
+         [
+          37.6287887,
+          55.7093868
+         ],
+         [
+          37.6287826,
+          55.7093751
+         ],
+         [
+          37.6288927,
+          55.7093527
+         ],
+         [
+          37.6289847,
+          55.7094964
+         ],
+         [
+          37.6284415,
+          55.7096077
+         ],
+         [
+          37.6277591,
+          55.7097454
+         ],
+         [
+          37.6277733,
+          55.7097775
+         ],
+         [
+          37.6277309,
+          55.7098112
+         ],
+         [
+          37.627694,
+          55.7098406
+         ],
+         [
+          37.627643,
+          55.7098438
+         ],
+         [
+          37.6276675,
+          55.7099501
+         ],
+         [
+          37.6278556,
+          55.7099479
+         ],
+         [
+          37.6278763,
+          55.7102042
+         ],
+         [
+          37.6276615,
+          55.7102091
+         ],
+         [
+          37.6276624,
+          55.7102276
+         ],
+         [
+          37.627501,
+          55.7102288
+         ],
+         [
+          37.6275007,
+          55.7101754
+         ],
+         [
+          37.6274193,
+          55.7101761
+         ],
+         [
+          37.6274032,
+          55.7099917
+         ],
+         [
+          37.6274233,
+          55.7099915
+         ],
+         [
+          37.6274088,
+          55.7098294
+         ],
+         [
+          37.6273907,
+          55.7098296
+         ],
+         [
+          37.6273796,
+          55.7096711
+         ]
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "building_id": "w75520056",
+      "hotel_id": "w75520056",
+      "is_hotel": true,
+      "height_m": null,
+      "min_height_m": 0,
+      "levels": 7,
+      "height_fact_id": "f_height_w75520056"
+     }
+    }
+   }
+  ],
+  "rejected": [
+   {
+    "hotel": {
+     "id": "n8825725921",
+     "name": "1 Арт Отель",
+     "address": null,
+     "location": [
+      37.643618,
+      55.809941
+     ],
+     "stars": null,
+     "building_id": "w685568633",
+     "height_m": null,
+     "levels": 12,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11283323869",
+     "name": "21 Семеновская",
+     "address": "Щербаковская улица 41А",
+     "location": [
+      37.7328543,
+      55.7830958
+     ],
+     "stars": null,
+     "building_id": "w132365082",
+     "height_m": null,
+     "levels": 4,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5903084085",
+     "name": "32 км",
+     "address": null,
+     "location": [
+      37.6195586,
+      55.572798
+     ],
+     "stars": null,
+     "building_id": "w373809750",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n8154400360",
+     "name": "47nebo",
+     "address": null,
+     "location": [
+      37.5403261,
+      55.7479426
+     ],
+     "stars": null,
+     "building_id": "w52929377",
+     "height_m": 238.0,
+     "levels": 59,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6143223724",
+     "name": "7 высоток",
+     "address": null,
+     "location": [
+      37.55963,
+      55.870342
+     ],
+     "stars": null,
+     "building_id": "w28194384",
+     "height_m": null,
+     "levels": 14,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5028849792",
+     "name": "777",
+     "address": "Путевой проезд 14 к2",
+     "location": [
+      37.578327,
+      55.8746996
+     ],
+     "stars": null,
+     "building_id": "w28781281",
+     "height_m": null,
+     "levels": 2,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n5172555489",
+     "name": "A City Hotel",
+     "address": "улица Мастеркова 3",
+     "location": [
+      37.6584205,
+      55.7089526
+     ],
+     "stars": null,
+     "building_id": "w32235314",
+     "height_m": null,
+     "levels": 9,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n12920589741",
+     "name": "A&t",
+     "address": null,
+     "location": [
+      37.5796259,
+      55.6773016
+     ],
+     "stars": null,
+     "building_id": "w34997473",
+     "height_m": null,
+     "levels": 5,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n6356249504",
+     "name": "Archi",
+     "address": null,
+     "location": [
+      37.6212913,
+      55.6996556
+     ],
+     "stars": null,
+     "building_id": "w32608675",
+     "height_m": null,
+     "levels": 8,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   },
+   {
+    "hotel": {
+     "id": "n11495762726",
+     "name": "Astra Na Dmitrovke Hostel",
+     "address": null,
+     "location": [
+      37.5621767,
+      55.8071985
+     ],
+     "stars": null,
+     "building_id": "r13559078",
+     "height_m": null,
+     "levels": 25,
+     "thumbnail_url": null,
+     "photos": []
+    },
+    "cause": "review",
+    "closeness": 0.1999,
+    "characteristic_key": null,
+    "condition": "",
+    "detail": ""
+   }
+  ],
+  "viewport": {
+   "bbox": [
+    37.4294801,
+    55.6359205,
+    37.749422,
+    55.8329727
+   ],
+   "camera": {
+    "center": [
+     37.5342229,
+     55.7494359
+    ],
+    "zoom": 17.0,
+    "pitch": 60.0,
+    "bearing": 0.0,
+    "focus_facade_id": null
+   }
+  },
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 135913
+ },
+ "search_message_id": "a5d7c04a-d6c7-49cc-ab6e-b6b6ff125a25"
+}

@@ -1,0 +1,55 @@
+{
+ "id": "d395c8bd-7257-488e-b1e5-2f509e868b96",
+ "title": "С видом на главную площадь",
+ "updated_at": "2026-10-28T18:28:56.377196Z",
+ "messages": [
+  {
+   "id": "100a85a9-033c-4e48-b0b6-c29a2787eabb",
+   "role": "user",
+   "content": "отель в Старом Городе с видом на главную площадь",
+   "created_at": "2026-10-28T18:28:56.377196Z"
+  },
+  {
+   "id": "986b61c0-d750-4f80-aae5-d9f778353484",
+   "role": "assistant",
+   "content": "В каком городе ищете отель?",
+   "created_at": "2026-10-28T18:28:56.377196Z"
+  }
+ ],
+ "effective_query": "отель в Старом Городе с видом на главную площадь",
+ "search": {
+  "query_id": "4f0c1873fa91693c",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:0dbc858bc9c0",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на главную площадь"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": null,
+   "anywhere": false,
+   "normalized_query": "отель в Старом Городе с видом на главную площадь",
+   "corrections": [],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 5329
+ },
+ "search_message_id": "986b61c0-d750-4f80-aae5-d9f778353484"
+}

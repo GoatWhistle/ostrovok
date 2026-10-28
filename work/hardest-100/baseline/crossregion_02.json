@@ -1,0 +1,61 @@
+{
+ "id": "ba4f5409-8e2d-4be2-b88d-9afa953fefd1",
+ "title": "Москва: с видом на Чёрное море",
+ "updated_at": "2026-10-28T18:44:29.654796Z",
+ "messages": [
+  {
+   "id": "4ac6cacc-0e44-4321-8ace-41459b222f89",
+   "role": "user",
+   "content": "отель в Москве с видом на Чёрное море",
+   "created_at": "2026-10-28T18:44:29.654796Z"
+  },
+  {
+   "id": "7610f94e-ee09-4eea-bbf6-843b167b3751",
+   "role": "assistant",
+   "content": "Часть условий противоречит друг другу. Что из этого важнее?",
+   "created_at": "2026-10-28T18:44:29.654796Z"
+  }
+ ],
+ "effective_query": "отель в Москве с видом на Чёрное море",
+ "search": {
+  "query_id": "49ccba2057b47028",
+  "parsed": {
+   "intents": [
+    {
+     "characteristic_key": "spatial:7aa6b0e27597",
+     "op": "eq",
+     "value": true,
+     "weight": 1.0,
+     "required": false,
+     "source_text": "с видом на Чёрное море"
+    }
+   ],
+   "unmatched_terms": [],
+   "location_hint": "Москва",
+   "anywhere": false,
+   "normalized_query": "отель в Москве с видом на Чёрное море",
+   "corrections": [
+    {
+     "original": "отель в Москве с видом на Чёрное море",
+     "corrected": "отель в Москве с видом на Чёрное море",
+     "reason": "Противоречие: Чёрное море не находится в Москве, вид на него из московского отеля невозможен. Нужно уточнить, что важнее — Москва или вид на Чёрное море."
+    }
+   ],
+   "unsupported_region": null,
+   "needs_clarification": true,
+   "wants_room": true,
+   "room_preferences_unrestricted": false,
+   "budget": null,
+   "check_in": null,
+   "check_out": null,
+   "adults": null
+  },
+  "results": [],
+  "rejected": [],
+  "viewport": null,
+  "pending": [],
+  "next_cursor": null,
+  "took_ms": 8052
+ },
+ "search_message_id": "7610f94e-ee09-4eea-bbf6-843b167b3751"
+}
