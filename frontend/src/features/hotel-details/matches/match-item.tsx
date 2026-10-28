@@ -3,6 +3,7 @@ import type { MatchedProperty } from "@/shared/api/hotel-types"
 import { matchedTitle } from "@/shared/geo/fact-label"
 import { isCurrentFact } from "@/shared/geo/facts/matching"
 import { wishVerdict } from "@/shared/geo/facts/wish-verdict"
+import { useMediaQuery } from "@/shared/hooks"
 import { useLocale, useTranslation } from "@/shared/i18n"
 import { Button, Icon } from "@/shared/ui"
 import type { MatchRowsProps } from "./match-rows"
@@ -15,6 +16,7 @@ interface MatchItemProps extends Omit<MatchRowsProps, "matched"> {
 export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProps) {
   const { t } = useTranslation()
   const { locale } = useLocale()
+  const narrow = useMediaQuery("(max-width: 47.99rem)")
   const fact = item.fact
   const current = isCurrentFact(fact)
   const hasMap = (item.geo_refs?.length ?? fact?.geo_refs?.length ?? 0) > 0
@@ -50,7 +52,13 @@ export function MatchItem({ item, onFact, onProperty, onPreview }: MatchItemProp
         </div>
       )}
       {hasMap && onProperty ? (
-        <Button variant="ghost" size="compact" icon="map" onClick={() => onProperty(item)}>
+        <Button
+          variant="ghost"
+          size="compact"
+          icon="map"
+          iconOnly={narrow}
+          onClick={() => onProperty(item)}
+        >
           {t("explore:wish.onMap")}
         </Button>
       ) : null}
