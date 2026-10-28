@@ -8,6 +8,7 @@ import {
   useNightCity,
 } from "@/entities/map-data"
 import type { Camera, HotelSummary, SearchResult } from "@/shared/api/hotel-types"
+import type { SearchJourney } from "@/shared/api/search-journey"
 import { readBuildingMaterial } from "@/shared/geo/appearance/materials"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import { appearanceClasses, readNightColors, tintedColors } from "@/shared/geo/appearance/palette"
@@ -25,10 +26,16 @@ import { useMapAppearance, useMapColors } from "@/shared/theme"
 import { useMapQuality } from "./quality/use-map-quality"
 import { useMapCamera } from "./rendering/use-map-camera"
 import { useRouteDraw } from "./rendering/use-route-draw"
+import { useCandidatePins } from "./search/use-candidate-pins"
+import { useSearchAppearance } from "./search/use-search-appearance"
+import { useSearchCamera } from "./search/use-search-camera"
+import { useSearchTour } from "./search/use-search-tour"
 import { useTexturedHotel } from "./texture/use-textured-hotel"
 import { useMapMarkers } from "./use-map-markers"
 
 export interface MapData {
+  readonly journey: SearchJourney | undefined
+  readonly onCandidate: (id: string) => void
   readonly previewing: boolean
   readonly visible: boolean
   readonly camera: Camera | undefined
@@ -46,6 +53,8 @@ export interface MapData {
 
 export function useHotelMap({
   visible,
+  journey,
+  onCandidate,
   previewing,
   camera,
   buildings,
@@ -68,8 +77,10 @@ export function useHotelMap({
   } = useMapInstance(camera !== undefined)
   const active = observed && visible
   const reduced = useReducedMotion()
-  const colors = useMapColors()
-  const appearance = useMapAppearance()
+  const chosen = useMapAppearance()
+  const override = useSearchAppearance(journey, chosen.id)
+  const colors = useMapColors(override)
+  const appearance = { id: override ?? chosen.id }
   const material = useMemo(() => readBuildingMaterial(appearance.id), [appearance.id])
   const { locale } = useLocale()
   const regions = useRegions()
@@ -86,7 +97,27 @@ export function useHotelMap({
     [appearance.id, catalog.data, colors, night, sun.altitude],
   )
   useEffect(() => retainPmtiles(), [])
-  const highlightData = useMemo(() => featureCollection(highlights), [highlights])
+  const searchScene = useSearchTour(journey, reduced)
+  const highlightData = useMemo(
+    () =>
+      featureCollection(
+        (!hotelId || journey?.sending) && searchScene?.route
+          ? [
+              {
+                type: "Feature",
+                geometry: searchScene.route,
+                properties: { kind: "route", mode: searchScene.mode },
+              },
+              {
+                type: "Feature",
+                geometry: { type: "Point", coordinates: searchScene.route.coordinates.at(-1) },
+                properties: { kind: "place" },
+              },
+            ]
+          : highlights,
+      ),
+    [highlights, hotelId, searchScene, journey?.sending],
+  )
   const snapshot = useMemo(
     () => ({
       catalog: catalog.data?.classes ?? [],
@@ -97,7 +128,7 @@ export function useHotelMap({
     }),
     [catalog.data, basemaps, locale, sun, buildings],
   )
-  const rendering = useMapRendering(instance, ready, snapshot, active)
+  const rendering = useMapRendering(instance, ready, snapshot, active, "main", override)
   const [route, setRoute] = useState<string>()
   useEffect(() => {
     const map = instance.current
@@ -144,16 +175,25 @@ export function useHotelMap({
     quality,
     effects: APPEARANCES[appearance.id].effects,
   })
-  useRouteDraw(instance, route, colors, reduced, active)
+  useRouteDraw(
+    instance,
+    route,
+    colors,
+    reduced,
+    active,
+    Boolean(searchScene?.route && (!hotelId || journey?.sending)),
+  )
   const terrain = quality < 3
   useEffect(() => {
     const map = instance.current
     if (!active || !map) return
     return followTerrainZoom(map, terrain)
   }, [instance, active, terrain])
+  useSearchCamera(instance, active, journey, Boolean(hotelId), reduced, searchScene)
+  useCandidatePins(instance, active, journey, colors, onCandidate, searchScene?.id)
   useMapCamera({
     map: instance,
-    active,
+    active: active && (!journey || (Boolean(hotelId) && !journey.sending)),
     reduced,
     camera,
     bounds,
@@ -164,7 +204,10 @@ export function useHotelMap({
   const markers = useMapMarkers({
     mapRef: instance,
     ready: active,
-    results,
+    results:
+      searchScene && !hotelId
+        ? results.filter((item) => item.hotel.id !== searchScene.id)
+        : results,
     hotelId,
     location,
     focusFeatures,
@@ -178,5 +221,6 @@ export function useHotelMap({
     failed: failed || rendering.failed,
     markers,
     textureStatus,
+    searchScene: hotelId && !journey?.sending ? undefined : searchScene,
   }
 }

@@ -1,0 +1,144 @@
+{
+  "without_city": {
+    "intents": [
+      {
+        "characteristic_key": "noise_level",
+        "op": "lte",
+        "value": 3.0,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "тихий"
+      }
+    ],
+    "unmatched_terms": [
+      "отель"
+    ],
+    "location_hint": null,
+    "anywhere": false,
+    "normalized_query": "хочу тихий отель",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": true,
+    "wants_room": false,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "after_city": {
+    "intents": [
+      {
+        "characteristic_key": "derived:6572872c02ef",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "тихий"
+      },
+      {
+        "characteristic_key": "derived:85feeed0f334",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "отель"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "хочу тихий отель; сочи",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": false,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "context_city": {
+    "intents": [
+      {
+        "characteristic_key": "derived:6572872c02ef",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "тихий"
+      },
+      {
+        "characteristic_key": "derived:85feeed0f334",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "отель"
+      },
+      {
+        "characteristic_key": "derived:edc0a57da9e8",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "теперь"
+      },
+      {
+        "characteristic_key": "derived:00fa2534431e",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "поближе"
+      },
+      {
+        "characteristic_key": "derived:48de6482c817",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "морю"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "хочу тихий отель; сочи; а теперь поближе к морю",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": false,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "another_city": {
+    "intents": [
+      {
+        "characteristic_key": "derived:85feeed0f334",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "отель"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Москва",
+    "anywhere": false,
+    "normalized_query": "отель в москве",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": false,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  }
+}

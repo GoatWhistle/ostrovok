@@ -169,7 +169,18 @@ paths:
       summary: Тот же ответ, но событиями по мере готовности
       description: >-
         Поток Server-Sent Events. Событие progress несёт стадию поиска
-        (parsing, candidates, research, wish, review) и её поля; событие result —
+        (parsing, parsed, candidates, research, wish, review, preview, winner) и её поля.
+        parsed содержит location и route_search (true для близости к объектам; false для свойств отеля); candidates содержит location, bbox (четыре координаты
+        разрешённой области или null), unsupported (ошибка определения места) и hotels
+        (массив реальных кандидатов с id, name, location [longitude, latitude], rating).
+        preview и winner содержат объект preview с id, name, location, rating, term,
+        route (GeoJSON LineString или null), meters, minutes, mode (graph, straight, onsite или null),
+        place_id, place_name и place_location. onsite подтверждён контуром здания; уличный
+        route и minutes равны null, meters=0 означает отсутствие внешнего пути, не длину пути внутри.
+        preview показывает рассчитанный маршрут кандидата; winner указывает лучший
+        принятый вариант: сначала соответствие пожеланиям, затем кратчайший доступный пеший
+        маршрут к первому положительному nearby-запросу, иначе доступный рейтинг.
+        Кандидаты ещё не проверены и не являются рекомендациями; событие result —
         тот же Conversation, что возвращает /chat/messages; событие error — конверт ошибки.
       requestBody:
         required: true
@@ -1105,7 +1116,7 @@ components:
             distance_m: { type: number, minimum: 0 }
             minutes: { type: number, minimum: 0, nullable: true }
             geo_ref: { type: string }
-            mode: { type: string, enum: [graph, straight] }
+            mode: { type: string, enum: [graph, straight, onsite] }
 
     SourceType:
       type: string
@@ -1484,7 +1495,7 @@ components:
             hotel_id: { type: string }
             distance_m: { type: number, minimum: 0 }
             minutes: { type: number, minimum: 0, nullable: true }
-            mode: { type: string, enum: [graph, straight] }
+            mode: { type: string, enum: [graph, straight, onsite] }
 
     MapRenderScene:
       type: object

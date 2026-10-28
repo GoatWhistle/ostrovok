@@ -1,0 +1,19 @@
+.position {
+  composes: topStart from "../controls/map-heading.module.css";
+}
+.status {
+  composes: floatingSurface from "../../../shared/styles/compose.module.css";
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  color: var(--text-primary);
+}
+.status strong {
+  font-size: var(--font-size-body-sm);
+}
+.status p {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-body-sm);
+  color: var(--text-secondary);
+}

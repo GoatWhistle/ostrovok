@@ -1,4 +1,4 @@
-from collections.abc import Collection, Sequence
+from collections.abc import Awaitable, Callable, Collection, Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Literal
@@ -56,6 +56,7 @@ async def select_candidates(
     now: datetime,
     review: RecommendationReview | None,
     limit: int,
+    prioritize: Callable[[Sequence[Candidate]], Awaitable[Sequence[Candidate]]] | None = None,
 ) -> Selection:
     facts = best_facts(explored.facts)
     ranked = [
@@ -87,6 +88,8 @@ async def select_candidates(
             Rejection(hotel=item[0], cause=NO_EVIDENCE, closeness=item[1].partial) for item in empty
         )
         ranked = [item for item in ranked if item[1].score > 0]
+    if prioritize is not None:
+        ranked = list(await prioritize(ranked))
     if review is None:
         return Selection(tuple(ranked), tuple(ranked), None, _shown(rejected))
     report = await review.check(query, parsed, ranked, limit)

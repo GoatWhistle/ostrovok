@@ -1,5 +1,6 @@
 import { ApiError, codeOf, NETWORK_UNAVAILABLE, UNEXPECTED } from "./client"
 import type { components } from "./schema.gen"
+import type { SearchPreview } from "./search-preview"
 
 type Conversation = components["schemas"]["Conversation"]
 type ChatRequest = components["schemas"]["ChatRequest"]
@@ -10,6 +11,16 @@ export interface ChatProgressIntent {
 }
 
 export interface ChatProgress {
+  readonly route_search?: boolean
+  readonly preview?: SearchPreview
+  readonly bbox?: readonly number[] | null
+  readonly unsupported?: boolean
+  readonly hotels?: readonly {
+    readonly id: string
+    readonly rating?: number | null
+    readonly name: string
+    readonly location: readonly number[]
+  }[]
   readonly stage: string
   readonly term?: string
   readonly status?: string

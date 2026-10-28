@@ -118,7 +118,7 @@ export interface paths {
         put?: never;
         /**
          * Тот же ответ, но событиями по мере готовности
-         * @description Поток Server-Sent Events. Событие progress несёт стадию поиска (parsing, candidates, research, wish, review) и её поля; событие result — тот же Conversation, что возвращает /chat/messages; событие error — конверт ошибки.
+         * @description Поток Server-Sent Events. Событие progress несёт стадию поиска (parsing, parsed, candidates, research, wish, review, preview, winner) и её поля. parsed содержит location; candidates содержит location, bbox (четыре координаты разрешённой области или null), unsupported (ошибка определения места) и hotels (массив реальных кандидатов с id, name, location [longitude, latitude], rating). preview и winner содержат объект preview с id, name, location, rating, term, route (GeoJSON LineString или null), meters, minutes, mode (graph, straight, onsite или null), place_id, place_name и place_location. onsite подтверждён контуром здания; уличный route и minutes равны null, meters=0 означает отсутствие внешнего пути, не длину пути внутри. preview показывает рассчитанный маршрут кандидата; winner указывает лучший принятый вариант: сначала соответствие пожеланиям, затем кратчайший доступный пеший маршрут к первому положительному nearby-запросу, иначе доступный рейтинг. Кандидаты ещё не проверены и не являются рекомендациями; событие result — тот же Conversation, что возвращает /chat/messages; событие error — конверт ошибки.
          */
         post: operations["streamChatMessage"];
         delete?: never;
@@ -754,7 +754,7 @@ export interface components {
                 minutes: number | null;
                 geo_ref: string;
                 /** @enum {string} */
-                mode: "graph" | "straight";
+                mode: "graph" | "straight" | "onsite";
             } | null;
         };
         /** @enum {string} */
@@ -1091,7 +1091,7 @@ export interface components {
                 distance_m?: number;
                 minutes?: number | null;
                 /** @enum {string} */
-                mode?: "graph" | "straight";
+                mode?: "graph" | "straight" | "onsite";
             };
         };
         MapRenderScene: {

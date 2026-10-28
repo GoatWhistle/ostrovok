@@ -37,6 +37,8 @@ HOTEL_KEYS = (
 )
 BUILDING_KEYS = ("building", "height", "building:levels", "min_height", "roof:shape", "name")
 POI_KEYS = (
+    "place",
+    "waterway",
     "name",
     "opening_hours",
     "amenity",
@@ -68,7 +70,9 @@ def is_building(tags: Mapping[str, str]) -> bool:
 
 
 def is_poi(tags: Mapping[str, str]) -> bool:
-    return any(tags.get(key) for key in POI_KEYS if key not in {"name", "opening_hours"})
+    return any(tags.get(key) for key in POI_KEYS if key not in {"name", "opening_hours"}) or bool(
+        tags.get("name") and tags.get("highway") in {"pedestrian", "footway", "path"}
+    )
 
 
 def is_coastline(tags: Mapping[str, str]) -> bool:

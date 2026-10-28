@@ -2,6 +2,7 @@ import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { useRegions } from "@/entities/catalog"
 import { useHotelGeometry, useHotelScene } from "@/entities/hotel"
 import type { Camera, FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import type { SearchJourney } from "@/shared/api/search-journey"
 import { APPEARANCES } from "@/shared/geo/appearance/packages"
 import type { MapAppearance } from "@/shared/geo/appearance/types"
 import { matchedValue } from "@/shared/geo/facts/fact-label"
@@ -19,14 +20,20 @@ import { identityOverview, useMapIdentity } from "./rendering/use-map-identity"
 import { useMapInsets } from "./rendering/use-map-insets"
 import { focusCopy, sceneData, sceneLocation, sceneQuality } from "./scene-data"
 import { SceneSun } from "./scene-time/scene-sun"
-import { forecastEnd, OVERVIEW_SUN, sceneToday } from "./scene-time/scene-time"
+import { forecastEnd, sceneToday } from "./scene-time/scene-time"
 import { SceneTimePanel } from "./scene-time/scene-time-panel"
 import { useSunPreview } from "./scene-time/use-sun-preview"
 import { useSunTheme } from "./scene-time/use-sun-theme"
+import { SearchRouteOverlay } from "./search/search-route-overlay"
+import { SearchStatus } from "./search/search-status"
+import { displaySun } from "./search/search-sun"
 import { useHotelMap } from "./use-hotel-map"
 import { useWeather } from "./use-weather"
 
 export interface HotelMapProps {
+  readonly journey?: SearchJourney | undefined
+  readonly onRetrySearch?: () => void
+  readonly onCandidate?: (id: string) => void
   readonly returnToHotel?: boolean
   readonly fullMap?: boolean
   readonly previewing?: boolean
@@ -51,6 +58,9 @@ export interface HotelMapProps {
 
 export function HotelMap({
   visible,
+  journey,
+  onRetrySearch = () => {},
+  onCandidate = () => {},
   fullMap = false,
   returnToHotel = false,
   previewing = false,
@@ -90,7 +100,13 @@ export function HotelMap({
     regions.data?.items?.find((item) => item.id === regionId) ?? regions.data?.items?.[0]
   const regionCamera = region?.default_camera
   const fallbackCamera = useMemo(
-    () => identityOverview(identity, regionCamera),
+    () =>
+      identityOverview(identity, regionCamera) ?? {
+        center: [0, 20],
+        zoom: 2,
+        pitch: 0,
+        bearing: 0,
+      },
     [identity, regionCamera],
   )
   const { selectedCamera, buildings, highlights } = sceneData(
@@ -119,6 +135,8 @@ export function HotelMap({
   const focus = focusCopy(focusProperty, focusedFact, focusFeatures.length > 0, locale)
   const map = useHotelMap({
     visible,
+    journey,
+    onCandidate,
     previewing,
     camera: selectedCamera,
     buildings,
@@ -130,7 +148,7 @@ export function HotelMap({
     location: identity,
     focusFeatures,
     focusLabel: matchedValue(focusProperty?.fact ?? focusedFact, locale),
-    sun: place ? sun.position : OVERVIEW_SUN,
+    sun: displaySun(journey?.sending, Boolean(place), sun.position),
   })
   const insets = useMapInsets(map.instance, map.active, Boolean(hotelCard))
   const overview = scene.data?.cameras.overview ?? selectedCamera
@@ -153,6 +171,10 @@ export function HotelMap({
           altitude={sun.position.altitude}
           preview={preview}
         />
+      ) : null}
+      <SearchRouteOverlay map={map.instance} scene={map.searchScene} active={map.active} />
+      {journey ? (
+        <SearchStatus journey={journey} scene={map.searchScene} onRetry={onRetrySearch} />
       ) : null}
       <MapPins views={map.markers} map={map.instance} onSelect={onSelect} onPlace={onPlace} />
       <MapStatus

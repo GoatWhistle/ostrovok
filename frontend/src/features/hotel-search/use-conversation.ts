@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useRegions } from "@/entities/catalog"
-import { api, type ChatProgress, streamChatMessage, unwrap, useRecordMutation } from "@/shared/api"
+import { api, type ChatProgress, streamChatMessage, unwrap } from "@/shared/api"
 import type { components } from "@/shared/api/schema.gen"
 import { moveSessionDraft } from "@/shared/hooks"
 import { useLocale } from "@/shared/i18n"
@@ -29,6 +29,7 @@ export interface ConversationControl {
 }
 
 interface SendInput {
+  readonly signal: AbortSignal
   readonly message: string
   readonly region: string
   readonly id: string | null
@@ -57,6 +58,7 @@ async function sendRequest(input: SendInput, onProgress: (progress: ChatProgress
       selected_hotel_id: input.hotel ?? null,
     },
     onProgress,
+    input.signal,
   )
   if (input.id && data.id !== input.id) throw new Error("Conversation response mismatch")
   return data
@@ -73,7 +75,10 @@ export function useConversation(
   const [history, setHistory] = useState(readConversationHistory)
   const latest = useRef({ control, onAnswer })
   latest.current = { control, onAnswer }
+  const request = useRef(0)
   const inflight = useRef(0)
+  const abort = useRef<AbortController | null>(null)
+  useEffect(() => () => abort.current?.abort(), [])
   const [progress, setProgress] = useState<readonly ChatProgress[]>([])
   const regions = useRegions()
   const loaded = regions.data?.items ?? []
@@ -111,18 +116,21 @@ export function useConversation(
       updateHistory((previous) => syncConversation(previous, serverEntry(data)))
     }
   }, [conversation.data, updateHistory])
-  const sendMessage = useRecordMutation(["chat-send", control.scopeKey], {
+  const sendMessage = useMutation({
     mutationFn: (input: SendInput) =>
-      sendRequest(input, (event) => setProgress((previous) => [...previous, event])),
+      sendRequest(input, (event) => {
+        if (!input.signal.aborted && input.generation === active.current.generation)
+          setProgress((previous) => [...previous, event])
+      }),
     onMutate: () => {
       inflight.current += 1
       setProgress([])
     },
     onSettled: () => {
       inflight.current -= 1
-      setProgress([])
     },
     onSuccess: (data, input) => {
+      if (input.signal.aborted || input.generation !== active.current.generation) return
       if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
       const started =
         input.scope === active.current.scope && input.generation === active.current.generation
@@ -171,14 +179,22 @@ export function useConversation(
     },
   })
   function reset() {
+    abort.current?.abort()
+    setProgress([])
+    sendMessage.reset()
     active.current.generation += 1
     saveActiveConversation(null)
     control.reset()
   }
   function send(message: string) {
-    if (!message.trim() || sendMessage.isPending) return
+    if (!message.trim()) return
+    abort.current?.abort()
+    abort.current = new AbortController()
+    request.current += 1
+    active.current.generation += 1
     control.begin()
     sendMessage.mutate({
+      signal: abort.current.signal,
       message,
       region,
       id: control.id,
@@ -188,17 +204,28 @@ export function useConversation(
       locale,
     })
   }
+  const relevant =
+    sendMessage.variables?.scope === control.scopeKey || sendMessage.data?.id === control.id
   const outgoing =
-    sendMessage.isPending || sendMessage.isError ? sendMessage.variables?.message : undefined
+    relevant && (sendMessage.isPending || sendMessage.isError)
+      ? sendMessage.variables?.message
+      : undefined
   return {
     data: conversation.data,
     conversationId: control.id,
     history,
     outgoing,
     send,
-    retry: () => (outgoing ? send(outgoing) : void conversation.refetch()),
+    retry: () => {
+      const message = relevant ? sendMessage.variables?.message : undefined
+      if (message) send(message)
+      else void conversation.refetch()
+    },
     reset,
     open: (id: string) => {
+      abort.current?.abort()
+      setProgress([])
+      sendMessage.reset()
       active.current.generation += 1
       saveActiveConversation(id)
       control.open(id)
@@ -206,8 +233,9 @@ export function useConversation(
     rename: (id: string, title: string) => renameMutation.mutateAsync({ id, title }),
     remove: (id: string) => removeMutation.mutateAsync(id),
     loading: conversation.isPending && control.id !== null,
-    sending: sendMessage.isPending,
-    progress,
-    failed: sendMessage.isError || (conversation.isError && !conversation.data),
+    sending: relevant && sendMessage.isPending,
+    progress: relevant ? progress : [],
+    request: request.current,
+    failed: (relevant && sendMessage.isError) || (conversation.isError && !conversation.data),
   }
 }

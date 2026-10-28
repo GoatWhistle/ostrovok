@@ -1,0 +1,1466 @@
+{
+  "id": "03-winter-theatre",
+  "text": "Хочу отель в Сочи рядом с Зимним театром",
+  "kind": "named",
+  "target": "Зимний театр",
+  "elapsed": 23.137,
+  "error": null,
+  "conversation_id": "4ce948b7-9391-4b04-8399-b3cfe3675983",
+  "answer": "Нашёл 20 отелей. Первые в списке: Отель \"Жемчуг\", Санаторий \"Черноморье\" и Жемчужина. На какие даты едете?",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:30365607aa5c",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "рядом с Зимним театром"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "отель в Сочи рядом с Зимним театром",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "result_count": 20,
+  "results": [
+    {
+      "hotel": {
+        "id": "n948203233",
+        "name": "Отель \"Жемчуг\"",
+        "address": "Комсомольская улица 1",
+        "location": [
+          39.7325921,
+          43.5726527
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 110 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n948203233",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n948203233_9ac530817fce"
+            ],
+            "subject": "hotel:n948203233",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 110,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n948203233_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51570675",
+        "name": "Санаторий \"Черноморье\"",
+        "address": null,
+        "location": [
+          39.7296256,
+          43.573813
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 139 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51570675",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51570675_9ac530817fce"
+            ],
+            "subject": "hotel:w51570675",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 139,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51570675_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51847429",
+        "name": "Жемчужина",
+        "address": "Черноморская улица 3",
+        "location": [
+          39.7314295,
+          43.5708048
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 142 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51847429",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51847429_9ac530817fce"
+            ],
+            "subject": "hotel:w51847429",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7304538,
+                43.571871
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 142,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51847429_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51847420",
+        "name": "Жемчужина",
+        "address": null,
+        "location": [
+          39.7322506,
+          43.5711773
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 157 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51847420",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51847420_9ac530817fce"
+            ],
+            "subject": "hotel:w51847420",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.730890272911566,
+                43.572183078836574
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 157,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51847420_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51677372",
+        "name": "LS Towns, хостел",
+        "address": "улица Орджоникидзе 34/2 литА",
+        "location": [
+          39.7302258,
+          43.5745086
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 190 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51677372",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51677372_9ac530817fce"
+            ],
+            "subject": "hotel:w51677372",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 190,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51677372_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51575997",
+        "name": "Ольга",
+        "address": "улица Орджоникидзе",
+        "location": [
+          39.7281221,
+          43.5739978
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 238 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51575997",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51575997_9ac530817fce"
+            ],
+            "subject": "hotel:w51575997",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.73019261894164,
+                43.57246689438216
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 238,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51575997_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n4161702427",
+        "name": "VIVA",
+        "address": "улица Орджоникидзе 28/2",
+        "location": [
+          39.7296337,
+          43.5749604
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 251 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n4161702427",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n4161702427_9ac530817fce"
+            ],
+            "subject": "hotel:n4161702427",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 251,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n4161702427_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n13301736501",
+        "name": "Lavicon apart Sochi",
+        "address": "Учительская улица 3",
+        "location": [
+          39.7348283,
+          43.5729518
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 293 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n13301736501",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n13301736501_9ac530817fce"
+            ],
+            "subject": "hotel:n13301736501",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 293,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n13301736501_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n736694948",
+        "name": "MIRROR",
+        "address": null,
+        "location": [
+          39.7350363,
+          43.5729017
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 309 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n736694948",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n736694948_9ac530817fce"
+            ],
+            "subject": "hotel:n736694948",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 309,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n736694948_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w67540441",
+        "name": "Санаторий \"Светлана\"",
+        "address": null,
+        "location": [
+          39.734603,
+          43.5705888
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 340 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w67540441",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w67540441_9ac530817fce"
+            ],
+            "subject": "hotel:w67540441",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 340,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w67540441_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12541096667",
+        "name": "Альфа",
+        "address": null,
+        "location": [
+          39.7339278,
+          43.56975
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 364 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n12541096667",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n12541096667_9ac530817fce"
+            ],
+            "subject": "hotel:n12541096667",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.73076158226107,
+                43.57209106532368
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 364,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n12541096667_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51849059",
+        "name": "ЖК \"Верещагинская дача\"",
+        "address": "Черноморская улица 4",
+        "location": [
+          39.7341857,
+          43.5695931
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 391 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51849059",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51849059_9ac530817fce"
+            ],
+            "subject": "hotel:w51849059",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.730784822129245,
+                43.572107681806415
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 391,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51849059_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51849076",
+        "name": "Светлана",
+        "address": "Курортный проспект 75 к1",
+        "location": [
+          39.7357428,
+          43.5710296
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 394 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51849076",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51849076_9ac530817fce"
+            ],
+            "subject": "hotel:w51849076",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 394,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51849076_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n5063986547",
+        "name": "Чемодан",
+        "address": null,
+        "location": [
+          39.7359049,
+          43.5712628
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 397 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n5063986547",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n5063986547_9ac530817fce"
+            ],
+            "subject": "hotel:n5063986547",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 397,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n5063986547_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11304222979",
+        "name": "Grand Way",
+        "address": null,
+        "location": [
+          39.73153,
+          43.5764775
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 410 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n11304222979",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n11304222979_9ac530817fce"
+            ],
+            "subject": "hotel:n11304222979",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 410,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n11304222979_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n4354563292",
+        "name": "Наш дом",
+        "address": "улица Корчагина 2",
+        "location": [
+          39.7326073,
+          43.5763725
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 421 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n4354563292",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n4354563292_9ac530817fce"
+            ],
+            "subject": "hotel:n4354563292",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 421,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n4354563292_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n9764181317",
+        "name": "Магнолия",
+        "address": null,
+        "location": [
+          39.7304914,
+          43.5766209
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 421 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n9764181317",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n9764181317_9ac530817fce"
+            ],
+            "subject": "hotel:n9764181317",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7307173,
+                43.57284200000001
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 421,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n9764181317_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "r9273776",
+        "name": "Hyatt Regency Sochi",
+        "address": "улица Орджоникидзе 17",
+        "location": [
+          39.7267211,
+          43.5757016
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 452 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_r9273776",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_r9273776_9ac530817fce"
+            ],
+            "subject": "hotel:r9273776",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7306519500345,
+                43.572795280309975
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 452,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_r9273776_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n13438392946",
+        "name": "Разин",
+        "address": null,
+        "location": [
+          39.7365946,
+          43.574512
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 488 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_n13438392946",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_n13438392946_9ac530817fce"
+            ],
+            "subject": "hotel:n13438392946",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.7312573,
+                43.57244549999999
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 488,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_n13438392946_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51853102",
+        "name": "Sea Galaxy",
+        "address": "Черноморская улица 4",
+        "location": [
+          39.735248,
+          43.5690042
+        ]
+      },
+      "score": 0.8,
+      "matched": [
+        {
+          "characteristic_key": "derived:30365607aa5c",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с Зимним театром",
+          "explanation": "До ближайшей точки контура «Зимний театр» 498 м по прямой. Расстояние рассчитано по геометрии объекта OpenStreetMap; это не пеший маршрут.",
+          "fact": {
+            "fact_id": "f_wish_30365607aa5c_w51853102",
+            "characteristic_key": "derived:30365607aa5c",
+            "value": true,
+            "unit": null,
+            "label": "рядом с Зимним театром",
+            "confidence": 0.8,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_boundary_f_spatial_w51853102_9ac530817fce"
+            ],
+            "subject": "hotel:w51853102",
+            "qualifiers": {
+              "source_text": "рядом с Зимним театром",
+              "target_id": "r9353455",
+              "target_location": [
+                39.730920009742405,
+                43.57220434054011
+              ],
+              "native_characteristic_key": "spatial:9ac530817fce",
+              "native_value": 498,
+              "native_unit": "м",
+              "native_op": "lte",
+              "native_threshold": 500.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_boundary_f_spatial_w51853102_9ac530817fce"
+          ],
+          "camera": null
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "elapsed": 1.068,
+      "stage": "parsing"
+    },
+    {
+      "elapsed": 6.055,
+      "stage": "parsed",
+      "location": "Сочи",
+      "route_search": true,
+      "intents": [
+        {
+          "term": "рядом с Зимним театром",
+          "key": "spatial:9ac530817fce"
+        }
+      ],
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    {
+      "elapsed": 6.141,
+      "stage": "candidates",
+      "found": 788,
+      "region": "sochi",
+      "location": "Сочи",
+      "bbox": [
+        39.550007,
+        43.3872337,
+        39.9990112,
+        43.7406639
+      ],
+      "unsupported": false
+    },
+    {
+      "elapsed": 6.142,
+      "stage": "research",
+      "wishes": 1
+    },
+    {
+      "elapsed": 6.841,
+      "stage": "wish",
+      "term": "рядом с Зимним театром",
+      "status": "matched"
+    },
+    {
+      "elapsed": 6.843,
+      "stage": "review",
+      "candidates": 788
+    },
+    {
+      "elapsed": 7.164,
+      "stage": "preview",
+      "preview": {
+        "id": "w51847429",
+        "name": "Жемчужина",
+        "location": [
+          39.7314295,
+          43.5708048
+        ],
+        "rating": null,
+        "term": "рядом с Зимним театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7314295,
+              43.5708048
+            ],
+            [
+              39.7304538,
+              43.571871
+            ]
+          ]
+        },
+        "place_name": "Зимний театр",
+        "place_location": null,
+        "meters": 142.2,
+        "minutes": null,
+        "mode": "straight",
+        "place_id": "r9353455"
+      }
+    },
+    {
+      "elapsed": 7.207,
+      "stage": "preview",
+      "preview": {
+        "id": "w51570675",
+        "name": "Санаторий \"Черноморье\"",
+        "location": [
+          39.7296256,
+          43.573813
+        ],
+        "rating": null,
+        "term": "рядом с Зимним театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7296256,
+              43.573813
+            ],
+            [
+              39.7307173,
+              43.57284200000001
+            ]
+          ]
+        },
+        "place_name": "Зимний театр",
+        "place_location": null,
+        "meters": 139.3,
+        "minutes": null,
+        "mode": "straight",
+        "place_id": "r9353455"
+      }
+    },
+    {
+      "elapsed": 7.242,
+      "stage": "preview",
+      "preview": {
+        "id": "w51847420",
+        "name": "Жемчужина",
+        "location": [
+          39.7322506,
+          43.5711773
+        ],
+        "rating": null,
+        "term": "рядом с Зимним театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7322506,
+              43.5711773
+            ],
+            [
+              39.730890272911566,
+              43.572183078836574
+            ]
+          ]
+        },
+        "place_name": "Зимний театр",
+        "place_location": null,
+        "meters": 156.7,
+        "minutes": null,
+        "mode": "straight",
+        "place_id": "r9353455"
+      }
+    },
+    {
+      "elapsed": 7.252,
+      "stage": "preview",
+      "preview": {
+        "id": "n948203233",
+        "name": "Отель \"Жемчуг\"",
+        "location": [
+          39.7325921,
+          43.5726527
+        ],
+        "rating": null,
+        "term": "рядом с Зимним театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7325921,
+              43.5726527
+            ],
+            [
+              39.7325657,
+              43.5725528
+            ],
+            [
+              39.7324132,
+              43.57244
+            ],
+            [
+              39.7321546,
+              43.5726636
+            ],
+            [
+              39.732126,
+              43.5726454
+            ],
+            [
+              39.7317504,
+              43.5729096
+            ],
+            [
+              39.7313292,
+              43.572622
+            ],
+            [
+              39.7313037,
+              43.5726046
+            ],
+            [
+              39.7313974,
+              43.5725193
+            ],
+            [
+              39.7314138,
+              43.5724853
+            ],
+            [
+              39.7312573,
+              43.57244549999999
+            ]
+          ]
+        },
+        "place_name": "Зимний театр",
+        "place_location": null,
+        "meters": 185.6,
+        "minutes": 2.3,
+        "mode": "graph",
+        "place_id": "r9353455"
+      }
+    },
+    {
+      "elapsed": 19.28,
+      "stage": "winner",
+      "preview": {
+        "id": "n948203233",
+        "name": "Отель \"Жемчуг\"",
+        "location": [
+          39.7325921,
+          43.5726527
+        ],
+        "rating": null,
+        "term": "рядом с Зимним театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7325921,
+              43.5726527
+            ],
+            [
+              39.7325657,
+              43.5725528
+            ],
+            [
+              39.7324132,
+              43.57244
+            ],
+            [
+              39.7321546,
+              43.5726636
+            ],
+            [
+              39.732126,
+              43.5726454
+            ],
+            [
+              39.7317504,
+              43.5729096
+            ],
+            [
+              39.7313292,
+              43.572622
+            ],
+            [
+              39.7313037,
+              43.5726046
+            ],
+            [
+              39.7313974,
+              43.5725193
+            ],
+            [
+              39.7314138,
+              43.5724853
+            ],
+            [
+              39.7312573,
+              43.57244549999999
+            ]
+          ]
+        },
+        "place_name": "Зимний театр",
+        "place_location": null,
+        "meters": 185.6,
+        "minutes": 2.3,
+        "mode": "graph",
+        "place_id": "r9353455"
+      }
+    }
+  ]
+}

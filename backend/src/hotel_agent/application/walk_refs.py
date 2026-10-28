@@ -24,11 +24,13 @@ def walk_feature(path: PlaceWalk) -> GeoFeatureRecord:
         characteristic_key="nearby",
         geometry=path.geometry,
         name=None,
-        label=f"{path.meters:g} м, {path.minutes:g} мин"
+        label="В том же здании по данным OpenStreetMap"
+        if path.mode == "onsite"
+        else f"{path.meters:g} м, {path.minutes:g} мин"
         if path.minutes is not None
         else f"по прямой ~{path.meters:g} м",
         osm_ref=path.place_id,
-        style_hint="line",
+        style_hint="point" if path.mode == "onsite" else "line",
         properties={
             "place_id": path.place_id,
             "hotel_id": path.hotel_id,

@@ -1,0 +1,2117 @@
+{
+  "id": "01-bars",
+  "text": "Нужен отель в Сочи рядом с баром",
+  "kind": "category",
+  "target": "amenity=bar",
+  "elapsed": 33.515,
+  "error": null,
+  "conversation_id": "1a47dd7d-6122-47f0-bbd5-39de84142be6",
+  "answer": "Нашёл 20 отелей. Первые в списке: Sunny Sochi Hostel, Версаль и Моё море. На какие даты едете?",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:17dbf8292325",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "рядом с баром"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "отель в Сочи рядом с баром",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "result_count": 20,
+  "results": [
+    {
+      "hotel": {
+        "id": "n11843553784",
+        "name": "Sunny Sochi Hostel",
+        "address": null,
+        "location": [
+          39.7209888,
+          43.584675
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Добрый Эль», «Мелодия», «Cocos», «Медуза», «Питтсбург» и ещё 9",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n11843553784",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n4141131093",
+              "g_poi_n4221044390",
+              "g_poi_n11138786323",
+              "g_poi_n2621941811",
+              "g_poi_n8712821417",
+              "g_poi_n8503337017",
+              "g_poi_n1752103008",
+              "g_poi_n12459488001",
+              "g_poi_n10858552290",
+              "g_poi_n4141096694",
+              "g_poi_n9218583631",
+              "g_poi_n7849534485",
+              "g_poi_n7707669887",
+              "g_poi_n1775828640",
+              "g_poi_w51166071",
+              "g_poi_n4872886626",
+              "g_walk_n11843553784_n4141131093",
+              "g_walk_n11843553784_n4221044390",
+              "g_walk_n11843553784_n11138786323",
+              "g_walk_n11843553784_n2621941811",
+              "g_walk_n11843553784_n8712821417"
+            ],
+            "subject": "hotel:n11843553784",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Добрый Эль",
+                "Мелодия",
+                "Cocos",
+                "Медуза",
+                "Питтсбург",
+                "Потёмки",
+                "Пинта",
+                "Baker Street"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 16,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n4141131093",
+            "g_poi_n4221044390",
+            "g_poi_n11138786323",
+            "g_poi_n2621941811",
+            "g_poi_n8712821417",
+            "g_poi_n8503337017",
+            "g_poi_n1752103008",
+            "g_poi_n12459488001",
+            "g_poi_n10858552290",
+            "g_poi_n4141096694",
+            "g_poi_n9218583631",
+            "g_poi_n7849534485",
+            "g_poi_n7707669887",
+            "g_poi_n1775828640",
+            "g_poi_w51166071",
+            "g_poi_n4872886626",
+            "g_walk_n11843553784_n4141131093",
+            "g_walk_n11843553784_n4221044390",
+            "g_walk_n11843553784_n11138786323",
+            "g_walk_n11843553784_n2621941811",
+            "g_walk_n11843553784_n8712821417"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51106908",
+        "name": "Версаль",
+        "address": "Несебрская улица 14",
+        "location": [
+          39.7182247,
+          43.5837129
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Пинта», «Студия Марсель, караоке-бар», «Мелодия», «Baker Street», «Cocos» и ещё 4",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_w51106908",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n10858552290",
+              "g_poi_n9218583631",
+              "g_poi_n11138786323",
+              "g_poi_n4141096694",
+              "g_poi_n2621941811",
+              "g_poi_n4141131093",
+              "g_poi_n4221044390",
+              "g_poi_n12459488001",
+              "g_poi_n1752103008",
+              "g_poi_n8712821417",
+              "g_poi_n8503337017",
+              "g_walk_w51106908_n10858552290",
+              "g_walk_w51106908_n9218583631",
+              "g_walk_w51106908_n11138786323",
+              "g_walk_w51106908_n4141096694",
+              "g_walk_w51106908_n2621941811"
+            ],
+            "subject": "hotel:w51106908",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Пинта",
+                "Студия Марсель, караоке-бар",
+                "Мелодия",
+                "Baker Street",
+                "Cocos",
+                "Добрый Эль",
+                "Потёмки",
+                "Питтсбург"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 11,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n10858552290",
+            "g_poi_n9218583631",
+            "g_poi_n11138786323",
+            "g_poi_n4141096694",
+            "g_poi_n2621941811",
+            "g_poi_n4141131093",
+            "g_poi_n4221044390",
+            "g_poi_n12459488001",
+            "g_poi_n1752103008",
+            "g_poi_n8712821417",
+            "g_poi_n8503337017",
+            "g_walk_w51106908_n10858552290",
+            "g_walk_w51106908_n9218583631",
+            "g_walk_w51106908_n11138786323",
+            "g_walk_w51106908_n4141096694",
+            "g_walk_w51106908_n2621941811"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w114131768",
+        "name": "Моё море",
+        "address": "улица Островского",
+        "location": [
+          39.7238463,
+          43.5893697
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Why Not? Craft Bar», «Wasabi», «Green», «Медуза», «По-тихому» и ещё 4",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_w114131768",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7023837485",
+              "g_poi_w51166071",
+              "g_poi_n7707669887",
+              "g_poi_n8503337017",
+              "g_poi_n8712821417",
+              "g_poi_n7849534485",
+              "g_poi_n8149723218",
+              "g_poi_n1752103008",
+              "g_poi_n5873283237",
+              "g_poi_n4221044390",
+              "g_walk_w114131768_n7023837485",
+              "g_walk_w114131768_w51166071",
+              "g_walk_w114131768_n7707669887",
+              "g_walk_w114131768_n8503337017",
+              "g_walk_w114131768_n8712821417"
+            ],
+            "subject": "hotel:w114131768",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Why Not? Craft Bar",
+                "Wasabi",
+                "Green",
+                "Медуза",
+                "По-тихому",
+                "Молоко",
+                "Питтсбург",
+                "Grizzly"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 10,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7023837485",
+            "g_poi_w51166071",
+            "g_poi_n7707669887",
+            "g_poi_n8503337017",
+            "g_poi_n8712821417",
+            "g_poi_n7849534485",
+            "g_poi_n8149723218",
+            "g_poi_n1752103008",
+            "g_poi_n5873283237",
+            "g_poi_n4221044390",
+            "g_walk_w114131768_n7023837485",
+            "g_walk_w114131768_w51166071",
+            "g_walk_w114131768_n7707669887",
+            "g_walk_w114131768_n8503337017",
+            "g_walk_w114131768_n8712821417"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n1449074195",
+        "name": "Корсар",
+        "address": null,
+        "location": [
+          39.9180891,
+          43.4276924
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Корсар», «Устричный Бар», «Сувлачная ЭНОС», «Бамбу лаундж»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n1449074195",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n1449074352",
+              "g_poi_n11878294027",
+              "g_poi_n1151197925",
+              "g_poi_n6558660885",
+              "g_walk_n1449074195_n1449074352",
+              "g_walk_n1449074195_n11878294027",
+              "g_walk_n1449074195_n1151197925",
+              "g_walk_n1449074195_n6558660885"
+            ],
+            "subject": "hotel:n1449074195",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Корсар",
+                "Устричный Бар",
+                "Сувлачная ЭНОС",
+                "Бамбу лаундж"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 4,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n1449074352",
+            "g_poi_n11878294027",
+            "g_poi_n1151197925",
+            "g_poi_n6558660885",
+            "g_walk_n1449074195_n1449074352",
+            "g_walk_n1449074195_n11878294027",
+            "g_walk_n1449074195_n1151197925",
+            "g_walk_n1449074195_n6558660885"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n6494252594",
+        "name": "Отель Атрия",
+        "address": null,
+        "location": [
+          39.9321533,
+          43.4474298
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Встреча»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n6494252594",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n1158988057",
+              "g_walk_n6494252594_n1158988057"
+            ],
+            "subject": "hotel:n6494252594",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Встреча"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n1158988057",
+            "g_walk_n6494252594_n1158988057"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n8198207017",
+        "name": "Семейный квартал - ресепшн",
+        "address": null,
+        "location": [
+          39.9938832,
+          43.3935298
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Лобби-бар»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n8198207017",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n4235046791",
+              "g_walk_n8198207017_n4235046791"
+            ],
+            "subject": "hotel:n8198207017",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Лобби-бар"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n4235046791",
+            "g_walk_n8198207017_n4235046791"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11497670982",
+        "name": "Арт-отель",
+        "address": null,
+        "location": [
+          39.7172009,
+          43.5897671
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Bandido Bar», «Питтсбург», «Green», «Cocos», «Wasabi»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n11497670982",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n10583800764",
+              "g_poi_n1752103008",
+              "g_poi_n7707669887",
+              "g_poi_n2621941811",
+              "g_poi_w51166071",
+              "g_walk_n11497670982_n10583800764",
+              "g_walk_n11497670982_n1752103008",
+              "g_walk_n11497670982_n7707669887",
+              "g_walk_n11497670982_n2621941811",
+              "g_walk_n11497670982_w51166071"
+            ],
+            "subject": "hotel:n11497670982",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Bandido Bar",
+                "Питтсбург",
+                "Green",
+                "Cocos",
+                "Wasabi"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 5,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n10583800764",
+            "g_poi_n1752103008",
+            "g_poi_n7707669887",
+            "g_poi_n2621941811",
+            "g_poi_w51166071",
+            "g_walk_n11497670982_n10583800764",
+            "g_walk_n11497670982_n1752103008",
+            "g_walk_n11497670982_n7707669887",
+            "g_walk_n11497670982_n2621941811",
+            "g_walk_n11497670982_w51166071"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n7114965534",
+        "name": "Форвард Апарт Отель",
+        "address": null,
+        "location": [
+          39.923866,
+          43.4247973
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Рок-бар Треугольник», «Бамбу лаундж», «Синий Пони», «Вобла»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n7114965534",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n8069244385",
+              "g_poi_n1275639195",
+              "g_poi_n6558660885",
+              "g_poi_n11138786370",
+              "g_poi_n5871417887",
+              "g_poi_n7119299456",
+              "g_walk_n7114965534_n8069244385",
+              "g_walk_n7114965534_n1275639195",
+              "g_walk_n7114965534_n6558660885",
+              "g_walk_n7114965534_n11138786370",
+              "g_walk_n7114965534_n5871417887"
+            ],
+            "subject": "hotel:n7114965534",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Рок-бар Треугольник",
+                "Бамбу лаундж",
+                "Синий Пони",
+                "Вобла"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 6,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n8069244385",
+            "g_poi_n1275639195",
+            "g_poi_n6558660885",
+            "g_poi_n11138786370",
+            "g_poi_n5871417887",
+            "g_poi_n7119299456",
+            "g_walk_n7114965534_n8069244385",
+            "g_walk_n7114965534_n1275639195",
+            "g_walk_n7114965534_n6558660885",
+            "g_walk_n7114965534_n11138786370",
+            "g_walk_n7114965534_n5871417887"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w1425602206",
+        "name": "Барракуда",
+        "address": null,
+        "location": [
+          39.8909305,
+          43.4777828
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Rancho», «Anaconda»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_w1425602206",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n13097885499",
+              "g_poi_n13097845590",
+              "g_walk_w1425602206_n13097885499",
+              "g_walk_w1425602206_n13097845590"
+            ],
+            "subject": "hotel:w1425602206",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Rancho",
+                "Anaconda"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n13097885499",
+            "g_poi_n13097845590",
+            "g_walk_w1425602206_n13097885499",
+            "g_walk_w1425602206_n13097845590"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w53284165",
+        "name": "Империя",
+        "address": "улица Карла Маркса 12",
+        "location": [
+          39.9208407,
+          43.4210669
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Синий Пони», «Багратион», «Атлантида»",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_w53284165",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n5871417887",
+              "g_poi_n11138786370",
+              "g_poi_n1323200466",
+              "g_poi_n11866202903",
+              "g_poi_n8712821317",
+              "g_poi_n8069244385",
+              "g_walk_w53284165_n5871417887",
+              "g_walk_w53284165_n11138786370",
+              "g_walk_w53284165_n1323200466",
+              "g_walk_w53284165_n11866202903",
+              "g_walk_w53284165_n8712821317"
+            ],
+            "subject": "hotel:w53284165",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Синий Пони",
+                "Багратион",
+                "Атлантида"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 6,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n5871417887",
+            "g_poi_n11138786370",
+            "g_poi_n1323200466",
+            "g_poi_n11866202903",
+            "g_poi_n8712821317",
+            "g_poi_n8069244385",
+            "g_walk_w53284165_n5871417887",
+            "g_walk_w53284165_n11138786370",
+            "g_walk_w53284165_n1323200466",
+            "g_walk_w53284165_n11866202903",
+            "g_walk_w53284165_n8712821317"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11016638373",
+        "name": "Grand Gallery",
+        "address": null,
+        "location": [
+          39.7212732,
+          43.585287
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Добрый Эль», «Медуза», «Мелодия», «Cocos», «Питтсбург» и ещё 8",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n11016638373",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n4221044390",
+              "g_poi_n4141131093",
+              "g_poi_n8712821417",
+              "g_poi_n8503337017",
+              "g_poi_n11138786323",
+              "g_poi_n2621941811",
+              "g_poi_n1752103008",
+              "g_poi_n7849534485",
+              "g_poi_n12459488001",
+              "g_poi_n7707669887",
+              "g_poi_n10858552290",
+              "g_poi_n9218583631",
+              "g_poi_n4141096694",
+              "g_poi_w51166071",
+              "g_poi_n1775828640",
+              "g_walk_n11016638373_n4221044390",
+              "g_walk_n11016638373_n4141131093",
+              "g_walk_n11016638373_n8712821417",
+              "g_walk_n11016638373_n8503337017",
+              "g_walk_n11016638373_n11138786323"
+            ],
+            "subject": "hotel:n11016638373",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Добрый Эль",
+                "Медуза",
+                "Мелодия",
+                "Cocos",
+                "Питтсбург",
+                "По-тихому",
+                "Потёмки",
+                "Green"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 15,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n4221044390",
+            "g_poi_n4141131093",
+            "g_poi_n8712821417",
+            "g_poi_n8503337017",
+            "g_poi_n11138786323",
+            "g_poi_n2621941811",
+            "g_poi_n1752103008",
+            "g_poi_n7849534485",
+            "g_poi_n12459488001",
+            "g_poi_n7707669887",
+            "g_poi_n10858552290",
+            "g_poi_n9218583631",
+            "g_poi_n4141096694",
+            "g_poi_w51166071",
+            "g_poi_n1775828640",
+            "g_walk_n11016638373_n4221044390",
+            "g_walk_n11016638373_n4141131093",
+            "g_walk_n11016638373_n8712821417",
+            "g_walk_n11016638373_n8503337017",
+            "g_walk_n11016638373_n11138786323"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w44573571",
+        "name": "ГК \"Москва\"",
+        "address": "Курортный проспект 18",
+        "location": [
+          39.7220288,
+          43.5835271
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Потёмки», «Добрый Эль», «Мелодия», «Baker Street», «Живое пиво» и ещё 7",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_w44573571",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n12459488001",
+              "g_poi_n4141131093",
+              "g_poi_n4221044390",
+              "g_poi_n11138786323",
+              "g_poi_n4141096694",
+              "g_poi_n1775828640",
+              "g_poi_n8712821417",
+              "g_poi_n4872886626",
+              "g_poi_n7849534485",
+              "g_poi_n8503337017",
+              "g_poi_n2621941811",
+              "g_poi_n9218583631",
+              "g_poi_n10858552290",
+              "g_poi_n1752103008",
+              "g_walk_w44573571_n12459488001",
+              "g_walk_w44573571_n4141131093",
+              "g_walk_w44573571_n4221044390",
+              "g_walk_w44573571_n11138786323",
+              "g_walk_w44573571_n4141096694"
+            ],
+            "subject": "hotel:w44573571",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Потёмки",
+                "Добрый Эль",
+                "Мелодия",
+                "Baker Street",
+                "Живое пиво",
+                "Художественный",
+                "По-тихому",
+                "Медуза"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 14,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n12459488001",
+            "g_poi_n4141131093",
+            "g_poi_n4221044390",
+            "g_poi_n11138786323",
+            "g_poi_n4141096694",
+            "g_poi_n1775828640",
+            "g_poi_n8712821417",
+            "g_poi_n4872886626",
+            "g_poi_n7849534485",
+            "g_poi_n8503337017",
+            "g_poi_n2621941811",
+            "g_poi_n9218583631",
+            "g_poi_n10858552290",
+            "g_poi_n1752103008",
+            "g_walk_w44573571_n12459488001",
+            "g_walk_w44573571_n4141131093",
+            "g_walk_w44573571_n4221044390",
+            "g_walk_w44573571_n11138786323",
+            "g_walk_w44573571_n4141096694"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n10759606596",
+        "name": "RP Manhattan",
+        "address": null,
+        "location": [
+          39.7245803,
+          43.5869054
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «По-тихому», «Медуза», «Why Not? Craft Bar», «Живое пиво», «Wasabi» и ещё 5",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n10759606596",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7849534485",
+              "g_poi_n8503337017",
+              "g_poi_n8712821417",
+              "g_poi_n7023837485",
+              "g_poi_n1775828640",
+              "g_poi_w51166071",
+              "g_poi_n7707669887",
+              "g_poi_n4221044390",
+              "g_poi_n1752103008",
+              "g_poi_n4141131093",
+              "g_poi_n2621941811",
+              "g_poi_n11138786323",
+              "g_walk_n10759606596_n7849534485",
+              "g_walk_n10759606596_n8503337017",
+              "g_walk_n10759606596_n8712821417",
+              "g_walk_n10759606596_n7023837485",
+              "g_walk_n10759606596_n1775828640"
+            ],
+            "subject": "hotel:n10759606596",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "По-тихому",
+                "Медуза",
+                "Why Not? Craft Bar",
+                "Живое пиво",
+                "Wasabi",
+                "Green",
+                "Добрый Эль",
+                "Питтсбург"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 12,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7849534485",
+            "g_poi_n8503337017",
+            "g_poi_n8712821417",
+            "g_poi_n7023837485",
+            "g_poi_n1775828640",
+            "g_poi_w51166071",
+            "g_poi_n7707669887",
+            "g_poi_n4221044390",
+            "g_poi_n1752103008",
+            "g_poi_n4141131093",
+            "g_poi_n2621941811",
+            "g_poi_n11138786323",
+            "g_walk_n10759606596_n7849534485",
+            "g_walk_n10759606596_n8503337017",
+            "g_walk_n10759606596_n8712821417",
+            "g_walk_n10759606596_n7023837485",
+            "g_walk_n10759606596_n1775828640"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11016638369",
+        "name": "Шагал по Красной Площади",
+        "address": null,
+        "location": [
+          39.7236174,
+          43.5826447
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Потёмки», «Художественный», «Живое пиво», «По-тихому», «Добрый Эль» и ещё 5",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n11016638369",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n12459488001",
+              "g_poi_n4872886626",
+              "g_poi_n1775828640",
+              "g_poi_n4141131093",
+              "g_poi_n7849534485",
+              "g_poi_n4221044390",
+              "g_poi_n8712821417",
+              "g_poi_n8503337017",
+              "g_poi_n4141096694",
+              "g_poi_n11138786323",
+              "g_poi_n9218583631",
+              "g_poi_n10858552290",
+              "g_walk_n11016638369_n12459488001",
+              "g_walk_n11016638369_n4872886626",
+              "g_walk_n11016638369_n1775828640",
+              "g_walk_n11016638369_n4141131093",
+              "g_walk_n11016638369_n7849534485"
+            ],
+            "subject": "hotel:n11016638369",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Потёмки",
+                "Художественный",
+                "Живое пиво",
+                "По-тихому",
+                "Добрый Эль",
+                "Медуза",
+                "Baker Street",
+                "Мелодия"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 12,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n12459488001",
+            "g_poi_n4872886626",
+            "g_poi_n1775828640",
+            "g_poi_n4141131093",
+            "g_poi_n7849534485",
+            "g_poi_n4221044390",
+            "g_poi_n8712821417",
+            "g_poi_n8503337017",
+            "g_poi_n4141096694",
+            "g_poi_n11138786323",
+            "g_poi_n9218583631",
+            "g_poi_n10858552290",
+            "g_walk_n11016638369_n12459488001",
+            "g_walk_n11016638369_n4872886626",
+            "g_walk_n11016638369_n1775828640",
+            "g_walk_n11016638369_n4141131093",
+            "g_walk_n11016638369_n7849534485"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11138786328",
+        "name": "RP Manhattan",
+        "address": null,
+        "location": [
+          39.7245079,
+          43.5865946
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «По-тихому», «Медуза», «Живое пиво», «Why Not? Craft Bar», «Wasabi» и ещё 5",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n11138786328",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7849534485",
+              "g_poi_n8503337017",
+              "g_poi_n8712821417",
+              "g_poi_n1775828640",
+              "g_poi_n7023837485",
+              "g_poi_w51166071",
+              "g_poi_n4221044390",
+              "g_poi_n7707669887",
+              "g_poi_n1752103008",
+              "g_poi_n4141131093",
+              "g_poi_n2621941811",
+              "g_poi_n11138786323",
+              "g_walk_n11138786328_n7849534485",
+              "g_walk_n11138786328_n8503337017",
+              "g_walk_n11138786328_n8712821417",
+              "g_walk_n11138786328_n1775828640",
+              "g_walk_n11138786328_n7023837485"
+            ],
+            "subject": "hotel:n11138786328",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "По-тихому",
+                "Медуза",
+                "Живое пиво",
+                "Why Not? Craft Bar",
+                "Wasabi",
+                "Добрый Эль",
+                "Green",
+                "Питтсбург"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 12,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7849534485",
+            "g_poi_n8503337017",
+            "g_poi_n8712821417",
+            "g_poi_n1775828640",
+            "g_poi_n7023837485",
+            "g_poi_w51166071",
+            "g_poi_n4221044390",
+            "g_poi_n7707669887",
+            "g_poi_n1752103008",
+            "g_poi_n4141131093",
+            "g_poi_n2621941811",
+            "g_poi_n11138786323",
+            "g_walk_n11138786328_n7849534485",
+            "g_walk_n11138786328_n8503337017",
+            "g_walk_n11138786328_n8712821417",
+            "g_walk_n11138786328_n1775828640",
+            "g_walk_n11138786328_n7023837485"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n9393500818",
+        "name": "Plants and friends",
+        "address": null,
+        "location": [
+          39.7242497,
+          43.5844644
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Живое пиво», «По-тихому», «Медуза», «Потёмки», «Добрый Эль» и ещё 5",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n9393500818",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n1775828640",
+              "g_poi_n7849534485",
+              "g_poi_n8712821417",
+              "g_poi_n8503337017",
+              "g_poi_n12459488001",
+              "g_poi_n4141131093",
+              "g_poi_n4221044390",
+              "g_poi_n4872886626",
+              "g_poi_n1752103008",
+              "g_poi_n11138786323",
+              "g_poi_n2621941811",
+              "g_poi_n4141096694",
+              "g_walk_n9393500818_n1775828640",
+              "g_walk_n9393500818_n7849534485",
+              "g_walk_n9393500818_n8712821417",
+              "g_walk_n9393500818_n8503337017",
+              "g_walk_n9393500818_n12459488001"
+            ],
+            "subject": "hotel:n9393500818",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Живое пиво",
+                "По-тихому",
+                "Медуза",
+                "Потёмки",
+                "Добрый Эль",
+                "Художественный",
+                "Питтсбург",
+                "Мелодия"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 12,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n1775828640",
+            "g_poi_n7849534485",
+            "g_poi_n8712821417",
+            "g_poi_n8503337017",
+            "g_poi_n12459488001",
+            "g_poi_n4141131093",
+            "g_poi_n4221044390",
+            "g_poi_n4872886626",
+            "g_poi_n1752103008",
+            "g_poi_n11138786323",
+            "g_poi_n2621941811",
+            "g_poi_n4141096694",
+            "g_walk_n9393500818_n1775828640",
+            "g_walk_n9393500818_n7849534485",
+            "g_walk_n9393500818_n8712821417",
+            "g_walk_n9393500818_n8503337017",
+            "g_walk_n9393500818_n12459488001"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n9908709817",
+        "name": "Отель Сочи Галерея Парк",
+        "address": null,
+        "location": [
+          39.7242927,
+          43.5876832
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «По-тихому», «Why Not? Craft Bar», «Медуза», «Wasabi», «Green» и ещё 4",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n9908709817",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7849534485",
+              "g_poi_n7023837485",
+              "g_poi_n8503337017",
+              "g_poi_n8712821417",
+              "g_poi_w51166071",
+              "g_poi_n7707669887",
+              "g_poi_n1775828640",
+              "g_poi_n1752103008",
+              "g_poi_n4221044390",
+              "g_poi_n4141131093",
+              "g_poi_n2621941811",
+              "g_walk_n9908709817_n7849534485",
+              "g_walk_n9908709817_n7023837485",
+              "g_walk_n9908709817_n8503337017",
+              "g_walk_n9908709817_n8712821417",
+              "g_walk_n9908709817_w51166071"
+            ],
+            "subject": "hotel:n9908709817",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "По-тихому",
+                "Why Not? Craft Bar",
+                "Медуза",
+                "Wasabi",
+                "Green",
+                "Живое пиво",
+                "Питтсбург",
+                "Добрый Эль"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 11,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7849534485",
+            "g_poi_n7023837485",
+            "g_poi_n8503337017",
+            "g_poi_n8712821417",
+            "g_poi_w51166071",
+            "g_poi_n7707669887",
+            "g_poi_n1775828640",
+            "g_poi_n1752103008",
+            "g_poi_n4221044390",
+            "g_poi_n4141131093",
+            "g_poi_n2621941811",
+            "g_walk_n9908709817_n7849534485",
+            "g_walk_n9908709817_n7023837485",
+            "g_walk_n9908709817_n8503337017",
+            "g_walk_n9908709817_n8712821417",
+            "g_walk_n9908709817_w51166071"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12183637644",
+        "name": "Mirror Residence",
+        "address": null,
+        "location": [
+          39.7251383,
+          43.5897671
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Why Not? Craft Bar», «Wasabi», «Молоко», «По-тихому», «Green» и ещё 4",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n12183637644",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7023837485",
+              "g_poi_w51166071",
+              "g_poi_n8149723218",
+              "g_poi_n7849534485",
+              "g_poi_n7707669887",
+              "g_poi_n8503337017",
+              "g_poi_n8146377217",
+              "g_poi_n8712821417",
+              "g_poi_n5873283237",
+              "g_poi_n1752103008",
+              "g_walk_n12183637644_n7023837485",
+              "g_walk_n12183637644_w51166071",
+              "g_walk_n12183637644_n8149723218",
+              "g_walk_n12183637644_n7849534485",
+              "g_walk_n12183637644_n7707669887"
+            ],
+            "subject": "hotel:n12183637644",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Why Not? Craft Bar",
+                "Wasabi",
+                "Молоко",
+                "По-тихому",
+                "Green",
+                "Медуза",
+                "West Lounge Bar",
+                "Grizzly"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 10,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7023837485",
+            "g_poi_w51166071",
+            "g_poi_n8149723218",
+            "g_poi_n7849534485",
+            "g_poi_n7707669887",
+            "g_poi_n8503337017",
+            "g_poi_n8146377217",
+            "g_poi_n8712821417",
+            "g_poi_n5873283237",
+            "g_poi_n1752103008",
+            "g_walk_n12183637644_n7023837485",
+            "g_walk_n12183637644_w51166071",
+            "g_walk_n12183637644_n8149723218",
+            "g_walk_n12183637644_n7849534485",
+            "g_walk_n12183637644_n7707669887"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n4284096790",
+        "name": "Элона",
+        "address": null,
+        "location": [
+          39.9215364,
+          43.4243045
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Синий Пони», «Бамбу лаундж», «Рок-бар Треугольник», «Атлантида», «Корсар» и ещё 1",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n4284096790",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n8069244385",
+              "g_poi_n11138786370",
+              "g_poi_n5871417887",
+              "g_poi_n6558660885",
+              "g_poi_n1275639195",
+              "g_poi_n11866202903",
+              "g_poi_n1449074352",
+              "g_poi_n11878294027",
+              "g_walk_n4284096790_n8069244385",
+              "g_walk_n4284096790_n11138786370",
+              "g_walk_n4284096790_n5871417887",
+              "g_walk_n4284096790_n6558660885",
+              "g_walk_n4284096790_n1275639195"
+            ],
+            "subject": "hotel:n4284096790",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Синий Пони",
+                "Бамбу лаундж",
+                "Рок-бар Треугольник",
+                "Атлантида",
+                "Корсар",
+                "Устричный Бар"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 8,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n8069244385",
+            "g_poi_n11138786370",
+            "g_poi_n5871417887",
+            "g_poi_n6558660885",
+            "g_poi_n1275639195",
+            "g_poi_n11866202903",
+            "g_poi_n1449074352",
+            "g_poi_n11878294027",
+            "g_walk_n4284096790_n8069244385",
+            "g_walk_n4284096790_n11138786370",
+            "g_walk_n4284096790_n5871417887",
+            "g_walk_n4284096790_n6558660885",
+            "g_walk_n4284096790_n1275639195"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n4348786790",
+        "name": "Маргарита",
+        "address": null,
+        "location": [
+          39.9216593,
+          43.4250504
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:17dbf8292325",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с баром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Бамбу лаундж», «Синий Пони», «Рок-бар Треугольник», «Корсар», «Устричный Бар» и ещё 1",
+          "fact": {
+            "fact_id": "f_wish_17dbf8292325_n4348786790",
+            "characteristic_key": "derived:17dbf8292325",
+            "value": true,
+            "unit": null,
+            "label": "рядом с баром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n8069244385",
+              "g_poi_n6558660885",
+              "g_poi_n11138786370",
+              "g_poi_n5871417887",
+              "g_poi_n1275639195",
+              "g_poi_n1449074352",
+              "g_poi_n11878294027",
+              "g_poi_n11866202903",
+              "g_walk_n4348786790_n8069244385",
+              "g_walk_n4348786790_n6558660885",
+              "g_walk_n4348786790_n11138786370",
+              "g_walk_n4348786790_n5871417887",
+              "g_walk_n4348786790_n1275639195"
+            ],
+            "subject": "hotel:n4348786790",
+            "qualifiers": {
+              "source_text": "рядом с баром",
+              "nearby_names": [
+                "Бамбу лаундж",
+                "Синий Пони",
+                "Рок-бар Треугольник",
+                "Корсар",
+                "Устричный Бар",
+                "Атлантида"
+              ],
+              "native_characteristic_key": "nearby:amenity:bar::0:500",
+              "native_value": 8,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n8069244385",
+            "g_poi_n6558660885",
+            "g_poi_n11138786370",
+            "g_poi_n5871417887",
+            "g_poi_n1275639195",
+            "g_poi_n1449074352",
+            "g_poi_n11878294027",
+            "g_poi_n11866202903",
+            "g_walk_n4348786790_n8069244385",
+            "g_walk_n4348786790_n6558660885",
+            "g_walk_n4348786790_n11138786370",
+            "g_walk_n4348786790_n5871417887",
+            "g_walk_n4348786790_n1275639195"
+          ],
+          "camera": null
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "elapsed": 2.007,
+      "stage": "parsing"
+    },
+    {
+      "elapsed": 9.956,
+      "stage": "parsed",
+      "location": "Сочи",
+      "route_search": true,
+      "intents": [
+        {
+          "term": "рядом с баром",
+          "key": "nearby:amenity:bar::0:500"
+        }
+      ],
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    {
+      "elapsed": 10.134,
+      "stage": "candidates",
+      "found": 788,
+      "region": "sochi",
+      "location": "Сочи",
+      "bbox": [
+        39.550007,
+        43.3872337,
+        39.9990112,
+        43.7406639
+      ],
+      "unsupported": false
+    },
+    {
+      "elapsed": 10.134,
+      "stage": "research",
+      "wishes": 1
+    },
+    {
+      "elapsed": 11.626,
+      "stage": "wish",
+      "term": "рядом с баром",
+      "status": "matched"
+    },
+    {
+      "elapsed": 11.627,
+      "stage": "review",
+      "candidates": 788
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "n11843553784",
+        "name": "Sunny Sochi Hostel",
+        "location": [
+          39.7209888,
+          43.584675
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": null,
+        "place_location": [
+          39.7207712,
+          43.5845427
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n4141131093"
+      }
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "n1449074195",
+        "name": "Корсар",
+        "location": [
+          39.9180891,
+          43.4276924
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": "Корсар",
+        "place_location": [
+          39.9180435,
+          43.4276086
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n1449074352"
+      }
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "n6494252594",
+        "name": "Отель Атрия",
+        "location": [
+          39.9321533,
+          43.4474298
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": "Встреча",
+        "place_location": [
+          39.9321247,
+          43.4475293
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n1158988057"
+      }
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "n8198207017",
+        "name": "Семейный квартал - ресепшн",
+        "location": [
+          39.9938832,
+          43.3935298
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": "Лобби-бар",
+        "place_location": [
+          39.99376,
+          43.3933982
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n4235046791"
+      }
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "w114131768",
+        "name": "Моё море",
+        "location": [
+          39.7238463,
+          43.5893697
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": "Why Not? Craft Bar",
+        "place_location": [
+          39.7239213,
+          43.5893973
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n7023837485"
+      }
+    },
+    {
+      "elapsed": 11.84,
+      "stage": "preview",
+      "preview": {
+        "id": "w51106908",
+        "name": "Версаль",
+        "location": [
+          39.7182247,
+          43.5837129
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": "Пинта",
+        "place_location": [
+          39.7180895,
+          43.5837099
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n10858552290"
+      }
+    },
+    {
+      "elapsed": 12.891,
+      "stage": "preview",
+      "preview": {
+        "id": "w1425602206",
+        "name": "Барракуда",
+        "location": [
+          39.8909305,
+          43.4777828
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.8909305,
+              43.4777828
+            ],
+            [
+              39.8910037,
+              43.4775763
+            ],
+            [
+              39.8909322,
+              43.4775629
+            ],
+            [
+              39.8909303,
+              43.4775625
+            ],
+            [
+              39.8909785,
+              43.4774266
+            ]
+          ]
+        },
+        "place_name": "Anaconda",
+        "place_location": null,
+        "meters": 45.4,
+        "minutes": 0.6,
+        "mode": "graph",
+        "place_id": "n13097845590"
+      }
+    },
+    {
+      "elapsed": 13.022,
+      "stage": "preview",
+      "preview": {
+        "id": "n11497670982",
+        "name": "Арт-отель",
+        "location": [
+          39.7172009,
+          43.5897671
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7172009,
+              43.5897671
+            ],
+            [
+              39.717315,
+              43.5897262
+            ],
+            [
+              39.7173498,
+              43.5897776
+            ],
+            [
+              39.7173089,
+              43.5897923
+            ]
+          ]
+        },
+        "place_name": "Bandido Bar",
+        "place_location": null,
+        "meters": 20.3,
+        "minutes": 0.3,
+        "mode": "graph",
+        "place_id": "n10583800764"
+      }
+    },
+    {
+      "elapsed": 13.06,
+      "stage": "preview",
+      "preview": {
+        "id": "w53284165",
+        "name": "Империя",
+        "location": [
+          39.9208407,
+          43.4210669
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.9208407,
+              43.4210669
+            ],
+            [
+              39.9207108,
+              43.4209996
+            ],
+            [
+              39.9205894,
+              43.4211241
+            ],
+            [
+              39.9208973,
+              43.4212809
+            ],
+            [
+              39.9209659,
+              43.4212093
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 70.0,
+        "minutes": 0.9,
+        "mode": "graph",
+        "place_id": "n5871417887"
+      }
+    },
+    {
+      "elapsed": 13.266,
+      "stage": "preview",
+      "preview": {
+        "id": "n7114965534",
+        "name": "Форвард Апарт Отель",
+        "location": [
+          39.923866,
+          43.4247973
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.923866,
+              43.4247973
+            ],
+            [
+              39.9236814,
+              43.4248877
+            ],
+            [
+              39.9237091,
+              43.4249178
+            ],
+            [
+              39.9237313,
+              43.4249069
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 24.2,
+        "minutes": 0.3,
+        "mode": "graph",
+        "place_id": "n8069244385"
+      }
+    },
+    {
+      "elapsed": 30.238,
+      "stage": "winner",
+      "preview": {
+        "id": "n11843553784",
+        "name": "Sunny Sochi Hostel",
+        "location": [
+          39.7209888,
+          43.584675
+        ],
+        "rating": null,
+        "term": "рядом с баром",
+        "route": null,
+        "place_name": null,
+        "place_location": [
+          39.7207712,
+          43.5845427
+        ],
+        "meters": 0,
+        "minutes": null,
+        "mode": "onsite",
+        "place_id": "n4141131093"
+      }
+    }
+  ]
+}

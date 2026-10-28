@@ -1,0 +1,88 @@
+{
+  "id": "09-dogs",
+  "text": "Отель в Сочи, где можно проживать с собакой",
+  "kind": "fact",
+  "target": "explicit pets permission",
+  "elapsed": 44.676,
+  "error": null,
+  "conversation_id": "453fb6f1-9542-421b-9999-74ac2e6fc937",
+  "answer": "Пока не могу подтвердить подходящие варианты по проверенным данным. Уточните условия поиска. В проверенных источниках подтверждение не найдено: можно проживать с собакой. На какие даты едете?",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:b5946b70c414",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": true,
+        "source_text": "можно проживать с собакой"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Отель в Сочи, где можно проживать с собакой",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "result_count": 0,
+  "results": [],
+  "events": [
+    {
+      "elapsed": 2.037,
+      "stage": "parsing"
+    },
+    {
+      "elapsed": 5.883,
+      "stage": "parsed",
+      "location": "Сочи",
+      "route_search": false,
+      "intents": [
+        {
+          "term": "можно проживать с собакой",
+          "key": "pets_policy"
+        }
+      ],
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    {
+      "elapsed": 5.99,
+      "stage": "candidates",
+      "found": 788,
+      "region": "sochi",
+      "location": "Сочи",
+      "bbox": [
+        39.550007,
+        43.3872337,
+        39.9990112,
+        43.7406639
+      ],
+      "unsupported": false
+    },
+    {
+      "elapsed": 5.99,
+      "stage": "research",
+      "wishes": 1
+    },
+    {
+      "elapsed": 41.238,
+      "stage": "wish",
+      "term": "можно проживать с собакой",
+      "status": "exhausted"
+    },
+    {
+      "elapsed": 41.25,
+      "stage": "review",
+      "candidates": 788
+    }
+  ]
+}

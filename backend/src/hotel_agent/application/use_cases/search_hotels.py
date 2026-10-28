@@ -29,6 +29,8 @@ from hotel_agent.application.ports.semantic_search import SemanticSearchPort
 from hotel_agent.application.room_view_corroboration import corroborate_room_views
 from hotel_agent.application.search_candidates import find_candidates
 from hotel_agent.application.search_evidence import save_search_evidence
+from hotel_agent.application.search_preview import search_preview
+from hotel_agent.application.search_progress import report_candidates, understood
 from hotel_agent.application.search_selection import (
     Rejection,
     Selection,
@@ -118,7 +120,7 @@ class SearchHotels:
         if location and location.casefold() in COUNTRY_NAMES:
             location = None
             parsed = replace(parsed, anywhere=True, needs_clarification=False)
-        progress.step("parsed", **_understood(parsed, location))
+        progress.step("parsed", **understood(parsed, location))
         if parsed.needs_clarification or (not location and not parsed.anywhere):
             return _empty(
                 query,
@@ -165,7 +167,7 @@ class SearchHotels:
             location = candidates.location_hint
             parsed = replace(parsed, location_hint=location)
         region, bbox, hotels = candidates.region, candidates.bbox, candidates.hotels
-        progress.step("candidates", found=len(hotels), region=region)
+        report_candidates(candidates, location)
         if candidates.unsupported:
             return _empty(query, region, bbox, replace(parsed, unsupported_region=location))
         parsed, capacity = await catalog_capacity(self._uow, parsed, hotels)
@@ -204,50 +206,75 @@ class SearchHotels:
                 feedback=feedback,
             )
 
-        progress.step("research", wishes=len(terms))
-        if explorer is not None and terms:
-            explored = await explore(())
-            parsed = apply_exploration(parsed, explored, plan.duplicates)
-        elif terms:
-            collected = [await native.check(term, hotels, bbox) for term in terms]
-            explored = ExplorationOutcome(
-                hotels=tuple(hotels),
-                bbox=bbox,
-                facts=tuple(row for item in collected for row in item.facts),
-                features=tuple(feature for item in collected for feature in item.features),
+        async with search_preview(
+            parsed, hotels, region, bbox, self._uow, self._geographic_objects
+        ) as (
+            preview,
+            preview_task,
+        ):
+
+            async def select(parsed: ParsedQuery, explored: ExplorationOutcome) -> Selection:
+                return await select_candidates(
+                    query,
+                    parsed,
+                    explored,
+                    self._clock.now(),
+                    self._review,
+                    limit,
+                    preview.prioritizer(parsed, region, bbox, self._uow),
+                )
+
+            progress.step("research", wishes=len(terms))
+            if explorer is not None and terms:
+                explored = await explore(())
+                parsed = apply_exploration(parsed, explored, plan.duplicates)
+            elif terms:
+                collected = [await native.check(term, hotels, bbox) for term in terms]
+                explored = ExplorationOutcome(
+                    hotels=tuple(hotels),
+                    bbox=bbox,
+                    facts=tuple(row for item in collected for row in item.facts),
+                    features=tuple(feature for item in collected for feature in item.features),
+                )
+            explored = replace(explored, facts=explored.facts + capacity)
+            progress.step("review", candidates=len(explored.hotels))
+            await preview_task
+            selection = await select(parsed, explored)
+            feedback = rejection_feedback(selection.ranked, selection.report)
+            if feedback and explorer is not None and terms and not explored.question:
+                doubted = tuple(
+                    term for term in terms if any(term in row.wishes for row in feedback)
+                )
+                retried = merge_exploration(explored, await explore(feedback, doubted or terms))
+                retried_parsed = apply_exploration(parsed, retried, plan.duplicates)
+                attempt = await select(retried_parsed, retried)
+                if attempt.accepted:
+                    explored, parsed, selection = retried, retried_parsed, attempt
+            score = max((scored.score for _, scored in selection.accepted), default=0)
+            finalists = [hotel for hotel, scored in selection.accepted if scored.score == score]
+            await preview.calculate(parsed, finalists, region, bbox, self._uow, prune=True)
+            accepted = preview.finish(selection.accepted)
+            chosen = accepted or nearest_matches(selection.ranked, limit)
+            results = [SearchResult(hotel=hotel, scored=scored) for hotel, scored in chosen[:limit]]
+            selected_ids = [item.hotel.id for item in results]
+            async with self._uow() as uow:
+                rooms = await uow.search.list_rooms_by_hotels(selected_ids)
+            found = corroborate_room_views(
+                tuple(row for row in explored.facts if row not in capacity), rooms
             )
-        explored = replace(explored, facts=explored.facts + capacity)
-        progress.step("review", candidates=len(explored.hotels))
-        selection = await self._selection(query, parsed, explored, limit)
-        feedback = rejection_feedback(selection.ranked, selection.report)
-        if feedback and explorer is not None and terms and not explored.question:
-            doubted = tuple(term for term in terms if any(term in row.wishes for row in feedback))
-            retried = merge_exploration(explored, await explore(feedback, doubted or terms))
-            retried_parsed = apply_exploration(parsed, retried, plan.duplicates)
-            attempt = await self._selection(query, retried_parsed, retried, limit)
-            if attempt.accepted:
-                explored, parsed, selection = retried, retried_parsed, attempt
-        chosen = selection.accepted or nearest_matches(selection.ranked, limit)
-        results = [SearchResult(hotel=hotel, scored=scored) for hotel, scored in chosen[:limit]]
-        selected_ids = [item.hotel.id for item in results]
-        async with self._uow() as uow:
-            rooms = await uow.search.list_rooms_by_hotels(selected_ids)
-        found = corroborate_room_views(
-            tuple(row for row in explored.facts if row not in capacity), rooms
-        )
-        await save_search_evidence(self._uow, found, selected_ids, explored.features)
-        asked = await self._asked(results, parsed)
-        fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
-        return SearchOutcome(
-            query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
-            parsed=parsed,
-            results=results,
-            question=explored.question,
-            wish_results=explored.wish_results,
-            review=selection.report,
-            rejected=not_shown(selection.rejected, {item.hotel.id for item in results}),
-            asked=asked,
-        )
+            await save_search_evidence(self._uow, found, selected_ids, explored.features)
+            asked = await self._asked(results, parsed)
+            fingerprint = f"{query}\x00{region}\x00{explored.bbox}".encode()
+            return SearchOutcome(
+                query_id=hashlib.sha256(fingerprint).hexdigest()[:16],
+                parsed=parsed,
+                results=results,
+                question=explored.question,
+                wish_results=explored.wish_results,
+                review=selection.report,
+                rejected=not_shown(selection.rejected, {item.hotel.id for item in results}),
+                asked=asked,
+            )
 
     async def _asked(
         self, results: Sequence[SearchResult], parsed: ParsedQuery
@@ -273,27 +300,6 @@ class SearchHotels:
             for record in records
             if (record.hotel_id, record.characteristic_key) in unknown
         )
-
-    async def _selection(
-        self, query: str, parsed: ParsedQuery, explored: ExplorationOutcome, limit: int
-    ) -> Selection:
-        return await select_candidates(
-            query, parsed, explored, self._clock.now(), self._review, limit
-        )
-
-
-def _understood(parsed: ParsedQuery, location: str | None) -> dict[str, object]:
-    return {
-        "location": location,
-        "intents": [
-            {"term": intent.source_text.strip(), "key": intent.characteristic_key}
-            for intent in parsed.intents
-            if intent.source_text.strip()
-        ],
-        "check_in": parsed.check_in.isoformat() if parsed.check_in else None,
-        "check_out": parsed.check_out.isoformat() if parsed.check_out else None,
-        "adults": parsed.adults,
-    }
 
 
 def _empty(

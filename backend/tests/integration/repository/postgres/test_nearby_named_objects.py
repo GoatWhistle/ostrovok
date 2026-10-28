@@ -44,3 +44,26 @@ async def test_named_chain_matches_only_objects_carrying_that_name() -> None:
     finally:
         await connection.rollback()
         await connection.close()
+
+
+async def test_public_square_does_not_match_hotel_with_square_in_its_name() -> None:
+    connection = await psycopg.AsyncConnection.connect(
+        os.environ.get("DATABASE_URL", "postgresql://hotel:hotel@localhost:5432/hotel")
+    )
+    try:
+        repository = PostgresNearbyObjectRepository(connection)
+        request = NearbyObjectRequest(
+            osm_key="name",
+            osm_value="*",
+            name="площадь",
+            open_24h=False,
+            radius_m=500,
+            source_text="рядом с площадью",
+        )
+        matches = await repository.list_matches("sochi", request)
+        ids = {id for values in matches.values() for id in values}
+        assert "w51416849" in ids
+        assert "n11016638369" not in ids
+    finally:
+        await connection.rollback()
+        await connection.close()

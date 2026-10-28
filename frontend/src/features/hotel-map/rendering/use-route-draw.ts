@@ -9,6 +9,7 @@ export function useRouteDraw(
   colors: HighlightColors,
   reduced: boolean,
   active: boolean,
+  afterFlight = false,
 ) {
   const palette = useRef(colors)
   const progress = useRef(1)
@@ -28,13 +29,14 @@ export function useRouteDraw(
     if (instant) return
     const effect = new KeyframeEffect(null, null, {
       duration: motionMs("--dur-draw"),
+      delay: afterFlight ? motionMs("--story-search-flight") : 0,
       easing: readEasing("--ease-in-out"),
       fill: "forwards",
     })
     const animation = new Animation(effect, document.timeline)
     let frame = 0
     const step = () => {
-      progress.current = effect.getComputedTiming().progress ?? 1
+      progress.current = effect.getComputedTiming().progress ?? 0
       paintRoute(map, palette.current, progress.current)
       if (animation.playState !== "finished") frame = requestAnimationFrame(step)
     }
@@ -45,5 +47,5 @@ export function useRouteDraw(
       animation.cancel()
       progress.current = 1
     }
-  }, [mapRef, route, reduced, active])
+  }, [mapRef, route, reduced, active, afterFlight])
 }

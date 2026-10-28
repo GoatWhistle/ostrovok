@@ -47,3 +47,11 @@ def test_virtual_walk_ids_require_two_unambiguous_osm_identifiers() -> None:
     assert parse_walk_ref("g_walk_r123_n456") == ("r123", "n456")
     for value in ("g_walk_n123_w456_extra", "g_walk_a_b", "g_walk_n1_n2/", "g_poi_n1"):
         assert parse_walk_ref(value) is None
+
+
+def test_short_walk_snaps_to_edge_interiors_instead_of_distant_vertices() -> None:
+    origin = (39.9004, 43.40005)
+    target = (39.9006, 43.40005)
+    path = calculate_walks("n1", origin, {"n2": target}, [line("road", [ORIGIN, CORNER])], 500)[0]
+    assert path.mode == "graph"
+    assert path.meters < 40

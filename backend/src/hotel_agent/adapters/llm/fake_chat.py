@@ -56,7 +56,12 @@ def respond(context: str) -> ChatDecision:
     )
     pending = bool(
         previous
-        and re.search(r"в каком городе|which city|уточните.*(?:дат|гост|бюджет)", last.casefold())
+        and (
+            data.get("needs_city")
+            or re.search(
+                r"в каком городе|which city|уточните.*(?:дат|гост|бюджет)", last.casefold()
+            )
+        )
         and len(message.split()) <= 8
         and "?" not in message
         and not QUESTION.search(normalized)

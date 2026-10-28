@@ -1,6 +1,7 @@
 import asyncio
 import json
 from collections.abc import AsyncIterator
+from contextlib import suppress
 from http import HTTPStatus
 from time import perf_counter
 from uuid import UUID
@@ -70,19 +71,25 @@ async def conversation_events(
             queue.put_nowait(None)
 
     answer = asyncio.create_task(run())
-    while True:
-        item = await queue.get()
-        if item is None:
-            break
-        stage, fields = item
-        yield frame("progress", {"stage": stage, **localized_fields(fields, request.locale)})
     try:
-        yield frame("result", (await answer).model_dump(mode="json"))
-    except DomainError as error:
-        yield frame("error", failure(error))
-    except Exception:
-        yield frame("error", {"code": "internal_error", "message": "Internal error"})
-        raise
+        while True:
+            item = await queue.get()
+            if item is None:
+                break
+            stage, fields = item
+            yield frame("progress", {"stage": stage, **localized_fields(fields, request.locale)})
+        try:
+            yield frame("result", (await answer).model_dump(mode="json"))
+        except DomainError as error:
+            yield frame("error", failure(error))
+        except Exception:
+            yield frame("error", {"code": "internal_error", "message": "Internal error"})
+            raise
+    finally:
+        if not answer.done():
+            answer.cancel()
+            with suppress(asyncio.CancelledError):
+                await answer
 
 
 def build_router(chat: Chat, registry: CharacteristicRegistryPort) -> APIRouter:

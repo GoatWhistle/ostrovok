@@ -139,6 +139,7 @@ export function HomePage() {
           className={styles.workspace}
           data-surface={state.surface}
           data-docked={docked}
+          data-searching={state.searchCompact}
           data-view={state.view}
           data-resize-root
           style={sizes}

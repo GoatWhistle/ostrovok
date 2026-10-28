@@ -2,9 +2,8 @@ import math
 from collections.abc import Mapping, Sequence
 
 from pyproj import Transformer
-from shapely.geometry import Point
-from shapely.strtree import STRtree
 
+from hotel_agent.adapters.geo.walk_attachment import attach_locations
 from hotel_agent.adapters.geo.walk_network import WALK_METERS_PER_MINUTE, build_graph, distances
 from hotel_agent.application.dto import Feature
 from hotel_agent.application.ports.walk import PlaceWalk
@@ -19,22 +18,15 @@ def calculate_walks(
 ) -> list[PlaceWalk]:
     project = Transformer.from_crs(4326, 32637, always_xy=True)
     coordinates, adjacency = build_graph(edges, project)
-    nodes = list(coordinates)
-    tree = STRtree([Point(coordinates[node]) for node in nodes])
+    attached = attach_locations({"origin": origin, **targets}, coordinates, adjacency, project)
     start_xy = project.transform(*origin)
-    nearest = tree.nearest(Point(start_xy)) if nodes else None
-    start = nodes[int(nearest)] if nearest is not None else None
-    connector = math.dist(start_xy, coordinates[start]) if start is not None else math.inf
-    costs, parents = (
-        distances(adjacency, {start}, max_m * 3) if start and connector <= 100 else ({}, {})
-    )
+    start, connector = attached.get("origin", (None, math.inf))
+    costs, parents = distances(adjacency, {start}, max_m * 3) if start else ({}, {})
     paths = []
     for place_id, target in targets.items():
         end_xy = project.transform(*target)
-        nearest = tree.nearest(Point(end_xy)) if nodes else None
-        end = nodes[int(nearest)] if nearest is not None else None
-        link = math.dist(end_xy, coordinates[end]) if end is not None else math.inf
-        if start is None or end not in costs or link > 100:
+        end, link = attached.get(place_id, (None, math.inf))
+        if start is None or end is None or end not in costs or link > 100:
             paths.append(
                 PlaceWalk(
                     hotel_id=hotel_id,

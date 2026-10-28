@@ -69,6 +69,7 @@ class SearchHotelRecord:
     address: str | None = None
     city: str | None = None
     photos: tuple[HotelPhotoRecord, ...] = ()
+    rating: float | None = None
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

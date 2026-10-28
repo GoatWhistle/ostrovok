@@ -1,0 +1,28 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--layer-map-controls);
+  overflow: hidden;
+}
+.route {
+  stroke: var(--map-toy-plum);
+  stroke-width: 4;
+  stroke-dasharray: 1;
+}
+.route[data-straight="true"] {
+  opacity: 0.55;
+}
+.point {
+  fill: var(--map-toy-teal);
+  stroke: var(--map-toy-road);
+  stroke-width: 3;
+}
+.label {
+  fill: var(--map-toy-ink);
+  stroke: var(--map-toy-road);
+  stroke-width: 3;
+  paint-order: stroke;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--weight-semibold);
+}

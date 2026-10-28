@@ -1,0 +1,1624 @@
+{
+  "id": "06-pharmacy",
+  "text": "Отель в Сочи рядом с круглосуточной аптекой",
+  "kind": "category",
+  "target": "amenity=pharmacy; opening_hours=24/7",
+  "elapsed": 26.737,
+  "error": null,
+  "conversation_id": "c88cfb7d-01f0-48cd-9941-2907c6d4699c",
+  "answer": "Нашёл 20 отелей. Первые в списке: Санаторий \"Светлана\", City Park Hotel и Sunny Sochi Hostel. На какие даты едете?",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:13afc0931ebd",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "рядом с круглосуточной аптекой"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "Отель в Сочи рядом с круглосуточной аптекой",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "result_count": 20,
+  "results": [
+    {
+      "hotel": {
+        "id": "w67540441",
+        "name": "Санаторий \"Светлана\"",
+        "address": null,
+        "location": [
+          39.734603,
+          43.5705888
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «36,6», «планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_w67540441",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n10604900352",
+              "g_poi_n6685536174",
+              "g_walk_w67540441_n10604900352",
+              "g_walk_w67540441_n6685536174"
+            ],
+            "subject": "hotel:w67540441",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "36,6",
+                "планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n10604900352",
+            "g_poi_n6685536174",
+            "g_walk_w67540441_n10604900352",
+            "g_walk_w67540441_n6685536174"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n736761646",
+        "name": "City Park Hotel",
+        "address": null,
+        "location": [
+          39.7258462,
+          43.5761102
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «36,6»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n736761646",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n12778129833",
+              "g_walk_n736761646_n12778129833"
+            ],
+            "subject": "hotel:n736761646",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "36,6"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n12778129833",
+            "g_walk_n736761646_n12778129833"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11843553784",
+        "name": "Sunny Sochi Hostel",
+        "address": null,
+        "location": [
+          39.7209888,
+          43.584675
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11843553784",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n13737497301",
+              "g_poi_n1752096791",
+              "g_poi_n800929891",
+              "g_walk_n11843553784_n13737497301",
+              "g_walk_n11843553784_n1752096791",
+              "g_walk_n11843553784_n800929891"
+            ],
+            "subject": "hotel:n11843553784",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n13737497301",
+            "g_poi_n1752096791",
+            "g_poi_n800929891",
+            "g_walk_n11843553784_n13737497301",
+            "g_walk_n11843553784_n1752096791",
+            "g_walk_n11843553784_n800929891"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w53292014",
+        "name": "Green House Hotel",
+        "address": "улица Бестужева 1В",
+        "location": [
+          39.9223431,
+          43.4188527
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_w53292014",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n11135956614",
+              "g_walk_w53292014_n11135956614"
+            ],
+            "subject": "hotel:w53292014",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n11135956614",
+            "g_walk_w53292014_n11135956614"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w114131768",
+        "name": "Моё море",
+        "address": "улица Островского",
+        "location": [
+          39.7238463,
+          43.5893697
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Доктор Столетов», «Босфор»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_w114131768",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n5736969027",
+              "g_poi_n5873283438",
+              "g_poi_n1752096791",
+              "g_walk_w114131768_n800929891",
+              "g_walk_w114131768_n5736969027",
+              "g_walk_w114131768_n5873283438",
+              "g_walk_w114131768_n1752096791"
+            ],
+            "subject": "hotel:w114131768",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Доктор Столетов",
+                "Босфор"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 4,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n5736969027",
+            "g_poi_n5873283438",
+            "g_poi_n1752096791",
+            "g_walk_w114131768_n800929891",
+            "g_walk_w114131768_n5736969027",
+            "g_walk_w114131768_n5873283438",
+            "g_walk_w114131768_n1752096791"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n10759606596",
+        "name": "RP Manhattan",
+        "address": null,
+        "location": [
+          39.7245803,
+          43.5869054
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n10759606596",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n13737497301",
+              "g_poi_n1752096791",
+              "g_walk_n10759606596_n800929891",
+              "g_walk_n10759606596_n13737497301",
+              "g_walk_n10759606596_n1752096791"
+            ],
+            "subject": "hotel:n10759606596",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n13737497301",
+            "g_poi_n1752096791",
+            "g_walk_n10759606596_n800929891",
+            "g_walk_n10759606596_n13737497301",
+            "g_walk_n10759606596_n1752096791"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11016638373",
+        "name": "Grand Gallery",
+        "address": null,
+        "location": [
+          39.7212732,
+          43.585287
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11016638373",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n13737497301",
+              "g_poi_n1752096791",
+              "g_poi_n800929891",
+              "g_walk_n11016638373_n13737497301",
+              "g_walk_n11016638373_n1752096791",
+              "g_walk_n11016638373_n800929891"
+            ],
+            "subject": "hotel:n11016638373",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n13737497301",
+            "g_poi_n1752096791",
+            "g_poi_n800929891",
+            "g_walk_n11016638373_n13737497301",
+            "g_walk_n11016638373_n1752096791",
+            "g_walk_n11016638373_n800929891"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11138786328",
+        "name": "RP Manhattan",
+        "address": null,
+        "location": [
+          39.7245079,
+          43.5865946
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11138786328",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n13737497301",
+              "g_poi_n1752096791",
+              "g_walk_n11138786328_n800929891",
+              "g_walk_n11138786328_n13737497301",
+              "g_walk_n11138786328_n1752096791"
+            ],
+            "subject": "hotel:n11138786328",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n13737497301",
+            "g_poi_n1752096791",
+            "g_walk_n11138786328_n800929891",
+            "g_walk_n11138786328_n13737497301",
+            "g_walk_n11138786328_n1752096791"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11497670982",
+        "name": "Арт-отель",
+        "address": null,
+        "location": [
+          39.7172009,
+          43.5897671
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Доктор Столетов»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11497670982",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n1752096791",
+              "g_poi_n800929891",
+              "g_poi_n5736969027",
+              "g_walk_n11497670982_n1752096791",
+              "g_walk_n11497670982_n800929891",
+              "g_walk_n11497670982_n5736969027"
+            ],
+            "subject": "hotel:n11497670982",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Доктор Столетов"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n1752096791",
+            "g_poi_n800929891",
+            "g_poi_n5736969027",
+            "g_walk_n11497670982_n1752096791",
+            "g_walk_n11497670982_n800929891",
+            "g_walk_n11497670982_n5736969027"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12183637644",
+        "name": "Mirror Residence",
+        "address": null,
+        "location": [
+          39.7251383,
+          43.5897671
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Доктор Столетов», «Босфор»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n12183637644",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n5736969027",
+              "g_poi_n5873283438",
+              "g_walk_n12183637644_n800929891",
+              "g_walk_n12183637644_n5736969027",
+              "g_walk_n12183637644_n5873283438"
+            ],
+            "subject": "hotel:n12183637644",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Доктор Столетов",
+                "Босфор"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n5736969027",
+            "g_poi_n5873283438",
+            "g_walk_n12183637644_n800929891",
+            "g_walk_n12183637644_n5736969027",
+            "g_walk_n12183637644_n5873283438"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n8004162987",
+        "name": "Капсульный отель Module",
+        "address": "Навагинская улица 11",
+        "location": [
+          39.7244463,
+          43.5896018
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Доктор Столетов», «Босфор»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n8004162987",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n5736969027",
+              "g_poi_n5873283438",
+              "g_walk_n8004162987_n800929891",
+              "g_walk_n8004162987_n5736969027",
+              "g_walk_n8004162987_n5873283438"
+            ],
+            "subject": "hotel:n8004162987",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Доктор Столетов",
+                "Босфор"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n5736969027",
+            "g_poi_n5873283438",
+            "g_walk_n8004162987_n800929891",
+            "g_walk_n8004162987_n5736969027",
+            "g_walk_n8004162987_n5873283438"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n9908709817",
+        "name": "Отель Сочи Галерея Парк",
+        "address": null,
+        "location": [
+          39.7242927,
+          43.5876832
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n9908709817",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n1752096791",
+              "g_poi_n13737497301",
+              "g_walk_n9908709817_n800929891",
+              "g_walk_n9908709817_n1752096791",
+              "g_walk_n9908709817_n13737497301"
+            ],
+            "subject": "hotel:n9908709817",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n1752096791",
+            "g_poi_n13737497301",
+            "g_walk_n9908709817_n800929891",
+            "g_walk_n9908709817_n1752096791",
+            "g_walk_n9908709817_n13737497301"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11138786325",
+        "name": "Черномор",
+        "address": null,
+        "location": [
+          39.9212828,
+          43.4312708
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Сеть аптек»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11138786325",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n5033456927",
+              "g_poi_w235368455",
+              "g_walk_n11138786325_n5033456927",
+              "g_walk_n11138786325_w235368455"
+            ],
+            "subject": "hotel:n11138786325",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Сеть аптек"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n5033456927",
+            "g_poi_w235368455",
+            "g_walk_n11138786325_n5033456927",
+            "g_walk_n11138786325_w235368455"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11304222987",
+        "name": "Grand Way",
+        "address": null,
+        "location": [
+          39.7389704,
+          43.5701348
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «планета здоровья», «36,6»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11304222987",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n6685536174",
+              "g_poi_n10604900352",
+              "g_walk_n11304222987_n6685536174",
+              "g_walk_n11304222987_n10604900352"
+            ],
+            "subject": "hotel:n11304222987",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "планета здоровья",
+                "36,6"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n6685536174",
+            "g_poi_n10604900352",
+            "g_walk_n11304222987_n6685536174",
+            "g_walk_n11304222987_n10604900352"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11843553834",
+        "name": "Ривьера Арт",
+        "address": null,
+        "location": [
+          39.7160589,
+          43.5880905
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7; названий у найденных объектов в данных нет",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11843553834",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n1752096791",
+              "g_poi_n800929891",
+              "g_walk_n11843553834_n1752096791",
+              "g_walk_n11843553834_n800929891"
+            ],
+            "subject": "hotel:n11843553834",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n1752096791",
+            "g_poi_n800929891",
+            "g_walk_n11843553834_n1752096791",
+            "g_walk_n11843553834_n800929891"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11843553851",
+        "name": "inSochi",
+        "address": null,
+        "location": [
+          39.7245402,
+          43.589363
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «Доктор Столетов»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n11843553851",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n800929891",
+              "g_poi_n5736969027",
+              "g_walk_n11843553851_n800929891",
+              "g_walk_n11843553851_n5736969027"
+            ],
+            "subject": "hotel:n11843553851",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "Доктор Столетов"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n800929891",
+            "g_poi_n5736969027",
+            "g_walk_n11843553851_n800929891",
+            "g_walk_n11843553851_n5736969027"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12084515064",
+        "name": "Panoramapart",
+        "address": null,
+        "location": [
+          39.7349229,
+          43.5681
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «36,6», «планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n12084515064",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n10604900352",
+              "g_poi_n6685536174",
+              "g_walk_n12084515064_n10604900352",
+              "g_walk_n12084515064_n6685536174"
+            ],
+            "subject": "hotel:n12084515064",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "36,6",
+                "планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n10604900352",
+            "g_poi_n6685536174",
+            "g_walk_n12084515064_n10604900352",
+            "g_walk_n12084515064_n6685536174"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12541096667",
+        "name": "Альфа",
+        "address": null,
+        "location": [
+          39.7339278,
+          43.56975
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «36,6», «планета здоровья»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n12541096667",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n10604900352",
+              "g_poi_n6685536174",
+              "g_walk_n12541096667_n10604900352",
+              "g_walk_n12541096667_n6685536174"
+            ],
+            "subject": "hotel:n12541096667",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "36,6",
+                "планета здоровья"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n10604900352",
+            "g_poi_n6685536174",
+            "g_walk_n12541096667_n10604900352",
+            "g_walk_n12541096667_n6685536174"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n13301736501",
+        "name": "Lavicon apart Sochi",
+        "address": "Учительская улица 3",
+        "location": [
+          39.7348283,
+          43.5729518
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «планета здоровья», «36,6»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n13301736501",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n6685536174",
+              "g_poi_n10604900352",
+              "g_walk_n13301736501_n6685536174",
+              "g_walk_n13301736501_n10604900352"
+            ],
+            "subject": "hotel:n13301736501",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "планета здоровья",
+                "36,6"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n6685536174",
+            "g_poi_n10604900352",
+            "g_walk_n13301736501_n6685536174",
+            "g_walk_n13301736501_n10604900352"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n13438392946",
+        "name": "Разин",
+        "address": null,
+        "location": [
+          39.7365946,
+          43.574512
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:13afc0931ebd",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с круглосуточной аптекой",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м с тегом opening_hours=24/7: «планета здоровья», «36,6»",
+          "fact": {
+            "fact_id": "f_wish_13afc0931ebd_n13438392946",
+            "characteristic_key": "derived:13afc0931ebd",
+            "value": true,
+            "unit": null,
+            "label": "рядом с круглосуточной аптекой",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n6685536174",
+              "g_poi_n10604900352",
+              "g_walk_n13438392946_n6685536174",
+              "g_walk_n13438392946_n10604900352"
+            ],
+            "subject": "hotel:n13438392946",
+            "qualifiers": {
+              "source_text": "рядом с круглосуточной аптекой",
+              "nearby_names": [
+                "планета здоровья",
+                "36,6"
+              ],
+              "native_characteristic_key": "nearby:amenity:pharmacy::1:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n6685536174",
+            "g_poi_n10604900352",
+            "g_walk_n13438392946_n6685536174",
+            "g_walk_n13438392946_n10604900352"
+          ],
+          "camera": null
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "elapsed": 3.018,
+      "stage": "parsing"
+    },
+    {
+      "elapsed": 7.247,
+      "stage": "parsed",
+      "location": "Сочи",
+      "route_search": true,
+      "intents": [
+        {
+          "term": "рядом с круглосуточной аптекой",
+          "key": "nearby:amenity:pharmacy::1:500"
+        }
+      ],
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    {
+      "elapsed": 7.313,
+      "stage": "candidates",
+      "found": 788,
+      "region": "sochi",
+      "location": "Сочи",
+      "bbox": [
+        39.550007,
+        43.3872337,
+        39.9990112,
+        43.7406639
+      ],
+      "unsupported": false
+    },
+    {
+      "elapsed": 7.313,
+      "stage": "research",
+      "wishes": 1
+    },
+    {
+      "elapsed": 8.265,
+      "stage": "wish",
+      "term": "рядом с круглосуточной аптекой",
+      "status": "matched"
+    },
+    {
+      "elapsed": 8.266,
+      "stage": "review",
+      "candidates": 788
+    },
+    {
+      "elapsed": 8.428,
+      "stage": "preview",
+      "preview": {
+        "id": "w53292014",
+        "name": "Green House Hotel",
+        "location": [
+          39.9223431,
+          43.4188527
+        ],
+        "rating": null,
+        "term": "рядом с круглосуточной аптекой",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.9223431,
+              43.4188527
+            ],
+            [
+              39.9224588,
+              43.4187465
+            ],
+            [
+              39.9225639,
+              43.4188073
+            ],
+            [
+              39.9225877,
+              43.4188584
+            ],
+            [
+              39.922536,
+              43.4189148
+            ],
+            [
+              39.9226748,
+              43.4189789
+            ],
+            [
+              39.9227834,
+              43.4188933
+            ],
+            [
+              39.9228085,
+              43.4189042
+            ],
+            [
+              39.9228353,
+              43.4189124
+            ],
+            [
+              39.9228667,
+              43.4189173
+            ],
+            [
+              39.9228766,
+              43.4189171
+            ],
+            [
+              39.922893,
+              43.4189168
+            ],
+            [
+              39.9229215,
+              43.4189128
+            ],
+            [
+              39.9229485,
+              43.4189049
+            ],
+            [
+              39.9229728,
+              43.4188933
+            ],
+            [
+              39.9229935,
+              43.4188784
+            ],
+            [
+              39.9230098,
+              43.4188609
+            ],
+            [
+              39.9231724,
+              43.4189228
+            ]
+          ]
+        },
+        "place_name": "Планета здоровья",
+        "place_location": null,
+        "meters": 101.8,
+        "minutes": 1.3,
+        "mode": "graph",
+        "place_id": "n11135956614"
+      }
+    },
+    {
+      "elapsed": 8.93,
+      "stage": "preview",
+      "preview": {
+        "id": "w67540441",
+        "name": "Санаторий \"Светлана\"",
+        "location": [
+          39.734603,
+          43.5705888
+        ],
+        "rating": null,
+        "term": "рядом с круглосуточной аптекой",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.734603,
+              43.5705888
+            ],
+            [
+              39.7346926,
+              43.5706029
+            ],
+            [
+              39.7347685,
+              43.5705465
+            ],
+            [
+              39.7348158,
+              43.5705064
+            ],
+            [
+              39.7345516,
+              43.5703907
+            ],
+            [
+              39.7346649,
+              43.5702455
+            ]
+          ]
+        },
+        "place_name": "36,6",
+        "place_location": null,
+        "meters": 65.5,
+        "minutes": 0.8,
+        "mode": "graph",
+        "place_id": "n10604900352"
+      }
+    },
+    {
+      "elapsed": 8.989,
+      "stage": "preview",
+      "preview": {
+        "id": "n736761646",
+        "name": "City Park Hotel",
+        "location": [
+          39.7258462,
+          43.5761102
+        ],
+        "rating": null,
+        "term": "рядом с круглосуточной аптекой",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7258462,
+              43.5761102
+            ],
+            [
+              39.7256697,
+              43.5762433
+            ],
+            [
+              39.7253,
+              43.5759843
+            ],
+            [
+              39.7253958,
+              43.575912
+            ]
+          ]
+        },
+        "place_name": "36,6",
+        "place_location": null,
+        "meters": 73.1,
+        "minutes": 0.9,
+        "mode": "graph",
+        "place_id": "n12778129833"
+      }
+    },
+    {
+      "elapsed": 9.02,
+      "stage": "preview",
+      "preview": {
+        "id": "n11843553784",
+        "name": "Sunny Sochi Hostel",
+        "location": [
+          39.7209888,
+          43.584675
+        ],
+        "rating": null,
+        "term": "рядом с круглосуточной аптекой",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7209888,
+              43.584675
+            ],
+            [
+              39.7209018,
+              43.5847135
+            ],
+            [
+              39.7204512,
+              43.5841761
+            ],
+            [
+              39.7204113,
+              43.5841938
+            ]
+          ]
+        },
+        "place_name": "Планета здоровья",
+        "place_location": null,
+        "meters": 81.9,
+        "minutes": 1.0,
+        "mode": "graph",
+        "place_id": "n13737497301"
+      }
+    },
+    {
+      "elapsed": 21.174,
+      "stage": "winner",
+      "preview": {
+        "id": "w67540441",
+        "name": "Санаторий \"Светлана\"",
+        "location": [
+          39.734603,
+          43.5705888
+        ],
+        "rating": null,
+        "term": "рядом с круглосуточной аптекой",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.734603,
+              43.5705888
+            ],
+            [
+              39.7346926,
+              43.5706029
+            ],
+            [
+              39.7347685,
+              43.5705465
+            ],
+            [
+              39.7348158,
+              43.5705064
+            ],
+            [
+              39.7345516,
+              43.5703907
+            ],
+            [
+              39.7346649,
+              43.5702455
+            ]
+          ]
+        },
+        "place_name": "36,6",
+        "place_location": null,
+        "meters": 65.5,
+        "minutes": 0.8,
+        "mode": "graph",
+        "place_id": "n10604900352"
+      }
+    }
+  ]
+}

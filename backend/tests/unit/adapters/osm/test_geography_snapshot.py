@@ -90,3 +90,10 @@ def test_filtered_extract_keeps_referenced_nodes_and_relation_members(tmp_path: 
     )
     assert {item.id for batch in batches for item in batch.buildings} == {"w10", "w11"}
     assert {item.id for batch in batches for item in batch.beaches} == {"r20"}
+
+
+def test_named_pedestrian_way_is_available_as_a_nearby_object() -> None:
+    payload = b"""<osm version="0.6"><node id="1" lat="50.001" lon="10.001"/><node id="2" lat="50.002" lon="10.002"/><way id="3"><nd ref="1"/><nd ref="2"/><tag k="highway" v="pedestrian"/><tag k="name" v="Waterfront"/></way></osm>"""
+    snapshot = parse_snapshot(payload, BBOX, "https://example.test/api")
+    assert {p.id for p in snapshot.layers.pois} == {"w3"}
+    assert len(snapshot.layers.walk) == 1

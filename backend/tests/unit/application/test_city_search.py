@@ -197,6 +197,9 @@ async def test_nearby_search_saves_evidence_for_later_fact_card() -> None:
     )
     hotels.save_facts = AsyncMock()
     entered = scope.__aenter__.return_value
+    entered.walk = SimpleNamespace(
+        routes=AsyncMock(return_value=()), in_buildings=AsyncMock(return_value=())
+    )
     entered.commit = AsyncMock()
     entered.nearby_objects.list_matches = AsyncMock(return_value={"m1": ("lake1",)})
 
@@ -261,6 +264,7 @@ async def test_the_understood_request_is_reported_before_hotels_are_read() -> No
             "parsed",
             {
                 "location": None,
+                "route_search": False,
                 "intents": [{"term": "тихий", "key": "noise_level"}],
                 "check_in": None,
                 "check_out": None,

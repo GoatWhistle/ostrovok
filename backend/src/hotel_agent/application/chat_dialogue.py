@@ -33,6 +33,7 @@ class ChatDialogue:
                 else previous.effective_query
                 if previous
                 else None,
+                "needs_city": needs_city(previous),
                 "history": [{"role": m.role, "content": m.content} for m in previous.messages[-8:]]
                 if previous
                 else [],
@@ -68,3 +69,13 @@ class ChatDialogue:
                     else "Вы хотите подобрать отели или получить совет? Уточните, пожалуйста, вопрос."
                 ),
             )
+
+
+def needs_city(previous: ConversationRecord | None) -> bool:
+    snapshot = previous.search_snapshot if previous else None
+    parsed = snapshot.get("parsed") if snapshot else None
+    return (
+        isinstance(parsed, dict)
+        and bool(parsed.get("needs_clarification"))
+        and not parsed.get("location_hint")
+    )

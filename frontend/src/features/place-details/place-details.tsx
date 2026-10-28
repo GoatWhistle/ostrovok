@@ -1,9 +1,10 @@
-import { type PlaceCard, placeKind, placeName, usePlace, walkLabel } from "@/entities/place"
+import { type PlaceCard, placeKind, placeName, usePlace } from "@/entities/place"
 import { useFormatters, useLocale, useTranslation } from "@/shared/i18n"
-import { Button, Card, ErrorState, Skeleton } from "@/shared/ui"
+import { Button, ErrorState, Skeleton } from "@/shared/ui"
 import styles from "./place-details.module.css"
 import { PlaceField } from "./place-field"
 import { PlaceHours } from "./place-hours"
+import { PlaceWalkCard } from "./place-walk-card"
 
 export interface PlaceDetailsProps {
   readonly id: string
@@ -124,22 +125,7 @@ export function PlaceDetails({ id, hotelId, date, hour, onBack, onRoute }: Place
               })}
             </p>
           </header>
-          {card.walk ? (
-            <Card className={styles.walk} title={t("explore:place.fromHotel")}>
-              <strong>{walkLabel(card.walk.minutes, card.walk.distance_m, locale)}</strong>
-              <p>{t("explore:place.meters", { value: format.integer(card.walk.distance_m) })}</p>
-              {card.walk.mode === "straight" ? <p>{t("explore:place.noGraph")}</p> : null}
-              <Button
-                variant="secondary"
-                icon="walk"
-                onClick={() => onRoute(card.walk?.geo_ref ?? "")}
-              >
-                {t("explore:place.showRoute")}
-              </Button>
-            </Card>
-          ) : (
-            <p>{t("explore:place.noRoute")}</p>
-          )}
+          <PlaceWalkCard walk={card.walk} onRoute={onRoute} />
           <DetailsFields card={card} date={date} hour={hour} />
         </>
       ) : null}

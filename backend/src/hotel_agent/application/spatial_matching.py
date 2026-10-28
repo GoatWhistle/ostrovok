@@ -77,7 +77,11 @@ def spatial_fact(
     else:
         explanation = f"До ориентира «{name}» {round(distance)} м по прямой."
         qualifiers = {}
-    confidence = max(0.3, 0.8 * (1 - distance / max(request.radius_m * 3, 1)))
+    confidence = (
+        0.8
+        if request.kind == "landmark_nearby"
+        else max(0.3, 0.8 * (1 - distance / max(request.radius_m * 3, 1)))
+    )
     return SearchFactRecord(
         hotel_id=hotel.id,
         id=f"f_spatial_{hotel.id}_{key.removeprefix('spatial:')}",

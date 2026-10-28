@@ -15,6 +15,10 @@ WIDE_OBJECT_RADIUS_M = {
 }
 
 OSM_OBJECT_KEYS = (
+    "name",
+    "place",
+    "highway",
+    "waterway",
     "amenity",
     "shop",
     "leisure",

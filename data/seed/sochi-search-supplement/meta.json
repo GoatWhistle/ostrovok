@@ -1,0 +1,126 @@
+{
+  "region": "sochi",
+  "fetched_at": "2026-10-28T13:02:26.505577+00:00",
+  "license": "ODbL",
+  "sources": [
+    {
+      "area": "central",
+      "bbox": [
+        39.712,
+        43.566,
+        39.743,
+        43.595
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.712,43.566,39.743,43.595",
+      "status": 22,
+      "error": "curl: (22) The requested URL returned error: 400\n"
+    },
+    {
+      "area": "dagomys",
+      "bbox": [
+        39.64,
+        43.644,
+        39.662,
+        43.665
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.64,43.644,39.662,43.665",
+      "status": 0,
+      "bytes": 11083860,
+      "sha256": "31172962f833187b3c5510d8ad30efa2cf0def8b1c6381a718fff81b81899f0c",
+      "snapshot_complete": true
+    },
+    {
+      "area": "adler",
+      "bbox": [
+        39.916,
+        43.415,
+        39.936,
+        43.435
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.916,43.415,39.936,43.435",
+      "status": 0,
+      "bytes": 10279432,
+      "sha256": "c07eba6315884026b851d93945f4736c1b0ca1adf3ab9af6050ee7db356ab31d",
+      "snapshot_complete": true
+    },
+    {
+      "area": "khosta",
+      "bbox": [
+        39.862,
+        43.502,
+        39.882,
+        43.523
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.862,43.502,39.882,43.523",
+      "status": 0,
+      "bytes": 11298358,
+      "sha256": "217719925dbd24f2653982aa16a24df2ed0f3a4c34164fac648fc85ecb2c0648",
+      "snapshot_complete": true
+    },
+    {
+      "area": "central-0",
+      "bbox": [
+        39.712,
+        43.566,
+        39.7275,
+        43.5805
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.712,43.566,39.7275,43.5805",
+      "status": 0,
+      "bytes": 1974677,
+      "sha256": "6c08816e4394027eb91e0337464a28c82e7d4338d3f396587cb1ee30348079d5",
+      "snapshot_complete": true
+    },
+    {
+      "area": "central-1",
+      "bbox": [
+        39.7275,
+        43.566,
+        39.743,
+        43.5805
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.7275,43.566,39.743,43.5805",
+      "status": 0,
+      "bytes": 7858143,
+      "sha256": "f97067283d633f8a9508d0705e0320e06a94b321eba2a0f6e3cbabadb48f77de",
+      "snapshot_complete": false
+    },
+    {
+      "area": "central-2",
+      "bbox": [
+        39.712,
+        43.5805,
+        39.7275,
+        43.595
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.712,43.5805,39.7275,43.595",
+      "status": 0,
+      "bytes": 5234078,
+      "sha256": "a3b0f5e57662de212b915c88f4763dad92ae336cc02ad0d7c5f99733dbebd682",
+      "snapshot_complete": false
+    },
+    {
+      "area": "central-3",
+      "bbox": [
+        39.7275,
+        43.5805,
+        39.743,
+        43.595
+      ],
+      "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=39.7275,43.5805,39.743,43.595",
+      "status": 0,
+      "bytes": 10967684,
+      "sha256": "487baddaed9000ac444f09d21866879441a31490b118bac515a0af72cbb16fdd",
+      "snapshot_complete": true
+    }
+  ],
+  "counts": {
+    "pois": 436,
+    "walk": 5486
+  },
+  "sha256": {
+    "pois": "cfd322bd78a969fb662609762e5e9f5b60fcc7f25f06e7354d2f8676ac0ddd62",
+    "walk": "aeb2df497b97f01bc7cb431b5f8d0e013218058b4c2122fdb291f4d734a177d2"
+  },
+  "scope": "Selected real POI categories and walk edges only; no hotel facts or synthetic connectivity"
+}

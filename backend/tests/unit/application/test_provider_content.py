@@ -1,4 +1,6 @@
+import asyncio
 import json
+from dataclasses import replace
 from typing import cast
 
 from hotel_agent.application.agent.provider_content import ProviderContent
@@ -159,3 +161,27 @@ async def test_without_any_source_the_tool_says_it_is_not_configured() -> None:
     result = await tool.read(["w51847429"])
     assert result["unavailable"] is True
     assert result["missing_room_hotel_ids"] == ["w51847429"]
+
+
+async def test_provider_hotels_are_checked_concurrently() -> None:
+    arrived = 0
+    both = asyncio.Event()
+
+    class ConcurrentDetails(Details):
+        async def __call__(self, hotel_id: str) -> HotelDetails:
+            nonlocal arrived
+            arrived += 1
+            if arrived == 2:
+                both.set()
+            await both.wait()
+            return await super().__call__(hotel_id)
+
+    tool = ProviderContent(
+        None,
+        cast(UnitOfWorkFactory, None),
+        lambda: [HOTEL, replace(HOTEL, id="other")],
+        cast(GetHotelDetails, ConcurrentDetails(FOUND)),
+    )
+    async with asyncio.timeout(0.5):
+        result = await tool.read([HOTEL.id, "other"])
+    assert result["hotel_record_count"] == 2

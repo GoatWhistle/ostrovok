@@ -90,6 +90,13 @@ def _confidence(matches: Sequence[PropertyMatch], now: datetime) -> float:
 
 
 def _margin(intent: Intent, fact: Fact) -> float | None:
+    native_key = str(fact.qualifiers.get("native_characteristic_key", intent.characteristic_key))
+    threshold = fact.qualifiers.get("native_threshold", intent.value)
+    operation = fact.qualifiers.get("native_op", intent.op)
+    if native_key.startswith("nearby:") and threshold == 1 and operation == Op.GTE:
+        return None
+    if native_key.startswith("spatial:") and operation == Op.LTE:
+        return None
     direct = _ratio(fact.value, intent.value, intent.op)
     if direct is not None:
         return direct

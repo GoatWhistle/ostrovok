@@ -29,6 +29,9 @@ export function WorkspaceMap({
     <Suspense fallback={null}>
       <HotelMap
         visible={visible}
+        journey={state.searchActive ? state.journey : undefined}
+        onRetrySearch={state.retry}
+        onCandidate={state.navigation.selectHotel}
         fullMap={state.surface === "map"}
         returnToHotel={state.navigation.returnToHotel}
         onExpand={() => onMove(state.navigation.expandMap)}
@@ -54,8 +57,8 @@ export function WorkspaceMap({
         focusedFact={state.focusedFact}
         previewing={state.previewing}
         focusProperty={state.focusProperty}
-        regionId={state.search ? "russia" : "sochi"}
-        results={state.results}
+        regionId="russia"
+        results={state.sending ? [] : state.results}
         bounds={state.bounds}
         onSelect={onSelect}
         onPlace={state.openPlace}

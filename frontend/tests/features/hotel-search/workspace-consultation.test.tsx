@@ -13,7 +13,15 @@ const harness = vi.hoisted(() => ({
 vi.mock("../../../src/features/hotel-search/use-conversation", () => ({
   useConversation: (_selected: string | undefined, onAnswer: (data: Conversation) => void) => {
     harness.answer = onAnswer
-    return { data: harness.data, history: [], conversationId: "conversation" }
+    return {
+      data: harness.data,
+      history: [],
+      conversationId: "conversation",
+      progress: [],
+      request: 0,
+      sending: false,
+      failed: false,
+    }
   },
 }))
 

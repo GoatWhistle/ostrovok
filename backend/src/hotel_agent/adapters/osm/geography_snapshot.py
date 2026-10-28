@@ -71,6 +71,17 @@ def parse_snapshot(payload: bytes, bbox: GeographicBounds, source_url: str) -> G
             except (RuntimeError, osmium.InvalidLocationError):
                 continue
             feature = Feature(id=f"w{item.id}", geometry=geometry, properties=tags)
+            if not item.is_closed() and rules.is_poi(tags):
+                line = shape(geometry)
+                if line.intersects(boundary):
+                    centre = line.interpolate(0.5, normalized=True)
+                    layers.pois.append(
+                        Feature(
+                            id=feature.id,
+                            geometry={"type": "Point", "coordinates": [centre.x, centre.y]},
+                            properties=tags,
+                        )
+                    )
             assembled_lines.add(feature.id)
             if rules.is_coastline(tags):
                 layers.coastline.append(feature)

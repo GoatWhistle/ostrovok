@@ -61,7 +61,7 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
   const data = useComparison(ids, conversationId)
   const { comparison } = data
   const [onlyDifferences, setOnlyDifferences] = useState(false)
-  if (ids.length < MIN_HOTELS || ids.length > MAX_HOTELS)
+  if (invalidSelection(ids))
     return (
       <EmptyState
         icon="compare"
@@ -125,4 +125,8 @@ export function HotelComparison({ ids, conversationId, onRemove, onFact }: Hotel
       </section>
     </HotelStayProvider>
   )
+}
+
+function invalidSelection(ids: readonly string[]) {
+  return ids.length < MIN_HOTELS || ids.length > MAX_HOTELS
 }

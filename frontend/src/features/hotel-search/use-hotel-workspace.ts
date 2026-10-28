@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import type { FactBrief, MatchedProperty, SearchResult } from "@/shared/api/hotel-types"
+import { searchJourney } from "./search-journey"
 import { type Conversation, useConversation } from "./use-conversation"
 import { useHotelSelection } from "./use-hotel-selection"
 import { useListReturn } from "./use-list-return"
+import { useSearchPresentation } from "./use-search-presentation"
 import { useWorkspaceExpansion } from "./use-workspace-expansion"
 import { useWorkspaceNavigation } from "./use-workspace-navigation"
 import { workspaceSurface } from "./workspace-location"
@@ -71,6 +73,16 @@ export function useHotelWorkspace() {
     },
   )
   const search = chat.data?.search ?? undefined
+  const journey = searchJourney(chat.progress, chat.sending, chat.failed, search)
+  const searchActive = chat.sending || chat.progress.length > 0 || Boolean(chat.outgoing)
+  const { routeAnimation, waiting, compact } = useSearchPresentation(
+    journey,
+    searchActive,
+    chat.request,
+    setView,
+  )
+  const exploring = routeAnimation || (!chat.sending && Boolean(search))
+
   const results = [
     ...new Map((search?.results ?? []).map((result) => [result.hotel.id, result])).values(),
   ]
@@ -129,14 +141,26 @@ export function useHotelWorkspace() {
   }
   return {
     navigation,
-    surface: workspaceSurface(navigation.route, navigation.started, expanded),
+    surface: waiting
+      ? ("conversation" as const)
+      : workspaceSurface(navigation.route, navigation.started, expanded || exploring),
+    journey: { ...journey, request: chat.request },
+    searchActive: routeAnimation,
+    searchCompact: compact,
+    exploring,
+
     messages: ordered(chat.data?.messages ?? []),
     conversationId: chat.conversationId,
     searchMessageId: chat.data?.search_message_id,
     history: chat.history,
     search,
     outgoing: chat.outgoing,
-    send: chat.send,
+    send: (message: string) => {
+      clearEvidence()
+      setHotelId(undefined)
+      setView("chat")
+      chat.send(message)
+    },
     retry: chat.retry,
     clearTransient: () => {
       clearEvidence()

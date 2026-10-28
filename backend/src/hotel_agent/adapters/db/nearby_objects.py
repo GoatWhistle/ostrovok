@@ -22,6 +22,10 @@ NAME_TAGS = (
 NEARBY = """WITH objects AS MATERIALIZED (
     SELECT p.id,p.location FROM pois p
     WHERE p.region_id = %(region)s AND p.tags ? %(osm_key)s
+      AND (%(osm_key)s <> 'name' OR (
+        p.tags ?| ARRAY['place','highway','waterway','natural','historic']
+        OR p.tags->>'leisure' IN ('park','garden','nature_reserve')
+        OR p.tags->>'tourism' = 'attraction'))
       AND (%(osm_value)s = '*' OR %(name)s::text[] IS NOT NULL
            OR p.tags @> jsonb_build_object(%(osm_key)s::text,%(osm_value)s::text))
       AND (NOT %(open_24h)s OR lower(trim(p.tags->>'opening_hours')) = '24/7')

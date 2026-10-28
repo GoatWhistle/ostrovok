@@ -19,7 +19,7 @@ class PlaceWalkSchema(BaseModel):
     distance_m: float
     minutes: float | None
     geo_ref: str
-    mode: Literal["graph", "straight"]
+    mode: Literal["graph", "straight", "onsite"]
 
 
 class PlaceCardSchema(BaseModel):

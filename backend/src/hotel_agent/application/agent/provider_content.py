@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import Callable, Sequence
 from typing import Any
 
@@ -38,19 +39,21 @@ class ProviderContent:
         selected = [hotel for hotel in self._hotels() if hotel.id in hotel_ids][:4]
         if not selected:
             raise ValueError("Select 1\u20134 hotel_ids from the candidates")
-        results = []
-        for hotel in selected:
+
+        async def read_hotel(hotel: SearchHotelRecord) -> dict[str, Any]:
             if hotel.id in self._checked:
-                results.append(
-                    {"hotel_id": hotel.id, "status": self._checked[hotel.id], "cached": True}
-                )
-                continue
-            status = await self._supplier(hotel)
-            if status is None:
-                status = await self._catalog(hotel)
+                return {"hotel_id": hotel.id, "status": self._checked[hotel.id], "cached": True}
+            try:
+                async with asyncio.timeout(45):
+                    status = await self._supplier(hotel)
+                    if status is None:
+                        status = await self._catalog(hotel)
+            except TimeoutError:
+                status = "unavailable"
             self._checked[hotel.id] = status
-            results.append({"hotel_id": hotel.id, "status": status})
-        return self._summary(results)
+            return {"hotel_id": hotel.id, "status": status}
+
+        return self._summary(list(await asyncio.gather(*(read_hotel(hotel) for hotel in selected))))
 
     async def _supplier(self, hotel: SearchHotelRecord) -> str | None:
         if self._details is None:

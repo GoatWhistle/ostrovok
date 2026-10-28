@@ -7,6 +7,7 @@ from psycopg.types.json import Jsonb
 
 from hotel_agent.adapters.db.derived_facts import save_derived_facts
 from hotel_agent.adapters.db.hotel_media import read_hotel_photos
+from hotel_agent.adapters.db.hotel_rating import read_hotel_rating
 from hotel_agent.adapters.db.search_facts import (
     EXPIRING_FACTS,
     FACTS,
@@ -32,7 +33,8 @@ HOTEL_COLUMNS = """SELECT h.id, h.name, ST_X(h.location), ST_Y(h.location), h.st
     NULLIF(concat_ws(' ', h.tags->>'addr:street', h.tags->>'addr:housenumber'), ''),
     h.tags->>'addr:city', h.tags,
     (SELECT jsonb_agg(jsonb_build_object('photos',c.details->'photos',
-        'hotelImages',c.details->'hotelImages','source_url',c.details->'source_url')
+        'hotelImages',c.details->'hotelImages','source_url',c.details->'source_url',
+        'rating',c.details->'rating')
         ORDER BY c.updated_at DESC,c.supplier)
      FROM hotel_supplier_content c WHERE c.hotel_id=h.id)
 FROM hotels h LEFT JOIN buildings b ON b.id = h.building_id """
@@ -309,6 +311,7 @@ def _hotel(row: tuple[object, ...]) -> SearchHotelRecord:
         address=str(row[10]) if row[10] is not None else None,
         city=str(row[11]) if row[11] is not None else None,
         photos=read_hotel_photos(row[12], row[13], str(row[0])),
+        rating=read_hotel_rating(row[13]),
     )
 
 

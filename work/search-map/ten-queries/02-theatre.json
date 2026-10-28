@@ -1,0 +1,2261 @@
+{
+  "id": "02-theatre",
+  "text": "Подбери отель в Сочи рядом с театром",
+  "kind": "category",
+  "target": "amenity=theatre",
+  "elapsed": 33.334,
+  "error": null,
+  "conversation_id": "7e9f657c-9649-4e78-bc7d-f0e46d949a81",
+  "answer": "Нашёл 20 отелей. Первые в списке: Золотой лотос, Санаторий Заполярье и Пансионат \"Кристалл\". На какие даты едете?",
+  "parsed": {
+    "intents": [
+      {
+        "characteristic_key": "derived:e91092cf7605",
+        "op": "eq",
+        "value": true,
+        "weight": 1.0,
+        "required": false,
+        "source_text": "рядом с театром"
+      }
+    ],
+    "unmatched_terms": [],
+    "location_hint": "Сочи",
+    "anywhere": false,
+    "normalized_query": "отель в Сочи рядом с театром",
+    "corrections": [],
+    "unsupported_region": null,
+    "needs_clarification": false,
+    "wants_room": true,
+    "room_preferences_unrestricted": false,
+    "budget": null,
+    "check_in": null,
+    "check_out": null,
+    "adults": null
+  },
+  "result_count": 20,
+  "results": [
+    {
+      "hotel": {
+        "id": "n7659392485",
+        "name": "Золотой лотос",
+        "address": "Ялтинская улица",
+        "location": [
+          39.8707292,
+          43.5123797
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n7659392485",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w1190970196",
+              "g_walk_n7659392485_w1190970196"
+            ],
+            "subject": "hotel:n7659392485",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w1190970196",
+            "g_walk_n7659392485_w1190970196"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w53579883",
+        "name": "Санаторий Заполярье",
+        "address": null,
+        "location": [
+          39.7112477,
+          43.6053119
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w53579883",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w52673359",
+              "g_walk_w53579883_w52673359"
+            ],
+            "subject": "hotel:w53579883",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w52673359",
+            "g_walk_w53579883_w52673359"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w70117451",
+        "name": "Пансионат \"Кристалл\"",
+        "address": null,
+        "location": [
+          39.8705507,
+          43.5118897
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w70117451",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w1190970196",
+              "g_walk_w70117451_w1190970196"
+            ],
+            "subject": "hotel:w70117451",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w1190970196",
+            "g_walk_w70117451_w1190970196"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w114380017",
+        "name": "Пансионат \"Кристалл\"",
+        "address": "Ялтинская улица 14",
+        "location": [
+          39.8707785,
+          43.5129552
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м; названий у найденных объектов в данных нет",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w114380017",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w1190970196",
+              "g_walk_w114380017_w1190970196"
+            ],
+            "subject": "hotel:w114380017",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w1190970196",
+            "g_walk_w114380017_w1190970196"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w147552217",
+        "name": "Ксения у моря",
+        "address": "Цветочная улица",
+        "location": [
+          39.9259007,
+          43.4164156
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Мандарин Холл»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w147552217",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w1458476601",
+              "g_poi_n3045102886",
+              "g_walk_w147552217_w1458476601",
+              "g_walk_w147552217_n3045102886"
+            ],
+            "subject": "hotel:w147552217",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Мандарин Холл"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w1458476601",
+            "g_poi_n3045102886",
+            "g_walk_w147552217_w1458476601",
+            "g_walk_w147552217_n3045102886"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n6807575685",
+        "name": "Апартаменты Адлер",
+        "address": "Интернациональная улица",
+        "location": [
+          39.9230459,
+          43.4196913
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Мандарин Холл»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n6807575685",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n3045102886",
+              "g_poi_w1458476601",
+              "g_walk_n6807575685_n3045102886",
+              "g_walk_n6807575685_w1458476601"
+            ],
+            "subject": "hotel:n6807575685",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Мандарин Холл"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n3045102886",
+            "g_poi_w1458476601",
+            "g_walk_n6807575685_n3045102886",
+            "g_walk_n6807575685_w1458476601"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n12541096667",
+        "name": "Альфа",
+        "address": null,
+        "location": [
+          39.7339278,
+          43.56975
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр им. Фрунзе», «Зимний театр», «Цирк»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n12541096667",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n736671632",
+              "g_poi_r9353455",
+              "g_poi_r11606985",
+              "g_walk_n12541096667_n736671632",
+              "g_walk_n12541096667_r9353455",
+              "g_walk_n12541096667_r11606985"
+            ],
+            "subject": "hotel:n12541096667",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр им. Фрунзе",
+                "Зимний театр",
+                "Цирк"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n736671632",
+            "g_poi_r9353455",
+            "g_poi_r11606985",
+            "g_walk_n12541096667_n736671632",
+            "g_walk_n12541096667_r9353455",
+            "g_walk_n12541096667_r11606985"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51849059",
+        "name": "ЖК \"Верещагинская дача\"",
+        "address": "Черноморская улица 4",
+        "location": [
+          39.7341857,
+          43.5695931
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр им. Фрунзе», «Цирк», «Зимний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w51849059",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n736671632",
+              "g_poi_r11606985",
+              "g_poi_r9353455",
+              "g_walk_w51849059_n736671632",
+              "g_walk_w51849059_r11606985",
+              "g_walk_w51849059_r9353455"
+            ],
+            "subject": "hotel:w51849059",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр им. Фрунзе",
+                "Цирк",
+                "Зимний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n736671632",
+            "g_poi_r11606985",
+            "g_poi_r9353455",
+            "g_walk_w51849059_n736671632",
+            "g_walk_w51849059_r11606985",
+            "g_walk_w51849059_r9353455"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w52572781",
+        "name": "SPA Отель \"Ostrova\"",
+        "address": "улица Пирогова 10 к14",
+        "location": [
+          39.7094709,
+          43.606121
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w52572781",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w52673359",
+              "g_walk_w52572781_w52673359"
+            ],
+            "subject": "hotel:w52572781",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 1,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w52673359",
+            "g_walk_w52572781_w52673359"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n5063986547",
+        "name": "Чемодан",
+        "address": null,
+        "location": [
+          39.7359049,
+          43.5712628
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Цирк», «Летний театр им. Фрунзе», «Зимний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n5063986547",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r11606985",
+              "g_poi_n736671632",
+              "g_poi_r9353455",
+              "g_walk_n5063986547_r11606985",
+              "g_walk_n5063986547_n736671632",
+              "g_walk_n5063986547_r9353455"
+            ],
+            "subject": "hotel:n5063986547",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Цирк",
+                "Летний театр им. Фрунзе",
+                "Зимний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_r11606985",
+            "g_poi_n736671632",
+            "g_poi_r9353455",
+            "g_walk_n5063986547_r11606985",
+            "g_walk_n5063986547_n736671632",
+            "g_walk_n5063986547_r9353455"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "r12821037",
+        "name": "Богатырь",
+        "address": "Олимпийский проспект 21",
+        "location": [
+          39.963702,
+          43.4036373
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Цирк клоуна БАО», «Белый зал», «Кукольный театр \"Сочи Парк\"»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_r12821037",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n7803374254",
+              "g_poi_w767693765",
+              "g_poi_w374062013",
+              "g_walk_r12821037_n7803374254",
+              "g_walk_r12821037_w767693765",
+              "g_walk_r12821037_w374062013"
+            ],
+            "subject": "hotel:r12821037",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Цирк клоуна БАО",
+                "Белый зал",
+                "Кукольный театр \"Сочи Парк\""
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n7803374254",
+            "g_poi_w767693765",
+            "g_poi_w374062013",
+            "g_walk_r12821037_n7803374254",
+            "g_walk_r12821037_w767693765",
+            "g_walk_r12821037_w374062013"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w51849076",
+        "name": "Светлана",
+        "address": "Курортный проспект 75 к1",
+        "location": [
+          39.7357428,
+          43.5710296
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр им. Фрунзе», «Цирк», «Зимний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w51849076",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n736671632",
+              "g_poi_r11606985",
+              "g_poi_r9353455",
+              "g_walk_w51849076_n736671632",
+              "g_walk_w51849076_r11606985",
+              "g_walk_w51849076_r9353455"
+            ],
+            "subject": "hotel:w51849076",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр им. Фрунзе",
+                "Цирк",
+                "Зимний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n736671632",
+            "g_poi_r11606985",
+            "g_poi_r9353455",
+            "g_walk_w51849076_n736671632",
+            "g_walk_w51849076_r11606985",
+            "g_walk_w51849076_r9353455"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "w67540441",
+        "name": "Санаторий \"Светлана\"",
+        "address": null,
+        "location": [
+          39.734603,
+          43.5705888
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Летний театр им. Фрунзе», «Цирк», «Зимний театр»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_w67540441",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n736671632",
+              "g_poi_r11606985",
+              "g_poi_r9353455",
+              "g_walk_w67540441_n736671632",
+              "g_walk_w67540441_r11606985",
+              "g_walk_w67540441_r9353455"
+            ],
+            "subject": "hotel:w67540441",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Летний театр им. Фрунзе",
+                "Цирк",
+                "Зимний театр"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 3,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n736671632",
+            "g_poi_r11606985",
+            "g_poi_r9353455",
+            "g_walk_w67540441_n736671632",
+            "g_walk_w67540441_r11606985",
+            "g_walk_w67540441_r9353455"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11016638369",
+        "name": "Шагал по Красной Площади",
+        "address": null,
+        "location": [
+          39.7236174,
+          43.5826447
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Зал органной и камерной музыки», «Фестивальный»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11016638369",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n9022304895",
+              "g_poi_w51343707",
+              "g_walk_n11016638369_n9022304895",
+              "g_walk_n11016638369_w51343707"
+            ],
+            "subject": "hotel:n11016638369",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Зал органной и камерной музыки",
+                "Фестивальный"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n9022304895",
+            "g_poi_w51343707",
+            "g_walk_n11016638369_n9022304895",
+            "g_walk_n11016638369_w51343707"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11029978905",
+        "name": "Эльза",
+        "address": null,
+        "location": [
+          39.9216343,
+          43.4195513
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Мандарин Холл»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11029978905",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n3045102886",
+              "g_poi_w1458476601",
+              "g_walk_n11029978905_n3045102886",
+              "g_walk_n11029978905_w1458476601"
+            ],
+            "subject": "hotel:n11029978905",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Мандарин Холл"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n3045102886",
+            "g_poi_w1458476601",
+            "g_walk_n11029978905_n3045102886",
+            "g_walk_n11029978905_w1458476601"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11304222987",
+        "name": "Grand Way",
+        "address": null,
+        "location": [
+          39.7389704,
+          43.5701348
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Цирк», «Летний театр им. Фрунзе»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11304222987",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_r11606985",
+              "g_poi_n736671632",
+              "g_walk_n11304222987_r11606985",
+              "g_walk_n11304222987_n736671632"
+            ],
+            "subject": "hotel:n11304222987",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Цирк",
+                "Летний театр им. Фрунзе"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_r11606985",
+            "g_poi_n736671632",
+            "g_walk_n11304222987_r11606985",
+            "g_walk_n11304222987_n736671632"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11637558669",
+        "name": "Родос Лайт",
+        "address": null,
+        "location": [
+          39.9294634,
+          43.4182208
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Мандарин Холл»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11637558669",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_w1458476601",
+              "g_poi_n3045102886",
+              "g_walk_n11637558669_w1458476601",
+              "g_walk_n11637558669_n3045102886"
+            ],
+            "subject": "hotel:n11637558669",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Мандарин Холл"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_w1458476601",
+            "g_poi_n3045102886",
+            "g_walk_n11637558669_w1458476601",
+            "g_walk_n11637558669_n3045102886"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11843545854",
+        "name": "Ellis",
+        "address": null,
+        "location": [
+          39.9218944,
+          43.4194425
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Мандарин Холл»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11843545854",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n3045102886",
+              "g_poi_w1458476601",
+              "g_walk_n11843545854_n3045102886",
+              "g_walk_n11843545854_w1458476601"
+            ],
+            "subject": "hotel:n11843545854",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Мандарин Холл"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n3045102886",
+            "g_poi_w1458476601",
+            "g_walk_n11843545854_n3045102886",
+            "g_walk_n11843545854_w1458476601"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11878294032",
+        "name": "Bliss House",
+        "address": null,
+        "location": [
+          39.9170665,
+          43.4291139
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Южное Взморье»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11878294032",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n9904689717",
+              "g_poi_n7169184172",
+              "g_walk_n11878294032_n9904689717",
+              "g_walk_n11878294032_n7169184172"
+            ],
+            "subject": "hotel:n11878294032",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Южное Взморье"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n9904689717",
+            "g_poi_n7169184172",
+            "g_walk_n11878294032_n9904689717",
+            "g_walk_n11878294032_n7169184172"
+          ],
+          "camera": null
+        }
+      ]
+    },
+    {
+      "hotel": {
+        "id": "n11958139262",
+        "name": "Гости Эльбрус",
+        "address": null,
+        "location": [
+          39.9154946,
+          43.4286548
+        ]
+      },
+      "score": 0.7,
+      "matched": [
+        {
+          "characteristic_key": "derived:e91092cf7605",
+          "match": "full",
+          "margin": null,
+          "label": "рядом с театром",
+          "explanation": "Объекты OpenStreetMap в радиусе 500 м: «Южное Взморье»",
+          "fact": {
+            "fact_id": "f_wish_e91092cf7605_n11958139262",
+            "characteristic_key": "derived:e91092cf7605",
+            "value": true,
+            "unit": null,
+            "label": "рядом с театром",
+            "confidence": 0.7,
+            "source_type": "computed",
+            "status": "active",
+            "geo_refs": [
+              "g_poi_n9904689717",
+              "g_poi_n7169184172",
+              "g_walk_n11958139262_n9904689717",
+              "g_walk_n11958139262_n7169184172"
+            ],
+            "subject": "hotel:n11958139262",
+            "qualifiers": {
+              "source_text": "рядом с театром",
+              "nearby_names": [
+                "Южное Взморье"
+              ],
+              "native_characteristic_key": "nearby:amenity:theatre::0:500",
+              "native_value": 2,
+              "native_unit": "count",
+              "native_op": "gte",
+              "native_threshold": 1.0,
+              "wish_status": "matched",
+              "checked_sources": [
+                "database"
+              ],
+              "tool_calls": 1
+            }
+          },
+          "geo_refs": [
+            "g_poi_n9904689717",
+            "g_poi_n7169184172",
+            "g_walk_n11958139262_n9904689717",
+            "g_walk_n11958139262_n7169184172"
+          ],
+          "camera": null
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "elapsed": 4.136,
+      "stage": "parsing"
+    },
+    {
+      "elapsed": 8.975,
+      "stage": "parsed",
+      "location": "Сочи",
+      "route_search": true,
+      "intents": [
+        {
+          "term": "рядом с театром",
+          "key": "nearby:amenity:theatre::0:500"
+        }
+      ],
+      "check_in": null,
+      "check_out": null,
+      "adults": null
+    },
+    {
+      "elapsed": 9.04,
+      "stage": "candidates",
+      "found": 788,
+      "region": "sochi",
+      "location": "Сочи",
+      "bbox": [
+        39.550007,
+        43.3872337,
+        39.9990112,
+        43.7406639
+      ],
+      "unsupported": false
+    },
+    {
+      "elapsed": 9.04,
+      "stage": "research",
+      "wishes": 1
+    },
+    {
+      "elapsed": 10.0,
+      "stage": "wish",
+      "term": "рядом с театром",
+      "status": "matched"
+    },
+    {
+      "elapsed": 10.0,
+      "stage": "review",
+      "candidates": 788
+    },
+    {
+      "elapsed": 10.559,
+      "stage": "preview",
+      "preview": {
+        "id": "w147552217",
+        "name": "Ксения у моря",
+        "location": [
+          39.9259007,
+          43.4164156
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.9259007,
+              43.4164156
+            ],
+            [
+              39.9256548,
+              43.4162045
+            ],
+            [
+              39.9256361,
+              43.4160408
+            ],
+            [
+              39.925808,
+              43.4158637
+            ],
+            [
+              39.9258741,
+              43.4158093
+            ],
+            [
+              39.9259888,
+              43.4157848
+            ],
+            [
+              39.9261478,
+              43.4157787
+            ],
+            [
+              39.9262397,
+              43.4157551
+            ],
+            [
+              39.9264619,
+              43.415663
+            ],
+            [
+              39.9264136,
+              43.4156341
+            ],
+            [
+              39.9263864,
+              43.4156233
+            ],
+            [
+              39.9263765,
+              43.4156216
+            ],
+            [
+              39.9263517,
+              43.4156172
+            ],
+            [
+              39.9262797,
+              43.4156095
+            ],
+            [
+              39.9261842,
+              43.415607
+            ],
+            [
+              39.9261584,
+              43.4156335
+            ],
+            [
+              39.9261473,
+              43.4156394
+            ],
+            [
+              39.9256814,
+              43.4157395
+            ],
+            [
+              39.9255671,
+              43.4157667
+            ],
+            [
+              39.9254854,
+              43.4157922
+            ],
+            [
+              39.9254364,
+              43.4158146
+            ],
+            [
+              39.9253919,
+              43.4158512
+            ],
+            [
+              39.925369,
+              43.4158823
+            ],
+            [
+              39.9253576,
+              43.4159066
+            ],
+            [
+              39.9253544,
+              43.4159336
+            ],
+            [
+              39.9253589,
+              43.4161153
+            ],
+            [
+              39.92547290264574,
+              43.41611385
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 266.7,
+        "minutes": 3.3,
+        "mode": "graph",
+        "place_id": "w1458476601"
+      }
+    },
+    {
+      "elapsed": 10.646,
+      "stage": "preview",
+      "preview": {
+        "id": "w53579883",
+        "name": "Санаторий Заполярье",
+        "location": [
+          39.7112477,
+          43.6053119
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7112477,
+              43.6053119
+            ],
+            [
+              39.7117314,
+              43.6055268
+            ],
+            [
+              39.7117176,
+              43.6057048
+            ],
+            [
+              39.7117054,
+              43.6058616
+            ],
+            [
+              39.7114884,
+              43.6059999
+            ],
+            [
+              39.7109572,
+              43.6056481
+            ]
+          ]
+        },
+        "place_name": "Летний театр",
+        "place_location": null,
+        "meters": 164.3,
+        "minutes": 2.1,
+        "mode": "graph",
+        "place_id": "w52673359"
+      }
+    },
+    {
+      "elapsed": 10.697,
+      "stage": "preview",
+      "preview": {
+        "id": "w114380017",
+        "name": "Пансионат \"Кристалл\"",
+        "location": [
+          39.8707785,
+          43.5129552
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.8707785,
+              43.5129552
+            ],
+            [
+              39.8707838,
+              43.5128509
+            ],
+            [
+              39.870481,
+              43.5128427
+            ],
+            [
+              39.8704632,
+              43.5128421
+            ],
+            [
+              39.870459,
+              43.5123853
+            ],
+            [
+              39.8704434,
+              43.5122409
+            ],
+            [
+              39.8711684,
+              43.5121454
+            ],
+            [
+              39.8711847,
+              43.5123744
+            ],
+            [
+              39.8715328,
+              43.5123724
+            ],
+            [
+              39.871539,
+              43.5124429
+            ],
+            [
+              39.8715436,
+              43.5124995
+            ],
+            [
+              39.87160062445055,
+              43.512497100000004
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 236.3,
+        "minutes": 3.0,
+        "mode": "graph",
+        "place_id": "w1190970196"
+      }
+    },
+    {
+      "elapsed": 10.711,
+      "stage": "preview",
+      "preview": {
+        "id": "n7659392485",
+        "name": "Золотой лотос",
+        "location": [
+          39.8707292,
+          43.5123797
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.8707292,
+              43.5123797
+            ],
+            [
+              39.8706867,
+              43.5122089
+            ],
+            [
+              39.8711684,
+              43.5121454
+            ],
+            [
+              39.8711847,
+              43.5123744
+            ],
+            [
+              39.8715328,
+              43.5123724
+            ],
+            [
+              39.871539,
+              43.5124429
+            ],
+            [
+              39.8715436,
+              43.5124995
+            ],
+            [
+              39.87160062445055,
+              43.512497100000004
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 131.2,
+        "minutes": 1.6,
+        "mode": "graph",
+        "place_id": "w1190970196"
+      }
+    },
+    {
+      "elapsed": 12.18,
+      "stage": "preview",
+      "preview": {
+        "id": "n6807575685",
+        "name": "Апартаменты Адлер",
+        "location": [
+          39.9230459,
+          43.4196913
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.9230459,
+              43.4196913
+            ],
+            [
+              39.9232078,
+              43.4198457
+            ],
+            [
+              39.9236679,
+              43.4195894
+            ],
+            [
+              39.9234532,
+              43.4193782
+            ],
+            [
+              39.923402,
+              43.4193368
+            ],
+            [
+              39.9232606,
+              43.4192557
+            ],
+            [
+              39.9232392,
+              43.4192431
+            ],
+            [
+              39.923219,
+              43.4192312
+            ],
+            [
+              39.9231891,
+              43.4192037
+            ],
+            [
+              39.9232885,
+              43.419126
+            ],
+            [
+              39.9233437,
+              43.4190829
+            ],
+            [
+              39.9236472,
+              43.4191025
+            ],
+            [
+              39.9237328,
+              43.4190915
+            ],
+            [
+              39.9241989,
+              43.4193966
+            ],
+            [
+              39.9243225,
+              43.4194702
+            ],
+            [
+              39.9245449,
+              43.4193566
+            ],
+            [
+              39.9244318,
+              43.419239
+            ]
+          ]
+        },
+        "place_name": "Мандарин Холл",
+        "place_location": null,
+        "meters": 278.3,
+        "minutes": 3.5,
+        "mode": "graph",
+        "place_id": "n3045102886"
+      }
+    },
+    {
+      "elapsed": 12.215,
+      "stage": "preview",
+      "preview": {
+        "id": "n12541096667",
+        "name": "Альфа",
+        "location": [
+          39.7339278,
+          43.56975
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7339278,
+              43.56975
+            ],
+            [
+              39.7336993,
+              43.5696934
+            ],
+            [
+              39.7336903,
+              43.5697127
+            ],
+            [
+              39.7336367,
+              43.5699813
+            ],
+            [
+              39.7336368,
+              43.5700085
+            ],
+            [
+              39.7336439,
+              43.5700365
+            ],
+            [
+              39.7336653,
+              43.5700682
+            ],
+            [
+              39.7337067,
+              43.5700934
+            ],
+            [
+              39.7340848,
+              43.5702217
+            ],
+            [
+              39.7345516,
+              43.5703907
+            ],
+            [
+              39.7348158,
+              43.5705064
+            ],
+            [
+              39.7347685,
+              43.5705465
+            ],
+            [
+              39.7347593,
+              43.570539
+            ],
+            [
+              39.7346584,
+              43.570472
+            ],
+            [
+              39.7344652,
+              43.570387
+            ],
+            [
+              39.7341022,
+              43.5702604
+            ],
+            [
+              39.7336688,
+              43.5701212
+            ],
+            [
+              39.7334814,
+              43.5700811
+            ],
+            [
+              39.7335348,
+              43.5699538
+            ],
+            [
+              39.7333431,
+              43.5697902
+            ],
+            [
+              39.7330383,
+              43.5695873
+            ],
+            [
+              39.7326638,
+              43.5692975
+            ],
+            [
+              39.7322758,
+              43.5689972
+            ],
+            [
+              39.7323199,
+              43.5689717
+            ],
+            [
+              39.7323368,
+              43.5689338
+            ],
+            [
+              39.7323294,
+              43.5688897
+            ],
+            [
+              39.7329607,
+              43.5688656
+            ],
+            [
+              39.7332628,
+              43.5687882
+            ]
+          ]
+        },
+        "place_name": "Летний театр им. Фрунзе",
+        "place_location": null,
+        "meters": 542.7,
+        "minutes": 6.8,
+        "mode": "graph",
+        "place_id": "n736671632"
+      }
+    },
+    {
+      "elapsed": 12.319,
+      "stage": "preview",
+      "preview": {
+        "id": "w70117451",
+        "name": "Пансионат \"Кристалл\"",
+        "location": [
+          39.8705507,
+          43.5118897
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.8705507,
+              43.5118897
+            ],
+            [
+              39.8705798,
+              43.5119858
+            ],
+            [
+              39.870398,
+              43.5120149
+            ],
+            [
+              39.8703778,
+              43.5120233
+            ],
+            [
+              39.8704279,
+              43.512168
+            ],
+            [
+              39.8704434,
+              43.5122409
+            ],
+            [
+              39.8711684,
+              43.5121454
+            ],
+            [
+              39.8711847,
+              43.5123744
+            ],
+            [
+              39.8715328,
+              43.5123724
+            ],
+            [
+              39.871539,
+              43.5124429
+            ],
+            [
+              39.8715436,
+              43.5124995
+            ],
+            [
+              39.87160062445055,
+              43.512497100000004
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 184.5,
+        "minutes": 2.3,
+        "mode": "graph",
+        "place_id": "w1190970196"
+      }
+    },
+    {
+      "elapsed": 13.02,
+      "stage": "preview",
+      "preview": {
+        "id": "w51849059",
+        "name": "ЖК \"Верещагинская дача\"",
+        "location": [
+          39.7341857,
+          43.5695931
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7341857,
+              43.5695931
+            ],
+            [
+              39.7345488,
+              43.5695304
+            ],
+            [
+              39.7349778,
+              43.5696991
+            ],
+            [
+              39.7352703,
+              43.5698122
+            ],
+            [
+              39.7353178,
+              43.5698306
+            ],
+            [
+              39.7349169,
+              43.5704047
+            ],
+            [
+              39.7348663,
+              43.5704597
+            ],
+            [
+              39.7348158,
+              43.5705064
+            ],
+            [
+              39.7347685,
+              43.5705465
+            ],
+            [
+              39.7347593,
+              43.570539
+            ],
+            [
+              39.7346584,
+              43.570472
+            ],
+            [
+              39.7344652,
+              43.570387
+            ],
+            [
+              39.7341022,
+              43.5702604
+            ],
+            [
+              39.7336688,
+              43.5701212
+            ],
+            [
+              39.7334814,
+              43.5700811
+            ],
+            [
+              39.7335348,
+              43.5699538
+            ],
+            [
+              39.7333431,
+              43.5697902
+            ],
+            [
+              39.7330383,
+              43.5695873
+            ],
+            [
+              39.7326638,
+              43.5692975
+            ],
+            [
+              39.7322758,
+              43.5689972
+            ],
+            [
+              39.7323199,
+              43.5689717
+            ],
+            [
+              39.7323368,
+              43.5689338
+            ],
+            [
+              39.7323294,
+              43.5688897
+            ],
+            [
+              39.7329607,
+              43.5688656
+            ],
+            [
+              39.7332628,
+              43.5687882
+            ]
+          ]
+        },
+        "place_name": "Летний театр им. Фрунзе",
+        "place_location": null,
+        "meters": 561.7,
+        "minutes": 7.0,
+        "mode": "graph",
+        "place_id": "n736671632"
+      }
+    },
+    {
+      "elapsed": 13.225,
+      "stage": "preview",
+      "preview": {
+        "id": "w52572781",
+        "name": "SPA Отель \"Ostrova\"",
+        "location": [
+          39.7094709,
+          43.606121
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.7094709,
+              43.606121
+            ],
+            [
+              39.7109572,
+              43.6056481
+            ]
+          ]
+        },
+        "place_name": "Летний театр",
+        "place_location": null,
+        "meters": 130.9,
+        "minutes": null,
+        "mode": "straight",
+        "place_id": "w52673359"
+      }
+    },
+    {
+      "elapsed": 13.264,
+      "stage": "preview",
+      "preview": {
+        "id": "w53292009",
+        "name": "ВАН",
+        "location": [
+          39.9148257,
+          43.4289939
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.9148257,
+              43.4289939
+            ],
+            [
+              39.9150868,
+              43.4288673
+            ],
+            [
+              39.9154827,
+              43.4291369
+            ],
+            [
+              39.9148736,
+              43.4295692
+            ],
+            [
+              39.9148251,
+              43.4296036
+            ],
+            [
+              39.9158522,
+              43.4303342
+            ],
+            [
+              39.9167978,
+              43.4310155
+            ],
+            [
+              39.9167189,
+              43.4310711
+            ],
+            [
+              39.9165953,
+              43.4311704
+            ],
+            [
+              39.916488,
+              43.4310926
+            ],
+            [
+              39.9163949,
+              43.4310771
+            ],
+            [
+              39.9162401,
+              43.4310679
+            ],
+            [
+              39.9162688,
+              43.431012
+            ],
+            [
+              39.9162689,
+              43.4309691
+            ],
+            [
+              39.9162541,
+              43.4309218
+            ],
+            [
+              39.9162112,
+              43.4308795
+            ],
+            [
+              39.9161184,
+              43.4308367
+            ],
+            [
+              39.9153877,
+              43.4306012
+            ],
+            [
+              39.9153602,
+              43.430462
+            ],
+            [
+              39.9151822,
+              43.430065
+            ],
+            [
+              39.9150014,
+              43.4299796
+            ],
+            [
+              39.9148772,
+              43.4301192
+            ]
+          ]
+        },
+        "place_name": "Южное Взморье",
+        "place_location": null,
+        "meters": 617.8,
+        "minutes": 7.7,
+        "mode": "graph",
+        "place_id": "n9904689717"
+      }
+    },
+    {
+      "elapsed": 28.446,
+      "stage": "winner",
+      "preview": {
+        "id": "n7659392485",
+        "name": "Золотой лотос",
+        "location": [
+          39.8707292,
+          43.5123797
+        ],
+        "rating": null,
+        "term": "рядом с театром",
+        "route": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              39.8707292,
+              43.5123797
+            ],
+            [
+              39.8706867,
+              43.5122089
+            ],
+            [
+              39.8711684,
+              43.5121454
+            ],
+            [
+              39.8711847,
+              43.5123744
+            ],
+            [
+              39.8715328,
+              43.5123724
+            ],
+            [
+              39.871539,
+              43.5124429
+            ],
+            [
+              39.8715436,
+              43.5124995
+            ],
+            [
+              39.87160062445055,
+              43.512497100000004
+            ]
+          ]
+        },
+        "place_name": null,
+        "place_location": null,
+        "meters": 131.2,
+        "minutes": 1.6,
+        "mode": "graph",
+        "place_id": "w1190970196"
+      }
+    }
+  ]
+}
