@@ -1,7 +1,7 @@
 import asyncio
 from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timedelta
-from math import isfinite
+from math import inf, isfinite
 from typing import Any
 
 from hotel_agent.application.agent.event_proximity import event_proximity
@@ -50,6 +50,23 @@ class PlaceTools:
             return {"hits": list(result.records), "sources": result.sources}
         except (ValueError, TypeError, KeyError):
             return {"hits": [], "note": "Direct event listings are unavailable"}
+
+    def event_note(self, hotel_id: str) -> str | None:
+        rows = [row for row in self.events if row.get("hotel_id") == hotel_id]
+        if not rows:
+            return None
+        row = min(rows, key=lambda item: float(item.get("distance_m") or inf))
+        distance = row.get("distance_m")
+        parts = [
+            *(str(row[key]) for key in ("title", "place") if row.get(key)),
+            *([str(row["start"])[:10]] if row.get("start") else []),
+            *(
+                [f"{float(distance):.0f} м до площадки"]
+                if isinstance(distance, int | float)
+                else []
+            ),
+        ]
+        return ", ".join(parts) or None
 
     async def execute(self, action: str, arguments: dict[str, Any]) -> dict[str, Any]:
         provider = self._providers.get(action)

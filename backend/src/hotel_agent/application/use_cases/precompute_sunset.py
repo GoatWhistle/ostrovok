@@ -124,16 +124,16 @@ def _reachable(hotel: SearchHotelRecord) -> int | None:
 
 
 def _explain(arc: tuple[float, float], floor: int | None, facing: int, reach: int | None) -> str:
-    window = f"Закат в {MONTHS} садится по азимуту {arc[0]:.0f}–{arc[1]:.0f}°."
+    window = f"Закат в {MONTHS} по азимуту {arc[0]:.0f}–{arc[1]:.0f}°."
     if not facing:
         return f"{window} Ни один фасад здания не выходит на эту сторону."
-    where = f"{window} На закатную сторону выходит фасадов: {facing}."
+    where = f"{window} Фасадов на закат: {facing}."
     if floor is None:
         return f"{where} Профиль горизонта не рассчитан."
-    height = f"{where} Горизонт по DEM и высотам зданий открывается с {floor}-го этажа."
+    height = f"{where} Горизонт открыт с {floor}-го этажа"
     if reach is None:
-        return f"{height} Этажность здания неизвестна, поэтому подтвердить нельзя."
-    return f"{height} В здании этажей: {reach}."
+        return f"{height}. Этажность здания неизвестна, подтвердить нельзя."
+    return f"{height}, в здании этажей: {reach}."
 
 
 def season_months() -> tuple[int, int]:

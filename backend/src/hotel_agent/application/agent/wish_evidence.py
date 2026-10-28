@@ -3,6 +3,7 @@ from collections.abc import Sequence
 from dataclasses import replace
 from datetime import datetime, timedelta
 
+from hotel_agent.application.agent.evidence_summary import brief, summary
 from hotel_agent.application.agent.wish_records import WishResult
 from hotel_agent.application.dto import SearchFactRecord, SearchHotelRecord
 from hotel_agent.application.fact_records import fact_from_record
@@ -109,7 +110,7 @@ def unresolved_facts(
             valid_until=now + timedelta(minutes=10),
             status="active",
             geo_refs=(),
-            explanation=result.reason,
+            explanation=brief(result.reason),
             facade_azimuth=None,
         )
         for hotel in hotels
@@ -144,7 +145,7 @@ def relabel_facts(
                 value=value,
                 confidence=min(row.confidence for row in selected),
                 geo_refs=tuple(dict.fromkeys(ref for row in selected for ref in row.geo_refs)),
-                explanation="; ".join(dict.fromkeys(row.explanation for row in selected)),
+                explanation=summary(row.explanation for row in selected),
                 qualifiers={
                     **first.qualifiers,
                     "source_text": term,
