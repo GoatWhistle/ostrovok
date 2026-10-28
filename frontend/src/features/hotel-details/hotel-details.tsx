@@ -16,6 +16,7 @@ import { RoomList } from "./room-list"
 import { RoomsScreen } from "./rooms/rooms-screen"
 import { RoomsTeaser } from "./rooms/rooms-teaser"
 import { useRoomsScreen } from "./rooms/use-rooms-screen"
+import { FactSources } from "./sources/fact-sources"
 import { SupplierDetails } from "./supplier/supplier-details"
 
 export interface HotelDetailsProps {
@@ -114,7 +115,13 @@ export function HotelDetails({
       aria-labelledby={titleId}
       data-motion="fade"
     >
-      <HotelHero hotel={card.hotel} supplier={supplier} titleId={titleId} />
+      <HotelHero
+        hotel={card.hotel}
+        supplier={supplier}
+        source={catalog.data?.source}
+        titleId={titleId}
+      />
+      <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
       {matched.length ? (
         <MatchRows
           matched={matched}
@@ -130,7 +137,6 @@ export function HotelDetails({
           onFact={onFact}
         />
       )}
-      <RoomsTeaser hotelId={card.hotel.id} stay={stay} onOpen={roomsScreen.show} />
       {rooms.length ? (
         <Disclosure title={t("explore:details.rooms")} icon="room" defaultOpen>
           <RoomList rooms={rooms} />
@@ -139,30 +145,36 @@ export function HotelDetails({
       {views.length ? (
         <FactList title={t("explore:cards.views")} facts={views} onFact={onFact} />
       ) : null}
-      {supplier ? <SupplierDetails details={supplier} source={catalog.data?.source} /> : null}
-      <HotelFacilities
-        hotelId={card.hotel.id}
-        facilitiesRu={card.facilities_ru ?? []}
-        facilitiesEn={card.facilities_en ?? []}
-      />
-      <Disclosure title={t("explore:cards.allEvidence")} icon="source">
-        {card.conflicts?.length ? (
-          <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
-            {t("explore:details.conflictsText")}
-            <ConflictValues conflicts={card.conflicts} facts={card.facts} />
-          </Banner>
-        ) : null}
-        {card.stale_count ? (
-          <Banner
-            tone="neutral"
-            icon="stale"
-            title={t("explore:details.staleCount", { count: card.stale_count })}
-          >
-            {t("explore:details.staleText")}
-          </Banner>
-        ) : null}
-        <FactList facts={card.facts} onFact={onFact} />
-      </Disclosure>
+      {supplier ? (
+        <SupplierDetails details={supplier} wishes={matched.map((item) => item.label)} />
+      ) : null}
+      {supplier?.amenity_groups.length ? null : (
+        <HotelFacilities
+          hotelId={card.hotel.id}
+          facilitiesRu={card.facilities_ru ?? []}
+          facilitiesEn={card.facilities_en ?? []}
+        />
+      )}
+      <div className={styles.sources}>
+        <Disclosure title={t("explore:cards.allEvidence")} icon="source">
+          {card.conflicts?.length ? (
+            <Banner tone="warning" icon="alert" title={t("explore:details.conflicts")}>
+              {t("explore:details.conflictsText")}
+              <ConflictValues conflicts={card.conflicts} facts={card.facts} />
+            </Banner>
+          ) : null}
+          {card.stale_count ? (
+            <Banner
+              tone="neutral"
+              icon="stale"
+              title={t("explore:details.staleCount", { count: card.stale_count })}
+            >
+              {t("explore:details.staleText")}
+            </Banner>
+          ) : null}
+          <FactSources facts={card.facts} onFact={onFact} />
+        </Disclosure>
+      </div>
       <RoomsDock available={catalog.data?.status === "available"} onOpen={roomsScreen.show} />
     </article>
   )

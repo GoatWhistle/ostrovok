@@ -25,6 +25,25 @@
   overflow-wrap: anywhere;
 }
 
+.external {
+  composes: roundIconShape pressable from "../../shared/styles/compose.module.css";
+  flex: none;
+  margin-inline-start: calc(-1 * var(--space-4));
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .external:hover {
+    color: var(--text-primary);
+    background-color: var(--action-ghost-hover);
+  }
+}
+
+.external:active {
+  background-color: var(--action-ghost-press);
+}
+
 .address {
   composes: bodySmText from "../../shared/styles/compose.module.css";
   display: inline-flex;

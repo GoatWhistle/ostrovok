@@ -26,7 +26,7 @@ function priority(fact: Fact): number {
   )
 }
 
-function groupFacts(facts: readonly Fact[]): FactGroup[] {
+export function groupFacts(facts: readonly Fact[]): FactGroup[] {
   const groups = new Map<string, FactGroup>()
   for (const fact of facts) {
     const current = groups.get(fact.characteristic_key)

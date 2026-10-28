@@ -1,97 +1,116 @@
-.block {
-  display: grid;
-  gap: var(--space-12);
-  min-width: 0;
-}
-
-.grid {
-  composes: plainList from "../../../shared/styles/compose.module.css";
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8) var(--space-32);
-}
-
-.fact {
+.prose {
   composes: bodySmText from "../../../shared/styles/compose.module.css";
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-6);
-  min-width: 0;
+  display: grid;
+  gap: var(--space-8);
+  max-inline-size: var(--prose-measure);
+  color: var(--text-primary);
 }
 
-.fact > .label {
+.proseSection {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.proseTitle {
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
   color: var(--text-secondary);
-  font-size: inherit;
-  line-height: inherit;
 }
 
-.fact > .value {
-  font-size: inherit;
-  line-height: inherit;
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
 }
 
-.label {
-  composes: captionText from "../../../shared/styles/compose.module.css";
+.mark {
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-xs);
+  color: var(--text-on-highlight);
+  background-color: var(--surface-highlight);
+  box-decoration-break: clone;
 }
 
-.value {
-  composes: bodyStrong from "../../../shared/styles/compose.module.css";
-  font-variant-numeric: var(--font-numeric);
+.more {
+  justify-self: start;
+  margin-inline-start: calc(-1 * var(--space-8));
+}
+
+.top {
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: var(--space-8) var(--space-24);
+}
+
+.top > li {
+  min-inline-size: 0;
   overflow-wrap: anywhere;
+}
+
+.allAmenities {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.groups {
+  columns: 2 14rem;
+  column-gap: var(--space-32);
 }
 
 .group {
   display: grid;
   gap: var(--space-4);
+  margin-block-end: var(--space-16);
+  break-inside: avoid;
 }
 
 .groupName {
-  composes: captionText from "../../../shared/styles/compose.module.css";
+  composes: captionStrong from "../../../shared/styles/compose.module.css";
+  color: var(--text-secondary);
 }
 
 .items {
-  composes: plainList from "../../../shared/styles/compose.module.css";
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-8);
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
+  display: grid;
+  gap: var(--space-2);
 }
 
-.item {
-  composes: inlineRow from "../../../shared/styles/compose.module.css";
-  min-width: 0;
+.items > li {
   overflow-wrap: anywhere;
 }
 
+.free,
+.note {
+  composes: captionText from "../../../shared/styles/compose.module.css";
+}
+
 .places {
-  composes: plainList from "../../../shared/styles/compose.module.css";
+  composes: plainList bodySmText from "../../../shared/styles/compose.module.css";
   display: grid;
-  gap: var(--space-4);
 }
 
 .place {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-8);
+  gap: var(--space-16);
+  padding-block: var(--space-6);
+}
+
+.place + .place {
+  box-shadow: var(--shadow-divider-top);
+}
+
+.place > span:first-child {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .distance {
   flex: none;
+  color: var(--text-secondary);
   font-variant-numeric: var(--font-numeric);
-}
-
-.prose {
-  display: grid;
-  gap: var(--space-8);
-  max-inline-size: var(--prose-measure);
-}
-
-.proseTitle {
-  composes: bodyStrong from "../../../shared/styles/compose.module.css";
-}
-
-.link {
-  composes: inlineRow bodySmText from "../../../shared/styles/compose.module.css";
-  color: var(--action-primary);
-  overflow-wrap: anywhere;
+  text-align: end;
 }

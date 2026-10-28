@@ -40,7 +40,7 @@ const SUPPLIER: Supplier = {
 function show(supplier: Supplier | undefined) {
   return render(
     <LocaleProvider>
-      <HotelHero hotel={HOTEL} supplier={supplier} titleId="title" />
+      <HotelHero hotel={HOTEL} supplier={supplier} source="Ostrovok" titleId="title" />
     </LocaleProvider>,
   )
 }
@@ -57,10 +57,20 @@ describe("hotel hero", () => {
     expect(screen.getByText(/27/)).toBeTruthy()
   })
 
+  it("links the supplier page next to the hotel name in a new tab", () => {
+    show(SUPPLIER)
+    const link = screen.getByRole("link", {
+      name: ru.supplier.open.replace("{{source}}", "Ostrovok"),
+    })
+    expect(link.getAttribute("href")).toBe(SUPPLIER.page_url)
+    expect(link.getAttribute("target")).toBe("_blank")
+  })
+
   it("shows no cover and no invented facts without supplier data", () => {
     const { container } = show(undefined)
     expect(container.querySelector("img")).toBeNull()
     expect(screen.queryByText(/13:00/)).toBeNull()
     expect(screen.queryByRole("button", { name: ru.offers.viewRooms })).toBeNull()
+    expect(screen.queryByRole("link")).toBeNull()
   })
 })

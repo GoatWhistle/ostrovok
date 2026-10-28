@@ -12,6 +12,7 @@ type Supplier = components["schemas"]["SupplierDetails"]
 export interface HotelHeroProps {
   readonly hotel: HotelSummary
   readonly supplier: Supplier | undefined
+  readonly source?: string | null | undefined
   readonly titleId: string
 }
 
@@ -27,7 +28,8 @@ function coverPhotos(hotel: HotelSummary, supplier: Supplier | undefined): strin
 function useHeroFacts(supplier: Supplier | undefined) {
   const { t } = useTranslation()
   if (!supplier) return []
-  const rooms = supplier.facts.rooms_number
+  const { rooms_number: rooms, floors_number: floors, year_built: built } = supplier.facts
+  const renovated = supplier.facts.year_renovated
   return [
     supplier.check_in_from
       ? t("explore:hotelCover.checkIn", { time: supplier.check_in_from })
@@ -36,12 +38,33 @@ function useHeroFacts(supplier: Supplier | undefined) {
       ? t("explore:hotelCover.checkOut", { time: supplier.check_out_until })
       : undefined,
     rooms ? t("explore:hotelCover.rooms", { count: rooms }) : undefined,
+    floors ? t("explore:hotelCover.floors", { count: floors }) : undefined,
+    built ? t("explore:hotelCover.built", { year: built }) : undefined,
+    renovated ? t("explore:hotelCover.renovated", { year: renovated }) : undefined,
   ].filter((text): text is string => Boolean(text))
 }
 
-export function HotelHero({ hotel, supplier, titleId }: HotelHeroProps) {
+function SupplierLink({ url, source }: { readonly url: string; readonly source: string }) {
+  const { t } = useTranslation()
+  const label = t("explore:supplier.open", { source })
+  return (
+    <a
+      className={styles.external}
+      href={url}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label={label}
+      title={label}
+    >
+      <Icon name="external" size="sm" />
+    </a>
+  )
+}
+
+export function HotelHero({ hotel, supplier, source, titleId }: HotelHeroProps) {
   const facts = useHeroFacts(supplier)
   const score = supplier?.rating?.total ?? undefined
+  const pageUrl = supplier ? sourceUrl(supplier.page_url) : undefined
   return (
     <header className={styles.hero}>
       <HotelCover key={hotel.id} photos={coverPhotos(hotel, supplier)} name={hotel.name} />
@@ -50,6 +73,7 @@ export function HotelHero({ hotel, supplier, titleId }: HotelHeroProps) {
           <p id={titleId} className={styles.name} lang="ru">
             {hotel.name}
           </p>
+          {pageUrl ? <SupplierLink url={pageUrl} source={source ?? ""} /> : null}
           <HotelStars value={hotel.stars ?? supplier?.facts.star_rating} />
         </div>
         {hotel.address ? (

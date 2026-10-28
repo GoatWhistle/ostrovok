@@ -1,24 +1,23 @@
 import { amenityGroupName, amenityName } from "@/entities/hotel"
 import type { components } from "@/shared/api/schema.gen"
 import { useLocale, useTranslation } from "@/shared/i18n"
-import { Disclosure, Icon } from "@/shared/ui"
+import { Disclosure } from "@/shared/ui"
+import { DetailsSection } from "../details-section"
+import { pickAmenities } from "./amenity-picks"
 import styles from "./supplier.module.css"
 
 type Group = components["schemas"]["SupplierAmenityGroup"]
 
-export function SupplierAmenities({ groups }: { readonly groups: readonly Group[] }) {
+function AllAmenities({ groups }: { readonly groups: readonly Group[] }) {
   const { t } = useTranslation()
   const { locale } = useLocale()
-  if (!groups.length) return null
-  const total = groups.reduce((sum, group) => sum + group.amenities.length, 0)
   return (
-    <Disclosure title={t("explore:supplier.amenities", { count: total })} icon="check">
-      <p className={styles.label}>{t("explore:supplier.amenitiesNote")}</p>
-      <div className={styles.block}>
+    <div className={styles.allAmenities}>
+      <div className={styles.groups}>
         {groups.map((group) => {
           const title = amenityGroupName(group.name, locale)
           return (
-            <div key={group.name} className={styles.group}>
+            <section key={group.name} className={styles.group}>
               <p className={styles.groupName} lang={title.lang}>
                 {title.text}
               </p>
@@ -26,17 +25,54 @@ export function SupplierAmenities({ groups }: { readonly groups: readonly Group[
                 {group.amenities.map((item) => {
                   const name = amenityName(item.name, locale)
                   return (
-                    <li key={item.name} className={styles.item} lang={name.lang}>
-                      {item.free ? <Icon name="check" size="sm" /> : null}
-                      {name.text}
+                    <li key={item.name}>
+                      <span lang={name.lang}>{name.text}</span>
+                      {item.free ? (
+                        <span className={styles.free}> · {t("explore:supplier.free")}</span>
+                      ) : null}
                     </li>
                   )
                 })}
               </ul>
-            </div>
+            </section>
           )
         })}
       </div>
-    </Disclosure>
+      <p className={styles.note}>{t("explore:supplier.amenitiesNote")}</p>
+    </div>
+  )
+}
+
+export function SupplierAmenities({
+  groups,
+  pattern,
+}: {
+  readonly groups: readonly Group[]
+  readonly pattern: RegExp | undefined
+}) {
+  const { t } = useTranslation()
+  const { locale } = useLocale()
+  const listed = groups.filter((group) => group.amenities.length)
+  if (!listed.length) return null
+  const total = listed.reduce((sum, group) => sum + group.amenities.length, 0)
+  const top = pickAmenities(listed, pattern)
+  return (
+    <DetailsSection title={t("explore:supplier.amenities")}>
+      {top.length ? (
+        <ul className={styles.top}>
+          {top.map((item) => {
+            const name = amenityName(item.name, locale)
+            return (
+              <li key={item.name} lang={name.lang}>
+                {name.text}
+              </li>
+            )
+          })}
+        </ul>
+      ) : null}
+      <Disclosure title={t("explore:supplier.allAmenities", { count: total })}>
+        <AllAmenities groups={listed} />
+      </Disclosure>
+    </DetailsSection>
   )
 }
