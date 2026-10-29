@@ -15,6 +15,7 @@
   <a href="#запуск"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-run.dark.png"><img src="docs/readme/cta-run.light.png" alt="Запустить локально" width="221" height="44"></picture></a>
   <a href="docs/for-jury.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-jury.dark.png"><img src="docs/readme/cta-jury.light.png" alt="Маршрут для жюри" width="213" height="44"></picture></a>
   <a href="docs/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-docs.dark.png"><img src="docs/readme/cta-docs.light.png" alt="Документация" width="178" height="44"></picture></a>
+  <a href="presentation/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-presentation.dark.png"><img src="docs/readme/cta-presentation.light.png" alt="Презентация" width="159" height="44"></picture></a>
   <!-- /readme:buttons -->
 </p>
 
@@ -64,7 +65,7 @@
 <p align="center">
   <img src="docs/images/landing.png" alt="Главная страница: поле запроса, подсказки и объёмный город у отеля «Космос» в Адлере с маршрутом до моря «4 мин»." height="300">
   <img src="docs/images/phone-map.png" alt="Телефон, вкладка «Карта»: отели Адлера и строка запроса над нижними вкладками." height="300">
-  <img src="docs/images/phone-chat.png" alt="Телефон, вкладка «Чат»: ответ с понятыми условиями «Адлер», «тихий», «у моря», «с видом на закат»." height="300">
+  <img src="docs/images/phone-chat.png" alt="Телефон, вкладка «Чат»: ответ с понятыми условиями «Адлер», «тихий», «у моря» и вопросом о датах." height="300">
   <br>
   <sub>Главная, карта и чат на телефоне шириной 390 px; тот же стенд 2026-10-28.</sub>
 </p>
@@ -163,6 +164,12 @@ curl -s http://localhost:8000/api/v1/search \
 `LLM_BASE_URL`, `LLM_API_KEY` и `LLM_MODEL`. С офлайн-разбором ответы будут другими.
 
 </details>
+
+## Презентация
+
+Презентация решения лежит в папке [presentation/](presentation/) в двух форматах. Смотреть лучше
+HTML-версию: в ней живая карта, анимации и демонстрация поиска. PDF и PPTX — статичные копии на
+случай, если браузер недоступен.
 
 ## Запуск
 
