@@ -44,7 +44,7 @@ def chat_with(
     work.search = SimpleNamespace(get_hotel=AsyncMock(return_value=HOTEL))
     work.facts = SimpleNamespace(versions=AsyncMock(return_value=[]), lock_hotel=AsyncMock())
     work.questions = SimpleNamespace(
-        get=AsyncMock(return_value=None), add=AsyncMock(return_value=1)
+        get=AsyncMock(return_value=None), add=AsyncMock(return_value=1), follow=AsyncMock()
     )
     llm = SimpleNamespace(respond_to_chat=AsyncMock(return_value=decision))
     search = AsyncMock()
@@ -101,6 +101,9 @@ async def test_owner_topic_is_answered_without_the_model(characteristics_dir: Pa
     reply = asked.conversation.messages[-1].content
     assert work.questions.add.call_args.args[0][0].characteristic_key == "pets_policy"
     assert reply.startswith("Таких данных об отеле пока нет. Передали ваш вопрос владельцу")
+    work.questions.follow.assert_awaited_once_with(
+        f"q_{HOTEL.id}_pets_policy", asked.conversation.id
+    )
 
     work.questions.add.reset_mock()
     work.facts.versions.return_value = [owner_fact("Да, с собаками до 10 кг, 1000 ₽ за ночь")]

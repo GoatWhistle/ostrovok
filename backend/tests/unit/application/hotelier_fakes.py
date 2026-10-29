@@ -82,6 +82,8 @@ class Store:
     demand: list[DemandRecord] = field(default_factory=list)
     appearances: int = 0
     commits: int = 0
+    followers: dict[str, set[str]] = field(default_factory=dict)
+    owner_replies: list[tuple[str, str]] = field(default_factory=list)
 
 
 class FakeFacts:
@@ -161,6 +163,14 @@ class FakeQuestions:
     async def set_status(self, question_id: str, status: str) -> None:
         current = self._view()[question_id]
         self._pending["questions"][question_id] = replace(current, status=status)
+
+    async def follow(self, question_id: str, conversation_id: str) -> None:
+        self._store.followers.setdefault(question_id, set()).add(conversation_id)
+
+    async def reply_to_followers(self, question_id: str, content: str) -> int:
+        waiting = self._store.followers.pop(question_id, set())
+        self._store.owner_replies.extend((conversation, content) for conversation in waiting)
+        return len(waiting)
 
     async def set_statuses(self, question_ids: Sequence[str], status: str) -> int:
         changed = 0

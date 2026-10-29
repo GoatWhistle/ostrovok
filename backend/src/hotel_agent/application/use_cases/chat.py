@@ -170,6 +170,7 @@ class Chat:
                 else shorten(" ".join(text.split()), 60)
             )
         )
+        waiting = direct.question_ids if direct is not None else ()
         async with self._uow() as uow:
             if decision.mode is ChatMode.HOTEL and selected_hotel_id and self._clock:
                 questions = await enqueue_hotel_questions(
@@ -180,6 +181,7 @@ class Chat:
                     decision.question_keys,
                 )
                 answer += owner_notes(questions, locale)
+                waiting += questions.question_ids
             await uow.chat.save(
                 identifier,
                 region_id,
@@ -191,6 +193,8 @@ class Chat:
                 snapshot,
                 title,
             )
+            for question_id in dict.fromkeys(waiting):
+                await uow.questions.follow(question_id, identifier)
             await uow.commit()
         async with self._uow() as uow:
             conversation = await uow.chat.get(identifier)

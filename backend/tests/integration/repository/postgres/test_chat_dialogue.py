@@ -130,13 +130,20 @@ async def test_selected_hotel_question_answer_and_card_use_real_storage(
             questions[0].id, "Во всех номерах установлены плотные шторы блэкаут."
         )
         assert saved.extracted[0].value is True
+        async with work() as unit:
+            waiting = await unit.chat.get(result.conversation.id)
+        assert waiting is not None
+        assert waiting.messages[-1].content == (
+            "Владелец отеля ответил на ваш вопрос: «Во всех номерах установлены плотные шторы блэкаут.»"
+        )
         loaded = await card(hotel_id)
         assert any(
             f.characteristic_key == "blackout_curtains" and f.value is True for f in loaded.facts
         )
-        await chat.send(
+        again = await chat.send(
             result.conversation.id, "Есть ли в номерах шторы блэкаут?", region, hotel_id
         )
+        assert again.conversation.messages[-1].content.startswith("Ответ владельца отеля от ")
         async with work() as unit:
             assert len(await unit.questions.for_hotel(hotel_id)) == 1
         search.assert_not_awaited()

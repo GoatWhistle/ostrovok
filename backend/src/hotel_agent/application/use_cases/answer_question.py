@@ -5,6 +5,7 @@ from hotel_agent.application import hotelier_events
 from hotel_agent.application.dto import ConflictRecord
 from hotel_agent.application.fact_records import FactOwner, fact_to_record
 from hotel_agent.application.fact_versions import conflict_record, current_versions, settle_answer
+from hotel_agent.application.hotel_question_requests import owner_reply_message
 from hotel_agent.application.hotelier_facts import hotelier_fact
 from hotel_agent.application.ports.clock import ClockPort
 from hotel_agent.application.ports.llm import Extraction, LLMPort
@@ -102,6 +103,7 @@ class AnswerHotelierQuestion:
             await uow.questions.record_answer(
                 question_id, QuestionStatus.ANSWERED.value, text, self._clock.now()
             )
+            await uow.questions.reply_to_followers(question_id, owner_reply_message(text))
             await hotelier_events.announce(
                 uow.notifications,
                 (
