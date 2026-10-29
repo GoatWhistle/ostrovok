@@ -25,28 +25,29 @@ export function SearchStatus({
 }) {
   const { t } = useTranslation()
   const key = labels[journey.status]
-  if (!key && !scene) return null
+  const visiting = journey.winner ? undefined : scene
+  if (!key && !visiting) return null
   return (
     <div className={styles.position}>
       <div
         className={styles.status}
         data-map-obstacle
         data-search-status={journey.status}
-        data-search-hotel={scene?.id}
+        data-search-hotel={visiting?.id}
       >
         <Icon name="map" size="sm" />
         <div role="status" aria-live="polite">
           <strong>
-            {scene
-              ? t(journey.winner ? "explore:searchMap.best" : "explore:searchMap.visiting", {
-                  name: scene.name,
-                })
+            {visiting
+              ? t("explore:searchMap.visiting", { name: visiting.name })
               : key
                 ? t(key, { location: journey.location ?? "" })
                 : null}
           </strong>
-          {scene ? <SearchSceneCopy scene={scene} journey={journey} /> : null}
-          {journey.status === "checking" && !scene ? <p>{t("explore:searchMap.pending")}</p> : null}
+          {visiting ? <SearchSceneCopy scene={visiting} journey={journey} /> : null}
+          {journey.status === "checking" && !visiting ? (
+            <p>{t("explore:searchMap.pending")}</p>
+          ) : null}
         </div>
         {journey.status === "error" || journey.status === "unresolved" ? (
           <Button size="compact" onClick={onRetry}>
