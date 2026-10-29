@@ -17,6 +17,7 @@
   <a href="docs/for-jury.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-jury.dark.png"><img src="docs/readme/cta-jury.light.png" alt="Маршрут для жюри" width="213" height="44"></picture></a>
   <a href="docs/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-docs.dark.png"><img src="docs/readme/cta-docs.light.png" alt="Документация" width="178" height="44"></picture></a>
   <a href="presentation/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-presentation.dark.png"><img src="docs/readme/cta-presentation.light.png" alt="Презентация" width="159" height="44"></picture></a>
+  <a href="https://drive.google.com/drive/folders/1nGBPJy9XWlL7WoTu80L_2Xu_khB8E-q_?usp=sharing"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-video.dark.png"><img src="docs/readme/cta-video.light.png" alt="Видео" width="106" height="44"></picture></a>
   <!-- /readme:buttons -->
 </p>
 
