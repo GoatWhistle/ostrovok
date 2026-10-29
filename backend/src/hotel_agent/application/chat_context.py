@@ -2,6 +2,7 @@ from dataclasses import asdict
 from typing import Any
 
 from hotel_agent.application.use_cases.get_hotel_card import GetHotelCard
+from hotel_agent.domain.entities import FactStatus
 from hotel_agent.domain.errors import HotelNotFound
 
 
@@ -51,7 +52,13 @@ async def selected_hotel_context(
                 "explanation": fact.explanation[:600],
                 "source": asdict(fact.provenance),
             }
-            for fact in card.facts[:24]
+            for fact in sorted(
+                card.facts,
+                key=lambda item: (
+                    item.status is not FactStatus.CONFIRMED_BY_HOTELIER,
+                    item.characteristic_key.startswith("derived:"),
+                ),
+            )[:24]
         ],
         "fact_count": len(card.facts),
         "supplier_content": asdict(card.supplier_content) if card.supplier_content else None,

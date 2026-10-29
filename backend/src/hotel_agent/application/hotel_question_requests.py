@@ -1,9 +1,49 @@
+from dataclasses import dataclass
 from datetime import datetime
 
-from hotel_agent.application.dto import QuestionRecord
+from hotel_agent.application.dto import QuestionRecord, SearchFactRecord
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.repositories import UnitOfWork
 from hotel_agent.domain.characteristics import SourceType
+
+OWNER_ANSWER_LIMIT = 600
+
+
+@dataclass(frozen=True, slots=True)
+class OwnerAnswer:
+    characteristic_key: str
+    text: str
+    observed_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class HotelQuestions:
+    sent: tuple[str, ...] = ()
+    answered: tuple[OwnerAnswer, ...] = ()
+
+
+def _fresh(item: SearchFactRecord, now: datetime) -> bool:
+    return (
+        item.status in {"active", "confirmed_by_hotelier"}
+        and item.confidence >= 0.7
+        and (item.valid_until is None or item.valid_until > now)
+    )
+
+
+def _owner_answer(key: str, fresh: list[SearchFactRecord]) -> OwnerAnswer | None:
+    answers = [
+        item
+        for item in fresh
+        if item.source_type == SourceType.HOTELIER.value and item.explanation.strip()
+    ]
+    if not answers:
+        return None
+    latest = max(answers, key=lambda item: item.observed_at or item.computed_at)
+    return OwnerAnswer(
+        characteristic_key=key,
+        text=" ".join(latest.explanation.split())[:OWNER_ANSWER_LIMIT],
+        observed_at=latest.observed_at or latest.computed_at,
+    )
 
 
 async def enqueue_hotel_questions(
@@ -12,7 +52,7 @@ async def enqueue_hotel_questions(
     now: datetime,
     hotel_id: str,
     requested: tuple[str, ...],
-) -> tuple[str, ...]:
+) -> HotelQuestions:
     allowed = {
         item.key: item
         for item in registry.all()
@@ -20,21 +60,21 @@ async def enqueue_hotel_questions(
     }
     keys = tuple(key for key in dict.fromkeys(requested) if key in allowed)[:8]
     if not keys:
-        return ()
+        return HotelQuestions()
     hotel = await work.search.get_hotel(hotel_id)
     if hotel is None:
-        return ()
+        return HotelQuestions()
     await work.facts.lock_hotel(hotel_id)
     pending = []
     sent = []
+    answered = []
     for key in keys:
         versions = await work.facts.versions("hotel", hotel_id, key)
-        if any(
-            item.status in {"active", "confirmed_by_hotelier"}
-            and item.confidence >= 0.7
-            and (item.valid_until is None or item.valid_until > now)
-            for item in versions
-        ):
+        fresh = [item for item in versions if _fresh(item, now)]
+        if fresh:
+            known = _owner_answer(key, fresh)
+            if known is not None:
+                answered.append(known)
             continue
         characteristic = allowed[key]
         identifier = f"q_{hotel_id}_{key}"
@@ -59,4 +99,44 @@ async def enqueue_hotel_questions(
         sent.append(key)
     if pending:
         await work.questions.add(pending)
-    return tuple(sent)
+    return HotelQuestions(sent=tuple(sent), answered=tuple(answered))
+
+
+def owner_reply(questions: HotelQuestions, locale: str) -> str:
+    english = locale == "en"
+    lines = [
+        (
+            f"The hotel owner answered on {item.observed_at:%Y-%m-%d}: “{item.text}”"
+            if english
+            else f"Ответ владельца отеля от {item.observed_at:%d.%m.%Y}: «{item.text}»"
+        )
+        for item in questions.answered
+    ]
+    if questions.sent:
+        lines.append(
+            "There is no such information about the hotel yet. We have passed your question to "
+            "the hotel owner; their reply will appear in the hotel card."
+            if english
+            else "Таких данных об отеле пока нет. Передали ваш вопрос владельцу отеля — его ответ "
+            "появится в карточке."
+        )
+    return "\n\n".join(lines)
+
+
+def owner_notes(questions: HotelQuestions, locale: str) -> str:
+    english = locale == "en"
+    notes = [
+        (
+            f"The hotel owner answered on {item.observed_at:%Y-%m-%d}: “{item.text}”"
+            if english
+            else f"Ответ владельца отеля от {item.observed_at:%d.%m.%Y}: «{item.text}»"
+        )
+        for item in questions.answered
+    ]
+    if questions.sent:
+        notes.append(
+            "Your question has been sent to the hotel owner. Their reply will appear in the hotel card."
+            if english
+            else "Вопрос отправлен владельцу отеля. Его ответ появится в карточке."
+        )
+    return "".join(f"\n\n{note}" for note in notes)
