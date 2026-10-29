@@ -20,6 +20,10 @@
 </p>
 
 <p align="center">
+  Онлайн-демо: <a href="https://factmap.goatwhistle.ru">factmap.goatwhistle.ru</a> (деплой ещё настраивается; пока он не готов, стенд поднимается локально, см. <a href="#запуск">Запуск</a>)
+</p>
+
+<p align="center">
   <!-- readme:status -->
   <a href="#результаты"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-1.dark.png"><img src="docs/readme/badge-status-1.light.png" alt="22 запроса на стенде: 16 с выдачей" width="258" height="28"></picture></a>
   <a href="#запуск"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/badge-status-2.dark.png"><img src="docs/readme/badge-status-2.light.png" alt="без ключей: офлайн-разбор" width="212" height="28"></picture></a>
