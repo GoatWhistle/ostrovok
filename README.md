@@ -174,7 +174,7 @@ curl -s http://localhost:8000/api/v1/search \
 - [presentation.html](presentation/presentation.html) — основной вариант. Камера летит над 3D-городом, собранным из
   наших данных, и показывает факты об отеле. Один самодостаточный файл: откройте в Chrome, сеть и
   стенд не нужны. Листать стрелками или пробелом, `F` — полный экран.
-- [factmap.pdf](presentation/factmap.pdf) — статичная версия той же структуры на случай, если браузер
+- [presentation.pdf](presentation/presentation.pdf) — статичная версия той же структуры на случай, если браузер
   недоступен.
 
 ## Запуск
