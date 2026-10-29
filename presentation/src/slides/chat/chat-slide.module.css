@@ -1,0 +1,142 @@
+.stage {
+  position: absolute;
+  top: 100px;
+  right: 120px;
+}
+
+.mark {
+  padding: 0 4px;
+  border-radius: var(--radius-xs);
+  background: var(--action-fact);
+  color: var(--text-on-fact);
+  animation: mark-in var(--dur-slow) var(--ease-out) both;
+}
+
+.thinking {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 72px;
+  color: var(--text-secondary);
+  font-size: 1.375rem;
+  animation: fade var(--dur-base) var(--ease-out) both;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--border-default);
+  border-top-color: var(--action-primary);
+  border-radius: var(--radius-pill);
+  animation: spin var(--dur-spin) linear infinite;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  min-height: 52px;
+  margin-top: -6px;
+}
+
+.filters {
+  display: grid;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: 32px 200px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.375rem;
+  animation: slide var(--dur-reveal) var(--ease-out) both;
+}
+
+.filterIcon {
+  width: 26px;
+  height: 26px;
+  color: var(--text-accent);
+}
+
+.filterName {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.filterRule {
+  color: var(--text-secondary);
+}
+
+.reply {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  animation: fade var(--dur-reveal) var(--ease-out) both;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  animation: fade var(--dur-reveal) var(--ease-out) both;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  border-radius: var(--radius-md);
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.primary {
+  background: var(--action-fact);
+  color: var(--text-on-fact);
+}
+
+.secondary {
+  color: var(--text-primary);
+}
+
+.primary svg,
+.secondary svg {
+  width: 26px;
+  height: 26px;
+}
+
+@keyframes mark-in {
+  from {
+    background: transparent;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    translate: -12px 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}

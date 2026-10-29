@@ -1,0 +1,120 @@
+.logo {
+  --logo-size: 7rem;
+  --logo-delay: 0s;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--logo-size) * 0.18);
+}
+
+.logo[data-size="corner"] {
+  --logo-size: 2.25rem;
+}
+
+.logo[data-size="final"] {
+  --logo-size: 5.5rem;
+}
+
+.mark {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  overflow: visible;
+  perspective: 400px;
+}
+
+.left,
+.right {
+  fill: var(--mark-side);
+  transform-box: fill-box;
+}
+
+.middle {
+  fill: var(--mark-fact);
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: accent-drop var(--dur-fold) var(--ease-out) calc(var(--logo-delay) + 0.75s) both;
+}
+
+.left {
+  transform-origin: 100% 50%;
+  animation: fold-left var(--dur-fold) var(--ease-out) calc(var(--logo-delay) + 0.1s) both;
+}
+
+.right {
+  transform-origin: 0% 50%;
+  animation: fold-right var(--dur-fold) var(--ease-out) calc(var(--logo-delay) + 0.3s) both;
+}
+
+.word {
+  display: inline-flex;
+  color: var(--text-primary);
+  font-size: calc(var(--logo-size) * 0.92);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.letter {
+  display: inline-block;
+  animation: letter-rise var(--dur-reveal) var(--ease-out) both;
+  animation-delay: calc(var(--logo-delay) + 0.55s + var(--letter-step, 0s));
+}
+
+.letter[data-letter="1"] {
+  --letter-step: 0.07s;
+}
+.letter[data-letter="2"] {
+  --letter-step: 0.14s;
+}
+.letter[data-letter="3"] {
+  --letter-step: 0.21s;
+}
+.letter[data-letter="4"] {
+  --letter-step: 0.28s;
+}
+.letter[data-letter="5"] {
+  --letter-step: 0.35s;
+}
+.letter[data-letter="6"] {
+  --letter-step: 0.42s;
+}
+
+.logo[data-size="corner"] .left,
+.logo[data-size="corner"] .right,
+.logo[data-size="corner"] .middle,
+.logo[data-size="corner"] .letter {
+  animation-duration: var(--dur-slow);
+  animation-delay: 0s;
+}
+
+@keyframes fold-left {
+  from {
+    opacity: 0;
+    transform: scaleX(0) skewY(-12deg);
+  }
+}
+
+@keyframes fold-right {
+  from {
+    opacity: 0;
+    transform: scaleX(0) skewY(12deg);
+  }
+}
+
+@keyframes accent-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60%) scaleY(0.4);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(4%) scaleY(1.02);
+  }
+}
+
+@keyframes letter-rise {
+  from {
+    opacity: 0;
+    translate: 0 0.35em;
+    filter: blur(4px);
+  }
+}

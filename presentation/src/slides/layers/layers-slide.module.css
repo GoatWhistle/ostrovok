@@ -1,0 +1,138 @@
+.list {
+  position: absolute;
+  top: 250px;
+  left: var(--deck-gutter);
+  display: grid;
+  gap: var(--space-8);
+  width: 620px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  column-gap: var(--space-16);
+  align-items: center;
+  padding: var(--space-12) var(--space-20);
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  animation: item-in var(--dur-reveal) var(--ease-out) both;
+  transition:
+    background-color var(--dur-slow) var(--ease-out),
+    border-color var(--dur-slow) var(--ease-out),
+    color var(--dur-slow) var(--ease-out),
+    padding var(--dur-fold) var(--ease-out);
+}
+
+.item[data-state="active"] {
+  padding-block: var(--space-16);
+  border-color: var(--border-subtle);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-overlay);
+  color: var(--text-primary);
+}
+
+.item[data-state="done"] {
+  color: var(--text-secondary);
+}
+
+.item[data-state="next"] {
+  color: var(--text-muted);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--surface-raised) 70%, transparent);
+  color: inherit;
+  transition:
+    background-color var(--dur-slow) var(--ease-out),
+    color var(--dur-slow) var(--ease-out);
+}
+
+.icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.item[data-state="active"] .icon {
+  background: var(--action-fact);
+  color: var(--text-on-fact);
+}
+
+.text {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.name {
+  font-size: var(--deck-type-body);
+  font-weight: 700;
+}
+
+.value {
+  color: var(--text-accent);
+  font-family: var(--font-mono);
+  font-size: var(--deck-type-small);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.item:not([data-state="active"]) .value {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.note {
+  grid-column: 2;
+  max-height: 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: var(--deck-type-small);
+  line-height: 1.35;
+  opacity: 0;
+  transition:
+    max-height var(--dur-fold) var(--ease-out),
+    opacity var(--dur-fold) var(--ease-out),
+    margin var(--dur-fold) var(--ease-out);
+}
+
+.item[data-state="active"] .note {
+  max-height: 4em;
+  margin-top: var(--space-6);
+  opacity: 1;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--action-fact);
+  transform-origin: left;
+  animation: progress 3.8s linear both;
+}
+
+@keyframes item-in {
+  from {
+    opacity: 0;
+    translate: -24px 0;
+  }
+}
+
+@keyframes progress {
+  from {
+    scale: 0 1;
+  }
+}

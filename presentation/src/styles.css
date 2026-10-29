@@ -1,0 +1,38 @@
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/jetbrains-mono";
+@import "../../frontend/src/shared/styles/tokens/palette.css";
+@import "../../frontend/src/shared/styles/tokens/map-palette.css";
+@import "../../frontend/src/shared/styles/tokens/semantic.css";
+@import "../../frontend/src/shared/styles/tokens/radius.css";
+@import "../../frontend/src/shared/styles/tokens/space.css";
+@import "../../frontend/src/shared/styles/tokens/typography.css";
+@import "../../frontend/src/shared/styles/tokens/elevation.css";
+@import "../../frontend/src/shared/styles/tokens/motion.css";
+
+:root {
+  --deck-gutter: 96px;
+  --deck-type-hero: 9rem;
+  --deck-type-title: 4rem;
+  --deck-type-lead: 2rem;
+  --deck-type-body: 1.5rem;
+  --deck-type-small: 1.25rem;
+  --deck-plate-blur: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
