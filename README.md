@@ -176,6 +176,17 @@ make seed && make precompute
 из репозитория. Сеть нужна для сборки образов и прогноза погоды. `make seed` и `make precompute`
 запускаются на хосте и требуют [uv](https://docs.astral.sh/uv/).
 
+### Языковая модель и ключи
+
+Провайдер: Yandex Cloud AI Studio, OpenAI-совместимый API (`LLM_PROVIDER=openai_compat`,
+`LLM_BASE_URL=https://llm.api.cloud.yandex.net/v1`). Основная модель `deepseek-v4.1-flash`,
+быстрая модель для планирования и запасная `qwen3.6-35b-a3b`. Эмбеддинги:
+`qwen/qwen3-embedding-8b` через polza.ai.
+
+Ключи для жюри лежат в зашифрованном `secrets.env.age` в корне репозитория (age, публичный ключ
+организаторов). Список переменных без значений: [.env.example](.env.example). Организаторы
+расшифровывают файл в `.env` и запускают `make up`.
+
 <details>
 <summary><b>Разработка, проверки, переменные</b></summary>
 <br>
