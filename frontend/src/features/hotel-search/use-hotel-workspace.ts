@@ -158,7 +158,6 @@ export function useHotelWorkspace() {
     outgoing: chat.outgoing,
     send: (message: string) => {
       clearEvidence()
-      setHotelId(undefined)
       setView("chat")
       chat.send(message)
     },
