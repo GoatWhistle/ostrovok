@@ -6,6 +6,7 @@ import type { components } from "@/shared/api/schema.gen"
 import { moveSessionDraft } from "@/shared/hooks"
 import { useLocale } from "@/shared/i18n"
 import { useInputModality, withViewTransition } from "@/shared/motion"
+import { REPLY_POLL_MS, useBackgroundReplyRefresh } from "./background-replies"
 import {
   forgetSaved,
   readConversationHistory,
@@ -109,7 +110,9 @@ export function useConversation(
         }),
       ),
     retry: false,
+    refetchInterval: () => (inflight.current > 0 ? false : REPLY_POLL_MS),
   })
+  useBackgroundReplyRefresh(conversation.data?.messages)
   useEffect(() => {
     const data = conversation.data
     if (data?.messages.some((item) => item.role === "user")) {
@@ -129,8 +132,9 @@ export function useConversation(
     onSettled: () => {
       inflight.current -= 1
     },
-    onSuccess: (data, input) => {
+    onSuccess: async (data, input) => {
       if (input.signal.aborted || input.generation !== active.current.generation) return
+      await cache.cancelQueries({ queryKey: ["conversation", data.id] })
       if (input.id === null) moveSessionDraft(`chat:${input.scope}`, `chat:${data.id}`)
       const started =
         input.scope === active.current.scope && input.generation === active.current.generation

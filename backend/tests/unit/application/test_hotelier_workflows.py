@@ -247,3 +247,18 @@ async def test_pruning_skips_questions_for_hotels_that_never_reached_results(
 
     assert report.deferred == 1
     assert store.questions["q1"].status == "skipped"
+
+
+async def test_owner_answer_reaches_the_waiting_conversation(
+    registry: YamlCharacteristicRegistry,
+) -> None:
+    store = Store(questions={"q1": question("q1", "h1", "pets_policy")}, followers={"q1": {"c1"}})
+    await answering(store, registry)("q1", "Уточню позже")
+    assert store.owner_replies == []
+    await answering(store, registry)("q1", "Можно с собакой до 10 кг, плата 500 рублей.")
+    assert store.owner_replies == [
+        (
+            "c1",
+            "Владелец отеля ответил на ваш вопрос: «Можно с собакой до 10 кг, плата 500 рублей.»",
+        )
+    ]

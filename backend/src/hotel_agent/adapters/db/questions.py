@@ -98,6 +98,26 @@ SELECT * FROM unnest(%(ids)s::text[], %(hotels)s::text[], %(keys)s::text[], %(te
 ON CONFLICT (id) DO NOTHING"""
 
 
+FOLLOW = """INSERT INTO chat_owner_questions (conversation_id, question_id)
+VALUES (%(conversation)s, %(question)s)
+ON CONFLICT (conversation_id, question_id) DO UPDATE SET notified_at = NULL, created_at = now()"""
+
+REPLY_TO_FOLLOWERS = """WITH targets AS (
+    UPDATE chat_owner_questions SET notified_at = now()
+    WHERE question_id = %(question)s AND notified_at IS NULL
+    RETURNING conversation_id
+), messages AS (
+    INSERT INTO chat_messages (id, conversation_id, role, content)
+    SELECT gen_random_uuid(), conversation_id, 'assistant', %(content)s FROM targets
+    RETURNING conversation_id
+), touched AS (
+    UPDATE chat_conversations SET updated_at = now()
+    WHERE id IN (SELECT conversation_id FROM messages)
+    RETURNING id
+)
+SELECT count(*) FROM touched"""
+
+
 class PostgresQuestionStore:
     def __init__(self, connection: AsyncConnection[tuple[object, ...]]) -> None:
         self._connection = connection
@@ -123,6 +143,18 @@ class PostgresQuestionStore:
 
     async def set_status(self, question_id: str, status: str) -> None:
         await self._connection.execute(SET_STATUS, {"id": question_id, "status": status})
+
+    async def follow(self, question_id: str, conversation_id: str) -> None:
+        await self._connection.execute(
+            FOLLOW, {"question": question_id, "conversation": conversation_id}
+        )
+
+    async def reply_to_followers(self, question_id: str, content: str) -> int:
+        cursor = await self._connection.execute(
+            REPLY_TO_FOLLOWERS, {"question": question_id, "content": content}
+        )
+        row = await cursor.fetchone()
+        return int(str(row[0])) if row else 0
 
     async def prune(self, region: str) -> int:
         cursor = await self._connection.execute(PRUNE, {"region": region})

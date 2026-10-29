@@ -20,6 +20,7 @@ class OwnerAnswer:
 class HotelQuestions:
     sent: tuple[str, ...] = ()
     answered: tuple[OwnerAnswer, ...] = ()
+    question_ids: tuple[str, ...] = ()
 
 
 def _fresh(item: SearchFactRecord, now: datetime) -> bool:
@@ -68,6 +69,7 @@ async def enqueue_hotel_questions(
     pending = []
     sent = []
     answered = []
+    identifiers = []
     for key in keys:
         versions = await work.facts.versions("hotel", hotel_id, key)
         fresh = [item for item in versions if _fresh(item, now)]
@@ -97,9 +99,12 @@ async def enqueue_hotel_questions(
                 )
             )
         sent.append(key)
+        identifiers.append(identifier)
     if pending:
         await work.questions.add(pending)
-    return HotelQuestions(sent=tuple(sent), answered=tuple(answered))
+    return HotelQuestions(
+        sent=tuple(sent), answered=tuple(answered), question_ids=tuple(identifiers)
+    )
 
 
 def owner_reply(questions: HotelQuestions, locale: str) -> str:
@@ -140,3 +145,10 @@ def owner_notes(questions: HotelQuestions, locale: str) -> str:
             else "Вопрос отправлен владельцу отеля. Его ответ появится в карточке."
         )
     return "".join(f"\n\n{note}" for note in notes)
+
+
+def owner_reply_message(answer: str) -> str:
+    text = " ".join(answer.split())[:OWNER_ANSWER_LIMIT]
+    if not text:
+        return "Владелец отеля ответил на ваш вопрос: данные появились в карточке отеля."
+    return f"Владелец отеля ответил на ваш вопрос: «{text}»"
