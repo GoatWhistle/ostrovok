@@ -10,6 +10,7 @@ export interface CameraPath {
   readonly shots: readonly Shot[]
   readonly seconds: number
   readonly loop: boolean
+  readonly drift?: boolean
 }
 
 type Vector = [number, number, number, number, number]
@@ -53,6 +54,19 @@ function toShot(value: readonly number[]): Shot {
 }
 
 export function shotAt(path: CameraPath, elapsed: number): Shot {
+  if (path.drift) {
+    const [start, end] = path.shots
+    if (start && end) {
+      const t = Math.min(1, Math.max(0, elapsed / path.seconds))
+      return {
+        x: start.x + (end.x - start.x) * t,
+        y: start.y + (end.y - start.y) * t,
+        distance: start.distance + (end.distance - start.distance) * t,
+        pitch: start.pitch + (end.pitch - start.pitch) * t,
+        bearing: start.bearing + (end.bearing - start.bearing) * t,
+      }
+    }
+  }
   const points = unwrap(path.shots)
   const segments = path.loop ? points.length : points.length - 1
   if (segments <= 0) return path.shots[0] ?? { x: 0, y: 0, distance: 600, pitch: 50, bearing: 0 }

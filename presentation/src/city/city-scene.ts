@@ -17,6 +17,9 @@ import {
   Vector3,
   WebGLRenderer,
   Float32BufferAttribute,
+  EdgesGeometry,
+  LineBasicMaterial,
+  LineSegments,
 } from "three"
 import { atmosphereAt } from "./atmosphere"
 import { buildBuildings, buildFootprint } from "./build-buildings"
@@ -69,15 +72,16 @@ export class CityScene {
   private growTarget = 1
   private shift = 0
   private lastDelta = 0.016
+  private flight = FLIGHT
   private treeTarget = 1
 
   constructor(canvas: HTMLCanvasElement) {
-    this.renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" })
+    this.renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance", logarithmicDepthBuffer: true })
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
     this.renderer.outputColorSpace = SRGBColorSpace
     this.renderer.toneMapping = ACESFilmicToneMapping
     this.renderer.toneMappingExposure = 1.05
-    this.renderer.shadowMap.enabled = true
+    this.renderer.shadowMap.enabled = false
     this.renderer.shadowMap.type = PCFShadowMap
     this.scene.fog = new Fog(0xffffff, 1500, 9000)
     this.build()
@@ -95,8 +99,10 @@ export class CityScene {
     buildingMesh.receiveShadow = true
     const ground = new Mesh(buildGround(), flatMaterial())
     ground.receiveShadow = true
+    ground.renderOrder = -2
     const roads = new Mesh(buildRoads(), flatMaterial())
     roads.receiveShadow = true
+    roads.renderOrder = -1
     const material = treeMaterial()
     material.onBeforeCompile = (shader) => {
       shader.uniforms.uTreeGrow = this.treeGrow
@@ -110,6 +116,8 @@ export class CityScene {
     const lamps = new Points(lampGeometry, lampMaterial(this.night))
     this.sea.rotation.x = -Math.PI / 2
     this.sea.position.y = -0.6
+    this.sea.renderOrder = -3
+    this.sky.renderOrder = -4
     this.sky.frustumCulled = false
     this.scene.add(this.sky, this.sea, ground, roads, buildingMesh, trees.mesh, lamps, this.ambient, this.sunLight, this.sunLight.target)
     this.sunLight.castShadow = true
@@ -134,13 +142,16 @@ export class CityScene {
     heroGeometry.translate(-cx, 0, -cz)
     heroGeometry.scale(1.04, 1, 1.04)
     heroGeometry.translate(cx, 0, cz)
-    const heroMesh = new Mesh(
-      heroGeometry,
-      new MeshLambertMaterial({ color: lime, emissive: lime, emissiveIntensity: 0.35 }),
+    const outline = new LineSegments(
+      new EdgesGeometry(heroGeometry, 25),
+      new LineBasicMaterial({ color: token("--action-primary") }),
     )
-    heroMesh.castShadow = true
+    const roof = new Mesh(
+      heroGeometry,
+      new MeshLambertMaterial({ color: lime, emissive: lime, emissiveIntensity: 0.2, transparent: true, opacity: 0.35, depthWrite: false }),
+    )
     const heroFader = new Fader([])
-    heroFader.group.add(heroMesh)
+    heroFader.group.add(roof, outline)
     this.faders.set("hero", heroFader)
     const hotelBase = (id: string, x: number, y: number): [number, number, number] => {
       const index = hotels.get(id)
@@ -155,7 +166,7 @@ export class CityScene {
     routeMaterial.depthWrite = true
     routeMaterial.polygonOffset = true
     routeMaterial.polygonOffsetFactor = -4
-    this.faders.set("route", new Fader([new Mesh(ribbon([CITY.route], 6, 1.6), routeMaterial)], 1.6))
+    this.faders.set("route", new Fader([new Mesh(ribbon([CITY.route], 2.6, 1.2), routeMaterial)], 1.6))
     this.faders.set("facade", new Fader([new Mesh(walls(CITY.facades, heroHeight + 6), glowMaterial(token("--action-primary"), 0.9))]))
     const noiseLines = CITY.noise.filter(([, flat]) => flat.length >= 4).map(([, flat]) => flat)
     this.faders.set("noise", new Fader([new Mesh(ribbon(noiseLines, 16, 0.7), glowMaterial(new Color("#ff6b4a"), 0.9))], 3))
@@ -169,10 +180,19 @@ export class CityScene {
 
   direct(direction: Direction) {
     const now = performance.now() / 1000
-    this.from = this.shot
-    this.started = now
-    this.hourFrom = this.hour
-    this.clockStarted = now
+    const samePath = this.direction?.path === direction.path
+    const sameClock = JSON.stringify(this.direction?.clock) === JSON.stringify(direction.clock)
+    if (!samePath) {
+      this.from = this.shot
+      this.started = now
+      const first = shotAt(direction.path, 0)
+      const travel = Math.hypot(first.x - this.shot.x, first.y - this.shot.y) + Math.abs(first.distance - this.shot.distance)
+      this.flight = Math.min(FLIGHT, Math.max(1.1, travel / 900))
+    }
+    if (!sameClock) {
+      this.hourFrom = this.hour
+      this.clockStarted = now
+    }
     const previous = new Set(this.direction?.highlights ?? [])
     this.direction = direction
     for (const [key, fader] of this.faders) {
@@ -228,8 +248,8 @@ export class CityScene {
     const direction = this.direction
     if (!direction) return
     const elapsed = now - this.started
-    const target = shotAt(direction.path, Math.max(0, elapsed - FLIGHT))
-    this.shot = elapsed < FLIGHT ? blendShots(this.from, target, elapsed / FLIGHT) : target
+    const target = shotAt(direction.path, Math.max(0, elapsed - this.flight))
+    this.shot = elapsed < this.flight ? blendShots(this.from, target, elapsed / this.flight) : target
     const shot = this.shot
     const pitch = (shot.pitch * Math.PI) / 180
     const bearing = (shot.bearing * Math.PI) / 180
@@ -251,10 +271,15 @@ export class CityScene {
     const air = atmosphereAt(this.hour)
     this.night.value = air.night
     const [sx, sy, sz] = air.sunDirection
-    const focus = new Vector3(this.shot.x, 0, -this.shot.y)
+    const span = Math.min(1600, Math.max(300, this.shot.distance * 0.9))
+    const texel = (span * 2) / 2048
+    const focus = new Vector3(
+      Math.round(this.shot.x / texel) * texel,
+      0,
+      Math.round(-this.shot.y / texel) * texel,
+    )
     this.sunLight.position.set(focus.x + sx * 2000, sy * 2000, focus.z + sz * 2000)
     this.sunLight.target.position.copy(focus)
-    const span = Math.min(1600, Math.max(300, this.shot.distance * 0.9))
     const shadow = this.sunLight.shadow.camera
     shadow.left = -span
     shadow.right = span

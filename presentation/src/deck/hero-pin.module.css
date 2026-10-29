@@ -1,0 +1,46 @@
+.pin {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  translate: -50% calc(-100% - 14px);
+  pointer-events: none;
+  animation: pin-in var(--dur-reveal) var(--ease-out) 0.8s both;
+}
+
+.label {
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-overlay);
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge {
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--action-primary);
+  color: var(--action-primary-text);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.stem {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 14px;
+  background: var(--action-primary);
+}
+
+@keyframes pin-in {
+  from {
+    opacity: 0;
+    translate: -50% calc(-100% - 2px);
+  }
+}

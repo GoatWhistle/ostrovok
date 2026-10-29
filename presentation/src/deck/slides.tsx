@@ -88,7 +88,7 @@ export const SLIDES: readonly DeckSlide[] = [
   {
     id: "final",
     bare: true,
-    direction: { path: PATHS.final, clock: day(18.2), highlights: ["hotels"] },
+    direction: { path: PATHS.final, clock: day(17.8), highlights: [] },
     render: () => <FinalSlide />,
   },
 ]

@@ -50,7 +50,9 @@ if (vWall.y > 1.4 && vWall.w > 4.0) {
   vec2 cell = vec2(fract(vWall.x / 3.2), fract((vWall.y - 0.6) / 3.1));
   float inside = step(0.22, cell.x) * step(cell.x, 0.78) * step(0.28, cell.y) * step(cell.y, 0.78);
   float roofGap = step(vWall.y, vWall.w - 0.6);
-  windowMask = inside * roofGap;
+  vec2 footprint = fwidth(vec2(vWall.x / 3.2, (vWall.y - 0.6) / 3.1));
+  float detail = 1.0 - smoothstep(0.18, 0.4, max(footprint.x, footprint.y));
+  windowMask = inside * roofGap * detail;
   lit = step(0.42, cellHash(vec3(floorIndex, columnIndex, vWall.z)));
 }
 diffuseColor.rgb = mix(diffuseColor.rgb, uGlass, windowMask * 0.55 * (1.0 - uNight * 0.6));
@@ -62,13 +64,7 @@ totalEmissiveRadiance += diffuseColor.rgb * 0.06 * uNight;`,
 }
 
 export function flatMaterial() {
-  return new MeshLambertMaterial({
-    vertexColors: true,
-    side: DoubleSide,
-    polygonOffset: true,
-    polygonOffsetFactor: -1,
-    polygonOffsetUnits: -1,
-  })
+  return new MeshLambertMaterial({ vertexColors: true, side: DoubleSide, depthWrite: false })
 }
 
 export function treeMaterial() {

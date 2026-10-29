@@ -257,21 +257,23 @@ export function ArchitectureSlide() {
     <div className={`${parts.slide} ${styles.root}`}>
       <SlideTitle title={copy.title} accent={copy.accent} />
       <div className={styles.diagram}>
-      <Rings />
-      {CHIPS.map((chip, i) => (
-        <span
-          key={chip.label}
-          className={`${styles.chip} ${chip.kind === "interface" ? styles.chipFact : ""}`}
-          style={{ left: chip.x, top: chip.y, ...delay(1.45 + i * 0.05) }}
-        >
-          {chip.label}
-        </span>
-      ))}
+        <Rings />
+        {CHIPS.map((chip, i) => (
+          <span
+            key={chip.label}
+            className={`${styles.chip} ${chip.kind === "interface" ? styles.chipFact : ""}`}
+            style={{ left: chip.x, top: chip.y, ...delay(1.45 + i * 0.05) }}
+          >
+            {chip.label}
+          </span>
+        ))}
       </div>
       <aside className={styles.side}>
         <SwapCard />
-        <p className={styles.rule}>
-          <ShieldCheck size={28} strokeWidth={2} className={styles.ruleIcon} />
+        <p className={`${parts.plate} ${styles.rule}`}>
+          <span className={styles.ruleIcon}>
+            <ShieldCheck size={26} strokeWidth={2} />
+          </span>
           <span>{copy.rule}</span>
         </p>
       </aside>

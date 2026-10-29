@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import styles from "./app.module.css"
 import { CityScene, type Direction } from "./city/city-scene"
 import { DeckStage } from "./deck/deck-stage"
+import { HeroPin } from "./deck/hero-pin"
 import { DeckLogo } from "./deck/logo/deck-logo"
 import { SLIDES } from "./deck/slides"
 import { useNavigation } from "./deck/use-navigation"
@@ -27,6 +28,9 @@ export function App() {
   return (
     <div className={styles.deck} data-hidden={Boolean(slide.direction.hidden)} data-dimmed={Boolean(slide.dimmed)}>
       <canvas ref={canvas} className={styles.canvas} />
+      {ready && slide.direction.highlights.includes("hero") && !slide.direction.hidden ? (
+        <HeroPin key={slide.id} city={city} label="El Paraiso" />
+      ) : null}
       <div className={styles.veil} />
       <DeckStage>
         <div key={`${slide.id}:${navigation.take}`} className={styles.slide}>

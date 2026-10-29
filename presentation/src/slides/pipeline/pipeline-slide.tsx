@@ -9,7 +9,7 @@ const copy = COPY.pipeline
 const TOTAL_MS = 3790
 const CHART_WIDTH = 1000
 const START_S = 0.8
-const PLAY_S = 5
+const PLAY_S = 3.4
 const SCALE = CHART_WIDTH / TOTAL_MS
 const REAL = PLAY_S / TOTAL_MS
 
@@ -25,12 +25,12 @@ type Row = {
 
 const ROWS: readonly Row[] = [
   { id: "route", label: copy.route, top: 0, blocks: [{ from: 0, to: 50, kind: "cache" }] },
-  { id: "parse", label: copy.parse, top: 80, blocks: [{ from: 50, to: 700, kind: "llm", label: "LLM" }] },
+  { id: "parse", label: copy.parse, top: 72, blocks: [{ from: 50, to: 700, kind: "llm", label: "LLM" }] },
   {
     id: "w1",
     label: `${copy.wish} 1`,
     sub: "тихий",
-    top: 172,
+    top: 156,
     blocks: [
       { from: 700, to: 1250, kind: "tool", label: "find_nearby" },
       { from: 1250, to: 1850, kind: "tool", label: "search_documents" },
@@ -41,7 +41,7 @@ const ROWS: readonly Row[] = [
     id: "w2",
     label: `${copy.wish} 2`,
     sub: "у моря",
-    top: 248,
+    top: 224,
     blocks: [
       { from: 700, to: 1300, kind: "tool", label: "measure_geometry" },
       { from: 1300, to: 1750, kind: "tool", label: "calculate_sun" },
@@ -52,7 +52,7 @@ const ROWS: readonly Row[] = [
     id: "w3",
     label: `${copy.wish} 3`,
     sub: "с собакой",
-    top: 324,
+    top: 292,
     blocks: [
       { from: 700, to: 1450, kind: "tool", label: "search_web" },
       { from: 1450, to: 2200, kind: "tool", label: "read_web_page" },
@@ -62,14 +62,14 @@ const ROWS: readonly Row[] = [
   {
     id: "review",
     label: copy.review,
-    top: 416,
+    top: 376,
     blocks: [
       { from: 2350, to: 2780, kind: "wave", label: "12" },
       { from: 2800, to: 3180, kind: "wave", label: "12" },
       { from: 3200, to: 3540, kind: "wave", label: "12" },
     ],
   },
-  { id: "answer", label: copy.answer, top: 496, blocks: [{ from: 3560, to: 3790, kind: "answer" }] },
+  { id: "answer", label: copy.answer, top: 448, blocks: [{ from: 3560, to: 3790, kind: "answer" }] },
 ]
 
 const CALLOUTS: readonly { readonly text: string; readonly at: number; readonly icon: LucideIcon }[] = [

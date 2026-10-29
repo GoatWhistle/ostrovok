@@ -1,58 +1,44 @@
 .feed {
   position: absolute;
+  top: 400px;
   left: var(--deck-gutter);
-  bottom: var(--space-96);
-  width: 700px;
+  width: 704px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-20);
+  gap: var(--space-16);
 }
 
 .bubble {
-  --age: 0;
   max-width: 100%;
-  transform-origin: left bottom;
-  scale: calc(1 - var(--age) * 0.07);
-  opacity: calc(1 - var(--age) * 0.24);
-  filter: blur(calc(var(--age) * 1.2px));
-  transition:
-    scale var(--dur-fold) var(--ease-out),
-    opacity var(--dur-fold) var(--ease-out),
-    filter var(--dur-fold) var(--ease-out);
-}
-
-.card {
-  padding: var(--space-24) var(--space-32);
-  border: 1px solid var(--border-subtle);
-  border-radius: 2rem 2rem 2rem 0.5rem;
-  background: var(--surface-raised);
-  box-shadow: var(--shadow-overlay);
-  transition: box-shadow var(--dur-fold) var(--ease-out);
+  padding: 18px 28px;
+  border-radius: var(--radius-xl);
+  background: var(--surface-sunken);
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow var(--dur-base) var(--ease-out);
   animation: bubble-in var(--dur-reveal) var(--ease-out) both;
 }
 
-.bubble[data-age="0"] .card {
-  box-shadow: var(--shadow-ring-selected), var(--shadow-overlay);
+.bubble[data-typing="true"] {
+  box-shadow: 0 0 0 2px var(--action-primary);
 }
 
 .text {
   display: block;
   color: var(--text-primary);
-  font-size: var(--deck-type-lead);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.35;
   text-wrap: pretty;
 }
 
 .caret {
   display: inline-block;
-  width: 3px;
+  width: 2px;
   height: 1.1em;
-  margin-left: 4px;
+  margin-left: 3px;
   vertical-align: -0.15em;
-  border-radius: 2px;
+  border-radius: 1px;
   background: var(--action-primary);
   animation: caret 0.9s steps(2, jump-none) infinite;
 }
@@ -60,9 +46,7 @@
 @keyframes bubble-in {
   from {
     opacity: 0;
-    translate: 0 24px;
-    scale: 0.94;
-    filter: blur(6px);
+    translate: 0 12px;
   }
 }
 

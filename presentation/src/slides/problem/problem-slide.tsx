@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react"
 import { COPY } from "../../deck/copy"
 import parts from "../../deck/deck-parts.module.css"
 import { SlideTitle } from "../../deck/slide-title"
@@ -6,32 +5,23 @@ import { useBeat, useTyped } from "../../deck/use-beat"
 import styles from "./problem-slide.module.css"
 
 const QUERIES = Object.values(COPY.problem.queries)
-const VISIBLE = 4
 
-function Bubble({ text, age }: { readonly text: string; readonly age: number }) {
-  const typed = useTyped(text, true, 34)
-  const typing = typed.length < text.length
+function Bubble({ text, latest }: { readonly text: string; readonly latest: boolean }) {
+  const typed = useTyped(text, latest, 18)
+  const shown = latest ? typed : text
+  const typing = latest && typed.length < text.length
   return (
-    <div
-      className={styles.bubble}
-      data-age={age}
-      style={{ "--age": age } as CSSProperties}
-    >
-      <div className={styles.card}>
-        <span className={styles.text}>
-          {typed}
-          {typing ? <span className={styles.caret} /> : null}
-        </span>
-      </div>
+    <div className={styles.bubble} data-typing={typing}>
+      <span className={styles.text}>
+        {shown}
+        {typing ? <span className={styles.caret} /> : null}
+      </span>
     </div>
   )
 }
 
 export function ProblemSlide() {
-  const beat = useBeat(2600, QUERIES.length, 700)
-  const shown = QUERIES.slice(0, beat)
-    .map((text, index) => ({ text, index }))
-    .slice(-VISIBLE)
+  const beat = useBeat(1100, QUERIES.length, 700)
   return (
     <section className={parts.slide}>
       <div className={parts.scrim} />
@@ -41,8 +31,8 @@ export function ProblemSlide() {
         lead={COPY.problem.lead}
       />
       <div className={styles.feed}>
-        {shown.map(({ text, index }) => (
-          <Bubble key={index} text={text} age={beat - 1 - index} />
+        {QUERIES.slice(0, beat).map((text, index) => (
+          <Bubble key={text} text={text} latest={index === beat - 1} />
         ))}
       </div>
     </section>

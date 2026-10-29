@@ -5,18 +5,18 @@
 
 .chart {
   position: absolute;
-  top: 280px;
+  top: 340px;
   left: var(--deck-gutter);
   width: 1324px;
-  height: 600px;
+  height: 556px;
 }
 
 .group {
   position: absolute;
-  top: 168px;
+  top: 152px;
   left: -28px;
   width: 4px;
-  height: 212px;
+  height: 204px;
   border-radius: var(--radius-pill);
   background: var(--action-fact);
   transform-origin: top;
@@ -152,7 +152,7 @@
   top: -16px;
   left: 324px;
   width: 1000px;
-  height: 592px;
+  height: 540px;
   pointer-events: none;
 }
 
@@ -167,7 +167,7 @@
 
 .axis {
   position: absolute;
-  top: 586px;
+  top: 532px;
   left: 324px;
   width: 1000px;
   height: 24px;
@@ -211,10 +211,12 @@
 
 .callouts {
   position: absolute;
-  top: 280px;
+  top: 324px;
   left: 1480px;
   width: 344px;
+  height: 540px;
   display: grid;
+  align-content: space-between;
   gap: 20px;
 }
 
@@ -248,7 +250,7 @@
 
 .metric {
   position: absolute;
-  top: 940px;
+  top: 932px;
   left: var(--deck-gutter);
   display: flex;
   align-items: center;

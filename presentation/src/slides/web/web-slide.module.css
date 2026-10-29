@@ -1,24 +1,53 @@
-.stage {
+.window.window {
   position: absolute;
-  top: 100px;
-  right: 120px;
+  top: 140px;
+  right: 150px;
+  width: 880px;
+  height: 860px;
 }
 
 .steps {
+  position: absolute;
+  top: 400px;
+  left: var(--deck-gutter);
+  width: 704px;
   display: grid;
-  gap: 14px;
+  gap: 28px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .step {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   color: var(--text-primary);
-  font-size: 1.375rem;
+  font-size: 1.5rem;
+  font-weight: 500;
   animation: slide var(--dur-reveal) var(--ease-out) both;
+}
+
+.step + .step::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 27px;
+  width: 2px;
+  height: 28px;
+  background: var(--border-default);
+}
+
+.node {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
 }
 
 .step[data-kind="miss"] {
@@ -26,7 +55,6 @@
 }
 
 .icon {
-  flex: none;
   width: 28px;
   height: 28px;
   color: var(--text-accent);
@@ -40,21 +68,18 @@
   color: var(--text-success);
 }
 
+.text {
+  text-wrap: pretty;
+}
+
 .spinner {
-  width: 20px;
-  height: 20px;
+  flex: none;
+  width: 22px;
+  height: 22px;
   border: 3px solid var(--border-default);
   border-top-color: var(--action-primary);
   border-radius: var(--radius-pill);
   animation: spin var(--dur-spin) linear infinite;
-}
-
-.answer {
-  display: grid;
-  gap: 16px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-subtle);
-  animation: fade var(--dur-reveal) var(--ease-out) both;
 }
 
 .reply {
@@ -63,6 +88,7 @@
 
 .result {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 14px;
 }
@@ -87,12 +113,6 @@
   from {
     opacity: 0;
     translate: -12px 0;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
   }
 }
 

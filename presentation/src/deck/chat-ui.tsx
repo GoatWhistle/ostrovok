@@ -2,9 +2,17 @@ import { ArrowUp } from "lucide-react"
 import type { ReactNode } from "react"
 import styles from "./chat-ui.module.css"
 
-export function ChatWindow({ title, children }: { readonly title: string; readonly children: ReactNode }) {
+export function ChatWindow({
+  title,
+  children,
+  className,
+}: {
+  readonly title: string
+  readonly children: ReactNode
+  readonly className?: string
+}) {
   return (
-    <div className={styles.window}>
+    <div className={className ? `${styles.window} ${className}` : styles.window}>
       <header className={styles.header}>{title}</header>
       <div className={styles.thread}>{children}</div>
     </div>
