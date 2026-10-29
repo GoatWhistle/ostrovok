@@ -45,7 +45,7 @@ for (const width of [375, 1440])
           page.getByRole("button", { name: "Test hotel A", exact: true }).first(),
         ).toBeVisible()
         await page.screenshot({
-          path: `../work/frontend-evolution/evidence/shots/e16-reveal-${width}-${theme}-${locale}.png`,
+          path: `test-results/e16-reveal-${width}-${theme}-${locale}.png`,
         })
         if (width === 375)
           await page.getByRole("radio", { name: copy.panel.chat, exact: true }).click()

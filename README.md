@@ -162,12 +162,6 @@ curl -s http://localhost:8000/api/v1/search \
 Числа раздела получены с живой моделью: в `.env` нужны `LLM_PROVIDER=openai_compat`,
 `LLM_BASE_URL`, `LLM_API_KEY` и `LLM_MODEL`. С офлайн-разбором ответы будут другими.
 
-<!-- scrub:start -->
-Весь набор: `python3 work/evals/run_search_22.py`, сырые ответы пишутся в
-`work/evals/search-22-results.json`. Перед сдачей набор и скрипт нужно перенести из `work/`,
-иначе после вычистки команда пропадёт.
-<!-- scrub:end -->
-
 </details>
 
 ## Запуск
@@ -227,30 +221,6 @@ cd frontend && npm ci --silent && npm run dev
   пользователь его не назвал; для большинства этих отелей номера и цены не подтверждены.
 
 Все ограничения со статусом и тем, что закрыло бы каждое, собраны в [ограничениях](docs/limitations.md).
-
-<!-- scrub:start -->
-## Для команды
-
-Этот блок вырезается при сдаче вместе с маркерами `scrub:start` и `scrub:end`.
-
-1. `bash .claude/scripts/setup.sh` — один раз на клон: хуки коммитов и ссылки на общий каталог `skills/` для Claude Code и Codex.
-   Все скилы лежат в `skills/`; `.claude/skills/<имя>` и `.agents/skills/<имя>` ссылаются на одни
-   и те же исходники. После добавления или удаления скила — `bash .claude/scripts/sync-agents.sh`.
-2. Материалы организаторов — в `brief/sources/`, затем скил `hack-kickoff`: `brief/` и `context/`, шапка
-   `AGENTS.md`, тезис и P0-сценарий. Сейчас `brief/` пуст: ТЗ, критерии и название хакатона не заведены,
-   поэтому в README нет карты требований и подписи команды.
-3. Визуал README — в стиле сайта: `cd frontend && npm run tokens:export -- --out ../presentation/readme/tokens.css`,
-   затем `cd presentation && npm run readme` пересобирает `docs/readme/*.png` из `presentation/readme/assets.html`
-   и красит mermaid-диаграммы цветами продукта. Шрифт Manrope для картинок лежит в `presentation/readme/fonts/`.
-   Бейджи shields.io не используются.
-4. Этот README ведёт скил `readme`: рабочая версия во время хакатона, продуктовая к сдаче.
-   Маршрут жюри и карта требований — `jury-route`, документация — `docs-writing`, сдача — `submission`.
-
-Перед защитой: `bash .claude/scripts/strip-ai.sh` показывает на копии, что будет удалено, какие
-следы останутся и что не так в истории коммитов. `--apply` удаляет файлы агентов и внутренние
-доки (список в `.claude/scrub-paths`), `--apply --history` ещё и переписывает всю историю: только
-заголовки, без соавторов и агентов. Перед изменениями скрипт сохраняет бэкап.
-<!-- scrub:end -->
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/mark.dark.png"><img src="docs/readme/mark.light.png" alt="" width="32" height="32"></picture>

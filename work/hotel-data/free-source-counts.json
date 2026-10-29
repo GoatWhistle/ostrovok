@@ -1,9 +1,0 @@
-{
-  "hotels": 34087,
-  "with_website_tag": 6247,
-  "with_wikidata_tag": 0,
-  "with_street_tag": 11389,
-  "measured_at": "2026-10-26T10:51:27.083897+00:00",
-  "method": "SELECT count(*),\n            count(*) FILTER (WHERE NULLIF(trim(tags->>'website'), '') IS NOT NULL\n                              OR NULLIF(trim(tags->>'contact:website'), '') IS NOT NULL),\n            count(*) FILTER (WHERE NULLIF(trim(tags->>'wikidata'), '') IS NOT NULL),\n            count(*) FILTER (WHERE NULLIF(trim(tags->>'addr:street'), '') IS NOT NULL)\n            FROM hotels",
-  "limitation": "Local stored tags only; links, identities and page contents have not been verified."
-}
