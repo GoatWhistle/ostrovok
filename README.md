@@ -12,6 +12,7 @@
 
 <p align="center">
   <!-- readme:buttons -->
+  <a href="https://factmap.goatwhistle.ru"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-demo.dark.png"><img src="docs/readme/cta-demo.light.png" alt="Онлайн-демо: factmap.goatwhistle.ru" width="162" height="44"></picture></a>
   <a href="#запуск"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-run.dark.png"><img src="docs/readme/cta-run.light.png" alt="Запустить локально" width="221" height="44"></picture></a>
   <a href="docs/for-jury.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-jury.dark.png"><img src="docs/readme/cta-jury.light.png" alt="Маршрут для жюри" width="213" height="44"></picture></a>
   <a href="docs/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-docs.dark.png"><img src="docs/readme/cta-docs.light.png" alt="Документация" width="178" height="44"></picture></a>
@@ -19,9 +20,6 @@
   <!-- /readme:buttons -->
 </p>
 
-<p align="center">
-  Онлайн-демо: <a href="https://factmap.goatwhistle.ru">factmap.goatwhistle.ru</a> (деплой ещё настраивается; пока он не готов, стенд поднимается локально, см. <a href="#запуск">Запуск</a>)
-</p>
 
 <p align="center">
   <!-- readme:status -->
