@@ -242,7 +242,10 @@
     "noiseQuiet": "Quiet side of the building",
     "noiseModerate": "Moderate street noise",
     "noiseLoud": "Street noise possible",
-    "noiseExplanation": "Estimated from nearby OpenStreetMap roads, railway lines, and bars. This is not a room noise measurement."
+    "noiseExplanation": "Estimated from nearby OpenStreetMap roads, railway lines, and bars. This is not a room noise measurement.",
+    "blackoutPresent": "Blackout curtains available",
+    "blackoutAbsent": "Blackout curtains unavailable",
+    "blackoutUnknown": "Blackout curtains: no data"
   },
   "offers": {
     "checkIn": "Check-in",
@@ -502,14 +505,6 @@
     "chat": "Chat",
     "hotels": "Hotels",
     "map": "Map",
-    "hotelCount_one": "{{count, number}} hotel",
-    "hotelCount_few": "{{count, number}} hotels",
-    "hotelCount_many": "{{count, number}} hotels",
-    "hotelCount_other": "{{count, number}} hotels",
-    "matches_one": "matches",
-    "matches_few": "match",
-    "matches_many": "match",
-    "matches_other": "match",
     "sort": "Order",
     "sortMatch": "Best match",
     "sortName": "By name",
@@ -526,7 +521,8 @@
     "cityTitle": "Choose a city",
     "cityText": "Tell me in the chat where to search for a hotel.",
     "back": "All hotels",
-    "resizePanel": "Resize the hotels panel"
+    "resizePanel": "Resize the hotels panel",
+    "matchedHotels": "Matching hotels"
   },
   "landing": {
     "settings": "Settings",
@@ -1041,7 +1037,6 @@
     "error": "Search failed. Please try again.",
     "retry": "Retry",
     "pending": "Map points are candidates. Preferences are still being checked.",
-    "best": "Best matching option: {{name}}",
     "visiting": "Checking {{name}}",
     "walk": "{{term}}: {{minutes}} min walk, {{meters}} m",
     "straight": "{{term}}: {{meters}} m in a straight line. Walking route unavailable",

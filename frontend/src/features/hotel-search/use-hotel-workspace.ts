@@ -141,9 +141,10 @@ export function useHotelWorkspace() {
   }
   return {
     navigation,
-    surface: waiting
-      ? ("conversation" as const)
-      : workspaceSurface(navigation.route, navigation.started, expanded || exploring),
+    surface:
+      waiting && !expanded
+        ? ("conversation" as const)
+        : workspaceSurface(navigation.route, navigation.started, expanded || exploring),
     journey: { ...journey, request: chat.request },
     searchActive: routeAnimation,
     searchCompact: compact,
@@ -157,7 +158,6 @@ export function useHotelWorkspace() {
     outgoing: chat.outgoing,
     send: (message: string) => {
       clearEvidence()
-      setHotelId(undefined)
       setView("chat")
       chat.send(message)
     },

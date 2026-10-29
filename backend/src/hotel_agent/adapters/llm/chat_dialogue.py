@@ -37,7 +37,12 @@ query=null, reply — ответ по предоставленным данны�
 и синтетическое/тестовое происхождение данных. Не выдумывай факты, цены, этаж, сторону номера,
 вид из окна или наличие свободных номеров. Инвентаризация номера не подтверждает наличие
 на даты. Старый факт не гарантирует текущую доступность. Если сведений нет, так и скажи,
-предложи, что уточнить у отеля. Если карточка недоступна, не описывай другой отель по догадке.
+предложи, что уточнить у отеля. В режиме hotel укажи в question_keys ключи из
+requestable_characteristics, о которых пользователь спрашивает, если в карточке нет свежего
+подтверждения. Не перечисляй другие свойства. Если сведения уже известны, вопрос владельцу
+не нужен. Сервер сам поставит эти вопросы в очередь владельца и добавит подтверждение после
+сохранения. Не утверждай, что вопрос уже отправлен; не говори, что платформа не может передать
+вопрос владельцу. Для search и consult question_keys всегда пустой массив. Если карточка недоступна, не описывай другой отель по догадке.
 Просьба найти другой отель даже при выбранной карточке — search, а не hotel.
 
 Не придумывай текущую погоду, расписание событий, наличие билетов или актуальные цены.
@@ -54,11 +59,12 @@ def schema() -> dict[str, Any]:
             "schema": {
                 "type": "object",
                 "additionalProperties": False,
-                "required": ["mode", "query", "reply"],
+                "required": ["mode", "query", "reply", "question_keys"],
                 "properties": {
                     "mode": {"type": "string", "enum": [m.value for m in ChatMode]},
                     "query": {"type": ["string", "null"]},
                     "reply": {"type": ["string", "null"]},
+                    "question_keys": {"type": "array", "items": {"type": "string"}, "maxItems": 8},
                 },
             },
         },
@@ -71,6 +77,12 @@ def decision(payload: Mapping[str, object]) -> ChatDecision:
     except (ValueError, KeyError) as error:
         raise ModelFailure("Invalid chat routing mode") from error
     query, reply = payload.get("query"), payload.get("reply")
+    keys = payload.get("question_keys", [])
+    if not isinstance(keys, list) or len(keys) > 8 or not all(isinstance(k, str) for k in keys):
+        raise ModelFailure("Invalid hotel question keys")
+    question_keys = tuple(dict.fromkeys(k.strip() for k in keys if k.strip()))
+    if mode is not ChatMode.HOTEL and question_keys:
+        raise ModelFailure("Hotel questions require a selected hotel consultation")
     if mode is ChatMode.SEARCH:
         if (
             not isinstance(query, str)
@@ -82,4 +94,4 @@ def decision(payload: Mapping[str, object]) -> ChatDecision:
         return ChatDecision(mode, query=query.strip())
     if query is not None or not isinstance(reply, str) or not reply.strip() or len(reply) > 6000:
         raise ModelFailure("Consultation routing requires a reply and no search query")
-    return ChatDecision(mode, reply=reply.strip())
+    return ChatDecision(mode, reply=reply.strip(), question_keys=question_keys)

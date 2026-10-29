@@ -1,13 +1,14 @@
 import json
 import re
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 
 from hotel_agent.adapters.llm.extraction import extract
 from hotel_agent.adapters.llm.fake_chat import respond
 from hotel_agent.adapters.llm.offline_review import review_typed_recommendations
 from hotel_agent.adapters.llm.text import normalize, terms_outside
 from hotel_agent.application.agent.data_records import DataStep
-from hotel_agent.application.ports.chat_dialogue import ChatDecision
+from hotel_agent.application.ports.chat_dialogue import ChatDecision, ChatMode
 from hotel_agent.application.ports.llm import Extraction, QuestionDraft, ToolCall
 from hotel_agent.application.ports.registry import CharacteristicRegistryPort
 from hotel_agent.application.ports.text_evidence import EvidenceVerdict
@@ -59,7 +60,13 @@ class FakeLLM:
         self._registry = registry
 
     async def respond_to_chat(self, context: str) -> ChatDecision:
-        return respond(context)
+        result = respond(context)
+        if result.mode is ChatMode.HOTEL:
+            parsed = await self.parse_query(str(json.loads(context).get("message", "")))
+            return replace(
+                result, question_keys=tuple(item.characteristic_key for item in parsed.intents)
+            )
+        return result
 
     async def explore_data(self, context: str) -> DataStep:
         payload = json.loads(context)

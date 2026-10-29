@@ -32,7 +32,7 @@ async def test_structured_chat_routing_uses_same_contract_for_both_providers(
     query: str | None,
     reply: str | None,
 ) -> None:
-    payload = {"mode": mode, "query": query, "reply": reply}
+    payload: dict[str, Any] = {"mode": mode, "query": query, "reply": reply, "question_keys": []}
     llm: LLMPort
     if provider == "anthropic":
         llm = anthropic_build(lambda r: message(payload))
@@ -80,3 +80,22 @@ async def test_structured_chat_routing_uses_same_contract_for_both_providers(
 def test_invalid_routing_never_becomes_a_search(payload: dict[str, Any]) -> None:
     with pytest.raises(ModelFailure):
         decision(payload)
+
+
+def test_selected_hotel_questions_are_bounded_and_deduplicated() -> None:
+    result = decision(
+        {
+            "mode": "hotel",
+            "query": None,
+            "reply": "Unknown",
+            "question_keys": ["pets_policy", "pets_policy"],
+        }
+    )
+    assert result.question_keys == ("pets_policy",)
+    for keys in ["pets_policy", [1], ["pets_policy"] * 9]:
+        with pytest.raises(ModelFailure):
+            decision({"mode": "hotel", "query": None, "reply": "Unknown", "question_keys": keys})
+    with pytest.raises(ModelFailure):
+        decision(
+            {"mode": "consult", "query": None, "reply": "Advice", "question_keys": ["pets_policy"]}
+        )
