@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { SearchChat, type SearchChatProps } from "@/features/search-chat"
 import { useTranslation } from "@/shared/i18n"
 import { usePresence } from "@/shared/motion"
@@ -15,10 +15,6 @@ export function ChatDock({ open, onOpenChange, chat }: ChatDockProps) {
   const { t } = useTranslation()
   const toggle = useRef<HTMLButtonElement>(null)
   const presence = usePresence(open)
-  const { sending } = chat
-  useEffect(() => {
-    if (sending) onOpenChange(true)
-  }, [sending, onOpenChange])
   function collapse() {
     onOpenChange(false)
     toggle.current?.focus()
