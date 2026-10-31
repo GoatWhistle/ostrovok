@@ -12,12 +12,9 @@
 
 <p align="center">
   <!-- readme:buttons -->
-  <a href="https://factmap.goatwhistle.ru"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-demo.dark.png"><img src="docs/readme/cta-demo.light.png" alt="Онлайн-демо: factmap.goatwhistle.ru" width="162" height="44"></picture></a>
   <a href="#запуск"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-run.dark.png"><img src="docs/readme/cta-run.light.png" alt="Запустить локально" width="221" height="44"></picture></a>
   <a href="docs/for-jury.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-jury.dark.png"><img src="docs/readme/cta-jury.light.png" alt="Маршрут для жюри" width="213" height="44"></picture></a>
   <a href="docs/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-docs.dark.png"><img src="docs/readme/cta-docs.light.png" alt="Документация" width="178" height="44"></picture></a>
-  <a href="presentation/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-presentation.dark.png"><img src="docs/readme/cta-presentation.light.png" alt="Презентация" width="159" height="44"></picture></a>
-  <a href="https://drive.google.com/drive/folders/1nGBPJy9XWlL7WoTu80L_2Xu_khB8E-q_?usp=sharing"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/readme/cta-video.dark.png"><img src="docs/readme/cta-video.light.png" alt="Видео" width="106" height="44"></picture></a>
   <!-- /readme:buttons -->
 </p>
 
@@ -167,16 +164,6 @@ curl -s http://localhost:8000/api/v1/search \
 `LLM_BASE_URL`, `LLM_API_KEY` и `LLM_MODEL`. С офлайн-разбором ответы будут другими.
 
 </details>
-
-## Презентация
-
-Презентация лежит в папке [presentation/](presentation/) в двух форматах:
-
-- [presentation.html](presentation/presentation.html) — основной вариант. Камера летит над 3D-городом, собранным из
-  наших данных, и показывает факты об отеле. Один самодостаточный файл: откройте в Chrome, сеть и
-  стенд не нужны. Листать стрелками или пробелом, `F` — полный экран.
-- [presentation.pdf](presentation/presentation.pdf) — статичная версия той же структуры на случай, если браузер
-  недоступен.
 
 ## Запуск
 
